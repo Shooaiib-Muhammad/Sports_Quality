@@ -81,20 +81,20 @@
                                 </ul>
                             </li>  -->
 
-                                     <!-- <li>
+                                    <li>
                                 <a href="#" title="Theme Settings" data-filter-tags="theme settings">
-                                     <i class="fa fa-angle-double-down"></i> 
+                                    
                                     <span class="nav-link-text" data-i18n="nav.theme_settings">Development</span>
                                 </a>
                                 <ul>
-                                    <li>
+                                    <!-- <li>
                                         <a href="<?php echo base_url(
                                             ''
                                         ); ?>DevelopmentController" title="How it works" data-filter-tags="theme settings how it works">
                                             <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
                                         </a>
                                     </li>
-                                    <li>
+                                    <li> -->
                                         <a href="<?php echo base_url(
                                             ''
                                         ); ?>DevelopmentController/master_form" title="How it works" data-filter-tags="theme settings how it works">
@@ -103,7 +103,7 @@
                                     </li>
                                    
                                 </ul>
-                            </li>  -->
+                            </li>  
 
                         </ul>
                         

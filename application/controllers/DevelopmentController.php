@@ -36,6 +36,6 @@ class DevelopmentController extends CI_Controller
 
     public function master_form()
     {
-        $this->load->view('DevelopmentMasterForm');
+        $this->load->view('Devmaster');
     }
 }
