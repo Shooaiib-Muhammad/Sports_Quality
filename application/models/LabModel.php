@@ -113,4 +113,14 @@ WHERE        (Entrydate ='$Date')");
 
         return $query->result_array();
     }
+      public function labtestD($TestNO){
+      $Date  = date('d/m/Y');
+ $query = $this->db
+            ->query(" SELECT        dbo.view_lab_test_D.*
+FROM            dbo.view_lab_test_D
+WHERE        (TestNO ='$TestNO')");
+
+        return $query->result_array();
+    }
+    
 }

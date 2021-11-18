@@ -24,93 +24,314 @@ if (!$this->session->has_userdata('user_id')) {
                         </ol>
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                 <i class='subheader-icon fal fa-chart-area'></i> Lab Testing</span>
+                                 <i class='subheader-icon fal fa-chart-area'></i> Development Activities</span>
                                 
                             </h1>
                         </div>
-                         <div class="col-lg-12" style="margin-bottom:20px" >
+                         <div id="ModalLoginForm" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Add Building</h1>
+            </div>
+            <div class="modal-body">
+                <form role="form" name="form" id="myForm" method="POST" action="">
+                    <!-- <input type="hidden" name="_token" value=""> -->
+                    <div class="form-group" style="display:none;">
+                        <label class="control-label">ID</label>
+                        <div>
+                            <input type="text" class="form-control input-lg" id="project-bid"  name="BID">
+                        </div>
+                    </div>
 
-<!-- Start here with columns -->
+                     
+                     <div class="form-group">
+                        <label class="control-label">Building Name :</label>
+                        <div>
+                            <input type="text" class="form-control input-lg" name="buildName" placeholder="Building Name">
+                        </div>
+                    </div>
+                  
+                    <!-- <div class="form-group">
+                        <label class="control-label">Password</label>
+                        <div>
+                            <input type="password" class="form-control input-lg" name="password">
+                        </div>
+                    </div> -->
+                    <div class="form-group">
+                        <div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="locationStatus" id="buildStatus"> Status
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                        <button type="submit" class="btn btn-success" id="saveButtonBuilding" >Save</button>
+                        <button type="submit" class="btn btn-success" id="updateButtonBuilding" style="display:none" >Update</button>   
+                            <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" />
 
-<div class="col-md-6 offset-md-3 offset-0 table-responsive">
-<?php if (validation_errors()): ?>
-<div class="alert alert-danger">
-    <?php echo validation_errors(); ?>
+                            <button class="btn btn-success" data-dismiss="modal">Close</button>
+                          
+                 </div>
+                    </div>
+                </form>
+       
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="ModelDeleteloc" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Delete Building Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete detail of project? (This process is irreversible)
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-primary btn-confirm-del-loc">Yes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>  
+    </div>
+    </div>
+  </div>
 </div>
-<?php endif; ?>
- <div id="panel-1" class="panel">
+
+
+<div class="modal fade" id="ModelDeleteDept" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Delete Department Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete detail of project? (This process is irreversible)
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-primary btn-confirm-del-dept">Yes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>  
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="ModelDeleteSec" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Delete Department Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete detail of project? (This process is irreversible)
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-primary btn-confirm-del-sec">Yes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>  
+    </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="Modaldepartment" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Add Department</h1>
+            </div>
+            <div class="modal-body">
+                <form name="formDepartment" id="myformDepartment" method="POST" action="">
+                    <!-- <input type="hidden" name="_token" value=""> -->
+                    <div class="form-group" style="display:none;">
+                        <label class="control-label">ID</label>
+                        <div>
+                            <input type="text" class="form-control input-lg" id="project-bid"  name="did">
+                        </div>
+                    </div>
+                  
+                     <div class="form-group">
+                     <div>
+                     <label for="sel1">Select Building  :</label>
+                        
+                        </div> 
+                   </div>
+                   
+                   <div class="form-group">
+                        <label class="control-label">Department Name </label>
+                        <div>
+                            <input type="text" class="form-control input-lg" name="assetDeptName" placeholder="Department Name">
+                        </div>
+                    </div>
+           
+                    <div class="form-group">
+                        <div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="assetDeptStatus"> Status
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                        <button type="submit" class="btn btn-success" id="saveButtonDepartment" >Save</button>
+                        <button type="submit" class="btn btn-success" id="updateButtonDepartment" style="display:none" >Update</button>   
+                            
+                            <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
+
+                            <button class="btn btn-success" data-dismiss="modal">Close</button>
+                          
+                 </div>
+                    </div>
+                </form>
+       
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+        </div>
+
+<div id="Modalsection" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Add Section</h1>
+            </div>
+            <div class="modal-body">
+                <form name="formSection" method="POST" action="">
+                    <!-- <input type="hidden" name="_token" value=""> -->
+                     <div class="form-group">
+                     <div>
+                     <label for="sel1">Select Building :</label>
+                       
+                        </div> 
+                   </div>
+                      <div class="form-group">
+                     <div>
+                     <label for="sel1">Select Department :</label>
+                        <select class="form-control" id="sel1" name="assetSecDept" >
+                        <option value="" disabled >Select one of the following</option>
+                        <?php
+                                   if (isset($DepartmentsLocation)) {
+                                  foreach ($DepartmentsLocation as $Key) {
+                           
+                         ?>
+
+                        <option value="<?php echo $Key['DeptID'] ?>" ><?php echo $Key['DeptName'] ?></option>
+                        <?php
+                        }
+                       }
+                  ?>
+                            </select>
+                        </div> 
+                   </div>
+                     <div class="form-group">
+                        <label class="control-label">Section Name :</label>
+                        <div>
+                            <input type="text" class="form-control input-lg" name="assetSecName" placeholder="Section Name">
+                        </div>
+                    </div>
+                   
+                    <!-- <div class="form-group">
+                        <label class="control-label">Password</label>
+                        <div>
+                            <input type="password" class="form-control input-lg" name="password">
+                        </div>
+                    </div> -->
+                    <div class="form-group">
+                        <div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="assetSecStatus"> Status
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                        <button type="submit" class="btn btn-success" id="saveButtonSection" >Save</button>
+                        <button type="submit" class="btn btn-success" id="updateButtonSection" style="display:none" >Update</button>   
+                            
+                            <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
+
+                            <button class="btn btn-success" data-dismiss="modal">Close</button>
+                          
+                 </div>
+                    </div>
+                </form>
+       
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+        </div>
+<br><br>
+<div id="panel-7" class="panel">
                                     <div class="panel-hdr">
                                         <h2>
-                                            Upload   <span class="fw-300">Excel Data  </span>
+                                            Asset <span class="fw-300"><i>location</i></span>
                                         </h2>
-                                        <!-- <div class="panel-toolbar">
+                                        <div class="panel-toolbar">
                                             <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
                                             <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
                                             <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
-                                        </div> -->
+                                        </div>
                                     </div>
                                     <div class="panel-container show">
                                         <div class="panel-content">
-                                            <div class="demo-v-spacing">
-           <form  method="post">
-            <div class="card-body">
-     <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alertShown" style="display: none;">
-  <strong>Congractulations!</strong> Record Added Successfully. Kindly wait for page to be reloaded!
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-                <div class="form-group">
-                    <div class="custom-file">
-    <input 
-  type="file" class="custom-file-input" id="customFile" onchange="fileSelect(this.files);" name="CottonData">
-    
-  <label class="custom-file-label" for="customFile" >Choose file</label>
-  
-  </div>
-                </div>
-          
-             
-                </div>
-                
-
-            </div>
-            <!-- /.card-body -->
-
-            <div class="card-footer text-right">
-                <button class="btn btn-primary" id="submitData" >Load</button>
-                  <button class="btn btn-primary" id="sendHeaderValues" style="display: none;" >Save Data</button>
-                   <!-- <button class="btn btn-primary" id="sendDetailsValues" style="display: none;" >Save Test Details</button> -->
-            </div>
-        </form>
+                                          
+                                        <!--     <ul class="nav nav-pills" role="tablist">
+                                                <li class="nav-item"><a class="nav-link active" data-toggle="pill" href="#nav_pills_default-1">Building</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#nav_pills_default-2">Department</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#nav_pills_default-3">Section</a></li>
+                                            
+                                            </ul> -->
+                                            <div class="tab-content py-3">
+                                                <div class="tab-pane fade show active" id="nav_pills_default-1" role="tabpanel">
+                                                      <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#ModalLoginForm" class="d-grid gap-2 d-md-block" id="createBuilding">+ Create Building</button>   
+                                                      <div class="table-responsive-lg">
+                        
+                        
+                        </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="nav_pills_default-2" role="tabpanel">
+                                                      <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#Modaldepartment" class="d-grid gap-2 d-md-block" id="createDepartment">+ Create Department</button>   
+                                                      <div class="table-responsive-lg">
+                        
+                        
+                        </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="nav_pills_default-3" role="tabpanel">
+                                                       <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#Modalsection" class="d-grid gap-2 d-md-block" id="createSection">+ Create Section</button>   
+                                                       <div class="table-responsive-lg">
+                        
+                                        
+                        </div>
                                             </div>
                                         </div>
-                                      
                                     </div>
                                 </div>
- <div class="col-md-12  table-responsive">
-
- <div id="panel-1" class="panel">
-                                    <div class="panel-hdr">
-                                        <h2>
-                                           Lab test Report</span>
-                                        </h2>
-                                        <!-- <div class="panel-toolbar">
-                                            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                                            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                                            <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
-                                        </div> -->
-                                    </div>
-                                    <div class="panel-container show">
-                                        <div class="panel-content">
-                                            <div class="demo-v-spacing">
-           
-                                            </div>
-                                        </div>
-                                      
-                                    </div>
-</div>
-</div>
+     <!--Table responsive-->
+    
+                            </div>
+                        </div>
+                        </div>
+                        </div>
  <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
                     <!-- BEGIN Page Footer -->
                     <footer class="page-footer" role="contentinfo">
