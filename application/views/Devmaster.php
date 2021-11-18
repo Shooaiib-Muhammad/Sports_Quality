@@ -149,15 +149,49 @@ if (!$this->session->has_userdata('user_id')) {
   </div>
 </div>
 
+<?php
+      if($this->session->flashdata('info')){ 
+    
+    
+      ?>
+    <div class="alert alert-danger alert-dismissible show fade" id="msgbox">
+                    <div class="alert-body">
+                      <button class="close" data-dismiss="alert">
+                        <span>&times;</span>
+                      </button>
+                      <?php echo $this->session->flashdata('info');?>
+                    </div>
+                  </div>
+                  <?php
+      }
+
+                  ?>
+                  <?php
+      if($this->session->flashdata('danger')){ 
+    
+    
+      ?>
+    <div class="alert alert-danger alert-dismissible show fade" id="msgbox">
+                    <div class="alert-body">
+                      <button class="close" data-dismiss="alert">
+                        <span>&times;</span>
+                      </button>
+                      <?php echo $this->session->flashdata('danger');?>
+                    </div>
+                  </div>
+                  <?php
+      }
+
+                  ?>
 
 <div id="Modaldepartment" class="modal fade">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title">Add Department</h1>
+                <h1 class="modal-title">Add Activity</h1>
             </div>
             <div class="modal-body">
-                <form name="formDepartment" id="myformDepartment" method="POST" action="">
+                <form name="formDepartment" id="myformDepartment" method="POST" action="<?php echo base_url(''); ?>DevelopmentController/AddActivity">
                     <!-- <input type="hidden" name="_token" value=""> -->
                     <div class="form-group" style="display:none;">
                         <label class="control-label">ID</label>
@@ -168,15 +202,28 @@ if (!$this->session->has_userdata('user_id')) {
                   
                      <div class="form-group">
                      <div>
-                     <label for="sel1">Select Building  :</label>
+                     <label for="sel1">Select Factory Code  :</label>
+                      <select class="form-control" id="sel1" name="FC" >
+                        <option value="" disabled>Select one of the following</option>
+                        <?php
+                                   
+                                  foreach ($FactoryCodes as $Key) {
+                           
+                         ?>
+
+                        <option value="<?php echo $Key['VendorId'] ?>" ><?php echo $Key['VendorName'] ?></option>
+                        <?php
                         
+                       }
+                  ?>
+                            </select>
                         </div> 
                    </div>
                    
                    <div class="form-group">
-                        <label class="control-label">Department Name </label>
+                        <label class="control-label">Activity Name :</label>
                         <div>
-                            <input type="text" class="form-control input-lg" name="assetDeptName" placeholder="Department Name">
+                            <input type="text" class="form-control input-lg" name="AName" placeholder="Activity Name">
                         </div>
                     </div>
            
@@ -184,7 +231,7 @@ if (!$this->session->has_userdata('user_id')) {
                         <div>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="assetDeptStatus"> Status
+                                    <input type="checkbox" name="Status"> Status
                                 </label>
                             </div>
                         </div>
@@ -207,90 +254,20 @@ if (!$this->session->has_userdata('user_id')) {
     </div><!-- /.modal-dialog -->
         </div>
 
-<div id="Modalsection" class="modal fade">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title">Add Section</h1>
-            </div>
-            <div class="modal-body">
-                <form name="formSection" method="POST" action="">
-                    <!-- <input type="hidden" name="_token" value=""> -->
-                     <div class="form-group">
-                     <div>
-                     <label for="sel1">Select Building :</label>
-                       
-                        </div> 
-                   </div>
-                      <div class="form-group">
-                     <div>
-                     <label for="sel1">Select Department :</label>
-                        <select class="form-control" id="sel1" name="assetSecDept" >
-                        <option value="" disabled >Select one of the following</option>
-                        <?php
-                                   if (isset($DepartmentsLocation)) {
-                                  foreach ($DepartmentsLocation as $Key) {
-                           
-                         ?>
 
-                        <option value="<?php echo $Key['DeptID'] ?>" ><?php echo $Key['DeptName'] ?></option>
-                        <?php
-                        }
-                       }
-                  ?>
-                            </select>
-                        </div> 
-                   </div>
-                     <div class="form-group">
-                        <label class="control-label">Section Name :</label>
-                        <div>
-                            <input type="text" class="form-control input-lg" name="assetSecName" placeholder="Section Name">
-                        </div>
-                    </div>
-                   
-                    <!-- <div class="form-group">
-                        <label class="control-label">Password</label>
-                        <div>
-                            <input type="password" class="form-control input-lg" name="password">
-                        </div>
-                    </div> -->
-                    <div class="form-group">
-                        <div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="assetSecStatus"> Status
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div>
-                        <button type="submit" class="btn btn-success" id="saveButtonSection" >Save</button>
-                        <button type="submit" class="btn btn-success" id="updateButtonSection" style="display:none" >Update</button>   
-                            
-                            <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
-
-                            <button class="btn btn-success" data-dismiss="modal">Close</button>
-                          
-                 </div>
-                    </div>
-                </form>
-       
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-        </div>
 <br><br>
+
 <div id="panel-7" class="panel">
                                     <div class="panel-hdr">
                                         <h2>
-                                            Asset <span class="fw-300"><i>location</i></span>
+                                            Development  <span class="fw-300"><i>Activities</i></span>
                                         </h2>
-                                        <div class="panel-toolbar">
+                                        <!-- <div class="panel-toolbar">
                                             <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
                                             <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
                                             <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
-                                        </div>
+                                        </div> -->
+                                          <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#Modaldepartment" class="d-grid gap-2 d-md-block" id="createDepartment">+ Create Activity</button>  
                                     </div>
                                     <div class="panel-container show">
                                         <div class="panel-content">
@@ -301,29 +278,63 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#nav_pills_default-3">Section</a></li>
                                             
                                             </ul> -->
-                                            <div class="tab-content py-3">
-                                                <div class="tab-pane fade show active" id="nav_pills_default-1" role="tabpanel">
-                                                      <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#ModalLoginForm" class="d-grid gap-2 d-md-block" id="createBuilding">+ Create Building</button>   
-                                                      <div class="table-responsive-lg">
-                        
-                        
-                        </div>
-                                                </div>
-                                                <div class="tab-pane fade" id="nav_pills_default-2" role="tabpanel">
-                                                      <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#Modaldepartment" class="d-grid gap-2 d-md-block" id="createDepartment">+ Create Department</button>   
-                                                      <div class="table-responsive-lg">
-                        
-                        
-                        </div>
-                                                </div>
-                                                <div class="tab-pane fade" id="nav_pills_default-3" role="tabpanel">
-                                                       <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#Modalsection" class="d-grid gap-2 d-md-block" id="createSection">+ Create Section</button>   
-                                                       <div class="table-responsive-lg">
-                        
-                                        
-                        </div>
-                                            </div>
-                                        </div>
+                                           
+                                           <table class="table table-striped table-hover table-sm" id="ActivityData">
+                                <thead>
+                                    <tr>
+                                        <th>Factory Code</th>
+                                        <th>Name</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                <?php
+                    if (isset($Activities)) {
+                        foreach ($Activities as $Key) {
+                           $TID=$Key['ActivityID'];
+                    ?>
+
+                                    <tr>
+                                        <td ><?php echo $Key['VendorName']; ?> <i style="color:white;"> <?php echo $Key['Name']; ?></td>
+                                     
+                                          
+                                        <td > <input type="text" class="form-control" id="Name<?php echo $TID; ?>" name="AName" value="<?php echo $Key['Name']; ?>">
+                                         <input hidden type="hidden" name="TID<?php echo $TID; ?>" class="form-control" name="AName" value="<?php echo $TID; ?>"></td>
+                                        <?php
+                    if ($Key['Status'] == 1) {
+                        ?>
+                                        <td > <div class="custom-control custom-switch">
+                                                                <input type="checkbox" name="Status" class="custom-control-input" id="Status<?php echo $TID ?>" checked>
+                                                                <label class="custom-control-label" for="Status<?php Echo $TID ?>"></label>
+                                                            </div></td>
+                                        <?php
+                    }
+                            else{
+                                ?>
+                                <td >
+                                                            <div class="custom-control custom-switch">
+                                                                <input type="checkbox" name="Status" class="custom-control-input" id="Status<?php Echo $TID ?>" >
+                                                                <label class="custom-control-label" for="Status<?php Echo $TID ?>"></label>
+                                                            </div></td>
+                               <?php 
+                            }
+                            ?>    
+                                        <td > 
+                                      <button type="button" class="btn btn-primary btn-sm updatebtn" id="btn.<?php echo $TID;?>" > update</button>
+                         
+                                      <!--   <a class="btn" href="#ModalProjectForm"><i class="fa fa-pencil-square-o"  style="font-size:25px;"></i> 
+                                        <a class="btn" href="#"><i class="fa fa-trash" aria-hidden="true" style="font-size:25px;"></i> -->
+                                    </td>
+                                    </tr>
+                                    <?php
+                        }
+}
+?>
+
+                                </tbody>
+                            </table>
                                     </div>
                                 </div>
      <!--Table responsive-->
@@ -332,6 +343,196 @@ if (!$this->session->has_userdata('user_id')) {
                         </div>
                         </div>
                         </div>
+                          <script src="<?php echo base_url();?>/assets/js//jquery.min.js" type="text/javascript"></script>
+                        <script src="<?php echo base_url();?>/assets/js/statistics/peity/peity.bundle.js"></script>
+        <script src="<?php echo base_url();?>/assets/js/statistics/flot/flot.bundle.js"></script>
+        <script src="<?php echo base_url();?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+        <script src="<?php echo base_url();?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+        <script>
+      
+            /* defined datas */
+             $(document).ready(function()
+            {
+            $('#ActivityData').dataTable(
+                {
+                    responsive: false,
+                    lengthChange: false,
+                    dom:
+                        /*	--- Layout Structure 
+                        	--- Options
+                        	l	-	length changing input control
+                        	f	-	filtering input
+                        	t	-	The table!
+                        	i	-	Table information summary
+                        	p	-	pagination control
+                        	r	-	processing display element
+                        	B	-	buttons
+                        	R	-	ColReorder
+                        	S	-	Select
+
+                        	--- Markup
+                        	< and >				- div element
+                        	<"class" and >		- div with a class
+                        	<"#id" and >		- div with an ID
+                        	<"#id.class" and >	- div with an ID and a class
+
+                        	--- Further reading
+                        	https://datatables.net/reference/option/dom
+                        	--------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                        	extend:    'colvis',
+                        	text:      'Column Visibility',
+                        	titleAttr: 'Col visibility',
+                        	className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+
+
+            });
+  
+       
+$(".updatebtn").click(function(e) {
+      //alert("heloo");
+     let id= this.id;
+    //alert(id);
+     let split_value = id.split(".");
+    //loadData alert(split_value);
+     //console.log(split_value);
+     var TID =split_value[1];
+     //alert(`#issueDate.${split_value[1]}`);
+      //alert(split_value[1]);
+//   let RID =split_value[1]);
+     var Name = $(`#Name${split_value[1]}`).val();
+     let Status;
+     if($(`#Status${split_value[1]}`).is(":checked")){
+Status = 1;
+     }
+     else{
+      Status = 0;
+     }
+
+//alert(Status);
+      //$('#check_id').val();
+      //alert(Name);
+       //alert(Status);
+        //alert(TID);
+   
+ url = "<?php echo base_url(''); ?>DevelopmentController/UpdateActivity/"+ Name + "/" + Status + "/" + TID
+  
+//alert(url);
+   $.get(url, function(data){
+            alert("Data Updated Successfully");
+            location.reload();
+            });
+
+            
+     });
+            $('#schedule').dataTable(
+                {
+                    responsive: true,
+                    lengthChange: false,
+                    dom:
+                        /*	--- Layout Structure 
+                        	--- Options
+                        	l	-	length changing input control
+                        	f	-	filtering input
+                        	t	-	The table!
+                        	i	-	Table information summary
+                        	p	-	pagination control
+                        	r	-	processing display element
+                        	B	-	buttons
+                        	R	-	ColReorder
+                        	S	-	Select
+
+                        	--- Markup
+                        	< and >				- div element
+                        	<"class" and >		- div with a class
+                        	<"#id" and >		- div with an ID
+                        	<"#id.class" and >	- div with an ID and a class
+
+                        	--- Further reading
+                        	https://datatables.net/reference/option/dom
+                        	--------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                        	extend:    'colvis',
+                        	text:      'Column Visibility',
+                        	titleAttr: 'Col visibility',
+                        	className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+                </script>
  <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
                     <!-- BEGIN Page Footer -->
                     <footer class="page-footer" role="contentinfo">

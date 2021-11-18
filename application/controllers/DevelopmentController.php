@@ -10,6 +10,7 @@ class DevelopmentController extends CI_Controller
         $this->load->model('Department_model', 'd');
         $this->load->model('Machine_model', 'm');
         $this->load->model('Team_model', 't');
+           $this->load->model('LabModel', 'l');
     }
 
     public function index()
@@ -36,6 +37,34 @@ class DevelopmentController extends CI_Controller
 
     public function master_form()
     {
-        $this->load->view('Devmaster');
+        $data['FactoryCodes']=$this->l->Vendors();
+        $data['Activities']=$this->l->Activities();
+        $this->load->view('Devmaster',$data);
+    }
+    public function AddActivity(){
+     $FC = $this->input->post('FC');
+      $name = $this->input->post('AName');
+	$status = $this->input->post('Status');
+	if($status =="on"){
+		$status =1;
+	}
+	else{
+		$status=0;
+	}
+	$this->l->AddActivity($FC,$name,$status); 
+	
+    }
+    public function UpdateActivity($Name,$Status,$TID){
+        $NameS=str_replace("%20"," ",$Name);
+             $TID = $TID;
+      $name = $NameS;
+	$status = $Status;
+	if($status =="1"){
+		$status =1;
+	}
+	else{
+		$status=0;
+	}
+	$this->l->updateActivity($TID,$name,$status); 
     }
 }

@@ -122,5 +122,51 @@ WHERE        (TestNO ='$TestNO')");
 
         return $query->result_array();
     }
+    public function Vendors(){
+        
+$query = $this->db
+            ->query("SELECT        VendorName, Status, VendorId
+FROM            dbo.tbl_Pro_Vendor");
+
+        return $query->result_array();
+    }
+    public function AddActivity($FC,$name,$status){
+ $query = $this->db->query("INSERT INTO tbl_Dev_Activities
+           (VendorID
+           ,Name
+           ,Status
+           )
+     VALUES
+           ('$FC'
+           ,'$name',
+           $status )");
+        if($query ){
+ $this->session->set_flashdata('info', 'Activity Saved Successfully');
+        redirect('DevelopmentController/master_form');
+            } else {
+                $this->session->set_flashdata('danger', 'Activity Not  Saved');
+                redirect('DevelopmentController/master_form');
+            }
+    }
+    public function Activities(){
+        $query = $this->db->query(" SELECT        dbo.view_Dev_Activity.*
+FROM            dbo.view_Dev_Activity");
+
+        return $query->result_array();
+    }
+    public function updateActivity($TID,$name,$status){
+         $query = $this->db->query("UPDATE   dbo .tbl_Dev_Activities 
+            SET   Name  =  '$name',Status  =  '$status'
+          WHERE  ActivityID='$TID'");
+            
+//             if($query ){
+//  $this->session->set_flashdata('info', 'Activity Updated Successfully');
+//         redirect('DevelopmentController/master_form');
+//             } else {
+//                 $this->session->set_flashdata('danger', 'Activity Not Updated ');
+//                 redirect('DevelopmentController/master_form');
+//             }
+            
+    }
     
 }
