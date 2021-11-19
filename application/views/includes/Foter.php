@@ -18,7 +18,7 @@
   <script src="assets/js/scripts.js"></script>
   <script src="assets/Select/select2.min.js"></script>
 
-  <script>
+  <!-- <script>
 
     $(document).ready(function(){
       $('.select2-items').select2();
@@ -28,7 +28,7 @@
         
       
     })
-  </script>
+  </script> -->
   <!-- Custom JS File -->
   <script src="assets/js/custom.js"></script>
     

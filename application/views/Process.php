@@ -83,11 +83,11 @@ if (!$this->session->has_userdata('user_id')) {
                                         <div class="panel-content">
 
                                         <div class="row">
-                                          <div class="col-md-4">
+                                          <div class="col-md-2">
                                    <div class="form-group">
                     
-                     <label for="sel1">Select PO Code :</label>
-                      <select class="form-control" id="sel1" name="FC" >
+                     <label for="sel1">Select PO :</label>
+                      <select class="form-control" id="PO" name="FC" onchange="CallData()" >
                         <option value="" disabled>Select one of the following</option>
                         <?php
                                    
@@ -95,7 +95,7 @@ if (!$this->session->has_userdata('user_id')) {
                            
                          ?>
 
-                        <option value="<?php echo $Key['PO'] ?>" ><?php echo $Key['POCode'] ?></option>
+                        <option value="<?php echo $Key['PO'] ?>" ><?php echo $Key['PO'] ?></option>
                         <?php
                         
                        }
@@ -105,76 +105,83 @@ if (!$this->session->has_userdata('user_id')) {
                    </div>
                    
                     <div class="col-md-2">
-                       <label >Kit Name:</label>
+                       <label >Article Code:</label>
                         <div class="form-group-inline">
                             
-                            <input name="KITName" id="Kitname" class="form-control" type="text" readonly="true">
-                             <input name="ID" id="ID" class="form-control" type="text" hidden="true" >
+                            <input name="KITName" id="article" class="form-control" type="text" readonly="true">
+                            
                         </div>
                     </div>
+                    <div class="col-md-2">
+                       <label >Model Name:</label>
+                        <div class="form-group-inline">
+                            
+                            <input name="KITName" id="modelname" class="form-control" type="text" readonly="true">
+                           
+                        </div>
+                    </div>
+                      <div class="col-md-2">
+                       <label >Factory Code:</label>
+                        <div class="form-group-inline">
+                            
+                            <input name="KITName" id="factorycode" class="form-control" type="text" readonly="true">
+                            
+                        </div>
+                    </div>
+                      <div class="col-md-2">
+                       <label >PO Code:</label>
+                        <div class="form-group-inline">
+                            
+                            <input name="KITName" id="pocode" class="form-control" type="text" readonly="true">
+                             
+                        </div>
+                    </div>
+                      <div class="col-md-2">
+                       <label >Order Qty:</label>
+                        <div class="form-group-inline">
+                            
+                            <input name="KITName" id="OrderQty" class="form-control" type="text" readonly="true">
+                             
+                        </div>
+                    </div>
+                     <div class="col-md-2">
+                       <label >No Of Balls:</label>
+                        <div class="form-group-inline">
+                            
+                            <input name="noofballs" id="noofballs" class="form-control" type="text" >
+                             
+                        </div>
+                    </div>
+                     <div class="col-md-2 mt-4">
+                      
+                        <div class="form-group-inline">
+                            
+                           <button type="button" class="btn-info btn btn-md" onclick="loadData()" >Load Data</button>
+                             
+                        </div>
+                    </div>
+                    </div><br>
+                    <br>
+                     <div class="row">
+                    
                     </div>
                    </div>
                    <br>
-                   <br>
-                   <br>
+                 
+               <div class="row">
+                <div class="col-md-2">
+                </div>
+                 <div class="col-md-6 mt-15">
+                   <div id="Data">
+
+                   </div>
+                </div>
+                 <div class="col-md-2">
+                </div>
+                      </div>
+                  
                                            
-                                           <table class="table table-striped table-hover table-sm" id="ActivityData">
-                                <thead>
-                                    <tr>
-                                        <th>Factory Code</th>
-                                        <th>Name</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                <?php
-                    if (isset($Activities)) {
-                        foreach ($Activities as $Key) {
-                           $TID=$Key['ActivityID'];
-                    ?>
-
-                                    <tr>
-                                        <td ><?php echo $Key['VendorName']; ?> <i style="color:white;"> </td>
-                                     
                                           
-                                        <td > <input type="text" class="form-control" id="Name<?php echo $TID; ?>" name="AName" value="<?php echo $Key['Name']; ?>">
-                                         <input hidden type="hidden" name="TID<?php echo $TID; ?>" class="form-control" name="AName" value="<?php echo $TID; ?>">
-                                         </td>
-                                        <?php
-                    if ($Key['Status'] == 1) {
-                        ?>
-                                        <td > <div class="custom-control custom-switch">
-                                                                <input type="checkbox" name="Status" class="custom-control-input" id="Status<?php echo $TID ?>" checked>
-                                                                <label class="custom-control-label" for="Status<?php Echo $TID ?>"></label>
-                                                            </div></td>
-                                        <?php
-                    }
-                            else{
-                                ?>
-                                <td >
-                                                            <div class="custom-control custom-switch">
-                                                                <input type="checkbox" name="Status" class="custom-control-input" id="Status<?php Echo $TID ?>" >
-                                                                <label class="custom-control-label" for="Status<?php Echo $TID ?>"></label>
-                                                            </div></td>
-                               <?php 
-                            }
-                            ?>    
-                                        <td > 
-                                      <button type="button" class="btn btn-primary btn-sm updatebtn" id="btn.<?php echo $TID;?>" > update</button>
-                         
-                                      <!--   <a class="btn" href="#ModalProjectForm"><i class="fa fa-pencil-square-o"  style="font-size:25px;"></i> 
-                                        <a class="btn" href="#"><i class="fa fa-trash" aria-hidden="true" style="font-size:25px;"></i> -->
-                                    </td>
-                                    </tr>
-                                    <?php
-                        }
-}
-?>
-
-                                </tbody>
-                            </table>
                                     </div>
                                 </div>
      <!--Table responsive-->
@@ -189,82 +196,56 @@ if (!$this->session->has_userdata('user_id')) {
         <script src="<?php echo base_url();?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
         <script src="<?php echo base_url();?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
         <script>
-      
-            /* defined datas */
-             $(document).ready(function()
-            {
-            $('#ActivityData').dataTable(
-                {
-                    responsive: false,
-                    lengthChange: false,
-                    dom:
-                        /*	--- Layout Structure 
-                        	--- Options
-                        	l	-	length changing input control
-                        	f	-	filtering input
-                        	t	-	The table!
-                        	i	-	Table information summary
-                        	p	-	pagination control
-                        	r	-	processing display element
-                        	B	-	buttons
-                        	R	-	ColReorder
-                        	S	-	Select
+        
+      function CallData(){
+       //alert("heloo");
+           let PO=  $("#PO").val();
+    //alert(PO);
 
-                        	--- Markup
-                        	< and >				- div element
-                        	<"class" and >		- div with a class
-                        	<"#id" and >		- div with an ID
-                        	<"#id.class" and >	- div with an ID and a class
-
-                        	--- Further reading
-                        	https://datatables.net/reference/option/dom
-                        	--------------------------------------
-                         */
-                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-                        "<'row'<'col-sm-12'tr>>" +
-                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                    buttons: [
-                        /*{
-                        	extend:    'colvis',
-                        	text:      'Column Visibility',
-                        	titleAttr: 'Col visibility',
-                        	className: 'mr-sm-3'
-                        },*/
-                        {
-                            extend: 'pdfHtml5',
-                            text: 'PDF',
-                            titleAttr: 'Generate PDF',
-                            className: 'btn-outline-danger btn-sm mr-1'
-                        },
-                        {
-                            extend: 'excelHtml5',
-                            text: 'Excel',
-                            titleAttr: 'Generate Excel',
-                            className: 'btn-outline-success btn-sm mr-1'
-                        },
-                        {
-                            extend: 'csvHtml5',
-                            text: 'CSV',
-                            titleAttr: 'Generate CSV',
-                            className: 'btn-outline-primary btn-sm mr-1'
-                        },
-                        {
-                            extend: 'copyHtml5',
-                            text: 'Copy',
-                            titleAttr: 'Copy to clipboard',
-                            className: 'btn-outline-primary btn-sm mr-1'
-                        },
-                        {
-                            extend: 'print',
-                            text: 'Print',
-                            titleAttr: 'Print Table',
-                            className: 'btn-outline-primary btn-sm'
-                        }
-                    ]
-                });
-
-
+ url = "<?php echo base_url(''); ?>DevelopmentController/CallData/"+ PO 
+  
+//alert(url);
+   $.get(url, function(data){
+           ArtCode = data[0].ArtCode
+           FactoryCode = data[0].FactoryCode
+           POCode = data[0].POCode
+           OrderQty = data[0].OrderQty
+            ModelName = data[0].ModelName
+           
+ $("#article").val(ArtCode)
+  $("#factorycode").val(FactoryCode)
+   $("#pocode").val(POCode)
+    $("#OrderQty").val(OrderQty)
+                $("#modelname").val(ModelName)
             });
+
+            processData(PO)
+     }
+      
+      function loadData(){
+          FactoryCode= $("#factorycode").val();
+         PO=$("#PO").val();
+          noofballs=$("#noofballs").val();
+         
+          //alert(FactoryCode);
+           url = "<?php echo base_url(''); ?>DevelopmentController/loadData/"+ FactoryCode + '/'+ PO + '/'+ noofballs
+            //alert(url);
+            $.get(url, function(data){
+             alert("Data Inserted Successfully");
+             processData(PO)
+            });
+         }
+         function processData(PO){
+ url = "<?php echo base_url(''); ?>DevelopmentController/POData/"+ PO
+           // alert(url);
+            $.get(url, function(data){
+             
+              $("#Data").html(data)
+            });
+
+         }
+            /* defined datas */
+             
   
        
 $(".updatebtn").click(function(e) {

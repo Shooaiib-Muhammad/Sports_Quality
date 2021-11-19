@@ -41,6 +41,7 @@ class DevelopmentController extends CI_Controller
         $data['Activities']=$this->l->Activities();
         $this->load->view('Devmaster',$data);
     }
+
     public function Process()
     {
         $data['POM']=$this->l->GetPOM();
@@ -73,5 +74,47 @@ class DevelopmentController extends CI_Controller
 		$status=0;
 	}
 	$this->l->updateActivity($TID,$name,$status); 
+    }
+    public function CallData($PO){
+
+        $data = $this->l->CallData($PO);
+      
+       
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+    }
+      public function LoadData($FactoryCode,$PO,$noofballs){
+
+        $data['LoadData'] = $this->l->LoadData($FactoryCode);
+    //  Print_r($data['LoadData']);
+    //  Die;
+       Foreach($data['LoadData'] as $keys){
+           $ActivityID=$keys['ActivityID'];
+           $VendorID=$keys['VendorID'];
+            $POCode=$PO;
+            $Balls=$noofballs;
+           $data['insertion']=$this->l->insertion($ActivityID,$VendorID,$POCode,$Balls);
+       }
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+    }
+    public function POData($PO){
+        
+        $data['ProcessData'] = $this->l->Process($PO);
+$this->load->view('ProcessData',$data);
+    }
+    public function updateprocess($TID ,$Balls,$date_make){
+        //$RBy=str_replace("%20"," ",$Receivedby);
+					 //$this->ID->updateKitsissuance($RBy,$iDate ,$RID);
+			
+$data = $this->l->updateprocess($TID ,$Balls,$date_make);
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
     }
 }

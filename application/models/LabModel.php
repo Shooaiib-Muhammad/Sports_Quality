@@ -192,4 +192,59 @@ FROM            dbo.view_Dev_POM");
        }
       }
     }
+    public function CallData($PO){
+            $query = $this->db->query(" SELECT        dbo.view_Dev_POM.*
+FROM            dbo.view_Dev_POM Where PO='$PO'" );
+
+        return $query->result_array();
+}
+public function LoadData($FactoryCode){
+       $query = $this->db->query("SELECT        dbo.view_Dev_Activity.*
+FROM            dbo.view_Dev_Activity
+WHERE        (VendorName = '$FactoryCode')" );
+
+        return $query->result_array();
+
+}
+public function insertion($ActivityID,$VendorID,$POCode,$Balls){
+    $Date = date('Y-m-d H:i:s');
+        $user_id = $this->session->userdata('user_id');
+     $query = $this->db->query("INSERT INTO tbl_Dev_Process
+           (ActivityID
+           ,VendorID
+           ,PO
+           ,UserID
+           ,EntryDate
+           ,NoOfBalls
+           )
+     VALUES
+           ('$ActivityID'
+           ,'$VendorID'
+           ,'$POCode'
+           , $user_id
+           ,'$Date'
+           ,$Balls)");
+//         if($query ){
+//  $this->session->set_flashdata('info', 'Activity Saved Successfully');
+//         redirect('DevelopmentController/master_form');
+//             } else {
+//                 $this->session->set_flashdata('danger', 'Activity Not  Saved');
+//                 redirect('DevelopmentController/master_form');
+//             }
+}
+
+public function Process($PO){
+       $query = $this->db->query("SELECT        dbo.view_Dev_Process.*
+FROM            dbo.view_Dev_Process
+WHERE        (PO = '$PO')" );
+
+        return $query->result_array();
+
+}
+public function updateprocess($TID ,$Balls,$date_make){
+     $query = $this->db->query("UPDATE   dbo .tbl_Dev_Process 
+            SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make'
+          WHERE  TID='$TID'");
+}
+
 }

@@ -77,7 +77,9 @@ if (!$this->session->has_userdata('user_id')) {
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-                <div class="form-group">
+<div class="row">
+    <div class="col-md-8">
+            <div class="form-group mt-4">
                     <div class="custom-file">
     <input 
   type="file" class="custom-file-input" id="customFile" onchange="fileSelect(this.files);" name="CottonData">
@@ -86,6 +88,20 @@ if (!$this->session->has_userdata('user_id')) {
   
   </div>
                 </div>
+    </div>
+    <div class="col-md-4">
+         <div class="form-group">
+        <label>Enter Sheet No.</label>         
+    <input 
+  type="number" class="form-control" id="sheetNo">
+    
+  
+  
+  
+                </div>
+    </div>
+</div>
+            
           
              
                 </div>
@@ -1627,7 +1643,9 @@ $(document).ready(function()
       for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);    
       var bstr = arr.join("");    
       var workbook = XLSX.read(bstr, {type:"binary"});    
-      var first_sheet_name = workbook.SheetNames[0];    
+      let sheetNo=$("#sheetNo").val();
+      alert(sheetNo);
+      var first_sheet_name = workbook.SheetNames[sheetNo-1];    
       var worksheet = workbook.Sheets[first_sheet_name];    
     //  console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));    
         let arraylist = XLSX.utils.sheet_to_json(worksheet,{raw:false});     
