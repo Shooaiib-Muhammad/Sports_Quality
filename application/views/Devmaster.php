@@ -297,11 +297,12 @@ if (!$this->session->has_userdata('user_id')) {
                     ?>
 
                                     <tr>
-                                        <td ><?php echo $Key['VendorName']; ?> <i style="color:white;"> <?php echo $Key['Name']; ?></td>
+                                        <td ><?php echo $Key['VendorName']; ?> <i style="color:white;"> </td>
                                      
                                           
                                         <td > <input type="text" class="form-control" id="Name<?php echo $TID; ?>" name="AName" value="<?php echo $Key['Name']; ?>">
-                                         <input hidden type="hidden" name="TID<?php echo $TID; ?>" class="form-control" name="AName" value="<?php echo $TID; ?>"></td>
+                                         <input hidden type="hidden" name="TID<?php echo $TID; ?>" class="form-control" name="AName" value="<?php echo $TID; ?>">
+                                         </td>
                                         <?php
                     if ($Key['Status'] == 1) {
                         ?>

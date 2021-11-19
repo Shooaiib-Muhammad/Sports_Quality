@@ -58,12 +58,14 @@ class LabModel extends CI_Model
             $PONo = $value[1];
             $Requirement = $value[2];
             $Test = $value[3];
-            $Results = $value[4];
+              $Results = $value[4];
+                 $Value = $value[5];
+          
             $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
            (TID
            ,Test
            ,Requirments
-           ,result
+           ,result,Value
            ,EntryDate
            ,user_ID)
      VALUES
@@ -71,6 +73,7 @@ class LabModel extends CI_Model
            ,'$Test'
            ,'$Requirement'
            ,'$Results'
+           ,'$Value'
            ,'$Date'
            ,'$user_id')");
         }
@@ -169,4 +172,24 @@ FROM            dbo.view_Dev_Activity");
             
     }
     
+     public function GetPOM(){
+        $query = $this->db->query(" SELECT        dbo.view_Dev_POM.*
+FROM            dbo.view_Dev_POM");
+
+        return $query->result_array();
+    }
+    
+    public function undo($TID){
+        
+       $query = $this->db->query("DELETE  FROM Tbl_Lab_Test_D
+      WHERE TID=$TID");
+      if($query){
+            $query = $this->db->query("DELETE FROM Tbl_Lab_Test_H
+      WHERE TID=$TID");
+       if($query){
+           $this->session->set_flashdata('danger', 'Data Deleted Successfully');
+           redirect('LabController/master_form');
+       }
+      }
+    }
 }

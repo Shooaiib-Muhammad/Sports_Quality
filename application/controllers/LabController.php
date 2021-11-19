@@ -96,4 +96,7 @@ class LabController extends CI_Controller
             );
         }
     }
+    public function undo($TID){
+        $data['undo'] = $this->l->undo($TID);
+    }
 }

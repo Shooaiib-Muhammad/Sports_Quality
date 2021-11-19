@@ -24,11 +24,33 @@ if (!$this->session->has_userdata('user_id')) {
                         </ol>
                         <div class="subheader">
                             <h1 class="subheader-title">
-                                 <i class='subheader-icon fal fa-chart-area'></i> Lab Testing</span>
+                                 <i class='subheader-icon fal fa-chart-area'></i> Development Process</span>
                                 
                             </h1>
                         </div>
-                        <?php
+                     
+
+
+
+
+<?php
+      if($this->session->flashdata('info')){ 
+    
+    
+      ?>
+    <div class="alert alert-danger alert-dismissible show fade" id="msgbox">
+                    <div class="alert-body">
+                      <button class="close" data-dismiss="alert">
+                        <span>&times;</span>
+                      </button>
+                      <?php echo $this->session->flashdata('info');?>
+                    </div>
+                  </div>
+                  <?php
+      }
+
+                  ?>
+                  <?php
       if($this->session->flashdata('danger')){ 
     
     
@@ -45,216 +67,133 @@ if (!$this->session->has_userdata('user_id')) {
       }
 
                   ?>
-                         <div class="col-lg-12" style="margin-bottom:20px" >
 
-<!-- Start here with columns -->
 
-<div class="col-md-6 offset-md-3 offset-0 table-responsive">
-<?php if (validation_errors()): ?>
-<div class="alert alert-danger">
-    <?php echo validation_errors(); ?>
-</div>
-<?php endif; ?>
- <div id="panel-1" class="panel">
+
+<br><br>
+
+<div id="panel-7" class="panel">
                                     <div class="panel-hdr">
                                         <h2>
-                                            Upload   <span class="fw-300">Excel Data  </span>
+                                            Development  <span class="fw-300"><i>Process</i></span>
                                         </h2>
-                                        <!-- <div class="panel-toolbar">
-                                            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                                            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                                            <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
-                                        </div> -->
+                                  
                                     </div>
                                     <div class="panel-container show">
                                         <div class="panel-content">
-                                            <div class="demo-v-spacing">
-           <form  method="post">
-            <div class="card-body">
-     <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alertShown" style="display: none;">
-  <strong>Congractulations!</strong> Record Added Successfully. Kindly wait for page to be reloaded!
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-                <div class="form-group">
-                    <div class="custom-file">
-    <input 
-  type="file" class="custom-file-input" id="customFile" onchange="fileSelect(this.files);" name="CottonData">
-    
-  <label class="custom-file-label" for="customFile" >Choose file</label>
-  
-  </div>
-                </div>
-          
-             
-                </div>
-                
 
-            </div>
-            <!-- /.card-body -->
+                                        <div class="row">
+                                          <div class="col-md-4">
+                                   <div class="form-group">
+                    
+                     <label for="sel1">Select PO Code :</label>
+                      <select class="form-control" id="sel1" name="FC" >
+                        <option value="" disabled>Select one of the following</option>
+                        <?php
+                                   
+                                  foreach ($POM as $Key) {
+                           
+                         ?>
 
-            <div class="card-footer text-right">
-                <button class="btn btn-primary" id="submitData" >Load</button>
-                  <button class="btn btn-primary" id="sendHeaderValues" style="display: none;" >Save Data</button>
-                   <!-- <button class="btn btn-primary" id="sendDetailsValues" style="display: none;" >Save Test Details</button> -->
-            </div>
-        </form>
-                                            </div>
-                                        </div>
-                                      
+                        <option value="<?php echo $Key['PO'] ?>" ><?php echo $Key['POCode'] ?></option>
+                        <?php
+                        
+                       }
+                  ?>
+                            </select>
+                        </div> 
+                   </div>
+                   
+                    <div class="col-md-2">
+                       <label >Kit Name:</label>
+                        <div class="form-group-inline">
+                            
+                            <input name="KITName" id="Kitname" class="form-control" type="text" readonly="true">
+                             <input name="ID" id="ID" class="form-control" type="text" hidden="true" >
+                        </div>
+                    </div>
+                    </div>
+                   </div>
+                   <br>
+                   <br>
+                   <br>
+                                           
+                                           <table class="table table-striped table-hover table-sm" id="ActivityData">
+                                <thead>
+                                    <tr>
+                                        <th>Factory Code</th>
+                                        <th>Name</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                <?php
+                    if (isset($Activities)) {
+                        foreach ($Activities as $Key) {
+                           $TID=$Key['ActivityID'];
+                    ?>
+
+                                    <tr>
+                                        <td ><?php echo $Key['VendorName']; ?> <i style="color:white;"> </td>
+                                     
+                                          
+                                        <td > <input type="text" class="form-control" id="Name<?php echo $TID; ?>" name="AName" value="<?php echo $Key['Name']; ?>">
+                                         <input hidden type="hidden" name="TID<?php echo $TID; ?>" class="form-control" name="AName" value="<?php echo $TID; ?>">
+                                         </td>
+                                        <?php
+                    if ($Key['Status'] == 1) {
+                        ?>
+                                        <td > <div class="custom-control custom-switch">
+                                                                <input type="checkbox" name="Status" class="custom-control-input" id="Status<?php echo $TID ?>" checked>
+                                                                <label class="custom-control-label" for="Status<?php Echo $TID ?>"></label>
+                                                            </div></td>
+                                        <?php
+                    }
+                            else{
+                                ?>
+                                <td >
+                                                            <div class="custom-control custom-switch">
+                                                                <input type="checkbox" name="Status" class="custom-control-input" id="Status<?php Echo $TID ?>" >
+                                                                <label class="custom-control-label" for="Status<?php Echo $TID ?>"></label>
+                                                            </div></td>
+                               <?php 
+                            }
+                            ?>    
+                                        <td > 
+                                      <button type="button" class="btn btn-primary btn-sm updatebtn" id="btn.<?php echo $TID;?>" > update</button>
+                         
+                                      <!--   <a class="btn" href="#ModalProjectForm"><i class="fa fa-pencil-square-o"  style="font-size:25px;"></i> 
+                                        <a class="btn" href="#"><i class="fa fa-trash" aria-hidden="true" style="font-size:25px;"></i> -->
+                                    </td>
+                                    </tr>
+                                    <?php
+                        }
+}
+?>
+
+                                </tbody>
+                            </table>
                                     </div>
                                 </div>
- <div class="col-md-12  table-responsive">
-
- <div id="panel-1" class="panel">
-                                    <div class="panel-hdr">
-                                        <h2>
-                                           Lab Test Report</span>
-                                        </h2>
-                                        <!-- <div class="panel-toolbar">
-                                            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                                            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                                            <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
-                                        </div> -->
-                                    </div>
-                                    <div class="panel-container show">
-                                        <div class="panel-content">
-                                            <div class="demo-v-spacing">
-           <table id="table" class="table table-bordered table-hover table-striped w-100">
-                                                <thead class="bg-primary-200">
-                                                    <tr style="color:white;">
-                                                      <th>Item Type</th>
-                                                        <th>Test No </th>
-                                                        <th> Date </th>
-                                                        <th>Item Name </th>
-                                                        <th>PO # </th>
-                                                           <th>Receiving Date  </th>
-                                                        <th>Supplier</th>
-                                                          <th>Supplier Refrence</th>
-                                                            <th>Quantity </th>
-                                                             
-                                                                 <th>Result </th>
-                                                                   <th>Generated By </th>
-                                                                   <th>Action </th>
-                                                                  
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                     
-                                                    <?php
-                                                     $this->load->model('LabModel', 'l');
-                                                     //print_r($history);
-
- 
- foreach ($Labtest as $Key){
-  //Echo $key['Approved'];
-  ?>
-  <tr>
-     <td><?php Echo $Key['ItemType']; ?></td>
-      <td><?php Echo $Key['TestNO']; ?></td>
- <td><?php Echo $Key['Date']; ?></td>
-  <td><?php Echo $Key['Size']; ?></td>
-     <td><?php Echo $Key['PO']; ?></td>
-     <td><?php Echo $Key['Receiving_Date']; ?></td>
-     <td><?php Echo $Key['Supplier_Name']; ?></td>
-     <td><?php Echo $Key['Supplier_Ref']; ?></td>
-      <td><?php Echo $Key['Quantity_Carton']; ?></td>
-       
-      <td><?php Echo $Key['Result']; ?></td>
-     <td><?php Echo $Key['LoginName']; ?></td>
-        <td ><a href="http://localhost/sports/LabController/undo/<?php Echo $Key['TID']; ?>">
-            <button type="button" class="btn btn-danger btn-xs">Undo</td>
-        </a>
-       <?php
-       $TestNO=$Key['TestNO'];
-        $data['Labtest'] = $this->l->labtestD($TestNO);
-        //print_r($data['Labtest']);
-       ?>
- <tr >
-        <td ></td>
-     <td ></td>
-       <td ></td>
-         <td ></td>
-           <td ></td>
-             <td ></td>
-            <td ></td>
-                 <td ></td>
-     <td class="bg-primary-200" style="color:white;">Test Name # (<?php Echo $TestNO;?>)</td>
-     <td class="bg-primary-200" style="color:white;">Requirments </td>
-      <td class="bg-primary-200" style="color:white;">Value </td>
-     <td class="bg-primary-200" style="color:white;">Test Result </td>
- </tr>
-    <?php
-    foreach ($data['Labtest'] as $Keys){
-    ?>
-    <tr>
-   
-        <td ></td>
-     <td ></td>
-       <td ></td>
-         <td ></td>
-           <td ></td>
-             <td ></td>
-              <td ></td>
-                  <td></td>
-      <td><?php Echo $Keys['Test']; ?></td>
-      <td><?php Echo $Keys['Requirments']; ?></td>
-        <td><?php Echo $Keys['Value']; ?></td>
-     <td><?php Echo $Keys['result']; ?></td>
-     
-     </tr>
-     <?php }?>
- 
-     
- </tr>
- <?php
- 
- }
- ?>
-                                                </tbody>
-                                                 <tfoot class="bg-primary-200"  style="color:white;">
-                                                        <th>Item Type</th>
-                                                        <th>Test No </th>
-                                                        <th> Date </th>
-                                                        <th>Item Name </th>
-                                                        <th>PO # </th>
-                                                           <th>Receiving Date  </th>
-                                                        <th>Supplier</th>
-                                                          <th>Supplier Refrence</th>
-                                                            <th>Quantity </th>
-                                                        
-                                                                 <th>Result </th>
-                                                                   <th>Generated By </th>
-                                                                      <th>Action </th>
-                                                    </tr>
-                                                </tfoot> 
-                                            </table>
-                                            </div>
-                                        </div>
-                                      
-                                    </div>
-</div>
-</div>
- <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
-                    <!-- BEGIN Page Footer -->
-                    <footer class="page-footer" role="contentinfo">
-                        <div class="d-flex align-items-center flex-1 text-muted">
-                            <span class="hidden-md-down fw-700">2021 © Forward Sports by&nbsp;IT Dept Forward Sports</span>
+     <!--Table responsive-->
+    
+                            </div>
                         </div>
-                        <div>
-                           
                         </div>
-                    </footer>
-                  <script src="<?php echo base_url();?>/assets/js//jquery.min.js" type="text/javascript"></script>
-                    <script src="<?php echo base_url();?>/assets/js/statistics/peity/peity.bundle.js"></script>
+                        </div>
+                          <script src="<?php echo base_url();?>/assets/js//jquery.min.js" type="text/javascript"></script>
+                        <script src="<?php echo base_url();?>/assets/js/statistics/peity/peity.bundle.js"></script>
         <script src="<?php echo base_url();?>/assets/js/statistics/flot/flot.bundle.js"></script>
         <script src="<?php echo base_url();?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
         <script src="<?php echo base_url();?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
         <script>
-$(document).ready(function()
+      
+            /* defined datas */
+             $(document).ready(function()
             {
-            $('#table').dataTable(
+            $('#ActivityData').dataTable(
                 {
                     responsive: false,
                     lengthChange: false,
@@ -326,6 +265,199 @@ $(document).ready(function()
 
 
             });
+  
+       
+$(".updatebtn").click(function(e) {
+      //alert("heloo");
+     let id= this.id;
+    //alert(id);
+     let split_value = id.split(".");
+    //loadData alert(split_value);
+     //console.log(split_value);
+     var TID =split_value[1];
+     //alert(`#issueDate.${split_value[1]}`);
+      //alert(split_value[1]);
+//   let RID =split_value[1]);
+     var Name = $(`#Name${split_value[1]}`).val();
+     let Status;
+     if($(`#Status${split_value[1]}`).is(":checked")){
+Status = 1;
+     }
+     else{
+      Status = 0;
+     }
+
+//alert(Status);
+      //$('#check_id').val();
+      //alert(Name);
+       //alert(Status);
+        //alert(TID);
+   
+ url = "<?php echo base_url(''); ?>DevelopmentController/UpdateActivity/"+ Name + "/" + Status + "/" + TID
+  
+//alert(url);
+   $.get(url, function(data){
+            alert("Data Updated Successfully");
+            location.reload();
+            });
+
+            
+     });
+            $('#schedule').dataTable(
+                {
+                    responsive: true,
+                    lengthChange: false,
+                    dom:
+                        /*	--- Layout Structure 
+                        	--- Options
+                        	l	-	length changing input control
+                        	f	-	filtering input
+                        	t	-	The table!
+                        	i	-	Table information summary
+                        	p	-	pagination control
+                        	r	-	processing display element
+                        	B	-	buttons
+                        	R	-	ColReorder
+                        	S	-	Select
+
+                        	--- Markup
+                        	< and >				- div element
+                        	<"class" and >		- div with a class
+                        	<"#id" and >		- div with an ID
+                        	<"#id.class" and >	- div with an ID and a class
+
+                        	--- Further reading
+                        	https://datatables.net/reference/option/dom
+                        	--------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                        	extend:    'colvis',
+                        	text:      'Column Visibility',
+                        	titleAttr: 'Col visibility',
+                        	className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+                </script>
+ <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
+                    <!-- BEGIN Page Footer -->
+                    <footer class="page-footer" role="contentinfo">
+                        <div class="d-flex align-items-center flex-1 text-muted">
+                            <span class="hidden-md-down fw-700">2021 © Forward Sports by&nbsp;IT Dept Forward Sports</span>
+                        </div>
+                        <div>
+                           
+                        </div>
+                    </footer>
+                    <script src="<?php echo base_url();?>/assets/js/statistics/peity/peity.bundle.js"></script>
+        <script src="<?php echo base_url();?>/assets/js/statistics/flot/flot.bundle.js"></script>
+        <script src="<?php echo base_url();?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+        <script src="<?php echo base_url();?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+        <script>
+
+            $('#schedule').dataTable(
+                {
+                    responsive: true,
+                    lengthChange: false,
+                    dom:
+                        /*	--- Layout Structure 
+                        	--- Options
+                        	l	-	length changing input control
+                        	f	-	filtering input
+                        	t	-	The table!
+                        	i	-	Table information summary
+                        	p	-	pagination control
+                        	r	-	processing display element
+                        	B	-	buttons
+                        	R	-	ColReorder
+                        	S	-	Select
+
+                        	--- Markup
+                        	< and >				- div element
+                        	<"class" and >		- div with a class
+                        	<"#id" and >		- div with an ID
+                        	<"#id.class" and >	- div with an ID and a class
+
+                        	--- Further reading
+                        	https://datatables.net/reference/option/dom
+                        	--------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                        	extend:    'colvis',
+                        	text:      'Column Visibility',
+                        	titleAttr: 'Col visibility',
+                        	className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
                 </script>
                     <!-- END Page Footer -->
                     <!-- BEGIN Shortcuts -->
@@ -1639,12 +1771,12 @@ $(document).ready(function()
              testNumber = element.TestNo;
              PONumber = element.PONo;
 let arrayHead = [element.TestDate,element.PONo,element.Quantity,element.ReceivingDate,element.ItemName,element.SupplierName,element.TestNo,element.SupplierRef,element.Result,element.ItemType];
-              let arrayBody = [element.TestNo,element.PONo,element.Requirement,element.Test,element.Results,element.Value];
+              let arrayBody = [element.TestNo,element.PONo,element.Requirement,element.Test,element.Results];
                      HeaderArray.push(arrayHead);
               ChildArray.push(arrayBody)
             }else{
            
-              let arrayBody = [testNumber,PONumber,element.Requirement,element.Test,element.Results,element.Value];
+              let arrayBody = [testNumber,PONumber,element.Requirement,element.Test,element.Results];
            
               ChildArray.push(arrayBody)
             }
@@ -1672,7 +1804,7 @@ postData = {
   
   $.post(url,postData,
   function(data, status){
-setInterval(function(){   window.location.reload(); }, 4000);
+setInterval(function(){   window.location.reload(); }, 6000);
  
   });    
     });   

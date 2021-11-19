@@ -41,6 +41,13 @@ class DevelopmentController extends CI_Controller
         $data['Activities']=$this->l->Activities();
         $this->load->view('Devmaster',$data);
     }
+    public function Process()
+    {
+        $data['POM']=$this->l->GetPOM();
+        $data['Activities']=$this->l->Activities();
+        $this->load->view('Process',$data);
+    }
+    
     public function AddActivity(){
      $FC = $this->input->post('FC');
       $name = $this->input->post('AName');
