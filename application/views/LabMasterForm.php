@@ -179,7 +179,7 @@ if (!$this->session->has_userdata('user_id')) {
        
       <td><?php Echo $Key['Result']; ?></td>
      <td><?php Echo $Key['LoginName']; ?></td>
-        <td ><a href="http://localhost/sports/LabController/undo/<?php Echo $Key['TID']; ?>">
+        <td ><a href="<?php echo base_url();?>/LabController/undo/<?php Echo $Key['TID']; ?>">
             <button type="button" class="btn btn-danger btn-xs">Undo</td>
         </a>
        <?php
@@ -1644,7 +1644,7 @@ $(document).ready(function()
       var bstr = arr.join("");    
       var workbook = XLSX.read(bstr, {type:"binary"});    
       let sheetNo=$("#sheetNo").val();
-      alert(sheetNo);
+     // alert(sheetNo);
       var first_sheet_name = workbook.SheetNames[sheetNo-1];    
       var worksheet = workbook.Sheets[first_sheet_name];    
     //  console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));    

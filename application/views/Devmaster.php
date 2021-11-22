@@ -297,7 +297,7 @@ if (!$this->session->has_userdata('user_id')) {
                     ?>
 
                                     <tr>
-                                        <td ><?php echo $Key['VendorName']; ?> <i style="color:white;"> </td>
+                                        <td ><?php echo $Key['VendorName']; ?> <i style="color:white;"><?php echo $Key['Name']; ?></i> </td>
                                      
                                           
                                         <td > <input type="text" class="form-control" id="Name<?php echo $TID; ?>" name="AName" value="<?php echo $Key['Name']; ?>">

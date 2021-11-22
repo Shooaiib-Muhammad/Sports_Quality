@@ -21,6 +21,11 @@ class Machine_model extends CI_Model
                 'userStus' => 1,
                 'Status' => $result->Status,
                 'Email' => $result->EmailAddress,
+                'lab' => $result->lab,
+                'Dev' => $result->Dev,
+                'store' => $result->store,
+                'admin' => $result->admin,
+                
             ];
 
             $Status = $result->Status;
@@ -41,7 +46,7 @@ class Machine_model extends CI_Model
                         'Please Change Your Password First'
                     );
                 } else {
-                    $this->session->set_flashdata('info', 'Welcome in AMS');
+                    //$this->session->set_flashdata('info', 'Welcome in AMS');
                 }
 
                 $this->session->set_userdata($session_data);

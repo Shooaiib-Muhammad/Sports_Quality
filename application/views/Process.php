@@ -217,6 +217,7 @@ if (!$this->session->has_userdata('user_id')) {
    $("#pocode").val(POCode)
     $("#OrderQty").val(OrderQty)
                 $("#modelname").val(ModelName)
+                 $("#noofballs").val(OrderQty)
             });
 
             processData(PO)

@@ -21,21 +21,33 @@
                         </div>
                         <?php $AdminStatus = $this->session->userdata(
                             'isAdmin'
-                        ); ?>
-           <ul id="js-nav-menu" class="nav-menu">
+                        ); 
+                  
+                         $lab = $this->session->userdata('lab');
+                         $Dev = $this->session->userdata('Dev');
+                         $store = $this->session->userdata('store');
+                          $admin = $this->session->userdata('admin');
+                        
+                        
+                        ?>
+                        <?php
+                        
+                        if($admin=="1"){
+?>
+<ul id="js-nav-menu" class="nav-menu">
                             <li >
                                 <a href="#" title="Application Intel" data-filter-tags="application intel">
                                     <!-- <i class="fa fa-angle-double-down"></i> -->
                                     <span class="nav-link-text" data-i18n="nav.application_intel">Lab</span>
                                 </a>
                                 <ul>
-                                  <!-- <li>
+                                  <li>
                                         <a href="<?php echo base_url(
                                             ''
                                         ); ?>LabController" title="Introduction" data-filter-tags="application intel introduction">
                                             <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Dashboard</span>
                                         </a>
-                                    </li> -->
+                                    </li>
                                 <li>
                                         <a href="<?php echo base_url(
                                             ''
@@ -48,7 +60,7 @@
                           
                                 </ul>
                             </li>
-                            <!-- <li>
+                            <li>
                                 <a href="#" title="Theme Settings" data-filter-tags="theme settings">
                                     <i class="fa fa-angle-double-down"></i> 
                                     <span class="nav-link-text" data-i18n="nav.theme_settings">Store</span>
@@ -79,7 +91,7 @@
                                     </li>
                                    
                                 </ul>
-                            </li>  -->
+                            </li> 
 
                                     <li>
                                 <a href="#" title="Theme Settings" data-filter-tags="theme settings">
@@ -112,6 +124,124 @@
                             </li>  
 
                         </ul>
+<?php
+                        }else{
+                        ?>
+                        <ul id="js-nav-menu" class="nav-menu">
+                            <?php
+                            
+                            if($lab=="1"){
+
+                            ?>
+                            <li >
+                                <a href="#" title="Application Intel" data-filter-tags="application intel">
+                                    <!-- <i class="fa fa-angle-double-down"></i> -->
+                                    <span class="nav-link-text" data-i18n="nav.application_intel">Lab</span>
+                                </a>
+                                <ul>
+                                  <li>
+                                        <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>LabController" title="Introduction" data-filter-tags="application intel introduction">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Dashboard</span>
+                                        </a>
+                                    </li>
+                                <li>
+                                        <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>LabController/master_form" title="Introduction" data-filter-tags="application intel introduction">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Upload Excel File</span>
+                                        </a>
+                                    </li>
+                                  
+                               </ul>
+                          
+                               
+                            </li>
+                            <?php
+                            
+                                    }
+                            
+                            if($store=="1"){
+
+                            ?>
+                            <li>
+                                <a href="#" title="Theme Settings" data-filter-tags="theme settings">
+                                    <i class="fa fa-angle-double-down"></i> 
+                                    <span class="nav-link-text" data-i18n="nav.theme_settings">Store</span>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>StoreController" title="How it works" data-filter-tags="theme settings how it works">
+                                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>StoreController/master_form" title="How it works" data-filter-tags="theme settings how it works">
+                                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Master Data</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>StoreController/request_form" title="How it works" data-filter-tags="theme settings how it works">
+                                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Request Generation</span>
+                                        </a>
+                                    </li>
+                                   
+                                </ul>
+                            </li> 
+ <?php
+                            
+                                    }
+                            
+                            if($Dev=="1"){
+
+                            ?>
+                                    <li>
+                                <a href="#" title="Theme Settings" data-filter-tags="theme settings">
+                                    
+                                    <span class="nav-link-text" data-i18n="nav.theme_settings">Development</span>
+                                </a>
+                                <ul>
+                                    <!-- <li>
+                                        <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>DevelopmentController" title="How it works" data-filter-tags="theme settings how it works">
+                                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
+                                        </a>
+                                    </li> -->
+                                    <li> 
+                                        <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>DevelopmentController/master_form" title="How it works" data-filter-tags="theme settings how it works">
+                                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Developnment Activities</span>
+                                        </a>
+                                    </li>
+                                     <li> 
+                                        <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>DevelopmentController/Process" title="How it works" data-filter-tags="theme settings how it works">
+                                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Process</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>  
+ <?php
+                            
+                                    }
+                            
+                           
+                                }
+                            ?>
+                        </ul>
+           
                         
                         
                         <div class="filter-message js-filter-message bg-success-600"></div>
