@@ -256,7 +256,8 @@ if (!$this->session->has_userdata('user_id')) {
 
 
 <br><br>
-
+  <div class="row">
+                                               <div class="col-md-8" >
 <div id="panel-7" class="panel">
                                     <div class="panel-hdr">
                                         <h2>
@@ -278,8 +279,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#nav_pills_default-3">Section</a></li>
                                             
                                             </ul> -->
-                                           
-                                           <table class="table table-striped table-hover table-sm" id="ActivityData">
+                                         
+                                                   <table class="table table-striped table-hover table-sm" id="ActivityData">
                                 <thead>
                                     <tr>
                                         <th>Factory Code</th>
@@ -297,7 +298,7 @@ if (!$this->session->has_userdata('user_id')) {
                     ?>
 
                                     <tr>
-                                        <td ><?php echo $Key['VendorName']; ?> <i style="color:white;"><?php echo $Key['Name']; ?></i> </td>
+                                        <td ><?php echo $Key['VendorName']; ?> <small style="color:white;"><?php echo $Key['Name']; ?></small> </td>
                                      
                                           
                                         <td > <input type="text" class="form-control" id="Name<?php echo $TID; ?>" name="AName" value="<?php echo $Key['Name']; ?>">
@@ -336,11 +337,16 @@ if (!$this->session->has_userdata('user_id')) {
 
                                 </tbody>
                             </table>
+                                               
+                                           
                                     </div>
                                 </div>
      <!--Table responsive-->
     
                             </div>
+                            </div>
+                                                <div class="col-md-4" ></div>
+                                           </div>
                         </div>
                         </div>
                         </div>

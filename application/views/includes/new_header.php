@@ -12,7 +12,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <head>
         <meta charset="utf-8">
         <title>
-           DMMS Forward Sports Pvt Ltd.
+            Forward Sports Pvt Ltd.
         </title>
         <meta name="description" content="Marketing Dashboard">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">

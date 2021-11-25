@@ -111,12 +111,21 @@ if (!$this->session->has_userdata('user_id')) {
                             <input name="KITName" id="article" class="form-control" type="text" readonly="true">
                             
                         </div>
+                        
                     </div>
                     <div class="col-md-2">
                        <label >Model Name:</label>
                         <div class="form-group-inline">
                             
                             <input name="KITName" id="modelname" class="form-control" type="text" readonly="true">
+                           
+                        </div>
+                    </div>
+                     <div class="col-md-2">
+                       <label >Order Type:</label>
+                        <div class="form-group-inline">
+                            
+                            <input name="OrderType" id="OrderType" class="form-control" type="text" readonly="true">
                            
                         </div>
                     </div>
@@ -211,13 +220,15 @@ if (!$this->session->has_userdata('user_id')) {
            POCode = data[0].POCode
            OrderQty = data[0].OrderQty
             ModelName = data[0].ModelName
-           
+           OrderType= data[0].OrderType
  $("#article").val(ArtCode)
   $("#factorycode").val(FactoryCode)
    $("#pocode").val(POCode)
     $("#OrderQty").val(OrderQty)
                 $("#modelname").val(ModelName)
                  $("#noofballs").val(OrderQty)
+                 $("#OrderType").val(OrderType)
+                 
             });
 
             processData(PO)

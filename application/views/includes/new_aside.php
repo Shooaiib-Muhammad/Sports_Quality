@@ -139,13 +139,13 @@
                                     <span class="nav-link-text" data-i18n="nav.application_intel">Lab</span>
                                 </a>
                                 <ul>
-                                  <li>
+                                  <!-- <li>
                                         <a href="<?php echo base_url(
                                             ''
                                         ); ?>LabController" title="Introduction" data-filter-tags="application intel introduction">
                                             <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Dashboard</span>
                                         </a>
-                                    </li>
+                                    </li> -->
                                 <li>
                                         <a href="<?php echo base_url(
                                             ''
@@ -165,7 +165,7 @@
                             if($store=="1"){
 
                             ?>
-                            <li>
+                            <!-- <li>
                                 <a href="#" title="Theme Settings" data-filter-tags="theme settings">
                                     <i class="fa fa-angle-double-down"></i> 
                                     <span class="nav-link-text" data-i18n="nav.theme_settings">Store</span>
@@ -196,7 +196,7 @@
                                     </li>
                                    
                                 </ul>
-                            </li> 
+                            </li>  -->
  <?php
                             
                                     }
