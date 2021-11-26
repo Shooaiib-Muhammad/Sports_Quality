@@ -246,5 +246,8 @@ public function updateprocess($TID ,$Balls,$date_make){
             SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make'
           WHERE  TID='$TID'");
 }
-
+public function undoActivity($TID){
+        $query = $this->db->query("DELETE  FROM tbl_Dev_Activities
+      WHERE ActivityID=$TID");
+}
 }

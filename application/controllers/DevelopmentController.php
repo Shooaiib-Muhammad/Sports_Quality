@@ -117,4 +117,12 @@ $data = $this->l->updateprocess($TID ,$Balls,$date_make);
         ->set_status_header(200)
         ->set_output(json_encode($data));
     }
+    public function undo($TID){
+        $data = $this->l->undoActivity($TID);
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+
+    }
 }

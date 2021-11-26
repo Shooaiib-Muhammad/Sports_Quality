@@ -287,6 +287,7 @@ if (!$this->session->has_userdata('user_id')) {
                                         <th>Name</th>
                                         <th>Status</th>
                                         <th>Actions</th>
+                                         <th>Undo</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -325,6 +326,12 @@ if (!$this->session->has_userdata('user_id')) {
                             ?>    
                                         <td > 
                                       <button type="button" class="btn btn-primary btn-sm updatebtn" id="btn.<?php echo $TID;?>" > update</button>
+                         
+                                      <!--   <a class="btn" href="#ModalProjectForm"><i class="fa fa-pencil-square-o"  style="font-size:25px;"></i> 
+                                        <a class="btn" href="#"><i class="fa fa-trash" aria-hidden="true" style="font-size:25px;"></i> -->
+                                    </td>
+                                    <td > 
+                                      <button type="button" class="btn btn-danger btn-sm undobtn" id="btn.<?php echo $TID;?>" > Undo</button>
                          
                                       <!--   <a class="btn" href="#ModalProjectForm"><i class="fa fa-pencil-square-o"  style="font-size:25px;"></i> 
                                         <a class="btn" href="#"><i class="fa fa-trash" aria-hidden="true" style="font-size:25px;"></i> -->
@@ -434,6 +441,21 @@ if (!$this->session->has_userdata('user_id')) {
             });
   
        
+       $(".undobtn").click(function(e) {
+     let id= this.id;
+     let split_value = id.split(".");
+
+     var TID =split_value[1];
+ url = "<?php echo base_url(''); ?>DevelopmentController/undo/"+ TID
+  
+//alert(url);
+   $.get(url, function(data){
+            alert("Activity  Deleted Successfully");
+            location.reload();
+            });
+
+            
+     });
 $(".updatebtn").click(function(e) {
       //alert("heloo");
      let id= this.id;
