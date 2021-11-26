@@ -86,16 +86,16 @@ if (!$this->session->has_userdata('user_id')) {
                                           <div class="col-md-2">
                                    <div class="form-group">
                     
-                     <label for="sel1">Select PO :</label>
-                      <select class="form-control" id="PO" name="FC" onchange="CallData()" >
-                        <option value="" disabled>Select one of the following</option>
+                     <label for="sel1">Select Article  :</label>
+                      <select class="form-control " id="ArtCode" name="FC" onchange="CallData()" >
+                        <option value="" >Select one of the following</option>
                         <?php
                                    
-                                  foreach ($POM as $Key) {
+                                  foreach ($Articles as $Key) {
                            
                          ?>
 
-                        <option value="<?php echo $Key['PO'] ?>" ><?php echo $Key['PO'] ?></option>
+                        <option value="<?php echo $Key['ArtCode'] ?>" ><?php echo $Key['ArtCode'] ?></option>
                         <?php
                         
                        }
@@ -105,10 +105,30 @@ if (!$this->session->has_userdata('user_id')) {
                    </div>
                    
                     <div class="col-md-2">
-                       <label >Article Code:</label>
+                       <label >Size:</label>
                         <div class="form-group-inline">
+                             <select class="form-control " id="Size" name="Size"  onchange="CallSize()" >
+                        <option value="" >Select one of the following</option>
+                      
+                            </select>
+                            <!-- <input name="article" id="article" class="form-control" type="text" readonly="true"> -->
                             
-                            <input name="KITName" id="article" class="form-control" type="text" readonly="true">
+                        </div>
+                        
+                    </div>
+                     <div class="col-md-2">
+                       <label >Order Type:</label>
+                        <div class="form-group-inline">
+                             <select class="form-control " id="Type" name="Type"  >
+                        <option value="CR0" >CR0</option>
+                        <option value="CR1" >CR1</option>
+                         <option value="CR2" >CR2</option>
+                          <option value="CR3" >CR3</option>
+                           <option value="CR4" >CR4</option>
+                            <option value="CR5" >CR5</option>
+                             <option value="MCS" >MCS</option>
+                            </select>
+                            <!-- <input name="article" id="article" class="form-control" type="text" readonly="true"> -->
                             
                         </div>
                         
@@ -117,15 +137,15 @@ if (!$this->session->has_userdata('user_id')) {
                        <label >Model Name:</label>
                         <div class="form-group-inline">
                             
-                            <input name="KITName" id="modelname" class="form-control" type="text" readonly="true">
+                            <input name="modelname" id="modelname" class="form-control" type="text" readonly="true">
                            
                         </div>
                     </div>
-                     <div class="col-md-2">
-                       <label >Order Type:</label>
+                     <div class="col-md-2" hidden>
+                       <label >ArticleID</label>
                         <div class="form-group-inline">
                             
-                            <input name="OrderType" id="OrderType" class="form-control" type="text" readonly="true">
+                            <input name="ArticleID" id="ArticleID" class="form-control" type="text" readonly="true">
                            
                         </div>
                     </div>
@@ -133,23 +153,23 @@ if (!$this->session->has_userdata('user_id')) {
                        <label >Factory Code:</label>
                         <div class="form-group-inline">
                             
-                            <input name="KITName" id="factorycode" class="form-control" type="text" readonly="true">
+                            <input name="factorycode" id="factorycode" class="form-control" type="text" readonly="true">
                             
                         </div>
                     </div>
-                      <div class="col-md-2">
-                       <label >PO Code:</label>
+                      <div class="col-md-2" hidden>
+                       <label >ModelID:</label>
                         <div class="form-group-inline">
                             
-                            <input name="KITName" id="pocode" class="form-control" type="text" readonly="true">
+                            <input name="ModelID" id="ModelID" class="form-control" type="text" readonly="true">
                              
                         </div>
                     </div>
-                      <div class="col-md-2">
-                       <label >Order Qty:</label>
+                      <div class="col-md-2" hidden>
+                       <label >ClientID:</label>
                         <div class="form-group-inline">
                             
-                            <input name="KITName" id="OrderQty" class="form-control" type="text" readonly="true">
+                            <input name="ClientID" id="ClientID" class="form-control" type="text" readonly="true">
                              
                         </div>
                     </div>
@@ -178,14 +198,14 @@ if (!$this->session->has_userdata('user_id')) {
                    <br>
                  
                <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-1">
                 </div>
-                 <div class="col-md-6 mt-15">
+                 <div class="col-md-10">
                    <div id="Data">
 
                    </div>
                 </div>
-                 <div class="col-md-2">
+                 <div class="col-md-1">
                 </div>
                       </div>
                   
@@ -205,60 +225,94 @@ if (!$this->session->has_userdata('user_id')) {
         <script src="<?php echo base_url();?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
         <script src="<?php echo base_url();?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
         <script>
-        
+         //$('.select2-items').select();
       function CallData(){
        //alert("heloo");
-           let PO=  $("#PO").val();
+           let ArtCode=  $("#ArtCode").val();
     //alert(PO);
 
- url = "<?php echo base_url(''); ?>DevelopmentController/CallData/"+ PO 
+ url = "<?php echo base_url(''); ?>DevelopmentController/CallData/"+ ArtCode 
   
 //alert(url);
    $.get(url, function(data){
+       //console.log(data);
            ArtCode = data[0].ArtCode
            FactoryCode = data[0].FactoryCode
-           POCode = data[0].POCode
-           OrderQty = data[0].OrderQty
+           ModelID   = data[0].ModelID
+           ClientID = data[0].ClientID
             ModelName = data[0].ModelName
-           OrderType= data[0].OrderType
- $("#article").val(ArtCode)
-  $("#factorycode").val(FactoryCode)
-   $("#pocode").val(POCode)
-    $("#OrderQty").val(OrderQty)
-                $("#modelname").val(ModelName)
-                 $("#noofballs").val(OrderQty)
-                 $("#OrderType").val(OrderType)
+           ArtID=  data[0].ArtID
+
+ $("#article").val(ArtCode);
+  $("#factorycode").val(FactoryCode);
+   $("#ModelID").val(ModelID);
+   $("#ClientID").val(ClientID);
+    $("#ArticleID").val(ArtID);
+         $("#modelname").val(ModelName);
+              
+                 article=$("#ArtCode").val();
+                  //processData(article)
                  
             });
-
-            processData(PO)
+ url1 = "<?php echo base_url(''); ?>DevelopmentController/getSize/"+ ArtCode 
+ //alert(url1);
+          $.get(url1, function(res){
+              // alert(res);
+     data1 = res.data
+      // console.log(data1);
+                    //alert(data); 
+                    options = "<option value=''>Select Size </option>"
+                    for (i = 0; i < data1.length; i++) {
+                        options +=  '<option value="' + data1[i].ArtSize + '">' + data1[i].ArtSize + '</option>'
+                    }
+                    $("#Size").html(options)
+                     
+                    
+                 
+            });
      }
-      
+      function CallSize(){
+           //
+            //Size= $("#Size:selected").text();
+           Size=  $('#Size :selected').text();
+            //alert(Size);
+    var splitter=Size.split('/');
+    Size1=splitter[0];
+    Size2=splitter[1];
+      processData(article,Size1,Size2)
+      }
       function loadData(){
           FactoryCode= $("#factorycode").val();
-         PO=$("#PO").val();
+         ArticleID=$("#ArticleID").val();
           noofballs=$("#noofballs").val();
-         
-          //alert(FactoryCode);
-           url = "<?php echo base_url(''); ?>DevelopmentController/loadData/"+ FactoryCode + '/'+ PO + '/'+ noofballs
+           article=$("#ArtCode").val();
+         MID = $("#ModelID").val();
+   CID = $("#ClientID").val();
+   Size = $("#Size").val();
+    var splitter=Size.split('/');
+    Size1=splitter[0];
+    Size2=splitter[1];
+      Type = $("#Type").val();
+           url = "<?php echo base_url(''); ?>DevelopmentController/loadData/"+ FactoryCode + '/'+ ArticleID + '/'+ noofballs + '/'+ MID + '/'+ CID + '/'+ Type + '/'+ splitter[0]+ "/"+splitter[1];
             //alert(url);
             $.get(url, function(data){
              alert("Data Inserted Successfully");
-             processData(PO)
+             $("#noofballs").val("");
+             processData(article,Size1,Size2)
             });
          }
-         function processData(PO){
- url = "<?php echo base_url(''); ?>DevelopmentController/POData/"+ PO
-           // alert(url);
+         
+            /* defined datas */
+             
+  function processData(article,Size1,Size2){
+ url = "<?php echo base_url(''); ?>DevelopmentController/POData/"+ article+ '/'+ Size1 + '/'+ Size2
+           //alert(url);
             $.get(url, function(data){
              
               $("#Data").html(data)
             });
 
          }
-            /* defined datas */
-             
-  
        
 $(".updatebtn").click(function(e) {
       //alert("heloo");

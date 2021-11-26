@@ -9,27 +9,29 @@
 
      var Datee = $(`#Date${split_value[1]}`).val();
       var Balls = $(`#Balls${split_value[1]}`).val();
-  var PO = $(`#PO${split_value[1]}`).val();
+  var ArtCode = $(`#ArtCode${split_value[1]}`).val();
+   var Size = $(`#ArtSize${split_value[1]}`).val();
 
-//alert(Status);
-      //$('#check_id').val();
-     // alert(TID);
-      // alert(Datee);
-       // alert(Balls);
-    
-  url = "<?php echo base_url(''); ?>DevelopmentController/updateprocess/"+ TID + "/" + Balls + "/" + Datee
+   var Status = $(`#Status${split_value[1]}`).val();
+            //alert(Size);
+    var splitter=Size.split('/');
+    Size1=splitter[0];
+    Size2=splitter[1];
+     
+
+  url = "<?php echo base_url(''); ?>DevelopmentController/updateprocess/"+ TID + "/" + Balls + "/" + Status + "/" + Datee
   
 //alert(url);
    $.get(url, function(data){
             alert("Data Updated Successfully");
-           processData(PO)
+           processData(article,Size1,Size2)
             });
 
             
      });
       
-      function processData(PO){
- url = "<?php echo base_url(''); ?>DevelopmentController/POData/"+ PO
+               function processData(article,Size1,Size2){
+ url = "<?php echo base_url(''); ?>DevelopmentController/POData/"+ article+ '/'+ Size1 + '/'+ Size2
             //alert(url);
             $.get(url, function(data){
              
@@ -41,11 +43,14 @@
 <table class="table table-striped table-hover table-sm" id="ActivityData">
                                 <thead>
                                     <tr  class="bg-primary-200"  style="color:white;">
-                                     <th>PO No </th>
+                                     <th>Article  </th>
+                                       <th>Size </th>
                                         <th>Factory Code</th>
                                         <th>Process Name</th>
-                                         <th>Date</th>
-                                          <th>NO Of Balls</th>
+                                          <th>Order Type </th>
+                                         <th>Process Date</th>
+                                          <th>No Of Balls</th>
+                                             <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -59,23 +64,34 @@
 $Year=date('Y');
 $Day=date('d');
 $CurrentDate=$Year.'-'.$Month.'-'.$Day;
+ $Date1=$Key['RDate'];
+//26/11/2021
+ $SDay=substr($Date1,0,2);
+ $SMonth=substr($Date1,3,2);
+$SYear=substr($Date1,-4,7);
+ $ReceivedDate=$SYear.'-'.$SMonth.'-'.$SDay;
+
                     ?>
 
                                     <tr>
-                                     <td ><?php echo $Key['PO']; ?> </td>
+                                     <td ><?php echo $Key['ArtCode']; ?> </td>
+                                      <td ><?php echo $Key['ArtSize']; ?> </td>
                                         <td ><?php echo $Key['VendorName']; ?> 
-                                       <input name="PO" id="PO<?php echo $TID;?>" class="form-control" value="<?php echo $Key['PO'];?>" type="numeric" hidden>
+                                       <input name="ArtCode" id="ArtCode<?php echo $TID;?>" class="form-control" value="<?php echo $Key['ArtCode'];?>" type="text" hidden>
+                                        <input name="ArtSize" id="ArtSize<?php echo $TID;?>" class="form-control" value="<?php echo $Key['ArtSize'];?>" type="text" hidden>
                                       </td>
                                      
                                           
                                         <td > <?php echo $Key['Name']; ?></td>
+                                           <td > <?php echo $Key['Type']; ?></td>
                                           <td >
 
 
                                           <?php
                                           if ($Key['RDate']){
 ?>
- <?php echo $Key['RDate']; ?>
+
+ <input name="Date" id="Date<?php echo $TID;?>" class="form-control" value="<?php echo $ReceivedDate;?>" type="Date">
 <?php
                                           }else{
                                            ?>
@@ -89,18 +105,17 @@ $CurrentDate=$Year.'-'.$Month.'-'.$Day;
                                           ?>
                                           </td>
                                            <td >
-                                          <input name="Date" value="<?php echo $Key['NoOfBalls']; ?>"id="Balls<?php echo $TID;?>" class="form-control" type="numeric"></td>
-                                          <?php
-                                          if ($Key['RDate']){
-?>
-                                            <td ><button type="submit" class="btn btn-success btn-xs updatebtn" readonly="true">update</button></td>
-                                       <?php
-                                          }else{
-                                           ?>
+                                          <input name="Date" value="<?php echo $Key['NoOfBalls']; ?>" id="Balls<?php echo $TID;?>" class="form-control" type="numeric"></td>
+                                            <td >
+                                                  <select class="form-control " id="Status<?php echo $TID;?>"  name="Status"  >
+                        <option value="<?php echo $Key['Status']; ?>" ><?php echo $Key['Status']; ?></option>
+                        <option value="Complete" >Complete</option>
+                        
+                            </select>
+                                         </td>
+                                   
                                            <td ><button type="submit" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo $TID;?>" >update</button></td>
-                                           <?php
-                                          }
-                                   ?>
+                                          
                                       
                          
                                       <!--   <a class="btn" href="#ModalProjectForm"><i class="fa fa-pencil-square-o"  style="font-size:25px;"></i> 

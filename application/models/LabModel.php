@@ -192,9 +192,9 @@ FROM            dbo.view_Dev_POM");
        }
       }
     }
-    public function CallData($PO){
-            $query = $this->db->query(" SELECT        dbo.view_Dev_POM.*
-FROM            dbo.view_Dev_POM Where PO='$PO'" );
+    public function CallData($ArtCode){
+            $query = $this->db->query(" SELECT        dbo.view_Dev_Articles.*
+FROM            dbo.view_Dev_Articles Where ArtCode='$ArtCode'" );
 
         return $query->result_array();
 }
@@ -206,24 +206,35 @@ WHERE        (VendorName = '$FactoryCode')" );
         return $query->result_array();
 
 }
-public function insertion($ActivityID,$VendorID,$POCode,$Balls){
+public function insertion($ActivityID,$VendorID,$Balls,$ArticleID,$CID,$MID,$Size,$Type){
     $Date = date('Y-m-d H:i:s');
         $user_id = $this->session->userdata('user_id');
      $query = $this->db->query("INSERT INTO tbl_Dev_Process
            (ActivityID
            ,VendorID
-           ,PO
+           
            ,UserID
            ,EntryDate
            ,NoOfBalls
+           ,ArtID
+           ,ModelID
+           ,ClientID
+           ,Size
+,Type,
+Status
            )
      VALUES
            ('$ActivityID'
            ,'$VendorID'
-           ,'$POCode'
-           , $user_id
+                   , $user_id
            ,'$Date'
-           ,$Balls)");
+           ,$Balls
+           ,$ArticleID
+           , $MID
+           ,'$CID'
+           ,'$Size'
+           ,'$Type'
+           ,'In Process')");
 //         if($query ){
 //  $this->session->set_flashdata('info', 'Activity Saved Successfully');
 //         redirect('DevelopmentController/master_form');
@@ -233,21 +244,43 @@ public function insertion($ActivityID,$VendorID,$POCode,$Balls){
 //             }
 }
 
-public function Process($PO){
+public function Process($article){
        $query = $this->db->query("SELECT        dbo.view_Dev_Process.*
 FROM            dbo.view_Dev_Process
-WHERE        (PO = '$PO')" );
+WHERE        (ArtCode = '$article')" );
 
         return $query->result_array();
 
 }
-public function updateprocess($TID ,$Balls,$date_make){
-     $query = $this->db->query("UPDATE   dbo .tbl_Dev_Process 
-            SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make'
+public function updateprocess($TID ,$Balls,$Status,$date_make){
+$Status=str_replace("%20"," ", $Status);
+    if($Status=='Complete'){
+         $Date = date('Y-m-d H:i:s');
+                $query = $this->db->query("UPDATE   dbo .tbl_Dev_Process 
+            SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make',Status  =  '$Status' ,CompleteDate='$Date'
+          WHERE  TID='$TID'");  
+            }else{
+                  $query = $this->db->query("UPDATE   dbo .tbl_Dev_Process 
+            SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make',Status  =  '$Status'
           WHERE  TID='$TID'");
+            }
+   
 }
 public function undoActivity($TID){
         $query = $this->db->query("DELETE  FROM tbl_Dev_Activities
       WHERE ActivityID=$TID");
+}
+public function GetArticles(){
+     $query = $this->db->query(" SELECT        dbo.view_Dev_Articles.*
+FROM            dbo.view_Dev_Articles");
+
+        return $query->result_array();
+}
+public function getSize($ArtCode){
+      $query = $this->db->query(" SELECT        dbo.view_Article_Size.*
+FROM            dbo.view_Article_Size
+Where ArtCode='$ArtCode' ");
+
+        return $query->result_array();
 }
 }

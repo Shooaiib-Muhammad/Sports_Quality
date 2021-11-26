@@ -44,7 +44,7 @@ class DevelopmentController extends CI_Controller
 
     public function Process()
     {
-        $data['POM']=$this->l->GetPOM();
+        $data['Articles']=$this->l->GetArticles();
         $data['Activities']=$this->l->Activities();
         $this->load->view('Process',$data);
     }
@@ -75,43 +75,44 @@ class DevelopmentController extends CI_Controller
 	}
 	$this->l->updateActivity($TID,$name,$status); 
     }
-    public function CallData($PO){
-
-        $data = $this->l->CallData($PO);
-      
-       
+    public function CallData($ArtID){
+        $data = $this->l->CallData($ArtID);
         return $this->output
         ->set_content_type('application/json')
         ->set_status_header(200)
         ->set_output(json_encode($data));
     }
-      public function LoadData($FactoryCode,$PO,$noofballs){
-
+      public function LoadData($FactoryCode ,$ArticleID ,$noofballs  ,$MID ,$CID ,$Type,$splitter1 ,$splitter2){
+ 
         $data['LoadData'] = $this->l->LoadData($FactoryCode);
     //  Print_r($data['LoadData']);
     //  Die;
        Foreach($data['LoadData'] as $keys){
            $ActivityID=$keys['ActivityID'];
            $VendorID=$keys['VendorID'];
-            $POCode=$PO;
+            $ArticleID=$ArticleID;
+            $CID=$CID;
+            $MID=$MID;
+            $Size=$splitter1 . "/" .$splitter2;
             $Balls=$noofballs;
-           $data['insertion']=$this->l->insertion($ActivityID,$VendorID,$POCode,$Balls);
+              $Type=$Type;
+           $data['insertion']=$this->l->insertion($ActivityID,$VendorID,$Balls,$ArticleID,$CID,$MID,$Size,$Type);
        }
         return $this->output
         ->set_content_type('application/json')
         ->set_status_header(200)
         ->set_output(json_encode($data));
     }
-    public function POData($PO){
-        
-        $data['ProcessData'] = $this->l->Process($PO);
+    public function POData($article,$Size1,$Size2){
+         $Size=$Size1 . "/" .$Size2;
+        $data['ProcessData'] = $this->l->Process($article,$Size);
 $this->load->view('ProcessData',$data);
     }
-    public function updateprocess($TID ,$Balls,$date_make){
+    public function updateprocess($TID ,$Balls,$Status,$date_make){
         //$RBy=str_replace("%20"," ",$Receivedby);
 					 //$this->ID->updateKitsissuance($RBy,$iDate ,$RID);
 			
-$data = $this->l->updateprocess($TID ,$Balls,$date_make);
+$data = $this->l->updateprocess($TID ,$Balls,$Status,$date_make);
         return $this->output
         ->set_content_type('application/json')
         ->set_status_header(200)
@@ -124,5 +125,19 @@ $data = $this->l->updateprocess($TID ,$Balls,$date_make);
         ->set_status_header(200)
         ->set_output(json_encode($data));
 
+    }
+    public function getSize($ArtCode){
+  $data = $this->l->getSize($ArtCode);
+        // return $this->output
+        // ->set_content_type('application/json')
+        // ->set_status_header(200)
+        // ->set_output(json_encode($data));
+
+           return $this->output
+			->set_content_type('application/json')
+			->set_status_header(200)
+			->set_output(json_encode(array(
+				'data' => $data,
+			)));
     }
 }
