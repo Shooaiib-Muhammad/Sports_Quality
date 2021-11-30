@@ -72,7 +72,8 @@ if (!$this->session->has_userdata('user_id')) {
 
 <br><br>
 
-<div id="panel-7" class="panel">
+  
+<div id="panel-7 exampleModalEditDep" class="panel">
                                     <div class="panel-hdr">
                                         <h2>
                                             Development  <span class="fw-300"><i>Process</i></span>
@@ -87,7 +88,7 @@ if (!$this->session->has_userdata('user_id')) {
                                    <div class="form-group">
                     
                      <label for="sel1">Select Article  :</label>
-                      <select class="form-control " id="ArtCode" name="FC" onchange="CallData()" >
+                      <select class="form-control mySelect2Edit" id="ArtCode" name="FC" onchange="CallData()" >
                         <option value="" >Select one of the following</option>
                         <?php
                                    
@@ -219,12 +220,18 @@ if (!$this->session->has_userdata('user_id')) {
                         </div>
                         </div>
                         </div>
-                          <script src="<?php echo base_url();?>/assets/js//jquery.min.js" type="text/javascript"></script>
+                          <script src="<?php echo base_url();?>/assets/js/jquery.min.js" type="text/javascript"></script>
                         <script src="<?php echo base_url();?>/assets/js/statistics/peity/peity.bundle.js"></script>
         <script src="<?php echo base_url();?>/assets/js/statistics/flot/flot.bundle.js"></script>
         <script src="<?php echo base_url();?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
         <script src="<?php echo base_url();?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
         <script>
+            //alert('heloo');
+             $('.mySelect2Edit').select2(
+        {
+  dropdownParent: $('#exampleModalEditDep')
+}
+    );
          //$('.select2-items').select();
       function CallData(){
        //alert("heloo");
@@ -306,7 +313,7 @@ if (!$this->session->has_userdata('user_id')) {
              
   function processData(article,Size1,Size2){
  url = "<?php echo base_url(''); ?>DevelopmentController/POData/"+ article+ '/'+ Size1 + '/'+ Size2
-           //alert(url);
+           alert(url);
             $.get(url, function(data){
              
               $("#Data").html(data)

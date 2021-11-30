@@ -18,6 +18,7 @@ class LabController extends CI_Controller
         $this->load->view('LabDashboard');
     }
 
+
     public function dashboard()
     {
         $data['amb_count'] = $this->m->countambInstalledMachines(1);
@@ -48,33 +49,466 @@ class LabController extends CI_Controller
     }
 
     public function addHeadData()
-    {
-        $header = $_POST['HeaderArray'];
-        $child = $_POST['ChildArray'];
-        $TestDate = $header[0][0];
-        $PONo = $header[0][1];
-        $Quantity = $header[0][2];
-        $ReceivingDate = $header[0][3];
-        $ItemName = $header[0][4];
-        $SupplierName = $header[0][5];
-        $testNo = $header[0][6];
-        $SupplierRef = $header[0][7];
-        $Result = $header[0][8];
-        $ItemType = $header[0][9];
-        $this->l->AddHeader(
-            $TestDate,
-            $PONo,
-            $Quantity,
-            $ReceivingDate,
-            $ItemName,
-            $SupplierName,
-            $testNo,
-            $SupplierRef,
-            $Result,
-            $ItemType,
-            $child
-        );
+    { 
+   ////////////////////////////////// Simple Form Send /////////////////////////////////
+    //     print_r($_FILES['file']);
+    //     die();
+    //      if(!empty($_FILES['img']['name'])){
+
+    //         $config['upload_path'] = 'assets\img\img';
+    //         $config['allowed_types'] = 'jpg|jpeg|png|gif';
+    //         $config['file_name'] = basename($_FILES["img"]["name"]) ;
+            
+    //         //Load upload library and initialize configuration
+    //         $this->load->library('upload',$config);
+    //        $this->upload->initialize($config);
+             
+    //         if($this->upload->do_upload('img')){
+    //        $uploadData = $this->upload->data();
+    //        $picture = $uploadData['file_name'];
+    //        $config['image_library'] = 'gd2';  
+    //        $config['source_image'] = 'assets/img/img/'.$picture;
+    //        $config['create_thumb'] = FALSE;  
+    //        $config['maintain_ratio'] = FALSE;  
+    //        $config['quality'] = '60%';  
+    //        $config['width'] = 800;  
+    //        $config['height'] = 600;  
+    //        $config['new_image'] = 'assets/img/img/'.$picture;
+    //        $this->load->library('image_lib', $config);  
+    //        $this->image_lib->resize(); 
+    //         }else{
+    //         Echo "helll";
+        
+    //          $picture = '';
+    //         }
+    //        }else{
+            
+    //         $picture = '';
+    //        }
+        
+     
+    //   $headerValue = $_POST['HeaderData'];
+    //   $header = explode(",",$headerValue[0]);
+  
+    //     $childValue = $_POST['ChildData'];
+    //     $child = explode("]",$childValue[0][0]);
+    //     $childArray = [];
+    //     foreach ($child as $key => $value) {
+    //         $arraySplit = explode(',',$value);
+    //         array_push($childArray, $arraySplit);
+           
+    //     }
+     
+    //     $TestDate = $header[0];
+    //     $PONo = $header[1];
+    //     $Quantity = $header[2];
+    //     $ReceivingDate = $header[3];
+    //     $ItemName = $header[4];
+    //     $SupplierName = $header[5];
+    //     $testNo = $header[6];
+    //     $SupplierRef = $header[7];
+    //     $Result = $header[8];
+    //     $ItemType = $header[9];
+    //     $this->l->AddHeader(
+    //         $TestDate,
+    //         $PONo,
+    //         $Quantity,
+    //         $ReceivingDate,
+    //         $ItemName,
+    //         $SupplierName,
+    //         $testNo,
+    //         $SupplierRef,
+    //         $Result,
+    //         $ItemType,
+    //         $picture,
+    //         $childArray 
+    //     );
+
+
+    ////////////////////////////////////// Ajax Call ///////////////////////////////
+
+     if(!empty($_FILES['file']['name'])){
+
+        $config['upload_path'] = 'assets\img\img';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        $config['file_name'] = basename($_FILES["file"]["name"]) ;
+        
+        //Load upload library and initialize configuration
+        $this->load->library('upload',$config);
+       $this->upload->initialize($config);
+         
+        if($this->upload->do_upload('file')){
+       $uploadData = $this->upload->data();
+       $picture = $uploadData['file_name'];
+       $config['image_library'] = 'gd2';  
+       $config['source_image'] = 'assets/img/img/'.$picture;
+       $config['create_thumb'] = FALSE;  
+       $config['maintain_ratio'] = FALSE;  
+       $config['quality'] = '60%';  
+       $config['width'] = 800;  
+       $config['height'] = 600;  
+       $config['new_image'] = 'assets/img/img/'.$picture;
+       $this->load->library('image_lib', $config);  
+       $this->image_lib->resize(); 
+        }else{
+        Echo "helll";
+    
+         $picture = '';
+        }
+       }else{
+        
+        $picture = '';
+       }
+    
+ 
+  $headerValue = $_POST['HeaderArray'];
+  $header = explode(",",$headerValue);
+
+    $childValue = $_POST['ChildArray'];
+    $child = explode("]",$childValue);
+    $childArray = [];
+    foreach ($child as $key => $value) {
+        $arraySplit = explode(',',$value);
+        array_push($childArray, $arraySplit);
+       
     }
+    array_pop($childArray);
+    $TestDate = $header[0];
+    $PONo = $header[1];
+    $Quantity = $header[2];
+    $ReceivingDate = $header[3];
+    $ItemName = $header[4];
+    $SupplierName = $header[5];
+    $testNo = $header[6];
+    $SupplierRef = $header[7];
+    $Result = $header[8];
+    $ItemType = $header[9];
+    $this->l->AddHeader(
+        $TestDate,
+        $PONo,
+        $Quantity,
+        $ReceivingDate,
+        $ItemName,
+        $SupplierName,
+        $testNo,
+        $SupplierRef,
+        $Result,
+        $ItemType,
+        $picture,
+        $childArray 
+    );
+    }
+
+    public function addHeadDataFoam()
+    { 
+
+    ////////////////////////////////////// Ajax Call ///////////////////////////////
+
+     if(!empty($_FILES['file']['name'])){
+
+        $config['upload_path'] = 'assets\img\img';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        $config['file_name'] = basename($_FILES["file"]["name"]) ;
+        
+        //Load upload library and initialize configuration
+        $this->load->library('upload',$config);
+       $this->upload->initialize($config);
+         
+        if($this->upload->do_upload('file')){
+       $uploadData = $this->upload->data();
+       $picture = $uploadData['file_name'];
+       $config['image_library'] = 'gd2';  
+       $config['source_image'] = 'assets/img/img/'.$picture;
+       $config['create_thumb'] = FALSE;  
+       $config['maintain_ratio'] = FALSE;  
+       $config['quality'] = '60%';  
+       $config['width'] = 800;  
+       $config['height'] = 600;  
+       $config['new_image'] = 'assets/img/img/'.$picture;
+       $this->load->library('image_lib', $config);  
+       $this->image_lib->resize(); 
+        }else{
+        Echo "helll";
+    
+         $picture = '';
+        }
+       }else{
+        
+        $picture = '';
+       }
+    
+ 
+  $headerValue = $_POST['HeaderArray'];
+  $header = explode(",",$headerValue);
+
+    $childValue = $_POST['ChildArray'];
+    $child = explode("]",$childValue);
+    $childArray = [];
+    foreach ($child as $key => $value) {
+        $arraySplit = explode(',',$value);
+        array_push($childArray, $arraySplit);
+       
+    }
+ 
+     array_pop($childArray);
+    $TestDate = $header[1];
+    $PONo = $header[3];
+    $ReceivingDate = $header[2];
+    $testNo = $header[0];
+    $SupplierRef = $header[4];
+    $this->l->AddHeaderFoam(
+        $TestDate,
+        $PONo,
+        $ReceivingDate,
+        $testNo,
+        $SupplierRef,
+        $picture,
+        $childArray 
+    );
+    }
+
+    public function addHeadDataFabric()
+    { 
+
+    ////////////////////////////////////// Ajax Call ///////////////////////////////
+
+     if(!empty($_FILES['file']['name'])){
+
+        $config['upload_path'] = 'assets\img\img';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        $config['file_name'] = basename($_FILES["file"]["name"]) ;
+        
+        //Load upload library and initialize configuration
+        $this->load->library('upload',$config);
+       $this->upload->initialize($config);
+         
+        if($this->upload->do_upload('file')){
+       $uploadData = $this->upload->data();
+       $picture = $uploadData['file_name'];
+       $config['image_library'] = 'gd2';  
+       $config['source_image'] = 'assets/img/img/'.$picture;
+       $config['create_thumb'] = FALSE;  
+       $config['maintain_ratio'] = FALSE;  
+       $config['quality'] = '60%';  
+       $config['width'] = 800;  
+       $config['height'] = 600;  
+       $config['new_image'] = 'assets/img/img/'.$picture;
+       $this->load->library('image_lib', $config);  
+       $this->image_lib->resize(); 
+        }else{
+        Echo "helll";
+    
+         $picture = '';
+        }
+       }else{
+        
+        $picture = '';
+       }
+    
+ 
+  $headerValue = $_POST['HeaderArray'];
+  $header = explode(",",$headerValue);
+
+    $childValue = $_POST['ChildArray'];
+    $child = explode("]",$childValue);
+    $childArray = [];
+    foreach ($child as $key => $value) {
+        $arraySplit = explode(',',$value);
+        array_push($childArray, $arraySplit);
+       
+    }
+    array_pop($childArray);
+  
+    $testNo = $header[0];
+    $CSSNO=$header[1];
+    $TestDate = $header[2];
+    $ItemName = $header[3];
+    $PONo = $header[4];
+    $ReceivingDate = $header[5];
+    $SupplierName = $header[6];
+  
+    $SupplierRef = $header[7];
+    $Quantity = $header[8];
+
+   
+  
+    $Result = $header[9];
+    $ItemType = $header[10];
+    $this->l->AddHeaderFabric(
+        $TestDate,
+        $CSSNO,
+        $PONo,
+        $Quantity,
+        $ReceivingDate,
+        $ItemName,
+        $SupplierName,
+        $testNo,
+        $SupplierRef,
+        $Result,
+        $ItemType,
+        $picture,
+        $childArray 
+    );
+    }
+
+    public function addHeadDataThread()
+    { 
+
+    ////////////////////////////////////// Ajax Call ///////////////////////////////
+
+     if(!empty($_FILES['file']['name'])){
+
+        $config['upload_path'] = 'assets\img\img';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        $config['file_name'] = basename($_FILES["file"]["name"]) ;
+        
+        //Load upload library and initialize configuration
+        $this->load->library('upload',$config);
+       $this->upload->initialize($config);
+         
+        if($this->upload->do_upload('file')){
+       $uploadData = $this->upload->data();
+       $picture = $uploadData['file_name'];
+       $config['image_library'] = 'gd2';  
+       $config['source_image'] = 'assets/img/img/'.$picture;
+       $config['create_thumb'] = FALSE;  
+       $config['maintain_ratio'] = FALSE;  
+       $config['quality'] = '60%';  
+       $config['width'] = 800;  
+       $config['height'] = 600;  
+       $config['new_image'] = 'assets/img/img/'.$picture;
+       $this->load->library('image_lib', $config);  
+       $this->image_lib->resize(); 
+        }else{
+        Echo "helll";
+    
+         $picture = '';
+        }
+       }else{
+        
+        $picture = '';
+       }
+    
+ 
+  $headerValue = $_POST['HeaderArray'];
+  $header = explode(",",$headerValue);
+
+    $childValue = $_POST['ChildArray'];
+    $child = explode("]",$childValue);
+    $childArray = [];
+    foreach ($child as $key => $value) {
+        $arraySplit = explode(',',$value);
+        array_push($childArray, $arraySplit);
+       
+    }
+    array_pop($childArray);
+    $testNo = $header[0];
+    $TestDate = $header[1];
+    $ReceivingDate = $header[2];
+    $PONo = $header[3];
+    $SupplierRef = $header[4];
+    $SupplierName = $header[5];
+    $Thickness = $header[6];
+   
+    $LinearDensity = $header[7];
+
+ 
+    $TwistPerInch = $header[8];
+   
+    $this->l->AddHeaderThread(
+        $TestDate,
+        $PONo,
+        $ReceivingDate,
+        $SupplierName,
+        $testNo,
+        $SupplierRef,
+        $picture,
+        $childArray 
+        ,$Thickness
+        ,$LinearDensity
+        ,$TwistPerInch
+
+    );
+    }
+
+    public function addHeadDataBlader()
+    { 
+
+    ////////////////////////////////////// Ajax Call ///////////////////////////////
+
+     if(!empty($_FILES['file']['name'])){
+
+        $config['upload_path'] = 'assets\img\img';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        $config['file_name'] = basename($_FILES["file"]["name"]) ;
+        
+        //Load upload library and initialize configuration
+        $this->load->library('upload',$config);
+       $this->upload->initialize($config);
+         
+        if($this->upload->do_upload('file')){
+       $uploadData = $this->upload->data();
+       $picture = $uploadData['file_name'];
+       $config['image_library'] = 'gd2';  
+       $config['source_image'] = 'assets/img/img/'.$picture;
+       $config['create_thumb'] = FALSE;  
+       $config['maintain_ratio'] = FALSE;  
+       $config['quality'] = '60%';  
+       $config['width'] = 800;  
+       $config['height'] = 600;  
+       $config['new_image'] = 'assets/img/img/'.$picture;
+       $this->load->library('image_lib', $config);  
+       $this->image_lib->resize(); 
+        }else{
+        Echo "helll";
+    
+         $picture = '';
+        }
+       }else{
+        
+        $picture = '';
+       }
+    
+ 
+  $headerValue = $_POST['HeaderArray'];
+  $header = explode(",",$headerValue);
+
+    $childValue = $_POST['ChildArray'];
+    $child = explode("]",$childValue);
+    $childArray = [];
+    foreach ($child as $key => $value) {
+        $arraySplit = explode(',',$value);
+        array_push($childArray, $arraySplit);
+       
+    }
+    array_pop($childArray);
+    $TestDate = $header[1];
+    $PONo = $header[3];
+    $Material = $header[6];
+    $ReceivingDate = $header[2];
+    $Size = $header[7];
+    $SupplierName = $header[4];
+    $testNo = $header[0];
+    $SupplierRef = $header[5];
+    $Hardness = $header[8];
+    $Remarks =  $header[9];
+    $this->l->AddHeaderBlader(
+        $TestDate,
+        $PONo,
+        $ReceivingDate,
+        $Size,
+        $SupplierName,
+        $testNo,
+        $SupplierRef,
+        $picture,
+        $childArray ,
+        $Material,
+        $Hardness,
+        $Remarks
+    );
+    }
+
+
 
     public function addBodyData()
     {

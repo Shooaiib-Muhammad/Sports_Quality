@@ -2,142 +2,179 @@
 if (!$this->session->has_userdata('user_id')) {
     redirect('');
 } else {
-     ?>
-<?php $this->load->view('includes/new_header'); ?>
-        <!-- BEGIN Page Wrapper -->
-        <div class="page-wrapper">
-            <div class="page-inner">
-                <!-- BEGIN Left Aside -->
-     <?php $this->load->view('includes/new_aside'); ?>         
-                <!-- END Left Aside -->
-                <div class="page-content-wrapper">
-                    <!-- BEGIN Page Header -->
-                     <?php $this->load->view('includes/top_header.php'); ?>
- <main id="js-page-content" role="main" class="page-content">
-                        <ol class="breadcrumb page-breadcrumb">
-                            <li class="breadcrumb-item"><a href="<?php echo base_url(
-                                'index.php/main/dmms_dashboard'
-                            ); ?>">Dashboard</a></li>
-                        
-                         
-                            <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
-                        </ol>
-                        <div class="subheader">
-                            <h1 class="subheader-title">
-                                 <i class='subheader-icon fal fa-chart-area'></i> Lab Testing</span>
-                                
-                            </h1>
-                        </div>
-                        <?php
-      if($this->session->flashdata('danger')){ 
-    
-    
-      ?>
-    <div class="alert alert-danger alert-dismissible show fade" id="msgbox">
-                    <div class="alert-body">
-                      <button class="close" data-dismiss="alert">
-                        <span>&times;</span>
-                      </button>
-                      <?php echo $this->session->flashdata('danger');?>
+?>
+    <?php $this->load->view('includes/new_header'); ?>
+    <!-- BEGIN Page Wrapper -->
+    <div class="page-wrapper">
+        <div class="page-inner">
+            <!-- BEGIN Left Aside -->
+            <?php $this->load->view('includes/new_aside'); ?>
+            <!-- END Left Aside -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN Page Header -->
+                <?php $this->load->view('includes/top_header.php'); ?>
+                <main id="js-page-content" role="main" class="page-content">
+                    <ol class="breadcrumb page-breadcrumb">
+                        <li class="breadcrumb-item"><a href="<?php echo base_url(
+                                                                    'index.php/main/dmms_dashboard'
+                                                                ); ?>">Dashboard</a></li>
+
+
+                        <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                    </ol>
+                    <div class="subheader">
+                        <h1 class="subheader-title">
+                            <i class='subheader-icon fal fa-chart-area'></i> Lab Testing</span>
+
+                        </h1>
                     </div>
-                  </div>
-                  <?php
-      }
+                    <?php
+                    if ($this->session->flashdata('danger')) {
 
-                  ?>
-                         <div class="col-lg-12" style="margin-bottom:20px" >
 
-<!-- Start here with columns -->
+                    ?>
+                        <div class="alert alert-danger alert-dismissible show fade" id="msgbox">
+                            <div class="alert-body">
+                                <button class="close" data-dismiss="alert">
+                                    <span>&times;</span>
+                                </button>
+                                <?php echo $this->session->flashdata('danger'); ?>
+                            </div>
+                        </div>
+                    <?php
+                    }
 
-<div class="col-md-6 offset-md-3 offset-0 table-responsive">
-<?php if (validation_errors()): ?>
-<div class="alert alert-danger">
-    <?php echo validation_errors(); ?>
-</div>
-<?php endif; ?>
- <div id="panel-1" class="panel">
-                                    <div class="panel-hdr">
-                                        <h2>
-                                            Upload   <span class="fw-300">Excel Data  </span>
-                                        </h2>
-                                        <!-- <div class="panel-toolbar">
+                    ?>
+                    <div class="col-lg-12" style="margin-bottom:20px">
+
+                        <!-- Start here with columns -->
+
+                        <div class="col-md-6 offset-md-3 offset-0 table-responsive">
+                            <?php if (validation_errors()) : ?>
+                                <div class="alert alert-danger">
+                                    <?php echo validation_errors(); ?>
+                                </div>
+                            <?php endif; ?>
+                            <div id="panel-1" class="panel">
+                                <div class="panel-hdr">
+                                    <h2>
+                                        Upload <span class="fw-300">Excel Data </span>
+                                    </h2>
+                                    <!-- <div class="panel-toolbar">
                                             <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
                                             <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
                                             <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
                                         </div> -->
-                                    </div>
-                                    <div class="panel-container show">
-                                        <div class="panel-content">
-                                            <div class="demo-v-spacing">
-           <form  method="post">
-            <div class="card-body">
-     <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alertShown" style="display: none;">
-  <strong>Congractulations!</strong> Record Added Successfully. Kindly wait for page to be reloaded!
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<div class="row">
-    <div class="col-md-8">
-            <div class="form-group mt-4">
-                    <div class="custom-file">
-    <input 
-  type="file" class="custom-file-input" id="customFile" onchange="fileSelect(this.files);" name="CottonData">
-    
-  <label class="custom-file-label" for="customFile" >Choose file</label>
-  
-  </div>
-                </div>
-    </div>
-    <div class="col-md-4">
-         <div class="form-group">
-        <label>Enter Sheet No.</label>         
-    <input 
-  type="number" class="form-control" id="sheetNo">
-    
-  
-  
-  
-                </div>
-    </div>
-</div>
-            
-          
-             
-                </div>
-                
+                                </div>
+                                <div class="panel-container show">
+                                    <div class="panel-content">
+                                        <div class="demo-v-spacing">
+                                            <form method="post" enctype="multipart/form-data" action='<?php echo base_url('LabController/addHeadData'); ?>'>
+                                                <div class="card-body">
+                                                    <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alertShown" style="display: none;">
+                                                        <strong>Congractulations!</strong> Record Added Successfully. Kindly wait for page to be reloaded!
+                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="row">
+                                                  
+                                                        <div class="col-md-4">
+                                                            <div class="form-group mt-4">
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="customFile" onchange="fileSelect(this.files);" name="CottonData" accept=".xlsx, .xls, .csv">
 
-            </div>
-            <!-- /.card-body -->
+                                                                    <label class="custom-file-label" for="customFile">Choose file</label>
 
-            <div class="card-footer text-right">
-                <button class="btn btn-primary" id="submitData" >Load</button>
-                  <button class="btn btn-primary" id="sendHeaderValues" style="display: none;" >Save Data</button>
-                   <!-- <button class="btn btn-primary" id="sendDetailsValues" style="display: none;" >Save Test Details</button> -->
-            </div>
-        </form>
-                                            </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Enter Sheet No. *</label>
+                                                                <input type="number" class="form-control" id="sheetNo" required readonly="readonly">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Select Test Type</label>
+                                                                <select class="form-control" id="testType" onchange="SetSheetNo()">
+                                                                     <option value="" selected>Select Test </option>
+                                                                    <option value="1" >Cotton Test</option>
+                                                                    <option value="2">Foam</option>
+                                                                    <option value="3">Fabric</option>
+                                                                    <option value="4">Thread</option>
+                                                                    <option value="5">SR Blader</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- <div class="form-group col-md-3">
+                                                            <div>
+                                                                <label for="img">Upload Image:</label>
+                                                                <input type="file" id="img" name="img" accept="image/*">
+                                                            </div>
+                                                        </div> -->
+
+
+                                                        <div class="col-md-8">
+                                                            <div class="form-group mt-4">
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="img" name="img" accept="image/*">
+
+                                                                    <label class="custom-file-label" for="customFile">Upload Spectrum Image</label>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group mt-4" style="display: none;">
+                                                              
+                                                                    <input type="text" class="form-control" id="headerData" name="HeaderData[]">
+                                                                    <input type="text" class="form-control" id="childData" name="ChildData[][]">
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+
+
+                                                </div>
+
+
                                         </div>
-                                      
+                                        <!-- /.card-body -->
+
+                                        <div class="card-footer text-right">
+                                            <button class="btn btn-primary" id="submitData">Load</button>
+                                            <button class="btn btn-primary" id="sendHeaderValues" style="display: none;">Save Data</button>
+                                            <!-- <button class="btn btn-primary" id="sendDetailsValues" style="display: none;" >Save Test Details</button> -->
+                                        </div>
+                                        </form>
                                     </div>
                                 </div>
- <div class="col-md-12  table-responsive">
 
- <div id="panel-1" class="panel">
-                                    <div class="panel-hdr">
-                                        <h2>
-                                           Lab Test Report</span>
-                                        </h2>
-                                        <!-- <div class="panel-toolbar">
+                            </div>
+                        </div>
+                        <div class="col-md-12  table-responsive">
+
+                            <div id="panel-1" class="panel">
+                                <div class="panel-hdr">
+                                    <h2>
+                                        Lab Test Report</span>
+                                    </h2>
+                                    <!-- <div class="panel-toolbar">
                                             <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
                                             <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
                                             <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
                                         </div> -->
-                                    </div>
-                                    <div class="panel-container show">
-                                        <div class="panel-content">
-                                            <div class="demo-v-spacing">
-           <table id="table" class="table table-bordered table-hover table-striped w-100">
+                                </div>
+                                <div class="panel-container show">
+                                    <div class="panel-content">
+                                        <div class="demo-v-spacing">
+                                            <table id="table" class="table table-bordered table-hover table-striped w-100">
                                                 <thead class="bg-primary-200">
                                                     <tr style="color:white;">
                                                       <th>Item Type</th>
@@ -159,7 +196,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <tbody>
                                                      
                                                     <?php
-                                                     $this->load->model('LabModel', 'l');
+                                                     //$this->load->model('LabModel', 'l');
                                                      //print_r($history);
 
  
@@ -182,45 +219,8 @@ if (!$this->session->has_userdata('user_id')) {
         <td ><a href="<?php echo base_url();?>/LabController/undo/<?php Echo $Key['TID']; ?>">
             <button type="button" class="btn btn-danger btn-xs">Undo</td>
         </a>
-       <?php
-       $TestNO=$Key['TestNO'];
-        $data['Labtest'] = $this->l->labtestD($TestNO);
-        //print_r($data['Labtest']);
-       ?>
- <tr >
-        <td ></td>
-     <td ></td>
-       <td ></td>
-         <td ></td>
-           <td ></td>
-             <td ></td>
-            <td ></td>
-                 <td ></td>
-     <td class="bg-primary-200" style="color:white;">Test Name # (<?php Echo $TestNO;?>)</td>
-     <td class="bg-primary-200" style="color:white;">Requirments </td>
-      <td class="bg-primary-200" style="color:white;">Value </td>
-     <td class="bg-primary-200" style="color:white;">Test Result </td>
- </tr>
-    <?php
-    foreach ($data['Labtest'] as $Keys){
-    ?>
-    <tr>
-   
-        <td ></td>
-     <td ></td>
-       <td ></td>
-         <td ></td>
-           <td ></td>
-             <td ></td>
-              <td ></td>
-                  <td></td>
-      <td><?php Echo $Keys['Test']; ?></td>
-      <td><?php Echo $Keys['Requirments']; ?></td>
-        <td><?php Echo $Keys['Value']; ?></td>
-     <td><?php Echo $Keys['result']; ?></td>
-     
-     </tr>
-     <?php }?>
+  
+ 
  
      
  </tr>
@@ -229,235 +229,219 @@ if (!$this->session->has_userdata('user_id')) {
  }
  ?>
                                                 </tbody>
-                                                 <tfoot class="bg-primary-200"  style="color:white;">
-                                                        <th>Item Type</th>
-                                                        <th>Test No </th>
-                                                        <th> Date </th>
-                                                        <th>Item Name </th>
-                                                        <th>PO # </th>
-                                                           <th>Receiving Date  </th>
-                                                        <th>Supplier</th>
-                                                          <th>Supplier Refrence</th>
-                                                            <th>Quantity </th>
-                                                        
-                                                                 <th>Result </th>
-                                                                   <th>Generated By </th>
-                                                                      <th>Action </th>
-                                                    </tr>
-                                                </tfoot> 
+                                                 
                                             </table>
-                                            </div>
                                         </div>
-                                      
                                     </div>
-</div>
-</div>
- <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
-                    <!-- BEGIN Page Footer -->
-                    <footer class="page-footer" role="contentinfo">
-                        <div class="d-flex align-items-center flex-1 text-muted">
-                            <span class="hidden-md-down fw-700">2021 © Forward Sports by&nbsp;IT Dept Forward Sports</span>
-                        </div>
-                        <div>
-                           
-                        </div>
-                    </footer>
-                  <script src="<?php echo base_url();?>/assets/js//jquery.min.js" type="text/javascript"></script>
-                    <script src="<?php echo base_url();?>/assets/js/statistics/peity/peity.bundle.js"></script>
-        <script src="<?php echo base_url();?>/assets/js/statistics/flot/flot.bundle.js"></script>
-        <script src="<?php echo base_url();?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
-        <script src="<?php echo base_url();?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
-        <script>
-$(document).ready(function()
-            {
-            $('#table').dataTable(
-                {
-                    responsive: false,
-                    lengthChange: false,
-                    dom:
-                        /*	--- Layout Structure 
-                        	--- Options
-                        	l	-	length changing input control
-                        	f	-	filtering input
-                        	t	-	The table!
-                        	i	-	Table information summary
-                        	p	-	pagination control
-                        	r	-	processing display element
-                        	B	-	buttons
-                        	R	-	ColReorder
-                        	S	-	Select
 
-                        	--- Markup
-                        	< and >				- div element
-                        	<"class" and >		- div with a class
-                        	<"#id" and >		- div with an ID
-                        	<"#id.class" and >	- div with an ID and a class
-
-                        	--- Further reading
-                        	https://datatables.net/reference/option/dom
-                        	--------------------------------------
-                         */
-                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-                        "<'row'<'col-sm-12'tr>>" +
-                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                    buttons: [
-                        /*{
-                        	extend:    'colvis',
-                        	text:      'Column Visibility',
-                        	titleAttr: 'Col visibility',
-                        	className: 'mr-sm-3'
-                        },*/
-                        {
-                            extend: 'pdfHtml5',
-                            text: 'PDF',
-                            titleAttr: 'Generate PDF',
-                            className: 'btn-outline-danger btn-sm mr-1'
-                        },
-                        {
-                            extend: 'excelHtml5',
-                            text: 'Excel',
-                            titleAttr: 'Generate Excel',
-                            className: 'btn-outline-success btn-sm mr-1'
-                        },
-                        {
-                            extend: 'csvHtml5',
-                            text: 'CSV',
-                            titleAttr: 'Generate CSV',
-                            className: 'btn-outline-primary btn-sm mr-1'
-                        },
-                        {
-                            extend: 'copyHtml5',
-                            text: 'Copy',
-                            titleAttr: 'Copy to clipboard',
-                            className: 'btn-outline-primary btn-sm mr-1'
-                        },
-                        {
-                            extend: 'print',
-                            text: 'Print',
-                            titleAttr: 'Print Table',
-                            className: 'btn-outline-primary btn-sm'
-                        }
-                    ]
-                });
-
-
-            });
-                </script>
-                    <!-- END Page Footer -->
-                    <!-- BEGIN Shortcuts -->
-                    <div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog" aria-labelledby="modal-shortcut" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-top modal-transparent" role="document">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <ul class="app-list w-auto h-auto p-0 text-left">
-                                        <li>
-                                            <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
-                                                <div class="icon-stack">
-                                                    <i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
-                                                    <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
-                                                    <i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
-                                                </div>
-                                                <span class="app-list-name">
-                                                    Home
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
-                                                <div class="icon-stack">
-                                                    <i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
-                                                    <i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
-                                                    <i class="ni ni-envelope icon-stack-1x text-white"></i>
-                                                </div>
-                                                <span class="app-list-name">
-                                                    Inbox
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
-                                                <div class="icon-stack">
-                                                    <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
-                                                    <i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
-                                                </div>
-                                                <span class="app-list-name">
-                                                    Add More
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
+                        <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
+                        <!-- BEGIN Page Footer -->
+                        <footer class="page-footer" role="contentinfo">
+                            <div class="d-flex align-items-center flex-1 text-muted">
+                                <span class="hidden-md-down fw-700">2021 © Forward Sports by&nbsp;IT Dept Forward Sports</span>
+                            </div>
+                            <div>
+
+                            </div>
+                        </footer>
+                        <script src="<?php echo base_url(); ?>/assets/js//jquery.min.js" type="text/javascript"></script>
+                        <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
+                        <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
+                        <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+                        <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+                        <script>
+                            $(document).ready(function() {
+                              
+                                $('#table').dataTable({
+                                    responsive: false,
+                                    lengthChange: false,
+                                    dom:
+                                        /*	--- Layout Structure 
+                                        	--- Options
+                                        	l	-	length changing input control
+                                        	f	-	filtering input
+                                        	t	-	The table!
+                                        	i	-	Table information summary
+                                        	p	-	pagination control
+                                        	r	-	processing display element
+                                        	B	-	buttons
+                                        	R	-	ColReorder
+                                        	S	-	Select
+
+                                        	--- Markup
+                                        	< and >				- div element
+                                        	<"class" and >		- div with a class
+                                        	<"#id" and >		- div with an ID
+                                        	<"#id.class" and >	- div with an ID and a class
+
+                                        	--- Further reading
+                                        	https://datatables.net/reference/option/dom
+                                        	--------------------------------------
+                                         */
+                                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                                        "<'row'<'col-sm-12'tr>>" +
+                                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                                    buttons: [
+                                        /*{
+                                        	extend:    'colvis',
+                                        	text:      'Column Visibility',
+                                        	titleAttr: 'Col visibility',
+                                        	className: 'mr-sm-3'
+                                        },*/
+                                        {
+                                            extend: 'pdfHtml5',
+                                            text: 'PDF',
+                                            titleAttr: 'Generate PDF',
+                                            className: 'btn-outline-danger btn-sm mr-1'
+                                        },
+                                        {
+                                            extend: 'excelHtml5',
+                                            text: 'Excel',
+                                            titleAttr: 'Generate Excel',
+                                            className: 'btn-outline-success btn-sm mr-1'
+                                        },
+                                        {
+                                            extend: 'csvHtml5',
+                                            text: 'CSV',
+                                            titleAttr: 'Generate CSV',
+                                            className: 'btn-outline-primary btn-sm mr-1'
+                                        },
+                                        {
+                                            extend: 'copyHtml5',
+                                            text: 'Copy',
+                                            titleAttr: 'Copy to clipboard',
+                                            className: 'btn-outline-primary btn-sm mr-1'
+                                        },
+                                        {
+                                            extend: 'print',
+                                            text: 'Print',
+                                            titleAttr: 'Print Table',
+                                            className: 'btn-outline-primary btn-sm'
+                                        }
+                                    ]
+                                });
+
+
+                            });
+                        </script>
+                        <!-- END Page Footer -->
+                        <!-- BEGIN Shortcuts -->
+                        <div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog" aria-labelledby="modal-shortcut" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-top modal-transparent" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <ul class="app-list w-auto h-auto p-0 text-left">
+                                            <li>
+                                                <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+                                                    <div class="icon-stack">
+                                                        <i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
+                                                        <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+                                                        <i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
+                                                    </div>
+                                                    <span class="app-list-name">
+                                                        Home
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
+                                                    <div class="icon-stack">
+                                                        <i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
+                                                        <i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
+                                                        <i class="ni ni-envelope icon-stack-1x text-white"></i>
+                                                    </div>
+                                                    <span class="app-list-name">
+                                                        Inbox
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+                                                    <div class="icon-stack">
+                                                        <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+                                                        <i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
+                                                    </div>
+                                                    <span class="app-list-name">
+                                                        Add More
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Shortcuts -->
+                        <!-- BEGIN Color profile -->
+                        <!-- this area is hidden and will not be seen on screens or screen readers -->
+                        <!-- we use this only for CSS color refernce for JS stuff -->
+                        <p id="js-color-profile" class="d-none">
+                            <span class="color-primary-50"></span>
+                            <span class="color-primary-100"></span>
+                            <span class="color-primary-200"></span>
+                            <span class="color-primary-300"></span>
+                            <span class="color-primary-400"></span>
+                            <span class="color-primary-500"></span>
+                            <span class="color-primary-600"></span>
+                            <span class="color-primary-700"></span>
+                            <span class="color-primary-800"></span>
+                            <span class="color-primary-900"></span>
+                            <span class="color-info-50"></span>
+                            <span class="color-info-100"></span>
+                            <span class="color-info-200"></span>
+                            <span class="color-info-300"></span>
+                            <span class="color-info-400"></span>
+                            <span class="color-info-500"></span>
+                            <span class="color-info-600"></span>
+                            <span class="color-info-700"></span>
+                            <span class="color-info-800"></span>
+                            <span class="color-info-900"></span>
+                            <span class="color-danger-50"></span>
+                            <span class="color-danger-100"></span>
+                            <span class="color-danger-200"></span>
+                            <span class="color-danger-300"></span>
+                            <span class="color-danger-400"></span>
+                            <span class="color-danger-500"></span>
+                            <span class="color-danger-600"></span>
+                            <span class="color-danger-700"></span>
+                            <span class="color-danger-800"></span>
+                            <span class="color-danger-900"></span>
+                            <span class="color-warning-50"></span>
+                            <span class="color-warning-100"></span>
+                            <span class="color-warning-200"></span>
+                            <span class="color-warning-300"></span>
+                            <span class="color-warning-400"></span>
+                            <span class="color-warning-500"></span>
+                            <span class="color-warning-600"></span>
+                            <span class="color-warning-700"></span>
+                            <span class="color-warning-800"></span>
+                            <span class="color-warning-900"></span>
+                            <span class="color-success-50"></span>
+                            <span class="color-success-100"></span>
+                            <span class="color-success-200"></span>
+                            <span class="color-success-300"></span>
+                            <span class="color-success-400"></span>
+                            <span class="color-success-500"></span>
+                            <span class="color-success-600"></span>
+                            <span class="color-success-700"></span>
+                            <span class="color-success-800"></span>
+                            <span class="color-success-900"></span>
+                            <span class="color-fusion-50"></span>
+                            <span class="color-fusion-100"></span>
+                            <span class="color-fusion-200"></span>
+                            <span class="color-fusion-300"></span>
+                            <span class="color-fusion-400"></span>
+                            <span class="color-fusion-500"></span>
+                            <span class="color-fusion-600"></span>
+                            <span class="color-fusion-700"></span>
+                            <span class="color-fusion-800"></span>
+                            <span class="color-fusion-900"></span>
+                        </p>
+                        <!-- END Color profile -->
                     </div>
-                    <!-- END Shortcuts -->
-                    <!-- BEGIN Color profile -->
-                    <!-- this area is hidden and will not be seen on screens or screen readers -->
-                    <!-- we use this only for CSS color refernce for JS stuff -->
-                    <p id="js-color-profile" class="d-none">
-                        <span class="color-primary-50"></span>
-                        <span class="color-primary-100"></span>
-                        <span class="color-primary-200"></span>
-                        <span class="color-primary-300"></span>
-                        <span class="color-primary-400"></span>
-                        <span class="color-primary-500"></span>
-                        <span class="color-primary-600"></span>
-                        <span class="color-primary-700"></span>
-                        <span class="color-primary-800"></span>
-                        <span class="color-primary-900"></span>
-                        <span class="color-info-50"></span>
-                        <span class="color-info-100"></span>
-                        <span class="color-info-200"></span>
-                        <span class="color-info-300"></span>
-                        <span class="color-info-400"></span>
-                        <span class="color-info-500"></span>
-                        <span class="color-info-600"></span>
-                        <span class="color-info-700"></span>
-                        <span class="color-info-800"></span>
-                        <span class="color-info-900"></span>
-                        <span class="color-danger-50"></span>
-                        <span class="color-danger-100"></span>
-                        <span class="color-danger-200"></span>
-                        <span class="color-danger-300"></span>
-                        <span class="color-danger-400"></span>
-                        <span class="color-danger-500"></span>
-                        <span class="color-danger-600"></span>
-                        <span class="color-danger-700"></span>
-                        <span class="color-danger-800"></span>
-                        <span class="color-danger-900"></span>
-                        <span class="color-warning-50"></span>
-                        <span class="color-warning-100"></span>
-                        <span class="color-warning-200"></span>
-                        <span class="color-warning-300"></span>
-                        <span class="color-warning-400"></span>
-                        <span class="color-warning-500"></span>
-                        <span class="color-warning-600"></span>
-                        <span class="color-warning-700"></span>
-                        <span class="color-warning-800"></span>
-                        <span class="color-warning-900"></span>
-                        <span class="color-success-50"></span>
-                        <span class="color-success-100"></span>
-                        <span class="color-success-200"></span>
-                        <span class="color-success-300"></span>
-                        <span class="color-success-400"></span>
-                        <span class="color-success-500"></span>
-                        <span class="color-success-600"></span>
-                        <span class="color-success-700"></span>
-                        <span class="color-success-800"></span>
-                        <span class="color-success-900"></span>
-                        <span class="color-fusion-50"></span>
-                        <span class="color-fusion-100"></span>
-                        <span class="color-fusion-200"></span>
-                        <span class="color-fusion-300"></span>
-                        <span class="color-fusion-400"></span>
-                        <span class="color-fusion-500"></span>
-                        <span class="color-fusion-600"></span>
-                        <span class="color-fusion-700"></span>
-                        <span class="color-fusion-800"></span>
-                        <span class="color-fusion-900"></span>
-                    </p>
-                    <!-- END Color profile -->
-                </div>
             </div>
         </div>
         <!-- END Page Wrapper -->
@@ -1073,7 +1057,6 @@ $(document).ready(function()
         <script type="text/javascript">
             /* Activate smart panels */
             $('#js-page-content').smartPanel();
-
         </script>
         <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
         <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
@@ -1081,76 +1064,74 @@ $(document).ready(function()
         <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
         <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
         <script>
+            $('#schedule').dataTable({
+                responsive: true,
+                lengthChange: false,
+                dom:
+                    /*	--- Layout Structure 
+                    	--- Options
+                    	l	-	length changing input control
+                    	f	-	filtering input
+                    	t	-	The table!
+                    	i	-	Table information summary
+                    	p	-	pagination control
+                    	r	-	processing display element
+                    	B	-	buttons
+                    	R	-	ColReorder
+                    	S	-	Select
 
-            $('#schedule').dataTable(
-                {
-                    responsive: true,
-                    lengthChange: false,
-                    dom:
-                        /*	--- Layout Structure 
-                        	--- Options
-                        	l	-	length changing input control
-                        	f	-	filtering input
-                        	t	-	The table!
-                        	i	-	Table information summary
-                        	p	-	pagination control
-                        	r	-	processing display element
-                        	B	-	buttons
-                        	R	-	ColReorder
-                        	S	-	Select
+                    	--- Markup
+                    	< and >				- div element
+                    	<"class" and >		- div with a class
+                    	<"#id" and >		- div with an ID
+                    	<"#id.class" and >	- div with an ID and a class
 
-                        	--- Markup
-                        	< and >				- div element
-                        	<"class" and >		- div with a class
-                        	<"#id" and >		- div with an ID
-                        	<"#id.class" and >	- div with an ID and a class
-
-                        	--- Further reading
-                        	https://datatables.net/reference/option/dom
-                        	--------------------------------------
-                         */
-                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-                        "<'row'<'col-sm-12'tr>>" +
-                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                    buttons: [
-                        /*{
-                        	extend:    'colvis',
-                        	text:      'Column Visibility',
-                        	titleAttr: 'Col visibility',
-                        	className: 'mr-sm-3'
-                        },*/
-                        {
-                            extend: 'pdfHtml5',
-                            text: 'PDF',
-                            titleAttr: 'Generate PDF',
-                            className: 'btn-outline-danger btn-sm mr-1'
-                        },
-                        {
-                            extend: 'excelHtml5',
-                            text: 'Excel',
-                            titleAttr: 'Generate Excel',
-                            className: 'btn-outline-success btn-sm mr-1'
-                        },
-                        {
-                            extend: 'csvHtml5',
-                            text: 'CSV',
-                            titleAttr: 'Generate CSV',
-                            className: 'btn-outline-primary btn-sm mr-1'
-                        },
-                        {
-                            extend: 'copyHtml5',
-                            text: 'Copy',
-                            titleAttr: 'Copy to clipboard',
-                            className: 'btn-outline-primary btn-sm mr-1'
-                        },
-                        {
-                            extend: 'print',
-                            text: 'Print',
-                            titleAttr: 'Print Table',
-                            className: 'btn-outline-primary btn-sm'
-                        }
-                    ]
-                });
+                    	--- Further reading
+                    	https://datatables.net/reference/option/dom
+                    	--------------------------------------
+                     */
+                    "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                buttons: [
+                    /*{
+                    	extend:    'colvis',
+                    	text:      'Column Visibility',
+                    	titleAttr: 'Col visibility',
+                    	className: 'mr-sm-3'
+                    },*/
+                    {
+                        extend: 'pdfHtml5',
+                        text: 'PDF',
+                        titleAttr: 'Generate PDF',
+                        className: 'btn-outline-danger btn-sm mr-1'
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Excel',
+                        titleAttr: 'Generate Excel',
+                        className: 'btn-outline-success btn-sm mr-1'
+                    },
+                    {
+                        extend: 'csvHtml5',
+                        text: 'CSV',
+                        titleAttr: 'Generate CSV',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'copyHtml5',
+                        text: 'Copy',
+                        titleAttr: 'Copy to clipboard',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Print',
+                        titleAttr: 'Print Table',
+                        className: 'btn-outline-primary btn-sm'
+                    }
+                ]
+            });
             /* defined datas */
             var dataTargetProfit = [
                 [1354586000000, 153],
@@ -1215,18 +1196,15 @@ $(document).ready(function()
                 [700, 1]
             ];
 
-            $(document).ready(function()
-            {
+            $(document).ready(function() {
 
                 /* init datatables */
-                $('#dt-basic-example').dataTable(
-                {
+                $('#dt-basic-example').dataTable({
                     responsive: true,
                     dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
                         "<'row'<'col-sm-12'tr>>" +
                         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                    buttons: [
-                        {
+                    buttons: [{
                             extend: 'colvis',
                             text: 'Column Visibility',
                             titleAttr: 'Col visibility',
@@ -1252,13 +1230,11 @@ $(document).ready(function()
                         }
 
                     ],
-                    columnDefs: [
-                        {
+                    columnDefs: [{
                             targets: -1,
                             title: '',
                             orderable: false,
-                            render: function(data, type, full, meta)
-                            {
+                            render: function(data, type, full, meta) {
 
                                 /*
                                 -- ES6
@@ -1290,71 +1266,63 @@ $(document).ready(function()
 
 
                 /* flot toggle example */
-                var flot_toggle = function()
-                {
+                var flot_toggle = function() {
 
-                    var data = [
-                    {
-                        label: "Target Profit",
-                        data: dataTargetProfit,
-                        color: color.info._400,
-                        bars:
+                    var data = [{
+                            label: "Target Profit",
+                            data: dataTargetProfit,
+                            color: color.info._400,
+                            bars: {
+                                show: true,
+                                align: "center",
+                                barWidth: 30 * 30 * 60 * 1000 * 80,
+                                lineWidth: 0,
+                                /*fillColor: {
+                                	colors: [color.primary._500, color.primary._900]
+                                },*/
+                                fillColor: {
+                                    colors: [{
+                                            opacity: 0.9
+                                        },
+                                        {
+                                            opacity: 0.1
+                                        }
+                                    ]
+                                }
+                            },
+                            highlightColor: 'rgba(255,255,255,0.3)',
+                            shadowSize: 0
+                        },
                         {
-                            show: true,
-                            align: "center",
-                            barWidth: 30 * 30 * 60 * 1000 * 80,
-                            lineWidth: 0,
-                            /*fillColor: {
-                            	colors: [color.primary._500, color.primary._900]
-                            },*/
-                            fillColor:
-                            {
-                                colors: [
-                                {
-                                    opacity: 0.9
-                                },
-                                {
-                                    opacity: 0.1
-                                }]
+                            label: "Actual Profit",
+                            data: dataProfit,
+                            color: color.warning._500,
+                            lines: {
+                                show: true,
+                                lineWidth: 2
+                            },
+                            shadowSize: 0,
+                            points: {
+                                show: true
                             }
                         },
-                        highlightColor: 'rgba(255,255,255,0.3)',
-                        shadowSize: 0
-                    },
-                    {
-                        label: "Actual Profit",
-                        data: dataProfit,
-                        color: color.warning._500,
-                        lines:
                         {
-                            show: true,
-                            lineWidth: 2
-                        },
-                        shadowSize: 0,
-                        points:
-                        {
-                            show: true
+                            label: "User Signups",
+                            data: dataSignups,
+                            color: color.success._500,
+                            lines: {
+                                show: true,
+                                lineWidth: 2
+                            },
+                            shadowSize: 0,
+                            points: {
+                                show: true
+                            }
                         }
-                    },
-                    {
-                        label: "User Signups",
-                        data: dataSignups,
-                        color: color.success._500,
-                        lines:
-                        {
-                            show: true,
-                            lineWidth: 2
-                        },
-                        shadowSize: 0,
-                        points:
-                        {
-                            show: true
-                        }
-                    }]
+                    ]
 
                     var options = {
-                        grid:
-                        {
+                        grid: {
                             hoverable: true,
                             clickable: true,
                             tickColor: '#f2f2f2',
@@ -1362,19 +1330,15 @@ $(document).ready(function()
                             borderColor: '#f2f2f2'
                         },
                         tooltip: true,
-                        tooltipOpts:
-                        {
+                        tooltipOpts: {
                             cssClass: 'tooltip-inner',
                             defaultTheme: false
                         },
-                        xaxis:
-                        {
+                        xaxis: {
                             mode: "time"
                         },
-                        yaxes:
-                        {
-                            tickFormatter: function(val, axis)
-                            {
+                        yaxes: {
+                            tickFormatter: function(val, axis) {
                                 return "$" + val;
                             },
                             max: 1200
@@ -1384,33 +1348,25 @@ $(document).ready(function()
 
                     var plot2 = null;
 
-                    function plotNow()
-                    {
+                    function plotNow() {
                         var d = [];
-                        $("#js-checkbox-toggles").find(':checkbox').each(function()
-                        {
-                            if ($(this).is(':checked'))
-                            {
+                        $("#js-checkbox-toggles").find(':checkbox').each(function() {
+                            if ($(this).is(':checked')) {
                                 d.push(data[$(this).attr("name").substr(4, 1)]);
                             }
                         });
-                        if (d.length > 0)
-                        {
-                            if (plot2)
-                            {
+                        if (d.length > 0) {
+                            if (plot2) {
                                 plot2.setData(d);
                                 plot2.draw();
-                            }
-                            else
-                            {
+                            } else {
                                 plot2 = $.plot($("#flot-toggles"), d, options);
                             }
                         }
 
                     };
 
-                    $("#js-checkbox-toggles").find(':checkbox').on('change', function()
-                    {
+                    $("#js-checkbox-toggles").find(':checkbox').on('change', function() {
                         plotNow();
                     });
                     plotNow()
@@ -1419,49 +1375,42 @@ $(document).ready(function()
                 /* flot toggle example -- end*/
 
                 /* flot area */
-                var flotArea = $.plot($('#flot-area'), [
-                {
-                    data: dataSet1,
-                    label: 'New Customer',
-                    color: color.success._200
-                },
-                {
-                    data: dataSet2,
-                    label: 'Returning Customer',
-                    color: color.info._200
-                }],
-                {
-                    series:
+                var flotArea = $.plot($('#flot-area'), [{
+                        data: dataSet1,
+                        label: 'New Customer',
+                        color: color.success._200
+                    },
                     {
-                        lines:
-                        {
+                        data: dataSet2,
+                        label: 'Returning Customer',
+                        color: color.info._200
+                    }
+                ], {
+                    series: {
+                        lines: {
                             show: true,
                             lineWidth: 2,
                             fill: true,
-                            fillColor:
-                            {
-                                colors: [
-                                {
-                                    opacity: 0
-                                },
-                                {
-                                    opacity: 0.5
-                                }]
+                            fillColor: {
+                                colors: [{
+                                        opacity: 0
+                                    },
+                                    {
+                                        opacity: 0.5
+                                    }
+                                ]
                             }
                         },
                         shadowSize: 0
                     },
-                    points:
-                    {
+                    points: {
                         show: true,
                     },
-                    legend:
-                    {
+                    legend: {
                         noColumns: 1,
                         position: 'nw'
                     },
-                    grid:
-                    {
+                    grid: {
                         hoverable: true,
                         clickable: true,
                         borderColor: '#ddd',
@@ -1471,24 +1420,20 @@ $(document).ready(function()
                         labelMargin: 5,
                         backgroundColor: 'transparent'
                     },
-                    yaxis:
-                    {
+                    yaxis: {
                         tickLength: 1,
                         min: 0,
                         max: 15,
                         color: '#eee',
-                        font:
-                        {
+                        font: {
                             size: 0,
                             color: '#999'
                         }
                     },
-                    xaxis:
-                    {
+                    xaxis: {
                         tickLength: 1,
                         color: '#eee',
-                        font:
-                        {
+                        font: {
                             size: 10,
                             color: '#999'
                         }
@@ -1497,66 +1442,60 @@ $(document).ready(function()
                 });
                 /* flot area -- end */
 
-                var flotVisit = $.plot('#flotVisit', [
-                {
-                    data: [
-                        [3, 0],
-                        [4, 1],
-                        [5, 3],
-                        [6, 3],
-                        [7, 10],
-                        [8, 11],
-                        [9, 12],
-                        [10, 9],
-                        [11, 12],
-                        [12, 8],
-                        [13, 5]
-                    ],
-                    color: color.success._200
-                },
-                {
-                    data: [
-                        [1, 0],
-                        [2, 0],
-                        [3, 1],
-                        [4, 2],
-                        [5, 2],
-                        [6, 5],
-                        [7, 8],
-                        [8, 12],
-                        [9, 9],
-                        [10, 11],
-                        [11, 5]
-                    ],
-                    color: color.info._200
-                }],
-                {
-                    series:
+                var flotVisit = $.plot('#flotVisit', [{
+                        data: [
+                            [3, 0],
+                            [4, 1],
+                            [5, 3],
+                            [6, 3],
+                            [7, 10],
+                            [8, 11],
+                            [9, 12],
+                            [10, 9],
+                            [11, 12],
+                            [12, 8],
+                            [13, 5]
+                        ],
+                        color: color.success._200
+                    },
                     {
+                        data: [
+                            [1, 0],
+                            [2, 0],
+                            [3, 1],
+                            [4, 2],
+                            [5, 2],
+                            [6, 5],
+                            [7, 8],
+                            [8, 12],
+                            [9, 9],
+                            [10, 11],
+                            [11, 5]
+                        ],
+                        color: color.info._200
+                    }
+                ], {
+                    series: {
                         shadowSize: 0,
-                        lines:
-                        {
+                        lines: {
                             show: true,
                             lineWidth: 2,
                             fill: true,
-                            fillColor:
-                            {
-                                colors: [
-                                {
-                                    opacity: 0
-                                },
-                                {
-                                    opacity: 0.12
-                                }]
+                            fillColor: {
+                                colors: [{
+                                        opacity: 0
+                                    },
+                                    {
+                                        opacity: 0.12
+                                    }
+                                ]
                             }
                         }
                     },
-                    grid:
-                    {
+                    grid: {
                         borderWidth: 0
                     },
-                    yaxis:
-                    {
+                    yaxis: {
                         min: 0,
                         max: 15,
                         tickColor: '#ddd',
@@ -1566,14 +1505,12 @@ $(document).ready(function()
                             [10, '200K'],
                             [15, '300K']
                         ],
-                        font:
-                        {
+                        font: {
                             color: '#444',
                             size: 10
                         }
                     },
-                    xaxis:
-                    {
+                    xaxis: {
 
                         tickColor: '#eee',
                         ticks: [
@@ -1590,8 +1527,7 @@ $(document).ready(function()
                             [12, '3pm'],
                             [13, '4pm']
                         ],
-                        font:
-                        {
+                        font: {
                             color: '#999',
                             size: 9
                         }
@@ -1600,127 +1536,453 @@ $(document).ready(function()
 
 
             });
-
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js" integrity="sha512-gtII6Z4fZyONX9GBrF28JMpodY4vIOI0lBjAtN/mcK7Pz19Mu1HHIRvXH6bmdChteGpEccxZxI0qxXl9anY60w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
-         let fileSelectStore;
-         let HeaderArray = [];
-         let ChildArray = [];
-         let IdOfNewlyEnteredRecord;
-        function fileSelect(event){
-               fileSelectStore = event[0];
-         }
-         $("#submitData").click(function(e){
-           e.preventDefault();
-           $("#submitData").css("display","none");
-               $("#sendHeaderValues").css("display","block");
-           if(fileSelectStore){
-            // let fileReader = new FileReader();
-            // fileReader.readAsBinaryString(fileSelectStore);
-            // fileReader.onload = (event) => {
-            //  let data = event.target.result;
-            //  let workbook = XLSX.read(data,{type:"binary"})
-         
-            //  workbook.SheetNames.forEach(sheet => {
-            //   let rowObject = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet])
-            //   console.log("Row Object", rowObject);
-            //  });
-            // }
+            let fileSelectStore;
+            let HeaderArray = [];
+            let ChildArray = [];
+            let IdOfNewlyEnteredRecord;
 
-             this.filetoupload = fileSelectStore;
-     //show image review
-     var reader = new FileReader();
-     reader.readAsDataURL(this.filetoupload);
-     this.fileNameStore = this.filetoupload.name;
-  this.file= fileSelectStore;     
-  let fileReader = new FileReader();    
-  fileReader.readAsArrayBuffer(this.file);     
-  fileReader.onload = (e) => {    
-      this.arrayBuffer = fileReader.result;    
-      var data = new Uint8Array(this.arrayBuffer);    
-      var arr = new Array();    
-      for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);    
-      var bstr = arr.join("");    
-      var workbook = XLSX.read(bstr, {type:"binary"});    
-      let sheetNo=$("#sheetNo").val();
-     // alert(sheetNo);
-      var first_sheet_name = workbook.SheetNames[sheetNo-1];    
-      var worksheet = workbook.Sheets[first_sheet_name];    
-    //  console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));    
-        let arraylist = XLSX.utils.sheet_to_json(worksheet,{raw:false});     
-            this.filelist = arraylist;     
-            let testNumber;
-            let PONumber
-            this.filelist.forEach(element => {
-            if(element.TestNo != undefined || element.PONo != undefined){
-             testNumber = element.TestNo;
-             PONumber = element.PONo;
-let arrayHead = [element.TestDate,element.PONo,element.Quantity,element.ReceivingDate,element.ItemName,element.SupplierName,element.TestNo,element.SupplierRef,element.Result,element.ItemType];
-              let arrayBody = [element.TestNo,element.PONo,element.Requirement,element.Test,element.Results,element.Value];
-                     HeaderArray.push(arrayHead);
-              ChildArray.push(arrayBody)
-            }else{
-           
-              let arrayBody = [testNumber,PONumber,element.Requirement,element.Test,element.Results,element.Value];
-           
-              ChildArray.push(arrayBody)
+            function fileSelect(event) {
+                fileSelectStore = event[0];
             }
-             
-       
+            $("#submitData").click(function(e) {
+                e.preventDefault();
+                $("#submitData").css("display", "none");
+                $("#sendHeaderValues").css("display", "block");
+                let testType = $("#testType").val();  
+
+                if (testType == 1){
          
+                    if (fileSelectStore) {
+                
+                    this.filetoupload = fileSelectStore;
+                    //show image review
+                    var reader = new FileReader();
+                    reader.readAsDataURL(this.filetoupload);
+                    this.fileNameStore = this.filetoupload.name;
+                    this.file = fileSelectStore;
+                    let fileReader = new FileReader();
+                    fileReader.readAsArrayBuffer(this.file);
+                    fileReader.onload = (e) => {
+                        this.arrayBuffer = fileReader.result;
+                        var data = new Uint8Array(this.arrayBuffer);
+                        var arr = new Array();
+                        for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+                        var bstr = arr.join("");
+                        var workbook = XLSX.read(bstr, {
+                            type: "binary"
+                        });
+                        let sheetNo = $("#sheetNo").val();
+                        // alert(sheetNo);
+                        var first_sheet_name = workbook.SheetNames[sheetNo - 1];
+                        var worksheet = workbook.Sheets[first_sheet_name];
+                        //  console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));    
+                        let arraylist = XLSX.utils.sheet_to_json(worksheet, {
+                            raw: false
+                        });
+                        this.filelist = arraylist;
+                        let testNumber;
+                        let PONumber
+                        this.filelist.forEach(element => {
+                            if (element.TestNo != undefined || element.PONo != undefined) {
+                                testNumber = element.TestNo;
+                                PONumber = element.PONo;
+                                let arrayHead = [element.TestDate, element.PONo, element.Quantity, element.ReceivingDate, element.ItemName, element.SupplierName, element.TestNo, element.SupplierRef, element.Result, element.ItemType];
+                                let arrayBody = [element.TestNo, element.PONo, element.Requirement, element.Test, element.Results, element.Value,']'];
+                                HeaderArray.push(arrayHead);
+                                ChildArray.push(arrayBody)
+                            } else {
 
-  });
+                                let arrayBody = [testNumber, PONumber, element.Requirement, element.Test, element.Results, element.Value,']'];
 
-  } 
-           }
+                                ChildArray.push(arrayBody)
+                            }
+                        });
+                        $("#headerData").val(HeaderArray);
+                $("#childData").val(ChildArray);
+     
 
-         });
+                    }
+                }
+                }
+                else if(testType == 2){
+              
+                  if (fileSelectStore) {
+                
+                this.filetoupload = fileSelectStore;
+                //show image review
+                var reader = new FileReader();
+                reader.readAsDataURL(this.filetoupload);
+                this.fileNameStore = this.filetoupload.name;
+                this.file = fileSelectStore;
+                let fileReader = new FileReader();
+                fileReader.readAsArrayBuffer(this.file);
+                fileReader.onload = (e) => {
+                    this.arrayBuffer = fileReader.result;
+                    var data = new Uint8Array(this.arrayBuffer);
+                    var arr = new Array();
+                    for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+                    var bstr = arr.join("");
+                    var workbook = XLSX.read(bstr, {
+                        type: "binary"
+                    });
+                    let sheetNo = $("#sheetNo").val();
+                    // alert(sheetNo);
+                    var first_sheet_name = workbook.SheetNames[sheetNo - 1];
+                    var worksheet = workbook.Sheets[first_sheet_name];
+                    //  console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));    
+                    let arraylist = XLSX.utils.sheet_to_json(worksheet, {
+                        raw: false
+                    });
+                    this.filelist = arraylist;
+                    let testNumber;
+                    let PONumber
+                    this.filelist.forEach(element => {
+                        if (element.TestNo != undefined || element.PONo != undefined) {
+                            testNumber = element.TestNo;
+                            PONumber = element.PONO;
+                            let arrayHead = [element.TestNo,element.Date, element.ReceivingDate, element.PONO, element.RefNo];
+                            let arrayBody = [element.TestNo, element.PONO, element.Test, element.Standard, element.Unit,element.Result,']'];
+                            HeaderArray.push(arrayHead);
+                            ChildArray.push(arrayBody)
+                        } else {
 
-    $("#sendHeaderValues").click(function(e){
-    e.preventDefault()
+                            let arrayBody = [testNumber, PONumber, element.Test, element.Standard, element.Unit,element.Result,']'];
 
-    $("#alertShown").css("display","block");
-postData = {
-    HeaderArray,
-     ChildArray
-  }
- 
-  url = '<?php echo base_url('LabController/addHeadData'); ?>'
+                            ChildArray.push(arrayBody)
+                        }
+                    });
+                    $("#headerData").val(HeaderArray);
+            $("#childData").val(ChildArray);
+ console.log(HeaderArray);
+ console.log(ChildArray);
+
+                }
+            }     
+                }
+                else if(testType == 3){
+                  
+                    if (fileSelectStore) {
+                
+                this.filetoupload = fileSelectStore;
+                //show image review
+                var reader = new FileReader();
+                reader.readAsDataURL(this.filetoupload);
+                this.fileNameStore = this.filetoupload.name;
+                this.file = fileSelectStore;
+                let fileReader = new FileReader();
+                fileReader.readAsArrayBuffer(this.file);
+                fileReader.onload = (e) => {
+                    this.arrayBuffer = fileReader.result;
+                    var data = new Uint8Array(this.arrayBuffer);
+                    var arr = new Array();
+                    for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+                    var bstr = arr.join("");
+                    var workbook = XLSX.read(bstr, {
+                        type: "binary"
+                    });
+                    let sheetNo = $("#sheetNo").val();
+                    // alert(sheetNo);
+                    var first_sheet_name = workbook.SheetNames[sheetNo - 1];
+                    var worksheet = workbook.Sheets[first_sheet_name];
+                    //  console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));    
+                    let arraylist = XLSX.utils.sheet_to_json(worksheet, {
+                        raw: false
+                    });
+                    this.filelist = arraylist;
+                    let testNumber;
+                    let PONumber
+                    this.filelist.forEach(element => {
+                        if (element.TestNo != undefined || element.PONo != undefined) {
+                            testNumber = element.TestNo;
+                            PONumber = element.PONo;
+                            let arrayHead = [element.TestNo,element.CSSNO, element.TestDate, element.ItemName, element.PONo, element.ReceivingDate, element.SupplierName, element.SupplierRef, element.Quantity, element.Result, element.ItemType];
+                            let arrayBody = [element.Test,element.Requirement, element.Result, element.Uncertainty,element.Remark,']'];
+                            HeaderArray.push(arrayHead);
+                            ChildArray.push(arrayBody)
+                        } else {
+                        
+                            let arrayBody = [element.Test,element.Requirement, element.Result_1, element.Uncertainty,element.Remark,']'];
+
+                            ChildArray.push(arrayBody)
+                        }
+                    });
+                    $("#headerData").val(HeaderArray);
+            $("#childData").val(ChildArray);
+                }
+            }
+                }
+                else if (testType == 4){
+                 
+                    if (fileSelectStore) {
+                
+                this.filetoupload = fileSelectStore;
+                //show image review
+                var reader = new FileReader();
+                reader.readAsDataURL(this.filetoupload);
+                this.fileNameStore = this.filetoupload.name;
+                this.file = fileSelectStore;
+                let fileReader = new FileReader();
+                fileReader.readAsArrayBuffer(this.file);
+                fileReader.onload = (e) => {
+                    this.arrayBuffer = fileReader.result;
+                    var data = new Uint8Array(this.arrayBuffer);
+                    var arr = new Array();
+                    for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+                    var bstr = arr.join("");
+                    var workbook = XLSX.read(bstr, {
+                        type: "binary"
+                    });
+                    let sheetNo = $("#sheetNo").val();
+                    // alert(sheetNo);
+                    var first_sheet_name = workbook.SheetNames[sheetNo - 1];
+                    var worksheet = workbook.Sheets[first_sheet_name];
+                    //  console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));    
+                    let arraylist = XLSX.utils.sheet_to_json(worksheet, {
+                        raw: false
+                    });
+                    this.filelist = arraylist;
+                    let testNumber;
+                    let PONumber
+                    this.filelist.forEach(element => {
+
+                        if (element.TestNo != undefined || element.PONo != undefined) {
+                            testNumber = element.TestNo;
+                            PONumber = element.PONo;
+                            let arrayHead = [element.TestNo, element.Date, element.Receiving,element.PONo, element.Ref, element.Supplier, element.Thickness, element.LinearDensity, element.TwistPerInch,']'];
+                            let arrayBody = [element.TestNo, element.PONo, element.Tdate , element.ExtAtMaxLoad_mm, element.MaxLoad_N, element.Ext,']'];
+                            HeaderArray.push(arrayHead);
+                            ChildArray.push(arrayBody)
+                        } else {
+                     
+                            let arrayBody = [testNumber, PONumber, element.Tdate , element.ExtAtMaxLoad_mm, element.MaxLoad_N, element.Ext,']'];
+
+                            ChildArray.push(arrayBody)
+                        }
+                    });
+                    $("#headerData").val(HeaderArray);
+            $("#childData").val(ChildArray);
+
+
+                }
+            }
+                }
+                else if (testType == 5){
+                  
+                    if (fileSelectStore) {
+                
+                this.filetoupload = fileSelectStore;
+                //show image review
+                var reader = new FileReader();
+                reader.readAsDataURL(this.filetoupload);
+                this.fileNameStore = this.filetoupload.name;
+                this.file = fileSelectStore;
+                let fileReader = new FileReader();
+                fileReader.readAsArrayBuffer(this.file);
+                fileReader.onload = (e) => {
+                    this.arrayBuffer = fileReader.result;
+                    var data = new Uint8Array(this.arrayBuffer);
+                    var arr = new Array();
+                    for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+                    var bstr = arr.join("");
+                    var workbook = XLSX.read(bstr, {
+                        type: "binary"
+                    });
+                    let sheetNo = $("#sheetNo").val();
+                    // alert(sheetNo);
+                    var first_sheet_name = workbook.SheetNames[sheetNo - 1];
+                    var worksheet = workbook.Sheets[first_sheet_name];
+                    //  console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));    
+                    let arraylist = XLSX.utils.sheet_to_json(worksheet, {
+                        raw: false
+                    });
+                    this.filelist = arraylist;
+                    let testNumber;
+                    let PONumber
+                    this.filelist.forEach(element => {
+                        if (element.TestNo != undefined || element.PONo != undefined) {
+                            testNumber = element.TestNo;
+                            PONumber = element.PONo;
+                            let arrayHead = [element.TestNo, element.Date, element.Receiving, element.PONo, element.Supplier, element.Ref, element.material, element.Size, element.Hardness,element.ReMarks,']'];
+                            let arrayBody = [element.TestNo, element.PONo, element.Test, element.Unit, element.Results1,element.Results2,element.Results3,element.Results4, element.ValveTest,element.SpecificGravity,element.ResilienceTest,element.AbrasionLossOfWt,element.StabilityTest,element. MigrationTest, element.AirDate,element.Day,element.DecreaseInPr,element.TPressure,element.PercentageLeakage,']'];
+                            HeaderArray.push(arrayHead);
+                            ChildArray.push(arrayBody)
+                        } else {
+
+                            let arrayBody = [testNumber, PONumber, element.Test, element.Unit, element.Results1,element.Results2,element.Results3,element.Results4, element.ValveTest,element.SpecificGravity,element.ResilienceTest,element.AbrasionLossOfWt,element.StabilityTest,element. MigrationTest,element.AirDate,element.Day,element.DecreaseInPr,element.TPressure,element.PercentageLeakage,']'];
+
+                            ChildArray.push(arrayBody)
+                        }
+                    });
+                    $("#headerData").val(HeaderArray);
+            $("#childData").val(ChildArray);
   
-  $.post(url,postData,
-  function(data, status){
-setInterval(function(){   window.location.reload(); }, 4000);
- 
-  });    
-    });   
 
- $("#sendDetailsValues").click(function(e){
-    e.preventDefault()
+                }
+            }
+                }
+            });
 
-postData = {
-    ChildArray,
-    IdOfNewlyEnteredRecord
-  }
- 
-  url = '<?php echo base_url('LabController/addBodyData'); ?>'
-  
-  $.post(url,postData,
-  function(data, status){
-  
-   
-   console.log(data);
- 
+            $("#sendHeaderValues").click(function(e) {
+                e.preventDefault()
+               //  let file_data =  
+                 var fd = new FormData();
+                 var files = $("#img")[0].files[0];
+                $("#alertShown").css("display", "block");
+               
+
+                fd.append('file', files);
+                 fd.append('HeaderArray',HeaderArray);
+                 fd.append('ChildArray', ChildArray);
+                 let testType = $("#testType").val();  
+                if(testType == 1){
+                    url = '<?php echo base_url('LabController/addHeadData'); ?>'
+
+                    $.ajax({
+                        url:url, 
+                        type:'post',
+                        data:fd,
+                        contentType:false,
+                        processData:false,
+                        function(data, status) {
+                            setInterval(function() {
+                                window.location.reload();
+                            }, 2000);
+
+                        }
+                    });
+                } 
+                else if(testType == 2){
+                    url = '<?php echo base_url('LabController/addHeadDataFoam'); ?>'
+
+                        $.ajax({
+                            url:url, 
+                            type:'post',
+                            data:fd,
+                            contentType:false,
+                            processData:false,
+                            function(data, status) {
+                             
+                                setInterval(function() {
+                                    window.location.reload();
+                                }, 2000);
+
+                            }
+                        });
+                }
+
+                else if(testType == 3){
+                    url = '<?php echo base_url('LabController/addHeadDataFabric'); ?>'
+
+                        $.ajax({
+                            url:url, 
+                            type:'post',
+                            data:fd,
+                            contentType:false,
+                            processData:false,
+                            function(data, status) {
+                              
+                                setInterval(function() {
+                                    window.location.reload();
+                                }, 2000);
+
+                            }
+                        });
+                }
+
+                else if(testType == 4){
+                    url = '<?php echo base_url('LabController/addHeadDataThread'); ?>'
+
+                        $.ajax({
+                            url:url, 
+                            type:'post',
+                            data:fd,
+                            contentType:false,
+                            processData:false,
+                            function(data, status) {
+                      
+                                setInterval(function() {
+                                    window.location.reload();
+                                }, 2000);
+
+                            }
+                        });
+                }
+
+                else if(testType == 5){
+                    url = '<?php echo base_url('LabController/addHeadDataBlader'); ?>'
+
+                        $.ajax({
+                            url:url, 
+                            type:'post',
+                            data:fd,
+                            contentType:false,
+                            processData:false,
+                            function(data, status) {
+                      
+                                setInterval(function() {
+                                    window.location.reload();
+                                }, 2000);
+
+                            }
+                        });
+                }
+           
+            });
+
+            $("#sendDetailsValues").click(function(e) {
+                e.preventDefault()
+
+                postData = {
+                    ChildArray,
+                    IdOfNewlyEnteredRecord
+                }
+
+                url = '<?php echo base_url('LabController/addBodyData'); ?>'
+
+                $.post(url, postData,
+                    function(data, status) {
 
 
-  });  
-    });  
-    
-    
-         </script>
-    </body>
-</html>
+                
 
 
-<?php
+
+                    });
+            });
+            //  <select class="form-control" id="testType" onchange="SetSheetNo()">
+            //                                                          <option value="" selected>Select Test </option>
+            //                                                         <option value="1" >Cotton Test</option>
+            //                                                         <option value="2">Foam</option>
+            //                                                         <option value="3">Fabric</option>
+            //                                                         <option value="4">Thread</option>
+            //                                                         <option value="5">SR Blader</option>
+            //                                                     </select>
+              function SetSheetNo(){
+                testno =  $("#testType").val();
+                 //alert(testno);
+let Sheetvalue;
+if(testno==1){
+Sheetvalue=1;
+}else if(testno==2){
+Sheetvalue=2;
+}else if(testno==3){
+Sheetvalue=2;
+}else if(testno==4){
+Sheetvalue=4;
+}else if(testno==5){
+Sheetvalue=2;
+}$("#sheetNo").val(Sheetvalue);
+                                    //alert(Sheetvalue);
+                                    
+                                }
+        </script>
+        </body>
+
+        </html>
+
+
+    <?php
 } ?>
