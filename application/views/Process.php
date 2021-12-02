@@ -88,7 +88,7 @@ if (!$this->session->has_userdata('user_id')) {
                                    <div class="form-group">
                     
                      <label for="sel1">Select Article  :</label>
-                      <select class="form-control mySelect2Edit" id="ArtCode" name="FC" onchange="CallData()" >
+                      <select class="form-control" id="ArtCode" name="FC" onchange="CallData()" >
                         <option value="" >Select one of the following</option>
                         <?php
                                    
@@ -225,9 +225,15 @@ if (!$this->session->has_userdata('user_id')) {
         <script src="<?php echo base_url();?>/assets/js/statistics/flot/flot.bundle.js"></script>
         <script src="<?php echo base_url();?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
         <script src="<?php echo base_url();?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+          <!-- <script src="<?php echo base_url();?>/assets/Select/select2.min.js"></script> -->
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
         <script>
+            window.onload = function(){
+               // alert("called");
+               $("#ArtCode").select2();    
+            };
             //alert('heloo');
-             $('.mySelect2Edit').select2(
+             $('.mySelect2Edit').select(
         {
   dropdownParent: $('#exampleModalEditDep')
 }

@@ -533,4 +533,12 @@ class LabController extends CI_Controller
     public function undo($TID){
         $data['undo'] = $this->l->undo($TID);
     }
+     public function updated($reviewStatus,$approvedStatus,$TID){
+        //$data['Labtest'] 
+        $data = $this->l->updatedStatus($reviewStatus,$approvedStatus,$TID);
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+    }
 }

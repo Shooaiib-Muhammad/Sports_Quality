@@ -831,4 +831,28 @@ Where ArtCode='$ArtCode' ");
 
         return $query->result_array();
 }
+public function updatedStatus($reviewStatus,$approvedStatus,$TID){
+    if($reviewStatus==1){
+ $user_id = $this->session->userdata('user_id');
+    }else{
+ $user_id = 0;
+    }
+   if($approvedStatus==1){
+ $user_id1 = $this->session->userdata('user_id');
+    }else{
+ $user_id1 = 0;
+    }
+    // Echo $reviewStatus;
+    // Echo "<pre>";
+    //  Echo $user_id;
+    // Echo "<pre>";
+    //  Echo $approvedStatus;
+    // Echo "<pre>";
+    //  Echo $user_id1; 
+    // Echo "<pre>";
+    // die;
+    $query = $this->db->query("UPDATE   dbo .Tbl_Lab_Test_H 
+    SET   ApprovedStatus  =  '$approvedStatus',ReviewStatus  =  '$reviewStatus',ReviewBy=$user_id,ApproveBy=$user_id1
+  WHERE  TID='$TID'");
+}
 }

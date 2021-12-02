@@ -29,11 +29,12 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url();?>/assets/img/favicon/favicon-32x32.png">
         <link rel="mask-icon" href="<?php echo base_url();?>/assets/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
         <link rel="stylesheet" media="screen, print" href="<?php echo base_url();?>/assets/css/datagrid/datatables/datatables.bundle.css">
-          <link rel="stylesheet" href="assets/bundles/select2/dist/css/select2.min.css">
+          <link rel="stylesheet" href="<?php echo base_url();?>/assets/bundles/select2/dist/css/select2.min.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bundles/jquery-selectric/selectric.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bundles/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/Select/select2.min.css">
+
     </head>
     <body class="mod-bg-1 ">
         <!-- DOC: script to save and load page settings -->

@@ -32,6 +32,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/plugins/fonts/font.css">
   
+  
 <style type="text/css">
 
 .onoffswitch {
