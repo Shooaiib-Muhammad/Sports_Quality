@@ -108,11 +108,11 @@ class DevelopmentController extends CI_Controller
         $data['ProcessData'] = $this->l->Process($article,$Size);
 $this->load->view('ProcessData',$data);
     }
-    public function updateprocess($TID ,$Balls,$Status,$date_make){
+    public function updateprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate){
         //$RBy=str_replace("%20"," ",$Receivedby);
 					 //$this->ID->updateKitsissuance($RBy,$iDate ,$RID);
-			
-$data = $this->l->updateprocess($TID ,$Balls,$Status,$date_make);
+	
+$data = $this->l->updateprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate);
         return $this->output
         ->set_content_type('application/json')
         ->set_status_header(200)

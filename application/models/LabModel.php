@@ -800,16 +800,18 @@ WHERE        (ArtCode = '$article')" );
         return $query->result_array();
 
 }
-public function updateprocess($TID ,$Balls,$Status,$date_make){
+public function updateprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate){
 $Status=str_replace("%20"," ", $Status);
+	// Echo $ProcessEndDate;
+    //         die;
     if($Status=='Complete'){
          $Date = date('Y-m-d H:i:s');
-                $query = $this->db->query("UPDATE   dbo .tbl_Dev_Process 
-            SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make',Status  =  '$Status' ,CompleteDate='$Date'
+                $query = $this->db->query("UPDATE    dbo .tbl_Dev_Process 
+            SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make',Status  =  '$Status' ,CompleteDate='$Date' ,ProcessEndDate='$ProcessEndDate' 
           WHERE  TID='$TID'");  
             }else{
                   $query = $this->db->query("UPDATE   dbo .tbl_Dev_Process 
-            SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make',Status  =  '$Status'
+            SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make',Status  =  '$Status',ProcessEndDate='$ProcessEndDate' 
           WHERE  TID='$TID'");
             }
    

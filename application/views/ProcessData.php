@@ -12,6 +12,7 @@
   var ArtCode = $(`#ArtCode${split_value[1]}`).val();
    var Size = $(`#ArtSize${split_value[1]}`).val();
 
+var ProcessEndDate = $(`#ProcessEndDate${split_value[1]}`).val();
    var Status = $(`#Status${split_value[1]}`).val();
             //alert(Size);
     var splitter=Size.split('/');
@@ -19,7 +20,7 @@
     Size2=splitter[1];
      
 
-  url = "<?php echo base_url(''); ?>DevelopmentController/updateprocess/"+ TID + "/" + Balls + "/" + Status + "/" + Datee
+  url = "<?php echo base_url(''); ?>DevelopmentController/updateprocess/"+ TID + "/" + Balls + "/" + Status + "/" + Datee + "/" + ProcessEndDate
   
 //alert(url);
    $.get(url, function(data){
@@ -48,15 +49,20 @@
                                         <th>Factory Code</th>
                                         <th>Process Name</th>
                                           <th>Order Type </th>
-                                         <th>Process Date</th>
+                                         <th>Process Start Date</th>
+                                          <th>Process End  Date</th>
+                                         
                                           <th>No Of Balls</th>
                                              <th>Status</th>
+                                              
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
                                 <?php
+                                //print_r($ProcessData);
+
                     if (isset($ProcessData)) {
                         foreach ($ProcessData as $Key) {
                            $TID=$Key['TID'];
@@ -70,6 +76,13 @@ $CurrentDate=$Year.'-'.$Month.'-'.$Day;
  $SMonth=substr($Date1,3,2);
 $SYear=substr($Date1,-4,7);
  $ReceivedDate=$SYear.'-'.$SMonth.'-'.$SDay;
+
+ $ProcessEndDate=$Key['ProcessEndDate'];
+ $PDay=substr($ProcessEndDate,0,2);
+ $PMonth=substr($ProcessEndDate,3,2);
+$PYear=substr($ProcessEndDate,-4,7);
+ $PENDDate=$PYear.'-'.$PMonth.'-'.$PDay;
+ 
 
                     ?>
 
@@ -85,21 +98,27 @@ $SYear=substr($Date1,-4,7);
                                         <td > <?php echo $Key['Name']; ?></td>
                                            <td > <?php echo $Key['Type']; ?></td>
                                           <td >
-
-
                                           <?php
                                           if ($Key['RDate']){
 ?>
-
  <input name="Date" id="Date<?php echo $TID;?>" class="form-control" value="<?php echo $ReceivedDate;?>" type="Date">
 <?php
                                           }else{
                                            ?>
-                                           <?php
-
-                                          
+                                            <input name="Date" id="Date<?php echo $TID;?>" class="form-control"  type="Date">
+                                            <?php
+                                          }
+                                          ?>
+                                          </td>
+                                            <td >
+                                          <?php
+                                          if ($Key['ProcessEndDate']){
+?>
+ <input name="Date" id="ProcessEndDate<?php echo $TID;?>" class="form-control" value="<?php echo $PENDDate;?>" type="Date">
+<?php
+                                          }else{
                                            ?>
-                                            <input name="Date" id="Date<?php echo $TID;?>" class="form-control" value="<?php echo $CurrentDate;?>" type="Date">
+                                            <input name="Date" id="ProcessEndDate<?php echo $TID;?>" class="form-control"  type="Date">
                                             <?php
                                           }
                                           ?>
@@ -113,8 +132,21 @@ $SYear=substr($Date1,-4,7);
                         
                             </select>
                                          </td>
-                                   
-                                           <td ><button type="submit" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo $TID;?>" >update</button></td>
+                                 
+                                           <td >
+                                             
+                                             <?php
+                                          if ($Key['Status']=='Complete'){
+?>
+                                           <button disabled  type="submit" class="btn btn-primary btn-xs updatebtn" id="btn.<?php echo $TID;?>" >Done</button>
+                                           <?php
+                                          }else{
+                                           ?>
+                                           <button   type="submit" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo $TID;?>" >Update</button>
+                                          
+                                            <?php
+                                          }
+                                          ?></td>
                                           
                                       
                          

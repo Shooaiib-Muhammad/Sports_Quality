@@ -199,15 +199,13 @@ if (!$this->session->has_userdata('user_id')) {
                    <br>
                  
                <div class="row">
-                <div class="col-md-1">
-                </div>
-                 <div class="col-md-10">
+               
+                 <div class="col-md-12">
                    <div id="Data">
 
                    </div>
                 </div>
-                 <div class="col-md-1">
-                </div>
+                 
                       </div>
                   
                                            
@@ -319,7 +317,7 @@ if (!$this->session->has_userdata('user_id')) {
              
   function processData(article,Size1,Size2){
  url = "<?php echo base_url(''); ?>DevelopmentController/POData/"+ article+ '/'+ Size1 + '/'+ Size2
-           alert(url);
+           //alert(url);
             $.get(url, function(data){
              
               $("#Data").html(data)
