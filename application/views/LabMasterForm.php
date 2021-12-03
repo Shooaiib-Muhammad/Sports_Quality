@@ -3,7 +3,9 @@ if (!$this->session->has_userdata('user_id')) {
     redirect('');
 } else {
 ?>
+
     <?php $this->load->view('includes/new_header'); ?>
+  
     <!-- BEGIN Page Wrapper -->
     <div class="page-wrapper">
         <div class="page-inner">
@@ -66,6 +68,175 @@ if (!$this->session->has_userdata('user_id')) {
                                             <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
                                         </div> -->
                                 </div>
+
+        <!-- Model Form HTML -->
+
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLabel" ><b>Report</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="card" id="printCard">
+  <div class="card-body">
+
+       <div class="row">
+           <table class="table">
+               <tr>
+                   <th style="font-size: large;font-weight:bold;padding:50px">Test Report Of Carton</th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+               </tr>
+           </table>
+           <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+          <table class="table">
+          <tr>    
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNo"> </span></label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTest"> </span></label></th>
+        </tr>
+        <tr>      
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="size"> </span> </label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="pono"> </span></label></th>
+        </tr>
+            </table>
+           <!-- <div class="col-md-6">
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDate"> </span></label></div>
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierName"> </span></label></div>
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRef"> </span></label></div>
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Quantity Carton:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="quantityCarton"> </span></label></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mt-3" >
+                <table class="table table-bordered" style="border:2px solid black">
+                    <thead>
+                        <tr style="border:2px solid black">
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Requirement</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Value</th>
+                            <th style="text-align: center;font-size:large;border:2px solid black">  
+                            Result
+                            </th>
+                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
+                         
+
+                        </tr>
+                    </thead>
+                    <tbody id= "DetailsTest">
+                    
+                    </tbody>                
+                </table>
+            </div>
+
+            <div class="col-md-2"></div>
+            <!-- <div class="col-md-4">
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="Conclusion"> </span></label></div>
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span id="testPerformed"> </span></th>
+          <th></th>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Lab Manager</u> </span><br>
+                    <span id="testReviewed"> </span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testApproved"> </span>
+            </th>
+            <th></th>
+                    <th></th>
+                    <th></th>
+             
+
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    Sohail Ghouri</th>
+                </tr>
+            </table>
+            <!-- <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
+        </div>
+
+       </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printCard')" data-dismiss="modal">Print Report</button>
+      </div>
+      <div class="card-footer text-muted">
+  Forward Sports Pvt. Ltd.
+  </div>
+    </div>
+  </div>
+</div>
+ 
+        <!-- End Model Form HTML -->
                                 <div class="panel-container show">
                                     <div class="panel-content">
                                         <div class="demo-v-spacing">
@@ -89,6 +260,22 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Select Test Type</label>
+                                                                <select class="form-control" id="testType" onchange="SetSheetNo()">
+                                                                     <option value="" selected>Select Test Type</option>
+                                                                    <option value="1" >Carton Test</option>
+                                                                    <option value="2">Foam</option>
+                                                                    <option value="3">Fabric</option>
+                                                                    <option value="4">Thread</option>
+                                                                    <option value="5">SR Blader</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label>Enter Sheet No. *</label>
@@ -98,14 +285,11 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                         <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label>Select Test Type</label>
-                                                                <select class="form-control" id="testType" onchange="SetSheetNo()">
-                                                                     <option value="" selected>Select Test </option>
-                                                                    <option value="1" >Carton Test</option>
-                                                                    <option value="2">Foam</option>
-                                                                    <option value="3">Fabric</option>
-                                                                    <option value="4">Thread</option>
-                                                                    <option value="5">SR Blader</option>
+                                                                <label>Select Test Group</label>
+                                                                <select class="form-control" id="testGroup">
+                                                                     <option value="" selected>Select Test Group</option>
+                                                                    <option value="Development" >Development</option>
+                                                                    <option value="Production">Production</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -171,10 +355,21 @@ if (!$this->session->has_userdata('user_id')) {
                                             <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
                                         </div> -->
                                 </div>
+                                <div class="card">
+                         
+                                    <div class="card-body">
+                                    <h5 class="card-title" style="color:black;font-weight:bolder">Date Filteration</h5>
+                                     <div class="row">
+                                         <div class="col-md-3"><input class="form-control" type="date" id="startDate"  /></div>
+                                         <div class="col-md-3"><input class="form-control" type="date" id="endDate" /></div>
+                                         <div class="col-md-3"><button class="btn btn-primary" id="searchRange">Search</button></div>
+                                     </div>
+                                    </div>
+                                 </div>
                                 <div class="panel-container show">
                                     <div class="panel-content">
-                                        <div class="demo-v-spacing">
-                                            <table id="table" class="table table-bordered table-hover table-striped w-100">
+                                        <div class="demo-v-spacing" id="defaultTable" >
+                                            <table id="table" class="table table-bordered table-hover table-responsive table-striped w-100">
                                                 <thead class="bg-primary-200">
                                                     <tr style="color:white;">
                                                       <th>Item Type</th>
@@ -184,7 +379,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <th>PO # </th>
                                                            <th>Receiving Date  </th>
                                                         <th>Supplier</th>
-                                                          <th>Supplier Refrence</th>
+                                                          <!-- <th>Supplier Refrence</th> -->
                                                             <th>Quantity </th>
                                                              
                                                                  <th>Result </th>
@@ -194,8 +389,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                      <th>Approved Status </th>
                                                                     <th>Approved By </th>
                                                                   
-                                                                   <th>Update </th>
-                                                                   <th>Action </th>
+                                                                   <th>Actions </th>
+                                                            
                                                                   
                                                     </tr>
                                                 </thead>
@@ -221,7 +416,7 @@ if (!$this->session->has_userdata('user_id')) {
      <td><?php Echo $Key['PO']; ?></td>
      <td><?php Echo $Key['Receiving_Date']; ?></td>
      <td><?php Echo $Key['Supplier_Name']; ?></td>
-     <td><?php Echo $Key['Supplier_Ref']; ?></td>
+     <!-- <td><?php Echo $Key['Supplier_Ref']; ?></td> -->
       <td><?php Echo $Key['Quantity_Carton']; ?></td>
        
       <td><?php Echo $Key['Result']; ?></td>
@@ -255,7 +450,7 @@ if (!$this->session->has_userdata('user_id')) {
         <?php
     }else{
         ?>
-        Pending
+          <span class="badge badge-warning p-1">Pending</span>
         <?php
     }
     ?>
@@ -286,24 +481,34 @@ if (!$this->session->has_userdata('user_id')) {
         <?php
     }else{
         ?>
-        Pending
+         <span class="badge badge-warning p-1">Pending</span>
         <?php
     }
     ?></td>
         <td>
-            <button type="button" class="btn btn-info btn-xs updatebtn" id="btn.<?php Echo $Key['TID']; ?>">update</button>
-           </td>
-        <td >
-            <a href="<?php echo base_url();?>/LabController/undo/<?php Echo $Key['TID']; ?>">
-            <button type="button" class="btn btn-danger btn-xs">Undo</button>
-            </a>
-            </td>
-            
+            <div class="row">
+                <div class="col-md-2">
+                <button type="button" class="btn btn-info btn-xs updatebtn" id="btn.<?php Echo $Key['TID']; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
+                </div>
+                <div class="col-md-2">
+             
+                </div>
+                <div class="col-md-2">
+                <a href="<?php echo base_url();?>/LabController/undo/<?php Echo $Key['TID']; ?>">
+            <button type="button" class="btn btn-danger btn-xs"><i class="fal fa-trash" aria-hidden="true"></i></button> </a>
+                </div>
+                <div class="col-md-2">
+             
+             </div>
+                <div class="col-md-2">
+                <button type="button" class="btn btn-warning btn-xs printButton" id="btnPrint.<?php Echo $Key['TID']; ?>" ><i class="fal fa-print" aria-hidden="true"></i></button>
+                </div>
+            </div>
+          
         
-  
- 
- 
-     
+           
+           
+           </td>   
  </tr>
  <?php
  
@@ -316,6 +521,19 @@ if (!$this->session->has_userdata('user_id')) {
                                     </div>
 
                                 </div>
+
+
+<!--  Custom Table Content -->
+<div class="panel-container show">
+                                    <div class="panel-content">
+                                        <div class="demo-v-spacing" id="customData">
+                                
+                                        </div>
+                                    </div>
+
+                                </div>
+
+<!-- End Custom Table Content -->
                             </div>
                         </div>
                         <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
@@ -329,13 +547,455 @@ if (!$this->session->has_userdata('user_id')) {
                             </div>
                         </footer>
                         <script src="<?php echo base_url(); ?>/assets/js//jquery.min.js" type="text/javascript"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js" integrity="sha512-d5Jr3NflEZmFDdFHZtxeJtBzk0eB+kkRXWFQqEc1EKmolXjHm2IKCA7kTvXBNjIYzjXfD5XzIjaaErpkZHCkBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
                         <script>
+var sDate;
+var edate;
+    //     $("#printReport").click(function(e){
+    //      e.preventDefault();
+    // alert("called");
+    //      $("#printCard").printThis({
+    //     debug: false,               // show the iframe for debugging
+    // importCSS: true,            // import parent page css
+    // importStyle: false,         // import style tags
+    // printContainer: true,       // print outer container/$.selector
+    // loadCSS: "",                // path to additional css file - use an array [] for multiple
+    // pageTitle: "",              // add title to print page
+    // removeInline: false,        // remove inline styles from print elements
+    // removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
+    // printDelay: 333,            // variable print delay
+    // header: null,               // prefix to html
+    // footer: null,               // postfix to html
+    // base: false,                // preserve the BASE tag or accept a string for the URL
+    // formValues: true,           // preserve input/form values
+    // canvas: false,              // copy canvas content
+    // doctypeString: '...',       // enter a different doctype for older markup
+    // removeScripts: false,       // remove script tags from print content
+    // copyTagClasses: false,      // copy classes from the html & body tag
+    // beforePrintEvent: null,     // function for printEvent in iframe
+    // beforePrint: null,          // function called before iframe is filled
+    // afterPrint: null            // function called before iframe is removed
+    // })
+    //     });
+
+    $(window).on('load', function() {
+        let date = new Date().toJSON().substr(0,10);
+        $("#startDate").val(date);
+        $("#endDate").val(date);
+})
+
+function loadData(stDate,enDate){
+    $("#customData").html("");
+    url = '<?php echo base_url('LabController/getTableData'); ?>'
+
+$.post(url, {'startDate':stDate,'endDate':enDate},
+    function(data, status) {
+    console.log("Table Data", data);
+    html =`    <table id="table1" class="table table-bordered table-hover table-responsive table-striped w-100">
+                                                <thead class="bg-primary-200">
+                                                    <tr style="color:white;">
+                                                      <th>Item Type</th>
+                                                        <th>Test No </th>
+                                                        <th> Date </th>
+                                                        <th>Item Name </th>
+                                                        <th>PO # </th>
+                                                           <th>Receiving Date  </th>
+                                                        <th>Supplier</th>
+                                                          <!-- <th>Supplier Refrence</th> -->
+                                                            <th>Quantity </th>
+                                                             
+                                                                 <th>Result </th>
+                                                                   <th>Generated By </th>
+                                                                   <th>Review Status </th>
+                                                                    <th>Review By </th>
+                                                                     <th>Approved Status </th>
+                                                                    <th>Approved By </th>
+                                                                  
+                                                                   <th>Actions </th>
+                                                            
+                                                                  
+                                                    </tr>
+                                                </thead>
+                                                <tbody>`;
+    data.forEach(element => {
+        console.log("table content", element)
+        html += `
+        <tr>
+    <td>${element.ItemType}</td>
+    <td>${element.TestNO}</td>
+    <td>${element.Date}</td>
+    <td>${element.Size}</td>
+    <td>${element.PO}</td>
+    <td>${element.Receiving_Date}</td>
+    <td>${element.Supplier_Name}</td>
+ 
+    <td>${element.Quantity_Carton}</td>
+
+    <td>${element.Result}</td>
+    <td><span class="badge badge-primary p-1">${element.LoginName}</span></td>
+
+    <td>
+      
+        ${element.ReviewStatus == '1'?
+      
+            `<div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customreview${element.TID}" checked="">
+                <label class="custom-control-label" for="customreview${element.TID}"></label>
+            </div>`
+        :
+            `<div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customreview${element.TID}">
+                <label class="custom-control-label" for="customreview${element.TID}"></label>
+            </div>`
+        }
+    </td>
+    <td>
+
+    ${element.ReviewStatus == '1'?
+            `<span class="badge badge-primary p-1">${element.reviewName}</span>`:
+            `<span class="badge badge-warning p-1">Pending</span>`
+        }
+    </td>
+    <td>
+        ${element.ApprovedStatus == '1'?
+            `<div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customapproved${element.TID}" checked="">
+                <label class="custom-control-label" for="customapproved${element.TID}"></label>
+            </div>`
+       :
+            `<div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customapproved${element.TID}">
+                <label class="custom-control-label" for="customapproved${element.TID}"></label>
+            </div>`
+        }
+    </td>
+    <td>
+            ${element.ApprovedStatus == '1'?
+          `<span class="badge badge-primary p-1">${element.Approvalname}</span>`:
+          
+            `<span class="badge badge-warning p-1">Pending</span>`
+            }
+    </td>
+    <td>
+        <div class="row">
+            <div class="col-md-2">
+                <button type="button" class="btn btn-info btn-xs customupdatebtn1 waves-effect waves-themed" id="custombtn.${element.TID}"><i class="fal fa-edit" aria-hidden="true"></i></button>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-2">
+                <a href="<?php echo base_url(); ?>/LabController/undo/${element.TID}">
+                    <button type="button" class="btn btn-danger btn-xs"><i class="fal fa-trash" aria-hidden="true"></i></button> </a>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-warning btn-xs customprintButton waves-effect waves-themed" id="btnPrint.${element.TID}"><i class="fal fa-print" aria-hidden="true"></i></button>
+            </div>
+        </div>
+
+
+
+
+    </td>
+</tr>`
+    });
+    html += `</tbody></table>`;
+
+$("#customData").append(html);
+
+$('#table1').dataTable({
+                                    responsive: false,
+                                    lengthChange: false,
+                                    dom:
+                                        /*	--- Layout Structure 
+                                        	--- Options
+                                        	l	-	length changing input control
+                                        	f	-	filtering input
+                                        	t	-	The table!
+                                        	i	-	Table information summary
+                                        	p	-	pagination control
+                                        	r	-	processing display element
+                                        	B	-	buttons
+                                        	R	-	ColReorder
+                                        	S	-	Select
+
+                                        	--- Markup
+                                        	< and >				- div element
+                                        	<"class" and >		- div with a class
+                                        	<"#id" and >		- div with an ID
+                                        	<"#id.class" and >	- div with an ID and a class
+
+                                        	--- Further reading
+                                        	https://datatables.net/reference/option/dom
+                                        	--------------------------------------
+                                         */
+                                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                                        "<'row'<'col-sm-12'tr>>" +
+                                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                                    buttons: [
+                                        /*{
+                                        	extend:    'colvis',
+                                        	text:      'Column Visibility',
+                                        	titleAttr: 'Col visibility',
+                                        	className: 'mr-sm-3'
+                                        },*/
+                                        {
+                                            extend: 'pdfHtml5',
+                                            text: 'PDF',
+                                            titleAttr: 'Generate PDF',
+                                            className: 'btn-outline-danger btn-sm mr-1'
+                                        },
+                                        {
+                                            extend: 'excelHtml5',
+                                            text: 'Excel',
+                                            titleAttr: 'Generate Excel',
+                                            className: 'btn-outline-success btn-sm mr-1'
+                                        },
+                                        {
+                                            extend: 'csvHtml5',
+                                            text: 'CSV',
+                                            titleAttr: 'Generate CSV',
+                                            className: 'btn-outline-primary btn-sm mr-1'
+                                        },
+                                        {
+                                            extend: 'copyHtml5',
+                                            text: 'Copy',
+                                            titleAttr: 'Copy to clipboard',
+                                            className: 'btn-outline-primary btn-sm mr-1'
+                                        },
+                                        {
+                                            extend: 'print',
+                                            text: 'Print',
+                                            titleAttr: 'Print Table',
+                                            className: 'btn-outline-primary btn-sm'
+                                        }
+                                    ]
+                                });
+ 
+    });
+
+}
+
+$("#searchRange").click(function(e){
+   e.preventDefault();
+   sDate = $("#startDate").val();
+   eDate = $("#endDate").val();
+  //$("#customData").html("");
+  $("#defaultTable").css("display","none");
+
+  url = '<?php echo base_url('LabController/getTableData'); ?>'
+
+$.post(url, {'startDate':sDate,'endDate':eDate},
+    function(data, status) {
+    console.log("Table Data", data);
+    html =`    <table id="table1" class="table table-bordered table-hover table-responsive table-striped w-100">
+                                                <thead class="bg-primary-200">
+                                                    <tr style="color:white;">
+                                                      <th>Item Type</th>
+                                                        <th>Test No </th>
+                                                        <th> Date </th>
+                                                        <th>Item Name </th>
+                                                        <th>PO # </th>
+                                                           <th>Receiving Date  </th>
+                                                        <th>Supplier</th>
+                                                          <!-- <th>Supplier Refrence</th> -->
+                                                            <th>Quantity </th>
+                                                             
+                                                                 <th>Result </th>
+                                                                   <th>Generated By </th>
+                                                                   <th>Review Status </th>
+                                                                    <th>Review By </th>
+                                                                     <th>Approved Status </th>
+                                                                    <th>Approved By </th>
+                                                                  
+                                                                   <th>Actions </th>
+                                                            
+                                                                  
+                                                    </tr>
+                                                </thead>
+                                                <tbody>`;
+    data.forEach(element => {
+        console.log("table content", element)
+        html += `
+        <tr>
+    <td>${element.ItemType}</td>
+    <td>${element.TestNO}</td>
+    <td>${element.Date}</td>
+    <td>${element.Size}</td>
+    <td>${element.PO}</td>
+    <td>${element.Receiving_Date}</td>
+    <td>${element.Supplier_Name}</td>
+ 
+    <td>${element.Quantity_Carton}</td>
+
+    <td>${element.Result}</td>
+    <td><span class="badge badge-primary p-1">${element.LoginName}</span></td>
+
+    <td>
+      
+        ${element.ReviewStatus == '1'?
+      
+            `<div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customreview${element.TID}" checked="">
+                <label class="custom-control-label" for="customreview${element.TID}"></label>
+            </div>`
+        :
+            `<div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customreview${element.TID}">
+                <label class="custom-control-label" for="customreview${element.TID}"></label>
+            </div>`
+        }
+    </td>
+    <td>
+
+    ${element.ReviewStatus == '1'?
+            `<span class="badge badge-primary p-1">${element.reviewName}</span>`:
+            `<span class="badge badge-warning p-1">Pending</span>`
+        }
+    </td>
+    <td>
+        ${element.ApprovedStatus == '1'?
+            `<div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customapproved${element.TID}" checked="">
+                <label class="custom-control-label" for="customapproved${element.TID}"></label>
+            </div>`
+       :
+            `<div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customapproved${element.TID}">
+                <label class="custom-control-label" for="customapproved${element.TID}"></label>
+            </div>`
+        }
+    </td>
+    <td>
+            ${element.ApprovedStatus == '1'?
+          `<span class="badge badge-primary p-1">${element.Approvalname}</span>`:
+          
+            `<span class="badge badge-warning p-1">Pending</span>`
+            }
+    </td>
+    <td>
+        <div class="row">
+            <div class="col-md-2">
+                <button type="button" class="btn btn-info btn-xs customupdatebtn1 waves-effect waves-themed" id="custombtn.${element.TID}"><i class="fal fa-edit" aria-hidden="true"></i></button>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-2">
+                <a href="<?php echo base_url(); ?>/LabController/undo/${element.TID}">
+                    <button type="button" class="btn btn-danger btn-xs"><i class="fal fa-trash" aria-hidden="true"></i></button> </a>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-warning btn-xs customprintButton waves-effect waves-themed" id="btnPrint.${element.TID}"><i class="fal fa-print" aria-hidden="true"></i></button>
+            </div>
+        </div>
+
+
+
+
+    </td>
+</tr>`
+    });
+    html += `</tbody></table>`;
+
+$("#customData").append(html);
+
+$('#table1').dataTable({
+                                    responsive: false,
+                                    lengthChange: false,
+                                    dom:
+                                        /*	--- Layout Structure 
+                                        	--- Options
+                                        	l	-	length changing input control
+                                        	f	-	filtering input
+                                        	t	-	The table!
+                                        	i	-	Table information summary
+                                        	p	-	pagination control
+                                        	r	-	processing display element
+                                        	B	-	buttons
+                                        	R	-	ColReorder
+                                        	S	-	Select
+
+                                        	--- Markup
+                                        	< and >				- div element
+                                        	<"class" and >		- div with a class
+                                        	<"#id" and >		- div with an ID
+                                        	<"#id.class" and >	- div with an ID and a class
+
+                                        	--- Further reading
+                                        	https://datatables.net/reference/option/dom
+                                        	--------------------------------------
+                                         */
+                                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                                        "<'row'<'col-sm-12'tr>>" +
+                                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                                    buttons: [
+                                        /*{
+                                        	extend:    'colvis',
+                                        	text:      'Column Visibility',
+                                        	titleAttr: 'Col visibility',
+                                        	className: 'mr-sm-3'
+                                        },*/
+                                        {
+                                            extend: 'pdfHtml5',
+                                            text: 'PDF',
+                                            titleAttr: 'Generate PDF',
+                                            className: 'btn-outline-danger btn-sm mr-1'
+                                        },
+                                        {
+                                            extend: 'excelHtml5',
+                                            text: 'Excel',
+                                            titleAttr: 'Generate Excel',
+                                            className: 'btn-outline-success btn-sm mr-1'
+                                        },
+                                        {
+                                            extend: 'csvHtml5',
+                                            text: 'CSV',
+                                            titleAttr: 'Generate CSV',
+                                            className: 'btn-outline-primary btn-sm mr-1'
+                                        },
+                                        {
+                                            extend: 'copyHtml5',
+                                            text: 'Copy',
+                                            titleAttr: 'Copy to clipboard',
+                                            className: 'btn-outline-primary btn-sm mr-1'
+                                        },
+                                        {
+                                            extend: 'print',
+                                            text: 'Print',
+                                            titleAttr: 'Print Table',
+                                            className: 'btn-outline-primary btn-sm'
+                                        }
+                                    ]
+                                });
+ 
+    });
+
+});
+     function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+     window.location.reload();
+}
+
                             
-                            $(".updatebtn").click(function(e) {
+    $(".updatebtn").click(function(e) {
     //alert("heloo");
      let id= this.id;
     //alert(id);
@@ -379,7 +1039,175 @@ if (!$this->session->has_userdata('user_id')) {
 
             
      });
-                            $(document).ready(function() {
+
+     $("#customData").on('click','.customupdatebtn1',function() {
+   
+     let id= this.id;
+    //alert(id);
+     let split_value = id.split(".");
+    //alert(split_value);
+     //console.log(split_value);
+     var TID =split_value[1];
+     //alert(`#issueDate.${split_value[1]}`);
+      //alert(split_value[1]);
+//   let RID =split_value[1]);
+     ///var reviewStatus = $(`#review${split_value[1]}`).val();
+     ///var approved = $(`#review${split_value[1]}`).val();
+     
+     let reviewStatus;
+     if($(`#customreview${split_value[1]}`).is(":checked")){
+        reviewStatus = 1;
+     }
+     else{
+        reviewStatus = 0;
+     }
+     let approvedStatus;
+     if($(`#customapproved${split_value[1]}`).is(":checked")){
+        approvedStatus = 1;
+     }
+     else{
+        approvedStatus = 0;
+     }
+//alert(Status);
+      //$('#check_id').val();
+      //alert(reviewStatus);
+       //alert(approvedStatus);
+        //alert(TID);
+   
+ url = "<?php echo base_url(''); ?>LabController/updated/"+ reviewStatus + "/" + approvedStatus  + "/" + TID
+  
+//alert(url);
+   $.get(url, function(data){
+            alert("Data Updated Successfully");
+            loadData(sDate,eDate)
+            });
+
+            
+     });
+
+     $(".printButton").click(function(e) {
+
+       //alert("Called")
+         let id= this.id;
+
+     let split_value = id.split(".");
+
+     var TID =split_value[1];
+
+     url = '<?php echo base_url('LabController/getHead'); ?>'
+
+$.post(url, {'TID':TID},
+    function(data, status) {
+    console.log("Head Data", data);
+     $("#testNo").text(data[0].TestNO);
+     $("#dateTest").text(data[0].Date);
+     $("#pono").text(data[0].PO);
+     $("#receiveDate").text(data[0].Receiving_Date);
+     $("#size").text(data[0].Size);
+     $("#supplierName").text(data[0].Supplier_Name);
+     $("#supplierRef").text(data[0].Supplier_Ref);
+     $("#quantityCarton").text(data[0].Quantity_Carton);
+
+     $("#testPerformed").text(data[0].LoginName);
+     data[0].Approvalname? $("#testApproved").text(data[0].Approvalname):$("#testApproved").text("Pending");
+   //  $("#Incharge").text(data[0].Approvalname);
+     
+     data[0].reviewName? $("#testReviewed").text(data[0].reviewName):$("#testReviewed").text("Pending");
+     $("#Conclusion").text(data[0].Result);
+     
+     
+
+
+    });
+
+    url = '<?php echo base_url('LabController/getDetails'); ?>'
+
+$.post(url, {'TID':TID},
+    function(data, status) {
+        console.log("Details Data", data)
+        html = ''
+        data.forEach(element => {
+           html += `<tr>
+                            <td style="border:2px solid black">${element.Test}</td>
+                            <td style="border:2px solid black">${element.Requirments}</td>
+                            <td style="border:2px solid black">${element.Value}</td>
+                            <td style="border:2px solid black">
+                           ${element.result}
+                            </td>
+                        </tr>`
+       });
+
+     $("#DetailsTest").html(html);
+
+    });
+
+   $('#exampleModal').modal('toggle');
+            
+     });
+
+     $("#customData").on("click",".customprintButton", function() {
+
+  let id= this.id;
+
+let split_value = id.split(".");
+
+var TID =split_value[1];
+
+url = '<?php echo base_url('LabController/getHead'); ?>'
+
+$.post(url, {'TID':TID},
+function(data, status) {
+console.log("Head Data", data);
+$("#testNo").text(data[0].TestNO);
+$("#dateTest").text(data[0].Date);
+$("#pono").text(data[0].PO);
+$("#receiveDate").text(data[0].Receiving_Date);
+$("#size").text(data[0].Size);
+$("#supplierName").text(data[0].Supplier_Name);
+$("#supplierRef").text(data[0].Supplier_Ref);
+$("#quantityCarton").text(data[0].Quantity_Carton);
+
+$("#testPerformed").text(data[0].LoginName);
+data[0].Approvalname? $("#testApproved").text(data[0].Approvalname):$("#testApproved").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+
+data[0].reviewName? $("#testReviewed").text(data[0].reviewName):$("#testReviewed").text("Pending");
+$("#Conclusion").text(data[0].Result);
+
+
+
+
+});
+
+url = '<?php echo base_url('LabController/getDetails'); ?>'
+
+$.post(url, {'TID':TID},
+function(data, status) {
+ console.log("Details Data", data)
+ html = ''
+ data.forEach(element => {
+    html += `<tr>
+                     <td style="border:2px solid black">${element.Test}</td>
+                     <td style="border:2px solid black">${element.Requirments}</td>
+                     <td style="border:2px solid black">${element.Value}</td>
+                     <td style="border:2px solid black">
+                    ${element.result}
+                     </td>
+                 </tr>`
+});
+
+$("#DetailsTest").html(html);
+
+});
+
+$('#exampleModal').modal('toggle');
+     
+});
+                          
+     
+     
+     
+     $(document).ready(function() {
                               
                                 $('#table').dataTable({
                                     responsive: false,
@@ -450,6 +1278,7 @@ if (!$this->session->has_userdata('user_id')) {
                                     ]
                                 });
 
+                               
 
                             });
                         </script>
@@ -1959,10 +2788,13 @@ if (!$this->session->has_userdata('user_id')) {
                  var files = $("#img")[0].files[0];
                 $("#alertShown").css("display", "block");
                
-
+                let testGroup = $("#testGroup").val(); 
                 fd.append('file', files);
                  fd.append('HeaderArray',HeaderArray);
                  fd.append('ChildArray', ChildArray);
+                 fd.append('testGroup', testGroup);
+         
+             
                  let testType = $("#testType").val();  
                 if(testType == 1){
                     url = '<?php echo base_url('LabController/addHeadData'); ?>'
@@ -2105,6 +2937,8 @@ Sheetvalue=2;
                                     //alert(Sheetvalue);
                                     
                                 }
+
+
         </script>
         </body>
 

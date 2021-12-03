@@ -48,6 +48,31 @@ class LabController extends CI_Controller
         $this->load->view('LabMainForm');
     }
 
+    public function getDetails()
+    {
+        $TID = $_POST['TID'];
+       $data = $this->l->getDetails($TID);
+       return $this->output
+       ->set_content_type('application/json')
+       ->set_status_header(200)
+       ->set_output(json_encode($data));
+
+       
+    }
+
+    public function getHead()
+    {
+        $TID = $_POST['TID'];
+       $data = $this->l->getHead($TID);
+       return $this->output
+       ->set_content_type('application/json')
+       ->set_status_header(200)
+       ->set_output(json_encode($data));
+       
+    }
+
+    
+
     public function addHeadData()
     { 
    ////////////////////////////////// Simple Form Send /////////////////////////////////
@@ -173,6 +198,7 @@ class LabController extends CI_Controller
        
     }
     array_pop($childArray);
+    $testGroup = $_POST['testGroup'];
     $TestDate = $header[0];
     $PONo = $header[1];
     $Quantity = $header[2];
@@ -195,6 +221,7 @@ class LabController extends CI_Controller
         $Result,
         $ItemType,
         $picture,
+        $testGroup,
         $childArray 
     );
     }
@@ -256,6 +283,7 @@ class LabController extends CI_Controller
     $ReceivingDate = $header[2];
     $testNo = $header[0];
     $SupplierRef = $header[4];
+    $testGroup = $_POST['testGroup'];
     $this->l->AddHeaderFoam(
         $TestDate,
         $PONo,
@@ -263,6 +291,7 @@ class LabController extends CI_Controller
         $testNo,
         $SupplierRef,
         $picture,
+        $testGroup,
         $childArray 
     );
     }
@@ -334,6 +363,7 @@ class LabController extends CI_Controller
   
     $Result = $header[9];
     $ItemType = $header[10];
+    $testGroup = $_POST['testGroup'];
     $this->l->AddHeaderFabric(
         $TestDate,
         $CSSNO,
@@ -347,6 +377,7 @@ class LabController extends CI_Controller
         $Result,
         $ItemType,
         $picture,
+        $testGroup,
         $childArray 
     );
     }
@@ -414,7 +445,7 @@ class LabController extends CI_Controller
 
  
     $TwistPerInch = $header[8];
-   
+    $testGroup = $_POST['testGroup'];
     $this->l->AddHeaderThread(
         $TestDate,
         $PONo,
@@ -423,6 +454,7 @@ class LabController extends CI_Controller
         $testNo,
         $SupplierRef,
         $picture,
+        $testGroup,
         $childArray 
         ,$Thickness
         ,$LinearDensity
@@ -492,6 +524,7 @@ class LabController extends CI_Controller
     $SupplierRef = $header[5];
     $Hardness = $header[8];
     $Remarks =  $header[9];
+    $testGroup = $_POST['testGroup'];
     $this->l->AddHeaderBlader(
         $TestDate,
         $PONo,
@@ -501,6 +534,7 @@ class LabController extends CI_Controller
         $testNo,
         $SupplierRef,
         $picture,
+        $testGroup,
         $childArray ,
         $Material,
         $Hardness,
@@ -541,4 +575,19 @@ class LabController extends CI_Controller
         ->set_status_header(200)
         ->set_output(json_encode($data));
     }
+
+    public function getTableData(){
+ 
+        $sDate = $_POST["startDate"];
+        $eDate = $_POST["endDate"];
+        $data = $this->l->getTableData($sDate,$eDate);
+
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+    }
+
+
+    
 }

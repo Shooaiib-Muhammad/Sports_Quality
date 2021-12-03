@@ -18,6 +18,7 @@ class LabModel extends CI_Model
         $Result,
         $ItemType,
         $picture,
+        $testGroup,
         $child
     ) {
         date_default_timezone_set('Asia/Karachi');
@@ -39,7 +40,8 @@ class LabModel extends CI_Model
               ,Result
               ,ItemType
               ,image
-              ,TestType)
+              ,TestType
+              ,testGroup)
         VALUES
               ('$testNo'
               ,'$TestDate'
@@ -54,7 +56,8 @@ class LabModel extends CI_Model
               ,'$Result'
               ,'$ItemType'
               ,'$picture',
-              'Cotton')");
+              'Cotton'
+              ,'$testGroup')");
         $Id = $this->db->insert_id();
         echo $Id;
         $iterCotton = 0;
@@ -120,6 +123,7 @@ class LabModel extends CI_Model
         $testNo,
         $SupplierRef,
         $picture,
+        $testGroup,
         $child
     ) {
         date_default_timezone_set('Asia/Karachi');
@@ -136,7 +140,8 @@ class LabModel extends CI_Model
               ,Entrydate
               ,UserID
               ,image
-              ,TestType)
+              ,TestType
+              ,testGroup)
         VALUES
               ('$testNo'
               ,'$TestDate'
@@ -146,7 +151,8 @@ class LabModel extends CI_Model
               ,'$Date'
               ,'$user_id'
               ,'$picture'
-              ,'Foam')");
+              ,'Foam'
+              ,'$testGroup')");
         $Id = $this->db->insert_id();
         echo $Id;
         $iterFoam = 0;
@@ -222,6 +228,7 @@ class LabModel extends CI_Model
         $Result,
         $ItemType,
         $picture,
+        $testGroup,
         $child
     ) {
 
@@ -247,6 +254,7 @@ class LabModel extends CI_Model
               ,image
               ,CSSNO
               ,TestType
+              ,testGroup
               )
         VALUES
               ('$testNo'
@@ -264,6 +272,7 @@ class LabModel extends CI_Model
               ,'$picture'
               , '$CSSNO'
               ,'Fabric'
+              ,'$testGroup'
               )");
         $Id = $this->db->insert_id();
         echo $Id;
@@ -333,6 +342,7 @@ class LabModel extends CI_Model
         $testNo,
         $SupplierRef,
         $picture,
+        $testGroup,
         $child
         ,$thickness
         , $LinearDensity
@@ -358,6 +368,7 @@ class LabModel extends CI_Model
               ,LinearDensity
               ,TwistPerInch
               ,TestType
+              ,testGroup
               )
         VALUES
               ('$testNo'
@@ -373,6 +384,7 @@ class LabModel extends CI_Model
               ,'$LinearDensity'
               ,'$twisrPerInch'
               ,'Thread'
+              ,'$testGroup'
               )");
         $Id = $this->db->insert_id();
         echo $Id;
@@ -446,6 +458,7 @@ class LabModel extends CI_Model
         $testNo,
         $SupplierRef,
         $picture,
+        $testGroup,
         $child,
         $material
         ,$hardness
@@ -470,7 +483,8 @@ class LabModel extends CI_Model
               ,material
               ,Hardness,
               Remarks,
-              TestType)
+              TestType
+              ,testGroup)
         VALUES
               ('$testNo'
               ,'$TestDate'
@@ -485,7 +499,8 @@ class LabModel extends CI_Model
               ,'$material'
               ,'$hardness'
               ,'$remarks',
-              'Blader')");
+              'Blader'
+              ,'$testGroup')");
         $Id = $this->db->insert_id();
         echo $Id;
         $bladerIter = 0;
@@ -856,5 +871,33 @@ public function updatedStatus($reviewStatus,$approvedStatus,$TID){
     $query = $this->db->query("UPDATE   dbo .Tbl_Lab_Test_H 
     SET   ApprovedStatus  =  '$approvedStatus',ReviewStatus  =  '$reviewStatus',ReviewBy=$user_id,ApproveBy=$user_id1
   WHERE  TID='$TID'");
+}
+  public function getDetails($Id){
+        $query = $this->db->query(" SELECT        TID, dbo.view_Lab_test_Details.*
+        FROM            dbo.view_Lab_test_Details
+        WHERE        (TID = '$Id')");
+
+        return $query->result_array();
+    }
+
+    public function getHead($Id){
+        $query = $this->db->query(" SELECT        dbo.view_Lab_Test_H.*, TID
+        FROM            dbo.view_Lab_Test_H
+        WHERE        (TID = '$Id')");
+
+        return $query->result_array();
+    }
+public function getTableData($sDate,$eDate){
+
+    $newSDate = strtotime($sDate);
+    $newEDate = strtotime($eDate);
+    $newSDateObj = date('d/m/Y',$newSDate);
+    $newEDateObj = date('d/m/Y',$newEDate);
+    
+    $query = $this->db->query(" SELECT        dbo.view_lab_test.*
+    FROM            dbo.view_lab_test
+    WHERE        (Entrydate BETWEEN '$newSDateObj' AND '$newEDateObj')");
+
+       return $query->result_array();
 }
 }
