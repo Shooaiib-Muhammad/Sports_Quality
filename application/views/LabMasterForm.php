@@ -390,6 +390,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th>Approved By </th>
                                                                   
                                                                    <th>Actions </th>
+                                                                       <th>Undo </th>
                                                             
                                                                   
                                                     </tr>
@@ -493,10 +494,7 @@ if (!$this->session->has_userdata('user_id')) {
                 <div class="col-md-2">
              
                 </div>
-                <div class="col-md-2">
-                <a href="<?php echo base_url();?>/LabController/undo/<?php Echo $Key['TID']; ?>">
-            <button type="button" class="btn btn-danger btn-xs"><i class="fal fa-trash" aria-hidden="true"></i></button> </a>
-                </div>
+               
                 <div class="col-md-2">
              
              </div>
@@ -509,6 +507,12 @@ if (!$this->session->has_userdata('user_id')) {
            
            
            </td>   
+            <td> <div class="col-md-2">
+               
+            <button type="button" id="undo.<?php echo $Key['TID'];?>" value="<?php echo $Key['TID'];?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> 
+      
+                </div>
+            </td>
  </tr>
  <?php
  
@@ -553,6 +557,7 @@ if (!$this->session->has_userdata('user_id')) {
                         <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
                         <script>
+                            
 var sDate;
 var edate;
     //     $("#printReport").click(function(e){
@@ -616,6 +621,7 @@ $.post(url, {'startDate':stDate,'endDate':enDate},
                                                                     <th>Approved By </th>
                                                                   
                                                                    <th>Actions </th>
+                                                                     <th>Undo </th>
                                                             
                                                                   
                                                     </tr>
@@ -688,10 +694,7 @@ $.post(url, {'startDate':stDate,'endDate':enDate},
             <div class="col-md-2">
 
             </div>
-            <div class="col-md-2">
-                <a href="<?php echo base_url(); ?>/LabController/undo/${element.TID}">
-                    <button type="button" class="btn btn-danger btn-xs"><i class="fal fa-trash" aria-hidden="true"></i></button> </a>
-            </div>
+           
             <div class="col-md-2">
 
             </div>
@@ -703,6 +706,18 @@ $.post(url, {'startDate':stDate,'endDate':enDate},
 
 
 
+    </td>
+      
+
+
+           
+            <td>
+             <div class="col-md-2">
+               
+            <button type="button" id="customundo.${element.TID}" value="${element.TID}" class="btn btn-danger btn-xs customundobtn">
+            <i class="fal fa-trash" aria-hidden="true"></i></button> 
+      
+                </div>
     </td>
 </tr>`
     });
@@ -816,6 +831,7 @@ $.post(url, {'startDate':sDate,'endDate':eDate},
                                                                     <th>Approved By </th>
                                                                   
                                                                    <th>Actions </th>
+                                                                      <th>Undo </th>
                                                             
                                                                   
                                                     </tr>
@@ -888,10 +904,7 @@ $.post(url, {'startDate':sDate,'endDate':eDate},
             <div class="col-md-2">
 
             </div>
-            <div class="col-md-2">
-                <a href="<?php echo base_url(); ?>/LabController/undo/${element.TID}">
-                    <button type="button" class="btn btn-danger btn-xs"><i class="fal fa-trash" aria-hidden="true"></i></button> </a>
-            </div>
+          
             <div class="col-md-2">
 
             </div>
@@ -903,6 +916,14 @@ $.post(url, {'startDate':sDate,'endDate':eDate},
 
 
 
+    </td>
+   <td>
+             <div class="col-md-2">
+               
+           <button type="button" id="customundo.${element.TID}" value="${element.TID}" class="btn btn-danger btn-xs customundobtn">
+            <i class="fal fa-trash" aria-hidden="true"></i></button> 
+      
+                </div>
     </td>
 </tr>`
     });
@@ -2924,20 +2945,57 @@ $('#exampleModal').modal('toggle');
                  //alert(testno);
 let Sheetvalue;
 if(testno==1){
-Sheetvalue=1;
+Sheetvalue=2;
 }else if(testno==2){
 Sheetvalue=2;
 }else if(testno==3){
 Sheetvalue=2;
 }else if(testno==4){
-Sheetvalue=4;
+Sheetvalue=2;
 }else if(testno==5){
 Sheetvalue=2;
 }$("#sheetNo").val(Sheetvalue);
                                     //alert(Sheetvalue);
                                     
                                 }
+   
+                                
+$('#customData').on('click','.customundobtn',function(){
+                            
+                                 let id= this.id;
+    let split_value = id.split(".");
+     var TID =split_value[1];
+var proceed = confirm("Are you sure you want to Delete?");
+if (proceed) {
+    url = "<?php echo base_url(''); ?>LabController/undo/"+ TID 
+     $.get(url, function(data){
+            alert("Data Updated Successfully");
+           location.reload();
+            });
+} else {
+  alert("Undo Cancel");
+} });
 
+
+
+$('.undobtn').click(function(){
+     let id= this.id;
+    let split_value = id.split(".");
+     var TID =split_value[1];
+var proceed = confirm("Are you sure you want to Delete?");
+if (proceed) {
+    url = "<?php echo base_url(''); ?>LabController/undo/"+ TID 
+     $.get(url, function(data){
+            alert("Data Updated Successfully");
+           location.reload();
+            });
+} else {
+  alert("Undo Cancel");
+}
+  
+
+                            });
+                            
 
         </script>
         </body>
