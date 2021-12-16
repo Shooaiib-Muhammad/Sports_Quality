@@ -831,6 +831,25 @@ $Status=str_replace("%20"," ", $Status);
             }
    
 }
+public function updatecprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate,$rootcasuse,$action){
+$Status=str_replace("%20"," ", $Status);
+$rootcasuse=str_replace("%20"," ", $rootcasuse);
+$action=str_replace("%20"," ", $action);
+	// Echo $ProcessEndDate;
+    //         die;
+    if($Status=='Complete'){
+         $Date = date('Y-m-d H:i:s');
+                $query = $this->db->query("UPDATE    dbo .tbl_Dev_Process 
+            SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make',Status  =  '$Status' ,CompleteDate='$Date' ,ProcessEndDate='$ProcessEndDate' ,action='$action',rootcasue='$rootcasuse'
+          WHERE  TID='$TID'");  
+            }else{
+                  $query = $this->db->query("UPDATE   dbo .tbl_Dev_Process 
+            SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make',Status  =  '$Status',ProcessEndDate='$ProcessEndDate' ,action='$action',rootcasue='$rootcasuse'
+          WHERE  TID='$TID'");
+            }
+   
+}
+
 public function undoActivity($TID){
         $query = $this->db->query("DELETE  FROM tbl_Dev_Activities
       WHERE ActivityID=$TID");

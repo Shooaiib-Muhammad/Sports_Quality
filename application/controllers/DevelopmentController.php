@@ -118,6 +118,18 @@ $data = $this->l->updateprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate)
         ->set_status_header(200)
         ->set_output(json_encode($data));
     }
+        public function updatecprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate,$rootcasuse,$action){
+        //$RBy=str_replace("%20"," ",$Receivedby);
+					 //$this->ID->updateKitsissuance($RBy,$iDate ,$RID);
+	
+$data = $this->l->updatecprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate,$rootcasuse,$action);
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+    }
+   
+    
     public function undo($TID){
         $data = $this->l->undoActivity($TID);
         return $this->output
