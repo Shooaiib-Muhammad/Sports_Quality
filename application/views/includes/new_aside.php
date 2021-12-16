@@ -44,8 +44,8 @@
                                   <li>
                                         <a href="<?php echo base_url(
                                             ''
-                                        ); ?>LabController" title="Introduction" data-filter-tags="application intel introduction">
-                                            <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Dashboard</span>
+                                        ); ?>FGT" title="Introduction" data-filter-tags="application intel introduction">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_introduction">FGT </span>
                                         </a>
                                     </li>
                                 <li>
