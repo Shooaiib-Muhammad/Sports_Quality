@@ -16,28 +16,13 @@ class FGT extends CI_Controller
      
         $this->load->view('FGT',$data);
     }
-    public function FGT_H($fgttype,$lbno,$tdate,$testcat,$fifastump,$pmonth,$cmat,$backing,$fgbladderttype,
-    $btype,$ttype,$mmcolor,$pcolors,$result){
-  
-        $data= $this->FGT->FGT_H_insertion($fgttype,
-        str_replace("%20"," ",$lbno),
-        str_replace("%20"," ",$tdate),
-        str_replace("%20"," ",$testcat),
-        str_replace("%20"," ",$fifastump),
-        str_replace("%20"," ",$pmonth),
-        str_replace("%20"," ",$cmat),
-        str_replace("%20"," ",$backing),
-        str_replace("%20"," ",$fgbladderttype),
-        str_replace("%20"," ",$btype),
-        str_replace("%20"," ",$ttype),
-        str_replace("%20"," ",$mmcolor),
-        str_replace("%20"," ",$pcolors),
-        str_replace("%20"," ",$result));
+    public function FGT_H(){
+       
+        $data= $this->FGT->FGT_H_insertion($_POST['fgttype'],$_POST['labno'],$_POST['tdate'],$_POST['testcat'],$_POST['fifastump'],$_POST['pmonth'],$_POST['cmat'],$_POST['backing'],$_POST['bladder'],$_POST['btype'],$_POST['ttype'],$_POST['mmcolor'],$_POST['pcolors'],$_POST['result'],$_POST['fn'],$_POST['m'],$_POST['inn'],$_POST['pshape'], $_POST['rem']);
         return $this->output
         ->set_content_type('application/json')
         ->set_status_header(200)
         ->set_output(json_encode($data));
-
     }
 
     public function FGT_D(){

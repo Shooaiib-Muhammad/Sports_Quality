@@ -58,15 +58,7 @@ if (!$this->session->has_userdata('user_id')) {
                             <input type="password" class="form-control input-lg" name="password">
                         </div>
                     </div> -->
-                    <div class="form-group">
-                        <div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="locationStatus" id="buildStatus"> Status
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+                   
                     <div class="form-group">
                         <div>
                         <button type="submit" class="btn btn-success" id="saveButtonBuilding" >Save</button>
@@ -314,9 +306,55 @@ if (!$this->session->has_userdata('user_id')) {
                         </div>
                     </div>
                    </div>
-
                     </div>
-                    <div class="row">
+                    <div class="row" style="display:flex">
+                   <div class="col-md-6" style="margin-top:25px">
+                   <div class="form-group">
+                        <label class="control-label">Factory Name</label>
+                        <div>
+                            <input type="text" class="form-control input-lg" id='fn' name="fn" placeholder="">
+                        </div>
+                    </div>
+
+                   </div>
+                    <div class="col-md-6" style="margin-top:25px">
+                    <div class="form-group">
+                        <label class="control-label">Modal</label>
+                        <div>
+                            <input type="text" class="form-control input-lg" id='m' name="m" placeholder="">
+                        </div>
+                    </div>
+                   </div>
+                    </div>
+                    <div class="row" style="display:flex">
+                   <div class="col-md-6" style="margin-top:25px">
+                   <div class="form-group">
+                        <label class="control-label">Inner</label>
+                        <div>
+                            <input type="text" class="form-control input-lg" id='inn' name="inn" placeholder="">
+                        </div>
+                    </div>
+
+                   </div>
+                    <div class="col-md-6" style="margin-top:25px">
+                    <div class="form-group">
+                        <label class="control-label">Pannel Shape</label>
+                        <div>
+                            <input type="text" class="form-control input-lg" id='pshape' name="pshape" placeholder="">
+                        </div>
+                    </div>
+                   </div>
+                    </div>
+                    <div class="row" style="display:flex">
+                    <div class="col-md-6" style="margin-top:25px">
+                   <div class="form-group">
+                        <label class="control-label">Remarks</label>
+                        <div>
+                            <input type="text" class="form-control input-lg" id='rem' name="rem" placeholder="">
+                        </div>
+                    </div>
+
+                   </div>
                     <div class="col-md-6" style="margin-top:25px">
                     <div class="form-group">
                         <label class="control-label">RESULT</label>
@@ -327,19 +365,7 @@ if (!$this->session->has_userdata('user_id')) {
                     
                     </div>
                     </div>
-                    <div class="row" style="display:flex; margin-top:10px;">
-                     <div class="col-md-6">
-                     <div class="form-group">
-                        <div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" id="status" name="Status"> Status
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                     </div>
-                    </div>
+                
                     <div class="row">
                     <div class="form-group">
                         <div>
@@ -391,329 +417,440 @@ if (!$this->session->has_userdata('user_id')) {
                     </div></div>
                   
                     </div>
-                    <div class="row" style="display:flex">
-                    <div class="col-md-3">  
+            
+                    <div class="row">
+                    <form>
+                    <fieldset style="padding:15px;">
+                    <div class="row">
+                    <div class="col-md-3">
+                    <span class="badge badge-primary">Weight</span>
+
                      <div class="form-group">
-                        <label class="control-label">Weight 1</label>
-                        <div>
+                     <div>
+                        <label class="control-label">Max</label>
                             <input type="number" class="form-control input-lg" id='w1' name="w1" placeholder="">
                         </div>
                     </div>
+                   
                    </div>
-                   <div class="col-md-3">  
+                   <div class="col-md-3"> 
+                   <span class="badge badge-primary">Weight</span>
+ 
                      <div class="form-group">
-                        <label class="control-label">Weight 1</label>
+                        <label class="control-label"> Min</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='w2' name="w2" placeholder="">
                         </div>
                     </div>
                    </div>
-                    <div class="col-md-3" >   
+                 
+                    <div class="col-md-3" >
+                    <span class="badge badge-primary">Circumference</span>
+   
                      <div class="form-group">
-                        <label class="control-label">Circumference 1</label>
+                        <label class="control-label"> Max</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='c1_sp' name="c1_sp`" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3" >   
+
+                   <div class="col-md-3" >  
+                   <span class="badge badge-primary">Circumference</span>
+  
                      <div class="form-group">
-                        <label class="control-label">Circumference 2</label>
+                        <label class="control-label"> Min</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='c2_sp' name="c2_sp" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3" >   
+
+                   </div>
+                   </fieldset>
+                
+                <fieldset style="padding:15px;">
+                <div class="row">
+                <div class="col-md-3" >
+                <span class="badge badge-primary">Sphecity</span>   
+
                      <div class="form-group">
-                        <label class="control-label">Sphericity 1</label>
+                        <label class="control-label">Max</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='sp1_sp' name="sp1_sp" placeholder="">
                         </div>
                     </div>
                    </div>
                    <div class="col-md-3" >   
+                   <span class="badge badge-primary">Sphecity</span>   
+
                      <div class="form-group">
-                        <label class="control-label">Sphericity 2</label>
+                        <label class="control-label">Min</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='sp2_sp' name="sp2_sp" placeholder="">
                         </div>
                     </div>
                    </div>
                    <div class="col-md-3">   
+                   <span class="badge badge-primary">Loss of pressure</span>   
+
                      <div class="form-group">
-                        <label class="control-label">Loss of pressure 1</label>
+                        <label class="control-label">Max</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='lp1' name="lp1" placeholder="">
                         </div>
                     </div>
                    </div>
                    <div class="col-md-3">   
+                   <span class="badge badge-primary">Loss of pressure</span>   
+
                      <div class="form-group">
-                        <label class="control-label">Loss of pressure 2</label>
+                        <label class="control-label">Min</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='lp2' name="lp2" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3">   
+                </div>
+                </fieldset>
+                <fieldset style="padding:15px;">
+                <div class="row">
+                <div class="col-md-3"> 
+                <span class="badge badge-primary">Rebound at RT</span>   
+  
                      <div class="form-group">
-                        <label class="control-label">Rebound at RT 1</label>
+                        <label class="control-label">Max</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='rrt1' name="rrt1" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3">   
+                   <div class="col-md-3">  
+                   <span class="badge badge-primary">Rebound at RT</span>   
+ 
                      <div class="form-group">
-                        <label class="control-label">Rebound at RT 2</label>
+                        <label class="control-label">Min</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='rrt2' name="rrt2" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3">   
+                   <div class="col-md-3"> 
+                   <span class="badge badge-primary">Rebound at RT 5*C</span>   
+  
                      <div class="form-group">
-                        <label class="control-label">Rebound at RT 5*C 1</label>
+                        <label class="control-label">Max</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='rrt51' name="rrt51" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3">   
+                   <div class="col-md-3">  
+                   <span class="badge badge-primary">Rebound at RT 5*C</span>   
+ 
                      <div class="form-group">
-                        <label class="control-label">Rebound at RT 5*C 2</label>
+                        <label class="control-label">Min</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='rrt52' name="rrt52" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3">   
+                </div>
+                </fieldset>
+                <fieldset style="padding:15px;">
+                <div class="row">
+                <div class="col-md-3">
+                <span class="badge badge-primary">Rebound at RT 0*C</span>   
+   
                      <div class="form-group">
-                        <label class="control-label">Rebound at RT 0*C 1</label>
+                        <label class="control-label">Max</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='rrt01' name="rrt01" placeholder="">
                         </div>
                     </div>
                    </div>
                    <div class="col-md-3">   
+                   <span class="badge badge-primary">Rebound at RT 0*C</span>   
+
                      <div class="form-group">
-                        <label class="control-label">Rebound at RT 0*C 2</label>
+                        <label class="control-label">Min</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='rrt02' name="rrt02" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3">   
+                   <div class="col-md-3"> 
+                   <span class="badge badge-primary">Increase in Circumference</span>   
+  
                      <div class="form-group">
-                        <label class="control-label">Increase in Circumference 1</label>
+                        <label class="control-label">Max</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='c1_dp' name="c1_dp" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3">   
+                   <div class="col-md-3"> 
+                   <span class="badge badge-primary">Increase in Circumference</span>   
+  
                      <div class="form-group">
-                        <label class="control-label">Increase in Circumference 1</label>
+                        <label class="control-label">Min</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='c2_dp' name="c2_dp" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3">   
+                </div>
+                </fieldset>
+                <fieldset style="padding:15px;">
+                <div class="row">
+                <div class="col-md-3">
+                <span class="badge badge-primary">Sphericity ref to 100% </span>
+   
                      <div class="form-group">
-                        <label class="control-label">Dev. Sphericity in ref. to 100% roundness CSM 1</label>
+                        <label class="control-label">Max</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='sp_dp1' name="sp_dp1" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3">   
+                   <div class="col-md-3">  
+                   <span class="badge badge-primary">Sphericity ref to 100% </span>
+ 
                      <div class="form-group">
-                        <label class="control-label">Dev. Sphericity in ref. to 100% roundness CSM 2</label>
+                        <label class="control-label">Min</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='sp_dp2' name="sp_dp2" placeholder="">
                         </div>
                     </div>
                    </div>
                    <div class="col-md-3">   
+                   <span class="badge badge-primary">Change of pressure</span>
+
                      <div class="form-group">
-                        <label class="control-label">Change of pressure in ref. to initial pressure 1</label>
+                        <label class="control-label">Max</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='lp_dp1' name="lp_dp1" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3">   
+                   <div class="col-md-3"> 
+                   <span class="badge badge-primary">Change of pressure</span>
+  
                      <div class="form-group">
-                        <label class="control-label">Change of pressure in ref. to initial pressure 2</label>
+                        <label class="control-label">Min</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='lp_dp2' name="lp_dp2" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3">   
+                </div>
+                </fieldset>
+                <fieldset style="padding:15px;">
+                <div class="row">
+                <div class="col-md-3">
+                <span class="badge badge-primary">Change of pressure</span>   
                      <div class="form-group">
-                        <label class="control-label">Material 1</label>
+                        <label class="control-label">Max</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='m1' name="m1" placeholder="">
                         </div>
                     </div>
                    </div>
                    <div class="col-md-3">   
+                   <span class="badge badge-primary">Change of pressure</span>
+
                      <div class="form-group">
-                        <label class="control-label">Material 2</label>
+                        <label class="control-label">Min</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='m2' name="m2" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3">   
+                   <div class="col-md-3"> 
+                   <span class="badge badge-primary">Water uptake</span>
+  
                      <div class="form-group">
-                        <label class="control-label">Water uptake 1</label>
+                        <label class="control-label">Max</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='wup1' name="wup1" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3">   
+                   <div class="col-md-3">
+                   <span class="badge badge-primary">Water uptake</span>   
                      <div class="form-group">
-                        <label class="control-label">Water uptake 2</label>
+                        <label class="control-label">Min</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='wup2' name="wup2" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3">   
+                </div>
+                </fieldset>
+                <fieldset style="padding:15px;">
+                <div class="row">
+                <div class="col-md-3">
+                <span class="badge badge-primary">Increase in Circumference</span>   
                      <div class="form-group">
-                        <label class="control-label">Increase in Circumference 1</label>
+                        <label class="control-label">Max</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='c1_wrt' name="c1_wrt" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3">   
+                   <div class="col-md-3">
+                   <span class="badge badge-primary">Increase in Circumference</span>      
                      <div class="form-group">
-                        <label class="control-label">Increase in Circumference 2</label>
+                        <label class="control-label">Min</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='c2_wrt' name="c2_wrt" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3">   
+                   <div class="col-md-3">
+                   <span class="badge badge-primary">Sphericity in ref. to 100%</span>         
                      <div class="form-group">
-                        <label class="control-label">Dev. in Sphericity in ref. to 100% roundness CSM 1</label>
+                        <label class="control-label">Max</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='sp1_wrt' name="sp1_wrt" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3">   
+                   <div class="col-md-3">
+                   <span class="badge badge-primary">Sphericity in ref. to 100%</span>            
                      <div class="form-group">
-                        <label class="control-label">Dev. in Sphericity in ref. to 100% roundness CSM 2</label>
+                        <label class="control-label">Min</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='sp2_wrt' name="sp2_wrt" placeholder="">
                         </div>
                     </div>
-                   </div>  
-                   <div class="col-md-3" >  
+                   </div>
+                </div>  
+                </fieldset>
+                <fieldset style="padding:15px;">
+                <div class="row">
+                <div class="col-md-3" >
+                <span class="badge badge-primary">Drum Test</span>              
                      <div class="form-group">
-                        <label class="control-label">Drum Test 1</label>
+                        <label class="control-label">Max</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='dt1' name="dt1" placeholder="">
                         </div>
                     </div>
                    </div>
                    <div class="col-md-3" > 
+                   <span class="badge badge-primary">Drum Test</span>              
                      <div class="form-group">
-                        <label class="control-label">Drum Test 2</label>
+                        <label class="control-label">Min</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='dt2' name="dt2" placeholder="">
                         </div>
                     </div>
                    </div>
                    <div class="col-md-3" > 
+                   <span class="badge badge-primary">Abraison resistance on 2 panels</span>              
                      <div class="form-group">
-                        <label class="control-label">Abraison resistance on 2 panels after water test w/Sandpaper grade P150 1</label>
+                        <label class="control-label">Max</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='abr1' name="abr1" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3" >    
+                   <div class="col-md-3" >
+                     <span class="badge badge-primary">Abraison resistance on 2 panels</span>              
                      <div class="form-group">
-                        <label class="control-label">Abraison resistance on 2 panels after water test w/Sandpaper grade P150 2</label>
+                        <label class="control-label">Min</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='abr2' name="abr2" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3" >  
+                </div>
+                </fieldset>
+                <fieldset style="padding:15px;">
+                <div class="row">
+                <div class="col-md-3" >
+                <span class="badge badge-primary">UV Light Fastness</span>                
                      <div class="form-group">
-                        <label class="control-label">UV Light Fastness 1</label>
+                        <label class="control-label">Max</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='uvlf1' name="uvlf1" placeholder="">
                         </div>
                     </div>
                    </div>
                    <div class="col-md-3" >  
+                   <span class="badge badge-primary">UV Light Fastness</span>                
                      <div class="form-group">
-                        <label class="control-label">UV Light Fastness 2</label>
+                        <label class="control-label">Min</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='uvlf2' name="uvlf2" placeholder="">
                         </div>
                     </div>
                    </div>
                    <div class="col-md-3" >  
+                   <span class="badge badge-primary">Ozon Test on Rubber</span>                
                      <div class="form-group">
-                        <label class="control-label">Ozon Test on Rubber 1</label>
+                        <label class="control-label">Max</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='otr1' name="otr1" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3" >    
+                   <div class="col-md-3" >  
+                   <span class="badge badge-primary">Ozon Test on Rubber</span>                
+
                      <div class="form-group">
-                        <label class="control-label">Ozon Test on Rubber 2</label>
+                        <label class="control-label">Min</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='otr2' name="otr2" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3" > 
+                </div>
+                </fieldset>
+                <fieldset style="padding:15px;">
+                <div class="row">
+                <div class="col-md-3" >
+                <span class="badge badge-primary">Hydrolysis - Lamination</span>                 
                      <div class="form-group">
-                        <label class="control-label">Hydrolysis - Lamination 1</label>
+                        <label class="control-label">Max</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='hl1' name="hl1" placeholder="">
                         </div>
                     </div>
                    </div>
                    <div class="col-md-3" > 
+                   <span class="badge badge-primary">Hydrolysis - Lamination</span>                 
                      <div class="form-group">
-                        <label class="control-label">Hydrolysis - Lamination 2</label>
+                        <label class="control-label">Min</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='hl2' name="hl2" placeholder="">
                         </div>
                     </div>
                    </div>
                    <div class="col-md-3" > 
+                   <span class="badge badge-primary">Hydrolysis - Color Change </span>                 
                      <div class="form-group">
-                        <label class="control-label">Hydrolysis - Color Change 1</label>
+                        <label class="control-label">Max</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='hcc1' name="hcc1" placeholder="">
                         </div>
                     </div>
                    </div>
-                   <div class="col-md-3" > 
+                   <div class="col-md-3" >
+                   <span class="badge badge-primary">Hydrolysis - Color Change </span>                 
                      <div class="form-group">
-                        <label class="control-label">Hydrolysis - Color Change 2</label>
+                        <label class="control-label">Min</label>
                         <div>
                             <input type="number" class="form-control input-lg" id='hcc2' name="hcc2" placeholder="">
                         </div>
                     </div>
-                   </div>                                                   
+                   </div>  
+                </div>
+                </fieldset>
+                    </form>                                                 
                     </div>
-                
+                   
                     <div class="row" style="display:flex; margin-top:10px;">
                     
                     </div>
@@ -738,39 +875,417 @@ if (!$this->session->has_userdata('user_id')) {
         </div>
 
 
+<div class="modal fade bd-example-modal-xl" id="FGTReportModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLongTitle">FGT Report</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+    <h4 class="text-center m-4">FGT REPORT FOR AIRLINES MINI(SOCCER BALLS)</h4>
+
+<div class="container-fluid p-5">
+    <div class="row p-2">
+        <div class="col-sm-4">
+            <table class="table table-striped">
+                <tbody style="border: 1px solid;">
+                    <tr>
+                        <th style="border: 1px solid;">F2206LSB060</th>
+                        <td class="text-center">HI2192</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid;">FACTORY NAME</th>
+                        <td class="text-center">Forward Sports</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid;"><br>LAB NO.</th>
+                        <td class="text-center">SD043LB-21 HI2192<br>694D</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid;"><br>TESTING DATE</th>
+                        <td class="text-center">27/11/2021</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid;">TEST ACC. TO CAT</th>
+                        <td class="text-center"></td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid;">PRODUCTION MONTH</th>
+                        <td class="text-center">Sep-21</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-4">
+            <table class="table table-striped">
+                <tbody style="border: 1px solid;">
+                    <tr>
+                        <th colspan="2" style="border: 1px solid; text-align:center">Construction</th>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid;">MODEL</th>
+                        <td class="text-center">AFC MINI HOME</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid;"><br><br>INNER</th>
+                        <td class="text-center"><br><br>PU Foam Core</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid;">PANEL SHAPE</th>
+                        <td class="text-center">Mini Teamgiest 14</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid;">REMARK</th>
+                        <td class="text-center">Santigo 18 Panel</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid;">BALLTYPE</th>
+                        <td class="text-center">Airless Mini</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-4">
+            <table class="table table-striped">
+                <tbody style="border: 1px solid;">
+                    <tr>
+                        <th style="border: 1px solid;">TEST TYPE</th>
+                        <td class="text-center">FW22 Development</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid;"><br>MAIN MAT.COLOR</th>
+                        <td class="text-center"><br>White</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid;">PRINTING COLORS</th>
+                        <td class="text-center">Gold Met, Red,</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid;">RESULT</th>
+                        <td class="text-center">Pass</td>
+                    </tr>
+                    <tr>
+                        <th style="border: 1px solid;"><br>TESTED BY</th>
+                        <td class="text-center"><br>Imran Munir</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="container-fluid p-2">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th class="text-center" style="border: 1px solid">TEST</th>
+                            <th class="text-center" style="border: 1px solid">METHOD</th>
+                            <th class="text-center" style="border: 1px solid">Condition</th>
+                            <th class="text-center" colspan="2" style="border: 1px solid;">Requirement</th>
+                            <th colspan="4" class="text-center" style="border: 1px solid">Result</th>
+                        </tr>
+
+                        <tr>
+                            <td style="border: 1px solid"></td>
+                            <td style="border: 1px solid"></td>
+                            <td style="border: 1px solid"></td>
+                            <th style="border: 1px solid; border-collapse: collapse">
+                                Unit
+                                <th style="border: 1px solid">Airless Mini Soccerball</th>
+                            </th>
+                            <td style="border: 1px solid">1</td>
+                            <td style="border: 1px solid">2</td>
+                            <td style="border: 1px solid">2</td>
+                            <td style="border: 1px solid">3</td>
+                        </tr>
+                        <tr>
+                            <!-- <th style="border: 1px solid ">Static Properties</th> -->
+                            <th style="border: 1px solid ">Static Properties</th>
+                            <td style="border: 1px solid "></td>
+                            <td style="border: 1px solid; border-collapse:collapse"></td>
+                            <td class="text-center" style="border: 1px solid ">
+                                <b></b>
+                                <th class="text-center" style="border: 1px solid "></th>
+                                <th class="text-center" style="border: 1px solid "></th>
+                                <th class="text-center" colspan="2" style="border: 1px solid "></th>
+                            </td>
+
+                            <td style="border: 1px solid "></td>
+
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid ">Weight</td>
+                            <td style="border: 1px solid ">FGT-35</td>
+                            <td style="border: 1px solid ">RT/24h</td>
+                            <td style="border: 1px solid ">
+                                <b>g</b>
+                                <td style="border: 1px solid ">160-180</td>
+                                <td style="border: 1px solid ">175</td>
+                                <td style="border: 1px solid ">173</td>
+                                <td style="border: 1px solid ">176</td>
+
+                            </td>
+                            <td class="text-center" style="border: 1px solid;  ">
+                                1.75
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid ">Circumference</td>
+                            <td style="border: 1px solid ">FGT-36</td>
+                            <td style="border: 1px solid ">RT/24h</td>
+                            <td style="border: 1px solid ">
+                                <b>cm</b>
+                                <td style="border: 1px solid ">42.0-46.0</td>
+                                <td style="border: 1px solid ">43.0-43.1</td>
+
+                                <td class="text-center" style="border: 1px solid; border-collapse:collapse ">
+                                    43.9-43.1
+                                </td>
+                            </td>
+                            <td style="border: 1px solid ">43.0-43.1</td>
+                            <td style="border: 1px solid ">43.0-43.2</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid ">Dynamic Properties</td>
+                            <td style="border: 1px solid "></td>
+                            <td colspan="7" style="border: 1px solid "></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid ">Rebound at RT</td>
+                            <td style="border: 1px solid ">FGT-39</td>
+                            <td class="text-center" style="border: 1px solid ">RT/24h</td>
+                            <td style="border: 1px solid ">
+                                <b>cm</b>
+                                <td style="border: 1px solid ">min .85</td>
+                                <td style="border: 1px solid ">100.6</td>
+
+                                <td class="text-center" style="border: 1px solid ">102.1</td>
+                            </td>
+                            <td style="border: 1px solid ">99.6</td>
+                            <td style="border: 1px solid ">98.5</td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid ">Water Uptake / Durability</th>
+                            <td colspan="8" style="border: 1px solid "></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid ">Drum Test</td>
+                            <td style="border: 1px solid ">FGT-50</td>
+                            <td style="border: 1px solid ">240 mnutes - wet</td>
+                            <td class="text-center" colspan="2" style="border: 1px solid ">water uptake max. 15%/ no delamination</td>
+                            <td style="border: 1px solid ">11.48%</td>
+                            <td style="border: 1px solid "></td>
+                            <td style="border: 1px solid "></td>
+                            <td style="border: 1px solid "></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid ">Light Fastness</th>
+                            <td colspan="8" style="border: 1px solid "></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid ">UV Light Fastness</td>
+                            <td style="border: 1px solid ">FGT-04</td>
+                            <td class="text-center" style="border: 1px solid ">2h/550W</td>
+                            <td class="text-center" colspan="2" style="border: 1px solid ">max 3 acc. greyscale</td>
+                            <th class="text-center" style="border: 1px solid ">4/5</th>
+                            <td style="border: 1px solid "></td>
+                            <td style="border: 1px solid "></td>
+                            <td style="border: 1px solid "></td>
+
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid ">Hydrolysis</th>
+                            <td style="border: 1px solid "></td>
+                            <td colspan="7" style="border: 1px solid "></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid ">Lamination</td>
+                            <td style="border: 1px solid ">FGT-01</td>
+                            <td style="border: 1px solid ">60*C; 95% r.H.<br>3 days</td>
+                            <td class="text-center" colspan="2" style="border: 1px solid ">no delamination</td>
+                            <td class="text-center" style="border: 1px solid ">Pass</td>
+                            <td style="border: 1px solid "></td>
+                            <td style="border: 1px solid "></td>
+                            <td style="border: 1px solid "></td>
+
+
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid ">Color Change</td>
+                            <td style="border: 1px solid ">FGT-01</td>
+                            <td style="border: 1px solid ">60*C; 95% r.H.<br>3 days</td>
+                            <td class="text-center" colspan="2" style="border: 1px solid ">max 3 acc. greyscale</td>
+                            <td class="text-center" style="border: 1px solid ">4/5</td>
+                            <td style="border: 1px solid "></td>
+                            <td style="border: 1px solid "></td>
+                            <td style="border: 1px solid "></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin: 15px auto" class="container-fluid p-2">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped col-6">
+                    <tbody style="border: 1px solid;">
+                        <tr>
+                            <th rowspan="5" style="border: 1px solid">Remarks:</th>
+                        </tr>
+
+                        <tr>
+                            <td>Test request</td>
+                        </tr>
+
+                        <tr>
+                            <td>failed criteria</td>
+                        </tr>
+
+                        <tr>
+                            <td>obvious problems<br>before<br>during<br>and after tests</td>
+                        </tr>
+                        <tr>
+                            <td>Improvements</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Print Report</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <br><br>
   <div class="row">
                                                <div class="col-md-12" >
-<div id="panel-7" class="panel">
-                                    <div class="panel-hdr">
-                                        <h2>
-                                        FGT  <span class="fw-300"><i></i></span>
-                                        </h2>
-                                        <!-- <div class="panel-toolbar">
-                                            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                                            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                                            <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
-                                        </div> -->
-                                          <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#Modaldepartment" class="d-grid gap-2 d-md-block" id="createDepartment">+ Create Head</button>
+
+                                   
+                                
+                                <div class="col-md-12  table-responsive">
+
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            FGT Report</span>
+        </h2>
+       
+        <!-- <div class="panel-toolbar">
+                <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+            </div> -->
+            <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#Modaldepartment" class="d-grid gap-2 d-md-block" id="createDepartment">+ Create Head</button>
                                           &nbsp;&nbsp;&nbsp;&nbsp;  
                                           <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#ModalDetail" class="d-grid gap-2 d-md-block" id="createDepartment">+ Create Detail</button> 
+    </div>
+    
+    
+    <div class="panel-container show">
+                                    <div class="panel-content">
+                                        <div class="demo-v-spacing" id="defaultTable" >
+                                            <table id="ActivityData" class="table table-bordered table-hover table-responsive table-striped w-100">
+                                            <thead class="bg-primary-200 text-light">
+                                                    
+                                                    <th>LAB NO.</th>
+                                                    <th>TESTING DATE</th>
+                                                    <th>TEST ACC. TO Cat</th>   
+                                                    <th>FIFA STUMP</th>
+                                                    <th>PRODUCTION MONTH</th>
+                                                    <th>COVER MAT.</th>
+                                                    <th>BACKING</th>
+                                                    <th>BLADDER</th>
+                                                    <th>BALLTYPE</th>
+                                                    <th>TEST TYPE</th>
+                                                    <th>MAIN MAT. COLOR</th>
+                                                    <th>PRINTING COLORS</th>
+                                                    <th>RESULT</th>
+                                                    <th>Factory Name</th>
+                                                    <th>Modal</th>
+                                                    <th>Inner</th>
+                                                    <th>Panel Shape</th>
+                                                    <th>Remark</th>
+                                                    <th>TESTED BY</th>
+                                                    <th>ACTIONS</th>
+                                                    </thead>
+                                                <tbody>
+                                                     
+                                                <?php
+                                               //print_r($loadFGT_H);
+                                                 Foreach($loadFGT_H as $keys) { ?>
+                 
+                        <tr>
+
+                        <td><?php echo $keys['labno'];?></td>
+                        <td><?php echo $keys['testdate'];?></td>
+                                                <td><?php echo $keys['tastcat'];?></td>   
+                                                <td><?php echo $keys['fifiastemp'];?></td>
+                                                <td><?php echo $keys['productionmonth'];?>/<?php echo $keys['Year'];?></td>
+                                                <td><?php echo $keys['covermat'];?></td>
+                                                <td><?php echo $keys['backing'];?></td>
+                                                <td><?php echo $keys['bladder'];?></td>
+                                                <td><?php echo $keys['testtype'];?></td>
+                                                <td><?php echo $keys['labno'];?></td>
+                                                <td><?php echo $keys['mainmatcolor'];?></td>
+                                                <td><?php echo $keys['printngscolors'];?></td>
+                                                <td><?php echo $keys['result'];?></td>
+                                                <td> <?php echo $keys['factory_name']; ?></td>
+                                                <td> <?php echo $keys['modal'];?></td>
+                                                <td> <?php echo $keys['Innervalue'];?></td>
+                                                <td> <?php echo $keys['panel_shape'];?></td>
+                                                <td> <?php echo $keys['LoginName'];?></td>
+                                              <td> <?php echo $keys['remark'];?></td>
+                                                <td>
+            <div class="row">
+    
+                <div class="col-md-2">
+                <button type="button" class="btn btn-warning btn-xs printButton" id="btnPrint.<?php Echo $keys['TID']; ?>" ><i class="fal fa-print" aria-hidden="true"></i></button>
+                </div>
+            </div>
+          
+        
+           
+           
+           </td>   
+                        </tr>
+                       
+                       
+                       <?php
+                      }
+                      ?>
+                                                </tbody>
+                                                 
+                                            </table>
+                                        </div>
                                     </div>
-                                    <div class="panel-container show">
-                                        <div class="panel-content">
-                                          
-                                        <!--     <ul class="nav nav-pills" role="tablist">
-                                                <li class="nav-item"><a class="nav-link active" data-toggle="pill" href="#nav_pills_default-1">Building</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#nav_pills_default-2">Department</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#nav_pills_default-3">Section</a></li>
-                                            
-                                            </ul> -->
-                                         
-                                                   
-                                               
-                                           
-                                    </div>
+
                                 </div>
-     <!--Table responsive-->
+
+<!--  Custom Table Content -->
+
+
+    
+
+<!-- End Custom Table Content -->
+</div>
+</div>
+
+
+
     
                             </div>
                             </div>
@@ -1118,6 +1633,8 @@ Status = 1;
                             </div>
                         </div>
                     </div>
+
+                    
                     <!-- END Shortcuts -->
                     <!-- BEGIN Color profile -->
                     <!-- this area is hidden and will not be seen on screens or screen readers -->
@@ -1212,6 +1729,10 @@ Status = 1;
                 <i class="fal fa-microphone"></i>
             </a>
         </nav>
+
+        
+
+        
         <!-- END Quick Menu -->
         <!-- BEGIN Messenger -->
         <div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
@@ -2332,6 +2853,12 @@ Status = 1;
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js" integrity="sha512-gtII6Z4fZyONX9GBrF28JMpodY4vIOI0lBjAtN/mcK7Pz19Mu1HHIRvXH6bmdChteGpEccxZxI0qxXl9anY60w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
+
+        $("#ActivityData").on('click','.printButton',function(e){
+            e.preventDefault();
+
+            $('#FGTReportModal').modal('toggle');
+        });
          let fileSelectStore;
          let HeaderArray = [];
          let ChildArray = [];
@@ -2456,7 +2983,7 @@ let arrayHead = [element.TestDate,element.PONo,element.Quantity,element.Receivin
      $.post(url,{"TID":TID,"w1":w1?w1:0,"w2":w2?w2:0,"c1_sp":c1_sp?c1_sp:0, "c2_sp":c2_sp?c2_sp:0, "sp1_sp": sp1_sp? sp1_sp:0, "sp2_sp": sp2_sp? sp2_sp:0, "lp1": lp1 ? lp1 :0, "lp2": lp2 ? lp2 :0, "rrt1": rrt1 ? rrt1 :0, "rrt2": rrt2 ? rrt2 :0, "rrt51": rrt51 ? rrt51 :0,"rrt52": rrt52 ? rrt52 :0, "rrt01": rrt01 ? rrt01 :0, "rrt02": rrt02 ? rrt02 :0, "c1_dp": c1_dp ? c1_dp :0,
         "c2_dp": c2_dp ? c2_dp :0, "sp_dp1": sp_dp1 ? sp_dp1 :0, "sp_dp2": sp_dp2 ? sp_dp2 :0, "lp_dp1": lp_dp1 ? lp_dp1 :0, "lp_dp2": lp_dp2 ? lp_dp2 :0, "m1": m1 ? m1 :0, "m2": m2 ? m2 :0, "wup1": wup1 ? wup1 :0, "wup2": wup2 ? wup2 :0, "c1_wrt": c1_wrt ? c1_wrt :0, "c2_wrt": c2_wrt ? c2_wrt :0, "sp1_wrt": sp1_wrt ? sp1_wrt :0, "sp2_wrt": sp2_wrt ? sp2_wrt :0, "dt1": dt1 ? dt1 :0, "dt2": dt2 ? dt2 :0, "abr1": abr1 ? abr1 :0, "abr2": abr2 ? abr2 :0, "uvlf1": uvlf1 ? uvlf1 :0, "uvlf2": uvlf2 ? uvlf2 :0, "otr1":  otr1 ?  otr1 :0,  "otr2":  otr2 ?  otr2 :0,
         "hl1":  hl1 ?  hl1 :0, "hl2":  hl2 ?  hl2 :0, "hcc1":  hcc1 ?  hcc1 :0, "hcc2":  hcc2 ?  hcc2 :0,} ,function(data){
-              alert("Details   inserted Successfully");
+              alert("FGT Head inserted Successfully");
             location.reload();
               });
             
@@ -2478,16 +3005,38 @@ let btype = $("#btype").val();
 let ttype = $("#ttype").val();
 let mmcolor = $("#mmcolor").val();
 let pcolors = $("#pcolors").val();
+let fn = $("#fn").val();
+let m = $("#m").val();
+let inn = $("#inn").val();
+let pshape = $("#pshape").val();
+let rem = $("#rem").val();
 let result = $("#result").val();
+//alert(result)
 
-url = "<?php echo base_url(''); ?>FGT/FGT_H/"+ fgttype + '/' + lbno + '/'+ tdate + '/' + testcat + '/'+ fifastump + '/' + pmonth + '/'+ cmat + '/' + backing + '/'+ bladder + '/' + btype + '/'+ ttype + '/' + mmcolor+ '/' + pcolors + '/' + result
-// url = "<?php echo base_url(''); ?>FGT/FGT_H/"+ fgttype + '/' + lbno + '/'+ tdate + '/' + testcat + '/'+ fifastump + '/' + pmonth + '/'+ cmat + '/' + backing + '/'+ fgbladderttype + '/' + btype + '/'+ ttype + '/' + mmcolor+ '/' + pcolors + '/' + result
+url = "<?php echo base_url(''); ?>FGT/FGT_H"
+//alert(url)
 
-  //alert(url);
-     $.get(url, function(data){
-              alert("Activity  inserted Successfully");
-              location.reload();
+// $.post(url,{"fgttype":fgttype?fgttype:null,"labno":labno?labno:null,"tdate":tdate?tdate:null, "testcat":testcat?testcat:null, "fifastum": fifastump? fifastump:0, "pmonth": pmonth? pmonth:null, "cmat": cmat ? cmat :null, "backing": backing ? backing :null, "bladder": bladder ? bladder :null, "btype": btype ? btype :null, "ttype": ttype ? ttype :null,"mmcolor": mmcolor ? mmcolor :null, "pcolors": pcolors ? pcolors :null, "result": result ? result :null,"fn": fn ? fn :null, "m": m ? m :null, "inn": inn ? inn :null, "pshape": pshape ? pshape :null, "rem": rem ? rem :null} ,function(data){
+//               //alert("Details   inserted Successfully");
+//               console.log("Data Get from Function",data);
+//            // location.reload();
+//               });
+
+
+$.post(url,{"fgttype":fgttype?fgttype:null,"labno":lbno?lbno:null,"tdate":tdate?tdate:null, "testcat":testcat?testcat:null, "fifastump": fifastump? fifastump:0, "pmonth": pmonth? pmonth:null, "cmat": cmat ? cmat :null, "backing": backing ? backing :null, "bladder": bladder ? bladder :null, "btype": btype ? btype :null, "ttype": ttype ? ttype :null,"mmcolor": mmcolor ? mmcolor :null, "pcolors": pcolors ? pcolors :null, "result": result ? result :null,"fn": fn ? fn :null, "m": m ? m :null, "inn": inn ? inn :null, "pshape": pshape ? pshape :null, "rem": rem ? rem :null} ,function(data){
+            alert("FGT Details   inserted Successfully");
+              //console.log("Data Get from Function",data);
+            location.reload();
               });
+
+
+// url = "<?php echo base_url(''); ?>FGT/FGT_H/"+ fgttype + '/' + lbno + '/'+ tdate + '/' + testcat + '/'+ fifastump + '/' + pmonth + '/'+ cmat + '/' + backing + '/'+ bladder + '/' + btype + '/'+ ttype + '/' + mmcolor+ '/' + pcolors + '/' + result + '/'+  fn + '/'+ m + '/'+ inn + '/'+ pshape + '/' + rem
+// // url = "<?php echo base_url(''); ?>FGT/FGT_H/"+ fgttype + '/' + lbno + '/'+ tdate + '/' + testcat + '/'+ fifastump + '/' + pmonth + '/'+ cmat + '/' + backing + '/'+ fgbladderttype + '/' + btype + '/'+ ttype + '/' + mmcolor+ '/' + pcolors + '/' + result
+//   alert(url);
+//      $.get(url, function(data){
+//               alert("Activity  inserted Successfully");
+//               location.reload();
+//               });
 
 }
 

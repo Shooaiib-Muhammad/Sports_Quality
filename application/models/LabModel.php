@@ -815,144 +815,7 @@ WHERE        (ArtCode = '$article')" );
         return $query->result_array();
 
 }
-public function FGT_H_insertion($fgttype,$lbno,$tdate,$testcat,$fifastump,$pmonth,$cmat,$backing,$fgbladderttype,
-    $btype,$ttype,$mmcolor,$pcolors,$result) {
-        date_default_timezone_set('Asia/Karachi');
-        $Date = date('Y-m-d H:i:s');
-        $user_id = $this->session->userdata('user_id');
 
-        $user_id;
-        $query = $this->db->query("INSERT INTO tbl_FGT_H 
-              (FGTType
-              ,labno
-              ,testdate
-              ,tastcat
-              ,fifiastemp
-              ,productionmonth
-              ,covermat
-              ,backing
-              ,bladder
-              ,balltype
-              ,testtype
-              ,mainmatcolor
-              ,printngscolors
-              ,result
-              ,userid,entrydate)
-        VALUES
-              ('$fgttype'
-              ,'$lbno'
-              ,'$tdate'
-              ,'$testcat'
-              ,'$fifastump'
-              ,'$pmonth'
-              ,'$cmat'
-              ,'$backing'
-              ,'$fgbladderttype'
-              ,'$btype'
-              ,'$ttype'
-              ,'$mmcolor'
-              ,'$pcolors',
-              '$result'
-              ,$user_id,'$Date')");
-        
-    }
-    public function getFGRH(){
-        $query = $this->db
-        ->query("SELECT        dbo.tbl_FGT_H.*
-FROM            dbo.tbl_FGT_H");
-return $query->result_array();
-    }
-    public function FGT_D_insertion($TID,$w1,$w2,$c1_sp,$c2_sp,$sp1_sp,$sp2_sp,$lp1,$lp2,$rrt1,$rrt2,$rrt51,$rrt52,$rrt01,$rrt02,$c1_dp,$c2_dp,$sp_dp1,$sp_dp2,$lp_dp1,$lp_dp2,$m1,$m2,$wup1,$wup2,$c1_wrt,$c2_wrt,$sp1_wrt,$sp2_wrt,$dt1,$dt2,$abr1,$abr2,$uvlf1,$uvlf2,$otr1,$otr2,$hl1,$hl2,$hcc1,$hcc2){
-        date_default_timezone_set('Asia/Karachi');
-        $Date = date('Y-m-d H:i:s');
-        $user_id = $this->session->userdata('user_id');
-
-        $user_id;
-        $query = $this->db->query("INSERT INTO tbl_FGT_D  
-              (TID,weight1
-              ,weight2
-              ,cir1
-              ,cir2
-              ,sphericity_sp1
-              ,sphericity_sp2
-              ,loss_of_pressure1
-              ,loss_of_pressure2
-              ,rebound_rt1
-              ,rebound_rt2
-              ,rebound_5_1
-              ,rebound_5_2
-              ,rebound_0_1
-              ,rebound_0_2
-              ,cir_st_1
-              ,cir_st_2
-              ,sphericity_st1
-              ,sphericity_st2
-              ,ch_of_pressure_st1
-              ,ch_of_pressure_st2
-              ,material_st1
-              ,material_st2
-              ,water_uptake_wrt1
-              ,water_uptake_wrt2
-              ,cir1_wrt
-              ,cir2_wrt
-              ,sphericity_wrt1
-              ,sphericity_wrt2
-              ,drum_test_pd1
-              ,drum_test_pd2
-              ,abraison_resistance_pd1
-              ,abraison_resistance_pd2
-              ,uv_light_fast_cst1
-              ,uv_light_fast_cst2
-              ,ozon_test_cst1
-              ,ozon_test_cst2
-              ,hydrolysis_lam1
-              ,hydrolysis_lam2
-              ,hydrolysis_color1
-              ,hydrolysis_color2
-              ,userid,entrydate)
-        VALUES
-              ($TID,'$w1'
-              ,'$w2'
-              ,'$c1_sp'
-              ,'$c2_sp'
-              ,'$sp1_sp'
-              ,'$sp2_sp'
-              ,'$lp1'
-              ,'$lp2'
-              ,'$rrt1'
-              ,'$rrt2'
-              ,'$rrt51'
-              ,'$rrt52'
-              ,'$rrt01'
-              ,'$rrt02'
-              ,'$c1_dp'
-              ,'$c2_dp'
-              ,'$sp_dp1'
-              ,'$sp_dp2'
-              ,'$lp_dp1'
-              ,'$lp_dp2'
-              ,'$m1'
-              ,'$m2'
-              ,'$wup1'
-              ,'$wup2'
-              ,'$c1_wrt'
-              ,'$c2_wrt'
-              ,'$sp1_wrt'
-              ,'$sp2_wrt'
-              ,'$dt1'
-              ,'$dt2'
-              ,'$abr1'
-              ,'$abr2'
-              ,'$uvlf1'
-              ,'$uvlf2'
-              ,'$otr1'
-              ,'$otr2'
-              ,'$hl1'
-              ,'$hl2'
-              ,'$hcc1'
-              ,'$hcc2'
-              ,$user_id,'$Date')");
-    }
 public function updateprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate){
 $Status=str_replace("%20"," ", $Status);
 	// Echo $ProcessEndDate;
@@ -1057,4 +920,154 @@ public function getTableData($sDate,$eDate){
 
        return $query->result_array();
 }
+public function FGT_H_insertion($fgttype,$lbno,$tdate,$testcat,$fifastump,$pmonth,$cmat,$backing,$fgbladderttype,
+    $btype,$ttype,$mmcolor,$pcolors,$result,$fn,$m,$inn,$pshape,$rem) {
+        date_default_timezone_set('Asia/Karachi');
+        $Date = date('Y-m-d H:i:s');
+        $user_id = $this->session->userdata('user_id');
+
+        $user_id;
+        $query = $this->db->query("INSERT INTO tbl_FGT_H
+              (FGTType
+              ,labno
+              ,testdate
+              ,tastcat
+              ,fifiastemp
+              ,productionmonth
+              ,covermat
+              ,backing
+              ,bladder
+              ,balltype
+              ,testtype
+              ,mainmatcolor
+              ,printngscolors
+              ,result
+              ,userid,entrydate
+              ,factory_name
+              ,modal
+              ,Innervalue
+              ,panel_shape
+              ,remark
+              )
+        VALUES
+              ('$fgttype'
+              ,'$lbno'
+              ,'$tdate'
+              ,'$testcat'
+              ,'$fifastump'
+              ,'$pmonth'
+              ,'$cmat'
+              ,'$backing'
+              ,'$fgbladderttype'
+              ,'$btype'
+              ,'$ttype'
+              ,'$mmcolor'
+              ,'$pcolors',
+              '$result'
+              ,$user_id,'$Date'
+              ,'$fn'
+              ,'$m'
+              ,'$inn'
+              ,'$pshape',
+              '$rem'
+              )");
+        
+    }
+    public function getFGRH(){
+        $query = $this->db
+        ->query("SELECT        dbo.view_FGT_H.*
+FROM            dbo.view_FGT_H");
+return $query->result_array();
+    }
+    public function FGT_D_insertion($TID,$w1,$w2,$c1_sp,$c2_sp,$sp1_sp,$sp2_sp,$lp1,$lp2,$rrt1,$rrt2,$rrt51,$rrt52,$rrt01,$rrt02,$c1_dp,$c2_dp,$sp_dp1,$sp_dp2,$lp_dp1,$lp_dp2,$m1,$m2,$wup1,$wup2,$c1_wrt,$c2_wrt,$sp1_wrt,$sp2_wrt,$dt1,$dt2,$abr1,$abr2,$uvlf1,$uvlf2,$otr1,$otr2,$hl1,$hl2,$hcc1,$hcc2){
+        date_default_timezone_set('Asia/Karachi');
+        $Date = date('Y-m-d H:i:s');
+        $user_id = $this->session->userdata('user_id');
+
+        $user_id;
+        $query = $this->db->query("INSERT INTO tbl_FGT_D  
+              (TID,weight1
+              ,weight2
+              ,cir1
+              ,cir2
+              ,sphericity_sp1
+              ,sphericity_sp2
+              ,loss_of_pressure1
+              ,loss_of_pressure2
+              ,rebound_rt1
+              ,rebound_rt2
+              ,rebound_5_1
+              ,rebound_5_2
+              ,rebound_0_1
+              ,rebound_0_2
+              ,cir_st_1
+              ,cir_st_2
+              ,sphericity_st1
+              ,sphericity_st2
+              ,ch_of_pressure_st1
+              ,ch_of_pressure_st2
+              ,material_st1
+              ,material_st2
+              ,water_uptake_wrt1
+              ,water_uptake_wrt2
+              ,cir1_wrt
+              ,cir2_wrt
+              ,sphericity_wrt1
+              ,sphericity_wrt2
+              ,drum_test_pd1
+              ,drum_test_pd2
+              ,abraison_resistance_pd1
+              ,abraison_resistance_pd2
+              ,uv_light_fast_cst1
+              ,uv_light_fast_cst2
+              ,ozon_test_cst1
+              ,ozon_test_cst2
+              ,hydrolysis_lam1
+              ,hydrolysis_lam2
+              ,hydrolysis_color1
+              ,hydrolysis_color2
+              ,userid,entrydate)
+        VALUES
+              ($TID,'$w1'
+              ,'$w2'
+              ,'$c1_sp'
+              ,'$c2_sp'
+              ,'$sp1_sp'
+              ,'$sp2_sp'
+              ,'$lp1'
+              ,'$lp2'
+              ,'$rrt1'
+              ,'$rrt2'
+              ,'$rrt51'
+              ,'$rrt52'
+              ,'$rrt01'
+              ,'$rrt02'
+              ,'$c1_dp'
+              ,'$c2_dp'
+              ,'$sp_dp1'
+              ,'$sp_dp2'
+              ,'$lp_dp1'
+              ,'$lp_dp2'
+              ,'$m1'
+              ,'$m2'
+              ,'$wup1'
+              ,'$wup2'
+              ,'$c1_wrt'
+              ,'$c2_wrt'
+              ,'$sp1_wrt'
+              ,'$sp2_wrt'
+              ,'$dt1'
+              ,'$dt2'
+              ,'$abr1'
+              ,'$abr2'
+              ,'$uvlf1'
+              ,'$uvlf2'
+              ,'$otr1'
+              ,'$otr2'
+              ,'$hl1'
+              ,'$hl2'
+              ,'$hcc1'
+              ,'$hcc2'
+              ,$user_id,'$Date')");
+    }
 }
