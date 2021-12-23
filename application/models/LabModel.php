@@ -178,7 +178,7 @@ class LabModel extends CI_Model
            ('$Id'
            ,'$Test'
            ,'$Standard'
-           ,'Unit'
+           ,'$Unit'
            ,'$Results'
            ,'$Date'
            ,'$user_id')");
@@ -205,7 +205,7 @@ class LabModel extends CI_Model
            ('$Id'
            ,'$Test'
            ,'$Standard'
-           ,'Unit'
+           ,'$Unit'
            ,'$Results'
            ,'$Date'
            ,'$user_id')");
@@ -332,6 +332,125 @@ class LabModel extends CI_Model
             
         }
     }
+
+    public function AddHeaderMaterial(
+        $TestDate,
+        $CSSNO,
+        $PONo,
+        $Quantity,
+        $ReceivingDate,
+        $ItemName,
+        $SupplierName,
+        $testNo,
+        $SupplierRef,
+        $Result,
+        $ItemType,
+        $picture,
+        $testGroup,
+        $child
+    ) {
+
+
+        date_default_timezone_set('Asia/Karachi');
+        $Date = date('Y-m-d H:i:s');
+        $user_id = $this->session->userdata('user_id');
+
+        $user_id;
+        $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_H
+              (TestNO
+              ,Date
+              ,Size
+              ,PO
+              ,Receiving_Date
+              ,Supplier_Name
+              ,Supplier_Ref
+              ,Quantity_Carton
+              ,Entrydate
+              ,UserID
+              ,Result
+              ,ItemType
+              ,image
+              ,CSSNO
+              ,TestType
+              ,testGroup
+              )
+        VALUES
+              ('$testNo'
+              ,'$TestDate'
+              ,'$ItemName'
+              ,'$PONo'
+              ,'$ReceivingDate'
+              ,'$SupplierName'
+              ,'$SupplierRef'
+              ,'$Quantity'
+              ,'$Date'
+              ,'$user_id'
+              ,'$Result'
+              ,'$ItemType'
+              ,'$picture'
+              , '$CSSNO'
+              ,'Material'
+              ,'$testGroup'
+              )");
+        $Id = $this->db->insert_id();
+        echo $Id;
+        $i=0;
+        foreach ($child as $key => $value) {
+           if($i==0){
+            $Requirement = $value[1];
+            $Test = $value[0];
+            $Results = $value[2];
+            $Uncertainity = $value[3];
+            $Remarks = $value[4];
+          
+            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+           (TID
+           ,Test
+           ,Requirments
+           ,result,Uncertainty,ReMarks
+           ,EntryDate
+           ,user_ID)
+     VALUES
+           ('$Id'
+           ,'$Test'
+           ,'$Requirement'
+           ,'$Results'
+           ,'$Uncertainity',
+           '$Remarks'
+           ,'$Date'
+           ,'$user_id')");
+           $i +=1;
+           }
+           else{
+    
+            $Requirement = $value[2];
+            $Test = $value[1];
+            $Results = $value[3];
+            $Uncertainity = $value[4];
+            $Remarks = $value[5];
+          
+            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+           (TID
+           ,Test
+           ,Requirments
+           ,result,Uncertainty,ReMarks
+           ,EntryDate
+           ,user_ID)
+     VALUES
+           ('$Id'
+           ,'$Test'
+           ,'$Requirement'
+           ,'$Results'
+           ,'$Uncertainity',
+           '$Remarks'
+           ,'$Date'
+           ,'$user_id')");
+           $i +=1;
+           }
+            
+        }
+    }
+
 
 
     public function AddHeaderThread(
@@ -815,7 +934,6 @@ WHERE        (ArtCode = '$article')" );
         return $query->result_array();
 
 }
-
 public function updateprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate){
 $Status=str_replace("%20"," ", $Status);
 	// Echo $ProcessEndDate;
@@ -832,25 +950,6 @@ $Status=str_replace("%20"," ", $Status);
             }
    
 }
-public function updatecprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate,$rootcasuse,$action){
-$Status=str_replace("%20"," ", $Status);
-$rootcasuse=str_replace("%20"," ", $rootcasuse);
-$action=str_replace("%20"," ", $action);
-	// Echo $ProcessEndDate;
-    //         die;
-    if($Status=='Complete'){
-         $Date = date('Y-m-d H:i:s');
-                $query = $this->db->query("UPDATE    dbo .tbl_Dev_Process 
-            SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make',Status  =  '$Status' ,CompleteDate='$Date' ,ProcessEndDate='$ProcessEndDate' ,action='$action',rootcasue='$rootcasuse'
-          WHERE  TID='$TID'");  
-            }else{
-                  $query = $this->db->query("UPDATE   dbo .tbl_Dev_Process 
-            SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make',Status  =  '$Status',ProcessEndDate='$ProcessEndDate' ,action='$action',rootcasue='$rootcasuse'
-          WHERE  TID='$TID'");
-            }
-   
-}
-
 public function undoActivity($TID){
         $query = $this->db->query("DELETE  FROM tbl_Dev_Activities
       WHERE ActivityID=$TID");
@@ -1069,5 +1168,18 @@ return $query->result_array();
               ,'$hcc1'
               ,'$hcc2'
               ,$user_id,'$Date')");
+    }
+    public function FGT_PRINT_Head($id){
+        $query = $this->db
+        ->query("SELECT        dbo.view_FGT_H.*
+FROM            dbo.view_FGT_H Where TID=$id");
+return $query->result_array();
+    }
+    
+    public function FGT_PRINT_Details($id){
+        $query = $this->db
+        ->query("SELECT        dbo.view_FGT_D.*
+FROM            dbo.view_FGT_D Where TID=$id");
+return $query->result_array();
     }
 }

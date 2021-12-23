@@ -28,6 +28,913 @@ if (!$this->session->has_userdata('user_id')) {
                                 
                             </h1>
                         </div>
+
+
+
+<!-- Modal SOCCER BALL INDOOR-->
+<div class="modal fade bd-example-modal-xl" id="soccerBallsIndoor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLongTitle">FGT Report</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="card" id="printFGT">
+  <div class="card-body">
+             <table class="table">
+               <tr>
+                   <th style="font-size: large;font-weight:bold;padding:50px" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS INDOOR</th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+               </tr>
+           </table>
+      <!-- <h4 class="modal-title text-center m-4" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS INDOOR</h4> -->
+      <div class="container-fluid p-5">
+        <div class="row p-2">
+            <div class="col-sm-4">
+                <table class="table table-striped">
+                    <tbody style="border: 1px solid;">
+                        <tr>
+                            <th style="border: 1px solid;">F2206LSB888</th>
+                            <td  class="text-center">HM4183</td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;"><br>LAB NO.</th>
+                            <td id="content32" class="text-center"></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;"><br>TESTING DATE</th>
+                            <td id="content33" class="text-center"></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;">TEST ACC. TO CAT:</th>
+                            <td  id="content34"class="text-center"></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;">FIFA STAMP</th>
+                            <td id="content35" class="text-center"></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;">PRODUCTION MONTH</th>
+                            <td id="content36" class="text-center">Jul-21</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4">
+                <table class="table table-striped">
+                    <tbody style="border: 1px solid;">
+                        <tr>
+                            <th colspan="2" style="border: 1px solid; text-align:center">Construction</th>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;"><br>COVER MAT.</th>
+                            <td id="content37" class="text-center"><br></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;"><br><br>BACKING</th>
+                            <td  id="content38"class="text-center"></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;"><br>BLADDER</th>
+                            <td id="content39" class="text-center"></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;">BALLTYPE</th>
+                            <td id="content40" class="text-center"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4">
+                <table class="table table-striped">
+                    <tbody style="border: 1px solid;">
+                        <tr>
+                            <th style="border: 1px solid;">TEST TYPE</th>
+                            <td id="content41" class="text-center"></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;"><br>MAIN MAT.COLOR</th>
+                            <td id="content42" class="text-center"><br>White</td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;">PRINTING COLORS</th>
+                            <td id="content43" class="text-center">Silver Met,<br>Solar Orange, Black, </td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;">RESULT</th>
+                            <td id="content44" class="text-center">Fail</td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;"><br>TESTED BY</th>
+                            <td id="content45" class="text-center"><br>Imran Munir</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div style="margin: 15px auto" class="container-fluid p-2">
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-striped">
+                        <tbody style="border: 1px solid;">
+                            <tr>
+                                <th style="border: 1px solid">Category 1</th>
+                                <td>- all balls stamped with "FIFA Quality PRO" logo (replaced "FIFA APPROVED") or destined for getting the "FIFA Quality PRO" logo, whatever price!
+                                    <br> -all balls with a "FOB price" of 10.01 or more USD, with or without FIFA logo!
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th style="border: 1px solid">Category 2</th>
+                                <td>- all balls stamped with "FIFA Quality PRO" logo (replaced "FIFA APPROVED") or destined for getting the "FIFA Quality PRO" logo, whatever price!
+                                    <br> -all balls with a "FOB price" of 10.01 or more USD, with or without FIFA logo!
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th style="border: 1px solid">Category 3</th>
+                                <td>- all balls stamped with "FIFA Quality PRO" logo (replaced "FIFA APPROVED") or destined for getting the "FIFA Quality PRO" logo, whatever price!
+                                    <br> -all balls with a "FOB price" of 10.01 or more USD, with or without FIFA logo!
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid p-2">
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th class="text-center" style="border: 1px solid">TEST</th>
+                                <th class="text-center" style="border: 1px solid">METHOD</th>
+                                <th class="text-center" style="border: 1px solid">Condition</th>
+                                <th class="text-center" colspan="4" style="border: 1px solid;">Requirement</th>
+                                <th colspan="2" class="text-center" style="border: 1px solid">Result</th>
+                                <th style="border: 1px solid ">Remarks</th>
+
+                            </tr>
+                            <tr>
+                                <!-- <th style="border: 1px solid ">Static Properties</th> -->
+                                <th style="border: 1px solid ">Static Properties</th>
+                                <td style="border: 1px solid "></td>
+                                <td style="border: 1px solid;"></td>
+                                <td class="text-center" style="border: 1px solid; width:2%">
+                                    <b>UNIT</b>
+                                    <th style="border: 1px solid; width:7% ">CAT1</th>
+                                    <th style="border: 1px solid ">CAT.2</th>
+                                    <th style="border: 1px solid ">CAT.3</th>
+                                </td>
+                                <th colspan="2" class="text-center" style="border: 1px solid; border-collapse:collapse">
+                                    min / max
+
+                                </th>
+                                <td style="border: 1px solid "></td>
+
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid ">Weight</td>
+                                <td style="border: 1px solid ">FGT-35</td>
+                                <td style="border: 1px solid ">0.8 bar</td>
+                                <td style="border: 1px solid ">
+                                    <b>g</b>
+                                    <td style="border: 1px solid ">420-445</td>
+                                    <td style="border: 1px solid ">420-450</td>
+
+                                    <td style="border: 1px solid; ">
+                                        410-450
+                                    </td>
+                                </td>
+                                <td id="content46" class="text-center" style="border: 1px solid;  ">
+                                    
+                                    <td id="content47" style="border: 1px solid "></td>
+                                </td>
+                                <td style="border: 1px solid "></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid ">Circumference (CSM)</td>
+                                <td style="border: 1px solid ">FGT-37</td>
+                                <td style="border: 1px solid ">0.8 bar</td>
+                                <td style="border: 1px solid ">
+                                    <b>cm</b>
+                                    <td style="border: 1px solid ">68,5-69,5</td>
+                                    <td style="border: 1px solid ">68,0-69,5</td>
+
+                                    <td class="text-center" style="border: 1px solid; border-collapse:collapse ">
+                                        68,0-70,0
+                                    </td>
+                                </td>
+                                <td id="content48" style="border: 1px solid "></td>
+                                <td id="content49" style="border: 1px solid "></td>
+                                <td style="border: 1px solid "></td>
+
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid ">Dev. in Sphericity in ref. to 100% roundness CSM</td>
+                                <td style="border: 1px solid ">FGT-37</td>
+                                <td style="border: 1px solid ">0.8 bar</td>
+                                <td style="border: 1px solid ">
+                                    <b>%</b>
+                                    <td style="border: 1px solid ">max 1,3</td>
+                                    <td style="border: 1px solid ">max 1,6</td>
+                                    <td style="border: 1px solid ">max 1,6</td>
+                                </td>
+                                <td id="content50" style="border: 1px solid "></td>
+                                <td id="content51" style="border: 1px solid "></td>
+                                <td style="border: 1px solid "></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid ">Loss of pressure</td>
+                                <td style="border: 1px solid ">FGT-38</td>
+                                <td class="text-center" style="border: 1px solid ">1.0 bar<br>evaluation after 72h</td>
+                                <td style="border: 1px solid ">
+                                    <b>%</b>
+                                    <td style="border: 1px solid ">max 20</td>
+                                    <td style="border: 1px solid ">max 25</td>
+                                    <td style="border: 1px solid ">max 25</td>
+                                </td>
+                                <td id="content52" style="border: 1px solid "></td>
+                                <td id="content53" style="border: 1px solid "></td>
+                                <td style="border: 1px solid "></td>
+
+                            </tr>
+                            <tr>
+                                <th style="border: 1px solid ">Dynamic Properties</th>
+                                <td style="border: 1px solid "></td>
+                                <td colspan="8" style="border: 1px solid "></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid ">Rebound at RT</td>
+                                <td style="border: 1px solid ">FGT-39</td>
+                                <td style="border: 1px solid ">0.6 bar</td>
+                                <td style="border: 1px solid ">cm</td>
+                                <td style="border: 1px solid ">55-65</td>
+                                <td style="border: 1px solid ">50-65</td>
+                                <td style="border: 1px solid ">50-65</td>
+                                <td id="content54" style="border: 1px solid "></td>
+                                <td id="content55" style="border: 1px solid; border-collapse:collapse">
+                                    
+                                </td>
+                                <td style="border: 1px solid "></td>
+
+                            </tr>
+                            <tr>
+
+                                <tr>
+                                    <th style="border: 1px solid ">Shooter Test</th>
+                                    <td style="border: 1px solid "></td>
+                                    <td style="border: 1px solid ">0.8 bar</td>
+                                    <td colspan="4" style="border: 1px solid ">cyles: &nbsp &nbsp &nbsp &nbsp &nbsp 2000x
+                                    </td>
+                                    <td style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid ">Increase in Circumference</td>
+                                    <td style="border: 1px solid ">FGT-41<br>FGT-37</td>
+                                    <td style="border: 1px solid ">after cycles completed</td>
+                                    <td style="border: 1px solid ">cm</td>
+                                    <td style="border: 1px solid ">max 1,0</td>
+                                    <td style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                    <td id="content56" style="border: 1px solid "></td>
+                                    <td id="content57" style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid ">Dev. in Sphericity in ref. to 100% roundness CSM</td>
+                                    <td style="border: 1px solid ">FGT-41<br>FGT-37</td>
+                                    <td style="border: 1px solid ">after cycles completed</td>
+                                    <td style="border: 1px solid ">%</td>
+                                    <td style="border: 1px solid ">max 1,3</td>
+                                    <td style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                    <td id="content58" style="border: 1px solid "></td>
+                                    <td id="content59" style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid ">Change of pressure in ref. to initial pressure</td>
+                                    <td style="border: 1px solid ">FGT-41</td>
+                                    <td style="border: 1px solid ">after cycles completed</td>
+                                    <td style="border: 1px solid ">bar</td>
+                                    <td style="border: 1px solid ">max 0,1</td>
+                                    <td style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                    <td id="content60" style="border: 1px solid "></td>
+                                    <td id="content61" style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid ">Material</td>
+                                    <td style="border: 1px solid ">FGT-41</td>
+                                    <td style="border: 1px solid ">after cycles completed</td>
+                                    <td colspan="2" style="border: 1px solid ">stiching / bonding <br> + air valve undamaged <br> & no delamination <br> (seam/valve:no damage:)</td>
+                                    <td style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                    <td id="content62" style="border: 1px solid "></td>
+                                    <td id="content63" style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                </tr>
+                                <tr>
+                                    <th style="border: 1px solid ">Printing Durability</th>
+                                    <td style="border: 1px solid "></td>
+                                    <td colspan="8" style="border: 1px solid "></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="border: 1px solid ">Abraison resistence on 2 panels</td>
+                                    <td style="border: 1px solid ">FGT-43</td>
+                                    <td style="border: 1px solid ">on 2 panels - 1x50cycl;<br>9 kPa load, Sandpaper P150</td>
+                                    <td colspan="4" style="border: 1px solid ">dyestuff still visible; not smeared</td>
+                                    <td id="content64" style="border: 1px solid "></td>
+                                    <td id="content65" style="border: 1px solid "></td>
+                                    <td  style="border: 1px solid "></td>
+                                </tr>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin: 15px auto" class="container-fluid p-2">
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-striped col-6">
+                        <tbody style="border: 1px solid;">
+                            <tr>
+                                <th rowspan="4" style="border: 1px solid">Remarks:</th>
+                            </tr>
+
+                            <tr>
+                                <td>Test request</td>
+                            </tr>
+
+                            <tr>
+                                <td>obvious problems<br>before,<br>during<br>and after tests</td>
+                            </tr>
+
+                            <tr>
+                                <td>Improvements</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printFGT')">Print Report</button>
+      </div>
+    </div>
+  </div>
+                        </div>
+                        </div>
+</div>
+
+
+<!-- Modal SOCCER SIZE 5 BALLS -->
+<div class="modal fade bd-example-modal-xl" id="soccerBallsSize5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLongTitle">FGT Report</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="printSoccerBallsSize5">
+                <div class="card" id="printFGTSize5">
+  <div class="card-body">
+             <table class="table">
+               <tr>
+                   <th style="font-size: large;font-weight:bold;padding:50px" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS SIZE 5</th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+               </tr>
+           </table>
+      <!-- <h4 class="modal-title text-center m-4" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS SIZE 5</h4> -->
+      <div class="container-fluid p-5">
+        <div class="row p-2">
+            <div class="col-sm-4">
+                <table class="table table-striped">
+                    <tbody style="border: 1px solid;">
+                        <tr>
+                            <th style="border: 1px solid;"><br>F2206LSB888<br></th>
+                            <td class="text-center"><br>HM4183<br></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;"><br>LAB NO.</th>
+                            <td id="content66" class="text-center"></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;"><br>TESTING DATE</th>
+                            <td id="content67" class="text-center"></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;">TEST ACC. TO CAT:</th>
+                            <td id="content68" class="text-center"></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;">FIFA STAMP</th>
+                            <td id="content69" class="text-center"></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;">PRODUCTION MONTH</th>
+                            <td id="content70" class="text-center"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4">
+                <table class="table table-striped">
+                    <tbody style="border: 1px solid;">
+                        <tr>
+                            <th colspan="2" style="border: 1px solid; text-align:center">Construction</th>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;"><br><br>COVER MAT.</th>
+                            <td id="content71" class="text-center"></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;"><br><br>BACKING</th>
+                            <td id="content72" class="text-center"></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;">BLADDER</th>
+                            <td id="content73" class="text-center"></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;"><br>BALLTYPE</th>
+                            <td id="content74" class="text-center"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4">
+                <table class="table table-striped">
+                    <tbody style="border: 1px solid;">
+                        <tr>
+                            <th style="border: 1px solid;">TEST TYPE</th>
+                            <td id="content75" class="text-center"></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;"><br>MAIN MAT.COLOR</th>
+                            <td id="content76" class="text-center"></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;">PRINTING COLORS</th>
+                            <td id="content77" class="text-center"></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;">RESULT</th>
+                            <td id="content78" class="text-center"></td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid;"><br>TESTED BY</th>
+                            <td id="content79" class="text-center"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div style="margin: 15px auto" class="container-fluid p-2">
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-striped">
+                        <tbody style="border: 1px solid;">
+                            <tr>
+                                <th style="border: 1px solid">Category 1</th>
+                                <td>- all balls stamped with "FIFA Quality PRO" logo (replaced "FIFA APPROVED") or destined for getting the "FIFA Quality PRO" logo, whatever price!
+                                    <br> -all balls with a "FOB price" of 10.01 or more USD, with or without FIFA logo!
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th style="border: 1px solid">Category 2</th>
+                                <td>- all balls stamped with "FIFA Quality PRO" logo (replaced "FIFA APPROVED") or destined for getting the "FIFA Quality PRO" logo, whatever price!
+                                    <br> -all balls with a "FOB price" of 10.01 or more USD, with or without FIFA logo!
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th style="border: 1px solid">Category 3</th>
+                                <td>- all balls stamped with "FIFA Quality PRO" logo (replaced "FIFA APPROVED") or destined for getting the "FIFA Quality PRO" logo, whatever price!
+                                    <br> -all balls with a "FOB price" of 10.01 or more USD, with or without FIFA logo!
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid p-2">
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th class="text-center" style="border: 1px solid">TEST</th>
+                                <th class="text-center" style="border: 1px solid">METHOD</th>
+                                <th class="text-center" style="border: 1px solid">Condition</th>
+                                <th class="text-center" colspan="4" style="border: 1px solid;">Requirement</th>
+                                <th colspan="2" class="text-center" style="border: 1px solid">Result</th>
+                                <th style="border: 1px solid ">Remarks</th>
+
+                            </tr>
+                            <tr>
+                                <!-- <th style="border: 1px solid ">Static Properties</th> -->
+                                <th style="border: 1px solid ">Static Properties</th>
+                                <td style="border: 1px solid "></td>
+                                <td style="border: 1px solid;"></td>
+                                <td class="text-center" style="border: 1px solid; width:2%">
+                                    <b>UNIT</b>
+                                    <th style="border: 1px solid; width:7% ">CAT1</th>
+                                    <th style="border: 1px solid; width:7%">CAT.2</th>
+                                    <th style="border: 1px solid; width:7% ">CAT.3</th>
+                                </td>
+                                <th colspan="2" class="text-center" style="border: 1px solid; border-collapse:collapse">
+                                    min / max
+
+                                </th>
+                                <td style="border: 1px solid "></td>
+
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid ">Weight</td>
+                                <td style="border: 1px solid ">FGT-35</td>
+                                <td style="border: 1px solid ">0.8 bar</td>
+                                <td style="border: 1px solid ">
+                                    <b>g</b>
+                                    <td style="border: 1px solid ">420-445</td>
+                                    <td style="border: 1px solid ">420-450</td>
+
+                                    <td style="border: 1px solid; ">
+                                        410-450
+                                    </td>
+                                </td>
+                                <td id="content80" style="border: 1px solid;  ">
+                                    
+                                    <td id="content81" style="border: 1px solid "></td>
+                                </td>
+                                <td style="border: 1px solid "></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid ">Circumference (CSM)</td>
+                                <td style="border: 1px solid ">FGT-37</td>
+                                <td style="border: 1px solid ">0.8 bar</td>
+                                <td style="border: 1px solid ">
+                                    <b>cm</b>
+                                    <td style="border: 1px solid ">68,5-69,5</td>
+                                    <td style="border: 1px solid ">68,0-69,5</td>
+
+                                    <td style="border: 1px solid; border-collapse:collapse ">
+                                        68,0-70,0
+                                    </td>
+                                </td>
+                                <td id="content82" style="border: 1px solid ">68.6</td>
+                                <td id="content83" style="border: 1px solid ">69.3</td>
+                                <td style="border: 1px solid "></td>
+
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid ">Dev. in Sphericity in ref. to 100% roundness CSM</td>
+                                <td style="border: 1px solid ">FGT-37</td>
+                                <td style="border: 1px solid ">0.8 bar</td>
+                                <td style="border: 1px solid ">
+                                    <b>%</b>
+                                    <td style="border: 1px solid ">max 1,3</td>
+                                    <td style="border: 1px solid ">max 1,6</td>
+                                    <td style="border: 1px solid ">max 1,6</td>
+                                </td>
+                                <td id="content84" style="border: 1px solid ">0.96</td>
+                                <td id="content85" style="border: 1px solid ">1.19</td>
+                                <td style="border: 1px solid "></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid ">Loss of pressure</td>
+                                <td style="border: 1px solid ">FGT-38</td>
+                                <td style="border: 1px solid ">1.0 bar<br>evaluation after 72h</td>
+                                <td style="border: 1px solid ">
+                                    <b>%</b>
+                                    <td style="border: 1px solid ">max 20</td>
+                                    <td style="border: 1px solid ">max 25</td>
+                                    <td style="border: 1px solid ">max 25</td>
+                                </td>
+                                <td id="content86" style="border: 1px solid ">10</td>
+                                <td id="content87" style="border: 1px solid ">12</td>
+                                <td style="border: 1px solid "></td>
+
+                            </tr>
+                            <tr>
+                                <th style="border: 1px solid ">Dynamic Properties</th>
+                                <td style="border: 1px solid "></td>
+                                <td colspan="8" style="border: 1px solid "></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid ">Rebound at RT</td>
+                                <td style="border: 1px solid ">FGT-39</td>
+                                <td style="border: 1px solid ">0.6 bar</td>
+                                <td style="border: 1px solid ">cm</td>
+                                <td style="border: 1px solid ">55-65</td>
+                                <td style="border: 1px solid ">50-65</td>
+                                <td style="border: 1px solid ">50-65</td>
+                                <td id="content88" style="border: 1px solid "></td>
+                                <td id="content89" style="border: 1px solid; border-collapse:collapse">
+                                   
+                                </td>
+                                <td style="border: 1px solid "></td>
+
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid ">Rebound at 5ºC</td>
+                                <td style="border: 1px solid ">FGT-39</td>
+                                <td style="border: 1px solid ">0.8 bar; 5ºC/12h fridge</td>
+                                <td style="border: 1px solid ">cm</td>
+                                <td style="border: 1px solid ">min 130</td>
+                                <td style="border: 1px solid ">min 120</td>
+                                <td style="border: 1px solid ">min 110</td>
+                                <td id="content90" style="border: 1px solid "></td>
+                                <td id="content91" style="border: 1px solid; border-collapse:collapse">
+                                    
+                                </td>
+                                <td style="border: 1px solid "></td>
+
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid ">Rebound at 0*C</td>
+                                <td style="border: 1px solid ">FGT-39</td>
+                                <td style="border: 1px solid ">0.8 bar; 5ºC/12h fridge</td>
+                                <td style="border: 1px solid ">cm</td>
+                                <td style="border: 1px solid ">120 min</td>
+                                <td style="border: 1px solid "></td>
+                                <td style="border: 1px solid "></td>
+                                <td id="content92" style="border: 1px solid "></td>
+                                <td id="content93" style="border: 1px solid; border-collapse:collapse">
+
+                                </td>
+                                <td style="border: 1px solid "></td>
+
+                            </tr>
+                            <tr>
+
+                                <tr>
+                                    <th style="border: 1px solid ">Shooter Test</th>
+                                    <td style="border: 1px solid "></td>
+                                    <td style="border: 1px solid ">0.8 bar</td>
+                                    <td colspan="4" style="border: 1px solid ">cyles: &nbsp &nbsp &nbsp &nbsp &nbsp 2000x
+                                    </td>
+                                    <td style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid ">Increase in Circumference</td>
+                                    <td style="border: 1px solid ">FGT-41<br>FGT-37</td>
+                                    <td style="border: 1px solid ">after cycles completed</td>
+                                    <td style="border: 1px solid ">cm</td>
+                                    <td style="border: 1px solid ">max 1,0</td>
+                                    <td style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                    <td id="content94" style="border: 1px solid "></td>
+                                    <td id="content95" style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid ">Dev. in Sphericity in ref. to 100% roundness CSM</td>
+                                    <td style="border: 1px solid ">FGT-41<br>FGT-37</td>
+                                    <td style="border: 1px solid ">after cycles completed</td>
+                                    <td style="border: 1px solid ">%</td>
+                                    <td style="border: 1px solid ">max 1,3</td>
+                                    <td style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                    <td id="content96" style="border: 1px solid "></td>
+                                    <td id="content97" style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid ">Change of pressure in ref. to initial pressure</td>
+                                    <td style="border: 1px solid ">FGT-41</td>
+                                    <td style="border: 1px solid ">after cycles completed</td>
+                                    <td style="border: 1px solid ">bar</td>
+                                    <td style="border: 1px solid ">max 0,1</td>
+                                    <td style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                    <td id="content98" style="border: 1px solid "></td>
+                                    <td id="content99" style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid ">Material</td>
+                                    <td style="border: 1px solid ">FGT-41</td>
+                                    <td style="border: 1px solid ">after cycles completed</td>
+                                    <td colspan="4" style="border: 1px solid ">stiching / bonding + air valve<br> undamaged & no delamination <br> (seam/valve:no damage:)</td>
+                                    <td id="content100" style="border: 1px solid "></td>
+                                    <td id="content101" style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                </tr>
+                                <tr>
+                                    <th colspan="10" style="border: 1px solid ">Water Resistence
+                                    </th>
+
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid ">Water uptake</td>
+                                    <td style="border: 1px solid ">FGT-40</td>
+                                    <td style="border: 1px solid ">after 300 cycles</td>
+                                    <td style="border: 1px solid ">%</td>
+                                    <td style="border: 1px solid ">max 10% / ball</td>
+                                    <td style="border: 1px solid ">max 10% / ball</td>
+                                    <td style="border: 1px solid ">max 15% / ball</td>
+                                    <td id="content102" style="border: 1px solid "></td>
+                                    <td  id="content103" style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid ">Increase in Circumference</td>
+                                    <td style="border: 1px solid ">FGT-40<br>FGT-37</td>
+                                    <td style="border: 1px solid ">after 300 cycles</td>
+                                    <td style="border: 1px solid ">%</td>
+                                    <td style="border: 1px solid ">max 0,5</td>
+                                    <td style="border: 1px solid ">max 0,8</td>
+                                    <td style="border: 1px solid ">max 1,0</td>
+                                    <td  id="content104" style="border: 1px solid "></td>
+                                    <td  id="content105" style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid ">Dev in Sphericity in ref. to 100% roundness CSM</td>
+                                    <td style="border: 1px solid ">FGT-40<br>FGT-37</td>
+                                    <td style="border: 1px solid ">after 300 cycles</td>
+                                    <td style="border: 1px solid ">%</td>
+                                    <td style="border: 1px solid ">max 1,5</td>
+                                    <td style="border: 1px solid ">max 1,6</td>
+                                    <td style="border: 1px solid ">max 1,6</td>
+                                    <td  id="content106" style="border: 1px solid "></td>
+                                    <td  id="content107" style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                </tr>
+                                <tr>
+                                    <th style="border: 1px solid ">Printing Durability</th>
+                                    <td style="border: 1px solid "></td>
+                                    <td colspan="8" style="border: 1px solid "></td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid ">Drum Test</td>
+                                    <td style="border: 1px solid ">FGT-50</td>
+                                    <td style="border: 1px solid ">0.8 bar/240 minutes-/<br>wet</td>
+                                    <td colspan="4" style="border: 1px solid ">Priniting is visible around the ball</td>
+                                    <td  id="content108" style="border: 1px solid "></td>
+                                    <td  id="content109" style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid ">Abraison resistence on 2 panels after water test w/<br>Sandpapergrade P150</td>
+                                    <td style="border: 1px solid ">FGT-43</td>
+                                    <td style="border: 1px solid ">1x50cycl;<br>9 kPa load</td>
+                                    <td colspan="4" style="border: 1px solid ">dyestuff still visible; not smeared</td>
+                                    <td  id="content110" style="border: 1px solid "></td>
+                                    <td  id="content111" style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                </tr>
+
+                                <tr>
+                                    <th style="border: 1px solid ">Climatic-Strength Test</th>
+                                    <td style="border: 1px solid "></td>
+                                    <td colspan="8" style="border: 1px solid "></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="border: 1px solid ">UV light Fastness</td>
+                                    <td style="border: 1px solid ">FGT-04</td>
+                                    <td style="border: 1px solid ">2h/550W</td>
+                                    <td colspan="4" style="border: 1px solid ">min 3 acc. greyscale</td>
+                                    <td  id="content112" style="border: 1px solid "></td>
+                                    <td  id="content113" style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="border: 1px solid ">Ozon Test Rubber(Only on balls with Rubber<br>Surface</td>
+                                    <td style="border: 1px solid ">FGT-46</td>
+                                    <td style="border: 1px solid ">24h</td>
+                                    <td colspan="4" style="border: 1px solid ">DIN 5350 Cat. 1</td>
+                                    <td  id="content114" style="border: 1px solid "></td>
+                                    <td  id="content115" style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="border: 1px solid ">Hydrolysis-Lamination</td>
+                                    <td style="border: 1px solid ">FGT-01</td>
+                                    <td style="border: 1px solid ">60ºC; 95% R.h.<br>7 days</td>
+                                    <td colspan="4" style="border: 1px solid ">no delamination</td>
+                                    <td  id="content116" style="border: 1px solid "></td>
+                                    <td  id="content117" style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="border: 1px solid ">Hydrolysis-Color Change</td>
+                                    <td style="border: 1px solid ">FGT-01</td>
+                                    <td style="border: 1px solid ">60ºC; 95% R.h.<br>7 days</td>
+                                    <td colspan="4" style="border: 1px solid ">min 3 acc. greyscale</td>
+                                    <td  id="content118" style="border: 1px solid "></td>
+                                    <td  id="content119" style="border: 1px solid "></td>
+                                    <td style="border: 1px solid "></td>
+                                </tr>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin: 15px auto" class="container-fluid p-2">
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-striped col-6">
+                        <tbody style="border: 1px solid;">
+                            <tr>
+                                <th rowspan="4" style="border: 1px solid">Remarks:</th>
+                            </tr>
+
+                            <tr>
+                                <td>Test request</td>
+                            </tr>
+
+                            <tr>
+                                <td>obvious problems<br>before,<br>during<br>and after tests</td>
+                            </tr>
+
+                            <tr>
+                                <td>Improvements</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+      </div>
+           </div>
+                        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button onclick="printDiv('printFGTSize5')" type="button" class="btn btn-primary">Print Report</button>
+      </div>
+    </div>
+  </div>
+                   
+</div>
                          <div id="ModalLoginForm" class="modal fade">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -192,9 +1099,9 @@ if (!$this->session->has_userdata('user_id')) {
                         <label class="control-label">FGT Type:</label>
                         <select class="form-control" id="fgttype" name="fgttype" >
                         <option value="" disabled>Select one of the following</option>
-                        <option value="SOCCERBALLS" >SOCCER BALLS</option>
-                        <option value="SOCCERINDOORBALLS" >SOCCER INDOOR BALLS</option>
-                        <option value="SOCCERBALLSIZE5" >SOCCER BALLS SIZE 5</option>
+                        <option value="SOCCER BALLS" >SOCCER BALLS</option>
+                        <option value="SOCCER INDOOR BALLS" >SOCCER INDOOR BALLS</option>
+                        <option value="SOCCER BALLS SIZE 5" >SOCCER BALLS SIZE 5</option>
                             </select>
                     </div></div>
                   
@@ -428,7 +1335,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                      <div>
                         <label class="control-label">Max</label>
-                            <input type="number" class="form-control input-lg" id='w1' name="w1" placeholder="">
+                            <input type="text" class="form-control input-lg" id='w1' name="w1" placeholder="">
                         </div>
                     </div>
                    
@@ -439,7 +1346,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label"> Min</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='w2' name="w2" placeholder="">
+                            <input type="text" class="form-control input-lg" id='w2' name="w2" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -450,7 +1357,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label"> Max</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='c1_sp' name="c1_sp`" placeholder="">
+                            <input type="text" class="form-control input-lg" id='c1_sp' name="c1_sp`" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -461,7 +1368,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label"> Min</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='c2_sp' name="c2_sp" placeholder="">
+                            <input type="text" class="form-control input-lg" id='c2_sp' name="c2_sp" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -477,7 +1384,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Max</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='sp1_sp' name="sp1_sp" placeholder="">
+                            <input type="text" class="form-control input-lg" id='sp1_sp' name="sp1_sp" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -487,7 +1394,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Min</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='sp2_sp' name="sp2_sp" placeholder="">
+                            <input type="text" class="form-control input-lg" id='sp2_sp' name="sp2_sp" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -497,7 +1404,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Max</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='lp1' name="lp1" placeholder="">
+                            <input type="text" class="form-control input-lg" id='lp1' name="lp1" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -507,7 +1414,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Min</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='lp2' name="lp2" placeholder="">
+                            <input type="text" class="form-control input-lg" id='lp2' name="lp2" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -521,7 +1428,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Max</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='rrt1' name="rrt1" placeholder="">
+                            <input type="text" class="form-control input-lg" id='rrt1' name="rrt1" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -531,7 +1438,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Min</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='rrt2' name="rrt2" placeholder="">
+                            <input type="text" class="form-control input-lg" id='rrt2' name="rrt2" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -541,7 +1448,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Max</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='rrt51' name="rrt51" placeholder="">
+                            <input type="text" class="form-control input-lg" id='rrt51' name="rrt51" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -551,7 +1458,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Min</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='rrt52' name="rrt52" placeholder="">
+                            <input type="text" class="form-control input-lg" id='rrt52' name="rrt52" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -565,7 +1472,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Max</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='rrt01' name="rrt01" placeholder="">
+                            <input type="text" class="form-control input-lg" id='rrt01' name="rrt01" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -575,7 +1482,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Min</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='rrt02' name="rrt02" placeholder="">
+                            <input type="text" class="form-control input-lg" id='rrt02' name="rrt02" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -585,7 +1492,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Max</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='c1_dp' name="c1_dp" placeholder="">
+                            <input type="text" class="form-control input-lg" id='c1_dp' name="c1_dp" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -595,7 +1502,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Min</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='c2_dp' name="c2_dp" placeholder="">
+                            <input type="text" class="form-control input-lg" id='c2_dp' name="c2_dp" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -609,7 +1516,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Max</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='sp_dp1' name="sp_dp1" placeholder="">
+                            <input type="text" class="form-control input-lg" id='sp_dp1' name="sp_dp1" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -619,7 +1526,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Min</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='sp_dp2' name="sp_dp2" placeholder="">
+                            <input type="text" class="form-control input-lg" id='sp_dp2' name="sp_dp2" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -629,7 +1536,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Max</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='lp_dp1' name="lp_dp1" placeholder="">
+                            <input type="text" class="form-control input-lg" id='lp_dp1' name="lp_dp1" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -639,7 +1546,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Min</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='lp_dp2' name="lp_dp2" placeholder="">
+                            <input type="text" class="form-control input-lg" id='lp_dp2' name="lp_dp2" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -652,7 +1559,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Max</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='m1' name="m1" placeholder="">
+                            <input type="text" class="form-control input-lg" id='m1' name="m1" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -662,7 +1569,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Min</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='m2' name="m2" placeholder="">
+                            <input type="text" class="form-control input-lg" id='m2' name="m2" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -672,7 +1579,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Max</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='wup1' name="wup1" placeholder="">
+                            <input type="text" class="form-control input-lg" id='wup1' name="wup1" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -681,7 +1588,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Min</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='wup2' name="wup2" placeholder="">
+                            <input type="text" class="form-control input-lg" id='wup2' name="wup2" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -694,7 +1601,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Max</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='c1_wrt' name="c1_wrt" placeholder="">
+                            <input type="text" class="form-control input-lg" id='c1_wrt' name="c1_wrt" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -703,7 +1610,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Min</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='c2_wrt' name="c2_wrt" placeholder="">
+                            <input type="text" class="form-control input-lg" id='c2_wrt' name="c2_wrt" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -712,7 +1619,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Max</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='sp1_wrt' name="sp1_wrt" placeholder="">
+                            <input type="text" class="form-control input-lg" id='sp1_wrt' name="sp1_wrt" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -721,7 +1628,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Min</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='sp2_wrt' name="sp2_wrt" placeholder="">
+                            <input type="text" class="form-control input-lg" id='sp2_wrt' name="sp2_wrt" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -734,7 +1641,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Max</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='dt1' name="dt1" placeholder="">
+                            <input type="text" class="form-control input-lg" id='dt1' name="dt1" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -743,7 +1650,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Min</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='dt2' name="dt2" placeholder="">
+                            <input type="text" class="form-control input-lg" id='dt2' name="dt2" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -752,7 +1659,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Max</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='abr1' name="abr1" placeholder="">
+                            <input type="text" class="form-control input-lg" id='abr1' name="abr1" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -761,7 +1668,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Min</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='abr2' name="abr2" placeholder="">
+                            <input type="text" class="form-control input-lg" id='abr2' name="abr2" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -774,7 +1681,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Max</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='uvlf1' name="uvlf1" placeholder="">
+                            <input type="text" class="form-control input-lg" id='uvlf1' name="uvlf1" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -783,7 +1690,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Min</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='uvlf2' name="uvlf2" placeholder="">
+                            <input type="text" class="form-control input-lg" id='uvlf2' name="uvlf2" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -792,7 +1699,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Max</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='otr1' name="otr1" placeholder="">
+                            <input type="text" class="form-control input-lg" id='otr1' name="otr1" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -802,7 +1709,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Min</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='otr2' name="otr2" placeholder="">
+                            <input type="text" class="form-control input-lg" id='otr2' name="otr2" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -815,7 +1722,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Max</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='hl1' name="hl1" placeholder="">
+                            <input type="text" class="form-control input-lg" id='hl1' name="hl1" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -824,7 +1731,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Min</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='hl2' name="hl2" placeholder="">
+                            <input type="text" class="form-control input-lg" id='hl2' name="hl2" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -833,7 +1740,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Max</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='hcc1' name="hcc1" placeholder="">
+                            <input type="text" class="form-control input-lg" id='hcc1' name="hcc1" placeholder="">
                         </div>
                     </div>
                    </div>
@@ -842,7 +1749,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="form-group">
                         <label class="control-label">Min</label>
                         <div>
-                            <input type="number" class="form-control input-lg" id='hcc2' name="hcc2" placeholder="">
+                            <input type="text" class="form-control input-lg" id='hcc2' name="hcc2" placeholder="">
                         </div>
                     </div>
                    </div>  
@@ -885,7 +1792,27 @@ if (!$this->session->has_userdata('user_id')) {
         </button>
       </div>
       <div class="modal-body">
-    <h4 class="text-center m-4">FGT REPORT FOR AIRLINES MINI(SOCCER BALLS)</h4>
+            <div class="card" id="printFGTSoccer">
+  <div class="card-body">
+             <table class="table">
+               <tr>
+                   <th style="font-size: large;font-weight:bold;padding:50px">FGT REPORT FOR AIRLINES MINI <span id="titleBalls">()</span></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+               </tr>
+           </table>
+    <!-- <h4 class="text-center m-4">FGT REPORT FOR AIRLINES MINI <span id="titleBalls">()</span></h4> -->
 
 <div class="container-fluid p-5">
     <div class="row p-2">
@@ -894,7 +1821,7 @@ if (!$this->session->has_userdata('user_id')) {
                 <tbody style="border: 1px solid;">
                     <tr>
                         <th style="border: 1px solid;">F2206LSB060</th>
-                        <td class="text-center">HI2192</td>
+                        <td id="content1" class="text-center"></td>
                     </tr>
                     <tr>
                         <th style="border: 1px solid;">FACTORY NAME</th>
@@ -902,19 +1829,19 @@ if (!$this->session->has_userdata('user_id')) {
                     </tr>
                     <tr>
                         <th style="border: 1px solid;"><br>LAB NO.</th>
-                        <td class="text-center">SD043LB-21 HI2192<br>694D</td>
+                        <td class="text-center" id="content2"></td>
                     </tr>
                     <tr>
                         <th style="border: 1px solid;"><br>TESTING DATE</th>
-                        <td class="text-center">27/11/2021</td>
+                        <td class="text-center" id="content3"></td>
                     </tr>
                     <tr>
                         <th style="border: 1px solid;">TEST ACC. TO CAT</th>
-                        <td class="text-center"></td>
+                        <td class="text-center" id="content4"></td>
                     </tr>
                     <tr>
                         <th style="border: 1px solid;">PRODUCTION MONTH</th>
-                        <td class="text-center">Sep-21</td>
+                        <td class="text-center" id="content5"></td>
                     </tr>
                 </tbody>
             </table>
@@ -927,23 +1854,23 @@ if (!$this->session->has_userdata('user_id')) {
                     </tr>
                     <tr>
                         <th style="border: 1px solid;">MODEL</th>
-                        <td class="text-center">AFC MINI HOME</td>
+                        <td class="text-center" id="content6"></td>
                     </tr>
                     <tr>
                         <th style="border: 1px solid;"><br><br>INNER</th>
-                        <td class="text-center"><br><br>PU Foam Core</td>
+                        <td class="text-center" id="content7"></td>
                     </tr>
                     <tr>
                         <th style="border: 1px solid;">PANEL SHAPE</th>
-                        <td class="text-center">Mini Teamgiest 14</td>
+                        <td class="text-center" id="content8"></td>
                     </tr>
                     <tr>
                         <th style="border: 1px solid;">REMARK</th>
-                        <td class="text-center">Santigo 18 Panel</td>
+                        <td class="text-center" id="content9"></td>
                     </tr>
                     <tr>
                         <th style="border: 1px solid;">BALLTYPE</th>
-                        <td class="text-center">Airless Mini</td>
+                        <td class="text-center" id="content10"></td>
                     </tr>
                 </tbody>
             </table>
@@ -953,23 +1880,23 @@ if (!$this->session->has_userdata('user_id')) {
                 <tbody style="border: 1px solid;">
                     <tr>
                         <th style="border: 1px solid;">TEST TYPE</th>
-                        <td class="text-center">FW22 Development</td>
+                        <td class="text-center" id="content11"></td>
                     </tr>
                     <tr>
                         <th style="border: 1px solid;"><br>MAIN MAT.COLOR</th>
-                        <td class="text-center"><br>White</td>
+                        <td class="text-center" id="content12"></td>
                     </tr>
                     <tr>
                         <th style="border: 1px solid;">PRINTING COLORS</th>
-                        <td class="text-center">Gold Met, Red,</td>
+                        <td class="text-center" id="content13"></td>
                     </tr>
                     <tr>
                         <th style="border: 1px solid;">RESULT</th>
-                        <td class="text-center">Pass</td>
+                        <td class="text-center" id="content14"></td>
                     </tr>
                     <tr>
                         <th style="border: 1px solid;"><br>TESTED BY</th>
-                        <td class="text-center"><br>Imran Munir</td>
+                        <td class="text-center" id="content15"></td>
                     </tr>
                 </tbody>
             </table>
@@ -990,17 +1917,17 @@ if (!$this->session->has_userdata('user_id')) {
                         </tr>
 
                         <tr>
+                            <td  style="border: 1px solid"></td>
                             <td style="border: 1px solid"></td>
-                            <td style="border: 1px solid"></td>
-                            <td style="border: 1px solid"></td>
-                            <th style="border: 1px solid; border-collapse: collapse">
+                            <td  style="border: 1px solid"></td>
+                            <th  style="border: 1px solid; border-collapse: collapse">
                                 Unit
                                 <th style="border: 1px solid">Airless Mini Soccerball</th>
                             </th>
-                            <td style="border: 1px solid">1</td>
-                            <td style="border: 1px solid">2</td>
-                            <td style="border: 1px solid">2</td>
-                            <td style="border: 1px solid">3</td>
+                            <td  style="border: 1px solid">1</td>
+                            <td  style="border: 1px solid">2</td>
+                            <td  style="border: 1px solid">2</td>
+                            <td  style="border: 1px solid">3</td>
                         </tr>
                         <tr>
                             <!-- <th style="border: 1px solid ">Static Properties</th> -->
@@ -1023,14 +1950,14 @@ if (!$this->session->has_userdata('user_id')) {
                             <td style="border: 1px solid ">RT/24h</td>
                             <td style="border: 1px solid ">
                                 <b>g</b>
-                                <td style="border: 1px solid ">160-180</td>
-                                <td style="border: 1px solid ">175</td>
-                                <td style="border: 1px solid ">173</td>
-                                <td style="border: 1px solid ">176</td>
+                                <td  style="border: 1px solid "></td>
+                                <td id="content16" style="border: 1px solid "></td>
+                                <td id="content17" style="border: 1px solid "></td>
+                                <td id="content18" style="border: 1px solid "></td>
 
                             </td>
-                            <td class="text-center" style="border: 1px solid;  ">
-                                1.75
+                            <td id="content19" class="text-center" style="border: 1px solid;  ">
+                              
                             </td>
                         </tr>
                         <tr>
@@ -1039,15 +1966,15 @@ if (!$this->session->has_userdata('user_id')) {
                             <td style="border: 1px solid ">RT/24h</td>
                             <td style="border: 1px solid ">
                                 <b>cm</b>
-                                <td style="border: 1px solid ">42.0-46.0</td>
-                                <td style="border: 1px solid ">43.0-43.1</td>
+                                <td id="content20" style="border: 1px solid "></td>
+                                <td id="content21" style="border: 1px solid "></td>
 
-                                <td class="text-center" style="border: 1px solid; border-collapse:collapse ">
-                                    43.9-43.1
+                                <td id="content22" class="text-center" style="border: 1px solid; border-collapse:collapse ">
+                                   
                                 </td>
                             </td>
-                            <td style="border: 1px solid ">43.0-43.1</td>
-                            <td style="border: 1px solid ">43.0-43.2</td>
+                            <td style="border: 1px solid "></td>
+                            <td style="border: 1px solid "></td>
                         </tr>
                         <tr>
                             <td style="border: 1px solid ">Dynamic Properties</td>
@@ -1061,12 +1988,12 @@ if (!$this->session->has_userdata('user_id')) {
                             <td style="border: 1px solid ">
                                 <b>cm</b>
                                 <td style="border: 1px solid ">min .85</td>
-                                <td style="border: 1px solid ">100.6</td>
+                                <td id="content23" style="border: 1px solid "></td>
 
-                                <td class="text-center" style="border: 1px solid ">102.1</td>
+                                <td id="content24" class="text-center" style="border: 1px solid "></td>
                             </td>
-                            <td style="border: 1px solid ">99.6</td>
-                            <td style="border: 1px solid ">98.5</td>
+                            <td id="content25" style="border: 1px solid "></td>
+                            <td id="content26" style="border: 1px solid "></td>
                         </tr>
                         <tr>
                             <th style="border: 1px solid ">Water Uptake / Durability</th>
@@ -1077,7 +2004,7 @@ if (!$this->session->has_userdata('user_id')) {
                             <td style="border: 1px solid ">FGT-50</td>
                             <td style="border: 1px solid ">240 mnutes - wet</td>
                             <td class="text-center" colspan="2" style="border: 1px solid ">water uptake max. 15%/ no delamination</td>
-                            <td style="border: 1px solid ">11.48%</td>
+                            <td id="content27" style="border: 1px solid "></td>
                             <td style="border: 1px solid "></td>
                             <td style="border: 1px solid "></td>
                             <td style="border: 1px solid "></td>
@@ -1091,7 +2018,7 @@ if (!$this->session->has_userdata('user_id')) {
                             <td style="border: 1px solid ">FGT-04</td>
                             <td class="text-center" style="border: 1px solid ">2h/550W</td>
                             <td class="text-center" colspan="2" style="border: 1px solid ">max 3 acc. greyscale</td>
-                            <th class="text-center" style="border: 1px solid ">4/5</th>
+                            <th id="content28" class="text-center" style="border: 1px solid "></th>
                             <td style="border: 1px solid "></td>
                             <td style="border: 1px solid "></td>
                             <td style="border: 1px solid "></td>
@@ -1107,7 +2034,7 @@ if (!$this->session->has_userdata('user_id')) {
                             <td style="border: 1px solid ">FGT-01</td>
                             <td style="border: 1px solid ">60*C; 95% r.H.<br>3 days</td>
                             <td class="text-center" colspan="2" style="border: 1px solid ">no delamination</td>
-                            <td class="text-center" style="border: 1px solid ">Pass</td>
+                            <td id="content29" class="text-center" style="border: 1px solid "></td>
                             <td style="border: 1px solid "></td>
                             <td style="border: 1px solid "></td>
                             <td style="border: 1px solid "></td>
@@ -1119,7 +2046,7 @@ if (!$this->session->has_userdata('user_id')) {
                             <td style="border: 1px solid ">FGT-01</td>
                             <td style="border: 1px solid ">60*C; 95% r.H.<br>3 days</td>
                             <td class="text-center" colspan="2" style="border: 1px solid ">max 3 acc. greyscale</td>
-                            <td class="text-center" style="border: 1px solid ">4/5</td>
+                            <td id="content30" class="text-center" style="border: 1px solid "></td>
                             <td style="border: 1px solid "></td>
                             <td style="border: 1px solid "></td>
                             <td style="border: 1px solid "></td>
@@ -1141,19 +2068,10 @@ if (!$this->session->has_userdata('user_id')) {
                         </tr>
 
                         <tr>
-                            <td>Test request</td>
+                            <td id="content31"></td>
                         </tr>
 
-                        <tr>
-                            <td>failed criteria</td>
-                        </tr>
-
-                        <tr>
-                            <td>obvious problems<br>before<br>during<br>and after tests</td>
-                        </tr>
-                        <tr>
-                            <td>Improvements</td>
-                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
@@ -1162,9 +2080,11 @@ if (!$this->session->has_userdata('user_id')) {
 
 </div>
       </div>
+      </div>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Print Report</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printFGTSoccer')">Print Report</button>
       </div>
     </div>
   </div>
@@ -1189,9 +2109,9 @@ if (!$this->session->has_userdata('user_id')) {
                 <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
                 <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
             </div> -->
-            <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#Modaldepartment" class="d-grid gap-2 d-md-block" id="createDepartment">+ Create Head</button>
+            <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#Modaldepartment" class="d-grid gap-2 d-md-block" id="createDepartment">+ Create FGT Head</button>
                                           &nbsp;&nbsp;&nbsp;&nbsp;  
-                                          <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#ModalDetail" class="d-grid gap-2 d-md-block" id="createDepartment">+ Create Detail</button> 
+                                          <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#ModalDetail" class="d-grid gap-2 d-md-block" id="createDepartment">+ Add FGT Detail</button> 
     </div>
     
     
@@ -1200,7 +2120,7 @@ if (!$this->session->has_userdata('user_id')) {
                                         <div class="demo-v-spacing" id="defaultTable" >
                                             <table id="ActivityData" class="table table-bordered table-hover table-responsive table-striped w-100">
                                             <thead class="bg-primary-200 text-light">
-                                                    
+                                                       <th>FGT Report</th>
                                                     <th>LAB NO.</th>
                                                     <th>TESTING DATE</th>
                                                     <th>TEST ACC. TO Cat</th>   
@@ -1229,7 +2149,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                  Foreach($loadFGT_H as $keys) { ?>
                  
                         <tr>
-
+<td id="fgtype<?php Echo $keys['TID'];?>"><?php echo $keys['FGTType'];?></td>
                         <td><?php echo $keys['labno'];?></td>
                         <td><?php echo $keys['testdate'];?></td>
                                                 <td><?php echo $keys['tastcat'];?></td>   
@@ -1247,8 +2167,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <td> <?php echo $keys['modal'];?></td>
                                                 <td> <?php echo $keys['Innervalue'];?></td>
                                                 <td> <?php echo $keys['panel_shape'];?></td>
-                                                <td> <?php echo $keys['LoginName'];?></td>
-                                              <td> <?php echo $keys['remark'];?></td>
+                                                <td> <?php echo $keys['remark'];?></td>
+                                              <td> <?php echo $keys['LoginName'];?></td>
                                                 <td>
             <div class="row">
     
@@ -1377,7 +2297,18 @@ if (!$this->session->has_userdata('user_id')) {
 
             });
             
-  
+       function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+     window.location.reload();
+}
+
        
        $(".undobtn").click(function(e) {
      let id= this.id;
@@ -2857,7 +3788,157 @@ Status = 1;
         $("#ActivityData").on('click','.printButton',function(e){
             e.preventDefault();
 
+            let id= this.id;
+
+let split_value = id.split(".");
+
+var TID =split_value[1];
+
+let type=$("#fgtype"+TID).text();
+
+
+            url = "<?php echo base_url(''); ?>FGT/FGT_PRINT"
+            $.post(url, {TID},function(data){  
+              
+      if(type=="SOCCER BALLS" ||type=="SOCCERBALLS"){
+            
+              $("#titleBalls").text(data['head'][0].FGTType);
+              $("#content2").text(data['head'][0].labno);
+              $("#content3").text(data['head'][0].testdate);
+              $("#content4").text(data['head'][0].tastcat);
+              $("#content5").text(data['head'][0].productionmonth);
+              $("#content6").text(data['head'][0].modal);
+              $("#content7").text(data['head'][0].Innervalue);
+              $("#content8").text(data['head'][0].panel_shape);
+              $("#content9").text(data['head'][0].remark);
+              $("#content10").text(data['head'][0].balltype);
+              $("#content11").text(data['head'][0].testtype);
+              $("#content12").text(data['head'][0].mainmatcolor);
+              $("#content13").text(data['head'][0].printngscolors);
+              $("#content14").text(data['head'][0].result);
+              $("#content15").text(data['head'][0].LoginName);
+              $("#content16").text(data['detail'][0].weight1);
+              $("#content17").text(data['detail'][0].weight2);
+              $("#content21").text(data['detail'][0].cir1);
+              $("#content22").text(data['detail'][0].cir2);
+              $("#content23").text(data['detail'][0].rebound_rt1);
+              $("#content24").text(data['detail'][0].rebound_rt2);
+              $("#content27").text(data['detail'][0].drum_test_pd1);
+              $("#content28").text(data['detail'][0].uv_light_fast_cst1);
+              $("#content29").text(data['detail'][0].hydrolysis_lam1);
+              $("#content30").text(data['detail'][0].hydrolysis_color1);
+              $("#content31").text(data['head'][0].remark);
+            
+           
+
             $('#FGTReportModal').modal('toggle');
+        }
+        else if(type=="SOCCER BALL SIZE 5"){
+            console.log("from aSIZE 5",data);
+            $("#content66").text(data['head'][0].labno);
+            $("#content67").text(data['head'][0].testdate);
+            $("#content68").text(data['head'][0].tastcat);
+            $("#content69").text(data['head'][0].fifiastemp);
+            $("#content70").text(data['head'][0].productionmonth);
+            $("#content71").text(data['head'][0].covermat);
+            $("#content72").text(data['head'][0].backing);
+            $("#content73").text(data['head'][0].bladder);
+            $("#content74").text(data['head'][0].balltype);
+            $("#content75").text(data['head'][0].testtype);
+            $("#content76").text(data['head'][0].mainmatcolor);
+            $("#content77").text(data['head'][0].printngscolors);
+            $("#content78").text(data['head'][0].result);
+            $("#content79").text(data['head'][0].LoginName);
+            $("#content80").text(data['detail'][0].weight1);
+            $("#content81").text(data['detail'][0].weight2);
+            $("#content82").text(data['detail'][0].cir1);
+            $("#content83").text(data['detail'][0].cir2);
+            $("#content84").text(data['detail'][0].sphericity_sp1);
+            $("#content85").text(data['detail'][0].sphericity_sp2);
+            $("#content86").text(data['detail'][0].loss_of_pressure1);
+            $("#content87").text(data['detail'][0].loss_of_pressure2);
+            $("#content88").text(data['detail'][0].rebound_rt1);
+            $("#content89").text(data['detail'][0].rebound_rt2);
+            $("#content90").text(data['detail'][0].rebound_5_1);
+            $("#content91").text(data['detail'][0].rebound_5_2);
+            $("#content92").text(data['detail'][0].rebound_0_1);
+            $("#content93").text(data['detail'][0].rebound_0_2);
+            $("#content94").text(data['detail'][0].cir_st_1);
+            $("#content95").text(data['detail'][0].cir_st_2);
+            $("#content96").text(data['detail'][0].sphericity_st1);
+            $("#content97").text(data['detail'][0].sphericity_st2);
+            $("#content98").text(data['detail'][0].ch_of_pressure_st1);
+            $("#content99").text(data['detail'][0].ch_of_pressure_st2);
+            $("#content100").text(data['detail'][0].material_st1);
+            $("#content101").text(data['detail'][0].material_st2);
+            $("#content102").text(data['detail'][0].water_uptake_wrt1);
+            $("#content103").text(data['detail'][0].water_uptake_wrt2);
+            $("#content104").text(data['detail'][0].cir1_wrt);
+            $("#content105").text(data['detail'][0].cir2_wrt);
+            $("#content106").text(data['detail'][0].sphericity_wrt1);
+            $("#content107").text(data['detail'][0].sphericity_wrt2);
+            $("#content108").text(data['detail'][0].drum_test_pd1);
+            $("#content109").text(data['detail'][0].drum_test_pd2);
+            $("#content110").text(data['detail'][0].abraison_resistance_pd1);
+            $("#content111").text(data['detail'][0].abraison_resistance_pd2);
+            $("#content112").text(data['detail'][0].uv_light_fast_cst1);
+            $("#content113").text(data['detail'][0].uv_light_fast_cst2);
+            $("#content114").text(data['detail'][0].ozon_test_cst1);
+            $("#content115").text(data['detail'][0].ozon_test_cst2);
+            $("#content116").text(data['detail'][0].hydrolysis_lam1);
+            $("#content117").text(data['detail'][0].hydrolysis_lam2);
+            $("#content118").text(data['detail'][0].hydrolysis_color1);
+            $("#content119").text(data['detail'][0].hydrolysis_color2);
+
+
+
+            $('#soccerBallsSize5').modal('toggle');
+            
+        }else{
+            console.log("from soccerBallsIndoor",data);
+            $("#content32").text(data['head'][0].labno);
+            $("#content33").text(data['head'][0].testdate);
+            $("#content34").text(data['head'][0].tastcat);
+            $("#content35").text(data['head'][0].fifiastemp);
+            $("#content36").text(data['head'][0].productionmonth);
+            $("#content37").text(data['head'][0].covermat);
+            $("#content38").text(data['head'][0].backing);
+            $("#content39").text(data['head'][0].bladder);
+            $("#content40").text(data['head'][0].balltype);
+            $("#content41").text(data['head'][0].testtype);
+            $("#content42").text(data['head'][0].mainmatcolor);
+            $("#content43").text(data['head'][0].printngscolors);
+            $("#content44").text(data['head'][0].result);
+            $("#content45").text(data['head'][0].LoginName);
+            $("#content46").text(data['detail'][0].weight1);
+            $("#content47").text(data['detail'][0].weight2);
+            $("#content48").text(data['detail'][0].cir1);
+            $("#content49").text(data['detail'][0].cir2);
+            $("#content50").text(data['detail'][0].sphericity_sp1);
+            $("#content51").text(data['detail'][0].sphericity_sp2);
+            $("#content52").text(data['detail'][0].loss_of_pressure1);
+            $("#content53").text(data['detail'][0].loss_of_pressure2);
+            $("#content54").text(data['detail'][0].rebound_0_1);
+            $("#content55").text(data['detail'][0].rebound_0_2);
+            $("#content56").text(data['detail'][0].cir_st_1);
+            $("#content57").text(data['detail'][0].cir_st_2);
+            $("#content58").text(data['detail'][0].sphericity_sp1);
+            $("#content59").text(data['detail'][0].sphericity_sp2);
+            $("#content60").text(data['detail'][0].ch_of_pressure_st1);
+            $("#content61").text(data['detail'][0].ch_of_pressure_st2);
+            $("#content62").text(data['detail'][0].material_st1);
+            $("#content63").text(data['detail'][0].material_st2);
+            $("#content64").text(data['detail'][0].abraison_resistance_pd1);
+            $("#content65").text(data['detail'][0].abraison_resistance_pd2);
+           
+
+
+
+
+            $('#soccerBallsIndoor').modal('toggle');
+            
+        }
+    })
         });
          let fileSelectStore;
          let HeaderArray = [];
@@ -3080,6 +4161,20 @@ postData = {
     });  
     
     
+         </script>
+
+         <script>
+
+function printSoccerballsSize5(){
+             
+             var prtContent = document.getElementById("printSoccerBallsSize5");
+var WinPrint = window.open('', '', '');
+WinPrint.document.write(prtContent.innerHTML);
+WinPrint.document.close();
+WinPrint.focus();
+WinPrint.print();
+WinPrint.close();
+}
          </script>
     </body>
 </html>

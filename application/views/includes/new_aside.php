@@ -153,7 +153,13 @@
                                             <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Upload Excel File</span>
                                         </a>
                                     </li>
-                                  
+                                    <li>
+                                        <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>FGT" title="Introduction" data-filter-tags="application intel introduction">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_introduction">FGT </span>
+                                        </a>
+                                    </li>
                                </ul>
                           
                                

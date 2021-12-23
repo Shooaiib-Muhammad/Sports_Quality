@@ -35,6 +35,15 @@ class FGT extends CI_Controller
         ->set_status_header(200)
         ->set_output(json_encode($data));
     }
+    public function FGT_PRINT(){
+        
+        $data['head']= $this->FGT->FGT_PRINT_Head($_POST['TID']);
+        $data['detail']= $this->FGT->FGT_PRINT_Details($_POST['TID']);
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+    }
 
 
 
