@@ -382,6 +382,93 @@ class LabController extends CI_Controller
     );
     }
 
+    public function addHeadDataMaterial()
+    { 
+
+    ////////////////////////////////////// Ajax Call ///////////////////////////////
+
+     if(!empty($_FILES['file']['name'])){
+
+        $config['upload_path'] = 'assets\img\img';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        $config['file_name'] = basename($_FILES["file"]["name"]) ;
+        
+        //Load upload library and initialize configuration
+        $this->load->library('upload',$config);
+       $this->upload->initialize($config);
+         
+        if($this->upload->do_upload('file')){
+       $uploadData = $this->upload->data();
+       $picture = $uploadData['file_name'];
+       $config['image_library'] = 'gd2';  
+       $config['source_image'] = 'assets/img/img/'.$picture;
+       $config['create_thumb'] = FALSE;  
+       $config['maintain_ratio'] = FALSE;  
+       $config['quality'] = '60%';  
+       $config['width'] = 800;  
+       $config['height'] = 600;  
+       $config['new_image'] = 'assets/img/img/'.$picture;
+       $this->load->library('image_lib', $config);  
+       $this->image_lib->resize(); 
+        }else{
+        Echo "helll";
+    
+         $picture = '';
+        }
+       }else{
+        
+        $picture = '';
+       }
+    
+ 
+  $headerValue = $_POST['HeaderArray'];
+  $header = explode(",",$headerValue);
+
+    $childValue = $_POST['ChildArray'];
+    $child = explode("]",$childValue);
+    $childArray = [];
+    foreach ($child as $key => $value) {
+        $arraySplit = explode(',',$value);
+        array_push($childArray, $arraySplit);
+       
+    }
+    array_pop($childArray);
+  
+    $testNo = $header[0];
+    $CSSNO=$header[1];
+    $TestDate = $header[2];
+    $ItemName = $header[3];
+    $PONo = $header[4];
+    $ReceivingDate = $header[5];
+    $SupplierName = $header[6];
+  
+    $SupplierRef = $header[7];
+    $Quantity = $header[8];
+
+   
+  
+    $Result = $header[9];
+    $ItemType = $header[10];
+    $testGroup = $_POST['testGroup'];
+    $this->l->AddHeaderMaterial(
+        $TestDate,
+        $CSSNO,
+        $PONo,
+        $Quantity,
+        $ReceivingDate,
+        $ItemName,
+        $SupplierName,
+        $testNo,
+        $SupplierRef,
+        $Result,
+        $ItemType,
+        $picture,
+        $testGroup,
+        $childArray 
+    );
+    }
+    
+
     public function addHeadDataThread()
     { 
 

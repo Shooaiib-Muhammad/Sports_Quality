@@ -52,7 +52,7 @@
                                         <a href="<?php echo base_url(
                                             ''
                                         ); ?>LabController/master_form" title="Introduction" data-filter-tags="application intel introduction">
-                                            <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Upload Excel File</span>
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Raw Material Testing</span>
                                         </a>
                                     </li>
                                   
@@ -150,7 +150,7 @@
                                         <a href="<?php echo base_url(
                                             ''
                                         ); ?>LabController/master_form" title="Introduction" data-filter-tags="application intel introduction">
-                                            <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Upload Excel File</span>
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Raw Material Testing</span>
                                         </a>
                                     </li>
                                     <li>
