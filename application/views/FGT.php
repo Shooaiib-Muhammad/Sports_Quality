@@ -31,6 +31,7 @@ if (!$this->session->has_userdata('user_id')) {
 
 
 
+
 <!-- Modal SOCCER BALL INDOOR-->
 <div class="modal fade bd-example-modal-xl" id="soccerBallsIndoor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
@@ -1094,7 +1095,7 @@ if (!$this->session->has_userdata('user_id')) {
                     <!-- <input type="hidden" name="_token" value=""> -->
                    
                     <div class="row" style="display:flex">
-                    <div class="col-md-12" style="margin-top:25px">  
+                    <div class="col-md-6" style="margin-top:25px">  
                      <div class="form-group">
                         <label class="control-label">FGT Type:</label>
                         <select class="form-control" id="fgttype" name="fgttype" >
@@ -1105,7 +1106,21 @@ if (!$this->session->has_userdata('user_id')) {
                             </select>
                     </div></div>
                   
-                    </div>
+                     <div class="col-md-6" style="margin-top:25px">  
+                     <div class="form-group">
+                     <label>Test Performed By</label>
+                                                                <select class="form-control" id="testperformedby">
+                                                                     <option value="" selected>Select Test Performed By</option>
+                                                                    <option value="Imran" >Imran</option>
+                                                                    <option value="Pervaiz">Pervaiz</option>
+                                                                    <option value="Tanveer" >Tanveer</option>
+                                                                    <option value="Umer">Umer</option>
+                                                                    <option value="Bilal">Bilal</option>
+                                                                </select>
+                    </div></div>
+                                                             </div>
+   
+
                    <div class="row" style="display:flex">
                     <div class="col-md-6" style="margin-top:25px">  
                      <div class="form-group">
@@ -1272,7 +1287,18 @@ if (!$this->session->has_userdata('user_id')) {
                     
                     </div>
                     </div>
-                
+                       <div class="row" style="display:flex">
+                    <div class="col-md-12" style="margin-top:25px">
+                   <div class="form-group">
+                        <label class="control-label">NOTE:</label>
+                        <div>
+                            <input type="text" class="form-control input-lg" id='note' name="note" placeholder="">
+                        </div>
+                    </div>
+
+                   </div>
+                    
+                    </div>
                     <div class="row">
                     <div class="form-group">
                         <div>
@@ -2103,23 +2129,38 @@ if (!$this->session->has_userdata('user_id')) {
         <h2>
             FGT Report</span>
         </h2>
-       
+       <?php 
+  $Uploading = $this->session->userdata('Uploading');
+   $RS = $this->session->userdata('ReviewStatus');
+    $AS = $this->session->userdata('ApprovalStatus');
+
+
+
+  ?>
         <!-- <div class="panel-toolbar">
                 <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
                 <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
                 <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
             </div> -->
-            <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#Modaldepartment" class="d-grid gap-2 d-md-block" id="createDepartment">+ Create FGT Head</button>
+            <?php
+            if($Uploading==1){
+?>
+<button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#Modaldepartment" class="d-grid gap-2 d-md-block" id="createDepartment">+ Create FGT Head</button>
                                           &nbsp;&nbsp;&nbsp;&nbsp;  
-                                          <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#ModalDetail" class="d-grid gap-2 d-md-block" id="createDepartment">+ Add FGT Detail</button> 
+                                          <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#ModalDetail" class="d-grid gap-2 d-md-block" id="createDepartment">+  Add FGT Detail</button> 
+<?php
+            }
+            ?>
+            
     </div>
-    
+   
     
     <div class="panel-container show">
                                     <div class="panel-content">
                                         <div class="demo-v-spacing" id="defaultTable" >
                                             <table id="ActivityData" class="table table-bordered table-hover table-responsive table-striped w-100">
                                             <thead class="bg-primary-200 text-light">
+                                               
                                                        <th>FGT Report</th>
                                                     <th>LAB NO.</th>
                                                     <th>TESTING DATE</th>
@@ -2139,14 +2180,27 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <th>Inner</th>
                                                     <th>Panel Shape</th>
                                                     <th>Remark</th>
-                                                    <th>TESTED BY</th>
+                                                 
+                                                     <th>Review Status</th>
+                                                      <th>Review BY</th>
+                                                       <th>Approved Status</th>
+                                                        <th>Approved BY</th>
+                                                           <th>TESTED BY</th>
                                                     <th>ACTIONS</th>
+                                                     <th>Print Report</th>
+                                                        <th>UNDO</th>
                                                     </thead>
                                                 <tbody>
                                                      
                                                 <?php
                                                //print_r($loadFGT_H);
-                                                 Foreach($loadFGT_H as $keys) { ?>
+                                                 Foreach($loadFGT_H as $keys) { 
+                                                     
+                                                     $Approvalname =$keys['Approvalname'];
+  $ReviewName =$keys['ReviewName'];
+  $ReviewStatus =$keys['ReviewStatus'];
+  $ApprovedStatus =$keys['ApprovedStatus'];
+                                                     ?>
                  
                         <tr>
 <td id="fgtype<?php Echo $keys['TID'];?>"><?php echo $keys['FGTType'];?></td>
@@ -2168,19 +2222,143 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <td> <?php echo $keys['Innervalue'];?></td>
                                                 <td> <?php echo $keys['panel_shape'];?></td>
                                                 <td> <?php echo $keys['remark'];?></td>
+                                                <td>
+             <?php
+                                                                   
+
+                                                                    
+               
+    if($ReviewStatus=='1'){
+        ?>    
+        <div class="custom-control custom-switch">
+            
+            <?php
+             if($RS==1){
+            ?>
+                                                                <input type="checkbox" class="custom-control-input" id="review<?php Echo $keys['TID']; ?>" checked="">
+                                                                <?php
+                                                                
+             }else{
+                 ?>
+                    <input type="checkbox" disabled="disabled" class="custom-control-input" id="review<?php Echo $keys['TID']; ?>" checked="">
+                 <?php
+                 }
+                 ?>
+                                                                <label class="custom-control-label" for="review<?php Echo $keys['TID']; ?>"></label>
+                                                            </div>
+                                                          <?php
+    }else{
+        ?>
+         <div class="custom-control custom-switch">
+                                                               <?php
+             if($RS==1){
+            ?>
+                                                                <input type="checkbox" class="custom-control-input" id="review<?php Echo $keys['TID']; ?>" >
+                                                                <?php
+                                                                
+             }else{
+                 ?>
+                    <input type="checkbox" disabled="disabled" class="custom-control-input" id="review<?php Echo $keys['TID']; ?>">
+                 <?php
+                 }
+                 ?>
+                                                                <label class="custom-control-label" for="review<?php Echo $keys['TID']; ?>"></label>
+                                                            </div>
+         <?php
+    }
+    ?>
+                                                        </td>
+        <td>
+            
+    <?php
+    if($ReviewStatus=='1'){
+        ?>
+        
+        <span class="badge badge-success p-1"><?php Echo $ReviewName; ?></span>
+        <?php
+    }else{
+        ?>
+          <span class="badge badge-warning p-1">Pending</span>
+        <?php
+    }
+    ?>
+    </td>
+        <td>
+             <?php
+    if($ApprovedStatus=='1'){
+        ?>
+            <div class="custom-control custom-switch">
+                  <?php
+             if($AS==1){
+            ?>
+                                                                <input type="checkbox" class="custom-control-input" id="approved<?php Echo $keys['TID']; ?>" checked="">
+                                                                <?php
+                                                                }else{
+                                                                    ?>
+                                                                     <input type="checkbox" disabled="disabled" class="custom-control-input" id="approved<?php Echo $keys['TID']; ?>" checked="">
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                <label class="custom-control-label" for="approved<?php Echo $keys['TID']; ?>"></label>
+                                                            </div>
+                                                               <?php
+    }else{
+        ?>
+         <div class="custom-control custom-switch">
+                                                                       <?php
+             if($AS==1){
+            ?>
+                                                                <input type="checkbox" class="custom-control-input" id="approved<?php Echo $keys['TID']; ?>" >
+                                                                <?php
+                                                                }else{
+                                                                    ?>
+                                                                     <input type="checkbox" disabled="disabled" class="custom-control-input" id="approved<?php Echo $keys['TID']; ?>" >
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                <label class="custom-control-label" for="approved<?php Echo $keys['TID']; ?>"></label>
+                                                            </div>
+        <?php
+    }
+    ?>
+                                                        </td>
+        <td>  <?php
+    if($ApprovedStatus=='1'){
+        ?>
+       
+        <span class="badge badge-success p-1"> <?php Echo $Approvalname; ?></span>
+        <?php
+    }else{
+        ?>
+         <span class="badge badge-warning p-1">Pending</span>
+        <?php
+    }
+    ?></td>
+       
                                               <td> <?php echo $keys['LoginName'];?></td>
                                                 <td>
             <div class="row">
-    
-                <div class="col-md-2">
-                <button type="button" class="btn btn-warning btn-xs printButton" id="btnPrint.<?php Echo $keys['TID']; ?>" ><i class="fal fa-print" aria-hidden="true"></i></button>
+     <div class="col-md-2">
+                <button type="button" class="btn btn-info btn-xs updatebtn" id="btn.<?php Echo $keys['TID']; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
                 </div>
-            </div>
+               
           
         
            
            
-           </td>   
+           </td> 
+            <td> <div class="col-md-2">
+               
+              <button type="button" class="btn btn-warning btn-xs printButton" id="btnPrint.<?php Echo $keys['TID']; ?>" ><i class="fal fa-print" aria-hidden="true"></i></button>
+      
+                </div>
+            </td>  
+            <td> <div class="col-md-2">
+               
+            <button type="button" id="undo.<?php echo $keys['TID'];?>" value="<?php echo $keys['TID'];?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> 
+      
+                </div>
+            </td>
                         </tr>
                        
                        
@@ -2220,7 +2398,70 @@ if (!$this->session->has_userdata('user_id')) {
         <script src="<?php echo base_url();?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
         <script src="<?php echo base_url();?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
         <script>
-      
+      $(".updatebtn").click(function(e) {
+    //alert("heloo");
+     let id= this.id;
+    //alert(id);
+     let split_value = id.split(".");
+    //alert(split_value);
+     //console.log(split_value);
+     var TID =split_value[1];
+     //alert(`#issueDate.${split_value[1]}`);
+      //alert(split_value[1]);
+//   let RID =split_value[1]);
+     ///var reviewStatus = $(`#review${split_value[1]}`).val();
+     ///var approved = $(`#review${split_value[1]}`).val();
+     
+     let reviewStatus;
+     if($(`#review${split_value[1]}`).is(":checked")){
+        reviewStatus = 1;
+     }
+     else{
+        reviewStatus = 0;
+     }
+     let approvedStatus;
+     if($(`#approved${split_value[1]}`).is(":checked")){
+        approvedStatus = 1;
+     }
+     else{
+        approvedStatus = 0;
+     }
+//alert(Status);
+      //$('#check_id').val();
+      //alert(reviewStatus);
+       //alert(approvedStatus);
+        //alert(TID);
+   
+ url = "<?php echo base_url(''); ?>FGT/updated/"+ reviewStatus + "/" + approvedStatus  + "/" + TID
+  
+//alert(url);
+   $.get(url, function(data){
+            alert("Data Updated Successfully");
+            location.reload();
+            });
+
+            
+     });
+
+
+
+     $('.undobtn').click(function(){
+     let id= this.id;
+    let split_value = id.split(".");
+     var TID =split_value[1];
+var proceed = confirm("Are you sure you want to Delete?");
+if (proceed) {
+    url = "<?php echo base_url(''); ?>FGT/undo/"+ TID 
+    //alert(url);
+     $.get(url, function(data){
+            alert("Data Updated Successfully");
+           location.reload();
+            });
+} else {
+  alert("Undo Cancel");
+}
+     });
+  
             /* defined datas */
              $(document).ready(function()
             {
@@ -4092,10 +4333,11 @@ let inn = $("#inn").val();
 let pshape = $("#pshape").val();
 let rem = $("#rem").val();
 let result = $("#result").val();
+let testperformedby = $("#testperformedby").val();
+let note = $("#note").val();
 //alert(result)
 
 url = "<?php echo base_url(''); ?>FGT/FGT_H"
-//alert(url)
 
 // $.post(url,{"fgttype":fgttype?fgttype:null,"labno":labno?labno:null,"tdate":tdate?tdate:null, "testcat":testcat?testcat:null, "fifastum": fifastump? fifastump:0, "pmonth": pmonth? pmonth:null, "cmat": cmat ? cmat :null, "backing": backing ? backing :null, "bladder": bladder ? bladder :null, "btype": btype ? btype :null, "ttype": ttype ? ttype :null,"mmcolor": mmcolor ? mmcolor :null, "pcolors": pcolors ? pcolors :null, "result": result ? result :null,"fn": fn ? fn :null, "m": m ? m :null, "inn": inn ? inn :null, "pshape": pshape ? pshape :null, "rem": rem ? rem :null} ,function(data){
 //               //alert("Details   inserted Successfully");
@@ -4104,9 +4346,9 @@ url = "<?php echo base_url(''); ?>FGT/FGT_H"
 //               });
 
 
-$.post(url,{"fgttype":fgttype?fgttype:null,"labno":lbno?lbno:null,"tdate":tdate?tdate:null, "testcat":testcat?testcat:null, "fifastump": fifastump? fifastump:0, "pmonth": pmonth? pmonth:null, "cmat": cmat ? cmat :null, "backing": backing ? backing :null, "bladder": bladder ? bladder :null, "btype": btype ? btype :null, "ttype": ttype ? ttype :null,"mmcolor": mmcolor ? mmcolor :null, "pcolors": pcolors ? pcolors :null, "result": result ? result :null,"fn": fn ? fn :null, "m": m ? m :null, "inn": inn ? inn :null, "pshape": pshape ? pshape :null, "rem": rem ? rem :null} ,function(data){
+$.post(url,{"fgttype":fgttype?fgttype:null,"labno":lbno?lbno:null,"tdate":tdate?tdate:null, "testcat":testcat?testcat:null, "fifastump": fifastump? fifastump:0, "pmonth": pmonth? pmonth:null, "cmat": cmat ? cmat :null, "backing": backing ? backing :null, "bladder": bladder ? bladder :null, "btype": btype ? btype :null, "ttype": ttype ? ttype :null,"mmcolor": mmcolor ? mmcolor :null, "pcolors": pcolors ? pcolors :null, "result": result ? result :null,"fn": fn ? fn :null, "m": m ? m :null, "inn": inn ? inn :null, "pshape": pshape ? pshape :null, "rem": rem ? rem :null, "testperformedby": testperformedby ? testperformedby :null, "note": note ? note :null} ,function(data){
             alert("FGT Details   inserted Successfully");
-              //console.log("Data Get from Function",data);
+            //console.log("Data Get from Function",data);
             location.reload();
               });
 

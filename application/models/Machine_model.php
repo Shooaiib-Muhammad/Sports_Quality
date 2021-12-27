@@ -25,6 +25,9 @@ class Machine_model extends CI_Model
                 'Dev' => $result->Dev,
                 'store' => $result->store,
                 'admin' => $result->admin,
+                 'Uploading' => $result->Uploading,
+                'ReviewStatus' => $result->ReviewStatus,
+                'ApprovalStatus' => $result->ApprovalStatus,
                 
             ];
 

@@ -879,6 +879,20 @@ FROM            dbo.view_Dev_POM");
         return $query->result_array();
     }
     
+       public function undoFGT($TID){
+         
+       $query = $this->db->query("DELETE    FROM  tbl_FGT_D
+      WHERE TID=$TID");
+      if($query){
+            $query = $this->db->query("DELETE FROM tbl_FGT_H
+      WHERE TID=$TID");
+       if($query){
+           $this->session->set_flashdata('danger', 'Data Deleted Successfully');
+           redirect('FGT/index');
+       }
+      }
+        
+    }
     public function undo($TID){
         
        $query = $this->db->query("DELETE  FROM Tbl_Lab_Test_D
@@ -996,19 +1010,30 @@ public function updatedStatus($reviewStatus,$approvedStatus,$TID){
     }else{
  $user_id1 = 0;
     }
-    // Echo $reviewStatus;
-    // Echo "<pre>";
-    //  Echo $user_id;
-    // Echo "<pre>";
-    //  Echo $approvedStatus;
-    // Echo "<pre>";
-    //  Echo $user_id1; 
-    // Echo "<pre>";
-    // die;
+    
+
     $query = $this->db->query("UPDATE   dbo .Tbl_Lab_Test_H 
     SET   ApprovedStatus  =  '$approvedStatus',ReviewStatus  =  '$reviewStatus',ReviewBy=$user_id,ApproveBy=$user_id1
   WHERE  TID='$TID'");
 }
+public function updatedStatusFGT($reviewStatus,$approvedStatus,$TID){
+    if($reviewStatus==1){
+ $user_id = $this->session->userdata('user_id');
+    }else{
+ $user_id = 0;
+    }
+   if($approvedStatus==1){
+ $user_id1 = $this->session->userdata('user_id');
+    }else{
+ $user_id1 = 0;
+    }
+    
+  
+      $query = $this->db->query("UPDATE   dbo .tbl_FGT_H 
+    SET   ApprovedStatus  =  '$approvedStatus',ReviewStatus  =  '$reviewStatus',Reviewby=$user_id,ApprovedBy=$user_id1
+  WHERE  TID='$TID'");
+}
+
   public function getDetails($Id){
         $query = $this->db->query(" SELECT        TID, dbo.view_Lab_test_Details.*
         FROM            dbo.view_Lab_test_Details
@@ -1038,7 +1063,7 @@ public function getTableData($sDate,$eDate){
        return $query->result_array();
 }
 public function FGT_H_insertion($fgttype,$lbno,$tdate,$testcat,$fifastump,$pmonth,$cmat,$backing,$fgbladderttype,
-    $btype,$ttype,$mmcolor,$pcolors,$result,$fn,$m,$inn,$pshape,$rem) {
+    $btype,$ttype,$mmcolor,$pcolors,$result,$fn,$m,$inn,$pshape,$rem,$testperformedby,$note) {
         date_default_timezone_set('Asia/Karachi');
         $Date = date('Y-m-d H:i:s');
         $user_id = $this->session->userdata('user_id');
@@ -1064,7 +1089,7 @@ public function FGT_H_insertion($fgttype,$lbno,$tdate,$testcat,$fifastump,$pmont
               ,modal
               ,Innervalue
               ,panel_shape
-              ,remark
+              ,remark,Performedby,Note
               )
         VALUES
               ('$fgttype'
@@ -1087,6 +1112,8 @@ public function FGT_H_insertion($fgttype,$lbno,$tdate,$testcat,$fifastump,$pmont
               ,'$inn'
               ,'$pshape',
               '$rem'
+              ,'$testperformedby',
+              '$note'
               )");
         
     }

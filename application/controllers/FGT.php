@@ -16,15 +16,26 @@ class FGT extends CI_Controller
      
         $this->load->view('FGT',$data);
     }
+     public function undo($TID){
+      
+        $data['undo'] = $this->FGT->undoFGT($TID);
+    }
     public function FGT_H(){
-       
-        $data= $this->FGT->FGT_H_insertion($_POST['fgttype'],$_POST['labno'],$_POST['tdate'],$_POST['testcat'],$_POST['fifastump'],$_POST['pmonth'],$_POST['cmat'],$_POST['backing'],$_POST['bladder'],$_POST['btype'],$_POST['ttype'],$_POST['mmcolor'],$_POST['pcolors'],$_POST['result'],$_POST['fn'],$_POST['m'],$_POST['inn'],$_POST['pshape'], $_POST['rem']);
+      
+        $data= $this->FGT->FGT_H_insertion($_POST['fgttype'],$_POST['labno'],$_POST['tdate'],$_POST['testcat'],$_POST['fifastump'],$_POST['pmonth'],$_POST['cmat'],$_POST['backing'],$_POST['bladder'],$_POST['btype'],$_POST['ttype'],$_POST['mmcolor'],$_POST['pcolors'],$_POST['result'],$_POST['fn'],$_POST['m'],$_POST['inn'],$_POST['pshape'], $_POST['rem'],$_POST['testperformedby'],$_POST['note']);
         return $this->output
         ->set_content_type('application/json')
         ->set_status_header(200)
         ->set_output(json_encode($data));
     }
-
+    public function updated($reviewStatus,$approvedStatus,$TID){
+        //$data['Labtest'] 
+        $data = $this->FGT->updatedStatusFGT($reviewStatus,$approvedStatus,$TID);
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+    }
     public function FGT_D(){
         // $w1=$_POST['w1'];
         // $w2=$_POST['w1'];
