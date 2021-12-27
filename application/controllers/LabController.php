@@ -199,6 +199,7 @@ class LabController extends CI_Controller
     }
     array_pop($childArray);
     $testGroup = $_POST['testGroup'];
+    $testPerformer = $_POST['testPerformer'];
     $TestDate = $header[0];
     $PONo = $header[1];
     $Quantity = $header[2];
@@ -222,6 +223,7 @@ class LabController extends CI_Controller
         $ItemType,
         $picture,
         $testGroup,
+        $testPerformer,
         $childArray 
     );
     }
@@ -284,6 +286,7 @@ class LabController extends CI_Controller
     $testNo = $header[0];
     $SupplierRef = $header[4];
     $testGroup = $_POST['testGroup'];
+    $testPerformer = $_POST['testPerformer'];
     $this->l->AddHeaderFoam(
         $TestDate,
         $PONo,
@@ -292,6 +295,7 @@ class LabController extends CI_Controller
         $SupplierRef,
         $picture,
         $testGroup,
+        $testPerformer,
         $childArray 
     );
     }
@@ -364,6 +368,7 @@ class LabController extends CI_Controller
     $Result = $header[9];
     $ItemType = $header[10];
     $testGroup = $_POST['testGroup'];
+    $testPerformer = $_POST['testPerformer'];
     $this->l->AddHeaderFabric(
         $TestDate,
         $CSSNO,
@@ -378,6 +383,7 @@ class LabController extends CI_Controller
         $ItemType,
         $picture,
         $testGroup,
+        $testPerformer,
         $childArray 
     );
     }
@@ -450,6 +456,7 @@ class LabController extends CI_Controller
     $Result = $header[9];
     $ItemType = $header[10];
     $testGroup = $_POST['testGroup'];
+    $testPerformer = $_POST['testPerformer'];
     $this->l->AddHeaderMaterial(
         $TestDate,
         $CSSNO,
@@ -464,6 +471,7 @@ class LabController extends CI_Controller
         $ItemType,
         $picture,
         $testGroup,
+        $testPerformer,
         $childArray 
     );
     }
@@ -533,6 +541,7 @@ class LabController extends CI_Controller
  
     $TwistPerInch = $header[8];
     $testGroup = $_POST['testGroup'];
+    $testPerformer = $_POST['testPerformer'];
     $this->l->AddHeaderThread(
         $TestDate,
         $PONo,
@@ -542,6 +551,7 @@ class LabController extends CI_Controller
         $SupplierRef,
         $picture,
         $testGroup,
+        $testPerformer,
         $childArray 
         ,$Thickness
         ,$LinearDensity
@@ -612,6 +622,7 @@ class LabController extends CI_Controller
     $Hardness = $header[8];
     $Remarks =  $header[9];
     $testGroup = $_POST['testGroup'];
+    $testPerformer = $_POST['testPerformer'];
     $this->l->AddHeaderBlader(
         $TestDate,
         $PONo,
@@ -622,6 +633,7 @@ class LabController extends CI_Controller
         $SupplierRef,
         $picture,
         $testGroup,
+        $testPerformer,
         $childArray ,
         $Material,
         $Hardness,

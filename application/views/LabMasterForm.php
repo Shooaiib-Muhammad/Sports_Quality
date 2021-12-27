@@ -100,7 +100,7 @@ if (!$this->session->has_userdata('user_id')) {
                    <th></th>
                    <th></th>
                    <th></th>
-                   <th><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                   <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
                </tr>
            </table>
            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
@@ -189,11 +189,11 @@ if (!$this->session->has_userdata('user_id')) {
                     <th></th>
                     <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
                     <span >Sohail Ghouri </span></th>
-          <!-- <th></th>
+          <th></th>
                     <th></th>
                     <th></th>
-                    <th> <span style="font-size: medium;font-weight:bold"><u>Lab Manager</u> </span><br>
-                    <span id="testReviewed"> </span></th> -->
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformed"> </span></th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -270,7 +270,7 @@ if (!$this->session->has_userdata('user_id')) {
                    <th></th>
                    <th></th>
                    <th></th>
-                   <th><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                   <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
                </tr>
            </table>
            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
@@ -357,11 +357,11 @@ if (!$this->session->has_userdata('user_id')) {
                     <th></th>
                     <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
                     <span >Sohail Ghouri </span></th>
-          <!-- <th></th>
+          <th></th>
                     <th></th>
                     <th></th>
-                    <th> <span style="font-size: medium;font-weight:bold"><u>Lab Manager</u> </span><br>
-                    <span id="testReviewed"> </span></th> -->
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedFoam"> </span></th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -437,7 +437,7 @@ if (!$this->session->has_userdata('user_id')) {
                    <th></th>
                    <th></th>
                    <th></th>
-                   <th><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                   <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
                </tr>
            </table>
            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
@@ -536,11 +536,11 @@ if (!$this->session->has_userdata('user_id')) {
                     <th></th>
                     <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
                     <span >Sohail Ghouri </span></th>
-          <!-- <th></th>
+          <th></th>
                     <th></th>
                     <th></th>
-                    <th> <span style="font-size: medium;font-weight:bold"><u>Lab Manager</u> </span><br>
-                    <span id="testReviewed"> </span></th> -->
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedFabric"> </span></th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -617,7 +617,7 @@ if (!$this->session->has_userdata('user_id')) {
                    <th></th>
                    <th></th>
                    <th></th>
-                   <th><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                   <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
                </tr>
            </table>
            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
@@ -716,11 +716,11 @@ if (!$this->session->has_userdata('user_id')) {
                     <th></th>
                     <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
                     <span >Sohail Ghouri </span></th>
-          <!-- <th></th>
+          <th></th>
                     <th></th>
                     <th></th>
-                    <th> <span style="font-size: medium;font-weight:bold"><u>Lab Manager</u> </span><br>
-                    <span id="testReviewed"> </span></th> -->
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedMaterial"> </span></th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -797,7 +797,7 @@ if (!$this->session->has_userdata('user_id')) {
                    <th></th>
                    <th></th>
                    <th></th>
-                   <th><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                   <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
                </tr>
            </table>
            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
@@ -902,11 +902,11 @@ if (!$this->session->has_userdata('user_id')) {
                     <th></th>
                     <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
                     <span >Sohail Ghouri </span></th>
-          <!-- <th></th>
+          <th></th>
                     <th></th>
                     <th></th>
-                    <th> <span style="font-size: medium;font-weight:bold"><u>Lab Manager</u> </span><br>
-                    <span id="testReviewed"> </span></th> -->
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedThread"> </span></th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -983,7 +983,7 @@ if (!$this->session->has_userdata('user_id')) {
                    <th></th>
                    <th></th>
                    <th></th>
-                   <th><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                   <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
                </tr>
            </table>
            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
@@ -1085,11 +1085,11 @@ if (!$this->session->has_userdata('user_id')) {
                     <th></th>
                     <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
                     <span >Sohail Ghouri </span></th>
-          <!-- <th></th>
+          <th></th>
                     <th></th>
                     <th></th>
-                    <th> <span style="font-size: medium;font-weight:bold"><u>Lab Manager</u> </span><br>
-                    <span id="testReviewed"> </span></th> -->
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedBlader"> </span></th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -1135,6 +1135,15 @@ if (!$this->session->has_userdata('user_id')) {
         <!-- End Model Blader HTML -->
 
 
+<?php
+ $Uploading = $this->session->userdata('Uploading');
+  $RS = $this->session->userdata('ReviewStatus');
+   $AS = $this->session->userdata('ApprovalStatus');
+   
+
+  // if($Uploading==1){
+
+  ?>
                                 <div class="panel-container show">
                                     <div class="panel-content">
                                         <div class="demo-v-spacing">
@@ -1148,13 +1157,27 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </div>
                                                     <div class="row">
                                                   
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-12">
                                                             <div class="form-group mt-4">
                                                                 <div class="custom-file">
+                                                                    <?php
+                                                                    if($Uploading==1){
+
+                                                                    
+                                                                    ?>
                                                                     <input type="file" class="custom-file-input" id="customFile" onchange="fileSelect(this.files);" name="CottonData" accept=".xlsx, .xls, .csv">
 
                                                                     <label class="custom-file-label" for="customFile">Choose file</label>
+<?php
 
+                                                                    }else{
+                                                                        ?>
+                                                                           <input type="file"  disabled="disabled" lass="custom-file-input" id="customFile" onchange="fileSelect(this.files);" name="CottonData" accept=".xlsx, .xls, .csv">
+
+                                                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                                                        <?PHP
+                                                                    }
+                                                                    ?>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1184,11 +1207,25 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                         <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label>Select Test Group</label>
+                                                                <label>Test Group</label>
                                                                 <select class="form-control" id="testGroup">
                                                                      <option value="" selected>Select Test Group</option>
                                                                     <option value="Development" >Development</option>
                                                                     <option value="Production">Production</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Test Performed By</label>
+                                                                <select class="form-control" id="testPerformer">
+                                                                     <option value="" selected>Select Test Performed By</option>
+                                                                    <option value="Imran" >Imran</option>
+                                                                    <option value="Pervaiz">Pervaiz</option>
+                                                                    <option value="Tanveer" >Tanveer</option>
+                                                                    <option value="Umer">Umer</option>
+                                                                    <option value="Bilal">Bilal</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -1229,16 +1266,34 @@ if (!$this->session->has_userdata('user_id')) {
 
                                         </div>
                                         <!-- /.card-body -->
+  <?php
+                                                                    if($Uploading==1){
 
+                                                                    
+                                                                    ?>
                                         <div class="card-footer text-right">
                                             <button class="btn btn-primary" id="submitData">Load</button>
                                             <button class="btn btn-primary" id="sendHeaderValues" style="display: none;">Save Data</button>
                                             <!-- <button class="btn btn-primary" id="sendDetailsValues" style="display: none;" >Save Test Details</button> -->
                                         </div>
+                                        <?php
+                                        
+                                                                    }else{
+                                                                        ?>
+                                                                            <div class="card-footer text-right">
+                                            <button class="btn btn-primary" disabled="disabled" id="submitData">Load</button>
+                                            <button class="btn btn-primary" disabled="disabled" id="sendHeaderValues" style="display: none;">Save Data</button>
+                                            <!-- <button class="btn btn-primary" id="sendDetailsValues" style="display: none;" >Save Test Details</button> -->
+                                        </div>
+                                                                        <?php
+                                                                    }?>
                                         </form>
                                     </div>
                                 </div>
+<?php
 
+ //}
+?>
                             </div>
                         </div>
                         <div class="col-md-12  table-responsive">
@@ -1323,18 +1378,45 @@ if (!$this->session->has_userdata('user_id')) {
      <td><?php Echo $Key['LoginName']; ?></td>
        
         <td>
-          <?php
+             <?php
+                                                                   
+
+                                                                    
+               
     if($ReviewStatus=='1'){
         ?>    
         <div class="custom-control custom-switch">
+            
+            <?php
+             if($RS==1){
+            ?>
                                                                 <input type="checkbox" class="custom-control-input" id="review<?php Echo $Key['TID']; ?>" checked="">
+                                                                <?php
+                                                                
+             }else{
+                 ?>
+                    <input type="checkbox" disabled="disabled" class="custom-control-input" id="review<?php Echo $Key['TID']; ?>" checked="">
+                 <?php
+                 }
+                 ?>
                                                                 <label class="custom-control-label" for="review<?php Echo $Key['TID']; ?>"></label>
                                                             </div>
                                                           <?php
     }else{
         ?>
          <div class="custom-control custom-switch">
-                                                                <input type="checkbox" class="custom-control-input" id="review<?php Echo $Key['TID']; ?>">
+                                                               <?php
+             if($RS==1){
+            ?>
+                                                                <input type="checkbox" class="custom-control-input" id="review<?php Echo $Key['TID']; ?>" >
+                                                                <?php
+                                                                
+             }else{
+                 ?>
+                    <input type="checkbox" disabled="disabled" class="custom-control-input" id="review<?php Echo $Key['TID']; ?>">
+                 <?php
+                 }
+                 ?>
                                                                 <label class="custom-control-label" for="review<?php Echo $Key['TID']; ?>"></label>
                                                             </div>
          <?php
@@ -1360,14 +1442,34 @@ if (!$this->session->has_userdata('user_id')) {
     if($ApprovedStatus=='1'){
         ?>
             <div class="custom-control custom-switch">
+                  <?php
+             if($AS==1){
+            ?>
                                                                 <input type="checkbox" class="custom-control-input" id="approved<?php Echo $Key['TID']; ?>" checked="">
+                                                                <?php
+                                                                }else{
+                                                                    ?>
+                                                                     <input type="checkbox" disabled="disabled" class="custom-control-input" id="approved<?php Echo $Key['TID']; ?>" checked="">
+                                                                    <?php
+                                                                    }
+                                                                    ?>
                                                                 <label class="custom-control-label" for="approved<?php Echo $Key['TID']; ?>"></label>
                                                             </div>
                                                                <?php
     }else{
         ?>
          <div class="custom-control custom-switch">
+                                                                       <?php
+             if($AS==1){
+            ?>
                                                                 <input type="checkbox" class="custom-control-input" id="approved<?php Echo $Key['TID']; ?>" >
+                                                                <?php
+                                                                }else{
+                                                                    ?>
+                                                                     <input type="checkbox" disabled="disabled" class="custom-control-input" id="approved<?php Echo $Key['TID']; ?>" >
+                                                                    <?php
+                                                                    }
+                                                                    ?>
                                                                 <label class="custom-control-label" for="approved<?php Echo $Key['TID']; ?>"></label>
                                                             </div>
         <?php
@@ -1498,7 +1600,10 @@ function loadData(stDate,enDate){
 
 $.post(url, {'startDate':stDate,'endDate':enDate},
     function(data, status) {
-    console.log("Table Data", data);
+     
+        let reviewStatus = '<?php echo $RS; ?>';
+     
+    
     html =`    <table id="table1" class="table table-bordered table-hover table-responsive table-striped w-100">
                                                 <thead class="bg-primary-200">
                                                     <tr style="color:white;">
@@ -1527,7 +1632,7 @@ $.post(url, {'startDate':stDate,'endDate':enDate},
                                                 </thead>
                                                 <tbody>`;
     data.forEach(element => {
-        console.log("table content", element)
+      
         html += `
         <tr>
     <td>${element.ItemType}</td>
@@ -1545,19 +1650,38 @@ $.post(url, {'startDate':stDate,'endDate':enDate},
 
     <td>
       
-        ${element.ReviewStatus == '1'?
-      
-            `<div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="customreview${element.TID}" checked="">
-                <label class="custom-control-label" for="customreview${element.TID}"></label>
-            </div>`
-        :
-            `<div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="customreview${element.TID}">
-                <label class="custom-control-label" for="customreview${element.TID}"></label>
-            </div>`
-        }
-    </td>
+      ${element.ReviewStatus == '1' ?
+    
+          `<div class="custom-control custom-switch">
+         
+${reviewStatus == '1' ?
+           
+          ` <input type="checkbox" class="custom-control-input" id="customreview${element.TID}" checked="">
+          <label class="custom-control-label" for="customreview${element.TID}"></label>
+          `
+          : `<input type="checkbox" class="custom-control-input" id="customreview${element.TID}"  checked="" disabled>
+          <label class="custom-control-label" for="customreview${element.TID}"></label>
+          `
+}
+         
+          </div>`
+
+      :
+
+      `${reviewStatus == '1' ?
+
+          `<div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="customreview${element.TID}">
+              <label class="custom-control-label" for="customreview${element.TID}" disabled></label>
+          </div>`
+          :
+          `<div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="customreview${element.TID}" disabled>
+              <label class="custom-control-label" for="customreview${element.TID}" disabled></label>
+          </div>`
+      }
+ `   }
+  </td>
     <td>
 
     ${element.ReviewStatus == '1'?
@@ -1568,15 +1692,28 @@ $.post(url, {'startDate':stDate,'endDate':enDate},
     <td>
         ${element.ApprovedStatus == '1'?
             `<div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="customapproved${element.TID}" checked="">
-                <label class="custom-control-label" for="customapproved${element.TID}"></label>
-            </div>`
+            ${approvalStatus == '1'?
+                `<input type="checkbox" class="custom-control-input" id="customapproved${element.TID}" checked="">
+                <label class="custom-control-label" for="customapproved${element.TID}"></label>`
+             :           
+             `<input type="checkbox" class="custom-control-input" id="customapproved${element.TID}" checked="" disabled>
+                <label class="custom-control-label" for="customapproved${element.TID}"></label>`
+       
+    }
+    </div>`
        :
+       `${approvalStatus == '1' ?
             `<div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input" id="customapproved${element.TID}">
                 <label class="custom-control-label" for="customapproved${element.TID}"></label>
             </div>`
-        }
+            :
+            `<div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customapproved${element.TID}" disabled>
+                <label class="custom-control-label" for="customapproved${element.TID}"></label>
+            </div>`
+       }
+      `  }
     </td>
     <td>
             ${element.ApprovedStatus == '1'?
@@ -1708,7 +1845,11 @@ $("#searchRange").click(function(e){
 
 $.post(url, {'startDate':sDate,'endDate':eDate},
     function(data, status) {
+     
+    let reviewStatus = '<?php echo $RS; ?>';
+    let approvalStatus = '<?php echo $AS; ?>';
     console.log("Table Data", data);
+
     html =`    <table id="table1" class="table table-bordered table-hover table-responsive table-striped w-100">
                                                 <thead class="bg-primary-200">
                                                     <tr style="color:white;">
@@ -1755,19 +1896,38 @@ $.post(url, {'startDate':sDate,'endDate':eDate},
 
     <td>
       
-        ${element.ReviewStatus == '1'?
-      
-            `<div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="customreview${element.TID}" checked="">
-                <label class="custom-control-label" for="customreview${element.TID}"></label>
-            </div>`
-        :
-            `<div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="customreview${element.TID}">
-                <label class="custom-control-label" for="customreview${element.TID}"></label>
-            </div>`
-        }
-    </td>
+      ${element.ReviewStatus == '1' ?
+    
+          `<div class="custom-control custom-switch">
+         
+${reviewStatus == '1' ?
+           
+          ` <input type="checkbox" class="custom-control-input" id="customreview${element.TID}" checked="">
+          <label class="custom-control-label" for="customreview${element.TID}"></label>
+          `
+          : `<input type="checkbox" class="custom-control-input" id="customreview${element.TID}"  checked="" disabled>
+          <label class="custom-control-label" for="customreview${element.TID}"></label>
+          `
+}
+         
+          </div>`
+
+      :
+
+      `${reviewStatus == '1' ?
+
+          `<div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="customreview${element.TID}">
+              <label class="custom-control-label" for="customreview${element.TID}" disabled></label>
+          </div>`
+          :
+          `<div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="customreview${element.TID}" disabled>
+              <label class="custom-control-label" for="customreview${element.TID}" disabled></label>
+          </div>`
+      }
+ `   }
+  </td>
     <td>
 
     ${element.ReviewStatus == '1'?
@@ -1778,15 +1938,28 @@ $.post(url, {'startDate':sDate,'endDate':eDate},
     <td>
         ${element.ApprovedStatus == '1'?
             `<div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="customapproved${element.TID}" checked="">
-                <label class="custom-control-label" for="customapproved${element.TID}"></label>
-            </div>`
+            ${approvalStatus == '1'?
+                `<input type="checkbox" class="custom-control-input" id="customapproved${element.TID}" checked="">
+                <label class="custom-control-label" for="customapproved${element.TID}"></label>`
+             :           
+             `<input type="checkbox" class="custom-control-input" id="customapproved${element.TID}" checked="" disabled>
+                <label class="custom-control-label" for="customapproved${element.TID}"></label>`
+       
+    }
+    </div>`
        :
+       `${approvalStatus == '1' ?
             `<div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input" id="customapproved${element.TID}">
                 <label class="custom-control-label" for="customapproved${element.TID}"></label>
             </div>`
-        }
+            :
+            `<div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customapproved${element.TID}" disabled>
+                <label class="custom-control-label" for="customapproved${element.TID}"></label>
+            </div>`
+       }
+      `  }
     </td>
     <td>
             ${element.ApprovedStatus == '1'?
@@ -2021,7 +2194,7 @@ $.post(url, {'TID':TID},
   
     testTypeGet = data[0].ItemType;
     console.log("Head Data", testTypeGet);
-    if(data[0].ItemType == 'Carton'){
+    if(data[0].ItemType.trim() == 'Carton'){
         $("#testNo").text(data[0].TestNO);
      $("#dateTest").text(data[0].Date);
      $("#pono").text(data[0].PO);
@@ -2031,7 +2204,7 @@ $.post(url, {'TID':TID},
      $("#supplierRef").text(data[0].Supplier_Ref);
      $("#quantityCarton").text(data[0].Quantity_Carton);
 
-     $("#testPerformed").text(data[0].LoginName);
+     $("#testPerformed").text(data[0].performedBy);
      data[0].Approvalname? $("#testApproved").text(data[0].Approvalname):$("#testApproved").text("Pending");
    //  $("#Incharge").text(data[0].Approvalname);
      
@@ -2057,7 +2230,7 @@ $.post(url, {'TID':TID},
     });
     $('#exampleModal').modal('toggle');
     }
-    else if(data[0].ItemType == 'Foam'){
+    else if(data[0].ItemType.trim() == 'Foam'){
         $("#testNoFoam").text(data[0].TestNO);
      $("#dateTestFoam").text(data[0].Date);
      $("#ponoFoam").text(data[0].PO);
@@ -2065,7 +2238,7 @@ $.post(url, {'TID':TID},
     
      $("#supplierRefFoam").text(data[0].Supplier_Ref);
 
-     $("#testPerformedFoam").text(data[0].LoginName);
+     $("#testPerformedFoam").text(data[0].performedBy);
      data[0].Approvalname? $("#testApprovedFoam").text(data[0].Approvalname):$("#testApprovedFoam").text("Pending");
    //  $("#Incharge").text(data[0].Approvalname);
      
@@ -2091,7 +2264,7 @@ $.post(url, {'TID':TID},
     });
     $('#exampleModalFoam').modal('toggle');
     }
-    else if(data[0].ItemType == 'Fabric'){
+    else if(data[0].ItemType.trim() == 'Fabric'){
         $("#testNoFabric").text(data[0].TestNO);
      $("#dateTestFabric").text(data[0].Date);
      $("#ponoFabric").text(data[0].PO);
@@ -2099,7 +2272,7 @@ $.post(url, {'TID':TID},
     
      $("#supplierRefFabric").text(data[0].Supplier_Ref);
 
-     $("#testPerformedFabric").text(data[0].LoginName);
+     $("#testPerformedFabric").text(data[0].performedBy);
      $("#ResultFabric").text(data[0].Result);
      $("#CSSNoFabric").text(data[0].CSSNO);
      $("#materialNameFabric").text(data[0].Size);
@@ -2129,7 +2302,7 @@ $.post(url, {'TID':TID},
     });
     $('#exampleModalFabric').modal('toggle');
     }
-    else if(data[0].ItemType == 'Material'){
+    else if(data[0].ItemType.trim() == 'Material'){
         $("#testNoMaterial").text(data[0].TestNO);
      $("#dateTestMaterial").text(data[0].Date);
      $("#ponoMaterial").text(data[0].PO);
@@ -2137,7 +2310,7 @@ $.post(url, {'TID':TID},
     
      $("#supplierRefMaterial").text(data[0].Supplier_Ref);
 
-     $("#testPerformedMaterial").text(data[0].LoginName);
+     $("#testPerformedMaterial").text(data[0].performedBy);
      $("#ResultMaterial").text(data[0].Result);
      $("#CSSNoMaterial").text(data[0].CSSNO);
      $("#materialNameMaterial").text(data[0].Size);
@@ -2167,7 +2340,7 @@ $.post(url, {'TID':TID},
     });
     $('#exampleModalMaterial').modal('toggle');
     }
-    else if(data[0].ItemType == 'Thread'){
+    else if(data[0].ItemType.trim() == 'Thread'){
        
         $("#testNoThread").text(data[0].TestNO);
      $("#dateTestThread").text(data[0].Date);
@@ -2178,7 +2351,7 @@ $.post(url, {'TID':TID},
      $("#supplierRefThread").text(data[0].Supplier_Ref);
      $("#linearDensityThread").text(data[0].LinearDensity);
      $("#twistThread").text(data[0].TwistPerInch);
-     $("#testPerformed").text(data[0].LoginName);
+     $("#testPerformedThread").text(data[0].performedBy);
      data[0].Approvalname? $("#testApprovedThread").text(data[0].Approvalname):$("#testApprovedThread").text("Pending");
    //  $("#Incharge").text(data[0].Approvalname);
      
@@ -2221,7 +2394,7 @@ $.post(url, {'TID':TID},
     });
     $('#exampleModalThread').modal('toggle');
     }
-    else if(data[0].ItemType == 'Blader')
+    else if(data[0].ItemType.trim() == 'Blader')
     {
         $("#testNoBlader").text(data[0].TestNO);
      $("#dateTestBlader").text(data[0].Date);
@@ -2233,7 +2406,7 @@ $.post(url, {'TID':TID},
      $("#hardnessBlader").text(data[0].Hardness);
      $("#sizeBlader").text(data[0].Size);
      $("#materialBlader").text(data[0].material);
-     $("#testPerformed").text(data[0].LoginName);
+     $("#testPerformedBlader").text(data[0].performedBy);
      data[0].Approvalname? $("#testApprovedBlader").text(data[0].Approvalname):$("#testApprovedBlader").text("Pending");
    //  $("#Incharge").text(data[0].Approvalname);
      
@@ -2285,8 +2458,8 @@ let testTypeGet;
 $.post(url, {'TID':TID},
 function(data, status) {
     testTypeGet = data[0].ItemType;
-    console.log("Head Data", testTypeGet);
-    if(data[0].ItemType == 'Carton'){
+
+    if(data[0].ItemType.trim() == 'Carton'){
         $("#testNo").text(data[0].TestNO);
      $("#dateTest").text(data[0].Date);
      $("#pono").text(data[0].PO);
@@ -2296,7 +2469,7 @@ function(data, status) {
      $("#supplierRef").text(data[0].Supplier_Ref);
      $("#quantityCarton").text(data[0].Quantity_Carton);
 
-     $("#testPerformed").text(data[0].LoginName);
+     $("#testPerformed").text(data[0].performedBy);
      data[0].Approvalname? $("#testApproved").text(data[0].Approvalname):$("#testApproved").text("Pending");
    //  $("#Incharge").text(data[0].Approvalname);
      
@@ -2322,7 +2495,7 @@ function(data, status) {
     });
     $('#exampleModal').modal('toggle');
     }
-    else if(data[0].ItemType == 'Foam'){
+    else if(data[0].ItemType.trim() == 'Foam'){
         $("#testNoFoam").text(data[0].TestNO);
      $("#dateTestFoam").text(data[0].Date);
      $("#ponoFoam").text(data[0].PO);
@@ -2330,7 +2503,7 @@ function(data, status) {
     
      $("#supplierRefFoam").text(data[0].Supplier_Ref);
 
-     $("#testPerformedFoam").text(data[0].LoginName);
+     $("#testPerformedFoam").text(data[0].performedBy);
      data[0].Approvalname? $("#testApprovedFoam").text(data[0].Approvalname):$("#testApprovedFoam").text("Pending");
    //  $("#Incharge").text(data[0].Approvalname);
      
@@ -2356,7 +2529,7 @@ function(data, status) {
     });
     $('#exampleModalFoam').modal('toggle');
     }
-    else if(data[0].ItemType == 'Fabric'){
+    else if(data[0].ItemType.trim() == 'Fabric'){
         $("#testNoFabric").text(data[0].TestNO);
      $("#dateTestFabric").text(data[0].Date);
      $("#ponoFabric").text(data[0].PO);
@@ -2364,7 +2537,7 @@ function(data, status) {
     
      $("#supplierRefFabric").text(data[0].Supplier_Ref);
 
-     $("#testPerformedFabric").text(data[0].LoginName);
+     $("#testPerformedFabric").text(data[0].performedBy);
      $("#ResultFabric").text(data[0].Result);
      $("#CSSNoFabric").text(data[0].CSSNO);
      $("#materialNameFabric").text(data[0].Size);
@@ -2394,7 +2567,7 @@ function(data, status) {
     });
     $('#exampleModalFabric').modal('toggle');
     }
-    else if(data[0].ItemType == 'Material'){
+    else if(data[0].ItemType.trim() == 'Material'){
         $("#testNoMaterial").text(data[0].TestNO);
      $("#dateTestMaterial").text(data[0].Date);
      $("#ponoMaterial").text(data[0].PO);
@@ -2402,7 +2575,7 @@ function(data, status) {
     
      $("#supplierRefMaterial").text(data[0].Supplier_Ref);
 
-     $("#testPerformedMaterial").text(data[0].LoginName);
+     $("#testPerformedMaterial").text(data[0].performedBy);
      $("#ResultMaterial").text(data[0].Result);
      $("#CSSNoMaterial").text(data[0].CSSNO);
      $("#materialNameMaterial").text(data[0].Size);
@@ -2432,7 +2605,7 @@ function(data, status) {
     });
     $('#exampleModalMaterial').modal('toggle');
     }
-    else if(data[0].ItemType == 'Thread'){
+    else if(data[0].ItemType.trim() == 'Thread'){
       
         $("#testNoThread").text(data[0].TestNO);
      $("#dateTestThread").text(data[0].Date);
@@ -2443,7 +2616,7 @@ function(data, status) {
      $("#supplierRefThread").text(data[0].Supplier_Ref);
      $("#linearDensityThread").text(data[0].LinearDensity);
      $("#twistThread").text(data[0].TwistPerInch);
-     $("#testPerformed").text(data[0].LoginName);
+     $("#testPerformedThread").text(data[0].performedBy);
      data[0].Approvalname? $("#testApprovedThread").text(data[0].Approvalname):$("#testApprovedThread").text("Pending");
    //  $("#Incharge").text(data[0].Approvalname);
      
@@ -2470,7 +2643,7 @@ function(data, status) {
     $('#exampleModalThread').modal('toggle');
     }
 
-    else if(data[0].ItemType == 'Blader')
+    else if(data[0].ItemType.trim() == 'Blader')
     {
         $("#testNoBlader").text(data[0].TestNO);
      $("#dateTestBlader").text(data[0].Date);
@@ -2482,7 +2655,7 @@ function(data, status) {
      $("#hardnessBlader").text(data[0].Hardness);
      $("#sizeBlader").text(data[0].Size);
      $("#materialBlader").text(data[0].material);
-     $("#testPerformed").text(data[0].LoginName);
+     $("#testPerformedBlader").text(data[0].performedBy);
      data[0].Approvalname? $("#testApprovedBlader").text(data[0].Approvalname):$("#testApprovedBlader").text("Pending");
    //  $("#Incharge").text(data[0].Approvalname);
      
@@ -4155,11 +4328,12 @@ function(data, status) {
                 $("#alertShown").css("display", "block");
                
                 let testGroup = $("#testGroup").val(); 
+                let testPerformer = $("#testPerformer").val();
                 fd.append('file', files);
                  fd.append('HeaderArray',HeaderArray);
                  fd.append('ChildArray', ChildArray);
                  fd.append('testGroup', testGroup);
-         
+                 fd.append('testPerformer', testPerformer);
              
                  let testType = $("#testType").val();  
                 if(testType == 1){

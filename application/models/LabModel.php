@@ -19,6 +19,7 @@ class LabModel extends CI_Model
         $ItemType,
         $picture,
         $testGroup,
+        $testPerformer,
         $child
     ) {
         date_default_timezone_set('Asia/Karachi');
@@ -41,7 +42,8 @@ class LabModel extends CI_Model
               ,ItemType
               ,image
               ,TestType
-              ,testGroup)
+              ,testGroup
+              ,performedBy)
         VALUES
               ('$testNo'
               ,'$TestDate'
@@ -56,8 +58,9 @@ class LabModel extends CI_Model
               ,'$Result'
               ,'$ItemType'
               ,'$picture',
-              'Cotton'
-              ,'$testGroup')");
+              'Carton'
+              ,'$testGroup'
+              ,'$testPerformer')");
         $Id = $this->db->insert_id();
         echo $Id;
         $iterCotton = 0;
@@ -124,6 +127,7 @@ class LabModel extends CI_Model
         $SupplierRef,
         $picture,
         $testGroup,
+        $testPerformer,
         $child
     ) {
         date_default_timezone_set('Asia/Karachi');
@@ -141,7 +145,8 @@ class LabModel extends CI_Model
               ,UserID
               ,image
               ,TestType
-              ,testGroup)
+              ,testGroup
+              ,performedBy)
         VALUES
               ('$testNo'
               ,'$TestDate'
@@ -152,7 +157,8 @@ class LabModel extends CI_Model
               ,'$user_id'
               ,'$picture'
               ,'Foam'
-              ,'$testGroup')");
+              ,'$testGroup'
+              ,'$testPerformer')");
         $Id = $this->db->insert_id();
         echo $Id;
         $iterFoam = 0;
@@ -229,6 +235,7 @@ class LabModel extends CI_Model
         $ItemType,
         $picture,
         $testGroup,
+        $testPerformer,
         $child
     ) {
 
@@ -255,6 +262,7 @@ class LabModel extends CI_Model
               ,CSSNO
               ,TestType
               ,testGroup
+              ,performedBy
               )
         VALUES
               ('$testNo'
@@ -273,6 +281,7 @@ class LabModel extends CI_Model
               , '$CSSNO'
               ,'Fabric'
               ,'$testGroup'
+              ,'$testPerformer'
               )");
         $Id = $this->db->insert_id();
         echo $Id;
@@ -347,6 +356,7 @@ class LabModel extends CI_Model
         $ItemType,
         $picture,
         $testGroup,
+        $testPerformer,
         $child
     ) {
 
@@ -373,6 +383,7 @@ class LabModel extends CI_Model
               ,CSSNO
               ,TestType
               ,testGroup
+              ,performedBy
               )
         VALUES
               ('$testNo'
@@ -391,6 +402,7 @@ class LabModel extends CI_Model
               , '$CSSNO'
               ,'Material'
               ,'$testGroup'
+              ,'$testPerformer'
               )");
         $Id = $this->db->insert_id();
         echo $Id;
@@ -462,6 +474,7 @@ class LabModel extends CI_Model
         $SupplierRef,
         $picture,
         $testGroup,
+        $testPerformer,
         $child
         ,$thickness
         , $LinearDensity
@@ -488,6 +501,7 @@ class LabModel extends CI_Model
               ,TwistPerInch
               ,TestType
               ,testGroup
+              ,performedBy
               )
         VALUES
               ('$testNo'
@@ -504,6 +518,7 @@ class LabModel extends CI_Model
               ,'$twisrPerInch'
               ,'Thread'
               ,'$testGroup'
+              ,'$testPerformer'
               )");
         $Id = $this->db->insert_id();
         echo $Id;
@@ -578,6 +593,7 @@ class LabModel extends CI_Model
         $SupplierRef,
         $picture,
         $testGroup,
+        $testPerformer,
         $child,
         $material
         ,$hardness
@@ -603,7 +619,8 @@ class LabModel extends CI_Model
               ,Hardness,
               Remarks,
               TestType
-              ,testGroup)
+              ,testGroup
+              ,performedBy)
         VALUES
               ('$testNo'
               ,'$TestDate'
@@ -619,7 +636,8 @@ class LabModel extends CI_Model
               ,'$hardness'
               ,'$remarks',
               'Blader'
-              ,'$testGroup')");
+              ,'$testGroup'
+              ,'$testPerformer')");
         $Id = $this->db->insert_id();
         echo $Id;
         $bladerIter = 0;
