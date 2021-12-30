@@ -45,7 +45,7 @@ if (!$this->session->has_userdata('user_id')) {
       <div class="modal-body">
           <div class="card" id="printFGT">
   <div class="card-body">
-             <table class="table">
+             <!-- <table class="table">
                <tr>
                    <th style="font-size: large;font-weight:bold;padding:50px" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS INDOOR</th>
                    <th></th>
@@ -60,7 +60,17 @@ if (!$this->session->has_userdata('user_id')) {
                    <th></th>
                    <th></th>
                    <th></th>
-                   <th><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                   <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+               </tr>
+           </table> -->
+           <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR SOCCERBALLS INDOOR</th>
+                <th> </th>
                </tr>
            </table>
       <!-- <h4 class="modal-title text-center m-4" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS INDOOR</h4> -->
@@ -386,6 +396,20 @@ if (!$this->session->has_userdata('user_id')) {
 
         <div style="margin: 15px auto" class="container-fluid p-2">
             <div class="row">
+            <div class="col-12">
+                <table class="table table-striped col-12">
+                    <tbody style="border: 1px solid;">
+                        <tr>
+                            <th rowspan="3" style="border: 1px solid">Note: <span id="contentNoteFGT"></span></th>
+                            
+                        </tr>
+
+                
+
+                        
+                    </tbody>
+                </table>
+            </div>
                 <div class="col-12">
                     <table class="table table-striped col-6">
                         <tbody style="border: 1px solid;">
@@ -410,7 +434,31 @@ if (!$this->session->has_userdata('user_id')) {
             </div>
         </div>
 
+        <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span >Sohail Rasheed </span></th>
+          <th></th>
+          
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedFGT"> </span>
+            </th>
+            <th></th>
+                    <th></th>
+                    <th></th>
+             
+
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    <span id="testApprovedFGT"> </span></th>
+                </tr>
+            </table>
+
     </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -436,7 +484,7 @@ if (!$this->session->has_userdata('user_id')) {
       <div class="modal-body" id="printSoccerBallsSize5">
                 <div class="card" id="printFGTSize5">
   <div class="card-body">
-             <table class="table">
+             <!-- <table class="table">
                <tr>
                    <th style="font-size: large;font-weight:bold;padding:50px" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS SIZE 5</th>
                    <th></th>
@@ -451,7 +499,18 @@ if (!$this->session->has_userdata('user_id')) {
                    <th></th>
                    <th></th>
                    <th></th>
-                   <th><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                   <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+               </tr>
+           </table> -->
+           
+           <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR SOCCERBALLS SIZE 5</th>
+                <th> </th>
                </tr>
            </table>
       <!-- <h4 class="modal-title text-center m-4" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS SIZE 5</h4> -->
@@ -900,6 +959,20 @@ if (!$this->session->has_userdata('user_id')) {
 
         <div style="margin: 15px auto" class="container-fluid p-2">
             <div class="row">
+            <div class="col-12">
+                <table class="table table-striped col-12">
+                    <tbody style="border: 1px solid;">
+                        <tr>
+                            <th rowspan="3" style="border: 1px solid">Note:<span id="contentNoteSize5"></span></th>
+                     
+                        </tr>
+
+                    
+
+                        
+                    </tbody>
+                </table>
+            </div>
                 <div class="col-12">
                     <table class="table table-striped col-6">
                         <tbody style="border: 1px solid;">
@@ -923,6 +996,29 @@ if (!$this->session->has_userdata('user_id')) {
                 </div>
             </div>
         </div>
+
+        <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span >Sohail Rasheed </span></th>
+          <th></th>
+      
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedSize5"> </span>
+            </th>
+            <th></th>
+                    <th></th>
+                    <th></th>
+             
+
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    <span id="testApprovedSize5"> </span></th>
+                </tr>
+            </table>
 
     </div>
       </div>
@@ -1820,7 +1916,7 @@ if (!$this->session->has_userdata('user_id')) {
       <div class="modal-body">
             <div class="card" id="printFGTSoccer">
   <div class="card-body">
-             <table class="table">
+             <!-- <table class="table">
                <tr>
                    <th style="font-size: large;font-weight:bold;padding:50px">FGT REPORT FOR AIRLINES MINI <span id="titleBalls">()</span></th>
                    <th></th>
@@ -1835,7 +1931,18 @@ if (!$this->session->has_userdata('user_id')) {
                    <th></th>
                    <th></th>
                    <th></th>
-                   <th><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                   <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+               </tr>
+           </table> -->
+
+           <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR AIRLINES MINI <span id="titleBalls">()</span></th>
+                <th> </th>
                </tr>
            </table>
     <!-- <h4 class="text-center m-4">FGT REPORT FOR AIRLINES MINI <span id="titleBalls">()</span></h4> -->
@@ -2086,6 +2193,19 @@ if (!$this->session->has_userdata('user_id')) {
 
     <div style="margin: 15px auto" class="container-fluid p-2">
         <div class="row">
+        <div class="col-12">
+                <table class="table table-striped col-12">
+                    <tbody style="border: 1px solid;">
+                        <tr>
+                            <th rowspan="3" style="border: 1px solid">Note:<span id="contentNoteSoccer"></span></th>
+                            
+                        </tr>
+
+
+                        
+                    </tbody>
+                </table>
+            </div>
             <div class="col-12">
                 <table class="table table-striped col-6">
                     <tbody style="border: 1px solid;">
@@ -2103,6 +2223,28 @@ if (!$this->session->has_userdata('user_id')) {
             </div>
         </div>
     </div>
+    <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span >Sohail Rasheed </span></th>
+          <th></th>
+           
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedSoccer"> </span>
+            </th>
+            <th></th>
+                    <th></th>
+                    <th></th>
+             
+
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    <span id="testApprovedSoccer"> </span></th>
+                </tr>
+            </table>
 
 </div>
       </div>
@@ -4058,7 +4200,11 @@ let type=$("#fgtype"+TID).text();
               $("#content13").text(data['head'][0].printngscolors);
               $("#content14").text(data['head'][0].result);
               $("#content15").text(data['head'][0].LoginName);
-              $("#content16").text(data['detail'][0].weight1);
+              $("#contentNoteSoccer").text(data['head'][0].Note);
+              $("#testReviewedSoccer").text(data['head'][0].Reviewby?data['head'][0].ReviewName:'Pending');
+              $("#testApprovedSoccer").text(data['head'][0].ApprovedBy?data['head'][0].Approvalname:'Pending');
+              if(data['detail'][0]){
+                $("#content16").text(data['detail'][0].weight1);
               $("#content17").text(data['detail'][0].weight2);
               $("#content21").text(data['detail'][0].cir1);
               $("#content22").text(data['detail'][0].cir2);
@@ -4069,6 +4215,8 @@ let type=$("#fgtype"+TID).text();
               $("#content29").text(data['detail'][0].hydrolysis_lam1);
               $("#content30").text(data['detail'][0].hydrolysis_color1);
               $("#content31").text(data['head'][0].remark);
+              }
+              
             
            
 
@@ -4090,7 +4238,11 @@ let type=$("#fgtype"+TID).text();
             $("#content77").text(data['head'][0].printngscolors);
             $("#content78").text(data['head'][0].result);
             $("#content79").text(data['head'][0].LoginName);
-            $("#content80").text(data['detail'][0].weight1);
+            $("#contentNoteSize5").text(data['head'][0].Note);
+            $("#testReviewedSize5").text(data['head'][0].Reviewby?data['head'][0].ReviewName:'Pending');
+              $("#testApprovedSize5").text(data['head'][0].ApprovedBy?data['head'][0].Approvalname:'Pending');
+              if(data['detail'][0]){
+                $("#content80").text(data['detail'][0].weight1);
             $("#content81").text(data['detail'][0].weight2);
             $("#content82").text(data['detail'][0].cir1);
             $("#content83").text(data['detail'][0].cir2);
@@ -4130,9 +4282,8 @@ let type=$("#fgtype"+TID).text();
             $("#content117").text(data['detail'][0].hydrolysis_lam2);
             $("#content118").text(data['detail'][0].hydrolysis_color1);
             $("#content119").text(data['detail'][0].hydrolysis_color2);
-
-
-
+              }
+            
             $('#soccerBallsSize5').modal('toggle');
             
         }else{
@@ -4151,7 +4302,11 @@ let type=$("#fgtype"+TID).text();
             $("#content43").text(data['head'][0].printngscolors);
             $("#content44").text(data['head'][0].result);
             $("#content45").text(data['head'][0].LoginName);
-            $("#content46").text(data['detail'][0].weight1);
+            $("#contentNoteFGT").text(data['head'][0].Note);
+              $("#testReviewedFGT").text(data['head'][0].Reviewby?data['head'][0].ReviewName:'Pending');
+              $("#testApprovedFGT").text(data['head'][0].ApprovedBy?data['head'][0].Approvalname:'Pending');
+              if(data['detail'][0]){
+                $("#content46").text(data['detail'][0].weight1);
             $("#content47").text(data['detail'][0].weight2);
             $("#content48").text(data['detail'][0].cir1);
             $("#content49").text(data['detail'][0].cir2);
@@ -4171,6 +4326,8 @@ let type=$("#fgtype"+TID).text();
             $("#content63").text(data['detail'][0].material_st2);
             $("#content64").text(data['detail'][0].abraison_resistance_pd1);
             $("#content65").text(data['detail'][0].abraison_resistance_pd2);
+              }
+            
            
 
 

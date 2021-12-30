@@ -128,6 +128,8 @@ if (!$this->session->has_userdata('user_id')) {
                            <option value="CR4" >CR4</option>
                             <option value="CR5" >CR5</option>
                              <option value="MCS" >MCS</option>
+                              <option value="SMS" >SMS</option>
+                             <option value="PreSell" >PreSell</option>
                             </select>
                             <!-- <input name="article" id="article" class="form-control" type="text" readonly="true"> -->
                             

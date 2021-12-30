@@ -85,22 +85,14 @@ if (!$this->session->has_userdata('user_id')) {
   <div class="card-body">
 
        <div class="row">
-           <table class="table">
+       <table class="table">
                <tr>
-                   <th style="font-size: large;font-weight:bold;padding:50px">Test Report Of Carton</th>
+               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
                    <th></th>
                    <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Carton</th>
+                <th></th>
                </tr>
            </table>
            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
@@ -255,22 +247,14 @@ if (!$this->session->has_userdata('user_id')) {
   <div class="card-body">
 
        <div class="row">
-           <table class="table">
+       <table class="table">
                <tr>
-                   <th style="font-size: large;font-weight:bold;padding:50px">Test Report Of Foam</th>
+               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
                    <th></th>
                    <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Foam</th>
+                <th> </th>
                </tr>
            </table>
            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
@@ -422,22 +406,41 @@ if (!$this->session->has_userdata('user_id')) {
   <div class="card-body">
 
        <div class="row">
-           <table class="table">
+       <table class="table">
                <tr>
-                   <th style="font-size: large;font-weight:bold;padding:50px">Test Report Of Fabric</th>
+               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
                    <th></th>
                    <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Fabric</th>
+                <td  style="font-size: small;padding:0%">
+                <table class="table table-bordered" style="font-size: small;padding:0%">
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Document</th>
+                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Revision</th>
+                        <td style="font-size: small;padding:1%">0</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Copy</th>
+                        <td style="font-size: small;padding:1%">03</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Holder</th>
+                        <td style="font-size: small;padding:1%">Lab</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Status</th>
+                        <td style="font-size: small;padding:1%">Controlled</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Date</th>
+                        <td style="font-size: small;padding:1%">1/Jul/21</td>
+                    </tr>
+                </table>
+                </td>
                </tr>
            </table>
            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
@@ -602,22 +605,41 @@ if (!$this->session->has_userdata('user_id')) {
   <div class="card-body">
 
        <div class="row">
-           <table class="table">
+       <table class="table">
                <tr>
-                   <th style="font-size: large;font-weight:bold;padding:50px">Test Report Of Material</th>
+               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
                    <th></th>
                    <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Material</th>
+                <td  style="font-size: small;padding:0%">
+                <table class="table table-bordered" style="font-size: small;padding:0%">
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Document</th>
+                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRM</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Revision</th>
+                        <td style="font-size: small;padding:1%">0</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Copy</th>
+                        <td style="font-size: small;padding:1%">03</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Holder</th>
+                        <td style="font-size: small;padding:1%">Lab</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Status</th>
+                        <td style="font-size: small;padding:1%">Controlled</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Date</th>
+                        <td style="font-size: small;padding:1%">1/Jul/21</td>
+                    </tr>
+                </table>
+                </td>
                </tr>
            </table>
            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
@@ -782,22 +804,41 @@ if (!$this->session->has_userdata('user_id')) {
   <div class="card-body">
 
        <div class="row">
-           <table class="table">
+       <table class="table">
                <tr>
-                   <th style="font-size: large;font-weight:bold;padding:50px">Test Report Of Thread</th>
+               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
                    <th></th>
                    <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Thread</th>
+                <td  style="font-size: small;padding:0%">
+                <table class="table table-bordered" style="font-size: small;padding:0%">
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Document</th>
+                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRT</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Revision</th>
+                        <td style="font-size: small;padding:1%">0</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Copy</th>
+                        <td style="font-size: small;padding:1%">03</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Holder</th>
+                        <td style="font-size: small;padding:1%">Lab</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Status</th>
+                        <td style="font-size: small;padding:1%">Controlled</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Date</th>
+                        <td style="font-size: small;padding:1%">1/Jul/21</td>
+                    </tr>
+                </table>
+                </td>
                </tr>
            </table>
            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
@@ -968,22 +1009,14 @@ if (!$this->session->has_userdata('user_id')) {
   <div class="card-body">
 
        <div class="row">
-           <table class="table">
+       <table class="table">
                <tr>
-                   <th style="font-size: large;font-weight:bold;padding:50px">Test Report Of Blader</th>
+               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
                    <th></th>
                    <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Blader</th>
+                <th> </th>
                </tr>
            </table>
            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
