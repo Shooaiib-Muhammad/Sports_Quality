@@ -502,7 +502,8 @@ class LabModel extends CI_Model
               ,TwistPerInch
               ,TestType
               ,testGroup
-              ,performedBy,Result
+              ,performedBy
+              ,Result
               )
         VALUES
               ('$testNo'
@@ -519,7 +520,8 @@ class LabModel extends CI_Model
               ,'$twisrPerInch'
               ,'Thread'
               ,'$testGroup'
-              ,'$testPerformer',$Result
+              ,'$testPerformer'
+              ,'$Result'
               )");
         $Id = $this->db->insert_id();
         echo $Id;

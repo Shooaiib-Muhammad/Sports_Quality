@@ -4226,7 +4226,7 @@ function(data, status) {
                         if (element.TestNo != undefined || element.PONo != undefined) {
                             testNumber = element.TestNo;
                             PONumber = element.PONo;
-                            let arrayHead = [element.TestNo, element.Date, element.Receiving,element.PONo, element.Ref, element.Supplier, element.Thickness, element.LinearDensity, element.Result,element.TwistPerInch,']'];
+                            let arrayHead = [element.TestNo, element.Date, element.Receiving,element.PONo, element.Ref, element.Supplier, element.Thickness, element.LinearDensity, element.TwistPerInch,element.Result,']'];
                             let arrayBody = [element.TestNo, element.PONo, element.Tdate , element.ExtAtMaxLoad_mm, element.MaxLoad_N, element.Ext,']'];
                             HeaderArray.push(arrayHead);
                             ChildArray.push(arrayBody)
@@ -4240,8 +4240,7 @@ function(data, status) {
                     $("#headerData").val(HeaderArray);
             $("#childData").val(ChildArray);
 
-              console.log("Head",HeaderArray);
-              console.log("Child",ChildArray);
+
                 }
             }
                 }
@@ -4368,7 +4367,7 @@ function(data, status) {
                  fd.append('ChildArray', ChildArray);
                  fd.append('testGroup', testGroup);
                  fd.append('testPerformer', testPerformer);
-           
+             
                  let testType = $("#testType").val();  
                 if(testType == 1){
                     url = '<?php echo base_url('LabController/addHeadData'); ?>'
@@ -4416,7 +4415,7 @@ function(data, status) {
                             contentType:false,
                             processData:false,
                             function(data, status) {
-                              
+                              console.log("Data", data);
                                 setInterval(function() {
                                     window.location.reload();
                                 }, 2000);
@@ -4435,7 +4434,7 @@ function(data, status) {
                             contentType:false,
                             processData:false,
                             function(data, status) {
-                        console.log("Form Data", data);
+                      
                                 setInterval(function() {
                                     window.location.reload();
                                 }, 2000);

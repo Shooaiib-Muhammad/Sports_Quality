@@ -60,7 +60,38 @@
                           
                                 </ul>
                             </li>
-                        
+                            <li>
+                                <a href="#" title="Theme Settings" data-filter-tags="theme settings">
+                                    <i class="fa fa-angle-double-down"></i> 
+                                    <span class="nav-link-text" data-i18n="nav.theme_settings">Store</span>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>StoreController" title="How it works" data-filter-tags="theme settings how it works">
+                                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>StoreController/master_form" title="How it works" data-filter-tags="theme settings how it works">
+                                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Master Data</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>StoreController/request_form" title="How it works" data-filter-tags="theme settings how it works">
+                                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Request Generation</span>
+                                        </a>
+                                    </li>
+                                   
+                                </ul>
+                            </li> 
 
                                     <li>
                                 <a href="#" title="Theme Settings" data-filter-tags="theme settings">
@@ -137,7 +168,44 @@
                             
                                     }
                             
-                          
+                            if($store=="1"){
+
+                            ?>
+                            <!-- <li>
+                                <a href="#" title="Theme Settings" data-filter-tags="theme settings">
+                                    <i class="fa fa-angle-double-down"></i> 
+                                    <span class="nav-link-text" data-i18n="nav.theme_settings">Store</span>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>StoreController" title="How it works" data-filter-tags="theme settings how it works">
+                                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>StoreController/master_form" title="How it works" data-filter-tags="theme settings how it works">
+                                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Master Data</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>StoreController/request_form" title="How it works" data-filter-tags="theme settings how it works">
+                                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Request Generation</span>
+                                        </a>
+                                    </li>
+                                   
+                                </ul>
+                            </li>  -->
+ <?php
+                            
+                                    }
                             
                             if($Dev=="1"){
 

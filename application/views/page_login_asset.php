@@ -4,104 +4,6 @@ if ($this->session->has_userdata('user_id')) {
 } else {
      ?>
 
-
-<!-- <!DOCTYPE html>
-
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>
-            Login - - Forward Sports Pvt. Ltd.
-        </title>
-        <meta name="description" content="Login">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
-   
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-    
-        <meta name="msapplication-tap-highlight" content="no">
- 
-        <link rel="stylesheet" media="screen, print" href="<?php echo base_url(); ?>/assets/css/vendors.bundle.css">
-        <link rel="stylesheet" media="screen, print" href="<?php echo base_url(); ?>/assets/css/app.bundle.css">
-       
-        <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url(); ?>/assets/img/favicon/favicon-32x32.png">
-        <link rel="mask-icon" href="<?php echo base_url(); ?>/assets/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
-      
-        <link rel="stylesheet" media="screen, print" href="<?php echo base_url(); ?>/assets/css/page-login.css">
-    </head>
-    <body>
-        <div class="blankpage-form-field">
-
-        <div class="container mt-5">
-      
-      <?php if ($this->session->flashdata('info')) { ?>
-    <div class="alert alert-danger alert-dismissible show fade">
-                    <div class="alert-body">
-                      <button class="close" data-dismiss="alert">
-                        <span>&times;</span>
-                      </button>
-                      <?php echo $this->session->flashdata('info'); ?>
-                    </div>
-                  </div>
-                  <?php } ?>
-            <div class="page-logo m-0 w-100 align-items-center justify-content-center rounded border-bottom-left-radius-0 border-bottom-right-radius-0 px-4">
-                <a href="javascript:void(0)" class="page-logo-link press-scale-down d-flex align-items-center">
-                    <img src="<?php echo base_url(); ?>/assets/img/logo.png" alt="SmartAdmin WebApp" aria-roledescription="logo">
-                    <span class="page-logo-text mr-1">Forward Sports</span>
-                    <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>
-                </a>
-            </div>
-            <div class="card p-4 border-top-left-radius-0 border-top-right-radius-0">
-
-     
-            <form method="POST" name="form1" class="login100-form validate-form" action="<?php echo base_url(
-                'index.php/Main/process_login'
-            ); ?>">
-                    <div class="form-group">
-                        <label class="form-label" for="username">Username</label>
-                        <input type="text" id="username" name="username" class="form-control" placeholder="Enter Username" required>
-                        <span class="help-block">
-                            Your unique username to app
-                        </span>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="password">Password</label>
-                        <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" required>
-                        <span class="help-block">
-                            Your password
-                        </span>
-                    </div>
-    
-                    <button type="submit" class="btn btn-default float-right">Secure login</button>
-                </form>
-            </div>
-            <div class="blankpage-footer text-center">
-           
-            </div>
-        </div>
-        <div class="login-footer p-2">
-            <div class="row">
-      
-            </div>
-        </div>
-        <video poster="<?php echo base_url(); ?>/assets/img/backgrounds/clouds.png" id="bgvid" playsinline autoplay muted loop>
-            <source src="<?php echo base_url(); ?>/assets/media/video/cc.webm" type="video/webm">
-            <source src="<?php echo base_url(); ?>/assets/media/video/cc.mp4" type="video/mp4">
-        </video>
-    
-        <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
-        <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
-    
-    </body>
-</html> -->
-
-<?php
-if ($this->session->has_userdata('user_id')) {
-    redirect('Main/dashboard');
-} else {
-     ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -125,9 +27,9 @@ if ($this->session->has_userdata('user_id')) {
  #app {
 	 display: flex;
 	 height: 100vh;
-	/* background: #1c1c1c; http://192.168.10.3:8002/media/Lab3.jpg
+	/* background: #1c1c1c;
 	 */
-  background: url(https://www.kiwa.com/48f7e8/globalassets/global/services/woman-laboratory.jpg) no-repeat center center / cover;
+	 background: url(https://cmtemplates.net/ILES/images/gallery/full/1.jpg) no-repeat center center / cover;
 	 align-items: center;
 	 justify-content: center;
 	 font-family: "Roboto", sans-serif;
@@ -194,7 +96,7 @@ if ($this->session->has_userdata('user_id')) {
  section form button:hover {
 	 background: #5e49a6;
 }
- @media screen and (max-width: 800px) {
+ @media screen and (max-width: 750px) {
 	 aside {
 		 display: none;
 	}
@@ -290,11 +192,6 @@ if ($this->session->has_userdata('user_id')) {
 </body>
 
 </html>
-<?php
-}
-
-?>
-
 <?php
 }
 
