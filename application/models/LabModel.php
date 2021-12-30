@@ -479,6 +479,7 @@ class LabModel extends CI_Model
         ,$thickness
         , $LinearDensity
         ,$twisrPerInch
+        ,$Result
 
     ) {
         date_default_timezone_set('Asia/Karachi');
@@ -501,7 +502,7 @@ class LabModel extends CI_Model
               ,TwistPerInch
               ,TestType
               ,testGroup
-              ,performedBy
+              ,performedBy,Result
               )
         VALUES
               ('$testNo'
@@ -518,7 +519,7 @@ class LabModel extends CI_Model
               ,'$twisrPerInch'
               ,'Thread'
               ,'$testGroup'
-              ,'$testPerformer'
+              ,'$testPerformer',$Result
               )");
         $Id = $this->db->insert_id();
         echo $Id;
