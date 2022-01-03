@@ -236,9 +236,13 @@ $mail->addAddress("sohail@forward.pk");
 $mail->addAddress("store@forward.pk"); 
 $mail->AddCC('abaid@forward.pk');
 $mail->AddCC('imran@forward.pk');
+
  $mail->AddCC('waseembutt@forward.pk');
  $mail->AddCC('tafseer@forward.pk');
     $mail->AddCC('shoaib@forward.pk');
+    $mail->AddCC('fsqa@forward.pk');
+          $mail->AddCC('oman@forward.pk');
+             $mail->AddCC('abdulhaseeb@forward.pk');
 
 $mail->Subject = "Raw Material Failure";
 $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
@@ -449,6 +453,9 @@ $mail->AddCC('imran@forward.pk');
  $mail->AddCC('waseembutt@forward.pk');
  $mail->AddCC('tafseer@forward.pk');
     $mail->AddCC('shoaib@forward.pk');
+    $mail->AddCC('fsqa@forward.pk');
+          $mail->AddCC('oman@forward.pk');
+             $mail->AddCC('abdulhaseeb@forward.pk');
 
 $mail->Subject = "Raw Material Failure";
 $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
@@ -586,6 +593,9 @@ $mail->AddCC('imran@forward.pk');
  $mail->AddCC('waseembutt@forward.pk');
  $mail->AddCC('tafseer@forward.pk');
     $mail->AddCC('shoaib@forward.pk');
+    $mail->AddCC('fsqa@forward.pk');
+          $mail->AddCC('oman@forward.pk');
+             $mail->AddCC('abdulhaseeb@forward.pk');
 
 $mail->Subject = "Raw Material Failure";
 $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
@@ -722,7 +732,9 @@ $mail->AddCC('imran@forward.pk');
  $mail->AddCC('waseembutt@forward.pk');
  $mail->AddCC('tafseer@forward.pk');
     $mail->AddCC('shoaib@forward.pk');
-
+    $mail->AddCC('fsqa@forward.pk');
+          $mail->AddCC('oman@forward.pk');
+             $mail->AddCC('abdulhaseeb@forward.pk');
 $mail->Subject = "Raw Material Failure";
 $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
 <div style="margin-left:40%;">
@@ -844,7 +856,88 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     );
     }
 
+    public function addHeadDataFGT()
+    { 
+    
+    ////////////////////////////////////// Ajax Call ///////////////////////////////
 
+     if(!empty($_FILES['file']['name'])){
+
+        $config['upload_path'] = 'assets\img\img';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        $config['file_name'] = basename($_FILES["file"]["name"]) ;
+        
+        //Load upload library and initialize configuration
+        $this->load->library('upload',$config);
+       $this->upload->initialize($config);
+         
+        if($this->upload->do_upload('file')){
+       $uploadData = $this->upload->data();
+       $picture = $uploadData['file_name'];
+       $config['image_library'] = 'gd2';  
+       $config['source_image'] = 'assets/img/img/'.$picture;
+       $config['create_thumb'] = FALSE;  
+       $config['maintain_ratio'] = FALSE;  
+       $config['quality'] = '60%';  
+       $config['width'] = 800;  
+       $config['height'] = 600;  
+       $config['new_image'] = 'assets/img/img/'.$picture;
+       $this->load->library('image_lib', $config);  
+       $this->image_lib->resize(); 
+        }else{
+        Echo "helll";
+    
+         $picture = '';
+        }
+       }else{
+        
+        $picture = '';
+       }
+    
+ 
+  $headerValue = $_POST['HeaderArray'];
+  $header = explode(",",$headerValue);
+  
+    $childValue = $_POST['ChildArray'];
+    $child = explode("]",$childValue);
+    $childArray = [];
+    foreach ($child as $key => $value) {
+        $arraySplit = explode(',',$value);
+        array_push($childArray, $arraySplit);
+       
+    }
+    array_pop($childArray);
+    $TestNo = $header[0];
+    $Date = $header[1];
+    $ModelName = $header[2];
+    $CSSCode = $header[3];
+    $Pressure = $header[4];
+    $TempHumidity = $header[5];
+    $Article = $header[6];
+    $Category = $header[7];
+    $size = $header[8];
+    $Testedfor = $header[9];
+    $Note = $header[10];
+    $testGroup = $_POST['testGroup'];
+    $testPerformer = $_POST['testPerformer'];
+    $this->l->AddHeaderFGT(
+        $TestNo,
+        $Date,
+        $ModelName,
+        $CSSCode,
+        $Pressure,
+        $TempHumidity,
+        $Article,
+        $Category,
+        $picture,
+        $testGroup,
+        $testPerformer,
+        $childArray ,
+        $size,
+        $Testedfor
+        ,$Note
+    );
+    }
 
     public function addBodyData()
     {

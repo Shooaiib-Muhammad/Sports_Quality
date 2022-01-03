@@ -783,6 +783,132 @@ class LabModel extends CI_Model
         }
     }
 
+
+    public function AddHeaderFGT(
+        $TestNo,
+        $DateGet,
+        $ModelName,
+        $CSSCode,
+        $Pressure,
+        $TempHumidity,
+        $Article,
+        $Category,
+        $picture,
+        $testGroup,
+        $testPerformer,
+        $childArray ,
+        $size,
+        $Testedfor
+        ,$Note
+    ) {
+        date_default_timezone_set('Asia/Karachi');
+        $Date = date('Y-m-d H:i:s');
+        $user_id = $this->session->userdata('user_id');
+
+        $user_id;
+        $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_H
+              (TestNO
+              ,Date
+              ,ModelName
+              ,CSSNO
+              ,Pressure
+              ,TempHumidity
+              ,Article
+              ,Category
+              ,Entrydate
+              ,UserID
+              ,image
+              ,size
+              ,Testedfor,
+              TestType
+              ,testGroup
+              ,performedBy
+              ,Note)
+        VALUES
+              ('$TestNo'
+              ,'$DateGet'
+              ,'$ModelName'
+              ,'$CSSCode'
+              ,'$Pressure'
+              ,'$TempHumidity'
+              ,'$Article'
+              ,'$Category'
+              ,'$Date'
+              ,'$user_id'
+              ,'$picture'
+              ,'$size'
+              ,'$Testedfor'
+              ,'FGT'
+              ,'$testGroup'
+              ,'$testPerformer'
+              ,'$Note')");
+        $Id = $this->db->insert_id();
+        echo $Id;
+        $bladerIter = 0;
+  
+        foreach ($childArray as $key => $value) {
+            // $testNo = $value[0];
+            // $PONo = $value[1];
+        if($bladerIter == 0){
+            $Weight = $value[0];
+            $CircumferenceMin = $value[1];
+                $CircumferenceMax = $value[2];
+                $Deviation = $value[3];
+                $ReboundTest = $value[4];
+                $Remarks = $value[5];
+                
+                    $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+                 (TID
+           ,Weight
+           ,CircumferenceMin
+           ,CircumferenceMax
+           ,Deviation
+           ,ReboundTest
+           ,Remarks
+          )
+     VALUES
+           ('$Id'
+           ,'$Weight'
+           ,'$CircumferenceMin'
+           ,'$CircumferenceMax'
+           ,'$Deviation'
+           ,'$ReboundTest'
+           ,'$Remarks'
+         )");
+                   $bladerIter +=1;
+        }    
+        else{
+            $Weight = $value[2];
+            $CircumferenceMin = $value[3];
+                $CircumferenceMax = $value[4];
+                $Deviation = $value[5];
+                $ReboundTest = $value[6];
+                $Remarks = $value[7];
+        
+            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+           (TID
+           ,Weight
+           ,CircumferenceMin
+           ,CircumferenceMax
+           ,Deviation
+           ,ReboundTest
+           ,Remarks
+          )
+     VALUES
+           ('$Id'
+           ,'$Weight'
+           ,'$CircumferenceMin'
+           ,'$CircumferenceMax'
+           ,'$Deviation'
+           ,'$ReboundTest'
+           ,'$Remarks'
+         )");
+           $bladerIter +=1;
+        }
+        
+        }
+    }
+
     public function AddDetails($testNo, $PONo, $Requirement, $Test, $IdOfHead)
     {
         $Date = date('Y-m-d H:i:s');

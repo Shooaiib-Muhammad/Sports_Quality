@@ -1168,6 +1168,211 @@ if (!$this->session->has_userdata('user_id')) {
         <!-- End Model Blader HTML -->
 
 
+ <!-- Model FGT HTML -->
+
+ <div class="modal fade bd-example-modal-lg" id="exampleModalFGT" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLabel" ><b>Report</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="card" id="printCardFGT">
+  <div class="card-body">
+
+       <div class="row">
+       <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>CSM Test Report of Football</th>
+                <td  style="font-size: small;padding:0%">
+                <table class="table table-bordered" style="font-size: small;padding:0%">
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Document</th>
+                        <td style="font-size: small;padding:1%">QSD-12/TWS/FB</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Revision</th>
+                        <td style="font-size: small;padding:1%">0</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Copy</th>
+                        <td style="font-size: small;padding:1%">03</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Holder</th>
+                        <td style="font-size: small;padding:1%">Lab Manager</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Status</th>
+                        <td style="font-size: small;padding:1%">Controlled</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Date</th>
+                        <td style="font-size: small;padding:1%">1/Jul/21</td>
+                    </tr>
+                </table>
+                </td>
+               </tr>
+           </table>
+           <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+          <table class="table">
+          <tr>    
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFGT"> </span></label></th>
+          <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFGT"> </span></label></th>
+        </tr>
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Model Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="modelNameFGT"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS Code:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSCodeFGT"> </span></label></th>
+    </tr>
+
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Pressure:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="pressureFGT"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Temp/Humidity:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="TempHumFGT"> </span></label></th>
+   
+</tr>
+
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Article:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="articleFGT"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Category:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="categoryFGT"> </span></label></th>
+ 
+    </tr>
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="sizeFGT"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Tested For:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testedForFGT"> </span></label></th>
+ 
+    </tr>
+ 
+            </table>
+           <!-- <div class="col-md-6">
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mt-3" >
+                <table class="table table-bordered" style="border:2px solid black">
+                    <thead>
+                        <tr style="border:2px solid black">
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Weight</th>
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Circumference Min</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Circumference Max</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Deviation</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Rebound Test</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Remarks</th>
+                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
+                         
+
+                        </tr>
+                    </thead>
+                    <tbody id= "DetailsTestFGT">
+                    
+                    </tbody>                
+                </table>
+            </div>
+
+            <div class="col-md-2"></div>
+            <!-- <div class="col-md-4">
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Note:</span> <span style="font-size: medium;font-weight:bold" id="noteFGT"> </span></label></div>
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span >Sohail Ghouri </span></th>
+          <th></th>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedFGT"> </span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedFGT"> </span>
+            </th>
+            <th></th>
+                    <th></th>
+                    <th></th>
+             
+
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    <span id="testApprovedFGT"> </span></th>
+                </tr>
+            </table>
+            <!-- <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
+        </div>
+
+       </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printCardFGT')" data-dismiss="modal">Print Report</button>
+      </div>
+      <div class="card-footer text-muted">
+  Forward Sports Pvt. Ltd.
+  </div>
+    </div>
+  </div>
+</div>
+ 
+        <!-- End Model FGT HTML -->
+
+
 <?php
  $Uploading = $this->session->userdata('Uploading');
   $RS = $this->session->userdata('ReviewStatus');
@@ -1227,6 +1432,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <option value="4">Thread</option>
                                                                     <option value="5">SR Blader</option>
                                                                     <option value="6">Material</option>
+                                                                    <option value="7">FGT Report</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -2467,7 +2673,50 @@ $.post(url, {'TID':TID},
     $('#exampleModalBlader').modal('toggle');
 
     }
+    else if(data[0].ItemType.trim() == 'FGT')
+    {
+        $("#testNoFGT").text(data[0].TestNO);
+     $("#dateTestFGT").text(data[0].Date);
+     $("#modelNameFGT").text(data[0].ModelName);
+     $("#CSSCodeFGT").text(data[0].CSSNO);
+  
+     $("#pressureFGT").text(data[0].Pressure);
+     $("#TempHumFGT").text(data[0].TempHumidity);
+     $("#articleFGT").text(data[0].Article);
+     $("#categoryFGT").text(data[0].Category);
+     $("#sizeFGT").text(data[0].Size);
+     $("#testedForFGT").text(data[0].Testedfor);
+     $("#testPerformedFGT").text(data[0].performedBy);
+     $("#noteFGT").text(data[0].Note);
      
+     data[0].Approvalname? $("#testApprovedFGT").text(data[0].Approvalname):$("#testApprovedFGT").text("Pending");
+   
+   //  $("#Incharge").text(data[0].Approvalname);
+     
+     data[0].reviewName? $("#testReviewedFGT").text(data[0].reviewName):$("#testReviewedFGT").text("Pending");
+     $("#ConclusionFGT").text(data[0].Result);
+     $.post(url2, {'TID':TID},
+    function(data, status) {
+        console.log("Details Data", data)
+        html = ''
+        data.forEach(element => {
+           html += `<tr>
+                            <td style="border:2px solid black">${element.Weight?element.Weight:''}</td>
+                            <td style="border:2px solid black">${element.CircumferenceMin?element.CircumferenceMin:''}</td>
+                            <td style="border:2px solid black">${element.CircumferenceMax?element.CircumferenceMax:''}</td>
+                            <td style="border:2px solid black">${element.Deviation?element.Deviation:''}</td>
+                            <td style="border:2px solid black">${element.ReboundTest?element.ReboundTest:''}</td>
+                            <td style="border:2px solid black">${element.Remarks?element.Remarks:''}</td>
+                   
+                        </tr>`
+       });
+
+     $("#DetailsTestFGT").html(html);
+
+    });
+    $('#exampleModalFGT').modal('toggle');
+
+    }
      
 
 
@@ -4351,6 +4600,59 @@ function(data, status) {
               }
           }
               }
+
+              else if(testType == 7){
+                  
+                  if (fileSelectStore) {
+              
+              this.filetoupload = fileSelectStore;
+              //show image review
+              var reader = new FileReader();
+              reader.readAsDataURL(this.filetoupload);
+              this.fileNameStore = this.filetoupload.name;
+              this.file = fileSelectStore;
+              let fileReader = new FileReader();
+              fileReader.readAsArrayBuffer(this.file);
+              fileReader.onload = (e) => {
+                  this.arrayBuffer = fileReader.result;
+                  var data = new Uint8Array(this.arrayBuffer);
+                  var arr = new Array();
+                  for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+                  var bstr = arr.join("");
+                  var workbook = XLSX.read(bstr, {
+                      type: "binary"
+                  });
+                  let sheetNo = $("#sheetNo").val();
+                  // alert(sheetNo);
+                  var first_sheet_name = workbook.SheetNames[sheetNo - 1];
+                  var worksheet = workbook.Sheets[first_sheet_name];
+                  //  console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));    
+                  let arraylist = XLSX.utils.sheet_to_json(worksheet, {
+                      raw: false
+                  });
+                  this.filelist = arraylist;
+                  let testNumber;
+                  let PONumber
+                  this.filelist.forEach(element => {
+                      if (element.TestNo != undefined || element.PONo != undefined) {
+                          testNumber = element.TestNo;
+                          PONumber = element.PONo;
+                          let arrayHead = [element.TestNo,element.Date,element.ModelName, element.CSSCode, element.Pressure, element.TempHumidity, element.Article, element.Category, element.size, element.Testedfor,element.Note];
+                          let arrayBody = [element.Weight,element.CircumferenceMin, element.CircumferenceMax, element.Deviation,element.ReboundTest,element.Remarks,']'];
+                          HeaderArray.push(arrayHead);
+                          ChildArray.push(arrayBody)
+                      } else {
+                      
+                          let arrayBody = [element.Test,element.Weight,element.CircumferenceMin, element.CircumferenceMax, element.Deviation,element.ReboundTest,element.Remarks,']'];
+
+                          ChildArray.push(arrayBody)
+                      }
+                  });
+                  $("#headerData").val(HeaderArray);
+          $("#childData").val(ChildArray);
+              }
+          }
+              }
             });
 
             $("#sendHeaderValues").click(function(e) {
@@ -4480,6 +4782,25 @@ function(data, status) {
                             }
                         });
                 }
+
+                else if(testType == 7){
+                    url = '<?php echo base_url('LabController/addHeadDataFGT'); ?>'
+
+                        $.ajax({
+                            url:url, 
+                            type:'post',
+                            data:fd,
+                            contentType:false,
+                            processData:false,
+                            function(data, status) {
+                               console.log(data)
+                                setInterval(function() {
+                                    window.location.reload();
+                                }, 2000);
+
+                            }
+                        });
+                }
                 
 
            
@@ -4528,6 +4849,9 @@ Sheetvalue=2;
 }else if(testno==5){
 Sheetvalue=2;
 }else if(testno==6){
+Sheetvalue=2;
+}
+else if(testno==7){
 Sheetvalue=2;
 }
 
