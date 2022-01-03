@@ -1,12 +1,274 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
-class LabModel extends CI_Model
+include("./application/views/includes/Exception.php");
+include("./application/views/includes/PHPMailer.php");
+include("./application/views/includes/SMTP.php");
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+class LabController extends CI_Controller
 {
-    public $skillName;
-    public $Status;
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Section_model', 's');
+        $this->load->model('Department_model', 'd');
+        $this->load->model('Machine_model', 'm');
+        $this->load->model('Team_model', 't');
+        $this->load->model('LabModel', 'l');
+    }
 
-    public function AddHeader(
+    public function index()
+    {
+        $this->load->view('LabDashboard');
+    }
+
+
+    public function dashboard()
+    {
+        $data['amb_count'] = $this->m->countambInstalledMachines(1);
+        $data['amb_team'] = $this->t->countamb(1);
+        $data['ms1_count'] = $this->m->countms1InstalledMachines(7);
+        $data['ms1_team'] = $this->t->countms1(7);
+        $data['ms2_count'] = $this->m->countms2InstalledMachines(6);
+        $data['ms2_team'] = $this->t->countms2(6);
+        $data['tm_count'] = $this->m->counttmInstalledMachines(3);
+        $data['tm_team'] = $this->t->counttm(3);
+        $data['lfb_count'] = $this->m->countlfbInstalledMachines(24);
+        $data['lfb_team'] = $this->t->countlfb(24);
+        $data['packing_count'] = $this->m->countpackingInstalledMachines(25);
+
+        $this->load->view('LabDashboard', $data);
+    }
+
+    public function master_form()
+    {
+         $data['Labtest'] = $this->l->labtest();
+        $this->load->view('LabMasterForm',$data);
+      
+    }
+
+    public function main_form()
+    {
+        $this->load->view('LabMainForm');
+    }
+
+    public function getDetails()
+    {
+        $TID = $_POST['TID'];
+       $data = $this->l->getDetails($TID);
+       return $this->output
+       ->set_content_type('application/json')
+       ->set_status_header(200)
+       ->set_output(json_encode($data));
+
+       
+    }
+
+    public function getHead()
+    {
+        $TID = $_POST['TID'];
+       $data = $this->l->getHead($TID);
+       return $this->output
+       ->set_content_type('application/json')
+       ->set_status_header(200)
+       ->set_output(json_encode($data));
+       
+    }
+
+    
+
+    public function addHeadData()
+    { 
+   ////////////////////////////////// Simple Form Send /////////////////////////////////
+    //     print_r($_FILES['file']);
+    //     die();
+    //      if(!empty($_FILES['img']['name'])){
+
+    //         $config['upload_path'] = 'assets\img\img';
+    //         $config['allowed_types'] = 'jpg|jpeg|png|gif';
+    //         $config['file_name'] = basename($_FILES["img"]["name"]) ;
+            
+    //         //Load upload library and initialize configuration
+    //         $this->load->library('upload',$config);
+    //        $this->upload->initialize($config);
+             
+    //         if($this->upload->do_upload('img')){
+    //        $uploadData = $this->upload->data();
+    //        $picture = $uploadData['file_name'];
+    //        $config['image_library'] = 'gd2';  
+    //        $config['source_image'] = 'assets/img/img/'.$picture;
+    //        $config['create_thumb'] = FALSE;  
+    //        $config['maintain_ratio'] = FALSE;  
+    //        $config['quality'] = '60%';  
+    //        $config['width'] = 800;  
+    //        $config['height'] = 600;  
+    //        $config['new_image'] = 'assets/img/img/'.$picture;
+    //        $this->load->library('image_lib', $config);  
+    //        $this->image_lib->resize(); 
+    //         }else{
+    //         Echo "helll";
+        
+    //          $picture = '';
+    //         }
+    //        }else{
+            
+    //         $picture = '';
+    //        }
+        
+     
+    //   $headerValue = $_POST['HeaderData'];
+    //   $header = explode(",",$headerValue[0]);
+  
+    //     $childValue = $_POST['ChildData'];
+    //     $child = explode("]",$childValue[0][0]);
+    //     $childArray = [];
+    //     foreach ($child as $key => $value) {
+    //         $arraySplit = explode(',',$value);
+    //         array_push($childArray, $arraySplit);
+           
+    //     }
+     
+    //     $TestDate = $header[0];
+    //     $PONo = $header[1];
+    //     $Quantity = $header[2];
+    //     $ReceivingDate = $header[3];
+    //     $ItemName = $header[4];
+    //     $SupplierName = $header[5];
+    //     $testNo = $header[6];
+    //     $SupplierRef = $header[7];
+    //     $Result = $header[8];
+    //     $ItemType = $header[9];
+    //     $this->l->AddHeader(
+    //         $TestDate,
+    //         $PONo,
+    //         $Quantity,
+    //         $ReceivingDate,
+    //         $ItemName,
+    //         $SupplierName,
+    //         $testNo,
+    //         $SupplierRef,
+    //         $Result,
+    //         $ItemType,
+    //         $picture,
+    //         $childArray 
+    //     );
+
+
+    ////////////////////////////////////// Ajax Call ///////////////////////////////
+
+     if(!empty($_FILES['file']['name'])){
+
+        $config['upload_path'] = 'assets\img\img';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        $config['file_name'] = basename($_FILES["file"]["name"]) ;
+        
+        //Load upload library and initialize configuration
+        $this->load->library('upload',$config);
+       $this->upload->initialize($config);
+         
+        if($this->upload->do_upload('file')){
+       $uploadData = $this->upload->data();
+       $picture = $uploadData['file_name'];
+       $config['image_library'] = 'gd2';  
+       $config['source_image'] = 'assets/img/img/'.$picture;
+       $config['create_thumb'] = FALSE;  
+       $config['maintain_ratio'] = FALSE;  
+       $config['quality'] = '60%';  
+       $config['width'] = 800;  
+       $config['height'] = 600;  
+       $config['new_image'] = 'assets/img/img/'.$picture;
+       $this->load->library('image_lib', $config);  
+       $this->image_lib->resize(); 
+        }else{
+        Echo "helll";
+    
+         $picture = '';
+        }
+       }else{
+        
+        $picture = '';
+       }
+    
+ 
+  $headerValue = $_POST['HeaderArray'];
+  $header = explode(",",$headerValue);
+
+    $childValue = $_POST['ChildArray'];
+    $child = explode("]",$childValue);
+    $childArray = [];
+    foreach ($child as $key => $value) {
+        $arraySplit = explode(',',$value);
+        array_push($childArray, $arraySplit);
+       
+    }
+    array_pop($childArray);
+    $testGroup = $_POST['testGroup'];
+    $testPerformer = $_POST['testPerformer'];
+    $TestDate = $header[0];
+    $PONo = $header[1];
+    $Quantity = $header[2];
+    $ReceivingDate = $header[3];
+    $ItemName = $header[4];
+    $SupplierName = $header[5];
+    $testNo = $header[6];
+    $SupplierRef = $header[7];
+    $Result = $header[8];
+    if($Result=='Fail' || $Result=='fail'){
+        $mail = new PHPMailer(true);
+try{
+
+
+  //Server settings
+$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+$mail->isSMTP();                                            //Send using SMTP
+$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+$mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
+$mail->Password   = 'Forward123';                               //SMTP password
+$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+$mail->IsHTML(true);
+//Recipients
+$mail->setFrom('from@example.com', "Lab Test Failure Alert ");
+$mail->addAddress("hufsa@forward.pk"); 
+$mail->addAddress("sohail@forward.pk"); 
+$mail->addAddress("store@forward.pk"); 
+$mail->AddCC('abaid@forward.pk');
+$mail->AddCC('imran@forward.pk');
+
+ $mail->AddCC('waseembutt@forward.pk');
+ $mail->AddCC('tafseer@forward.pk');
+    $mail->AddCC('shoaib@forward.pk');
+    $mail->AddCC('fsqa@forward.pk');
+          $mail->AddCC('oman@forward.pk');
+             $mail->AddCC('abdulhaseeb@forward.pk');
+               $mail->AddCC('zainabbas@forward.pk');
+
+$mail->Subject = "Raw Material Failure";
+$mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
+<div style="margin-left:40%;">
+<table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
+Carton Test Report Result Alert</th></tr>
+<tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
+<tr><th>Material Name:</th><td>'.$ItemName .'</td></tr>
+<tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
+<tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
+
+<tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
+</table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
+
+
+//  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
+//$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
+$mail->send();
+echo 'Message has been sent';
+} catch (Exception $e) {
+echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
+}
+    $ItemType = $header[9];
+    $this->l->AddHeader(
         $TestDate,
         $PONo,
         $Quantity,
@@ -20,106 +282,70 @@ class LabModel extends CI_Model
         $picture,
         $testGroup,
         $testPerformer,
-        $child
-    ) {
-        date_default_timezone_set('Asia/Karachi');
-        $Date = date('Y-m-d H:i:s');
-        $user_id = $this->session->userdata('user_id');
-
-        $user_id;
-        $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_H
-              (TestNO
-              ,Date
-              ,Size
-              ,PO
-              ,Receiving_Date
-              ,Supplier_Name
-              ,Supplier_Ref
-              ,Quantity_Carton
-              ,Entrydate
-              ,UserID
-              ,Result
-              ,ItemType
-              ,image
-              ,TestType
-              ,testGroup
-              ,performedBy)
-        VALUES
-              ('$testNo'
-              ,'$TestDate'
-              ,'$ItemName'
-              ,'$PONo'
-              ,'$ReceivingDate'
-              ,'$SupplierName'
-              ,'$SupplierRef'
-              ,'$Quantity'
-              ,'$Date'
-              ,'$user_id'
-              ,'$Result'
-              ,'$ItemType'
-              ,'$picture',
-              'Carton'
-              ,'$testGroup'
-              ,'$testPerformer')");
-        $Id = $this->db->insert_id();
-        echo $Id;
-        $iterCotton = 0;
-        foreach ($child as $key => $value) {
-            if($iterCotton == 0){
-                $testNo = $value[0];
-                $PONo = $value[1];
-                $Requirement = $value[2];
-                $Test = $value[3];
-                  $Results = $value[4];
-                     $Value = $value[5];
-              
-                $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
-               (TID
-               ,Test
-               ,Requirments
-               ,result,Value
-               ,EntryDate
-               ,user_ID)
-         VALUES
-               ('$Id'
-               ,'$Test'
-               ,'$Requirement'
-               ,'$Results'
-               ,'$Value'
-               ,'$Date'
-               ,'$user_id')");
-               $iterCotton += 1;
-            }
-            else{
-                $testNo = $value[1];
-            $PONo = $value[2];
-            $Requirement = $value[3];
-            $Test = $value[4];
-              $Results = $value[5];
-                 $Value = $value[6];
-          
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
-           (TID
-           ,Test
-           ,Requirments
-           ,result,Value
-           ,EntryDate
-           ,user_ID)
-     VALUES
-           ('$Id'
-           ,'$Test'
-           ,'$Requirement'
-           ,'$Results'
-           ,'$Value'
-           ,'$Date'
-           ,'$user_id')");
-           $iterCotton += 1;
-            }
-            
-        }
+        $childArray 
+    );
     }
 
-    public function AddHeaderFoam(
+    public function addHeadDataFoam()
+    { 
+
+    ////////////////////////////////////// Ajax Call ///////////////////////////////
+
+     if(!empty($_FILES['file']['name'])){
+
+        $config['upload_path'] = 'assets\img\img';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        $config['file_name'] = basename($_FILES["file"]["name"]) ;
+        
+        //Load upload library and initialize configuration
+        $this->load->library('upload',$config);
+       $this->upload->initialize($config);
+         
+        if($this->upload->do_upload('file')){
+       $uploadData = $this->upload->data();
+       $picture = $uploadData['file_name'];
+       $config['image_library'] = 'gd2';  
+       $config['source_image'] = 'assets/img/img/'.$picture;
+       $config['create_thumb'] = FALSE;  
+       $config['maintain_ratio'] = FALSE;  
+       $config['quality'] = '60%';  
+       $config['width'] = 800;  
+       $config['height'] = 600;  
+       $config['new_image'] = 'assets/img/img/'.$picture;
+       $this->load->library('image_lib', $config);  
+       $this->image_lib->resize(); 
+        }else{
+        Echo "helll";
+    
+         $picture = '';
+        }
+       }else{
+        
+        $picture = '';
+       }
+    
+ 
+  $headerValue = $_POST['HeaderArray'];
+  $header = explode(",",$headerValue);
+
+    $childValue = $_POST['ChildArray'];
+    $child = explode("]",$childValue);
+    $childArray = [];
+    foreach ($child as $key => $value) {
+        $arraySplit = explode(',',$value);
+        array_push($childArray, $arraySplit);
+       
+    }
+ 
+     array_pop($childArray);
+    $TestDate = $header[1];
+    $PONo = $header[3];
+    $ReceivingDate = $header[2];
+    $testNo = $header[0];
+    $SupplierRef = $header[4];
+    $testGroup = $_POST['testGroup'];
+    $testPerformer = $_POST['testPerformer'];
+    $this->l->AddHeaderFoam(
         $TestDate,
         $PONo,
         $ReceivingDate,
@@ -128,100 +354,133 @@ class LabModel extends CI_Model
         $picture,
         $testGroup,
         $testPerformer,
-        $child
-    ) {
-        date_default_timezone_set('Asia/Karachi');
-        $Date = date('Y-m-d H:i:s');
-        $user_id = $this->session->userdata('user_id');
-
-        $user_id;
-        $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_H
-              (TestNO
-              ,Date
-              ,PO
-              ,Receiving_Date
-              ,Supplier_Ref
-              ,Entrydate
-              ,UserID
-              ,image
-              ,TestType
-              ,testGroup
-              ,performedBy)
-        VALUES
-              ('$testNo'
-              ,'$TestDate'
-              ,'$PONo'
-              ,'$ReceivingDate'
-              ,'$SupplierRef'
-              ,'$Date'
-              ,'$user_id'
-              ,'$picture'
-              ,'Foam'
-              ,'$testGroup'
-              ,'$testPerformer')");
-        $Id = $this->db->insert_id();
-        echo $Id;
-        $iterFoam = 0;
-        foreach ($child as $key => $value) {
-           if($iterFoam == 0){
-            $testNo = $value[0];
-            $PONo = $value[1];
-            $Test = $value[2];
-            $Standard = $value[3];
-            $Unit = $value[4];
-            $Results = $value[5];
-        
-          
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
-           (TID
-           ,Test
-           ,Standard
-           ,Unit
-           ,result
-           ,EntryDate
-           ,user_ID)
-     VALUES
-           ('$Id'
-           ,'$Test'
-           ,'$Standard'
-           ,'$Unit'
-           ,'$Results'
-           ,'$Date'
-           ,'$user_id')");
-           $iterFoam +=1;
-           }
-           else
-           {
-            $testNo = $value[1];
-            $PONo = $value[2];
-            $Test = $value[3];
-            $Standard = $value[4];
-            $Unit = $value[5];
-            $Results = $value[6];
-        
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
-           (TID
-           ,Test
-           ,Standard
-           ,Unit
-           ,result
-           ,EntryDate
-           ,user_ID)
-     VALUES
-           ('$Id'
-           ,'$Test'
-           ,'$Standard'
-           ,'$Unit'
-           ,'$Results'
-           ,'$Date'
-           ,'$user_id')");
-           $iterFoam +=1;
-           }
-
-        }
+        $childArray 
+    );
     }
 
-    public function AddHeaderFabric(
+    public function addHeadDataFabric()
+    { 
+  
+    ////////////////////////////////////// Ajax Call ///////////////////////////////
+
+     if(!empty($_FILES['file']['name'])){
+
+        $config['upload_path'] = 'assets\img\img';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        $config['file_name'] = basename($_FILES["file"]["name"]) ;
+        
+        //Load upload library and initialize configuration
+        $this->load->library('upload',$config);
+       $this->upload->initialize($config);
+         
+        if($this->upload->do_upload('file')){
+       $uploadData = $this->upload->data();
+       $picture = $uploadData['file_name'];
+       $config['image_library'] = 'gd2';  
+       $config['source_image'] = 'assets/img/img/'.$picture;
+       $config['create_thumb'] = FALSE;  
+       $config['maintain_ratio'] = FALSE;  
+       $config['quality'] = '60%';  
+       $config['width'] = 800;  
+       $config['height'] = 600;  
+       $config['new_image'] = 'assets/img/img/'.$picture;
+       $this->load->library('image_lib', $config);  
+       $this->image_lib->resize(); 
+        }else{
+        Echo "helll";
+    
+         $picture = '';
+        }
+       }else{
+        
+        $picture = '';
+       }
+    
+ 
+  $headerValue = $_POST['HeaderArray'];
+  $header = explode(",",$headerValue);
+
+    $childValue = $_POST['ChildArray'];
+    $child = explode("]",$childValue);
+    $childArray = [];
+    foreach ($child as $key => $value) {
+        $arraySplit = explode(',',$value);
+        array_push($childArray, $arraySplit);
+       
+    }
+    array_pop($childArray);
+  
+    $testNo = $header[0];
+    $CSSNO=$header[1];
+    $TestDate = $header[2];
+    $ItemName = $header[3];
+    $PONo = $header[4];
+    $ReceivingDate = $header[5];
+    $SupplierName = $header[6];
+  
+    $SupplierRef = $header[7];
+    $Quantity = $header[8];
+
+   
+  
+    $Result = $header[9];
+    $ItemType = $header[10];
+    $testGroup = $_POST['testGroup'];
+    $testPerformer = $_POST['testPerformer'];
+   
+    if($Result=='Fail' || $Result=='fail'){
+        $mail = new PHPMailer(true);
+try{
+
+
+  //Server settings
+$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+$mail->isSMTP();                                            //Send using SMTP
+$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+$mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
+$mail->Password   = 'Forward123';                               //SMTP password
+$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+$mail->IsHTML(true);
+//Recipients
+$mail->setFrom('from@example.com', "Lab Test Failure Alert ");
+$mail->addAddress("hufsa@forward.pk"); 
+$mail->addAddress("sohail@forward.pk"); 
+$mail->addAddress("store@forward.pk"); 
+$mail->AddCC('abaid@forward.pk');
+$mail->AddCC('imran@forward.pk');
+
+ $mail->AddCC('waseembutt@forward.pk');
+ $mail->AddCC('tafseer@forward.pk');
+    $mail->AddCC('shoaib@forward.pk');
+    $mail->AddCC('fsqa@forward.pk');
+          $mail->AddCC('oman@forward.pk');
+             $mail->AddCC('abdulhaseeb@forward.pk');
+$mail->AddCC('zainabbas@forward.pk');
+$mail->Subject = "Raw Material Failure";
+$mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
+<div style="margin-left:40%;">
+<table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
+Fabric Test Report Result Alert</th></tr>
+<tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
+<tr><th>Material Name:</th><td>'.$ItemName .'</td></tr>
+<tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
+<tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
+
+<tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
+</table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
+
+
+//  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
+//$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
+$mail->send();
+echo 'Message has been sent';
+} catch (Exception $e) {
+echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
+}
+    $this->l->AddHeaderFabric(
         $TestDate,
         $CSSNO,
         $PONo,
@@ -236,113 +495,133 @@ class LabModel extends CI_Model
         $picture,
         $testGroup,
         $testPerformer,
-        $child
-    ) {
-
-
-        date_default_timezone_set('Asia/Karachi');
-        $Date = date('Y-m-d H:i:s');
-        $user_id = $this->session->userdata('user_id');
-
-        $user_id;
-        $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_H
-              (TestNO
-              ,Date
-              ,Size
-              ,PO
-              ,Receiving_Date
-              ,Supplier_Name
-              ,Supplier_Ref
-              ,Quantity_Carton
-              ,Entrydate
-              ,UserID
-              ,Result
-              ,ItemType
-              ,image
-              ,CSSNO
-              ,TestType
-              ,testGroup
-              ,performedBy
-              )
-        VALUES
-              ('$testNo'
-              ,'$TestDate'
-              ,'$ItemName'
-              ,'$PONo'
-              ,'$ReceivingDate'
-              ,'$SupplierName'
-              ,'$SupplierRef'
-              ,'$Quantity'
-              ,'$Date'
-              ,'$user_id'
-              ,'$Result'
-              ,'$ItemType'
-              ,'$picture'
-              , '$CSSNO'
-              ,'Fabric'
-              ,'$testGroup'
-              ,'$testPerformer'
-              )");
-        $Id = $this->db->insert_id();
-        echo $Id;
-        $i=0;
-        foreach ($child as $key => $value) {
-           if($i==0){
-            $Requirement = $value[1];
-            $Test = $value[0];
-            $Results = $value[2];
-            $Uncertainity = $value[3];
-            $Remarks = $value[4];
-          
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
-           (TID
-           ,Test
-           ,Requirments
-           ,result,Uncertainty,ReMarks
-           ,EntryDate
-           ,user_ID)
-     VALUES
-           ('$Id'
-           ,'$Test'
-           ,'$Requirement'
-           ,'$Results'
-           ,'$Uncertainity',
-           '$Remarks'
-           ,'$Date'
-           ,'$user_id')");
-           $i +=1;
-           }
-           else{
-    
-            $Requirement = $value[2];
-            $Test = $value[1];
-            $Results = $value[3];
-            $Uncertainity = $value[4];
-            $Remarks = $value[5];
-          
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
-           (TID
-           ,Test
-           ,Requirments
-           ,result,Uncertainty,ReMarks
-           ,EntryDate
-           ,user_ID)
-     VALUES
-           ('$Id'
-           ,'$Test'
-           ,'$Requirement'
-           ,'$Results'
-           ,'$Uncertainity',
-           '$Remarks'
-           ,'$Date'
-           ,'$user_id')");
-           $i +=1;
-           }
-            
-        }
+        $childArray 
+    );
     }
 
-    public function AddHeaderMaterial(
+    public function addHeadDataMaterial()
+    { 
+
+    ////////////////////////////////////// Ajax Call ///////////////////////////////
+
+     if(!empty($_FILES['file']['name'])){
+
+        $config['upload_path'] = 'assets\img\img';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        $config['file_name'] = basename($_FILES["file"]["name"]) ;
+        
+        //Load upload library and initialize configuration
+        $this->load->library('upload',$config);
+       $this->upload->initialize($config);
+         
+        if($this->upload->do_upload('file')){
+       $uploadData = $this->upload->data();
+       $picture = $uploadData['file_name'];
+       $config['image_library'] = 'gd2';  
+       $config['source_image'] = 'assets/img/img/'.$picture;
+       $config['create_thumb'] = FALSE;  
+       $config['maintain_ratio'] = FALSE;  
+       $config['quality'] = '60%';  
+       $config['width'] = 800;  
+       $config['height'] = 600;  
+       $config['new_image'] = 'assets/img/img/'.$picture;
+       $this->load->library('image_lib', $config);  
+       $this->image_lib->resize(); 
+        }else{
+        Echo "helll";
+    
+         $picture = '';
+        }
+       }else{
+        
+        $picture = '';
+       }
+    
+ 
+  $headerValue = $_POST['HeaderArray'];
+  $header = explode(",",$headerValue);
+
+    $childValue = $_POST['ChildArray'];
+    $child = explode("]",$childValue);
+    $childArray = [];
+    foreach ($child as $key => $value) {
+        $arraySplit = explode(',',$value);
+        array_push($childArray, $arraySplit);
+       
+    }
+    array_pop($childArray);
+  
+    $testNo = $header[0];
+    $CSSNO=$header[1];
+    $TestDate = $header[2];
+    $ItemName = $header[3];
+    $PONo = $header[4];
+    $ReceivingDate = $header[5];
+    $SupplierName = $header[6];
+  
+    $SupplierRef = $header[7];
+    $Quantity = $header[8];
+
+   
+  
+    $Result = $header[9];
+    $ItemType = $header[10];
+    $testGroup = $_POST['testGroup'];
+    $testPerformer = $_POST['testPerformer'];
+    if($Result=='Fail' || $Result=='fail'){
+        $mail = new PHPMailer(true);
+try{
+
+
+  //Server settings
+$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+$mail->isSMTP();                                            //Send using SMTP
+$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+$mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
+$mail->Password   = 'Forward123';                               //SMTP password
+$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+$mail->IsHTML(true);
+//Recipients
+$mail->setFrom('from@example.com', "Lab Test Failure Alert ");
+$mail->addAddress("hufsa@forward.pk"); 
+$mail->addAddress("sohail@forward.pk"); 
+$mail->addAddress("store@forward.pk"); 
+$mail->AddCC('abaid@forward.pk');
+$mail->AddCC('imran@forward.pk');
+
+ $mail->AddCC('waseembutt@forward.pk');
+ $mail->AddCC('tafseer@forward.pk');
+    $mail->AddCC('shoaib@forward.pk');
+    $mail->AddCC('fsqa@forward.pk');
+          $mail->AddCC('oman@forward.pk');
+             $mail->AddCC('abdulhaseeb@forward.pk');
+$mail->AddCC('zainabbas@forward.pk');
+$mail->Subject = "Raw Material Failure";
+$mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
+<div style="margin-left:40%;">
+<table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
+Material Test Report Result Alert</th></tr>
+<tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
+<tr><th>Material Name:</th><td>'.$ItemName .'</td></tr>
+<tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
+<tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
+
+<tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
+</table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
+
+
+//  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
+//$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
+$mail->send();
+echo 'Message has been sent';
+} catch (Exception $e) {
+echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
+}
+   
+    $this->l->AddHeaderMaterial(
         $TestDate,
         $CSSNO,
         $PONo,
@@ -357,115 +636,130 @@ class LabModel extends CI_Model
         $picture,
         $testGroup,
         $testPerformer,
-        $child
-    ) {
-
-
-        date_default_timezone_set('Asia/Karachi');
-        $Date = date('Y-m-d H:i:s');
-        $user_id = $this->session->userdata('user_id');
-
-        $user_id;
-        $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_H
-              (TestNO
-              ,Date
-              ,Size
-              ,PO
-              ,Receiving_Date
-              ,Supplier_Name
-              ,Supplier_Ref
-              ,Quantity_Carton
-              ,Entrydate
-              ,UserID
-              ,Result
-              ,ItemType
-              ,image
-              ,CSSNO
-              ,TestType
-              ,testGroup
-              ,performedBy
-              )
-        VALUES
-              ('$testNo'
-              ,'$TestDate'
-              ,'$ItemName'
-              ,'$PONo'
-              ,'$ReceivingDate'
-              ,'$SupplierName'
-              ,'$SupplierRef'
-              ,'$Quantity'
-              ,'$Date'
-              ,'$user_id'
-              ,'$Result'
-              ,'$ItemType'
-              ,'$picture'
-              , '$CSSNO'
-              ,'Material'
-              ,'$testGroup'
-              ,'$testPerformer'
-              )");
-        $Id = $this->db->insert_id();
-        echo $Id;
-        $i=0;
-        foreach ($child as $key => $value) {
-           if($i==0){
-            $Requirement = $value[1];
-            $Test = $value[0];
-            $Results = $value[2];
-            $Uncertainity = $value[3];
-            $Remarks = $value[4];
-          
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
-           (TID
-           ,Test
-           ,Requirments
-           ,result,Uncertainty,ReMarks
-           ,EntryDate
-           ,user_ID)
-     VALUES
-           ('$Id'
-           ,'$Test'
-           ,'$Requirement'
-           ,'$Results'
-           ,'$Uncertainity',
-           '$Remarks'
-           ,'$Date'
-           ,'$user_id')");
-           $i +=1;
-           }
-           else{
-    
-            $Requirement = $value[2];
-            $Test = $value[1];
-            $Results = $value[3];
-            $Uncertainity = $value[4];
-            $Remarks = $value[5];
-          
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
-           (TID
-           ,Test
-           ,Requirments
-           ,result,Uncertainty,ReMarks
-           ,EntryDate
-           ,user_ID)
-     VALUES
-           ('$Id'
-           ,'$Test'
-           ,'$Requirement'
-           ,'$Results'
-           ,'$Uncertainity',
-           '$Remarks'
-           ,'$Date'
-           ,'$user_id')");
-           $i +=1;
-           }
-            
-        }
+        $childArray 
+    );
     }
+    
+
+    public function addHeadDataThread()
+    { 
+
+    ////////////////////////////////////// Ajax Call ///////////////////////////////
+
+     if(!empty($_FILES['file']['name'])){
+
+        $config['upload_path'] = 'assets\img\img';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        $config['file_name'] = basename($_FILES["file"]["name"]) ;
+        
+        //Load upload library and initialize configuration
+        $this->load->library('upload',$config);
+       $this->upload->initialize($config);
+         
+        if($this->upload->do_upload('file')){
+       $uploadData = $this->upload->data();
+       $picture = $uploadData['file_name'];
+       $config['image_library'] = 'gd2';  
+       $config['source_image'] = 'assets/img/img/'.$picture;
+       $config['create_thumb'] = FALSE;  
+       $config['maintain_ratio'] = FALSE;  
+       $config['quality'] = '60%';  
+       $config['width'] = 800;  
+       $config['height'] = 600;  
+       $config['new_image'] = 'assets/img/img/'.$picture;
+       $this->load->library('image_lib', $config);  
+       $this->image_lib->resize(); 
+        }else{
+        Echo "helll";
+    
+         $picture = '';
+        }
+       }else{
+        
+        $picture = '';
+       }
+    
+ 
+  $headerValue = $_POST['HeaderArray'];
+  $header = explode(",",$headerValue);
+
+    $childValue = $_POST['ChildArray'];
+    $child = explode("]",$childValue);
+    $childArray = [];
+    foreach ($child as $key => $value) {
+        $arraySplit = explode(',',$value);
+        array_push($childArray, $arraySplit);
+       
+    }
+    array_pop($childArray);
+    $testNo = $header[0];
+    $TestDate = $header[1];
+    $ReceivingDate = $header[2];
+    $PONo = $header[3];
+    $SupplierRef = $header[4];
+    $SupplierName = $header[5];
+    $Thickness = $header[6];
+   
+    $LinearDensity = $header[7];
+
+ 
+    $TwistPerInch = $header[8];
+    $Result = $header[9];
+    $testGroup = $_POST['testGroup'];
+    $testPerformer = $_POST['testPerformer'];
+    if($Result=='Fail' || $Result=='fail'){
+        $mail = new PHPMailer(true);
+try{
 
 
+  //Server settings
+$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+$mail->isSMTP();                                            //Send using SMTP
+$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+$mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
+$mail->Password   = 'Forward123';                               //SMTP password
+$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+$mail->IsHTML(true);
+//Recipients
+$mail->setFrom('from@example.com', "Lab Test Failure Alert ");
+$mail->addAddress("hufsa@forward.pk"); 
+$mail->addAddress("sohail@forward.pk"); 
+$mail->addAddress("store@forward.pk"); 
+$mail->AddCC('abaid@forward.pk');
+$mail->AddCC('imran@forward.pk');
 
-    public function AddHeaderThread(
+ $mail->AddCC('waseembutt@forward.pk');
+ $mail->AddCC('tafseer@forward.pk');
+    $mail->AddCC('shoaib@forward.pk');
+    $mail->AddCC('fsqa@forward.pk');
+          $mail->AddCC('oman@forward.pk');
+             $mail->AddCC('abdulhaseeb@forward.pk');
+             $mail->AddCC('zainabbas@forward.pk');
+$mail->Subject = "Raw Material Failure";
+$mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
+<div style="margin-left:40%;">
+<table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
+Thread Test Report Result Alert</th></tr>
+<tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
+<tr><th>Material Name:</th><td>'.$SupplierRef .'</td></tr>
+<tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
+<tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
+
+<tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
+</table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
+
+
+//  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
+//$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
+$mail->send();
+echo 'Message has been sent';
+} catch (Exception $e) {
+echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
+}
+    $this->l->AddHeaderThread(
         $TestDate,
         $PONo,
         $ReceivingDate,
@@ -475,118 +769,78 @@ class LabModel extends CI_Model
         $picture,
         $testGroup,
         $testPerformer,
-        $child
-        ,$thickness
-        , $LinearDensity
-        ,$twisrPerInch
+        $childArray 
+        ,$Thickness
+        ,$LinearDensity
+        ,$TwistPerInch
         ,$Result
-
-    ) {
-        date_default_timezone_set('Asia/Karachi');
-        $Date = date('Y-m-d H:i:s');
-        $user_id = $this->session->userdata('user_id');
-
-        $user_id;
-        $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_H
-              (TestNO
-              ,Date
-              ,PO
-              ,Receiving_Date
-              ,Supplier_Name
-              ,Supplier_Ref
-              ,Entrydate
-              ,UserID
-              ,image
-              ,Thickness
-              ,LinearDensity
-              ,TwistPerInch
-              ,TestType
-              ,testGroup
-              ,performedBy
-              ,Result
-              )
-        VALUES
-              ('$testNo'
-              ,'$TestDate'
-              ,'$PONo'
-              ,'$ReceivingDate'
-              ,'$SupplierName'
-              ,'$SupplierRef'
-              ,'$Date'
-              ,'$user_id'
-              ,'$picture'
-              ,'$thickness'
-              ,'$LinearDensity'
-              ,'$twisrPerInch'
-              ,'Thread'
-              ,'$testGroup'
-              ,'$testPerformer'
-              ,'$Result'
-              )");
-        $Id = $this->db->insert_id();
-        echo $Id;
-        $iter = 0;
-
-        foreach ($child as $key => $value) {
-            if($iter == 0){
-                $testNo = $value[0];
-                $PONo = $value[1];
-                $TDate = $value[2];
-                $time = strtotime($TDate);
-                $newformat = date('Y-m-d',$time);
-                $ExtatMax = $value[3];
-                  $MaxLoad = $value[4];
-                     $Ext = $value[5];
-              
-                $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
-               (TID
-               ,TDate
-               ,ExtatMax
-               ,MaxLoad,Ext
-               ,EntryDate
-               ,user_ID)
-         VALUES
-               ('$Id'
-               ,'$newformat'
-               ,'$ExtatMax'
-               ,'$MaxLoad'
-               ,'$Ext'
-               ,'$Date'
-               ,'$user_id')");
-        $iter +=1;    
-        }
-        else{
-            $testNo = $value[1];
-            $PONo = $value[2];
-            $TDate = $value[3];
-            $time = strtotime($TDate);
-            $newformat = date('Y-m-d',$time);
-            $ExtatMax = $value[4];
-              $MaxLoad = $value[5];
-                 $Ext = $value[6];
-          
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
-           (TID
-           ,TDate
-           ,ExtatMax
-           ,MaxLoad,Ext
-           ,EntryDate
-           ,user_ID)
-     VALUES
-           ('$Id'
-           ,'$newformat'
-           ,'$ExtatMax'
-           ,'$MaxLoad'
-           ,'$Ext'
-           ,'$Date'
-           ,'$user_id')");
-           $iter +=1;
-        }
-        }
-            
+    );
     }
 
-    public function AddHeaderBlader(
+    public function addHeadDataBlader()
+    { 
+
+    ////////////////////////////////////// Ajax Call ///////////////////////////////
+
+     if(!empty($_FILES['file']['name'])){
+
+        $config['upload_path'] = 'assets\img\img';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        $config['file_name'] = basename($_FILES["file"]["name"]) ;
+        
+        //Load upload library and initialize configuration
+        $this->load->library('upload',$config);
+       $this->upload->initialize($config);
+         
+        if($this->upload->do_upload('file')){
+       $uploadData = $this->upload->data();
+       $picture = $uploadData['file_name'];
+       $config['image_library'] = 'gd2';  
+       $config['source_image'] = 'assets/img/img/'.$picture;
+       $config['create_thumb'] = FALSE;  
+       $config['maintain_ratio'] = FALSE;  
+       $config['quality'] = '60%';  
+       $config['width'] = 800;  
+       $config['height'] = 600;  
+       $config['new_image'] = 'assets/img/img/'.$picture;
+       $this->load->library('image_lib', $config);  
+       $this->image_lib->resize(); 
+        }else{
+        Echo "helll";
+    
+         $picture = '';
+        }
+       }else{
+        
+        $picture = '';
+       }
+    
+ 
+  $headerValue = $_POST['HeaderArray'];
+  $header = explode(",",$headerValue);
+
+    $childValue = $_POST['ChildArray'];
+    $child = explode("]",$childValue);
+    $childArray = [];
+    foreach ($child as $key => $value) {
+        $arraySplit = explode(',',$value);
+        array_push($childArray, $arraySplit);
+       
+    }
+    array_pop($childArray);
+    $TestDate = $header[1];
+    $PONo = $header[3];
+    $Material = $header[6];
+    $ReceivingDate = $header[2];
+    $Size = $header[7];
+    $SupplierName = $header[4];
+    $testNo = $header[0];
+    $SupplierRef = $header[5];
+    $Hardness = $header[8];
+    $Remarks =  $header[9];
+    $testGroup = $_POST['testGroup'];
+    $testPerformer = $_POST['testPerformer'];
+    $this->l->AddHeaderBlader(
         $TestDate,
         $PONo,
         $ReceivingDate,
@@ -597,196 +851,80 @@ class LabModel extends CI_Model
         $picture,
         $testGroup,
         $testPerformer,
-        $child,
-        $material
-        ,$hardness
-        ,$remarks
-    ) {
-        date_default_timezone_set('Asia/Karachi');
-        $Date = date('Y-m-d H:i:s');
-        $user_id = $this->session->userdata('user_id');
-
-        $user_id;
-        $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_H
-              (TestNO
-              ,Date
-              ,Size
-              ,PO
-              ,Receiving_Date
-              ,Supplier_Name
-              ,Supplier_Ref
-              ,Entrydate
-              ,UserID
-              ,image
-              ,material
-              ,Hardness,
-              Remarks,
-              TestType
-              ,testGroup
-              ,performedBy)
-        VALUES
-              ('$testNo'
-              ,'$TestDate'
-              ,'$Size'
-              ,'$PONo'
-              ,'$ReceivingDate'
-              ,'$SupplierName'
-              ,'$SupplierRef'
-              ,'$Date'
-              ,'$user_id'
-              ,'$picture'
-              ,'$material'
-              ,'$hardness'
-              ,'$remarks',
-              'Blader'
-              ,'$testGroup'
-              ,'$testPerformer')");
-        $Id = $this->db->insert_id();
-        echo $Id;
-        $bladerIter = 0;
-        foreach ($child as $key => $value) {
-            // $testNo = $value[0];
-            // $PONo = $value[1];
-        if($bladerIter == 0){
-            $Test = $value[2];
-            $Unit = $value[3];
-                $Results1 = $value[4];
-                $Results2 = $value[5];
-                $Results3 = $value[6];
-                $Results4 = $value[7];
-                $ValveTest = $value[8];
-                $SpecificGravity = $value[9];
-                $ResilienceTest = $value[10];
-                $AbrasionLossOfWt = $value[11];
-                $StabilityTest = $value[12];
-                $MigrationTest = $value[13];
-                $AirDate = $value[14];
-                $Day = $value[15];
-                $DecreaseInPr = $value[16];
-                $TPressure = $value[17];
-                $PercentageLeakage = $value[18];
-                
-                    $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
-                   (TID
-                   ,Test
-                   ,EntryDate
-                   ,user_ID
-                   ,result1
-                   ,result2
-                   ,result3
-                   ,result4
-                   ,ValveTest
-                   ,SpecificGravity,Resilience,
-                   Abrasion,
-                   StabilityTest,
-                   MigrationTest,
-                   AirDate,
-                   Day
-                   ,Decrease
-                   ,TPressure
-                   ,Leakage
-                   ,Unit
-                  )
-             VALUES
-                   ('$Id'
-                   ,'$Test'
-                   ,'$Date'
-                   ,'$user_id'
-                   ,'$Results1'
-                   ,'$Results2'
-                   ,'$Results3'
-                   ,'$Results4'
-        
-                   ,'$ValveTest'
-                   ,'$SpecificGravity'
-                   ,'$ResilienceTest'
-                   ,'$AbrasionLossOfWt'
-                   ,'$StabilityTest'
-                   ,'$MigrationTest'
-                   ,'$AirDate'
-        
-                   ,'$Day'
-                   ,'$DecreaseInPr'
-                   ,'$TPressure'
-                   ,'$PercentageLeakage'
-        
-                   ,'$Unit')");
-                   $bladerIter +=1;
-        }    
-        else{
-            $Test = $value[3];
-    $Unit = $value[4];
-        $Results1 = $value[5];
-        $Results2 = $value[6];
-        $Results3 = $value[7];
-        $Results4 = $value[8];
-        $ValveTest = $value[9];
-        $SpecificGravity = $value[10];
-        $ResilienceTest = $value[11];
-        $AbrasionLossOfWt = $value[12];
-        $StabilityTest = $value[13];
-        $MigrationTest = $value[14];
-        $AirDate = $value[15];
-        $Day = $value[16];
-        $DecreaseInPr = $value[17];
-        $TPressure = $value[18];
-        $PercentageLeakage = $value[19];
-        
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
-           (TID
-           ,Test
-           ,EntryDate
-           ,user_ID
-           ,result1
-           ,result2
-           ,result3
-           ,result4
-           ,ValveTest
-           ,SpecificGravity,Resilience,
-           Abrasion,
-           StabilityTest,
-           MigrationTest,
-           AirDate,
-           Day
-           ,Decrease
-           ,TPressure
-           ,Leakage
-           ,Unit
-          )
-     VALUES
-           ('$Id'
-           ,'$Test'
-           ,'$Date'
-           ,'$user_id'
-           ,'$Results1'
-           ,'$Results2'
-           ,'$Results3'
-           ,'$Results4'
-
-           ,'$ValveTest'
-           ,'$SpecificGravity'
-           ,'$ResilienceTest'
-           ,'$AbrasionLossOfWt'
-           ,'$StabilityTest'
-           ,'$MigrationTest'
-           ,'$AirDate'
-
-           ,'$Day'
-           ,'$DecreaseInPr'
-           ,'$TPressure'
-           ,'$PercentageLeakage'
-
-           ,'$Unit')");
-           $bladerIter +=1;
-        }
-        
-        }
+        $childArray ,
+        $Material,
+        $Hardness,
+        $Remarks
+    );
     }
 
+    public function addHeadDataFGT()
+    { 
+    
+    ////////////////////////////////////// Ajax Call ///////////////////////////////
 
-    public function AddHeaderFGT(
+     if(!empty($_FILES['file']['name'])){
+
+        $config['upload_path'] = 'assets\img\img';
+        $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        $config['file_name'] = basename($_FILES["file"]["name"]) ;
+        
+        //Load upload library and initialize configuration
+        $this->load->library('upload',$config);
+       $this->upload->initialize($config);
+         
+        if($this->upload->do_upload('file')){
+       $uploadData = $this->upload->data();
+       $picture = $uploadData['file_name'];
+       $config['image_library'] = 'gd2';  
+       $config['source_image'] = 'assets/img/img/'.$picture;
+       $config['create_thumb'] = FALSE;  
+       $config['maintain_ratio'] = FALSE;  
+       $config['quality'] = '60%';  
+       $config['width'] = 800;  
+       $config['height'] = 600;  
+       $config['new_image'] = 'assets/img/img/'.$picture;
+       $this->load->library('image_lib', $config);  
+       $this->image_lib->resize(); 
+        }else{
+        Echo "helll";
+    
+         $picture = '';
+        }
+       }else{
+        
+        $picture = '';
+       }
+    
+ 
+  $headerValue = $_POST['HeaderArray'];
+  $header = explode(",",$headerValue);
+  
+    $childValue = $_POST['ChildArray'];
+    $child = explode("]",$childValue);
+    $childArray = [];
+    foreach ($child as $key => $value) {
+        $arraySplit = explode(',',$value);
+        array_push($childArray, $arraySplit);
+       
+    }
+    array_pop($childArray);
+    $TestNo = $header[0];
+    $Date = $header[1];
+    $ModelName = $header[2];
+    $CSSCode = $header[3];
+    $Pressure = $header[4];
+    $TempHumidity = $header[5];
+    $Article = $header[6];
+    $Category = $header[7];
+    $size = $header[8];
+    $Testedfor = $header[9];
+    $Note = $header[10];
+    $testGroup = $_POST['testGroup'];
+    $testPerformer = $_POST['testPerformer'];
+    $this->l->AddHeaderFGT(
         $TestNo,
-        $DateGet,
+        $Date,
         $ModelName,
         $CSSCode,
         $Pressure,
@@ -800,560 +938,53 @@ class LabModel extends CI_Model
         $size,
         $Testedfor
         ,$Note
-    ) {
-        date_default_timezone_set('Asia/Karachi');
-        $Date = date('Y-m-d H:i:s');
-        $user_id = $this->session->userdata('user_id');
-
-        $user_id;
-        $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_H
-              (TestNO
-              ,Date
-              ,ModelName
-              ,CSSNO
-              ,Pressure
-              ,TempHumidity
-              ,Article
-              ,Category
-              ,Entrydate
-              ,UserID
-              ,image
-              ,size
-              ,Testedfor,
-              TestType
-              ,testGroup
-              ,performedBy
-              ,Note)
-        VALUES
-              ('$TestNo'
-              ,'$DateGet'
-              ,'$ModelName'
-              ,'$CSSCode'
-              ,'$Pressure'
-              ,'$TempHumidity'
-              ,'$Article'
-              ,'$Category'
-              ,'$Date'
-              ,'$user_id'
-              ,'$picture'
-              ,'$size'
-              ,'$Testedfor'
-              ,'FGT'
-              ,'$testGroup'
-              ,'$testPerformer'
-              ,'$Note')");
-        $Id = $this->db->insert_id();
-        echo $Id;
-        $bladerIter = 0;
-  
-        foreach ($childArray as $key => $value) {
-            // $testNo = $value[0];
-            // $PONo = $value[1];
-        if($bladerIter == 0){
-            $Weight = $value[0];
-            $CircumferenceMin = $value[1];
-                $CircumferenceMax = $value[2];
-                $Deviation = $value[3];
-                $ReboundTest = $value[4];
-                $Remarks = $value[5];
-                
-                    $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
-                 (TID
-           ,Weight
-           ,CircumferenceMin
-           ,CircumferenceMax
-           ,Deviation
-           ,ReboundTest
-           ,Remarks
-          )
-     VALUES
-           ('$Id'
-           ,'$Weight'
-           ,'$CircumferenceMin'
-           ,'$CircumferenceMax'
-           ,'$Deviation'
-           ,'$ReboundTest'
-           ,'$Remarks'
-         )");
-                   $bladerIter +=1;
-        }    
-        else{
-            $Weight = $value[2];
-            $CircumferenceMin = $value[3];
-                $CircumferenceMax = $value[4];
-                $Deviation = $value[5];
-                $ReboundTest = $value[6];
-                $Remarks = $value[7];
-        
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
-           (TID
-           ,Weight
-           ,CircumferenceMin
-           ,CircumferenceMax
-           ,Deviation
-           ,ReboundTest
-           ,Remarks
-          )
-     VALUES
-           ('$Id'
-           ,'$Weight'
-           ,'$CircumferenceMin'
-           ,'$CircumferenceMax'
-           ,'$Deviation'
-           ,'$ReboundTest'
-           ,'$Remarks'
-         )");
-           $bladerIter +=1;
-        }
-        
-        }
+    );
     }
 
-    public function AddDetails($testNo, $PONo, $Requirement, $Test, $IdOfHead)
+    public function addBodyData()
     {
-        $Date = date('Y-m-d H:i:s');
-        $user_id = $this->session->userdata('user_id');
-
-        $user_id;
-        $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
-           (TID
-           ,Test
-           ,Requirments
-           ,result
-           ,EntryDate
-           ,user_ID)
-     VALUES
-           ('$IdOfHead'
-           ,'$Test'
-           ,'$Requirement'
-           ,'null'
-           ,'$Date'
-           ,'$user_id')");
-        $Id = $this->db->insert_id();
-    }
-    public function delete($id)
-    {
-        $this->db->where('SkillID', $id);
-        $this->db->delete('tbl_DMMS_Skills');
-    }
-    public function labtest(){
-      $Date  = date('d/m/Y');
- $query = $this->db
-            ->query(" SELECT        dbo.view_lab_test.*
-FROM            dbo.view_lab_test
-WHERE        (Entrydate ='$Date')");
-
-        return $query->result_array();
-    }
-      public function labtestD($TestNO){
-      $Date  = date('d/m/Y');
- $query = $this->db
-            ->query(" SELECT        dbo.view_lab_test_D.*
-FROM            dbo.view_lab_test_D
-WHERE        (TestNO ='$TestNO')");
-
-        return $query->result_array();
-    }
-    public function Vendors(){
-        
-$query = $this->db
-            ->query("SELECT        VendorName, Status, VendorId
-FROM            dbo.tbl_Pro_Vendor");
-
-        return $query->result_array();
-    }
-    public function AddActivity($FC,$name,$status){
- $query = $this->db->query("INSERT INTO tbl_Dev_Activities
-           (VendorID
-           ,Name
-           ,Status
-           )
-     VALUES
-           ('$FC'
-           ,'$name',
-           $status )");
-        if($query ){
- $this->session->set_flashdata('info', 'Activity Saved Successfully');
-        redirect('DevelopmentController/master_form');
-            } else {
-                $this->session->set_flashdata('danger', 'Activity Not  Saved');
-                redirect('DevelopmentController/master_form');
-            }
-    }
-    public function Activities(){
-        $query = $this->db->query(" SELECT        dbo.view_Dev_Activity.*
-FROM            dbo.view_Dev_Activity");
-
-        return $query->result_array();
-    }
-    public function updateActivity($TID,$name,$status){
-         $query = $this->db->query("UPDATE   dbo .tbl_Dev_Activities 
-            SET   Name  =  '$name',Status  =  '$status'
-          WHERE  ActivityID='$TID'");
-            
-//             if($query ){
-//  $this->session->set_flashdata('info', 'Activity Updated Successfully');
-//         redirect('DevelopmentController/master_form');
-//             } else {
-//                 $this->session->set_flashdata('danger', 'Activity Not Updated ');
-//                 redirect('DevelopmentController/master_form');
-//             }
-            
-    }
-    
-     public function GetPOM(){
-        $query = $this->db->query(" SELECT        dbo.view_Dev_POM.*
-FROM            dbo.view_Dev_POM");
-
-        return $query->result_array();
-    }
-    
-       public function undoFGT($TID){
-         
-       $query = $this->db->query("DELETE    FROM  tbl_FGT_D
-      WHERE TID=$TID");
-      if($query){
-            $query = $this->db->query("DELETE FROM tbl_FGT_H
-      WHERE TID=$TID");
-       if($query){
-           $this->session->set_flashdata('danger', 'Data Deleted Successfully');
-           redirect('FGT/index');
-       }
-      }
-        
+        $child = $_POST['ChildArray'];
+        $IdOfHead = $_POST['IdOfNewlyEnteredRecord'];
+        foreach ($child as $key => $value) {
+            $testNo = $value[0];
+            $PONo = $value[1];
+            $Requirement = $value[2];
+            $Test = $value[3];
+            $Results = $value[4];
+            $this->l->AddDetails(
+                $testNo,
+                $PONo,
+                $Requirement,
+                $Test,
+                $Results,
+                $IdOfHead
+            );
+        }
     }
     public function undo($TID){
-        
-       $query = $this->db->query("DELETE  FROM Tbl_Lab_Test_D
-      WHERE TID=$TID");
-      if($query){
-            $query = $this->db->query("DELETE FROM Tbl_Lab_Test_H
-      WHERE TID=$TID");
-       if($query){
-           $this->session->set_flashdata('danger', 'Data Deleted Successfully');
-           redirect('LabController/master_form');
-       }
-      }
+        $data['undo'] = $this->l->undo($TID);
     }
-    public function CallData($ArtCode){
-            $query = $this->db->query(" SELECT        dbo.view_Dev_Articles.*
-FROM            dbo.view_Dev_Articles Where ArtCode='$ArtCode'" );
-
-        return $query->result_array();
-}
-public function LoadData($FactoryCode){
-       $query = $this->db->query("SELECT        dbo.view_Dev_Activity.*
-FROM            dbo.view_Dev_Activity
-WHERE        (VendorName = '$FactoryCode')" );
-
-        return $query->result_array();
-
-}
-public function insertion($ActivityID,$VendorID,$Balls,$ArticleID,$CID,$MID,$Size,$Type){
-    $Date = date('Y-m-d H:i:s');
-        $user_id = $this->session->userdata('user_id');
-     $query = $this->db->query("INSERT INTO tbl_Dev_Process
-           (ActivityID
-           ,VendorID
-           
-           ,UserID
-           ,EntryDate
-           ,NoOfBalls
-           ,ArtID
-           ,ModelID
-           ,ClientID
-           ,Size
-,Type,
-Status
-           )
-     VALUES
-           ('$ActivityID'
-           ,'$VendorID'
-                   , $user_id
-           ,'$Date'
-           ,$Balls
-           ,$ArticleID
-           , $MID
-           ,'$CID'
-           ,'$Size'
-           ,'$Type'
-           ,'In Process')");
-//         if($query ){
-//  $this->session->set_flashdata('info', 'Activity Saved Successfully');
-//         redirect('DevelopmentController/master_form');
-//             } else {
-//                 $this->session->set_flashdata('danger', 'Activity Not  Saved');
-//                 redirect('DevelopmentController/master_form');
-//             }
-}
-
-public function Process($article){
-       $query = $this->db->query("SELECT        dbo.view_Dev_Process.*
-FROM            dbo.view_Dev_Process
-WHERE        (ArtCode = '$article')" );
-
-        return $query->result_array();
-
-}
-public function updateprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate){
-$Status=str_replace("%20"," ", $Status);
-	// Echo $ProcessEndDate;
-    //         die;
-    if($Status=='Complete'){
-         $Date = date('Y-m-d H:i:s');
-                $query = $this->db->query("UPDATE    dbo .tbl_Dev_Process 
-            SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make',Status  =  '$Status' ,CompleteDate='$Date' ,ProcessEndDate='$ProcessEndDate' 
-          WHERE  TID='$TID'");  
-            }else{
-                  $query = $this->db->query("UPDATE   dbo .tbl_Dev_Process 
-            SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make',Status  =  '$Status',ProcessEndDate='$ProcessEndDate' 
-          WHERE  TID='$TID'");
-            }
-   
-}
-public function undoActivity($TID){
-        $query = $this->db->query("DELETE  FROM tbl_Dev_Activities
-      WHERE ActivityID=$TID");
-}
-public function GetArticles(){
-     $query = $this->db->query(" SELECT        dbo.view_Dev_Articles.*
-FROM            dbo.view_Dev_Articles");
-
-        return $query->result_array();
-}
-public function getSize($ArtCode){
-      $query = $this->db->query(" SELECT        dbo.view_Article_Size.*
-FROM            dbo.view_Article_Size
-Where ArtCode='$ArtCode' ");
-
-        return $query->result_array();
-}
-public function updatedStatus($reviewStatus,$approvedStatus,$TID){
-    if($reviewStatus==1){
- $user_id = $this->session->userdata('user_id');
-    }else{
- $user_id = 0;
+     public function updated($reviewStatus,$approvedStatus,$TID){
+        //$data['Labtest'] 
+        $data = $this->l->updatedStatus($reviewStatus,$approvedStatus,$TID);
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
     }
-   if($approvedStatus==1){
- $user_id1 = $this->session->userdata('user_id');
-    }else{
- $user_id1 = 0;
+
+    public function getTableData(){
+ 
+        $sDate = $_POST["startDate"];
+        $eDate = $_POST["endDate"];
+        $data = $this->l->getTableData($sDate,$eDate);
+
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
     }
+
+
     
-
-    $query = $this->db->query("UPDATE   dbo .Tbl_Lab_Test_H 
-    SET   ApprovedStatus  =  '$approvedStatus',ReviewStatus  =  '$reviewStatus',ReviewBy=$user_id,ApproveBy=$user_id1
-  WHERE  TID='$TID'");
-}
-public function updatedStatusFGT($reviewStatus,$approvedStatus,$TID){
-    if($reviewStatus==1){
- $user_id = $this->session->userdata('user_id');
-    }else{
- $user_id = 0;
-    }
-   if($approvedStatus==1){
- $user_id1 = $this->session->userdata('user_id');
-    }else{
- $user_id1 = 0;
-    }
-    
-  
-      $query = $this->db->query("UPDATE   dbo .tbl_FGT_H 
-    SET   ApprovedStatus  =  '$approvedStatus',ReviewStatus  =  '$reviewStatus',Reviewby=$user_id,ApprovedBy=$user_id1
-  WHERE  TID='$TID'");
-}
-
-  public function getDetails($Id){
-        $query = $this->db->query(" SELECT        TID, dbo.view_Lab_test_Details.*
-        FROM            dbo.view_Lab_test_Details
-        WHERE        (TID = '$Id')");
-
-        return $query->result_array();
-    }
-
-    public function getHead($Id){
-        $query = $this->db->query(" SELECT        dbo.view_Lab_Test_H.*, TID
-        FROM            dbo.view_Lab_Test_H
-        WHERE        (TID = '$Id')");
-
-        return $query->result_array();
-    }
-public function getTableData($sDate,$eDate){
-
-    $newSDate = strtotime($sDate);
-    $newEDate = strtotime($eDate);
-    $newSDateObj = date('d/m/Y',$newSDate);
-    $newEDateObj = date('d/m/Y',$newEDate);
-    
-    $query = $this->db->query(" SELECT        dbo.view_lab_test.*
-    FROM            dbo.view_lab_test
-    WHERE        (Entrydate BETWEEN '$newSDateObj' AND '$newEDateObj')");
-
-       return $query->result_array();
-}
-public function FGT_H_insertion($fgttype,$lbno,$tdate,$testcat,$fifastump,$pmonth,$cmat,$backing,$fgbladderttype,
-    $btype,$ttype,$mmcolor,$pcolors,$result,$fn,$m,$inn,$pshape,$rem,$testperformedby,$note) {
-        date_default_timezone_set('Asia/Karachi');
-        $Date = date('Y-m-d H:i:s');
-        $user_id = $this->session->userdata('user_id');
-
-        $user_id;
-        $query = $this->db->query("INSERT INTO tbl_FGT_H
-              (FGTType
-              ,labno
-              ,testdate
-              ,tastcat
-              ,fifiastemp
-              ,productionmonth
-              ,covermat
-              ,backing
-              ,bladder
-              ,balltype
-              ,testtype
-              ,mainmatcolor
-              ,printngscolors
-              ,result
-              ,userid,entrydate
-              ,factory_name
-              ,modal
-              ,Innervalue
-              ,panel_shape
-              ,remark,Performedby,Note
-              )
-        VALUES
-              ('$fgttype'
-              ,'$lbno'
-              ,'$tdate'
-              ,'$testcat'
-              ,'$fifastump'
-              ,'$pmonth'
-              ,'$cmat'
-              ,'$backing'
-              ,'$fgbladderttype'
-              ,'$btype'
-              ,'$ttype'
-              ,'$mmcolor'
-              ,'$pcolors',
-              '$result'
-              ,$user_id,'$Date'
-              ,'$fn'
-              ,'$m'
-              ,'$inn'
-              ,'$pshape',
-              '$rem'
-              ,'$testperformedby',
-              '$note'
-              )");
-        
-    }
-    public function getFGRH(){
-        $query = $this->db
-        ->query("SELECT        dbo.view_FGT_H.*
-FROM            dbo.view_FGT_H");
-return $query->result_array();
-    }
-    public function FGT_D_insertion($TID,$w1,$w2,$c1_sp,$c2_sp,$sp1_sp,$sp2_sp,$lp1,$lp2,$rrt1,$rrt2,$rrt51,$rrt52,$rrt01,$rrt02,$c1_dp,$c2_dp,$sp_dp1,$sp_dp2,$lp_dp1,$lp_dp2,$m1,$m2,$wup1,$wup2,$c1_wrt,$c2_wrt,$sp1_wrt,$sp2_wrt,$dt1,$dt2,$abr1,$abr2,$uvlf1,$uvlf2,$otr1,$otr2,$hl1,$hl2,$hcc1,$hcc2){
-        date_default_timezone_set('Asia/Karachi');
-        $Date = date('Y-m-d H:i:s');
-        $user_id = $this->session->userdata('user_id');
-
-        $user_id;
-        $query = $this->db->query("INSERT INTO tbl_FGT_D  
-              (TID,weight1
-              ,weight2
-              ,cir1
-              ,cir2
-              ,sphericity_sp1
-              ,sphericity_sp2
-              ,loss_of_pressure1
-              ,loss_of_pressure2
-              ,rebound_rt1
-              ,rebound_rt2
-              ,rebound_5_1
-              ,rebound_5_2
-              ,rebound_0_1
-              ,rebound_0_2
-              ,cir_st_1
-              ,cir_st_2
-              ,sphericity_st1
-              ,sphericity_st2
-              ,ch_of_pressure_st1
-              ,ch_of_pressure_st2
-              ,material_st1
-              ,material_st2
-              ,water_uptake_wrt1
-              ,water_uptake_wrt2
-              ,cir1_wrt
-              ,cir2_wrt
-              ,sphericity_wrt1
-              ,sphericity_wrt2
-              ,drum_test_pd1
-              ,drum_test_pd2
-              ,abraison_resistance_pd1
-              ,abraison_resistance_pd2
-              ,uv_light_fast_cst1
-              ,uv_light_fast_cst2
-              ,ozon_test_cst1
-              ,ozon_test_cst2
-              ,hydrolysis_lam1
-              ,hydrolysis_lam2
-              ,hydrolysis_color1
-              ,hydrolysis_color2
-              ,userid,entrydate)
-        VALUES
-              ($TID,'$w1'
-              ,'$w2'
-              ,'$c1_sp'
-              ,'$c2_sp'
-              ,'$sp1_sp'
-              ,'$sp2_sp'
-              ,'$lp1'
-              ,'$lp2'
-              ,'$rrt1'
-              ,'$rrt2'
-              ,'$rrt51'
-              ,'$rrt52'
-              ,'$rrt01'
-              ,'$rrt02'
-              ,'$c1_dp'
-              ,'$c2_dp'
-              ,'$sp_dp1'
-              ,'$sp_dp2'
-              ,'$lp_dp1'
-              ,'$lp_dp2'
-              ,'$m1'
-              ,'$m2'
-              ,'$wup1'
-              ,'$wup2'
-              ,'$c1_wrt'
-              ,'$c2_wrt'
-              ,'$sp1_wrt'
-              ,'$sp2_wrt'
-              ,'$dt1'
-              ,'$dt2'
-              ,'$abr1'
-              ,'$abr2'
-              ,'$uvlf1'
-              ,'$uvlf2'
-              ,'$otr1'
-              ,'$otr2'
-              ,'$hl1'
-              ,'$hl2'
-              ,'$hcc1'
-              ,'$hcc2'
-              ,$user_id,'$Date')");
-    }
-    public function FGT_PRINT_Head($id){
-        $query = $this->db
-        ->query("SELECT        dbo.view_FGT_H.*
-FROM            dbo.view_FGT_H Where TID=$id");
-return $query->result_array();
-    }
-    
-    public function FGT_PRINT_Details($id){
-        $query = $this->db
-        ->query("SELECT        dbo.view_FGT_D.*
-FROM            dbo.view_FGT_D Where TID=$id");
-return $query->result_array();
-    }
 }

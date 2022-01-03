@@ -616,7 +616,7 @@ if (!$this->session->has_userdata('user_id')) {
                 <table class="table table-bordered" style="font-size: small;padding:0%">
                     <tr style="font-size: small;padding:0%">
                         <th style="font-size: small;padding:1%">Document</th>
-                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRM</td>
+                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
                     </tr>
                     <tr style="font-size: small;padding:0%">
                         <th style="font-size: small;padding:1%">Revision</th>
@@ -815,7 +815,7 @@ if (!$this->session->has_userdata('user_id')) {
                 <table class="table table-bordered" style="font-size: small;padding:0%">
                     <tr style="font-size: small;padding:0%">
                         <th style="font-size: small;padding:1%">Document</th>
-                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRT</td>
+                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
                     </tr>
                     <tr style="font-size: small;padding:0%">
                         <th style="font-size: small;padding:1%">Revision</th>
@@ -1195,7 +1195,7 @@ if (!$this->session->has_userdata('user_id')) {
                 <table class="table table-bordered" style="font-size: small;padding:0%">
                     <tr style="font-size: small;padding:0%">
                         <th style="font-size: small;padding:1%">Document</th>
-                        <td style="font-size: small;padding:1%">QSD-12/TWS/FB</td>
+                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
                     </tr>
                     <tr style="font-size: small;padding:0%">
                         <th style="font-size: small;padding:1%">Revision</th>
@@ -1567,6 +1567,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <tr style="color:white;">
                                                       <th>Item Type</th>
                                                         <th>Test No </th>
+                                                        <th>CSS No </th>
                                                         <th> Date </th>
                                                         <th>Item Name </th>
                                                         <th>PO # </th>
@@ -1605,6 +1606,7 @@ if (!$this->session->has_userdata('user_id')) {
   <tr>
      <td><?php Echo $Key['ItemType']; ?></td>
       <td><?php Echo $Key['TestNO']; ?></td>
+      <td><?php Echo $Key['CSSNO']; ?></td>
  <td><?php Echo $Key['Date']; ?></td>
   <td><?php Echo $Key['Size']; ?></td>
      <td><?php Echo $Key['PO']; ?></td>
@@ -1848,6 +1850,7 @@ $.post(url, {'startDate':stDate,'endDate':enDate},
                                                     <tr style="color:white;">
                                                       <th>Item Type</th>
                                                         <th>Test No </th>
+                                                        <th>CSS No </th>
                                                         <th> Date </th>
                                                         <th>Item Name </th>
                                                         <th>PO # </th>
@@ -1876,6 +1879,7 @@ $.post(url, {'startDate':stDate,'endDate':enDate},
         <tr>
     <td>${element.ItemType}</td>
     <td>${element.TestNO}</td>
+    <td>${element.CSSNO}</td>
     <td>${element.Date}</td>
     <td>${element.Size}</td>
     <td>${element.PO}</td>
@@ -2087,13 +2091,14 @@ $.post(url, {'startDate':sDate,'endDate':eDate},
      
     let reviewStatus = '<?php echo $RS; ?>';
     let approvalStatus = '<?php echo $AS; ?>';
-    console.log("Table Data", data);
+ 
 
     html =`    <table id="table1" class="table table-bordered table-hover table-responsive table-striped w-100">
                                                 <thead class="bg-primary-200">
                                                     <tr style="color:white;">
                                                       <th>Item Type</th>
                                                         <th>Test No </th>
+                                                        <th>CSS No </th>
                                                         <th> Date </th>
                                                         <th>Item Name </th>
                                                         <th>PO # </th>
@@ -2117,11 +2122,12 @@ $.post(url, {'startDate':sDate,'endDate':eDate},
                                                 </thead>
                                                 <tbody>`;
     data.forEach(element => {
-        console.log("table content", element)
+      
         html += `
         <tr>
     <td>${element.ItemType}</td>
     <td>${element.TestNO}</td>
+    <td>${element.CSSNO}</td>
     <td>${element.Date}</td>
     <td>${element.Size}</td>
     <td>${element.PO}</td>
@@ -2432,7 +2438,7 @@ $.post(url, {'TID':TID},
     function(data, status) {
   
     testTypeGet = data[0].ItemType;
-    console.log("Head Data", testTypeGet);
+  
     if(data[0].ItemType.trim() == 'Carton'){
         $("#testNo").text(data[0].TestNO);
      $("#dateTest").text(data[0].Date);
@@ -2451,7 +2457,7 @@ $.post(url, {'TID':TID},
      $("#Conclusion").text(data[0].Result);
      $.post(url2, {'TID':TID},
     function(data, status) {
-        console.log("Details Data", data)
+      
         html = ''
         data.forEach(element => {
            html += `<tr>
@@ -2485,7 +2491,7 @@ $.post(url, {'TID':TID},
      $("#ConclusionFoam").text(data[0].Result);
      $.post(url2, {'TID':TID},
     function(data, status) {
-        console.log("Details Data", data)
+
         html = ''
         data.forEach(element => {
            html += `<tr>
@@ -2523,7 +2529,7 @@ $.post(url, {'TID':TID},
      $("#ConclusionFabric").text(data[0].Result);
      $.post(url2, {'TID':TID},
     function(data, status) {
-        console.log("Details Data", data)
+    
         html = ''
         data.forEach(element => {
            html += `<tr>
@@ -2561,7 +2567,7 @@ $.post(url, {'TID':TID},
      $("#ConclusionMaterial").text(data[0].Result);
      $.post(url2, {'TID':TID},
     function(data, status) {
-        console.log("Details Data", data)
+       
         html = ''
         data.forEach(element => {
            html += `<tr>
@@ -2598,14 +2604,14 @@ $.post(url, {'TID':TID},
      $("#ConclusionThread").text(data[0].Result);
      $.post(url2, {'TID':TID},
     function(data, status) {
-        console.log("Details Data", data)
+     
         html = ''
         let i=0;
        let extMax = 0;
        let Max = 0;
        let ext = 0;
         data.forEach(element => {
-            console.log("Checking Thread", element)
+        
           extMax += parseInt(element.ExtatMax);
           Max += parseInt(element.MaxLoad);
           ext += parseInt(element.Ext);
@@ -2653,7 +2659,7 @@ $.post(url, {'TID':TID},
      $("#Conclusion").text(data[0].Result);
      $.post(url2, {'TID':TID},
     function(data, status) {
-        console.log("Details Data", data)
+  
         html = ''
         data.forEach(element => {
            html += `<tr>
@@ -2675,6 +2681,7 @@ $.post(url, {'TID':TID},
     }
     else if(data[0].ItemType.trim() == 'FGT')
     {
+  
         $("#testNoFGT").text(data[0].TestNO);
      $("#dateTestFGT").text(data[0].Date);
      $("#modelNameFGT").text(data[0].ModelName);
@@ -2697,7 +2704,7 @@ $.post(url, {'TID':TID},
      $("#ConclusionFGT").text(data[0].Result);
      $.post(url2, {'TID':TID},
     function(data, status) {
-        console.log("Details Data", data)
+
         html = ''
         data.forEach(element => {
            html += `<tr>
@@ -2759,7 +2766,7 @@ function(data, status) {
      $("#Conclusion").text(data[0].Result);
      $.post(url2, {'TID':TID},
     function(data, status) {
-        console.log("Details Data", data)
+      
         html = ''
         data.forEach(element => {
            html += `<tr>
@@ -2793,7 +2800,7 @@ function(data, status) {
      $("#Conclusion").text(data[0].Result);
      $.post(url2, {'TID':TID},
     function(data, status) {
-        console.log("Details Data", data)
+      
         html = ''
         data.forEach(element => {
            html += `<tr>
@@ -2831,7 +2838,7 @@ function(data, status) {
      $("#Conclusion").text(data[0].Result);
      $.post(url2, {'TID':TID},
     function(data, status) {
-        console.log("Details Data", data)
+ 
         html = ''
         data.forEach(element => {
            html += `<tr>
@@ -2869,7 +2876,7 @@ function(data, status) {
      $("#ConclusionMaterial").text(data[0].Result);
      $.post(url2, {'TID':TID},
     function(data, status) {
-        console.log("Details Data", data)
+
         html = ''
         data.forEach(element => {
            html += `<tr>
@@ -2906,7 +2913,7 @@ function(data, status) {
      $("#ConclusionThread").text(data[0].Result);
      $.post(url2, {'TID':TID},
     function(data, status) {
-        console.log("Details Data", data)
+      
         html = ''
         data.forEach(element => {
            html += `<tr>
@@ -2945,7 +2952,7 @@ function(data, status) {
      $("#Conclusion").text(data[0].Result);
      $.post(url2, {'TID':TID},
     function(data, status) {
-        console.log("Details Data", data)
+
         html = ''
         data.forEach(element => {
            html += `<tr>
@@ -2963,6 +2970,52 @@ function(data, status) {
 
     });
     $('#exampleModalBlader').modal('toggle');
+
+    }
+
+    else if(data[0].ItemType.trim() == 'FGT')
+    {
+    
+        $("#testNoFGT").text(data[0].TestNO);
+     $("#dateTestFGT").text(data[0].Date);
+     $("#modelNameFGT").text(data[0].ModelName);
+     $("#CSSCodeFGT").text(data[0].CSSNO);
+  
+     $("#pressureFGT").text(data[0].Pressure);
+     $("#TempHumFGT").text(data[0].TempHumidity);
+     $("#articleFGT").text(data[0].Article);
+     $("#categoryFGT").text(data[0].Category);
+     $("#sizeFGT").text(data[0].Size);
+     $("#testedForFGT").text(data[0].Testedfor);
+     $("#testPerformedFGT").text(data[0].performedBy);
+     $("#noteFGT").text(data[0].Note);
+     
+     data[0].Approvalname? $("#testApprovedFGT").text(data[0].Approvalname):$("#testApprovedFGT").text("Pending");
+   
+   //  $("#Incharge").text(data[0].Approvalname);
+     
+     data[0].reviewName? $("#testReviewedFGT").text(data[0].reviewName):$("#testReviewedFGT").text("Pending");
+     $("#ConclusionFGT").text(data[0].Result);
+     $.post(url2, {'TID':TID},
+    function(data, status) {
+
+        html = ''
+        data.forEach(element => {
+           html += `<tr>
+                            <td style="border:2px solid black">${element.Weight?element.Weight:''}</td>
+                            <td style="border:2px solid black">${element.CircumferenceMin?element.CircumferenceMin:''}</td>
+                            <td style="border:2px solid black">${element.CircumferenceMax?element.CircumferenceMax:''}</td>
+                            <td style="border:2px solid black">${element.Deviation?element.Deviation:''}</td>
+                            <td style="border:2px solid black">${element.ReboundTest?element.ReboundTest:''}</td>
+                            <td style="border:2px solid black">${element.Remarks?element.Remarks:''}</td>
+                   
+                        </tr>`
+       });
+
+     $("#DetailsTestFGT").html(html);
+
+    });
+    $('#exampleModalFGT').modal('toggle');
 
     }
      
@@ -4380,8 +4433,7 @@ function(data, status) {
                     });
                     $("#headerData").val(HeaderArray);
             $("#childData").val(ChildArray);
- console.log(HeaderArray);
- console.log(ChildArray);
+
 
                 }
             }     
@@ -4717,7 +4769,7 @@ function(data, status) {
                             contentType:false,
                             processData:false,
                             function(data, status) {
-                              console.log("Data", data);
+                       
                                 setInterval(function() {
                                     window.location.reload();
                                 }, 2000);
@@ -4793,7 +4845,7 @@ function(data, status) {
                             contentType:false,
                             processData:false,
                             function(data, status) {
-                               console.log(data)
+                          
                                 setInterval(function() {
                                     window.location.reload();
                                 }, 2000);
