@@ -146,7 +146,8 @@ class Main extends CI_Controller
                 $data[
                     'packing_count'
                 ] = $this->m->countpackingInstalledMachines(25);
-                $this->load->view('Dmms_Dashboard', $data);
+                redirect('LabController/master_form');
+                // $this->load->view('Dmms_Dashboard', $data);
             }
         }
     }

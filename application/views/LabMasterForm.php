@@ -87,7 +87,7 @@ if (!$this->session->has_userdata('user_id')) {
        <div class="row">
        <table class="table">
                <tr>
-               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
              
                    <th></th>
                    <th></th>
@@ -249,7 +249,7 @@ if (!$this->session->has_userdata('user_id')) {
        <div class="row">
        <table class="table">
                <tr>
-               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
              
                    <th></th>
                    <th></th>
@@ -408,7 +408,7 @@ if (!$this->session->has_userdata('user_id')) {
        <div class="row">
        <table class="table">
                <tr>
-               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
              
                    <th></th>
                    <th></th>
@@ -607,7 +607,7 @@ if (!$this->session->has_userdata('user_id')) {
        <div class="row">
        <table class="table">
                <tr>
-               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
              
                    <th></th>
                    <th></th>
@@ -806,7 +806,7 @@ if (!$this->session->has_userdata('user_id')) {
        <div class="row">
        <table class="table">
                <tr>
-               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
              
                    <th></th>
                    <th></th>
@@ -1011,7 +1011,7 @@ if (!$this->session->has_userdata('user_id')) {
        <div class="row">
        <table class="table">
                <tr>
-               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
              
                    <th></th>
                    <th></th>

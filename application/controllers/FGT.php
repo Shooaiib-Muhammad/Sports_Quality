@@ -21,8 +21,143 @@ class FGT extends CI_Controller
         $data['undo'] = $this->FGT->undoFGT($TID);
     }
     public function FGT_H(){
-      
-        $data= $this->FGT->FGT_H_insertion($_POST['fgttype'],$_POST['labno'],$_POST['tdate'],$_POST['testcat'],$_POST['fifastump'],$_POST['pmonth'],$_POST['cmat'],$_POST['backing'],$_POST['bladder'],$_POST['btype'],$_POST['ttype'],$_POST['mmcolor'],$_POST['pcolors'],$_POST['result'],$_POST['fn'],$_POST['m'],$_POST['inn'],$_POST['pshape'], $_POST['rem'],$_POST['testperformedby'],$_POST['note']);
+     
+        $forDataGet = $_POST['formData'];
+        $dataArray = explode(",",$forDataGet);
+   
+        if(!empty($_FILES['fileFresh']['name'])){
+
+            $config['upload_path'] = 'assets\img\img';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['file_name'] = basename($_FILES["fileFresh"]["name"]) ;
+            
+            //Load upload library and initialize configuration
+            $this->load->library('upload',$config);
+           $this->upload->initialize($config);
+             
+            if($this->upload->do_upload('fileFresh')){
+           $uploadData = $this->upload->data();
+           $pictureFresh = $uploadData['file_name'];
+           $config['image_library'] = 'gd2';  
+           $config['source_image'] = 'assets/img/img/'.$pictureFresh;
+           $config['create_thumb'] = FALSE;  
+           $config['maintain_ratio'] = FALSE;  
+           $config['quality'] = '60%';  
+           $config['width'] = 800;  
+           $config['height'] = 600;  
+           $config['new_image'] = 'assets/img/img/'.$pictureFresh;
+           $this->load->library('image_lib', $config);  
+           $this->image_lib->resize(); 
+            }else{
+            Echo "helll";
+        
+             $picture = '';
+            }
+           }else{
+            
+            $picture = '';
+           }
+
+           if(!empty($_FILES['fileShooter']['name'])){
+
+            $config['upload_path'] = 'assets\img\img';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['file_name'] = basename($_FILES["fileShooter"]["name"]) ;
+            
+            //Load upload library and initialize configuration
+            $this->load->library('upload',$config);
+           $this->upload->initialize($config);
+             
+            if($this->upload->do_upload('fileShooter')){
+           $uploadData = $this->upload->data();
+           $pictureShooter = $uploadData['file_name'];
+           $config['image_library'] = 'gd2';  
+           $config['source_image'] = 'assets/img/img/'.$pictureShooter;
+           $config['create_thumb'] = FALSE;  
+           $config['maintain_ratio'] = FALSE;  
+           $config['quality'] = '60%';  
+           $config['width'] = 800;  
+           $config['height'] = 600;  
+           $config['new_image'] = 'assets/img/img/'.$pictureShooter;
+           $this->load->library('image_lib', $config);  
+           $this->image_lib->resize(); 
+            }else{
+            Echo "helll";
+        
+             $picture = '';
+            }
+           }else{
+            
+            $picture = '';
+           }
+
+           if(!empty($_FILES['fileHydro']['name'])){
+
+            $config['upload_path'] = 'assets\img\img';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['file_name'] = basename($_FILES["fileHydro"]["name"]) ;
+            
+            //Load upload library and initialize configuration
+            $this->load->library('upload',$config);
+           $this->upload->initialize($config);
+             
+            if($this->upload->do_upload('fileHydro')){
+           $uploadData = $this->upload->data();
+           $pictureHydro = $uploadData['file_name'];
+           $config['image_library'] = 'gd2';  
+           $config['source_image'] = 'assets/img/img/'.$pictureHydro;
+           $config['create_thumb'] = FALSE;  
+           $config['maintain_ratio'] = FALSE;  
+           $config['quality'] = '60%';  
+           $config['width'] = 800;  
+           $config['height'] = 600;  
+           $config['new_image'] = 'assets/img/img/'.$pictureHydro;
+           $this->load->library('image_lib', $config);  
+           $this->image_lib->resize(); 
+            }else{
+            Echo "helll";
+        
+             $picture = '';
+            }
+           }else{
+            
+            $picture = '';
+           }
+
+           if(!empty($_FILES['fileDrum']['name'])){
+
+            $config['upload_path'] = 'assets\img\img';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['file_name'] = basename($_FILES["fileDrum"]["name"]) ;
+            
+            //Load upload library and initialize configuration
+            $this->load->library('upload',$config);
+           $this->upload->initialize($config);
+             
+            if($this->upload->do_upload('fileDrum')){
+           $uploadData = $this->upload->data();
+           $pictureDrum = $uploadData['file_name'];
+           $config['image_library'] = 'gd2';  
+           $config['source_image'] = 'assets/img/img/'.$pictureDrum;
+           $config['create_thumb'] = FALSE;  
+           $config['maintain_ratio'] = FALSE;  
+           $config['quality'] = '60%';  
+           $config['width'] = 800;  
+           $config['height'] = 600;  
+           $config['new_image'] = 'assets/img/img/'.$pictureDrum;
+           $this->load->library('image_lib', $config);  
+           $this->image_lib->resize(); 
+            }else{
+            Echo "helll";
+        
+             $picture = '';
+            }
+           }else{
+            
+            $picture = '';
+           }
+
+        $data= $this->FGT->FGT_H_insertion($dataArray[0],$dataArray[1],$dataArray[2],$dataArray[3],$dataArray[4],$dataArray[5],$dataArray[6],$dataArray[7],$dataArray[8],$dataArray[9],$dataArray[10],$dataArray[11],$dataArray[12],$dataArray[13],$dataArray[14],$dataArray[15],$dataArray[16],$dataArray[17], $dataArray[18],$dataArray[19],$dataArray[20],$pictureFresh,$pictureShooter,$pictureHydro,$pictureDrum);
         return $this->output
         ->set_content_type('application/json')
         ->set_status_header(200)

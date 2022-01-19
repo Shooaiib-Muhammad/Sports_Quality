@@ -231,7 +231,7 @@ $mail->Port       = 465;                                    //TCP port to connec
 $mail->IsHTML(true);
 //Recipients
 $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-
+$mail->addAddress("hufsa@forward.pk"); 
 $mail->addAddress("sohail@forward.pk"); 
 $mail->addAddress("store@forward.pk"); 
 $mail->AddCC('abaid@forward.pk');
@@ -243,7 +243,8 @@ $mail->AddCC('imran@forward.pk');
     $mail->AddCC('fsqa@forward.pk');
           $mail->AddCC('oman@forward.pk');
              $mail->AddCC('abdulhaseeb@forward.pk');
-
+               $mail->AddCC('zainabbas@forward.pk');
+$mail->AddCC('yaseen@forward.pk');
 $mail->Subject = "Raw Material Failure";
 $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
 <div style="margin-left:40%;">
@@ -444,7 +445,7 @@ $mail->Port       = 465;                                    //TCP port to connec
 $mail->IsHTML(true);
 //Recipients
 $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-
+$mail->addAddress("hufsa@forward.pk"); 
 $mail->addAddress("sohail@forward.pk"); 
 $mail->addAddress("store@forward.pk"); 
 $mail->AddCC('abaid@forward.pk');
@@ -456,7 +457,9 @@ $mail->AddCC('imran@forward.pk');
     $mail->AddCC('fsqa@forward.pk');
           $mail->AddCC('oman@forward.pk');
              $mail->AddCC('abdulhaseeb@forward.pk');
+$mail->AddCC('zainabbas@forward.pk');
 
+$mail->AddCC('yaseen@forward.pk');
 $mail->Subject = "Raw Material Failure";
 $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
 <div style="margin-left:40%;">
@@ -584,7 +587,7 @@ $mail->Port       = 465;                                    //TCP port to connec
 $mail->IsHTML(true);
 //Recipients
 $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-
+$mail->addAddress("hufsa@forward.pk"); 
 $mail->addAddress("sohail@forward.pk"); 
 $mail->addAddress("store@forward.pk"); 
 $mail->AddCC('abaid@forward.pk');
@@ -596,7 +599,8 @@ $mail->AddCC('imran@forward.pk');
     $mail->AddCC('fsqa@forward.pk');
           $mail->AddCC('oman@forward.pk');
              $mail->AddCC('abdulhaseeb@forward.pk');
-
+             $mail->AddCC('yaseen@forward.pk');
+$mail->AddCC('zainabbas@forward.pk');
 $mail->Subject = "Raw Material Failure";
 $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
 <div style="margin-left:40%;">
@@ -723,7 +727,7 @@ $mail->Port       = 465;                                    //TCP port to connec
 $mail->IsHTML(true);
 //Recipients
 $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-
+$mail->addAddress("hufsa@forward.pk"); 
 $mail->addAddress("sohail@forward.pk"); 
 $mail->addAddress("store@forward.pk"); 
 $mail->AddCC('abaid@forward.pk');
@@ -735,6 +739,8 @@ $mail->AddCC('imran@forward.pk');
     $mail->AddCC('fsqa@forward.pk');
           $mail->AddCC('oman@forward.pk');
              $mail->AddCC('abdulhaseeb@forward.pk');
+             $mail->AddCC('yaseen@forward.pk');
+             $mail->AddCC('zainabbas@forward.pk');
 $mail->Subject = "Raw Material Failure";
 $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
 <div style="margin-left:40%;">

@@ -3,7 +3,9 @@ if (!$this->session->has_userdata('user_id')) {
     redirect('');
 } else {
      ?>
+
 <?php $this->load->view('includes/new_header'); ?>
+
         <!-- BEGIN Page Wrapper -->
         <div class="page-wrapper">
             <div class="page-inner">
@@ -29,7 +31,13 @@ if (!$this->session->has_userdata('user_id')) {
                             </h1>
                         </div>
 
-
+                        <style>
+    .table th, .table td {
+    padding: 4px;
+    vertical-align: top;
+    border-top: 1px solid #e9e9e9;
+}
+</style>
 
 
 <!-- Modal SOCCER BALL INDOOR-->
@@ -69,7 +77,7 @@ if (!$this->session->has_userdata('user_id')) {
              
                    <th></th>
                    <th></th>
-                   <th style="font-size: Medium;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR SOCCERBALLS INDOOR</th>
+                   <th style="font-size: x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR SOCCERBALLS INDOOR</th>
                 <th> </th>
                </tr>
            </table>
@@ -77,8 +85,8 @@ if (!$this->session->has_userdata('user_id')) {
       <div class="container-fluid p-5">
         <div class="row p-2">
             <div class="col-sm-4">
-                <table class="table table-striped">
-                    <tbody style="border: 1px solid;">
+                <table class="table table-striped p-0">
+                    <tbody style="border: 1px solid;padding:0px">
                         <tr>
                             <th style="border: 1px solid;">F2206LSB888</th>
                             <td  class="text-center">HM4183</td>
@@ -107,9 +115,9 @@ if (!$this->session->has_userdata('user_id')) {
                 </table>
             </div>
             <div class="col-4">
-                <table class="table table-striped">
-                    <tbody style="border: 1px solid;">
-                        <tr>
+                <table class="table table-striped p-0">
+                    <tbody style="border: 1px solid;padding:0px">
+                        <tr style="padding: 0px;">
                             <th colspan="2" style="border: 1px solid; text-align:center">Construction</th>
                         </tr>
                         <tr>
@@ -411,23 +419,12 @@ if (!$this->session->has_userdata('user_id')) {
                 </table>
             </div>
                 <div class="col-12">
-                    <table class="table table-striped col-6">
+                    <table class="table table-striped col-12">
                         <tbody style="border: 1px solid;">
                             <tr>
-                                <th rowspan="4" style="border: 1px solid">Remarks:</th>
+                                <th style="border: 1px solid">Remarks:</th>  <td>Test request obvious problems before,during and after tests Improvements</td>
                             </tr>
 
-                            <tr>
-                                <td>Test request</td>
-                            </tr>
-
-                            <tr>
-                                <td>obvious problems<br>before,<br>during<br>and after tests</td>
-                            </tr>
-
-                            <tr>
-                                <td>Improvements</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -454,6 +451,27 @@ if (!$this->session->has_userdata('user_id')) {
 
                     <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
                     <span id="testApprovedFGT"> </span></th>
+                </tr>
+            </table>
+
+            <table class="table">
+                <tr>
+                  <th>
+                      <h5 style="font-weight:bold;color:black">Fresh Image</h5>
+                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="FreshPhotoIndoor" height="150px" width="200px" alt="FreshPhoto" />
+                  </th>
+                  <th>
+                  <h5 style="font-weight:bold;color:black">Shooter Image</h5>
+                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="ShooterPhotoIndoor" height="150px" width="200px" alt="ShooterPhoto" />
+                  </th>
+                  <th>
+                  <h5 style="font-weight:bold;color:black">Hydrolysis Image</h5>
+                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="HydroPhotoIndoor" height="150px" width="200px" alt="HydroPhoto" />
+                  </th>
+                  <th>
+                  <h5 style="font-weight:bold;color:black">Drum Image</h5>
+                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="DrumPhotoIndoor" height="150px" width="200px" alt="DrumPhoto" />
+                  </th>
                 </tr>
             </table>
 
@@ -509,26 +527,26 @@ if (!$this->session->has_userdata('user_id')) {
              
                    <th></th>
                    <th></th>
-                   <th style="font-size: Medium;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR SOCCERBALLS SIZE 5</th>
+                   <th style="font-size: x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR SOCCERBALLS SIZE 5</th>
                 <th> </th>
                </tr>
            </table>
       <!-- <h4 class="modal-title text-center m-4" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS SIZE 5</h4> -->
-      <div class="container-fluid p-5">
-        <div class="row p-2">
+      <div class="container-fluid ">
+        <div class="row">
             <div class="col-sm-4">
                 <table class="table table-striped">
                     <tbody style="border: 1px solid;">
                         <tr>
-                            <th style="border: 1px solid;"><br>F2206LSB888<br></th>
-                            <td class="text-center"><br>HM4183<br></td>
+                            <th style="border: 1px solid;">F2206LSB888</th>
+                            <td class="text-center">HM4183</td>
                         </tr>
                         <tr>
-                            <th style="border: 1px solid;"><br>LAB NO.</th>
+                            <th style="border: 1px solid;">LAB NO.</th>
                             <td id="content66" class="text-center"></td>
                         </tr>
                         <tr>
-                            <th style="border: 1px solid;"><br>TESTING DATE</th>
+                            <th style="border: 1px solid;">TESTING DATE</th>
                             <td id="content67" class="text-center"></td>
                         </tr>
                         <tr>
@@ -553,11 +571,11 @@ if (!$this->session->has_userdata('user_id')) {
                             <th colspan="2" style="border: 1px solid; text-align:center">Construction</th>
                         </tr>
                         <tr>
-                            <th style="border: 1px solid;"><br><br>COVER MAT.</th>
+                            <th style="border: 1px solid;">COVER MAT.</th>
                             <td id="content71" class="text-center"></td>
                         </tr>
                         <tr>
-                            <th style="border: 1px solid;"><br><br>BACKING</th>
+                            <th style="border: 1px solid;">BACKING</th>
                             <td id="content72" class="text-center"></td>
                         </tr>
                         <tr>
@@ -565,7 +583,7 @@ if (!$this->session->has_userdata('user_id')) {
                             <td id="content73" class="text-center"></td>
                         </tr>
                         <tr>
-                            <th style="border: 1px solid;"><br>BALLTYPE</th>
+                            <th style="border: 1px solid;">BALLTYPE</th>
                             <td id="content74" class="text-center"></td>
                         </tr>
                     </tbody>
@@ -579,7 +597,7 @@ if (!$this->session->has_userdata('user_id')) {
                             <td id="content75" class="text-center"></td>
                         </tr>
                         <tr>
-                            <th style="border: 1px solid;"><br>MAIN MAT.COLOR</th>
+                            <th style="border: 1px solid;">MAIN MAT.COLOR</th>
                             <td id="content76" class="text-center"></td>
                         </tr>
                         <tr>
@@ -591,7 +609,7 @@ if (!$this->session->has_userdata('user_id')) {
                             <td id="content78" class="text-center"></td>
                         </tr>
                         <tr>
-                            <th style="border: 1px solid;"><br>TESTED BY</th>
+                            <th style="border: 1px solid;">TESTED BY</th>
                             <td id="content79" class="text-center"></td>
                         </tr>
                     </tbody>
@@ -599,7 +617,7 @@ if (!$this->session->has_userdata('user_id')) {
             </div>
         </div>
 
-        <div style="margin: 15px auto" class="container-fluid p-2">
+        <div style="margin: 1px auto" class="container-fluid ">
             <div class="row">
                 <div class="col-12">
                     <table class="table table-striped">
@@ -631,7 +649,7 @@ if (!$this->session->has_userdata('user_id')) {
             </div>
         </div>
 
-        <div class="container-fluid p-2">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <table class="table table-striped">
@@ -957,7 +975,7 @@ if (!$this->session->has_userdata('user_id')) {
             </div>
         </div>
 
-        <div style="margin: 15px auto" class="container-fluid p-2">
+        <div style="margin: 5px auto" class="container-fluid">
             <div class="row">
             <div class="col-12">
                 <table class="table table-striped col-12">
@@ -974,22 +992,10 @@ if (!$this->session->has_userdata('user_id')) {
                 </table>
             </div>
                 <div class="col-12">
-                    <table class="table table-striped col-6">
+                    <table class="table table-striped col-12">
                         <tbody style="border: 1px solid;">
                             <tr>
-                                <th rowspan="4" style="border: 1px solid">Remarks:</th>
-                            </tr>
-
-                            <tr>
-                                <td>Test request</td>
-                            </tr>
-
-                            <tr>
-                                <td>obvious problems<br>before,<br>during<br>and after tests</td>
-                            </tr>
-
-                            <tr>
-                                <td>Improvements</td>
+                                <th style="border: 1px solid">Remarks:</th><td>Test request obvious problems before,during and after tests Improvements</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1017,6 +1023,27 @@ if (!$this->session->has_userdata('user_id')) {
 
                     <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
                     <span id="testApprovedSize5"> </span></th>
+                </tr>
+            </table>
+
+            <table class="table">
+                <tr>
+                  <th>
+                      <h5 style="font-weight:bold;color:black">Fresh Image</h5>
+                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="FreshPhotoSize5" height="150px" width="200px" alt="FreshPhoto" />
+                  </th>
+                  <th>
+                  <h5 style="font-weight:bold;color:black">Shooter Image</h5>
+                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="ShooterPhotoSize5" height="150px" width="200px" alt="ShooterPhoto" />
+                  </th>
+                  <th>
+                  <h5 style="font-weight:bold;color:black">Hydrolysis Image</h5>
+                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="HydroPhotoSize5" height="150px" width="200px" alt="HydroPhoto" />
+                  </th>
+                  <th>
+                  <h5 style="font-weight:bold;color:black">Drum Image</h5>
+                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="DrumPhotoSize5" height="150px" width="200px" alt="DrumPhoto" />
+                  </th>
                 </tr>
             </table>
 
@@ -1191,6 +1218,51 @@ if (!$this->session->has_userdata('user_id')) {
                     <!-- <input type="hidden" name="_token" value=""> -->
                    
                     <div class="row" style="display:flex">
+                    
+                    <div class="col-md-6">
+                        <div class="form-group mt-4">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="fresh" name="fresh" accept="image/*">
+
+                                <label class="custom-file-label" for="customFile">Upload Fresh Image</label>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group mt-4">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="shooter" name="shooter" accept="image/*">
+
+                                <label class="custom-file-label" for="customFile">Upload Shooter Image</label>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group mt-4">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="hydro" name="hydro" accept="image/*">
+
+                                <label class="custom-file-label" for="customFile">Upload Hydrolysis Image</label>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group mt-4">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="drum" name="drum" accept="image/*">
+
+                                <label class="custom-file-label" for="customFile">Upload Drum Image</label>
+
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-md-6" style="margin-top:25px">  
                      <div class="form-group">
                         <label class="control-label">FGT Type:</label>
@@ -1200,7 +1272,8 @@ if (!$this->session->has_userdata('user_id')) {
                         <option value="SOCCER INDOOR BALLS" >SOCCER INDOOR BALLS</option>
                         <option value="SOCCER BALLS SIZE 5" >SOCCER BALLS SIZE 5</option>
                             </select>
-                    </div></div>
+                    </div>
+                </div>
                   
                      <div class="col-md-6" style="margin-top:25px">  
                      <div class="form-group">
@@ -1941,7 +2014,7 @@ if (!$this->session->has_userdata('user_id')) {
              
                    <th></th>
                    <th></th>
-                   <th style="font-size: Medium;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR AIRLINES MINI <span id="titleBalls">()</span></th>
+                   <th style="font-size:x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR AIRLINES MINI <span id="titleBalls">()</span></th>
                 <th> </th>
                </tr>
            </table>
@@ -2207,17 +2280,11 @@ if (!$this->session->has_userdata('user_id')) {
                 </table>
             </div>
             <div class="col-12">
-                <table class="table table-striped col-6">
+                <table class="table table-striped col-12">
                     <tbody style="border: 1px solid;">
                         <tr>
-                            <th rowspan="5" style="border: 1px solid">Remarks:</th>
-                        </tr>
-
-                        <tr>
-                            <td id="content31"></td>
-                        </tr>
-
-                        
+                            <th style="border: 1px solid">Remarks:</th>     <td id="content31"></td>
+                        </tr>     
                     </tbody>
                 </table>
             </div>
@@ -2243,6 +2310,27 @@ if (!$this->session->has_userdata('user_id')) {
 
                     <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
                     <span id="testApprovedSoccer"> </span></th>
+                </tr>
+            </table>
+
+            <table class="table">
+                <tr>
+                  <th>
+                      <h5 style="font-weight:bold;color:black">Fresh Image</h5>
+                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="FreshPhotoSoccer" height="150px" width="200px" alt="FreshPhoto" />
+                  </th>
+                  <th>
+                  <h5 style="font-weight:bold;color:black">Shooter Image</h5>
+                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="ShooterPhotoSoccer" height="150px" width="200px" alt="ShooterPhoto" />
+                  </th>
+                  <th>
+                  <h5 style="font-weight:bold;color:black">Hydrolysis Image</h5>
+                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="HydroPhotoSoccer" height="150px" width="200px" alt="HydroPhoto" />
+                  </th>
+                  <th>
+                  <h5 style="font-weight:bold;color:black">Drum Image</h5>
+                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="DrumPhotoSoccer" height="150px" width="200px" alt="DrumPhoto" />
+                  </th>
                 </tr>
             </table>
 
@@ -4199,8 +4287,33 @@ let type=$("#fgtype"+TID).text();
               $("#content12").text(data['head'][0].mainmatcolor);
               $("#content13").text(data['head'][0].printngscolors);
               $("#content14").text(data['head'][0].result);
-              $("#content15").text(data['head'][0].LoginName);
+              $("#content15").text(data['head'][0].Performedby);
               $("#contentNoteSoccer").text(data['head'][0].Note);
+              if(data['head'][0].pictureFresh != null){
+                $("#FreshPhotoSoccer").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureFresh);
+            }
+            else{
+                $("#FreshPhotoSoccer").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+            }
+             if(data['head'][0].pictureShooter != null){
+                $("#ShooterPhotoSoccer").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureShooter);
+             }
+             else{
+                $("#ShooterPhotoSoccer").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');  
+             }
+             if(data['head'][0].pictureHydro != null){
+                $("#HydroPhotoSoccer").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureHydro);
+             }
+             else{
+                $("#HydroPhotoSoccer").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');  
+             }
+             if(data['head'][0].pictureDrum != null){
+                $("#DrumPhotoSoccer").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureDrum);
+             }
+             else{
+                $("#DrumPhotoSoccer").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');  
+             }
+      
               $("#testReviewedSoccer").text(data['head'][0].Reviewby?data['head'][0].ReviewName:'Pending');
               $("#testApprovedSoccer").text(data['head'][0].ApprovedBy?data['head'][0].Approvalname:'Pending');
               if(data['detail'][0]){
@@ -4237,7 +4350,34 @@ let type=$("#fgtype"+TID).text();
             $("#content76").text(data['head'][0].mainmatcolor);
             $("#content77").text(data['head'][0].printngscolors);
             $("#content78").text(data['head'][0].result);
-            $("#content79").text(data['head'][0].LoginName);
+            $("#content79").text(data['head'][0].Performedby);
+            if(data['head'][0].pictureFresh != null){
+                $("#FreshPhotoSize5").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureFresh);
+            }
+            else{
+                $("#FreshPhotoSize5").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+            }
+             if(data['head'][0].pictureShooter != null){
+                $("#ShooterPhotoSize5").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureShooter);
+             }
+             else{
+                $("#ShooterPhotoSize5").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');  
+             }
+             if(data['head'][0].pictureHydro != null){
+                $("#HydroPhotoSize5").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureHydro);
+             }
+             else{
+                $("#HydroPhotoSize5").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');  
+             }
+             if(data['head'][0].pictureDrum != null){
+                $("#DrumPhotoSize5").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureDrum);
+             }
+             else{
+                $("#DrumPhotoSize5").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');  
+             }
+           
+    
+      
             $("#contentNoteSize5").text(data['head'][0].Note);
             $("#testReviewedSize5").text(data['head'][0].Reviewby?data['head'][0].ReviewName:'Pending');
               $("#testApprovedSize5").text(data['head'][0].ApprovedBy?data['head'][0].Approvalname:'Pending');
@@ -4301,8 +4441,34 @@ let type=$("#fgtype"+TID).text();
             $("#content42").text(data['head'][0].mainmatcolor);
             $("#content43").text(data['head'][0].printngscolors);
             $("#content44").text(data['head'][0].result);
-            $("#content45").text(data['head'][0].LoginName);
+            $("#content45").text(data['head'][0].Performedby);
             $("#contentNoteFGT").text(data['head'][0].Note);
+
+            if(data['head'][0].pictureFresh != null){
+                $("#FreshPhotoIndoor").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureFresh);
+            }
+            else{
+                $("#FreshPhotoIndoor").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+            }
+             if(data['head'][0].pictureShooter != null){
+                $("#ShooterPhotoIndoor").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureShooter);
+             }
+             else{
+                $("#ShooterPhotoIndoor").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');  
+             }
+             if(data['head'][0].pictureHydro != null){
+                $("#HydroPhotoIndoor").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureHydro);
+             }
+             else{
+                $("#HydroPhotoIndoor").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');  
+             }
+             if(data['head'][0].pictureDrum != null){
+                $("#DrumPhotoIndoor").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureDrum);
+             }
+             else{
+                $("#DrumPhotoIndoor").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');  
+             }
+
               $("#testReviewedFGT").text(data['head'][0].Reviewby?data['head'][0].ReviewName:'Pending');
               $("#testApprovedFGT").text(data['head'][0].ApprovedBy?data['head'][0].Approvalname:'Pending');
               if(data['detail'][0]){
@@ -4470,6 +4636,17 @@ let arrayHead = [element.TestDate,element.PONo,element.Quantity,element.Receivin
 
 
          function Save_FGT_H(){
+
+            var fd = new FormData();
+            var fileFresh = $("#fresh")[0].files[0];
+            var fileShooter = $("#shooter")[0].files[0];
+            var fileHydro = $("#hydro")[0].files[0];
+            var fileDrum = $("#drum")[0].files[0];
+            fd.append('fileFresh', fileFresh);
+            fd.append('fileShooter', fileShooter);
+            fd.append('fileHydro', fileHydro);
+            fd.append('fileDrum', fileDrum);
+
 //alert("I am Ammar");
 let fgttype = $("#fgttype").val();
 let lbno = $("#labno").val();
@@ -4494,6 +4671,8 @@ let testperformedby = $("#testperformedby").val();
 let note = $("#note").val();
 //alert(result)
 
+let dataSend = [fgttype?fgttype:null,lbno?lbno:null,tdate?tdate:null, testcat?testcat:null, fifastump? fifastump:0, pmonth? pmonth:null, cmat ? cmat :null,  backing ? backing :null,  bladder ? bladder :null,  btype ? btype :null, ttype ? ttype :null,mmcolor ? mmcolor :null, pcolors ? pcolors :null, result ? result :null,fn ? fn :null, m ? m :null, inn ? inn :null, pshape ? pshape :null, rem ? rem :null, testperformedby ? testperformedby :null,note ? note :null];
+fd.append('formData', dataSend);
 url = "<?php echo base_url(''); ?>FGT/FGT_H"
 
 // $.post(url,{"fgttype":fgttype?fgttype:null,"labno":labno?labno:null,"tdate":tdate?tdate:null, "testcat":testcat?testcat:null, "fifastum": fifastump? fifastump:0, "pmonth": pmonth? pmonth:null, "cmat": cmat ? cmat :null, "backing": backing ? backing :null, "bladder": bladder ? bladder :null, "btype": btype ? btype :null, "ttype": ttype ? ttype :null,"mmcolor": mmcolor ? mmcolor :null, "pcolors": pcolors ? pcolors :null, "result": result ? result :null,"fn": fn ? fn :null, "m": m ? m :null, "inn": inn ? inn :null, "pshape": pshape ? pshape :null, "rem": rem ? rem :null} ,function(data){
@@ -4502,12 +4681,21 @@ url = "<?php echo base_url(''); ?>FGT/FGT_H"
 //            // location.reload();
 //               });
 
+$.ajax({
+                        url:url, 
+                        type:'post',
+                        data:fd,
+                        contentType:false,
+                        processData:false,
+                        function(data, status) {
+                            console.log("Data", data);
+                            alert("FGT Details inserted Successfully");
+                            //console.log("Data Get from Function",data);
+                            location.reload();
+                        }
+                    });
 
-$.post(url,{"fgttype":fgttype?fgttype:null,"labno":lbno?lbno:null,"tdate":tdate?tdate:null, "testcat":testcat?testcat:null, "fifastump": fifastump? fifastump:0, "pmonth": pmonth? pmonth:null, "cmat": cmat ? cmat :null, "backing": backing ? backing :null, "bladder": bladder ? bladder :null, "btype": btype ? btype :null, "ttype": ttype ? ttype :null,"mmcolor": mmcolor ? mmcolor :null, "pcolors": pcolors ? pcolors :null, "result": result ? result :null,"fn": fn ? fn :null, "m": m ? m :null, "inn": inn ? inn :null, "pshape": pshape ? pshape :null, "rem": rem ? rem :null, "testperformedby": testperformedby ? testperformedby :null, "note": note ? note :null} ,function(data){
-            alert("FGT Details   inserted Successfully");
-            //console.log("Data Get from Function",data);
-            location.reload();
-              });
+
 
 
 // url = "<?php echo base_url(''); ?>FGT/FGT_H/"+ fgttype + '/' + lbno + '/'+ tdate + '/' + testcat + '/'+ fifastump + '/' + pmonth + '/'+ cmat + '/' + backing + '/'+ bladder + '/' + btype + '/'+ ttype + '/' + mmcolor+ '/' + pcolors + '/' + result + '/'+  fn + '/'+ m + '/'+ inn + '/'+ pshape + '/' + rem
