@@ -39,6 +39,7 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
     <body class="mod-bg-1 ">
         <!-- DOC: script to save and load page settings -->
         <script>
+        
             /**
              *	This script should be placed right after the body tag for fast execution 
              *	Note: the script is written in pure javascript and does not depend on thirdparty library
@@ -50,7 +51,9 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
                  * Load from localstorage
                  **/
                 themeSettings = (localStorage.getItem('themeSettings')) ? JSON.parse(localStorage.getItem('themeSettings')) :
-                {},
+                {
+                    themeOptions: "mod-bg-1 nav-function-top"
+                },
                 themeURL = themeSettings.themeURL || '',
                 themeOptions = themeSettings.themeOptions || '';
             /** 
@@ -63,14 +66,16 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
             }
             else
             {
+                alert("CAlled");
                 console.log("Heads up! Theme settings is empty or does not exist, loading default settings...");
             }
             if (themeSettings.themeURL && !document.getElementById('mytheme'))
             {
+            
                 var cssfile = document.createElement('link');
                 cssfile.id = 'mytheme';
                 cssfile.rel = 'stylesheet';
-                cssfile.href = themeURL;
+                cssfile.href = themeURL;   
                 document.getElementsByTagName('head')[0].appendChild(cssfile);
             }
             /** 

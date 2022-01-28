@@ -586,6 +586,128 @@ class LabModel extends CI_Model
             
     }
 
+    public function AddHeaderMSThread(
+        $TestDate,
+        $PONo,
+        $ReceivingDate,
+        $SupplierName,
+        $testNo,
+        $SupplierRef,
+        $picture,
+        $testGroup,
+        $testPerformer,
+        $child
+        ,$Result
+        ,$MaterialName
+    ) {
+        date_default_timezone_set('Asia/Karachi');
+        $Date = date('Y-m-d H:i:s');
+        $user_id = $this->session->userdata('user_id');
+
+    $time = strtotime($TestDate);
+    $TDate = date('Y-m-d',$time);
+
+    $time2 = strtotime($ReceivingDate);
+    $RDate = date('Y-m-d',$time2);
+        $user_id;
+        $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_H
+              (TestNO
+              ,Date
+              ,PO
+              ,Receiving_Date
+              ,Supplier_Name
+              ,Supplier_Ref
+              ,Entrydate
+              ,UserID
+              ,image
+              ,TestType
+              ,testGroup
+              ,performedBy
+              ,Result
+              ,material
+              )
+        VALUES
+              ('$testNo'
+              ,'$TestDate'
+              ,'$PONo'
+              ,'$ReceivingDate'
+              ,'$SupplierName'
+              ,'$SupplierRef'
+              ,'$Date'
+              ,'$user_id'
+              ,'$picture'
+              ,'MS Thread'
+              ,'$testGroup'
+              ,'$testPerformer'
+              ,'$Result'
+              ,'$MaterialName'
+              )");
+        $Id = $this->db->insert_id();
+        echo $Id;
+        $iter = 0;
+
+        foreach ($child as $key => $value) {
+            if($iter == 0){
+                $testNo = $value[0];
+                $PONo = $value[1];
+                $Test = $value[2];
+                // $time = strtotime($TDate);
+                // $newformat = date('Y-m-d',$time);
+                $Method = $value[3];
+                  $Unit = $value[4];
+                     $Requirement = $value[5];
+                     $Result = $value[6];
+                     
+                $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+               (TID
+               ,Test
+               ,Method
+               ,Unit,Requirments
+               ,result
+               ,EntryDate
+               ,user_ID)
+         VALUES
+               ('$Id'
+               ,'$Test'
+               ,'$Method'
+               ,'$Unit'
+               ,'$Requirement'
+               ,'$Result'
+               ,'$Date'
+               ,'$user_id')");
+        $iter +=1;    
+        }
+        else{
+            $testNo = $value[1];
+            $PONo = $value[2];
+            $Test = $value[3];
+            $Method = $value[4];
+            $Unit = $value[5];
+            $Requirement = $value[6];
+            $Result = $value[7];
+            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+           (TID
+           ,Test
+            ,Method
+            ,Unit,Requirments
+            ,result
+            ,EntryDate
+            ,user_ID)
+     VALUES
+     ('$Id'
+        ,'$Test'
+        ,'$Method'
+        ,'$Unit'
+        ,'$Requirement'
+        ,'$Result'
+        ,'$Date'
+        ,'$user_id')");
+           $iter +=1;
+        }
+        }
+            
+    }
+
     public function AddHeaderBlader(
         $TestDate,
         $PONo,

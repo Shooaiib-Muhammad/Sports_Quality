@@ -33,40 +33,26 @@ if (!$this->session->has_userdata('user_id')) {
 
 
 
-<?php
-      if($this->session->flashdata('info')){ 
-    
-    
-      ?>
+<?php if ($this->session->flashdata('info')) { ?>
     <div class="alert alert-danger alert-dismissible show fade" id="msgbox">
                     <div class="alert-body">
                       <button class="close" data-dismiss="alert">
                         <span>&times;</span>
                       </button>
-                      <?php echo $this->session->flashdata('info');?>
+                      <?php echo $this->session->flashdata('info'); ?>
                     </div>
                   </div>
-                  <?php
-      }
-
-                  ?>
-                  <?php
-      if($this->session->flashdata('danger')){ 
-    
-    
-      ?>
+                  <?php } ?>
+                  <?php if ($this->session->flashdata('danger')) { ?>
     <div class="alert alert-danger alert-dismissible show fade" id="msgbox">
                     <div class="alert-body">
                       <button class="close" data-dismiss="alert">
                         <span>&times;</span>
                       </button>
-                      <?php echo $this->session->flashdata('danger');?>
+                      <?php echo $this->session->flashdata('danger'); ?>
                     </div>
                   </div>
-                  <?php
-      }
-
-                  ?>
+                  <?php } ?>
 
 
 
@@ -90,17 +76,12 @@ if (!$this->session->has_userdata('user_id')) {
                      <label for="sel1">Select Article  :</label>
                       <select class="form-control" id="ArtCode" name="FC" onchange="CallData()" >
                         <option value="" >Select one of the following</option>
-                        <?php
-                                   
-                                  foreach ($Articles as $Key) {
-                           
-                         ?>
+                        <?php foreach ($Articles as $Key) { ?>
 
-                        <option value="<?php echo $Key['ArtCode'] ?>" ><?php echo $Key['ArtCode'] ?></option>
-                        <?php
-                        
-                       }
-                  ?>
+                        <option value="<?php echo $Key[
+                            'ArtCode'
+                        ]; ?>" ><?php echo $Key['ArtCode']; ?></option>
+                        <?php } ?>
                             </select>
                         </div> 
                    </div>
@@ -220,12 +201,12 @@ if (!$this->session->has_userdata('user_id')) {
                         </div>
                         </div>
                         </div>
-                          <script src="<?php echo base_url();?>/assets/js/jquery.min.js" type="text/javascript"></script>
-                        <script src="<?php echo base_url();?>/assets/js/statistics/peity/peity.bundle.js"></script>
-        <script src="<?php echo base_url();?>/assets/js/statistics/flot/flot.bundle.js"></script>
-        <script src="<?php echo base_url();?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
-        <script src="<?php echo base_url();?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
-          <!-- <script src="<?php echo base_url();?>/assets/Select/select2.min.js"></script> -->
+                          <script src="<?php echo base_url(); ?>/assets/js/jquery.min.js" type="text/javascript"></script>
+                        <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+          <!-- <script src="<?php echo base_url(); ?>/assets/Select/select2.min.js"></script> -->
           <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
         <script>
             window.onload = function(){
@@ -306,7 +287,9 @@ if (!$this->session->has_userdata('user_id')) {
     Size1=splitter[0];
     Size2=splitter[1];
       Type = $("#Type").val();
-           url = "<?php echo base_url(''); ?>DevelopmentController/loadData/"+ FactoryCode + '/'+ ArticleID + '/'+ noofballs + '/'+ MID + '/'+ CID + '/'+ Type + '/'+ splitter[0]+ "/"+splitter[1];
+           url = "<?php echo base_url(
+               ''
+           ); ?>DevelopmentController/loadData/"+ FactoryCode + '/'+ ArticleID + '/'+ noofballs + '/'+ MID + '/'+ CID + '/'+ Type + '/'+ splitter[0]+ "/"+splitter[1];
             //alert(url);
             $.get(url, function(data){
              alert("Data Inserted Successfully");
@@ -318,7 +301,9 @@ if (!$this->session->has_userdata('user_id')) {
             /* defined datas */
              
   function processData(article,Size1,Size2){
- url = "<?php echo base_url(''); ?>DevelopmentController/POData/"+ article+ '/'+ Size1 + '/'+ Size2
+ url = "<?php echo base_url(
+     ''
+ ); ?>DevelopmentController/POData/"+ article+ '/'+ Size1 + '/'+ Size2
            //alert(url);
             $.get(url, function(data){
              
@@ -353,7 +338,9 @@ Status = 1;
        //alert(Status);
         //alert(TID);
    
- url = "<?php echo base_url(''); ?>DevelopmentController/UpdateActivity/"+ Name + "/" + Status + "/" + TID
+ url = "<?php echo base_url(
+     ''
+ ); ?>DevelopmentController/UpdateActivity/"+ Name + "/" + Status + "/" + TID
   
 //alert(url);
    $.get(url, function(data){
@@ -443,10 +430,10 @@ Status = 1;
                            
                         </div>
                     </footer>
-                    <script src="<?php echo base_url();?>/assets/js/statistics/peity/peity.bundle.js"></script>
-        <script src="<?php echo base_url();?>/assets/js/statistics/flot/flot.bundle.js"></script>
-        <script src="<?php echo base_url();?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
-        <script src="<?php echo base_url();?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+                    <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
         <script>
 
             $('#schedule').dataTable(

@@ -19,21 +19,15 @@
                                 </a>
                             </div>
                         </div>
-                        <?php $AdminStatus = $this->session->userdata(
-                            'isAdmin'
-                        ); 
-                  
-                         $lab = $this->session->userdata('lab');
-                         $Dev = $this->session->userdata('Dev');
-                         $store = $this->session->userdata('store');
-                          $admin = $this->session->userdata('admin');
-                        
-                        
-                        ?>
                         <?php
-                        
-                        if($admin=="1"){
-?>
+                        $AdminStatus = $this->session->userdata('isAdmin');
+
+                        $lab = $this->session->userdata('lab');
+                        $Dev = $this->session->userdata('Dev');
+                        $store = $this->session->userdata('store');
+                        $admin = $this->session->userdata('admin');
+                        ?>
+                        <?php if ($admin == '1') { ?>
 <ul id="js-nav-menu" class="nav-menu">
                             <li >
                                 <a href="#" title="Application Intel" data-filter-tags="application intel">
@@ -60,7 +54,7 @@
                           
                                 </ul>
                             </li>
-                            <li>
+                            <li style="display:none">
                                 <a href="#" title="Theme Settings" data-filter-tags="theme settings">
                                     <i class="fa fa-angle-double-down"></i> 
                                     <span class="nav-link-text" data-i18n="nav.theme_settings">Store</span>
@@ -123,16 +117,30 @@
                                 </ul>
                             </li>  
 
+
+                            <li >
+                                <a href="#" title="Application Intel" data-filter-tags="application intel">
+                                    <!-- <i class="fa fa-angle-double-down"></i> -->
+                                    <span class="nav-link-text" data-i18n="nav.application_intel">Dashboard</span>
+                                </a>
+                                <ul>
+                                  <li>
+                                        <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>DashboardController" title="Introduction" data-filter-tags="application intel introduction">
+                                            <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Main Dashboard </span>
+                                        </a>
+                                    </li>
+             
+                                </ul>
+                            </li>
+                           
+
                         </ul>
-<?php
-                        }else{
-                        ?>
+<?php } else { ?>
                         <ul id="js-nav-menu" class="nav-menu">
                             <?php
-                            
-                            if($lab=="1"){
-
-                            ?>
+                            if ($lab == '1') { ?>
                             <li >
                                 <a href="#" title="Application Intel" data-filter-tags="application intel">
                                     <!-- <i class="fa fa-angle-double-down"></i> -->
@@ -164,13 +172,9 @@
                           
                                
                             </li>
-                            <?php
-                            
-                                    }
-                            
-                            if($store=="1"){
+                            <?php }
 
-                            ?>
+                            if ($store == '1') { ?>
                             <!-- <li>
                                 <a href="#" title="Theme Settings" data-filter-tags="theme settings">
                                     <i class="fa fa-angle-double-down"></i> 
@@ -203,13 +207,9 @@
                                    
                                 </ul>
                             </li>  -->
- <?php
-                            
-                                    }
-                            
-                            if($Dev=="1"){
+ <?php }
 
-                            ?>
+                            if ($Dev == '1') { ?>
                                     <li>
                                 <a href="#" title="Theme Settings" data-filter-tags="theme settings">
                                     
@@ -239,13 +239,8 @@
                                     </li>
                                 </ul>
                             </li>  
- <?php
-                            
-                                    }
-                            
-                           
-                                }
-                            ?>
+ <?php }
+                            } ?>
                         </ul>
            
                         

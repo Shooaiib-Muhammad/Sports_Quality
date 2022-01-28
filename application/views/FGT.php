@@ -68,12 +68,12 @@ if (!$this->session->has_userdata('user_id')) {
                    <th></th>
                    <th></th>
                    <th></th>
-                   <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                   <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
                </tr>
            </table> -->
            <table class="table">
                <tr>
-               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+               <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
              
                    <th></th>
                    <th></th>
@@ -458,19 +458,19 @@ if (!$this->session->has_userdata('user_id')) {
                 <tr>
                   <th>
                       <h5 style="font-weight:bold;color:black">Fresh Image</h5>
-                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="FreshPhotoIndoor" height="150px" width="200px" alt="FreshPhoto" />
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="FreshPhotoIndoor" height="150px" width="200px" alt="FreshPhoto" />
                   </th>
                   <th>
                   <h5 style="font-weight:bold;color:black">Shooter Image</h5>
-                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="ShooterPhotoIndoor" height="150px" width="200px" alt="ShooterPhoto" />
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="ShooterPhotoIndoor" height="150px" width="200px" alt="ShooterPhoto" />
                   </th>
                   <th>
                   <h5 style="font-weight:bold;color:black">Hydrolysis Image</h5>
-                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="HydroPhotoIndoor" height="150px" width="200px" alt="HydroPhoto" />
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="HydroPhotoIndoor" height="150px" width="200px" alt="HydroPhoto" />
                   </th>
                   <th>
                   <h5 style="font-weight:bold;color:black">Drum Image</h5>
-                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="DrumPhotoIndoor" height="150px" width="200px" alt="DrumPhoto" />
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="DrumPhotoIndoor" height="150px" width="200px" alt="DrumPhoto" />
                   </th>
                 </tr>
             </table>
@@ -517,13 +517,13 @@ if (!$this->session->has_userdata('user_id')) {
                    <th></th>
                    <th></th>
                    <th></th>
-                   <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                   <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
                </tr>
            </table> -->
            
            <table class="table">
                <tr>
-               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+               <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
              
                    <th></th>
                    <th></th>
@@ -1030,19 +1030,19 @@ if (!$this->session->has_userdata('user_id')) {
                 <tr>
                   <th>
                       <h5 style="font-weight:bold;color:black">Fresh Image</h5>
-                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="FreshPhotoSize5" height="150px" width="200px" alt="FreshPhoto" />
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="FreshPhotoSize5" height="150px" width="200px" alt="FreshPhoto" />
                   </th>
                   <th>
                   <h5 style="font-weight:bold;color:black">Shooter Image</h5>
-                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="ShooterPhotoSize5" height="150px" width="200px" alt="ShooterPhoto" />
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="ShooterPhotoSize5" height="150px" width="200px" alt="ShooterPhoto" />
                   </th>
                   <th>
                   <h5 style="font-weight:bold;color:black">Hydrolysis Image</h5>
-                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="HydroPhotoSize5" height="150px" width="200px" alt="HydroPhoto" />
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="HydroPhotoSize5" height="150px" width="200px" alt="HydroPhoto" />
                   </th>
                   <th>
                   <h5 style="font-weight:bold;color:black">Drum Image</h5>
-                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="DrumPhotoSize5" height="150px" width="200px" alt="DrumPhoto" />
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="DrumPhotoSize5" height="150px" width="200px" alt="DrumPhoto" />
                   </th>
                 </tr>
             </table>
@@ -1172,40 +1172,26 @@ if (!$this->session->has_userdata('user_id')) {
   </div>
 </div>
 
-<?php
-      if($this->session->flashdata('info')){ 
-    
-    
-      ?>
+<?php if ($this->session->flashdata('info')) { ?>
     <div class="alert alert-danger alert-dismissible show fade" id="msgbox">
                     <div class="alert-body">
                       <button class="close" data-dismiss="alert">
                         <span>&times;</span>
                       </button>
-                      <?php echo $this->session->flashdata('info');?>
+                      <?php echo $this->session->flashdata('info'); ?>
                     </div>
                   </div>
-                  <?php
-      }
-
-                  ?>
-                  <?php
-      if($this->session->flashdata('danger')){ 
-    
-    
-      ?>
+                  <?php } ?>
+                  <?php if ($this->session->flashdata('danger')) { ?>
     <div class="alert alert-danger alert-dismissible show fade" id="msgbox">
                     <div class="alert-body">
                       <button class="close" data-dismiss="alert">
                         <span>&times;</span>
                       </button>
-                      <?php echo $this->session->flashdata('danger');?>
+                      <?php echo $this->session->flashdata('danger'); ?>
                     </div>
                   </div>
-                  <?php
-      }
-
-                  ?>
+                  <?php } ?>
 
 <div id="Modaldepartment" class="modal fade bd-example-modal-lg">
     <div  class="modal-dialog modal-lg">
@@ -1214,7 +1200,9 @@ if (!$this->session->has_userdata('user_id')) {
                 <h1 class="modal-title">Add FGT Head</h1>
             </div>
             <div class="modal-body">
-                <form name="formDepartment" id="myformDepartment" method="POST" action="<?php echo base_url(''); ?>DevelopmentController/AddActivity">
+                <form name="formDepartment" id="myformDepartment" method="POST" action="<?php echo base_url(
+                    ''
+                ); ?>DevelopmentController/AddActivity">
                     <!-- <input type="hidden" name="_token" value=""> -->
                    
                     <div class="row" style="display:flex">
@@ -1496,25 +1484,27 @@ if (!$this->session->has_userdata('user_id')) {
             </div>
            
             <div class="modal-body">
-                <form name="formDepartment" id="myformDepartment" method="POST" action="<?php echo base_url(''); ?>DevelopmentController/AddActivity">
+                <form name="formDepartment" id="myformDepartment" method="POST" action="<?php echo base_url(
+                    ''
+                ); ?>DevelopmentController/AddActivity">
                     <!-- <input type="hidden" name="_token" value=""> -->
                    
                     <div class="row" style="display:flex">
                     <div class="col-md-12" style="margin-top:25px">  
                      <div class="form-group">
-                     <?php 
-        //Print_r($loadFGT_H);
-            ?>
+                     <?php
+    //Print_r($loadFGT_H);
+    ?>
                         <label class="control-label">Select FGT Head:</label>
                         <select class="form-control" id="fgtH" name="fgtH" >
                         <option value="" disabled>Select one of the following</option>
-                      <?php Foreach($loadFGT_H as $keys) { ?>
-                        <option value="<?php Echo $keys['TID'];?>" ><?php Echo $keys['labno'];?></option>
+                      <?php foreach ($loadFGT_H as $keys) { ?>
+                        <option value="<?php echo $keys[
+                            'TID'
+                        ]; ?>" ><?php echo $keys['labno']; ?></option>
                        
                        
-                       <?php
-                      }
-                      ?>
+                       <?php } ?>
                             </select>
                     </div></div>
                   
@@ -2004,13 +1994,13 @@ if (!$this->session->has_userdata('user_id')) {
                    <th></th>
                    <th></th>
                    <th></th>
-                   <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                   <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
                </tr>
            </table> -->
 
            <table class="table">
                <tr>
-               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+               <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
              
                    <th></th>
                    <th></th>
@@ -2317,19 +2307,19 @@ if (!$this->session->has_userdata('user_id')) {
                 <tr>
                   <th>
                       <h5 style="font-weight:bold;color:black">Fresh Image</h5>
-                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="FreshPhotoSoccer" height="150px" width="200px" alt="FreshPhoto" />
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="FreshPhotoSoccer" height="150px" width="200px" alt="FreshPhoto" />
                   </th>
                   <th>
                   <h5 style="font-weight:bold;color:black">Shooter Image</h5>
-                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="ShooterPhotoSoccer" height="150px" width="200px" alt="ShooterPhoto" />
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="ShooterPhotoSoccer" height="150px" width="200px" alt="ShooterPhoto" />
                   </th>
                   <th>
                   <h5 style="font-weight:bold;color:black">Hydrolysis Image</h5>
-                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="HydroPhotoSoccer" height="150px" width="200px" alt="HydroPhoto" />
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="HydroPhotoSoccer" height="150px" width="200px" alt="HydroPhoto" />
                   </th>
                   <th>
                   <h5 style="font-weight:bold;color:black">Drum Image</h5>
-                      <img src="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon1.png" id="DrumPhotoSoccer" height="150px" width="200px" alt="DrumPhoto" />
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="DrumPhotoSoccer" height="150px" width="200px" alt="DrumPhoto" />
                   </th>
                 </tr>
             </table>
@@ -2359,28 +2349,21 @@ if (!$this->session->has_userdata('user_id')) {
         <h2>
             FGT Report</span>
         </h2>
-       <?php 
-  $Uploading = $this->session->userdata('Uploading');
-   $RS = $this->session->userdata('ReviewStatus');
-    $AS = $this->session->userdata('ApprovalStatus');
-
-
-
-  ?>
+       <?php
+       $Uploading = $this->session->userdata('Uploading');
+       $RS = $this->session->userdata('ReviewStatus');
+       $AS = $this->session->userdata('ApprovalStatus');
+       ?>
         <!-- <div class="panel-toolbar">
                 <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
                 <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
                 <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
             </div> -->
-            <?php
-            if($Uploading==1){
-?>
+            <?php if ($Uploading == 1) { ?>
 <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#Modaldepartment" class="d-grid gap-2 d-md-block" id="createDepartment">+ Create FGT Head</button>
                                           &nbsp;&nbsp;&nbsp;&nbsp;  
                                           <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#ModalDetail" class="d-grid gap-2 d-md-block" id="createDepartment">+  Add FGT Detail</button> 
-<?php
-            }
-            ?>
+<?php } ?>
             
     </div>
    
@@ -2422,154 +2405,170 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </thead>
                                                 <tbody>
                                                      
-                                                <?php
-                                               //print_r($loadFGT_H);
-                                                 Foreach($loadFGT_H as $keys) { 
-                                                     
-                                                     $Approvalname =$keys['Approvalname'];
-  $ReviewName =$keys['ReviewName'];
-  $ReviewStatus =$keys['ReviewStatus'];
-  $ApprovedStatus =$keys['ApprovedStatus'];
-                                                     ?>
+                                                <?php //print_r($loadFGT_H);
+                                                foreach ($loadFGT_H as $keys) {
+
+                                                    $Approvalname =
+                                                        $keys['Approvalname'];
+                                                    $ReviewName =
+                                                        $keys['ReviewName'];
+                                                    $ReviewStatus =
+                                                        $keys['ReviewStatus'];
+                                                    $ApprovedStatus =
+                                                        $keys['ApprovedStatus'];
+                                                    ?>
                  
                         <tr>
-<td id="fgtype<?php Echo $keys['TID'];?>"><?php echo $keys['FGTType'];?></td>
-                        <td><?php echo $keys['labno'];?></td>
-                        <td><?php echo $keys['testdate'];?></td>
-                                                <td><?php echo $keys['tastcat'];?></td>   
-                                                <td><?php echo $keys['fifiastemp'];?></td>
-                                                <td><?php echo $keys['productionmonth'];?>/<?php echo $keys['Year'];?></td>
-                                                <td><?php echo $keys['covermat'];?></td>
-                                                <td><?php echo $keys['backing'];?></td>
-                                                <td><?php echo $keys['bladder'];?></td>
-                                                <td><?php echo $keys['testtype'];?></td>
-                                                <td><?php echo $keys['labno'];?></td>
-                                                <td><?php echo $keys['mainmatcolor'];?></td>
-                                                <td><?php echo $keys['printngscolors'];?></td>
-                                                <td><?php echo $keys['result'];?></td>
-                                                <td> <?php echo $keys['factory_name']; ?></td>
-                                                <td> <?php echo $keys['modal'];?></td>
-                                                <td> <?php echo $keys['Innervalue'];?></td>
-                                                <td> <?php echo $keys['panel_shape'];?></td>
-                                                <td> <?php echo $keys['remark'];?></td>
+<td id="fgtype<?php echo $keys['TID']; ?>"><?php echo $keys['FGTType']; ?></td>
+                        <td><?php echo $keys['labno']; ?></td>
+                        <td><?php echo $keys['testdate']; ?></td>
+                                                <td><?php echo $keys[
+                                                    'tastcat'
+                                                ]; ?></td>   
+                                                <td><?php echo $keys[
+                                                    'fifiastemp'
+                                                ]; ?></td>
+                                                <td><?php echo $keys[
+                                                    'productionmonth'
+                                                ]; ?>/<?php echo $keys[
+    'Year'
+]; ?></td>
+                                                <td><?php echo $keys[
+                                                    'covermat'
+                                                ]; ?></td>
+                                                <td><?php echo $keys[
+                                                    'backing'
+                                                ]; ?></td>
+                                                <td><?php echo $keys[
+                                                    'bladder'
+                                                ]; ?></td>
+                                                <td><?php echo $keys[
+                                                    'testtype'
+                                                ]; ?></td>
+                                                <td><?php echo $keys[
+                                                    'labno'
+                                                ]; ?></td>
+                                                <td><?php echo $keys[
+                                                    'mainmatcolor'
+                                                ]; ?></td>
+                                                <td><?php echo $keys[
+                                                    'printngscolors'
+                                                ]; ?></td>
+                                                <td><?php echo $keys[
+                                                    'result'
+                                                ]; ?></td>
+                                                <td> <?php echo $keys[
+                                                    'factory_name'
+                                                ]; ?></td>
+                                                <td> <?php echo $keys[
+                                                    'modal'
+                                                ]; ?></td>
+                                                <td> <?php echo $keys[
+                                                    'Innervalue'
+                                                ]; ?></td>
+                                                <td> <?php echo $keys[
+                                                    'panel_shape'
+                                                ]; ?></td>
+                                                <td> <?php echo $keys[
+                                                    'remark'
+                                                ]; ?></td>
                                                 <td>
-             <?php
-                                                                   
-
-                                                                    
-               
-    if($ReviewStatus=='1'){
-        ?>    
+             <?php if ($ReviewStatus == '1') { ?>    
         <div class="custom-control custom-switch">
             
-            <?php
-             if($RS==1){
-            ?>
-                                                                <input type="checkbox" class="custom-control-input" id="review<?php Echo $keys['TID']; ?>" checked="">
-                                                                <?php
-                                                                
-             }else{
-                 ?>
-                    <input type="checkbox" disabled="disabled" class="custom-control-input" id="review<?php Echo $keys['TID']; ?>" checked="">
-                 <?php
-                 }
-                 ?>
-                                                                <label class="custom-control-label" for="review<?php Echo $keys['TID']; ?>"></label>
+            <?php if ($RS == 1) { ?>
+                                                                <input type="checkbox" class="custom-control-input" id="review<?php echo $keys[
+                                                                    'TID'
+                                                                ]; ?>" checked="">
+                                                                <?php } else { ?>
+                    <input type="checkbox" disabled="disabled" class="custom-control-input" id="review<?php echo $keys[
+                        'TID'
+                    ]; ?>" checked="">
+                 <?php } ?>
+                                                                <label class="custom-control-label" for="review<?php echo $keys[
+                                                                    'TID'
+                                                                ]; ?>"></label>
                                                             </div>
-                                                          <?php
-    }else{
-        ?>
+                                                          <?php } else { ?>
          <div class="custom-control custom-switch">
-                                                               <?php
-             if($RS==1){
-            ?>
-                                                                <input type="checkbox" class="custom-control-input" id="review<?php Echo $keys['TID']; ?>" >
-                                                                <?php
-                                                                
-             }else{
-                 ?>
-                    <input type="checkbox" disabled="disabled" class="custom-control-input" id="review<?php Echo $keys['TID']; ?>">
-                 <?php
-                 }
-                 ?>
-                                                                <label class="custom-control-label" for="review<?php Echo $keys['TID']; ?>"></label>
+                                                               <?php if (
+                                                                   $RS == 1
+                                                               ) { ?>
+                                                                <input type="checkbox" class="custom-control-input" id="review<?php echo $keys[
+                                                                    'TID'
+                                                                ]; ?>" >
+                                                                <?php } else { ?>
+                    <input type="checkbox" disabled="disabled" class="custom-control-input" id="review<?php echo $keys[
+                        'TID'
+                    ]; ?>">
+                 <?php } ?>
+                                                                <label class="custom-control-label" for="review<?php echo $keys[
+                                                                    'TID'
+                                                                ]; ?>"></label>
                                                             </div>
-         <?php
-    }
-    ?>
+         <?php } ?>
                                                         </td>
         <td>
             
-    <?php
-    if($ReviewStatus=='1'){
-        ?>
+    <?php if ($ReviewStatus == '1') { ?>
         
-        <span class="badge badge-success p-1"><?php Echo $ReviewName; ?></span>
-        <?php
-    }else{
-        ?>
+        <span class="badge badge-success p-1"><?php echo $ReviewName; ?></span>
+        <?php } else { ?>
           <span class="badge badge-warning p-1">Pending</span>
-        <?php
-    }
-    ?>
+        <?php } ?>
     </td>
         <td>
-             <?php
-    if($ApprovedStatus=='1'){
-        ?>
+             <?php if ($ApprovedStatus == '1') { ?>
             <div class="custom-control custom-switch">
-                  <?php
-             if($AS==1){
-            ?>
-                                                                <input type="checkbox" class="custom-control-input" id="approved<?php Echo $keys['TID']; ?>" checked="">
-                                                                <?php
-                                                                }else{
-                                                                    ?>
-                                                                     <input type="checkbox" disabled="disabled" class="custom-control-input" id="approved<?php Echo $keys['TID']; ?>" checked="">
-                                                                    <?php
-                                                                    }
-                                                                    ?>
-                                                                <label class="custom-control-label" for="approved<?php Echo $keys['TID']; ?>"></label>
+                  <?php if ($AS == 1) { ?>
+                                                                <input type="checkbox" class="custom-control-input" id="approved<?php echo $keys[
+                                                                    'TID'
+                                                                ]; ?>" checked="">
+                                                                <?php } else { ?>
+                                                                     <input type="checkbox" disabled="disabled" class="custom-control-input" id="approved<?php echo $keys[
+                                                                         'TID'
+                                                                     ]; ?>" checked="">
+                                                                    <?php } ?>
+                                                                <label class="custom-control-label" for="approved<?php echo $keys[
+                                                                    'TID'
+                                                                ]; ?>"></label>
                                                             </div>
-                                                               <?php
-    }else{
-        ?>
+                                                               <?php } else { ?>
          <div class="custom-control custom-switch">
-                                                                       <?php
-             if($AS==1){
-            ?>
-                                                                <input type="checkbox" class="custom-control-input" id="approved<?php Echo $keys['TID']; ?>" >
-                                                                <?php
-                                                                }else{
-                                                                    ?>
-                                                                     <input type="checkbox" disabled="disabled" class="custom-control-input" id="approved<?php Echo $keys['TID']; ?>" >
-                                                                    <?php
-                                                                    }
-                                                                    ?>
-                                                                <label class="custom-control-label" for="approved<?php Echo $keys['TID']; ?>"></label>
+                                                                       <?php if (
+                                                                           $AS ==
+                                                                           1
+                                                                       ) { ?>
+                                                                <input type="checkbox" class="custom-control-input" id="approved<?php echo $keys[
+                                                                    'TID'
+                                                                ]; ?>" >
+                                                                <?php } else { ?>
+                                                                     <input type="checkbox" disabled="disabled" class="custom-control-input" id="approved<?php echo $keys[
+                                                                         'TID'
+                                                                     ]; ?>" >
+                                                                    <?php } ?>
+                                                                <label class="custom-control-label" for="approved<?php echo $keys[
+                                                                    'TID'
+                                                                ]; ?>"></label>
                                                             </div>
-        <?php
-    }
-    ?>
+        <?php } ?>
                                                         </td>
-        <td>  <?php
-    if($ApprovedStatus=='1'){
-        ?>
+        <td>  <?php if ($ApprovedStatus == '1') { ?>
        
-        <span class="badge badge-success p-1"> <?php Echo $Approvalname; ?></span>
-        <?php
-    }else{
-        ?>
+        <span class="badge badge-success p-1"> <?php echo $Approvalname; ?></span>
+        <?php } else { ?>
          <span class="badge badge-warning p-1">Pending</span>
-        <?php
-    }
-    ?></td>
+        <?php } ?></td>
        
-                                              <td> <?php echo $keys['LoginName'];?></td>
+                                              <td> <?php echo $keys[
+                                                  'LoginName'
+                                              ]; ?></td>
                                                 <td>
             <div class="row">
      <div class="col-md-2">
-                <button type="button" class="btn btn-info btn-xs updatebtn" id="btn.<?php Echo $keys['TID']; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo $keys[
+                    'TID'
+                ]; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
                 </div>
                
           
@@ -2579,13 +2578,19 @@ if (!$this->session->has_userdata('user_id')) {
            </td> 
             <td> <div class="col-md-2">
                
-              <button type="button" class="btn btn-warning btn-xs printButton" id="btnPrint.<?php Echo $keys['TID']; ?>" ><i class="fal fa-print" aria-hidden="true"></i></button>
+              <button type="button" class="btn btn-warning btn-xs printButton" id="btnPrint.<?php echo $keys[
+                  'TID'
+              ]; ?>" ><i class="fal fa-print" aria-hidden="true"></i></button>
       
                 </div>
             </td>  
             <td> <div class="col-md-2">
                
-            <button type="button" id="undo.<?php echo $keys['TID'];?>" value="<?php echo $keys['TID'];?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> 
+            <button type="button" id="undo.<?php echo $keys[
+                'TID'
+            ]; ?>" value="<?php echo $keys[
+    'TID'
+]; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> 
       
                 </div>
             </td>
@@ -2593,8 +2598,7 @@ if (!$this->session->has_userdata('user_id')) {
                        
                        
                        <?php
-                      }
-                      ?>
+                                                } ?>
                                                 </tbody>
                                                  
                                             </table>
@@ -2622,11 +2626,11 @@ if (!$this->session->has_userdata('user_id')) {
                         </div>
                         </div>
                         </div>
-                          <script src="<?php echo base_url();?>/assets/js//jquery.min.js" type="text/javascript"></script>
-                        <script src="<?php echo base_url();?>/assets/js/statistics/peity/peity.bundle.js"></script>
-        <script src="<?php echo base_url();?>/assets/js/statistics/flot/flot.bundle.js"></script>
-        <script src="<?php echo base_url();?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
-        <script src="<?php echo base_url();?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+                          <script src="<?php echo base_url(); ?>/assets/js//jquery.min.js" type="text/javascript"></script>
+                        <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
         <script>
       $(".updatebtn").click(function(e) {
     //alert("heloo");
@@ -2662,7 +2666,9 @@ if (!$this->session->has_userdata('user_id')) {
        //alert(approvedStatus);
         //alert(TID);
    
- url = "<?php echo base_url(''); ?>FGT/updated/"+ reviewStatus + "/" + approvedStatus  + "/" + TID
+ url = "<?php echo base_url(
+     ''
+ ); ?>FGT/updated/"+ reviewStatus + "/" + approvedStatus  + "/" + TID
   
 //alert(url);
    $.get(url, function(data){
@@ -2822,7 +2828,9 @@ Status = 1;
        //alert(Status);
         //alert(TID);
    
- url = "<?php echo base_url(''); ?>DevelopmentController/UpdateActivity/"+ Name + "/" + Status + "/" + TID
+ url = "<?php echo base_url(
+     ''
+ ); ?>DevelopmentController/UpdateActivity/"+ Name + "/" + Status + "/" + TID
   
 //alert(url);
    $.get(url, function(data){
@@ -2912,10 +2920,10 @@ Status = 1;
                            
                         </div>
                     </footer>
-                    <script src="<?php echo base_url();?>/assets/js/statistics/peity/peity.bundle.js"></script>
-        <script src="<?php echo base_url();?>/assets/js/statistics/flot/flot.bundle.js"></script>
-        <script src="<?php echo base_url();?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
-        <script src="<?php echo base_url();?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+                    <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
         <script>
 
             $('#schedule').dataTable(
@@ -4289,25 +4297,25 @@ let type=$("#fgtype"+TID).text();
               $("#content14").text(data['head'][0].result);
               $("#content15").text(data['head'][0].Performedby);
               $("#contentNoteSoccer").text(data['head'][0].Note);
-              if(data['head'][0].pictureFresh != null){
+              if(data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != ""){
                 $("#FreshPhotoSoccer").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureFresh);
             }
             else{
                 $("#FreshPhotoSoccer").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
             }
-             if(data['head'][0].pictureShooter != null){
+             if(data['head'][0].pictureShooter != null && data['head'][0].pictureShooter != ""){
                 $("#ShooterPhotoSoccer").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureShooter);
              }
              else{
                 $("#ShooterPhotoSoccer").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');  
              }
-             if(data['head'][0].pictureHydro != null){
+             if(data['head'][0].pictureHydro != null && data['head'][0].pictureHydro != ""){
                 $("#HydroPhotoSoccer").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureHydro);
              }
              else{
                 $("#HydroPhotoSoccer").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');  
              }
-             if(data['head'][0].pictureDrum != null){
+             if(data['head'][0].pictureDrum != null && data['head'][0].pictureDrum != ""){
                 $("#DrumPhotoSoccer").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureDrum);
              }
              else{
@@ -4351,25 +4359,25 @@ let type=$("#fgtype"+TID).text();
             $("#content77").text(data['head'][0].printngscolors);
             $("#content78").text(data['head'][0].result);
             $("#content79").text(data['head'][0].Performedby);
-            if(data['head'][0].pictureFresh != null){
+            if(data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != ""){
                 $("#FreshPhotoSize5").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureFresh);
             }
             else{
                 $("#FreshPhotoSize5").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
             }
-             if(data['head'][0].pictureShooter != null){
+             if(data['head'][0].pictureShooter != null && data['head'][0].pictureShooter != ""){
                 $("#ShooterPhotoSize5").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureShooter);
              }
              else{
                 $("#ShooterPhotoSize5").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');  
              }
-             if(data['head'][0].pictureHydro != null){
+             if(data['head'][0].pictureHydro != null && data['head'][0].pictureHydro != ""){
                 $("#HydroPhotoSize5").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureHydro);
              }
              else{
                 $("#HydroPhotoSize5").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');  
              }
-             if(data['head'][0].pictureDrum != null){
+             if(data['head'][0].pictureDrum != null && data['head'][0].pictureDrum != ""){
                 $("#DrumPhotoSize5").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureDrum);
              }
              else{
@@ -4444,25 +4452,25 @@ let type=$("#fgtype"+TID).text();
             $("#content45").text(data['head'][0].Performedby);
             $("#contentNoteFGT").text(data['head'][0].Note);
 
-            if(data['head'][0].pictureFresh != null){
+            if(data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != ""){
                 $("#FreshPhotoIndoor").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureFresh);
             }
             else{
                 $("#FreshPhotoIndoor").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
             }
-             if(data['head'][0].pictureShooter != null){
+             if(data['head'][0].pictureShooter != null && data['head'][0].pictureShooter != ""){
                 $("#ShooterPhotoIndoor").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureShooter);
              }
              else{
                 $("#ShooterPhotoIndoor").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');  
              }
-             if(data['head'][0].pictureHydro != null){
+             if(data['head'][0].pictureHydro != null && data['head'][0].pictureHydro != ""){
                 $("#HydroPhotoIndoor").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureHydro);
              }
              else{
                 $("#HydroPhotoIndoor").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');  
              }
-             if(data['head'][0].pictureDrum != null){
+             if(data['head'][0].pictureDrum != null && data['head'][0].pictureDrum != ""){
                 $("#DrumPhotoIndoor").attr('src','<?php echo base_url(); ?>assets/img/img/'+data['head'][0].pictureDrum);
              }
              else{
@@ -4621,7 +4629,9 @@ let arrayHead = [element.TestDate,element.PONo,element.Quantity,element.Receivin
            // alert(c2_sp);
             
             url = "<?php echo base_url(''); ?>FGT/FGT_D"
-            // url = "<?php echo base_url(''); ?>FGT/FGT_D/"+ w1 + '/' +  w2 + '/'+ c1_sp + '/' + c2_sp + '/'+ sp1_sp + '/' + sp2_sp + '/'+ lp1 + '/' + lp2 + '/'+  rrt1 + '/' + rrt2 + '/'+ rrt51 + '/' +  rrt52 + '/' + rrt01 + '/' + rrt02 '/' + c1_dp + '/' + c2_dp '/' + sp_dp1 '/' + sp_dp2 '/' + lp_dp1 '/' + lp_dp2 '/' + m1 '/' + m2 '/' +  wup1 '/' +  wup2 '/' +  c1_wrt '/' +  c2_wrt '/' +  sp1_wrt '/' +  sp2_wrt '/' +  dt1 '/' +  dt2  '/' +  abr1  '/' +  abr2 '/' +  uvlf1 '/' +  uvlf2 '/' +   otr1 '/' +  otr2 '/' +   hl1 '/' +  hl2 '/' +  hcc1 '/' +   hcc2
+            // url = "<?php echo base_url(
+                ''
+            ); ?>FGT/FGT_D/"+ w1 + '/' +  w2 + '/'+ c1_sp + '/' + c2_sp + '/'+ sp1_sp + '/' + sp2_sp + '/'+ lp1 + '/' + lp2 + '/'+  rrt1 + '/' + rrt2 + '/'+ rrt51 + '/' +  rrt52 + '/' + rrt01 + '/' + rrt02 '/' + c1_dp + '/' + c2_dp '/' + sp_dp1 '/' + sp_dp2 '/' + lp_dp1 '/' + lp_dp2 '/' + m1 '/' + m2 '/' +  wup1 '/' +  wup2 '/' +  c1_wrt '/' +  c2_wrt '/' +  sp1_wrt '/' +  sp2_wrt '/' +  dt1 '/' +  dt2  '/' +  abr1  '/' +  abr2 '/' +  uvlf1 '/' +  uvlf2 '/' +   otr1 '/' +  otr2 '/' +   hl1 '/' +  hl2 '/' +  hcc1 '/' +   hcc2
 
 //alert(url)
   //alert(url);
@@ -4698,8 +4708,12 @@ $.ajax({
 
 
 
-// url = "<?php echo base_url(''); ?>FGT/FGT_H/"+ fgttype + '/' + lbno + '/'+ tdate + '/' + testcat + '/'+ fifastump + '/' + pmonth + '/'+ cmat + '/' + backing + '/'+ bladder + '/' + btype + '/'+ ttype + '/' + mmcolor+ '/' + pcolors + '/' + result + '/'+  fn + '/'+ m + '/'+ inn + '/'+ pshape + '/' + rem
-// // url = "<?php echo base_url(''); ?>FGT/FGT_H/"+ fgttype + '/' + lbno + '/'+ tdate + '/' + testcat + '/'+ fifastump + '/' + pmonth + '/'+ cmat + '/' + backing + '/'+ fgbladderttype + '/' + btype + '/'+ ttype + '/' + mmcolor+ '/' + pcolors + '/' + result
+// url = "<?php echo base_url(
+    ''
+); ?>FGT/FGT_H/"+ fgttype + '/' + lbno + '/'+ tdate + '/' + testcat + '/'+ fifastump + '/' + pmonth + '/'+ cmat + '/' + backing + '/'+ bladder + '/' + btype + '/'+ ttype + '/' + mmcolor+ '/' + pcolors + '/' + result + '/'+  fn + '/'+ m + '/'+ inn + '/'+ pshape + '/' + rem
+// // url = "<?php echo base_url(
+    ''
+); ?>FGT/FGT_H/"+ fgttype + '/' + lbno + '/'+ tdate + '/' + testcat + '/'+ fifastump + '/' + pmonth + '/'+ cmat + '/' + backing + '/'+ fgbladderttype + '/' + btype + '/'+ ttype + '/' + mmcolor+ '/' + pcolors + '/' + result
 //   alert(url);
 //      $.get(url, function(data){
 //               alert("Activity  inserted Successfully");
