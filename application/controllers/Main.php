@@ -143,10 +143,17 @@ class Main extends CI_Controller
                 $data['tm_team'] = $this->t->counttm(3);
                 $data['lfb_count'] = $this->m->countlfbInstalledMachines(24);
                 $data['lfb_team'] = $this->t->countlfb(24);
-                $data[
-                    'packing_count'
-                ] = $this->m->countpackingInstalledMachines(25);
-                redirect('LabController/master_form');
+                $data['packing_count' ] = $this->m->countpackingInstalledMachines(25);
+                $admin = $this->session->userdata('admin');
+                $lab = $this->session->userdata('lab');
+                $Dev = $this->session->userdata('Dev');
+               if($admin == '1') {
+                    redirect('DashboardController');
+               }elseif($lab == '1')  {
+                    redirect('LabController/master_form');
+               }elseif($Dev == '1'){
+                    redirect('DevelopmentController/Process');
+               }
                 // $this->load->view('Dmms_Dashboard', $data);
             }
         }

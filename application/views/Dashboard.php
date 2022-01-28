@@ -17,13 +17,13 @@ if (!$this->session->has_userdata('user_id')) {
                 <!-- BEGIN Page Header -->
                 <?php $this->load->view('includes/top_header.php'); ?>
                 <main id="js-page-content" role="main" class="page-content">
-              
+                    <!-- 
                     <div class="subheader">
                         <h1 class="subheader-title">
                             <i class='subheader-icon fal fa-chart-area'></i> Dashboard</span>
 
                         </h1>
-                    </div>
+                    </div> -->
 
                     <style>
                         .table th,
@@ -35,175 +35,180 @@ if (!$this->session->has_userdata('user_id')) {
 
                         @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap");
 
-:root {
-  --color-accent: rgb(112, 71, 235);
-  --background-color: #f8f7fa;
-  --foreground-color: #ffffff;
-  --text-color: #19181a;
-  --highlight-text-color: var(--text-color);
-  --active-text-color: #f8f7fa;
-  --inactive-text-color: #a5a5a5;
-  --btn-bg: #f8f7fa;
-  --box-shadow: #efefef;
+                        :root {
+                            --color-accent: rgb(112, 71, 235);
+                            --background-color: #f8f7fa;
+                            --foreground-color: #ffffff;
+                            --text-color: #19181a;
+                            --highlight-text-color: var(--text-color);
+                            --active-text-color: #f8f7fa;
+                            --inactive-text-color: #a5a5a5;
+                            --btn-bg: #f8f7fa;
+                            --box-shadow: #efefef;
 
-  --border-width: 1px;
-  --border-radius: 15px;
-  --spacing: 18px;
-}
+                            --border-width: 1px;
+                            --border-radius: 15px;
+                            --spacing: 18px;
+                        }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background-color: #19181a;
-    --foreground-color: #282729;
-    --text-color: #c9c8cc;
-    --highlight-text-color: #f8f7fa;
-    --inactive-text-color: #68676a;
-    --btn-bg: #313133;
-    --box-shadow: #111111;
-  }
-}
+                        @media (prefers-color-scheme: dark) {
+                            :root {
+                                --background-color: #19181a;
+                                --foreground-color: #282729;
+                                --text-color: #c9c8cc;
+                                --highlight-text-color: #f8f7fa;
+                                --inactive-text-color: #68676a;
+                                --btn-bg: #313133;
+                                --box-shadow: #111111;
+                            }
+                        }
 
-* {
-  margin: 0;
-  padding: 0;
-}
+                        * {
+                            margin: 0;
+                            padding: 0;
+                        }
 
-.card {
-  width: 340px;
-  height: fit-content;
-  background-color: var(--foreground-color);
-  border-radius: var(--border-radius);
-  box-shadow: 0px 0px 10px var(--box-shadow);
-}
+                        .card {
+                            width: 340px;
+                            height: fit-content;
+                            background-color: var(--foreground-color);
+                            border-radius: var(--border-radius);
+                            box-shadow: 0px 0px 10px var(--box-shadow);
+                        }
 
-.calendar-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  padding-bottom: 15px;
-  border-bottom: var(--border-width) solid var(--box-shadow);
-}
+                        .calendar-toolbar {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            padding: 20px;
+                            padding-bottom: 15px;
+                            border-bottom: var(--border-width) solid var(--box-shadow);
+                        }
 
-.calendar-toolbar > .current-month {
-  font-size: 20px;
-  font-weight: bold;
-  color: var(--highlight-text-color);
-}
+                        .calendar-toolbar>.current-month {
+                            font-size: 20px;
+                            font-weight: bold;
+                            color: var(--highlight-text-color);
+                        }
 
-.calendar-toolbar > [class$="month-btn"] {
-  width: 40px;
-  aspect-ratio: 1;
-  text-align: center;
-  line-height: 40px;
-  font-size: 14px;
-  color: var(--highlight-text-color);
-  background: var(--btn-bg);
-  border: none;
-  border-radius: var(--border-radius);
-}
+                        .calendar-toolbar>[class$="month-btn"] {
+                            width: 40px;
+                            aspect-ratio: 1;
+                            text-align: center;
+                            line-height: 40px;
+                            font-size: 14px;
+                            color: var(--highlight-text-color);
+                            background: var(--btn-bg);
+                            border: none;
+                            border-radius: var(--border-radius);
+                        }
 
-.weekdays,
-.calendar-days {
-  display: flex;
-  flex-wrap: wrap;
-  padding-inline: var(--spacing);
-}
-.weekdays {
-  padding-top: 12px;
-}
-.calendar-days {
-  padding-bottom: 12px;
-}
+                        .weekdays,
+                        .calendar-days {
+                            display: flex;
+                            flex-wrap: wrap;
+                            padding-inline: var(--spacing);
+                        }
 
-.weekday-name,
-[class$="-day"] {
-  width: 40px;
-  height: 40px;
-  color: var(--text-color);
-  text-align: center;
-  line-height: 40px;
-  font-weight: 500;
-  font-size: 1rem;
-}
+                        .weekdays {
+                            padding-top: 12px;
+                        }
 
-.weekday-name {
-  color: var(--highlight-text-color);
-  font-weight: 700;
-}
+                        .calendar-days {
+                            padding-bottom: 12px;
+                        }
 
-.current-day {
-  background-color: var(--color-accent);
-  color: var(--active-text-color);
-  border-radius: var(--border-radius);
-  font-weight: 700;
-  transition: 0.5s;
-  cursor: pointer;
-}
+                        .weekday-name,
+                        [class$="-day"] {
+                            width: 40px;
+                            height: 40px;
+                            color: var(--text-color);
+                            text-align: center;
+                            line-height: 40px;
+                            font-weight: 500;
+                            font-size: 1rem;
+                        }
 
-.padding-day {
-  color: var(--inactive-text-color);
-  user-select: none;
-}
+                        .weekday-name {
+                            color: var(--highlight-text-color);
+                            font-weight: 700;
+                        }
 
-.calendar-toolbar > [class$="month-btn"]:hover,
-.month-day:hover,
-.btnCustom:hover {
-  border-radius: var(--border-radius);
-  background-color: var(--btn-bg);
-  color: var(--color-accent);
-  border-radius: var(--border-radius);
-  transition: 0.1s;
-  cursor: pointer;
-  box-shadow: inset 0px 0px 0px 1.5px var(--color-accent);
-}
+                        .current-day {
+                            background-color: var(--color-accent);
+                            color: var(--active-text-color);
+                            border-radius: var(--border-radius);
+                            font-weight: 700;
+                            transition: 0.5s;
+                            cursor: pointer;
+                        }
 
-.calendar-toolbar > [class$="month-btn"]:focus,
-.month-day:focus,
-.btnCustom:focus {
-  border-radius: var(--border-radius);
-  background-color: var(--color-accent);
-  color: var(--active-text-color);
-}
+                        .padding-day {
+                            color: var(--inactive-text-color);
+                            user-select: none;
+                        }
 
-.goto-buttons {
-  border-top: var(--border-width) solid var(--box-shadow);
-  padding-block: 18px;
-  display: flex;
-  justify-content: space-evenly;
-}
+                        .calendar-toolbar>[class$="month-btn"]:hover,
+                        .month-day:hover,
+                        .btnCustom:hover {
+                            border-radius: var(--border-radius);
+                            background-color: var(--btn-bg);
+                            color: var(--color-accent);
+                            border-radius: var(--border-radius);
+                            transition: 0.1s;
+                            cursor: pointer;
+                            box-shadow: inset 0px 0px 0px 1.5px var(--color-accent);
+                        }
 
-.btnCustom {
-  background: var(--btn-bg);
-  border: none;
-  border-radius: var(--border-radius);
-  padding: 11px 13px;
-  color: var(--highlight-text-color);
-  font-family: "Quicksand", sans-serif;
-  font-weight: 600;
-  font-size: 0.9rem;
-  margin-right: 1px;
-  box-shadow: 0px 0px 0px var(--box-shadow);
-}
+                        .calendar-toolbar>[class$="month-btn"]:focus,
+                        .month-day:focus,
+                        .btnCustom:focus {
+                            border-radius: var(--border-radius);
+                            background-color: var(--color-accent);
+                            color: var(--active-text-color);
+                        }
 
+                        .goto-buttons {
+                            border-top: var(--border-width) solid var(--box-shadow);
+                            padding-block: 18px;
+                            display: flex;
+                            justify-content: space-evenly;
+                        }
+
+                        .btnCustom {
+                            background: var(--btn-bg);
+                            border: none;
+                            border-radius: var(--border-radius);
+                            padding: 11px 13px;
+                            color: var(--highlight-text-color);
+                            font-family: "Quicksand", sans-serif;
+                            font-weight: 600;
+                            font-size: 0.9rem;
+                            margin-right: 1px;
+                            box-shadow: 0px 0px 0px var(--box-shadow);
+                        }
                     </style>
+                    <script src="https://code.highcharts.com/highcharts.js"></script>
+                    <script src="https://code.highcharts.com/modules/variable-pie.js"></script>
+                    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+                    <div class="row">
+                        <div class="col-md-8">
 
-                     <div class="row">
-                         <div class="col-md-9">
-
-                         <div id="panel-3" class="panel">
-                        <div class="panel-hdr color-success-600">
-                            <h2>
-                                Quality <span class="fw-300"><i>Panel</i></span>
-                            </h2>
-                            <div class="panel-toolbar">
-                                <!-- <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button> -->
-                            </div>
-                        </div>
-                        <div class="panel-container show">
-                            <div class="panel-content">
-                                <div class="row">
-                                <!-- <div class="col-md-4">
+                            <div id="panel-3" class="panel">
+                                <div class="panel-hdr color-success-600">
+                                    <h2>
+                                        <!-- Dashboard  <span class="fw-300"><i></i></span> -->
+                                    </h2>
+                                    <div class="panel-toolbar">
+                                        <!-- <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button> -->
+                                    </div>
+                                </div>
+                                <div class="panel-container show">
+                                    <div class="panel-content">
+                                        <div class="row">
+                                            <!-- <div class="col-md-4">
                                 <div class="col-sm-12 col-xl-12">
                                 <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
@@ -217,393 +222,256 @@ if (!$this->session->has_userdata('user_id')) {
                                 </div>
                             </div>
                                 </div> -->
-                                <div class="col-md-4">
-                                <div class="col-sm-12 col-xl-12">
-                                <div class="p-3 bg-info-300 rounded overflow-hidden position-relative text-white mb-g ">
-                                    <div class="">
-                                    <p style="display: inline;font-weight:bolder;font-size:large">Fail:</p> 
-                                   
-                                        <div class="counting2Fail" data-count="<?php echo count($TM)>=1?$TM[0]['Fail']:0 ?>" style="color:white;display: inline;font-weight:bolder;font-size:large">0</div>
-                                        <p style="display: inline;font-weight:bolder;font-size:large;margin-left:30%">Humidity:</p><br>
-                                        <p style="display:inline;:bolder;font-size:large">RFT: <?php echo count($TM)>=1?round(((($TM[0]['TotalChecked']-$TM[0]['Fail'])/$TM[0]['TotalChecked'])*100),2):0 ?> </p>
-                                        <p style="display: inline;font-weight:bolder;font-size:large;margin-left:25%">Temp:</p><br>
-                                        <p style="display: inline;font-weight:bolder;font-size:large;">Metals Detected:</p><br><br>
-                                        
-                                        <p style="font-weight: bolder;font-size:large">Competition Ball</p>
-                                    </div>
-                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                </div>
-                            </div>
-                                </div>
-                                <div class="col-md-4">
-                                <div class="col-sm-12 col-xl-12">
-                                <div style="background-color: #336600;" class="p-3 rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                    <p style="display: inline;font-weight:bolder;font-size:large">Fail:</p> 
-                                     
-                                        <div class="counting3Fail" data-count="<?php echo count($TM)>1?$TM[1]['Fail']:0 ?>" style="color:white;display: inline;font-weight:bolder;font-size:large">0</div>
-                                        <p style="display: inline;font-weight:bolder;font-size:large;margin-left:30%">Humidity:</p><br>
-                                        <p style="display:inline;font-weight:bolder;font-size:large">RFT: <?php echo count($TM)>1?round(((($TM[1]['TotalChecked']-$TM[1]['Fail'])/$TM[1]['TotalChecked'])*100),2):0 ?></p>
-                                        <p style="display: inline;font-weight:bolder;font-size:large;margin-left:25%">Temp:</p><br>
-                                        <p style="display: inline;font-weight:bolder;font-size:large;">Metals Detected:</p><br><br>
 
-                                        <p style="font-weight: bolder;font-size:large;color:white">Finale Ball</p>
-                                    </div>
-                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                </div>
-                            </div>
-                                </div>
-                                <div class="col-md-4">
-                                <div class="col-sm-12 col-xl-12">
-                                <div style="background-color: #111111;" class="p-3 rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                    <p style="display: inline;font-weight:bolder;font-size:large">Fail:</p> 
-                                    
-                                        <div class="counting4Fail" data-count="<?php echo count($TM)>2?$TM[2]['Fail']:0 ?>" style="color:white;display: inline;font-weight:bolder;font-size:large">0</div>
-                                        <p style="display: inline;font-weight:bolder;font-size:large;margin-left:30%">Humidity:</p><br>
-                                        <p style="display:inline;font-weight:bolder;font-size:large">RFT: <?php echo count($TM)>2?round(((($TM[2]['TotalChecked']-$TM[2]['Fail'])/$TM[2]['TotalChecked'])*100),2):0 ?></p>
-                                        <p style="display: inline;font-weight:bolder;font-size:large;margin-left:29%">Temp:</p><br>
-                                        <p style="display: inline;font-weight:bolder;font-size:large;">Metals Detected:</p><br><br>
+                                            <div class="col-md-3">
+                                                <div class="col-sm-12">
+                                                    <div style="background-color: #414A76;" class="p-3 rounded overflow-hidden position-relative text-white mb-g ">
+                                                        <div class="">
 
-                                        <p style="font-weight: bolder;font-size:large">Urban Ball</p>
-                                    </div>
-                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                </div>
-                            </div>
-                                </div>
-                                <div class="col-md-4 mt-3">
-                                <div class="col-sm-12 col-xl-12">
-                                <div style="background-color: maroon;" class="p-3 rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                    <p style="display: inline;font-weight:bolder;font-size:large">Fail:</p> 
-                                  
-                        				<div class="counting5Fail" data-count="<?php echo count($B34005)>=1?$B34005[0]['Fail']:0 ?>" style="color:white;display: inline;font-weight:bolder;font-size:large">0</div>
-                                        <p style="display: inline;font-weight:bolder;font-size:large;margin-left:30%">Humidity:</p><br>
-                                        <p style="display: inline;font-weight:bolder;font-size:large">RFT: <?php echo count($B34005)>=1?round(((($B34005[0]['TotalChecked']-$B34005[0]['Fail'])/$B34005[0]['TotalChecked'])*100),2):0 ?></p>
-                                        <p style="display: inline;font-weight:bolder;font-size:large;margin-left:25%">Temp:</p><br>
-                                        <p style="display: inline;font-weight:bolder;font-size:large;">Metals Detected:</p><br><br>
-
-                                        <p style="font-weight: bolder;font-size:large">Machine Stitched Ball</p>
-                                    </div>
-                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                </div>
-                            </div>
-                                </div>
-                                <div class="col-md-4 mt-3">
-                                <div class="col-sm-12 col-xl-12">
-                                <div style="background-color: purple;" class="p-3 rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                    <p style="display: inline;font-weight:bolder;font-size:large">Fail:</p> 
-
-                                        <div class="counting6Fail" data-count="<?php echo count($B34006)>=1?$B34006[0]['Fail']:0 ?>" style="color:white;display: inline;font-weight:bolder;font-size:large">0</div>
-                                        <p style="display: inline;font-weight:bolder;font-size:large;margin-left:30%">Humidity:</p><br>
-                                        <p style="display:inline;font-weight:bolder;font-size:large">RFT: <?php echo count($B34006)>=1?round(((($B34006[0]['TotalChecked']-$B34006[0]['Fail'])/$B34006[0]['TotalChecked'])*100),2):0 ?></p>
-                                        <p style="display: inline;font-weight:bolder;font-size:large;margin-left:25%">Temp:</p><br>
-                                        <p style="display: inline;font-weight:bolder;font-size:large;">Metals Detected:</p><br><br>
-
-                                        <p style="font-weight: bolder;font-size:large">   Airless Mini Ball</p>
-                                    </div>
-                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                </div>
-                            </div>
-                                </div>
-                         
-                                <div class="col-md-4 mt-3">
-                                <div class="col-sm-12 col-xl-12">
-                                <div style="background-color: #800040;" class="p-3 rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                    <p style="display: inline;font-weight:bolder;font-size:large">Fail:</p> 
-                                 
-                                       <div class="counting7Fail" data-count="<?php echo count($B34007)>=1?$B34007[0]['Fail']:0 ?>" style="color:white;display: inline;font-weight:bolder;font-size:large">">0</div>
-                                       <p style="display: inline;font-weight:bolder;font-size:large;margin-left:30%">Humidity:</p><br>
-                                       <p style="display:inline;font-weight:bolder;font-size:large">RFT: <?php echo count($B34007)>=1?round(((($B34007[0]['TotalChecked']-$B34007[0]['Fail'])/$B34007[0]['TotalChecked'])*100),2):0 ?></p>
-                                       <p style="display: inline;font-weight:bolder;font-size:large;margin-left:20%">Temp:</p><br>
-                                        <p style="display: inline;font-weight:bolder;font-size:large;">Metals Detected:</p><br><br>
-
-                                       <p style="font-weight: bolder;font-size:large">Laminated Ball</p>
-                                    </div>
-                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                </div>
-                            </div>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                         </div>
-                         <div class="col-md-3">
-                         <div class="card" style="margin-left: 45px;">
-  <div class="calendar-toolbar">
-    <button class="prev month-btn"><i class="fal fa-chevron-left"></i></button>
-    <div class="current-month"></div>
-    <button class="next month-btn"><i class="fal fa-chevron-right"></i></button>
-  </div>
-  <div class="calendar">
-    <div class="weekdays">
-      <div class="weekday-name">Sa</div>
-      <div class="weekday-name">Su</div>
-      <div class="weekday-name">Mo</div>
-      <div class="weekday-name">Tu</div>
-      <div class="weekday-name">We</div>
-      <div class="weekday-name">Th</div>
-      <div class="weekday-name">Fr</div>
-    </div>
-    <div class="calendar-days"></div>
-  </div>
-  <div class="goto-buttons">
-    <button type="button" class="btnCustom prev-year">Prev Year</button>
-    <button type="button" class="btnCustom today">Today</button>
-    <button type="button" class="btnCustom next-year">Next Year</button>
-  </div>
-</div>
-                         </div>
-                         <div class="col-md-12 mt-1">
-                         <div id="panel-3" class="panel">
-                        <div class="panel-hdr color-success-600">
-                            <h2>
-                                Production <span class="fw-300"><i>Panel</i></span>
-                            </h2>
-                            <div class="panel-toolbar">
-                                <!-- <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button> -->
-                            </div>
-                        </div>
-                        <div class="panel-container show">
-                            <div class="panel-content">
-                                <div class="row">
-                                <!-- <div class="col-md-4">
-                                <div class="col-sm-12 col-xl-12">
-                                <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                        <div class="counting" data-count="75" style="color:white">0</div>
-                                      
-                                        </h3>
-                                        <p style="font-weight: bolder;font-size:large">B34001</p>
-                                    </div>
-                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                </div>
-                            </div>
-                                </div> -->
-                                <div class="col-md-4">
-                                <div class="col-sm-12 col-xl-12">
-                                <div class="p-3 bg-info-300 rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                        <h3 class="display-6 d-block l-h-n m-0 fw-500">
-                                        <div class="counting2" data-count="<?php echo count($TM)>=1?$TM[0]['pass']:0 ?>" style="color:white">0</div>
-                                        </h3>
-                                        <p style="font-weight: bolder;font-size:large">Competition Ball</p>
-                                    </div>
-                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                </div>
-                            </div>
-                                </div>
-                                <div class="col-md-4">
-                                <div class="col-sm-12 col-xl-12">
-                                <div style="background-color: #336600;" class="p-3 rounded overflow-hidden position-relative text-dark mb-g">
-                                    <div class="">
-                                        <h3 class="display-6 d-block l-h-n m-0 fw-500">
-                                        <div class="counting3" data-count="<?php echo count($TM)>1?$TM[1]['pass']:0 ?>" style="color:white">0</div>
-                                        </h3>
-                                        <p style="font-weight: bolder;font-size:large;color:white">Finale Ball</p>
-                                    </div>
-                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem;color:white"></i>
-                                </div>
-                            </div>
-                                </div>
-                                <div class="col-md-4">
-                                <div class="col-sm-12 col-xl-12">
-                                <div style="background-color: black;" class="p-3 rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                        <h3 class="display-6 d-block l-h-n m-0 fw-500">
-                                        <div class="counting4" data-count="<?php echo count($TM)>2?$TM[2]['pass']:0 ?>" style="color:white">0</div>
-                                        </h3>
-                                        <p style="font-weight: bolder;font-size:large">Urban Ball</p>
-                                    </div>
-                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem;color:white"></i>
-                                </div>
-                            </div>
-                                </div>
-                                <div class="col-md-4 mt-3">
-                                <div class="col-sm-12 col-xl-12">
-                                <div style="background-color: maroon;" class="p-3 rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                        <h3 class="display-6 d-block l-h-n m-0 fw-500">
-                        				<div class="counting5" data-count="<?php echo count($B34005)>=1?$B34005[0]['Pass']:0 ?>" style="color:white">0</div>
-                                        </h3>
-                                        <p style="font-weight: bolder;font-size:large">Machine Stitched Ball</p>
-                                    </div>
-                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                </div>
-                            </div>
-                                </div>
-                                <div class="col-md-4 mt-3">
-                                <div class="col-sm-12 col-xl-12">
-                                <div style="background-color: purple;" class="p-3 rounded overflow-hidden position-relative text-white   mb-g">
-                                    <div class="">
-                                        <h3 class="display-6 d-block l-h-n m-0 fw-500">
-                                        <div class="counting6" data-count="<?php echo count($B34006)>=1?$B34006[0]['Pass']:0 ?>" style="color:white">0</div>
-                                        </h3>
-                                           <p style="font-weight: bolder;font-size:large">   Airless Mini Ball</p>
-                                    </div>
-                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                </div>
-                            </div>
-                                </div>
-                         
-                                <div class="col-md-4 mt-3">
-                                <div class="col-sm-12 col-xl-12">
-                                <div style="background-color: #800040;" class="p-3 rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                        <h3 class="display-6 d-block l-h-n m-0 fw-500">
-                                        <div class="counting7" data-count="<?php echo count($B34007)>=1?$B34007[0]['pass']:0 ?>" style="color:white">0</div>
-                                        </h3>
-                                           <p style="font-weight: bolder;font-size:large">Laminated Ball</p>
-                                    </div>
-                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                </div>
-                            </div>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                         </div>
-                         </div>
-                     </div>
-       
-
-                    <!-- <div class="row">
-                    <div class="col-md-4">
-                    <div id="panel-3" class="panel">
-                        <div class="panel-hdr color-success-600">
-                            <h2>
-                            B34001 <span class="fw-300"><i>Panel</i></span>
-                            </h2>
-                            <div class="panel-toolbar">
-                            </div>
-                        </div>
-                        <div class="panel-container show">
-                            <div class="panel-content">
-                         
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-         
-
-                    <div class="col-md-4">
-                    <div id="panel-3" class="panel">
-                        <div class="panel-hdr color-success-600">
-                            <h2>
-                            B34002 <span class="fw-300"><i>Panel</i></span>
-                            </h2>
-                            <div class="panel-toolbar">
-                           </div>
-                        </div>
-                        <div class="panel-container show">
-                            <div class="panel-content">
-                         
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-               
-
-                
-                    <div class="col-md-4">
-                    <div id="panel-3" class="panel">
-                        <div class="panel-hdr color-success-600">
-                            <h2>
-                            B34003 <span class="fw-300"><i>Panel</i></span>
-                            </h2>
-                            <div class="panel-toolbar">
-                            </div>
-                        </div>
-                        <div class="panel-container show">
-                            <div class="panel-content">
-                         
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-         
-
-                    <div class="col-md-4">
-                    <div id="panel-3" class="panel">
-                        <div class="panel-hdr color-success-600">
-                            <h2>
-                            B34004 <span class="fw-300"><i>Panel</i></span>
-                            </h2>
-                            <div class="panel-toolbar">
-                            </div>
-                        </div>
-                        <div class="panel-container show">
-                            <div class="panel-content">
-                         
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col-md-4">
-                    <div id="panel-3" class="panel">
-                        <div class="panel-hdr color-success-600">
-                            <h2>
-                            B34005 <span class="fw-300"><i>Panel</i></span>
-                            </h2>
-                            <div class="panel-toolbar">
-                            </div>
-                        </div>
-                        <div class="panel-container show">
-                            <div class="panel-content">
-                         
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col-md-4">
-                    <div id="panel-3" class="panel">
-                        <div class="panel-hdr color-success-600">
-                            <h2>
-                            B34006 <span class="fw-300"><i>Panel</i></span>
-                            </h2>
-                            <div class="panel-toolbar">
-                            </div>
-                        </div>
-                        <div class="panel-container show">
-                            <div class="panel-content">
-                         
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="col-md-4">
-                    <div id="panel-3" class="panel">
-                        <div class="panel-hdr color-success-600">
-                            <h2>
-                            B34007 <span class="fw-300"><i>Panel</i></span>
-                            </h2>
-                            <div class="panel-toolbar">
-                       </div>
-                        </div>
-                        <div class="panel-container show">
-                            <div class="panel-content">
-                         
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    </div> -->
+                                                            <p style="display: inline;font-weight:bolder;font-size:large">Hand Stitched Ball:</p> <br>
+                                                            <!-- <div class="counting2Fail" data-count="<?php echo count($TM) >= 1 ? $TM[0]['Fail'] : 0 ?>" style="color:white;display: inline;font-weight:bolder;font-size:large"></div> -->
 
 
+                                                            <p style="display:inline;bolder;font-size:small;">B34001: </p><br>
+                                                            <center>
+                                                                <div class="counting2Fail" data-count="100" style="color:white;display: inline;font-weight:bolder;font-size:large"></div>
+                                                            </center>
+                                                            <br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large;">Quality Dashbaord</p><br>
+
+                                                            <p style="display:inline;bolder;font-size:small;">Avg RFT %: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Yesterday RFT %: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Predictive RFT %: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Checked: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Pass: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Fail: </p><br>
+                                                        </div>
+                                                        <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="col-sm-12">
+                                                    <div style="background-color: #86C748;" class="p-3  rounded overflow-hidden position-relative text-white mb-g ">
+                                                        <div class="">
+                                                            <p style="display: inline;font-weight:bolder;font-size:large">Competition Ball :</p> <br>
+
+
+
+                                                            <p style="display:inline;bolder;font-size:small;">B34002: </p><br>
+                                                            <div class="counting2Fail" data-count="100" style="color:white;display: inline;font-weight:bolder;font-size:large"></div>
+                                                            <br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large;">Quality Dashbaord</p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Avg RFT %: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Yesterday RFT %: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Predictive RFT %: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Checked: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Pass: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Fail: </p><br>
+                                                        </div>
+                                                        <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="col-sm-12 col-xl-12">
+                                                    <div style="background-color: #1FD3E6;" class="p-3 rounded overflow-hidden position-relative text-white mb-g ">
+                                                        <div class="">
+                                                            <p style="display: inline;font-weight:bolder;font-size:large">Finale Ball Ball:</p> <br>
+                                                            <!-- <div class="counting2Fail" data-count="<?php echo count($TM) >= 1 ? $TM[0]['Fail'] : 0 ?>" style="color:white;display: inline;font-weight:bolder;font-size:large"></div> -->
+
+
+                                                            <p style="display:inline;bolder;font-size:small;">B34003: </p><br>
+                                                            <center>
+                                                                <div class="counting2Fail" data-count="100" style="color:white;display: inline;font-weight:bolder;font-size:large"></div>
+                                                            </center>
+                                                            <br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large;">Quality Dashbaord</p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Avg RFT %: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Yesterday RFT %: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Predictive RFT %: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Checked: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Pass: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Fail: </p><br>
+                                                        </div>
+                                                        <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="col-sm-12 col-xl-12">
+                                                    <div style="background-color: #21AD77;" class="p-3  rounded overflow-hidden position-relative text-white mb-g ">
+                                                        <div class="">
+                                                            <p style="display: inline;font-weight:bolder;font-size:large">Urban Ball Ball:</p> <br>
+                                                            <!-- <div class="counting2Fail" data-count="<?php echo count($TM) >= 1 ? $TM[0]['Fail'] : 0 ?>" style="color:white;display: inline;font-weight:bolder;font-size:large"></div> -->
+
+
+                                                            <p style="display:inline;bolder;font-size:small;">B34004: </p><br>
+                                                            <center>
+                                                                <div class="counting2Fail" data-count="100" style="color:white;display: inline;font-weight:bolder;font-size:large"></div>
+                                                            </center>
+                                                            <br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large;">Quality Dashbaord</p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Avg RFT %: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Yesterday RFT %: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Predictive RFT %: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Checked: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Pass: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Fail: </p><br>
+                                                        </div>
+                                                        <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="col-sm-12 col-xl-12">
+                                                    <div style="background-color: #47BC70;" class="p-3 rounded overflow-hidden position-relative text-white mb-g ">
+                                                        <div class="">
+                                                            <p style="display: inline;font-weight:bolder;font-size:large">Machine Stitch Ball:</p> <br>
+                                                            <!-- <div class="counting2Fail" data-count="<?php echo count($TM) >= 1 ? $TM[0]['Fail'] : 0 ?>" style="color:white;display: inline;font-weight:bolder;font-size:large"></div> -->
+
+
+                                                            <p style="display:inline;bolder;font-size:small;">B34005: </p><br>
+                                                            <center>
+                                                                <div class="counting2Fail" data-count="100" style="color:white;display: inline;font-weight:bolder;font-size:large"></div>
+                                                            </center>
+                                                            <br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large;">Quality Dashbaord</p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Avg RFT %: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Yesterday RFT %: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Predictive RFT %: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Checked: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Pass: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Fail: </p><br>
+                                                        </div>
+                                                        <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="col-sm-12 col-xl-12">
+                                                    <div style="background-color: #254887" class="p-3 rounded overflow-hidden position-relative text-white mb-g ">
+                                                        <div class="">
+                                                            <p style="display: inline;font-weight:bolder;font-size:large">Airless Mini Ball:</p> <br>
+                                                            <!-- <div class="counting2Fail" data-count="<?php echo count($TM) >= 1 ? $TM[0]['Fail'] : 0 ?>" style="color:white;display: inline;font-weight:bolder;font-size:large"></div> -->
+
+
+                                                            <p style="display:inline;bolder;font-size:small;">B34006: </p><br>
+                                                            <center>
+                                                                <div class="counting2Fail" data-count="100" style="color:white;display: inline;font-weight:bolder;font-size:large"></div>
+                                                            </center>
+                                                            <br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large;">Quality Dashbaord</p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Avg RFT %: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Yesterday RFT %: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Predictive RFT %: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Checked: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Pass: </p><br>
+                                                            <p style="display:inline;bolder;font-size:small;">Fail: </p><br>
+                                                        </div>
+                                                        <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="col-sm-12 col-xl-12">
+                                                    <div style="background-color: #EEB0AF;" class="p-3  rounded overflow-hidden position-relative text-white mb-g ">
+                                                        <div class="">
+                                                            <p style="display: inline;font-weight:bolder;font-size:large">Laminated Foot Ball:</p> <br>
+                                                            <!-- <div class="counting2Fail" data-count="<?php echo count($TM) >= 1 ? $TM[0]['Fail'] : 0 ?>" style="color:white;display: inline;font-weight:bolder;font-size:large"></div> -->
+
+
+                                                            <p style="display:inline;bolder;font-size:small;">B34007: </p><br>
+
+                                                            <div class="counting2Fail" data-count="100" style="color:white;display: inline;font-weight:bolder;font-size:large">100</div>
+
+                                                            <br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large;">Quality Dashbaord</p><br>
+                                                            <p style="display:inline;bolder:font-size:small;">Avg RFT %: </p><br>
+                                                            <p style="display:inline;bolder:font-size:small;">Yesterday RFT %: </p><br>
+                                                            <p style="display:inline;bolder:font-size:small;">Predictive RFT %: </p><br>
+                                                            <p style="display:inline;bolder:font-size:small;">Checked: </p><br>
+                                                            <p style="display:inline;bolder:font-size:small;">Pass: </p><br>
+                                                            <p style="display:inline;bolder:font-size:small;">Fail: </p><br>
+                                                        </div>
+                                                        <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <!-- <div id="container" style="width:100%; height:300px;"></div> -->
+                                                <canvas id="myChart" width="400" height="400"></canvas>
+                                                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-4">
+                            <div class="card" style="margin-left: 45px;">
+                                <div class="calendar-toolbar">
+                                    <button class="prev month-btn"><i class="fal fa-chevron-left"></i></button>
+                                    <div class="current-month"></div>
+                                    <button class="next month-btn"><i class="fal fa-chevron-right"></i></button>
+                                </div>
+                                <div class="calendar">
+                                    <div class="weekdays">
+                                        <div class="weekday-name">Sa</div>
+                                        <div class="weekday-name">Su</div>
+                                        <div class="weekday-name">Mo</div>
+                                        <div class="weekday-name">Tu</div>
+                                        <div class="weekday-name">We</div>
+                                        <div class="weekday-name">Th</div>
+                                        <div class="weekday-name">Fr</div>
+                                    </div>
+                                    <div class="calendar-days"></div>
+                                </div>
+                                <div class="goto-buttons">
+                                    <button type="button" class="btnCustom prev-year">Prev Year</button>
+                                    <button type="button" class="btnCustom today">Today</button>
+                                    <button type="button" class="btnCustom next-year">Next Year</button>
+                                </div>
+                            </div>
+                        </div>  -->
+                        <div class="col-md-4">
+                            <div id="panel-3" class="panel">
+                                <div class="panel-hdr color-success-600">
+
+                                    <div class="panel-toolbar">
+                                        <!-- <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button> -->
+                                    </div>
+                                </div>
+                                <div class="panel-container show">
+                                    <div class="panel-content">
+                                        <div class="row">
+                                            <div class="panel-container show">
+                                                <div id="container"></div>
+                                                <div id="container1"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
+
+
+
+
+
         </div>
+    </div>
     </div>
     <script src="<?php echo base_url(); ?>/assets/js//jquery.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
     <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
     <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
     <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
-
+    <script src="js/statistics/sparkline/sparkline.bundle.js"></script>
     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
     <!-- BEGIN Page Footer -->
     <footer class="page-footer" role="contentinfo">
@@ -618,463 +486,196 @@ if (!$this->session->has_userdata('user_id')) {
     <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
     <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
     <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+
+    <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
+    <!-- sparkline bundle: 
+		+ jquery.sparkline.js (core)
+		+ src/../jquery.sparkline.config.js (config) -->
+    <script src="<?php echo base_url(); ?>/assets/js/statistics/sparkline/sparkline.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
+    <!-- dependency for c3 charts : this dependency is a BSD license with clause 3 -->
+    <script src="j<?php echo base_url(); ?>/assets/s/statistics/d3/d3.js"></script>
+    <!-- c3 charts : MIT license -->
+    <script src="<?php echo base_url(); ?>/assets/js/statistics/c3/c3.js"></script>
+    <script src="<?php echo base_url(); ?>/assets/js/statistics/demo-data/demo-c3.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <script>
-     window.onload = (event) => {
-        var currentMonth = document.querySelector(".current-month");
-var calendarDays = document.querySelector(".calendar-days");
-var today = new Date();
-var date = new Date();
+        Highcharts.chart('container1', {
 
+            title: {
+                text: 'Weekly produciton'
+            },
 
-currentMonth.textContent = date.toLocaleDateString("en-US", {month:'long', year:'numeric'});
-today.setHours(0,0,0,0);
-renderCalendar();
 
-function renderCalendar(){
-    const prevLastDay = new Date(date.getFullYear(),date.getMonth(),0).getDate();
-    const totalMonthDay = new Date(date.getFullYear(),date.getMonth()+1,0).getDate();
-    const startWeekDay = new Date(date.getFullYear(),date.getMonth(),1).getDay();
-    
-    calendarDays.innerHTML = "";
 
-    let totalCalendarDay = 6 * 7;
-    for (let i = 0; i < totalCalendarDay; i++) {
-        let day = i-startWeekDay;
-
-        if(i <= startWeekDay){
-            // adding previous month days
-            calendarDays.innerHTML += `<div class='padding-day'>${prevLastDay-i}</div>`;
-        }else if(i <= startWeekDay+totalMonthDay){
-            // adding this month days
-            date.setDate(day);
-            date.setHours(0,0,0,0);
-            
-            let dayClass = date.getTime()===today.getTime() ? 'current-day' : 'month-day';
-            calendarDays.innerHTML += `<div class='${dayClass}'>${day}</div>`;
-        }else{
-            // adding next month days
-            calendarDays.innerHTML += `<div class='padding-day'>${day-totalMonthDay}</div>`;
-        }
-    }
-}
-
-document.querySelectorAll(".month-btn").forEach(function (element) {
-	element.addEventListener("click", function () {
-		date = new Date(currentMonth.textContent);
-        date.setMonth(date.getMonth() + (element.classList.contains("prev") ? -1 : 1));
-		currentMonth.textContent = date.toLocaleDateString("en-US", {month:'long', year:'numeric'});
-		renderCalendar();
-	});
-});
-
-document.querySelectorAll(".btnCustom").forEach(function (element) {
-	element.addEventListener("click", function () {
-        let btnClass = element.classList;
-        date = new Date(currentMonth.textContent);
-        if(btnClass.contains("today"))
-            date = new Date();
-        else if(btnClass.contains("prev-year"))
-            date = new Date(date.getFullYear()-1, 0, 1);
-        else
-            date = new Date(date.getFullYear()+1, 0, 1);
-        
-		currentMonth.textContent = date.toLocaleDateString("en-US", {month:'long', year:'numeric'});
-		renderCalendar();
-	});
-});
-        // $('.counting').each(function() {
-        // var $this = $(this),
-        // countTo = $this.attr('data-count');
-
-        // $({ countNum: $this.text()}).animate({
-        // countNum: countTo
-        // },
-
-        // {
-
-        // duration: 1300,
-        // easing:'linear',
-        // step: function() {
-        // $this.text(Math.floor(this.countNum));
-        // },
-        // complete: function() {
-        // $this.text(this.countNum);
-        // //alert('finished');
-        // }
-
-        // });  
-
-
-        // });
-
-        $('.counting2').each(function() {
-        var $this = $(this),
-        countTo = $this.attr('data-count');
-
-        $({ countNum: $this.text()}).animate({
-        countNum: countTo
-        },
-
-        {
-
-        duration: 1300,
-        easing:'linear',
-        step: function() {
-        $this.text(Math.floor(this.countNum));
-        },
-        complete: function() {
-        $this.text(this.countNum);
-        //alert('finished');
-        }
-
-        });  
-
-
-        });
-
-        $('.counting3').each(function() {
-        var $this = $(this),
-        countTo = $this.attr('data-count');
-
-        $({ countNum: $this.text()}).animate({
-        countNum: countTo
-        },
-
-        {
-
-        duration: 1300,
-        easing:'linear',
-        step: function() {
-        $this.text(Math.floor(this.countNum));
-        },
-        complete: function() {
-        $this.text(this.countNum);
-        //alert('finished');
-        }
-
-        });  
-
-
-        });
-
-        $('.counting4').each(function() {
-        var $this = $(this),
-        countTo = $this.attr('data-count');
-
-        $({ countNum: $this.text()}).animate({
-        countNum: countTo
-        },
-
-        {
-
-        duration: 1300,
-        easing:'linear',
-        step: function() {
-        $this.text(Math.floor(this.countNum));
-        },
-        complete: function() {
-        $this.text(this.countNum);
-        //alert('finished');
-        }
-
-        });  
-
-
-        });
-
-        $('.counting5').each(function() {
-        var $this = $(this),
-        countTo = $this.attr('data-count');
-
-        $({ countNum: $this.text()}).animate({
-        countNum: countTo
-        },
-
-        {
-
-        duration: 1300,
-        easing:'linear',
-        step: function() {
-        $this.text(Math.floor(this.countNum));
-        },
-        complete: function() {
-        $this.text(this.countNum);
-        //alert('finished');
-        }
-
-        });  
-
-
-        });
-
-        $('.counting6').each(function() {
-        var $this = $(this),
-        countTo = $this.attr('data-count');
-
-        $({ countNum: $this.text()}).animate({
-        countNum: countTo
-        },
-
-        {
-
-        duration: 1300,
-        easing:'linear',
-        step: function() {
-        $this.text(Math.floor(this.countNum));
-        },
-        complete: function() {
-        $this.text(this.countNum);
-        //alert('finished');
-        }
-
-        });  
-
-
-        });
-
-        $('.counting7').each(function() {
-        var $this = $(this),
-        countTo = $this.attr('data-count');
-
-        $({ countNum: $this.text()}).animate({
-        countNum: countTo
-        },
-
-        {
-
-        duration: 1300,
-        easing:'linear',
-        step: function() {
-        $this.text(Math.floor(this.countNum));
-        },
-        complete: function() {
-        $this.text(this.countNum);
-        //alert('finished');
-        }
-
-        });  
-
-
-        });
-
-        
-        $('.counting2Fail').each(function() {
-        var $this = $(this),
-        countTo = $this.attr('data-count');
-
-        $({ countNum: $this.text()}).animate({
-        countNum: countTo
-        },
-
-        {
-
-        duration: 1300,
-        easing:'linear',
-        step: function() {
-        $this.text(Math.floor(this.countNum));
-        },
-        complete: function() {
-        $this.text(this.countNum);
-        //alert('finished');
-        }
-
-        });  
-
-
-        });
-
-        $('.counting3Fail').each(function() {
-        var $this = $(this),
-        countTo = $this.attr('data-count');
-
-        $({ countNum: $this.text()}).animate({
-        countNum: countTo
-        },
-
-        {
-
-        duration: 1300,
-        easing:'linear',
-        step: function() {
-        $this.text(Math.floor(this.countNum));
-        },
-        complete: function() {
-        $this.text(this.countNum);
-        //alert('finished');
-        }
-
-        });  
-
-
-        });
-
-        $('.counting4Fail').each(function() {
-        var $this = $(this),
-        countTo = $this.attr('data-count');
-
-        $({ countNum: $this.text()}).animate({
-        countNum: countTo
-        },
-
-        {
-
-        duration: 1300,
-        easing:'linear',
-        step: function() {
-        $this.text(Math.floor(this.countNum));
-        },
-        complete: function() {
-        $this.text(this.countNum);
-        //alert('finished');
-        }
-
-        });  
-
-
-        });
-
-        $('.counting5Fail').each(function() {
-        var $this = $(this),
-        countTo = $this.attr('data-count');
-
-        $({ countNum: $this.text()}).animate({
-        countNum: countTo
-        },
-
-        {
-
-        duration: 1300,
-        easing:'linear',
-        step: function() {
-        $this.text(Math.floor(this.countNum));
-        },
-        complete: function() {
-        $this.text(this.countNum);
-        //alert('finished');
-        }
-
-        });  
-
-
-        });
-
-        $('.counting6Fail').each(function() {
-        var $this = $(this),
-        countTo = $this.attr('data-count');
-
-        $({ countNum: $this.text()}).animate({
-        countNum: countTo
-        },
-
-        {
-
-        duration: 1300,
-        easing:'linear',
-        step: function() {
-        $this.text(Math.floor(this.countNum));
-        },
-        complete: function() {
-        $this.text(this.countNum);
-        //alert('finished');
-        }
-
-        });  
-
-
-        });
-
-        $('.counting7Fail').each(function() {
-        var $this = $(this),
-        countTo = $this.attr('data-count');
-
-        $({ countNum: $this.text()}).animate({
-        countNum: countTo
-        },
-
-        {
-
-        duration: 1300,
-        easing:'linear',
-        step: function() {
-        $this.text(Math.floor(this.countNum));
-        },
-        complete: function() {
-        $this.text(this.countNum);
-        //alert('finished');
-        }
-
-        });  
-
-
-        });
-};
-        $('#schedule').dataTable({
-            responsive: true,
-            lengthChange: false,
-            dom:
-                /*	--- Layout Structure 
-                	--- Options
-                	l	-	length changing input control
-                	f	-	filtering input
-                	t	-	The table!
-                	i	-	Table information summary
-                	p	-	pagination control
-                	r	-	processing display element
-                	B	-	buttons
-                	R	-	ColReorder
-                	S	-	Select
-
-                	--- Markup
-                	< and >				- div element
-                	<"class" and >		- div with a class
-                	<"#id" and >		- div with an ID
-                	<"#id.class" and >	- div with an ID and a class
-
-                	--- Further reading
-                	https://datatables.net/reference/option/dom
-                	--------------------------------------
-                 */
-                "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-                "<'row'<'col-sm-12'tr>>" +
-                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-            buttons: [
-                /*{
-                	extend:    'colvis',
-                	text:      'Column Visibility',
-                	titleAttr: 'Col visibility',
-                	className: 'mr-sm-3'
-                },*/
-                {
-                    extend: 'pdfHtml5',
-                    text: 'PDF',
-                    titleAttr: 'Generate PDF',
-                    className: 'btn-outline-danger btn-sm mr-1'
-                },
-                {
-                    extend: 'excelHtml5',
-                    text: 'Excel',
-                    titleAttr: 'Generate Excel',
-                    className: 'btn-outline-success btn-sm mr-1'
-                },
-                {
-                    extend: 'csvHtml5',
-                    text: 'CSV',
-                    titleAttr: 'Generate CSV',
-                    className: 'btn-outline-primary btn-sm mr-1'
-                },
-                {
-                    extend: 'copyHtml5',
-                    text: 'Copy',
-                    titleAttr: 'Copy to clipboard',
-                    className: 'btn-outline-primary btn-sm mr-1'
-                },
-                {
-                    extend: 'print',
-                    text: 'Print',
-                    titleAttr: 'Print Table',
-                    className: 'btn-outline-primary btn-sm'
+            yAxis: {
+                title: {
+                    text: 'Number of Balls'
                 }
-            ]
+            },
+
+            xAxis: {
+                accessibility: {
+                    rangeDescription: 'Range: 2010 to 2017'
+                }
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: 2010
+                }
+            },
+
+            series: [{
+                name: 'B34001',
+                data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+            }, {
+                name: 'B34002',
+                data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+            }, {
+                name: 'B34003',
+                data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+            }, {
+                name: 'B34004',
+                data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+            }, {
+                name: 'B34005',
+                data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+        // Highcharts.chart('container', {
+        //     chart: {
+        //         type: 'variablepie'
+        //     },
+        //     series: [{
+        //         minPointSize: 10,
+        //         innerSize: '40%',
+        //         zMin: 0,
+        //         name: 'countries',
+        //         data: [{
+        //             name: 'Spain',
+        //             y: 505370,
+        //             z: 92.9
+        //         }, {
+        //             name: 'France',
+        //             y: 551500,
+        //             z: 118.7
+        //         }]
+        //     }]
+        // });
+        Highcharts.chart('container', {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Today Production'
+            },
+            subtitle: {
+                // text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+            },
+            xAxis: {
+                categories: ['B34001', 'B34002', 'B34003', 'B34004', 'B34005'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'No of Balls',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            tooltip: {
+                valueSuffix: ' millions'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 80,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+                shadow: true
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Produced',
+                data: [107, 31, 635, 203, 2]
+            }]
+        });
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+
+        const myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Check', 'Pass', 'Fail'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 20],
+                    backgroundColor: [
+
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 205, 86)'
+
+                    ],
+                    borderColor: [
+
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 205, 86)'
+
+
+                    ],
+                    borderWidth: 1
+                }]
+            }
         });
     </script>
     <!-- END Page Footer -->
@@ -2293,6 +1894,69 @@ document.querySelectorAll(".btnCustom").forEach(function (element) {
 
         });
     </script>
+    <script src="<?php echo base_url(); ?>/assets/js/statistics/sparkline/sparkline.bundle.js"></script>
+    <script>
+        /* 
+         * draw the little mouse speed animated graph this just attaches a handler to the mousemove event to see
+         * (roughly) how far the mouse has moved and then updates the display a couple of times a second via
+         * setTimeout()
+         */
+        var drawMouseSpeedDemo = function() {
+            var mrefreshinterval = 500, // update display every 500ms
+                lastmousex = -1,
+                lastmousey = -1,
+                lastmousetime,
+                mousetravel = 0,
+                mpoints = [],
+                mpoints_max = 30;
+
+            $('html').mousemove(function(e) {
+                var mousex = e.pageX,
+                    mousey = e.pageY;
+
+                if (lastmousex > -1) {
+                    mousetravel += Math.max(Math.abs(mousex - lastmousex), Math.abs(mousey - lastmousey));
+                }
+                lastmousex = mousex;
+                lastmousey = mousey;
+            });
+
+            var mdraw = function() {
+                var md = new Date();
+                var timenow = md.getTime();
+                if (lastmousetime && lastmousetime != timenow) {
+                    var pps = Math.round(mousetravel / (timenow - lastmousetime) * 1000);
+                    mpoints.push(pps);
+                    if (mpoints.length > mpoints_max)
+                        mpoints.splice(0, 1);
+                    mousetravel = 0;
+                    $('#mousespeed-line').sparkline(mpoints, {
+                        type: 'line',
+                        width: 210,
+                        height: 40,
+                        lineColor: color.info._500,
+                        fillColor: color.info._50,
+                        tooltipSuffix: ' pixels per second'
+                    });
+                    $('#mousespeed-bar').sparkline(mpoints, {
+                        type: 'bar',
+                        height: 40,
+                        tooltipSuffix: ' pixels per second'
+                    });
+                }
+                lastmousetime = timenow;
+                setTimeout(mdraw, mrefreshinterval);
+            }
+            // we could use setInterval instead, but I prefer to do it this way
+            setTimeout(mdraw, mrefreshinterval);
+        };
+
+        $(document).ready(function() {
+            //start refresh chart
+            drawMouseSpeedDemo();
+        });
+    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js" integrity="sha512-gtII6Z4fZyONX9GBrF28JMpodY4vIOI0lBjAtN/mcK7Pz19Mu1HHIRvXH6bmdChteGpEccxZxI0qxXl9anY60w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
