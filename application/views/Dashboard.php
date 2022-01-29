@@ -193,7 +193,100 @@ if (!$this->session->has_userdata('user_id')) {
                     <script src="https://code.highcharts.com/modules/exporting.js"></script>
                     <script src="https://code.highcharts.com/modules/export-data.js"></script>
                     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
                     <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel-container show">
+                                <div class="panel-content poisition-relative">
+                                    <div class="pb-5 pt-3">
+                                        <div class="row">
+                                            <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
+                                                <div class="d-inline-flex flex-column justify-content-center mr-3">
+                                                    <span class="fw-300 fs-xs d-block">
+                                                        <label class="fs-sm mb-0">Total Ball Manufactured</label>
+                                                    </span>
+                                                    <span class="fw-500 fs-xl d-block color-danger-500 count">
+                                                        38500
+                                                    </span>
+                                                </div>
+                                                <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#cff02b" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
+                                            </div>
+                                            <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
+                                                <div class="d-inline-flex flex-column justify-content-center mr-3">
+                                                    <span class="fw-300 fs-xs d-block">
+                                                        <label class="fs-sm mb-0">Avg. RFT</label>
+                                                    </span>
+                                                    <span class="fw-500 fs-xl d-block color-danger-500 ">
+                                                        <i class="count"> 98.58</i> %
+                                                    </span>
+                                                </div>
+                                                <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#03cafc" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
+                                            </div>
+                                            <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
+                                                <div class="d-inline-flex flex-column justify-content-center mr-3">
+                                                    <span class="fw-300 fs-xs d-block">
+                                                        <label class="fs-sm mb-0">Total Defected Balls</label>
+                                                    </span>
+                                                    <span class="fw-500 fs-xl d-block color-danger-500 count">
+                                                        200
+                                                    </span>
+                                                </div>
+                                                <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#fc0339" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
+                                            </div>
+
+                                            <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
+                                                <div class="d-inline-flex flex-column justify-content-center mr-3">
+                                                    <span class="fw-300 fs-xs d-block">
+                                                        <label class="fs-sm mb-0">Defected Ball Precentage </label>
+                                                    </span>
+                                                    <span class="fw-500 fs-xl d-block color-danger-500">
+                                                        <i class="count"> 1.58</i> %
+                                                    </span>
+                                                </div>
+                                                <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#c203fc" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
+
+                                                <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
+                                                    <div class="d-inline-flex flex-column justify-content-center mr-3">
+                                                        <span class="fw-300 fs-xs d-block">
+                                                            <label class="fs-sm mb-0">Total Checked</label>
+                                                        </span>
+                                                        <span class="fw-500 fs-xl d-block color-danger-500 count">
+                                                            20000
+                                                        </span>
+                                                    </div>
+                                                    <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#fc8c03" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
+                                                </div>
+                                                <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
+                                                    <div class="d-inline-flex flex-column justify-content-center mr-3">
+                                                        <span class="fw-300 fs-xs d-block">
+                                                            <label class="fs-sm mb-0">Total Pass Ball</label>
+                                                        </span>
+                                                        <span class="fw-500 fs-xl d-block color-danger-500 count">
+                                                            15000
+                                                        </span>
+                                                    </div>
+                                                    <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#03fce3" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
+                                                </div>
+                                                <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
+                                                    <div class="d-inline-flex flex-column justify-content-center mr-3">
+                                                        <span class="fw-300 fs-xs d-block">
+                                                            <label class="fs-sm mb-0">Total Fail Ball</label>
+                                                        </span>
+                                                        <span class="fw-500 fs-xl d-block color-danger-500 count">
+                                                            5000
+                                                        </span>
+                                                    </div>
+                                                    <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#fe6bb0" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
                         <div class="col-md-8">
 
                             <div id="panel-3" class="panel">
@@ -205,6 +298,7 @@ if (!$this->session->has_userdata('user_id')) {
                                         <!-- <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button> -->
                                     </div>
                                 </div>
+
                                 <div class="panel-container show">
                                     <div class="panel-content">
                                         <div class="row">
@@ -233,10 +327,9 @@ if (!$this->session->has_userdata('user_id')) {
 
 
                                                             <p style="display:inline;bolder;font-size:small;">B34001: </p><br>
-                                                            <center>
-                                                                <div class="counting2Fail" data-count="100" style="color:white;display: inline;font-weight:bolder;font-size:large"></div>
-                                                            </center>
-                                                            <br>
+
+                                                            <p style="display: inline;font-weight:bolder;font-size:large;"> Today Produced: <i class="count"> 200 </i></p><br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large;"> yesterday Produced: <i class="count"> 200 </i></p><br>
                                                             <p style="display: inline;font-weight:bolder;font-size:large;">Quality Dashbaord</p><br>
 
                                                             <p style="display:inline;bolder;font-size:small;">Avg RFT %: </p><br>
@@ -259,8 +352,8 @@ if (!$this->session->has_userdata('user_id')) {
 
 
                                                             <p style="display:inline;bolder;font-size:small;">B34002: </p><br>
-                                                            <div class="counting2Fail" data-count="100" style="color:white;display: inline;font-weight:bolder;font-size:large"></div>
-                                                            <br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large;"> Today Produced: <i class="count"> 200 </i></p><br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large;"> yesterday Produced: <i class="count"> 200 </i></p><br>
                                                             <p style="display: inline;font-weight:bolder;font-size:large;">Quality Dashbaord</p><br>
                                                             <p style="display:inline;bolder;font-size:small;">Avg RFT %: </p><br>
                                                             <p style="display:inline;bolder;font-size:small;">Yesterday RFT %: </p><br>
@@ -277,15 +370,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <div class="col-sm-12 col-xl-12">
                                                     <div style="background-color: #1FD3E6;" class="p-3 rounded overflow-hidden position-relative text-white mb-g ">
                                                         <div class="">
-                                                            <p style="display: inline;font-weight:bolder;font-size:large">Finale Ball Ball:</p> <br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large">Finale Ball:</p> <br>
                                                             <!-- <div class="counting2Fail" data-count="<?php echo count($TM) >= 1 ? $TM[0]['Fail'] : 0 ?>" style="color:white;display: inline;font-weight:bolder;font-size:large"></div> -->
 
 
                                                             <p style="display:inline;bolder;font-size:small;">B34003: </p><br>
-                                                            <center>
-                                                                <div class="counting2Fail" data-count="100" style="color:white;display: inline;font-weight:bolder;font-size:large"></div>
-                                                            </center>
-                                                            <br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large;"> Today Produced: <i class="count"> 200 </i></p><br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large;"> yesterday Produced: <i class="count"> 200 </i></p><br>
                                                             <p style="display: inline;font-weight:bolder;font-size:large;">Quality Dashbaord</p><br>
                                                             <p style="display:inline;bolder;font-size:small;">Avg RFT %: </p><br>
                                                             <p style="display:inline;bolder;font-size:small;">Yesterday RFT %: </p><br>
@@ -302,15 +393,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <div class="col-sm-12 col-xl-12">
                                                     <div style="background-color: #21AD77;" class="p-3  rounded overflow-hidden position-relative text-white mb-g ">
                                                         <div class="">
-                                                            <p style="display: inline;font-weight:bolder;font-size:large">Urban Ball Ball:</p> <br>
-                                                            <!-- <div class="counting2Fail" data-count="<?php echo count($TM) >= 1 ? $TM[0]['Fail'] : 0 ?>" style="color:white;display: inline;font-weight:bolder;font-size:large"></div> -->
-
+                                                            <p style="display: inline;font-weight:bolder;font-size:large">Urban Ball:</p> <br>
 
                                                             <p style="display:inline;bolder;font-size:small;">B34004: </p><br>
-                                                            <center>
-                                                                <div class="counting2Fail" data-count="100" style="color:white;display: inline;font-weight:bolder;font-size:large"></div>
-                                                            </center>
-                                                            <br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large;"> Today Produced: <i class="count"> 200 </i></p><br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large;"> yesterday Produced: <i class="count"> 200 </i></p><br>
                                                             <p style="display: inline;font-weight:bolder;font-size:large;">Quality Dashbaord</p><br>
                                                             <p style="display:inline;bolder;font-size:small;">Avg RFT %: </p><br>
                                                             <p style="display:inline;bolder;font-size:small;">Yesterday RFT %: </p><br>
@@ -328,14 +415,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div style="background-color: #47BC70;" class="p-3 rounded overflow-hidden position-relative text-white mb-g ">
                                                         <div class="">
                                                             <p style="display: inline;font-weight:bolder;font-size:large">Machine Stitch Ball:</p> <br>
-                                                            <!-- <div class="counting2Fail" data-count="<?php echo count($TM) >= 1 ? $TM[0]['Fail'] : 0 ?>" style="color:white;display: inline;font-weight:bolder;font-size:large"></div> -->
 
 
                                                             <p style="display:inline;bolder;font-size:small;">B34005: </p><br>
-                                                            <center>
-                                                                <div class="counting2Fail" data-count="100" style="color:white;display: inline;font-weight:bolder;font-size:large"></div>
-                                                            </center>
-                                                            <br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large;"> Today Produced: <i class="count"> 200 </i></p><br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large;"> yesterday Produced: <i class="count"> 200 </i></p><br>
                                                             <p style="display: inline;font-weight:bolder;font-size:large;">Quality Dashbaord</p><br>
                                                             <p style="display:inline;bolder;font-size:small;">Avg RFT %: </p><br>
                                                             <p style="display:inline;bolder;font-size:small;">Yesterday RFT %: </p><br>
@@ -357,10 +441,8 @@ if (!$this->session->has_userdata('user_id')) {
 
 
                                                             <p style="display:inline;bolder;font-size:small;">B34006: </p><br>
-                                                            <center>
-                                                                <div class="counting2Fail" data-count="100" style="color:white;display: inline;font-weight:bolder;font-size:large"></div>
-                                                            </center>
-                                                            <br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large;"> Today Produced: <i class="count"> 200 </i></p><br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large;"> yesterday Produced: <i class="count"> 200 </i></p><br>
                                                             <p style="display: inline;font-weight:bolder;font-size:large;">Quality Dashbaord</p><br>
                                                             <p style="display:inline;bolder;font-size:small;">Avg RFT %: </p><br>
                                                             <p style="display:inline;bolder;font-size:small;">Yesterday RFT %: </p><br>
@@ -377,15 +459,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <div class="col-sm-12 col-xl-12">
                                                     <div style="background-color: #EEB0AF;" class="p-3  rounded overflow-hidden position-relative text-white mb-g ">
                                                         <div class="">
-                                                            <p style="display: inline;font-weight:bolder;font-size:large">Laminated Foot Ball:</p> <br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large">Laminated Ball:</p> <br>
                                                             <!-- <div class="counting2Fail" data-count="<?php echo count($TM) >= 1 ? $TM[0]['Fail'] : 0 ?>" style="color:white;display: inline;font-weight:bolder;font-size:large"></div> -->
 
 
                                                             <p style="display:inline;bolder;font-size:small;">B34007: </p><br>
-
-                                                            <div class="counting2Fail" data-count="100" style="color:white;display: inline;font-weight:bolder;font-size:large">100</div>
-
-                                                            <br>
+         <p style="display: inline;font-weight:bolder;font-size:large;"> Today Produced: <i class="count"> 200 </i></p><br>
+                                                            <p style="display: inline;font-weight:bolder;font-size:large;"> yesterday Produced: <i class="count"> 200 </i></p><br>
                                                             <p style="display: inline;font-weight:bolder;font-size:large;">Quality Dashbaord</p><br>
                                                             <p style="display:inline;bolder:font-size:small;">Avg RFT %: </p><br>
                                                             <p style="display:inline;bolder:font-size:small;">Yesterday RFT %: </p><br>
@@ -500,11 +580,19 @@ if (!$this->session->has_userdata('user_id')) {
     <!-- c3 charts : MIT license -->
     <script src="<?php echo base_url(); ?>/assets/js/statistics/c3/c3.js"></script>
     <script src="<?php echo base_url(); ?>/assets/js/statistics/demo-data/demo-c3.js"></script>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
     <script>
+        $('.count').each(function() {
+            $(this).prop('Counter', 0).animate({
+                Counter: $(this).text()
+            }, {
+                duration: 4000,
+                easing: 'swing',
+                step: function(now) {
+                    $(this).text(Math.ceil(now));
+                }
+            });
+        });
         Highcharts.chart('container1', {
 
             title: {
