@@ -43,6 +43,26 @@ if (!$this->session->has_userdata('user_id')) {
                             flex: 1 1 80px;
                         }
 
+                        .highcharts-figurerft .chart-containerrft {
+                            width: 900px;
+                            height: 2500px;
+                            /* display: flex; */
+                        }
+
+                        .highcharts-figurerft {
+                            height: 450px;
+                            display: flex;
+                            flex-direction: column;
+                            flex-wrap: wrap;
+                        }
+
+                        .highcharts-figure1 {
+                            height: 250px;
+                            display: flex;
+                            flex-direction: column;
+                            flex-wrap: wrap;
+                        }
+
                         .highcharts-figure1 .chart-container1 {
                             width: 300px;
                             height: 50px;
@@ -120,6 +140,8 @@ if (!$this->session->has_userdata('user_id')) {
                     <?php
 
                     $data_points1 = [];
+                    $data_pointsRFT = [];
+                    $data_pointsFail = [];
                     $b34001 = [];
                     $b34002 = [];
                     $b34003 = [];
@@ -127,6 +149,13 @@ if (!$this->session->has_userdata('user_id')) {
                     $b34005 = [];
                     $b34006 = [];
                     $b34007 = [];
+                    $b34001RFT = [];
+                    $b34002RFT = [];
+                    $b34003RFT = [];
+                    $b34004RFT = [];
+                    $b34005RFT = [];
+                    $b34006RFT = [];
+                    $b34007RFT = [];
                     $b34001Fail = [];
                     $b34002Fail = [];
                     $b34003Fail = [];
@@ -150,8 +179,23 @@ if (!$this->session->has_userdata('user_id')) {
                             'y' => $key['pass'],
                             'drilldown' => $key['FactoryCode'],
                         ];
-                        array_push($data_points1, $point1);
+                        $Check = $key['TotalChecked'];
+                        $PassQty = $key['pass'];
+                        $RFT = ($PassQty / $Check) * 100;
+                        $MainRFT = [
 
+                            'name' => $key['FactoryCode'],
+                            'y' => $RFT,
+                            'drilldown' => $key['FactoryCode'],
+                        ];
+                        $pointFail = [
+                            'name' => $key['FactoryCode'],
+                            'y' => $key['Fail'],
+                            'drilldown' => $key['FactoryCode'],
+                        ];
+                        array_push($data_points1, $point1);
+                        array_push($data_pointsRFT, $MainRFT);
+                        array_push($data_pointsFail, $pointFail);
                         $B34001target = Round($targets[0]['Target01'], 2);
                         $B34002target = Round($targets[0]['Target02'], 2);
                         $B34003target = Round($targets[0]['Target03'], 2);
@@ -164,36 +208,64 @@ if (!$this->session->has_userdata('user_id')) {
                             array_push($b34001, $key['pass']);
                             array_push($b34001Check, $key['TotalChecked']);
                             array_push($b34001Fail, $key['Fail']);
+                            $Check = $key['TotalChecked'];
+                            $PassQty = $key['pass'];
+                            $RFT = ($PassQty / $Check) * 100;
+                            array_push($b34001RFT, $key['RFT']);
                         }
                         if ($key['FactoryCode'] == 'B34002') {
                             array_push($b34002, $key['pass']);
                             array_push($b34002Check, $key['TotalChecked']);
                             array_push($b34002Fail, $key['Fail']);
+                            $Check = $key['TotalChecked'];
+                            $PassQty = $key['pass'];
+                            $RFT = ($PassQty / $Check) * 100;
+                            array_push($b34002RFT, $key['RFT']);
                         }
                         if ($key['FactoryCode'] == 'B34003') {
                             array_push($b34003, $key['pass']);
                             array_push($b34003Check, $key['TotalChecked']);
                             array_push($b34003Fail, $key['Fail']);
+                            $Check = $key['TotalChecked'];
+                            $PassQty = $key['pass'];
+                            $RFT = ($PassQty / $Check) * 100;
+                            array_push($b34003RFT, $RFT);
                         }
                         if ($key['FactoryCode'] == 'B34004') {
                             array_push($b34004, $key['pass']);
                             array_push($b34004Check, $key['TotalChecked']);
                             array_push($b34004Fail, $key['Fail']);
+                            $Check = $key['TotalChecked'];
+                            $PassQty = $key['pass'];
+                            $RFT = ($PassQty / $Check) * 100;
+                            array_push($b34004RFT, $RFT);
                         }
                         if ($key['FactoryCode'] == 'B34005') {
                             array_push($b34005, $key['pass']);
                             array_push($b34005Check, $key['TotalChecked']);
                             array_push($b34005Fail, $key['Fail']);
+                            $Check = $key['TotalChecked'];
+                            $PassQty = $key['pass'];
+                            $RFT = ($PassQty / $Check) * 100;
+                            array_push($b34005RFT, $RFT);
                         }
                         if ($key['FactoryCode'] == 'B34006') {
                             array_push($b34006, $key['pass']);
                             array_push($b34006Check, $key['TotalChecked']);
                             array_push($b34006Fail, $key['Fail']);
+                            $Check = $key['TotalChecked'];
+                            $PassQty = $key['pass'];
+                            $RFT = ($PassQty / $Check) * 100;
+                            array_push($b34006RFT, $RFT);
                         }
                         if ($key['FactoryCode'] == 'B34007') {
                             array_push($b34007, $key['pass']);
                             array_push($b34007Check, $key['TotalChecked']);
                             array_push($b34007Fail, $key['Fail']);
+                            $Check = $key['TotalChecked'];
+                            $PassQty = $key['pass'];
+                            $RFT = ($PassQty / $Check) * 100;
+                            array_push($b34007RFT, $RFT);
                         }
                         // $Achieved1 = Round($FactoryWiseProduction[0]['pass'], 2);
                         // $Achieved2 = Round($targets[0]['Target02'], 2);
@@ -221,7 +293,14 @@ if (!$this->session->has_userdata('user_id')) {
                     $SumCheck06 = $b34006Check ? $b34006Check[0] : 0;
                     $SumCheck07 = $b34007Check ? $b34007Check[0] : 0;
                     $Checked = $SumCheck01 + $SumCheck02 + $SumCheck03 + $SumCheck04 + $SumCheck05 + $SumCheck06 + $SumCheck07;
-
+                    $b34001RFTMain = $b34001RFT ? $b34001RFT[0] : 0;
+                    $b34002RFTMain = $b34002RFT ? $b34002RFT[0] : 0;
+                    $b34003RFTMain = $b34003RFT ? $b34003RFT[0] : 0;
+                    $b34004RFTMain = $b34004RFT ? $b34004RFT[0] : 0;
+                    $b34005RFTMain = $b34005RFT ? $b34005RFT[0] : 0;
+                    $b34006RFTMain = $b34006RFT ? $b34006RFT[0] : 0;
+                    $b34007RFTMain = $b34007RFT ? $b34007RFT[0] : 0;
+                    $ProducedRFT = ($b34001RFTMain + $b34002RFTMain + $b34003RFTMain + $b34004RFTMain + $b34005RFTMain + $b34006RFTMain + $b34007RFTMain) / 4;
                     // $SumFail01 = $b34001Fail ? $b34001Fail[0] : 0;
                     // $SumFail02 = $b34002Fail ? $b34002Fail[0] : 0;
                     // $SumFail03 = $b34003Fail ? $b34003Fail[0] : 0;
@@ -243,6 +322,21 @@ if (!$this->session->has_userdata('user_id')) {
                     $Finalprenentage = 100 - $Precentage;
                     $B34001data_points2 = [];
                     $graph001 = [];
+                    $graph001RFT = [];
+                    $B34001ArtRFT = [];
+                    $B34002ArtRFT = [];
+                    $B34003ArtRFT = [];
+                    $B34004ArtRFT = [];
+                    $B34005ArtRFT = [];
+                    $B34006ArtRFT = [];
+                    $B34007ArtRFT = [];
+    $B34001ArtFail = [];
+                    $B34002ArtFail = [];
+                    $B34003ArtFail = [];
+                    $B34004ArtFail = [];
+                    $B34005ArtFail = [];
+                    $B34006ArtFail = [];
+                    $B34007ArtFail = [];
                     foreach ($CodeB34001 as $key) {
 
                         $pointB43001 = [
@@ -258,7 +352,23 @@ if (!$this->session->has_userdata('user_id')) {
                         //array_push($B34001data_points2, $pointB43001);
 
                         array_push($graph001, $Data001);
-                        //array_push($graph001, $Data001);
+
+
+                        $Check = $key['TotalChecked'];
+                        $PassQty = $key['pass'];
+                        $RFT001 = ($PassQty / $Check) * 100;
+                        $MainRFT01 = [
+
+                            $key['ArtCode'],
+                            $RFT001,
+                        ];
+                        array_push($B34001ArtRFT, $MainRFT01);
+                        $MainFail01 = [
+
+                            $key['ArtCode'],
+                            $key['Fail'],
+                        ];
+                        array_push($B34001ArtFail, $MainFail01);
                     }
 
 
@@ -270,6 +380,21 @@ if (!$this->session->has_userdata('user_id')) {
                             Round($key['pass']),
                         ];
                         array_push($B34002data_points2, $pointB43002);
+                        $Check = $key['TotalChecked'];
+                        $PassQty = $key['pass'];
+                        $RFT002 = ($PassQty / $Check) * 100;
+                        $MainRFT02 = [
+
+                            $key['ArtCode'],
+                            $RFT002,
+                        ];
+                        array_push($B34002ArtRFT, $MainRFT02);
+                        $MainFail02 = [
+
+                            $key['ArtCode'],
+                            $key['Fail'],
+                        ];
+                        array_push($B34002ArtFail, $MainFail02);
                     }
                     $B34003data_points2 = [];
                     foreach ($CodeB34003 as $key) {
@@ -279,6 +404,21 @@ if (!$this->session->has_userdata('user_id')) {
                             Round($key['pass']),
                         ];
                         array_push($B34003data_points2, $pointB43003);
+                        $Check = $key['TotalChecked'];
+                        $PassQty = $key['pass'];
+                        $RFT003 = ($PassQty / $Check) * 100;
+                        $MainRFT03 = [
+
+                            $key['ArtCode'],
+                            $RFT003,
+                        ];
+                        array_push($B34003ArtRFT, $MainRFT03);
+                        $MainFail03 = [
+
+                            $key['ArtCode'],
+                            $key['Fail'],
+                        ];
+                        array_push($B34003ArtFail, $MainFail03);
                     }
                     $B34004data_points2 = [];
                     foreach ($CodeB34004 as $key) {
@@ -288,6 +428,22 @@ if (!$this->session->has_userdata('user_id')) {
                             Round($key['pass']),
                         ];
                         array_push($B34007data_points4, $pointB43004);
+                        
+                        $Check = $key['TotalChecked'];
+                        $PassQty = $key['pass'];
+                        $RFT004 = ($PassQty / $Check) * 100;
+                        $MainRFT04 = [
+
+                            $key['ArtCode'],
+                            $RFT004,
+                        ];
+                        array_push($B34004ArtRFT, $MainRFT04);
+                        $MainFail04 = [
+
+                            $key['ArtCode'],
+                            $key['Fail'],
+                        ];
+                        array_push($B34004ArtFail, $MainFail04);
                     }
                     $B34005data_points2 = [];
                     foreach ($CodeB34005 as $key) {
@@ -297,6 +453,21 @@ if (!$this->session->has_userdata('user_id')) {
                             Round($key['Pass']),
                         ];
                         array_push($B34005data_points2, $pointB43005);
+                        $Check = $key['TotalChecked'];
+                        $PassQty = $key['Pass'];
+                        $RFT005 = ($PassQty / $Check) * 100;
+                        $MainRFT05 = [
+
+                            $key['ArtCode'],
+                            $RFT005,
+                        ];
+                        array_push($B34005ArtRFT, $MainRFT05);
+                        $MainFail05 = [
+
+                            $key['ArtCode'],
+                            $key['Fail'],
+                        ];
+                        array_push($B34005ArtFail, $MainFail05);
                     }
                     $B34006data_points2 = [];
                     foreach ($CodeB34006 as $key) {
@@ -306,6 +477,21 @@ if (!$this->session->has_userdata('user_id')) {
                             Round($key['Pass']),
                         ];
                         array_push($B34006data_points2, $pointB43006);
+                        $Check = $key['TotalChecked'];
+                        $PassQty = $key['Pass'];
+                        $RFT006 = ($PassQty / $Check) * 100;
+                        $MainRFT06 = [
+
+                            $key['ArtCode'],
+                            $RFT006,
+                        ];
+                        array_push($B34006ArtRFT, $MainRFT06);
+                        $MainFail06 = [
+
+                            $key['ArtCode'],
+                            $key['Fail'],
+                        ];
+                        array_push($B34006ArtFail, $MainFail06);
                     }
 
                     $B34007data_points2 = [];
@@ -316,6 +502,21 @@ if (!$this->session->has_userdata('user_id')) {
                             Round($key['TotalPass']),
                         ];
                         array_push($B34007data_points2, $pointB43007);
+                        $Check = $key['TotalChecked'];
+                        $PassQty = $key['TotalPass'];
+                        $RFT007 = ($PassQty / $Check) * 100;
+                        $MainRFT07 = [
+
+                            $key['ArtCode'],
+                            $RFT007,
+                        ];
+                        array_push($B34007ArtRFT, $MainRFT07);
+                        $MainFail07 = [
+
+                            $key['ArtCode'],
+                        $key['Fail'],
+                        ];
+                        array_push($B34007ArtFail, $MainFail07);
                     }
                     ?>
                     <div class="row">
@@ -467,24 +668,25 @@ if (!$this->session->has_userdata('user_id')) {
                                             </center>
                                             <br>
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
                                                     <div id="AllPrd"></div>
                                                 </div>
 
-                                            </div>
-                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div id="msprd"></div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div id="ambprd"></div>
+                                                </div>
+
                                                 <div class="col-md-4">
                                                     <div id="hsprd"></div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div id="tmprd"></div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div id="msprd"></div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div id="ambprd"></div>
-                                                </div>
+
+
                                                 <div class="col-md-4">
                                                     <div id="lfbprd"></div>
                                                 </div>
@@ -496,10 +698,13 @@ if (!$this->session->has_userdata('user_id')) {
 
                                         <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
                                                     <div id="AllPrdrft"></div>
                                                 </div>
+                                                <figure class="highcharts-figurerft">
+                                                    <div id="container-speedrft" class="chart-containerrft"></div>
 
+                                                </figure>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-4">
@@ -709,6 +914,34 @@ if (!$this->session->has_userdata('user_id')) {
                 }]
 
             }));
+            var chartSpeed = Highcharts.chart('container-speedrft', Highcharts.merge(gaugeOptions, {
+                yAxis: {
+                    min: 0,
+                    max: 100,
+                    title: {
+                        text: 'Over All RFT'
+                    }
+                },
+
+                credits: {
+                    enabled: false
+                },
+
+                series: [{
+                    name: 'Over All RFT',
+                    data: [<?php echo Round($ProducedRFT, 2) ?>],
+                    dataLabels: {
+                        format: '<div style="text-align:center">' +
+                            '<span style="font-size:25px">{y}</span><br/>' +
+                            '<span style="font-size:12px;opacity:5"> Over All RFT %</span>' +
+                            '</div>'
+                    },
+                    tooltip: {
+                        valueSuffix: ' km/h'
+                    }
+                }]
+
+            }));
             // The speed gauge
 
             // The speed gauge
@@ -755,7 +988,7 @@ if (!$this->session->has_userdata('user_id')) {
                 },
 
                 series: [{
-                    name: 'Finale Balls',
+                    name: 'Urban Balls',
                     data: [<?php echo $b34003 ? $b34003[0] : 0 ?>],
                     dataLabels: {
                         format: '<div style="text-align:center">' +
@@ -774,7 +1007,7 @@ if (!$this->session->has_userdata('user_id')) {
                     min: 0,
                     max: <?php echo $B34004target; ?>,
                     title: {
-                        text: 'urban Balls'
+                        text: 'Finale Balls'
                     }
                 },
 
@@ -783,7 +1016,7 @@ if (!$this->session->has_userdata('user_id')) {
                 },
 
                 series: [{
-                    name: 'Competition Balls',
+                    name: 'Finale Balls',
                     data: [<?php echo $b34004 ? $b34004[0] : 0 ?>],
                     dataLabels: {
                         format: '<div style="text-align:center">' +
@@ -1058,12 +1291,34 @@ if (!$this->session->has_userdata('user_id')) {
                 }]
 
             }));
+            $('.count').each(function() {
+                $(this).prop('Counter', 0).animate({
+                    Counter: $(this).text()
+                }, {
+                    duration: 4000,
+                    easing: 'swing',
+                    step: function(now) {
+                        $(this).text(Math.ceil(now));
+                    }
+                });
+            });
         </script>
+        <script src="<?php echo base_url(); ?>/assets/js/statistics/sparkline/sparkline.bundle.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
+        <!-- dependency for c3 charts : this dependency is a BSD license with clause 3 -->
+        <script src="<?php echo base_url(); ?>/assets/s/statistics/d3/d3.js"></script>
+        <!-- c3 charts : MIT license -->
+        <script src="<?php echo base_url(); ?>/assets/js/statistics/c3/c3.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/js/statistics/demo-data/demo-c3.js"></script>
         <?php
 
         $TMProductiongraph = [];
         //print_r($CodeB34001);
-
+        $TMRFTFinal = [];
+        $TMFinal = [];
+        $MSRFTFinal = [];
+        $MSFinal = [];
         foreach ($TmProduction as $key) {
 
             $Data002 = [
@@ -1073,23 +1328,72 @@ if (!$this->session->has_userdata('user_id')) {
             //array_push($B34001data_points2, $pointB43001);
 
             array_push($TMProductiongraph, $Data002);
+            $Check = $key['TotalChecked'];
+            $PassQty = $key['pass'];
+            $FailQty = $key['Fail'];
+            $TMRFT = ($PassQty / $Check) * 100;
+            $MainTMRFT = [
+
+                $key['FactoryCode'],
+                Round($TMRFT, 2),
+            ];
+            array_push($TMRFTFinal, $MainTMRFT);
+
+            $MainTMFail = [
+                $key['FactoryCode'],
+                $FailQty,
+            ];
+            array_push($TMFinal, $MainTMFail);
         }
         $MSProductiongraph = [];
-        //print_r($CodeB34001);
-
         foreach ($MSProd  as $key) {
-
             $Data005 = [
-                $key['LineName'],
+                //$key['LineName'],
                 $key['Pass'],
             ];
-            //array_push($B34001data_points2, $pointB43001);
-
             array_push($MSProductiongraph, $Data005);
+        }
+        $MSLines = [];
+        foreach ($MSProd  as $key) {
+
+            $LinesData = [
+                $key['LineName'],
+                //$key['Pass'],
+            ];
+
+            array_push($MSLines, $LinesData);
+            $Check = $key['TotalChecked'];
+            $PassQty = $key['Pass'];
+            $TMRFT = ($PassQty / $Check) * 100;
+            $MainMSRFT = [
+
+                $key['LineName'],
+                Round($TMRFT, 2),
+
+            ];
+            array_push($MSRFTFinal, $MainMSRFT);
+            $MainMSFail = [
+
+                $key['LineName'],
+                $key['Fail'],
+
+            ];
+            array_push($MSFinal, $MainMSFail);
+        }
+        $MSLinesFail = [];
+        foreach ($MSProd  as $key) {
+
+            $LinesDataFail = [
+                // $key['LineName'],
+                $key['Fail'],
+            ];
+
+            array_push($MSLinesFail, $LinesDataFail);
         }
         $AMbProductiongraph = [];
         //print_r($CodeB34001);
-
+        $AMBRFTFinal = [];
+    $AMBFinal = [];
         foreach ($AMBproduction  as $key) {
 
             $Data006 = [
@@ -1099,6 +1403,24 @@ if (!$this->session->has_userdata('user_id')) {
             //array_push($B34001data_points2, $pointB43001);
 
             array_push($AMbProductiongraph, $Data006);
+            $Check = $key['TotalChecked'];
+            $PassQty = $key['Pass'];
+            $AMBRFT = ($PassQty / $Check) * 100;
+            $MainAMBRFT = [
+
+                $key['LineName'],
+                Round($AMBRFT, 2),
+
+            ];
+            array_push($AMBRFTFinal, $MainAMBRFT);
+            $MainAMBFail = [
+
+                $key['LineName'],
+                $key['Fail'],
+
+            ];
+            array_push($AMBFinal, $MainAMBFail);
+            
         }
 
         ?>
@@ -1164,7 +1486,7 @@ if (!$this->session->has_userdata('user_id')) {
                     enabled: false
                 },
                 tooltip: {
-                    pointFormat: 'Population in 2017: <b>{point.y:.1f} Pass Quantity</b>'
+                    pointFormat: 'Total: <b>{point.y:.1f} Pass Quantity</b>'
                 },
                 series: [{
                     name: 'Production',
@@ -1172,41 +1494,85 @@ if (!$this->session->has_userdata('user_id')) {
                     data: <?php echo json_encode($TMProductiongraph, JSON_NUMERIC_CHECK); ?>
                 }]
             });
+
+
             Highcharts.chart('msprd', {
                 chart: {
-                    type: 'column'
+                    zoomType: 'xy'
                 },
                 title: {
-                    text: 'Machine Stitched Balls (B34005)'
+                    text: 'Machine Stitched Hall Production'
                 },
-                xAxis: {
-                    type: 'category',
+                subtitle: {
+                    text: 'Total Output'
+                },
+                xAxis: [{
+                    categories: <?php echo json_encode($MSLines, JSON_NUMERIC_CHECK); ?>,
+
+
+                    crosshair: true
+                }],
+                yAxis: [{ // Primary yAxis
                     labels: {
-                        rotation: -45,
+                        format: '{value}',
                         style: {
-                            fontSize: '13px',
-                            fontFamily: 'Verdana, sans-serif'
+                            color: Highcharts.getOptions().colors[1]
+                        }
+                    },
+                    title: {
+                        text: 'Pass',
+                        style: {
+                            color: Highcharts.getOptions().colors[1]
                         }
                     }
-                },
-                yAxis: {
-                    min: 0,
+                }, { // Secondary yAxis
                     title: {
-                        text: 'Total Production'
-                    }
+                        text: 'Fail ',
+                        style: {
+                            color: 'red'
+                        }
+                    },
+                    labels: {
+                        format: '{value} ',
+                        style: {
+                            color: Highcharts.getOptions().colors[0]
+                        }
+                    },
+                    opposite: true
+                }],
+                tooltip: {
+                    shared: true
                 },
                 legend: {
-                    enabled: false
-                },
-                tooltip: {
-                    pointFormat: 'Population in 2017: <b>{point.y:.1f} Pass Quantity</b>'
+                    layout: 'vertical',
+                    align: 'left',
+                    x: 120,
+                    verticalAlign: 'top',
+                    y: 100,
+                    floating: true,
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                        'rgba(255,255,255,0.25)'
                 },
                 series: [{
-                    name: 'Production',
+                    name: 'Pass Quantity',
+                    type: 'column',
                     colorByPoint: true,
-                    data: <?php echo json_encode($MSProductiongraph, JSON_NUMERIC_CHECK); ?>
+                    yAxis: 1,
+                    data: <?php echo json_encode($MSProductiongraph, JSON_NUMERIC_CHECK); ?>,
+                    // tooltip: {
+                    //     valueSuffix: ''
+                    // }
+
+                }, {
+                    name: 'Fail Quantity',
+                    type: 'spline',
+                    data: <?php echo json_encode($MSLinesFail, JSON_NUMERIC_CHECK); ?>,
+                    // tooltip: {
+                    //     valueSuffix: ''
+                    // }
                 }]
             });
+
             Highcharts.chart('ambprd', {
                 chart: {
                     type: 'column'
@@ -1234,7 +1600,7 @@ if (!$this->session->has_userdata('user_id')) {
                     enabled: false
                 },
                 tooltip: {
-                    pointFormat: 'Population in 2017: <b>{point.y:.1f} Pass Quantity</b>'
+                    pointFormat: 'Total: <b>{point.y:.1f} Pass Quantity</b>'
                 },
                 series: [{
                     name: 'Production',
@@ -1262,19 +1628,19 @@ if (!$this->session->has_userdata('user_id')) {
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Total RFT'
+                        text: 'Total Production'
                     }
                 },
                 legend: {
                     enabled: false
                 },
                 tooltip: {
-                    pointFormat: 'Population in 2017: <b>{point.y:.1f} Pass Quantity</b>'
+                    pointFormat: 'Total: <b>{point.y:.1f} Pass Quantity</b>'
                 },
                 series: [{
-                    name: 'RFT',
+                    name: 'Production',
                     colorByPoint: true,
-                    
+
                     data: <?php echo json_encode($B34007data_points2, JSON_NUMERIC_CHECK); ?>
                 }]
             });
@@ -1386,6 +1752,114 @@ if (!$this->session->has_userdata('user_id')) {
                     ]
                 }
             });
+            Highcharts.chart('AllPrdrft', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Today RFT'
+                },
+
+                accessibility: {
+                    announceNewData: {
+                        enabled: true
+                    }
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'RFT '
+                    }
+
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.1f} %'
+                        }
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: % <br/>'
+                },
+
+                series: [{
+                    name: "Production",
+                    colorByPoint: true,
+                    data: <?php echo json_encode($data_pointsRFT, JSON_NUMERIC_CHECK); ?>,
+
+                }],
+                drilldown: {
+                    series: [{
+                            name: "B34001",
+                            id: "B34001",
+                            data: <?php echo json_encode(
+                                        $B34001ArtRFT,
+                                        JSON_NUMERIC_CHECK
+                                    ); ?>,
+                        },
+                        {
+                            name: "B34002",
+                            id: "B34002",
+                            data: <?php echo json_encode(
+                                        $B34002ArtRFT,
+                                        JSON_NUMERIC_CHECK
+                                    ); ?>,
+                        },
+                        {
+                            name: "B34003",
+                            id: "B34003",
+                            data: <?php echo json_encode(
+                                        $B34003ArtRFT,
+                                        JSON_NUMERIC_CHECK
+                                    ); ?>,
+                        },
+                        {
+                            name: "B34004",
+                            id: "B34004",
+                            data: <?php echo json_encode(
+                                        $B34004ArtRFT,
+                                        JSON_NUMERIC_CHECK
+                                    ); ?>,
+                        },
+                        {
+                            name: "B34005",
+                            id: "B34005",
+                            data: <?php echo json_encode(
+                                        $B34005ArtRFT,
+                                        JSON_NUMERIC_CHECK
+                                    ); ?>,
+                        },
+                        {
+                            name: "B34006",
+                            id: "B34006",
+                            data: <?php echo json_encode(
+                                        $B34006ArtRFT,
+                                        JSON_NUMERIC_CHECK
+                                    ); ?>,
+                        },
+                        {
+                            name: "B34007",
+                            id: "B34007",
+                            data: <?php echo json_encode(
+                                        $B34007ArtRFT,
+                                        JSON_NUMERIC_CHECK
+                                    ); ?>,
+
+                        }
+                    ]
+                }
+            });
+
 
             Highcharts.chart('hsprdrft', {
                 chart: {
@@ -1407,22 +1881,18 @@ if (!$this->session->has_userdata('user_id')) {
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Total RFT'
+                        text: 'Total Production'
                     }
                 },
                 legend: {
                     enabled: false
                 },
                 series: [{
-
-                    name: 'RFT',
+                    name: 'Production',
                     colorByPoint: true,
-                    data: [
-                        ['Shanghai', 24.2],
-                        ['Beijing', 20.8],
-                        ['Karachi', 14.9],
-                        ['Shenzhen', 13.7]
-                    ]
+                    data: <?php echo json_encode($B34001ArtRFT, JSON_NUMERIC_CHECK); ?>
+
+
                 }]
             });
             Highcharts.chart('tmprdrft', {
@@ -1452,60 +1922,86 @@ if (!$this->session->has_userdata('user_id')) {
                     enabled: false
                 },
                 tooltip: {
-                    pointFormat: 'RFT'
+                    pointFormat: 'Total: <b>{point.y:.1f} RFT %</b>'
                 },
                 series: [{
-                    name: 'RFT',
+                    name: 'Production',
                     colorByPoint: true,
-                    data: [
-                        ['Shanghai', 24.2],
-                        ['Beijing', 20.8],
-                        ['Karachi', 14.9],
-                        ['Shenzhen', 13.7]
-                    ]
+                    data: <?php echo json_encode($TMRFTFinal, JSON_NUMERIC_CHECK); ?>
                 }]
             });
+
+
             Highcharts.chart('msprdrft', {
                 chart: {
-                    type: 'column'
+                    zoomType: 'xy'
                 },
                 title: {
-                    text: 'Machine Stitched Balls (B34005)'
+                    text: 'Machine Stitched Hall Production'
                 },
-                xAxis: {
-                    type: 'category',
+                subtitle: {
+                    text: 'Total Output'
+                },
+                xAxis: [{
+                    categories: <?php echo json_encode($MSLines, JSON_NUMERIC_CHECK); ?>,
+
+
+                    crosshair: true
+                }],
+                yAxis: [{ // Primary yAxis
                     labels: {
-                        rotation: -45,
+                        format: '{value} %',
                         style: {
-                            fontSize: '13px',
-                            fontFamily: 'Verdana, sans-serif'
+                            color: Highcharts.getOptions().colors[1]
+                        }
+                    },
+                    title: {
+                        text: 'RFT',
+                        style: {
+                            color: Highcharts.getOptions().colors[1]
                         }
                     }
-                },
-                yAxis: {
-                    min: 0,
+                }, { // Secondary yAxis
                     title: {
-                        text: 'Total RFT'
-                    }
+                        //text: 'Fail ',
+                        // style: {
+                        //     color: Highcharts.getOptions().colors[0]
+                        // }
+                    },
+                    labels: {
+                        format: '{value} ',
+                        style: {
+                            color: Highcharts.getOptions().colors[0]
+                        }
+                    },
+                    opposite: true
+                }],
+                tooltip: {
+                    shared: true
                 },
                 legend: {
-                    enabled: false
-                },
-                tooltip: {
-                    pointFormat: 'RFT'
+                    layout: 'vertical',
+                    align: 'left',
+                    x: 120,
+                    verticalAlign: 'top',
+                    y: 100,
+                    floating: true,
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                        'rgba(255,255,255,0.25)'
                 },
                 series: [{
-                    name: 'RFT',
+                    name: 'Line Wise RFT ',
+                    type: 'column',
                     colorByPoint: true,
-                    data: [
-                        ['Shanghai', 24.2],
-                        ['Beijing', 20.8],
-                        ['Karachi', 14.9],
-                        ['Shenzhen', 13.7],
-                        ['Guangzhou', 13.1]
-                    ]
+                    yAxis: 1,
+                    data: <?php echo json_encode($MSRFTFinal, JSON_NUMERIC_CHECK); ?>,
+                    tooltip: {
+                        valueSuffix: ' %'
+                    }
+
                 }]
             });
+
             Highcharts.chart('ambprdrft', {
                 chart: {
                     type: 'column'
@@ -1533,17 +2029,12 @@ if (!$this->session->has_userdata('user_id')) {
                     enabled: false
                 },
                 tooltip: {
-                    pointFormat: 'RFT'
+                    pointFormat: 'Line wise  <b>{point.y:.1f} %</b>'
                 },
                 series: [{
-                    name: 'RFT',
+                    name: 'Production',
                     colorByPoint: true,
-                    data: [
-                        ['Shanghai', 24.2],
-                        ['Beijing', 20.8],
-                        ['Karachi', 14.9],
-                        ['Shenzhen', 13.7]
-                    ]
+                    data: <?php echo json_encode($AMBRFTFinal, JSON_NUMERIC_CHECK); ?>
                 }]
             });
             Highcharts.chart('lfbprdrft', {
@@ -1573,26 +2064,24 @@ if (!$this->session->has_userdata('user_id')) {
                     enabled: false
                 },
                 tooltip: {
-                    pointFormat: 'Population in 2017: <b>{point.y:.1f} millions</b>'
+                    pointFormat: 'Article Wise: <b>{point.y:.1f}  RFT </b>'
                 },
                 series: [{
-                    name: 'RFT',
+                    name: 'Production',
                     colorByPoint: true,
-                    data: [
-                        ['Shanghai', 24.2],
-                        ['Beijing', 20.8],
-                        ['Karachi', 14.9],
-                        ['Shenzhen', 13.7]
-                    ]
+
+                    data: <?php echo json_encode($B34007ArtRFT, JSON_NUMERIC_CHECK); ?>
                 }]
             });
 
-            Highcharts.chart('AllPrdrft', {
+
+
+            Highcharts.chart('AllPrddef', {
                 chart: {
                     type: 'column'
                 },
                 title: {
-                    text: 'Today RFT'
+                    text: 'Today Defects'
                 },
 
                 accessibility: {
@@ -1605,7 +2094,7 @@ if (!$this->session->has_userdata('user_id')) {
                 },
                 yAxis: {
                     title: {
-                        text: 'Total RFT'
+                        text: 'Defects '
                     }
 
                 },
@@ -1617,290 +2106,79 @@ if (!$this->session->has_userdata('user_id')) {
                         borderWidth: 0,
                         dataLabels: {
                             enabled: true,
-                            format: '{point.y:.1f}%'
+                            format: '{point.y:.1f} '
                         }
                     }
                 },
 
                 tooltip: {
-                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+                    headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>:  <br/>'
                 },
 
                 series: [{
-                    name: "RFT",
+                    name: "Defects",
                     colorByPoint: true,
-                    data: [{
-                            name: "Hand Stitch Balls",
-                            y: 62.74,
-                            drilldown: "HS"
-                        },
-                        {
-                            name: "Machine Stitched Balls",
-                            y: 10.57,
-                            drilldown: "MS"
-                        },
-                        {
-                            name: "Competition Balls",
-                            y: 7.23,
-                            drilldown: "CB"
-                        },
-                        {
-                            name: "Urban Balls",
-                            y: 5.58,
-                            drilldown: "UB"
-                        },
-                        {
-                            name: "Finale Balls",
-                            y: 4.02,
-                            drilldown: "FB"
-                        },
-                        {
-                            name: "Air Less Mini Balls",
-                            y: 1.92,
-                            drilldown: "AMB"
-                        },
-                        {
-                            name: "Laminated Balls",
-                            y: 7.62,
-                            drilldown: "LFB"
-                        }
-                    ]
+                    data: <?php echo json_encode($data_pointsFail, JSON_NUMERIC_CHECK); ?>,
+
                 }],
                 drilldown: {
                     series: [{
-                            name: "HS",
-                            id: "HS",
-                            data: [
-                                [
-                                    "v65.0",
-                                    0.1
-                                ],
-                                [
-                                    "v64.0",
-                                    1.3
-                                ],
-                                [
-                                    "v63.0",
-                                    53.02
-                                ],
-                                [
-                                    "v62.0",
-                                    1.4
-                                ],
-                                [
-                                    "v61.0",
-                                    0.88
-                                ],
-                                [
-                                    "v60.0",
-                                    0.56
-                                ],
-                                [
-                                    "v59.0",
-                                    0.45
-                                ],
-                                [
-                                    "v58.0",
-                                    0.49
-                                ],
-                                [
-                                    "v57.0",
-                                    0.32
-                                ],
-                                [
-                                    "v56.0",
-                                    0.29
-                                ],
-                                [
-                                    "v55.0",
-                                    0.79
-                                ],
-                                [
-                                    "v54.0",
-                                    0.18
-                                ],
-                                [
-                                    "v51.0",
-                                    0.13
-                                ],
-                                [
-                                    "v49.0",
-                                    2.16
-                                ],
-                                [
-                                    "v48.0",
-                                    0.13
-                                ],
-                                [
-                                    "v47.0",
-                                    0.11
-                                ],
-                                [
-                                    "v43.0",
-                                    0.17
-                                ],
-                                [
-                                    "v29.0",
-                                    0.26
-                                ]
-                            ]
+                            name: "B34001",
+                            id: "B34001",
+                            data: <?php echo json_encode(
+                                        $B34001ArtFail,
+                                        JSON_NUMERIC_CHECK
+                                    ); ?>,
                         },
                         {
-                            name: "MS",
-                            id: "MS",
-                            data: [
-                                [
-                                    "v58.0",
-                                    1.02
-                                ],
-                                [
-                                    "v57.0",
-                                    7.36
-                                ],
-                                [
-                                    "v56.0",
-                                    0.35
-                                ],
-                                [
-                                    "v55.0",
-                                    0.11
-                                ],
-                                [
-                                    "v54.0",
-                                    0.1
-                                ],
-                                [
-                                    "v52.0",
-                                    0.95
-                                ],
-                                [
-                                    "v51.0",
-                                    0.15
-                                ],
-                                [
-                                    "v50.0",
-                                    0.1
-                                ],
-                                [
-                                    "v48.0",
-                                    0.31
-                                ],
-                                [
-                                    "v47.0",
-                                    0.12
-                                ]
-                            ]
+                            name: "B34002",
+                            id: "B34002",
+                            data: <?php echo json_encode(
+                                        $B34002ArtFail,
+                                        JSON_NUMERIC_CHECK
+                                    ); ?>,
                         },
                         {
-                            name: "CB",
-                            id: "CB",
-                            data: [
-                                [
-                                    "v11.0",
-                                    6.2
-                                ],
-                                [
-                                    "v10.0",
-                                    0.29
-                                ],
-                                [
-                                    "v9.0",
-                                    0.27
-                                ],
-                                [
-                                    "v8.0",
-                                    0.47
-                                ]
-                            ]
+                            name: "B34003",
+                            id: "B34003",
+                            data: <?php echo json_encode(
+                                        $B34003ArtFail,
+                                        JSON_NUMERIC_CHECK
+                                    ); ?>,
                         },
                         {
-                            name: "UB",
-                            id: "UB",
-                            data: [
-                                [
-                                    "v11.0",
-                                    3.39
-                                ],
-                                [
-                                    "v10.1",
-                                    0.96
-                                ],
-                                [
-                                    "v10.0",
-                                    0.36
-                                ],
-                                [
-                                    "v9.1",
-                                    0.54
-                                ],
-                                [
-                                    "v9.0",
-                                    0.13
-                                ],
-                                [
-                                    "v5.1",
-                                    0.2
-                                ]
-                            ]
+                            name: "B34004",
+                            id: "B34004",
+                            data: <?php echo json_encode(
+                                        $B34004ArtFail,
+                                        JSON_NUMERIC_CHECK
+                                    ); ?>,
                         },
                         {
-                            name: "FB",
-                            id: "FB",
-                            data: [
-                                [
-                                    "v16",
-                                    2.6
-                                ],
-                                [
-                                    "v15",
-                                    0.92
-                                ],
-                                [
-                                    "v14",
-                                    0.4
-                                ],
-                                [
-                                    "v13",
-                                    0.1
-                                ]
-                            ]
+                            name: "B34005",
+                            id: "B34005",
+                            data: <?php echo json_encode(
+                                        $B34005ArtFail,
+                                        JSON_NUMERIC_CHECK
+                                    ); ?>,
                         },
                         {
-                            name: "AMB",
-                            id: "AMB",
-                            data: [
-                                [
-                                    "v50.0",
-                                    0.96
-                                ],
-                                [
-                                    "v49.0",
-                                    0.82
-                                ],
-                                [
-                                    "v12.1",
-                                    0.14
-                                ]
-                            ]
+                            name: "B34006",
+                            id: "B34006",
+                            data: <?php echo json_encode(
+                                        $B34006ArtFail,
+                                        JSON_NUMERIC_CHECK
+                                    ); ?>,
                         },
                         {
-                            name: "LFB",
-                            id: "LFB",
-                            data: [
-                                [
-                                    "v50.0",
-                                    0.96
-                                ],
-                                [
-                                    "v49.0",
-                                    0.82
-                                ],
-                                [
-                                    "v12.1",
-                                    0.14
-                                ]
-                            ]
+                            name: "B34007",
+                            id: "B34007",
+                            data: <?php echo json_encode(
+                                        $B34007ArtFail,
+                                        JSON_NUMERIC_CHECK
+                                    ); ?>,
+
                         }
                     ]
                 }
@@ -1927,21 +2205,18 @@ if (!$this->session->has_userdata('user_id')) {
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Total Produced'
+                        text: 'Total Defects'
                     }
                 },
                 legend: {
                     enabled: false
                 },
                 series: [{
-                    name: 'Population',
+                    name: 'Defects',
                     colorByPoint: true,
-                    data: [
-                        ['Shanghai', 24.2],
-                        ['Beijing', 20.8],
-                        ['Karachi', 14.9],
-                        ['Shenzhen', 13.7]
-                    ]
+                    data: <?php echo json_encode($B34001ArtFail, JSON_NUMERIC_CHECK); ?>
+
+
                 }]
             });
             Highcharts.chart('tmprddef', {
@@ -1964,67 +2239,93 @@ if (!$this->session->has_userdata('user_id')) {
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Total Produced'
+                        text: 'Total Defects'
                     }
                 },
                 legend: {
                     enabled: false
                 },
                 tooltip: {
-                    pointFormat: 'Population in 2017: <b>{point.y:.1f} millions</b>'
+                    pointFormat: 'Total Defects: <b>{point.y:.1f} </b>'
                 },
                 series: [{
-                    name: 'Produced',
+                    name: 'Defects',
                     colorByPoint: true,
-                    data: [
-                        ['Shanghai', 24.2],
-                        ['Beijing', 20.8],
-                        ['Karachi', 14.9],
-                        ['Shenzhen', 13.7]
-                    ]
+                    data: <?php echo json_encode($TMFinal, JSON_NUMERIC_CHECK); ?>
                 }]
             });
+
+
             Highcharts.chart('msprddef', {
                 chart: {
-                    type: 'column'
+                    zoomType: 'xy'
                 },
                 title: {
-                    text: 'Machine Stitched Balls (B34005)'
+                    text: 'Machine Stitched Hall Production'
                 },
-                xAxis: {
-                    type: 'category',
+                subtitle: {
+                    text: 'Total Defects'
+                },
+                xAxis: [{
+                    categories: <?php echo json_encode($MSLines, JSON_NUMERIC_CHECK); ?>,
+
+
+                    crosshair: true
+                }],
+                yAxis: [{ // Primary yAxis
                     labels: {
-                        rotation: -45,
+                        format: '{value}',
                         style: {
-                            fontSize: '13px',
-                            fontFamily: 'Verdana, sans-serif'
+                            color: Highcharts.getOptions().colors[1]
+                        }
+                    },
+                    title: {
+                        text: 'Defects',
+                        style: {
+                            color: Highcharts.getOptions().colors[1]
                         }
                     }
-                },
-                yAxis: {
-                    min: 0,
+                }, { // Secondary yAxis
                     title: {
-                        text: 'Total Produced'
-                    }
+                        //text: 'Fail ',
+                        // style: {
+                        //     color: Highcharts.getOptions().colors[0]
+                        // }
+                    },
+                    labels: {
+                        format: '{value} ',
+                        style: {
+                            color: Highcharts.getOptions().colors[0]
+                        }
+                    },
+                    opposite: true
+                }],
+                tooltip: {
+                    shared: true
                 },
                 legend: {
-                    enabled: false
-                },
-                tooltip: {
-                    pointFormat: 'Population in 2017: <b>{point.y:.1f} millions</b>'
+                    layout: 'vertical',
+                    align: 'left',
+                    x: 120,
+                    verticalAlign: 'top',
+                    y: 100,
+                    floating: true,
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                        'rgba(255,255,255,0.25)'
                 },
                 series: [{
-                    name: 'Population',
+                    name: 'Line Wise Defects ',
+                    type: 'column',
                     colorByPoint: true,
-                    data: [
-                        ['Shanghai', 24.2],
-                        ['Beijing', 20.8],
-                        ['Karachi', 14.9],
-                        ['Shenzhen', 13.7],
-                        ['Guangzhou', 13.1]
-                    ]
+                    yAxis: 1,
+                    data: <?php echo json_encode($MSFinal, JSON_NUMERIC_CHECK); ?>,
+                    tooltip: {
+                        valueSuffix: ''
+                    }
+
                 }]
             });
+
             Highcharts.chart('ambprddef', {
                 chart: {
                     type: 'column'
@@ -2045,24 +2346,19 @@ if (!$this->session->has_userdata('user_id')) {
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Total Produced'
+                        text: 'Total Defects'
                     }
                 },
                 legend: {
                     enabled: false
                 },
                 tooltip: {
-                    pointFormat: 'Population in 2017: <b>{point.y:.1f} millions</b>'
+                    pointFormat: 'Line wise Defects <b>{point.y:.1f} </b>'
                 },
                 series: [{
-                    name: 'Population',
+                    name: 'Defects',
                     colorByPoint: true,
-                    data: [
-                        ['Shanghai', 24.2],
-                        ['Beijing', 20.8],
-                        ['Karachi', 14.9],
-                        ['Shenzhen', 13.7]
-                    ]
+                    data: <?php echo json_encode($AMBFinal, JSON_NUMERIC_CHECK); ?>
                 }]
             });
             Highcharts.chart('lfbprddef', {
@@ -2085,344 +2381,21 @@ if (!$this->session->has_userdata('user_id')) {
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Total Produced'
+                        text: 'Total Defects'
                     }
                 },
                 legend: {
                     enabled: false
                 },
                 tooltip: {
-                    pointFormat: 'Population in 2017: <b>{point.y:.1f} millions</b>'
+                    pointFormat: 'Article Wise Defects: <b>{point.y:.1f}   </b>'
                 },
                 series: [{
-                    name: 'Population',
+                    name: 'Defects',
                     colorByPoint: true,
-                    data: [
-                        ['Shanghai', 24.2],
-                        ['Beijing', 20.8],
-                        ['Karachi', 14.9],
-                        ['Shenzhen', 13.7]
-                    ]
+
+                    data: <?php echo json_encode($B34007ArtFail, JSON_NUMERIC_CHECK); ?>
                 }]
-            });
-
-            Highcharts.chart('AllPrddef', {
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: 'Today Production'
-                },
-
-                accessibility: {
-                    announceNewData: {
-                        enabled: true
-                    }
-                },
-                xAxis: {
-                    type: 'category'
-                },
-                yAxis: {
-                    title: {
-                        text: 'Total Produced'
-                    }
-
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    series: {
-                        borderWidth: 0,
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.y:.1f}%'
-                        }
-                    }
-                },
-
-                tooltip: {
-                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-                },
-
-                series: [{
-                    name: "Browsers",
-                    colorByPoint: true,
-                    data: [{
-                            name: "Hand Stitch Balls",
-                            y: 62.74,
-                            drilldown: "HS"
-                        },
-                        {
-                            name: "Machine Stitched Balls",
-                            y: 10.57,
-                            drilldown: "MS"
-                        },
-                        {
-                            name: "Competition Balls",
-                            y: 7.23,
-                            drilldown: "CB"
-                        },
-                        {
-                            name: "Urban Balls",
-                            y: 5.58,
-                            drilldown: "UB"
-                        },
-                        {
-                            name: "Finale Balls",
-                            y: 4.02,
-                            drilldown: "FB"
-                        },
-                        {
-                            name: "Air Less Mini Balls",
-                            y: 1.92,
-                            drilldown: "AMB"
-                        },
-                        {
-                            name: "Laminated Balls",
-                            y: 7.62,
-                            drilldown: "LFB"
-                        }
-                    ]
-                }],
-                drilldown: {
-                    series: [{
-                            name: "HS",
-                            id: "HS",
-                            data: [
-                                [
-                                    "v65.0",
-                                    0.1
-                                ],
-                                [
-                                    "v64.0",
-                                    1.3
-                                ],
-                                [
-                                    "v63.0",
-                                    53.02
-                                ],
-                                [
-                                    "v62.0",
-                                    1.4
-                                ],
-                                [
-                                    "v61.0",
-                                    0.88
-                                ],
-                                [
-                                    "v60.0",
-                                    0.56
-                                ],
-                                [
-                                    "v59.0",
-                                    0.45
-                                ],
-                                [
-                                    "v58.0",
-                                    0.49
-                                ],
-                                [
-                                    "v57.0",
-                                    0.32
-                                ],
-                                [
-                                    "v56.0",
-                                    0.29
-                                ],
-                                [
-                                    "v55.0",
-                                    0.79
-                                ],
-                                [
-                                    "v54.0",
-                                    0.18
-                                ],
-                                [
-                                    "v51.0",
-                                    0.13
-                                ],
-                                [
-                                    "v49.0",
-                                    2.16
-                                ],
-                                [
-                                    "v48.0",
-                                    0.13
-                                ],
-                                [
-                                    "v47.0",
-                                    0.11
-                                ],
-                                [
-                                    "v43.0",
-                                    0.17
-                                ],
-                                [
-                                    "v29.0",
-                                    0.26
-                                ]
-                            ]
-                        },
-                        {
-                            name: "MS",
-                            id: "MS",
-                            data: [
-                                [
-                                    "v58.0",
-                                    1.02
-                                ],
-                                [
-                                    "v57.0",
-                                    7.36
-                                ],
-                                [
-                                    "v56.0",
-                                    0.35
-                                ],
-                                [
-                                    "v55.0",
-                                    0.11
-                                ],
-                                [
-                                    "v54.0",
-                                    0.1
-                                ],
-                                [
-                                    "v52.0",
-                                    0.95
-                                ],
-                                [
-                                    "v51.0",
-                                    0.15
-                                ],
-                                [
-                                    "v50.0",
-                                    0.1
-                                ],
-                                [
-                                    "v48.0",
-                                    0.31
-                                ],
-                                [
-                                    "v47.0",
-                                    0.12
-                                ]
-                            ]
-                        },
-                        {
-                            name: "CB",
-                            id: "CB",
-                            data: [
-                                [
-                                    "v11.0",
-                                    6.2
-                                ],
-                                [
-                                    "v10.0",
-                                    0.29
-                                ],
-                                [
-                                    "v9.0",
-                                    0.27
-                                ],
-                                [
-                                    "v8.0",
-                                    0.47
-                                ]
-                            ]
-                        },
-                        {
-                            name: "UB",
-                            id: "UB",
-                            data: [
-                                [
-                                    "v11.0",
-                                    3.39
-                                ],
-                                [
-                                    "v10.1",
-                                    0.96
-                                ],
-                                [
-                                    "v10.0",
-                                    0.36
-                                ],
-                                [
-                                    "v9.1",
-                                    0.54
-                                ],
-                                [
-                                    "v9.0",
-                                    0.13
-                                ],
-                                [
-                                    "v5.1",
-                                    0.2
-                                ]
-                            ]
-                        },
-                        {
-                            name: "FB",
-                            id: "FB",
-                            data: [
-                                [
-                                    "v16",
-                                    2.6
-                                ],
-                                [
-                                    "v15",
-                                    0.92
-                                ],
-                                [
-                                    "v14",
-                                    0.4
-                                ],
-                                [
-                                    "v13",
-                                    0.1
-                                ]
-                            ]
-                        },
-                        {
-                            name: "AMB",
-                            id: "AMB",
-                            data: [
-                                [
-                                    "v50.0",
-                                    0.96
-                                ],
-                                [
-                                    "v49.0",
-                                    0.82
-                                ],
-                                [
-                                    "v12.1",
-                                    0.14
-                                ]
-                            ]
-                        },
-                        {
-                            name: "LFB",
-                            id: "LFB",
-                            data: [
-                                [
-                                    "v50.0",
-                                    0.96
-                                ],
-                                [
-                                    "v49.0",
-                                    0.82
-                                ],
-                                [
-                                    "v12.1",
-                                    0.14
-                                ]
-                            ]
-                        }
-                    ]
-                }
             });
         </script>
         <script src="<?php echo base_url(); ?>/assets/js//jquery.min.js" type="text/javascript">

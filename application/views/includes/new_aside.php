@@ -42,7 +42,13 @@
                                 <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Dashboard </span>
                             </a>
                         </li>
-
+                        <li>
+                            <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>main/Logout" title="Introduction" data-filter-tags="application intel introduction">
+                                <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Logout </span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li>
