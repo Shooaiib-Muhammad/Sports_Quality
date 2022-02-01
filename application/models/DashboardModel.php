@@ -117,5 +117,14 @@ WHERE        (DateName = CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
 GROUP BY LineName");
         return $result = $query->result_array();
     }
+    public function last5dayProduction()
+    {
+
+        $query = $this->db->query("SELECT        SUM(TotalChecked) AS TotalChecked, SUM(pass) AS pass, SUM(Fail) AS Fail, DateName
+FROM            dbo.view_All_Fctry_production
+GROUP BY DateName
+HAVING        (DateName BETWEEN CONVERT(DATETIME, '2022-01-25 00:00:00', 102) AND CONVERT(DATETIME, '2022-01-31 00:00:00', 102))");
+        return $result = $query->result_array();
+    }
     
 }

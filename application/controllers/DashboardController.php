@@ -29,6 +29,8 @@ class DashboardController extends CI_Controller
 		$data['TmProduction'] = $this->ID->TmProduction($Day, $Month, $Year);
 		$data['MSProd'] = $this->ID->GetMsproduction($Day, $Month, $Year);
 		$data['AMBproduction'] = $this->ID->GetAMBproduction($Day, $Month, $Year);
+		
+		$data['last5dayProduction'] = $this->ID->last5dayProduction($Day, $Month, $Year);
 	$this->load->view('Dashboard', $data);	
 		
     }

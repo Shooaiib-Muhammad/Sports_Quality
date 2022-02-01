@@ -170,7 +170,49 @@ if (!$this->session->has_userdata('user_id')) {
                     $b34005Check = [];
                     $b34006Check = [];
                     $b34007Check = [];
-                    //Print_r($CodeB34007);
+                    $lastCheck = [];
+                    $lastpass = [];
+                    $lastfail = [];
+                    $lastRFT = [];
+                    $lastDefetpercentage = [];
+                    //Print_r($last5dayProduction);
+                    foreach ($last5dayProduction as $key) {
+                        $Checklast = [
+                            $key['TotalChecked'],
+                        ];
+                        array_push($lastCheck, $Checklast);
+                        $passlast = [
+                            $key['pass'],
+                        ];
+                        array_push($lastpass, $passlast);
+                        $Faillast = [
+                            $key['Fail'],
+                        ];
+                        array_push($lastfail, $Faillast);
+                        $Check = $key['TotalChecked'];
+                        $PassQtylast = $key['pass'];
+                        $RFTlast = ($PassQtylast / $Check) * 100;
+                        $lastRFTfinal = [
+                            $RFTlast,
+                        ];
+                        array_push($lastRFT, $lastRFTfinal);
+                        $Check = $key['TotalChecked'];
+                        $Fail = $key['Fail'];
+                        $Defected = ($Check - $Fail) * $Check;
+                        $lastdefct = 100 - $Defected;
+                        $defctlast = [
+
+                            $lastdefct,
+                        ];
+                        array_push($lastDefetpercentage, $defctlast);
+                    }
+
+
+                    $last5pas = implode(',', array_column($lastpass, '0'));
+                    $last5check = implode(',', array_column($lastCheck, '0'));
+                    $last5fail = implode(',', array_column($lastfail, '0'));
+                    $last5rft = implode(',', array_column($lastRFT, '0'));
+                    $last5def = implode(',', array_column($lastDefetpercentage, '0'));
 
 
                     foreach ($FactoryWiseProduction as $key) {
@@ -330,7 +372,7 @@ if (!$this->session->has_userdata('user_id')) {
                     $B34005ArtRFT = [];
                     $B34006ArtRFT = [];
                     $B34007ArtRFT = [];
-    $B34001ArtFail = [];
+                    $B34001ArtFail = [];
                     $B34002ArtFail = [];
                     $B34003ArtFail = [];
                     $B34004ArtFail = [];
@@ -428,7 +470,7 @@ if (!$this->session->has_userdata('user_id')) {
                             Round($key['pass']),
                         ];
                         array_push($B34007data_points4, $pointB43004);
-                        
+
                         $Check = $key['TotalChecked'];
                         $PassQty = $key['pass'];
                         $RFT004 = ($PassQty / $Check) * 100;
@@ -514,7 +556,7 @@ if (!$this->session->has_userdata('user_id')) {
                         $MainFail07 = [
 
                             $key['ArtCode'],
-                        $key['Fail'],
+                            $key['Fail'],
                         ];
                         array_push($B34007ArtFail, $MainFail07);
                     }
@@ -546,7 +588,41 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             <?php echo $Produced; ?>
                                                                         </span>
                                                                     </div>
-                                                                    <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#cff02b" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
+                                                                    <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#cff02b" sparkHeight="32px" sparkBarWidth="5px" values=" <?php echo $last5pas; ?>"></span>
+                                                                </div>
+                                                                <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
+                                                                    <div class="d-inline-flex flex-column justify-content-center mr-3">
+                                                                        <span class="fw-300 fs-xs d-block">
+                                                                            <label class="fs-sm mb-0">Total Checked</label>
+                                                                        </span>
+                                                                        <span class="fw-500 fs-xl d-block color-danger-500 count">
+                                                                            <?php echo $Checked; ?> 
+                                                                        </span>
+                                                                    </div>
+                                                                    <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#fc8c03" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5check; ?>"></span>
+                                                                </div>
+                                                                <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
+                                                                    <div class="d-inline-flex flex-column justify-content-center mr-3">
+                                                                        <span class="fw-300 fs-xs d-block">
+                                                                            <label class="fs-sm mb-0">Total Pass Ball</label>
+                                                                        </span>
+                                                                        <span class="fw-500 fs-xl d-block color-danger-500 count">
+                                                                            <?php echo $Produced; ?>
+                                                                        </span>
+                                                                    </div>
+                                                                    <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#03fce3" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
+                                                                </div>
+                                                                <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
+                                                                    <div class="d-inline-flex flex-column justify-content-center mr-3">
+                                                                        <span class="fw-300 fs-xs d-block">
+                                                                            <label class="fs-sm mb-0">Total Fail Ball</label>
+                                                                        </span>
+                                                                        <span class="fw-500 fs-xl d-block color-danger-500 count">
+                                                                            <?php echo $Fail; ?>
+                                                                        </span>
+                                                                    </div>
+                                                                    <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#fe6bb0" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
+
                                                                 </div>
                                                                 <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
                                                                     <div class="d-inline-flex flex-column justify-content-center mr-3">
@@ -558,8 +634,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         </span>
                                                                     </div>
                                                                     <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#03cafc" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
-                                                                </div>
-                                                                <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
+
+                                                                    <!-- <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
                                                                     <div class="d-inline-flex flex-column justify-content-center mr-3">
                                                                         <span class="fw-300 fs-xs d-block">
                                                                             <label class="fs-sm mb-0">Total Defected Balls</label>
@@ -569,53 +645,20 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         </span>
                                                                     </div>
                                                                     <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#fc0339" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
-                                                                </div>
-
-                                                                <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
-                                                                    <div class="d-inline-flex flex-column justify-content-center mr-3">
-                                                                        <span class="fw-300 fs-xs d-block">
-                                                                            <label class="fs-sm mb-0">Defected Ball Precentage </label>
-                                                                        </span>
-                                                                        <span class="fw-500 fs-xl d-block color-danger-500">
-                                                                            <i class="count"><?php echo Round($Finalprenentage, 2); ?></i> %
-                                                                        </span>
-                                                                    </div>
-                                                                    <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#c203fc" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
+                                                                </div> -->
 
                                                                     <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
                                                                         <div class="d-inline-flex flex-column justify-content-center mr-3">
                                                                             <span class="fw-300 fs-xs d-block">
-                                                                                <label class="fs-sm mb-0">Total Checked</label>
+                                                                                <label class="fs-sm mb-0">Defected Ball Precentage </label>
                                                                             </span>
-                                                                            <span class="fw-500 fs-xl d-block color-danger-500 count">
-                                                                                <?php echo $Checked; ?>
+                                                                            <span class="fw-500 fs-xl d-block color-danger-500">
+                                                                                <i class="count"><?php echo Round($Finalprenentage, 2); ?></i> %
                                                                             </span>
                                                                         </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#fc8c03" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
+                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#c203fc" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
                                                                     </div>
-                                                                    <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
-                                                                        <div class="d-inline-flex flex-column justify-content-center mr-3">
-                                                                            <span class="fw-300 fs-xs d-block">
-                                                                                <label class="fs-sm mb-0">Total Pass Ball</label>
-                                                                            </span>
-                                                                            <span class="fw-500 fs-xl d-block color-danger-500 count">
-                                                                                <?php echo $Produced; ?>
-                                                                            </span>
-                                                                        </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#03fce3" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
-                                                                    </div>
-                                                                    <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
-                                                                        <div class="d-inline-flex flex-column justify-content-center mr-3">
-                                                                            <span class="fw-300 fs-xs d-block">
-                                                                                <label class="fs-sm mb-0">Total Fail Ball</label>
-                                                                            </span>
-                                                                            <span class="fw-500 fs-xl d-block color-danger-500 count">
-                                                                                <?php echo $Fail; ?>
-                                                                            </span>
-                                                                        </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#fe6bb0" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
 
-                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -668,26 +711,26 @@ if (!$this->session->has_userdata('user_id')) {
                                             </center>
                                             <br>
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-12">
                                                     <div id="AllPrd"></div>
                                                 </div>
 
-                                                <div class="col-md-6">
+                                                <div class="col-md-12">
                                                     <div id="msprd"></div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div id="ambprd"></div>
                                                 </div>
 
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div id="hsprd"></div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div id="tmprd"></div>
                                                 </div>
 
 
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div id="lfbprd"></div>
                                                 </div>
                                             </div>
@@ -707,44 +750,47 @@ if (!$this->session->has_userdata('user_id')) {
                                                 </figure>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div id="hsprdrft"></div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div id="tmprdrft"></div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div id="msprdrft"></div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div id="ambprdrft"></div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div id="lfbprdrft"></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="tab_direction-3" role="tabpanel">
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
                                                     <div id="AllPrddef"></div>
                                                 </div>
+                                                <figure class="highcharts-figurerft">
+                                                    <div id="container-speeddef" class="chart-containerrft"></div>
 
+                                                </figure>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div id="hsprddef"></div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div id="tmprddef"></div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div id="msprddef"></div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div id="ambprddef"></div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div id="lfbprddef"></div>
                                                 </div>
                                             </div>
@@ -929,7 +975,35 @@ if (!$this->session->has_userdata('user_id')) {
 
                 series: [{
                     name: 'Over All RFT',
-                    data: [<?php echo Round($ProducedRFT, 2) ?>],
+                    data: [<?php echo Round($FinalRF, 2) ?>],
+                    dataLabels: {
+                        format: '<div style="text-align:center">' +
+                            '<span style="font-size:25px">{y}</span><br/>' +
+                            '<span style="font-size:12px;opacity:5"> Over All RFT %</span>' +
+                            '</div>'
+                    },
+                    tooltip: {
+                        valueSuffix: ' km/h'
+                    }
+                }]
+
+            }));
+            var chartSpeed = Highcharts.chart('container-speeddef', Highcharts.merge(gaugeOptions, {
+                yAxis: {
+                    min: 0,
+                    max: 100,
+                    title: {
+                        text: 'Over All Defects Percentage'
+                    }
+                },
+
+                credits: {
+                    enabled: false
+                },
+
+                series: [{
+                    name: 'Defects Percentage',
+                    data: [<?php echo Round($Finalprenentage, 2) ?>],
                     dataLabels: {
                         format: '<div style="text-align:center">' +
                             '<span style="font-size:25px">{y}</span><br/>' +
@@ -1393,7 +1467,7 @@ if (!$this->session->has_userdata('user_id')) {
         $AMbProductiongraph = [];
         //print_r($CodeB34001);
         $AMBRFTFinal = [];
-    $AMBFinal = [];
+        $AMBFinal = [];
         foreach ($AMBproduction  as $key) {
 
             $Data006 = [
@@ -1420,7 +1494,6 @@ if (!$this->session->has_userdata('user_id')) {
 
             ];
             array_push($AMBFinal, $MainAMBFail);
-            
         }
 
         ?>
@@ -1529,7 +1602,7 @@ if (!$this->session->has_userdata('user_id')) {
                     title: {
                         text: 'Fail ',
                         style: {
-                            color: 'red'
+                            color: Highcharts.getOptions().colors[0]
                         }
                     },
                     labels: {
@@ -1566,6 +1639,7 @@ if (!$this->session->has_userdata('user_id')) {
                 }, {
                     name: 'Fail Quantity',
                     type: 'spline',
+                    color: 'red',
                     data: <?php echo json_encode($MSLinesFail, JSON_NUMERIC_CHECK); ?>,
                     // tooltip: {
                     //     valueSuffix: ''
@@ -1940,7 +2014,7 @@ if (!$this->session->has_userdata('user_id')) {
                     text: 'Machine Stitched Hall Production'
                 },
                 subtitle: {
-                    text: 'Total Output'
+                    text: 'Today RFT'
                 },
                 xAxis: [{
                     categories: <?php echo json_encode($MSLines, JSON_NUMERIC_CHECK); ?>,
