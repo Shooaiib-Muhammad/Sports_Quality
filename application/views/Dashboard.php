@@ -131,12 +131,12 @@ if (!$this->session->has_userdata('user_id')) {
                             flex: 1 1 80px;
                         }
                     </style>
-                    <script src="https://code.highcharts.com/highcharts.js"></script>
-                    <script src="https://code.highcharts.com/modules/data.js"></script>
-                    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
-                    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-                    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+                    <script src="<?php echo base_url(); ?>/assets/js/highcharts.js"></script>
+                    <script src="<?php echo base_url(); ?>/assets/js/data.js"></script>
+                    <script src="<?php echo base_url(); ?>/assets/js/drilldown.js"></script>
+                    <script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>
+                    <script src="<?php echo base_url(); ?>/assets/js/export-data.js"></script>
+                    <script src="<?php echo base_url(); ?>/assets/js/accessibility.js"></script>
                     <?php
 
                     $data_points1 = [];
@@ -198,7 +198,8 @@ if (!$this->session->has_userdata('user_id')) {
                         array_push($lastRFT, $lastRFTfinal);
                         $Check = $key['TotalChecked'];
                         $Fail = $key['Fail'];
-                        $Defected = ($Check - $Fail) * $Check;
+                        $DefectedBalls = $Check - $Fail;
+                        $Defected = ($DefectedBalls / $Check) * 100;
                         $lastdefct = 100 - $Defected;
                         $defctlast = [
 
@@ -208,7 +209,7 @@ if (!$this->session->has_userdata('user_id')) {
                     }
 
 
-                    $last5pas = implode(',', array_column($lastpass, '0'));
+                    $last5pass = implode(',', array_column($lastpass, '0'));
                     $last5check = implode(',', array_column($lastCheck, '0'));
                     $last5fail = implode(',', array_column($lastfail, '0'));
                     $last5rft = implode(',', array_column($lastRFT, '0'));
@@ -582,13 +583,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
                                                                     <div class="d-inline-flex flex-column justify-content-center mr-3">
                                                                         <span class="fw-300 fs-xs d-block">
-                                                                            <label class="fs-sm mb-0">Total Ball Manufactured</label>
+                                                                            <label class="fs-sm mb-0">Total Manufactured</label>
                                                                         </span>
                                                                         <span class="fw-500 fs-xl d-block color-danger-500 count">
                                                                             <?php echo $Produced; ?>
                                                                         </span>
                                                                     </div>
-                                                                    <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#cff02b" sparkHeight="32px" sparkBarWidth="5px" values=" <?php echo $last5pas; ?>"></span>
+                                                                    <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#cff02b" sparkHeight="32px" sparkBarWidth="5px" values=" <?php echo $last5pass; ?>"></span>
                                                                 </div>
                                                                 <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
                                                                     <div class="d-inline-flex flex-column justify-content-center mr-3">
@@ -596,7 +597,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             <label class="fs-sm mb-0">Total Checked</label>
                                                                         </span>
                                                                         <span class="fw-500 fs-xl d-block color-danger-500 count">
-                                                                            <?php echo $Checked; ?> 
+                                                                            <?php echo $Checked; ?>
                                                                         </span>
                                                                     </div>
                                                                     <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#fc8c03" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5check; ?>"></span>
@@ -604,24 +605,24 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
                                                                     <div class="d-inline-flex flex-column justify-content-center mr-3">
                                                                         <span class="fw-300 fs-xs d-block">
-                                                                            <label class="fs-sm mb-0">Total Pass Ball</label>
+                                                                            <label class="fs-sm mb-0">Total Pass</label>
                                                                         </span>
                                                                         <span class="fw-500 fs-xl d-block color-danger-500 count">
                                                                             <?php echo $Produced; ?>
                                                                         </span>
                                                                     </div>
-                                                                    <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#03fce3" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
+                                                                    <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#03fce3" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5pass; ?>"></span>
                                                                 </div>
                                                                 <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
                                                                     <div class="d-inline-flex flex-column justify-content-center mr-3">
                                                                         <span class="fw-300 fs-xs d-block">
-                                                                            <label class="fs-sm mb-0">Total Fail Ball</label>
+                                                                            <label class="fs-sm mb-0">Total Fail</label>
                                                                         </span>
                                                                         <span class="fw-500 fs-xl d-block color-danger-500 count">
                                                                             <?php echo $Fail; ?>
                                                                         </span>
                                                                     </div>
-                                                                    <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#fe6bb0" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
+                                                                    <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#fe6bb0" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5fail; ?>"></span>
 
                                                                 </div>
                                                                 <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
@@ -633,7 +634,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             <i class="count"> <?php echo Round($FinalRF, 2) ?> </i> %
                                                                         </span>
                                                                     </div>
-                                                                    <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#03cafc" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
+                                                                    <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#03cafc" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5rft; ?>"></span>
 
                                                                     <!-- <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
                                                                     <div class="d-inline-flex flex-column justify-content-center mr-3">
@@ -650,13 +651,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
                                                                         <div class="d-inline-flex flex-column justify-content-center mr-3">
                                                                             <span class="fw-300 fs-xs d-block">
-                                                                                <label class="fs-sm mb-0">Defected Ball Precentage </label>
+                                                                                <label class="fs-sm mb-0">Defected Precentage </label>
                                                                             </span>
                                                                             <span class="fw-500 fs-xl d-block color-danger-500">
                                                                                 <i class="count"><?php echo Round($Finalprenentage, 2); ?></i> %
                                                                             </span>
                                                                         </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#c203fc" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
+                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#c203fc" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5def; ?>"></span>
                                                                     </div>
 
                                                                 </div>
@@ -710,11 +711,40 @@ if (!$this->session->has_userdata('user_id')) {
                                                 </div>
                                             </center>
                                             <br>
+
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-4">
+                                                </div>
+                                                <div class="col-md-4">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <!-- <h1 class="frame-heading">Filter Criteria :</h1> -->
+
+                                                    <!-- <div class="frame-wrap">
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" class="custom-control-input" id="defaultInline1Radio" name="inlineDefaultRadiosExample1" checked="">
+                                                            <label class="custom-control-label" for="defaultInline1Radio">Daily</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" class="custom-control-input" id="defaultInline2Radio" name="inlineDefaultRadiosExample1">
+                                                            <label class="custom-control-label" for="defaultInline2Radio">Last Weekly</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" class="custom-control-input" id="defaultInline3Radio" name="inlineDefaultRadiosExample1">
+                                                            <label class="custom-control-label" for="defaultInline3Radio">Monthly</label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input type="radio" class="custom-control-input" id="defaultInline4Radio" name="inlineDefaultRadiosExample1">
+                                                            <label class="custom-control-label" for="defaultInline4Radio">Yearly</label>
+                                                        </div>
+                                                    </div> -->
+                                                </div>
+                                                <div class="col-md-6">
                                                     <div id="AllPrd"></div>
                                                 </div>
-
+                                                <div class="col-md-6">
+                                                    <div id="container1"></div>
+                                                </div>
                                                 <div class="col-md-12">
                                                     <div id="msprd"></div>
                                                 </div>
@@ -741,7 +771,32 @@ if (!$this->session->has_userdata('user_id')) {
 
                                         <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
                                             <div class="row">
+
                                                 <div class="col-md-6">
+                                                    <!-- <div class="row">
+
+                                                        <h1 class="frame-heading">Filter Criteria :</h1>
+
+                                                        <div class="frame-wrap">
+                                                            <div class="custom-control custom-radio custom-control-inline">
+                                                                <input type="radio" class="custom-control-input" id="defaultInline5Radio" name="inlineDefaultRadiosExample2" checked="">
+                                                                <label class="custom-control-label" for="defaultInline5Radio">Daily</label>
+                                                            </div>
+                                                            <div class="custom-control custom-radio custom-control-inline">
+                                                                <input type="radio" class="custom-control-input" id="defaultInline6Radio" name="inlineDefaultRadiosExample2">
+                                                                <label class="custom-control-label" for="defaultInline6Radio">Last Weekly</label>
+                                                            </div>
+                                                            <div class="custom-control custom-radio custom-control-inline">
+                                                                <input type="radio" class="custom-control-input" id="defaultInline7Radio" name="inlineDefaultRadiosExample2">
+                                                                <label class="custom-control-label" for="defaultInline7Radio">Monthly</label>
+                                                            </div>
+                                                            <div class="custom-control custom-radio custom-control-inline">
+                                                                <input type="radio" class="custom-control-input" id="defaultInline8Radio" name="inlineDefaultRadiosExample2">
+                                                                <label class="custom-control-label" for="defaultInline8Radio">Yearly</label>
+                                                            </div>
+                                                        </div>
+
+                                                    </div> -->
                                                     <div id="AllPrdrft"></div>
                                                 </div>
                                                 <figure class="highcharts-figurerft">
@@ -749,7 +804,9 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                 </figure>
                                             </div>
+
                                             <div class="row">
+
                                                 <div class="col-md-6">
                                                     <div id="hsprdrft"></div>
                                                 </div>
@@ -768,8 +825,34 @@ if (!$this->session->has_userdata('user_id')) {
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="tab_direction-3" role="tabpanel">
+
                                             <div class="row">
+
                                                 <div class="col-md-6">
+                                                    <!-- <div class="row">
+
+                                                        <h1 class="frame-heading">Filter Criteria :</h1>
+                                                        <br>
+                                                        <div class="frame-wrap">
+                                                            <div class="custom-control custom-radio custom-control-inline">
+                                                                <input type="radio" class="custom-control-input" id="defaultInline5Radio" name="inlineDefaultRadiosExample3" checked="">
+                                                                <label class="custom-control-label" for="defaultInline5Radio">Daily</label>
+                                                            </div>
+                                                            <div class="custom-control custom-radio custom-control-inline">
+                                                                <input type="radio" class="custom-control-input" id="defaultInline6Radio" name="inlineDefaultRadiosExample3">
+                                                                <label class="custom-control-label" for="defaultInline6Radio">Last Weekly</label>
+                                                            </div>
+                                                            <div class="custom-control custom-radio custom-control-inline">
+                                                                <input type="radio" class="custom-control-input" id="defaultInline7Radio" name="inlineDefaultRadiosExample3">
+                                                                <label class="custom-control-label" for="defaultInline7Radio">Monthly</label>
+                                                            </div>
+                                                            <div class="custom-control custom-radio custom-control-inline">
+                                                                <input type="radio" class="custom-control-input" id="defaultInline8Radio" name="inlineDefaultRadiosExample3">
+                                                                <label class="custom-control-label" for="defaultInline8Radio">Yearly</label>
+                                                            </div>
+                                                        </div>
+
+                                                    </div> -->
                                                     <div id="AllPrddef"></div>
                                                 </div>
                                                 <figure class="highcharts-figurerft">
@@ -816,7 +899,138 @@ if (!$this->session->has_userdata('user_id')) {
         <script src="https://code.highcharts.com/modules/export-data.js"></script>
         <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
+        <?php
+
+        $WEEKLY001 = [];
+        $WEEKLY002 = [];
+        $WEEKLY003 = [];
+        $WEEKLY004 = [];
+        $WEEKLY005 = [];
+        $WEEKLY006 = [];
+        $WEEKLY007 = [];
+        $Datess = [];
+        foreach ($getweeklydata as $key) {
+
+            array_push($Datess, $key['TranDate']);
+            //print_r('Updated');
+
+        }
+        foreach ($getweeklydata as $key) {
+            if ($key['FactoryCode'] == 'B34001') {
+                array_push($WEEKLY001, $key['pass']);
+                //print_r('Updated');
+            }
+        }
+        foreach ($getweeklydata as $key) {
+            if ($key['FactoryCode'] == 'B34002') {
+                array_push($WEEKLY002, $key['pass']);
+            }
+        }
+        foreach ($getweeklydata as $key) {
+            if ($key['FactoryCode'] == 'B34003') {
+                array_push($WEEKLY003, $key['pass']);
+            }
+        }
+        foreach ($getweeklydata as $key) {
+            if ($key['FactoryCode'] == 'B34004') {
+                array_push($WEEKLY004, $key['pass']);
+            }
+        }
+        foreach ($getweeklydata as $key) {
+            if ($key['FactoryCode'] == 'B34005') {
+                array_push($WEEKLY005, $key['pass']);
+                //print_r('Updated');
+            }
+        }
+        foreach ($getweeklydata as $key) {
+            if ($key['FactoryCode'] == 'B34006') {
+                array_push($WEEKLY006, $key['pass']);
+            }
+        }
+        foreach ($getweeklydata as $key) {
+            if ($key['FactoryCode'] == 'B34007') {
+                array_push($WEEKLY007, $key['pass']);
+            }
+        }
+
+
+        ?>
         <script>
+            Highcharts.chart('container1', {
+
+                title: {
+                    text: 'Weekly produciton'
+                },
+
+
+
+                yAxis: {
+                    title: {
+                        text: 'Number of Balls'
+                    }
+                },
+
+                xAxis: {
+                    categories: <?php echo json_encode($Datess, JSON_NUMERIC_CHECK); ?>,
+                    // accessibility: {
+                    //     rangeDescription: 'Range: 2010 to 2017'
+                    // }
+                },
+
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
+
+                plotOptions: {
+                    series: {
+                        label: {
+                            connectorAllowed: false
+                        },
+
+                    }
+                },
+
+                series: [{
+                    name: 'B34001',
+                    data: <?php echo json_encode($WEEKLY001, JSON_NUMERIC_CHECK); ?>
+                }, {
+                    name: 'B34002',
+                    data: <?php echo json_encode($WEEKLY002, JSON_NUMERIC_CHECK); ?>
+                }, {
+                    name: 'B34003',
+                    data: <?php echo json_encode($WEEKLY003, JSON_NUMERIC_CHECK); ?>
+                }, {
+                    name: 'B34004',
+                    data: <?php echo json_encode($WEEKLY004, JSON_NUMERIC_CHECK); ?>
+                }, {
+                    name: 'B34005',
+                    data: <?php echo json_encode($WEEKLY005, JSON_NUMERIC_CHECK); ?>
+                }, {
+                    name: 'B34006',
+                    data: <?php echo json_encode($WEEKLY006, JSON_NUMERIC_CHECK); ?>
+                }, {
+                    name: 'B34007',
+                    data: <?php echo json_encode($WEEKLY007, JSON_NUMERIC_CHECK); ?>
+                }],
+
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+
+            });
             var gaugeOptions = {
                 chart: {
                     type: 'solidgauge'
@@ -937,7 +1151,7 @@ if (!$this->session->has_userdata('user_id')) {
                     min: 0,
                     max: <?php echo $B34001target; ?>,
                     title: {
-                        text: 'Hand Stitched Balls'
+                        text: 'Hand Stitched'
                     }
                 },
 
@@ -946,12 +1160,12 @@ if (!$this->session->has_userdata('user_id')) {
                 },
 
                 series: [{
-                    name: 'Hand Stitched Balls',
+                    name: 'Hand Stitched',
                     data: [<?php echo $b34001 ? $b34001[0] : 0 ?>],
                     dataLabels: {
                         format: '<div style="text-align:center">' +
                             '<span style="font-size:25px">{y}</span><br/>' +
-                            '<span style="font-size:12px;opacity:5">Produced Quantity</span>' +
+                            '<span style="font-size:12px;opacity:5">Live Production</span>' +
                             '</div>'
                     },
                     tooltip: {
@@ -1007,7 +1221,7 @@ if (!$this->session->has_userdata('user_id')) {
                     dataLabels: {
                         format: '<div style="text-align:center">' +
                             '<span style="font-size:25px">{y}</span><br/>' +
-                            '<span style="font-size:12px;opacity:5"> Over All RFT %</span>' +
+                            '<span style="font-size:12px;opacity:5"> Defects Percentage %</span>' +
                             '</div>'
                     },
                     tooltip: {
@@ -1024,7 +1238,7 @@ if (!$this->session->has_userdata('user_id')) {
                     min: 0,
                     max: <?php echo $B34002target; ?>,
                     title: {
-                        text: 'Competition Balls'
+                        text: 'Competition'
                     }
                 },
 
@@ -1033,12 +1247,12 @@ if (!$this->session->has_userdata('user_id')) {
                 },
 
                 series: [{
-                    name: 'Competiton Balls',
+                    name: 'Competiton',
                     data: [<?php echo $b34002 ? $b34002[0] : 0 ?>],
                     dataLabels: {
                         format: '<div style="text-align:center">' +
                             '<span style="font-size:25px">{y}</span><br/>' +
-                            '<span style="font-size:12px;opacity:5">Produced Quantity</span>' +
+                            '<span style="font-size:12px;opacity:5">Live Production</span>' +
                             '</div>'
                     },
                     tooltip: {
@@ -1053,7 +1267,7 @@ if (!$this->session->has_userdata('user_id')) {
                     min: 0,
                     max: <?php echo $B34003target; ?>,
                     title: {
-                        text: 'Urban Balls'
+                        text: 'Urban'
                     }
                 },
 
@@ -1062,12 +1276,12 @@ if (!$this->session->has_userdata('user_id')) {
                 },
 
                 series: [{
-                    name: 'Urban Balls',
+                    name: 'Urban',
                     data: [<?php echo $b34003 ? $b34003[0] : 0 ?>],
                     dataLabels: {
                         format: '<div style="text-align:center">' +
                             '<span style="font-size:25px">{y}</span><br/>' +
-                            '<span style="font-size:12px;opacity:5">Produced Quantity</span>' +
+                            '<span style="font-size:12px;opacity:5">Live Production</span>' +
                             '</div>'
                     },
                     tooltip: {
@@ -1081,7 +1295,7 @@ if (!$this->session->has_userdata('user_id')) {
                     min: 0,
                     max: <?php echo $B34004target; ?>,
                     title: {
-                        text: 'Finale Balls'
+                        text: 'Finale'
                     }
                 },
 
@@ -1090,12 +1304,12 @@ if (!$this->session->has_userdata('user_id')) {
                 },
 
                 series: [{
-                    name: 'Finale Balls',
+                    name: 'Finale',
                     data: [<?php echo $b34004 ? $b34004[0] : 0 ?>],
                     dataLabels: {
                         format: '<div style="text-align:center">' +
                             '<span style="font-size:25px">{y}</span><br/>' +
-                            '<span style="font-size:12px;opacity:5">Produced Quantity</span>' +
+                            '<span style="font-size:12px;opacity:5">Live Production</span>' +
                             '</div>'
                     },
                     tooltip: {
@@ -1168,7 +1382,7 @@ if (!$this->session->has_userdata('user_id')) {
                     min: 0,
                     max: <?php echo $B34005target; ?>,
                     title: {
-                        text: 'Machine Stitched Balls'
+                        text: 'Machine Stitch'
                     }
                 },
 
@@ -1177,12 +1391,12 @@ if (!$this->session->has_userdata('user_id')) {
                 },
 
                 series: [{
-                    name: 'Machine Stitched Balls',
+                    name: 'Machine Stitch',
                     data: [<?php echo $b34005 ? $b34005[0] : 0 ?>],
                     dataLabels: {
                         format: '<div style="text-align:center">' +
                             '<span style="font-size:25px">{y}</span><br/>' +
-                            '<span style="font-size:12px;opacity:5">Produced Quantity</span>' +
+                            '<span style="font-size:12px;opacity:5">Live Production</span>' +
                             '</div>'
                     },
                     tooltip: {
@@ -1255,7 +1469,7 @@ if (!$this->session->has_userdata('user_id')) {
                     min: 0,
                     max: <?php echo $B34006target; ?>,
                     title: {
-                        text: 'Airless Mini Balls'
+                        text: 'Airless Mini'
                     }
                 },
 
@@ -1264,12 +1478,12 @@ if (!$this->session->has_userdata('user_id')) {
                 },
 
                 series: [{
-                    name: 'Airless Mini Balls',
+                    name: 'Airless Mini',
                     data: [<?php echo $b34006 ? $b34006[0] : 0 ?>],
                     dataLabels: {
                         format: '<div style="text-align:center">' +
                             '<span style="font-size:25px">{y}</span><br/>' +
-                            '<span style="font-size:12px;opacity:5">Produced Quantity</span>' +
+                            '<span style="font-size:12px;opacity:5">Live Production</span>' +
                             '</div>'
                     },
                     tooltip: {
@@ -1342,7 +1556,7 @@ if (!$this->session->has_userdata('user_id')) {
                     min: 0,
                     max: <?php echo $B34007target; ?>,
                     title: {
-                        text: 'Laminated Balls'
+                        text: 'Laminated'
                     }
                 },
 
@@ -1351,12 +1565,12 @@ if (!$this->session->has_userdata('user_id')) {
                 },
 
                 series: [{
-                    name: 'Laminated Ballss',
+                    name: 'Laminated',
                     data: [<?php echo $b34007 ? $b34007[0] : 0 ?>],
                     dataLabels: {
                         format: '<div style="text-align:center">' +
                             '<span style="font-size:25px">{y}</span><br/>' +
-                            '<span style="font-size:12px;opacity:5">Produced Quantity</span>' +
+                            '<span style="font-size:12px;opacity:5">Live Production</span>' +
                             '</div>'
                     },
                     tooltip: {
@@ -1377,14 +1591,7 @@ if (!$this->session->has_userdata('user_id')) {
                 });
             });
         </script>
-        <script src="<?php echo base_url(); ?>/assets/js/statistics/sparkline/sparkline.bundle.js"></script>
-        <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
-        <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
-        <!-- dependency for c3 charts : this dependency is a BSD license with clause 3 -->
-        <script src="<?php echo base_url(); ?>/assets/s/statistics/d3/d3.js"></script>
-        <!-- c3 charts : MIT license -->
-        <script src="<?php echo base_url(); ?>/assets/js/statistics/c3/c3.js"></script>
-        <script src="<?php echo base_url(); ?>/assets/js/statistics/demo-data/demo-c3.js"></script>
+
         <?php
 
         $TMProductiongraph = [];
@@ -1503,7 +1710,7 @@ if (!$this->session->has_userdata('user_id')) {
                     type: 'column'
                 },
                 title: {
-                    text: 'Hand Stitched Balls (B34001)'
+                    text: 'Hand Stitched (B34001)'
                 },
                 xAxis: {
                     type: 'category',
@@ -1537,7 +1744,7 @@ if (!$this->session->has_userdata('user_id')) {
                     type: 'column'
                 },
                 title: {
-                    text: 'Thermo Bounded Balls (B34002,B34003,B34004)'
+                    text: 'Thermo Bounded (B34002,B34003,B34004)'
                 },
                 xAxis: {
                     type: 'category',
@@ -1652,7 +1859,7 @@ if (!$this->session->has_userdata('user_id')) {
                     type: 'column'
                 },
                 title: {
-                    text: 'Airless Mini Balls (B34006)'
+                    text: 'Airless Mini (B34006)'
                 },
                 xAxis: {
                     type: 'category',
@@ -1687,7 +1894,7 @@ if (!$this->session->has_userdata('user_id')) {
                     type: 'column'
                 },
                 title: {
-                    text: 'Laminated Balls (B34007)'
+                    text: 'Laminated (B34007)'
                 },
                 xAxis: {
                     type: 'category',
@@ -1940,7 +2147,7 @@ if (!$this->session->has_userdata('user_id')) {
                     type: 'column'
                 },
                 title: {
-                    text: 'Hand Stitched Balls (B34001)'
+                    text: 'Hand Stitched (B34001)'
                 },
                 xAxis: {
                     type: 'category',
@@ -1974,7 +2181,7 @@ if (!$this->session->has_userdata('user_id')) {
                     type: 'column'
                 },
                 title: {
-                    text: 'Thermo Bounded Balls (B34002,B34003,B34004)'
+                    text: 'Thermo Bounded (B34002,B34003,B34004)'
                 },
                 xAxis: {
                     type: 'category',
@@ -2081,7 +2288,7 @@ if (!$this->session->has_userdata('user_id')) {
                     type: 'column'
                 },
                 title: {
-                    text: 'Airless Mini Balls (B34006)'
+                    text: 'Airless Mini (B34006)'
                 },
                 xAxis: {
                     type: 'category',
@@ -2116,7 +2323,7 @@ if (!$this->session->has_userdata('user_id')) {
                     type: 'column'
                 },
                 title: {
-                    text: 'Laminated Balls (B34007)'
+                    text: 'Laminated (B34007)'
                 },
                 xAxis: {
                     type: 'category',
@@ -2264,7 +2471,7 @@ if (!$this->session->has_userdata('user_id')) {
                     type: 'column'
                 },
                 title: {
-                    text: 'Hand Stitched Balls (B34001)'
+                    text: 'Hand Stitched (B34001)'
                 },
                 xAxis: {
                     type: 'category',
@@ -2298,7 +2505,7 @@ if (!$this->session->has_userdata('user_id')) {
                     type: 'column'
                 },
                 title: {
-                    text: 'Thermo Bounded Balls (B34002,B34003,B34004)'
+                    text: 'Thermo Bounded (B34002,B34003,B34004)'
                 },
                 xAxis: {
                     type: 'category',
@@ -2405,7 +2612,7 @@ if (!$this->session->has_userdata('user_id')) {
                     type: 'column'
                 },
                 title: {
-                    text: 'Airless Mini Balls (B34006)'
+                    text: 'Airless Mini (B34006)'
                 },
                 xAxis: {
                     type: 'category',
@@ -2440,7 +2647,7 @@ if (!$this->session->has_userdata('user_id')) {
                     type: 'column'
                 },
                 title: {
-                    text: 'Laminated Balls (B34007)'
+                    text: 'Laminated (B34007)'
                 },
                 xAxis: {
                     type: 'category',

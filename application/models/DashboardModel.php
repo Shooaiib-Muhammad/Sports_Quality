@@ -18,10 +18,11 @@ class DashboardModel extends CI_Model
    
     public function FactoryWiseProduction($Day, $Month, $Year)
     {
-        $query = $this->db->query("SELECT        SUM(TotalChecked) AS TotalChecked, SUM(pass) AS pass, SUM(Fail) AS Fail, FactoryCode
-FROM            dbo.View_Production
-GROUP BY Datename, FactoryCode
-HAVING        (Datename = '$Day/$Month/$Year')");
+        
+        $query = $this->db->query("SELECT        SUM(Checked) AS TotalChecked, SUM(Pass) AS pass, SUM(Fail) AS Fail, FactoryCode
+FROM            dbo.tbl_Production_View
+WHERE        (TranDate = CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
+GROUP BY FactoryCode");
         return $result = $query->result_array();
     }
     public function targets($Day, $Month, $Year)
@@ -119,11 +120,24 @@ GROUP BY LineName");
     }
     public function last5dayProduction()
     {
+        $lastday= date('Y-m-d', strtotime('-1 days'));
+       $last7day= date('Y-m-d', strtotime('-7 days'));
+        $query = $this->db->query("SELECT        SUM(Checked) AS TotalChecked, SUM(Pass) AS pass, SUM(Fail) AS Fail, TranDate
+FROM            dbo.tbl_Production_View
+WHERE        (TranDate BETWEEN CONVERT(DATETIME, '$last7day 00:00:00', 102) AND CONVERT(DATETIME, '$lastday 00:00:00', 102))
+GROUP BY TranDate");
+        return $result = $query->result_array();
+    }
+    public function getweeklydata(){
+        
 
-        $query = $this->db->query("SELECT        SUM(TotalChecked) AS TotalChecked, SUM(pass) AS pass, SUM(Fail) AS Fail, DateName
-FROM            dbo.view_All_Fctry_production
-GROUP BY DateName
-HAVING        (DateName BETWEEN CONVERT(DATETIME, '2022-01-25 00:00:00', 102) AND CONVERT(DATETIME, '2022-01-31 00:00:00', 102))");
+        
+        $lastday = date('Y-m-d', strtotime('-1 days'));
+        $last7day = date('Y-m-d', strtotime('-7 days'));
+        $query = $this->db->query("SELECT        SUM(Checked) AS TotalChecked, SUM(Pass) AS pass, SUM(Fail) AS Fail, CONVERT(varchar, TranDate, 104) AS TranDate, FactoryCode
+FROM            dbo.tbl_Production_View
+WHERE       (TranDate BETWEEN CONVERT(DATETIME, '$last7day 00:00:00', 102) AND CONVERT(DATETIME, '$lastday 00:00:00', 102))
+GROUP BY CONVERT(varchar, TranDate, 104), FactoryCode");
         return $result = $query->result_array();
     }
     
