@@ -101,12 +101,13 @@ WHERE        (Datename = '$Day/$Month/$Year')");
     }
     Public function GetMsproduction($Day, $Month, $Year){
        
-        $query = $this->db->query(" SELECT        TOP (100) PERCENT dbo.tbl_PC_AMB_Line.LineName, SUM(dbo.tbl_PC_MS.TotalChecked) AS TotalChecked, SUM(dbo.tbl_PC_MS.Pass) AS Pass, SUM(dbo.tbl_PC_MS.Fail) AS Fail
+        $query = $this->db->query("SELECT        TOP (100) PERCENT dbo.tbl_PC_AMB_Line.LineName, SUM(dbo.tbl_PC_MS.TotalChecked) AS TotalChecked, SUM(dbo.tbl_PC_MS.Pass) AS Pass, SUM(dbo.tbl_PC_MS.Fail) AS Fail, dbo.tbl_PC_AMB_Line.LineID
 FROM            dbo.tbl_PC_MS INNER JOIN
                          dbo.tbl_Inv_Tran_Date ON dbo.tbl_PC_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
                          dbo.tbl_PC_AMB_Line ON dbo.tbl_PC_MS.Line = dbo.tbl_PC_AMB_Line.LineID
 WHERE        (dbo.tbl_Inv_Tran_Date.DateName = CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
-GROUP BY dbo.tbl_PC_AMB_Line.LineName");
+GROUP BY dbo.tbl_PC_AMB_Line.LineName, dbo.tbl_PC_AMB_Line.LineID
+ORDER BY dbo.tbl_PC_AMB_Line.LineID");
         return $result = $query->result_array();
     }
     public function GetAMBproduction($Day, $Month, $Year)

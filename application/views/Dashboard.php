@@ -1666,7 +1666,7 @@ if (!$this->session->has_userdata('user_id')) {
                 Highcharts.chart('monthlydata', {
 
                     title: {
-                        text: 'Monthly produciton'
+                        text: 'Monthly Production'
                     },
 
 
@@ -1743,7 +1743,7 @@ if (!$this->session->has_userdata('user_id')) {
                 Highcharts.chart('yearlydata', {
 
                     title: {
-                        text: 'Yearly Produciton'
+                        text: 'Yearly Production'
                     },
 
 
@@ -1819,7 +1819,7 @@ if (!$this->session->has_userdata('user_id')) {
                 Highcharts.chart('container1', {
 
                     title: {
-                        text: 'Weekly produciton'
+                        text: 'Weekly Production'
                     },
 
 
