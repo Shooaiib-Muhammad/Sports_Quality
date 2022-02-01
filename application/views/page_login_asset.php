@@ -6,6 +6,13 @@ if ($this->session->has_userdata('user_id')) {
 
 	<!DOCTYPE html>
 	<html lang="en">
+	<script type="text/javascript">
+		function zoom() {
+			document.body.style.zoom = "100%"
+		}
+	</script>
+
+
 
 	<head>
 		<title>Forward Sports</title>
@@ -143,7 +150,7 @@ if ($this->session->has_userdata('user_id')) {
 		</style>
 	</head>
 
-	<body style="background-color: #666666;">
+	<body style="background-color: #666666;" onload="zoom()">
 
 		<div id="app">
 

@@ -137,8 +137,32 @@ GROUP BY TranDate");
         $query = $this->db->query("SELECT        SUM(Checked) AS TotalChecked, SUM(Pass) AS pass, SUM(Fail) AS Fail, CONVERT(varchar, TranDate, 104) AS TranDate, FactoryCode
 FROM            dbo.tbl_Production_View
 WHERE       (TranDate BETWEEN CONVERT(DATETIME, '$last7day 00:00:00', 102) AND CONVERT(DATETIME, '$lastday 00:00:00', 102))
-GROUP BY CONVERT(varchar, TranDate, 104), FactoryCode");
+GROUP BY CONVERT(varchar, TranDate, 104), FactoryCode
+ORDER BY TranDate");
         return $result = $query->result_array();
     }
+    public function getmonthly()
+    {
+        $lastday = date('Y-m-d', strtotime('-1 days'));
+        $last7day = date('Y-m-d', strtotime('-30 days'));
+        $query = $this->db->query("SELECT        SUM(Checked) AS TotalChecked, SUM(Pass) AS pass, SUM(Fail) AS Fail, CONVERT(varchar, TranDate, 104) AS TranDate, FactoryCode
+FROM            dbo.tbl_Production_View
+WHERE       (TranDate BETWEEN CONVERT(DATETIME, '$last7day 00:00:00', 102) AND CONVERT(DATETIME, '$lastday 00:00:00', 102))
+GROUP BY CONVERT(varchar, TranDate, 104), FactoryCode
+ORDER BY TranDate");
+        return $result = $query->result_array();
+    }
+    public function getYear()
+    {
+        $Year = date('Y');
+       
+        $query = $this->db->query("SELECT        SUM(Checked) AS TotalChecked, SUM(Pass) AS pass, SUM(Fail) AS Fail, CONVERT(varchar, TranDate, 104) AS TranDate, FactoryCode
+FROM            dbo.tbl_Production_View
+GROUP BY CONVERT(varchar, TranDate, 104), FactoryCode, YEAR(TranDate)
+HAVING        (YEAR(TranDate) = $Year )
+ORDER BY TranDate");
+        return $result = $query->result_array();
+    }
+    
     
 }
