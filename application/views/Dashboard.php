@@ -5,7 +5,7 @@ if (!$this->session->has_userdata('user_id')) {
 } else {
 ?><script type="text/javascript">
         function zoom() {
-            document.body.style.zoom = "100%"
+            document.body.style.zoom = "90%"
         }
     </script>
 
@@ -22,14 +22,23 @@ if (!$this->session->has_userdata('user_id')) {
                 <div class="page-content-wrapper">
                     <!-- BEGIN Page Header -->
                     <?php $this->load->view('includes/top_header.php'); ?>
-                    <main id="js-page-content" role="main" class="page-content">
-                        <!-- 
-                    <div class="subheader">
-                        <h1 class="subheader-title">
-                            <i class='subheader-icon fal fa-chart-area'></i> Dashboard</span>
 
-                        </h1>
-                    </div> -->
+                    <main id="js-page-content" role="main" class="page-content">
+                        <ol class="subheader">
+                            <h1 class="subheader-title">
+                                <i class='subheader-icon fal fa-chart-area'></i><a href="javascript:void(0);">Dashboard</a></li>
+                            </h1>
+                            <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                        </ol>
+                        <!-- <div class="subheader">
+                            <h1 class="subheader-title">
+                                <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Dashboard</span>
+                            </h1>
+
+
+                        </div> -->
+
+
 
                         <style>
                             .highcharts-figure .chart-container {
@@ -143,6 +152,7 @@ if (!$this->session->has_userdata('user_id')) {
                         <script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/export-data.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/accessibility.js"></script>
+
                         <?php
 
                         $data_points1 = [];
@@ -359,16 +369,24 @@ if (!$this->session->has_userdata('user_id')) {
                         // $SumFail07 = $b34007Fail ? $b34007Fail[0] : 0;
                         $Fail = $Checked - $Produced;
                         // echo '<pre>';
+                        // print_r($Checked);
+                        // echo '</pre>';
+                        // echo '<pre>';
                         // print_r($Produced);
                         // echo '</pre>';
+                        //$RFTTop = $Produced - $Fail;
 
-                        $RFTTop = $Produced - $Fail;
+                        $RFT = ($Produced / $Checked);
+                        // echo '<pre>';
+                        // print_r($RFT);
+                        // echo '</pre>';
+                        $FinalRFT = ($RFT * 100);
+                        // echo '<pre>';
+                        // print_r($FinalRFT);
+                        // echo '</pre>';
 
-                        $RFT = ($RFTTop / $Produced);
-                        $FinalRF = ($RFT * 100);
-
-                        $Precentage = (($Checked - $Fail) / $Checked) * 100;
-                        $Finalprenentage = 100 - $Precentage;
+                        $Finalprenentage = (($Checked - $Produced) / $Checked) * 100;
+                        //$Finalprenentage = 100 - $Precentage;
                         $B34001data_points2 = [];
                         $graph001 = [];
                         $graph001RFT = [];
@@ -570,23 +588,14 @@ if (!$this->session->has_userdata('user_id')) {
                         ?>
                         <div class="row">
                             <div id="panel-3" class="panel">
-
                                 <div class="panel-container show">
-
                                     <div class="panel-content nav nav-pills justify-content-center">
-
-                                        <!-- <ul class="nav nav-tabs" role="tablist">
-                                            <li class="nav-item btn btn-success"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1" role="tab">Production</a></li>
-                                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2" role="tab">RFT</a></li>
-                                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3" role="tab">Defects</a></li>
-                                        </ul> -->
                                         <ul class="nav nav-pills" role="tablist">
                                             <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Production</a></li>
                                             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">RFT</a></li>
                                             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3">Defects</a></li>
                                         </ul>
                                         <div class="tab-content py-3">
-
                                             <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
                                                 <div class="col-lg-12">
                                                     <div class="panel-container show">
@@ -653,7 +662,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                     <label class="fs-lg mb-3">Avg. RFT</label>
                                                                                 </span>
                                                                                 <span class="fw-500 fs-xl d-block color-danger-500 ">
-                                                                                    <h1> <i class="count"> <?php echo Round($FinalRF, 2) ?> </i> %</h1>
+                                                                                    <h1> <i class="count"> <?php echo Round($FinalRFT, 2) ?> </i> %</h1>
                                                                                 </span>
                                                                             </div>
                                                                             <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#03cafc" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5rft; ?>"></span>
@@ -672,38 +681,21 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#c203fc" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5def; ?>"></span>
                                                                         </div>
                                                                     </div>
-
-
-
-
-
-
-
-
-
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                     </div>
                                                 </div>
-
-
                                                 <center>
                                                     <div class="row">
                                                         <figure class="highcharts-figure">
                                                             <div id="container-speed0" class="chart-container"></div>
-
                                                         </figure>
                                                         <figure class="highcharts-figure">
                                                             <div id="container-speed" class="chart-container"></div>
-
                                                         </figure>
                                                         <figure class="highcharts-figure1">
                                                             <div id="container-speed1" class="chart-container1"></div>
-
-
-
                                                         </figure>
                                                         <figure class="highcharts-figure2">
                                                             <div id="container-speed2" class="chart-container2"></div>
@@ -800,2931 +792,3010 @@ if (!$this->session->has_userdata('user_id')) {
                                             <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
                                                 <div class="row">
 
-                                                    <div class="col-md-6">
-                                                        <div class="row ml-10">
+                                                    <div class="col-sm-1">
+                    </div>
+                                                            <div class="col-md-6 ">
+                                                                <div class="row">
 
-                                                            <!-- <h1 class="frame-heading">Filter Criteria :</h1> -->
+                                                                    <!-- <h1 class="frame-heading">Filter Criteria :</h1> -->
 
-                                                            <div class="frame-wrap">
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" id="defaultInline5Radio" name="inlineDefaultRadiosExample2" checked="">
-                                                                    <label class="custom-control-label" for="defaultInline5Radio">1D</label>
+                                                                    <div class="frame-wrap">
+                                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                                            <input type="radio" class="custom-control-input" id="defaultInline5Radio" name="inlineDefaultRadiosExample2" checked="">
+                                                                            <label class="custom-control-label" for="defaultInline5Radio">1D</label>
+                                                                        </div>
+                                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                                            <input type="radio" class="custom-control-input" id="defaultInline6Radio" name="inlineDefaultRadiosExample2">
+                                                                            <label class="custom-control-label" for="defaultInline6Radio">7D</label>
+                                                                        </div>
+                                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                                            <input type="radio" class="custom-control-input" id="defaultInline7Radio" name="inlineDefaultRadiosExample2">
+                                                                            <label class="custom-control-label" for="defaultInline7Radio">1M</label>
+                                                                        </div>
+                                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                                            <input type="radio" class="custom-control-input" id="defaultInline8Radio" name="inlineDefaultRadiosExample2">
+                                                                            <label class="custom-control-label" for="defaultInline8Radio">1Y</label>
+                                                                        </div>
+                                                                    </div>
+
                                                                 </div>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" id="defaultInline6Radio" name="inlineDefaultRadiosExample2">
-                                                                    <label class="custom-control-label" for="defaultInline6Radio">7D</label>
-                                                                </div>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" id="defaultInline7Radio" name="inlineDefaultRadiosExample2">
-                                                                    <label class="custom-control-label" for="defaultInline7Radio">1M</label>
-                                                                </div>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" id="defaultInline8Radio" name="inlineDefaultRadiosExample2">
-                                                                    <label class="custom-control-label" for="defaultInline8Radio">1Y</label>
-                                                                </div>
+                                                                <div id="AllPrdrft"></div>
+                                                                <div id="weeklyrft"></div>
+                                                                <div id="monthlyrft"></div>
+                                                                <div id="yearlyrft"></div>
                                                             </div>
+                                                            <figure class="highcharts-figurerft">
+                                                                <div id="container-speedrft" class="chart-containerrft"></div>
 
+                                                            </figure>
                                                         </div>
-                                                        <div id="AllPrdrft"></div>
-                                                        <div id="weeklyrft"></div>
-                                                        <div id="monthlyrft"></div>
-                                                        <div id="yearlyrft"></div>
-                                                    </div>
-                                                    <figure class="highcharts-figurerft">
-                                                        <div id="container-speedrft" class="chart-containerrft"></div>
 
-                                                    </figure>
-                                                </div>
-
-                                                <div class="row">
-
-                                                    <div class="col-md-6">
-                                                        <div id="hsprdrft"></div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div id="tmprdrft"></div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div id="msprdrft"></div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div id="ambprdrft"></div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div id="lfbprdrft"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="tab_direction-3" role="tabpanel">
-
-                                                <div class="row">
-
-                                                    <div class="col-md-6">
                                                         <div class="row">
 
-                                                            <!-- <h1 class="frame-heading">Filter Criteria :</h1> -->
-                                                            <br>
-                                                            <div class="frame-wrap">
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" id="defaultInline9Radio" name="inlineDefaultRadiosExample3" checked="">
-                                                                    <label class="custom-control-label" for="defaultInline9Radio">1D</label>
-                                                                </div>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" id="defaultInline10Radio" name="inlineDefaultRadiosExample3">
-                                                                    <label class="custom-control-label" for="defaultInline10Radio">7D</label>
-                                                                </div>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" id="defaultInline11Radio" name="inlineDefaultRadiosExample3">
-                                                                    <label class="custom-control-label" for="defaultInline11Radio">1M</label>
-                                                                </div>
-                                                                <div class="custom-control custom-radio custom-control-inline">
-                                                                    <input type="radio" class="custom-control-input" id="defaultInline12Radio" name="inlineDefaultRadiosExample3">
-                                                                    <label class="custom-control-label" for="defaultInline12Radio">1Y</label>
-                                                                </div>
+                                                            <div class="col-md-6">
+                                                                <div id="hsprdrft"></div>
                                                             </div>
-
+                                                            <div class="col-md-6">
+                                                                <div id="tmprdrft"></div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div id="msprdrft"></div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div id="ambprdrft"></div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div id="lfbprdrft"></div>
+                                                            </div>
                                                         </div>
-                                                        <div id="AllPrddef"></div>
-                                                        <div id="weeklydef"></div>
-                                                        <div id="monthlydef"></div>
-                                                        <div id="yearlydef"></div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="tab_direction-3" role="tabpanel">
 
-                                                    </div>
-                                                    <figure class="highcharts-figurerft">
-                                                        <div id="container-speeddef" class="chart-containerrft"></div>
+                                                        <div class="row">
+ <div class="col-sm-1">
+                    </div>
+                                                            <div class="col-md-6">
+                                                                <div class="row">
 
-                                                    </figure>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div id="hsprddef"></div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div id="tmprddef"></div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div id="msprddef"></div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div id="ambprddef"></div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div id="lfbprddef"></div>
+                                                                    <!-- <h1 class="frame-heading">Filter Criteria :</h1> -->
+                                                                    <br>
+                                                                    <div class="frame-wrap">
+                                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                                            <input type="radio" class="custom-control-input" id="defaultInline9Radio" name="inlineDefaultRadiosExample3" checked="">
+                                                                            <label class="custom-control-label" for="defaultInline9Radio">1D</label>
+                                                                        </div>
+                                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                                            <input type="radio" class="custom-control-input" id="defaultInline10Radio" name="inlineDefaultRadiosExample3">
+                                                                            <label class="custom-control-label" for="defaultInline10Radio">7D</label>
+                                                                        </div>
+                                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                                            <input type="radio" class="custom-control-input" id="defaultInline11Radio" name="inlineDefaultRadiosExample3">
+                                                                            <label class="custom-control-label" for="defaultInline11Radio">1M</label>
+                                                                        </div>
+                                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                                            <input type="radio" class="custom-control-input" id="defaultInline12Radio" name="inlineDefaultRadiosExample3">
+                                                                            <label class="custom-control-label" for="defaultInline12Radio">1Y</label>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div id="AllPrddef"></div>
+                                                                <div id="weeklydef"></div>
+                                                                <div id="monthlydef"></div>
+                                                                <div id="yearlydef"></div>
+
+                                                            </div>
+                                                            <figure class="highcharts-figurerft">
+                                                                <div id="container-speeddef" class="chart-containerrft"></div>
+
+                                                            </figure>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div id="hsprddef"></div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div id="tmprddef"></div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div id="msprddef"></div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div id="ambprddef"></div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div id="lfbprddef"></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+
+
+
+
+
                                 </div>
                             </div>
-
-
-
-
-
-
                         </div>
+
+                        <script src="https://code.highcharts.com/highcharts.js"></script>
+                        <script src="https://code.highcharts.com/highcharts-more.js"></script>
+                        <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+                        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+                        <?php
+                        $Datess = [];
+                        $WEEKLYRFT001 = [];
+                        $WEEKLYRFT002 = [];
+                        $WEEKLYRFT003 = [];
+                        $WEEKLYRFT004 = [];
+                        $WEEKLYRFT005 = [];
+                        $WEEKLYRFT006 = [];
+                        $WEEKLYRFT007 = [];
+
+                        $WEEKLY001 = [];
+                        $WEEKLY002 = [];
+                        $WEEKLY003 = [];
+                        $WEEKLY004 = [];
+                        $WEEKLY005 = [];
+                        $WEEKLY006 = [];
+                        $WEEKLY007 = [];
+                        $WEEKLYDefects001 = [];
+                        $WEEKLYDefects002 = [];
+                        $WEEKLYDefects003 = [];
+                        $WEEKLYDefects004 = [];
+                        $WEEKLYDefects005 = [];
+                        $WEEKLYDefects006 = [];
+                        $WEEKLYDefects007 = [];
+                        $MonthlyDefects001 = [];
+                        $MonthlyDefects002 = [];
+                        $MonthlyDefects003 = [];
+                        $MonthlyDefects004 = [];
+                        $MonthlyDefects005 = [];
+                        $MonthlyDefects006 = [];
+                        $MonthlyDefects007 = [];
+                        $YearlyDefects001 = [];
+                        $YearlyDefects002 = [];
+                        $YearlyDefects003 = [];
+                        $YearlyDefects004 = [];
+                        $YearlyDefects005 = [];
+                        $YearlyDefects006 = [];
+                        $YearlyDefects007 = [];
+                        $Yearfinal = [];
+
+                        foreach ($Year as $key) {
+                            $Year = $key['Year'];
+                            $Month = $key['Month'];
+                            array_push($Yearfinal, $Month . '.' . $Year);
+                            //print_r('Updated');
+
+                        }
+                        // print_r($weekDate);
+                        foreach ($weekDate as $key) {
+
+                            array_push($Datess, $key['TranDate']);
+                            //print_r('Updated');
+
+                        }
+
+                        //         echo '<pre>';
+                        //         print_r($Datess);
+                        // echo '</pre>';
+                        foreach ($getweeklydata as $key) {
+                            if ($key['FactoryCode'] == 'B34001') {
+                                array_push($WEEKLY001, $key['pass']);
+                                array_push($WEEKLYDefects001, $key['Fail']);
+                                $Weekly1RFT = $key['pass'] / $key['TotalChecked'];
+                                $WeeklyFinalRFT =  ($Weekly1RFT * 100);
+                                array_push($WEEKLYRFT001, Round($WeeklyFinalRFT, 2));
+                            }
+                        }
+                        foreach ($getweeklydata as $key) {
+                            if ($key['FactoryCode'] == 'B34002') {
+                                array_push($WEEKLY002, $key['pass']);
+                                array_push($WEEKLYDefects002, $key['Fail']);
+                                $Weekly2RFT =
+                                    $key['pass'] / $key['TotalChecked'];
+                                $WeeklyFinal2RFT =  ($Weekly2RFT * 100);
+                                array_push($WEEKLYRFT002, Round($WeeklyFinal2RFT, 2));
+                            }
+                        }
+                        foreach ($getweeklydata as $key) {
+                            if ($key['FactoryCode'] == 'B34003') {
+                                array_push($WEEKLY003, $key['pass']);
+                                array_push($WEEKLYDefects003, $key['Fail']);
+                                $Weekly3RFT = $key['pass'] / $key['TotalChecked'];
+                                $WeeklyFinal3RFT =  ($Weekly3RFT * 100);
+                                array_push($WEEKLYRFT003, Round($WeeklyFinal3RFT, 2));
+                            }
+                        }
+                        foreach ($getweeklydata as $key) {
+                            if ($key['FactoryCode'] == 'B34004') {
+                                array_push($WEEKLY004, $key['pass']);
+                                array_push($WEEKLYDefects004, $key['Fail']);
+                                $Weekly4RFT = $key['pass'] / $key['TotalChecked'];
+                                $WeeklyFinal4RFT =  ($Weekly4RFT * 100);
+                                array_push($WEEKLYRFT004, Round($WeeklyFinal4RFT, 2));
+                            }
+                        }
+                        foreach ($getweeklydata as $key) {
+                            if ($key['FactoryCode'] == 'B34005') {
+                                array_push($WEEKLY005, $key['pass']);
+                                array_push($WEEKLYDefects005, $key['Fail']);
+                                $Weekly5RFT = $key['pass'] / $key['TotalChecked'];
+                                $WeeklyFinal5RFT =  ($Weekly5RFT * 100);
+                                array_push($WEEKLYRFT005, Round($WeeklyFinal5RFT, 2));
+
+                                //array_push($, $key['pass']);
+                                //print_r('Updated');
+                            }
+                        }
+                        foreach ($getweeklydata as $key) {
+                            if ($key['FactoryCode'] == 'B34006') {
+                                array_push($WEEKLY006, $key['pass']);
+                                array_push($WEEKLYDefects006, $key['Fail']);
+                                $Weekly6RFT = $key['pass'] / $key['TotalChecked'];
+                                $WeeklyFinal6RFT =  ($Weekly6RFT * 100);
+                                array_push($WEEKLYRFT006, Round($WeeklyFinal6RFT, 2));
+                            }
+                        }
+                        foreach ($getweeklydata as $key) {
+                            if ($key['FactoryCode'] == 'B34007') {
+                                array_push($WEEKLY007, $key['pass']);
+                                array_push($WEEKLYDefects007, $key['Fail']);
+                                $Weekly7RFT = $key['pass'] / $key['TotalChecked'];
+                                $WeeklyFinal7RFT =  ($Weekly7RFT * 100);
+                                array_push($WEEKLYRFT007, Round($WeeklyFinal7RFT, 2));
+                            }
+                        }
+                        $MonthlyRFT001 = [];
+                        $MonthlyRFT002 = [];
+                        $MonthlyRFT003 = [];
+                        $MonthlyRFT004 = [];
+                        $MonthlyRFT005 = [];
+                        $MonthlyRFT006 = [];
+                        $MonthlyRFT007 = [];
+
+
+                        $YearlyRFTRFT001 = [];
+                        $YearlyRFTRFT002 = [];
+                        $YearlyRFTRFT003 = [];
+                        $YearlyRFTRFT004 = [];
+                        $YearlyRFTRFT005 = [];
+                        $YearlyRFTRFT006 = [];
+                        $YearlyRFTRFT007 = [];
+
+                        $MONTHLY001 = [];
+                        $MONTHLY002 = [];
+                        $MONTHLY003 = [];
+                        $MONTHLY004 = [];
+                        $MONTHLY005 = [];
+                        $MONTHLY006 = [];
+                        $MONTHLY007 = [];
+                        $Datess = [];
+                        $WeekDatefinal = [];
+                        $monthlydateFinal = [];
+                        foreach ($weekDate as $key) {
+
+                            array_push($WeekDatefinal, $key['TranDate']);
+                            //print_r('Updated');
+
+                        }
+                        foreach ($monthlydate as $key) {
+
+                            array_push($monthlydateFinal, $key['TranDate']);
+                            //print_r('Updated');
+
+                        }
+                        foreach ($getmonthly as $key) {
+                            if ($key['FactoryCode'] == 'B34001') {
+                                array_push($MONTHLY001, $key['pass']);
+                                array_push($MonthlyDefects001, $key['Fail']);
+
+                                $Monthly1RFT = $key['pass'] / $key['TotalChecked'];
+                                $MonthlyFinalRFT =  ($Monthly1RFT * 100);
+                                array_push($MonthlyRFT001, Round($MonthlyFinalRFT, 2));
+                                //print_r('Updated');
+                            }
+                        }
+                        foreach ($getmonthly as $key) {
+                            if ($key['FactoryCode'] == 'B34002') {
+                                array_push($MONTHLY002, $key['pass']);
+                                array_push($MonthlyDefects002, $key['Fail']);
+                                $Monthly2RFT = $key['pass'] / $key['TotalChecked'];
+                                $MonthlyFinal2RFT =  ($Monthly2RFT * 100);
+                                array_push($MonthlyRFT002, Round($MonthlyFinal2RFT, 2));
+                            }
+                        }
+                        foreach ($getmonthly as $key) {
+                            if ($key['FactoryCode'] == 'B34003') {
+                                array_push($MONTHLY003, $key['pass']);
+                                array_push($MonthlyDefects003, $key['Fail']);
+                                $Monthly3RFT = $key['pass'] / $key['TotalChecked'];
+                                $MonthlyFinal3RFT =  ($Monthly3RFT * 100);
+                                array_push($MonthlyRFT003, Round($MonthlyFinal3RFT, 2));
+                            }
+                        }
+                        foreach ($getmonthly as $key) {
+                            if ($key['FactoryCode'] == 'B34004') {
+                                array_push($MONTHLY004, $key['pass']);
+                                array_push($MonthlyDefects004, $key['Fail']);
+                                $Monthly4RFT = $key['pass'] / $key['TotalChecked'];
+                                $MonthlyFinal4RFT =  ($Monthly4RFT * 100);
+                                array_push($MonthlyRFT004, Round($MonthlyFinal4RFT, 2));
+                            }
+                        }
+                        foreach ($getmonthly as $key) {
+                            if ($key['FactoryCode'] == 'B34005') {
+                                array_push($MONTHLY005, $key['pass']);
+                                array_push($MonthlyDefects005, $key['Fail']);
+                                $Monthly5RFT = $key['pass'] / $key['TotalChecked'];
+                                $MonthlyFinal5RFT =  ($Monthly5RFT * 100);
+                                array_push($MonthlyRFT005, Round($MonthlyFinal5RFT, 2));
+                                //print_r('Updated');
+                            }
+                        }
+                        foreach ($getmonthly as $key) {
+                            if ($key['FactoryCode'] == 'B34006') {
+                                array_push($MONTHLY006, $key['pass']);
+                                array_push($MonthlyDefects006, $key['Fail']);
+                                $Monthly6RFT = $key['pass'] / $key['TotalChecked'];
+                                $MonthlyFinal6RFT =  ($Monthly6RFT * 100);
+                                array_push($MonthlyRFT006, Round($MonthlyFinal6RFT, 2));
+                            }
+                        }
+                        foreach ($getmonthly as $key) {
+                            if ($key['FactoryCode'] == 'B34007') {
+                                array_push($MONTHLY007, $key['pass']);
+                                array_push($MonthlyDefects007, $key['Fail']);
+                                $Monthly7RFT = $key['pass'] / $key['TotalChecked'];
+                                $MonthlyFinal7RFT =  ($Monthly7RFT * 100);
+                                array_push($MonthlyRFT007, Round($MonthlyFinal7RFT, 2));
+                            }
+                        }
+
+                        $Yearly001 = [];
+                        $Yearly002 = [];
+                        $Yearly003 = [];
+                        $Yearly004 = [];
+                        $Yearly005 = [];
+                        $Yearly006 = [];
+                        $Yearly007 = [];
+                        $Yearly = [];
+                        $Datess = [];
+                        foreach ($getYearly as $key) {
+                            $Month =  $key['Month'];
+                            $Year =  $key['Year'];
+
+                            array_push($Yearly, $Month . '-' . $Year);
+                            //print_r('Updated');
+
+                        }
+                        foreach ($getYearly as $key) {
+                            if ($key['FactoryCode'] == 'B34001') {
+                                array_push($Yearly001, $key['pass']);
+                                array_push($YearlyDefects001, $key['Fail']);
+                                $YearlyRFT1RFT = $key['pass'] / $key['TotalChecked'];
+                                $YearlyRFTFinalRFT =  ($YearlyRFT1RFT * 100);
+                                array_push($YearlyRFTRFT001, Round($YearlyRFTFinalRFT, 2));
+                                //print_r('Updated');
+                            }
+                        }
+                        foreach ($getYearly as $key) {
+                            if ($key['FactoryCode'] == 'B34002') {
+                                array_push($Yearly002, $key['pass']);
+                                array_push($YearlyDefects002, $key['Fail']);
+                                $YearlyRFT2RFT = $key['pass'] / $key['TotalChecked'];
+                                $YearlyRFTFinal2RFT =  ($YearlyRFT2RFT * 100);
+                                array_push($YearlyRFTRFT002, Round($YearlyRFTFinal2RFT, 2));
+                            }
+                        }
+                        foreach ($getYearly as $key) {
+                            if ($key['FactoryCode'] == 'B34003') {
+                                array_push($Yearly003, $key['pass']);
+                                array_push($YearlyDefects003, $key['Fail']);
+                                $YearlyRFT3RFT = $key['pass'] / $key['TotalChecked'];
+                                $YearlyRFTFinal3RFT =  ($YearlyRFT3RFT * 100);
+                                array_push($YearlyRFTRFT003, Round($YearlyRFTFinal3RFT, 2));
+                            }
+                        }
+                        foreach ($getYearly as $key) {
+                            if ($key['FactoryCode'] == 'B34004') {
+                                array_push($Yearly004, $key['pass']);
+
+                                array_push($YearlyDefects004, $key['Fail']);
+                                $YearlyRFT4RFT = $key['pass'] / $key['TotalChecked'];
+                                $YearlyRFTFinal4RFT =  ($YearlyRFT4RFT * 100);
+                                array_push($YearlyRFTRFT004, Round($YearlyRFTFinal4RFT, 2));
+                            }
+                        }
+                        foreach ($getYearly as $key) {
+                            if ($key['FactoryCode'] == 'B34005') {
+                                array_push($Yearly005, $key['pass']);
+                                array_push($YearlyDefects005, $key['Fail']);
+                                $YearlyRFT5RFT = $key['pass'] / $key['TotalChecked'];
+                                $YearlyRFTFinal5RFT =  ($YearlyRFT5RFT * 100);
+                                array_push($YearlyRFTRFT005, Round($YearlyRFTFinal5RFT, 2));
+                                //print_r('Updated');
+                            }
+                        }
+                        foreach ($getYearly as $key) {
+                            if ($key['FactoryCode'] == 'B34006') {
+                                array_push($Yearly006, $key['pass']);
+                                array_push($YearlyDefects006, $key['Fail']);
+                                $YearlyRFT6RFT = $key['pass'] / $key['TotalChecked'];
+                                $YearlyRFTFinal6RFT =  ($YearlyRFT6RFT * 100);
+                                array_push($YearlyRFTRFT006, Round($YearlyRFTFinal6RFT, 2));
+                            }
+                        }
+                        foreach ($getYearly as $key) {
+                            if ($key['FactoryCode'] == 'B34007') {
+                                array_push($Yearly007, $key['pass']);
+                                array_push($YearlyDefects007, $key['Fail']);
+
+
+                                $YearlyRFT7RFT = $key['pass'] / $key['TotalChecked'];
+                                $YearlyRFTFinal7RFT =  ($YearlyRFT7RFT * 100);
+                                array_push($YearlyRFTRFT007, Round($YearlyRFTFinal7RFT, 2));
+                            }
+                        }
+
+
+                        ?>
+                        <script>
+                            Highcharts.chart('weeklyrft', {
+
+                                title: {
+                                    text: 'Weekly RFT'
+                                },
+
+
+
+                                yAxis: {
+                                    title: {
+                                        text: 'RFT %'
+                                    }
+                                },
+
+                                xAxis: {
+                                    categories: <?php echo json_encode($WeekDatefinal, JSON_NUMERIC_CHECK); ?>,
+                                    // accessibility: {
+                                    //     rangeDescription: 'Range: 2010 to 2017'
+                                    // }
+                                },
+
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'right',
+                                    verticalAlign: 'middle'
+                                },
+
+                                plotOptions: {
+                                    series: {
+                                        label: {
+                                            connectorAllowed: false
+                                        },
+
+                                    }
+                                },
+
+                                series: [{
+                                    name: 'B34001',
+                                    data: <?php echo json_encode($WEEKLYRFT001, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34002',
+                                    data: <?php echo json_encode($WEEKLYRFT002, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34003',
+                                    data: <?php echo json_encode($WEEKLYRFT003, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34004',
+                                    data: <?php echo json_encode($WEEKLYRFT004, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34005',
+                                    data: <?php echo json_encode($WEEKLYRFT005, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34006',
+                                    data: <?php echo json_encode($WEEKLYRFT006, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34007',
+                                    data: <?php echo json_encode($WEEKLYRFT007, JSON_NUMERIC_CHECK); ?>
+                                }],
+
+                                responsive: {
+                                    rules: [{
+                                        condition: {
+                                            maxWidth: 500
+                                        },
+                                        chartOptions: {
+                                            legend: {
+                                                layout: 'horizontal',
+                                                align: 'center',
+                                                verticalAlign: 'bottom'
+                                            }
+                                        }
+                                    }]
+                                }
+
+                            });
+                            Highcharts.chart('monthlyrft', {
+
+                                title: {
+                                    text: 'Monthly RFT'
+                                },
+
+
+
+                                yAxis: {
+                                    title: {
+                                        text: 'RFT %'
+                                    }
+                                },
+
+                                xAxis: {
+                                    categories: <?php echo json_encode($monthlydateFinal, JSON_NUMERIC_CHECK); ?>,
+                                    // accessibility: {
+                                    //     rangeDescription: 'Range: 2010 to 2017'
+                                    // }
+                                },
+
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'right',
+                                    verticalAlign: 'middle'
+                                },
+
+                                plotOptions: {
+                                    series: {
+                                        label: {
+                                            connectorAllowed: false
+                                        },
+
+                                    }
+                                },
+
+                                series: [{
+                                    name: 'B34001',
+                                    data: <?php echo json_encode($MonthlyRFT001, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34002',
+                                    data: <?php echo json_encode($MonthlyRFT002, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34003',
+                                    data: <?php echo json_encode($MonthlyRFT003, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34004',
+                                    data: <?php echo json_encode($MonthlyRFT004, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34005',
+                                    data: <?php echo json_encode($MonthlyRFT005, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34006',
+                                    data: <?php echo json_encode($MonthlyRFT006, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34007',
+                                    data: <?php echo json_encode($MonthlyRFT007, JSON_NUMERIC_CHECK); ?>
+                                }],
+
+                                responsive: {
+                                    rules: [{
+                                        condition: {
+                                            maxWidth: 500
+                                        },
+                                        chartOptions: {
+                                            legend: {
+                                                layout: 'horizontal',
+                                                align: 'center',
+                                                verticalAlign: 'bottom'
+                                            }
+                                        }
+                                    }]
+                                }
+
+                            });
+                            Highcharts.chart('yearlyrft', {
+
+                                title: {
+                                    text: 'Yearly RFT'
+                                },
+
+
+
+                                yAxis: {
+                                    title: {
+                                        text: 'RFT %'
+                                    }
+                                },
+
+                                xAxis: {
+                                    categories: <?php echo json_encode($Yearfinal, JSON_NUMERIC_CHECK); ?>,
+                                    // accessibility: {
+                                    //     rangeDescription: 'Range: 2010 to 2017'
+                                    // }
+                                },
+
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'right',
+                                    verticalAlign: 'middle'
+                                },
+
+                                plotOptions: {
+                                    series: {
+                                        label: {
+                                            connectorAllowed: false
+                                        },
+
+                                    }
+                                },
+
+                                series: [{
+                                    name: 'B34001',
+                                    data: <?php echo json_encode($YearlyRFTRFT001, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34002',
+                                    data: <?php echo json_encode($YearlyRFTRFT002, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34003',
+                                    data: <?php echo json_encode($YearlyRFTRFT003, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34004',
+                                    data: <?php echo json_encode($YearlyRFTRFT004, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34005',
+                                    data: <?php echo json_encode($YearlyRFTRFT005, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34006',
+                                    data: <?php echo json_encode($YearlyRFTRFT006, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34007',
+                                    data: <?php echo json_encode($YearlyRFTRFT007, JSON_NUMERIC_CHECK); ?>
+                                }],
+
+                                responsive: {
+                                    rules: [{
+                                        condition: {
+                                            maxWidth: 500
+                                        },
+                                        chartOptions: {
+                                            legend: {
+                                                layout: 'horizontal',
+                                                align: 'center',
+                                                verticalAlign: 'bottom'
+                                            }
+                                        }
+                                    }]
+                                }
+
+                            });
+                            Highcharts.chart('weeklydef', {
+
+                                title: {
+                                    text: 'Weekly Defectes'
+                                },
+
+
+
+                                yAxis: {
+                                    title: {
+                                        text: 'Defects'
+                                    }
+                                },
+
+                                xAxis: {
+                                    categories: <?php echo json_encode($WeekDatefinal, JSON_NUMERIC_CHECK); ?>,
+                                    // accessibility: {
+                                    //     rangeDescription: 'Range: 2010 to 2017'
+                                    // }
+                                },
+
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'right',
+                                    verticalAlign: 'middle'
+                                },
+
+                                plotOptions: {
+                                    series: {
+                                        label: {
+                                            connectorAllowed: false
+                                        },
+
+                                    }
+                                },
+
+                                series: [{
+                                    name: 'B34001',
+                                    data: <?php echo json_encode($WEEKLYDefects001, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34002',
+                                    data: <?php echo json_encode($WEEKLYDefects002, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34003',
+                                    data: <?php echo json_encode($WEEKLYDefects003, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34004',
+                                    data: <?php echo json_encode($WEEKLYDefects004, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34005',
+                                    data: <?php echo json_encode($WEEKLYDefects005, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34006',
+                                    data: <?php echo json_encode($WEEKLYDefects006, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34007',
+                                    data: <?php echo json_encode($WEEKLYDefects007, JSON_NUMERIC_CHECK); ?>
+                                }],
+
+                                responsive: {
+                                    rules: [{
+                                        condition: {
+                                            maxWidth: 500
+                                        },
+                                        chartOptions: {
+                                            legend: {
+                                                layout: 'horizontal',
+                                                align: 'center',
+                                                verticalAlign: 'bottom'
+                                            }
+                                        }
+                                    }]
+                                }
+
+                            });
+                            Highcharts.chart('monthlydef', {
+
+                                title: {
+                                    text: 'Monthly Defects'
+                                },
+
+
+
+                                yAxis: {
+                                    title: {
+                                        text: 'Defects'
+                                    }
+                                },
+
+                                xAxis: {
+                                    categories: <?php echo json_encode($monthlydateFinal, JSON_NUMERIC_CHECK); ?>,
+                                    // accessibility: {
+                                    //     rangeDescription: 'Range: 2010 to 2017'
+                                    // }
+                                },
+
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'right',
+                                    verticalAlign: 'middle'
+                                },
+
+                                plotOptions: {
+                                    series: {
+                                        label: {
+                                            connectorAllowed: false
+                                        },
+
+                                    }
+                                },
+
+                                series: [{
+                                    name: 'B34001',
+                                    data: <?php echo json_encode($MonthlyDefects001, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34002',
+                                    data: <?php echo json_encode($MonthlyDefects002, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34003',
+                                    data: <?php echo json_encode($MonthlyDefects003, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34004',
+                                    data: <?php echo json_encode($MonthlyDefects004, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34005',
+                                    data: <?php echo json_encode($MonthlyDefects005, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34006',
+                                    data: <?php echo json_encode($MonthlyDefects006, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34007',
+                                    data: <?php echo json_encode($MonthlyDefects007, JSON_NUMERIC_CHECK); ?>
+                                }],
+
+                                responsive: {
+                                    rules: [{
+                                        condition: {
+                                            maxWidth: 500
+                                        },
+                                        chartOptions: {
+                                            legend: {
+                                                layout: 'horizontal',
+                                                align: 'center',
+                                                verticalAlign: 'bottom'
+                                            }
+                                        }
+                                    }]
+                                }
+
+                            });
+                            Highcharts.chart('yearlydef', {
+
+                                title: {
+                                    text: 'Yearly Defects'
+                                },
+
+
+
+                                yAxis: {
+                                    title: {
+                                        text: 'Defects'
+                                    }
+                                },
+
+                                xAxis: {
+                                    categories: <?php echo json_encode($Yearfinal, JSON_NUMERIC_CHECK); ?>,
+                                    // accessibility: {
+                                    //     rangeDescription: 'Range: 2010 to 2017'
+                                    // }
+                                },
+
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'right',
+                                    verticalAlign: 'middle'
+                                },
+
+                                plotOptions: {
+                                    series: {
+                                        label: {
+                                            connectorAllowed: false
+                                        },
+
+                                    }
+                                },
+
+                                series: [{
+                                    name: 'B34001',
+                                    data: <?php echo json_encode($YearlyDefects001, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34002',
+                                    data: <?php echo json_encode($YearlyDefects002, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34003',
+                                    data: <?php echo json_encode($YearlyDefects003, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34004',
+                                    data: <?php echo json_encode($YearlyDefects004, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34005',
+                                    data: <?php echo json_encode($YearlyDefects005, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34006',
+                                    data: <?php echo json_encode($YearlyDefects006, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34007',
+                                    data: <?php echo json_encode($YearlyDefects007, JSON_NUMERIC_CHECK); ?>
+                                }],
+
+                                responsive: {
+                                    rules: [{
+                                        condition: {
+                                            maxWidth: 500
+                                        },
+                                        chartOptions: {
+                                            legend: {
+                                                layout: 'horizontal',
+                                                align: 'center',
+                                                verticalAlign: 'bottom'
+                                            }
+                                        }
+                                    }]
+                                }
+
+                            });
+                            Highcharts.chart('monthlydata', {
+
+                                title: {
+                                    text: 'Monthly Production'
+                                },
+
+
+
+                                yAxis: {
+                                    title: {
+                                        text: 'Number of Balls'
+                                    }
+                                },
+
+                                xAxis: {
+                                    categories: <?php echo json_encode($monthlydateFinal, JSON_NUMERIC_CHECK); ?>,
+                                    // accessibility: {
+                                    //     rangeDescription: 'Range: 2010 to 2017'
+                                    // }
+                                },
+
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'right',
+                                    verticalAlign: 'middle'
+                                },
+
+                                plotOptions: {
+                                    series: {
+                                        label: {
+                                            connectorAllowed: false
+                                        },
+
+                                    }
+                                },
+
+                                series: [{
+                                    name: 'B34001',
+                                    data: <?php echo json_encode($MONTHLY001, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34002',
+                                    data: <?php echo json_encode($MONTHLY002, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34003',
+                                    data: <?php echo json_encode($MONTHLY003, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34004',
+                                    data: <?php echo json_encode($MONTHLY004, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34005',
+                                    data: <?php echo json_encode($MONTHLY005, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34006',
+                                    data: <?php echo json_encode($MONTHLY006, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34007',
+                                    data: <?php echo json_encode($MONTHLY007, JSON_NUMERIC_CHECK); ?>
+                                }],
+
+                                responsive: {
+                                    rules: [{
+                                        condition: {
+                                            maxWidth: 500
+                                        },
+                                        chartOptions: {
+                                            legend: {
+                                                layout: 'horizontal',
+                                                align: 'center',
+                                                verticalAlign: 'bottom'
+                                            }
+                                        }
+                                    }]
+                                }
+
+                            });
+
+
+                            Highcharts.chart('yearlydata', {
+
+                                title: {
+                                    text: 'Yearly Production'
+                                },
+
+
+
+                                yAxis: {
+                                    title: {
+                                        text: 'Number of Balls'
+                                    }
+                                },
+
+                                xAxis: {
+                                    categories: <?php echo json_encode($Yearfinal, JSON_NUMERIC_CHECK); ?>,
+                                    // accessibility: {
+                                    //     rangeDescription: 'Range: 2010 to 2017'
+                                    // }
+                                },
+
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'right',
+                                    verticalAlign: 'middle'
+                                },
+
+                                plotOptions: {
+                                    series: {
+                                        label: {
+                                            connectorAllowed: false
+                                        },
+
+                                    }
+                                },
+
+                                series: [{
+                                    name: 'B34001',
+                                    data: <?php echo json_encode($Yearly001, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34002',
+                                    data: <?php echo json_encode($Yearly002, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34003',
+                                    data: <?php echo json_encode($Yearly003, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34004',
+                                    data: <?php echo json_encode($Yearly004, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34005',
+                                    data: <?php echo json_encode($Yearly005, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34006',
+                                    data: <?php echo json_encode($Yearly006, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34007',
+                                    data: <?php echo json_encode($Yearly007, JSON_NUMERIC_CHECK); ?>
+                                }],
+
+                                responsive: {
+                                    rules: [{
+                                        condition: {
+                                            maxWidth: 500
+                                        },
+                                        chartOptions: {
+                                            legend: {
+                                                layout: 'horizontal',
+                                                align: 'center',
+                                                verticalAlign: 'bottom'
+                                            }
+                                        }
+                                    }]
+                                }
+
+                            });
+
+                            Highcharts.chart('container1', {
+
+                                title: {
+                                    text: 'Weekly Production'
+                                },
+
+
+
+                                yAxis: {
+                                    title: {
+                                        text: 'Number of Balls'
+                                    }
+                                },
+
+                                xAxis: {
+                                    categories: <?php echo json_encode($WeekDatefinal, JSON_NUMERIC_CHECK); ?>,
+                                    // accessibility: {
+                                    //     rangeDescription: 'Range: 2010 to 2017'
+                                    // }
+                                },
+
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'right',
+                                    verticalAlign: 'middle'
+                                },
+
+                                plotOptions: {
+                                    series: {
+                                        label: {
+                                            connectorAllowed: false
+                                        },
+
+                                    }
+                                },
+
+                                series: [{
+                                    name: 'B34001',
+                                    data: <?php echo json_encode($WEEKLY001, JSON_NUMERIC_CHECK); ?>
+
+                                }, {
+                                    name: 'B34002',
+                                    data: <?php echo json_encode($WEEKLY002, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34003',
+                                    data: <?php echo json_encode($WEEKLY003, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34004',
+                                    data: <?php echo json_encode($WEEKLY004, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34005',
+                                    data: <?php echo json_encode($WEEKLY005, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34006',
+                                    data: <?php echo json_encode($WEEKLY006, JSON_NUMERIC_CHECK); ?>
+                                }, {
+                                    name: 'B34007',
+                                    data: <?php echo json_encode($WEEKLY007, JSON_NUMERIC_CHECK); ?>
+                                }],
+
+                                responsive: {
+                                    rules: [{
+                                        condition: {
+                                            maxWidth: 500
+                                        },
+                                        chartOptions: {
+                                            legend: {
+                                                layout: 'horizontal',
+                                                align: 'center',
+                                                verticalAlign: 'bottom'
+                                            }
+                                        }
+                                    }]
+                                }
+
+                            });
+                            var gaugeOptions = {
+                                chart: {
+                                    type: 'solidgauge'
+                                },
+
+                                title: null,
+
+                                pane: {
+                                    center: ['50%', '85%'],
+                                    size: '110%',
+                                    startAngle: -90,
+                                    endAngle: 90,
+                                    background: {
+                                        backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                                        innerRadius: '60%',
+                                        outerRadius: '100%',
+                                        shape: 'arc'
+                                    }
+                                },
+
+                                exporting: {
+                                    enabled: false
+                                },
+
+                                tooltip: {
+                                    enabled: false
+                                },
+
+                                // the value axis
+                                yAxis: {
+                                    stops: [
+                                        [0.1, '#55BF3B'], // green
+                                        [0.5, '#DDDF0D'], // yellow
+                                        [0.9, '#DF5353'] // red
+                                    ],
+                                    lineWidth: 0,
+                                    tickWidth: 0,
+                                    minorTickInterval: null,
+                                    tickAmount: 2,
+                                    title: {
+                                        y: -70
+                                    },
+                                    labels: {
+                                        y: 16
+                                    }
+                                },
+
+                                plotOptions: {
+                                    solidgauge: {
+                                        dataLabels: {
+                                            y: 5,
+                                            borderWidth: 0,
+                                            useHTML: true
+                                        }
+                                    }
+                                }
+                            };
+                            var gaugeOptions = {
+                                chart: {
+                                    type: 'solidgauge'
+                                },
+
+                                title: null,
+
+                                pane: {
+                                    center: ['50%', '85%'],
+                                    size: '110%',
+                                    startAngle: -90,
+                                    endAngle: 90,
+                                    background: {
+                                        backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                                        innerRadius: '60%',
+                                        outerRadius: '100%',
+                                        shape: 'arc'
+                                    }
+                                },
+
+                                exporting: {
+                                    enabled: false
+                                },
+
+                                tooltip: {
+                                    enabled: false
+                                },
+
+                                // the value axis
+                                yAxis: {
+                                    stops: [
+                                        [0.1, '#55BF3B'], // green
+                                        [0.5, '#DDDF0D'], // yellow
+                                        [0.9, '#DF5353'] // red
+                                    ],
+                                    lineWidth: 0,
+                                    tickWidth: 0,
+                                    minorTickInterval: null,
+                                    tickAmount: 2,
+                                    title: {
+                                        y: -70
+                                    },
+                                    labels: {
+                                        y: 16
+                                    }
+                                },
+
+                                plotOptions: {
+                                    solidgauge: {
+                                        dataLabels: {
+                                            y: 5,
+                                            borderWidth: 0,
+                                            useHTML: true
+                                        }
+                                    }
+                                }
+                            };
+                            // The speed gauge
+                            var chartSpeed = Highcharts.chart('container-speed0', Highcharts.merge(gaugeOptions, {
+                                yAxis: {
+                                    min: 0,
+                                    max: <?php echo $B34001target; ?>,
+                                    title: {
+                                        text: 'Hand Stitched'
+                                    }
+                                },
+
+                                credits: {
+                                    enabled: false
+                                },
+
+                                series: [{
+                                    name: 'Hand Stitched',
+                                    data: [<?php echo $b34001 ? $b34001[0] : 0 ?>],
+                                    dataLabels: {
+                                        format: '<div style="text-align:center">' +
+                                            '<span style="font-size:25px">{y}</span><br/>' +
+                                            '<span style="font-size:12px;opacity:5">Live Production</span>' +
+                                            '</div>'
+                                    },
+                                    tooltip: {
+                                        valueSuffix: ' km/h'
+                                    }
+                                }]
+
+                            }));
+                            var chartSpeed = Highcharts.chart('container-speedrft', Highcharts.merge(gaugeOptions, {
+                                yAxis: {
+                                    min: 0,
+                                    max: 100,
+                                    title: {
+                                        text: 'Over All RFT'
+                                    }
+                                },
+
+                                credits: {
+                                    enabled: false
+                                },
+
+                                series: [{
+                                    name: 'Over All RFT',
+                                    data: [<?php echo Round($FinalRFT, 2) ?>],
+                                    dataLabels: {
+                                        format: '<div style="text-align:center">' +
+                                            '<span style="font-size:25px">{y}</span><br/>' +
+                                            '<span style="font-size:12px;opacity:5"> Over All RFT %</span>' +
+                                            '</div>'
+                                    },
+                                    tooltip: {
+                                        valueSuffix: ' km/h'
+                                    }
+                                }]
+
+                            }));
+                            var chartSpeed = Highcharts.chart('container-speeddef', Highcharts.merge(gaugeOptions, {
+                                yAxis: {
+                                    min: 0,
+                                    max: 100,
+                                    title: {
+                                        text: 'Over All Defects Percentage'
+                                    }
+                                },
+
+                                credits: {
+                                    enabled: false
+                                },
+
+                                series: [{
+                                    name: 'Defects Percentage',
+                                    data: [<?php echo Round($Finalprenentage, 2) ?>],
+                                    dataLabels: {
+                                        format: '<div style="text-align:center">' +
+                                            '<span style="font-size:25px">{y}</span><br/>' +
+                                            '<span style="font-size:12px;opacity:5"> Defects Percentage %</span>' +
+                                            '</div>'
+                                    },
+                                    tooltip: {
+                                        valueSuffix: ' km/h'
+                                    }
+                                }]
+
+                            }));
+                            // The speed gauge
+
+                            // The speed gauge
+                            var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+                                yAxis: {
+                                    min: 0,
+                                    max: <?php echo $B34002target; ?>,
+                                    title: {
+                                        text: 'Competition'
+                                    }
+                                },
+
+                                credits: {
+                                    enabled: false
+                                },
+
+                                series: [{
+                                    name: 'Competiton',
+                                    data: [<?php echo $b34002 ? $b34002[0] : 0 ?>],
+                                    dataLabels: {
+                                        format: '<div style="text-align:center">' +
+                                            '<span style="font-size:25px">{y}</span><br/>' +
+                                            '<span style="font-size:12px;opacity:5">Live Production</span>' +
+                                            '</div>'
+                                    },
+                                    tooltip: {
+                                        valueSuffix: ' km/h'
+                                    }
+                                }]
+
+                            }));
+                            // The speed gauge
+                            var chartSpeed = Highcharts.chart('container-speed1', Highcharts.merge(gaugeOptions, {
+                                yAxis: {
+                                    min: 0,
+                                    max: <?php echo $B34003target; ?>,
+                                    title: {
+                                        text: 'Urban'
+                                    }
+                                },
+
+                                credits: {
+                                    enabled: false
+                                },
+
+                                series: [{
+                                    name: 'Urban',
+                                    data: [<?php echo $b34003 ? $b34003[0] : 0 ?>],
+                                    dataLabels: {
+                                        format: '<div style="text-align:center">' +
+                                            '<span style="font-size:25px">{y}</span><br/>' +
+                                            '<span style="font-size:12px;opacity:5">Live Production</span>' +
+                                            '</div>'
+                                    },
+                                    tooltip: {
+                                        valueSuffix: ' km/h'
+                                    }
+                                }]
+
+                            }));
+                            var chartSpeed = Highcharts.chart('container-speed2', Highcharts.merge(gaugeOptions, {
+                                yAxis: {
+                                    min: 0,
+                                    max: <?php echo $B34004target; ?>,
+                                    title: {
+                                        text: 'Finale'
+                                    }
+                                },
+
+                                credits: {
+                                    enabled: false
+                                },
+
+                                series: [{
+                                    name: 'Finale',
+                                    data: [<?php echo $b34004 ? $b34004[0] : 0 ?>],
+                                    dataLabels: {
+                                        format: '<div style="text-align:center">' +
+                                            '<span style="font-size:25px">{y}</span><br/>' +
+                                            '<span style="font-size:12px;opacity:5">Live Production</span>' +
+                                            '</div>'
+                                    },
+                                    tooltip: {
+                                        valueSuffix: ' km/h'
+                                    }
+                                }]
+
+                            }));
+                            var gaugeOptions = {
+                                chart: {
+                                    type: 'solidgauge'
+                                },
+
+                                title: null,
+
+                                pane: {
+                                    center: ['50%', '85%'],
+                                    size: '110%',
+                                    startAngle: -90,
+                                    endAngle: 90,
+                                    background: {
+                                        backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                                        innerRadius: '60%',
+                                        outerRadius: '100%',
+                                        shape: 'arc'
+                                    }
+                                },
+
+                                exporting: {
+                                    enabled: false
+                                },
+
+                                tooltip: {
+                                    enabled: false
+                                },
+
+                                // the value axis
+                                yAxis: {
+                                    stops: [
+                                        [0.1, '#55BF3B'], // green
+                                        [0.5, '#DDDF0D'], // yellow
+                                        [0.9, '#DF5353'] // red
+                                    ],
+                                    lineWidth: 0,
+                                    tickWidth: 0,
+                                    minorTickInterval: null,
+                                    tickAmount: 2,
+                                    title: {
+                                        y: -70
+                                    },
+                                    labels: {
+                                        y: 16
+                                    }
+                                },
+
+                                plotOptions: {
+                                    solidgauge: {
+                                        dataLabels: {
+                                            y: 5,
+                                            borderWidth: 0,
+                                            useHTML: true
+                                        }
+                                    }
+                                }
+                            };
+
+                            // The speed gauge
+                            var chartSpeed = Highcharts.chart('container-speed3', Highcharts.merge(gaugeOptions, {
+                                yAxis: {
+                                    min: 0,
+                                    max: <?php echo $B34005target; ?>,
+                                    title: {
+                                        text: 'Machine Stitch'
+                                    }
+                                },
+
+                                credits: {
+                                    enabled: false
+                                },
+
+                                series: [{
+                                    name: 'Machine Stitch',
+                                    data: [<?php echo $b34005 ? $b34005[0] : 0 ?>],
+                                    dataLabels: {
+                                        format: '<div style="text-align:center">' +
+                                            '<span style="font-size:25px">{y}</span><br/>' +
+                                            '<span style="font-size:12px;opacity:5">Live Production</span>' +
+                                            '</div>'
+                                    },
+                                    tooltip: {
+                                        valueSuffix: ' km/h'
+                                    }
+                                }]
+
+                            }));
+                            var gaugeOptions = {
+                                chart: {
+                                    type: 'solidgauge'
+                                },
+
+                                title: null,
+
+                                pane: {
+                                    center: ['50%', '85%'],
+                                    size: '110%',
+                                    startAngle: -90,
+                                    endAngle: 90,
+                                    background: {
+                                        backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                                        innerRadius: '60%',
+                                        outerRadius: '100%',
+                                        shape: 'arc'
+                                    }
+                                },
+
+                                exporting: {
+                                    enabled: false
+                                },
+
+                                tooltip: {
+                                    enabled: false
+                                },
+
+                                // the value axis
+                                yAxis: {
+                                    stops: [
+                                        [0.1, '#55BF3B'], // green
+                                        [0.5, '#DDDF0D'], // yellow
+                                        [0.9, '#DF5353'] // red
+                                    ],
+                                    lineWidth: 0,
+                                    tickWidth: 0,
+                                    minorTickInterval: null,
+                                    tickAmount: 2,
+                                    title: {
+                                        y: -70
+                                    },
+                                    labels: {
+                                        y: 16
+                                    }
+                                },
+
+                                plotOptions: {
+                                    solidgauge: {
+                                        dataLabels: {
+                                            y: 5,
+                                            borderWidth: 0,
+                                            useHTML: true
+                                        }
+                                    }
+                                }
+                            };
+
+                            // The speed gauge
+                            var chartSpeed = Highcharts.chart('container-speed4', Highcharts.merge(gaugeOptions, {
+                                yAxis: {
+                                    min: 0,
+                                    max: <?php echo $B34006target; ?>,
+                                    title: {
+                                        text: 'Airless Mini'
+                                    }
+                                },
+
+                                credits: {
+                                    enabled: false
+                                },
+
+                                series: [{
+                                    name: 'Airless Mini',
+                                    data: [<?php echo $b34006 ? $b34006[0] : 0 ?>],
+                                    dataLabels: {
+                                        format: '<div style="text-align:center">' +
+                                            '<span style="font-size:25px">{y}</span><br/>' +
+                                            '<span style="font-size:12px;opacity:5">Live Production</span>' +
+                                            '</div>'
+                                    },
+                                    tooltip: {
+                                        valueSuffix: ' km/h'
+                                    }
+                                }]
+
+                            }));
+                            var gaugeOptions = {
+                                chart: {
+                                    type: 'solidgauge'
+                                },
+
+                                title: null,
+
+                                pane: {
+                                    center: ['50%', '85%'],
+                                    size: '110%',
+                                    startAngle: -90,
+                                    endAngle: 90,
+                                    background: {
+                                        backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                                        innerRadius: '60%',
+                                        outerRadius: '100%',
+                                        shape: 'arc'
+                                    }
+                                },
+
+                                exporting: {
+                                    enabled: false
+                                },
+
+                                tooltip: {
+                                    enabled: false
+                                },
+
+                                // the value axis
+                                yAxis: {
+                                    stops: [
+                                        [0.1, '#55BF3B'], // green
+                                        [0.5, '#DDDF0D'], // yellow
+                                        [0.9, '#DF5353'] // red
+                                    ],
+                                    lineWidth: 0,
+                                    tickWidth: 0,
+                                    minorTickInterval: null,
+                                    tickAmount: 2,
+                                    title: {
+                                        y: -70
+                                    },
+                                    labels: {
+                                        y: 16
+                                    }
+                                },
+
+                                plotOptions: {
+                                    solidgauge: {
+                                        dataLabels: {
+                                            y: 5,
+                                            borderWidth: 0,
+                                            useHTML: true
+                                        }
+                                    }
+                                }
+                            };
+
+                            // The speed gauge
+                            var chartSpeed = Highcharts.chart('container-speed5', Highcharts.merge(gaugeOptions, {
+                                yAxis: {
+                                    min: 0,
+                                    max: <?php echo $B34007target; ?>,
+                                    title: {
+                                        text: 'Laminated'
+                                    }
+                                },
+
+                                credits: {
+                                    enabled: false
+                                },
+
+                                series: [{
+                                    name: 'Laminated',
+                                    data: [<?php echo $b34007 ? $b34007[0] : 0 ?>],
+                                    dataLabels: {
+                                        format: '<div style="text-align:center">' +
+                                            '<span style="font-size:25px">{y}</span><br/>' +
+                                            '<span style="font-size:12px;opacity:5">Live Production</span>' +
+                                            '</div>'
+                                    },
+                                    tooltip: {
+                                        valueSuffix: ' km/h'
+                                    }
+                                }]
+
+                            }));
+                            $('.count').each(function() {
+                                $(this).prop('Counter', 0).animate({
+                                    Counter: $(this).text()
+                                }, {
+                                    duration: 4000,
+                                    easing: 'swing',
+                                    step: function(now) {
+                                        $(this).text(Math.ceil(now));
+                                    }
+                                });
+                            });
+                        </script>
+
+                        <?php
+
+                        $TMProductiongraph = [];
+                        //print_r($CodeB34001);
+                        $TMRFTFinal = [];
+                        $TMFinal = [];
+                        $MSRFTFinal = [];
+                        $MSFinal = [];
+                        foreach ($TmProduction as $key) {
+
+                            $Data002 = [
+                                $key['FactoryCode'],
+                                $key['pass'],
+                            ];
+                            //array_push($B34001data_points2, $pointB43001);
+
+                            array_push($TMProductiongraph, $Data002);
+                            $Check = $key['TotalChecked'];
+                            $PassQty = $key['pass'];
+                            $FailQty = $key['Fail'];
+                            $TMRFT = ($PassQty / $Check) * 100;
+                            $MainTMRFT = [
+
+                                $key['FactoryCode'],
+                                Round($TMRFT, 2),
+                            ];
+                            array_push($TMRFTFinal, $MainTMRFT);
+
+                            $MainTMFail = [
+                                $key['FactoryCode'],
+                                $FailQty,
+                            ];
+                            array_push($TMFinal, $MainTMFail);
+                        }
+                        $MSProductiongraph = [];
+                        foreach ($MSProd  as $key) {
+                            $Data005 = [
+                                //$key['LineName'],
+                                $key['Pass'],
+                            ];
+                            array_push($MSProductiongraph, $Data005);
+                        }
+                        $MSLines = [];
+                        foreach ($MSProd  as $key) {
+
+                            $LinesData = [
+                                $key['LineName'],
+                                //$key['Pass'],
+                            ];
+
+                            array_push($MSLines, $LinesData);
+                            $Check = $key['TotalChecked'];
+                            $PassQty = $key['Pass'];
+                            $TMRFT = ($PassQty / $Check) * 100;
+                            $MainMSRFT = [
+
+                                $key['LineName'],
+                                Round($TMRFT, 2),
+
+                            ];
+                            array_push($MSRFTFinal, $MainMSRFT);
+                            $MainMSFail = [
+
+                                $key['LineName'],
+                                $key['Fail'],
+
+                            ];
+                            array_push($MSFinal, $MainMSFail);
+                        }
+                        $MSLinesFail = [];
+                        foreach ($MSProd  as $key) {
+
+                            $LinesDataFail = [
+                                // $key['LineName'],
+                                $key['Fail'],
+                            ];
+
+                            array_push($MSLinesFail, $LinesDataFail);
+                        }
+                        $AMbProductiongraph = [];
+                        $AMBLines = [];
+                        $AMBRFTFinal = [];
+                        $AMBFinal = [];
+                        foreach ($AMBproduction  as $key) {
+
+                            $Data006 = [
+                                //$key['LineName'],
+                                $key['Pass'],
+                            ];
+                            array_push($AMBLines, $key['LineName']);
+
+                            array_push($AMbProductiongraph, $Data006);
+                            $Check = $key['TotalChecked'];
+                            $PassQty = $key['Pass'];
+                            $AMBRFT = ($PassQty / $Check) * 100;
+                            $MainAMBRFT = [
+
+                                $key['LineName'],
+                                Round($AMBRFT, 2),
+
+                            ];
+                            array_push($AMBRFTFinal, $MainAMBRFT);
+                            $MainAMBFail = [
+
+                                $key['LineName'],
+                                $key['Fail'],
+
+                            ];
+                            array_push($AMBFinal, $MainAMBFail);
+                        }
+
+                        ?>
+                        <script>
+                            Highcharts.chart('hsprd', {
+                                chart: {
+                                    type: 'column'
+                                },
+                                title: {
+                                    text: 'Hand Stitched (B34001)'
+                                },
+                                xAxis: {
+                                    type: 'category',
+                                    labels: {
+                                        rotation: -45,
+                                        style: {
+                                            fontSize: '13px',
+                                            fontFamily: 'Verdana, sans-serif'
+                                        }
+                                    }
+                                },
+                                yAxis: {
+                                    min: 0,
+                                    title: {
+                                        text: 'Total Production'
+                                    }
+                                },
+                                legend: {
+                                    enabled: false
+                                },
+                                series: [{
+                                    name: 'Production',
+                                    colorByPoint: true,
+                                    data: <?php echo json_encode($graph001, JSON_NUMERIC_CHECK); ?>
+
+
+                                }]
+                            });
+                            Highcharts.chart('tmprd', {
+                                chart: {
+                                    type: 'column'
+                                },
+                                title: {
+                                    text: 'Thermo Bounded (B34002,B34003,B34004)'
+                                },
+                                xAxis: {
+                                    type: 'category',
+                                    labels: {
+                                        rotation: -45,
+                                        style: {
+                                            fontSize: '13px',
+                                            fontFamily: 'Verdana, sans-serif'
+                                        }
+                                    }
+                                },
+                                yAxis: {
+                                    min: 0,
+                                    title: {
+                                        text: 'Total Production'
+                                    }
+                                },
+                                legend: {
+                                    enabled: false
+                                },
+                                tooltip: {
+                                    pointFormat: 'Total: <b>{point.y:.1f} Pass Quantity</b>'
+                                },
+                                series: [{
+                                    name: 'Production',
+                                    colorByPoint: true,
+                                    data: <?php echo json_encode($TMProductiongraph, JSON_NUMERIC_CHECK); ?>
+                                }]
+                            });
+
+
+                            Highcharts.chart('msprd', {
+                                chart: {
+                                    zoomType: 'xy'
+                                },
+                                title: {
+                                    text: 'Machine Stitched Hall Production'
+                                },
+                                subtitle: {
+                                    text: 'Total Output'
+                                },
+                                xAxis: [{
+                                    categories: <?php echo json_encode($MSLines, JSON_NUMERIC_CHECK); ?>,
+
+
+                                    crosshair: true
+                                }],
+                                yAxis: [{ // Primary yAxis
+                                    labels: {
+                                        format: '{value}',
+                                        style: {
+                                            color: Highcharts.getOptions().colors[1]
+                                        }
+                                    },
+                                    title: {
+                                        text: 'Fail Quantity',
+                                        style: {
+                                            color: Highcharts.getOptions().colors[1]
+                                        }
+                                    }
+                                }, { // Secondary yAxis
+                                    title: {
+                                        text: 'Pass Quantity ',
+                                        style: {
+                                            color: Highcharts.getOptions().colors[0]
+                                        }
+                                    },
+                                    labels: {
+                                        format: '{value} ',
+                                        style: {
+                                            color: Highcharts.getOptions().colors[0]
+                                        }
+                                    },
+                                    opposite: true
+                                }],
+                                tooltip: {
+                                    shared: true
+                                },
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'left',
+                                    x: 120,
+                                    verticalAlign: 'top',
+                                    y: 100,
+                                    floating: true,
+                                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                                        'rgba(255,255,255,0.25)'
+                                },
+                                series: [{
+                                    name: 'Pass Quantity',
+                                    type: 'column',
+                                    colorByPoint: true,
+                                    yAxis: 1,
+                                    data: <?php echo json_encode($MSProductiongraph, JSON_NUMERIC_CHECK); ?>,
+                                    // tooltip: {
+                                    //     valueSuffix: ''
+                                    // }
+
+                                }, {
+                                    name: 'Fail Quantity',
+                                    type: 'spline',
+                                    color: 'red',
+                                    data: <?php echo json_encode($MSLinesFail, JSON_NUMERIC_CHECK); ?>,
+                                    // tooltip: {
+                                    //     valueSuffix: ''
+                                    // }
+                                }]
+                            });
+                            Highcharts.chart('ambprd', {
+                                chart: {
+                                    zoomType: 'xy'
+                                },
+                                title: {
+                                    text: 'Airless Mini Production'
+                                },
+                                subtitle: {
+                                    text: 'Total Output'
+                                },
+                                xAxis: [{
+                                    categories: <?php echo json_encode($AMBLines, JSON_NUMERIC_CHECK); ?>,
+
+
+                                    crosshair: true
+                                }],
+                                yAxis: [{ // Primary yAxis
+                                    labels: {
+                                        format: '{value}',
+                                        style: {
+                                            color: Highcharts.getOptions().colors[1]
+                                        }
+                                    },
+                                    title: {
+                                        text: 'Fail Quantity',
+                                        style: {
+                                            color: Highcharts.getOptions().colors[1]
+                                        }
+                                    }
+                                }, { // Secondary yAxis
+                                    title: {
+                                        text: 'Pass Quantity ',
+                                        style: {
+                                            color: Highcharts.getOptions().colors[0]
+                                        }
+                                    },
+                                    labels: {
+                                        format: '{value} ',
+                                        style: {
+                                            color: Highcharts.getOptions().colors[0]
+                                        }
+                                    },
+                                    opposite: true
+                                }],
+                                tooltip: {
+                                    shared: true
+                                },
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'left',
+                                    x: 120,
+                                    verticalAlign: 'top',
+                                    y: 100,
+                                    floating: true,
+                                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                                        'rgba(255,255,255,0.25)'
+                                },
+                                series: [{
+                                    name: 'Pass Quantity',
+                                    type: 'column',
+                                    colorByPoint: true,
+                                    yAxis: 1,
+                                    data: <?php echo json_encode($AMbProductiongraph, JSON_NUMERIC_CHECK); ?>
+                                    // tooltip: {
+                                    //     valueSuffix: ''
+                                    // }
+
+                                }, {
+                                    name: 'Fail Quantity',
+                                    type: 'spline',
+                                    color: 'red',
+                                    data: <?php echo json_encode($AMBFinal, JSON_NUMERIC_CHECK); ?>,
+                                    // tooltip: {
+                                    //     valueSuffix: ''
+                                    // }
+                                }]
+                            });
+                            // Highcharts.chart('ambprd', {
+                            //     chart: {
+                            //         type: 'column'
+                            //     },
+                            //     title: {
+                            //         text: 'Airless Mini (B34006)'
+                            //     },
+                            //     xAxis: {
+                            //         type: 'category',
+                            //         labels: {
+                            //             rotation: -45,
+                            //             style: {
+                            //                 fontSize: '13px',
+                            //                 fontFamily: 'Verdana, sans-serif'
+                            //             }
+                            //         }
+                            //     },
+                            //     yAxis: {
+                            //         min: 0,
+                            //         title: {
+                            //             text: 'Total Production'
+                            //         }
+                            //     },
+                            //     legend: {
+                            //         enabled: false
+                            //     },
+                            //     tooltip: {
+                            //         pointFormat: 'Total: <b>{point.y:.1f} Pass Quantity</b>'
+                            //     },
+                            //     series: [{
+                            //         name: 'Production',
+                            //         colorByPoint: true,
+                            //         data: <?php echo json_encode($AMbProductiongraph, JSON_NUMERIC_CHECK); ?>
+                            //     }]
+                            // });
+                            Highcharts.chart('lfbprd', {
+                                chart: {
+                                    type: 'column'
+                                },
+                                title: {
+                                    text: 'Laminated (B34007)'
+                                },
+                                xAxis: {
+                                    type: 'category',
+                                    labels: {
+                                        rotation: -45,
+                                        style: {
+                                            fontSize: '13px',
+                                            fontFamily: 'Verdana, sans-serif'
+                                        }
+                                    }
+                                },
+                                yAxis: {
+                                    min: 0,
+                                    title: {
+                                        text: 'Total Production'
+                                    }
+                                },
+                                legend: {
+                                    enabled: false
+                                },
+                                tooltip: {
+                                    pointFormat: 'Total: <b>{point.y:.1f} Pass Quantity</b>'
+                                },
+                                series: [{
+                                    name: 'Production',
+                                    colorByPoint: true,
+
+                                    data: <?php echo json_encode($B34007data_points2, JSON_NUMERIC_CHECK); ?>
+                                }]
+                            });
+
+                            Highcharts.chart('AllPrd', {
+                                chart: {
+                                    type: 'column'
+                                },
+                                title: {
+                                    text: 'Today Production'
+                                },
+
+                                accessibility: {
+                                    announceNewData: {
+                                        enabled: true
+                                    }
+                                },
+                                xAxis: {
+                                    type: 'category'
+                                },
+                                yAxis: {
+                                    title: {
+                                        text: 'Total Production'
+                                    }
+
+                                },
+                                legend: {
+                                    enabled: false
+                                },
+                                plotOptions: {
+                                    series: {
+                                        borderWidth: 0,
+                                        dataLabels: {
+                                            enabled: true,
+                                            format: '{point.y:.1f}'
+                                        }
+                                    }
+                                },
+
+                                tooltip: {
+                                    headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+                                    pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+                                },
+
+                                series: [{
+                                    name: "Production",
+                                    colorByPoint: true,
+                                    data: <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>,
+
+                                }],
+                                drilldown: {
+                                    series: [{
+                                            name: "B34001",
+                                            id: "B34001",
+                                            data: <?php echo json_encode(
+                                                        $B34001data_points2,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+                                        },
+                                        {
+                                            name: "B34002",
+                                            id: "B34002",
+                                            data: <?php echo json_encode(
+                                                        $B34002data_points2,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+                                        },
+                                        {
+                                            name: "B34003",
+                                            id: "B34003",
+                                            data: <?php echo json_encode(
+                                                        $B34003data_points2,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+                                        },
+                                        {
+                                            name: "B34004",
+                                            id: "B34004",
+                                            data: <?php echo json_encode(
+                                                        $B34004data_points2,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+                                        },
+                                        {
+                                            name: "B34005",
+                                            id: "B34005",
+                                            data: <?php echo json_encode(
+                                                        $B34005data_points2,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+                                        },
+                                        {
+                                            name: "B34006",
+                                            id: "B34006",
+                                            data: <?php echo json_encode(
+                                                        $B34006data_points2,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+                                        },
+                                        {
+                                            name: "B34007",
+                                            id: "B34007",
+                                            data: <?php echo json_encode(
+                                                        $B34007data_points2,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+
+                                        }
+                                    ]
+                                }
+                            });
+                            Highcharts.chart('AllPrdrft', {
+                                chart: {
+                                    type: 'column'
+                                },
+                                title: {
+                                    text: 'Today RFT'
+                                },
+
+                                accessibility: {
+                                    announceNewData: {
+                                        enabled: true
+                                    }
+                                },
+                                xAxis: {
+                                    type: 'category'
+                                },
+                                yAxis: {
+                                    title: {
+                                        text: 'RFT '
+                                    }
+
+                                },
+                                legend: {
+                                    enabled: false
+                                },
+                                plotOptions: {
+                                    series: {
+                                        borderWidth: 0,
+                                        dataLabels: {
+                                            enabled: true,
+                                            format: '{point.y:.1f} %'
+                                        }
+                                    }
+                                },
+
+                                tooltip: {
+                                    headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+                                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: % <br/>'
+                                },
+
+                                series: [{
+                                    name: "Production",
+                                    colorByPoint: true,
+                                    data: <?php echo json_encode($data_pointsRFT, JSON_NUMERIC_CHECK); ?>,
+
+                                }],
+                                drilldown: {
+                                    series: [{
+                                            name: "B34001",
+                                            id: "B34001",
+                                            data: <?php echo json_encode(
+                                                        $B34001ArtRFT,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+                                        },
+                                        {
+                                            name: "B34002",
+                                            id: "B34002",
+                                            data: <?php echo json_encode(
+                                                        $B34002ArtRFT,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+                                        },
+                                        {
+                                            name: "B34003",
+                                            id: "B34003",
+                                            data: <?php echo json_encode(
+                                                        $B34003ArtRFT,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+                                        },
+                                        {
+                                            name: "B34004",
+                                            id: "B34004",
+                                            data: <?php echo json_encode(
+                                                        $B34004ArtRFT,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+                                        },
+                                        {
+                                            name: "B34005",
+                                            id: "B34005",
+                                            data: <?php echo json_encode(
+                                                        $B34005ArtRFT,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+                                        },
+                                        {
+                                            name: "B34006",
+                                            id: "B34006",
+                                            data: <?php echo json_encode(
+                                                        $B34006ArtRFT,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+                                        },
+                                        {
+                                            name: "B34007",
+                                            id: "B34007",
+                                            data: <?php echo json_encode(
+                                                        $B34007ArtRFT,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+
+                                        }
+                                    ]
+                                }
+                            });
+
+
+                            Highcharts.chart('hsprdrft', {
+                                chart: {
+                                    type: 'column'
+                                },
+                                title: {
+                                    text: 'Hand Stitched (B34001)'
+                                },
+                                xAxis: {
+                                    type: 'category',
+                                    labels: {
+                                        rotation: -45,
+                                        style: {
+                                            fontSize: '13px',
+                                            fontFamily: 'Verdana, sans-serif'
+                                        }
+                                    }
+                                },
+                                yAxis: {
+                                    min: 0,
+                                    title: {
+                                        text: 'Total Production'
+                                    }
+                                },
+                                legend: {
+                                    enabled: false
+                                },
+                                series: [{
+                                    name: 'Production',
+                                    colorByPoint: true,
+                                    data: <?php echo json_encode($B34001ArtRFT, JSON_NUMERIC_CHECK); ?>
+
+
+                                }]
+                            });
+                            Highcharts.chart('tmprdrft', {
+                                chart: {
+                                    type: 'column'
+                                },
+                                title: {
+                                    text: 'Thermo Bounded (B34002,B34003,B34004)'
+                                },
+                                xAxis: {
+                                    type: 'category',
+                                    labels: {
+                                        rotation: -45,
+                                        style: {
+                                            fontSize: '13px',
+                                            fontFamily: 'Verdana, sans-serif'
+                                        }
+                                    }
+                                },
+                                yAxis: {
+                                    min: 0,
+                                    title: {
+                                        text: 'Total RFT'
+                                    }
+                                },
+                                legend: {
+                                    enabled: false
+                                },
+                                tooltip: {
+                                    pointFormat: 'Total: <b>{point.y:.1f} RFT %</b>'
+                                },
+                                series: [{
+                                    name: 'Production',
+                                    colorByPoint: true,
+                                    data: <?php echo json_encode($TMRFTFinal, JSON_NUMERIC_CHECK); ?>
+                                }]
+                            });
+
+
+                            Highcharts.chart('msprdrft', {
+                                chart: {
+                                    zoomType: 'xy'
+                                },
+                                title: {
+                                    text: 'Machine Stitched Hall Production'
+                                },
+                                subtitle: {
+                                    text: 'Today RFT'
+                                },
+                                xAxis: [{
+                                    categories: <?php echo json_encode($MSLines, JSON_NUMERIC_CHECK); ?>,
+
+
+                                    crosshair: true
+                                }],
+                                yAxis: [{ // Primary yAxis
+                                    labels: {
+                                        format: '{value} %',
+                                        style: {
+                                            color: Highcharts.getOptions().colors[1]
+                                        }
+                                    },
+                                    title: {
+                                        text: 'RFT',
+                                        style: {
+                                            color: Highcharts.getOptions().colors[1]
+                                        }
+                                    }
+                                }, { // Secondary yAxis
+                                    title: {
+                                        //text: 'Fail ',
+                                        // style: {
+                                        //     color: Highcharts.getOptions().colors[0]
+                                        // }
+                                    },
+                                    labels: {
+                                        format: '{value} ',
+                                        style: {
+                                            color: Highcharts.getOptions().colors[0]
+                                        }
+                                    },
+                                    opposite: true
+                                }],
+                                tooltip: {
+                                    shared: true
+                                },
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'left',
+                                    x: 120,
+                                    verticalAlign: 'top',
+                                    y: 100,
+                                    floating: true,
+                                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                                        'rgba(255,255,255,0.25)'
+                                },
+                                series: [{
+                                    name: 'Line Wise RFT ',
+                                    type: 'column',
+                                    colorByPoint: true,
+                                    yAxis: 1,
+                                    data: <?php echo json_encode($MSRFTFinal, JSON_NUMERIC_CHECK); ?>,
+                                    tooltip: {
+                                        valueSuffix: ' %'
+                                    }
+
+                                }]
+                            });
+
+                            Highcharts.chart('ambprdrft', {
+                                chart: {
+                                    type: 'column'
+                                },
+                                title: {
+                                    text: 'Airless Mini (B34006)'
+                                },
+                                xAxis: {
+                                    type: 'category',
+                                    labels: {
+                                        rotation: -45,
+                                        style: {
+                                            fontSize: '13px',
+                                            fontFamily: 'Verdana, sans-serif'
+                                        }
+                                    }
+                                },
+                                yAxis: {
+                                    min: 0,
+                                    title: {
+                                        text: 'Total RFT'
+                                    }
+                                },
+                                legend: {
+                                    enabled: false
+                                },
+                                tooltip: {
+                                    pointFormat: 'Line wise  <b>{point.y:.1f} %</b>'
+                                },
+                                series: [{
+                                    name: 'Production',
+                                    colorByPoint: true,
+                                    data: <?php echo json_encode($AMBRFTFinal, JSON_NUMERIC_CHECK); ?>
+                                }]
+                            });
+                            Highcharts.chart('lfbprdrft', {
+                                chart: {
+                                    type: 'column'
+                                },
+                                title: {
+                                    text: 'Laminated (B34007)'
+                                },
+                                xAxis: {
+                                    type: 'category',
+                                    labels: {
+                                        rotation: -45,
+                                        style: {
+                                            fontSize: '13px',
+                                            fontFamily: 'Verdana, sans-serif'
+                                        }
+                                    }
+                                },
+                                yAxis: {
+                                    min: 0,
+                                    title: {
+                                        text: 'Total RFT'
+                                    }
+                                },
+                                legend: {
+                                    enabled: false
+                                },
+                                tooltip: {
+                                    pointFormat: 'Article Wise: <b>{point.y:.1f}  RFT </b>'
+                                },
+                                series: [{
+                                    name: 'Production',
+                                    colorByPoint: true,
+
+                                    data: <?php echo json_encode($B34007ArtRFT, JSON_NUMERIC_CHECK); ?>
+                                }]
+                            });
+
+
+
+                            Highcharts.chart('AllPrddef', {
+                                chart: {
+                                    type: 'column'
+                                },
+                                title: {
+                                    text: 'Today Defects'
+                                },
+
+                                accessibility: {
+                                    announceNewData: {
+                                        enabled: true
+                                    }
+                                },
+                                xAxis: {
+                                    type: 'category'
+                                },
+                                yAxis: {
+                                    title: {
+                                        text: 'Defects '
+                                    }
+
+                                },
+                                legend: {
+                                    enabled: false
+                                },
+                                plotOptions: {
+                                    series: {
+                                        borderWidth: 0,
+                                        dataLabels: {
+                                            enabled: true,
+                                            format: '{point.y:.1f} '
+                                        }
+                                    }
+                                },
+
+                                tooltip: {
+                                    headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+                                    pointFormat: '<span style="color:{point.color}">{point.name}</span>:  <br/>'
+                                },
+
+                                series: [{
+                                    name: "Defects",
+                                    colorByPoint: true,
+                                    data: <?php echo json_encode($data_pointsFail, JSON_NUMERIC_CHECK); ?>,
+
+                                }],
+                                drilldown: {
+                                    series: [{
+                                            name: "B34001",
+                                            id: "B34001",
+                                            data: <?php echo json_encode(
+                                                        $B34001ArtFail,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+                                        },
+                                        {
+                                            name: "B34002",
+                                            id: "B34002",
+                                            data: <?php echo json_encode(
+                                                        $B34002ArtFail,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+                                        },
+                                        {
+                                            name: "B34003",
+                                            id: "B34003",
+                                            data: <?php echo json_encode(
+                                                        $B34003ArtFail,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+                                        },
+                                        {
+                                            name: "B34004",
+                                            id: "B34004",
+                                            data: <?php echo json_encode(
+                                                        $B34004ArtFail,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+                                        },
+                                        {
+                                            name: "B34005",
+                                            id: "B34005",
+                                            data: <?php echo json_encode(
+                                                        $B34005ArtFail,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+                                        },
+                                        {
+                                            name: "B34006",
+                                            id: "B34006",
+                                            data: <?php echo json_encode(
+                                                        $B34006ArtFail,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+                                        },
+                                        {
+                                            name: "B34007",
+                                            id: "B34007",
+                                            data: <?php echo json_encode(
+                                                        $B34007ArtFail,
+                                                        JSON_NUMERIC_CHECK
+                                                    ); ?>,
+
+                                        }
+                                    ]
+                                }
+                            });
+
+
+                            Highcharts.chart('hsprddef', {
+                                chart: {
+                                    type: 'column'
+                                },
+                                title: {
+                                    text: 'Hand Stitched (B34001)'
+                                },
+                                xAxis: {
+                                    type: 'category',
+                                    labels: {
+                                        rotation: -45,
+                                        style: {
+                                            fontSize: '13px',
+                                            fontFamily: 'Verdana, sans-serif'
+                                        }
+                                    }
+                                },
+                                yAxis: {
+                                    min: 0,
+                                    title: {
+                                        text: 'Total Defects'
+                                    }
+                                },
+                                legend: {
+                                    enabled: false
+                                },
+                                series: [{
+                                    name: 'Defects',
+                                    colorByPoint: true,
+                                    data: <?php echo json_encode($B34001ArtFail, JSON_NUMERIC_CHECK); ?>
+
+
+                                }]
+                            });
+                            Highcharts.chart('tmprddef', {
+                                chart: {
+                                    type: 'column'
+                                },
+                                title: {
+                                    text: 'Thermo Bounded (B34002,B34003,B34004)'
+                                },
+                                xAxis: {
+                                    type: 'category',
+                                    labels: {
+                                        rotation: -45,
+                                        style: {
+                                            fontSize: '13px',
+                                            fontFamily: 'Verdana, sans-serif'
+                                        }
+                                    }
+                                },
+                                yAxis: {
+                                    min: 0,
+                                    title: {
+                                        text: 'Total Defects'
+                                    }
+                                },
+                                legend: {
+                                    enabled: false
+                                },
+                                tooltip: {
+                                    pointFormat: 'Total Defects: <b>{point.y:.1f} </b>'
+                                },
+                                series: [{
+                                    name: 'Defects',
+                                    colorByPoint: true,
+                                    data: <?php echo json_encode($TMFinal, JSON_NUMERIC_CHECK); ?>
+                                }]
+                            });
+
+
+                            Highcharts.chart('msprddef', {
+                                chart: {
+                                    zoomType: 'xy'
+                                },
+                                title: {
+                                    text: 'Machine Stitched Hall Production'
+                                },
+                                subtitle: {
+                                    text: 'Total Defects'
+                                },
+                                xAxis: [{
+                                    categories: <?php echo json_encode($MSLines, JSON_NUMERIC_CHECK); ?>,
+
+
+                                    crosshair: true
+                                }],
+                                yAxis: [{ // Primary yAxis
+                                    labels: {
+                                        format: '{value}',
+                                        style: {
+                                            color: Highcharts.getOptions().colors[1]
+                                        }
+                                    },
+                                    title: {
+                                        text: 'Defects',
+                                        style: {
+                                            color: Highcharts.getOptions().colors[1]
+                                        }
+                                    }
+                                }, { // Secondary yAxis
+                                    title: {
+                                        //text: 'Fail ',
+                                        // style: {
+                                        //     color: Highcharts.getOptions().colors[0]
+                                        // }
+                                    },
+                                    labels: {
+                                        format: '{value} ',
+                                        style: {
+                                            color: Highcharts.getOptions().colors[0]
+                                        }
+                                    },
+                                    opposite: true
+                                }],
+                                tooltip: {
+                                    shared: true
+                                },
+                                legend: {
+                                    layout: 'vertical',
+                                    align: 'left',
+                                    x: 120,
+                                    verticalAlign: 'top',
+                                    y: 100,
+                                    floating: true,
+                                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                                        'rgba(255,255,255,0.25)'
+                                },
+                                series: [{
+                                    name: 'Line Wise Defects ',
+                                    type: 'column',
+                                    colorByPoint: true,
+                                    yAxis: 1,
+                                    data: <?php echo json_encode($MSFinal, JSON_NUMERIC_CHECK); ?>,
+                                    tooltip: {
+                                        valueSuffix: ''
+                                    }
+
+                                }]
+                            });
+
+                            Highcharts.chart('ambprddef', {
+                                chart: {
+                                    type: 'column'
+                                },
+                                title: {
+                                    text: 'Airless Mini (B34006)'
+                                },
+                                xAxis: {
+                                    type: 'category',
+                                    labels: {
+                                        rotation: -45,
+                                        style: {
+                                            fontSize: '13px',
+                                            fontFamily: 'Verdana, sans-serif'
+                                        }
+                                    }
+                                },
+                                yAxis: {
+                                    min: 0,
+                                    title: {
+                                        text: 'Total Defects'
+                                    }
+                                },
+                                legend: {
+                                    enabled: false
+                                },
+                                tooltip: {
+                                    pointFormat: 'Line wise Defects <b>{point.y:.1f} </b>'
+                                },
+                                series: [{
+                                    name: 'Defects',
+                                    colorByPoint: true,
+                                    data: <?php echo json_encode($AMBFinal, JSON_NUMERIC_CHECK); ?>
+                                }]
+                            });
+                            Highcharts.chart('lfbprddef', {
+                                chart: {
+                                    type: 'column'
+                                },
+                                title: {
+                                    text: 'Laminated (B34007)'
+                                },
+                                xAxis: {
+                                    type: 'category',
+                                    labels: {
+                                        rotation: -45,
+                                        style: {
+                                            fontSize: '13px',
+                                            fontFamily: 'Verdana, sans-serif'
+                                        }
+                                    }
+                                },
+                                yAxis: {
+                                    min: 0,
+                                    title: {
+                                        text: 'Total Defects'
+                                    }
+                                },
+                                legend: {
+                                    enabled: false
+                                },
+                                tooltip: {
+                                    pointFormat: 'Article Wise Defects: <b>{point.y:.1f}   </b>'
+                                },
+                                series: [{
+                                    name: 'Defects',
+                                    colorByPoint: true,
+
+                                    data: <?php echo json_encode($B34007ArtFail, JSON_NUMERIC_CHECK); ?>
+                                }]
+                            });
+                        </script>
+                        <script src="<?php echo base_url(); ?>/assets/js//jquery.min.js" type="text/javascript">
+                        </script>
+                        <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
+                        <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
+                        <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+                        <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+                        <script src="js/statistics/sparkline/sparkline.bundle.js"></script>
+                        <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
+                        <!-- BEGIN Page Footer -->
+                        <footer class="page-footer" role="contentinfo">
+                            <div class="d-flex align-items-center flex-1 text-muted">
+                                <span class="hidden-md-down fw-700">2021 © Forward Sports by&nbsp;IT Dept Forward Sports</span>
+                            </div>
+                            <div>
+
+                            </div>
+                        </footer>
+                        <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
+                        <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
+                        <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+                        <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+                        <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
+                        <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
+
+
+
+                        <!-- END Page Footer -->
+                        <!-- BEGIN Shortcuts -->
+                        <div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog" aria-labelledby="modal-shortcut" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-top modal-transparent" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <ul class="app-list w-auto h-auto p-0 text-left">
+                                            <li>
+                                                <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+                                                    <div class="icon-stack">
+                                                        <i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
+                                                        <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+                                                        <i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
+                                                    </div>
+                                                    <span class="app-list-name">
+                                                        Home
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
+                                                    <div class="icon-stack">
+                                                        <i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
+                                                        <i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
+                                                        <i class="ni ni-envelope icon-stack-1x text-white"></i>
+                                                    </div>
+                                                    <span class="app-list-name">
+                                                        Inbox
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+                                                    <div class="icon-stack">
+                                                        <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+                                                        <i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
+                                                    </div>
+                                                    <span class="app-list-name">
+                                                        Add More
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- END Shortcuts -->
+                        <!-- BEGIN Color profile -->
+                        <!-- this area is hidden and will not be seen on screens or screen readers -->
+                        <!-- we use this only for CSS color refernce for JS stuff -->
+                        <p id="js-color-profile" class="d-none">
+                            <span class="color-primary-50"></span>
+                            <span class="color-primary-100"></span>
+                            <span class="color-primary-200"></span>
+                            <span class="color-primary-300"></span>
+                            <span class="color-primary-400"></span>
+                            <span class="color-primary-500"></span>
+                            <span class="color-primary-600"></span>
+                            <span class="color-primary-700"></span>
+                            <span class="color-primary-800"></span>
+                            <span class="color-primary-900"></span>
+                            <span class="color-info-50"></span>
+                            <span class="color-info-100"></span>
+                            <span class="color-info-200"></span>
+                            <span class="color-info-300"></span>
+                            <span class="color-info-400"></span>
+                            <span class="color-info-500"></span>
+                            <span class="color-info-600"></span>
+                            <span class="color-info-700"></span>
+                            <span class="color-info-800"></span>
+                            <span class="color-info-900"></span>
+                            <span class="color-danger-50"></span>
+                            <span class="color-danger-100"></span>
+                            <span class="color-danger-200"></span>
+                            <span class="color-danger-300"></span>
+                            <span class="color-danger-400"></span>
+                            <span class="color-danger-500"></span>
+                            <span class="color-danger-600"></span>
+                            <span class="color-danger-700"></span>
+                            <span class="color-danger-800"></span>
+                            <span class="color-danger-900"></span>
+                            <span class="color-warning-50"></span>
+                            <span class="color-warning-100"></span>
+                            <span class="color-warning-200"></span>
+                            <span class="color-warning-300"></span>
+                            <span class="color-warning-400"></span>
+                            <span class="color-warning-500"></span>
+                            <span class="color-warning-600"></span>
+                            <span class="color-warning-700"></span>
+                            <span class="color-warning-800"></span>
+                            <span class="color-warning-900"></span>
+                            <span class="color-success-50"></span>
+                            <span class="color-success-100"></span>
+                            <span class="color-success-200"></span>
+                            <span class="color-success-300"></span>
+                            <span class="color-success-400"></span>
+                            <span class="color-success-500"></span>
+                            <span class="color-success-600"></span>
+                            <span class="color-success-700"></span>
+                            <span class="color-success-800"></span>
+                            <span class="color-success-900"></span>
+                            <span class="color-fusion-50"></span>
+                            <span class="color-fusion-100"></span>
+                            <span class="color-fusion-200"></span>
+                            <span class="color-fusion-300"></span>
+                            <span class="color-fusion-400"></span>
+                            <span class="color-fusion-500"></span>
+                            <span class="color-fusion-600"></span>
+                            <span class="color-fusion-700"></span>
+                            <span class="color-fusion-800"></span>
+                            <span class="color-fusion-900"></span>
+                        </p>
+                        <!-- END Color profile -->
                 </div>
             </div>
-
-            <script src="https://code.highcharts.com/highcharts.js"></script>
-            <script src="https://code.highcharts.com/highcharts-more.js"></script>
-            <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-            <script src="https://code.highcharts.com/modules/exporting.js"></script>
-            <script src="https://code.highcharts.com/modules/export-data.js"></script>
-            <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
-            <?php
-            $Datess = [];
-            $WEEKLYRFT001 = [];
-            $WEEKLYRFT002 = [];
-            $WEEKLYRFT003 = [];
-            $WEEKLYRFT004 = [];
-            $WEEKLYRFT005 = [];
-            $WEEKLYRFT006 = [];
-            $WEEKLYRFT007 = [];
-
-            $WEEKLY001 = [];
-            $WEEKLY002 = [];
-            $WEEKLY003 = [];
-            $WEEKLY004 = [];
-            $WEEKLY005 = [];
-            $WEEKLY006 = [];
-            $WEEKLY007 = [];
-            $WEEKLYDefects001 = [];
-            $WEEKLYDefects002 = [];
-            $WEEKLYDefects003 = [];
-            $WEEKLYDefects004 = [];
-            $WEEKLYDefects005 = [];
-            $WEEKLYDefects006 = [];
-            $WEEKLYDefects007 = [];
-            $MonthlyDefects001 = [];
-            $MonthlyDefects002 = [];
-            $MonthlyDefects003 = [];
-            $MonthlyDefects004 = [];
-            $MonthlyDefects005 = [];
-            $MonthlyDefects006 = [];
-            $MonthlyDefects007 = [];
-            $YearlyDefects001 = [];
-            $YearlyDefects002 = [];
-            $YearlyDefects003 = [];
-            $YearlyDefects004 = [];
-            $YearlyDefects005 = [];
-            $YearlyDefects006 = [];
-            $YearlyDefects007 = [];
-            $Yearfinal = [];
-
-            foreach ($Year as $key) {
-                $Year = $key['Year'];
-                $Month = $key['Month'];
-                array_push($Yearfinal, $Month . '.' . $Year);
-                //print_r('Updated');
-
-            }
-            // print_r($weekDate);
-            foreach ($weekDate as $key) {
-
-                array_push($Datess, $key['TranDate']);
-                //print_r('Updated');
-
-            }
-
-            //         echo '<pre>';
-            //         print_r($Datess);
-            // echo '</pre>';
-            foreach ($getweeklydata as $key) {
-                if ($key['FactoryCode'] == 'B34001') {
-                    array_push($WEEKLY001, $key['pass']);
-                    array_push($WEEKLYDefects001, $key['Fail']);
-                    $Weekly1RFT = $key['pass'] / $key['TotalChecked'];
-                    $WeeklyFinalRFT =  ($Weekly1RFT * 100);
-                    array_push($WEEKLYRFT001, Round($WeeklyFinalRFT, 2));
-                }
-            }
-            foreach ($getweeklydata as $key) {
-                if ($key['FactoryCode'] == 'B34002') {
-                    array_push($WEEKLY002, $key['pass']);
-                    array_push($WEEKLYDefects002, $key['Fail']);
-                    $Weekly2RFT =
-                        $key['pass'] / $key['TotalChecked'];
-                    $WeeklyFinal2RFT =  ($Weekly2RFT * 100);
-                    array_push($WEEKLYRFT002, Round($WeeklyFinal2RFT, 2));
-                }
-            }
-            foreach ($getweeklydata as $key) {
-                if ($key['FactoryCode'] == 'B34003') {
-                    array_push($WEEKLY003, $key['pass']);
-                    array_push($WEEKLYDefects003, $key['Fail']);
-                    $Weekly3RFT = $key['pass'] / $key['TotalChecked'];
-                    $WeeklyFinal3RFT =  ($Weekly3RFT * 100);
-                    array_push($WEEKLYRFT003, Round($WeeklyFinal3RFT, 2));
-                }
-            }
-            foreach ($getweeklydata as $key) {
-                if ($key['FactoryCode'] == 'B34004') {
-                    array_push($WEEKLY004, $key['pass']);
-                    array_push($WEEKLYDefects004, $key['Fail']);
-                    $Weekly4RFT = $key['pass'] / $key['TotalChecked'];
-                    $WeeklyFinal4RFT =  ($Weekly4RFT * 100);
-                    array_push($WEEKLYRFT004, Round($WeeklyFinal4RFT, 2));
-                }
-            }
-            foreach ($getweeklydata as $key) {
-                if ($key['FactoryCode'] == 'B34005') {
-                    array_push($WEEKLY005, $key['pass']);
-                    array_push($WEEKLYDefects005, $key['Fail']);
-                    $Weekly5RFT = $key['pass'] / $key['TotalChecked'];
-                    $WeeklyFinal5RFT =  ($Weekly5RFT * 100);
-                    array_push($WEEKLYRFT005, Round($WeeklyFinal5RFT, 2));
-
-                    //array_push($, $key['pass']);
-                    //print_r('Updated');
-                }
-            }
-            foreach ($getweeklydata as $key) {
-                if ($key['FactoryCode'] == 'B34006') {
-                    array_push($WEEKLY006, $key['pass']);
-                    array_push($WEEKLYDefects006, $key['Fail']);
-                    $Weekly6RFT = $key['pass'] / $key['TotalChecked'];
-                    $WeeklyFinal6RFT =  ($Weekly6RFT * 100);
-                    array_push($WEEKLYRFT006, Round($WeeklyFinal6RFT, 2));
-                }
-            }
-            foreach ($getweeklydata as $key) {
-                if ($key['FactoryCode'] == 'B34007') {
-                    array_push($WEEKLY007, $key['pass']);
-                    array_push($WEEKLYDefects007, $key['Fail']);
-                    $Weekly7RFT = $key['pass'] / $key['TotalChecked'];
-                    $WeeklyFinal7RFT =  ($Weekly7RFT * 100);
-                    array_push($WEEKLYRFT007, Round($WeeklyFinal7RFT, 2));
-                }
-            }
-            $MonthlyRFT001 = [];
-            $MonthlyRFT002 = [];
-            $MonthlyRFT003 = [];
-            $MonthlyRFT004 = [];
-            $MonthlyRFT005 = [];
-            $MonthlyRFT006 = [];
-            $MonthlyRFT007 = [];
-
-
-            $YearlyRFTRFT001 = [];
-            $YearlyRFTRFT002 = [];
-            $YearlyRFTRFT003 = [];
-            $YearlyRFTRFT004 = [];
-            $YearlyRFTRFT005 = [];
-            $YearlyRFTRFT006 = [];
-            $YearlyRFTRFT007 = [];
-
-            $MONTHLY001 = [];
-            $MONTHLY002 = [];
-            $MONTHLY003 = [];
-            $MONTHLY004 = [];
-            $MONTHLY005 = [];
-            $MONTHLY006 = [];
-            $MONTHLY007 = [];
-            $Datess = [];
-            $WeekDatefinal = [];
-            $monthlydateFinal = [];
-            foreach ($weekDate as $key) {
-
-                array_push($WeekDatefinal, $key['TranDate']);
-                //print_r('Updated');
-
-            }
-            foreach ($monthlydate as $key) {
-
-                array_push($monthlydateFinal, $key['TranDate']);
-                //print_r('Updated');
-
-            }
-            foreach ($getmonthly as $key) {
-                if ($key['FactoryCode'] == 'B34001') {
-                    array_push($MONTHLY001, $key['pass']);
-                    array_push($MonthlyDefects001, $key['Fail']);
-
-                    $Monthly1RFT = $key['pass'] / $key['TotalChecked'];
-                    $MonthlyFinalRFT =  ($Monthly1RFT * 100);
-                    array_push($MonthlyRFT001, Round($MonthlyFinalRFT, 2));
-                    //print_r('Updated');
-                }
-            }
-            foreach ($getmonthly as $key) {
-                if ($key['FactoryCode'] == 'B34002') {
-                    array_push($MONTHLY002, $key['pass']);
-                    array_push($MonthlyDefects002, $key['Fail']);
-                    $Monthly2RFT = $key['pass'] / $key['TotalChecked'];
-                    $MonthlyFinal2RFT =  ($Monthly2RFT * 100);
-                    array_push($MonthlyRFT002, Round($MonthlyFinal2RFT, 2));
-                }
-            }
-            foreach ($getmonthly as $key) {
-                if ($key['FactoryCode'] == 'B34003') {
-                    array_push($MONTHLY003, $key['pass']);
-                    array_push($MonthlyDefects003, $key['Fail']);
-                    $Monthly3RFT = $key['pass'] / $key['TotalChecked'];
-                    $MonthlyFinal3RFT =  ($Monthly3RFT * 100);
-                    array_push($MonthlyRFT003, Round($MonthlyFinal3RFT, 2));
-                }
-            }
-            foreach ($getmonthly as $key) {
-                if ($key['FactoryCode'] == 'B34004') {
-                    array_push($MONTHLY004, $key['pass']);
-                    array_push($MonthlyDefects004, $key['Fail']);
-                    $Monthly4RFT = $key['pass'] / $key['TotalChecked'];
-                    $MonthlyFinal4RFT =  ($Monthly4RFT * 100);
-                    array_push($MonthlyRFT004, Round($MonthlyFinal4RFT, 2));
-                }
-            }
-            foreach ($getmonthly as $key) {
-                if ($key['FactoryCode'] == 'B34005') {
-                    array_push($MONTHLY005, $key['pass']);
-                    array_push($MonthlyDefects005, $key['Fail']);
-                    $Monthly5RFT = $key['pass'] / $key['TotalChecked'];
-                    $MonthlyFinal5RFT =  ($Monthly5RFT * 100);
-                    array_push($MonthlyRFT005, Round($MonthlyFinal5RFT, 2));
-                    //print_r('Updated');
-                }
-            }
-            foreach ($getmonthly as $key) {
-                if ($key['FactoryCode'] == 'B34006') {
-                    array_push($MONTHLY006, $key['pass']);
-                    array_push($MonthlyDefects006, $key['Fail']);
-                    $Monthly6RFT = $key['pass'] / $key['TotalChecked'];
-                    $MonthlyFinal6RFT =  ($Monthly6RFT * 100);
-                    array_push($MonthlyRFT006, Round($MonthlyFinal6RFT, 2));
-                }
-            }
-            foreach ($getmonthly as $key) {
-                if ($key['FactoryCode'] == 'B34007') {
-                    array_push($MONTHLY007, $key['pass']);
-                    array_push($MonthlyDefects007, $key['Fail']);
-                    $Monthly7RFT = $key['pass'] / $key['TotalChecked'];
-                    $MonthlyFinal7RFT =  ($Monthly7RFT * 100);
-                    array_push($MonthlyRFT007, Round($MonthlyFinal7RFT, 2));
-                }
-            }
-
-            $Yearly001 = [];
-            $Yearly002 = [];
-            $Yearly003 = [];
-            $Yearly004 = [];
-            $Yearly005 = [];
-            $Yearly006 = [];
-            $Yearly007 = [];
-            $Yearly = [];
-            $Datess = [];
-            foreach ($getYearly as $key) {
-                $Month =  $key['Month'];
-                $Year =  $key['Year'];
-
-                array_push($Yearly, $Month . '-' . $Year);
-                //print_r('Updated');
-
-            }
-            foreach ($getYearly as $key) {
-                if ($key['FactoryCode'] == 'B34001') {
-                    array_push($Yearly001, $key['pass']);
-                    array_push($YearlyDefects001, $key['Fail']);
-                    $YearlyRFT1RFT = $key['pass'] / $key['TotalChecked'];
-                    $YearlyRFTFinalRFT =  ($YearlyRFT1RFT * 100);
-                    array_push($YearlyRFTRFT001, Round($YearlyRFTFinalRFT, 2));
-                    //print_r('Updated');
-                }
-            }
-            foreach ($getYearly as $key) {
-                if ($key['FactoryCode'] == 'B34002') {
-                    array_push($Yearly002, $key['pass']);
-                    array_push($YearlyDefects002, $key['Fail']);
-                    $YearlyRFT2RFT = $key['pass'] / $key['TotalChecked'];
-                    $YearlyRFTFinal2RFT =  ($YearlyRFT2RFT * 100);
-                    array_push($YearlyRFTRFT002, Round($YearlyRFTFinal2RFT, 2));
-                }
-            }
-            foreach ($getYearly as $key) {
-                if ($key['FactoryCode'] == 'B34003') {
-                    array_push($Yearly003, $key['pass']);
-                    array_push($YearlyDefects003, $key['Fail']);
-                    $YearlyRFT3RFT = $key['pass'] / $key['TotalChecked'];
-                    $YearlyRFTFinal3RFT =  ($YearlyRFT3RFT * 100);
-                    array_push($YearlyRFTRFT003, Round($YearlyRFTFinal3RFT, 2));
-                }
-            }
-            foreach ($getYearly as $key) {
-                if ($key['FactoryCode'] == 'B34004') {
-                    array_push($Yearly004, $key['pass']);
-
-                    array_push($YearlyDefects004, $key['Fail']);
-                    $YearlyRFT4RFT = $key['pass'] / $key['TotalChecked'];
-                    $YearlyRFTFinal4RFT =  ($YearlyRFT4RFT * 100);
-                    array_push($YearlyRFTRFT004, Round($YearlyRFTFinal4RFT, 2));
-                }
-            }
-            foreach ($getYearly as $key) {
-                if ($key['FactoryCode'] == 'B34005') {
-                    array_push($Yearly005, $key['pass']);
-                    array_push($YearlyDefects005, $key['Fail']);
-                    $YearlyRFT5RFT = $key['pass'] / $key['TotalChecked'];
-                    $YearlyRFTFinal5RFT =  ($YearlyRFT5RFT * 100);
-                    array_push($YearlyRFTRFT005, Round($YearlyRFTFinal5RFT, 2));
-                    //print_r('Updated');
-                }
-            }
-            foreach ($getYearly as $key) {
-                if ($key['FactoryCode'] == 'B34006') {
-                    array_push($Yearly006, $key['pass']);
-                    array_push($YearlyDefects006, $key['Fail']);
-                    $YearlyRFT6RFT = $key['pass'] / $key['TotalChecked'];
-                    $YearlyRFTFinal6RFT =  ($YearlyRFT6RFT * 100);
-                    array_push($YearlyRFTRFT006, Round($YearlyRFTFinal6RFT, 2));
-                }
-            }
-            foreach ($getYearly as $key) {
-                if ($key['FactoryCode'] == 'B34007') {
-                    array_push($Yearly007, $key['pass']);
-                    array_push($YearlyDefects007, $key['Fail']);
-
-
-                    $YearlyRFT7RFT = $key['pass'] / $key['TotalChecked'];
-                    $YearlyRFTFinal7RFT =  ($YearlyRFT7RFT * 100);
-                    array_push($YearlyRFTRFT007, Round($YearlyRFTFinal7RFT, 2));
-                }
-            }
-
-
-            ?>
-            <script>
-                Highcharts.chart('weeklyrft', {
-
-                    title: {
-                        text: 'Weekly RFT'
-                    },
-
-
-
-                    yAxis: {
-                        title: {
-                            text: 'RFT %'
-                        }
-                    },
-
-                    xAxis: {
-                        categories: <?php echo json_encode($WeekDatefinal, JSON_NUMERIC_CHECK); ?>,
-                        // accessibility: {
-                        //     rangeDescription: 'Range: 2010 to 2017'
-                        // }
-                    },
-
-                    legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'middle'
-                    },
-
-                    plotOptions: {
-                        series: {
-                            label: {
-                                connectorAllowed: false
-                            },
-
-                        }
-                    },
-
-                    series: [{
-                        name: 'B34001',
-                        data: <?php echo json_encode($WEEKLYRFT001, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34002',
-                        data: <?php echo json_encode($WEEKLYRFT002, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34003',
-                        data: <?php echo json_encode($WEEKLYRFT003, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34004',
-                        data: <?php echo json_encode($WEEKLYRFT004, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34005',
-                        data: <?php echo json_encode($WEEKLYRFT005, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34006',
-                        data: <?php echo json_encode($WEEKLYRFT006, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34007',
-                        data: <?php echo json_encode($WEEKLYRFT007, JSON_NUMERIC_CHECK); ?>
-                    }],
-
-                    responsive: {
-                        rules: [{
-                            condition: {
-                                maxWidth: 500
-                            },
-                            chartOptions: {
-                                legend: {
-                                    layout: 'horizontal',
-                                    align: 'center',
-                                    verticalAlign: 'bottom'
-                                }
-                            }
-                        }]
-                    }
-
-                });
-                Highcharts.chart('monthlyrft', {
-
-                    title: {
-                        text: 'Monthly RFT'
-                    },
-
-
-
-                    yAxis: {
-                        title: {
-                            text: 'RFT %'
-                        }
-                    },
-
-                    xAxis: {
-                        categories: <?php echo json_encode($monthlydateFinal, JSON_NUMERIC_CHECK); ?>,
-                        // accessibility: {
-                        //     rangeDescription: 'Range: 2010 to 2017'
-                        // }
-                    },
-
-                    legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'middle'
-                    },
-
-                    plotOptions: {
-                        series: {
-                            label: {
-                                connectorAllowed: false
-                            },
-
-                        }
-                    },
-
-                    series: [{
-                        name: 'B34001',
-                        data: <?php echo json_encode($MonthlyRFT001, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34002',
-                        data: <?php echo json_encode($MonthlyRFT002, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34003',
-                        data: <?php echo json_encode($MonthlyRFT003, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34004',
-                        data: <?php echo json_encode($MonthlyRFT004, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34005',
-                        data: <?php echo json_encode($MonthlyRFT005, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34006',
-                        data: <?php echo json_encode($MonthlyRFT006, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34007',
-                        data: <?php echo json_encode($MonthlyRFT007, JSON_NUMERIC_CHECK); ?>
-                    }],
-
-                    responsive: {
-                        rules: [{
-                            condition: {
-                                maxWidth: 500
-                            },
-                            chartOptions: {
-                                legend: {
-                                    layout: 'horizontal',
-                                    align: 'center',
-                                    verticalAlign: 'bottom'
-                                }
-                            }
-                        }]
-                    }
-
-                });
-                Highcharts.chart('yearlyrft', {
-
-                    title: {
-                        text: 'Monthly RFT'
-                    },
-
-
-
-                    yAxis: {
-                        title: {
-                            text: 'RFT %'
-                        }
-                    },
-
-                    xAxis: {
-                        categories: <?php echo json_encode($Yearfinal, JSON_NUMERIC_CHECK); ?>,
-                        // accessibility: {
-                        //     rangeDescription: 'Range: 2010 to 2017'
-                        // }
-                    },
-
-                    legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'middle'
-                    },
-
-                    plotOptions: {
-                        series: {
-                            label: {
-                                connectorAllowed: false
-                            },
-
-                        }
-                    },
-
-                    series: [{
-                        name: 'B34001',
-                        data: <?php echo json_encode($YearlyRFTRFT001, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34002',
-                        data: <?php echo json_encode($YearlyRFTRFT002, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34003',
-                        data: <?php echo json_encode($YearlyRFTRFT003, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34004',
-                        data: <?php echo json_encode($YearlyRFTRFT004, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34005',
-                        data: <?php echo json_encode($YearlyRFTRFT005, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34006',
-                        data: <?php echo json_encode($YearlyRFTRFT006, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34007',
-                        data: <?php echo json_encode($YearlyRFTRFT007, JSON_NUMERIC_CHECK); ?>
-                    }],
-
-                    responsive: {
-                        rules: [{
-                            condition: {
-                                maxWidth: 500
-                            },
-                            chartOptions: {
-                                legend: {
-                                    layout: 'horizontal',
-                                    align: 'center',
-                                    verticalAlign: 'bottom'
-                                }
-                            }
-                        }]
-                    }
-
-                });
-                Highcharts.chart('weeklydef', {
-
-                    title: {
-                        text: 'Weekly Defectes'
-                    },
-
-
-
-                    yAxis: {
-                        title: {
-                            text: 'Defects'
-                        }
-                    },
-
-                    xAxis: {
-                        categories: <?php echo json_encode($WeekDatefinal, JSON_NUMERIC_CHECK); ?>,
-                        // accessibility: {
-                        //     rangeDescription: 'Range: 2010 to 2017'
-                        // }
-                    },
-
-                    legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'middle'
-                    },
-
-                    plotOptions: {
-                        series: {
-                            label: {
-                                connectorAllowed: false
-                            },
-
-                        }
-                    },
-
-                    series: [{
-                        name: 'B34001',
-                        data: <?php echo json_encode($WEEKLYDefects001, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34002',
-                        data: <?php echo json_encode($WEEKLYDefects002, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34003',
-                        data: <?php echo json_encode($WEEKLYDefects003, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34004',
-                        data: <?php echo json_encode($WEEKLYDefects004, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34005',
-                        data: <?php echo json_encode($WEEKLYDefects005, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34006',
-                        data: <?php echo json_encode($WEEKLYDefects006, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34007',
-                        data: <?php echo json_encode($WEEKLYDefects007, JSON_NUMERIC_CHECK); ?>
-                    }],
-
-                    responsive: {
-                        rules: [{
-                            condition: {
-                                maxWidth: 500
-                            },
-                            chartOptions: {
-                                legend: {
-                                    layout: 'horizontal',
-                                    align: 'center',
-                                    verticalAlign: 'bottom'
-                                }
-                            }
-                        }]
-                    }
-
-                });
-                Highcharts.chart('monthlydef', {
-
-                    title: {
-                        text: 'Monthly Defects'
-                    },
-
-
-
-                    yAxis: {
-                        title: {
-                            text: 'Defects'
-                        }
-                    },
-
-                    xAxis: {
-                        categories: <?php echo json_encode($monthlydateFinal, JSON_NUMERIC_CHECK); ?>,
-                        // accessibility: {
-                        //     rangeDescription: 'Range: 2010 to 2017'
-                        // }
-                    },
-
-                    legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'middle'
-                    },
-
-                    plotOptions: {
-                        series: {
-                            label: {
-                                connectorAllowed: false
-                            },
-
-                        }
-                    },
-
-                    series: [{
-                        name: 'B34001',
-                        data: <?php echo json_encode($MonthlyDefects001, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34002',
-                        data: <?php echo json_encode($MonthlyDefects002, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34003',
-                        data: <?php echo json_encode($MonthlyDefects003, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34004',
-                        data: <?php echo json_encode($MonthlyDefects004, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34005',
-                        data: <?php echo json_encode($MonthlyDefects005, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34006',
-                        data: <?php echo json_encode($MonthlyDefects006, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34007',
-                        data: <?php echo json_encode($MonthlyDefects007, JSON_NUMERIC_CHECK); ?>
-                    }],
-
-                    responsive: {
-                        rules: [{
-                            condition: {
-                                maxWidth: 500
-                            },
-                            chartOptions: {
-                                legend: {
-                                    layout: 'horizontal',
-                                    align: 'center',
-                                    verticalAlign: 'bottom'
-                                }
-                            }
-                        }]
-                    }
-
-                });
-                Highcharts.chart('yearlydef', {
-
-                    title: {
-                        text: 'Yearly Defects'
-                    },
-
-
-
-                    yAxis: {
-                        title: {
-                            text: 'Defects'
-                        }
-                    },
-
-                    xAxis: {
-                        categories: <?php echo json_encode($Yearfinal, JSON_NUMERIC_CHECK); ?>,
-                        // accessibility: {
-                        //     rangeDescription: 'Range: 2010 to 2017'
-                        // }
-                    },
-
-                    legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'middle'
-                    },
-
-                    plotOptions: {
-                        series: {
-                            label: {
-                                connectorAllowed: false
-                            },
-
-                        }
-                    },
-
-                    series: [{
-                        name: 'B34001',
-                        data: <?php echo json_encode($YearlyDefects001, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34002',
-                        data: <?php echo json_encode($YearlyDefects002, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34003',
-                        data: <?php echo json_encode($YearlyDefects003, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34004',
-                        data: <?php echo json_encode($YearlyDefects004, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34005',
-                        data: <?php echo json_encode($YearlyDefects005, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34006',
-                        data: <?php echo json_encode($YearlyDefects006, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34007',
-                        data: <?php echo json_encode($YearlyDefects007, JSON_NUMERIC_CHECK); ?>
-                    }],
-
-                    responsive: {
-                        rules: [{
-                            condition: {
-                                maxWidth: 500
-                            },
-                            chartOptions: {
-                                legend: {
-                                    layout: 'horizontal',
-                                    align: 'center',
-                                    verticalAlign: 'bottom'
-                                }
-                            }
-                        }]
-                    }
-
-                });
-                Highcharts.chart('monthlydata', {
-
-                    title: {
-                        text: 'Monthly Production'
-                    },
-
-
-
-                    yAxis: {
-                        title: {
-                            text: 'Number of Balls'
-                        }
-                    },
-
-                    xAxis: {
-                        categories: <?php echo json_encode($monthlydateFinal, JSON_NUMERIC_CHECK); ?>,
-                        // accessibility: {
-                        //     rangeDescription: 'Range: 2010 to 2017'
-                        // }
-                    },
-
-                    legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'middle'
-                    },
-
-                    plotOptions: {
-                        series: {
-                            label: {
-                                connectorAllowed: false
-                            },
-
-                        }
-                    },
-
-                    series: [{
-                        name: 'B34001',
-                        data: <?php echo json_encode($MONTHLY001, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34002',
-                        data: <?php echo json_encode($MONTHLY002, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34003',
-                        data: <?php echo json_encode($MONTHLY003, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34004',
-                        data: <?php echo json_encode($MONTHLY004, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34005',
-                        data: <?php echo json_encode($MONTHLY005, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34006',
-                        data: <?php echo json_encode($MONTHLY006, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34007',
-                        data: <?php echo json_encode($MONTHLY007, JSON_NUMERIC_CHECK); ?>
-                    }],
-
-                    responsive: {
-                        rules: [{
-                            condition: {
-                                maxWidth: 500
-                            },
-                            chartOptions: {
-                                legend: {
-                                    layout: 'horizontal',
-                                    align: 'center',
-                                    verticalAlign: 'bottom'
-                                }
-                            }
-                        }]
-                    }
-
-                });
-
-
-                Highcharts.chart('yearlydata', {
-
-                    title: {
-                        text: 'Yearly Production'
-                    },
-
-
-
-                    yAxis: {
-                        title: {
-                            text: 'Number of Balls'
-                        }
-                    },
-
-                    xAxis: {
-                        categories: <?php echo json_encode($Yearfinal, JSON_NUMERIC_CHECK); ?>,
-                        // accessibility: {
-                        //     rangeDescription: 'Range: 2010 to 2017'
-                        // }
-                    },
-
-                    legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'middle'
-                    },
-
-                    plotOptions: {
-                        series: {
-                            label: {
-                                connectorAllowed: false
-                            },
-
-                        }
-                    },
-
-                    series: [{
-                        name: 'B34001',
-                        data: <?php echo json_encode($Yearly001, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34002',
-                        data: <?php echo json_encode($Yearly002, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34003',
-                        data: <?php echo json_encode($Yearly003, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34004',
-                        data: <?php echo json_encode($Yearly004, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34005',
-                        data: <?php echo json_encode($Yearly005, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34006',
-                        data: <?php echo json_encode($Yearly006, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34007',
-                        data: <?php echo json_encode($Yearly007, JSON_NUMERIC_CHECK); ?>
-                    }],
-
-                    responsive: {
-                        rules: [{
-                            condition: {
-                                maxWidth: 500
-                            },
-                            chartOptions: {
-                                legend: {
-                                    layout: 'horizontal',
-                                    align: 'center',
-                                    verticalAlign: 'bottom'
-                                }
-                            }
-                        }]
-                    }
-
-                });
-
-                Highcharts.chart('container1', {
-
-                    title: {
-                        text: 'Weekly Production'
-                    },
-
-
-
-                    yAxis: {
-                        title: {
-                            text: 'Number of Balls'
-                        }
-                    },
-
-                    xAxis: {
-                        categories: <?php echo json_encode($WeekDatefinal, JSON_NUMERIC_CHECK); ?>,
-                        // accessibility: {
-                        //     rangeDescription: 'Range: 2010 to 2017'
-                        // }
-                    },
-
-                    legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'middle'
-                    },
-
-                    plotOptions: {
-                        series: {
-                            label: {
-                                connectorAllowed: false
-                            },
-
-                        }
-                    },
-
-                    series: [{
-                        name: 'B34001',
-                        data: <?php echo json_encode($WEEKLY001, JSON_NUMERIC_CHECK); ?>
-
-                    }, {
-                        name: 'B34002',
-                        data: <?php echo json_encode($WEEKLY002, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34003',
-                        data: <?php echo json_encode($WEEKLY003, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34004',
-                        data: <?php echo json_encode($WEEKLY004, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34005',
-                        data: <?php echo json_encode($WEEKLY005, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34006',
-                        data: <?php echo json_encode($WEEKLY006, JSON_NUMERIC_CHECK); ?>
-                    }, {
-                        name: 'B34007',
-                        data: <?php echo json_encode($WEEKLY007, JSON_NUMERIC_CHECK); ?>
-                    }],
-
-                    responsive: {
-                        rules: [{
-                            condition: {
-                                maxWidth: 500
-                            },
-                            chartOptions: {
-                                legend: {
-                                    layout: 'horizontal',
-                                    align: 'center',
-                                    verticalAlign: 'bottom'
-                                }
-                            }
-                        }]
-                    }
-
-                });
-                var gaugeOptions = {
-                    chart: {
-                        type: 'solidgauge'
-                    },
-
-                    title: null,
-
-                    pane: {
-                        center: ['50%', '85%'],
-                        size: '110%',
-                        startAngle: -90,
-                        endAngle: 90,
-                        background: {
-                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
-                            innerRadius: '60%',
-                            outerRadius: '100%',
-                            shape: 'arc'
-                        }
-                    },
-
-                    exporting: {
-                        enabled: false
-                    },
-
-                    tooltip: {
-                        enabled: false
-                    },
-
-                    // the value axis
-                    yAxis: {
-                        stops: [
-                            [0.1, '#55BF3B'], // green
-                            [0.5, '#DDDF0D'], // yellow
-                            [0.9, '#DF5353'] // red
-                        ],
-                        lineWidth: 0,
-                        tickWidth: 0,
-                        minorTickInterval: null,
-                        tickAmount: 2,
-                        title: {
-                            y: -70
-                        },
-                        labels: {
-                            y: 16
-                        }
-                    },
-
-                    plotOptions: {
-                        solidgauge: {
-                            dataLabels: {
-                                y: 5,
-                                borderWidth: 0,
-                                useHTML: true
-                            }
-                        }
-                    }
-                };
-                var gaugeOptions = {
-                    chart: {
-                        type: 'solidgauge'
-                    },
-
-                    title: null,
-
-                    pane: {
-                        center: ['50%', '85%'],
-                        size: '110%',
-                        startAngle: -90,
-                        endAngle: 90,
-                        background: {
-                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
-                            innerRadius: '60%',
-                            outerRadius: '100%',
-                            shape: 'arc'
-                        }
-                    },
-
-                    exporting: {
-                        enabled: false
-                    },
-
-                    tooltip: {
-                        enabled: false
-                    },
-
-                    // the value axis
-                    yAxis: {
-                        stops: [
-                            [0.1, '#55BF3B'], // green
-                            [0.5, '#DDDF0D'], // yellow
-                            [0.9, '#DF5353'] // red
-                        ],
-                        lineWidth: 0,
-                        tickWidth: 0,
-                        minorTickInterval: null,
-                        tickAmount: 2,
-                        title: {
-                            y: -70
-                        },
-                        labels: {
-                            y: 16
-                        }
-                    },
-
-                    plotOptions: {
-                        solidgauge: {
-                            dataLabels: {
-                                y: 5,
-                                borderWidth: 0,
-                                useHTML: true
-                            }
-                        }
-                    }
-                };
-                // The speed gauge
-                var chartSpeed = Highcharts.chart('container-speed0', Highcharts.merge(gaugeOptions, {
-                    yAxis: {
-                        min: 0,
-                        max: <?php echo $B34001target; ?>,
-                        title: {
-                            text: 'Hand Stitched'
-                        }
-                    },
-
-                    credits: {
-                        enabled: false
-                    },
-
-                    series: [{
-                        name: 'Hand Stitched',
-                        data: [<?php echo $b34001 ? $b34001[0] : 0 ?>],
-                        dataLabels: {
-                            format: '<div style="text-align:center">' +
-                                '<span style="font-size:25px">{y}</span><br/>' +
-                                '<span style="font-size:12px;opacity:5">Live Production</span>' +
-                                '</div>'
-                        },
-                        tooltip: {
-                            valueSuffix: ' km/h'
-                        }
-                    }]
-
-                }));
-                var chartSpeed = Highcharts.chart('container-speedrft', Highcharts.merge(gaugeOptions, {
-                    yAxis: {
-                        min: 0,
-                        max: 100,
-                        title: {
-                            text: 'Over All RFT'
-                        }
-                    },
-
-                    credits: {
-                        enabled: false
-                    },
-
-                    series: [{
-                        name: 'Over All RFT',
-                        data: [<?php echo Round($FinalRF, 2) ?>],
-                        dataLabels: {
-                            format: '<div style="text-align:center">' +
-                                '<span style="font-size:25px">{y}</span><br/>' +
-                                '<span style="font-size:12px;opacity:5"> Over All RFT %</span>' +
-                                '</div>'
-                        },
-                        tooltip: {
-                            valueSuffix: ' km/h'
-                        }
-                    }]
-
-                }));
-                var chartSpeed = Highcharts.chart('container-speeddef', Highcharts.merge(gaugeOptions, {
-                    yAxis: {
-                        min: 0,
-                        max: 100,
-                        title: {
-                            text: 'Over All Defects Percentage'
-                        }
-                    },
-
-                    credits: {
-                        enabled: false
-                    },
-
-                    series: [{
-                        name: 'Defects Percentage',
-                        data: [<?php echo Round($Finalprenentage, 2) ?>],
-                        dataLabels: {
-                            format: '<div style="text-align:center">' +
-                                '<span style="font-size:25px">{y}</span><br/>' +
-                                '<span style="font-size:12px;opacity:5"> Defects Percentage %</span>' +
-                                '</div>'
-                        },
-                        tooltip: {
-                            valueSuffix: ' km/h'
-                        }
-                    }]
-
-                }));
-                // The speed gauge
-
-                // The speed gauge
-                var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
-                    yAxis: {
-                        min: 0,
-                        max: <?php echo $B34002target; ?>,
-                        title: {
-                            text: 'Competition'
-                        }
-                    },
-
-                    credits: {
-                        enabled: false
-                    },
-
-                    series: [{
-                        name: 'Competiton',
-                        data: [<?php echo $b34002 ? $b34002[0] : 0 ?>],
-                        dataLabels: {
-                            format: '<div style="text-align:center">' +
-                                '<span style="font-size:25px">{y}</span><br/>' +
-                                '<span style="font-size:12px;opacity:5">Live Production</span>' +
-                                '</div>'
-                        },
-                        tooltip: {
-                            valueSuffix: ' km/h'
-                        }
-                    }]
-
-                }));
-                // The speed gauge
-                var chartSpeed = Highcharts.chart('container-speed1', Highcharts.merge(gaugeOptions, {
-                    yAxis: {
-                        min: 0,
-                        max: <?php echo $B34003target; ?>,
-                        title: {
-                            text: 'Urban'
-                        }
-                    },
-
-                    credits: {
-                        enabled: false
-                    },
-
-                    series: [{
-                        name: 'Urban',
-                        data: [<?php echo $b34003 ? $b34003[0] : 0 ?>],
-                        dataLabels: {
-                            format: '<div style="text-align:center">' +
-                                '<span style="font-size:25px">{y}</span><br/>' +
-                                '<span style="font-size:12px;opacity:5">Live Production</span>' +
-                                '</div>'
-                        },
-                        tooltip: {
-                            valueSuffix: ' km/h'
-                        }
-                    }]
-
-                }));
-                var chartSpeed = Highcharts.chart('container-speed2', Highcharts.merge(gaugeOptions, {
-                    yAxis: {
-                        min: 0,
-                        max: <?php echo $B34004target; ?>,
-                        title: {
-                            text: 'Finale'
-                        }
-                    },
-
-                    credits: {
-                        enabled: false
-                    },
-
-                    series: [{
-                        name: 'Finale',
-                        data: [<?php echo $b34004 ? $b34004[0] : 0 ?>],
-                        dataLabels: {
-                            format: '<div style="text-align:center">' +
-                                '<span style="font-size:25px">{y}</span><br/>' +
-                                '<span style="font-size:12px;opacity:5">Live Production</span>' +
-                                '</div>'
-                        },
-                        tooltip: {
-                            valueSuffix: ' km/h'
-                        }
-                    }]
-
-                }));
-                var gaugeOptions = {
-                    chart: {
-                        type: 'solidgauge'
-                    },
-
-                    title: null,
-
-                    pane: {
-                        center: ['50%', '85%'],
-                        size: '110%',
-                        startAngle: -90,
-                        endAngle: 90,
-                        background: {
-                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
-                            innerRadius: '60%',
-                            outerRadius: '100%',
-                            shape: 'arc'
-                        }
-                    },
-
-                    exporting: {
-                        enabled: false
-                    },
-
-                    tooltip: {
-                        enabled: false
-                    },
-
-                    // the value axis
-                    yAxis: {
-                        stops: [
-                            [0.1, '#55BF3B'], // green
-                            [0.5, '#DDDF0D'], // yellow
-                            [0.9, '#DF5353'] // red
-                        ],
-                        lineWidth: 0,
-                        tickWidth: 0,
-                        minorTickInterval: null,
-                        tickAmount: 2,
-                        title: {
-                            y: -70
-                        },
-                        labels: {
-                            y: 16
-                        }
-                    },
-
-                    plotOptions: {
-                        solidgauge: {
-                            dataLabels: {
-                                y: 5,
-                                borderWidth: 0,
-                                useHTML: true
-                            }
-                        }
-                    }
-                };
-
-                // The speed gauge
-                var chartSpeed = Highcharts.chart('container-speed3', Highcharts.merge(gaugeOptions, {
-                    yAxis: {
-                        min: 0,
-                        max: <?php echo $B34005target; ?>,
-                        title: {
-                            text: 'Machine Stitch'
-                        }
-                    },
-
-                    credits: {
-                        enabled: false
-                    },
-
-                    series: [{
-                        name: 'Machine Stitch',
-                        data: [<?php echo $b34005 ? $b34005[0] : 0 ?>],
-                        dataLabels: {
-                            format: '<div style="text-align:center">' +
-                                '<span style="font-size:25px">{y}</span><br/>' +
-                                '<span style="font-size:12px;opacity:5">Live Production</span>' +
-                                '</div>'
-                        },
-                        tooltip: {
-                            valueSuffix: ' km/h'
-                        }
-                    }]
-
-                }));
-                var gaugeOptions = {
-                    chart: {
-                        type: 'solidgauge'
-                    },
-
-                    title: null,
-
-                    pane: {
-                        center: ['50%', '85%'],
-                        size: '110%',
-                        startAngle: -90,
-                        endAngle: 90,
-                        background: {
-                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
-                            innerRadius: '60%',
-                            outerRadius: '100%',
-                            shape: 'arc'
-                        }
-                    },
-
-                    exporting: {
-                        enabled: false
-                    },
-
-                    tooltip: {
-                        enabled: false
-                    },
-
-                    // the value axis
-                    yAxis: {
-                        stops: [
-                            [0.1, '#55BF3B'], // green
-                            [0.5, '#DDDF0D'], // yellow
-                            [0.9, '#DF5353'] // red
-                        ],
-                        lineWidth: 0,
-                        tickWidth: 0,
-                        minorTickInterval: null,
-                        tickAmount: 2,
-                        title: {
-                            y: -70
-                        },
-                        labels: {
-                            y: 16
-                        }
-                    },
-
-                    plotOptions: {
-                        solidgauge: {
-                            dataLabels: {
-                                y: 5,
-                                borderWidth: 0,
-                                useHTML: true
-                            }
-                        }
-                    }
-                };
-
-                // The speed gauge
-                var chartSpeed = Highcharts.chart('container-speed4', Highcharts.merge(gaugeOptions, {
-                    yAxis: {
-                        min: 0,
-                        max: <?php echo $B34006target; ?>,
-                        title: {
-                            text: 'Airless Mini'
-                        }
-                    },
-
-                    credits: {
-                        enabled: false
-                    },
-
-                    series: [{
-                        name: 'Airless Mini',
-                        data: [<?php echo $b34006 ? $b34006[0] : 0 ?>],
-                        dataLabels: {
-                            format: '<div style="text-align:center">' +
-                                '<span style="font-size:25px">{y}</span><br/>' +
-                                '<span style="font-size:12px;opacity:5">Live Production</span>' +
-                                '</div>'
-                        },
-                        tooltip: {
-                            valueSuffix: ' km/h'
-                        }
-                    }]
-
-                }));
-                var gaugeOptions = {
-                    chart: {
-                        type: 'solidgauge'
-                    },
-
-                    title: null,
-
-                    pane: {
-                        center: ['50%', '85%'],
-                        size: '110%',
-                        startAngle: -90,
-                        endAngle: 90,
-                        background: {
-                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
-                            innerRadius: '60%',
-                            outerRadius: '100%',
-                            shape: 'arc'
-                        }
-                    },
-
-                    exporting: {
-                        enabled: false
-                    },
-
-                    tooltip: {
-                        enabled: false
-                    },
-
-                    // the value axis
-                    yAxis: {
-                        stops: [
-                            [0.1, '#55BF3B'], // green
-                            [0.5, '#DDDF0D'], // yellow
-                            [0.9, '#DF5353'] // red
-                        ],
-                        lineWidth: 0,
-                        tickWidth: 0,
-                        minorTickInterval: null,
-                        tickAmount: 2,
-                        title: {
-                            y: -70
-                        },
-                        labels: {
-                            y: 16
-                        }
-                    },
-
-                    plotOptions: {
-                        solidgauge: {
-                            dataLabels: {
-                                y: 5,
-                                borderWidth: 0,
-                                useHTML: true
-                            }
-                        }
-                    }
-                };
-
-                // The speed gauge
-                var chartSpeed = Highcharts.chart('container-speed5', Highcharts.merge(gaugeOptions, {
-                    yAxis: {
-                        min: 0,
-                        max: <?php echo $B34007target; ?>,
-                        title: {
-                            text: 'Laminated'
-                        }
-                    },
-
-                    credits: {
-                        enabled: false
-                    },
-
-                    series: [{
-                        name: 'Laminated',
-                        data: [<?php echo $b34007 ? $b34007[0] : 0 ?>],
-                        dataLabels: {
-                            format: '<div style="text-align:center">' +
-                                '<span style="font-size:25px">{y}</span><br/>' +
-                                '<span style="font-size:12px;opacity:5">Live Production</span>' +
-                                '</div>'
-                        },
-                        tooltip: {
-                            valueSuffix: ' km/h'
-                        }
-                    }]
-
-                }));
-                $('.count').each(function() {
-                    $(this).prop('Counter', 0).animate({
-                        Counter: $(this).text()
-                    }, {
-                        duration: 4000,
-                        easing: 'swing',
-                        step: function(now) {
-                            $(this).text(Math.ceil(now));
-                        }
-                    });
-                });
-            </script>
-
-            <?php
-
-            $TMProductiongraph = [];
-            //print_r($CodeB34001);
-            $TMRFTFinal = [];
-            $TMFinal = [];
-            $MSRFTFinal = [];
-            $MSFinal = [];
-            foreach ($TmProduction as $key) {
-
-                $Data002 = [
-                    $key['FactoryCode'],
-                    $key['pass'],
-                ];
-                //array_push($B34001data_points2, $pointB43001);
-
-                array_push($TMProductiongraph, $Data002);
-                $Check = $key['TotalChecked'];
-                $PassQty = $key['pass'];
-                $FailQty = $key['Fail'];
-                $TMRFT = ($PassQty / $Check) * 100;
-                $MainTMRFT = [
-
-                    $key['FactoryCode'],
-                    Round($TMRFT, 2),
-                ];
-                array_push($TMRFTFinal, $MainTMRFT);
-
-                $MainTMFail = [
-                    $key['FactoryCode'],
-                    $FailQty,
-                ];
-                array_push($TMFinal, $MainTMFail);
-            }
-            $MSProductiongraph = [];
-            foreach ($MSProd  as $key) {
-                $Data005 = [
-                    //$key['LineName'],
-                    $key['Pass'],
-                ];
-                array_push($MSProductiongraph, $Data005);
-            }
-            $MSLines = [];
-            foreach ($MSProd  as $key) {
-
-                $LinesData = [
-                    $key['LineName'],
-                    //$key['Pass'],
-                ];
-
-                array_push($MSLines, $LinesData);
-                $Check = $key['TotalChecked'];
-                $PassQty = $key['Pass'];
-                $TMRFT = ($PassQty / $Check) * 100;
-                $MainMSRFT = [
-
-                    $key['LineName'],
-                    Round($TMRFT, 2),
-
-                ];
-                array_push($MSRFTFinal, $MainMSRFT);
-                $MainMSFail = [
-
-                    $key['LineName'],
-                    $key['Fail'],
-
-                ];
-                array_push($MSFinal, $MainMSFail);
-            }
-            $MSLinesFail = [];
-            foreach ($MSProd  as $key) {
-
-                $LinesDataFail = [
-                    // $key['LineName'],
-                    $key['Fail'],
-                ];
-
-                array_push($MSLinesFail, $LinesDataFail);
-            }
-            $AMbProductiongraph = [];
-            //print_r($CodeB34001);
-            $AMBRFTFinal = [];
-            $AMBFinal = [];
-            foreach ($AMBproduction  as $key) {
-
-                $Data006 = [
-                    $key['LineName'],
-                    $key['Pass'],
-                ];
-                //array_push($B34001data_points2, $pointB43001);
-
-                array_push($AMbProductiongraph, $Data006);
-                $Check = $key['TotalChecked'];
-                $PassQty = $key['Pass'];
-                $AMBRFT = ($PassQty / $Check) * 100;
-                $MainAMBRFT = [
-
-                    $key['LineName'],
-                    Round($AMBRFT, 2),
-
-                ];
-                array_push($AMBRFTFinal, $MainAMBRFT);
-                $MainAMBFail = [
-
-                    $key['LineName'],
-                    $key['Fail'],
-
-                ];
-                array_push($AMBFinal, $MainAMBFail);
-            }
-
-            ?>
-            <script>
-                Highcharts.chart('hsprd', {
-                    chart: {
-                        type: 'column'
-                    },
-                    title: {
-                        text: 'Hand Stitched (B34001)'
-                    },
-                    xAxis: {
-                        type: 'category',
-                        labels: {
-                            rotation: -45,
-                            style: {
-                                fontSize: '13px',
-                                fontFamily: 'Verdana, sans-serif'
-                            }
-                        }
-                    },
-                    yAxis: {
-                        min: 0,
-                        title: {
-                            text: 'Total Production'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    series: [{
-                        name: 'Production',
-                        colorByPoint: true,
-                        data: <?php echo json_encode($graph001, JSON_NUMERIC_CHECK); ?>
-
-
-                    }]
-                });
-                Highcharts.chart('tmprd', {
-                    chart: {
-                        type: 'column'
-                    },
-                    title: {
-                        text: 'Thermo Bounded (B34002,B34003,B34004)'
-                    },
-                    xAxis: {
-                        type: 'category',
-                        labels: {
-                            rotation: -45,
-                            style: {
-                                fontSize: '13px',
-                                fontFamily: 'Verdana, sans-serif'
-                            }
-                        }
-                    },
-                    yAxis: {
-                        min: 0,
-                        title: {
-                            text: 'Total Production'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    tooltip: {
-                        pointFormat: 'Total: <b>{point.y:.1f} Pass Quantity</b>'
-                    },
-                    series: [{
-                        name: 'Production',
-                        colorByPoint: true,
-                        data: <?php echo json_encode($TMProductiongraph, JSON_NUMERIC_CHECK); ?>
-                    }]
-                });
-
-
-                Highcharts.chart('msprd', {
-                    chart: {
-                        zoomType: 'xy'
-                    },
-                    title: {
-                        text: 'Machine Stitched Hall Production'
-                    },
-                    subtitle: {
-                        text: 'Total Output'
-                    },
-                    xAxis: [{
-                        categories: <?php echo json_encode($MSLines, JSON_NUMERIC_CHECK); ?>,
-
-
-                        crosshair: true
-                    }],
-                    yAxis: [{ // Primary yAxis
-                        labels: {
-                            format: '{value}',
-                            style: {
-                                color: Highcharts.getOptions().colors[1]
-                            }
-                        },
-                        title: {
-                            text: 'Fail Quantity',
-                            style: {
-                                color: Highcharts.getOptions().colors[1]
-                            }
-                        }
-                    }, { // Secondary yAxis
-                        title: {
-                            text: 'Pass Quantity ',
-                            style: {
-                                color: Highcharts.getOptions().colors[0]
-                            }
-                        },
-                        labels: {
-                            format: '{value} ',
-                            style: {
-                                color: Highcharts.getOptions().colors[0]
-                            }
-                        },
-                        opposite: true
-                    }],
-                    tooltip: {
-                        shared: true
-                    },
-                    legend: {
-                        layout: 'vertical',
-                        align: 'left',
-                        x: 120,
-                        verticalAlign: 'top',
-                        y: 100,
-                        floating: true,
-                        backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
-                            'rgba(255,255,255,0.25)'
-                    },
-                    series: [{
-                        name: 'Pass Quantity',
-                        type: 'column',
-                        colorByPoint: true,
-                        yAxis: 1,
-                        data: <?php echo json_encode($MSProductiongraph, JSON_NUMERIC_CHECK); ?>,
-                        // tooltip: {
-                        //     valueSuffix: ''
-                        // }
-
-                    }, {
-                        name: 'Fail Quantity',
-                        type: 'spline',
-                        color: 'red',
-                        data: <?php echo json_encode($MSLinesFail, JSON_NUMERIC_CHECK); ?>,
-                        // tooltip: {
-                        //     valueSuffix: ''
-                        // }
-                    }]
-                });
-
-                Highcharts.chart('ambprd', {
-                    chart: {
-                        type: 'column'
-                    },
-                    title: {
-                        text: 'Airless Mini (B34006)'
-                    },
-                    xAxis: {
-                        type: 'category',
-                        labels: {
-                            rotation: -45,
-                            style: {
-                                fontSize: '13px',
-                                fontFamily: 'Verdana, sans-serif'
-                            }
-                        }
-                    },
-                    yAxis: {
-                        min: 0,
-                        title: {
-                            text: 'Total Production'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    tooltip: {
-                        pointFormat: 'Total: <b>{point.y:.1f} Pass Quantity</b>'
-                    },
-                    series: [{
-                        name: 'Production',
-                        colorByPoint: true,
-                        data: <?php echo json_encode($AMbProductiongraph, JSON_NUMERIC_CHECK); ?>
-                    }]
-                });
-                Highcharts.chart('lfbprd', {
-                    chart: {
-                        type: 'column'
-                    },
-                    title: {
-                        text: 'Laminated (B34007)'
-                    },
-                    xAxis: {
-                        type: 'category',
-                        labels: {
-                            rotation: -45,
-                            style: {
-                                fontSize: '13px',
-                                fontFamily: 'Verdana, sans-serif'
-                            }
-                        }
-                    },
-                    yAxis: {
-                        min: 0,
-                        title: {
-                            text: 'Total Production'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    tooltip: {
-                        pointFormat: 'Total: <b>{point.y:.1f} Pass Quantity</b>'
-                    },
-                    series: [{
-                        name: 'Production',
-                        colorByPoint: true,
-
-                        data: <?php echo json_encode($B34007data_points2, JSON_NUMERIC_CHECK); ?>
-                    }]
-                });
-
-                Highcharts.chart('AllPrd', {
-                    chart: {
-                        type: 'column'
-                    },
-                    title: {
-                        text: 'Today Production'
-                    },
-
-                    accessibility: {
-                        announceNewData: {
-                            enabled: true
-                        }
-                    },
-                    xAxis: {
-                        type: 'category'
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Total Production'
-                        }
-
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y:.1f}'
-                            }
-                        }
-                    },
-
-                    tooltip: {
-                        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
-                        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
-                    },
-
-                    series: [{
-                        name: "Production",
-                        colorByPoint: true,
-                        data: <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>,
-
-                    }],
-                    drilldown: {
-                        series: [{
-                                name: "B34001",
-                                id: "B34001",
-                                data: <?php echo json_encode(
-                                            $B34001data_points2,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-                            },
-                            {
-                                name: "B34002",
-                                id: "B34002",
-                                data: <?php echo json_encode(
-                                            $B34002data_points2,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-                            },
-                            {
-                                name: "B34003",
-                                id: "B34003",
-                                data: <?php echo json_encode(
-                                            $B34003data_points2,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-                            },
-                            {
-                                name: "B34004",
-                                id: "B34004",
-                                data: <?php echo json_encode(
-                                            $B34004data_points2,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-                            },
-                            {
-                                name: "B34005",
-                                id: "B34005",
-                                data: <?php echo json_encode(
-                                            $B34005data_points2,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-                            },
-                            {
-                                name: "B34006",
-                                id: "B34006",
-                                data: <?php echo json_encode(
-                                            $B34006data_points2,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-                            },
-                            {
-                                name: "B34007",
-                                id: "B34007",
-                                data: <?php echo json_encode(
-                                            $B34007data_points2,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-
-                            }
-                        ]
-                    }
-                });
-                Highcharts.chart('AllPrdrft', {
-                    chart: {
-                        type: 'column'
-                    },
-                    title: {
-                        text: 'Today RFT'
-                    },
-
-                    accessibility: {
-                        announceNewData: {
-                            enabled: true
-                        }
-                    },
-                    xAxis: {
-                        type: 'category'
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'RFT '
-                        }
-
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y:.1f} %'
-                            }
-                        }
-                    },
-
-                    tooltip: {
-                        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
-                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: % <br/>'
-                    },
-
-                    series: [{
-                        name: "Production",
-                        colorByPoint: true,
-                        data: <?php echo json_encode($data_pointsRFT, JSON_NUMERIC_CHECK); ?>,
-
-                    }],
-                    drilldown: {
-                        series: [{
-                                name: "B34001",
-                                id: "B34001",
-                                data: <?php echo json_encode(
-                                            $B34001ArtRFT,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-                            },
-                            {
-                                name: "B34002",
-                                id: "B34002",
-                                data: <?php echo json_encode(
-                                            $B34002ArtRFT,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-                            },
-                            {
-                                name: "B34003",
-                                id: "B34003",
-                                data: <?php echo json_encode(
-                                            $B34003ArtRFT,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-                            },
-                            {
-                                name: "B34004",
-                                id: "B34004",
-                                data: <?php echo json_encode(
-                                            $B34004ArtRFT,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-                            },
-                            {
-                                name: "B34005",
-                                id: "B34005",
-                                data: <?php echo json_encode(
-                                            $B34005ArtRFT,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-                            },
-                            {
-                                name: "B34006",
-                                id: "B34006",
-                                data: <?php echo json_encode(
-                                            $B34006ArtRFT,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-                            },
-                            {
-                                name: "B34007",
-                                id: "B34007",
-                                data: <?php echo json_encode(
-                                            $B34007ArtRFT,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-
-                            }
-                        ]
-                    }
-                });
-
-
-                Highcharts.chart('hsprdrft', {
-                    chart: {
-                        type: 'column'
-                    },
-                    title: {
-                        text: 'Hand Stitched (B34001)'
-                    },
-                    xAxis: {
-                        type: 'category',
-                        labels: {
-                            rotation: -45,
-                            style: {
-                                fontSize: '13px',
-                                fontFamily: 'Verdana, sans-serif'
-                            }
-                        }
-                    },
-                    yAxis: {
-                        min: 0,
-                        title: {
-                            text: 'Total Production'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    series: [{
-                        name: 'Production',
-                        colorByPoint: true,
-                        data: <?php echo json_encode($B34001ArtRFT, JSON_NUMERIC_CHECK); ?>
-
-
-                    }]
-                });
-                Highcharts.chart('tmprdrft', {
-                    chart: {
-                        type: 'column'
-                    },
-                    title: {
-                        text: 'Thermo Bounded (B34002,B34003,B34004)'
-                    },
-                    xAxis: {
-                        type: 'category',
-                        labels: {
-                            rotation: -45,
-                            style: {
-                                fontSize: '13px',
-                                fontFamily: 'Verdana, sans-serif'
-                            }
-                        }
-                    },
-                    yAxis: {
-                        min: 0,
-                        title: {
-                            text: 'Total RFT'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    tooltip: {
-                        pointFormat: 'Total: <b>{point.y:.1f} RFT %</b>'
-                    },
-                    series: [{
-                        name: 'Production',
-                        colorByPoint: true,
-                        data: <?php echo json_encode($TMRFTFinal, JSON_NUMERIC_CHECK); ?>
-                    }]
-                });
-
-
-                Highcharts.chart('msprdrft', {
-                    chart: {
-                        zoomType: 'xy'
-                    },
-                    title: {
-                        text: 'Machine Stitched Hall Production'
-                    },
-                    subtitle: {
-                        text: 'Today RFT'
-                    },
-                    xAxis: [{
-                        categories: <?php echo json_encode($MSLines, JSON_NUMERIC_CHECK); ?>,
-
-
-                        crosshair: true
-                    }],
-                    yAxis: [{ // Primary yAxis
-                        labels: {
-                            format: '{value} %',
-                            style: {
-                                color: Highcharts.getOptions().colors[1]
-                            }
-                        },
-                        title: {
-                            text: 'RFT',
-                            style: {
-                                color: Highcharts.getOptions().colors[1]
-                            }
-                        }
-                    }, { // Secondary yAxis
-                        title: {
-                            //text: 'Fail ',
-                            // style: {
-                            //     color: Highcharts.getOptions().colors[0]
-                            // }
-                        },
-                        labels: {
-                            format: '{value} ',
-                            style: {
-                                color: Highcharts.getOptions().colors[0]
-                            }
-                        },
-                        opposite: true
-                    }],
-                    tooltip: {
-                        shared: true
-                    },
-                    legend: {
-                        layout: 'vertical',
-                        align: 'left',
-                        x: 120,
-                        verticalAlign: 'top',
-                        y: 100,
-                        floating: true,
-                        backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
-                            'rgba(255,255,255,0.25)'
-                    },
-                    series: [{
-                        name: 'Line Wise RFT ',
-                        type: 'column',
-                        colorByPoint: true,
-                        yAxis: 1,
-                        data: <?php echo json_encode($MSRFTFinal, JSON_NUMERIC_CHECK); ?>,
-                        tooltip: {
-                            valueSuffix: ' %'
-                        }
-
-                    }]
-                });
-
-                Highcharts.chart('ambprdrft', {
-                    chart: {
-                        type: 'column'
-                    },
-                    title: {
-                        text: 'Airless Mini (B34006)'
-                    },
-                    xAxis: {
-                        type: 'category',
-                        labels: {
-                            rotation: -45,
-                            style: {
-                                fontSize: '13px',
-                                fontFamily: 'Verdana, sans-serif'
-                            }
-                        }
-                    },
-                    yAxis: {
-                        min: 0,
-                        title: {
-                            text: 'Total RFT'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    tooltip: {
-                        pointFormat: 'Line wise  <b>{point.y:.1f} %</b>'
-                    },
-                    series: [{
-                        name: 'Production',
-                        colorByPoint: true,
-                        data: <?php echo json_encode($AMBRFTFinal, JSON_NUMERIC_CHECK); ?>
-                    }]
-                });
-                Highcharts.chart('lfbprdrft', {
-                    chart: {
-                        type: 'column'
-                    },
-                    title: {
-                        text: 'Laminated (B34007)'
-                    },
-                    xAxis: {
-                        type: 'category',
-                        labels: {
-                            rotation: -45,
-                            style: {
-                                fontSize: '13px',
-                                fontFamily: 'Verdana, sans-serif'
-                            }
-                        }
-                    },
-                    yAxis: {
-                        min: 0,
-                        title: {
-                            text: 'Total RFT'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    tooltip: {
-                        pointFormat: 'Article Wise: <b>{point.y:.1f}  RFT </b>'
-                    },
-                    series: [{
-                        name: 'Production',
-                        colorByPoint: true,
-
-                        data: <?php echo json_encode($B34007ArtRFT, JSON_NUMERIC_CHECK); ?>
-                    }]
-                });
-
-
-
-                Highcharts.chart('AllPrddef', {
-                    chart: {
-                        type: 'column'
-                    },
-                    title: {
-                        text: 'Today Defects'
-                    },
-
-                    accessibility: {
-                        announceNewData: {
-                            enabled: true
-                        }
-                    },
-                    xAxis: {
-                        type: 'category'
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Defects '
-                        }
-
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y:.1f} '
-                            }
-                        }
-                    },
-
-                    tooltip: {
-                        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
-                        pointFormat: '<span style="color:{point.color}">{point.name}</span>:  <br/>'
-                    },
-
-                    series: [{
-                        name: "Defects",
-                        colorByPoint: true,
-                        data: <?php echo json_encode($data_pointsFail, JSON_NUMERIC_CHECK); ?>,
-
-                    }],
-                    drilldown: {
-                        series: [{
-                                name: "B34001",
-                                id: "B34001",
-                                data: <?php echo json_encode(
-                                            $B34001ArtFail,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-                            },
-                            {
-                                name: "B34002",
-                                id: "B34002",
-                                data: <?php echo json_encode(
-                                            $B34002ArtFail,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-                            },
-                            {
-                                name: "B34003",
-                                id: "B34003",
-                                data: <?php echo json_encode(
-                                            $B34003ArtFail,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-                            },
-                            {
-                                name: "B34004",
-                                id: "B34004",
-                                data: <?php echo json_encode(
-                                            $B34004ArtFail,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-                            },
-                            {
-                                name: "B34005",
-                                id: "B34005",
-                                data: <?php echo json_encode(
-                                            $B34005ArtFail,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-                            },
-                            {
-                                name: "B34006",
-                                id: "B34006",
-                                data: <?php echo json_encode(
-                                            $B34006ArtFail,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-                            },
-                            {
-                                name: "B34007",
-                                id: "B34007",
-                                data: <?php echo json_encode(
-                                            $B34007ArtFail,
-                                            JSON_NUMERIC_CHECK
-                                        ); ?>,
-
-                            }
-                        ]
-                    }
-                });
-
-
-                Highcharts.chart('hsprddef', {
-                    chart: {
-                        type: 'column'
-                    },
-                    title: {
-                        text: 'Hand Stitched (B34001)'
-                    },
-                    xAxis: {
-                        type: 'category',
-                        labels: {
-                            rotation: -45,
-                            style: {
-                                fontSize: '13px',
-                                fontFamily: 'Verdana, sans-serif'
-                            }
-                        }
-                    },
-                    yAxis: {
-                        min: 0,
-                        title: {
-                            text: 'Total Defects'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    series: [{
-                        name: 'Defects',
-                        colorByPoint: true,
-                        data: <?php echo json_encode($B34001ArtFail, JSON_NUMERIC_CHECK); ?>
-
-
-                    }]
-                });
-                Highcharts.chart('tmprddef', {
-                    chart: {
-                        type: 'column'
-                    },
-                    title: {
-                        text: 'Thermo Bounded (B34002,B34003,B34004)'
-                    },
-                    xAxis: {
-                        type: 'category',
-                        labels: {
-                            rotation: -45,
-                            style: {
-                                fontSize: '13px',
-                                fontFamily: 'Verdana, sans-serif'
-                            }
-                        }
-                    },
-                    yAxis: {
-                        min: 0,
-                        title: {
-                            text: 'Total Defects'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    tooltip: {
-                        pointFormat: 'Total Defects: <b>{point.y:.1f} </b>'
-                    },
-                    series: [{
-                        name: 'Defects',
-                        colorByPoint: true,
-                        data: <?php echo json_encode($TMFinal, JSON_NUMERIC_CHECK); ?>
-                    }]
-                });
-
-
-                Highcharts.chart('msprddef', {
-                    chart: {
-                        zoomType: 'xy'
-                    },
-                    title: {
-                        text: 'Machine Stitched Hall Production'
-                    },
-                    subtitle: {
-                        text: 'Total Defects'
-                    },
-                    xAxis: [{
-                        categories: <?php echo json_encode($MSLines, JSON_NUMERIC_CHECK); ?>,
-
-
-                        crosshair: true
-                    }],
-                    yAxis: [{ // Primary yAxis
-                        labels: {
-                            format: '{value}',
-                            style: {
-                                color: Highcharts.getOptions().colors[1]
-                            }
-                        },
-                        title: {
-                            text: 'Defects',
-                            style: {
-                                color: Highcharts.getOptions().colors[1]
-                            }
-                        }
-                    }, { // Secondary yAxis
-                        title: {
-                            //text: 'Fail ',
-                            // style: {
-                            //     color: Highcharts.getOptions().colors[0]
-                            // }
-                        },
-                        labels: {
-                            format: '{value} ',
-                            style: {
-                                color: Highcharts.getOptions().colors[0]
-                            }
-                        },
-                        opposite: true
-                    }],
-                    tooltip: {
-                        shared: true
-                    },
-                    legend: {
-                        layout: 'vertical',
-                        align: 'left',
-                        x: 120,
-                        verticalAlign: 'top',
-                        y: 100,
-                        floating: true,
-                        backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
-                            'rgba(255,255,255,0.25)'
-                    },
-                    series: [{
-                        name: 'Line Wise Defects ',
-                        type: 'column',
-                        colorByPoint: true,
-                        yAxis: 1,
-                        data: <?php echo json_encode($MSFinal, JSON_NUMERIC_CHECK); ?>,
-                        tooltip: {
-                            valueSuffix: ''
-                        }
-
-                    }]
-                });
-
-                Highcharts.chart('ambprddef', {
-                    chart: {
-                        type: 'column'
-                    },
-                    title: {
-                        text: 'Airless Mini (B34006)'
-                    },
-                    xAxis: {
-                        type: 'category',
-                        labels: {
-                            rotation: -45,
-                            style: {
-                                fontSize: '13px',
-                                fontFamily: 'Verdana, sans-serif'
-                            }
-                        }
-                    },
-                    yAxis: {
-                        min: 0,
-                        title: {
-                            text: 'Total Defects'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    tooltip: {
-                        pointFormat: 'Line wise Defects <b>{point.y:.1f} </b>'
-                    },
-                    series: [{
-                        name: 'Defects',
-                        colorByPoint: true,
-                        data: <?php echo json_encode($AMBFinal, JSON_NUMERIC_CHECK); ?>
-                    }]
-                });
-                Highcharts.chart('lfbprddef', {
-                    chart: {
-                        type: 'column'
-                    },
-                    title: {
-                        text: 'Laminated (B34007)'
-                    },
-                    xAxis: {
-                        type: 'category',
-                        labels: {
-                            rotation: -45,
-                            style: {
-                                fontSize: '13px',
-                                fontFamily: 'Verdana, sans-serif'
-                            }
-                        }
-                    },
-                    yAxis: {
-                        min: 0,
-                        title: {
-                            text: 'Total Defects'
-                        }
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    tooltip: {
-                        pointFormat: 'Article Wise Defects: <b>{point.y:.1f}   </b>'
-                    },
-                    series: [{
-                        name: 'Defects',
-                        colorByPoint: true,
-
-                        data: <?php echo json_encode($B34007ArtFail, JSON_NUMERIC_CHECK); ?>
-                    }]
-                });
-            </script>
-            <script src="<?php echo base_url(); ?>/assets/js//jquery.min.js" type="text/javascript">
-            </script>
-            <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
-            <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
-            <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
-            <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
-            <script src="js/statistics/sparkline/sparkline.bundle.js"></script>
-            <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
-            <!-- BEGIN Page Footer -->
-            <footer class="page-footer" role="contentinfo">
-                <div class="d-flex align-items-center flex-1 text-muted">
-                    <span class="hidden-md-down fw-700">2021 © Forward Sports by&nbsp;IT Dept Forward Sports</span>
-                </div>
-                <div>
-
-                </div>
-            </footer>
-            <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
-            <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
-            <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
-            <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
-            <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
-            <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
-
-
-
-            <!-- END Page Footer -->
-            <!-- BEGIN Shortcuts -->
-            <div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog" aria-labelledby="modal-shortcut" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-top modal-transparent" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <ul class="app-list w-auto h-auto p-0 text-left">
-                                <li>
-                                    <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
-                                        <div class="icon-stack">
-                                            <i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
-                                            <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
-                                            <i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
-                                        </div>
-                                        <span class="app-list-name">
-                                            Home
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
-                                        <div class="icon-stack">
-                                            <i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
-                                            <i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
-                                            <i class="ni ni-envelope icon-stack-1x text-white"></i>
-                                        </div>
-                                        <span class="app-list-name">
-                                            Inbox
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
-                                        <div class="icon-stack">
-                                            <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
-                                            <i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
-                                        </div>
-                                        <span class="app-list-name">
-                                            Add More
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- END Shortcuts -->
-            <!-- BEGIN Color profile -->
-            <!-- this area is hidden and will not be seen on screens or screen readers -->
-            <!-- we use this only for CSS color refernce for JS stuff -->
-            <p id="js-color-profile" class="d-none">
-                <span class="color-primary-50"></span>
-                <span class="color-primary-100"></span>
-                <span class="color-primary-200"></span>
-                <span class="color-primary-300"></span>
-                <span class="color-primary-400"></span>
-                <span class="color-primary-500"></span>
-                <span class="color-primary-600"></span>
-                <span class="color-primary-700"></span>
-                <span class="color-primary-800"></span>
-                <span class="color-primary-900"></span>
-                <span class="color-info-50"></span>
-                <span class="color-info-100"></span>
-                <span class="color-info-200"></span>
-                <span class="color-info-300"></span>
-                <span class="color-info-400"></span>
-                <span class="color-info-500"></span>
-                <span class="color-info-600"></span>
-                <span class="color-info-700"></span>
-                <span class="color-info-800"></span>
-                <span class="color-info-900"></span>
-                <span class="color-danger-50"></span>
-                <span class="color-danger-100"></span>
-                <span class="color-danger-200"></span>
-                <span class="color-danger-300"></span>
-                <span class="color-danger-400"></span>
-                <span class="color-danger-500"></span>
-                <span class="color-danger-600"></span>
-                <span class="color-danger-700"></span>
-                <span class="color-danger-800"></span>
-                <span class="color-danger-900"></span>
-                <span class="color-warning-50"></span>
-                <span class="color-warning-100"></span>
-                <span class="color-warning-200"></span>
-                <span class="color-warning-300"></span>
-                <span class="color-warning-400"></span>
-                <span class="color-warning-500"></span>
-                <span class="color-warning-600"></span>
-                <span class="color-warning-700"></span>
-                <span class="color-warning-800"></span>
-                <span class="color-warning-900"></span>
-                <span class="color-success-50"></span>
-                <span class="color-success-100"></span>
-                <span class="color-success-200"></span>
-                <span class="color-success-300"></span>
-                <span class="color-success-400"></span>
-                <span class="color-success-500"></span>
-                <span class="color-success-600"></span>
-                <span class="color-success-700"></span>
-                <span class="color-success-800"></span>
-                <span class="color-success-900"></span>
-                <span class="color-fusion-50"></span>
-                <span class="color-fusion-100"></span>
-                <span class="color-fusion-200"></span>
-                <span class="color-fusion-300"></span>
-                <span class="color-fusion-400"></span>
-                <span class="color-fusion-500"></span>
-                <span class="color-fusion-600"></span>
-                <span class="color-fusion-700"></span>
-                <span class="color-fusion-800"></span>
-                <span class="color-fusion-900"></span>
-            </p>
-            <!-- END Color profile -->
-        </div>
-        </div>
         </div>
         <!-- END Page Wrapper -->
         <!-- BEGIN Quick Menu -->
