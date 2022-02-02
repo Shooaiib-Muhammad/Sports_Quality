@@ -35,7 +35,10 @@ class DashboardController extends CI_Controller
 		$data['getweeklydata'] = $this->ID->getweeklydata();
 		$data['getmonthly'] = $this->ID->getmonthly();
 		$data['getYearly'] = $this->ID->getYear();
+		$data['weekDate'] = $this->ID->weekDates();
+		$data['monthlydate'] = $this->ID->monthlydate();
 		
+		$data['Year'] = $this->ID->Year();
 	$this->load->view('Dashboard', $data);	
 		
     }

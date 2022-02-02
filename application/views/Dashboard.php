@@ -572,108 +572,123 @@ if (!$this->session->has_userdata('user_id')) {
                             <div id="panel-3" class="panel">
 
                                 <div class="panel-container show">
-                                    <div class="panel-content">
 
-                                        <ul class="nav nav-tabs" role="tablist">
-                                            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1" role="tab">Production</a></li>
+                                    <div class="panel-content nav nav-pills justify-content-center">
+
+                                        <!-- <ul class="nav nav-tabs" role="tablist">
+                                            <li class="nav-item btn btn-success"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1" role="tab">Production</a></li>
                                             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2" role="tab">RFT</a></li>
                                             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3" role="tab">Defects</a></li>
+                                        </ul> -->
+                                        <ul class="nav nav-pills" role="tablist">
+                                            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Production</a></li>
+                                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">RFT</a></li>
+                                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3">Defects</a></li>
                                         </ul>
-                                        <div class="tab-content p-3">
+                                        <div class="tab-content py-3">
+
                                             <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
                                                 <div class="col-lg-12">
                                                     <div class="panel-container show">
                                                         <div class="panel-content poisition-relative">
                                                             <div class="pb-5 pt-3">
                                                                 <div class="row">
-                                                                    <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
-                                                                        <div class="d-inline-flex flex-column justify-content-center mr-3">
-                                                                            <span class="fw-300 fs-xs d-block">
-                                                                                <label class="fs-sm mb-0">Total Manufactured</label>
-                                                                            </span>
-                                                                            <span class="fw-500 fs-xl d-block color-danger-500 count">
-                                                                                <?php echo $Produced; ?>
-                                                                            </span>
+                                                                    <div class="col-lg-2">
+                                                                        <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3 mb-12">
+                                                                            <div class="d-inline-flex flex-column justify-content-center">
+                                                                                <span class="fw-300 fs-xs d-block">
+                                                                                    <label class="fs-lg mb-3">Total Manufactured</label>
+                                                                                </span>
+                                                                                <span class="fw-500 fs-xl d-block color-danger-500 count">
+                                                                                    <h1> <?php echo $Produced; ?></h1>
+                                                                                </span>
+                                                                            </div>
+                                                                            <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#cff02b" sparkHeight="32px" sparkBarWidth="5px" values=" <?php echo $last5pass; ?>"></span>
                                                                         </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#cff02b" sparkHeight="32px" sparkBarWidth="5px" values=" <?php echo $last5pass; ?>"></span>
                                                                     </div>
-                                                                    <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
-                                                                        <div class="d-inline-flex flex-column justify-content-center mr-3">
-                                                                            <span class="fw-300 fs-xs d-block">
-                                                                                <label class="fs-sm mb-0">Total Checked</label>
-                                                                            </span>
-                                                                            <span class="fw-500 fs-xl d-block color-danger-500 count">
-                                                                                <?php echo $Checked; ?>
-                                                                            </span>
+                                                                    <div class="col-lg-2">
+                                                                        <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3 mb-12">
+                                                                            <div class="d-inline-flex flex-column justify-content-center mr-3">
+                                                                                <span class="fw-300 fs-xs d-block">
+                                                                                    <label class="fs-lg mb-3">Total Checked</label>
+                                                                                </span>
+                                                                                <span class="fw-500 fs-xl d-block color-danger-500 count">
+                                                                                    <h1><?php echo $Checked; ?></h1>
+                                                                                </span>
+                                                                            </div>
+                                                                            <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#fc8c03" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5check; ?>"></span>
                                                                         </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#fc8c03" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5check; ?>"></span>
                                                                     </div>
-                                                                    <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
-                                                                        <div class="d-inline-flex flex-column justify-content-center mr-3">
-                                                                            <span class="fw-300 fs-xs d-block">
-                                                                                <label class="fs-sm mb-0">Total Pass</label>
-                                                                            </span>
-                                                                            <span class="fw-500 fs-xl d-block color-danger-500 count">
-                                                                                <?php echo $Produced; ?>
-                                                                            </span>
-                                                                        </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#03fce3" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5pass; ?>"></span>
-                                                                    </div>
-                                                                    <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
-                                                                        <div class="d-inline-flex flex-column justify-content-center mr-3">
-                                                                            <span class="fw-300 fs-xs d-block">
-                                                                                <label class="fs-sm mb-0">Total Fail</label>
-                                                                            </span>
-                                                                            <span class="fw-500 fs-xl d-block color-danger-500 count">
-                                                                                <?php echo $Fail; ?>
-                                                                            </span>
-                                                                        </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#fe6bb0" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5fail; ?>"></span>
-
-                                                                    </div>
-                                                                    <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
-                                                                        <div class="d-inline-flex flex-column justify-content-center mr-3">
-                                                                            <span class="fw-300 fs-xs d-block">
-                                                                                <label class="fs-sm mb-0">Avg. RFT</label>
-                                                                            </span>
-                                                                            <span class="fw-500 fs-xl d-block color-danger-500 ">
-                                                                                <i class="count"> <?php echo Round($FinalRF, 2) ?> </i> %
-                                                                            </span>
-                                                                        </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#03cafc" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5rft; ?>"></span>
-
-                                                                        <!-- <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
-                                                                    <div class="d-inline-flex flex-column justify-content-center mr-3">
-                                                                        <span class="fw-300 fs-xs d-block">
-                                                                            <label class="fs-sm mb-0">Total Defected Balls</label>
-                                                                        </span>
-                                                                        <span class="fw-500 fs-xl d-block color-danger-500 count">
-                                                                            <?php echo $Fail; ?>
-                                                                        </span>
-                                                                    </div>
-                                                                    <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#fc0339" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
-                                                                </div> -->
-
+                                                                    <div class="col-lg-2">
                                                                         <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
                                                                             <div class="d-inline-flex flex-column justify-content-center mr-3">
                                                                                 <span class="fw-300 fs-xs d-block">
-                                                                                    <label class="fs-sm mb-0">Defected Precentage </label>
+                                                                                    <label class="fs-lg mb-3">Total Pass</label>
                                                                                 </span>
-                                                                                <span class="fw-500 fs-xl d-block color-danger-500">
-                                                                                    <i class="count"><?php echo Round($Finalprenentage, 2); ?></i> %
+                                                                                <span class="fw-500 fs-xl d-block color-danger-500 count">
+                                                                                    <h1> <?php echo $Produced; ?></h1>
+                                                                                </span>
+                                                                            </div>
+                                                                            <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#03fce3" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5pass; ?>"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-2">
+                                                                        <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
+                                                                            <div class="d-inline-flex flex-column justify-content-center mr-3">
+                                                                                <span class="fw-300 fs-xs d-block">
+                                                                                    <label class="fs-lg mb-3">Total Fail</label>
+                                                                                </span>
+                                                                                <span class="fw-500 fs-xl d-block color-danger-500 count">
+                                                                                    <h1> <?php echo $Fail; ?></h1>
+                                                                                </span>
+                                                                            </div>
+                                                                            <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#fe6bb0" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5fail; ?>"></span>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-2">
+                                                                        <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
+                                                                            <div class="d-inline-flex flex-column justify-content-center mr-3">
+                                                                                <span class="fw-300 fs-xs d-block">
+                                                                                    <label class="fs-lg mb-3">Avg. RFT</label>
+                                                                                </span>
+                                                                                <span class="fw-500 fs-xl d-block color-danger-500 ">
+                                                                                    <h1> <i class="count"> <?php echo Round($FinalRF, 2) ?> </i> %</h1>
+                                                                                </span>
+                                                                            </div>
+                                                                            <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#03cafc" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5rft; ?>"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-2">
+                                                                        <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
+                                                                            <div class="d-inline-flex flex-column justify-content-center mr-3">
+                                                                                <span class="fw-300 fs-xs d-block">
+                                                                                    <label class="fs-lg mb-3">Defected Precentage </label>
+                                                                                </span>
+                                                                                <span class="fw-300 fs-xl d-block color-danger-500">
+                                                                                    <h1> <i class="count"><?php echo Round($Finalprenentage, 2); ?></i> % </h1>
                                                                                 </span>
                                                                             </div>
                                                                             <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#c203fc" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5def; ?>"></span>
                                                                         </div>
-
                                                                     </div>
+
+
+
+
+
+
+
+
+
                                                                 </div>
                                                             </div>
-
                                                         </div>
-                                                    </div>
 
+                                                    </div>
                                                 </div>
+
+
                                                 <center>
                                                     <div class="row">
                                                         <figure class="highcharts-figure">
@@ -723,8 +738,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </div>
                                                     <div class="col-md-4">
                                                     </div>
-                                                    <div class="col-md-4">
-                                                        <h1 class="frame-heading">Filter Criteria :</h1>
+                                                    <div class="col-md-4 ml-10">
+                                                        <!-- <h1 class="frame-heading">Filter Criteria :</h1> -->
 
                                                         <div class="frame-wrap">
                                                             <div class="custom-control custom-radio custom-control-inline">
@@ -786,9 +801,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <div class="row">
 
                                                     <div class="col-md-6">
-                                                        <div class="row">
+                                                        <div class="row ml-10">
 
-                                                            <h1 class="frame-heading">Filter Criteria :</h1>
+                                                            <!-- <h1 class="frame-heading">Filter Criteria :</h1> -->
 
                                                             <div class="frame-wrap">
                                                                 <div class="custom-control custom-radio custom-control-inline">
@@ -847,7 +862,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div class="col-md-6">
                                                         <div class="row">
 
-                                                            <h1 class="frame-heading">Filter Criteria :</h1>
+                                                            <!-- <h1 class="frame-heading">Filter Criteria :</h1> -->
                                                             <br>
                                                             <div class="frame-wrap">
                                                                 <div class="custom-control custom-radio custom-control-inline">
@@ -957,12 +972,26 @@ if (!$this->session->has_userdata('user_id')) {
             $YearlyDefects005 = [];
             $YearlyDefects006 = [];
             $YearlyDefects007 = [];
-            foreach ($getweeklydata as $key) {
+            $Yearfinal = [];
+
+            foreach ($Year as $key) {
+                $Year = $key['Year'];
+                $Month = $key['Month'];
+                array_push($Yearfinal, $Month . '.' . $Year);
+                //print_r('Updated');
+
+            }
+            // print_r($weekDate);
+            foreach ($weekDate as $key) {
 
                 array_push($Datess, $key['TranDate']);
                 //print_r('Updated');
 
             }
+
+            //         echo '<pre>';
+            //         print_r($Datess);
+            // echo '</pre>';
             foreach ($getweeklydata as $key) {
                 if ($key['FactoryCode'] == 'B34001') {
                     array_push($WEEKLY001, $key['pass']);
@@ -1007,6 +1036,7 @@ if (!$this->session->has_userdata('user_id')) {
                     $Weekly5RFT = $key['pass'] / $key['TotalChecked'];
                     $WeeklyFinal5RFT =  ($Weekly5RFT * 100);
                     array_push($WEEKLYRFT005, Round($WeeklyFinal5RFT, 2));
+
                     //array_push($, $key['pass']);
                     //print_r('Updated');
                 }
@@ -1054,9 +1084,17 @@ if (!$this->session->has_userdata('user_id')) {
             $MONTHLY006 = [];
             $MONTHLY007 = [];
             $Datess = [];
-            foreach ($getmonthly as $key) {
+            $WeekDatefinal = [];
+            $monthlydateFinal = [];
+            foreach ($weekDate as $key) {
 
-                array_push($Datess, $key['TranDate']);
+                array_push($WeekDatefinal, $key['TranDate']);
+                //print_r('Updated');
+
+            }
+            foreach ($monthlydate as $key) {
+
+                array_push($monthlydateFinal, $key['TranDate']);
                 //print_r('Updated');
 
             }
@@ -1134,10 +1172,13 @@ if (!$this->session->has_userdata('user_id')) {
             $Yearly005 = [];
             $Yearly006 = [];
             $Yearly007 = [];
+            $Yearly = [];
             $Datess = [];
-            foreach ($getweeklydata as $key) {
+            foreach ($getYearly as $key) {
+                $Month =  $key['Month'];
+                $Year =  $key['Year'];
 
-                array_push($Datess, $key['TranDate']);
+                array_push($Yearly, $Month . '-' . $Year);
                 //print_r('Updated');
 
             }
@@ -1228,7 +1269,7 @@ if (!$this->session->has_userdata('user_id')) {
                     },
 
                     xAxis: {
-                        categories: <?php echo json_encode($Datess, JSON_NUMERIC_CHECK); ?>,
+                        categories: <?php echo json_encode($WeekDatefinal, JSON_NUMERIC_CHECK); ?>,
                         // accessibility: {
                         //     rangeDescription: 'Range: 2010 to 2017'
                         // }
@@ -1303,7 +1344,7 @@ if (!$this->session->has_userdata('user_id')) {
                     },
 
                     xAxis: {
-                        categories: <?php echo json_encode($Datess, JSON_NUMERIC_CHECK); ?>,
+                        categories: <?php echo json_encode($monthlydateFinal, JSON_NUMERIC_CHECK); ?>,
                         // accessibility: {
                         //     rangeDescription: 'Range: 2010 to 2017'
                         // }
@@ -1378,7 +1419,7 @@ if (!$this->session->has_userdata('user_id')) {
                     },
 
                     xAxis: {
-                        categories: <?php echo json_encode($Datess, JSON_NUMERIC_CHECK); ?>,
+                        categories: <?php echo json_encode($Yearfinal, JSON_NUMERIC_CHECK); ?>,
                         // accessibility: {
                         //     rangeDescription: 'Range: 2010 to 2017'
                         // }
@@ -1453,7 +1494,7 @@ if (!$this->session->has_userdata('user_id')) {
                     },
 
                     xAxis: {
-                        categories: <?php echo json_encode($Datess, JSON_NUMERIC_CHECK); ?>,
+                        categories: <?php echo json_encode($WeekDatefinal, JSON_NUMERIC_CHECK); ?>,
                         // accessibility: {
                         //     rangeDescription: 'Range: 2010 to 2017'
                         // }
@@ -1528,7 +1569,7 @@ if (!$this->session->has_userdata('user_id')) {
                     },
 
                     xAxis: {
-                        categories: <?php echo json_encode($Datess, JSON_NUMERIC_CHECK); ?>,
+                        categories: <?php echo json_encode($monthlydateFinal, JSON_NUMERIC_CHECK); ?>,
                         // accessibility: {
                         //     rangeDescription: 'Range: 2010 to 2017'
                         // }
@@ -1603,7 +1644,7 @@ if (!$this->session->has_userdata('user_id')) {
                     },
 
                     xAxis: {
-                        categories: <?php echo json_encode($Datess, JSON_NUMERIC_CHECK); ?>,
+                        categories: <?php echo json_encode($Yearfinal, JSON_NUMERIC_CHECK); ?>,
                         // accessibility: {
                         //     rangeDescription: 'Range: 2010 to 2017'
                         // }
@@ -1678,7 +1719,7 @@ if (!$this->session->has_userdata('user_id')) {
                     },
 
                     xAxis: {
-                        categories: <?php echo json_encode($Datess, JSON_NUMERIC_CHECK); ?>,
+                        categories: <?php echo json_encode($monthlydateFinal, JSON_NUMERIC_CHECK); ?>,
                         // accessibility: {
                         //     rangeDescription: 'Range: 2010 to 2017'
                         // }
@@ -1755,7 +1796,7 @@ if (!$this->session->has_userdata('user_id')) {
                     },
 
                     xAxis: {
-                        categories: <?php echo json_encode($Datess, JSON_NUMERIC_CHECK); ?>,
+                        categories: <?php echo json_encode($Yearfinal, JSON_NUMERIC_CHECK); ?>,
                         // accessibility: {
                         //     rangeDescription: 'Range: 2010 to 2017'
                         // }
@@ -1831,7 +1872,7 @@ if (!$this->session->has_userdata('user_id')) {
                     },
 
                     xAxis: {
-                        categories: <?php echo json_encode($Datess, JSON_NUMERIC_CHECK); ?>,
+                        categories: <?php echo json_encode($WeekDatefinal, JSON_NUMERIC_CHECK); ?>,
                         // accessibility: {
                         //     rangeDescription: 'Range: 2010 to 2017'
                         // }
@@ -1855,6 +1896,7 @@ if (!$this->session->has_userdata('user_id')) {
                     series: [{
                         name: 'B34001',
                         data: <?php echo json_encode($WEEKLY001, JSON_NUMERIC_CHECK); ?>
+
                     }, {
                         name: 'B34002',
                         data: <?php echo json_encode($WEEKLY002, JSON_NUMERIC_CHECK); ?>
@@ -4307,6 +4349,19 @@ if (!$this->session->has_userdata('user_id')) {
         <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
         <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
         <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+        <script src="js/vendors.bundle.js"></script>
+        <script src="js/app.bundle.js"></script>
+        <script type="text/javascript">
+            /* Activate smart panels */
+            $('#js-page-content').smartPanel();
+        </script>
+        <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
+        <script src="<?php echo base_url(); ?>/assets/js/dependency/moment/moment.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/js/miscellaneous/fullcalendar/fullcalendar.bundle.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/js/statistics/sparkline/sparkline.bundle.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/js/miscellaneous/jqvmap/jqvmap.bundle.js"></script>
         <script>
             $(document).ready(function() {
                 //alert("Datatables");

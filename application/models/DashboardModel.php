@@ -157,13 +157,43 @@ ORDER BY TranDate");
     {
         $Year = date('Y');
        
-        $query = $this->db->query("SELECT        SUM(Checked) AS TotalChecked, SUM(Pass) AS pass, SUM(Fail) AS Fail, CONVERT(varchar, TranDate, 104) AS TranDate, FactoryCode
+        $query = $this->db->query("SELECT        TOP (100) PERCENT SUM(Checked) AS TotalChecked, SUM(Pass) AS pass, SUM(Fail) AS Fail, FactoryCode, YEAR(TranDate) AS Year, MONTH(TranDate) AS Month
 FROM            dbo.tbl_Production_View
-GROUP BY CONVERT(varchar, TranDate, 104), FactoryCode, YEAR(TranDate)
-HAVING        (YEAR(TranDate) = $Year )
+GROUP BY FactoryCode, YEAR(TranDate), MONTH(TranDate)
+HAVING        (YEAR(TranDate) = 2021)");
+        return $result = $query->result_array();
+    }
+    public function weekDates(){
+        $lastday = date('Y-m-d', strtotime('-1 days'));
+        $last7day = date('Y-m-d', strtotime('-7 days'));
+       
+        $query = $this->db->query("SELECT        TOP (100) PERCENT CONVERT(varchar, TranDate, 104) AS TranDate
+FROM            dbo.tbl_Production_View
+WHERE       (TranDate BETWEEN CONVERT(DATETIME, '$last7day 00:00:00', 102) AND CONVERT(DATETIME, '$lastday 00:00:00', 102))
+GROUP BY CONVERT(varchar, TranDate, 104)
 ORDER BY TranDate");
         return $result = $query->result_array();
     }
     
-    
+
+    public function monthlydate()
+    {
+        $lastday = date('Y-m-d', strtotime('-1 days'));
+        $last7day = date('Y-m-d', strtotime('-30 days'));
+        $query = $this->db->query("SELECT        TOP (100) PERCENT CONVERT(varchar, TranDate, 104) AS TranDate
+FROM            dbo.tbl_Production_View
+WHERE        (TranDate BETWEEN CONVERT(DATETIME, '$last7day 00:00:00', 102) AND CONVERT(DATETIME, '$lastday 00:00:00', 102))
+GROUP BY CONVERT(varchar, TranDate, 104)
+ORDER BY TranDate");
+        return $result = $query->result_array();
+    }
+    Public function Year(){
+        
+        $query = $this->db->query("SELECT        TOP (100) PERCENT YEAR(TranDate) AS Year, MONTH(TranDate) AS Month
+FROM            dbo.tbl_Production_View
+WHERE        (YEAR(TranDate) = 2021)
+GROUP BY MONTH(TranDate), YEAR(TranDate)
+ORDER BY Month");
+        return $result = $query->result_array();
+    }
 }
