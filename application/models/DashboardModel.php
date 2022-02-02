@@ -36,7 +36,7 @@ WHERE        (Datename = '$Day/$Month/$Year')");
    
     public function B34001($Day, $Month, $Year)
     {
-        $query = $this->db->query(" SELECT        SUM(FailQty) AS FailQty, SUM(PassQty) AS PassQty, SUM(TotalChecked) AS TotalChecked, ArtSize, ArtCode
+        $query = $this->db->query(" SELECT        SUM(FailQty) AS Fail, SUM(PassQty) AS Pass, SUM(TotalChecked) AS TotalChecked, ArtSize, ArtCode
 FROM            dbo.view_Article_Wise_HS
 WHERE        (DateName = CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
 GROUP BY ArtSize, ArtCode");
@@ -167,11 +167,12 @@ HAVING        (YEAR(TranDate) = 2021)");
         $lastday = date('Y-m-d', strtotime('-1 days'));
         $last7day = date('Y-m-d', strtotime('-7 days'));
        
-        $query = $this->db->query("SELECT        TOP (100) PERCENT CONVERT(varchar, TranDate, 104) AS TranDate
-FROM            dbo.tbl_Production_View
-WHERE       (TranDate BETWEEN CONVERT(DATETIME, '$last7day 00:00:00', 102) AND CONVERT(DATETIME, '$lastday 00:00:00', 102))
-GROUP BY CONVERT(varchar, TranDate, 104)
-ORDER BY TranDate");
+        $query = $this->db->query("SELECT        TOP (100) PERCENT CONVERT(varchar, dbo.tbl_Production_View.TranDate, 104) AS TranDate, dbo.tbl_Inv_Tran_Date.DayNo
+FROM            dbo.tbl_Production_View INNER JOIN
+                         dbo.tbl_Inv_Tran_Date ON dbo.tbl_Production_View.TranDate = dbo.tbl_Inv_Tran_Date.DateName
+WHERE        (dbo.tbl_Production_View.TranDate BETWEEN CONVERT(DATETIME, '$last7day 00:00:00', 102) AND CONVERT(DATETIME, '$lastday 00:00:00', 102))
+GROUP BY CONVERT(varchar, dbo.tbl_Production_View.TranDate, 104), dbo.tbl_Inv_Tran_Date.DayNo
+ORDER BY dbo.tbl_Inv_Tran_Date.DayNo");
         return $result = $query->result_array();
     }
     
@@ -180,11 +181,12 @@ ORDER BY TranDate");
     {
         $lastday = date('Y-m-d', strtotime('-1 days'));
         $last7day = date('Y-m-d', strtotime('-30 days'));
-        $query = $this->db->query("SELECT        TOP (100) PERCENT CONVERT(varchar, TranDate, 104) AS TranDate
-FROM            dbo.tbl_Production_View
-WHERE        (TranDate BETWEEN CONVERT(DATETIME, '$last7day 00:00:00', 102) AND CONVERT(DATETIME, '$lastday 00:00:00', 102))
-GROUP BY CONVERT(varchar, TranDate, 104)
-ORDER BY TranDate");
+        $query = $this->db->query("SELECT        TOP (100) PERCENT CONVERT(varchar, dbo.tbl_Production_View.TranDate, 104) AS TranDate, dbo.tbl_Inv_Tran_Date.DayNo
+FROM            dbo.tbl_Production_View INNER JOIN
+                         dbo.tbl_Inv_Tran_Date ON dbo.tbl_Production_View.TranDate = dbo.tbl_Inv_Tran_Date.DateName
+WHERE        (dbo.tbl_Production_View.TranDate BETWEEN CONVERT(DATETIME, '$last7day 00:00:00', 102) AND CONVERT(DATETIME, '$lastday 00:00:00', 102))
+GROUP BY CONVERT(varchar, dbo.tbl_Production_View.TranDate, 104), dbo.tbl_Inv_Tran_Date.DayNo
+ORDER BY dbo.tbl_Inv_Tran_Date.DayNo");
         return $result = $query->result_array();
     }
     Public function Year(){
