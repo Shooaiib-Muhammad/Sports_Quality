@@ -51,7 +51,7 @@
                         </li>
                     </ul>
                 </li>
-                <!-- <li>
+                <li>
                     <a href="#" title="Application Intel" data-filter-tags="application intel">
 
                         <span class="nav-link-text" data-i18n="nav.application_intel">Lab</span>
@@ -75,10 +75,10 @@
 
 
                     </ul>
-                </li> -->
+                </li> 
 
 
-                <!-- <li>
+              <li>
                     <a href="#" title="Theme Settings" data-filter-tags="theme settings">
 
                         <span class="nav-link-text" data-i18n="nav.theme_settings">Development</span>
@@ -100,7 +100,7 @@
                             </a>
                         </li>
                     </ul>
-                </li> -->
+                </li>
 
 
 

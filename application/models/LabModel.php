@@ -1059,11 +1059,13 @@ class LabModel extends CI_Model
         $this->db->delete('tbl_DMMS_Skills');
     }
     public function labtest(){
-      $Date  = date('d/m/Y');
+        $Date = date('Y-m-d');
+      //$Date  = date('d/m/Y');
  $query = $this->db
             ->query(" SELECT        dbo.view_lab_test.*
 FROM            dbo.view_lab_test
-WHERE        (Entrydate ='$Date')");
+WHERE        (Entrydate BETWEEN CONVERT(DATETIME, '$Date 00:00:00', 102) AND CONVERT(DATETIME, '$Date 00:00:00', 102))");
+
 
         return $query->result_array();
     }
@@ -1308,21 +1310,37 @@ public function updatedStatusFGT($reviewStatus,$approvedStatus,$TID){
 
         return $query->result_array();
     }
+    public function getTableDatalab($sDate, $eDate)
+    {
+
+        $newSDate = strtotime($sDate);
+        $newEDate = strtotime($eDate);
+        $newSDateObj = date('Y-m-d', $newSDate);
+        $newEDateObj = date('Y-m-d', $newEDate);
+
+        $query = $this->db->query(" SELECT        dbo.view_lab_test.*
+    FROM            dbo.view_lab_test
+     WHERE       (Entrydate BETWEEN CONVERT(DATETIME, '$newSDateObj 00:00:00', 102) AND CONVERT(DATETIME, '$newEDateObj 00:00:00', 102))");
+
+        return $query->result_array();
+   
+    }
 public function getTableData($sDate,$eDate){
 
+   
     $newSDate = strtotime($sDate);
     $newEDate = strtotime($eDate);
-    $newSDateObj = date('d/m/Y',$newSDate);
-    $newEDateObj = date('d/m/Y',$newEDate);
+    $newSDateObj = date('Y-m-d',$newSDate);
+    $newEDateObj = date('Y-m-d',$newEDate);
     
-    $query = $this->db->query(" SELECT        dbo.view_lab_test.*
-    FROM            dbo.view_lab_test
-    WHERE        (Entrydate BETWEEN '$newSDateObj' AND '$newEDateObj')");
+    $query = $this->db->query("SELECT        dbo.view_FGT_H.*
+    FROM            dbo.view_FGT_H
+    WHERE       (moosadate BETWEEN CONVERT(DATETIME, '$newSDateObj 00:00:00', 102) AND CONVERT(DATETIME, '$newEDateObj 00:00:00', 102))");
 
        return $query->result_array();
 }
 public function FGT_H_insertion($fgttype,$lbno,$tdate,$testcat,$fifastump,$pmonth,$cmat,$backing,$fgbladderttype,
-    $btype,$ttype,$mmcolor,$pcolors,$result,$fn,$m,$inn,$pshape,$rem,$testperformedby,$note,$pictureFresh,$pictureShooter,$pictureHydro,$pictureDrum) {
+    $btype,$ttype,$mmcolor,$pcolors,$result,$fn,$m,$pshape,$rem,$testperformedby,$note,$pictureFresh,$pictureShooter,$pictureHydro,$pictureDrum,$article,$size,$tetype,$department, $fgttest) {
         date_default_timezone_set('Asia/Karachi');
         $Date = date('Y-m-d H:i:s');
         $user_id = $this->session->userdata('user_id');
@@ -1346,13 +1364,18 @@ public function FGT_H_insertion($fgttype,$lbno,$tdate,$testcat,$fifastump,$pmont
               ,userid,entrydate
               ,factory_name
               ,modal
-              ,Innervalue
               ,panel_shape
-              ,remark,Performedby,Note
+              ,remark,Performedby
+              ,Note
               ,pictureFresh
               ,pictureShooter
               ,pictureHydro
               ,pictureDrum
+              ,Article
+              ,Size
+              ,TType
+              ,Department
+              ,FGTTEST
               )
         VALUES
               ('$fgttype'
@@ -1372,7 +1395,6 @@ public function FGT_H_insertion($fgttype,$lbno,$tdate,$testcat,$fifastump,$pmont
               ,$user_id,'$Date'
               ,'$fn'
               ,'$m'
-              ,'$inn'
               ,'$pshape',
               '$rem'
               ,'$testperformedby',
@@ -1381,13 +1403,21 @@ public function FGT_H_insertion($fgttype,$lbno,$tdate,$testcat,$fifastump,$pmont
               ,'$pictureShooter'
               ,'$pictureHydro'
               ,'$pictureDrum'
+              ,'$article'
+              ,'$size'
+              ,'$tetype'
+              ,'$department'
+              ,'$fgttest'
               )");
         
     }
     public function getFGRH(){
+        $Date = date('Y-m-d');
+     
         $query = $this->db
         ->query("SELECT        dbo.view_FGT_H.*
-FROM            dbo.view_FGT_H");
+    FROM            dbo.view_FGT_H
+    WHERE         (moosadate BETWEEN CONVERT(DATETIME, '$Date 00:00:00', 102) AND CONVERT(DATETIME, '$Date 00:00:00', 102))");
 return $query->result_array();
     }
     public function FGT_D_insertion($TID,$w1,$w2,$c1_sp,$c2_sp,$sp1_sp,$sp2_sp,$lp1,$lp2,$rrt1,$rrt2,$rrt51,$rrt52,$rrt01,$rrt02,$c1_dp,$c2_dp,$sp_dp1,$sp_dp2,$lp_dp1,$lp_dp2,$m1,$m2,$wup1,$wup2,$c1_wrt,$c2_wrt,$sp1_wrt,$sp2_wrt,$dt1,$dt2,$abr1,$abr2,$uvlf1,$uvlf2,$otr1,$otr2,$hl1,$hl2,$hcc1,$hcc2){

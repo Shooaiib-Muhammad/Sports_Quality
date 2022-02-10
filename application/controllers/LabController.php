@@ -1110,11 +1110,11 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         ->set_output(json_encode($data));
     }
 
-    public function getTableData(){
+    public function getTableDatalab(){
  
         $sDate = $_POST["startDate"];
         $eDate = $_POST["endDate"];
-        $data = $this->l->getTableData($sDate,$eDate);
+        $data = $this->l->getTableDatalab($sDate,$eDate);
 
         return $this->output
         ->set_content_type('application/json')

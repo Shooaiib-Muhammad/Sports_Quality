@@ -5,7 +5,7 @@ if (!$this->session->has_userdata('user_id')) {
 } else {
 ?><script type="text/javascript">
         function zoom() {
-            document.body.style.zoom = "90%"
+            document.body.style.zoom = "100%"
         }
     </script>
 
@@ -22,23 +22,14 @@ if (!$this->session->has_userdata('user_id')) {
                 <div class="page-content-wrapper">
                     <!-- BEGIN Page Header -->
                     <?php $this->load->view('includes/top_header.php'); ?>
-
                     <main id="js-page-content" role="main" class="page-content">
-                        <ol class="subheader">
-                            <h1 class="subheader-title">
-                                <i class='subheader-icon fal fa-chart-area'></i><a href="javascript:void(0);">Dashboard</a></li>
-                            </h1>
-                            <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
-                        </ol>
-                        <!-- <div class="subheader">
-                            <h1 class="subheader-title">
-                                <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Dashboard</span>
-                            </h1>
+                        <!-- 
+                    <div class="subheader">
+                        <h1 class="subheader-title">
+                            <i class='subheader-icon fal fa-chart-area'></i> Dashboard</span>
 
-
-                        </div> -->
-
-
+                        </h1>
+                    </div> -->
 
                         <style>
                             .highcharts-figure .chart-container {
@@ -152,7 +143,6 @@ if (!$this->session->has_userdata('user_id')) {
                         <script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/export-data.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/accessibility.js"></script>
-
                         <?php
 
                         $data_points1 = [];
@@ -235,7 +225,7 @@ if (!$this->session->has_userdata('user_id')) {
                         foreach ($FactoryWiseProduction as $key) {
                             $point1 = [
                                 'name' => $key['FactoryCode'],
-                                'y' => Round($key['pass'], 0),
+                                'y' => $key['pass'],
                                 'drilldown' => $key['FactoryCode'],
                             ];
                             $Check = $key['TotalChecked'];
@@ -244,19 +234,15 @@ if (!$this->session->has_userdata('user_id')) {
                             $MainRFT = [
 
                                 'name' => $key['FactoryCode'],
-                                'y' => Round($RFT, 2),
+                                'y' => $RFT,
                                 'drilldown' => $key['FactoryCode'],
                             ];
                             $pointFail = [
                                 'name' => $key['FactoryCode'],
-                                'y' => Round($key['Fail'], 0),
+                                'y' => $key['Fail'],
                                 'drilldown' => $key['FactoryCode'],
                             ];
-
                             array_push($data_points1, $point1);
-                            // Echo '<pre>';
-                            // print_r($data_points1);
-                            // echo '</pre>';
                             array_push($data_pointsRFT, $MainRFT);
                             array_push($data_pointsFail, $pointFail);
                             $B34001target = Round($targets[0]['Target01'], 2);
@@ -274,12 +260,12 @@ if (!$this->session->has_userdata('user_id')) {
                                 $Check = $key['TotalChecked'];
                                 $PassQty = $key['pass'];
                                 $RFT = ($PassQty / $Check) * 100;
-                                array_push($b34001RFT, $RFT);
+                                array_push($b34001RFT, $key['RFT']);
                             }
                             if ($key['FactoryCode'] == 'B34002') {
                                 array_push($b34002, $key['pass']);
                                 array_push($b34002Check, $key['TotalChecked']);
-                                array_push($b34002Fail, $RFT);
+                                array_push($b34002Fail, $key['Fail']);
                                 $Check = $key['TotalChecked'];
                                 $PassQty = $key['pass'];
                                 $RFT = ($PassQty / $Check) * 100;
@@ -288,7 +274,7 @@ if (!$this->session->has_userdata('user_id')) {
                             if ($key['FactoryCode'] == 'B34003') {
                                 array_push($b34003, $key['pass']);
                                 array_push($b34003Check, $key['TotalChecked']);
-                                array_push($b34003Fail, $RFT);
+                                array_push($b34003Fail, $key['Fail']);
                                 $Check = $key['TotalChecked'];
                                 $PassQty = $key['pass'];
                                 $RFT = ($PassQty / $Check) * 100;
@@ -297,7 +283,7 @@ if (!$this->session->has_userdata('user_id')) {
                             if ($key['FactoryCode'] == 'B34004') {
                                 array_push($b34004, $key['pass']);
                                 array_push($b34004Check, $key['TotalChecked']);
-                                array_push($b34004Fail, $RFT);
+                                array_push($b34004Fail, $key['Fail']);
                                 $Check = $key['TotalChecked'];
                                 $PassQty = $key['pass'];
                                 $RFT = ($PassQty / $Check) * 100;
@@ -306,7 +292,7 @@ if (!$this->session->has_userdata('user_id')) {
                             if ($key['FactoryCode'] == 'B34005') {
                                 array_push($b34005, $key['pass']);
                                 array_push($b34005Check, $key['TotalChecked']);
-                                array_push($b34005Fail, $RFT);
+                                array_push($b34005Fail, $key['Fail']);
                                 $Check = $key['TotalChecked'];
                                 $PassQty = $key['pass'];
                                 $RFT = ($PassQty / $Check) * 100;
@@ -373,24 +359,16 @@ if (!$this->session->has_userdata('user_id')) {
                         // $SumFail07 = $b34007Fail ? $b34007Fail[0] : 0;
                         $Fail = $Checked - $Produced;
                         // echo '<pre>';
-                        // print_r($Checked);
-                        // echo '</pre>';
-                        // echo '<pre>';
                         // print_r($Produced);
                         // echo '</pre>';
-                        //$RFTTop = $Produced - $Fail;
 
-                        $RFT = ($Produced / $Checked);
-                        // echo '<pre>';
-                        // print_r($RFT);
-                        // echo '</pre>';
-                        $FinalRFT = ($RFT * 100);
-                        // echo '<pre>';
-                        // print_r($FinalRFT);
-                        // echo '</pre>';
+                        $RFTTop = $Produced - $Fail;
 
-                        $Finalprenentage = (($Checked - $Produced) / $Checked) * 100;
-                        //$Finalprenentage = 100 - $Precentage;
+                        $RFT = ($RFTTop / $Produced);
+                        $FinalRF = ($RFT * 100);
+
+                        $Precentage = (($Checked - $Fail) / $Checked) * 100;
+                        $Finalprenentage = 100 - $Precentage;
                         $B34001data_points2 = [];
                         $graph001 = [];
                         $graph001RFT = [];
@@ -412,13 +390,13 @@ if (!$this->session->has_userdata('user_id')) {
 
                             $pointB43001 = [
                                 $key['ArtCode'],
-                                Round($key['Pass']),
+                                Round($key['PassQty']),
                             ];
 
                             array_push($B34001data_points2, $pointB43001);
                             $Data001 = [
                                 $key['ArtCode'],
-                                $key['Pass'],
+                                $key['PassQty'],
                             ];
                             //array_push($B34001data_points2, $pointB43001);
 
@@ -426,7 +404,7 @@ if (!$this->session->has_userdata('user_id')) {
 
 
                             $Check = $key['TotalChecked'];
-                            $PassQty = $key['Pass'];
+                            $PassQty = $key['pass'];
                             $RFT001 = ($PassQty / $Check) * 100;
                             $MainRFT01 = [
 
@@ -592,14 +570,23 @@ if (!$this->session->has_userdata('user_id')) {
                         ?>
                         <div class="row">
                             <div id="panel-3" class="panel">
+
                                 <div class="panel-container show">
+
                                     <div class="panel-content nav nav-pills justify-content-center">
+
+                                        <!-- <ul class="nav nav-tabs" role="tablist">
+                                            <li class="nav-item btn btn-success"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1" role="tab">Production</a></li>
+                                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2" role="tab">RFT</a></li>
+                                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3" role="tab">Defects</a></li>
+                                        </ul> -->
                                         <ul class="nav nav-pills" role="tablist">
                                             <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Production</a></li>
                                             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">RFT</a></li>
                                             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3">Defects</a></li>
                                         </ul>
                                         <div class="tab-content py-3">
+
                                             <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
                                                 <div class="col-lg-12">
                                                     <div class="panel-container show">
@@ -610,7 +597,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3 mb-12">
                                                                             <div class="d-inline-flex flex-column justify-content-center">
                                                                                 <span class="fw-300 fs-xs d-block">
-                                                                                    <label class="fs-lg ">Total Manufactured</label>
+                                                                                    <label class="fs-lg mb-3">Total Manufactured</label>
                                                                                 </span>
                                                                                 <span class="fw-500 fs-xl d-block color-danger-500 count">
                                                                                     <h1> <?php echo $Produced; ?></h1>
@@ -623,7 +610,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3 mb-12">
                                                                             <div class="d-inline-flex flex-column justify-content-center mr-3">
                                                                                 <span class="fw-300 fs-xs d-block">
-                                                                                    <label class="fs-lg ">Total Checked</label>
+                                                                                    <label class="fs-lg mb-3">Total Checked</label>
                                                                                 </span>
                                                                                 <span class="fw-500 fs-xl d-block color-danger-500 count">
                                                                                     <h1><?php echo $Checked; ?></h1>
@@ -636,7 +623,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
                                                                             <div class="d-inline-flex flex-column justify-content-center mr-3">
                                                                                 <span class="fw-300 fs-xs d-block">
-                                                                                    <label class="fs-lg">Total Pass</label>
+                                                                                    <label class="fs-lg mb-3">Total Pass</label>
                                                                                 </span>
                                                                                 <span class="fw-500 fs-xl d-block color-danger-500 count">
                                                                                     <h1> <?php echo $Produced; ?></h1>
@@ -649,7 +636,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
                                                                             <div class="d-inline-flex flex-column justify-content-center mr-3">
                                                                                 <span class="fw-300 fs-xs d-block">
-                                                                                    <label class="fs-lg ">Total Fail</label>
+                                                                                    <label class="fs-lg mb-3">Total Fail</label>
                                                                                 </span>
                                                                                 <span class="fw-500 fs-xl d-block color-danger-500 count">
                                                                                     <h1> <?php echo $Fail; ?></h1>
@@ -663,10 +650,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
                                                                             <div class="d-inline-flex flex-column justify-content-center mr-3">
                                                                                 <span class="fw-300 fs-xs d-block">
-                                                                                    <label class="fs-lg ">RFT</label>
+                                                                                    <label class="fs-lg mb-3">Avg. RFT</label>
                                                                                 </span>
                                                                                 <span class="fw-500 fs-xl d-block color-danger-500 ">
-                                                                                    <h1><?php echo Round($FinalRFT, 2) ?> %</h1>
+                                                                                    <h1> <i class="count"> <?php echo Round($FinalRF, 2) ?> </i> %</h1>
                                                                                 </span>
                                                                             </div>
                                                                             <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#03cafc" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5rft; ?>"></span>
@@ -676,30 +663,47 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
                                                                             <div class="d-inline-flex flex-column justify-content-center mr-3">
                                                                                 <span class="fw-300 fs-xs d-block">
-                                                                                    <label class="fs-lg ">Defect %</label>
+                                                                                    <label class="fs-lg mb-3">Defected Precentage </label>
                                                                                 </span>
-                                                                                <span class="fw-500 fs-xl d-block color-danger-500 ">
-                                                                                    <h1> <?php echo Round($Finalprenentage, 2); ?> % </h1>
+                                                                                <span class="fw-300 fs-xl d-block color-danger-500">
+                                                                                    <h1> <i class="count"><?php echo Round($Finalprenentage, 2); ?></i> % </h1>
                                                                                 </span>
                                                                             </div>
                                                                             <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#c203fc" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5def; ?>"></span>
                                                                         </div>
                                                                     </div>
+
+
+
+
+
+
+
+
+
                                                                 </div>
                                                             </div>
                                                         </div>
+
                                                     </div>
                                                 </div>
+
+
                                                 <center>
                                                     <div class="row">
                                                         <figure class="highcharts-figure">
                                                             <div id="container-speed0" class="chart-container"></div>
+
                                                         </figure>
                                                         <figure class="highcharts-figure">
                                                             <div id="container-speed" class="chart-container"></div>
+
                                                         </figure>
                                                         <figure class="highcharts-figure1">
                                                             <div id="container-speed1" class="chart-container1"></div>
+
+
+
                                                         </figure>
                                                         <figure class="highcharts-figure2">
                                                             <div id="container-speed2" class="chart-container2"></div>
@@ -796,10 +800,8 @@ if (!$this->session->has_userdata('user_id')) {
                                             <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
                                                 <div class="row">
 
-                                                    <div class="col-sm-1">
-                                                    </div>
-                                                    <div class="col-md-6 ">
-                                                        <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="row ml-10">
 
                                                             <!-- <h1 class="frame-heading">Filter Criteria :</h1> -->
 
@@ -856,8 +858,7 @@ if (!$this->session->has_userdata('user_id')) {
                                             <div class="tab-pane fade" id="tab_direction-3" role="tabpanel">
 
                                                 <div class="row">
-                                                    <div class="col-sm-1">
-                                                    </div>
+
                                                     <div class="col-md-6">
                                                         <div class="row">
 
@@ -1406,7 +1407,7 @@ if (!$this->session->has_userdata('user_id')) {
                 Highcharts.chart('yearlyrft', {
 
                     title: {
-                        text: 'Yearly RFT'
+                        text: 'Monthly RFT'
                     },
 
 
@@ -2090,7 +2091,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                     series: [{
                         name: 'Over All RFT',
-                        data: [<?php echo Round($FinalRFT, 2) ?>],
+                        data: [<?php echo Round($FinalRF, 2) ?>],
                         dataLabels: {
                             format: '<div style="text-align:center">' +
                                 '<span style="font-size:25px">{y}</span><br/>' +
@@ -2108,7 +2109,7 @@ if (!$this->session->has_userdata('user_id')) {
                         min: 0,
                         max: 100,
                         title: {
-                            //text: 'Over All Defects Percentage'
+                            text: 'Over All Defects Percentage'
                         }
                     },
 
@@ -2117,12 +2118,12 @@ if (!$this->session->has_userdata('user_id')) {
                     },
 
                     series: [{
-                        name: 'Defects %',
+                        name: 'Defects Percentage',
                         data: [<?php echo Round($Finalprenentage, 2) ?>],
                         dataLabels: {
                             format: '<div style="text-align:center">' +
                                 '<span style="font-size:25px">{y}</span><br/>' +
-                                '<span style="font-size:12px;opacity:5"> Defects %</span>' +
+                                '<span style="font-size:12px;opacity:5"> Defects Percentage %</span>' +
                                 '</div>'
                         },
                         tooltip: {
@@ -2573,16 +2574,16 @@ if (!$this->session->has_userdata('user_id')) {
                 array_push($MSLinesFail, $LinesDataFail);
             }
             $AMbProductiongraph = [];
-            $AMBLines = [];
+            //print_r($CodeB34001);
             $AMBRFTFinal = [];
             $AMBFinal = [];
             foreach ($AMBproduction  as $key) {
 
                 $Data006 = [
-                    //$key['LineName'],
+                    $key['LineName'],
                     $key['Pass'],
                 ];
-                array_push($AMBLines, $key['LineName']);
+                //array_push($B34001data_points2, $pointB43001);
 
                 array_push($AMbProductiongraph, $Data006);
                 $Check = $key['TotalChecked'];
@@ -2611,7 +2612,7 @@ if (!$this->session->has_userdata('user_id')) {
                         type: 'column'
                     },
                     title: {
-                        text: 'Hand Stitched Production'
+                        text: 'Hand Stitched (B34001)'
                     },
                     xAxis: {
                         type: 'category',
@@ -2631,15 +2632,6 @@ if (!$this->session->has_userdata('user_id')) {
                     },
                     legend: {
                         enabled: false
-                    },
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y:.0f}'
-                            }
-                        }
                     },
                     series: [{
                         name: 'Production',
@@ -2654,7 +2646,7 @@ if (!$this->session->has_userdata('user_id')) {
                         type: 'column'
                     },
                     title: {
-                        text: 'Thermo Bounded Production'
+                        text: 'Thermo Bounded (B34002,B34003,B34004)'
                     },
                     xAxis: {
                         type: 'category',
@@ -2674,15 +2666,6 @@ if (!$this->session->has_userdata('user_id')) {
                     },
                     legend: {
                         enabled: false
-                    },
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y:.0f}'
-                            }
-                        }
                     },
                     tooltip: {
                         pointFormat: 'Total: <b>{point.y:.1f} Pass Quantity</b>'
@@ -2703,97 +2686,10 @@ if (!$this->session->has_userdata('user_id')) {
                         text: 'Machine Stitched Hall Production'
                     },
                     subtitle: {
-                        //text: 'Total Output'
+                        text: 'Total Output'
                     },
                     xAxis: [{
                         categories: <?php echo json_encode($MSLines, JSON_NUMERIC_CHECK); ?>,
-
-
-                        crosshair: true
-                    }],
-                    yAxis: [{ // Secondary yAxis
-                        title: {
-                            text: 'Pass',
-                            style: {
-                                color: Highcharts.getOptions().colors[0]
-                            }
-                        },
-                        labels: {
-                            format: '{value} ',
-                            style: {
-                                color: Highcharts.getOptions().colors[0]
-                            }
-                        },
-                        opposite: true
-                    }, { // Primary yAxis
-                        labels: {
-                            format: '{value}',
-                            style: {
-                                color: Highcharts.getOptions().colors[1]
-                            }
-                        },
-                        title: {
-                            text: 'Fail',
-                            style: {
-                                color: Highcharts.getOptions().colors[1]
-                            }
-                        }
-                    }],
-                    tooltip: {
-                        shared: true
-                    },
-                    legend: {
-                        layout: 'vertical',
-                        align: 'left',
-                        x: 120,
-                        verticalAlign: 'top',
-                        y: 100,
-                        floating: true,
-                        backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
-                            'rgba(255,255,255,0.25)'
-                    },
-
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y:.0f}'
-                            }
-                        }
-                    },
-                    series: [{
-                        name: 'Pass',
-                        type: 'column',
-                        colorByPoint: true,
-                        yAxis: 1,
-                        data: <?php echo json_encode($MSProductiongraph, JSON_NUMERIC_CHECK); ?>,
-                        // tooltip: {
-                        //     valueSuffix: ''
-                        // }
-
-                    }, {
-                        name: 'Fail',
-                        type: 'spline',
-                        color: 'red',
-                        data: <?php echo json_encode($MSLinesFail, JSON_NUMERIC_CHECK); ?>,
-                        // tooltip: {
-                        //     valueSuffix: ''
-                        // }
-                    }]
-                });
-                Highcharts.chart('ambprd', {
-                    chart: {
-                        zoomType: 'xy'
-                    },
-                    title: {
-                        text: 'Airless Mini Production'
-                    },
-                    subtitle: {
-                        //text: 'Total Output'
-                    },
-                    xAxis: [{
-                        categories: <?php echo json_encode($AMBLines, JSON_NUMERIC_CHECK); ?>,
 
 
                         crosshair: true
@@ -2806,14 +2702,14 @@ if (!$this->session->has_userdata('user_id')) {
                             }
                         },
                         title: {
-                            text: 'Fail',
+                            text: 'Fail Quantity',
                             style: {
                                 color: Highcharts.getOptions().colors[1]
                             }
                         }
                     }, { // Secondary yAxis
                         title: {
-                            text: 'Pass',
+                            text: 'Pass Quantity ',
                             style: {
                                 color: Highcharts.getOptions().colors[0]
                             }
@@ -2839,22 +2735,12 @@ if (!$this->session->has_userdata('user_id')) {
                         backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
                             'rgba(255,255,255,0.25)'
                     },
-
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y:.0f}'
-                            }
-                        }
-                    },
                     series: [{
                         name: 'Pass Quantity',
                         type: 'column',
                         colorByPoint: true,
                         yAxis: 1,
-                        data: <?php echo json_encode($AMbProductiongraph, JSON_NUMERIC_CHECK); ?>
+                        data: <?php echo json_encode($MSProductiongraph, JSON_NUMERIC_CHECK); ?>,
                         // tooltip: {
                         //     valueSuffix: ''
                         // }
@@ -2863,19 +2749,19 @@ if (!$this->session->has_userdata('user_id')) {
                         name: 'Fail Quantity',
                         type: 'spline',
                         color: 'red',
-                        data: <?php echo json_encode($AMBFinal, JSON_NUMERIC_CHECK); ?>,
+                        data: <?php echo json_encode($MSLinesFail, JSON_NUMERIC_CHECK); ?>,
                         // tooltip: {
                         //     valueSuffix: ''
                         // }
                     }]
                 });
 
-                Highcharts.chart('lfbprd', {
+                Highcharts.chart('ambprd', {
                     chart: {
                         type: 'column'
                     },
                     title: {
-                        text: 'Laminated Production'
+                        text: 'Airless Mini (B34006)'
                     },
                     xAxis: {
                         type: 'category',
@@ -2896,14 +2782,40 @@ if (!$this->session->has_userdata('user_id')) {
                     legend: {
                         enabled: false
                     },
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y:.0f}'
+                    tooltip: {
+                        pointFormat: 'Total: <b>{point.y:.1f} Pass Quantity</b>'
+                    },
+                    series: [{
+                        name: 'Production',
+                        colorByPoint: true,
+                        data: <?php echo json_encode($AMbProductiongraph, JSON_NUMERIC_CHECK); ?>
+                    }]
+                });
+                Highcharts.chart('lfbprd', {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Laminated (B34007)'
+                    },
+                    xAxis: {
+                        type: 'category',
+                        labels: {
+                            rotation: -45,
+                            style: {
+                                fontSize: '13px',
+                                fontFamily: 'Verdana, sans-serif'
                             }
                         }
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Total Production'
+                        }
+                    },
+                    legend: {
+                        enabled: false
                     },
                     tooltip: {
                         pointFormat: 'Total: <b>{point.y:.1f} Pass Quantity</b>'
@@ -2934,7 +2846,7 @@ if (!$this->session->has_userdata('user_id')) {
                     },
                     yAxis: {
                         title: {
-                            text: 'Total OutPut'
+                            text: 'Total Production'
                         }
 
                     },
@@ -2946,13 +2858,13 @@ if (!$this->session->has_userdata('user_id')) {
                             borderWidth: 0,
                             dataLabels: {
                                 enabled: true,
-                                format: '{point.y:.0f}'
+                                format: '{point.y:.1f}'
                             }
                         }
                     },
 
                     tooltip: {
-                        headerFormat: '<span style="font-size:11px">{point.y:.0f}</span><br>',
+                        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
                         pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
                     },
 
@@ -3053,16 +2965,7 @@ if (!$this->session->has_userdata('user_id')) {
                             borderWidth: 0,
                             dataLabels: {
                                 enabled: true,
-                                format: '{point.y:.2f}'
-                            }
-                        }
-                    },
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y:.2f} %'
+                                format: '{point.y:.1f} %'
                             }
                         }
                     },
@@ -3073,7 +2976,7 @@ if (!$this->session->has_userdata('user_id')) {
                     },
 
                     series: [{
-                        name: "RFT",
+                        name: "Production",
                         colorByPoint: true,
                         data: <?php echo json_encode($data_pointsRFT, JSON_NUMERIC_CHECK); ?>,
 
@@ -3146,7 +3049,7 @@ if (!$this->session->has_userdata('user_id')) {
                         type: 'column'
                     },
                     title: {
-                        text: 'Hand Stitched'
+                        text: 'Hand Stitched (B34001)'
                     },
                     xAxis: {
                         type: 'category',
@@ -3161,23 +3064,14 @@ if (!$this->session->has_userdata('user_id')) {
                     yAxis: {
                         min: 0,
                         title: {
-                            text: 'Today RFT'
+                            text: 'Total Production'
                         }
                     },
                     legend: {
                         enabled: false
                     },
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y:.2f} %'
-                            }
-                        }
-                    },
                     series: [{
-                        name: 'RFT',
+                        name: 'Production',
                         colorByPoint: true,
                         data: <?php echo json_encode($B34001ArtRFT, JSON_NUMERIC_CHECK); ?>
 
@@ -3189,7 +3083,7 @@ if (!$this->session->has_userdata('user_id')) {
                         type: 'column'
                     },
                     title: {
-                        text: 'Thermo Bounded'
+                        text: 'Thermo Bounded (B34002,B34003,B34004)'
                     },
                     xAxis: {
                         type: 'category',
@@ -3204,26 +3098,17 @@ if (!$this->session->has_userdata('user_id')) {
                     yAxis: {
                         min: 0,
                         title: {
-                            text: 'RFT'
+                            text: 'Total RFT'
                         }
                     },
                     legend: {
                         enabled: false
                     },
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y:.2f} %'
-                            }
-                        }
-                    },
                     tooltip: {
                         pointFormat: 'Total: <b>{point.y:.1f} RFT %</b>'
                     },
                     series: [{
-                        name: 'RFT',
+                        name: 'Production',
                         colorByPoint: true,
                         data: <?php echo json_encode($TMRFTFinal, JSON_NUMERIC_CHECK); ?>
                     }]
@@ -3254,7 +3139,7 @@ if (!$this->session->has_userdata('user_id')) {
                             }
                         },
                         title: {
-                            text: 'Today RFT',
+                            text: 'RFT',
                             style: {
                                 color: Highcharts.getOptions().colors[1]
                             }
@@ -3287,17 +3172,8 @@ if (!$this->session->has_userdata('user_id')) {
                         backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
                             'rgba(255,255,255,0.25)'
                     },
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y:.2f} %'
-                            }
-                        }
-                    },
                     series: [{
-                        name: 'Line Wise RFT',
+                        name: 'Line Wise RFT ',
                         type: 'column',
                         colorByPoint: true,
                         yAxis: 1,
@@ -3314,7 +3190,7 @@ if (!$this->session->has_userdata('user_id')) {
                         type: 'column'
                     },
                     title: {
-                        text: 'Airless Mini '
+                        text: 'Airless Mini (B34006)'
                     },
                     xAxis: {
                         type: 'category',
@@ -3329,26 +3205,17 @@ if (!$this->session->has_userdata('user_id')) {
                     yAxis: {
                         min: 0,
                         title: {
-                            text: 'Today RFT'
+                            text: 'Total RFT'
                         }
                     },
                     legend: {
                         enabled: false
                     },
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y:.2f} %'
-                            }
-                        }
-                    },
                     tooltip: {
                         pointFormat: 'Line wise  <b>{point.y:.1f} %</b>'
                     },
                     series: [{
-                        name: 'RFT',
+                        name: 'Production',
                         colorByPoint: true,
                         data: <?php echo json_encode($AMBRFTFinal, JSON_NUMERIC_CHECK); ?>
                     }]
@@ -3358,7 +3225,7 @@ if (!$this->session->has_userdata('user_id')) {
                         type: 'column'
                     },
                     title: {
-                        text: 'Laminated '
+                        text: 'Laminated (B34007)'
                     },
                     xAxis: {
                         type: 'category',
@@ -3373,35 +3240,17 @@ if (!$this->session->has_userdata('user_id')) {
                     yAxis: {
                         min: 0,
                         title: {
-                            text: 'Today RFT'
+                            text: 'Total RFT'
                         }
                     },
                     legend: {
                         enabled: false
                     },
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y:.2f} %'
-                            }
-                        }
-                    },
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y:.0f}'
-                            }
-                        }
-                    },
                     tooltip: {
                         pointFormat: 'Article Wise: <b>{point.y:.1f}  RFT </b>'
                     },
                     series: [{
-                        name: 'RFT',
+                        name: 'Production',
                         colorByPoint: true,
 
                         data: <?php echo json_encode($B34007ArtRFT, JSON_NUMERIC_CHECK); ?>
@@ -3440,13 +3289,13 @@ if (!$this->session->has_userdata('user_id')) {
                             borderWidth: 0,
                             dataLabels: {
                                 enabled: true,
-                                format: '{point.y:.0f} '
+                                format: '{point.y:.1f} '
                             }
                         }
                     },
 
                     tooltip: {
-                        headerFormat: '<span style="font-size:11px">{point.y:.0f}</span><br>',
+                        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
                         pointFormat: '<span style="color:{point.color}">{point.name}</span>:  <br/>'
                     },
 
@@ -3545,15 +3394,6 @@ if (!$this->session->has_userdata('user_id')) {
                     legend: {
                         enabled: false
                     },
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y:.0f}'
-                            }
-                        }
-                    },
                     series: [{
                         name: 'Defects',
                         colorByPoint: true,
@@ -3588,15 +3428,6 @@ if (!$this->session->has_userdata('user_id')) {
                     legend: {
                         enabled: false
                     },
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y:.0f}'
-                            }
-                        }
-                    },
                     tooltip: {
                         pointFormat: 'Total Defects: <b>{point.y:.1f} </b>'
                     },
@@ -3616,7 +3447,7 @@ if (!$this->session->has_userdata('user_id')) {
                         text: 'Machine Stitched Hall Production'
                     },
                     subtitle: {
-                        text: 'Line Wise Defects'
+                        text: 'Total Defects'
                     },
                     xAxis: [{
                         categories: <?php echo json_encode($MSLines, JSON_NUMERIC_CHECK); ?>,
@@ -3632,7 +3463,7 @@ if (!$this->session->has_userdata('user_id')) {
                             }
                         },
                         title: {
-                            text: 'Total Defects',
+                            text: 'Defects',
                             style: {
                                 color: Highcharts.getOptions().colors[1]
                             }
@@ -3665,17 +3496,8 @@ if (!$this->session->has_userdata('user_id')) {
                         backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
                             'rgba(255,255,255,0.25)'
                     },
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y:.0f}'
-                            }
-                        }
-                    },
                     series: [{
-                        name: 'Defects ',
+                        name: 'Line Wise Defects ',
                         type: 'column',
                         colorByPoint: true,
                         yAxis: 1,
@@ -3713,15 +3535,6 @@ if (!$this->session->has_userdata('user_id')) {
                     legend: {
                         enabled: false
                     },
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y:.0f}'
-                            }
-                        }
-                    },
                     tooltip: {
                         pointFormat: 'Line wise Defects <b>{point.y:.1f} </b>'
                     },
@@ -3756,15 +3569,6 @@ if (!$this->session->has_userdata('user_id')) {
                     },
                     legend: {
                         enabled: false
-                    },
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y:.0f}'
-                            }
-                        }
                     },
                     tooltip: {
                         pointFormat: 'Article Wise Defects: <b>{point.y:.1f}   </b>'

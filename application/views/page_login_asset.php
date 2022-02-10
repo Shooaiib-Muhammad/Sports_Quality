@@ -135,7 +135,7 @@ if ($this->session->has_userdata('user_id')) {
 				border-radius: 0 9px 9px 0;
 				animation-fill-mode: forwards;
 				box-shadow: 0 2px 4px -2 rgba(0, 0, 0, 0.6);
-				background: url(<?php echo base_url(''); ?>Assets/img/twitter_profile_image.png) no-repeat center center / cover;
+				background: url(http://192.168.10.3:8002/media/twitter_profile_image.png) no-repeat center center / cover;
 			}
 
 			@keyframes moveRight {

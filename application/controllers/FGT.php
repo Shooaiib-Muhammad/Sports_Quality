@@ -168,11 +168,20 @@ class FGT extends CI_Controller
             $dataArray[13],
             $dataArray[14],
             $dataArray[15],
-            $dataArray[16],
+            // $dataArray[16],
             $dataArray[17],
             $dataArray[18],
             $dataArray[19],
             $dataArray[20],
+            $dataArray[21],
+            $dataArray[22],
+            $dataArray[23],
+            $dataArray[24],
+            $dataArray[25],
+            $dataArray[26],
+            $dataArray[27],
+            $dataArray[28],
+            $dataArray[29],
             $pictureFresh ? $pictureFresh : null,
             $pictureShooter ? $pictureShooter : null,
             $pictureHydro ? $pictureHydro : null,
@@ -183,6 +192,8 @@ class FGT extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
+    
+
     public function updated($reviewStatus, $approvedStatus, $TID)
     {
         //$data['Labtest']
@@ -257,5 +268,20 @@ class FGT extends CI_Controller
             ->set_content_type('application/json')
             ->set_status_header(200)
             ->set_output(json_encode($data));
+    }
+    
+
+    
+    public function getTableData(){
+ 
+       
+        $sDate = $_POST["startDate"];
+        $eDate = $_POST["endDate"];
+        $data = $this->FGT->getTableData($sDate,$eDate);
+
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
     }
 }

@@ -2175,7 +2175,7 @@ var edate;
 
 function loadData(stDate,enDate){
     $("#customData").html("");
-    url = '<?php echo base_url('LabController/getTableData'); ?>'
+    url = '<?php echo base_url('LabController/getTableDatalab'); ?>'
 
 $.post(url, {'startDate':stDate,'endDate':enDate},
     function(data, status) {
@@ -2422,7 +2422,7 @@ $("#searchRange").click(function(e){
   $("#customData").html("");
   $("#defaultTable").css("display","none");
 
-  url = '<?php echo base_url('LabController/getTableData'); ?>'
+  url = '<?php echo base_url('LabController/getTableDatalab'); ?>'
 
 $.post(url, {'startDate':sDate,'endDate':eDate},
     function(data, status) {
