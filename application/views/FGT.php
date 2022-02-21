@@ -89,8 +89,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <table class="table table-striped p-0">
                                                             <tbody style="border: 1px solid;padding:0px">
                                                                 <tr>
-                                                                    <th style="border: 1px solid;">F2206LSB888</th>
-                                                                    <td class="text-center">HM4183</td>
+                                                                    <th style="border: 1px solid;" id="workingNoIndoor"></th>
+                                                                    <td class="text-center" id="articleNoIndoor"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th style="border: 1px solid;"><br>LAB NO.</th>
@@ -551,8 +551,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <table class="table table-striped">
                                                             <tbody style="border: 1px solid;">
                                                                 <tr>
-                                                                    <th style="border: 1px solid;">F2206LSB888</th>
-                                                                    <td class="text-center">HM4183</td>
+                                                                    <th style="border: 1px solid;" id="workingNoSize5"></th>
+                                                                    <td class="text-center" id="articleNoSize5"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th style="border: 1px solid;">LAB NO.</th>
@@ -1322,11 +1322,17 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="col-md-6" style="margin-top:25px">
+                                                <div class="form-group">
+                                                    <label class="control-label">CSS Code:</label>
+                                                    <input type="text" class="form-control" id="cssCode" name="cssCode">
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="row" style="display:flex">
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
-                                                    <label class="control-label">FGT TEST::</label>
+                                                    <label class="control-label">FGT TEST:</label>
                                                     <select class="form-control" id="fgttest" name="fgttest">
                                                         <option value="" disabled>Select one of the following</option>
                                                         <option value="DESTRUCTION">DESTRUCTION</option>
@@ -1344,6 +1350,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <option value="Development">Development</option>
                                                         <option value="FGT In-line">FGT In-line Matrix</option>
                                                     </select>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -1424,7 +1431,7 @@ if (!$this->session->has_userdata('user_id')) {
                                         <div class="row" style="display:flex">
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
-                                                    <label class="control-label">BALLTYPE</label>
+                                                    <label class="control-label">BALL TYPE</label>
                                                     <div>
                                                         <input type="text" class="form-control input-lg" id='btype' name="btype" placeholder="">
                                                     </div>
@@ -2087,8 +2094,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <table class="table table-striped">
                                                             <tbody style="border: 1px solid;">
                                                                 <tr>
-                                                                    <th style="border: 1px solid;">F2206LSB060</th>
-                                                                    <td id="content1" class="text-center"></td>
+                                                                    <th style="border: 1px solid;" id="workingNoMini"></th>
+                                                                    <td id="content1" class="text-center" id="articleNoMini"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th style="border: 1px solid;">FACTORY Code</th>
@@ -2137,7 +2144,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <td class="text-center" id="content9"></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th style="border: 1px solid;">BALLTYPE</th>
+                                                                    <th style="border: 1px solid;">BALL TYPE</th>
                                                                     <td class="text-center" id="content10"></td>
                                                                 </tr>
                                                             </tbody>
@@ -2519,7 +2526,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <td><?php echo $keys['covermat']; ?></td>
                                                                 <td><?php echo $keys['backing']; ?></td>
                                                                 <td><?php echo $keys['bladder']; ?></td>
-                                                                <td><?php echo $keys['FactoryCode'] . '/' . $keys['panel_shape']; ?></td>
+                                                                <td><?php echo $keys['FactoryCode'] . '-' . $keys['panel_shape']; ?></td>
                                                                 <td><?php echo $keys['labno']; ?></td>
                                                                 <td><?php echo $keys['mainmatcolor']; ?></td>
                                                                 <td><?php echo $keys['printngscolors']; ?></td>
@@ -2945,7 +2952,7 @@ if (!$this->session->has_userdata('user_id')) {
                         <td>${element.covermat}</td>
                         <td>${element.backing}</td>
                         <td>${element.bladder}</td>
-                        <td>${element.balltype}</td>
+                        <td>${element.FactoryCode}  '-' ${element.panel_shape}</td>
                         <td>${element.testtype}</td>
                         <td>${element.mainmatcolor}</td>
                         <td>${element.printngscolors}</td>
@@ -3031,7 +3038,7 @@ ${reviewStatus == '1' ?
     </td>
     
        
-                                              <td>${element.LoginName}</td>
+                                              <td>${element.Performedby}</td>
                                                 <td>
             <div class="row">
      <div class="col-md-2">
@@ -3041,7 +3048,7 @@ ${reviewStatus == '1' ?
            </td> 
             <td> <div class="col-md-2">
                
-              <button type="button" class="btn btn-warning btn-xs printButton" onclick="printDiv('printFGT')" id="btnPrint.${element.TID}" ><i class="fal fa-print" aria-hidden="true"></i></button>
+              <button type="button" class="btn btn-warning btn-xs customPrintButton" id="btnPrint.${element.TID}" ><i class="fal fa-print" aria-hidden="true"></i></button>
       
                 </div>
             </td>  
@@ -4351,9 +4358,8 @@ ${reviewStatus == '1' ?
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js" integrity="sha512-gtII6Z4fZyONX9GBrF28JMpodY4vIOI0lBjAtN/mcK7Pz19Mu1HHIRvXH6bmdChteGpEccxZxI0qxXl9anY60w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        $("#ActivityData").on('click', '.printButton', function(e) {
-            e.preventDefault();
-
+        $("#customData").on('click', '.customPrintButton', function(e) {
+            // e.preventDefault();
             let id = this.id;
 
             let split_value = id.split(".");
@@ -4371,6 +4377,8 @@ ${reviewStatus == '1' ?
                 if (type == "SOCCER BALLS" || type == "SOCCERBALLS") {
 
                     $("#titleBalls").text(data['head'][0].FGTType);
+                    $("#workingNoMini").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nill');
+                    $("#articleNoMini").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nill');
                     $("#content2").text(data['head'][0].labno);
                     $("#content3").text(data['head'][0].testdate);
                     $("#content4").text(data['head'][0].tastcat);
@@ -4430,6 +4438,8 @@ ${reviewStatus == '1' ?
                 } else if (type == "SOCCER BALL SIZE 5") {
                     console.log("from aSIZE 5", data);
                     $("#content66").text(data['head'][0].labno);
+                    $("#workingNoSize5").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nill');
+                    $("#articleNoSize5").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nill');
                     $("#content67").text(data['head'][0].testdate);
                     $("#content68").text(data['head'][0].tastcat);
                     $("#content69").text(data['head'][0].fifiastemp);
@@ -4517,6 +4527,249 @@ ${reviewStatus == '1' ?
                 } else {
                     console.log("from soccerBallsIndoor", data);
                     $("#content32").text(data['head'][0].labno);
+                    $("#workingNoIndoor").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nill');
+                    $("#articleNoIndoor").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nill');
+                    $("#content33").text(data['head'][0].testdate);
+                    $("#content34").text(data['head'][0].tastcat);
+                    $("#content35").text(data['head'][0].fifiastemp);
+                    $("#content36").text(data['head'][0].productionmonth);
+                    $("#content37").text(data['head'][0].covermat);
+                    $("#content38").text(data['head'][0].backing);
+                    $("#content39").text(data['head'][0].bladder);
+                    $("#content40").text(data['head'][0].balltype);
+                    $("#content41").text(data['head'][0].testtype);
+                    $("#content42").text(data['head'][0].mainmatcolor);
+                    $("#content43").text(data['head'][0].printngscolors);
+                    $("#content44").text(data['head'][0].result);
+                    $("#content45").text(data['head'][0].Performedby);
+                    $("#contentNoteFGT").text(data['head'][0].Note);
+                    if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
+                        $("#FreshPhotoIndoor").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
+                    } else {
+                        $("#FreshPhotoIndoor").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureShooter != null && data['head'][0].pictureShooter != "") {
+                        $("#ShooterPhotoIndoor").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureShooter);
+                    } else {
+                        $("#ShooterPhotoIndoor").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureHydro != null && data['head'][0].pictureHydro != "") {
+                        $("#HydroPhotoIndoor").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureHydro);
+                    } else {
+                        $("#HydroPhotoIndoor").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureDrum != null && data['head'][0].pictureDrum != "") {
+                        $("#DrumPhotoIndoor").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureDrum);
+                    } else {
+                        $("#DrumPhotoIndoor").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+
+                    $("#testReviewedFGT").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
+                    $("#testApprovedFGT").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
+                    if (data['detail'][0]) {
+                        $("#content46").text(data['detail'][0].weight1);
+                        $("#content47").text(data['detail'][0].weight2);
+                        $("#content48").text(data['detail'][0].cir1);
+                        $("#content49").text(data['detail'][0].cir2);
+                        $("#content50").text(data['detail'][0].sphericity_sp1);
+                        $("#content51").text(data['detail'][0].sphericity_sp2);
+                        $("#content52").text(data['detail'][0].loss_of_pressure1);
+                        $("#content53").text(data['detail'][0].loss_of_pressure2);
+                        $("#content54").text(data['detail'][0].rebound_0_1);
+                        $("#content55").text(data['detail'][0].rebound_0_2);
+                        $("#content56").text(data['detail'][0].cir_st_1);
+                        $("#content57").text(data['detail'][0].cir_st_2);
+                        $("#content58").text(data['detail'][0].sphericity_sp1);
+                        $("#content59").text(data['detail'][0].sphericity_sp2);
+                        $("#content60").text(data['detail'][0].ch_of_pressure_st1);
+                        $("#content61").text(data['detail'][0].ch_of_pressure_st2);
+                        $("#content62").text(data['detail'][0].material_st1);
+                        $("#content63").text(data['detail'][0].material_st2);
+                        $("#content64").text(data['detail'][0].abraison_resistance_pd1);
+                        $("#content65").text(data['detail'][0].abraison_resistance_pd2);
+                    }
+
+
+
+
+
+
+                    $('#soccerBallsIndoor').modal('toggle');
+
+                }
+            })
+        });
+        $("#ActivityData").on('click', '.printButton', function(e) {
+            // e.preventDefault();
+            let id = this.id;
+
+            let split_value = id.split(".");
+
+            var TID = split_value[1];
+
+            let type = $("#fgtype" + TID).text();
+
+
+            url = "<?php echo base_url(''); ?>FGT/FGT_PRINT"
+            $.post(url, {
+                TID
+            }, function(data) {
+
+                if (type == "SOCCER BALLS" || type == "SOCCERBALLS") {
+
+                    $("#titleBalls").text(data['head'][0].FGTType);
+                    $("#workingNoMini").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nill');
+                    $("#articleNoMini").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nill');
+                    $("#content2").text(data['head'][0].labno);
+                    $("#content3").text(data['head'][0].testdate);
+                    $("#content4").text(data['head'][0].tastcat);
+                    $("#content5").text(data['head'][0].productionmonth);
+                    $("#content6").text(data['head'][0].modal);
+                    //   $("#content7").text(data['head'][0].Innervalue);
+                    $("#content8").text(data['head'][0].panel_shape);
+                    $("#content9").text(data['head'][0].remark);
+                    $("#content10").text(data['head'][0].balltype);
+                    $("#content11").text(data['head'][0].testtype);
+                    $("#content12").text(data['head'][0].mainmatcolor);
+                    $("#content13").text(data['head'][0].printngscolors);
+                    $("#content14").text(data['head'][0].result);
+                    $("#content15").text(data['head'][0].Performedby);
+                    $("#contentNoteSoccer").text(data['head'][0].Note);
+                    if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
+                        $("#FreshPhotoSoccer").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
+                    } else {
+                        $("#FreshPhotoSoccer").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureShooter != null && data['head'][0].pictureShooter != "") {
+                        $("#ShooterPhotoSoccer").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureShooter);
+                    } else {
+                        $("#ShooterPhotoSoccer").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureHydro != null && data['head'][0].pictureHydro != "") {
+                        $("#HydroPhotoSoccer").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureHydro);
+                    } else {
+                        $("#HydroPhotoSoccer").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureDrum != null && data['head'][0].pictureDrum != "") {
+                        $("#DrumPhotoSoccer").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureDrum);
+                    } else {
+                        $("#DrumPhotoSoccer").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+
+                    $("#testReviewedSoccer").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
+                    $("#testApprovedSoccer").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
+                    if (data['detail'][0]) {
+                        $("#content16").text(data['detail'][0].weight1);
+                        $("#content17").text(data['detail'][0].weight2);
+                        $("#content21").text(data['detail'][0].cir1);
+                        $("#content22").text(data['detail'][0].cir2);
+                        $("#content23").text(data['detail'][0].rebound_rt1);
+                        $("#content24").text(data['detail'][0].rebound_rt2);
+                        $("#content27").text(data['detail'][0].drum_test_pd1);
+                        $("#content28").text(data['detail'][0].uv_light_fast_cst1);
+                        $("#content29").text(data['detail'][0].hydrolysis_lam1);
+                        $("#content30").text(data['detail'][0].hydrolysis_color1);
+                        $("#content31").text(data['head'][0].remark);
+                    }
+
+
+
+
+                    $('#FGTReportModal').modal('toggle');
+                } else if (type == "SOCCER BALL SIZE 5") {
+                    console.log("from aSIZE 5", data);
+                    $("#content66").text(data['head'][0].labno);
+                    $("#workingNoSize5").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nill');
+                    $("#articleNoSize5").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nill');
+                    $("#content67").text(data['head'][0].testdate);
+                    $("#content68").text(data['head'][0].tastcat);
+                    $("#content69").text(data['head'][0].fifiastemp);
+                    $("#content70").text(data['head'][0].productionmonth);
+                    $("#content71").text(data['head'][0].covermat);
+                    $("#content72").text(data['head'][0].backing);
+                    $("#content73").text(data['head'][0].bladder);
+                    $("#content74").text(data['head'][0].balltype);
+                    $("#content75").text(data['head'][0].testtype);
+                    $("#content76").text(data['head'][0].mainmatcolor);
+                    $("#content77").text(data['head'][0].printngscolors);
+                    $("#content78").text(data['head'][0].result);
+                    $("#content79").text(data['head'][0].Performedby);
+                    if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
+                        $("#FreshPhotoSize5").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
+                    } else {
+                        $("#FreshPhotoSize5").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureShooter != null && data['head'][0].pictureShooter != "") {
+                        $("#ShooterPhotoSize5").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureShooter);
+                    } else {
+                        $("#ShooterPhotoSize5").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureHydro != null && data['head'][0].pictureHydro != "") {
+                        $("#HydroPhotoSize5").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureHydro);
+                    } else {
+                        $("#HydroPhotoSize5").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureDrum != null && data['head'][0].pictureDrum != "") {
+                        $("#DrumPhotoSize5").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureDrum);
+                    } else {
+                        $("#DrumPhotoSize5").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+
+
+
+                    $("#contentNoteSize5").text(data['head'][0].Note);
+                    $("#testReviewedSize5").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
+                    $("#testApprovedSize5").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
+                    if (data['detail'][0]) {
+                        $("#content80").text(data['detail'][0].weight1);
+                        $("#content81").text(data['detail'][0].weight2);
+                        $("#content82").text(data['detail'][0].cir1);
+                        $("#content83").text(data['detail'][0].cir2);
+                        $("#content84").text(data['detail'][0].sphericity_sp1);
+                        $("#content85").text(data['detail'][0].sphericity_sp2);
+                        $("#content86").text(data['detail'][0].loss_of_pressure1);
+                        $("#content87").text(data['detail'][0].loss_of_pressure2);
+                        $("#content88").text(data['detail'][0].rebound_rt1);
+                        $("#content89").text(data['detail'][0].rebound_rt2);
+                        $("#content90").text(data['detail'][0].rebound_5_1);
+                        $("#content91").text(data['detail'][0].rebound_5_2);
+                        $("#content92").text(data['detail'][0].rebound_0_1);
+                        $("#content93").text(data['detail'][0].rebound_0_2);
+                        $("#content94").text(data['detail'][0].cir_st_1);
+                        $("#content95").text(data['detail'][0].cir_st_2);
+                        $("#content96").text(data['detail'][0].sphericity_st1);
+                        $("#content97").text(data['detail'][0].sphericity_st2);
+                        $("#content98").text(data['detail'][0].ch_of_pressure_st1);
+                        $("#content99").text(data['detail'][0].ch_of_pressure_st2);
+                        $("#content100").text(data['detail'][0].material_st1);
+                        $("#content101").text(data['detail'][0].material_st2);
+                        $("#content102").text(data['detail'][0].water_uptake_wrt1);
+                        $("#content103").text(data['detail'][0].water_uptake_wrt2);
+                        $("#content104").text(data['detail'][0].cir1_wrt);
+                        $("#content105").text(data['detail'][0].cir2_wrt);
+                        $("#content106").text(data['detail'][0].sphericity_wrt1);
+                        $("#content107").text(data['detail'][0].sphericity_wrt2);
+                        $("#content108").text(data['detail'][0].drum_test_pd1);
+                        $("#content109").text(data['detail'][0].drum_test_pd2);
+                        $("#content110").text(data['detail'][0].abraison_resistance_pd1);
+                        $("#content111").text(data['detail'][0].abraison_resistance_pd2);
+                        $("#content112").text(data['detail'][0].uv_light_fast_cst1);
+                        $("#content113").text(data['detail'][0].uv_light_fast_cst2);
+                        $("#content114").text(data['detail'][0].ozon_test_cst1);
+                        $("#content115").text(data['detail'][0].ozon_test_cst2);
+                        $("#content116").text(data['detail'][0].hydrolysis_lam1);
+                        $("#content117").text(data['detail'][0].hydrolysis_lam2);
+                        $("#content118").text(data['detail'][0].hydrolysis_color1);
+                        $("#content119").text(data['detail'][0].hydrolysis_color2);
+                    }
+
+                    $('#soccerBallsSize5').modal('toggle');
+
+                } else {
+                    console.log("from soccerBallsIndoor", data);
+                    $("#content32").text(data['head'][0].labno);
+                    $("#workingNoIndoor").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nill');
+                    $("#articleNoIndoor").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nill');
                     $("#content33").text(data['head'][0].testdate);
                     $("#content34").text(data['head'][0].tastcat);
                     $("#content35").text(data['head'][0].fifiastemp);
@@ -4789,6 +5042,7 @@ ${reviewStatus == '1' ?
             let bladder = $("#bladder").val();
             let btype = $("#btype").val();
             let ttype = $("#ttype").val();
+            let cssCode = $("#cssCode").val();
             let mmcolor = $("#mmcolor").val();
             let pcolors = $("#pcolors").val();
             let fn = $("#fn").val();
@@ -4808,7 +5062,7 @@ ${reviewStatus == '1' ?
             //alert(result)
             //alert(size);
 
-            let dataSend = [fgttype ? fgttype : null, lbno ? lbno : null, tdate ? tdate : null, testcat ? testcat : null, fifastump ? fifastump : 0, pmonth ? pmonth : null, cmat ? cmat : null, backing ? backing : null, bladder ? bladder : null, btype ? btype : null, ttype ? ttype : null, mmcolor ? mmcolor : null, pcolors ? pcolors : null, result ? result : null, fn ? fn : null, m ? m : null, pshape ? pshape : null, rem ? rem : null, testperformedby ? testperformedby : null, note ? note : null, null, null, null, null, null, article ? article : null, size ? size : null, tetype ? tetype : null, department ? department : null, fgttest ? fgttest : null];
+            let dataSend = [fgttype ? fgttype : null, lbno ? lbno : null, tdate ? tdate : null, testcat ? testcat : null, fifastump ? fifastump : 0, pmonth ? pmonth : null, cmat ? cmat : null, backing ? backing : null, bladder ? bladder : null, btype ? btype : null, ttype ? ttype : null, cssCode ? cssCode : null, mmcolor ? mmcolor : null, pcolors ? pcolors : null, result ? result : null, fn ? fn : null, m ? m : null, pshape ? pshape : null, rem ? rem : null, testperformedby ? testperformedby : null, note ? note : null, null, null, null, null, null, article ? article : null, size ? size : null, tetype ? tetype : null, department ? department : null, fgttest ? fgttest : null];
             fd.append('formData', dataSend);
             url = "<?php echo base_url(''); ?>FGT/FGT_H"
 

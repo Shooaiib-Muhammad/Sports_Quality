@@ -253,6 +253,295 @@ if (!$this->session->has_userdata('user_id')) {
  
         <!-- End Model Carton HTML -->
 
+         <!-- Model Fabric Comparison HTML -->
+
+<div class="modal fade bd-example-modal-xl" id="exampleModalComparison" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLabel" ><b>Report</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="card" id="printCard">
+  <div class="card-body">
+       <div class="row">
+           <div class="col-md-6">
+           <div class="row">
+       <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Carton</th>
+                <th></th>
+               </tr>
+           </table>
+           <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+          <table class="table">
+          <tr>    
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoComp"> </span></label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestComp"> </span></label></th>
+        </tr>
+        <tr>      
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="sizeComp"> </span> </label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoComp"> </span></label></th>
+        </tr>
+            </table>
+           <!-- <div class="col-md-6">
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateComp"> </span></label></div>
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameComp"> </span></label></div>
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefComp"> </span></label></div>
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Quantity Carton:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="quantityCartonComp"> </span></label></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mt-3" >
+                <table class="table table-bordered" style="border:2px solid black">
+                    <thead>
+                        <tr style="border:2px solid black">
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Requirement</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Value</th>
+                            <th style="text-align: center;font-size:large;border:2px solid black">  
+                            Result
+                            </th>
+                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
+                         
+
+                        </tr>
+                    </thead>
+                    <tbody id= "DetailsTestComp">
+                    
+                    </tbody>                
+                </table>
+            </div>
+
+            <div class="col-md-2"></div>
+            <!-- <div class="col-md-4">
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionComp"> </span></label></div>
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+            <table class="table">
+                <tr>
+                    <th></th>
+                 
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span >Sohail Ghouri </span></th>
+          <th></th>
+             
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedComp"> </span></th>
+                    <th></th>
+                
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedComp"> </span>
+            </th>
+            <th></th>
+               
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    <span id="testApprovedComp"> </span></th>
+                </tr>
+            </table>
+
+            <table class="table">
+                <tr>
+           
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  <th>
+                      <h5 style="font-weight:bold;color:black">Carton Image</h5>
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="cartonImageComp" height="250px" width="300px" alt="CartonPhoto" />
+                  </th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+            </table>
+            <!-- <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
+        </div>
+           </div>
+           <div class="col-md-6">
+           <div class="row">
+       <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Store Department of Forward Sports (Pvt) Ltd<br>4 Point System Inspection Report</th>
+                <th></th>
+               </tr>
+           </table>
+           <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+          <table class="table">
+          <tr>    
+         <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestCompCartonStore"> </span></label></th>
+       
+        </tr>
+        <tr> 
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoCompCartonStore"> </span></label></th>
+     
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Color:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="colorCompCartonStore"> </span> </label></th>  
+         
+        </tr>
+        <tr>     
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold">Fabric Description:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="descCompCartonStore"> </span> </label></th>
+       </tr>
+   <tr>     
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Sup.Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supCompCartonStore"> </span> </label></th>
+   </tr>
+    </table>
+    <h1>    Length (meter)</h1>
+    <table class="table">
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> On Tag:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="len1CompCartonStore"> </span> </label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Actual:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="len2CompCartonStore"> </span> </label></th>
+    </tr>
+    </table>
+    <h1>    width (meter)</h1>
+    <table class="table">
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> On Tag:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="width1CompCartonStore"> </span> </label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Actual:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="width2CompCartonStore"> </span> </label></th>
+    </tr>
+
+    </table>
+
+    <h1>    Defect 1: <span id="defect1"></span> </h1>
+    <table class="table">
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 0-3":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect11CompCartonStore"> </span> </label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 3-6":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect12CompCartonStore"> </span> </label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 6-9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect13CompCartonStore"> </span> </label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> >9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect14CompCartonStore"> </span> </label></th>
+  
+    </tr>
+
+    </table>
+    <h1>    Defect 2: <span id="defect2"></span> </h1>
+    <table class="table">
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 0-3":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect21CompCartonStore"> </span> </label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 3-6":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect22CompCartonStore"> </span> </label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 6-9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect23CompCartonStore"> </span> </label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> >9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect24CompCartonStore"> </span> </label></th>
+  
+    </tr>
+
+    </table>
+    <h1>    Defect 3: <span id="defect3"></span> </h1>
+    <table class="table">
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 0-3":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect31CompCartonStore"> </span> </label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 3-6":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect32CompCartonStore"> </span> </label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 6-9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect33CompCartonStore"> </span> </label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> >9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect34CompCartonStore"> </span> </label></th>
+  
+    </tr>
+
+    </table>      
+    <h1>    Defect 4: <span id="defect4"></span> </h1>
+    <table class="table">
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 0-3":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect41CompCartonStore"> </span> </label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 3-6":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect42CompCartonStore"> </span> </label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 6-9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect43CompCartonStore"> </span> </label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> >9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect44CompCartonStore"> </span> </label></th>
+  
+    </tr>
+
+    </table>
+
+    <h1>    Hole <span id="hole"></span> </h1>
+    <table class="table">
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 0-1":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="hole1CompCartonStore"> </span> </label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> >1":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="hole2CompCartonStore"> </span> </label></th>
+    </tr>
+
+    </table>
+    
+ </div>
+ <h1>    Total Point Found: <span id="totalCompCartonStore"></span> </h1>
+    <h1>    Points/1000 Squre Meter: <span id="pointsCompCartonStore"></span> </h1>
+    <h1>    Status: <span id="statusCompCartonStore"></span> </h1>
+</div>
+</div>
+      
+ </div>
+</div>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+      <div class="card-footer text-muted">
+  Forward Sports Pvt. Ltd.
+  </div>
+    </div>
+  </div>
+</div>
+ 
+        <!-- End Model Comparison Carton HTML -->
+
 
       <!-- Model Foam HTML -->
 
@@ -1922,6 +2211,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th>Approved By </th>
                                                                   
                                                                    <th>Actions </th>
+                                                                   <th>Comparison</th>
                                                                        <th>Undo </th>
                                                             
                                                                   
@@ -2072,8 +2362,7 @@ if (!$this->session->has_userdata('user_id')) {
                 <button type="button" class="btn btn-info btn-xs updatebtn" id="btn.<?php Echo $Key['TID']; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
                 </div>
                 <div class="col-md-2">
-             
-                </div>
+               </div>
                
                 <div class="col-md-2">
              
@@ -2084,7 +2373,14 @@ if (!$this->session->has_userdata('user_id')) {
             </div>
           
         
+            <td>
+             <div class="col-md-2">
+               
+             <button type="button" class="btn btn-warning btn-xs comparisonButton waves-effect waves-themed" id="btnPrint.${element.TID}">Compare</button>
            
+      
+                </div>
+    </td>
            
            </td>   
             <td> <div class="col-md-2">
@@ -2205,6 +2501,7 @@ $.post(url, {'startDate':stDate,'endDate':enDate},
                                                                     <th>Approved By </th>
                                                                   
                                                                    <th>Actions </th>
+                                                                   <th>Comparison</th>
                                                                      <th>Undo </th>
                                                             
                                                                   
@@ -2309,8 +2606,7 @@ ${reviewStatus == '1' ?
                 <button type="button" class="btn btn-info btn-xs customupdatebtn1 waves-effect waves-themed" id="custombtn.${element.TID}"><i class="fal fa-edit" aria-hidden="true"></i></button>
             </div>
             <div class="col-md-2">
-
-            </div>
+           </div>
            
             <div class="col-md-2">
 
@@ -2325,7 +2621,14 @@ ${reviewStatus == '1' ?
 
     </td>
       
-
+    <td>
+             <div class="col-md-2">
+               
+             <button type="button" class="btn btn-warning btn-xs customcomparisonButton waves-effect waves-themed" id="btnPrint.${element.TID}">Compare</button>
+           
+      
+                </div>
+    </td>
 
            
             <td>
@@ -2453,6 +2756,7 @@ $.post(url, {'startDate':sDate,'endDate':eDate},
                                                                     <th>Approved By </th>
                                                                   
                                                                    <th>Actions </th>
+                                                                   <th>Comparison</th>
                                                                       <th>Undo </th>
                                                             
                                                                   
@@ -2557,8 +2861,7 @@ ${reviewStatus == '1' ?
                 <button type="button" class="btn btn-info btn-xs customupdatebtn1 waves-effect waves-themed" id="custombtn.${element.TID}"><i class="fal fa-edit" aria-hidden="true"></i></button>
             </div>
             <div class="col-md-2">
-
-            </div>
+           </div>
           
             <div class="col-md-2">
 
@@ -2571,6 +2874,14 @@ ${reviewStatus == '1' ?
 
 
 
+    </td>
+    <td>
+             <div class="col-md-2">
+               
+             <button type="button" class="btn btn-warning btn-xs customcomparisonButton waves-effect waves-themed" id="btnPrint.${element.TID}">Compare</button>
+           
+      
+                </div>
     </td>
    <td>
              <div class="col-md-2">
@@ -3144,6 +3455,447 @@ $.post(url, {'TID':TID},
         
      });
 
+     $("#customData").on('click','.customcomparisonButton',function(e) {
+ 
+let id= this.id;
+
+let split_value = id.split(".");
+
+var TID =split_value[1];
+let testTypeGet;
+let url = '<?php echo base_url('LabController/getHead'); ?>'
+let url2 = '<?php echo base_url('LabController/getDetails'); ?>'
+let url3 = '<?php echo base_url('LabController/Get_Comparison_Data'); ?>'
+$.post(url, {'TID':TID},
+function(data, status) {
+
+testTypeGet = data[0].ItemType;
+if(data[0].ItemType.trim() == 'Carton'){
+$("#testNoComp").text(data[0].TestNO);
+$("#dateTestComp").text(data[0].Date);
+$("#ponoComp").text(data[0].PO);
+$("#receiveDateComp").text(data[0].Receiving_Date);
+$("#sizeComp").text(data[0].Size);
+$("#supplierNameComp").text(data[0].Supplier_Name);
+$("#supplierRefComp").text(data[0].Supplier_Ref);
+$("#quantityCartonComp").text(data[0].Quantity_Carton);
+if(data[0].image != null && data[0].image != ""){
+       $("#cartonImageComp").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#cartonImageComp").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+
+$("#testPerformedComp").text(data[0].performedBy);
+data[0].Approvalname? $("#testApprovedComp").text(data[0].Approvalname):$("#testApprovedComp").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+
+data[0].reviewName? $("#testReviewedComp").text(data[0].reviewName):$("#testReviewedComp").text("Pending");
+$("#ConclusionComp").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Test}</td>
+                   <td style="border:2px solid black">${element.Requirments}</td>
+                   <td style="border:2px solid black">${element.Value}</td>
+                   <td style="border:2px solid black">
+                  ${element.result}
+                   </td>
+               </tr>`
+});
+
+$("#DetailsTestComp").html(html);
+
+});
+let dateGet = (data[0].Date).split("/");
+let combinedDate = dateGet[2]+"-"+dateGet[1]+"-"+dateGet[0]
+   
+$.post(url3, {'LotNo':data[0].PO,'date':combinedDate},
+function(data, status) {
+    $("#ponoCompCartonStore").text(data[0].LotNo);
+$("#dateTestCompCartonStore").text(data[0].Datee);
+$("#descCompCartonStore").text(data[0].fabric);
+$("#supCompCartonStore").text(data[0].SupplierName);
+$("#colorCompCartonStore").text(data[0].Color);
+$("#supplierNameComp").text(data[0].Supplier_Name);
+$("#len1CompCartonStore").text(data[0].lengthOntage);
+$("#len2CompCartonStore").text(data[0].lengthactual);
+
+$("#width1CompCartonStore").text(data[0].widthOntage);
+$("#width2CompCartonStore").text(data[0].widthactual);
+$("#defect1").text(data[0].Name);
+$("#defect11CompCartonStore").text((parseInt(data[0].Def1 !=".00"?data[0].Def1:0)*1));
+$("#defect12CompCartonStore").text((parseInt(data[0].Def2 !=".00"?data[0].Def2:0)*2));
+$("#defect13CompCartonStore").text((parseInt(data[0].Def3 !=".00"?data[0].Def3:0)*3));
+$("#defect14CompCartonStore").text((parseInt(data[0].Def4 !=".00"?data[0].Def4:0)*4));
+
+$("#defect2").text(data[0].Name2);
+$("#defect21CompCartonStore").text((parseInt(data[0].Def11 !=".00"?data[0].Def11:0)*1));
+$("#defect22CompCartonStore").text((parseInt(data[0].Def21 !=".00"?data[0].Def21:0)*2));
+$("#defect23CompCartonStore").text((parseInt(data[0].Def31 !=".00"?data[0].Def31:0)*3));
+$("#defect24CompCartonStore").text((parseInt(data[0].Def41 !=".00"?data[0].Def41:0)*4));
+
+$("#defect3").text(data[0].Name3);
+$("#defect31CompCartonStore").text((parseInt(data[0].Def12 !=".00"?data[0].Def12:0)*1));
+$("#defect32CompCartonStore").text((parseInt(data[0].Def22 !=".00"?data[0].Def22:0)*2));
+$("#defect33CompCartonStore").text((parseInt(data[0].Def32 !=".00"?data[0].Def32:0)*3));
+$("#defect34CompCartonStore").text((parseInt(data[0].Def42 !=".00"?data[0].Def42:0)*4));
+
+$("#defect4").text(data[0].Name4);
+$("#defect41CompCartonStore").text((parseInt(data[0].Def13 !=".00"?data[0].Def13:0)*1));
+$("#defect42CompCartonStore").text((parseInt(data[0].Def23 !=".00"?data[0].Def23:0)*2));
+$("#defect43CompCartonStore").text((parseInt(data[0].Def33 !=".00"?data[0].Def33:0)*3));
+$("#defect44CompCartonStore").text((parseInt(data[0].Def43 !=".00"?data[0].Def43:0)*4));
+
+$("#hole1CompCartonStore").text((parseInt(data[0].Hole1 != '.00'?data[0].Hole1:0)*4));
+$("#hole2CompCartonStore").text((parseInt(data[0].Hole2 != '.00'?data[0].Hole2:0)*4));
+let Actual = (parseInt(data[0].lengthactual != '.00'?data[0].lengthactual:0) * parseInt(data[0].widthactual != '.00'?data[0].widthactual:0))
+
+let totalpoints = (parseInt(data[0].Hole1 != '.00'?data[0].Hole1:0)*4)+(parseInt(data[0].Hole2 != '.00'?data[0].Hole2:0)*4)+(parseInt(data[0].Def1 !=".00"?data[0].Def1:0)*1)+(parseInt(data[0].Def11 !=".00"?data[0].Def11:0)*1)+(parseInt(data[0].Def12 !=".00"?data[0].Def12:0)*1)+(parseInt(data[0].Def13 !=".00"?data[0].Def13:0)*1)+(parseInt(data[0].Def2 !=".00"?data[0].Def2:0)*2)+(parseInt(data[0].Def21 !=".00"?data[0].Def21:0)*2)+(parseInt(data[0].Def22 !=".00"?data[0].Def22:0)*2)+(parseInt(data[0].Def23 !=".00"?data[0].Def23:0)*2)+(parseInt(data[0].Def3 !=".00"?data[0].Def3:0)*3)+(
+parseInt(data[0].Def31 !=".00"?data[0].Def31:0)*3)+(parseInt(data[0].Def32 !=".00"?data[0].Def32:0)*3)+(parseInt(data[0].Def33 !=".00"?data[0].Def33:0)*3)+(parseInt(data[0].Def4 !=".00"?data[0].Def4:0)*4)+(parseInt(data[0].Def41 !=".00"?data[0].Def41:0)*4)+(parseInt(data[0].Def42 !=".00"?data[0].Def42:0)*4)+(parseInt(data[0].Def43 !=".00"?data[0].Def43:0)*4)
+let Final;
+ if(Actual == 0){
+    Final = 0;
+ }
+ else{
+    Final = (totalpoints/Actual)*3947;
+ }
+
+ $("#totalCompCartonStore").text(totalpoints);
+$("#pointsCompCartonStore").text(parseFloat(Final).toFixed(2));   
+
+console.log("Comparison Data", data);
+
+});
+$('#exampleModalComparison').modal('toggle');
+}
+else if(data[0].ItemType.trim() == 'Foam'){
+$("#testNoFoam").text(data[0].TestNO);
+$("#dateTestFoam").text(data[0].Date);
+$("#ponoFoam").text(data[0].PO);
+$("#receiveDateFoam").text(data[0].Receiving_Date);
+
+$("#supplierRefFoam").text(data[0].Supplier_Ref);
+
+$("#testPerformedFoam").text(data[0].performedBy);
+data[0].Approvalname? $("#testApprovedFoam").text(data[0].Approvalname):$("#testApprovedFoam").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if(data[0].image != null && data[0].image != ""){
+       $("#foamImage").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#foamImage").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].reviewName? $("#testReviewedFoam").text(data[0].reviewName):$("#testReviewedFoam").text("Pending");
+$("#ConclusionFoam").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Test}</td>
+                   <td style="border:2px solid black">${element.result}</td>
+                   <td style="border:2px solid black">${element.Unit}</td>
+                   <td style="border:2px solid black">
+                  ${element.Standard}
+                   </td>
+               </tr>`
+});
+
+$("#DetailsTestFoam").html(html);
+
+});
+$('#exampleModalFoam').modal('toggle');
+}
+else if(data[0].ItemType.trim() == 'Fabric'){
+$("#testNoFabric").text(data[0].TestNO);
+$("#dateTestFabric").text(data[0].Date);
+$("#ponoFabric").text(data[0].PO);
+$("#receiveDateFabric").text(data[0].Receiving_Date);
+
+$("#supplierRefFabric").text(data[0].Supplier_Ref);
+
+$("#testPerformedFabric").text(data[0].performedBy);
+$("#ResultFabric").text(data[0].Result);
+$("#CSSNoFabric").text(data[0].CSSNO);
+$("#materialNameFabric").text(data[0].Size);
+
+data[0].Approvalname? $("#testApprovedFabric").text(data[0].Approvalname):$("#testApprovedFabric").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if(data[0].image != null && data[0].image != ""){
+       $("#fabricImage").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#fabricImage").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].reviewName? $("#testReviewedFabric").text(data[0].reviewName):$("#testReviewedFabric").text("Pending");
+$("#ConclusionFabric").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Test}</td>
+                   <td style="border:2px solid black">${element.result}</td>
+                   <td style="border:2px solid black">${element.Uncertainty}</td>
+                   <td style="border:2px solid black">
+                  ${element.ReMarks}
+                   </td>
+               </tr>`
+});
+
+$("#DetailsTestFabric").html(html);
+
+});
+$('#exampleModalFabric').modal('toggle');
+}
+else if(data[0].ItemType.trim() == 'Material'){
+$("#testNoMaterial").text(data[0].TestNO);
+$("#dateTestMaterial").text(data[0].Date);
+$("#ponoMaterial").text(data[0].PO);
+$("#receiveDateMaterial").text(data[0].Receiving_Date);
+
+$("#supplierRefMaterial").text(data[0].Supplier_Ref);
+
+$("#testPerformedMaterial").text(data[0].performedBy);
+$("#ResultMaterial").text(data[0].Result);
+$("#CSSNoMaterial").text(data[0].CSSNO);
+$("#materialNameMaterial").text(data[0].Size);
+if(data[0].image != null && data[0].image != ""){
+       $("#materialImage").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#materialImage").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].Approvalname? $("#testApprovedMaterial").text(data[0].Approvalname):$("#testApprovedMaterial").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+
+data[0].reviewName? $("#testReviewedMaterial").text(data[0].reviewName):$("#testReviewedMaterial").text("Pending");
+$("#ConclusionMaterial").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Test}</td>
+                   <td style="border:2px solid black">${element.result}</td>
+                   <td style="border:2px solid black">${element.Uncertainty}</td>
+                   <td style="border:2px solid black">
+                  ${element.ReMarks}
+                   </td>
+               </tr>`
+});
+
+$("#DetailsTestMaterial").html(html);
+
+});
+$('#exampleModalMaterial').modal('toggle');
+}
+else if(data[0].ItemType.trim() == 'Thread'){
+
+$("#testNoThread").text(data[0].TestNO);
+$("#dateTestThread").text(data[0].Date);
+$("#ponoThread").text(data[0].PO);
+$("#receiveDateThread").text(data[0].Receiving_Date);
+$("#thicknessThread").text(data[0].Thickness);
+$("#supplierNameThread").text(data[0].Supplier_Name);
+$("#supplierRefThread").text(data[0].Supplier_Ref);
+$("#linearDensityThread").text(data[0].LinearDensity);
+$("#twistThread").text(data[0].TwistPerInch);
+$("#testPerformedThread").text(data[0].performedBy);
+data[0].Approvalname? $("#testApprovedThread").text(data[0].Approvalname):$("#testApprovedThread").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if(data[0].image != null && data[0].image != ""){
+       $("#threadImage").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#threadImage").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].reviewName? $("#testReviewedThread").text(data[0].reviewName):$("#testReviewedThread").text("Pending");
+$("#ConclusionThread").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+let i=0;
+let extMax = 0;
+let Max = 0;
+let ext = 0;
+data.forEach(element => {
+
+ extMax += parseInt(element.ExtatMax);
+ Max += parseInt(element.MaxLoad);
+ ext += parseInt(element.Ext);
+   html += `<tr>
+                   <td style="border:2px solid black">${element.TDate}</td>
+                   <td style="border:2px solid black">${element.ExtatMax}</td>
+                   <td style="border:2px solid black">${element.MaxLoad}</td>
+                   <td style="border:2px solid black">
+                  ${element.Ext}
+                   </td>
+               </tr>`
+});
+let sizeOfThread = data.length;
+html += `<tr>
+<td style="border:2px solid black">Average</td>
+                   <td style="border:2px solid black">${extMax/sizeOfThread}</td>
+                   <td style="border:2px solid black">${Max/sizeOfThread}</td>
+                   <td style="border:2px solid black">
+                  ${ext/sizeOfThread}
+                   </td>
+</tr>`
+
+$("#DetailsTestThread").html(html);
+
+});
+$('#exampleModalThread').modal('toggle');
+}
+else if(data[0].ItemType.trim() == 'Blader')
+{
+$("#testNoBlader").text(data[0].TestNO);
+$("#dateTestBlader").text(data[0].Date);
+$("#ponoBlader").text(data[0].PO);
+$("#receiveDateBlader").text(data[0].Receiving_Date);
+
+$("#supplierNameBlader").text(data[0].Supplier_Name);
+$("#supplierRefBlader").text(data[0].Supplier_Ref);
+$("#hardnessBlader").text(data[0].Hardness);
+$("#sizeBlader").text(data[0].Size);
+$("#materialBlader").text(data[0].material);
+$("#testPerformedBlader").text(data[0].performedBy);
+data[0].Approvalname? $("#testApprovedBlader").text(data[0].Approvalname):$("#testApprovedBlader").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if(data[0].image != null && data[0].image != ""){
+       $("#bladerImage").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#bladerImage").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].reviewName? $("#testReviewedBlader").text(data[0].reviewName):$("#testReviewedBlader").text("Pending");
+$("#Conclusion").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Test}</td>
+                   <td style="border:2px solid black">${element.Unit}</td>
+                   <td style="border:2px solid black">${element.result1}</td>
+                   <td style="border:2px solid black">${element.result2}</td>
+                   <td style="border:2px solid black">${element.result3}</td>
+                   <td style="border:2px solid black">${element.result4}</td>
+          
+               </tr>`
+});
+
+$("#DetailsTestBlader").html(html);
+
+});
+$('#exampleModalBlader').modal('toggle');
+
+}
+else if(data[0].ItemType.trim() == 'FGT')
+{
+
+$("#testNoFGT").text(data[0].TestNO);
+$("#dateTestFGT").text(data[0].Date);
+$("#modelNameFGT").text(data[0].ModelName);
+$("#CSSCodeFGT").text(data[0].CSSNO);
+
+$("#pressureFGT").text(data[0].Pressure);
+$("#TempHumFGT").text(data[0].TempHumidity);
+$("#articleFGT").text(data[0].Article);
+$("#categoryFGT").text(data[0].Category);
+$("#sizeFGT").text(data[0].Size);
+$("#testedForFGT").text(data[0].Testedfor);
+$("#testPerformedFGT").text(data[0].performedBy);
+$("#noteFGT").text(data[0].Note);
+if(data[0].image != null && data[0].image != ""){
+       $("#fgtImage").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#fgtImage").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].Approvalname? $("#testApprovedFGT").text(data[0].Approvalname):$("#testApprovedFGT").text("Pending");
+
+//  $("#Incharge").text(data[0].Approvalname);
+
+data[0].reviewName? $("#testReviewedFGT").text(data[0].reviewName):$("#testReviewedFGT").text("Pending");
+$("#ConclusionFGT").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Weight?element.Weight:''}</td>
+                   <td style="border:2px solid black">${element.CircumferenceMin?element.CircumferenceMin:''}</td>
+                   <td style="border:2px solid black">${element.CircumferenceMax?element.CircumferenceMax:''}</td>
+                   <td style="border:2px solid black">${element.Deviation?element.Deviation:''}</td>
+                   <td style="border:2px solid black">${element.ReboundTest?element.ReboundTest:''}</td>
+                   <td style="border:2px solid black">${element.Remarks?element.Remarks:''}</td>
+          
+               </tr>`
+});
+
+$("#DetailsTestFGT").html(html);
+
+});
+$('#exampleModalFGT').modal('toggle');
+
+}
+else if(data[0].ItemType.trim() == 'MS Thread'){
+
+$("#testNoMSThread").text(data[0].TestNO);
+$("#dateTestMSThread").text(data[0].Date);
+$("#ponoMSThread").text(data[0].PO);
+$("#receiveDateMSThread").text(data[0].Receiving_Date);
+$("#MaterialNameMSThread").text(data[0].material);
+$("#supplierNameMSThread").text(data[0].Supplier_Name);
+$("#supplierRefMSThread").text(data[0].Supplier_Ref);
+$("#testPerformedMSThread").text(data[0].performedBy);
+data[0].Approvalname? $("#testApprovedMSThread").text(data[0].Approvalname):$("#testApprovedMSThread").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if(data[0].image != null && data[0].image != ""){
+      $("#threadMSImage").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+  }
+  else{
+      $("#threadMSImage").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+  }
+data[0].reviewName? $("#testReviewedMSThread").text(data[0].reviewName):$("#testReviewedMSThread").text("Pending");
+$("#ConclusionMSThread").text(data[0].Result);
+$("#statusMSThread").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                  <td style="border:2px solid black">${element.Test}</td>
+                  <td style="border:2px solid black">${element.Method}</td>
+                  <td style="border:2px solid black">${element.Unit}</td>
+                  <td style="border:2px solid black">${element.Requirments}</td>
+                  <td style="border:2px solid black">${element.result}</td>
+              </tr>`
+});
+
+$("#DetailsTestMSThread").html(html);
+
+});
+$('#exampleModalMSThread').modal('toggle');
+}
+
+
+});
+
+});
 
      $("#customData").on("click",".customprintButton", function() {
 

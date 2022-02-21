@@ -189,11 +189,11 @@ ORDER BY TranDate");
     }
     Public function Year(){
         
-        $query = $this->db->query("SELECT        TOP (100) PERCENT YEAR(TranDate) AS Year, MONTH(TranDate) AS Month
+        $query = $this->db->query("SELECT        TOP (100) PERCENT YEAR(TranDate) AS Year, MONTH(TranDate) AS Month1, DATENAME(month, TranDate) AS Month
 FROM            dbo.tbl_Production_View
 WHERE        (YEAR(TranDate) = 2021)
-GROUP BY MONTH(TranDate), YEAR(TranDate)
-ORDER BY Month");
+GROUP BY MONTH(TranDate), YEAR(TranDate), DATENAME(month, TranDate)
+ORDER BY Month1");
         return $result = $query->result_array();
     }
 }

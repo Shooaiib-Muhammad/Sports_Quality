@@ -1,11 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-include("./application/views/includes/Exception.php");
-include("./application/views/includes/PHPMailer.php");
-include("./application/views/includes/SMTP.php");
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+
 class LabController extends CI_Controller
 {
     public function __construct()
@@ -23,6 +18,21 @@ class LabController extends CI_Controller
         $this->load->view('LabDashboard');
     }
 
+    public function ShowDetails()
+    {
+        $data['headData'] = $this->l->getHead($_GET['id']);
+        $data['detailsData'] = $this->l->getDetails($_GET['id']);
+
+        $this->load->view('FailDetails', $data);
+    }
+
+    public function ShowDetailsFGT()
+    {
+        $data['head'] = $this->l->FGT_PRINT_Head($_GET['id']);
+        $data['detail'] = $this->l->FGT_PRINT_Details($_GET['id']);
+
+        $this->load->view('FailDetailsFGT', $data);
+    }
 
     public function dashboard()
     {
@@ -57,6 +67,18 @@ class LabController extends CI_Controller
     {
         $TID = $_POST['TID'];
        $data = $this->l->getDetails($TID);
+       return $this->output
+       ->set_content_type('application/json')
+       ->set_status_header(200)
+       ->set_output(json_encode($data));
+
+       
+    }
+
+    public function Get_Comparison_Data()
+    {
+
+       $data = $this->l->Get_Comparison_Data($_POST['LotNo'],$_POST['date']);
        return $this->output
        ->set_content_type('application/json')
        ->set_status_header(200)
@@ -214,59 +236,6 @@ class LabController extends CI_Controller
     $testNo = $header[6];
     $SupplierRef = $header[7];
     $Result = $header[8];
-    if($Result=='Fail' || $Result=='fail'){
-        $mail = new PHPMailer(true);
-try{
-
-
-  //Server settings
-$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-$mail->isSMTP();                                            //Send using SMTP
-$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-$mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
-$mail->Password   = 'Forward123';                               //SMTP password
-$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-$mail->IsHTML(true);
-//Recipients
-$mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-$mail->addAddress("hufsa@forward.pk"); 
-$mail->addAddress("sohail@forward.pk"); 
-$mail->addAddress("store@forward.pk"); 
-$mail->AddCC('abaid@forward.pk');
-$mail->AddCC('imran@forward.pk');
-
- $mail->AddCC('waseembutt@forward.pk');
- $mail->AddCC('tafseer@forward.pk');
-    $mail->AddCC('shoaib@forward.pk');
-    $mail->AddCC('fsqa@forward.pk');
-          $mail->AddCC('oman@forward.pk');
-             $mail->AddCC('abdulhaseeb@forward.pk');
-               $mail->AddCC('zainabbas@forward.pk');
-$mail->AddCC('yaseen@forward.pk');
-$mail->Subject = "Raw Material Failure";
-$mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
-<div style="margin-left:40%;">
-<table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
-Carton Test Report Result Alert</th></tr>
-<tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
-<tr><th>Material Name:</th><td>'.$ItemName .'</td></tr>
-<tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
-<tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
-
-<tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
-</table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
-
-
-//  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
-//$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
-$mail->send();
-echo 'Message has been sent';
-} catch (Exception $e) {
-echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-}
-}
     $ItemType = $header[9];
     $this->l->AddHeader(
         $TestDate,
@@ -428,60 +397,60 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     $testGroup = $_POST['testGroup'];
     $testPerformer = $_POST['testPerformer'];
    
-    if($Result=='Fail' || $Result=='fail'){
-        $mail = new PHPMailer(true);
-try{
+//     if($Result=='Fail' || $Result=='fail'){
+//         $mail = new PHPMailer(true);
+// try{
 
 
-  //Server settings
-$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-$mail->isSMTP();                                            //Send using SMTP
-$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-$mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
-$mail->Password   = 'Forward123';                               //SMTP password
-$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-$mail->IsHTML(true);
-//Recipients
-$mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-$mail->addAddress("hufsa@forward.pk"); 
-$mail->addAddress("sohail@forward.pk"); 
-$mail->addAddress("store@forward.pk"); 
-$mail->AddCC('abaid@forward.pk');
-$mail->AddCC('imran@forward.pk');
+//   //Server settings
+// $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+// $mail->isSMTP();                                            //Send using SMTP
+// $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+// $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+// $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
+// $mail->Password   = 'Forward123';                               //SMTP password
+// $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+// $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+// $mail->IsHTML(true);
+// //Recipients
+// $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
+// $mail->addAddress("hufsa@forward.pk"); 
+// $mail->addAddress("sohail@forward.pk"); 
+// $mail->addAddress("store@forward.pk"); 
+// $mail->AddCC('abaid@forward.pk');
+// $mail->AddCC('imran@forward.pk');
 
- $mail->AddCC('waseembutt@forward.pk');
- $mail->AddCC('tafseer@forward.pk');
-    $mail->AddCC('shoaib@forward.pk');
-    $mail->AddCC('fsqa@forward.pk');
-          $mail->AddCC('oman@forward.pk');
-             $mail->AddCC('abdulhaseeb@forward.pk');
-$mail->AddCC('zainabbas@forward.pk');
+//  $mail->AddCC('waseembutt@forward.pk');
+//  $mail->AddCC('tafseer@forward.pk');
+//     $mail->AddCC('shoaib@forward.pk');
+//     $mail->AddCC('fsqa@forward.pk');
+//           $mail->AddCC('oman@forward.pk');
+//              $mail->AddCC('abdulhaseeb@forward.pk');
+// $mail->AddCC('zainabbas@forward.pk');
 
-$mail->AddCC('yaseen@forward.pk');
-$mail->Subject = "Raw Material Failure";
-$mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
-<div style="margin-left:40%;">
-<table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
-Fabric Test Report Result Alert</th></tr>
-<tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
-<tr><th>Material Name:</th><td>'.$ItemName .'</td></tr>
-<tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
-<tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
+// $mail->AddCC('yaseen@forward.pk');
+// $mail->Subject = "Raw Material Failure";
+// $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
+// <div style="margin-left:40%;">
+// <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
+// Fabric Test Report Result Alert</th></tr>
+// <tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
+// <tr><th>Material Name:</th><td>'.$ItemName .'</td></tr>
+// <tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
+// <tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
 
-<tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
-</table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
+// <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
+// </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
 
 
-//  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
-//$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
-$mail->send();
-echo 'Message has been sent';
-} catch (Exception $e) {
-echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-}
-}
+// //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
+// //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
+// $mail->send();
+// echo 'Message has been sent';
+// } catch (Exception $e) {
+// echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+// }
+// }
     $this->l->AddHeaderFabric(
         $TestDate,
         $CSSNO,
@@ -570,59 +539,59 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     $ItemType = $header[10];
     $testGroup = $_POST['testGroup'];
     $testPerformer = $_POST['testPerformer'];
-    if($Result=='Fail' || $Result=='fail'){
-        $mail = new PHPMailer(true);
-try{
+//     if($Result=='Fail' || $Result=='fail'){
+//         $mail = new PHPMailer(true);
+// try{
 
 
-  //Server settings
-$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-$mail->isSMTP();                                            //Send using SMTP
-$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-$mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
-$mail->Password   = 'Forward123';                               //SMTP password
-$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-$mail->IsHTML(true);
-//Recipients
-$mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-$mail->addAddress("hufsa@forward.pk"); 
-$mail->addAddress("sohail@forward.pk"); 
-$mail->addAddress("store@forward.pk"); 
-$mail->AddCC('abaid@forward.pk');
-$mail->AddCC('imran@forward.pk');
+//   //Server settings
+// $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+// $mail->isSMTP();                                            //Send using SMTP
+// $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+// $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+// $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
+// $mail->Password   = 'Forward123';                               //SMTP password
+// $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+// $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+// $mail->IsHTML(true);
+// //Recipients
+// $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
+// $mail->addAddress("hufsa@forward.pk"); 
+// $mail->addAddress("sohail@forward.pk"); 
+// $mail->addAddress("store@forward.pk"); 
+// $mail->AddCC('abaid@forward.pk');
+// $mail->AddCC('imran@forward.pk');
 
- $mail->AddCC('waseembutt@forward.pk');
- $mail->AddCC('tafseer@forward.pk');
-    $mail->AddCC('shoaib@forward.pk');
-    $mail->AddCC('fsqa@forward.pk');
-          $mail->AddCC('oman@forward.pk');
-             $mail->AddCC('abdulhaseeb@forward.pk');
-             $mail->AddCC('yaseen@forward.pk');
-$mail->AddCC('zainabbas@forward.pk');
-$mail->Subject = "Raw Material Failure";
-$mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
-<div style="margin-left:40%;">
-<table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
-Material Test Report Result Alert</th></tr>
-<tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
-<tr><th>Material Name:</th><td>'.$ItemName .'</td></tr>
-<tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
-<tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
+//  $mail->AddCC('waseembutt@forward.pk');
+//  $mail->AddCC('tafseer@forward.pk');
+//     $mail->AddCC('shoaib@forward.pk');
+//     $mail->AddCC('fsqa@forward.pk');
+//           $mail->AddCC('oman@forward.pk');
+//              $mail->AddCC('abdulhaseeb@forward.pk');
+//              $mail->AddCC('yaseen@forward.pk');
+// $mail->AddCC('zainabbas@forward.pk');
+// $mail->Subject = "Raw Material Failure";
+// $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
+// <div style="margin-left:40%;">
+// <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
+// Material Test Report Result Alert</th></tr>
+// <tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
+// <tr><th>Material Name:</th><td>'.$ItemName .'</td></tr>
+// <tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
+// <tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
 
-<tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
-</table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
+// <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
+// </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
 
 
-//  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
-//$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
-$mail->send();
-echo 'Message has been sent';
-} catch (Exception $e) {
-echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-}
-}
+// //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
+// //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
+// $mail->send();
+// echo 'Message has been sent';
+// } catch (Exception $e) {
+// echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+// }
+// }
    
     $this->l->AddHeaderMaterial(
         $TestDate,
@@ -710,59 +679,59 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     $Result = $header[9];
     $testGroup = $_POST['testGroup'];
     $testPerformer = $_POST['testPerformer'];
-    if($Result=='Fail' || $Result=='fail'){
-        $mail = new PHPMailer(true);
-try{
+//     if($Result=='Fail' || $Result=='fail'){
+//         $mail = new PHPMailer(true);
+// try{
 
 
-  //Server settings
-$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-$mail->isSMTP();                                            //Send using SMTP
-$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-$mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
-$mail->Password   = 'Forward123';                               //SMTP password
-$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-$mail->IsHTML(true);
-//Recipients
-$mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-$mail->addAddress("hufsa@forward.pk"); 
-$mail->addAddress("sohail@forward.pk"); 
-$mail->addAddress("store@forward.pk"); 
-$mail->AddCC('abaid@forward.pk');
-$mail->AddCC('imran@forward.pk');
+//   //Server settings
+// $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+// $mail->isSMTP();                                            //Send using SMTP
+// $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+// $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+// $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
+// $mail->Password   = 'Forward123';                               //SMTP password
+// $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+// $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+// $mail->IsHTML(true);
+// //Recipients
+// $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
+// $mail->addAddress("hufsa@forward.pk"); 
+// $mail->addAddress("sohail@forward.pk"); 
+// $mail->addAddress("store@forward.pk"); 
+// $mail->AddCC('abaid@forward.pk');
+// $mail->AddCC('imran@forward.pk');
 
- $mail->AddCC('waseembutt@forward.pk');
- $mail->AddCC('tafseer@forward.pk');
-    $mail->AddCC('shoaib@forward.pk');
-    $mail->AddCC('fsqa@forward.pk');
-          $mail->AddCC('oman@forward.pk');
-             $mail->AddCC('abdulhaseeb@forward.pk');
-             $mail->AddCC('yaseen@forward.pk');
-             $mail->AddCC('zainabbas@forward.pk');
-$mail->Subject = "Raw Material Failure";
-$mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
-<div style="margin-left:40%;">
-<table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
-Thread Test Report Result Alert</th></tr>
-<tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
-<tr><th>Material Name:</th><td>'.$SupplierRef .'</td></tr>
-<tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
-<tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
+//  $mail->AddCC('waseembutt@forward.pk');
+//  $mail->AddCC('tafseer@forward.pk');
+//     $mail->AddCC('shoaib@forward.pk');
+//     $mail->AddCC('fsqa@forward.pk');
+//           $mail->AddCC('oman@forward.pk');
+//              $mail->AddCC('abdulhaseeb@forward.pk');
+//              $mail->AddCC('yaseen@forward.pk');
+//              $mail->AddCC('zainabbas@forward.pk');
+// $mail->Subject = "Raw Material Failure";
+// $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
+// <div style="margin-left:40%;">
+// <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
+// Thread Test Report Result Alert</th></tr>
+// <tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
+// <tr><th>Material Name:</th><td>'.$SupplierRef .'</td></tr>
+// <tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
+// <tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
 
-<tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
-</table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
+// <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
+// </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
 
 
-//  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
-//$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
-$mail->send();
-echo 'Message has been sent';
-} catch (Exception $e) {
-echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-}
-}
+// //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
+// //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
+// $mail->send();
+// echo 'Message has been sent';
+// } catch (Exception $e) {
+// echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+// }
+// }
     $this->l->AddHeaderThread(
         $TestDate,
         $PONo,
@@ -845,59 +814,59 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 
     $testGroup = $_POST['testGroup'];
     $testPerformer = $_POST['testPerformer'];
-    if($Result=='Fail' || $Result=='fail'){
-        $mail = new PHPMailer(true);
-try{
+//     if($Result=='Fail' || $Result=='fail'){
+//         $mail = new PHPMailer(true);
+// try{
 
 
-  //Server settings
-$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-$mail->isSMTP();                                            //Send using SMTP
-$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-$mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
-$mail->Password   = 'Forward123';                               //SMTP password
-$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-$mail->IsHTML(true);
-//Recipients
-$mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-$mail->addAddress("hufsa@forward.pk"); 
-$mail->addAddress("sohail@forward.pk"); 
-$mail->addAddress("store@forward.pk"); 
-$mail->AddCC('abaid@forward.pk');
-$mail->AddCC('imran@forward.pk');
+//   //Server settings
+// $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+// $mail->isSMTP();                                            //Send using SMTP
+// $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+// $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+// $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
+// $mail->Password   = 'Forward123';                               //SMTP password
+// $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+// $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+// $mail->IsHTML(true);
+// //Recipients
+// $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
+// $mail->addAddress("hufsa@forward.pk"); 
+// $mail->addAddress("sohail@forward.pk"); 
+// $mail->addAddress("store@forward.pk"); 
+// $mail->AddCC('abaid@forward.pk');
+// $mail->AddCC('imran@forward.pk');
 
- $mail->AddCC('waseembutt@forward.pk');
- $mail->AddCC('tafseer@forward.pk');
-    $mail->AddCC('shoaib@forward.pk');
-    $mail->AddCC('fsqa@forward.pk');
-          $mail->AddCC('oman@forward.pk');
-             $mail->AddCC('abdulhaseeb@forward.pk');
-             $mail->AddCC('yaseen@forward.pk');
-             $mail->AddCC('zainabbas@forward.pk');
-$mail->Subject = "Raw Material Failure";
-$mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
-<div style="margin-left:40%;">
-<table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
-MS Thread Test Report Result Alert</th></tr>
-<tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
-<tr><th>Material Name:</th><td>'.$SupplierRef .'</td></tr>
-<tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
-<tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
+//  $mail->AddCC('waseembutt@forward.pk');
+//  $mail->AddCC('tafseer@forward.pk');
+//     $mail->AddCC('shoaib@forward.pk');
+//     $mail->AddCC('fsqa@forward.pk');
+//           $mail->AddCC('oman@forward.pk');
+//              $mail->AddCC('abdulhaseeb@forward.pk');
+//              $mail->AddCC('yaseen@forward.pk');
+//              $mail->AddCC('zainabbas@forward.pk');
+// $mail->Subject = "Raw Material Failure";
+// $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
+// <div style="margin-left:40%;">
+// <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
+// MS Thread Test Report Result Alert</th></tr>
+// <tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
+// <tr><th>Material Name:</th><td>'.$SupplierRef .'</td></tr>
+// <tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
+// <tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
 
-<tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
-</table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
+// <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
+// </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
 
 
-//  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
-//$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
-$mail->send();
-echo 'Message has been sent';
-} catch (Exception $e) {
-echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-}
-}
+// //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
+// //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
+// $mail->send();
+// echo 'Message has been sent';
+// } catch (Exception $e) {
+// echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+// }
+// }
     $this->l->AddHeaderMSThread(
         $TestDate,
         $PONo,

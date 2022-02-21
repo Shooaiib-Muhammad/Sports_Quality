@@ -52,10 +52,10 @@ class FGT extends CI_Controller
             } else {
                 echo 'helll';
 
-                $picture = '';
+                $pictureFresh = '';
             }
         } else {
-            $picture = '';
+            $pictureFresh = '';
         }
 
         if (!empty($_FILES['fileShooter']['name'])) {
@@ -83,10 +83,10 @@ class FGT extends CI_Controller
             } else {
                 echo 'helll';
 
-                $picture = '';
+                $pictureShooter = '';
             }
         } else {
-            $picture = '';
+            $pictureShooter = '';
         }
 
         if (!empty($_FILES['fileHydro']['name'])) {
@@ -114,10 +114,10 @@ class FGT extends CI_Controller
             } else {
                 echo 'helll';
 
-                $picture = '';
+                $pictureHydro = '';
             }
         } else {
-            $picture = '';
+            $pictureHydro = '';
         }
 
         if (!empty($_FILES['fileDrum']['name'])) {
@@ -145,12 +145,12 @@ class FGT extends CI_Controller
             } else {
                 echo 'helll';
 
-                $picture = '';
+                $pictureDrum = '';
             }
         } else {
-            $picture = '';
+            $pictureDrum = '';
         }
-
+       
         $data = $this->FGT->FGT_H_insertion(
             $dataArray[0],
             $dataArray[1],
@@ -168,24 +168,25 @@ class FGT extends CI_Controller
             $dataArray[13],
             $dataArray[14],
             $dataArray[15],
-            // $dataArray[16],
+            $dataArray[16],
             $dataArray[17],
             $dataArray[18],
             $dataArray[19],
             $dataArray[20],
-            $dataArray[21],
-            $dataArray[22],
-            $dataArray[23],
-            $dataArray[24],
-            $dataArray[25],
+            // $dataArray[20],
+            // $dataArray[21],
+            // $dataArray[22],
+            // $dataArray[23],
+            // $dataArray[24],
+            $pictureFresh,
+            $pictureShooter,
+            $pictureHydro,
+            $pictureDrum,
             $dataArray[26],
             $dataArray[27],
             $dataArray[28],
             $dataArray[29],
-            $pictureFresh ? $pictureFresh : null,
-            $pictureShooter ? $pictureShooter : null,
-            $pictureHydro ? $pictureHydro : null,
-            $pictureDrum ? $pictureDrum : null
+            $dataArray[30]
         );
         return $this->output
             ->set_content_type('application/json')
