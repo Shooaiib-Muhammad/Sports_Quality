@@ -13,16 +13,16 @@ class DPAModel extends CI_Model
 	}
 
  public function CallData($article){
-  $query = $this->db->query("  SELECT       dbo.view_Dev_DPA.*
+  $query = $this->db->query("SELECT       dbo.view_Dev_DPA.*
   FROM            dbo.view_Dev_DPA
   WHERE        (ArtCode = '$article')");
           return  $query->result_array(); 
  }
 
- public function getTableData($article){
+ public function getTableData($fc,$season){
     $query = $this->db->query("SELECT dbo.view_Dev_DPA_Article.*
 FROM dbo.view_Dev_DPA_Article 
-WHERE        (dbo.view_Dev_DPA_Article.ArtCode ='$article')
+WHERE        (FactoryCode = '$fc') AND (SesonalRange = '$season')
 ");
             return  $query->result_array();
  }
@@ -100,47 +100,14 @@ WHERE        (dbo.view_Dev_DPA_Article.ArtCode ='$article')
            FIFA_authorization_validity_Date,
            Ball_Picture,
            EntryDate,
-           UserID,ArtCode )
+           UserID,ArtCode,Yield )
   VALUES
-        ( '$art' , '$client'   , '$model'     , '$fcode'    , '$ac'  , '$fbo'     , '$inhousedate'  ,  '$csdate','$inhouse','$cs','$cr1comments','$inhousedate1','$csdate1','$inhouse1','$cs1','$cr2comments','$postD','$comments','$approve','$buymodel','$buyarticle','$revdate','$finalcs','$br','$mcs','$retail','$cars','$remarks','$mktg','$fifa',' ', '$inhousedate ', ' $user','$article' )");
+        ( '$art' , '$client'   , '$model'     , '$fcode'    , '$ac'  , '$fbo'     , '$inhousedate'  ,  '$csdate','$inhouse','$cs','$cr1comments','$inhousedate1','$csdate1','$inhouse1','$cs1','$cr2comments','$postD','$comments','$approve','$buymodel','$buyarticle','$revdate','$finalcs','$br','$mcs','$retail','$cars','$remarks','$mktg','$fifa',' ', '$inhousedate ', ' $user','$article','$yields' )");
         
       
 
     }
 
-
-
-
-  
-
-
-      
-
-
-        public function editMaterial($matDid, $matPName, $matDName,$matName, $matQtyy, $matUomm, $matNarrat, $user){
-
-
- $MIS = $this->load->database('MIS', TRUE);
-            $query = $MIS->query("UPDATE  dbo . tbl_Project_D 
-            SET  ProjectHID  =  '$matPName'  
-               , DeptID  =  ' $matDName' 
-               , Code  =  '$matName'  
-               , Qty  =  '$matQtyy'  
-               , UOM  =  '$matUomm'  
-               , Narration  =  '$matNarrat'  
-               , UserID  =  '$user'  
-               
-          WHERE ProjectDID='$matDid'");
-            
-            if ($query) {
-                $this->session->set_flashdata('Proinfo', 'Material has been Updated. ');
-                redirect('Material');
-            } else {
-                $this->session->set_flashdata('danger', 'There is an error while Updating Material.');
-                redirect('Material');
-            }
-    
-        }
 
           public function getimages(){
                   $query=$this->db->query("SELECT        dbo.View_156.CNIC, dbo.View_156.EmpPic
@@ -148,6 +115,12 @@ FROM            dbo.Table_10 INNER JOIN
                          dbo.View_156 ON dbo.Table_10.CNICN = dbo.View_156.CNIC
 WHERE        (dbo.View_156.EmpPic IS NOT NULL)");
       return $query->result_array();   
+          }
+
+          public function delteRecord($id){
+          
+            $query=$this->db->query("DELETE FROM dbo . Tbl_Dev_DPA WHERE (TID = '$id')");
+                  return $query;  
           }
 
         

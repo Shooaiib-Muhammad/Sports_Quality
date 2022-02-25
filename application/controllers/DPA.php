@@ -21,6 +21,8 @@ class DPA extends CI_Controller
  public function CallData()
  {
 
+ 
+
   $data = $this->DPAModel->CallData($_POST['article']);
   return $this->output
   ->set_content_type('application/json')
@@ -30,7 +32,7 @@ class DPA extends CI_Controller
 
  public function submit(){
   
-  
+ 
   $data = $this->DPAModel->submit($_POST["article"],
   $_POST["working"],
   $_POST["pname"],
@@ -76,10 +78,15 @@ class DPA extends CI_Controller
  }
 
  public function getTableData(){
-  $data = $this->DPAModel->getTableData($_POST['article']);
+  $data = $this->DPAModel->getTableData($_POST['fc'],$_POST['season']);
   return $this->output
   ->set_content_type('application/json')
   ->set_status_header(200)
   ->set_output(json_encode($data));
+ }
+
+ public function delteRecord(){
+ 
+  $data = $this->DPAModel->delteRecord($_POST['id']);
  }
 }

@@ -128,7 +128,7 @@ if (!$this->session->has_userdata('user_id')) {
                     <label>Yield:</label>
                     <div class="form-group-inline">
 
-                      <input name="yield" id="yield" class="form-control" type="text" readonly="true">
+                      <input name="yield" id="yield" class="form-control" type="text">
 
                     </div>
                   </div>
@@ -391,50 +391,99 @@ if (!$this->session->has_userdata('user_id')) {
                   </div>
                 </div><br>
                 <br>
+
+
+
+
                 <div class="row">
-                  <div class="col-md-12" id="Data" style=" overflow:auto;  ">
+                  <div class="col-sm-2">
+                    <div class="form-group">
+
+                      <label for="sel1">Select Factory Code :</label>
+                      <select class="form-control" id="fC" name="fC">
+                        <option value="">Select one of the following</option>
+
+
+                        <option value="B34001">B34001</option>
+                        <option value="B34002">B34002</option>
+                        <option value="B34003">B34003</option>
+                        <option value="B34004">B34004</option>
+                        <option value="B34005">B34005</option>
+                        <option value="B34006">B34006</option>
+                        <option value="B34007">B34007</option>
+
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group">
+
+                      <label for="sel1">Select Seasonal Range :</label>
+                      <select class="form-control" id="season" name="season">
+                        <option value="">Select one of the following</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+
+
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group-inline">
+
+                      <button type="button" class="btn-success btn btn-md mt-3" onclick="onSearch()">Search</button>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+
+                  <div class="col-md-12" id="Data" style=" overflow:auto;">
 
                   </div>
                 </div>
               </div>
-            </div>
-            <br>
-
-            <div class="row">
-
-              <div class="col-md-12">
-                <div id="Data">
-
-                </div>
-              </div>
 
             </div>
+          </div>
+          <br>
+
+          <div class="row">
 
 
 
           </div>
-      </div>
-      <!--Table responsive-->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
+
+
+
       </div>
     </div>
+
+  </div>
   </div>
   </div>
   </div>
@@ -447,10 +496,11 @@ if (!$this->session->has_userdata('user_id')) {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
   <script>
     window.onload = function() {
-      // alert("called");
       $("#ArtCode").select2();
+      $("#fC").select2();
+      $("#season").select2();
+
     };
-    //alert('heloo');
     $('.mySelect2Edit').select({
       dropdownParent: $('#exampleModalEditDep')
     });
@@ -461,7 +511,6 @@ if (!$this->session->has_userdata('user_id')) {
       $("#fcode").val(' ');
       $("#colorway").val(' ');
       $("#pshape").val(' ');
-      $("#yield").val(' ');
       $("#client").val(' ');
       $("#model").val(' ');
       $("#art").val(' ');
@@ -478,7 +527,7 @@ if (!$this->session->has_userdata('user_id')) {
         $("#fcode").val(articles[0]['FactoryCode']);
         $("#colorway").val(articles[0]['PrintingColors']);
         $("#pshape").val(articles[0]['PanelShape']);
-        $("#yield").val(articles[0]['Yield']);
+        // $("#yield").val(articles[0]['Yield']);
         $("#client").val(articles[0]['ClientID']);
         $("#model").val(articles[0]['ModelID']);
         $("#art").val(articles[0]['ArtID']);
@@ -487,14 +536,116 @@ if (!$this->session->has_userdata('user_id')) {
 
       });
 
+
+
+
+    }
+
+    function submit() {
+      let article = $("#ArtCode").val();
+      let working = $("#working").val();
+      let pname = $("#pname").val();
+      let colorway = $("#colorway").val();
+      let fcode = $("#fcode").val();
+      let pshape = $("#pshape").val();
+      let yields = $("#yield").val();
+      let client = $("#client").val();
+      let model = $("#model").val();
+      let art = $("#art").val();
+      let ac = $("#ac").val();
+      let fbo = $("#fbo").val();
+      let inhousedate = $("#inhousedate").val();
+      let csdate = $("#csdate").val();
+      let cr1comments = $("#cr1comments").val();
+      let inhousedate1 = $("#inhousedate1").val();
+      let csdate1 = $("#csdate1").val();
+      let cr2comments = $("#cr2comments").val();
+      let postD = $("#postD").val();
+      let comments = $("#comments").val();
+      let buymodel = $("#buymodel").val();
+      let buyarticle = $("#buyarticle").val();
+      let revdate = $("#revdate").val();
+      let retail = $("#retail").val();
+      let cars = $("#cars").val();
+      let remarks = $("#remarks").val();
+      let mktg = $("#mktg").val();
+      let fifa = $("#fifa").val();
+      let inhouse = $("#inhouse").prop('checked');
+      let cs = $("#cs").prop('checked');
+      let inhouse1 = $("#inhouse1").prop('checked');
+      let cs1 = $("#cs1").prop('checked');
+      let approve = $("#approve").prop('checked');
+      let finalcs = $("#finalcs").prop('checked');
+      let br = $("#br").prop('checked');
+      let mcs = $("#mcs").prop('checked');
+
+      data = {
+        "article": article,
+        "working": working,
+        "pname": pname,
+        "colorway": colorway,
+        "fcode": fcode,
+        "pshape": pshape,
+        "yields": yields,
+        "client": client,
+        "model": model,
+        "art": art,
+        "ac": ac,
+        "fbo": fbo,
+        "inhousedate": inhousedate,
+        "csdate": csdate,
+        "cr1comments": cr1comments,
+        "inhousedate1": inhousedate1,
+        "csdate1": csdate1,
+        "cr2comments": cr2comments,
+        "postD": postD,
+        "comments": comments,
+        "buymodel": buymodel,
+        "buyarticle": buyarticle,
+        "revdate": revdate,
+        "retail": retail,
+        "cars": cars,
+        "remarks": remarks,
+        "mktg": mktg,
+        "fifa": fifa,
+        "inhouse": inhouse,
+        "cs": cs,
+        "inhouse1": inhouse1,
+        "cs1": cs1,
+        "approve": approve,
+        "finalcs": finalcs,
+        "br": br,
+        "mcs": mcs
+
+      }
+
+
+
+      url = "<?php echo base_url(''); ?>DPA/submit/"
+      $.post(url, data, function(data) {
+        articles = JSON.parse(data)
+        console.log(articles);
+        alert('Data Inserted Successfully')
+        location.reload();
+
+
+
+      });
+    }
+
+    function onSearch() {
+      fc = $("#fC").val();
+      season = $("#season").val();
+
       urls = "<?php echo base_url(''); ?>DPA/getTableData/"
       $.post(urls, {
-        "article": ArtCode,
+        "fc": fc,
+        "season": season,
 
       }, function(data) {
 
         let i = 1;
-        console.log(data);
+        console.log(data, "hello");
         let appendtable = '';
         appendtable += `<table class="table table-striped table-hover table-sm" id="ActivityData" >
                                 <thead>
@@ -533,6 +684,7 @@ if (!$this->session->has_userdata('user_id')) {
                                              <th>Final CS Confirm</th>
                                              <th>Br Status</th>
                                              <th>MCS</th>
+                                             <th>Actions</th>
                                               
                                        
                                     </tr>
@@ -566,20 +718,15 @@ if (!$this->session->has_userdata('user_id')) {
                                           <td>${element.Remarks}</td>
                                           <td>${element.Mktg_FC}</td>
                                           <td>${element.FIFA_authorization_validity_Date}</td>
-                                          <td>
-                                          
-                                          ${element.CR1_In_House_Status?'<span class="badge badge-success">Active</span>':'<span class="badge badge-warning">In-active</span>'}
-                                          
-                                          </td>
-                                          <td>${element.CR1_Subbmition_Status?'<span class="badge badge-success">Active</span>':'<span class="badge badge-warning">In-active</span>'}</td>
-                                          <td>${element.CR2_In_House_Status?'<span class="badge badge-success">Active</span>':'<span class="badge badge-warning">In-active</span>'}</td>
-                                          <td>${element.CR2_Subbmition_Status?'<span class="badge badge-success">Active</span>':'<span class="badge badge-warning">In-active</span>'}</td>
-                                          <td>${element.Approved?'<span class="badge badge-success">Active</span>':'<span class="badge badge-warning">In-active</span>'}</td>
-                                          <td>${element.Final_CS_Confirmation?'<span class="badge badge-success">Active</span>':'<span class="badge badge-warning">In-active</span>'}</td>
-                                          <td>${element.BR_Status?'<span class="badge badge-success">Active</span>':'<span class="badge badge-warning">In-active</span>'}</td>
-                                          <td>${element.MCS?'<span class="badge badge-success">Active</span>':'<span class="badge badge-warning">In-active</span>'}</td>
-                                              
-                                      
+                                          <td>${element.CR1_In_House_Status}</td>
+                                          <td>${element.CR1_Subbmition_Status}</td>
+                                          <td>${element.CR2_In_House_Status}</td>
+                                          <td>${element.CR2_Subbmition_Status}</td>
+                                          <td>${element.Approved}</td>
+                                          <td>${element.Final_CS_Confirmation}</td>
+                                          <td>${element.BR_Status}</td>
+                                          <td>${element.MCS}</td>
+                                          <td><button type="button" class="btn btn-danger" onclick="deleterecord(${element.TID})">Delete</button></td>
                                         </tr>`
         })
 
@@ -660,179 +807,19 @@ if (!$this->session->has_userdata('user_id')) {
 
 
       });
-
-
     }
 
-    function submit() {
-      let article = $("#ArtCode").val();
-      let working = $("#working").val();
-      let pname = $("#pname").val();
-      let colorway = $("#colorway").val();
-      let fcode = $("#fcode").val();
-      let pshape = $("#pshape").val();
-      let yields = $("#yield").val();
-      let client = $("#client").val();
-      let model = $("#model").val();
-      let art = $("#art").val();
-      let ac = $("#ac").val();
-      let fbo = $("#fbo").val();
-      let inhousedate = $("#inhousedate").val();
-      let csdate = $("#csdate").val();
-      let cr1comments = $("#cr1comments").val();
-      let inhousedate1 = $("#inhousedate1").val();
-      let csdate1 = $("#csdate1").val();
-      let cr2comments = $("#cr2comments").val();
-      let postD = $("#postD").val();
-      let comments = $("#comments").val();
-      let buymodel = $("#buymodel").val();
-      let buyarticle = $("#buyarticle").val();
-      let revdate = $("#revdate").val();
-      let retail = $("#retail").val();
-      let cars = $("#cars").val();
-      let remarks = $("#remarks").val();
-      let mktg = $("#mktg").val();
-      let fifa = $("#fifa").val();
-      let inhouse = $("#inhouse").prop('checked');
-      let cs = $("#cs").prop('checked');
-      let inhouse1 = $("#inhouse1").prop('checked');
-      let cs1 = $("#cs1").prop('checked');
-      let approve = $("#approve").prop('checked');
-      let finalcs = $("#finalcs").prop('checked');
-      let br = $("#br").prop('checked');
-      let mcs = $("#mcs").prop('checked');
+    function deleterecord(id){
+      path = "<?php echo base_url(''); ?>DPA/delteRecord/"
 
-
-      data = {
-        "article": article,
-        "working": working,
-        "pname": pname,
-        "colorway": colorway,
-        "fcode": fcode,
-        "pshape": pshape,
-        "yields": yields,
-        "client": client,
-        "model": model,
-        "art": art,
-        "ac": ac,
-        "fbo": fbo,
-        "inhousedate": inhousedate,
-        "csdate": csdate,
-        "cr1comments": cr1comments,
-        "inhousedate1": inhousedate1,
-        "csdate1": csdate1,
-        "cr2comments": cr2comments,
-        "postD": postD,
-        "comments": comments,
-        "buymodel": buymodel,
-        "buyarticle": buyarticle,
-        "revdate": revdate,
-        "retail": retail,
-        "cars": cars,
-        "remarks": remarks,
-        "mktg": mktg,
-        "fifa": fifa,
-        "inhouse": inhouse,
-        "cs": cs,
-        "inhouse1": inhouse1,
-        "cs1": cs1,
-        "approve": approve,
-        "finalcs": finalcs,
-        "br": br,
-        "mcs": mcs
-
-      }
-
-
-
-      url = "<?php echo base_url(''); ?>DPA/submit/"
-      $.post(url, data, function(data) {
-        articles = JSON.parse(data)
-        console.log(articles);
-        alert('Data Inserted Successfully')
-        location.reload();
-
-
-
-      });
+     $.post(path,{"id":id},function(data){
+alert("Data Deleted Successfully",id)
+location.reload();
+     });
     }
-
-
-    function update(id) {
-
-
-    }
-
-
-    $('#schedule').dataTable({
-      responsive: true,
-      lengthChange: false,
-      dom:
-        /*	--- Layout Structure 
-        	--- Options
-        	l	-	length changing input control
-        	f	-	filtering input
-        	t	-	The table!
-        	i	-	Table information summary
-        	p	-	pagination control
-        	r	-	processing display element
-        	B	-	buttons
-        	R	-	ColReorder
-        	S	-	Select
-
-        	--- Markup
-        	< and >				- div element
-        	<"class" and >		- div with a class
-        	<"#id" and >		- div with an ID
-        	<"#id.class" and >	- div with an ID and a class
-
-        	--- Further reading
-        	https://datatables.net/reference/option/dom
-        	--------------------------------------
-         */
-        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-        "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-      buttons: [
-        /*{
-        	extend:    'colvis',
-        	text:      'Column Visibility',
-        	titleAttr: 'Col visibility',
-        	className: 'mr-sm-3'
-        },*/
-        {
-          extend: 'pdfHtml5',
-          text: 'PDF',
-          titleAttr: 'Generate PDF',
-          className: 'btn-outline-danger btn-sm mr-1'
-        },
-        {
-          extend: 'excelHtml5',
-          text: 'Excel',
-          titleAttr: 'Generate Excel',
-          className: 'btn-outline-success btn-sm mr-1'
-        },
-        {
-          extend: 'csvHtml5',
-          text: 'CSV',
-          titleAttr: 'Generate CSV',
-          className: 'btn-outline-primary btn-sm mr-1'
-        },
-        {
-          extend: 'copyHtml5',
-          text: 'Copy',
-          titleAttr: 'Copy to clipboard',
-          className: 'btn-outline-primary btn-sm mr-1'
-        },
-        {
-          extend: 'print',
-          text: 'Print',
-          titleAttr: 'Print Table',
-          className: 'btn-outline-primary btn-sm'
-        }
-      ]
-    });
   </script>
+
+
   <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
   <!-- BEGIN Page Footer -->
   <footer class="page-footer" role="contentinfo">
