@@ -12,6 +12,8 @@ class FGT extends CI_Controller
     public function index()
     {
         $data['loadFGT_H'] = $this->FGT->getFGRH();
+        $data['loadFGT_H_L'] = $this->FGT->getFGRHL();
+        $data['getArticles'] = $this->FGT->GetArticles();
 
         $this->load->view('FGT', $data);
     }

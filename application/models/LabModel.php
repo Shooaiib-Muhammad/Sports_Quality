@@ -1762,6 +1762,16 @@ public function FGT_H_insertion($fgttype,$lbno,$tdate,$testcat,$fifastump,$pmont
     WHERE         (moosadate BETWEEN CONVERT(DATETIME, '$Date 00:00:00', 102) AND CONVERT(DATETIME, '$Date 00:00:00', 102))");
 return $query->result_array();
     }
+
+    public function getFGRHL(){
+        $Date = date('d/m/Y');
+     
+        $query = $this->db
+        ->query("SELECT   dbo.view_FGT_H_L.*
+    FROM            dbo.view_FGT_H_L
+    WHERE         (moosadate BETWEEN '$Date' AND '$Date')");
+return $query->result_array();
+    }
     public function FGT_D_insertion($TID,$w1,$w2,$c1_sp,$c2_sp,$sp1_sp,$sp2_sp,$lp1,$lp2,$rrt1,$rrt2,$rrt51,$rrt52,$rrt01,$rrt02,$c1_dp,$c2_dp,$sp_dp1,$sp_dp2,$lp_dp1,$lp_dp2,$m1,$m2,$wup1,$wup2,$c1_wrt,$c2_wrt,$sp1_wrt,$sp2_wrt,$dt1,$dt2,$abr1,$abr2,$uvlf1,$uvlf2,$otr1,$otr2,$hl1,$hl2,$hcc1,$hcc2){
         date_default_timezone_set('Asia/Karachi');
         $Date = date('Y-m-d H:i:s');
@@ -1876,4 +1886,5 @@ FROM            dbo.view_store_transaction
 WHERE      (LotNo = '$lotNo') AND (Date = CONVERT(DATETIME, '$StartDate 00:00:00', 102))");
 return $query->result_array();
     }
+   
 }

@@ -93,7 +93,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <td class="text-center" id="articleNoIndoor"></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th style="border: 1px solid;"><br>LAB NO.</th>
+                                                                    <th style="border: 1px solid;"><br>LAB #</th>
                                                                     <td id="content32" class="text-center"></td>
                                                                 </tr>
                                                                 <tr>
@@ -386,7 +386,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </tr>
 
                                                                     <tr>
-                                                                        <td style="border: 1px solid ">Abraison resistence on 2 panels</td>
+                                                                        <td style="border: 1px solid ">Abrasion resistence on 2 panels</td>
                                                                         <td style="border: 1px solid ">FGT-43</td>
                                                                         <td style="border: 1px solid ">on 2 panels - 1x50cycl;<br>9 kPa load, Sandpaper P150</td>
                                                                         <td colspan="4" style="border: 1px solid ">dyestuff still visible; not smeared</td>
@@ -555,7 +555,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <td class="text-center" id="articleNoSize5"></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th style="border: 1px solid;">LAB NO.</th>
+                                                                    <th style="border: 1px solid;">LAB #</th>
                                                                     <td id="content66" class="text-center"></td>
                                                                 </tr>
                                                                 <tr>
@@ -925,7 +925,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <td style="border: 1px solid "></td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <td style="border: 1px solid ">Abraison resistence on 2 panels after water test w/<br>Sandpapergrade P150</td>
+                                                                        <td style="border: 1px solid ">Abrasion resistence on 2 panels after water test w/<br>Sandpapergrade P150</td>
                                                                         <td style="border: 1px solid ">FGT-43</td>
                                                                         <td style="border: 1px solid ">1x50cycl;<br>9 kPa load</td>
                                                                         <td colspan="4" style="border: 1px solid ">dyestuff still visible; not smeared</td>
@@ -1228,7 +1228,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="fresh" name="fresh" accept="image/*">
 
-                                                        <label class="custom-file-label" for="customFile">Upload Fresh Image</label>
+                                                        <label class="custom-file-label" for="customFile">Upload Fresh Image:</label>
 
                                                     </div>
                                                 </div>
@@ -1239,7 +1239,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="shooter" name="shooter" accept="image/*">
 
-                                                        <label class="custom-file-label" for="customFile">Upload Shooter Image</label>
+                                                        <label class="custom-file-label" for="customFile">Upload Shooter Image:</label>
 
                                                     </div>
                                                 </div>
@@ -1250,7 +1250,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="hydro" name="hydro" accept="image/*">
 
-                                                        <label class="custom-file-label" for="customFile">Upload Hydrolysis Image</label>
+                                                        <label class="custom-file-label" for="customFile">Upload Hydrolysis Image:</label>
 
                                                     </div>
                                                 </div>
@@ -1261,7 +1261,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="drum" name="drum" accept="image/*">
 
-                                                        <label class="custom-file-label" for="customFile">Upload Drum Image</label>
+                                                        <label class="custom-file-label" for="customFile">Upload Drum Image:</label>
 
                                                     </div>
                                                 </div>
@@ -1281,7 +1281,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
-                                                    <label>Test Performed By</label>
+                                                    <label>Test Performed By:</label>
                                                     <select class="form-control" id="testperformedby">
                                                         <option value="" selected>Select Test Performed By</option>
                                                         <option value="Imran">Imran</option>
@@ -1297,29 +1297,34 @@ if (!$this->session->has_userdata('user_id')) {
                                         <div class="row" style="display:flex">
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
-                                                    <label class="control-label">Article</label>
-                                                    <div>
-                                                        <input type="text" class="form-control input-lg" id='article' name="article" placeholder="Article">
-                                                    </div>
+                                                    <label for="sel1">Article :</label><br>
+                                                    <select class="js-example-basic-single" id="article" name="article" onchange="CallData()">
+                                                        <option value="">Select one of the following</option>
+                                                        <?php foreach ($getArticles as $Key) { ?>
+
+                                                            <option value="<?php echo $Key['ArtCode']; ?>"><?php echo $Key['ArtCode']; ?></option>
+                                                        <?php } ?>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
-                                                    <label class="control-label">Size</label>
-                                                    <div>
+
+                                                    <label class="control-label">Size:</label>
+                                                    <select class="form-control " id="size" name="size" onchange="CallSize()">
+                                                        <option value="">Select one of the following</option>
+
+                                                    </select>
+                                                    <!-- <div>
                                                         <input type="text" class="form-control input-lg" id='size' name="size" placeholder="Size">
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </div>
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
                                                     <label class="control-label">Test Type:</label>
-                                                    <select class="form-control" id="tetype" name="tetype">
-                                                        <option value="" disabled>Select one of the following</option>
-                                                        <option value="SHOOTER">SHOOTER</option>
-                                                        <option value="ABRAISON">ABRAISON</option>
-                                                        <option value="Full TEST-FGT">Full TEST-FGT</option>
-                                                    </select>
+                                                    <input type="text" class="form-control" id="tetype" name="tetype" />
+                                                     
                                                 </div>
                                             </div>
                                             <div class="col-md-6" style="margin-top:25px">
@@ -1358,9 +1363,9 @@ if (!$this->session->has_userdata('user_id')) {
                                         <div class="row" style="display:flex">
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
-                                                    <label class="control-label">Lab No:</label>
+                                                    <label class="control-label">Lab #:</label>
                                                     <div>
-                                                        <input type="text" class="form-control input-lg" id='labno' name="labno" placeholder="Lab No:">
+                                                        <input type="text" class="form-control input-lg" id='labno' name="labno" placeholder="Lab #:">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1385,7 +1390,7 @@ if (!$this->session->has_userdata('user_id')) {
                                             </div>
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
-                                                    <label class="control-label">FIFA STUMP</label>
+                                                    <label class="control-label">FIFA STUMP:</label>
                                                     <div>
                                                         <input type="text" class="form-control input-lg" id='fifastump' name="fifastump" placeholder="">
                                                     </div>
@@ -1395,7 +1400,7 @@ if (!$this->session->has_userdata('user_id')) {
                                         <div class="row" style="display:flex">
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
-                                                    <label class="control-label">PRODUCTION MONTH</label>
+                                                    <label class="control-label">PRODUCTION MONTH:</label>
                                                     <div>
                                                         <input type="date" class="form-control input-lg" id='pmonth' name="pmonth">
                                                     </div>
@@ -1403,7 +1408,7 @@ if (!$this->session->has_userdata('user_id')) {
                                             </div>
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
-                                                    <label class="control-label">COVER MAT.</label>
+                                                    <label class="control-label">COVER MAT:</label>
                                                     <div>
                                                         <input type="text" class="form-control input-lg" id='cmat' name="cmat" placeholder="">
                                                     </div>
@@ -1413,7 +1418,7 @@ if (!$this->session->has_userdata('user_id')) {
                                         <div class="row" style="display:flex">
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
-                                                    <label class="control-label">BACKING</label>
+                                                    <label class="control-label">BACKING:</label>
                                                     <div>
                                                         <input type="text" class="form-control input-lg" id='backing' name="backing" placeholder="">
                                                     </div>
@@ -1421,7 +1426,7 @@ if (!$this->session->has_userdata('user_id')) {
                                             </div>
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
-                                                    <label class="control-label">BLADDER</label>
+                                                    <label class="control-label">BLADDER:</label>
                                                     <div>
                                                         <input type="text" class="form-control input-lg" id='bladder' name="bladder" placeholder="">
                                                     </div>
@@ -1431,7 +1436,7 @@ if (!$this->session->has_userdata('user_id')) {
                                         <div class="row" style="display:flex">
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
-                                                    <label class="control-label">BALL TYPE</label>
+                                                    <label class="control-label">BALL TYPE:</label>
                                                     <div>
                                                         <input type="text" class="form-control input-lg" id='btype' name="btype" placeholder="">
                                                     </div>
@@ -1439,7 +1444,7 @@ if (!$this->session->has_userdata('user_id')) {
                                             </div>
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
-                                                    <label class="control-label">TEST TYPE</label>
+                                                    <label class="control-label">TEST TYPE:</label>
                                                     <div>
                                                         <input type="text" class="form-control input-lg" id='ttype' name="ttype" placeholder="">
                                                     </div>
@@ -1449,7 +1454,7 @@ if (!$this->session->has_userdata('user_id')) {
                                         <div class="row" style="display:flex">
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
-                                                    <label class="control-label">MAIN MAT. COLOR</label>
+                                                    <label class="control-label">MAIN MAT. COLOR:</label>
                                                     <div>
                                                         <input type="text" class="form-control input-lg" id='mmcolor' name="mmcolor" placeholder="">
                                                     </div>
@@ -1458,7 +1463,7 @@ if (!$this->session->has_userdata('user_id')) {
                                             </div>
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
-                                                    <label class="control-label">PRINTING COLORS</label>
+                                                    <label class="control-label">PRINTING COLORS:</label>
                                                     <div>
                                                         <input type="text" class="form-control input-lg" id='pcolors' name="pcolors" placeholder="">
                                                     </div>
@@ -1468,7 +1473,7 @@ if (!$this->session->has_userdata('user_id')) {
                                         <div class="row" style="display:flex">
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
-                                                    <label class="control-label">Factory Code</label>
+                                                    <label class="control-label">Factory Code:</label>
                                                     <div>
                                                         <input type="text" class="form-control input-lg" id='fn' name="fn" placeholder="">
                                                     </div>
@@ -1477,7 +1482,7 @@ if (!$this->session->has_userdata('user_id')) {
                                             </div>
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
-                                                    <label class="control-label">Modal</label>
+                                                    <label class="control-label">Modal:</label>
                                                     <div>
                                                         <input type="text" class="form-control input-lg" id='m' name="m" placeholder="">
                                                     </div>
@@ -1577,7 +1582,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <label class="control-label">Select FGT Head:</label>
                                                     <select class="form-control" id="fgtH" name="fgtH">
                                                         <option value="" disabled>Select one of the following</option>
-                                                        <?php foreach ($loadFGT_H as $keys) { ?>
+                                                        <?php foreach ($loadFGT_H_L as $keys) { ?>
                                                             <option value="<?php echo $keys['TID']; ?>"><?php echo $keys['labno']; ?></option>
 
 
@@ -1918,7 +1923,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <span class="badge badge-primary">Abraison resistance on 2 panels</span>
+                                                            <span class="badge badge-primary">Abrasion resistance on 2 panels</span>
                                                             <div class="form-group">
                                                                 <label class="control-label">Max</label>
                                                                 <div>
@@ -1927,7 +1932,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <span class="badge badge-primary">Abraison resistance on 2 panels</span>
+                                                            <span class="badge badge-primary">Abrasion resistance on 2 panels</span>
                                                             <div class="form-group">
                                                                 <label class="control-label">Min</label>
                                                                 <div>
@@ -2102,7 +2107,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <td class="text-center">Forward Sports</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th style="border: 1px solid;"><br>LAB NO.</th>
+                                                                    <th style="border: 1px solid;"><br>LAB #</th>
                                                                     <td class="text-center" id="content2"></td>
                                                                 </tr>
                                                                 <tr>
@@ -2469,8 +2474,8 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                         <th>FGT Report</th>
                                                         <th>Article</th>
-                                                        <th>Working NO.</th>
-                                                        <th>LAB NO.</th>
+                                                        <th>Working #</th>
+                                                        <th>LAB #</th>
                                                         <th>TESTING DATE</th>
                                                         <th>TEST ACC. TO Cat</th>
                                                         <th>FIFA STUMP</th>
@@ -2526,7 +2531,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <td><?php echo $keys['covermat']; ?></td>
                                                                 <td><?php echo $keys['backing']; ?></td>
                                                                 <td><?php echo $keys['bladder']; ?></td>
-                                                                <td><?php echo $keys['FactoryCode'] . '-' . $keys['panel_shape']; ?></td>
+                                                                <td><?php echo $keys['FactoryCode'] . '-' . $keys['Size']; ?></td>
                                                                 <td><?php echo $keys['labno']; ?></td>
                                                                 <td><?php echo $keys['mainmatcolor']; ?></td>
                                                                 <td><?php echo $keys['printngscolors']; ?></td>
@@ -2671,7 +2676,36 @@ if (!$this->session->has_userdata('user_id')) {
     <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
     <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
     <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    // $("#article").select2();
+                    $('#article').select2({
+        dropdownParent: $('#Modaldepartment')
+    });
+    // $('.js-example-basic-single').select2();
+});
+            </script>
     <script>
+        // window.onload = function() {
+        //     // alert("called");
+        // //     $("#ArtCode").select2();
+        // // };
+        // // //alert('heloo');
+        // // $('.mySelect2Edit').select({
+        // //     dropdownParent: $('#Modaldepartment')
+        // // });
+
+        // $("#ArtCode").select2();
+        // };
+        // //alert('heloo');
+        // $('.mySelect2Edit').select({
+        //     dropdownParent: $('#Modaldepartment')
+        // });
+
+
         $('#customData').on('click', '.customundobtn', function() {
 
             let id = this.id;
@@ -2754,7 +2788,34 @@ if (!$this->session->has_userdata('user_id')) {
 
         });
 
+        function CallData(){
+           let ArtCode=  $("#article").val();
 
+ url1 = "<?php echo base_url(''); ?>DevelopmentController/getSize/"+ ArtCode 
+ //alert(url1);
+          $.get(url1, function(res){
+           
+     data1 = res.data
+   
+                    options = "<option value=''>Select Size </option>"
+                    for (i = 0; i < data1.length; i++) {
+                        options +=  '<option value="' + data1[i].ArtSize + '">' + data1[i].ArtSize + '</option>'
+                    }
+                    $("#size").html(options)
+            });
+     }
+
+        function processData(article, Size1, Size2) {
+            url = "<?php echo base_url(
+                        ''
+                    ); ?>DevelopmentController/POData/" + article + '/' + Size1 + '/' + Size2
+            //alert(url);
+            $.get(url, function(data) {
+
+                $("#Data").html(data)
+            });
+
+        }
 
         /* defined datas */
         $(document).ready(function() {
@@ -2904,8 +2965,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                    
                                                 <th>FGT Report</th>
                                                        <th>Article</th>
-                                                       <th>Working NO.</th>
-                                                    <th>LAB NO.</th>
+                                                       <th>Working #</th>
+                                                    <th>LAB #</th>
                                                     <th>TESTING DATE</th>
                                                     <th>TEST ACC. TO Cat</th>   
                                                     <th>FIFA STUMP</th>
@@ -2952,7 +3013,7 @@ if (!$this->session->has_userdata('user_id')) {
                         <td>${element.covermat}</td>
                         <td>${element.backing}</td>
                         <td>${element.bladder}</td>
-                        <td>${element.FactoryCode}  '-' ${element.panel_shape}</td>
+                        <td>${element.FactoryCode}  - ${element.Size}</td>
                         <td>${element.testtype}</td>
                         <td>${element.mainmatcolor}</td>
                         <td>${element.printngscolors}</td>
@@ -4377,8 +4438,8 @@ ${reviewStatus == '1' ?
                 if (type == "SOCCER BALLS" || type == "SOCCERBALLS") {
 
                     $("#titleBalls").text(data['head'][0].FGTType);
-                    $("#workingNoMini").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nill');
-                    $("#articleNoMini").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nill');
+                    $("#workingNoMini").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
+                    $("#articleNoMini").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
                     $("#content2").text(data['head'][0].labno);
                     $("#content3").text(data['head'][0].testdate);
                     $("#content4").text(data['head'][0].tastcat);
@@ -4438,8 +4499,8 @@ ${reviewStatus == '1' ?
                 } else if (type == "SOCCER BALL SIZE 5") {
                     console.log("from aSIZE 5", data);
                     $("#content66").text(data['head'][0].labno);
-                    $("#workingNoSize5").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nill');
-                    $("#articleNoSize5").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nill');
+                    $("#workingNoSize5").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
+                    $("#articleNoSize5").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
                     $("#content67").text(data['head'][0].testdate);
                     $("#content68").text(data['head'][0].tastcat);
                     $("#content69").text(data['head'][0].fifiastemp);
@@ -4527,8 +4588,8 @@ ${reviewStatus == '1' ?
                 } else {
                     console.log("from soccerBallsIndoor", data);
                     $("#content32").text(data['head'][0].labno);
-                    $("#workingNoIndoor").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nill');
-                    $("#articleNoIndoor").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nill');
+                    $("#workingNoIndoor").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
+                    $("#articleNoIndoor").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
                     $("#content33").text(data['head'][0].testdate);
                     $("#content34").text(data['head'][0].tastcat);
                     $("#content35").text(data['head'][0].fifiastemp);
@@ -4618,8 +4679,8 @@ ${reviewStatus == '1' ?
                 if (type == "SOCCER BALLS" || type == "SOCCERBALLS") {
 
                     $("#titleBalls").text(data['head'][0].FGTType);
-                    $("#workingNoMini").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nill');
-                    $("#articleNoMini").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nill');
+                    $("#workingNoMini").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
+                    $("#articleNoMini").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
                     $("#content2").text(data['head'][0].labno);
                     $("#content3").text(data['head'][0].testdate);
                     $("#content4").text(data['head'][0].tastcat);
@@ -4679,8 +4740,8 @@ ${reviewStatus == '1' ?
                 } else if (type == "SOCCER BALL SIZE 5") {
                     console.log("from aSIZE 5", data);
                     $("#content66").text(data['head'][0].labno);
-                    $("#workingNoSize5").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nill');
-                    $("#articleNoSize5").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nill');
+                    $("#workingNoSize5").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
+                    $("#articleNoSize5").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
                     $("#content67").text(data['head'][0].testdate);
                     $("#content68").text(data['head'][0].tastcat);
                     $("#content69").text(data['head'][0].fifiastemp);
@@ -4768,8 +4829,8 @@ ${reviewStatus == '1' ?
                 } else {
                     console.log("from soccerBallsIndoor", data);
                     $("#content32").text(data['head'][0].labno);
-                    $("#workingNoIndoor").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nill');
-                    $("#articleNoIndoor").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nill');
+                    $("#workingNoIndoor").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
+                    $("#articleNoIndoor").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
                     $("#content33").text(data['head'][0].testdate);
                     $("#content34").text(data['head'][0].tastcat);
                     $("#content35").text(data['head'][0].fifiastemp);
@@ -5063,6 +5124,7 @@ ${reviewStatus == '1' ?
             //alert(size);
 
             let dataSend = [fgttype ? fgttype : null, lbno ? lbno : null, tdate ? tdate : null, testcat ? testcat : null, fifastump ? fifastump : 0, pmonth ? pmonth : null, cmat ? cmat : null, backing ? backing : null, bladder ? bladder : null, btype ? btype : null, ttype ? ttype : null, cssCode ? cssCode : null, mmcolor ? mmcolor : null, pcolors ? pcolors : null, result ? result : null, fn ? fn : null, m ? m : null, pshape ? pshape : null, rem ? rem : null, testperformedby ? testperformedby : null, note ? note : null, null, null, null, null, null, article ? article : null, size ? size : null, tetype ? tetype : null, department ? department : null, fgttest ? fgttest : null];
+  
             fd.append('formData', dataSend);
             url = "<?php echo base_url(''); ?>FGT/FGT_H"
 
@@ -5087,11 +5149,6 @@ ${reviewStatus == '1' ?
                     location.reload();
                 }
             });
-
-
-
-
-
         }
 
 
