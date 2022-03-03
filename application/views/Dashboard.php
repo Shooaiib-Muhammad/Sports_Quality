@@ -363,11 +363,21 @@ if (!$this->session->has_userdata('user_id')) {
                         // echo '</pre>';
 
                         $RFTTop = $Produced - $Fail;
+if($Produced==0){
+     $RFT =0;
 
-                        $RFT = ($RFTTop / $Produced);
-                        $FinalRF = ($RFT * 100);
+}else{
+                            $RFT = ($RFTTop / $Produced);
+                           
+}
 
-                        $Precentage = (($Checked - $Fail) / $Checked) * 100;
+    $FinalRF = ($RFT * 100);
+    if ($Checked==0){
+                            $Precentage = 0;
+    }else{
+                            $Precentage = (($Checked - $Fail) / $Checked) * 100;
+    }
+                      
                         $Finalprenentage = 100 - $Precentage;
                         $B34001data_points2 = [];
                         $graph001 = [];

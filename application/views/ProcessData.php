@@ -11,7 +11,7 @@
       var Balls = $(`#Balls${split_value[1]}`).val();
   var ArtCode = $(`#ArtCode${split_value[1]}`).val();
    var Size = $(`#ArtSize${split_value[1]}`).val();
-
+   var percentageComplete = $(`#percentageComplete${split_value[1]}`).val();
 var ProcessEndDate = $(`#ProcessEndDate${split_value[1]}`).val();
    var Status = $(`#Status${split_value[1]}`).val();
             //alert(Size);
@@ -19,11 +19,20 @@ var ProcessEndDate = $(`#ProcessEndDate${split_value[1]}`).val();
     Size1=splitter[0];
     Size2=splitter[1];
      
-
-  url = "<?php echo base_url(''); ?>DevelopmentController/updateprocess/"+ TID + "/" + Balls + "/" + Status + "/" + Datee + "/" + ProcessEndDate
+    url = "<?php echo base_url(''); ?>DevelopmentController/updateprocess"
+  // url = "<?php echo base_url(''); ?>DevelopmentController/updateprocessStart/"+ TID + "/" + Balls + "/" + Status + "/" + Datee + "/" + ProcessEndDate
   
 //alert(url);
-   $.get(url, function(data){
+  //  $.get(url, function(data){
+  //           alert("Data Updated Successfully");
+  //          processData(article,Size1,Size2)
+  //           });
+
+            
+  //    });
+
+  $.post(url,{
+  "TID":TID , "Balls":Balls, "Status":Status, "Datee":Datee , "ProcessEndDate":ProcessEndDate,"percentageComplete":percentageComplete}, function(data){
             alert("Data Updated Successfully");
            processData(article,Size1,Size2)
             });
@@ -46,6 +55,8 @@ var ProcessEndDate = $(`#ProcessEndDate${split_value[1]}`).val();
 var ProcessEndDate = $(`#ProcessEndDate${split_value[1]}`).val();
    var Status = $(`#Status${split_value[1]}`).val();
     var rootcasuse = $(`#rootcasuse${split_value[1]}`).val();
+    var percentageComplete = $(`#percentageComplete${split_value[1]}`).val();
+    alert(percentageComplete);
      var action = $(`#action${split_value[1]}`).val();
             //alert(Size);
     var splitter=Size.split('/');
@@ -53,10 +64,10 @@ var ProcessEndDate = $(`#ProcessEndDate${split_value[1]}`).val();
     Size2=splitter[1];
      
 
-  url = "<?php echo base_url(''); ?>DevelopmentController/updatecprocess/"+ TID + "/" + Balls + "/" + Status + "/" + Datee + "/" + ProcessEndDate+ "/" + rootcasuse+ "/" + action
-  
+  url = "<?php echo base_url(''); ?>DevelopmentController/updatecprocess"
 //alert(url);
-   $.get(url, function(data){
+   $.post(url,{
+  "TID":TID , "Balls":Balls, "Status":Status, "Datee":Datee , "ProcessEndDate":ProcessEndDate, "rootcasuse":rootcasuse, "action":action,"percentageComplete":percentageComplete}, function(data){
             alert("Data Updated Successfully");
            processData(article,Size1,Size2)
             });
@@ -90,6 +101,7 @@ var ProcessEndDate = $(`#ProcessEndDate${split_value[1]}`).val();
                                           <th>No Of Balls</th>
                                             <th>Root Cause</th>
                                               <th>Corrective Action</th>
+                                              <th>% Complete</th>
                                              <th>Status</th>
                                               
                                         <th>Actions</th>
@@ -183,7 +195,76 @@ if($PENDDate > $CurrentDate OR $PENDDate == $CurrentDate){
                                             <?php
                                           }
                                           ?>
-                                        
+                                         <td> 
+                                         <select name="percentageComplete"  id="percentageComplete<?php echo $TID;?>" class="form-control" >
+                                            <?php if($Key['percentageComplete'] == 0 || $Key['percentageComplete'] == null){ ?>
+                                          <option value="0" selected>0</option>
+                                          <?php }else{ ?>
+                                            <option value="0">0</option>
+                                          <?php 
+                                          } ?>
+                                           <?php if($Key['percentageComplete'] == 0.1){ ?>
+                                          <option value="0.1" selected>0.1</option>
+                                          <?php }else{ ?>
+                                            <option value="0.1">0.1</option>
+                                          <?php 
+                                          } ?>
+                                                 <?php if($Key['percentageComplete'] == 0.2){ ?>
+                                          <option value="0.2" selected>0.2</option>
+                                          <?php }else{ ?>
+                                            <option value="0.2">0.2</option>
+                                          <?php 
+                                          } ?>
+                                                 <?php if($Key['percentageComplete'] == 0.3){ ?>
+                                          <option value="0.3" selected>0.3</option>
+                                          <?php }else{ ?>
+                                            <option value="0.3" >0.3</option>
+                                          <?php 
+                                          } ?>
+                                                 <?php if($Key['percentageComplete'] == 0.4){ ?>
+                                          <option value="0.4" selected>0.4</option>
+                                          <?php }else{ ?>
+                                            <option value="0.4">0.4</option>
+                                          <?php 
+                                          } ?>
+                                                 <?php if($Key['percentageComplete'] == 0.5){ ?>
+                                          <option value="0.5" selected>0.5</option>
+                                          <?php }else{ ?>
+                                            <option value="0.5" >0.5</option>
+                                          <?php 
+                                          } ?>
+                                                 <?php if($Key['percentageComplete'] == 0.6){ ?>
+                                          <option value="0.6" selected>0.6</option>
+                                          <?php }else{ ?>
+                                            <option value="0.6" >0.6</option>
+                                          <?php 
+                                          } ?>
+                                                 <?php if($Key['percentageComplete'] == 0.7){ ?>
+                                          <option value="0.7" selected>0.7</option>
+                                          <?php }else{ ?>
+                                            <option value="0.7" >0.7</option>
+                                          <?php 
+                                          } ?>
+                                                 <?php if($Key['percentageComplete'] == 0.8){ ?>
+                                          <option value="0.8" selected>0.8</option>
+                                          <?php }else{ ?>
+                                            <option value="0.8" >0.8</option>
+                                          <?php 
+                                          } ?>
+                                                 <?php if($Key['percentageComplete'] == 0.9){ ?>
+                                          <option value="0.9" selected>0.9</option>
+                                          <?php }else{ ?>
+                                            <option value="0.9" >0.9</option>
+                                          <?php 
+                                          } ?>
+                                                 <?php if($Key['percentageComplete'] == 1){ ?>
+                                          <option value="1" selected>1</option>
+                                          <?php }else{ ?>
+                                            <option value="1" >1</option>
+                                          <?php 
+                                          } ?>
+                                          </select>
+                                        </td> 
                                             <td >
                                                   <select class="form-control " id="Status<?php echo $TID;?>"  name="Status"  >
                         <option value="<?php echo $Key['Status']; ?>" ><?php echo $Key['Status']; ?></option>
@@ -259,6 +340,76 @@ if($PENDDate > $CurrentDate OR $PENDDate == $CurrentDate){
                                             <td >
                                               <?php echo $Key['rootcasue']; ?></td>
                                            <td > <?php echo $Key['action']; ?></td>
+                                           <td> 
+                                            <select name="percentageComplete"  id="percentageComplete<?php echo $TID;?>" class="form-control" >
+                                            <?php if($Key['percentageComplete'] == 0 || $Key['percentageComplete'] == null){ ?>
+                                          <option value="0" selected>0</option>
+                                          <?php }else{ ?>
+                                            <option value="0">0</option>
+                                          <?php 
+                                          } ?>
+                                           <?php if($Key['percentageComplete'] == 0.1){ ?>
+                                          <option value="0.1" selected>0.1</option>
+                                          <?php }else{ ?>
+                                            <option value="0.1" >0.1</option>
+                                          <?php 
+                                          } ?>
+                                                 <?php if($Key['percentageComplete'] == 0.2){ ?>
+                                          <option value="0.2" selected>0.2</option>
+                                          <?php }else{ ?>
+                                            <option value="0.2" >0.2</option>
+                                          <?php 
+                                          } ?>
+                                                 <?php if($Key['percentageComplete'] == 0.3){ ?>
+                                          <option value="0.3" selected>0.3</option>
+                                          <?php }else{ ?>
+                                            <option value="0.3" >0.3</option>
+                                          <?php 
+                                          } ?>
+                                                 <?php if($Key['percentageComplete'] == 0.4){ ?>
+                                          <option value="0.4" selected>0.4</option>
+                                          <?php }else{ ?>
+                                            <option value="0.4" >0.4</option>
+                                          <?php 
+                                          } ?>
+                                                 <?php if($Key['percentageComplete'] == 0.5){ ?>
+                                          <option value="0.5" selected>0.5</option>
+                                          <?php }else{ ?>
+                                            <option value="0.5" >0.5</option>
+                                          <?php 
+                                          } ?>
+                                                 <?php if($Key['percentageComplete'] == 0.6){ ?>
+                                          <option value="0.6" selected>0.6</option>
+                                          <?php }else{ ?>
+                                            <option value="0.6" >0.6</option>
+                                          <?php 
+                                          } ?>
+                                                 <?php if($Key['percentageComplete'] == 0.7){ ?>
+                                          <option value="0.7" selected>0.7</option>
+                                          <?php }else{ ?>
+                                            <option value="0.7" >0.7</option>
+                                          <?php 
+                                          } ?>
+                                                 <?php if($Key['percentageComplete'] == 0.8){ ?>
+                                          <option value="0.8" selected>0.8</option>
+                                          <?php }else{ ?>
+                                            <option value="0.8" >0.8</option>
+                                          <?php 
+                                          } ?>
+                                                 <?php if($Key['percentageComplete'] == 0.9){ ?>
+                                          <option value="0.9" selected>0.9</option>
+                                          <?php }else{ ?>
+                                            <option value="0.9" >0.9</option>
+                                          <?php 
+                                          } ?>
+                                                 <?php if($Key['percentageComplete'] == 1){ ?>
+                                          <option value="1" selected>1</option>
+                                          <?php }else{ ?>
+                                            <option value="1" >1</option>
+                                          <?php 
+                                          } ?>
+                                          </select>
+                                        </td>
                                             <td >
                                                   <select class="form-control " id="Status<?php echo $TID;?>"  name="Status"  >
                         <option value="<?php echo $Key['Status']; ?>" ><?php echo $Key['Status']; ?></option>

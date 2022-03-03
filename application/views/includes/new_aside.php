@@ -26,6 +26,7 @@
         $Dev = $this->session->userdata('Dev');
         $store = $this->session->userdata('store');
         $admin = $this->session->userdata('admin');
+        $testRequest = $this->session->userdata('testRequest');
         ?>
         <?php if ($admin == '1') { ?>
             <ul id="js-nav-menu" class="nav-menu">
@@ -57,13 +58,7 @@
                         <span class="nav-link-text" data-i18n="nav.application_intel">Lab</span>
                     </a>
                     <ul>
-                        <li>
-                            <a href="<?php echo base_url(
-                                            ''
-                                        ); ?>FGT" title="Introduction" data-filter-tags="application intel introduction">
-                                <span class="nav-link-text" data-i18n="nav.application_intel_introduction">FGT </span>
-                            </a>
-                        </li>
+                     
                         <li>
                             <a href="<?php echo base_url(
                                             ''
@@ -72,7 +67,21 @@
                             </a>
                         </li>
 
-
+                        <li>
+                            <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>FGT" title="Introduction" data-filter-tags="application intel introduction">
+                                <span class="nav-link-text" data-i18n="nav.application_intel_introduction">FGT </span>
+                            </a>
+                        </li>
+                        
+                        <li>
+                                <a href="<?php echo base_url(
+                                                ''
+                                            ); ?>LabController/TestType" title="Introduction" data-filter-tags="application intel introduction">
+                                    <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Test Type </span>
+                                </a>
+                            </li>
 
                     </ul>
                 </li> 
@@ -99,19 +108,38 @@
                                 <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Process</span>
                             </a>
                         </li>
+                        
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#" title="Theme Settings" data-filter-tags="theme settings">
+
+                        <span class="nav-link-text" data-i18n="nav.theme_settings">Test Request and Receive</span>
+                    </a>
+                    <ul>
+
                         <li>
-                                <a href="<?php echo base_url(
-                                                ''
-                                            ); ?>DPA" title="How it works" data-filter-tags="theme settings how it works">
-                                    <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">DPA</span>
-                                </a>
-                            </li>
+                            <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>LabController/TestReceive" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Receive Form</span>
+                            </a>
+                        </li>
+
+                        
+                        <li>
+                            <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>LabController/TestRequest" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Request Form</span>
+                            </a>
+                        </li>
+                        
                     </ul>
                 </li>
 
 
-
-                
 
             </ul>
         <?php } else { ?>
@@ -143,6 +171,14 @@
                                                 ''
                                             ); ?>FGT" title="Introduction" data-filter-tags="application intel introduction">
                                     <span class="nav-link-text" data-i18n="nav.application_intel_introduction">FGT </span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="<?php echo base_url(
+                                                ''
+                                            ); ?>LabController/TestType" title="Introduction" data-filter-tags="application intel introduction">
+                                    <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Test Type </span>
                                 </a>
                             </li>
                         </ul>
@@ -224,6 +260,51 @@
                         </ul>
                     </li>
             <?php }
+            ?>
+               <li>
+                    <a href="#" title="Theme Settings" data-filter-tags="theme settings">
+
+                        <span class="nav-link-text" data-i18n="nav.theme_settings">Test Request</span>
+                    </a>
+                    <ul>
+
+                        <li>
+                            <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>LabController/TestRequest" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Request Form</span>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </li>
+                <?php
+            if($testRequest == '1'){
+
+
+                ?>
+                
+                <li>
+                    <a href="#" title="Theme Settings" data-filter-tags="theme settings">
+
+                        <span class="nav-link-text" data-i18n="nav.theme_settings">Test Receive</span>
+                    </a>
+                    <ul>
+
+                        <li>
+                            <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>LabController/TestReceive" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Receive Form</span>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </li>
+                <?php
+            }
+
+
             } ?>
             </ul>
 

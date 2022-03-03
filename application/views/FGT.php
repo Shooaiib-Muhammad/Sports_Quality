@@ -2100,7 +2100,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <tbody style="border: 1px solid;">
                                                                 <tr>
                                                                     <th style="border: 1px solid;" id="workingNoMini"></th>
-                                                                    <td id="content1" class="text-center" id="articleNoMini"></td>
+                                                                    <td class="text-center" id="articleNoMini"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th style="border: 1px solid;">FACTORY Code</th>
@@ -4434,12 +4434,12 @@ ${reviewStatus == '1' ?
             $.post(url, {
                 TID
             }, function(data) {
-
+                console.log("Data Get", data['head'][0].ArtCode)
                 if (type == "SOCCER BALLS" || type == "SOCCERBALLS") {
 
                     $("#titleBalls").text(data['head'][0].FGTType);
                     $("#workingNoMini").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
-                    $("#articleNoMini").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
+                    $("#articleNoMini").text(data['head'][0].ArtCode != '' ? data['head'][0].ArtCode : 'Article Code: Nil');
                     $("#content2").text(data['head'][0].labno);
                     $("#content3").text(data['head'][0].testdate);
                     $("#content4").text(data['head'][0].tastcat);
@@ -4675,12 +4675,12 @@ ${reviewStatus == '1' ?
             $.post(url, {
                 TID
             }, function(data) {
-
+                console.log("Data Get", data['head'][0].ArtCode)
                 if (type == "SOCCER BALLS" || type == "SOCCERBALLS") {
 
                     $("#titleBalls").text(data['head'][0].FGTType);
                     $("#workingNoMini").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
-                    $("#articleNoMini").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
+                    $("#articleNoMini").text(data['head'][0].ArtCode != '' ? data['head'][0].ArtCode : 'Article Code: Nil');
                     $("#content2").text(data['head'][0].labno);
                     $("#content3").text(data['head'][0].testdate);
                     $("#content4").text(data['head'][0].tastcat);
@@ -5142,8 +5142,7 @@ ${reviewStatus == '1' ?
                 data: fd,
                 contentType: false,
                 processData: false,
-                function(data, status) {
-                    console.log("Data", data);
+                success:function(data, status) {
                     alert("FGT Details inserted Successfully");
                     //console.log("Data Get from Function",data);
                     location.reload();

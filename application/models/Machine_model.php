@@ -28,7 +28,7 @@ class Machine_model extends CI_Model
                  'Uploading' => $result->Uploading,
                 'ReviewStatus' => $result->ReviewStatus,
                 'ApprovalStatus' => $result->ApprovalStatus,
-                
+                'testRequest' => $result->testRequest,
             ];
 
             $Status = $result->Status;

@@ -1439,6 +1439,12 @@ FROM            dbo.view_Dev_POM");
        }
       }
     }
+
+    public function undoTestType($TID){
+        
+        $query = $this->db->query("DELETE  FROM dbo.tbl_test_types
+       WHERE TestID=$TID");
+     }
     public function CallData($ArtCode){
             $query = $this->db->query(" SELECT        dbo.view_Dev_Articles.*
 FROM            dbo.view_Dev_Articles Where ArtCode='$ArtCode'" );
@@ -1499,27 +1505,27 @@ WHERE        (ArtCode = '$article')" );
         return $query->result_array();
 
 }
-public function updateprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate){
+public function updateprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate,$percentageComplete){
 $Status=str_replace("%20"," ", $Status);
 	// Echo $ProcessEndDate;
     //         die;
     if($Status=='Complete'){
          $Date = date('Y-m-d H:i:s');
                 $query = $this->db->query("UPDATE    dbo .tbl_Dev_Process 
-            SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make',Status  =  '$Status' ,CompleteDate='$Date' ,ProcessEndDate='$ProcessEndDate' 
+            SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make',Status  =  '$Status' ,CompleteDate='$Date' ,ProcessEndDate='$ProcessEndDate',percentageComplete = $percentageComplete 
           WHERE  TID='$TID'");  
             }else{
                   $query = $this->db->query("UPDATE   dbo .tbl_Dev_Process 
-            SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make',Status  =  '$Status',ProcessEndDate='$ProcessEndDate' 
+            SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make',Status  =  '$Status',ProcessEndDate='$ProcessEndDate',percentageComplete = $percentageComplete 
           WHERE  TID='$TID'");
             }
    
 }
-public function  updatecprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate,$rootcasuse,$action){
+public function  updatecprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate,$rootcasuse,$action,$percentageComplete){
  $Date = date('Y-m-d H:i:s');
                 $query = $this->db->query("UPDATE    dbo .tbl_Dev_Process 
             SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make',Status  =  '$Status' ,CompleteDate='$Date' ,ProcessEndDate='$ProcessEndDate' ,rootcasue='$rootcasuse',
-            action='$action'
+            action='$action',percentageComplete = $percentageComplete
           WHERE  TID='$TID'");  
     
 }
@@ -1605,6 +1611,187 @@ public function updatedStatusFGT($reviewStatus,$approvedStatus,$TID){
         return $query->result_array();
    
     }
+
+    public function getTestType()
+    {
+
+        $query = $this->db->query(" SELECT * 
+    FROM            dbo.tbl_test_types");
+
+        return $query->result_array();
+   
+    }
+
+    public function getTestRequests()
+    {
+
+        $query = $this->db->query("SELECT   dbo.View_Test_Request_Pending.*     
+        FROM    dbo.View_Test_Request_Pending");
+
+        return $query->result_array();
+   
+    }
+
+    public function getTestRequestsSendToLab()
+    {
+
+        $query = $this->db->query("SELECT   dbo.View_Test_Request_Send_to_Lab.*     
+        FROM    dbo.View_Test_Request_Send_to_Lab");
+
+        return $query->result_array();
+   
+    }
+
+    public function getTestRequestsSendToRequester()
+    {
+
+        $query = $this->db->query("SELECT   dbo.View_Test_Request_Send_to_Requester.*     
+        FROM    dbo.View_Test_Request_Send_to_Requester");
+
+        return $query->result_array();
+   
+    }
+
+    public function TestTypeById($id)
+    {
+
+        $query = $this->db->query(" SELECT * 
+    FROM            dbo.tbl_test_types
+    WHERE TestID='$id'
+    ");
+
+        return $query->result_array();
+   
+    }
+
+    public function getTestByRequester()
+    {
+        $user = $this->session->userdata('user_id');
+        $query = $this->db->query("SELECT   dbo.View_Test_Request_By_Sender_Id.*     
+        FROM    dbo.View_Test_Request_By_Sender_Id
+        WHERE SRSenderID = $user 
+    ");
+
+        return $query->result_array();
+   
+    }
+
+    public function TestRequestById($id)
+    {
+
+        $query = $this->db->query(" SELECT * 
+    FROM            dbo.tbl_lab_test_request
+    WHERE TID='$id'
+    ");
+
+        return $query->result_array();
+   
+    }
+
+    public function AddTestType($name,$status)
+    {
+
+        $query = $this->db->query("INSERT  INTO dbo.tbl_test_types 
+        (Name,Status)
+        VALUES
+        ('$name','$status')");
+
+        if($query){
+            return true;
+        }
+        else{
+            return false;
+        }
+   
+    }
+
+    public function AddRequest($Type,$Sample_RequestDate,$Factory_Code,$Article,$TestID,$Quantity_Issued,$Status)
+    {
+        $user = $this->session->userdata('user_id');
+        $userReceiver = 388;
+        $query = $this->db->query("INSERT  INTO dbo.tbl_lab_test_request 
+      (Type,Sample_RequestDate,Factory_Code,Article,TestID,Quantity_Issued,Status,SRSenderID,SRReceiverID,finalStatus)
+        VALUES
+        ('$Type','$Sample_RequestDate','$Factory_Code','$Article',$TestID,$Quantity_Issued,'$Status',$user,$userReceiver,'Pending')");
+
+        if($query){
+            return true;
+        }
+        else{
+            return false;
+        }
+   
+    }
+
+    public function EditTestType($id,$name,$status)
+    {
+        
+        $query = $this->db->query("UPDATE dbo.tbl_test_types 
+        SET Name = '$name',Status = '$status'
+        WHERE TestID='$id'
+        ");
+
+        if($query){
+            return true;
+        }
+        else{
+            return false;
+        }
+   
+    }
+
+    public function EditTestRequest($TID,$Sample_Receiving_Date,$CSSNo,$Quantity_Received,$Quantity_Retained,$Quantity_Returned, $Due_Date,$CompletationDate,$Remarks,$senderSignature)
+    {
+        $user = $this->session->userdata('user_id');
+        $query = $this->db->query("UPDATE dbo.tbl_lab_test_request 
+        SET Sample_Receiving_Date = '$Sample_Receiving_Date',CSSNo = '$CSSNo',Quantity_Received = '$Quantity_Received',Quantity_Retained = '$Quantity_Retained',Quantity_Returned = '$Quantity_Returned',Due_Date = '$Due_Date',CompletationDate = '$CompletationDate',Remarks = '$Remarks',Status='Send to Lab',senderSignatureRec = '$senderSignature'
+        
+        WHERE TID='$TID'
+        ");
+
+        if($query){
+            return true;
+        }
+        else{
+            return false;
+        }
+   
+    }
+
+    public function EditTestRequestBackToSender($TID,$senderId ,$ReceiverId)
+    {
+        $query = $this->db->query("UPDATE dbo.tbl_lab_test_request 
+        SET SRETSenderID = '$senderId',SRETReceiverID = '$ReceiverId',Status='Send Back to Requester'
+       
+        WHERE TID='$TID'
+        ");
+
+        if($query){
+            return true;
+        }
+        else{
+            return false;
+        }
+   
+    }
+
+    public function AcknowledgeResult($TID)
+    {
+        $query = $this->db->query("UPDATE dbo.tbl_lab_test_request 
+        SET finalStatus='Acknowledged'
+       
+        WHERE TID='$TID'
+        ");
+
+        if($query){
+            return true;
+        }
+        else{
+            return false;
+        }
+   
+    }
+
 public function getTableData($sDate,$eDate){
 
    

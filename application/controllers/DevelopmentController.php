@@ -108,21 +108,33 @@ class DevelopmentController extends CI_Controller
         $data['ProcessData'] = $this->l->Process($article,$Size);
 $this->load->view('ProcessData',$data);
     }
-    public function updateprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate){
+    public function updateprocess(){
         //$RBy=str_replace("%20"," ",$Receivedby);
 					 //$this->ID->updateKitsissuance($RBy,$iDate ,$RID);
+        $TID  = $_POST['TID'];
+        $Balls = $_POST['Balls'];
+        $Status = $_POST['Status'];
+        $date_make = $_POST['Datee'];
+        $ProcessEndDate = $_POST['ProcessEndDate'];
+        $percentageComplete = $_POST['percentageComplete'];
 	
-$data = $this->l->updateprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate);
+$data = $this->l->updateprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate,$percentageComplete);
         return $this->output
         ->set_content_type('application/json')
         ->set_status_header(200)
         ->set_output(json_encode($data));
     }
-        public function updatecprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate,$rootcasuse,$action){
-        //$RBy=str_replace("%20"," ",$Receivedby);
-					 //$this->ID->updateKitsissuance($RBy,$iDate ,$RID);
+        public function updatecprocess(){
+            $TID  = $_POST['TID'];
+            $Balls = $_POST['Balls'];
+            $Status = $_POST['Status'];
+            $date_make = $_POST['Datee'];
+            $ProcessEndDate = $_POST['ProcessEndDate'];
+            $rootcasuse = $_POST['rootcasuse'];
+            $action = $_POST['action'];
+            $percentageComplete = $_POST['percentageComplete'];
 	
-$data = $this->l->updatecprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate,$rootcasuse,$action);
+$data = $this->l->updatecprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate,$rootcasuse,$action,$percentageComplete);
         return $this->output
         ->set_content_type('application/json')
         ->set_status_header(200)

@@ -26,6 +26,155 @@ class LabController extends CI_Controller
         $this->load->view('FailDetails', $data);
     }
 
+    public function TestType()
+    {
+        $data['TestTypes'] = $this->l->getTestType();
+        // $data['detailsData'] = $this->l->getDetails($_GET['id']);
+
+        $this->load->view('LabTestType',$data);
+    }
+
+    public function TestRequest()
+    {
+        // $data['TestTypes'] = $this->l->getTestType();
+        // $data['detailsData'] = $this->l->getDetails($_GET['id']);
+        $data['getTestTypes'] = $this->l->getTestType();
+        $data['getRequesterRequests'] = $this->l->getTestByRequester();
+        $this->load->view('TestRequest',$data);
+    }
+
+    public function TestReceive()
+    {
+        // $data['TestTypes'] = $this->l->getTestType();
+        // $data['detailsData'] = $this->l->getDetails($_GET['id']);
+        $data['getTestRequests'] = $this->l->getTestRequests();
+        $data['getTestRequestsSendToLab'] = $this->l->getTestRequestsSendToLab();
+        $data['getTestRequestsSendToRequester'] = $this->l->getTestRequestsSendToRequester();
+        $this->load->view('TestReceive',$data);
+    }
+
+    public function TestTypeById()
+    {
+        $idGet = $_POST['Id'];
+        $data = $this->l->TestTypeById($idGet);
+       
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+       
+    }
+
+
+
+    public function TestRequestById()
+    {
+        $idGet = $_POST['Id'];
+        $data = $this->l->TestRequestById($idGet);
+       
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+       
+    }
+
+    public function AddTestType()
+    {
+        $Name = $_POST['Name'];
+        $Status = $_POST['Status'];
+        // $data['detailsData'] = $this->l->getDetails($_GET['id']);
+        $data = $this->l->AddTestType($Name,$Status);
+
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+    }
+
+    public function AddRequest()
+    {
+
+        $Type = $_POST['Type'];
+        $Sample_RequestDate = $_POST['Sample_RequestDate'];
+        $Factory_Code = $_POST['Factory_Code'];
+        $Article = $_POST['Article'];
+        $TestID = $_POST['TestID'];
+        $Quantity_Issued = $_POST['Quantity_Issued'];
+        $Status = $_POST['Status'];
+        // $data['detailsData'] = $this->l->getDetails($_GET['id']);
+        $data = $this->l->AddRequest($Type,$Sample_RequestDate,$Factory_Code,$Article,$TestID,$Quantity_Issued,$Status);
+
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+    }
+
+    public function EditTestType()
+    {
+     
+        $Id = $_POST['Id'];
+        $Name = $_POST['Name'];
+        $Status = $_POST['Status'];
+        // $data['detailsData'] = $this->l->getDetails($_GET['id']);
+        $data = $this->l->EditTestType($Id,$Name,$Status);
+
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+    }
+
+    public function EditTestRequest()
+    {
+     
+        $TID = $_POST['TID'];
+        $Sample_Receiving_Date = $_POST['Sample_Receiving_Date'];
+        $CSSNo = $_POST['CSSNo'];
+        $Quantity_Received = $_POST['Quantity_Received'];
+        $Quantity_Retained = $_POST['Quantity_Retained'];
+        $Quantity_Returned = $_POST['Quantity_Returned'];
+        $Due_Date = $_POST['Due_Date'];
+        $senderSignature = $_POST['senderSignature'];
+        $CompletationDate = $_POST['CompletationDate'];
+        $Remarks = $_POST['Remarks'];
+        $data = $this->l->EditTestRequest($TID,$Sample_Receiving_Date,$CSSNo,$Quantity_Received,$Quantity_Retained,$Quantity_Returned, $Due_Date,$CompletationDate,$Remarks,$senderSignature);
+
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+    }
+
+    public function AcknowledgeResult()
+    {
+     
+        $TID = $_POST['Id'];
+        $data = $this->l->AcknowledgeResult($TID);
+
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+    }
+    
+
+    public function EditTestRequestBackToSender()
+    {
+     
+        $TID = $_POST['Id'];
+        $senderId = $_POST['senderId'];
+        $ReceiverId = $_POST['receiverId'];
+       ;
+        $data = $this->l->EditTestRequestBackToSender($TID,$senderId ,$ReceiverId);
+
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+    }
+
     public function ShowDetailsFGT()
     {
         $data['head'] = $this->l->FGT_PRINT_Head($_GET['id']);
@@ -1069,6 +1218,9 @@ class LabController extends CI_Controller
     }
     public function undo($TID){
         $data['undo'] = $this->l->undo($TID);
+    }
+    public function undoTestType($TID){
+        $data['undoTestType'] = $this->l->undoTestType($TID);
     }
      public function updated($reviewStatus,$approvedStatus,$TID){
         //$data['Labtest'] 
