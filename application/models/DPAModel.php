@@ -13,7 +13,8 @@ class DPAModel extends CI_Model
 	}
 
  public function CallData($article){
-  $query = $this->db->query("SELECT       dbo.view_Dev_DPA.*
+
+  $query = $this->db->query("SELECT      dbo.view_Dev_DPA.*
   FROM            dbo.view_Dev_DPA
   WHERE        (ArtCode = '$article')");
           return  $query->result_array(); 

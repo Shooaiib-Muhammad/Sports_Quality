@@ -21,9 +21,8 @@ class DPA extends CI_Controller
  public function CallData()
  {
 
- 
-
   $data = $this->DPAModel->CallData($_POST['article']);
+  
   return $this->output
   ->set_content_type('application/json')
   ->set_status_header(200)

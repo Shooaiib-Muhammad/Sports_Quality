@@ -1324,7 +1324,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <div class="form-group">
                                                     <label class="control-label">Test Type:</label>
                                                     <input type="text" class="form-control" id="tetype" name="tetype" />
-                                                     
+
                                                 </div>
                                             </div>
                                             <div class="col-md-6" style="margin-top:25px">
@@ -1437,6 +1437,7 @@ if (!$this->session->has_userdata('user_id')) {
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
                                                     <label class="control-label">BALL TYPE:</label>
+
                                                     <div>
                                                         <input type="text" class="form-control input-lg" id='btype' name="btype" placeholder="">
                                                     </div>
@@ -1444,10 +1445,20 @@ if (!$this->session->has_userdata('user_id')) {
                                             </div>
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
-                                                    <label class="control-label">TEST TYPE:</label>
-                                                    <div>
-                                                        <input type="text" class="form-control input-lg" id='ttype' name="ttype" placeholder="">
+                                                    <!-- <label class="control-label">TEST TYPE:</label> -->
+                                                    <div class="form-group">
+                                                        <label class="control-label">TEST TYPE:</label>
+                                                        <select class="form-control" id="ttype" name="ttype">
+                                                            <option value="" disabled>Select one of the following</option>
+                                                            <option value="Shooter">Shooter</option>
+                                                            <option value="Abrasion">Abrasion</option>
+                                                            <option value="Full FGT">Full FGT</option>
+                                                        </select>
+
                                                     </div>
+                                                    <!-- <div>
+                                                        <input type="text" class="form-control input-lg" id='ttype' name="ttype" placeholder="">
+                                                    </div> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -1470,7 +1481,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row" style="display:flex">
+                                        <div class="row" style="display:flex" hidden>
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
                                                     <label class="control-label">Factory Code:</label>
@@ -1480,7 +1491,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 </div>
 
                                             </div>
-                                            <div class="col-md-6" style="margin-top:25px">
+                                            <div class="col-md-6" style="margin-top:25px" hidden>
                                                 <div class="form-group">
                                                     <label class="control-label">Modal:</label>
                                                     <div>
@@ -2163,7 +2174,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <td class="text-center" id="content11"></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th style="border: 1px solid;"><br>MAIN MAT.COLOR</th>
+                                                                    <th style="border: 1px solid;"><br>MAIN MAT. COLOR</th>
                                                                     <td class="text-center" id="content12"></td>
                                                                 </tr>
                                                                 <tr>
@@ -2678,16 +2689,16 @@ if (!$this->session->has_userdata('user_id')) {
     <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-            <script>
-                $(document).ready(function() {
-                    // $("#article").select2();
-                    $('#article').select2({
-        dropdownParent: $('#Modaldepartment')
-    });
-    // $('.js-example-basic-single').select2();
-});
-            </script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // $("#article").select2();
+            $('#article').select2({
+                dropdownParent: $('#Modaldepartment')
+            });
+            // $('.js-example-basic-single').select2();
+        });
+    </script>
     <script>
         // window.onload = function() {
         //     // alert("called");
@@ -2788,22 +2799,22 @@ if (!$this->session->has_userdata('user_id')) {
 
         });
 
-        function CallData(){
-           let ArtCode=  $("#article").val();
+        function CallData() {
+            let ArtCode = $("#article").val();
 
- url1 = "<?php echo base_url(''); ?>DevelopmentController/getSize/"+ ArtCode 
- //alert(url1);
-          $.get(url1, function(res){
-           
-     data1 = res.data
-   
-                    options = "<option value=''>Select Size </option>"
-                    for (i = 0; i < data1.length; i++) {
-                        options +=  '<option value="' + data1[i].ArtSize + '">' + data1[i].ArtSize + '</option>'
-                    }
-                    $("#size").html(options)
+            url1 = "<?php echo base_url(''); ?>DevelopmentController/getSize/" + ArtCode
+            //alert(url1);
+            $.get(url1, function(res) {
+
+                data1 = res.data
+
+                options = "<option value=''>Select Size </option>"
+                for (i = 0; i < data1.length; i++) {
+                    options += '<option value="' + data1[i].ArtSize + '">' + data1[i].ArtSize + '</option>'
+                }
+                $("#size").html(options)
             });
-     }
+        }
 
         function processData(article, Size1, Size2) {
             url = "<?php echo base_url(
@@ -5124,7 +5135,7 @@ ${reviewStatus == '1' ?
             //alert(size);
 
             let dataSend = [fgttype ? fgttype : null, lbno ? lbno : null, tdate ? tdate : null, testcat ? testcat : null, fifastump ? fifastump : 0, pmonth ? pmonth : null, cmat ? cmat : null, backing ? backing : null, bladder ? bladder : null, btype ? btype : null, ttype ? ttype : null, cssCode ? cssCode : null, mmcolor ? mmcolor : null, pcolors ? pcolors : null, result ? result : null, fn ? fn : null, m ? m : null, pshape ? pshape : null, rem ? rem : null, testperformedby ? testperformedby : null, note ? note : null, null, null, null, null, null, article ? article : null, size ? size : null, tetype ? tetype : null, department ? department : null, fgttest ? fgttest : null];
-  
+
             fd.append('formData', dataSend);
             url = "<?php echo base_url(''); ?>FGT/FGT_H"
 
@@ -5142,7 +5153,7 @@ ${reviewStatus == '1' ?
                 data: fd,
                 contentType: false,
                 processData: false,
-                success:function(data, status) {
+                success: function(data, status) {
                     alert("FGT Details inserted Successfully");
                     //console.log("Data Get from Function",data);
                     location.reload();

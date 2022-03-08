@@ -515,13 +515,13 @@ if (!$this->session->has_userdata('user_id')) {
       $("#model").val(' ');
       $("#art").val(' ');
       let ArtCode = $("#ArtCode").val();
+
       url = "<?php echo base_url(''); ?>DPA/CallData/"
       $.post(url, {
         "article": ArtCode,
 
       }, function(articles) {
-
-
+        console.log(articles)
         $("#working").val(articles[0]['WorkNo']);
         $("#pname").val(articles[0]['ModelName']);
         $("#fcode").val(articles[0]['FactoryCode']);
@@ -809,13 +809,15 @@ if (!$this->session->has_userdata('user_id')) {
       });
     }
 
-    function deleterecord(id){
+    function deleterecord(id) {
       path = "<?php echo base_url(''); ?>DPA/delteRecord/"
 
-     $.post(path,{"id":id},function(data){
-alert("Data Deleted Successfully",id)
-location.reload();
-     });
+      $.post(path, {
+        "id": id
+      }, function(data) {
+        alert("Data Deleted Successfully", id)
+        location.reload();
+      });
     }
   </script>
 
