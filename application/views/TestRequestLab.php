@@ -47,7 +47,7 @@ if (!$this->session->has_userdata('user_id')) {
                                 <div id="panel-1" class="panel">
                                     <div class="panel-hdr">
                                         <h2>
-                                            <i class='subheader-icon fal fa-vial'></i> Test Request</span>
+                                            <i class='subheader-icon fal fa-vial'></i> Test Requests</span>
                                         </h2>
 
                                     </div>
@@ -56,206 +56,66 @@ if (!$this->session->has_userdata('user_id')) {
                                     <div class="panel-container show">
 
                                         <div class="panel-content">
-                                            <ul class="nav nav-pills" role="tablist">
-                                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Request Form</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Generated Requests</a></li>
+                                        <ul class="nav nav-pills" role="tablist">
+                                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Pending Requests</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Acknowledged Requests</a></li>
 
                                             </ul>
 
                                             <div class="tab-content py-3">
 
-                                                <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
-                                                    <div class="row">
-                                                        <div class="col-md-3"></div>
-                                                        <div class="col-md-6">
-                                                            <h1 style="width: 100%;background-color: rgb(83,78,130);color:white;font-weight:bolder;padding:10px;text-align:center">Test Request Generation Form</h1>
-                                                            <div class="modal-body" style="border: 2px solid black;padding:10px">
-                                                                <form name="formDepartment" id="myformDepartment" method="POST" action="<?php echo base_url(
-                                                                                                                                            ''
-                                                                                                                                        ); ?>LabController/AddRequest">
-                                                                    <input type="hidden" name="Id" id="IdValue" value="">
-
-                                                                    <div class="row" style="display:flex">
-
-
-                                                                        <div class="col-md-6">
-
-                                                                            <label class="form-contol" for="customFile">Request Date</label>
-                                                                            <input type="date" class="form-control" id="rDate" name="rDate">
-
-                                                                        </div>
-                                                                        <div class="col-md-6">
-
-                                                                            <label class="form-contol" for="customFile">Type</label>
-                                                                            <select class="form-control" id="type" name="type">
-                                                                                <option value="" selected disabled>Select Type</option>
-                                                                                <option value="Production">Production</option>
-                                                                                <option value="Development">Development</option>
-                                                                            </select>
-
-                                                                        </div>
-
-                                                                        <div class="col-md-6 mt-2">
-
-                                                                            <label for="sel1">Select Factory Code :</label>
-                                                                            <select class="form-control" id="fCode" name="fCode">
-                                                                                <option value="">Select one of the following</option>
-                                                                                <option value="B34001">B34001</option>
-                                                                                <option value="B34002">B34002</option>
-                                                                                <option value="B34003">B34003</option>
-                                                                                <option value="B34004">B34004</option>
-                                                                                <option value="B34005">B34005</option>
-                                                                                <option value="B34006">B34006</option>
-                                                                                <option value="B34007">B34007</option>
-
-                                                                            </select>
-
-                                                                        </div>
-
-                                                                        <div class="col-md-6 mt-2">
-
-
-                                                                            <div class="form-group">
-                                                                                <label for="sel1">Article Selection</label><br>
-                                                                                <select class="form-control" id="selection" name="selection" onchange="toggleArticle()">
-                                                                                <option value="" disabled>Select one of the following</option>
-                                                                                <option value="Manual" >Manual</option>
-                                                                                <option value="Auto">Auto</option>
-                                                                               
-                                                                            </select>
-
-                                                                            </div>
-
-
-                                                                            </div>
-
-                                                                            <div class="col-md-6 mt-2" style="display: none;" id="autoArticle">
-                                                                                <div class="form-group">
-
-                                                                                <label for="sel1">Select Article :</label><br>
-                                                                                <select class="form-control" id="ArtCodeAuto" name="ArtCodeAuto">
-                                                                                    <option value="">Select one of the following</option>
-                                                                                    <?php foreach ($Articles as $Key) { ?>
-
-                                                                                    <option value="<?php echo $Key['ArtCode']; ?>"><?php echo $Key['ArtCode']; ?></option>
-                                                                                    <?php } ?>
-                                                                                </select>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        <div class="col-md-6 mt-2" id="manualArticle">
-
-
-                                                                            <div class="form-group">
-                                                                                <label for="sel1">Article</label><br>
-                                                                                <input class="form-control" id="article" name="article" />
-
-                                                                            </div>
-
-
-                                                                        </div>
-
-                                                                        <div class="col-md-6 mt-2">
-                                                                            <div class="form-group">
-                                                                                <label for="sel1">Test Type</label><br>
-                                                                                <select class="js-example-basic-single" id="tType" name="tType">
-                                                                                    <option value="">Select one of the following</option>
-                                                                                    <?php foreach ($getTestTypes as $Key) { ?>
-
-                                                                                        <option value="<?php echo $Key['TestID']; ?>"><?php echo $Key['Name']; ?></option>
-                                                                                    <?php } ?>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="col-md-6 mt-2">
-
-                                                                            <label class="form-contol" for="customFile">Quantity Issued</label>
-                                                                            <input type="number" class="form-control" id="qIssued" name="qIssued">
-
-                                                                        </div>
-
-                                                                    </div>
-
-                                                                    <div class="row">
-                                                                        <div class="form-group">
-                                                                            <div>
-                                                                                <button type="button" class="btn btn-primary m-3" id="save">Save</button>
-
-                                                                                <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
-
-                                                                                <!-- <button class="btn btn-danger" data-dismiss="modal" style="display:inline-block;">Close</button> -->
-
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </form>
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3"></div>
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
-
-                                                <table class="table table-striped table-hover table-sm" id="ActivityData2">
+                                            <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
+                                            <table class="table table-striped table-hover table-sm" id="ActivityData2">
                                                         <thead>
 
                                                             <tr>
                                                                 <th>Request Date</th>
                                                                 <th>Type</th>
+                                                                <th>CSS Code</th>
                                                                 <th>Factory Code</th>
                                                                 <th>Article</th>
                                                                 <th>Test Type</th>
                                                                 <th>Quantity Issed</th>
-                                                                <th>Sender Reference</th>
-                                                                <th>Receiver Signature Receiving</th>
-                                                                <th>Sender Signature Receiving</th>
-                                                                <th>Receiver Signature Returned</th>
-                                                                <th>Sender Signature Returned</th>
+                                                                <th>Quantity Received</th>
+                                                                <th>Quantity Retained</th>
+                                                                <th>Quantity Returned</th>
+                                                                <!-- <th>Lab Result</th> -->
+                                                                <th>Lab Status</th>
+                                                                <!-- <th>Sender Reference</th> -->
+                                                                <th>Receiver Signature</th>
+                                                                <th>Sender Signature</th>
                                                                 <th>Status</th>
-                                                                <th>Requester Acknowlegement</th>
                                                                 <th>ACTIONS</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <?php //print_r($loadFGT_H);
-                                                            foreach ($getRequesterRequests as $keys) {
+                                                            foreach ($getTestByLabPending as $keys) {
 
                                                             ?>
 
                                                                 <tr>
                                                                     <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
                                                                     <td><?php echo $keys['Type']; ?></td>
+                                                                    <td><?php echo $keys['CSSNo']; ?></td>
                                                                     <td><?php echo $keys['Factory_Code']; ?></td>
                                                                     <td><?php echo $keys['Article']; ?></td>
                                                                     <td><?php echo $keys['TestID']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Issued']; ?></td>
-                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderIDName']; ?></span></td>
+                                                                    <td><?php echo $keys['Quantity_Received']; ?></td>
+                                                                    <td><?php echo $keys['Quantity_Retained']; ?></td>
+                                                                    <td><?php echo $keys['Quantity_Returned']; ?></td>
+                                                                    <!-- <td><?php echo $keys['Result']; ?></td> -->
+                                                                    <td><span class="badge badge-secondary p-1"><?php echo $keys['LabAcknowledgementStatus']; ?></span></td>
+                                                                    <!-- <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderID']; ?></span></td> -->
                                                                     <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
                                                                     <td> <span class="badge badge-primary p-1"><?php echo $keys['senderSignatureRec']; ?></span></td>
-                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['SRETReceiverID']; ?></span></td>
-                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['SRETSenderID']; ?></span></td>
                                                                     <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
-                                                                    <td> <span class="badge badge-warning p-1"><?php echo $keys['finalStatus']; ?></span></td>
+                                                                 
                                                                     <td>
-                                                                    <?php if($keys['finalStatus'] == 'Pending'){
 
-                                                                    ?>
-                                                                    <button type="button" style="display: inline-block;" class="btn btn-primary btn-xs acknowledge" id="btn.<?php echo $keys['TID']; ?>">Acknowledge</button>
-                                                                                                                                        
-
-                                                                    <?php          
-                                                                    }else{ ?>
-                                                                    <button type="button" style="display: inline-block;" class="btn btn-danger btn-xs" disabled id="btn.<?php echo $keys['TID']; ?>">Locked</button>
-                                                                                                                                        
-
-                                                                    <?php
-
-                                                                    } ?>
-                                                                       <!-- <button type="button" style="display: inline-block;" id="undo.<?php echo $keys['TID']; ?>" value="<?php echo $keys['TID']; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> -->
+                                                                        <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtnBacktoSender" id="btn.<?php echo $keys['TID']; ?>">Acknowledge</button>
+                                                                        <!-- <button type="button" style="display: inline-block;" id="undo.<?php echo $keys['TID']; ?>" value="<?php echo $keys['TID']; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> -->
 
 
                                                                     </td>
@@ -269,8 +129,74 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                         </tbody>
                                                     </table>
+                                            </div>
+                                           
+                                            <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
+                                            <table class="table table-striped table-hover table-sm" id="ActivityData3">
+                                                        <thead>
 
-                                                </div>
+                                                            <tr>
+                                                                <th>Request Date</th>
+                                                                <th>Type</th>
+                                                                <th>CSS Code</th>
+                                                                <th>Factory Code</th>
+                                                                <th>Article</th>
+                                                                <th>Test Type</th>
+                                                                <th>Quantity Issed</th>
+                                                                <th>Quantity Received</th>
+                                                                <th>Quantity Retained</th>
+                                                                <th>Quantity Returned</th>
+                                                                <!-- <th>Lab Result</th> -->
+                                                                <th>Lab Status</th>
+                                                                <!-- <th>Sender Reference</th> -->
+                                                                <th>Receiver Signature</th>
+                                                                <th>Sender Signature</th>
+                                                                <th>Status</th>
+                                                                <th>ACTIONS</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php //print_r($loadFGT_H);
+                                                            foreach ($getTestByLabAcknowledge as $keys) {
+
+                                                            ?>
+
+                                                                <tr>
+                                                                    <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
+                                                                    <td><?php echo $keys['Type']; ?></td>
+                                                                    <td><?php echo $keys['CSSNo']; ?></td>
+                                                                    <td><?php echo $keys['Factory_Code']; ?></td>
+                                                                    <td><?php echo $keys['Article']; ?></td>
+                                                                    <td><?php echo $keys['TestID']; ?></td>
+                                                                    <td><?php echo $keys['Quantity_Issued']; ?></td>
+                                                                    <td><?php echo $keys['Quantity_Received']; ?></td>
+                                                                    <td><?php echo $keys['Quantity_Retained']; ?></td>
+                                                                    <td><?php echo $keys['Quantity_Returned']; ?></td>
+                                                                    <!-- <td><?php echo $keys['Result']; ?></td> -->
+                                                                    <td><span class="badge badge-secondary p-1"><?php echo $keys['LabAcknowledgementStatus']; ?></span></td>
+                                                                    <!-- <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderID']; ?></span></td> -->
+                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
+                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['senderSignatureRec']; ?></span></td>
+                                                                    <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
+                                                                 
+                                                                    <td>
+
+                                                                        <button type="button" style="display: inline-block;" class="btn btn-danger btn-xs" id="btn.<?php echo $keys['TID']; ?>" disabled>Locked</button>
+                                                                        <!-- <button type="button" style="display: inline-block;" id="undo.<?php echo $keys['TID']; ?>" value="<?php echo $keys['TID']; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> -->
+
+
+                                                                    </td>
+
+
+                                                                </tr>
+
+
+                                                            <?php
+                                                            } ?>
+
+                                                        </tbody>
+                                                    </table>
+                                            </div>
 
                                             </div>
 
@@ -300,6 +226,30 @@ if (!$this->session->has_userdata('user_id')) {
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
+            $(".updatebtnBacktoSender").click(function(e) {
+            let id = this.id;
+            let split_value = id.split(".");
+            var TID = split_value[1];
+            let proceed = confirm("Are you sure you want to acknowledge Receipt?");
+            if (proceed) {
+   
+            url = "<?php echo base_url(''); ?>LabController/TestRequestById";
+            url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestLabAcknowledge";
+            $.post(url, {
+                'Id': TID
+            }, function(data, status) {
+                $.post(url2, {
+                    'Id': TID
+                }, function(data, status) {
+                    alert("Data Updated Successfully! Click on Ok to Reload the Page")
+                    window.location.reload();
+                });
+            });
+            }
+            else{
+                alert("Sending Cancel");  
+            }
+        });
         function toggleArticle(){
             let selectionValue = $('#selection').val();
             if(selectionValue == 'Auto'){
@@ -446,6 +396,75 @@ if (!$this->session->has_userdata('user_id')) {
             });
 
             $('#ActivityData2').dataTable({
+                responsive: false,
+                lengthChange: false,
+                dom:
+                    /*	--- Layout Structure 
+                    	--- Options
+                    	l	-	length changing input control
+                    	f	-	filtering input
+                    	t	-	The table!
+                    	i	-	Table information summary
+                    	p	-	pagination control
+                    	r	-	processing display element
+                    	B	-	buttons
+                    	R	-	ColReorder
+                    	S	-	Select
+
+                    	--- Markup
+                    	< and >				- div element
+                    	<"class" and >		- div with a class
+                    	<"#id" and >		- div with an ID
+                    	<"#id.class" and >	- div with an ID and a class
+
+                    	--- Further reading
+                    	https://datatables.net/reference/option/dom
+                    	--------------------------------------
+                     */
+                    "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                buttons: [
+                    /*{
+                    	extend:    'colvis',
+                    	text:      'Column Visibility',
+                    	titleAttr: 'Col visibility',
+                    	className: 'mr-sm-3'
+                    },*/
+                    {
+                        extend: 'pdfHtml5',
+                        text: 'PDF',
+                        titleAttr: 'Generate PDF',
+                        className: 'btn-outline-danger btn-sm mr-1'
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Excel',
+                        titleAttr: 'Generate Excel',
+                        className: 'btn-outline-success btn-sm mr-1'
+                    },
+                    {
+                        extend: 'csvHtml5',
+                        text: 'CSV',
+                        titleAttr: 'Generate CSV',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'copyHtml5',
+                        text: 'Copy',
+                        titleAttr: 'Copy to clipboard',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Print',
+                        titleAttr: 'Print Table',
+                        className: 'btn-outline-primary btn-sm'
+                    }
+                ]
+            });
+
+            $('#ActivityData3').dataTable({
                 responsive: false,
                 lengthChange: false,
                 dom:

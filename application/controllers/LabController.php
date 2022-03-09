@@ -38,9 +38,18 @@ class LabController extends CI_Controller
     {
         // $data['TestTypes'] = $this->l->getTestType();
         // $data['detailsData'] = $this->l->getDetails($_GET['id']);
+        $data['Articles'] = $this->l->GetArticles();
         $data['getTestTypes'] = $this->l->getTestType();
         $data['getRequesterRequests'] = $this->l->getTestByRequester();
         $this->load->view('TestRequest',$data);
+    }
+
+    public function TestRequestLab()
+    {
+ 
+        $data['getTestByLabPending'] = $this->l->getTestByLabPending();
+        $data['getTestByLabAcknowledge'] = $this->l->getTestByLabAcknowledge();
+        $this->load->view('TestRequestLab',$data);
     }
 
     public function TestReceive()
@@ -134,12 +143,12 @@ class LabController extends CI_Controller
         $CSSNo = $_POST['CSSNo'];
         $Quantity_Received = $_POST['Quantity_Received'];
         $Quantity_Retained = $_POST['Quantity_Retained'];
-        $Quantity_Returned = $_POST['Quantity_Returned'];
+        // $Quantity_Returned = $_POST['Quantity_Returned'];
         $Due_Date = $_POST['Due_Date'];
         $senderSignature = $_POST['senderSignature'];
         $CompletationDate = $_POST['CompletationDate'];
         $Remarks = $_POST['Remarks'];
-        $data = $this->l->EditTestRequest($TID,$Sample_Receiving_Date,$CSSNo,$Quantity_Received,$Quantity_Retained,$Quantity_Returned, $Due_Date,$CompletationDate,$Remarks,$senderSignature);
+        $data = $this->l->EditTestRequest($TID,$Sample_Receiving_Date,$CSSNo,$Quantity_Received,$Quantity_Retained, $Due_Date,$CompletationDate,$Remarks,$senderSignature);
 
         return $this->output
         ->set_content_type('application/json')
@@ -164,10 +173,24 @@ class LabController extends CI_Controller
     {
      
         $TID = $_POST['Id'];
+        $Quantity = $_POST['Quantity'];
         $senderId = $_POST['senderId'];
         $ReceiverId = $_POST['receiverId'];
-       ;
-        $data = $this->l->EditTestRequestBackToSender($TID,$senderId ,$ReceiverId);
+       
+        $data = $this->l->EditTestRequestBackToSender($TID,$Quantity,$senderId ,$ReceiverId);
+
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+    }
+
+    public function EditTestRequestLabAcknowledge()
+    {
+     
+        $TID = $_POST['Id'];
+     
+        $data = $this->l->EditTestRequestLabAcknowledge($TID);
 
         return $this->output
         ->set_content_type('application/json')

@@ -1664,6 +1664,32 @@ public function updatedStatusFGT($reviewStatus,$approvedStatus,$TID){
    
     }
 
+    public function getTestByLabPending()
+    {
+     
+        $query = $this->db->query("SELECT   dbo.View_Test_Request_Pending_Lab.*     
+        FROM    dbo.View_Test_Request_Pending_Lab
+
+    ");
+    
+
+        return $query->result_array();
+   
+    }
+
+    public function getTestByLabAcknowledge()
+    {
+     
+        $query = $this->db->query("SELECT   dbo.View_Test_Request_Acknowledge_Lab.*     
+        FROM    dbo.View_Test_Request_Acknowledge_Lab
+
+    ");
+    
+
+        return $query->result_array();
+   
+    }
+
     public function getTestByRequester()
     {
         $user = $this->session->userdata('user_id');
@@ -1740,11 +1766,11 @@ public function updatedStatusFGT($reviewStatus,$approvedStatus,$TID){
    
     }
 
-    public function EditTestRequest($TID,$Sample_Receiving_Date,$CSSNo,$Quantity_Received,$Quantity_Retained,$Quantity_Returned, $Due_Date,$CompletationDate,$Remarks,$senderSignature)
+    public function EditTestRequest($TID,$Sample_Receiving_Date,$CSSNo,$Quantity_Received,$Quantity_Retained, $Due_Date,$CompletationDate,$Remarks,$senderSignature)
     {
         $user = $this->session->userdata('user_id');
         $query = $this->db->query("UPDATE dbo.tbl_lab_test_request 
-        SET Sample_Receiving_Date = '$Sample_Receiving_Date',CSSNo = '$CSSNo',Quantity_Received = '$Quantity_Received',Quantity_Retained = '$Quantity_Retained',Quantity_Returned = '$Quantity_Returned',Due_Date = '$Due_Date',CompletationDate = '$CompletationDate',Remarks = '$Remarks',Status='Send to Lab',senderSignatureRec = '$senderSignature'
+        SET Sample_Receiving_Date = '$Sample_Receiving_Date',CSSNo = '$CSSNo',Quantity_Received = '$Quantity_Received',Quantity_Retained = '$Quantity_Retained',Due_Date = '$Due_Date',CompletationDate = '$CompletationDate',Remarks = '$Remarks',Status='Send to Lab',LabAcknowledgementStatus='Pending',senderSignatureRec = '$senderSignature'
         
         WHERE TID='$TID'
         ");
@@ -1758,10 +1784,27 @@ public function updatedStatusFGT($reviewStatus,$approvedStatus,$TID){
    
     }
 
-    public function EditTestRequestBackToSender($TID,$senderId ,$ReceiverId)
+    public function EditTestRequestBackToSender($TID,$Quantity,$senderId ,$ReceiverId)
     {
         $query = $this->db->query("UPDATE dbo.tbl_lab_test_request 
-        SET SRETSenderID = '$senderId',SRETReceiverID = '$ReceiverId',Status='Send Back to Requester'
+        SET SRETSenderID = '$senderId',SRETReceiverID = '$ReceiverId',Quantity_Returned = $Quantity,Status='Send Back to Requester'
+       
+        WHERE TID='$TID'
+        ");
+
+        if($query){
+            return true;
+        }
+        else{
+            return false;
+        }
+   
+    }
+
+    public function EditTestRequestLabAcknowledge($TID)
+    {
+        $query = $this->db->query("UPDATE dbo.tbl_lab_test_request 
+        SET LabAcknowledgementStatus = 'Acknowledged'
        
         WHERE TID='$TID'
         ");

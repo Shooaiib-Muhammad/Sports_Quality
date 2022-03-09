@@ -84,12 +84,12 @@ if (!$this->session->has_userdata('user_id')) {
 
                                             </div>
 
-                                            <div class="col-md-6 mt-2">
+                                            <!-- <div class="col-md-6 mt-2">
 
                                                 <label class="form-contol" for="customFile">Quantity Returned</label>
                                                 <input type="number" class="form-control" id="qReturned" name="qReturned">
 
-                                            </div>
+                                            </div> -->
 
                                             <div class="col-md-6">
 
@@ -239,7 +239,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <th>Article</th>
                                                                 <th>Test Type</th>
                                                                 <th>Quantity Issed</th>
-                                                                <th>Sender Reference</th>
+                        
+                                                                <!-- <th>Sender Reference</th> -->
                                                                 <th>Receiver Signature</th>
                                                                 <th>Status</th>
                                                                 <th>ACTIONS</th>
@@ -258,7 +259,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <td><?php echo $keys['Article']; ?></td>
                                                                     <td><?php echo $keys['TestID']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Issued']; ?></td>
-                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderID']; ?></span></td>
+                                                            
+                                                                    <!-- <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderID']; ?></span></td> -->
                                                                     <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
                                                                    <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
                                                                  
@@ -288,11 +290,17 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <tr>
                                                                 <th>Request Date</th>
                                                                 <th>Type</th>
+                                                                <th>CSS Code</th>
                                                                 <th>Factory Code</th>
                                                                 <th>Article</th>
                                                                 <th>Test Type</th>
                                                                 <th>Quantity Issed</th>
-                                                                <th>Sender Reference</th>
+                                                                <th>Quantity Received</th>
+                                                                <th>Quantity Retained</th>
+                                                                <th>Quantity Returned</th>
+                                                                <th>Lab Result</th>
+                                                                <th>Lab Status</th>
+                                                                <!-- <th>Sender Reference</th> -->
                                                                 <th>Receiver Signature</th>
                                                                 <th>Sender Signature</th>
                                                                 <th>Status</th>
@@ -308,11 +316,17 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <tr>
                                                                     <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
                                                                     <td><?php echo $keys['Type']; ?></td>
+                                                                    <td><?php echo $keys['CSSNo']; ?></td>
                                                                     <td><?php echo $keys['Factory_Code']; ?></td>
                                                                     <td><?php echo $keys['Article']; ?></td>
                                                                     <td><?php echo $keys['TestID']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Issued']; ?></td>
-                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderID']; ?></span></td>
+                                                                    <td><?php echo $keys['Quantity_Received']; ?></td>
+                                                                    <td><?php echo $keys['Quantity_Retained']; ?></td>
+                                                                    <td><?php echo $keys['Quantity_Returned']; ?></td>
+                                                                    <td><?php echo $keys['Result']; ?></td>
+                                                                    <td><span class="badge badge-secondary p-1"><?php echo $keys['LabAcknowledgementStatus']; ?></span></td>
+                                                                    <!-- <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderID']; ?></span></td> -->
                                                                     <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
                                                                     <td> <span class="badge badge-primary p-1"><?php echo $keys['senderSignatureRec']; ?></span></td>
                                                                     <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
@@ -345,11 +359,16 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <tr>
                                                                 <th>Request Date</th>
                                                                 <th>Type</th>
+                                                                <th>CSS Code</th>
                                                                 <th>Factory Code</th>
                                                                 <th>Article</th>
                                                                 <th>Test Type</th>
-                                                                <th>Quantity Issed</th>
-                                                                <th>Sender Reference</th>
+                                                                <th>Qty. Issed</th>
+                                                                <th>Qty. Received</th>
+                                                                <th>Qty. Retained</th>
+                                                                <th>Qty. Returned</th>
+                                                                <th>Balance</th>
+                                                                <!-- <th>Sender Reference</th> -->
                                                                 <th>Receiver Signature Receiving</th>
                                                                 <th>Sender Signature Receiving</th>
                                                                 <th>Receiver Signature Returned</th>
@@ -368,11 +387,16 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <tr>
                                                                     <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
                                                                     <td><?php echo $keys['Type']; ?></td>
+                                                                    <td><?php echo $keys['CSSNo']; ?></td>
                                                                     <td><?php echo $keys['Factory_Code']; ?></td>
                                                                     <td><?php echo $keys['Article']; ?></td>
                                                                     <td><?php echo $keys['TestID']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Issued']; ?></td>
-                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderID']; ?></span></td>
+                                                                    <td><?php echo $keys['Quantity_Received']; ?></td>
+                                                                    <td><?php echo $keys['Quantity_Retained']; ?></td>
+                                                                    <td><?php echo $keys['Quantity_Returned']; ?></td>
+                                                                    <td><?php echo ($keys['Quantity_Received'] -$keys['Quantity_Returned']) ?></td>
+                                                                    <!-- <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderID']; ?></span></td> -->
                                                                     <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
                                                                     <td> <span class="badge badge-primary p-1"><?php echo $keys['senderSignatureRec']; ?></span></td>
                                                                     <td> <span class="badge badge-primary p-1"><?php echo $keys['SRETReceiverID']; ?></span></td>
@@ -460,6 +484,7 @@ if (!$this->session->has_userdata('user_id')) {
             var TID = split_value[1];
             let proceed = confirm("Are you sure you want send Results back to Requester?");
             if (proceed) {
+            let quantity = prompt("Enter Quantity Returned");
             url = "<?php echo base_url(''); ?>LabController/TestRequestById";
             url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestBackToSender";
             $.post(url, {
@@ -467,6 +492,7 @@ if (!$this->session->has_userdata('user_id')) {
             }, function(data, status) {
                 $.post(url2, {
                     'Id': TID,
+                    'Quantity':quantity,
                     'receiverId': data[0].SRSenderID,
                     'senderId': data[0].SRReceiverID
                 }, function(data, status) {
@@ -502,7 +528,6 @@ if (!$this->session->has_userdata('user_id')) {
                     'Sample_Receiving_Date': Sample_Receiving_Date,
                     'Quantity_Received': Quantity_Received,
                     'Quantity_Retained': Quantity_Retained,
-                    'Quantity_Returned': Quantity_Returned,
                     'Due_Date': Due_Date,
                     'CompletationDate': CompletationDate,
                     'Remarks': Remarks,

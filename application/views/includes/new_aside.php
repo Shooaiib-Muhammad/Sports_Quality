@@ -83,6 +83,14 @@
                             </a>
                         </li>
 
+                        <li>
+                            <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>LabController/TestRequestLab" title="Introduction" data-filter-tags="application intel introduction">
+                                <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Test Requests Received </span>
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
 
@@ -187,6 +195,14 @@
                                     <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Test Type </span>
                                 </a>
                             </li>
+
+                            <li>
+                            <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>LabController/TestRequestLab" title="Introduction" data-filter-tags="application intel introduction">
+                                <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Test Requests Received </span>
+                            </a>
+                        </li>
                         </ul>
 
 
