@@ -153,6 +153,311 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a href="#" title="Theme Settings" data-filter-tags="theme settings">
+
+                        <span class="nav-link-text" data-i18n="nav.theme_settings">MIS</span>
+                    </a>
+                    <ul>
+
+                        <li>
+                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Production</span>
+                            </a>
+                            <ul>
+                            <li>
+                            <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>MIS/Amb" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Airless Mini Ball</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/TM'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Thermo Bonded Ball</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/MS'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Machine Stich Ball</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/HS'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Hand Stich Ball</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/DW'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Date Wise</span>
+                            </a>
+                        </li>    
+                                                
+                            </ul>
+
+                        </li>
+
+                        <li>
+                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Quality</span>
+                            </a>
+                            <ul>
+                            <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/Quality/Reports'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Reports</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/Quality/Dashboard'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Quality Analysis</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/DW/AMbReports'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">AMB Analysis</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/DW/Store'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">MS Store</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/DW/LFB'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">LFB Ball</span>
+                            </a>
+                        </li>    
+                                                
+                            </ul>
+                            
+                        </li>
+
+                        <li>
+                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Down Time</span>
+                            </a>
+                            <ul>
+                            <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/DW/Reports'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Reports</span>
+                            </a>
+                        </li>
+                
+                                                
+                            </ul>
+                            
+                        </li>
+
+                        <li>
+                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Efficiency</span>
+                            </a>
+                            <ul>
+                            <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/Efficiency'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Reports</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/Efficiency/samValue'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">ADD SAM Value</span>
+                            </a>
+                        </li>
+                      
+                            </ul>
+                            
+                        </li>
+
+                        <li>
+                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Time Analysis</span>
+                            </a>
+                            <ul>
+                            <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/Cutting'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Cutting</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/Carcas'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Carcas</span>
+                            </a>
+                        </li>
+
+                        
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/Dipping'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dipping</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/Asembling'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Assembling</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/PannelShape'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Panel Shape</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/FinalQC'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Final QC</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/LFBReport'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">LFB</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/Summary'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Summary</span>
+                            </a>
+                        </li>
+                      
+                            </ul>
+                            
+                        </li>
+
+                        <li>
+                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Lab</span>
+                            </a>
+                            <ul>
+                            <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/Lab'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashoard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/Lab/Dashboard'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashoard Filteration</span>
+                            </a>
+                        </li>
+                                                
+                            </ul>
+                            
+                        </li>
+
+                        <li>
+                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Development</span>
+                            </a>
+                            <ul>
+                            <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/Developement'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashoard</span>
+                            </a>
+                        </li>
+                           
+                            </ul>
+                            
+                        </li>
+
+                        <li>
+                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Environment control</span>
+                            </a>
+                            <ul>
+                            <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/TemHumidityController'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Temp and Humdity</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/ParametersController'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Conveyers</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/MoldingController'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Moldings</span>
+                            </a>
+                        </li>
+                           
+                            </ul>
+                            
+                        </li>
+                        <li>
+                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Metal Detector</span>
+                            </a>
+                            <ul>
+                            <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/MetalDetectorController'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashoard</span>
+                            </a>
+                        </li>
+                           
+                            </ul>
+                            
+                        </li>
+            
+                    </ul>
+                </li>
+             
+
 
 
             </ul>
