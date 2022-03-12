@@ -555,18 +555,6 @@ FROM            dbo.view_Dev_Articles_PSD_PED
         return $query->result_array();
     }
 
-    public function getGantSpecificDataSeason($factoryCode,$season)
-    {
-
-        $query = $this->db
-            ->query("SELECT        Article, NoOfBalls, ArtCode1, StartDate, ArtCode, Name, PSDate, PEDate, PSDate1, PEDate1, Type, Status, Size, CASE WHEN NoofDays = 0 THEN 1 ELSE NoofDays END AS NoofDays
-            FROM            dbo.view_Dev_Articles_PSD_PED
-            WHERE        (FactoryCode = '$factoryCode') AND (SesonalRange = '$season')
-            GROUP BY ArtCode, Name, Type, Status, Size, PSDate, ArtCode1, PEDate, StartDate, NoOfBalls, CASE WHEN NoofDays = 0 THEN 1 ELSE NoofDays END, PSDate1, PEDate1, Article 
-            HAVING        (PSDate IS NOT NULL) AND (PEDate IS NOT NULL)");
-        return $query->result_array();
-    }
-
     public function getGantDateRangeDataTypeArticleCode(
         $startDate,
         $endDate,
@@ -656,17 +644,6 @@ FROM            dbo.view_Dev_Articles_PSD_PED
     FROM            dbo.view_Dev_Articles_PSD_PED
     GROUP BY ArtCode, Name, Type, Status, Size, PSDate, ArtCode1, PEDate,StartDate,NoOfBalls, CASE WHEN NoofDays = 0 THEN 1 ELSE NoofDays END,PSDate1, PEDate1,Article
     HAVING   Type='$type'");
-        return $query->result_array();
-    }
-
-    public function getCustomTableDataSpecificSeason($factoryCode,$season)
-    {
-        $query = $this->db
-            ->query("SELECT        Article, NoOfBalls, ArtCode1, StartDate, ArtCode, Name, PSDate, PEDate, PSDate1, PEDate1, Type, Status, Size, CASE WHEN NoofDays = 0 THEN 1 ELSE NoofDays END AS NoofDays
-            FROM            dbo.view_Dev_Articles_PSD_PED
-            WHERE        (FactoryCode = '$factoryCode') AND (SesonalRange = '$season')
-            GROUP BY ArtCode, Name, Type, Status, Size, PSDate, ArtCode1, PEDate, StartDate, NoOfBalls, CASE WHEN NoofDays = 0 THEN 1 ELSE NoofDays END, PSDate1, PEDate1, Article
-            HAVING        (PSDate IS NOT NULL) AND (PEDate IS NOT NULL)");
         return $query->result_array();
     }
 
@@ -768,17 +745,6 @@ HAVING        (PSDate >= '$startDate') AND (PEDate <= '$endDate') And Type='$typ
 FROM            dbo.view_Dev_Articles_PSD_PED
 GROUP BY ArtCode, Name, Type, Status, Size, PSDate, PEDate,StartDate,NoOfBalls, CASE WHEN NoofDays = 0 THEN 1 ELSE NoofDays END,PSDate1, PEDate1,Article
 HAVING   Type='$type'");
-        return $query->result_array();
-    }
-
-    public function CallSpecificDataSeason($factoryCode,$season)
-    {
-        $query = $this->db
-            ->query("SELECT        Article, NoOfBalls, ArtCode1, StartDate, ArtCode, Name, PSDate, PEDate, PSDate1, PEDate1, Type, Status, Size, CASE WHEN NoofDays = 0 THEN 1 ELSE NoofDays END AS NoofDays
-            FROM            dbo.view_Dev_Articles_PSD_PED
-            WHERE        (FactoryCode = '$factoryCode') AND (SesonalRange = '$season')
-            GROUP BY ArtCode, Name, Type, Status, Size, PSDate, ArtCode1, PEDate, StartDate, NoOfBalls, CASE WHEN NoofDays = 0 THEN 1 ELSE NoofDays END, PSDate1, PEDate1, Article
-            HAVING        (PSDate IS NOT NULL) AND (PEDate IS NOT NULL)");
         return $query->result_array();
     }
 

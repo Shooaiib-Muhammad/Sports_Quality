@@ -6,7 +6,7 @@ class Developement extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Development_Model');
+        $this->load->model('MIS/Development_Model');
     }
     public function index()
     {
@@ -23,7 +23,7 @@ class Developement extends CI_Controller
 //print_r($data['RDate']);
 
        $data['CallData']= $this->Development_Model->CallData();
-        $this->load->view('MIS/Development/Developmnent', $data);
+        $this->load->view('MIS/development/Developmnent', $data);
     }
 
     public function load()

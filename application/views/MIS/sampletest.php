@@ -1,29 +1,4 @@
-<?php
-if (!$this->session->has_userdata('user_id')) {
-    redirect('');
-} else {
-?>
-
-    <div id="panel-1" class="panel">
-
-
-
-        <?php $this->load->view('includes/new_header'); ?>
-
-        <!-- BEGIN Page Wrapper -->
-        <div class="page-wrapper">
-            <div class="page-inner">
-                <!-- BEGIN Left Aside -->
-                <?php $this->load->view('includes/new_aside'); ?>
-                <!-- END Left Aside -->
-                <div class="page-content-wrapper">
-                    <!-- BEGIN Page Header -->
-                    <?php $this->load->view('includes/top_header.php'); ?>
-                    <main id="js-page-content" role="main" class="page-content">
-
-                        <div class="col-lg-12" style="margin-bottom:20px">
-                        
-                        <div class="subheader">
+<div class="subheader">
                         <h1 class="subheader-title">
                             <i class='subheader-icon fal fa-chart-area'></i>TM</span>
 
@@ -42,7 +17,7 @@ $CurrentDate=$Year.'-'.$Month.'-'.$Day;
 
 <!--<![endif]-->
 
-
+<html>
 <body>
 
 <div id="right-panel" class="right-panel">
@@ -554,6 +529,10 @@ if ($VendorId==1) {
 ?>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+</div>
 <?php
   
 $data_points1 = array();
@@ -935,7 +914,7 @@ $SPRFT=$SPPass/$SPChecked*100;
 </table> 
 </div>
 </div>
-    
+ </div>
 
 <?php
 
@@ -1064,21 +1043,5 @@ $SPRFT=$SPPass/$SPChecked*100;
 
 }else{
     redirect('Welcome/index');
-}
-?>
-
-
-
-
-
-
-                        </div>
-                    </main>
-                </div>
-            </div>
-
-        </div>
-    </div>
-<?php
 }
 ?>

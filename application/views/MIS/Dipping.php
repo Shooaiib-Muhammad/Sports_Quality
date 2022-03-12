@@ -83,7 +83,7 @@ if ($this->session->userdata('userStus') == 1) {
           background: #f1f7ff;
         }
       </style>
-      <link href="<?php link_file('assets/qa_assets/main.css') ?>" rel="stylesheet">
+      <link href="<?php link_file('MIS/assets/qa_assets/main.css') ?>" rel="stylesheet">
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
       <script src="<?php echo base_url(); ?>assets/js/jquery.js" type="text/javascript"></script>
       <script>
