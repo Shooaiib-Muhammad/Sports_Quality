@@ -22,10 +22,13 @@ if (!$this->session->has_userdata('user_id')) {
                     <main id="js-page-content" role="main" class="page-content">
 
                         <div class="col-lg-12" style="margin-bottom:20px">
-                        
+                        <ol class="breadcrumb page-breadcrumb">
+               
+               <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+           </ol>
                         <div class="subheader">
                         <h1 class="subheader-title">
-                            <i class='subheader-icon fal fa-chart-area'></i>TM</span>
+                            <i class='subheader-icon fal fa-chart-area'></i>TM (Thermo Bonded Ball)</span>
 
                         </h1>
                     </div>
@@ -51,12 +54,7 @@ $CurrentDate=$Year.'-'.$Month.'-'.$Day;
                   td{
                     text-align: center;
                   }
-                  .Froming{
-                   
-                  }
-                  .packing{
-                    
-                  }
+               
                 </style>                      
                           
  
@@ -474,10 +472,10 @@ Highcharts.chart('chartContainer2', {
                                 <strong class="card-title">Thermo Bonded Ball Production </strong>
                             </div>
                             <div class="card-body">
-                                <table id="table2" class="col-md-12 table table-bordered table-hover table-responsive table-striped w-100" style="width: 100%;" >
-<thead class="bg-primary-200 text-light">
+                                <table id="table2" class="display responsive nowrap" style="width: 100%;" >
+<thead class="thead-dark">
                      
-<tr class="bg-primary-200 text-light" style="color: #fff;">
+<tr style="background-color: #282828; color: #fff;">
    <td></td>
 <td colspan="4" style="text-align: center; border-right: 1px #ffff solid; ">Forming</td>
 <td colspan="3" style="text-align: center;">Final QC </td></tr>
@@ -842,7 +840,7 @@ Highcharts.chart('chartContainer2', {
                                 <strong class="card-title">Thermo Bonded Ball Production </strong>
                             </div>
                             <div class="card-body">
-                                <table id="table2" class="col-md-12 table table-bordered table-hover table-responsive table-striped w-100" style="width: 100%;" >
+                                <table id="table2" class="table table-bordered table-hover table-responsive table-striped w-100" style="width: 100%;" >
 <thead class="bg-primary-200 text-light">
                           
 <tr class="bg-primary-200 text-light" style="color: #fff;">

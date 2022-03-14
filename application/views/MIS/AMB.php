@@ -3,17 +3,32 @@ if (!$this->session->has_userdata('user_id')) {
     redirect('');
 } else {
 ?>
-    <div id="panel-1" class="panel">
-    <?php $this->load->view('includes/new_header'); ?>
-    <div class="page-wrapper">
+<div id="panel-1" class="panel">
+
+
+
+<?php $this->load->view('includes/new_header'); ?>
+
+<!-- BEGIN Page Wrapper -->
+<div class="page-wrapper">
     <div class="page-inner">
-    <?php $this->load->view('includes/new_aside'); ?>
-    <div class="page-content-wrapper">
-    <?php $this->load->view('includes/top_header.php'); ?>
-    <div class="col-lg-12" style="margin-bottom:20px">
+        <!-- BEGIN Left Aside -->
+        <?php $this->load->view('includes/new_aside'); ?>
+        <!-- END Left Aside -->
+        <div class="page-content-wrapper">
+            <!-- BEGIN Page Header -->
+            <?php $this->load->view('includes/top_header.php'); ?>
+            <main id="js-page-content" role="main" class="page-content">
+
+                <div class="col-lg-12" style="margin-bottom:20px">
+                <ol class="breadcrumb page-breadcrumb">
+               
+               <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+           </ol>
+   
                     <div class="subheader">
                         <h1 class="subheader-title">
-                            <i class='subheader-icon fal fa-chart-area'></i> AMB</span>
+                            <i class='subheader-icon fal fa-chart-area'></i>AMB (Airless Mini Ball Reports)</span>
 
                         </h1>
                     </div>
@@ -483,12 +498,7 @@ Highcharts.chart('chartContainer2', {
                   td{
                     text-align: center;
                   }
-                  .Froming{
-                  
-                  }
-                  .packing{
-                   
-                  }
+                
                 </style>                      
                                        
 <tr class="bg-primary-200 text-light" style="color: #fff;">
@@ -887,12 +897,7 @@ Echo $LineName;
                   td{
                     text-align: center;
                   }
-                  .Froming{
-             
-                  }
-                  .packing{
-           
-                  }
+               
                 </style>                      
                                        
 <tr class="bg-primary-200 text-light" style="color: #fff;">
@@ -1145,12 +1150,11 @@ $SEfficiency=0;
 }
 ?>
 </div>
-
+</main>
 </div>
 </div>
 </div>
 </div>
-
 <?php
 }
 ?>

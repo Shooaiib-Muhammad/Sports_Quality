@@ -17,7 +17,7 @@ $CurrentDate=$Year.'-'.$Month.'-'.$Day;
 
 <!--<![endif]-->
 
-<html>
+
 <body>
 
 <div id="right-panel" class="right-panel">
@@ -26,12 +26,8 @@ $CurrentDate=$Year.'-'.$Month.'-'.$Day;
                   td{
                     text-align: center;
                   }
-                  .Froming{
-                   
-                  }
-                  .packing{
-                    
-                  }
+                
+                
                 </style>                      
                           
  
@@ -449,10 +445,10 @@ Highcharts.chart('chartContainer2', {
                                 <strong class="card-title">Thermo Bonded Ball Production </strong>
                             </div>
                             <div class="card-body">
-                                <table id="table2" class="col-md-12 table table-bordered table-hover table-responsive table-striped w-100" style="width: 100%;" >
-<thead class="bg-primary-200 text-light">
+                                <table id="table2" class="display responsive nowrap" style="width: 100%;" >
+<thead class="thead-dark">
                      
-<tr class="bg-primary-200 text-light" style="color: #fff;">
+<tr style="background-color: #282828; color: #fff;">
    <td></td>
 <td colspan="4" style="text-align: center; border-right: 1px #ffff solid; ">Forming</td>
 <td colspan="3" style="text-align: center;">Final QC </td></tr>
@@ -821,7 +817,7 @@ Highcharts.chart('chartContainer2', {
                                 <strong class="card-title">Thermo Bonded Ball Production </strong>
                             </div>
                             <div class="card-body">
-                                <table id="table2" class="col-md-12 table table-bordered table-hover table-responsive table-striped w-100" style="width: 100%;" >
+                                <table id="table2" class="table table-bordered table-hover table-responsive table-striped w-100" style="width: 100%;" >
 <thead class="bg-primary-200 text-light">
                           
 <tr class="bg-primary-200 text-light" style="color: #fff;">
@@ -914,7 +910,7 @@ $SPRFT=$SPPass/$SPChecked*100;
 </table> 
 </div>
 </div>
- </div>
+ </div> 
 
 <?php
 
@@ -931,6 +927,7 @@ $SPRFT=$SPPass/$SPChecked*100;
       <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
       <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
       <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+      </div>
 </body>
 
      
@@ -1045,3 +1042,4 @@ $SPRFT=$SPPass/$SPChecked*100;
     redirect('Welcome/index');
 }
 ?>
+

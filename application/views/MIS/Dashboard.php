@@ -325,6 +325,7 @@ $TMtarget=$TM04Target+$TM03Target+$TM02Target;
 
 ?>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 
@@ -356,7 +357,7 @@ Highcharts.chart('chartContainer2', {
     },
     series: [{
         name: 'Defect Qty',
-        data: [<?php echo join($data2, ',') ?>]
+        data: [<?php echo join(',', $data2,) ?>]
     }]
 });
 
@@ -383,7 +384,7 @@ var chart = Highcharts.chart('chartContainer1', {
         type: 'column',
         name: 'Produced Qty',
         colorByPoint: true,
-        data: [<?php echo join($data1, ',') ?>],
+        data: [<?php echo join(',', $data1) ?>],
         showInLegend: false
     }]
 
@@ -411,7 +412,7 @@ var chart = Highcharts.chart('chartContainer5', {
         type: 'column',
         name: 'RFT',
         colorByPoint: true,
-        data: [<?php echo join($data3, ',') ?>],
+        data: [<?php echo join(',', $data3,) ?>],
         showInLegend: false
     }]
 
@@ -925,7 +926,7 @@ color: #1a8cff;
 </style>
 <tr style="background-color: #282828; color: #fff;">
 <td></td>
-<td colspan="5" style="text-align: center; border-right: 1px #ffff solid;border-right: : 1px #ffff solid;">Forming</td>
+<td colspan="5" style="text-align: center; border-right: 1px #ffff solid;border-right: 1px #ffff solid;">Forming</td>
 <td colspan="4" style="text-align: center;">Packing </td></tr>
 <tr style="font-weight: bold; background-color: #282828; color: #fff;" >
 <td style="width:20%; text-align: left;">Hours</td>
@@ -1026,7 +1027,7 @@ color: #1a8cff;
 </style>
 <tr style="background-color: #282828; color: #fff;">
 <td></td>
-<td colspan="5" style="text-align: center; border-right: 1px #ffff solid;border-right: : 1px #ffff solid;">Forming</td>
+<td colspan="5" style="text-align: center; border-right: 1px #ffff solid;border-right: 1px #ffff solid;">Forming</td>
 <td colspan="4" style="text-align: center;">Final QC </td></tr>
 <tr style="font-weight: bold; background-color: #282828; color: #fff;" >
 <td  style="width:70%;text-align: left;">Hours</td>
@@ -1131,8 +1132,8 @@ color: #1a8cff;
 
 <tr style="font-weight: bold; background-color: #282828; color: #fff;" >
 <td style="text-align: left;">Hours</td>
-<td  style="width: :10%; text-align: left;">Article</td>
-<td  style="width: :10%; text-align: left;">Size</td>
+<td  style="width:10%; text-align: left;">Article</td>
+<td  style="width:10%; text-align: left;">Size</td>
 <td  style="width:10%;">Checked</td>
 <td  style="width:10%;">Passed</td>
 <td  style="width:10%;">Fail</td>
@@ -1531,6 +1532,7 @@ $TrMSPrec=$MSOutPut/$DailyMSTarget*100;
 
 
 ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 
@@ -1588,7 +1590,7 @@ var chart = Highcharts.chart('chartContainer', {
         type: 'column',
         name: 'Produced Qty',
         colorByPoint: true,
-        data: [<?php echo join($data11, ',') ?>,<?php echo join($data22, ',') ?>,<?php echo join($data33, ',') ?>,<?php echo join($data44, ',') ?>],
+        data: [<?php echo join(',', $data11,) ?>,<?php echo join(',', $data22,) ?>,<?php echo join(',', $data33,) ?>,<?php echo join(',',$data44,) ?>],
         showInLegend: false
     }]
 
@@ -2553,6 +2555,6 @@ var id = $(this).closest('tr').attr('id');
       "oLanguage":{"sEmptyTable":"Data Is Not Available Yet!"},
 
 
-    }
     });
+          });
     </script>

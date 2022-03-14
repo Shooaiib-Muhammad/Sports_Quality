@@ -13,10 +13,15 @@ if (!$this->session->has_userdata('user_id')) {
 <div class="page-content-wrapper">
 <?php $this->load->view('includes/top_header.php'); ?>
 <main id="js-page-content" role="main" class="page-content">
+
+<ol class="breadcrumb page-breadcrumb">
+               
+               <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+           </ol>
     
                     <div class="subheader">
                         <h1 class="subheader-title">
-                            <i class='subheader-icon fal fa-chart-area'></i>HS</span>
+                            <i class='subheader-icon fal fa-chart-area'></i>HS (Hand Stitch Ball)</span>
 
                         </h1>
                     </div>
@@ -390,12 +395,7 @@ Highcharts.chart('chartContainer2', {
                   td{
                     text-align: center;
                   }
-                  .Froming{
-                    
-                  }
-                  .packing{
-                   
-                  }
+              
                 </style>                      
 <tr style="font-weight: bold; color: #fff;"><td style="text-align: left;">Article</td> 
 <td  style="width:10%; " >Check</td>

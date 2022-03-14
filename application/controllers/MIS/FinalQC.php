@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class FinalQC extends CI_Controller {
 public function __construct() {
 parent::__construct();
-$this->load->model('FinalQC_Model');
+$this->load->model('MIS/FinalQC_Model');
 }
 public function index()
 {

@@ -18,7 +18,7 @@ class Lab extends CI_Controller
     {
         $data['supplier'] = $this->Development_Model->supplier();
 
-        $this->load->view('MIS//Lab_Views/lab', $data);
+        $this->load->view('MIS/Lab_Views/lab', $data);
     }
 
     public function load()

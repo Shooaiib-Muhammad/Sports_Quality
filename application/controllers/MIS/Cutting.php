@@ -51,7 +51,12 @@ public function fact2($Domain)
     
  public function searchQuery()
 	{
-
+	global $Sdate;
+	global $EDate;
+	global $fc;
+	global $matType;	
+	global $Shape;	
+	global $material;	
 $data['Sdate'] =$Sdate;
 $data['Edate'] =$EDate;
 $data['CuttingData'] = $this->Cutting_Model->searchQuery($fc,$matType,$Shape,$material,$Sdate,$EDate);

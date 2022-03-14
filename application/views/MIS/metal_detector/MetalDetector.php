@@ -95,10 +95,8 @@
           <div class="col-md-1">
             <div class="form-group">
               <label class=" form-control-label"></label>
-              <div class="input-group">
-                <br>
-                <br>
-                <button type="submit" id="submit" name="submit" onclick="MainFunction()" class="btn btn-primary " style="border-radius: 15px;"><i class=" fa fa-search"></i> Search</button>
+              <div style="margin-top:18px" class="input-group">
+                <button type="submit" id="submit" name="submit" onclick="MainFunction()" class="btn btn-success btn-block" style="border-radius: 15px;"><i class=" fa fa-search"></i> Search</button>
               </div>
             </div>
           </div>
@@ -176,9 +174,9 @@
        $('#titleTable').html("")
        $('#titleTable').text(`Metal Detector Data ${newFormate} to ${newFormateE}`)
 
-        url = "<?php echo base_url('/MetalDetectorController/getChartDataRange'); ?>"
-        url2 = "<?php echo base_url('/MetalDetectorController/getTotalCountRange'); ?>"
-        url3 = "<?php echo base_url('/MetalDetectorController/getTableDataRange'); ?>"
+        url = "<?php echo base_url('MIS/MetalDetectorController/getChartDataRange'); ?>"
+        url2 = "<?php echo base_url('MIS/MetalDetectorController/getTotalCountRange'); ?>"
+        url3 = "<?php echo base_url('MIS/MetalDetectorController/getTableDataRange'); ?>"
 
 $.post(url3,{"c_date": c_date,"e_date":e_date},function(data){
    $('#customTableDateRange').html("");
@@ -230,21 +228,42 @@ $("#exampleDataTable1").DataTable(
 
 dom: 'Bfrtip',
 buttons: [
-          {
-                extend: 'copy',
-                messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.',
-                className:'btn btn-warning'
-            },
-            {
-                extend: 'excel',
-                messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.',
-                className:'btn btn-primary'
-            },
-            {
-                extend: 'pdf',
-                messageBottom: null,
-                className:'btn btn-secondary'
-            }
+            /*{
+                    	extend:    'colvis',
+                    	text:      'Column Visibility',
+                    	titleAttr: 'Col visibility',
+                    	className: 'mr-sm-3'
+                    },*/
+                    {
+                        extend: 'pdfHtml5',
+                        text: 'PDF',
+                        titleAttr: 'Generate PDF',
+                        className: 'btn-outline-danger btn-sm mr-1'
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Excel',
+                        titleAttr: 'Generate Excel',
+                        className: 'btn-outline-success btn-sm mr-1'
+                    },
+                    {
+                        extend: 'csvHtml5',
+                        text: 'CSV',
+                        titleAttr: 'Generate CSV',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'copyHtml5',
+                        text: 'Copy',
+                        titleAttr: 'Copy to clipboard',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Print',
+                        titleAttr: 'Print Table',
+                        className: 'btn-outline-primary btn-sm'
+                    }
         ],
 "ordering":false,
 "pageLength":10,
@@ -390,9 +409,9 @@ $.post(
        let splitDate = c_date.split("-");
        let newFormate = splitDate[2] + "-" +splitDate[1] + "-"+splitDate[0];
        $('#titleTable').text(`Metal Detector Data ${newFormate}`)
-        url = "<?php echo base_url('/MetalDetectorController/getChartData'); ?>"
-        url2 = "<?php echo base_url('/MetalDetectorController/getTotalCount'); ?>"
-        url3 = "<?php echo base_url('/MetalDetectorController/getTableData'); ?>"
+        url = "<?php echo base_url('MIS/MetalDetectorController/getChartData'); ?>"
+        url2 = "<?php echo base_url('MIS/MetalDetectorController/getTotalCount'); ?>"
+        url3 = "<?php echo base_url('MIS/MetalDetectorController/getTableData'); ?>"
 
         $.post(url3,{"c_date": c_date,},function(data){
        
@@ -439,34 +458,124 @@ $.post(
    </table>`
 
    $("#customTableDateRange").append(tableData);
-   $("#exampleDataTable1").DataTable(
-   { 
+   
+   $('#exampleDataTable1').dataTable({
+                responsive: false,
+                lengthChange: false,
+                dom:
+                    /*	--- Layout Structure 
+                    	--- Options
+                    	l	-	length changing input control
+                    	f	-	filtering input
+                    	t	-	The table!
+                    	i	-	Table information summary
+                    	p	-	pagination control
+                    	r	-	processing display element
+                    	B	-	buttons
+                    	R	-	ColReorder
+                    	S	-	Select
+
+                    	--- Markup
+                    	< and >				- div element
+                    	<"class" and >		- div with a class
+                    	<"#id" and >		- div with an ID
+                    	<"#id.class" and >	- div with an ID and a class
+
+                    	--- Further reading
+                    	https://datatables.net/reference/option/dom
+                    	--------------------------------------
+                     */
+                    "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                buttons: [
+                    /*{
+                    	extend:    'colvis',
+                    	text:      'Column Visibility',
+                    	titleAttr: 'Col visibility',
+                    	className: 'mr-sm-3'
+                    },*/
+                    {
+                        extend: 'pdfHtml5',
+                        text: 'PDF',
+                        titleAttr: 'Generate PDF',
+                        className: 'btn-outline-danger btn-sm mr-1'
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Excel',
+                        titleAttr: 'Generate Excel',
+                        className: 'btn-outline-success btn-sm mr-1'
+                    },
+                    {
+                        extend: 'csvHtml5',
+                        text: 'CSV',
+                        titleAttr: 'Generate CSV',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'copyHtml5',
+                        text: 'Copy',
+                        titleAttr: 'Copy to clipboard',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Print',
+                        titleAttr: 'Print Table',
+                        className: 'btn-outline-primary btn-sm'
+                    }
+                ]
+            });
+  //  $("#exampleDataTable1").DataTable(
+  //  { 
   
-       dom: 'Bfrtip',
-        buttons: [
-          {
-                extend: 'copy',
-                messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.',
-                className:'btn btn-warning'
-            },
-            {
-                extend: 'excel',
-                messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.',
-                className:'btn btn-primary'
-            },
-            {
-                extend: 'pdf',
-                messageBottom: null,
-                className:'btn btn-secondary'
-            }
-        ],
-      "ordering":false,
-      "pageLength":10,
-      "searching":true,
-      "LengthChange":true,
-      "oLanguage":{"sEmptyTable":"Data Is Not Available Yet!"},
+  //      dom: 'Bfrtip',
+  //       buttons: [
+  //           /*{
+  //                   	extend:    'colvis',
+  //                   	text:      'Column Visibility',
+  //                   	titleAttr: 'Col visibility',
+  //                   	className: 'mr-sm-3'
+  //                   },*/
+  //                   {
+  //                       extend: 'pdfHtml5',
+  //                       text: 'PDF',
+  //                       titleAttr: 'Generate PDF',
+  //                       className: 'btn-outline-danger btn-sm mr-1'
+  //                   },
+  //                   {
+  //                       extend: 'excelHtml5',
+  //                       text: 'Excel',
+  //                       titleAttr: 'Generate Excel',
+  //                       className: 'btn-outline-success btn-sm mr-1'
+  //                   },
+  //                   {
+  //                       extend: 'csvHtml5',
+  //                       text: 'CSV',
+  //                       titleAttr: 'Generate CSV',
+  //                       className: 'btn-outline-primary btn-sm mr-1'
+  //                   },
+  //                   {
+  //                       extend: 'copyHtml5',
+  //                       text: 'Copy',
+  //                       titleAttr: 'Copy to clipboard',
+  //                       className: 'btn-outline-primary btn-sm mr-1'
+  //                   },
+  //                   {
+  //                       extend: 'print',
+  //                       text: 'Print',
+  //                       titleAttr: 'Print Table',
+  //                       className: 'btn-outline-primary btn-sm'
+  //                   }
+  //       ],
+  //     "ordering":false,
+  //     "pageLength":10,
+  //     "searching":true,
+  //     "LengthChange":true,
+  //     "oLanguage":{"sEmptyTable":"Data Is Not Available Yet!"},
     
-    });
+  //   });
           
         });
 

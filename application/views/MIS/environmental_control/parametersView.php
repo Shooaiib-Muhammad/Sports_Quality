@@ -166,10 +166,9 @@ if (!$this->session->has_userdata('user_id')) {
           <div class="col-md-1">
             <div class="form-group">
               <label class=" form-control-label"></label>
-              <div class="input-group">
-                <br>
-                <br>
-                <button type="submit" id="submit" name="submit" onclick="MainFunction()" class="btn btn-primary " style="border-radius: 15px;"><i class=" fa fa-search"></i> Search</button>
+              <div style="margin-top:18px" class="input-group">
+
+                <button type="submit" id="submit" name="submit" onclick="MainFunction()" class="btn btn-success btn-block " style="border-radius: 15px;"><i class=" fa fa-search"></i> Search</button>
               </div>
             </div>
           </div>
@@ -247,7 +246,7 @@ if (!$this->session->has_userdata('user_id')) {
         let entrYdate = year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + "00"
         $.ajax({
 
-          url: "<?php echo base_url('/TemHumidityController/getData'); ?>",
+          url: "<?php echo base_url('/MIS/TemHumidityController/getData'); ?>",
           method: "POST",
           data: {
             "entrYdate": entrYdate,
@@ -276,7 +275,7 @@ if (!$this->session->has_userdata('user_id')) {
           $.ajax({
 
 url: "<?php echo base_url(
-  '/ParametersController/gethumidity'
+  '/MIS/ParametersController/gethumidity'
 ); ?>",
 method: "POST",
 data: {
@@ -924,7 +923,7 @@ else{
   $.ajax({
 
 url: "<?php echo base_url(
-  '/ParametersController/gethumidityConveyor'
+  '/MIS/ParametersController/gethumidityConveyor'
 ); ?>",
 method: "POST",
 data: {
@@ -1806,7 +1805,7 @@ Highcharts.chart('Tempmax', {
         $.ajax({
 
 url: "<?php echo base_url(
-  '/ParametersController/gethumidity'
+  '/MIS/ParametersController/gethumidity'
 ); ?>",
 method: "POST",
 data: {
@@ -2616,7 +2615,7 @@ Highcharts.chart('Tempmax', {
        
 //         $.ajax({
 
-//           url: "<?php echo base_url('/MIS//TemHumidityController/gethumMax'); ?>",
+//           url: "<?php echo base_url('/MIS/TemHumidityController/gethumMax'); ?>",
 //           method: "POST",
 //           data: {
 //             "c_date": c_date,

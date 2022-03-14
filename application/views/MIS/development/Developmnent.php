@@ -529,7 +529,7 @@ var edate;
 
 //   $.ajax({
 
-// url  : "<?php echo base_url('MIS//Developement/loadArticle'); ?>",
+// url  : "<?php echo base_url('MIS/Developement/loadArticle'); ?>",
 // method: "GET",
 // data: {"c_date":sdate,"e_date":edate },
 // success: function (data) {

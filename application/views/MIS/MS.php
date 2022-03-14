@@ -23,10 +23,13 @@ if (!$this->session->has_userdata('user_id')) {
 
                 <div class="col-lg-12" style="margin-bottom:20px">
 
-                
+                <ol class="breadcrumb page-breadcrumb">
+               
+               <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+           </ol>
                     <div class="subheader">
                         <h1 class="subheader-title">
-                            <i class='subheader-icon fal fa-chart-area'></i>MS</span>
+                            <i class='subheader-icon fal fa-chart-area'></i>MS (Machine Stitch Ball)</span>
 
                         </h1>
                     </div>

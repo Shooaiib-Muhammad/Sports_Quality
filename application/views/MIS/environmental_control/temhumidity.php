@@ -103,10 +103,9 @@ if (!$this->session->has_userdata('user_id')) {
           <div class="col-md-1">
             <div class="form-group">
               <label class=" form-control-label"></label>
-              <div class="input-group">
-                <br>
-                <br>
-                <button type="submit" id="submit" name="submit" onclick="MainFunction()" class="btn btn-primary " style="border-radius: 15px;"><i class=" fa fa-search"></i> Search</button>
+              <div style="margin-top:18px" class="input-group">
+              
+                <button type="submit" id="submit" name="submit" onclick="MainFunction()" class="btn btn-success btn-block" style="border-radius: 15px;"><i class=" fa fa-search"></i> Search</button>
               </div>
             </div>
           </div>
@@ -1331,7 +1330,7 @@ $.ajax({
 url: "<?php echo base_url(
 '/MIS/TemHumidityController/gethumidity'
 ); ?>",
-url: "<?php echo base_url('/MIS//TemHumidityController/gethumidity'); ?>",
+url: "<?php echo base_url('/MIS/TemHumidityController/gethumidity'); ?>",
 method: "POST",
 data: {
 "c_date": c_date,
@@ -1777,7 +1776,7 @@ else if(hallValue == "TM Hall"){
 
 $.ajax({
 
-url: "<?php echo base_url('/TemHumidityController/gethumHallWise'); ?>",
+url: "<?php echo base_url('MIS/TemHumidityController/gethumHallWise'); ?>",
 method: "POST",
 data: {
 "c_date": c_date,
@@ -2235,7 +2234,7 @@ else if(hallValue == "AMB Hall"){
 
 $.ajax({
 
-url: "<?php echo base_url('/TemHumidityController/gethumHallWise'); ?>",
+url: "<?php echo base_url('MIS/TemHumidityController/gethumHallWise'); ?>",
 method: "POST",
 data: {
 "c_date": c_date,
