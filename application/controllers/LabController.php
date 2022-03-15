@@ -48,18 +48,21 @@ class LabController extends CI_Controller
         $data['GetItems'] = $this->l->GetItems();
        
         if ($this->session->has_userdata('MAXID')) {
+            
+            $data['TypeDetails'] = $this->l->requesttestYpe($RID);
             $data['getDetails'] = $this->l->getRequestdetails($RID);
         } else {
             $data['getDetails'] =null;
+             $data['TypeDetails'] =null;
         }
         // $data['TestTypes'] = $this->l->getTestType();
         // $data['detailsData'] = $this->l->getDetails($_GET['id']);
         $data['Articles'] = $this->l->GetArticles();
-        print_r($data['RData']);
+        //print_r($data['RData']);
         if($data['RData'][0]['Type']== 'Material Test'){
-            $data['getTestTypes'] = $this->l->getTestType();
+            $data['getTestTypes'] = $this->l->getTestTypematerial();
         }elseif ($data['RData'][0]['Type'] == 'FGT Test') {
-            $data['getTestTypes'] = $this->l->getTestType();
+            $data['getTestTypes'] = $this->l->getTestTypeFGT();
         }
        
         $data['getRequesterRequests'] = $this->l->getTestByRequester();
@@ -168,8 +171,7 @@ class LabController extends CI_Controller
     {
  
         $RID = $_POST['RID'];
-        $testType = $_POST['testType'];
-        $TestID = $_POST['TestID'];
+      
         $Code = $_POST['Code'];
         $ArtCodeAuto = $_POST['ArtCodeAuto'];
         
@@ -193,7 +195,29 @@ class LabController extends CI_Controller
         // die;
 
         // $data['detailsData'] = $this->l->getDetails($_GET['id']);
-        $data = $this->l->AddRdetails($RID, $testType, $TestID, $Code, $Article);
+        $data = $this->l->AddRdetails($RID,  $Code, $Article);
+
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+    public function AddRdetailsTest()
+    {
+
+        $RID = $_POST['RID'];
+
+        $TestID = $_POST['TestID'];
+        $testtype = $_POST['testtype'];
+
+      
+
+        // Echo $testtype;
+        //         echo $supplier;
+        // die;
+
+        // $data['detailsData'] = $this->l->getDetails($_GET['id']);
+        $data = $this->l->AddRdetailsTest($RID,  $TestID, $testtype);
 
         return $this->output
             ->set_content_type('application/json')

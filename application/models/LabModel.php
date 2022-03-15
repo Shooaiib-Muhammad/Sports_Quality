@@ -1614,15 +1614,25 @@ public function updatedStatusFGT($reviewStatus,$approvedStatus,$TID){
    
     }
 
-    public function getTestType()
+    public function getTestTypematerial()
     {
 
         $query = $this->db->query(" SELECT * 
-    FROM            dbo.tbl_test_types");
+    FROM            dbo.tbl_test_types  WHERE        (testCatagoty = 'Material Test')");
 
         return $query->result_array();
    
     }
+     public function getTestTypeFGT()
+    {
+
+        $query = $this->db->query(" SELECT * 
+    FROM            dbo.tbl_test_types  WHERE        (testCatagoty = 'FGT Test')");
+
+        return $query->result_array();
+   
+    }
+
 
     public function getTestRequests()
     {
@@ -1778,13 +1788,36 @@ WHERE        (TID = $ID)");
 
         return $query->result_array();
     }
-    public function AddRdetails($RID, $testType, $TestID, $Code, $Article){
+    public function
+    AddRdetailsTest($RID,  $TestID, $testtype){
+        $user = $this->session->userdata('user_id');
+        $Date = date('Y-m-d H:i:s');
+        $query = $this->db->query("INSERT  INTO dbo.Tbl_Test_Type_Details 
+      (RequestID,TestType,TestID)
+        VALUES
+        ($RID,'$testtype',$TestID)");
+
+        if ($query) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function requesttestYpe($RID){
+        
+        $query = $this->db->query(" SELECT * 
+    FROM            dbo.view_lab_test_Types
+    WHERE RequestID='$RID'");
+
+        return $query->result_array();
+    }
+    public function AddRdetails($RID, $Code, $Article){
         $user = $this->session->userdata('user_id');
         $Date = date('Y-m-d H:i:s');
         $query = $this->db->query("INSERT  INTO dbo.Tbl_Test_Request_Details 
-      (RequestID,TestType,TestID,Code,Article,UserID,EntryDate)
+      (RequestID,Code,Article,UserID,EntryDate)
         VALUES
-        ('$RID','$testType','$TestID','$Code','$Article',$user,'$Date')");
+        ('$RID','$Code','$Article',$user,'$Date')");
 
         if ($query) {
             return true;

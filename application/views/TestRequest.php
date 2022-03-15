@@ -115,7 +115,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                 </div>
                                                                                 <div class="col-md-6">
                                                                                     <label class="form-contol" for="customFile">Type</label>
-                                                                                    <select class="form-control" id="testtype" name="testtype">
+                                                                                    <select class="form-control" id="type" name="type">
 
                                                                                         <option value="<?php echo $Type; ?>"><?php echo $Type; ?></option>
 
@@ -133,7 +133,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                 <div class="col-md-6 mt-2">
                                                                                     <label for="sel1">Select Factory Code :</label>
 
-                                                                                    <select class="form-control" id="testtype" name="testtype">
+                                                                                    <select class="form-control" id="FC" name="FC">
 
                                                                                         <option value="<?php echo $Factory_Code; ?>"><?php echo $Factory_Code; ?></option>
 
@@ -258,10 +258,10 @@ if (!$this->session->has_userdata('user_id')) {
 
 
                                                                         <?php
-                                                                        //if ($this->session->has_userdata('MAXID')) {
-                                                                        // Echo        $RData[0]['PONo'];
+                                                                       // print_r($RData);
                                                                         if ($this->session->has_userdata('MAXID')) {
-                                                                            if ($RData[0]['PONo'] == 0) {
+                                                                            if ($RData[0]['TestType'] == 'Production') {
+                                                                                //echo "I am here";
                                                                         ?>
 
 
@@ -274,6 +274,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                         <label for="sel1">Article Selection</label><br>
                                                                                         <select class="form-control" id="selection" name="selection" onchange="toggleArticle()">
                                                                                             <option value="" disabled>Select one of the following</option>
+                                                                                            <option value="">Select one of the following</option>
                                                                                             <option value="Auto">Auto</option>
                                                                                             <option value="Manual">Manual</option>
 
@@ -369,14 +370,23 @@ if (!$this->session->has_userdata('user_id')) {
 
 
 
-                                                                        <div class="col-md-10 ">
-
-                                                                        </div>
-
-                                                                        <div class="row">
+                                                                        <div class="col-md-6 ">
                                                                             <div class="form-group">
                                                                                 <div>
-                                                                                    <button type="button" class="btn btn-success m-3" id="Addtest">Add Test</button>
+                                                                                    <button type="button" class="btn btn-success " id="AddItems">Add Items</button>
+
+                                                                                    <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
+
+                                                                                    <!-- <button class="btn btn-danger" data-dismiss="modal" style="display:inline-block;">Close</button> -->
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-md-6 ">
+                                                                            <div class="form-group">
+                                                                                <div>
+                                                                                    <button type="button" class="btn btn-success " id="Addtest">Add Test</button>
 
                                                                                     <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
 
@@ -387,104 +397,202 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         </div>
 
                                                                     </div>
-                                                                    <div class="col-md-12 mt-2">
-                                                                        <?php
-                                                                        if ($RData[0]['PONo'] == 0) {
-                                                                        ?>
-                                                                            <table class="table table-striped table-hover table-sm" id="ActivityData2">
-                                                                                <thead>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-6 ">
+                                                                    <?php
+                                                                    //Echo $RData[0]['PONo'];
 
-                                                                                    <tr>
-                                                                                        <th>Request No</th>
-                                                                                        <th>Request Date</th>
-                                                                                        <th>Type</th>
-                                                                                        <th>Test Catagory</th>
-                                                                                        <th>Test Name</th>
-                                                                                        <th>Factory Code</th>
-                                                                                        <th>Article Code</th>
+                                                                    if ($RData[0]['PONo'] == '0') {
+                                                                    ?>
+                                                                        <table class="table table-striped table-hover table-sm" id="ActivityData2">
+                                                                            <thead>
 
+                                                                                <tr>
+                                                                                    <th>Request No</th>
+                                                                                    <th>Request Date</th>
 
 
-                                                                                        <th>Status</th>
+                                                                                    <th>Factory Code</th>
+                                                                                    <th>Article Code</th>
 
 
-                                                                                    </tr>
-                                                                                </thead>
-                                                                                <tbody>
-                                                                                    <?php
-                                                                                    if ($this->session->has_userdata('MAXID')) {
-                                                                                        foreach ($getDetails as $keys) {
-                                                                                    ?>
-                                                                                            <tr>
-                                                                                                <td><?php echo $keys['RequestID']; ?></td>
-                                                                                                <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
-                                                                                                <td><?php echo $keys['TestType']; ?></td>
-                                                                                                <td><?php echo $keys['Type']; ?></td>
 
-                                                                                                <td><?php echo $keys['Name']; ?></td>
+                                                                                   
 
-                                                                                                <td><?php echo $keys['Factory_Code']; ?></td>
 
-                                                                                                <td><?php echo $keys['Article']; ?></td>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <?php
+                                                                                if ($this->session->has_userdata('MAXID')) {
+                                                                                    foreach ($getDetails as $keys) {
+                                                                                ?>
+                                                                                        <tr>
+                                                                                            <td><?php echo $keys['RequestID']; ?></td>
+                                                                                            <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
 
-                                                                                                <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
-                                                                                            </tr>
-                                                                                    <?php
-                                                                                        }
+
+
+
+                                                                                            <td><?php echo $keys['Factory_Code']; ?></td>
+
+                                                                                            <td><?php echo $keys['Article']; ?></td>
+
+                                                                                           
+                                                                                        </tr>
+                                                                                <?php
                                                                                     }
-                                                                                    ?>
-                                                                            </table>
-                                                                        <?php
-                                                                        } else {
+                                                                                }
+                                                                                ?>
+                                                                        </table>
+                                                                    <?php
+                                                                    } else {
 
-                                                                        ?>
-                                                                            <table class="table table-striped table-hover table-sm" id="ActivityData2">
-                                                                                <thead>
+                                                                    ?>
+                                                                        <table class="table table-striped table-hover table-sm" id="ActivityData2">
+                                                                            <thead>
 
-                                                                                    <tr>
-                                                                                        <th>Request No</th>
-                                                                                        <th>Request Date</th>
-                                                                                        <th>Type</th>
-                                                                                        <th>Test Catagory</th>
-                                                                                        <th>Test Name</th>
-                                                                                        <th>Factory Code</th>
-                                                                                        <th>Item Name</th>
+                                                                                <tr>
+                                                                                    <th>Request No</th>
+                                                                                    <th>Request Date</th>
 
 
+                                                                                    <th>Factory Code</th>
+                                                                                    <th>Item Name</th>
 
-                                                                                        <th>Status</th>
 
 
-                                                                                    </tr>
-                                                                                </thead>
-                                                                                <tbody>
-                                                                                    <?php
-                                                                                    if ($this->session->has_userdata('MAXID')) {
-                                                                                        foreach ($getDetails as $keys) {
-                                                                                    ?>
-                                                                                            <tr>
-                                                                                                <td><?php echo $keys['RequestID']; ?></td>
-                                                                                                <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
-                                                                                                <td><?php echo $keys['TestType']; ?></td>
-                                                                                                <td><?php echo $keys['Type']; ?></td>
+                                                                                
 
-                                                                                                <td><?php echo $keys['Name']; ?></td>
-                                                                                                <td><?php echo $keys['Factory_Code']; ?></td>
-                                                                                                <td><?php echo $keys['L4Name']; ?></td>
 
-                                                                                                <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
-                                                                                            </tr>
-                                                                                    <?php
-                                                                                        }
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <?php
+                                                                                if ($this->session->has_userdata('MAXID')) {
+                                                                                    foreach ($getDetails as $keys) {
+                                                                                ?>
+                                                                                        <tr>
+                                                                                            <td><?php echo $keys['RequestID']; ?></td>
+                                                                                            <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
+
+
+
+                                                                                            <td><?php echo $keys['Factory_Code']; ?></td>
+                                                                                            <td><?php echo $keys['L4Name']; ?></td>
+
+                                                                                           
+                                                                                        </tr>
+                                                                                <?php
                                                                                     }
-                                                                                    ?>
-                                                                            </table>
-                                                                        <?php
+                                                                                }
+                                                                                ?>
+                                                                        </table>
 
-                                                                        }
+                                                                    <?php
 
-                                                                        ?>
-                                                                    </div>
+                                                                    }
+
+                                                                    ?>
+                                                                </div>
+                                                                <div class="col-md-6 ">
+                                                                    <?php
+                                                                    //Echo $RData[0]['PONo'];
+
+                                                                    if ($RData[0]['PONo'] == '0') {
+                                                                    ?>
+                                                                        <table class="table table-striped table-hover table-sm" id="ActivityData3">
+                                                                            <thead>
+
+                                                                                <tr>
+
+
+
+
+                                                                                    <th>Request No:</th>
+                                                                                    <th>Test Name</th>
+
+
+
+                                                                                    <th>Status</th>
+
+
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <?php
+                                                                                if ($this->session->has_userdata('MAXID')) {
+                                                                                    foreach ($TypeDetails as $keys) {
+                                                                                ?>
+                                                                                        <tr>
+                                                                                            <td><?php echo $keys['RequestID']; ?></td>
+
+
+
+
+
+
+
+                                                                                            <td><?php echo $keys['Name']; ?></td>
+
+                                                                                            <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
+                                                                                        </tr>
+                                                                                <?php
+                                                                                    }
+                                                                                }
+                                                                                ?>
+                                                                        </table>
+                                                                    <?php
+                                                                    } else {
+
+                                                                    ?>
+                                                                        <table class="table table-striped table-hover table-sm" id="ActivityData3">
+                                                                            <thead>
+
+                                                                                <tr>
+                                                                                    <th>Request No</th>
+
+
+
+
+                                                                                    <th>Test Name</th>
+
+
+
+                                                                                    <th>Status</th>
+
+
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <?php
+                                                                                if ($this->session->has_userdata('MAXID')) {
+                                                                                    foreach ($TypeDetails as $keys) {
+                                                                                ?>
+                                                                                        <tr>
+                                                                                            <td><?php echo $keys['RequestID']; ?></td>
+
+
+
+
+
+                                                                                            <td><?php echo $keys['Name']; ?></td>
+
+                                                                                            <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
+                                                                                        </tr>
+                                                                                <?php
+                                                                                    }
+                                                                                }
+                                                                                ?>
+                                                                        </table>
+
+                                                                    <?php
+
+                                                                    }
+
+                                                                    ?>
+                                                                </div>
                                                             </div>
                                                             <div class="col-md-3"></div>
 
@@ -656,7 +764,7 @@ if (!$this->session->has_userdata('user_id')) {
                 function(data, status) {
                     console.log('data', data)
                     if (data == true) {
-                        alert("Data Inserted Successfully! Click on Ok to Reload the Page")
+                       // alert("Data Inserted Successfully! Click on Ok to Reload the Page")
                         window.location.reload();
                     } else {
                         alert("Data is not Inserted Successfully!")
@@ -678,13 +786,13 @@ if (!$this->session->has_userdata('user_id')) {
                 location.reload(true);
             });
         }
-        $('#Addtest').click(function(e) {
+        $('#AddItems').click(function(e) {
             //alert("Heloo");
             e.preventDefault();
             // let Type = $('#type').val();
-            let testType = $('#testtype').val();
+
             let name = $('#name').val();
-            let tType = $('#tType').val();
+
             let RID = $('#RID').val();
             let article = $('#article').val();
             let ArtCodeAuto = $('#ArtCodeAuto').val();
@@ -699,8 +807,8 @@ if (!$this->session->has_userdata('user_id')) {
             //alert(url);
             $.post(url, {
                     'RID': RID,
-                    'testType': testType,
-                    'TestID': tType,
+
+
                     'Code': name,
                     'Article': article,
                     'ArtCodeAuto': ArtCodeAuto,
@@ -709,7 +817,47 @@ if (!$this->session->has_userdata('user_id')) {
                 function(data, status) {
                     console.log('data', data)
                     if (data == true) {
-                        alert("Data Inserted Successfully! Click on Ok to Reload the Page")
+                       // alert("Data Inserted Successfully! Click on Ok to Reload the Page")
+                        window.location.reload();
+                    } else {
+                        alert("Data is not Inserted Successfully!")
+                    }
+
+
+                });
+            window.location.reload();
+        });
+
+        $('#Addtest').click(function(e) {
+            //alert("Heloo");
+            e.preventDefault();
+            // let Type = $('#type').val();
+
+
+            let TestID = $('#tType').val();
+            let testtype = $('#testtype').val();
+            let RID = $('#RID').val();
+
+
+            // let Quantity_Issued = $('#qIssued').val();
+            // let Status = "Pending";
+
+            // let po = $('#po').val();
+            // let suppliername = $('#supplier').val();
+
+            let url = "<?php echo base_url(''); ?>LabController/AddRdetailsTest"
+            //alert(url);
+            $.post(url, {
+                    'RID': RID,
+                    'TestID': TestID,
+                    'testtype': testtype,
+
+
+                },
+                function(data, status) {
+                    console.log('data', data)
+                    if (data == true) {
+                       // alert("Test Inserted Successfully! Click on Ok to Reload the Page")
                         window.location.reload();
                     } else {
                         alert("Data is not Inserted Successfully!")
@@ -881,7 +1029,74 @@ if (!$this->session->has_userdata('user_id')) {
                     }
                 ]
             });
+            $('#ActivityData3').dataTable({
+                responsive: false,
+                lengthChange: false,
+                dom:
+                    /*	--- Layout Structure 
+                    	--- Options
+                    	l	-	length changing input control
+                    	f	-	filtering input
+                    	t	-	The table!
+                    	i	-	Table information summary
+                    	p	-	pagination control
+                    	r	-	processing display element
+                    	B	-	buttons
+                    	R	-	ColReorder
+                    	S	-	Select
 
+                    	--- Markup
+                    	< and >				- div element
+                    	<"class" and >		- div with a class
+                    	<"#id" and >		- div with an ID
+                    	<"#id.class" and >	- div with an ID and a class
+
+                    	--- Further reading
+                    	https://datatables.net/reference/option/dom
+                    	--------------------------------------
+                     */
+                    "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                buttons: [
+                    /*{
+                    	extend:    'colvis',
+                    	text:      'Column Visibility',
+                    	titleAttr: 'Col visibility',
+                    	className: 'mr-sm-3'
+                    },*/
+                    {
+                        extend: 'pdfHtml5',
+                        text: 'PDF',
+                        titleAttr: 'Generate PDF',
+                        className: 'btn-outline-danger btn-sm mr-1'
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Excel',
+                        titleAttr: 'Generate Excel',
+                        className: 'btn-outline-success btn-sm mr-1'
+                    },
+                    {
+                        extend: 'csvHtml5',
+                        text: 'CSV',
+                        titleAttr: 'Generate CSV',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'copyHtml5',
+                        text: 'Copy',
+                        titleAttr: 'Copy to clipboard',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Print',
+                        titleAttr: 'Print Table',
+                        className: 'btn-outline-primary btn-sm'
+                    }
+                ]
+            });
 
         });
     </script>
