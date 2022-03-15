@@ -1,69 +1,82 @@
-<div class="subheader">
+<ol class="breadcrumb page-breadcrumb">
+               
+               <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+           </ol>
+   
+                    <div class="subheader">
                         <h1 class="subheader-title">
-                            <i class='subheader-icon fal fa-chart-area'></i>TM</span>
+                            <i class='subheader-icon fal fa-chart-area'></i>AMB (Airless Mini Ball Reports)</span>
 
                         </h1>
                     </div>
 
-                        <?php
+
+                        <!doctype html>
+<?php
 if ($this->session->userdata('userStus')==1) {
-
-$Month=date('m');
-$Year=date('Y');
-$Day=date('d');
-$CurrentDate=$Year.'-'.$Month.'-'.$Day;
-    
 ?>
-
+<html class="no-js" lang="en">
 <!--<![endif]-->
+
 
 
 <body>
 
 <div id="right-panel" class="right-panel">
 
-<style type="text/css">
-                  td{
-                    text-align: center;
-                  }
-                
-                
-                </style>                      
-                          
- 
-<?php 
-if($graph_data) {
-$Sdate;
-$Edate;
-$Process;
-if ($VendorId==1) {
-               $VendorName="All";
-            }elseif($VendorId==2){
-                $VendorName="B34002";
-            }elseif($VendorId==3){
-                $VendorName="B34003";
-            }elseif($VendorId==4){
-                $VendorName="B34004";
+        <?php
+        
+if($record) {
+
+$Date1;
+$Date2;
+ $LineNo;
+if ($LineNo==1) {
+               $LineName="All";
+            }elseif($LineNo==3){
+                $LineName="Line# 1";
+            }elseif($LineNo==4){
+                $LineName="Line# 2";
+            }elseif($LineNo==5){
+                $LineName="Line# 3";
+            }elseif($LineNo==6){
+                $LineName="Line# 4";
+            }elseif($LineNo==7){
+                $LineName="Line# 5";
+            }elseif($LineNo==8){
+                $LineName="Line# 6";
+            }elseif($LineNo==9){
+                $LineName="Line# 7";
+            }elseif($LineNo==10){
+                $LineName="Line# 8";
+            }elseif($LineNo==11){
+                $LineName="Line# 9";
+            }elseif($LineNo==16){
+                $LineName="Line# 10";
+            }elseif($LineNo==17){
+                $LineName="Line# 11";
+            }elseif($LineNo==18){
+                $LineName="Line# 12";
             }
 
-$SYear=substr($Sdate,0,4);
-$SMonth=substr($Sdate,5,2);
-$SDay=substr($Sdate,-2,2);
-$EYear=substr($Edate,0,4);
+$SYear=substr($Date1,0,4);
+$SMonth=substr($Date1,5,2);
+$SDay=substr($Date1,-2,2);
+$EYear=substr($Date2,0,4);
     //echo "<br>";
-$EMonth=substr($Edate,5,2);
+$EMonth=substr($Date2,5,2);
     //echo "<br>";
-$EDay=substr($Edate,-2,2);
+$EDay=substr($Date2,-2,2);
 $StartDateeee=$SYear.'-'.$SMonth.'-'.$SDay;
 $EndDateeee=$EYear.'-'.$EMonth.'-'.$EDay;
-?>     
-<form  action="<?php echo base_url('MIS/TM/GetprdData'); ?>" method="POST">
+?>
+<form action="<?php echo base_url('MIS/AMB/getAllData'); ?>" method="POST">
 <div class="row">
 <div class="col-md-3">
 <div class="form-group">
 <label class="form-control-label">From Date:</label>
 <div class="input-group">
-<input class="form-control" type="Date" name="Sdate" value="<?php echo $StartDateeee;?>" >
+<input class="form-control" type="Date" name="Date1" value="<?php echo $StartDateeee;?>" >
 </div>
 </div>
 </div>
@@ -71,7 +84,7 @@ $EndDateeee=$EYear.'-'.$EMonth.'-'.$EDay;
 <div class="form-group">
 <label class="form-control-label">To Date:</label>
 <div class="input-group">
-<input class="form-control" type="Date" name="Edate" value="<?php echo $EndDateeee;?>" >
+<input class="form-control" type="Date" name="Date2" value="<?php echo $EndDateeee;?>" >
 </div>
 </div>
 </div>
@@ -79,13 +92,13 @@ $EndDateeee=$EYear.'-'.$EMonth.'-'.$EDay;
 <div class="form-group">
 <label class=" form-control-label">Line Name:</label>
 <div class="input-group">
-<select  class="form-control"  name="VendorId"  required="required"> 
-<option value="<?php Echo $VendorId;?>"><?php Echo $VendorName;?></option>   
-<option value="1">All</option>               
-       <?php
-foreach($Lines_infro as $Keys){
-    ?>
-<option value="<?php Echo $Keys['VendorId'];?>"><?php Echo $Keys['VendorName'];?></option>
+<select  class="form-control" name="LineNo" style="width: 80%;border-radius: 5px;" >
+  <option value="<?php Echo $LineNo;?>"><?php Echo $LineName;?></option>
+  <option value="1">All</option> 
+<?php
+foreach($line_data As $Key){
+?>
+<option value="<?php Echo $Key['LineID'];?>"><?php Echo $Key['LineName'];?></option>
 <?php
 }
 ?>
@@ -103,19 +116,20 @@ foreach($Lines_infro as $Keys){
 </div>
 </div>
 </form>
-
-  
-      <?php
-
-  }else{
-    ?>
-<form  action="<?php echo base_url('MIS/TM/GetprdData'); ?>" method="POST">
+  <?php
+}else{
+  $Month=date('m');
+$Year=date('Y');
+$Day=date('d');
+$CurrentDate=$Year.'-'.$Month.'-'.$Day;
+  ?>
+<form action="<?php echo base_url('MIS/AMB/getAllData'); ?>" method="POST">
 <div class="row">
 <div class="col-md-3">
 <div class="form-group">
 <label class="form-control-label">From Date:</label>
 <div class="input-group">
-<input class="form-control" type="Date" name="Sdate" value="<?php echo $CurrentDate;?>" >
+<input class="form-control" type="Date" name="Date1" value="<?php echo $CurrentDate;?>" >
 </div>
 </div>
 </div>
@@ -123,7 +137,7 @@ foreach($Lines_infro as $Keys){
 <div class="form-group">
 <label class="form-control-label">To Date:</label>
 <div class="input-group">
-<input class="form-control" type="Date" name="Edate" value="<?php echo $CurrentDate;?>" >
+<input class="form-control" type="Date" name="Date2" value="<?php echo $CurrentDate;?>" >
 </div>
 </div>
 </div>
@@ -131,16 +145,16 @@ foreach($Lines_infro as $Keys){
 <div class="form-group">
 <label class=" form-control-label">Line Name:</label>
 <div class="input-group">
-<select  class="form-control"  name="VendorId"  required="required">    
+<select  class="form-control"  name="LineNo"  required="required">    
  <option value="1">All</option>               
        <?php
-foreach($Lines_infro as $Keys){
+foreach($line_data as $Key){
     ?>
- <option value="<?php Echo $Keys['VendorId'];?>"><?php Echo $Keys['VendorName'];?></option>
+ <option value="<?php Echo $Key['LineID'];?>"><?php Echo $Key['LineName'];?></option>
     <?php
 }
        ?>
-      </select>
+</select>
 </div>
 </div>
 </div>
@@ -148,67 +162,67 @@ foreach($Lines_infro as $Keys){
 <div class="form-group">
 <label class="form-control-label"></label>
 <div style="margin-top:18px" class="input-group">
+
 <button type="submit" id="submit" name="submit" class="btn btn-primary " ><i class=" fa fa-search"></i> Search</button>
 </div>                    
 </div>
 </div>
 </div>
 </form>
+
+  <?php
+}
+        ?>
+
 <?php
-  }
-?>
-<br>
-<?php 
-if($graph_data) {
+if ($table==1) {
 $data_points1 = array();
-$hours = array();
-foreach($graph_data as $key) {
-$point1 = array("label" => $key['HourName'] , "y" => Round($key['FPassQty']));
+$lineNames = array();
+foreach($record as $key) {
+$point1 = array("label" => $key['LineName'] , "y" => Round($key['Passed']));
 array_push($data_points1, $point1); 
-array_push($hours, $key['HourName']); 
+array_push($lineNames, $key['LineName']);
+
 }
 $data_points2 = array();
-foreach($graph_data as $key1) {
-$point2 = array("label" => $key1['HourName'] , "y" =>  Round($key1['PassQty']));
+foreach($record as $key1) {
+$point2 = array("label" => $key1['LineName'] , "y" =>  Round($key1['Ppassed']));
 array_push($data_points2, $point2);       
 }
 
 $data_points3 = array();
-foreach($graph_data as $key2) {
-$Pass = $key2['FPassQty'];
-$Checked = $key2['FCheckedQty'];
+foreach($record as $key2) {
+$Pass = $key2['Passed'];
+$Checked = $key2['Checked'];
 if ($Pass==0 or $Checked==0) {
 $RFT=0;
 }else{
 $RFT=$Pass/$Checked*100;
 }
-$point3 = array("label" => $key2['HourName'] , "y" =>  Round($RFT));
+$point3 = array("label" => $key2['LineName'] , "y" =>  Round($RFT));
 array_push($data_points3, $point3);   
 }
 $data_points4 = array();
-foreach($graph_data as $key3) {
-$PPass = $key3['PassQty'];
-$PChecked = $key3['CheckedQty'];
+foreach($record as $key3) {
+$PPass = $key3['Ppassed'];
+$PChecked = $key3['pchecked'];
 if ($PPass==0 or $PChecked==0) {
 $PRFT=0;
 }else{
 $PRFT=$PPass/$PChecked*100;
 }
-$point4 = array("label" => $key3['HourName'] , "y" =>  Round($PRFT));
+$point4 = array("label" => $key3['LineName'] , "y" =>  Round($PRFT));
 array_push($data_points4, $point4);  
 }
 
 
 ?>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js" integrity="sha512-FJ2OYvUIXUqCcPf1stu+oTBlhn54W0UisZB/TNrZaVMHHhYvLBV9jMbvJYtvDe5x/WVaoXZ6KB+Uqe5hT2vlyA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 
 
 <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-
 
 <script type="text/javascript">
 window.onload = function() {
@@ -223,7 +237,7 @@ window.onload = function() {
         
     },
     xAxis: {
-        categories:  <?php echo json_encode($hours, JSON_NUMERIC_CHECK); ?>,
+        categories: <?php echo json_encode($lineNames, JSON_NUMERIC_CHECK); ?>,
         crosshair: true
     },
     yAxis: {
@@ -249,15 +263,15 @@ window.onload = function() {
     series: [{
             color:"#33cccc", 
             name: 'Forming',
-            data:  <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>
+            data: <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>
         }, {
             color:"#1a8cff",
-            name: 'Final QC',
+            name: 'Packing',
             data: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
         }]
     // series: [
     //     { 
-    //         name: "Lines",
+    //         name: "",
     //         data: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
     //     }
     // ]
@@ -281,7 +295,7 @@ window.onload = function() {
 //   data: [{
 //    type: "column",
 //         yValueFormatString: "#",
-//         //indexLabel: "{y} ",
+//        // indexLabel: "{y} ",
 //  indexLabelFontSize: 18, 
 //   name: "Forming",
 
@@ -293,7 +307,7 @@ window.onload = function() {
 //         yValueFormatString: "#",
 //        // indexLabel: "{y} ",
 //  indexLabelFontSize: 18, 
-//   name: "Final QC",
+//   name: "Packing",
 // indexLabelPlacement: "top",
 //        color:"#1a8cff", 
 //     dataPoints: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
@@ -325,7 +339,7 @@ Highcharts.chart('chartContainer2', {
         
     },
     xAxis: {
-        categories: <?php echo json_encode($hours, JSON_NUMERIC_CHECK); ?>,
+        categories: <?php echo json_encode($lineNames, JSON_NUMERIC_CHECK); ?>,
         crosshair: true
     },
     yAxis: {
@@ -351,16 +365,16 @@ Highcharts.chart('chartContainer2', {
     series: [{
             color:"#33cccc", 
             name: 'Forming',
-            data:  <?php echo json_encode($data_points3, JSON_NUMERIC_CHECK); ?>
+            data: <?php echo json_encode($data_points3, JSON_NUMERIC_CHECK); ?>
         }, {
             color:"#1a8cff",
-            name: 'Final QC',
+            name: 'Packing',
             data: <?php echo json_encode($data_points4, JSON_NUMERIC_CHECK); ?>
         }]
     // series: [
     //     { 
-    //         name: "Lines",
-    //         data: <?php echo json_encode($data_points4, JSON_NUMERIC_CHECK); ?>
+    //         name: "",
+    //         data: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
     //     }
     // ]
 });
@@ -384,7 +398,7 @@ Highcharts.chart('chartContainer2', {
 //   data: [{
 //    type: "column",
 //         yValueFormatString: "#",
-//         //indexLabel: "{y}% ",
+//        // indexLabel: "{y}% ",
 //  indexLabelFontSize: 18, 
 //   name: "Forming",
 
@@ -394,9 +408,9 @@ Highcharts.chart('chartContainer2', {
 //   },{
 //    type: "column",
 //         yValueFormatString: "#",
-//         //indexLabel: "{y}% ",
+//        // indexLabel: "{y}% ",
 //  indexLabelFontSize: 18, 
-//   name: "Final QC",
+//   name: "Packing",
 
 //         indexLabelPlacement: "top",
 //        color:"#1a8cff", 
@@ -438,32 +452,38 @@ Highcharts.chart('chartContainer2', {
 </div>
  </div>
 
-    <div style="margin-top:40px" class="col-lg-12">
-    <div id="panel-1" class="panel">
+
+
+<div style="margin-top:40px" class="col-md-12 table-responsive">
+                                    
+
+               
                         <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Thermo Bonded Ball Production </strong>
+                        <div id="panel-1" class="panel">
+                        <div class="panel-hdr">
+                            <h2>
+                                <strong class="card-title">Airless Mini Ball Production </strong>
+                            </h2>
                             </div>
-                            <div class="card-body">
-                                <table id="table2" class="display responsive nowrap" style="width: 100%;" >
-<thead class="thead-dark">
-                     
-<tr style="background-color: #282828; color: #fff;">
+                            <div class="card-body ab-c-btable-responsive">
+                            <div class="panel-container show">
+                                    <div class="panel-content">
+                                        <div class="demo-v-spacing" id="defaultTable" > 
+                                <table  id="table" class="table table-bordered table-hover table-responsive table-striped w-100" style="width: 100%;">
+<thead class="bg-primary-200 text-light">
+                <style type="text/css">
+                  td{
+                    text-align: center;
+                  }
+                
+                </style>                      
+                                       
+<tr class="bg-primary-200 text-light" style="color: #fff;">
    <td></td>
-<td colspan="4" style="text-align: center; border-right: 1px #ffff solid; ">Forming</td>
-<td colspan="3" style="text-align: center;">Final QC </td></tr>
+<td colspan="3" style="text-align: center;">Forming</td>
+<td colspan="3" style="text-align: center;">Packing </td></tr>
 
-<tr style="font-weight: bold;"><td style="text-align: left;">Hours Name</td> 
-    
-    <?php
-if ($VendorId==1) {
-}else{
-?>
-<td  style="width:10%; " >Aticle Code</td>
-<?php
-}
-
-?>
+<tr style="font-weight: bold;"><td style="text-align: left;">Line Name</td> 
 <td  style="width:10%; " >Check</td>
 <td  style="width:10%;">Pass</td>
 <td  style="width:10%;">RFT</td>
@@ -473,26 +493,20 @@ if ($VendorId==1) {
 </tr>
 </thead>
 <tbody style="border:1px black solid; ">
-    <?php
- foreach($graph_data as $key) {
-    $line = $key['HourName'];
-     
-if ($VendorId==1) {
-}else{
-$ArticleCode = $key['ArtCode'];
-}
 
-
-      
-$Pass = $key['FPassQty'];
-$Checked = $key['FCheckedQty'];
+<?php 
+if($record) {
+ foreach($record as $key) {
+    $line = $key['LineName'];
+$Pass = $key['Passed'];
+$Checked = $key['Checked'];
 if ($Pass==0 or $Checked==0) {
 $RFT=0;
 }else{
 $RFT=$Pass/$Checked*100;
 }
-$PPass = $key['PassQty'];
-$PChecked = $key['CheckedQty'];
+$PPass = $key['Ppassed'];
+$PChecked = $key['pchecked'];
 if ($PPass==0 or $PChecked==0) {
 $PRFT=0;
 }else{
@@ -501,16 +515,6 @@ $PRFT=$PPass/$PChecked*100;
 ?> 
 <tr >
 <td style="width:10%; text-align: left;"><?php echo $line;?></td>
-<?php
-if ($VendorId==1) {
-  # code...
-}else{
-?>
-<td  style="width:10%; text-align: center;" ><?php echo $ArticleCode;?></td>
-<?php
-}
-
-?>
 <td  style="width:10%; text-align: center;" class="Froming"><?php echo Round($Checked);?></td>
 <td  style="width:10%; text-align: center;" class="Froming"><?php echo Round($Pass);?></td>
 <td  style="width:10%; text-align: center;" class="Froming"><?php echo Round($RFT);?>%</td>
@@ -518,73 +522,108 @@ if ($VendorId==1) {
 <td  style="width:10%; text-align: center;" class="packing"><?php echo Round($PPass);?></td>
 <td  style="width:10%; text-align: center;" class="packing"><?php echo Round($PRFT);?>%</td>
 </tr>
-<?php 
- }
-}else{
+<?php } } else{ ?>
+<tr>
+<th colspan="5"> <center>No Record Available Yet!</center> </th>
+</tr>
+<?php }
+foreach($Sum as $Data) {
 
+$SStrength = $Data['Strength'];
+$SPass = $Data['Passed'];
+$SChecked = $Data['Checked'];
+if ($SPass==0 or $SChecked==0) {
+$SRFT=0;
+}else{
+$SRFT=$SPass/$SChecked*100;
+}
+$SPPass = $Data['Ppassed'];
+$SPChecked = $Data['pchecked'];
+if ($SPPass==0 or $SPChecked==0) {
+$SPRFT=0;
+}else{
+$SPRFT=$SPPass/$SPChecked*100;
+}
+
+$SSAM = $Data['SAM'];
+$SMints = $Data['Mints'];
+if ($SStrength==0 or $SSAM== 0 or $SMints==0 or $SPass== 0){
+$SEfficiency=0;
+ }
+ else{
+  $SEfficiency=($SPass*$SSAM)/($SStrength*$SMints)*100;
+}
+}
 ?>
+<tr class="bg-primary text-light"style="text-align:center;  color:black;">
+<td style="width:20%;">Total</td>  
+<td  style="width:10%;"><?php echo Round($SChecked);?></td>
+<td  style="width:10%;"><?php echo Round($SPass);?></td>
+<td  style="width:10%;"><?php echo Round($SRFT);?>%</td>
+<td  style="width:10%;"><?php echo Round($SPChecked);?></td>
+<td  style="width:10%;"><?php echo Round($SPPass);?></td>
+<td  style="width:10%;"><?php echo Round($SPRFT);?>%</td>
+
+</tr>
 </tbody>
-</table>
+</table> 
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <?php
-  
+
+}else{
 $data_points1 = array();
-$factorycode = array();
-
-foreach($line_data as $key) {
-$point1 = array("label" => $key['FactoryCode'] , "y" => Round($key['FPassQty']));
-array_push($data_points1, $point1);
-array_push($factorycode, $key['FactoryCode']); 
-
+$hours = array();
+foreach($record as $key) {
+$point1 = array("label" => $key['HourTime'] , "y" => Round($key['Passed']));
+array_push($data_points1, $point1); 
+array_push($hours, $key['HourTime']);
 }
 $data_points2 = array();
-foreach($line_data as $key1) {
-$point2 = array("label" => $key1['FactoryCode'] , "y" =>  Round($key1['PassQty']));
+foreach($record as $key1) {
+$point2 = array("label" => $key1['HourTime'] , "y" =>  Round($key1['Ppassed']));
 array_push($data_points2, $point2);       
 }
 
 $data_points3 = array();
-foreach($line_data as $key2) {
-$Pass = $key2['FPassQty'];
-$Checked = $key2['FCheckedQty'];
+foreach($record as $key2) {
+$Pass = $key2['Passed'];
+$Checked = $key2['Checked'];
 if ($Pass==0 or $Checked==0) {
 $RFT=0;
 }else{
 $RFT=$Pass/$Checked*100;
 }
-$point3 = array("label" => $key2['FactoryCode'] , "y" =>  Round($RFT));
+$point3 = array("label" => $key2['HourTime'] , "y" =>  Round($RFT));
 array_push($data_points3, $point3);   
 }
 $data_points4 = array();
-foreach($line_data as $key3) {
-$PPass = $key3['PassQty'];
-$PChecked = $key3['CheckedQty'];
+foreach($record as $key3) {
+$PPass = $key3['Ppassed'];
+$PChecked = $key3['pchecked'];
 if ($PPass==0 or $PChecked==0) {
 $PRFT=0;
 }else{
 $PRFT=$PPass/$PChecked*100;
 }
-$point4 = array("label" => $key3['FactoryCode'] , "y" =>  Round($PRFT));
+$point4 = array("label" => $key3['HourTime'] , "y" =>  Round($PRFT));
 array_push($data_points4, $point4);  
 }
-
-
 ?>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js" integrity="sha512-FJ2OYvUIXUqCcPf1stu+oTBlhn54W0UisZB/TNrZaVMHHhYvLBV9jMbvJYtvDe5x/WVaoXZ6KB+Uqe5hT2vlyA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 
 
 <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-
 <script type="text/javascript">
 window.onload = function() {
-
     
 Highcharts.chart('chartContainer1', {
     chart: {
@@ -597,7 +636,7 @@ Highcharts.chart('chartContainer1', {
         
     },
     xAxis: {
-        categories:  <?php echo json_encode($factorycode, JSON_NUMERIC_CHECK); ?>,
+        categories: <?php echo json_encode($hours, JSON_NUMERIC_CHECK); ?>,
         crosshair: true
     },
     yAxis: {
@@ -623,11 +662,11 @@ Highcharts.chart('chartContainer1', {
     series: [{
             color:"#33cccc", 
             name: 'Forming',
-            data:  <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>
+            data: <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>
         }, {
             color:"#1a8cff",
-            name: 'Final QC',
-            data:  <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
+            name: 'Packing',
+            data: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
         }]
     // series: [
     //     { 
@@ -665,9 +704,9 @@ Highcharts.chart('chartContainer1', {
 //   },{
 //    type: "column",
 //         yValueFormatString: "#",
-//        // indexLabel: "{y} ",
+//       //  indexLabel: "{y} ",
 //  indexLabelFontSize: 18, 
-//   name: "Final QC",
+//   name: "Packing",
 // indexLabelPlacement: "top",
 //        color:"#1a8cff", 
 //     dataPoints: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
@@ -698,7 +737,7 @@ Highcharts.chart('chartContainer2', {
         
     },
     xAxis: {
-        categories:  <?php echo json_encode($factorycode, JSON_NUMERIC_CHECK); ?>,
+        categories: <?php echo json_encode($hours, JSON_NUMERIC_CHECK); ?>,
         crosshair: true
     },
     yAxis: {
@@ -727,13 +766,13 @@ Highcharts.chart('chartContainer2', {
             data: <?php echo json_encode($data_points3, JSON_NUMERIC_CHECK); ?>
         }, {
             color:"#1a8cff",
-            name: 'Final QC',
-            data:  <?php echo json_encode($data_points4, JSON_NUMERIC_CHECK); ?>
+            name: 'Packing',
+            data: <?php echo json_encode($data_points4, JSON_NUMERIC_CHECK); ?>
         }]
     // series: [
     //     { 
     //         name: "",
-    //         data: <?php echo json_encode($data_points4, JSON_NUMERIC_CHECK); ?>
+    //         data: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
     //     }
     // ]
 });
@@ -767,9 +806,9 @@ Highcharts.chart('chartContainer2', {
 //   },{
 //    type: "column",
 //         yValueFormatString: "#",
-//        // indexLabel: "{y}% ",
+//       //  indexLabel: "{y}% ",
 //  indexLabelFontSize: 18, 
-//   name: "Final QC",
+//   name: "Packing",
 
 //         indexLabelPlacement: "top",
 //        color:"#1a8cff", 
@@ -778,8 +817,6 @@ Highcharts.chart('chartContainer2', {
 // });
 
 // chart.render();
-
-
 // function toggleDataSeries(e){
 //   if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
 //     e.dataSeries.visible = false;
@@ -796,7 +833,11 @@ Highcharts.chart('chartContainer2', {
  <div class="col-lg-6">
 <div class="card">
 <div class="card-body">
-<h3 class="mb-3">Production  </h3>
+<h3 class="mb-3"> <?php
+if ($record) {
+Echo $LineName; 
+}
+?> Production</h3>
 <div id="chartContainer1" style="height: 370px; width: 100%;"></div>
 </div>
 </div>
@@ -804,138 +845,179 @@ Highcharts.chart('chartContainer2', {
 <div class="col-lg-6">
 <div class="card">
 <div class="card-body">
-<h3 class="mb-3"> RFT</h3>
+<h3 class="mb-3"> <?php
+if ($record) {
+Echo $LineName; 
+}
+?> RFT</h3>
 <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
 </div>
 </div>
 </div>
  </div>
 
-          <div class="col-lg-12">
-                        <div class="card">
+<div class="col-lg-12">
+<div id="panel-1" class="panel">
+                        <div class="card"> 
+                        <div class="panel-hdr">
+                          
                             <div class="card-header">
-                                <strong class="card-title">Thermo Bonded Ball Production </strong>
+                      <strong class="card-title"><?php
+if ($record) {
+Echo $LineName; 
+}
+?>  Production </strong>
                             </div>
                             <div class="card-body">
-                                <table id="table2" class="table table-bordered table-hover table-responsive table-striped w-100" style="width: 100%;" >
-<thead class="bg-primary-200 text-light">
-                          
+                                <table  id="table" class="table table-bordered table-hover table-responsive table-striped w-100" style="width: 100%;">
+                                  <thead class="bg-primary-200 text-light">
+                <style type="text/css">
+                  td{
+                    text-align: center;
+                  }
+               
+                </style>                      
+                                       
 <tr class="bg-primary-200 text-light" style="color: #fff;">
    <td></td>
-<td colspan="3" style="text-align: center;">Forming</td>
-<td colspan="3" style="text-align: center;">Final QC </td></tr>
+<td colspan="6" style="text-align: center; border-right: 1px #ffff solid;border-right: 1px #ffff solid;">Forming</td>
+<td colspan="3" style="text-align: center;">Packing </td></tr>
 
-<tr style="font-weight: bold;"><td style="text-align: left;">Line Name</td> 
-<td  style="width:10%; " >Check</td>
-<td  style="width:10%;">Pass</td>
+<tr style="font-weight: bold;">
+  <td style="text-align: left;">Hour Name</td> 
+<td  style="width:10%; text-align: left;">Article</td>
+<td  style="width:10%;">Checked</td>
+<td  style="width:10%;">Passed</td>
 <td  style="width:10%;">RFT</td>
-<td  style="width:10%;">Check</td>
-<td  style="width:10%;">Pass</td>
+<td  style="width:10%;">Strength</td>
+<td  style="width:10%;">Efficiency</td>
+<td  style="width:10%;">Checked</td>
+<td  style="width:10%;">Passed</td>
 <td  style="width:10%;">RFT</td>
 </tr>
 </thead>
+
 <tbody style="border:1px black solid; ">
 
 <?php 
-if($line_data) {
- foreach($line_data as $key) {
-    $line = $key['FactoryCode'];
-$Pass = $key['FPassQty'];
-$Checked = $key['FCheckedQty'];
+
+if($record) {
+ foreach($record as $key) {
+$line = $key['HourTime'];
+$ArtCode = $key['ArtCode'];
+$Strength = $key['Strength'];
+$Pass = $key['Passed'];
+$Checked = $key['Checked'];
 if ($Pass==0 or $Checked==0) {
 $RFT=0;
 }else{
 $RFT=$Pass/$Checked*100;
 }
-$PPass = $key['PassQty'];
-$PChecked = $key['CheckedQty'];
+$PPass = $key['Ppassed'];
+$PChecked = $key['pchecked'];
 if ($PPass==0 or $PChecked==0) {
 $PRFT=0;
 }else{
 $PRFT=$PPass/$PChecked*100;
 }
-?> 
-<tr >
-<td style="width:10%; text-align: left;"><?php echo $line;?></td>
-<td  style="width:10%; text-align: center;" class="Froming"><?php echo Round($Checked);?></td>
-<td  style="width:10%; text-align: center;" class="Froming"><?php echo Round($Pass);?></td>
-<td  style="width:10%; text-align: center;" class="Froming"><?php echo Round($RFT);?>%</td>
-<td  style="width:10%; text-align: center;" class="packing"><?php echo Round($PChecked);?></td>
-<td  style="width:10%; text-align: center;" class="packing"><?php echo Round($PPass);?></td>
-<td  style="width:10%; text-align: center;" class="packing"><?php echo Round($PRFT);?>%</td>
-</tr>
-<?php  }
-}else{
-?>
-<tr>
-<th colspan="5"> <center>No Record Available Yet!</center> </th>
-</tr>
-<?php
 
+$SAM = $key['SAM'];
+$Mints = $key['Mints'];
+if ($Strength==0 or $SAM== 0 or $Mints==0 or $Pass== 0){
+$Efficiency=0;
 }
+else{
+  $Efficiency=($Pass*$SAM)/($Strength*$Mints)*100;
+}
+?> 
+<tr  style="text-align:center; ">
+<td style="width:20%; text-align: left;"><?php echo $line;?></td>
+<td style="width:10%; text-align: left;"><?php echo $ArtCode;?></td>  
+<td  style="width:10%;" class="Froming"><?php echo Round($Checked);?></td>
+<td  style="width:10%;" class="Froming"><?php echo Round($Pass);?></td>
+<td  style="width:10%;" class="Froming"><?php echo Round($RFT);?>%</td>
+<td  style="width:10%;" class="Froming"><?php echo Round($Strength);?></td>
+<td  style="width:10%;" class="Froming"><?php echo Round($Efficiency);?>%</td>
+<td  style="width:10%;" class="packing"><?php echo Round($PChecked);?></td>
+<td  style="width:10%;" class="packing"><?php echo Round($PPass);?></td>
+<td  style="width:10%;" class="packing"><?php echo Round($PRFT);?>%</td>
+</tr>
+<?php } } else{ ?>
+<tr>
+ <th colspan="10"> <center>No Record Available Yet!</center> </th>
+</tr>
 
+<?php } 
+ foreach($Sum as $Data) {
 
-foreach($SumData as $Data) {
-
-
-$SPass = $Data['FPassQty'];
-$SChecked = $Data['FCheckedQty'];
+$SStrength = $Data['Strength'];
+$SPass = $Data['Passed'];
+$SChecked = $Data['Checked'];
 if ($SPass==0 or $SChecked==0) {
 $SRFT=0;
 }else{
 $SRFT=$SPass/$SChecked*100;
 }
-$SPPass = $Data['PassQty'];
-$SPChecked = $Data['CheckedQty'];
+$SPPass = $Data['Ppassed'];
+$SPChecked = $Data['pchecked'];
 if ($SPPass==0 or $SPChecked==0) {
 $SPRFT=0;
 }else{
 $SPRFT=$SPPass/$SPChecked*100;
 }
 
+$SSAM = $Data['SAM'];
+$SMints = $Data['Mints'];
+if ($SStrength==0 or $SSAM== 0 or $SMints==0 or $SPass== 0){
+$SEfficiency=0;
+ }
+ else{
+  $SEfficiency=($SPass*$SSAM)/($SStrength*$SMints)*100;
+}
 }
 ?>
-<tr class="bg-primary text-light" style="text-align:center;  color:#fff;">
-<td style="width:20%;">Total</td>  
+<tr style="text-align:center;  color:black;">
+<td class="bg-primary text-light" style="width:20%;">Total</td>
+<td style="width:10%;"></td>  
 <td  style="width:10%;"><?php echo Round($SChecked);?></td>
 <td  style="width:10%;"><?php echo Round($SPass);?></td>
 <td  style="width:10%;"><?php echo Round($SRFT);?>%</td>
+<td  style="width:10%;"><?php echo Round($SStrength);?></td>
+<td  style="width:10%;"><?php echo Round($SEfficiency);?>%</td>
 <td  style="width:10%;"><?php echo Round($SPChecked);?></td>
 <td  style="width:10%;"><?php echo Round($SPPass);?></td>
 <td  style="width:10%;"><?php echo Round($SPRFT);?>%</td>
 
 </tr>
 </tbody>
-
-</table> 
+</table>
+</div> 
 </div>
 </div>
- </div> 
-
+</div>
+</div>
 <?php
-
 }
 ?>
+</div>
+</div>
+</div>
 
-<script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
-    <script type="text/javascript">
-        /* Activate smart panels */
-        $('#js-page-content').smartPanel();
-    </script>
+
      <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
       <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
       <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
       <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
-      </div>
+
 </body>
 
-     
+</html>
+
 <script>
    $(document).ready(function() {
             // LoadData(stDate, enDate);
 
-            $('#table2').dataTable({
+            $('#table').dataTable({
                 responsive: false,
                 lengthChange: false,
                 dom:
@@ -1035,11 +1117,8 @@ $SPRFT=$SPPass/$SPChecked*100;
 //       );
 // } );
 </script>
-   </html>
 <?php
-
 }else{
     redirect('Welcome/index');
 }
 ?>
-

@@ -155,16 +155,14 @@ if (!$this->session->has_userdata('user_id')) {
 
 
     <script src="<?php echo base_url(); ?>assets/js/chart.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/jquery.min.js" type="text/javascript"></script>
-
-    <script src="<?php echo base_url(); ?>/assets/charts/highcharts.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/charts/data.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/charts/drilldown.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/charts/exporting.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/charts/export-data.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/charts/accessibility.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
-      <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
+      <script src="<?php echo base_url(); ?>assets/js/jquery.min.js" type="text/javascript"></script>
+      <?php $this->load->View('AdminFooter'); ?>
+      <script src="<?php echo base_url(); ?>/assets/charts/highcharts.js"></script>
+      <script src="<?php echo base_url(); ?>/assets/charts/data.js"></script>
+      <script src="<?php echo base_url(); ?>/assets/charts/drilldown.js"></script>
+      <script src="<?php echo base_url(); ?>/assets/charts/exporting.js"></script>
+      <script src="<?php echo base_url(); ?>/assets/charts/export-data.js"></script>
+      <script src="<?php echo base_url(); ?>/assets/charts/accessibility.js"></script>
 
       <script type="text/javascript">
 

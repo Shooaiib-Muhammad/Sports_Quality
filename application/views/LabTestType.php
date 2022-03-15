@@ -47,6 +47,8 @@ if (!$this->session->has_userdata('user_id')) {
                                         <span aria-hidden="true" style="color: white;">&times;</span>
                                     </button>
                                 </div>
+
+                                
                                 <div class="modal-body">
                                     <form name="formDepartment" id="myformDepartment" method="POST" action="<?php echo base_url(
                                                                                                                 ''
@@ -62,8 +64,19 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <input type="text" class="form-control" id="Name" name="Name">
                                               
                                             </div>
+                                           
+                                                
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Material Type:</label>
+                                                    <select class="form-control" id="testtype" name="testtype">
+                                                        <option value="" disabled>Select one of the following</option>
+                                                        <option value="MATERIAL TEST">Material Test</option>
+                                                        <option value="FGT TEST">FGT Test</option>
+                                                    </select>
+                                                </div>
+                                            </div>
 
-                                          
 
 
                                             <div class="col-md-12 mt-4">
@@ -142,6 +155,7 @@ if (!$this->session->has_userdata('user_id')) {
                                 <thead>
                                     <tr>
                                     <th>Test Type</th>
+                                    <th></th>
                                     <th>Status</th>
                                     <th>ACTIONS</th>
                                     </tr>
@@ -155,9 +169,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <tr>
                                                                <td><?php echo $keys['Name']; ?></td>
                                                         
-                                                            
+                                                               <td><?php echo $keys['testCatagoty']; ?></td>
                                                           
                                                                 <td> 
+                                                                    
                                                                     <?php if ($keys['Status'] == '1') { ?>
 
                                                                         <span class="badge badge-success p-1"> Active</span>
@@ -165,8 +180,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <span class="badge badge-warning p-1">In-Active</span>
                                                                     <?php } ?>
                                                                 </td>
-
-                                                              
+                                                               
                                                                 <td>
                                                                         <div class="col-md-2">
                                                                             <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo $keys['TestID']; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
@@ -251,6 +265,7 @@ $(".updatebtn").click(function(e) {
       console.log("Data",data)
       $('#IdValue').val(TID);
       $('#Name').val(data[0].Name);
+      $('#testCataqoty').val(data[0].testtype);
       if(data[0].Status == 1){
         $('#status').prop('checked', true);
       }
@@ -269,6 +284,8 @@ $('#editValue').click(function(e){
              e.preventDefault();
              let id = $('#IdValue').val();
              let name = $('#Name').val();
+             let testtype = $('#testtype').val();
+
              let status;
              if($("#status").is(':checked'))
               status = true  // checked
@@ -276,7 +293,7 @@ $('#editValue').click(function(e){
                status = false   // unchecked
               let url = "<?php echo base_url(''); ?>LabController/EditTestType"
 
-              $.post(url,{'Id':id,'Name':name, 'Status':status},
+              $.post(url,{'Id':id,'Name':name, 'Status':status, 'testCatagoty':testtype },
   function(data, status){
     alert("Data Updated Successfully! Wait for page to be Reloaded")
 setInterval(function(){   window.location.reload(); }, 3000);
@@ -287,14 +304,17 @@ setInterval(function(){   window.location.reload(); }, 3000);
         $('#save').click(function(e){
              e.preventDefault();
              let name = $('#Name').val();
+             let testtype = $('#testtype').val();
+            
+             console.log(testtype);
+             console.log(testtype);
              let status;
              if($("#status").is(':checked'))
               status = true  // checked
              else
                status = false   // unchecked
               let url = "<?php echo base_url(''); ?>LabController/AddTestType"
-
-              $.post(url,{'Name':name, 'Status':status},
+              $.post(url,{'Name':name, 'Status':status, 'testCatagoty':testtype },
   function(data, status){
     alert("Data Inserted Successfully! Wait for page to be Reloaded")
 setInterval(function(){   window.location.reload(); }, 3000);

@@ -1,13 +1,25 @@
-<?php
-if(!($this->session->has_userdata('user_id'))){
-  redirect('');
-}else{
+<?php if (!$this->session->has_userdata('user_id')) {
+    redirect('');
+} else {
 ?>
+<div id="panel-1" class="panel">
+
+
+
 <?php $this->load->view('includes/new_header'); ?>
-        <!-- BEGIN Page Wrapper -->
-        <div class="page-wrapper">
-            <div class="page-inner">
-                <!-- BEGIN Left Aside -->
+
+<!-- BEGIN Page Wrapper -->
+<div class="page-wrapper">
+    <div class="page-inner">
+        <!-- BEGIN Left Aside -->
+        <?php $this->load->view('includes/new_aside'); ?>
+        <!-- END Left Aside -->
+        <div class="page-content-wrapper">
+            <!-- BEGIN Page Header -->
+            <?php $this->load->view('includes/top_header.php'); ?>
+            <main id="js-page-content" role="main" class="page-content">
+
+                <div class="col-lg-12" style="margin-bottom:20px">
                <aside class="page-sidebar">
                     <div class="page-logo">
                         <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">

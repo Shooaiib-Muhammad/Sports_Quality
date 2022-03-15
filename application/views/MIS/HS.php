@@ -13,7 +13,7 @@ if (!$this->session->has_userdata('user_id')) {
 <div class="page-content-wrapper">
 <?php $this->load->view('includes/top_header.php'); ?>
 <main id="js-page-content" role="main" class="page-content">
-
+<div class="col-lg-12" style="margin-bottom:20px">
 <ol class="breadcrumb page-breadcrumb">
                
                <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
@@ -596,6 +596,7 @@ $RFT=$PassQty/$TotalChecked*100;
 ?>
 </div>
 </body>
+</div>
 </main>
 </div>
 </div>

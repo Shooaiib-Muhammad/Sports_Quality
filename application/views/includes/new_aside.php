@@ -457,7 +457,86 @@
                     </ul>
                 </li>
              
+                <li class="active open">
+                <a href="#" title="Application Intel" data-filter-tags="application intel">
+                    <i class="fal fa-info-tachometer"></i>
+                    <span class="nav-link-text" data-i18n="nav.application_intel">DMMS</span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="<?php echo base_url(
+                                        'index.php/main/Home'
+                                    ); ?>" title="Build Notes" data-filter-tags="application intel build notes">
+                            <span class="nav-link-text" data-i18n="nav.application_intel_build_notes">Home</span>
 
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="<?php echo base_url(
+                                        'index.php/main/dmms_dashboard'
+                                    ); ?>" title="DMMS Dashboard" data-filter-tags="application intel analytics dashboard">
+                            <span class="nav-link-text" data-i18n="nav.application_intel_analytics_dashboard">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(
+                                        'index.php/main/Maintance_Dashboard'
+                                    ); ?>" title="Privacy" data-filter-tags="application intel privacy">
+                            <span class="nav-link-text" data-i18n="nav.application_intel_privacy">Maintance Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(
+                                        'index.php/OEE/OEE_Main'
+                                    ); ?>" title="Privacy" data-filter-tags="application intel privacy">
+                            <span class="nav-link-text" data-i18n="nav.application_intel_privacy">OEE</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(
+                                        'index.php/Main/BEC'
+                                    ); ?>" title="Privacy" data-filter-tags="application intel privacy">
+                            <span class="nav-link-text" data-i18n="nav.application_intel_privacy">BEC</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?php echo base_url(
+                                        'index.php/teams'
+                                    ); ?>" title="Privacy" data-filter-tags="application intel privacy">
+                            <span class="nav-link-text" data-i18n="nav.application_intel_privacy">Teams</span>
+                        </a>
+                    </li>
+                    <?php if ($AdminStatus == 1) { ?>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'index.php/teams/assignTeam'
+                                        ); ?>" title="Build Notes" data-filter-tags="application intel build notes">
+                                <span class="nav-link-text" data-i18n="nav.application_intel_build_notes">Assign Team</span>
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'index.php/main/Ideamints'
+                                        ); ?>" title="Build Notes" data-filter-tags="application intel build notes">
+                                <span class="nav-link-text" data-i18n="nav.application_intel_build_notes">Machine Ideal Mints</span>
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'index.php/main/Idealmachines'
+                                        ); ?>" title="Build Notes" data-filter-tags="application intel build notes">
+                                <span class="nav-link-text" data-i18n="nav.application_intel_build_notes">Ideal Machine</span>
+
+                            </a>
+                        </li>
+                    <?php } ?>
+
+
+                </ul>
+            </li>
 
 
             </ul>

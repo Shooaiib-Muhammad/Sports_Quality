@@ -31,25 +31,51 @@ class LabController extends CI_Controller
         $data['TestTypes'] = $this->l->getTestType();
         // $data['detailsData'] = $this->l->getDetails($_GET['id']);
 
-        $this->load->view('LabTestType',$data);
+        $this->load->view('LabTestType', $data);
     }
 
     public function TestRequest()
     {
+        
+        $data['MAXID'] = $this->l->getmaxID();
+        $RID= $data['MAXID'][0]['MaXID'];
+
+        if ($this->session->has_userdata('MAXID')) {
+        $data['RData'] = $this->l->getRequestData($RID);
+        }else{
+              $data['RData'] =null;
+        }
+        $data['GetItems'] = $this->l->GetItems();
+       
+        if ($this->session->has_userdata('MAXID')) {
+            $data['getDetails'] = $this->l->getRequestdetails($RID);
+        } else {
+            $data['getDetails'] =null;
+        }
         // $data['TestTypes'] = $this->l->getTestType();
         // $data['detailsData'] = $this->l->getDetails($_GET['id']);
         $data['Articles'] = $this->l->GetArticles();
-        $data['getTestTypes'] = $this->l->getTestType();
+        print_r($data['RData']);
+        if($data['RData'][0]['Type']== 'Material Test'){
+            $data['getTestTypes'] = $this->l->getTestType();
+        }elseif ($data['RData'][0]['Type'] == 'FGT Test') {
+            $data['getTestTypes'] = $this->l->getTestType();
+        }
+       
         $data['getRequesterRequests'] = $this->l->getTestByRequester();
-        $this->load->view('TestRequest',$data);
+        $this->load->view('TestRequest', $data);
     }
-
+    public function NewRequest()
+    {
+        $this->session->unset_userdata("MAXID");
+       
+    }
     public function TestRequestLab()
     {
- 
+
         $data['getTestByLabPending'] = $this->l->getTestByLabPending();
         $data['getTestByLabAcknowledge'] = $this->l->getTestByLabAcknowledge();
-        $this->load->view('TestRequestLab',$data);
+        $this->load->view('TestRequestLab', $data);
     }
 
     public function TestReceive()
@@ -59,19 +85,18 @@ class LabController extends CI_Controller
         $data['getTestRequests'] = $this->l->getTestRequests();
         $data['getTestRequestsSendToLab'] = $this->l->getTestRequestsSendToLab();
         $data['getTestRequestsSendToRequester'] = $this->l->getTestRequestsSendToRequester();
-        $this->load->view('TestReceive',$data);
+        $this->load->view('TestReceive', $data);
     }
 
     public function TestTypeById()
     {
         $idGet = $_POST['Id'];
         $data = $this->l->TestTypeById($idGet);
-       
+
         return $this->output
-        ->set_content_type('application/json')
-        ->set_status_header(200)
-        ->set_output(json_encode($data));
-       
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
     }
 
 
@@ -80,12 +105,11 @@ class LabController extends CI_Controller
     {
         $idGet = $_POST['Id'];
         $data = $this->l->TestRequestById($idGet);
-       
+
         return $this->output
-        ->set_content_type('application/json')
-        ->set_status_header(200)
-        ->set_output(json_encode($data));
-       
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
     }
 
     public function AddTestType()
@@ -93,51 +117,108 @@ class LabController extends CI_Controller
         $Name = $_POST['Name'];
         $Status = $_POST['Status'];
         // $data['detailsData'] = $this->l->getDetails($_GET['id']);
-        $data = $this->l->AddTestType($Name,$Status);
+        $data = $this->l->AddTestType($Name, $Status);
 
         return $this->output
-        ->set_content_type('application/json')
-        ->set_status_header(200)
-        ->set_output(json_encode($data));
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
     }
 
     public function AddRequest()
     {
-
+    //  print_r($_POST);
+    //  die;
+// Echo $_POST;
+// die;
+        $testtype = $_POST['testType'];
         $Type = $_POST['Type'];
         $Sample_RequestDate = $_POST['Sample_RequestDate'];
         $Factory_Code = $_POST['Factory_Code'];
-        $Article = $_POST['Article'];
-        $TestID = $_POST['TestID'];
+        // $Article = $_POST['Article'];
+        // $TestID = $_POST['TestID'];
         $Quantity_Issued = $_POST['Quantity_Issued'];
         $Status = $_POST['Status'];
+        $po = $_POST['po'];
+        $supplier = $_POST['suppliername'];
+        if ($po) {
+            $po = $_POST['po'];
+        } else {
+            $po = 0;
+        }
+        if ($supplier) {
+            $supplier = $_POST['suppliername'];
+        } else {
+            $supplier = 'Null';
+        }
+// Echo $testtype;
+//         echo $supplier;
+// die;
+
         // $data['detailsData'] = $this->l->getDetails($_GET['id']);
-        $data = $this->l->AddRequest($Type,$Sample_RequestDate,$Factory_Code,$Article,$TestID,$Quantity_Issued,$Status);
+        $data = $this->l->AddRequest($testtype, $Type, $Sample_RequestDate, $Factory_Code, $Quantity_Issued, $Status, $po, $supplier);
 
         return $this->output
-        ->set_content_type('application/json')
-        ->set_status_header(200)
-        ->set_output(json_encode($data));
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
     }
 
+    public function AddRdetails()
+    {
+ 
+        $RID = $_POST['RID'];
+        $testType = $_POST['testType'];
+        $TestID = $_POST['TestID'];
+        $Code = $_POST['Code'];
+        $ArtCodeAuto = $_POST['ArtCodeAuto'];
+        
+        $Article = $_POST['Article'];
+        
+        if ($Article) {
+            $Article = $_POST['Article'];
+        } else if ($ArtCodeAuto) {
+            $Article = $_POST['ArtCodeAuto'];
+        }else{
+            $Article='Null';
+        }
+        if ($Code) {
+            $Code = $_POST['Code'];
+        } else {
+            $Code = 'Null';
+        }
+        
+        // Echo $testtype;
+        //         echo $supplier;
+        // die;
+
+        // $data['detailsData'] = $this->l->getDetails($_GET['id']);
+        $data = $this->l->AddRdetails($RID, $testType, $TestID, $Code, $Article);
+
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+    
     public function EditTestType()
     {
-     
+
         $Id = $_POST['Id'];
         $Name = $_POST['Name'];
         $Status = $_POST['Status'];
         // $data['detailsData'] = $this->l->getDetails($_GET['id']);
-        $data = $this->l->EditTestType($Id,$Name,$Status);
+        $data = $this->l->EditTestType($Id, $Name, $Status);
 
         return $this->output
-        ->set_content_type('application/json')
-        ->set_status_header(200)
-        ->set_output(json_encode($data));
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
     }
 
     public function EditTestRequest()
     {
-     
+
         $TID = $_POST['TID'];
         $Sample_Receiving_Date = $_POST['Sample_Receiving_Date'];
         $CSSNo = $_POST['CSSNo'];
@@ -148,54 +229,54 @@ class LabController extends CI_Controller
         $senderSignature = $_POST['senderSignature'];
         $CompletationDate = $_POST['CompletationDate'];
         $Remarks = $_POST['Remarks'];
-        $data = $this->l->EditTestRequest($TID,$Sample_Receiving_Date,$CSSNo,$Quantity_Received,$Quantity_Retained, $Due_Date,$CompletationDate,$Remarks,$senderSignature);
+        $data = $this->l->EditTestRequest($TID, $Sample_Receiving_Date, $CSSNo, $Quantity_Received, $Quantity_Retained, $Due_Date, $CompletationDate, $Remarks, $senderSignature);
 
         return $this->output
-        ->set_content_type('application/json')
-        ->set_status_header(200)
-        ->set_output(json_encode($data));
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
     }
 
     public function AcknowledgeResult()
     {
-     
+
         $TID = $_POST['Id'];
         $data = $this->l->AcknowledgeResult($TID);
 
         return $this->output
-        ->set_content_type('application/json')
-        ->set_status_header(200)
-        ->set_output(json_encode($data));
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
     }
-    
+
 
     public function EditTestRequestBackToSender()
     {
-     
+
         $TID = $_POST['Id'];
         $Quantity = $_POST['Quantity'];
         $senderId = $_POST['senderId'];
         $ReceiverId = $_POST['receiverId'];
-       
-        $data = $this->l->EditTestRequestBackToSender($TID,$Quantity,$senderId ,$ReceiverId);
+
+        $data = $this->l->EditTestRequestBackToSender($TID, $Quantity, $senderId, $ReceiverId);
 
         return $this->output
-        ->set_content_type('application/json')
-        ->set_status_header(200)
-        ->set_output(json_encode($data));
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
     }
 
     public function EditTestRequestLabAcknowledge()
     {
-     
+
         $TID = $_POST['Id'];
-     
+
         $data = $this->l->EditTestRequestLabAcknowledge($TID);
 
         return $this->output
-        ->set_content_type('application/json')
-        ->set_status_header(200)
-        ->set_output(json_encode($data));
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
     }
 
     public function ShowDetailsFGT()
@@ -225,9 +306,8 @@ class LabController extends CI_Controller
 
     public function master_form()
     {
-         $data['Labtest'] = $this->l->labtest();
-        $this->load->view('LabMasterForm',$data);
-      
+        $data['Labtest'] = $this->l->labtest();
+        $this->load->view('LabMasterForm', $data);
     }
 
     public function main_form()
@@ -238,985 +318,972 @@ class LabController extends CI_Controller
     public function getDetails()
     {
         $TID = $_POST['TID'];
-       $data = $this->l->getDetails($TID);
-       return $this->output
-       ->set_content_type('application/json')
-       ->set_status_header(200)
-       ->set_output(json_encode($data));
-
-       
+        $data = $this->l->getDetails($TID);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
     }
 
     public function Get_Comparison_Data()
     {
 
-       $data = $this->l->Get_Comparison_Data($_POST['LotNo'],$_POST['date']);
-       return $this->output
-       ->set_content_type('application/json')
-       ->set_status_header(200)
-       ->set_output(json_encode($data));
-
-       
+        $data = $this->l->Get_Comparison_Data($_POST['LotNo'], $_POST['date']);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
     }
 
     public function getHead()
     {
         $TID = $_POST['TID'];
-       $data = $this->l->getHead($TID);
-       return $this->output
-       ->set_content_type('application/json')
-       ->set_status_header(200)
-       ->set_output(json_encode($data));
-       
+        $data = $this->l->getHead($TID);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
     }
 
-    
+
 
     public function addHeadData()
-    { 
-   ////////////////////////////////// Simple Form Send /////////////////////////////////
-    //     print_r($_FILES['file']);
-    //     die();
-    //      if(!empty($_FILES['img']['name'])){
+    {
+        ////////////////////////////////// Simple Form Send /////////////////////////////////
+        //     print_r($_FILES['file']);
+        //     die();
+        //      if(!empty($_FILES['img']['name'])){
 
-    //         $config['upload_path'] = 'assets\img\img';
-    //         $config['allowed_types'] = 'jpg|jpeg|png|gif';
-    //         $config['file_name'] = basename($_FILES["img"]["name"]) ;
-            
-    //         //Load upload library and initialize configuration
-    //         $this->load->library('upload',$config);
-    //        $this->upload->initialize($config);
-             
-    //         if($this->upload->do_upload('img')){
-    //        $uploadData = $this->upload->data();
-    //        $picture = $uploadData['file_name'];
-    //        $config['image_library'] = 'gd2';  
-    //        $config['source_image'] = 'assets/img/img/'.$picture;
-    //        $config['create_thumb'] = FALSE;  
-    //        $config['maintain_ratio'] = FALSE;  
-    //        $config['quality'] = '60%';  
-    //        $config['width'] = 800;  
-    //        $config['height'] = 600;  
-    //        $config['new_image'] = 'assets/img/img/'.$picture;
-    //        $this->load->library('image_lib', $config);  
-    //        $this->image_lib->resize(); 
-    //         }else{
-    //         Echo "helll";
-        
-    //          $picture = '';
-    //         }
-    //        }else{
-            
-    //         $picture = '';
-    //        }
-        
-     
-    //   $headerValue = $_POST['HeaderData'];
-    //   $header = explode(",",$headerValue[0]);
-  
-    //     $childValue = $_POST['ChildData'];
-    //     $child = explode("]",$childValue[0][0]);
-    //     $childArray = [];
-    //     foreach ($child as $key => $value) {
-    //         $arraySplit = explode(',',$value);
-    //         array_push($childArray, $arraySplit);
-           
-    //     }
-     
-    //     $TestDate = $header[0];
-    //     $PONo = $header[1];
-    //     $Quantity = $header[2];
-    //     $ReceivingDate = $header[3];
-    //     $ItemName = $header[4];
-    //     $SupplierName = $header[5];
-    //     $testNo = $header[6];
-    //     $SupplierRef = $header[7];
-    //     $Result = $header[8];
-    //     $ItemType = $header[9];
-    //     $this->l->AddHeader(
-    //         $TestDate,
-    //         $PONo,
-    //         $Quantity,
-    //         $ReceivingDate,
-    //         $ItemName,
-    //         $SupplierName,
-    //         $testNo,
-    //         $SupplierRef,
-    //         $Result,
-    //         $ItemType,
-    //         $picture,
-    //         $childArray 
-    //     );
+        //         $config['upload_path'] = 'assets\img\img';
+        //         $config['allowed_types'] = 'jpg|jpeg|png|gif';
+        //         $config['file_name'] = basename($_FILES["img"]["name"]) ;
+
+        //         //Load upload library and initialize configuration
+        //         $this->load->library('upload',$config);
+        //        $this->upload->initialize($config);
+
+        //         if($this->upload->do_upload('img')){
+        //        $uploadData = $this->upload->data();
+        //        $picture = $uploadData['file_name'];
+        //        $config['image_library'] = 'gd2';  
+        //        $config['source_image'] = 'assets/img/img/'.$picture;
+        //        $config['create_thumb'] = FALSE;  
+        //        $config['maintain_ratio'] = FALSE;  
+        //        $config['quality'] = '60%';  
+        //        $config['width'] = 800;  
+        //        $config['height'] = 600;  
+        //        $config['new_image'] = 'assets/img/img/'.$picture;
+        //        $this->load->library('image_lib', $config);  
+        //        $this->image_lib->resize(); 
+        //         }else{
+        //         Echo "helll";
+
+        //          $picture = '';
+        //         }
+        //        }else{
+
+        //         $picture = '';
+        //        }
 
 
-    ////////////////////////////////////// Ajax Call ///////////////////////////////
+        //   $headerValue = $_POST['HeaderData'];
+        //   $header = explode(",",$headerValue[0]);
 
-     if(!empty($_FILES['file']['name'])){
+        //     $childValue = $_POST['ChildData'];
+        //     $child = explode("]",$childValue[0][0]);
+        //     $childArray = [];
+        //     foreach ($child as $key => $value) {
+        //         $arraySplit = explode(',',$value);
+        //         array_push($childArray, $arraySplit);
 
-        $config['upload_path'] = 'assets\img\img';
-        $config['allowed_types'] = 'jpg|jpeg|png|gif';
-        $config['file_name'] = basename($_FILES["file"]["name"]) ;
-        
-        //Load upload library and initialize configuration
-        $this->load->library('upload',$config);
-       $this->upload->initialize($config);
-         
-        if($this->upload->do_upload('file')){
-       $uploadData = $this->upload->data();
-       $picture = $uploadData['file_name'];
-       $config['image_library'] = 'gd2';  
-       $config['source_image'] = 'assets/img/img/'.$picture;
-       $config['create_thumb'] = FALSE;  
-       $config['maintain_ratio'] = FALSE;  
-       $config['quality'] = '60%';  
-       $config['width'] = 800;  
-       $config['height'] = 600;  
-       $config['new_image'] = 'assets/img/img/'.$picture;
-       $this->load->library('image_lib', $config);  
-       $this->image_lib->resize(); 
-        }else{
-        Echo "helll";
-    
-         $picture = '';
+        //     }
+
+        //     $TestDate = $header[0];
+        //     $PONo = $header[1];
+        //     $Quantity = $header[2];
+        //     $ReceivingDate = $header[3];
+        //     $ItemName = $header[4];
+        //     $SupplierName = $header[5];
+        //     $testNo = $header[6];
+        //     $SupplierRef = $header[7];
+        //     $Result = $header[8];
+        //     $ItemType = $header[9];
+        //     $this->l->AddHeader(
+        //         $TestDate,
+        //         $PONo,
+        //         $Quantity,
+        //         $ReceivingDate,
+        //         $ItemName,
+        //         $SupplierName,
+        //         $testNo,
+        //         $SupplierRef,
+        //         $Result,
+        //         $ItemType,
+        //         $picture,
+        //         $childArray 
+        //     );
+
+
+        ////////////////////////////////////// Ajax Call ///////////////////////////////
+
+        if (!empty($_FILES['file']['name'])) {
+
+            $config['upload_path'] = 'assets\img\img';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['file_name'] = basename($_FILES["file"]["name"]);
+
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if ($this->upload->do_upload('file')) {
+                $uploadData = $this->upload->data();
+                $picture = $uploadData['file_name'];
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = 'assets/img/img/' . $picture;
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = FALSE;
+                $config['quality'] = '60%';
+                $config['width'] = 800;
+                $config['height'] = 600;
+                $config['new_image'] = 'assets/img/img/' . $picture;
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+            } else {
+                echo "helll";
+
+                $picture = '';
+            }
+        } else {
+
+            $picture = '';
         }
-       }else{
-        
-        $picture = '';
-       }
-    
- 
-  $headerValue = $_POST['HeaderArray'];
-  $header = explode(",",$headerValue);
 
-    $childValue = $_POST['ChildArray'];
-    $child = explode("]",$childValue);
-    $childArray = [];
-    foreach ($child as $key => $value) {
-        $arraySplit = explode(',',$value);
-        array_push($childArray, $arraySplit);
-       
-    }
-    array_pop($childArray);
-    $testGroup = $_POST['testGroup'];
-    $testPerformer = $_POST['testPerformer'];
-    $TestDate = $header[0];
-    $PONo = $header[1];
-    $Quantity = $header[2];
-    $ReceivingDate = $header[3];
-    $ItemName = $header[4];
-    $SupplierName = $header[5];
-    $testNo = $header[6];
-    $SupplierRef = $header[7];
-    $Result = $header[8];
-    $ItemType = $header[9];
-    $this->l->AddHeader(
-        $TestDate,
-        $PONo,
-        $Quantity,
-        $ReceivingDate,
-        $ItemName,
-        $SupplierName,
-        $testNo,
-        $SupplierRef,
-        $Result,
-        $ItemType,
-        $picture,
-        $testGroup,
-        $testPerformer,
-        $childArray 
-    );
+
+        $headerValue = $_POST['HeaderArray'];
+        $header = explode(",", $headerValue);
+
+        $childValue = $_POST['ChildArray'];
+        $child = explode("]", $childValue);
+        $childArray = [];
+        foreach ($child as $key => $value) {
+            $arraySplit = explode(',', $value);
+            array_push($childArray, $arraySplit);
+        }
+        array_pop($childArray);
+        $testGroup = $_POST['testGroup'];
+        $testPerformer = $_POST['testPerformer'];
+        $TestDate = $header[0];
+        $PONo = $header[1];
+        $Quantity = $header[2];
+        $ReceivingDate = $header[3];
+        $ItemName = $header[4];
+        $SupplierName = $header[5];
+        $testNo = $header[6];
+        $SupplierRef = $header[7];
+        $Result = $header[8];
+        $ItemType = $header[9];
+        $this->l->AddHeader(
+            $TestDate,
+            $PONo,
+            $Quantity,
+            $ReceivingDate,
+            $ItemName,
+            $SupplierName,
+            $testNo,
+            $SupplierRef,
+            $Result,
+            $ItemType,
+            $picture,
+            $testGroup,
+            $testPerformer,
+            $childArray
+        );
     }
 
     public function addHeadDataFoam()
-    { 
+    {
 
-    ////////////////////////////////////// Ajax Call ///////////////////////////////
+        ////////////////////////////////////// Ajax Call ///////////////////////////////
 
-     if(!empty($_FILES['file']['name'])){
+        if (!empty($_FILES['file']['name'])) {
 
-        $config['upload_path'] = 'assets\img\img';
-        $config['allowed_types'] = 'jpg|jpeg|png|gif';
-        $config['file_name'] = basename($_FILES["file"]["name"]) ;
-        
-        //Load upload library and initialize configuration
-        $this->load->library('upload',$config);
-       $this->upload->initialize($config);
-         
-        if($this->upload->do_upload('file')){
-       $uploadData = $this->upload->data();
-       $picture = $uploadData['file_name'];
-       $config['image_library'] = 'gd2';  
-       $config['source_image'] = 'assets/img/img/'.$picture;
-       $config['create_thumb'] = FALSE;  
-       $config['maintain_ratio'] = FALSE;  
-       $config['quality'] = '60%';  
-       $config['width'] = 800;  
-       $config['height'] = 600;  
-       $config['new_image'] = 'assets/img/img/'.$picture;
-       $this->load->library('image_lib', $config);  
-       $this->image_lib->resize(); 
-        }else{
-        Echo "helll";
-    
-         $picture = '';
+            $config['upload_path'] = 'assets\img\img';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['file_name'] = basename($_FILES["file"]["name"]);
+
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if ($this->upload->do_upload('file')) {
+                $uploadData = $this->upload->data();
+                $picture = $uploadData['file_name'];
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = 'assets/img/img/' . $picture;
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = FALSE;
+                $config['quality'] = '60%';
+                $config['width'] = 800;
+                $config['height'] = 600;
+                $config['new_image'] = 'assets/img/img/' . $picture;
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+            } else {
+                echo "helll";
+
+                $picture = '';
+            }
+        } else {
+
+            $picture = '';
         }
-       }else{
-        
-        $picture = '';
-       }
-    
- 
-  $headerValue = $_POST['HeaderArray'];
-  $header = explode(",",$headerValue);
 
-    $childValue = $_POST['ChildArray'];
-    $child = explode("]",$childValue);
-    $childArray = [];
-    foreach ($child as $key => $value) {
-        $arraySplit = explode(',',$value);
-        array_push($childArray, $arraySplit);
-       
-    }
- 
-     array_pop($childArray);
-    $TestDate = $header[1];
-    $PONo = $header[3];
-    $ReceivingDate = $header[2];
-    $testNo = $header[0];
-    $SupplierRef = $header[4];
-    $testGroup = $_POST['testGroup'];
-    $testPerformer = $_POST['testPerformer'];
-    $this->l->AddHeaderFoam(
-        $TestDate,
-        $PONo,
-        $ReceivingDate,
-        $testNo,
-        $SupplierRef,
-        $picture,
-        $testGroup,
-        $testPerformer,
-        $childArray 
-    );
+
+        $headerValue = $_POST['HeaderArray'];
+        $header = explode(",", $headerValue);
+
+        $childValue = $_POST['ChildArray'];
+        $child = explode("]", $childValue);
+        $childArray = [];
+        foreach ($child as $key => $value) {
+            $arraySplit = explode(',', $value);
+            array_push($childArray, $arraySplit);
+        }
+
+        array_pop($childArray);
+        $TestDate = $header[1];
+        $PONo = $header[3];
+        $ReceivingDate = $header[2];
+        $testNo = $header[0];
+        $SupplierRef = $header[4];
+        $testGroup = $_POST['testGroup'];
+        $testPerformer = $_POST['testPerformer'];
+        $this->l->AddHeaderFoam(
+            $TestDate,
+            $PONo,
+            $ReceivingDate,
+            $testNo,
+            $SupplierRef,
+            $picture,
+            $testGroup,
+            $testPerformer,
+            $childArray
+        );
     }
 
     public function addHeadDataFabric()
-    { 
-  
-    ////////////////////////////////////// Ajax Call ///////////////////////////////
+    {
 
-     if(!empty($_FILES['file']['name'])){
+        ////////////////////////////////////// Ajax Call ///////////////////////////////
 
-        $config['upload_path'] = 'assets\img\img';
-        $config['allowed_types'] = 'jpg|jpeg|png|gif';
-        $config['file_name'] = basename($_FILES["file"]["name"]) ;
-        
-        //Load upload library and initialize configuration
-        $this->load->library('upload',$config);
-       $this->upload->initialize($config);
-         
-        if($this->upload->do_upload('file')){
-       $uploadData = $this->upload->data();
-       $picture = $uploadData['file_name'];
-       $config['image_library'] = 'gd2';  
-       $config['source_image'] = 'assets/img/img/'.$picture;
-       $config['create_thumb'] = FALSE;  
-       $config['maintain_ratio'] = FALSE;  
-       $config['quality'] = '60%';  
-       $config['width'] = 800;  
-       $config['height'] = 600;  
-       $config['new_image'] = 'assets/img/img/'.$picture;
-       $this->load->library('image_lib', $config);  
-       $this->image_lib->resize(); 
-        }else{
-        Echo "helll";
-    
-         $picture = '';
+        if (!empty($_FILES['file']['name'])) {
+
+            $config['upload_path'] = 'assets\img\img';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['file_name'] = basename($_FILES["file"]["name"]);
+
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if ($this->upload->do_upload('file')) {
+                $uploadData = $this->upload->data();
+                $picture = $uploadData['file_name'];
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = 'assets/img/img/' . $picture;
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = FALSE;
+                $config['quality'] = '60%';
+                $config['width'] = 800;
+                $config['height'] = 600;
+                $config['new_image'] = 'assets/img/img/' . $picture;
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+            } else {
+                echo "helll";
+
+                $picture = '';
+            }
+        } else {
+
+            $picture = '';
         }
-       }else{
-        
-        $picture = '';
-       }
-    
- 
-  $headerValue = $_POST['HeaderArray'];
-  $header = explode(",",$headerValue);
-
-    $childValue = $_POST['ChildArray'];
-    $child = explode("]",$childValue);
-    $childArray = [];
-    foreach ($child as $key => $value) {
-        $arraySplit = explode(',',$value);
-        array_push($childArray, $arraySplit);
-       
-    }
-    array_pop($childArray);
-  
-    $testNo = $header[0];
-    $CSSNO=$header[1];
-    $TestDate = $header[2];
-    $ItemName = $header[3];
-    $PONo = $header[4];
-    $ReceivingDate = $header[5];
-    $SupplierName = $header[6];
-  
-    $SupplierRef = $header[7];
-    $Quantity = $header[8];
-
-   
-  
-    $Result = $header[9];
-    $ItemType = $header[10];
-    $testGroup = $_POST['testGroup'];
-    $testPerformer = $_POST['testPerformer'];
-   
-//     if($Result=='Fail' || $Result=='fail'){
-//         $mail = new PHPMailer(true);
-// try{
 
 
-//   //Server settings
-// $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-// $mail->isSMTP();                                            //Send using SMTP
-// $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-// $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-// $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
-// $mail->Password   = 'Forward123';                               //SMTP password
-// $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-// $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-// $mail->IsHTML(true);
-// //Recipients
-// $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-// $mail->addAddress("hufsa@forward.pk"); 
-// $mail->addAddress("sohail@forward.pk"); 
-// $mail->addAddress("store@forward.pk"); 
-// $mail->AddCC('abaid@forward.pk');
-// $mail->AddCC('imran@forward.pk');
+        $headerValue = $_POST['HeaderArray'];
+        $header = explode(",", $headerValue);
 
-//  $mail->AddCC('waseembutt@forward.pk');
-//  $mail->AddCC('tafseer@forward.pk');
-//     $mail->AddCC('shoaib@forward.pk');
-//     $mail->AddCC('fsqa@forward.pk');
-//           $mail->AddCC('oman@forward.pk');
-//              $mail->AddCC('abdulhaseeb@forward.pk');
-// $mail->AddCC('zainabbas@forward.pk');
+        $childValue = $_POST['ChildArray'];
+        $child = explode("]", $childValue);
+        $childArray = [];
+        foreach ($child as $key => $value) {
+            $arraySplit = explode(',', $value);
+            array_push($childArray, $arraySplit);
+        }
+        array_pop($childArray);
 
-// $mail->AddCC('yaseen@forward.pk');
-// $mail->Subject = "Raw Material Failure";
-// $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
-// <div style="margin-left:40%;">
-// <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
-// Fabric Test Report Result Alert</th></tr>
-// <tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
-// <tr><th>Material Name:</th><td>'.$ItemName .'</td></tr>
-// <tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
-// <tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
+        $testNo = $header[0];
+        $CSSNO = $header[1];
+        $TestDate = $header[2];
+        $ItemName = $header[3];
+        $PONo = $header[4];
+        $ReceivingDate = $header[5];
+        $SupplierName = $header[6];
 
-// <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
-// </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
+        $SupplierRef = $header[7];
+        $Quantity = $header[8];
 
 
-// //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
-// //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
-// $mail->send();
-// echo 'Message has been sent';
-// } catch (Exception $e) {
-// echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-// }
-// }
-    $this->l->AddHeaderFabric(
-        $TestDate,
-        $CSSNO,
-        $PONo,
-        $Quantity,
-        $ReceivingDate,
-        $ItemName,
-        $SupplierName,
-        $testNo,
-        $SupplierRef,
-        $Result,
-        $ItemType,
-        $picture,
-        $testGroup,
-        $testPerformer,
-        $childArray 
-    );
+
+        $Result = $header[9];
+        $ItemType = $header[10];
+        $testGroup = $_POST['testGroup'];
+        $testPerformer = $_POST['testPerformer'];
+
+        //     if($Result=='Fail' || $Result=='fail'){
+        //         $mail = new PHPMailer(true);
+        // try{
+
+
+        //   //Server settings
+        // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+        // $mail->isSMTP();                                            //Send using SMTP
+        // $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+        // $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+        // $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
+        // $mail->Password   = 'Forward123';                               //SMTP password
+        // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+        // $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        // $mail->IsHTML(true);
+        // //Recipients
+        // $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
+        // $mail->addAddress("hufsa@forward.pk"); 
+        // $mail->addAddress("sohail@forward.pk"); 
+        // $mail->addAddress("store@forward.pk"); 
+        // $mail->AddCC('abaid@forward.pk');
+        // $mail->AddCC('imran@forward.pk');
+
+        //  $mail->AddCC('waseembutt@forward.pk');
+        //  $mail->AddCC('tafseer@forward.pk');
+        //     $mail->AddCC('shoaib@forward.pk');
+        //     $mail->AddCC('fsqa@forward.pk');
+        //           $mail->AddCC('oman@forward.pk');
+        //              $mail->AddCC('abdulhaseeb@forward.pk');
+        // $mail->AddCC('zainabbas@forward.pk');
+
+        // $mail->AddCC('yaseen@forward.pk');
+        // $mail->Subject = "Raw Material Failure";
+        // $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
+        // <div style="margin-left:40%;">
+        // <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
+        // Fabric Test Report Result Alert</th></tr>
+        // <tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
+        // <tr><th>Material Name:</th><td>'.$ItemName .'</td></tr>
+        // <tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
+        // <tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
+
+        // <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
+        // </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
+
+
+        // //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
+        // //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
+        // $mail->send();
+        // echo 'Message has been sent';
+        // } catch (Exception $e) {
+        // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        // }
+        // }
+        $this->l->AddHeaderFabric(
+            $TestDate,
+            $CSSNO,
+            $PONo,
+            $Quantity,
+            $ReceivingDate,
+            $ItemName,
+            $SupplierName,
+            $testNo,
+            $SupplierRef,
+            $Result,
+            $ItemType,
+            $picture,
+            $testGroup,
+            $testPerformer,
+            $childArray
+        );
     }
 
     public function addHeadDataMaterial()
-    { 
+    {
 
-    ////////////////////////////////////// Ajax Call ///////////////////////////////
+        ////////////////////////////////////// Ajax Call ///////////////////////////////
 
-     if(!empty($_FILES['file']['name'])){
+        if (!empty($_FILES['file']['name'])) {
 
-        $config['upload_path'] = 'assets\img\img';
-        $config['allowed_types'] = 'jpg|jpeg|png|gif';
-        $config['file_name'] = basename($_FILES["file"]["name"]) ;
-        
-        //Load upload library and initialize configuration
-        $this->load->library('upload',$config);
-       $this->upload->initialize($config);
-         
-        if($this->upload->do_upload('file')){
-       $uploadData = $this->upload->data();
-       $picture = $uploadData['file_name'];
-       $config['image_library'] = 'gd2';  
-       $config['source_image'] = 'assets/img/img/'.$picture;
-       $config['create_thumb'] = FALSE;  
-       $config['maintain_ratio'] = FALSE;  
-       $config['quality'] = '60%';  
-       $config['width'] = 800;  
-       $config['height'] = 600;  
-       $config['new_image'] = 'assets/img/img/'.$picture;
-       $this->load->library('image_lib', $config);  
-       $this->image_lib->resize(); 
-        }else{
-        Echo "helll";
-    
-         $picture = '';
+            $config['upload_path'] = 'assets\img\img';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['file_name'] = basename($_FILES["file"]["name"]);
+
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if ($this->upload->do_upload('file')) {
+                $uploadData = $this->upload->data();
+                $picture = $uploadData['file_name'];
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = 'assets/img/img/' . $picture;
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = FALSE;
+                $config['quality'] = '60%';
+                $config['width'] = 800;
+                $config['height'] = 600;
+                $config['new_image'] = 'assets/img/img/' . $picture;
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+            } else {
+                echo "helll";
+
+                $picture = '';
+            }
+        } else {
+
+            $picture = '';
         }
-       }else{
-        
-        $picture = '';
-       }
-    
- 
-  $headerValue = $_POST['HeaderArray'];
-  $header = explode(",",$headerValue);
 
-    $childValue = $_POST['ChildArray'];
-    $child = explode("]",$childValue);
-    $childArray = [];
-    foreach ($child as $key => $value) {
-        $arraySplit = explode(',',$value);
-        array_push($childArray, $arraySplit);
-       
+
+        $headerValue = $_POST['HeaderArray'];
+        $header = explode(",", $headerValue);
+
+        $childValue = $_POST['ChildArray'];
+        $child = explode("]", $childValue);
+        $childArray = [];
+        foreach ($child as $key => $value) {
+            $arraySplit = explode(',', $value);
+            array_push($childArray, $arraySplit);
+        }
+        array_pop($childArray);
+
+        $testNo = $header[0];
+        $CSSNO = $header[1];
+        $TestDate = $header[2];
+        $ItemName = $header[3];
+        $PONo = $header[4];
+        $ReceivingDate = $header[5];
+        $SupplierName = $header[6];
+
+        $SupplierRef = $header[7];
+        $Quantity = $header[8];
+
+
+
+        $Result = $header[9];
+        $ItemType = $header[10];
+        $testGroup = $_POST['testGroup'];
+        $testPerformer = $_POST['testPerformer'];
+        //     if($Result=='Fail' || $Result=='fail'){
+        //         $mail = new PHPMailer(true);
+        // try{
+
+
+        //   //Server settings
+        // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+        // $mail->isSMTP();                                            //Send using SMTP
+        // $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+        // $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+        // $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
+        // $mail->Password   = 'Forward123';                               //SMTP password
+        // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+        // $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        // $mail->IsHTML(true);
+        // //Recipients
+        // $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
+        // $mail->addAddress("hufsa@forward.pk"); 
+        // $mail->addAddress("sohail@forward.pk"); 
+        // $mail->addAddress("store@forward.pk"); 
+        // $mail->AddCC('abaid@forward.pk');
+        // $mail->AddCC('imran@forward.pk');
+
+        //  $mail->AddCC('waseembutt@forward.pk');
+        //  $mail->AddCC('tafseer@forward.pk');
+        //     $mail->AddCC('shoaib@forward.pk');
+        //     $mail->AddCC('fsqa@forward.pk');
+        //           $mail->AddCC('oman@forward.pk');
+        //              $mail->AddCC('abdulhaseeb@forward.pk');
+        //              $mail->AddCC('yaseen@forward.pk');
+        // $mail->AddCC('zainabbas@forward.pk');
+        // $mail->Subject = "Raw Material Failure";
+        // $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
+        // <div style="margin-left:40%;">
+        // <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
+        // Material Test Report Result Alert</th></tr>
+        // <tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
+        // <tr><th>Material Name:</th><td>'.$ItemName .'</td></tr>
+        // <tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
+        // <tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
+
+        // <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
+        // </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
+
+
+        // //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
+        // //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
+        // $mail->send();
+        // echo 'Message has been sent';
+        // } catch (Exception $e) {
+        // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        // }
+        // }
+
+        $this->l->AddHeaderMaterial(
+            $TestDate,
+            $CSSNO,
+            $PONo,
+            $Quantity,
+            $ReceivingDate,
+            $ItemName,
+            $SupplierName,
+            $testNo,
+            $SupplierRef,
+            $Result,
+            $ItemType,
+            $picture,
+            $testGroup,
+            $testPerformer,
+            $childArray
+        );
     }
-    array_pop($childArray);
-  
-    $testNo = $header[0];
-    $CSSNO=$header[1];
-    $TestDate = $header[2];
-    $ItemName = $header[3];
-    $PONo = $header[4];
-    $ReceivingDate = $header[5];
-    $SupplierName = $header[6];
-  
-    $SupplierRef = $header[7];
-    $Quantity = $header[8];
 
-   
-  
-    $Result = $header[9];
-    $ItemType = $header[10];
-    $testGroup = $_POST['testGroup'];
-    $testPerformer = $_POST['testPerformer'];
-//     if($Result=='Fail' || $Result=='fail'){
-//         $mail = new PHPMailer(true);
-// try{
-
-
-//   //Server settings
-// $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-// $mail->isSMTP();                                            //Send using SMTP
-// $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-// $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-// $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
-// $mail->Password   = 'Forward123';                               //SMTP password
-// $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-// $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-// $mail->IsHTML(true);
-// //Recipients
-// $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-// $mail->addAddress("hufsa@forward.pk"); 
-// $mail->addAddress("sohail@forward.pk"); 
-// $mail->addAddress("store@forward.pk"); 
-// $mail->AddCC('abaid@forward.pk');
-// $mail->AddCC('imran@forward.pk');
-
-//  $mail->AddCC('waseembutt@forward.pk');
-//  $mail->AddCC('tafseer@forward.pk');
-//     $mail->AddCC('shoaib@forward.pk');
-//     $mail->AddCC('fsqa@forward.pk');
-//           $mail->AddCC('oman@forward.pk');
-//              $mail->AddCC('abdulhaseeb@forward.pk');
-//              $mail->AddCC('yaseen@forward.pk');
-// $mail->AddCC('zainabbas@forward.pk');
-// $mail->Subject = "Raw Material Failure";
-// $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
-// <div style="margin-left:40%;">
-// <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
-// Material Test Report Result Alert</th></tr>
-// <tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
-// <tr><th>Material Name:</th><td>'.$ItemName .'</td></tr>
-// <tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
-// <tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
-
-// <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
-// </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
-
-
-// //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
-// //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
-// $mail->send();
-// echo 'Message has been sent';
-// } catch (Exception $e) {
-// echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-// }
-// }
-   
-    $this->l->AddHeaderMaterial(
-        $TestDate,
-        $CSSNO,
-        $PONo,
-        $Quantity,
-        $ReceivingDate,
-        $ItemName,
-        $SupplierName,
-        $testNo,
-        $SupplierRef,
-        $Result,
-        $ItemType,
-        $picture,
-        $testGroup,
-        $testPerformer,
-        $childArray 
-    );
-    }
-    
 
     public function addHeadDataThread()
-    { 
+    {
 
-    ////////////////////////////////////// Ajax Call ///////////////////////////////
+        ////////////////////////////////////// Ajax Call ///////////////////////////////
 
-     if(!empty($_FILES['file']['name'])){
+        if (!empty($_FILES['file']['name'])) {
 
-        $config['upload_path'] = 'assets\img\img';
-        $config['allowed_types'] = 'jpg|jpeg|png|gif';
-        $config['file_name'] = basename($_FILES["file"]["name"]) ;
-        
-        //Load upload library and initialize configuration
-        $this->load->library('upload',$config);
-       $this->upload->initialize($config);
-         
-        if($this->upload->do_upload('file')){
-       $uploadData = $this->upload->data();
-       $picture = $uploadData['file_name'];
-       $config['image_library'] = 'gd2';  
-       $config['source_image'] = 'assets/img/img/'.$picture;
-       $config['create_thumb'] = FALSE;  
-       $config['maintain_ratio'] = FALSE;  
-       $config['quality'] = '60%';  
-       $config['width'] = 800;  
-       $config['height'] = 600;  
-       $config['new_image'] = 'assets/img/img/'.$picture;
-       $this->load->library('image_lib', $config);  
-       $this->image_lib->resize(); 
-        }else{
-        Echo "helll";
-    
-         $picture = '';
+            $config['upload_path'] = 'assets\img\img';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['file_name'] = basename($_FILES["file"]["name"]);
+
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if ($this->upload->do_upload('file')) {
+                $uploadData = $this->upload->data();
+                $picture = $uploadData['file_name'];
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = 'assets/img/img/' . $picture;
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = FALSE;
+                $config['quality'] = '60%';
+                $config['width'] = 800;
+                $config['height'] = 600;
+                $config['new_image'] = 'assets/img/img/' . $picture;
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+            } else {
+                echo "helll";
+
+                $picture = '';
+            }
+        } else {
+
+            $picture = '';
         }
-       }else{
-        
-        $picture = '';
-       }
-    
- 
-  $headerValue = $_POST['HeaderArray'];
-  $header = explode(",",$headerValue);
-
-    $childValue = $_POST['ChildArray'];
-    $child = explode("]",$childValue);
-    $childArray = [];
-    foreach ($child as $key => $value) {
-        $arraySplit = explode(',',$value);
-        array_push($childArray, $arraySplit);
-       
-    }
-    array_pop($childArray);
-    $testNo = $header[0];
-    $TestDate = $header[1];
-    $ReceivingDate = $header[2];
-    $PONo = $header[3];
-    $SupplierRef = $header[4];
-    $SupplierName = $header[5];
-    $Thickness = $header[6];
-   
-    $LinearDensity = $header[7];
-
- 
-    $TwistPerInch = $header[8];
-    $Result = $header[9];
-    $testGroup = $_POST['testGroup'];
-    $testPerformer = $_POST['testPerformer'];
-//     if($Result=='Fail' || $Result=='fail'){
-//         $mail = new PHPMailer(true);
-// try{
 
 
-//   //Server settings
-// $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-// $mail->isSMTP();                                            //Send using SMTP
-// $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-// $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-// $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
-// $mail->Password   = 'Forward123';                               //SMTP password
-// $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-// $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-// $mail->IsHTML(true);
-// //Recipients
-// $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-// $mail->addAddress("hufsa@forward.pk"); 
-// $mail->addAddress("sohail@forward.pk"); 
-// $mail->addAddress("store@forward.pk"); 
-// $mail->AddCC('abaid@forward.pk');
-// $mail->AddCC('imran@forward.pk');
+        $headerValue = $_POST['HeaderArray'];
+        $header = explode(",", $headerValue);
 
-//  $mail->AddCC('waseembutt@forward.pk');
-//  $mail->AddCC('tafseer@forward.pk');
-//     $mail->AddCC('shoaib@forward.pk');
-//     $mail->AddCC('fsqa@forward.pk');
-//           $mail->AddCC('oman@forward.pk');
-//              $mail->AddCC('abdulhaseeb@forward.pk');
-//              $mail->AddCC('yaseen@forward.pk');
-//              $mail->AddCC('zainabbas@forward.pk');
-// $mail->Subject = "Raw Material Failure";
-// $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
-// <div style="margin-left:40%;">
-// <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
-// Thread Test Report Result Alert</th></tr>
-// <tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
-// <tr><th>Material Name:</th><td>'.$SupplierRef .'</td></tr>
-// <tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
-// <tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
+        $childValue = $_POST['ChildArray'];
+        $child = explode("]", $childValue);
+        $childArray = [];
+        foreach ($child as $key => $value) {
+            $arraySplit = explode(',', $value);
+            array_push($childArray, $arraySplit);
+        }
+        array_pop($childArray);
+        $testNo = $header[0];
+        $TestDate = $header[1];
+        $ReceivingDate = $header[2];
+        $PONo = $header[3];
+        $SupplierRef = $header[4];
+        $SupplierName = $header[5];
+        $Thickness = $header[6];
 
-// <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
-// </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
+        $LinearDensity = $header[7];
 
 
-// //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
-// //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
-// $mail->send();
-// echo 'Message has been sent';
-// } catch (Exception $e) {
-// echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-// }
-// }
-    $this->l->AddHeaderThread(
-        $TestDate,
-        $PONo,
-        $ReceivingDate,
-        $SupplierName,
-        $testNo,
-        $SupplierRef,
-        $picture,
-        $testGroup,
-        $testPerformer,
-        $childArray 
-        ,$Thickness
-        ,$LinearDensity
-        ,$TwistPerInch
-        ,$Result
-    );
+        $TwistPerInch = $header[8];
+        $Result = $header[9];
+        $testGroup = $_POST['testGroup'];
+        $testPerformer = $_POST['testPerformer'];
+        //     if($Result=='Fail' || $Result=='fail'){
+        //         $mail = new PHPMailer(true);
+        // try{
+
+
+        //   //Server settings
+        // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+        // $mail->isSMTP();                                            //Send using SMTP
+        // $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+        // $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+        // $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
+        // $mail->Password   = 'Forward123';                               //SMTP password
+        // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+        // $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        // $mail->IsHTML(true);
+        // //Recipients
+        // $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
+        // $mail->addAddress("hufsa@forward.pk"); 
+        // $mail->addAddress("sohail@forward.pk"); 
+        // $mail->addAddress("store@forward.pk"); 
+        // $mail->AddCC('abaid@forward.pk');
+        // $mail->AddCC('imran@forward.pk');
+
+        //  $mail->AddCC('waseembutt@forward.pk');
+        //  $mail->AddCC('tafseer@forward.pk');
+        //     $mail->AddCC('shoaib@forward.pk');
+        //     $mail->AddCC('fsqa@forward.pk');
+        //           $mail->AddCC('oman@forward.pk');
+        //              $mail->AddCC('abdulhaseeb@forward.pk');
+        //              $mail->AddCC('yaseen@forward.pk');
+        //              $mail->AddCC('zainabbas@forward.pk');
+        // $mail->Subject = "Raw Material Failure";
+        // $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
+        // <div style="margin-left:40%;">
+        // <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
+        // Thread Test Report Result Alert</th></tr>
+        // <tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
+        // <tr><th>Material Name:</th><td>'.$SupplierRef .'</td></tr>
+        // <tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
+        // <tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
+
+        // <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
+        // </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
+
+
+        // //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
+        // //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
+        // $mail->send();
+        // echo 'Message has been sent';
+        // } catch (Exception $e) {
+        // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        // }
+        // }
+        $this->l->AddHeaderThread(
+            $TestDate,
+            $PONo,
+            $ReceivingDate,
+            $SupplierName,
+            $testNo,
+            $SupplierRef,
+            $picture,
+            $testGroup,
+            $testPerformer,
+            $childArray,
+            $Thickness,
+            $LinearDensity,
+            $TwistPerInch,
+            $Result
+        );
     }
 
     public function addHeadDataMSThread()
-    { 
+    {
 
-    ////////////////////////////////////// Ajax Call ///////////////////////////////
+        ////////////////////////////////////// Ajax Call ///////////////////////////////
 
-     if(!empty($_FILES['file']['name'])){
+        if (!empty($_FILES['file']['name'])) {
 
-        $config['upload_path'] = 'assets\img\img';
-        $config['allowed_types'] = 'jpg|jpeg|png|gif';
-        $config['file_name'] = basename($_FILES["file"]["name"]) ;
-        
-        //Load upload library and initialize configuration
-        $this->load->library('upload',$config);
-       $this->upload->initialize($config);
-         
-        if($this->upload->do_upload('file')){
-       $uploadData = $this->upload->data();
-       $picture = $uploadData['file_name'];
-       $config['image_library'] = 'gd2';  
-       $config['source_image'] = 'assets/img/img/'.$picture;
-       $config['create_thumb'] = FALSE;  
-       $config['maintain_ratio'] = FALSE;  
-       $config['quality'] = '60%';  
-       $config['width'] = 800;  
-       $config['height'] = 600;  
-       $config['new_image'] = 'assets/img/img/'.$picture;
-       $this->load->library('image_lib', $config);  
-       $this->image_lib->resize(); 
-        }else{
-        Echo "helll";
-    
-         $picture = '';
+            $config['upload_path'] = 'assets\img\img';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['file_name'] = basename($_FILES["file"]["name"]);
+
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if ($this->upload->do_upload('file')) {
+                $uploadData = $this->upload->data();
+                $picture = $uploadData['file_name'];
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = 'assets/img/img/' . $picture;
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = FALSE;
+                $config['quality'] = '60%';
+                $config['width'] = 800;
+                $config['height'] = 600;
+                $config['new_image'] = 'assets/img/img/' . $picture;
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+            } else {
+                echo "helll";
+
+                $picture = '';
+            }
+        } else {
+
+            $picture = '';
         }
-       }else{
-        
-        $picture = '';
-       }
-    
- 
-  $headerValue = $_POST['HeaderArray'];
-  $header = explode(",",$headerValue);
-
-    $childValue = $_POST['ChildArray'];
-    $child = explode("]",$childValue);
-    $childArray = [];
-    foreach ($child as $key => $value) {
-        $arraySplit = explode(',',$value);
-        array_push($childArray, $arraySplit);
-       
-    }
- 
-    array_pop($childArray);
-    $testNo = $header[0];
-    $TestDate = $header[1];
-    $ReceivingDate = $header[2];
-    $PONo = $header[3];
-    $SupplierRef = $header[4];
-    $SupplierName = $header[5];
-    $Result = $header[6];
-   
-    $MaterialName = $header[7];
-
-    $testGroup = $_POST['testGroup'];
-    $testPerformer = $_POST['testPerformer'];
-//     if($Result=='Fail' || $Result=='fail'){
-//         $mail = new PHPMailer(true);
-// try{
 
 
-//   //Server settings
-// $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-// $mail->isSMTP();                                            //Send using SMTP
-// $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-// $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-// $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
-// $mail->Password   = 'Forward123';                               //SMTP password
-// $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-// $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-// $mail->IsHTML(true);
-// //Recipients
-// $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-// $mail->addAddress("hufsa@forward.pk"); 
-// $mail->addAddress("sohail@forward.pk"); 
-// $mail->addAddress("store@forward.pk"); 
-// $mail->AddCC('abaid@forward.pk');
-// $mail->AddCC('imran@forward.pk');
+        $headerValue = $_POST['HeaderArray'];
+        $header = explode(",", $headerValue);
 
-//  $mail->AddCC('waseembutt@forward.pk');
-//  $mail->AddCC('tafseer@forward.pk');
-//     $mail->AddCC('shoaib@forward.pk');
-//     $mail->AddCC('fsqa@forward.pk');
-//           $mail->AddCC('oman@forward.pk');
-//              $mail->AddCC('abdulhaseeb@forward.pk');
-//              $mail->AddCC('yaseen@forward.pk');
-//              $mail->AddCC('zainabbas@forward.pk');
-// $mail->Subject = "Raw Material Failure";
-// $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
-// <div style="margin-left:40%;">
-// <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
-// MS Thread Test Report Result Alert</th></tr>
-// <tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
-// <tr><th>Material Name:</th><td>'.$SupplierRef .'</td></tr>
-// <tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
-// <tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
+        $childValue = $_POST['ChildArray'];
+        $child = explode("]", $childValue);
+        $childArray = [];
+        foreach ($child as $key => $value) {
+            $arraySplit = explode(',', $value);
+            array_push($childArray, $arraySplit);
+        }
 
-// <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
-// </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
+        array_pop($childArray);
+        $testNo = $header[0];
+        $TestDate = $header[1];
+        $ReceivingDate = $header[2];
+        $PONo = $header[3];
+        $SupplierRef = $header[4];
+        $SupplierName = $header[5];
+        $Result = $header[6];
+
+        $MaterialName = $header[7];
+
+        $testGroup = $_POST['testGroup'];
+        $testPerformer = $_POST['testPerformer'];
+        //     if($Result=='Fail' || $Result=='fail'){
+        //         $mail = new PHPMailer(true);
+        // try{
 
 
-// //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
-// //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
-// $mail->send();
-// echo 'Message has been sent';
-// } catch (Exception $e) {
-// echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-// }
-// }
-    $this->l->AddHeaderMSThread(
-        $TestDate,
-        $PONo,
-        $ReceivingDate,
-        $SupplierName,
-        $testNo,
-        $SupplierRef,
-        $picture,
-        $testGroup,
-        $testPerformer,
-        $childArray 
-        ,$Result
-        ,$MaterialName
-    );
+        //   //Server settings
+        // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+        // $mail->isSMTP();                                            //Send using SMTP
+        // $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+        // $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+        // $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
+        // $mail->Password   = 'Forward123';                               //SMTP password
+        // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+        // $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        // $mail->IsHTML(true);
+        // //Recipients
+        // $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
+        // $mail->addAddress("hufsa@forward.pk"); 
+        // $mail->addAddress("sohail@forward.pk"); 
+        // $mail->addAddress("store@forward.pk"); 
+        // $mail->AddCC('abaid@forward.pk');
+        // $mail->AddCC('imran@forward.pk');
+
+        //  $mail->AddCC('waseembutt@forward.pk');
+        //  $mail->AddCC('tafseer@forward.pk');
+        //     $mail->AddCC('shoaib@forward.pk');
+        //     $mail->AddCC('fsqa@forward.pk');
+        //           $mail->AddCC('oman@forward.pk');
+        //              $mail->AddCC('abdulhaseeb@forward.pk');
+        //              $mail->AddCC('yaseen@forward.pk');
+        //              $mail->AddCC('zainabbas@forward.pk');
+        // $mail->Subject = "Raw Material Failure";
+        // $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
+        // <div style="margin-left:40%;">
+        // <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
+        // MS Thread Test Report Result Alert</th></tr>
+        // <tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
+        // <tr><th>Material Name:</th><td>'.$SupplierRef .'</td></tr>
+        // <tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
+        // <tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
+
+        // <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
+        // </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
+
+
+        // //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
+        // //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
+        // $mail->send();
+        // echo 'Message has been sent';
+        // } catch (Exception $e) {
+        // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        // }
+        // }
+        $this->l->AddHeaderMSThread(
+            $TestDate,
+            $PONo,
+            $ReceivingDate,
+            $SupplierName,
+            $testNo,
+            $SupplierRef,
+            $picture,
+            $testGroup,
+            $testPerformer,
+            $childArray,
+            $Result,
+            $MaterialName
+        );
     }
 
     public function addHeadDataBlader()
-    { 
+    {
 
-    ////////////////////////////////////// Ajax Call ///////////////////////////////
+        ////////////////////////////////////// Ajax Call ///////////////////////////////
 
-     if(!empty($_FILES['file']['name'])){
+        if (!empty($_FILES['file']['name'])) {
 
-        $config['upload_path'] = 'assets\img\img';
-        $config['allowed_types'] = 'jpg|jpeg|png|gif';
-        $config['file_name'] = basename($_FILES["file"]["name"]) ;
-        
-        //Load upload library and initialize configuration
-        $this->load->library('upload',$config);
-       $this->upload->initialize($config);
-         
-        if($this->upload->do_upload('file')){
-       $uploadData = $this->upload->data();
-       $picture = $uploadData['file_name'];
-       $config['image_library'] = 'gd2';  
-       $config['source_image'] = 'assets/img/img/'.$picture;
-       $config['create_thumb'] = FALSE;  
-       $config['maintain_ratio'] = FALSE;  
-       $config['quality'] = '60%';  
-       $config['width'] = 800;  
-       $config['height'] = 600;  
-       $config['new_image'] = 'assets/img/img/'.$picture;
-       $this->load->library('image_lib', $config);  
-       $this->image_lib->resize(); 
-        }else{
-        Echo "helll";
-    
-         $picture = '';
+            $config['upload_path'] = 'assets\img\img';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['file_name'] = basename($_FILES["file"]["name"]);
+
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if ($this->upload->do_upload('file')) {
+                $uploadData = $this->upload->data();
+                $picture = $uploadData['file_name'];
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = 'assets/img/img/' . $picture;
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = FALSE;
+                $config['quality'] = '60%';
+                $config['width'] = 800;
+                $config['height'] = 600;
+                $config['new_image'] = 'assets/img/img/' . $picture;
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+            } else {
+                echo "helll";
+
+                $picture = '';
+            }
+        } else {
+
+            $picture = '';
         }
-       }else{
-        
-        $picture = '';
-       }
-    
- 
-  $headerValue = $_POST['HeaderArray'];
-  $header = explode(",",$headerValue);
 
-    $childValue = $_POST['ChildArray'];
-    $child = explode("]",$childValue);
-    $childArray = [];
-    foreach ($child as $key => $value) {
-        $arraySplit = explode(',',$value);
-        array_push($childArray, $arraySplit);
-       
-    }
-    array_pop($childArray);
-    $TestDate = $header[1];
-    $PONo = $header[3];
-    $Material = $header[6];
-    $ReceivingDate = $header[2];
-    $Size = $header[7];
-    $SupplierName = $header[4];
-    $testNo = $header[0];
-    $SupplierRef = $header[5];
-    $Hardness = $header[8];
-    $Remarks =  $header[9];
-    $testGroup = $_POST['testGroup'];
-    $testPerformer = $_POST['testPerformer'];
-    $this->l->AddHeaderBlader(
-        $TestDate,
-        $PONo,
-        $ReceivingDate,
-        $Size,
-        $SupplierName,
-        $testNo,
-        $SupplierRef,
-        $picture,
-        $testGroup,
-        $testPerformer,
-        $childArray ,
-        $Material,
-        $Hardness,
-        $Remarks
-    );
+
+        $headerValue = $_POST['HeaderArray'];
+        $header = explode(",", $headerValue);
+
+        $childValue = $_POST['ChildArray'];
+        $child = explode("]", $childValue);
+        $childArray = [];
+        foreach ($child as $key => $value) {
+            $arraySplit = explode(',', $value);
+            array_push($childArray, $arraySplit);
+        }
+        array_pop($childArray);
+        $TestDate = $header[1];
+        $PONo = $header[3];
+        $Material = $header[6];
+        $ReceivingDate = $header[2];
+        $Size = $header[7];
+        $SupplierName = $header[4];
+        $testNo = $header[0];
+        $SupplierRef = $header[5];
+        $Hardness = $header[8];
+        $Remarks =  $header[9];
+        $testGroup = $_POST['testGroup'];
+        $testPerformer = $_POST['testPerformer'];
+        $this->l->AddHeaderBlader(
+            $TestDate,
+            $PONo,
+            $ReceivingDate,
+            $Size,
+            $SupplierName,
+            $testNo,
+            $SupplierRef,
+            $picture,
+            $testGroup,
+            $testPerformer,
+            $childArray,
+            $Material,
+            $Hardness,
+            $Remarks
+        );
     }
 
     public function addHeadDataFGT()
-    { 
-    
-    ////////////////////////////////////// Ajax Call ///////////////////////////////
+    {
 
-     if(!empty($_FILES['file']['name'])){
+        ////////////////////////////////////// Ajax Call ///////////////////////////////
 
-        $config['upload_path'] = 'assets\img\img';
-        $config['allowed_types'] = 'jpg|jpeg|png|gif';
-        $config['file_name'] = basename($_FILES["file"]["name"]) ;
-        
-        //Load upload library and initialize configuration
-        $this->load->library('upload',$config);
-       $this->upload->initialize($config);
-         
-        if($this->upload->do_upload('file')){
-       $uploadData = $this->upload->data();
-       $picture = $uploadData['file_name'];
-       $config['image_library'] = 'gd2';  
-       $config['source_image'] = 'assets/img/img/'.$picture;
-       $config['create_thumb'] = FALSE;  
-       $config['maintain_ratio'] = FALSE;  
-       $config['quality'] = '60%';  
-       $config['width'] = 800;  
-       $config['height'] = 600;  
-       $config['new_image'] = 'assets/img/img/'.$picture;
-       $this->load->library('image_lib', $config);  
-       $this->image_lib->resize(); 
-        }else{
-        Echo "helll";
-    
-         $picture = '';
+        if (!empty($_FILES['file']['name'])) {
+
+            $config['upload_path'] = 'assets\img\img';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['file_name'] = basename($_FILES["file"]["name"]);
+
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if ($this->upload->do_upload('file')) {
+                $uploadData = $this->upload->data();
+                $picture = $uploadData['file_name'];
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = 'assets/img/img/' . $picture;
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = FALSE;
+                $config['quality'] = '60%';
+                $config['width'] = 800;
+                $config['height'] = 600;
+                $config['new_image'] = 'assets/img/img/' . $picture;
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+            } else {
+                echo "helll";
+
+                $picture = '';
+            }
+        } else {
+
+            $picture = '';
         }
-       }else{
-        
-        $picture = '';
-       }
-    
- 
-  $headerValue = $_POST['HeaderArray'];
-  $header = explode(",",$headerValue);
-  
-    $childValue = $_POST['ChildArray'];
-    $child = explode("]",$childValue);
-    $childArray = [];
-    foreach ($child as $key => $value) {
-        $arraySplit = explode(',',$value);
-        array_push($childArray, $arraySplit);
-       
-    }
-    array_pop($childArray);
-    $TestNo = $header[0];
-    $Date = $header[1];
-    $ModelName = $header[2];
-    $CSSCode = $header[3];
-    $Pressure = $header[4];
-    $TempHumidity = $header[5];
-    $Article = $header[6];
-    $Category = $header[7];
-    $size = $header[8];
-    $Testedfor = $header[9];
-    $Note = $header[10];
-    $testGroup = $_POST['testGroup'];
-    $testPerformer = $_POST['testPerformer'];
-    $this->l->AddHeaderFGT(
-        $TestNo,
-        $Date,
-        $ModelName,
-        $CSSCode,
-        $Pressure,
-        $TempHumidity,
-        $Article,
-        $Category,
-        $picture,
-        $testGroup,
-        $testPerformer,
-        $childArray ,
-        $size,
-        $Testedfor
-        ,$Note
-    );
+
+
+        $headerValue = $_POST['HeaderArray'];
+        $header = explode(",", $headerValue);
+
+        $childValue = $_POST['ChildArray'];
+        $child = explode("]", $childValue);
+        $childArray = [];
+        foreach ($child as $key => $value) {
+            $arraySplit = explode(',', $value);
+            array_push($childArray, $arraySplit);
+        }
+        array_pop($childArray);
+        $TestNo = $header[0];
+        $Date = $header[1];
+        $ModelName = $header[2];
+        $CSSCode = $header[3];
+        $Pressure = $header[4];
+        $TempHumidity = $header[5];
+        $Article = $header[6];
+        $Category = $header[7];
+        $size = $header[8];
+        $Testedfor = $header[9];
+        $Note = $header[10];
+        $testGroup = $_POST['testGroup'];
+        $testPerformer = $_POST['testPerformer'];
+        $this->l->AddHeaderFGT(
+            $TestNo,
+            $Date,
+            $ModelName,
+            $CSSCode,
+            $Pressure,
+            $TempHumidity,
+            $Article,
+            $Category,
+            $picture,
+            $testGroup,
+            $testPerformer,
+            $childArray,
+            $size,
+            $Testedfor,
+            $Note
+        );
     }
 
     public function addBodyData()
@@ -1239,33 +1306,34 @@ class LabController extends CI_Controller
             );
         }
     }
-    public function undo($TID){
+    public function undo($TID)
+    {
         $data['undo'] = $this->l->undo($TID);
     }
-    public function undoTestType($TID){
+    public function undoTestType($TID)
+    {
         $data['undoTestType'] = $this->l->undoTestType($TID);
     }
-     public function updated($reviewStatus,$approvedStatus,$TID){
+    public function updated($reviewStatus, $approvedStatus, $TID)
+    {
         //$data['Labtest'] 
-        $data = $this->l->updatedStatus($reviewStatus,$approvedStatus,$TID);
+        $data = $this->l->updatedStatus($reviewStatus, $approvedStatus, $TID);
         return $this->output
-        ->set_content_type('application/json')
-        ->set_status_header(200)
-        ->set_output(json_encode($data));
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
     }
 
-    public function getTableDatalab(){
- 
+    public function getTableDatalab()
+    {
+
         $sDate = $_POST["startDate"];
         $eDate = $_POST["endDate"];
-        $data = $this->l->getTableDatalab($sDate,$eDate);
+        $data = $this->l->getTableDatalab($sDate, $eDate);
 
         return $this->output
-        ->set_content_type('application/json')
-        ->set_status_header(200)
-        ->set_output(json_encode($data));
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
     }
-
-
-    
 }

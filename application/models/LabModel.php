@@ -1366,16 +1366,18 @@ FROM            dbo.tbl_Pro_Vendor");
 
         return $query->result_array();
     }
-    public function AddActivity($FC,$name,$status){
+    public function AddActivity($FC,$name,$status, $testtype){
  $query = $this->db->query("INSERT INTO tbl_Dev_Activities
            (VendorID
            ,Name
            ,Status
+           ,testCatagoty
            )
      VALUES
            ('$FC'
            ,'$name',
-           $status )");
+           $status,
+           '$testtype' )");
         if($query ){
  $this->session->set_flashdata('info', 'Activity Saved Successfully');
         redirect('DevelopmentController/master_form');
@@ -1390,9 +1392,9 @@ FROM            dbo.view_Dev_Activity");
 
         return $query->result_array();
     }
-    public function updateActivity($TID,$name,$status){
+    public function updateActivity($TID,$name,$status,$testtype){
          $query = $this->db->query("UPDATE   dbo .tbl_Dev_Activities 
-            SET   Name  =  '$name',Status  =  '$status'
+            SET   Name  =  '$name',Status  =  '$status', testCatagoty = '$testtype'
           WHERE  ActivityID='$TID'");
             
 //             if($query ){
@@ -1714,13 +1716,13 @@ public function updatedStatusFGT($reviewStatus,$approvedStatus,$TID){
    
     }
 
-    public function AddTestType($name,$status)
+    public function AddTestType($name,$status,$testtype)
     {
 
         $query = $this->db->query("INSERT  INTO dbo.tbl_test_types 
-        (Name,Status)
+        (Name,Status,testCatagoty)
         VALUES
-        ('$name','$status')");
+        ('$name','$status', '$testtype')");
 
         if($query){
             return true;
@@ -1731,29 +1733,83 @@ public function updatedStatusFGT($reviewStatus,$approvedStatus,$TID){
    
     }
 
-    public function AddRequest($Type,$Sample_RequestDate,$Factory_Code,$Article,$TestID,$Quantity_Issued,$Status)
+    public function AddRequest($testtype, $Type, $Sample_RequestDate, $Factory_Code, $Quantity_Issued, $Status, $po, $supplier)
     {
         $user = $this->session->userdata('user_id');
         $userReceiver = 388;
         $query = $this->db->query("INSERT  INTO dbo.tbl_lab_test_request 
-      (Type,Sample_RequestDate,Factory_Code,Article,TestID,Quantity_Issued,Status,SRSenderID,SRReceiverID,finalStatus)
+      (Type,Sample_RequestDate,Factory_Code,Quantity_Issued,Status,SRSenderID,SRReceiverID,finalStatus,TestType,PONo,SupplierName)
         VALUES
-        ('$Type','$Sample_RequestDate','$Factory_Code','$Article',$TestID,$Quantity_Issued,'$Status',$user,$userReceiver,'Pending')");
+        ('$Type','$Sample_RequestDate','$Factory_Code',$Quantity_Issued,'$Status',$user,$userReceiver,'Pending','$testtype', '$po', '$supplier')");
+        $RID = $this->db->insert_id();
 
+
+        $this->session->set_userdata('MAXID', $RID);
         if($query){
             return true;
         }
         else{
             return false;
         }
-   
-    }
 
-    public function EditTestType($id,$name,$status)
+    }
+    public function getmaxID(){
+        $user = $this->session->userdata('user_id');
+        $query = $this->db->query("SELECT        MAX(TID) AS MaXID
+FROM            dbo.tbl_lab_test_request
+WHERE        (SRSenderID = $user)");
+
+        return $query->result_array();
+    }
+    public function GetItems(){
+        
+        $query = $this->db->query("SELECT        L4Name, Code
+FROM            dbo.tbl_Inv_L4
+WHERE        (Status = 1)");
+
+        return $query->result_array();
+    }
+    public function getRequestData($ID)
+    {
+        
+        $query = $this->db->query("SELECT        TID, Type, TestType, CONVERT(Varchar, Sample_RequestDate, 103) AS Sample_RequestDate, Factory_Code, PONo, SupplierName, Quantity_Issued
+FROM            dbo.tbl_lab_test_request
+WHERE        (TID = $ID)");
+
+        return $query->result_array();
+    }
+    public function AddRdetails($RID, $testType, $TestID, $Code, $Article){
+        $user = $this->session->userdata('user_id');
+        $Date = date('Y-m-d H:i:s');
+        $query = $this->db->query("INSERT  INTO dbo.Tbl_Test_Request_Details 
+      (RequestID,TestType,TestID,Code,Article,UserID,EntryDate)
+        VALUES
+        ('$RID','$testType','$TestID','$Code','$Article',$user,'$Date')");
+
+        if ($query) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function AddNewrequest(){
+
+    }
+    public function getRequestdetails($ID)
+    {
+
+        $query = $this->db->query("SELECT      view_lab_request_Details.*
+FROM            dbo.view_lab_request_Details
+WHERE        (TID = $ID)");
+
+        return $query->result_array();
+    }
+    
+    public function EditTestType($id,$name,$status,$testtype)
     {
         
         $query = $this->db->query("UPDATE dbo.tbl_test_types 
-        SET Name = '$name',Status = '$status'
+        SET Name = '$name',Status = '$status', testCatagoty = '$testtype'
         WHERE TestID='$id'
         ");
 

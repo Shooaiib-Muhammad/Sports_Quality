@@ -465,17 +465,17 @@ Highcharts.chart('chartContainer2', {
 </div>
  </div>
 
-    <div style="margin-top:40px" class="col-lg-12">
+    <div style="margin-top:40px" class="col-md-12">
     <div id="panel-1" class="panel">
                         <div class="card">
                             <div class="card-header">
                                 <strong class="card-title">Thermo Bonded Ball Production </strong>
                             </div>
                             <div class="card-body">
-                                <table id="table2" class="display responsive nowrap" style="width: 100%;" >
-<thead class="thead-dark">
+                                <table id="table2" class="col-md-12 table table-bordered table-hover table-responsive table-striped w-100" style="width: 100%;" >
+<thead class="bg-primary-200 text-light">
                      
-<tr style="background-color: #282828; color: #fff;">
+<tr class="bg-primary-200 text-light" style="color: #fff;">
    <td></td>
 <td colspan="4" style="text-align: center; border-right: 1px #ffff solid; ">Forming</td>
 <td colspan="3" style="text-align: center;">Final QC </td></tr>
@@ -552,6 +552,9 @@ if ($VendorId==1) {
 ?>
 </tbody>
 </table>
+</div>
+</div>
+</div>
 <?php
   
 $data_points1 = array();
@@ -596,6 +599,7 @@ array_push($data_points4, $point4);
 
 
 ?>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js" integrity="sha512-FJ2OYvUIXUqCcPf1stu+oTBlhn54W0UisZB/TNrZaVMHHhYvLBV9jMbvJYtvDe5x/WVaoXZ6KB+Uqe5hT2vlyA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -834,13 +838,13 @@ Highcharts.chart('chartContainer2', {
 </div>
  </div>
 
-          <div class="col-lg-12">
+          <div style="margin-top:40px" class="col-md-12 table-responsive">
                         <div class="card">
                             <div class="card-header">
                                 <strong class="card-title">Thermo Bonded Ball Production </strong>
                             </div>
                             <div class="card-body">
-                                <table id="table2" class="table table-bordered table-hover table-responsive table-striped w-100" style="width: 100%;" >
+                                <table id="table2" class="col-md-12 table table-bordered table-hover table-responsive table-striped w-100" style="width: 100%;" >
 <thead class="bg-primary-200 text-light">
                           
 <tr class="bg-primary-200 text-light" style="color: #fff;">

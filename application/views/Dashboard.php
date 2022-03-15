@@ -3608,10 +3608,7 @@ if($Produced==0){
 
                 </div>
             </footer>
-            <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
-            <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
-            <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
-            <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+          
             <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
             <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
 

@@ -538,7 +538,7 @@ $this->load->model('TM_Model');
 $result=$this->TM_Model->GETTMPIOV($Values);
 
 ?>
-<div class="row">
+<div style="margin-top:40px" class="row">
 <div class="col-lg-6" style="width: 800px;">
 <div class="card">
 <div class="card-header">
@@ -1155,7 +1155,7 @@ Highcharts.chart('chartContainer1', {
 // }
 }
 </script>
-<div class="row">
+<div style="margin-top:40px" class="row">
 <div class="col-lg-6">
 <div class="card ">
 <div class="card-body ">  

@@ -74,121 +74,167 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                                                                             ''
                                                                                                                                         ); ?>LabController/AddRequest">
                                                                     <input type="hidden" name="Id" id="IdValue" value="">
+                                                                    <button type="button" class="btn btn-info btn-pills" id="Addnew" onclick="Refresh()">Add New Request</button>
 
                                                                     <div class="row" style="display:flex">
 
 
-                                                                        <div class="col-md-6">
+                                                                        <div class="form-group col-md-6">
+                                                                            <label for="inputEmail4">Request No.:</label>
+                                                                            <?php
+                                                                            // print_r($MAXID[0]['MaXID']);
 
-                                                                            <label class="form-contol" for="customFile">Request Date</label>
-                                                                            <input type="date" class="form-control" id="rDate" name="rDate">
+                                                                            if ($this->session->has_userdata('MAXID')) {
+                                                                                $RID = $this->session->userdata('MAXID');
+                                                                            } else {
+                                                                                $RID = '';
+                                                                            }
 
+                                                                            ?>
+                                                                            <input type="text" style="text-align: center;" id="RID" class="form-control" name="RID" value="<?php echo $RID; ?>" required="required" readonly>
                                                                         </div>
-                                                                        <div class="col-md-6">
+                                                                        <?php
 
-                                                                            <label class="form-contol" for="customFile">Type</label>
-                                                                            <select class="form-control" id="type" name="type">
-                                                                                <option value="" selected disabled>Select Type</option>
-                                                                                <option value="Production">Production</option>
-                                                                                <option value="Development">Development</option>
-                                                                            </select>
+                                                                        // $RID = $this->session->userdata('MAXID');
+                                                                        //                                                                     print_r($RID);
+                                                                        if ($this->session->has_userdata('MAXID')) {
+                                                                            if ($RData) {
+                                                                                //$Request_Date = $RData[0]['Approved'];
+                                                                                $Type = $RData[0]['Type'];
+                                                                                $TestType = $RData[0]['TestType'];
+                                                                                $Sample_RequestDate = $RData[0]['Sample_RequestDate'];
+                                                                                $Factory_Code = $RData[0]['Factory_Code'];
+                                                                                $PONo = $RData[0]['PONo'];
+                                                                                $SupplierName = $RData[0]['SupplierName'];
+                                                                                $Quantity_Issued = $RData[0]['Quantity_Issued'];
 
-                                                                        </div>
+                                                                        ?>
+                                                                                <div class="col-md-6">
+                                                                                    <label class="form-contol" for="customFile">Request Date</label>
+                                                                                    <input type="text" class="form-control" id="Date" value="<?php echo $Sample_RequestDate; ?>">
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <label class="form-contol" for="customFile">Type</label>
+                                                                                    <select class="form-control" id="testtype" name="testtype">
 
-                                                                        <div class="col-md-6 mt-2">
+                                                                                        <option value="<?php echo $Type; ?>"><?php echo $Type; ?></option>
 
-                                                                            <label for="sel1">Select Factory Code :</label>
-                                                                            <select class="form-control" id="fCode" name="fCode">
-                                                                                <option value="">Select one of the following</option>
-                                                                                <option value="B34001">B34001</option>
-                                                                                <option value="B34002">B34002</option>
-                                                                                <option value="B34003">B34003</option>
-                                                                                <option value="B34004">B34004</option>
-                                                                                <option value="B34005">B34005</option>
-                                                                                <option value="B34006">B34006</option>
-                                                                                <option value="B34007">B34007</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <label class="form-contol" for="customFile">Test Catagory</label>
+                                                                                    <select class="form-control" id="testtype" name="testtype">
 
-                                                                            </select>
+                                                                                        <option value="<?php echo $TestType; ?>"><?php echo $TestType; ?></option>
 
-                                                                        </div>
+                                                                                    </select>
 
-                                                                        <div class="col-md-6 mt-2">
+                                                                                </div>
+                                                                                <div class="col-md-6 mt-2">
+                                                                                    <label for="sel1">Select Factory Code :</label>
+
+                                                                                    <select class="form-control" id="testtype" name="testtype">
+
+                                                                                        <option value="<?php echo $Factory_Code; ?>"><?php echo $Factory_Code; ?></option>
+
+                                                                                    </select>
+
+                                                                                </div>
+                                                                                <?php
+                                                                                if ($PONo) {
+                                                                                ?>
+                                                                                    <div class="col-md-6 ">
+                                                                                        <label class="form-contol" for="customFile">PO # :</label>
+                                                                                        <input type="text" class="form-control" value="<?php echo $PONo; ?>" id="po" name="po">
+                                                                                    </div>
+                                                                                    <div class="col-md-6 ">
+                                                                                        <label class="form-contol" for="customFile">Supplier Name :</label>
+                                                                                        <input type="text" class="form-control" value="<?php echo $SupplierName; ?>" id="supplier" name="supplier">
+                                                                                    </div>
+                                                                                <?php
+                                                                                }
+                                                                                ?>
+
+                                                                                <div class="col-md-6 mt-2">
+                                                                                    <label class="form-contol" for="customFile">Quantity Issued</label>
+                                                                                    <input type="number" class="form-control" value="<?php echo $Quantity_Issued; ?>" id="qIssued" name="qIssued">
+                                                                                </div>
+                                                                                <div class="col-md-8">
+
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <div class="form-group">
+                                                                                        <div>
 
 
-                                                                            <div class="form-group">
-                                                                                <label for="sel1">Article Selection</label><br>
-                                                                                <select class="form-control" id="selection" name="selection" onchange="toggleArticle()">
-                                                                                <option value="" disabled>Select one of the following</option>
-                                                                                <option value="Manual" >Manual</option>
-                                                                                <option value="Auto">Auto</option>
-                                                                               
-                                                                            </select>
+                                                                                            <button type="button" class="btn btn-primary m-3" id="save">Save</button>
 
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            <?php
+                                                                            }
+                                                                        } else {
+                                                                            ?>
+                                                                            <div class="col-md-6">
+                                                                                <label class="form-contol" for="customFile">Request Date</label>
+                                                                                <input type="date" class="form-control" id="rDate" name="rDate">
                                                                             </div>
-
-
-                                                                            </div>
-
-                                                                            <div class="col-md-6 mt-2" style="display: none;" id="autoArticle">
-                                                                                <div class="form-group">
-
-                                                                                <label for="sel1">Select Article :</label><br>
-                                                                                <select class="form-control" id="ArtCodeAuto" name="ArtCodeAuto">
-                                                                                    <option value="">Select one of the following</option>
-                                                                                    <?php foreach ($Articles as $Key) { ?>
-
-                                                                                    <option value="<?php echo $Key['ArtCode']; ?>"><?php echo $Key['ArtCode']; ?></option>
-                                                                                    <?php } ?>
+                                                                            <div class="col-md-6">
+                                                                                <label class="form-contol" for="customFile">Type</label>
+                                                                                <select class="form-control" id="testtype" name="testtype" onchange="Callpo()">
+                                                                                    <option value="" selected disabled>Select Type</option>
+                                                                                    <option value="Production">Production</option>
+                                                                                    <option value="Development">Development</option>
+                                                                                    <option value="Material">Material</option>
                                                                                 </select>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <label class="form-contol" for="customFile">Test Catagory</label>
+                                                                                <select class="form-control" id="type" name="type">
+                                                                                    <option value="" selected disabled>Select Type</option>
+                                                                                    <option value="Material Test">Material Test</option>
+                                                                                    <option value="FGT Test">FGT Test</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="col-md-6 mt-2">
+                                                                                <label for="sel1">Select Factory Code :</label>
+                                                                                <select class="form-control" id="fCode" name="fCode">
+                                                                                    <option value="">Select one of the following</option>
+                                                                                    <option value="B34001">B34001</option>
+                                                                                    <option value="B34002">B34002</option>
+                                                                                    <option value="B34003">B34003</option>
+                                                                                    <option value="B34004">B34004</option>
+                                                                                    <option value="B34005">B34005</option>
+                                                                                    <option value="B34006">B34006</option>
+                                                                                    <option value="B34007">B34007</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="col-md-6 Poinfo">
+                                                                                <label class="form-contol" for="customFile">PO # :</label>
+                                                                                <input type="text" class="form-control" id="po" name="po">
+                                                                            </div>
+                                                                            <div class="col-md-6 Poinfo">
+                                                                                <label class="form-contol" for="customFile">Supplier Name :</label>
+                                                                                <input type="text" class="form-control" id="supplier" name="supplier">
+                                                                            </div>
+                                                                            <div class="col-md-6 mt-2">
+                                                                                <label class="form-contol" for="customFile">Quantity Issued</label>
+                                                                                <input type="number" class="form-control" id="qIssued" name="qIssued">
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="form-group">
+                                                                                    <div>
+
+
+                                                                                        <button type="button" class="btn btn-primary m-3" id="save">Save</button>
+
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
-
-                                                                        <div class="col-md-6 mt-2" id="manualArticle">
-
-
-                                                                            <div class="form-group">
-                                                                                <label for="sel1">Article</label><br>
-                                                                                <input class="form-control" id="article" name="article" />
-
-                                                                            </div>
-
-
-                                                                        </div>
-
-                                                                        <div class="col-md-6 mt-2">
-                                                                            <div class="form-group">
-                                                                                <label for="sel1">Test Type</label><br>
-                                                                                <select class="js-example-basic-single" id="tType" name="tType">
-                                                                                    <option value="">Select one of the following</option>
-                                                                                    <?php foreach ($getTestTypes as $Key) { ?>
-
-                                                                                        <option value="<?php echo $Key['TestID']; ?>"><?php echo $Key['Name']; ?></option>
-                                                                                    <?php } ?>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="col-md-6 mt-2">
-
-                                                                            <label class="form-contol" for="customFile">Quantity Issued</label>
-                                                                            <input type="number" class="form-control" id="qIssued" name="qIssued">
-
-                                                                        </div>
-
-                                                                    </div>
-
-                                                                    <div class="row">
-                                                                        <div class="form-group">
-                                                                            <div>
-                                                                                <button type="button" class="btn btn-primary m-3" id="save">Save</button>
-
-                                                                                <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
-
-                                                                                <!-- <button class="btn btn-danger" data-dismiss="modal" style="display:inline-block;">Close</button> -->
-
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
                                                                 </form>
 
                                                             </div>
@@ -197,80 +243,326 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                     </div>
                                                 </div>
+                                                <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
+                                                    <div class="row">
+                                                        <div class="col-md-3"></div>
+                                                        <div class="col-md-6">
 
-                                                <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
+                                                            <div class="modal-body" style="padding:10px">
+                                                                <form name="formDepartment" id="myformDepartment" method="POST" action="<?php echo base_url(
+                                                                                                                                            ''
+                                                                                                                                        ); ?>LabController/AddRequest">
+                                                                    <input type="hidden" name="Id" id="IdValue" value="">
+
+                                                                    <div class="row" style="display:flex">
+
+
+                                                                        <?php
+                                                                        //if ($this->session->has_userdata('MAXID')) {
+                                                                        // Echo        $RData[0]['PONo'];
+                                                                        if ($this->session->has_userdata('MAXID')) {
+                                                                            if ($RData[0]['PONo'] == 0) {
+                                                                        ?>
+
+
+
+
+                                                                                <div class="col-md-6 mt-2">
+
+
+                                                                                    <div class="form-group">
+                                                                                        <label for="sel1">Article Selection</label><br>
+                                                                                        <select class="form-control" id="selection" name="selection" onchange="toggleArticle()">
+                                                                                            <option value="" disabled>Select one of the following</option>
+                                                                                            <option value="Auto">Auto</option>
+                                                                                            <option value="Manual">Manual</option>
+
+
+                                                                                        </select>
+
+                                                                                    </div>
+
+
+                                                                                </div>
+
+                                                                                <div class="col-md-6 mt-2" style="display: none;" id="autoArticle">
+                                                                                    <div class="form-group">
+
+                                                                                        <label for="sel1">Select Article :</label><br>
+                                                                                        <select class="form-control" id="ArtCodeAuto" name="ArtCodeAuto">
+                                                                                            <option value="">Select one of the following</option>
+                                                                                            <?php foreach ($Articles as $Key) { ?>
+
+                                                                                                <option value="<?php echo $Key['ArtCode']; ?>"><?php echo $Key['ArtCode']; ?></option>
+                                                                                            <?php } ?>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6 mt-2" id="manualArticle">
+
+
+                                                                                    <div class="form-group">
+                                                                                        <label for="sel1">Article</label><br>
+                                                                                        <input class="form-control" id="article" name="article" />
+
+                                                                                    </div>
+
+
+                                                                                </div>
+
+                                                                                <?php
+                                                                            }
+                                                                        }
+                                                                        if ($this->session->has_userdata('MAXID')) {
+                                                                            if ($RData) {
+                                                                                if ($PONo) {
+                                                                                ?>
+                                                                                    <div class="col-md-6">
+
+                                                                                        <label class="form-contol" for="customFile">Item Name :</label>
+
+                                                                                        <select class="form-control js-example-basic-single" id="name" name="name">
+                                                                                            <option value="" disabled>Select one of the following</option>
+                                                                                            <?php foreach ($GetItems as $items) { ?>
+                                                                                                <option value="<?php echo $items['Code']; ?>"><?php echo $items['L4Name']; ?></option>
+                                                                                            <?php } ?>
+
+
+                                                                                        </select>
+                                                                                    </div>
+                                                                            <?php
+                                                                                }
+                                                                            }
+                                                                        } else {
+                                                                            ?>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                        <div class="col-md-12 Poinfo">
+
+                                                                            <label class="form-contol" for="customFile">Item Name :</label>
+                                                                            <select class="form-control js-example-basic-single" id="name" name="name">
+                                                                                <option value="" disabled>Select one of the following</option>
+                                                                                <?php foreach ($GetItems as $items) { ?>
+                                                                                    <option value="<?php echo $items['Code']; ?>"><?php echo $items['L4Name']; ?></option>
+                                                                                <?php } ?>
+
+
+                                                                            </select>
+
+                                                                        </div>
+
+
+                                                                        <div class="col-md-6 mt-2">
+                                                                            <div class="form-group">
+                                                                                <label for="sel1">Test Type</label><br>
+                                                                                <select class="js-example-basic-single" id="tType" name="tType">
+                                                                                    <option value="">Select one of the following</option>
+
+                                                                                    <?php foreach ($getTestTypes as $Key) { ?>
+
+                                                                                        <option value="<?php echo $Key['TestID']; ?>"><?php echo $Key['Name']; ?></option>
+                                                                                    <?php } ?>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                        <div class="col-md-10 ">
+
+                                                                        </div>
+
+                                                                        <div class="row">
+                                                                            <div class="form-group">
+                                                                                <div>
+                                                                                    <button type="button" class="btn btn-success m-3" id="Addtest">Add Test</button>
+
+                                                                                    <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
+
+                                                                                    <!-- <button class="btn btn-danger" data-dismiss="modal" style="display:inline-block;">Close</button> -->
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="col-md-12 mt-2">
+                                                                        <?php
+                                                                        if ($RData[0]['PONo'] == 0) {
+                                                                        ?>
+                                                                            <table class="table table-striped table-hover table-sm" id="ActivityData2">
+                                                                                <thead>
+
+                                                                                    <tr>
+                                                                                        <th>Request No</th>
+                                                                                        <th>Request Date</th>
+                                                                                        <th>Type</th>
+                                                                                        <th>Test Catagory</th>
+                                                                                        <th>Test Name</th>
+                                                                                        <th>Factory Code</th>
+                                                                                        <th>Article Code</th>
+
+
+
+                                                                                        <th>Status</th>
+
+
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <?php
+                                                                                    if ($this->session->has_userdata('MAXID')) {
+                                                                                        foreach ($getDetails as $keys) {
+                                                                                    ?>
+                                                                                            <tr>
+                                                                                                <td><?php echo $keys['RequestID']; ?></td>
+                                                                                                <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
+                                                                                                <td><?php echo $keys['TestType']; ?></td>
+                                                                                                <td><?php echo $keys['Type']; ?></td>
+
+                                                                                                <td><?php echo $keys['Name']; ?></td>
+
+                                                                                                <td><?php echo $keys['Factory_Code']; ?></td>
+
+                                                                                                <td><?php echo $keys['Article']; ?></td>
+
+                                                                                                <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
+                                                                                            </tr>
+                                                                                    <?php
+                                                                                        }
+                                                                                    }
+                                                                                    ?>
+                                                                            </table>
+                                                                        <?php
+                                                                        } else {
+
+                                                                        ?>
+                                                                            <table class="table table-striped table-hover table-sm" id="ActivityData2">
+                                                                                <thead>
+
+                                                                                    <tr>
+                                                                                        <th>Request No</th>
+                                                                                        <th>Request Date</th>
+                                                                                        <th>Type</th>
+                                                                                        <th>Test Catagory</th>
+                                                                                        <th>Test Name</th>
+                                                                                        <th>Factory Code</th>
+                                                                                        <th>Item Name</th>
+
+
+
+                                                                                        <th>Status</th>
+
+
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <?php
+                                                                                    if ($this->session->has_userdata('MAXID')) {
+                                                                                        foreach ($getDetails as $keys) {
+                                                                                    ?>
+                                                                                            <tr>
+                                                                                                <td><?php echo $keys['RequestID']; ?></td>
+                                                                                                <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
+                                                                                                <td><?php echo $keys['TestType']; ?></td>
+                                                                                                <td><?php echo $keys['Type']; ?></td>
+
+                                                                                                <td><?php echo $keys['Name']; ?></td>
+                                                                                                <td><?php echo $keys['Factory_Code']; ?></td>
+                                                                                                <td><?php echo $keys['L4Name']; ?></td>
+
+                                                                                                <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
+                                                                                            </tr>
+                                                                                    <?php
+                                                                                        }
+                                                                                    }
+                                                                                    ?>
+                                                                            </table>
+                                                                        <?php
+
+                                                                        }
+
+                                                                        ?>
+                                                                    </div>
+                                                            </div>
+                                                            <div class="col-md-3"></div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
 
                                                 <table class="table table-striped table-hover table-sm" id="ActivityData2">
-                                                        <thead>
+                                                    <thead>
+
+                                                        <tr>
+                                                            <th>Request Date</th>
+                                                            <th>Type</th>
+                                                            <th>Factory Code</th>
+                                                            <th>Article</th>
+
+                                                            <th>Quantity Issed</th>
+                                                            <th>Sender Reference</th>
+                                                            <th>Receiver Signature Receiving</th>
+                                                            <th>Sender Signature Receiving</th>
+                                                            <th>Receiver Signature Returned</th>
+                                                            <th>Sender Signature Returned</th>
+                                                            <th>Status</th>
+                                                            <th>Requester Acknowlegement</th>
+                                                            <th>ACTIONS</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php //print_r($loadFGT_H);
+                                                        foreach ($getRequesterRequests as $keys) {
+
+                                                        ?>
 
                                                             <tr>
-                                                                <th>Request Date</th>
-                                                                <th>Type</th>
-                                                                <th>Factory Code</th>
-                                                                <th>Article</th>
-                                                                <th>Test Type</th>
-                                                                <th>Quantity Issed</th>
-                                                                <th>Sender Reference</th>
-                                                                <th>Receiver Signature Receiving</th>
-                                                                <th>Sender Signature Receiving</th>
-                                                                <th>Receiver Signature Returned</th>
-                                                                <th>Sender Signature Returned</th>
-                                                                <th>Status</th>
-                                                                <th>Requester Acknowlegement</th>
-                                                                <th>ACTIONS</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <?php //print_r($loadFGT_H);
-                                                            foreach ($getRequesterRequests as $keys) {
+                                                                <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
+                                                                <td><?php echo $keys['Type']; ?></td>
+                                                                <td><?php echo $keys['Factory_Code']; ?></td>
+                                                                <td><?php echo $keys['Article']; ?></td>
 
-                                                            ?>
-
-                                                                <tr>
-                                                                    <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
-                                                                    <td><?php echo $keys['Type']; ?></td>
-                                                                    <td><?php echo $keys['Factory_Code']; ?></td>
-                                                                    <td><?php echo $keys['Article']; ?></td>
-                                                                    <td><?php echo $keys['TestID']; ?></td>
-                                                                    <td><?php echo $keys['Quantity_Issued']; ?></td>
-                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderIDName']; ?></span></td>
-                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
-                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['senderSignatureRec']; ?></span></td>
-                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['SRETReceiverID']; ?></span></td>
-                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['SRETSenderID']; ?></span></td>
-                                                                    <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
-                                                                    <td> <span class="badge badge-warning p-1"><?php echo $keys['finalStatus']; ?></span></td>
-                                                                    <td>
-                                                                    <?php if($keys['finalStatus'] == 'Pending'){
+                                                                <td><?php echo $keys['Quantity_Issued']; ?></td>
+                                                                <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderIDName']; ?></span></td>
+                                                                <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
+                                                                <td> <span class="badge badge-primary p-1"><?php echo $keys['senderSignatureRec']; ?></span></td>
+                                                                <td> <span class="badge badge-primary p-1"><?php echo $keys['SRETReceiverID']; ?></span></td>
+                                                                <td> <span class="badge badge-primary p-1"><?php echo $keys['SRETSenderID']; ?></span></td>
+                                                                <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
+                                                                <td> <span class="badge badge-warning p-1"><?php echo $keys['finalStatus']; ?></span></td>
+                                                                <td>
+                                                                    <?php if ($keys['finalStatus'] == 'Pending') {
 
                                                                     ?>
-                                                                    <button type="button" style="display: inline-block;" class="btn btn-primary btn-xs acknowledge" id="btn.<?php echo $keys['TID']; ?>">Acknowledge</button>
-                                                                                                                                        
+                                                                        <button type="button" style="display: inline-block;" class="btn btn-primary btn-xs acknowledge" id="btn.<?php echo $keys['TID']; ?>">Acknowledge</button>
 
-                                                                    <?php          
-                                                                    }else{ ?>
-                                                                    <button type="button" style="display: inline-block;" class="btn btn-danger btn-xs" disabled id="btn.<?php echo $keys['TID']; ?>">Locked</button>
-                                                                                                                                        
+
+                                                                    <?php
+                                                                    } else { ?>
+                                                                        <button type="button" style="display: inline-block;" class="btn btn-danger btn-xs" disabled id="btn.<?php echo $keys['TID']; ?>">Locked</button>
+
 
                                                                     <?php
 
                                                                     } ?>
-                                                                       <!-- <button type="button" style="display: inline-block;" id="undo.<?php echo $keys['TID']; ?>" value="<?php echo $keys['TID']; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> -->
+                                                                    <!-- <button type="button" style="display: inline-block;" id="undo.<?php echo $keys['TID']; ?>" value="<?php echo $keys['TID']; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> -->
 
 
-                                                                    </td>
+                                                                </td>
 
 
-                                                                </tr>
+                                                            </tr>
 
 
-                                                            <?php
-                                                            } ?>
+                                                        <?php
+                                                        } ?>
 
-                                                        </tbody>
-                                                    </table>
-
-                                                </div>
+                                                    </tbody>
+                                                </table>
 
                                             </div>
 
@@ -279,16 +571,18 @@ if (!$this->session->has_userdata('user_id')) {
                                     </div>
 
                                 </div>
+
                             </div>
-
-
-
-
                         </div>
+
+
+
+
                     </div>
-                    <div class="col-md-4"></div>
             </div>
+            <div class="col-md-4"></div>
         </div>
+    </div>
     </div>
     </div>
     <script src="<?php echo base_url(); ?>/assets/js//jquery.min.js" type="text/javascript"></script>
@@ -300,41 +594,62 @@ if (!$this->session->has_userdata('user_id')) {
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-        function toggleArticle(){
+        $('.Poinfo').css('display', 'none')
+        $('#manualArticle').css('display', 'none')
+        $('#articleslection').css('display', 'none')
+        $('#autoArticle').css('display', 'none')
+
+        function toggleArticle() {
             let selectionValue = $('#selection').val();
-            if(selectionValue == 'Auto'){
-                $('#autoArticle').css('display','block')
-                $('#manualArticle').css('display','none')
-            }else{
-                $('#autoArticle').css('display','none')
-                $('#manualArticle').css('display','block')
+            if (selectionValue == 'Auto') {
+                $('#autoArticle').css('display', 'block')
+                $('#manualArticle').css('display', 'none')
+            } else {
+                $('#autoArticle').css('display', 'none')
+                $('#manualArticle').css('display', 'block')
             }
         }
+
+        function Callpo() {
+            let SelectType = $('#testtype').val();
+            if (SelectType == 'Material') {
+
+                $('#manualArticle').css('display', 'none')
+                $('#articleslection').css('display', 'none')
+                $('#autoArticle').css('display', 'none')
+                $('.Poinfo').css('display', 'block')
+            } else {
+                $('#articleslection').css('display', 'block')
+                $('#autoArticle').css('display', 'block')
+                $('.Poinfo').css('display', 'none')
+                //$('#manualArticle').css('display', 'block')
+            }
+
+
+        }
         $('#save').click(function(e) {
+            // alert("Heloo");
             e.preventDefault();
             let Type = $('#type').val();
+            let testType = $('#testtype').val();
             let Sample_RequestDate = $('#rDate').val();
             let Factory_Code = $('#fCode').val();
-            let Article;
-            if($('#selection').val == 'Manual'){
-                Article = $('#article').val();
-            }
-            else{
-                Article = $('#ArtCodeAuto').val();
-            }
-            
-            let TestID = $('#tType').val();
+
             let Quantity_Issued = $('#qIssued').val();
             let Status = "Pending";
 
-            let url = "<?php echo base_url(''); ?>LabController/AddRequest"
+            let po = $('#po').val();
+            let suppliername = $('#supplier').val();
 
+            let url = "<?php echo base_url(''); ?>LabController/AddRequest"
+            // alert(url);
             $.post(url, {
                     'Type': Type,
+                    'testType': testType,
                     'Sample_RequestDate': Sample_RequestDate,
                     'Factory_Code': Factory_Code,
-                    'Article': Article,
-                    'TestID': TestID,
+                    'po': po,
+                    'suppliername': suppliername,
                     'Quantity_Issued': Quantity_Issued,
                     'Status': Status
                 },
@@ -351,6 +666,60 @@ if (!$this->session->has_userdata('user_id')) {
                 });
         });
 
+
+        function Refresh() {
+            //alert("Refresh Successfully");
+            //$('#RID').val();
+
+            url = "<?php echo base_url('LabController/NewRequest/') ?>"
+
+            $.get(url, function(res) {
+                //alert(url);
+                location.reload(true);
+            });
+        }
+        $('#Addtest').click(function(e) {
+            //alert("Heloo");
+            e.preventDefault();
+            // let Type = $('#type').val();
+            let testType = $('#testtype').val();
+            let name = $('#name').val();
+            let tType = $('#tType').val();
+            let RID = $('#RID').val();
+            let article = $('#article').val();
+            let ArtCodeAuto = $('#ArtCodeAuto').val();
+
+            // let Quantity_Issued = $('#qIssued').val();
+            // let Status = "Pending";
+
+            // let po = $('#po').val();
+            // let suppliername = $('#supplier').val();
+
+            let url = "<?php echo base_url(''); ?>LabController/AddRdetails"
+            //alert(url);
+            $.post(url, {
+                    'RID': RID,
+                    'testType': testType,
+                    'TestID': tType,
+                    'Code': name,
+                    'Article': article,
+                    'ArtCodeAuto': ArtCodeAuto,
+
+                },
+                function(data, status) {
+                    console.log('data', data)
+                    if (data == true) {
+                        alert("Data Inserted Successfully! Click on Ok to Reload the Page")
+                        window.location.reload();
+                    } else {
+                        alert("Data is not Inserted Successfully!")
+                    }
+
+
+                });
+            window.location.reload();
+        });
+
         $(".acknowledge").click(function(e) {
             let id = this.id;
             let split_value = id.split(".");
@@ -358,17 +727,16 @@ if (!$this->session->has_userdata('user_id')) {
             let proceed = confirm("Are you sure you want Acknowledge the Results?");
             if (proceed) {
 
-            url2 = "<?php echo base_url(''); ?>LabController/AcknowledgeResult";
-           
+                url2 = "<?php echo base_url(''); ?>LabController/AcknowledgeResult";
+
                 $.post(url2, {
                     'Id': TID,
                 }, function(data, status) {
                     alert("Data Updated Successfully! Click on Ok to Reload the Page")
                     window.location.reload();
                 });
-            }
-            else{
-                alert("Acknowledgement Cancel");  
+            } else {
+                alert("Acknowledgement Cancel");
             }
         });
         $(document).ready(function() {

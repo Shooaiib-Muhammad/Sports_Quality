@@ -1340,7 +1340,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <label class="control-label">FGT TEST:</label>
                                                     <select class="form-control" id="fgttest" name="fgttest">
                                                         <option value="" disabled>Select one of the following</option>
-                                                        <option value="DESTRUCTION">DESTRUCTION</option>
+                                                        <option value="DESTRUCTI
+                                                        ON">DESTRUCTION</option>
                                                         <option value="NON-DESTRUCTION">NON-DESTRUCTION</option>
                                                         <option value="Full FGT">Full FGT</option>
                                                     </select>

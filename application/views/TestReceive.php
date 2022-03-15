@@ -237,7 +237,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <th>Type</th>
                                                                 <th>Factory Code</th>
                                                                 <th>Article</th>
-                                                                <th>Test Type</th>
+                                                             
                                                                 <th>Quantity Issed</th>
                         
                                                                 <!-- <th>Sender Reference</th> -->
@@ -257,7 +257,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <td><?php echo $keys['Type']; ?></td>
                                                                     <td><?php echo $keys['Factory_Code']; ?></td>
                                                                     <td><?php echo $keys['Article']; ?></td>
-                                                                    <td><?php echo $keys['TestID']; ?></td>
+                                                                   
                                                                     <td><?php echo $keys['Quantity_Issued']; ?></td>
                                                             
                                                                     <!-- <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderID']; ?></span></td> -->
@@ -293,7 +293,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <th>CSS Code</th>
                                                                 <th>Factory Code</th>
                                                                 <th>Article</th>
-                                                                <th>Test Type</th>
+                                                            
                                                                 <th>Quantity Issed</th>
                                                                 <th>Quantity Received</th>
                                                                 <th>Quantity Retained</th>
@@ -319,7 +319,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <td><?php echo $keys['CSSNo']; ?></td>
                                                                     <td><?php echo $keys['Factory_Code']; ?></td>
                                                                     <td><?php echo $keys['Article']; ?></td>
-                                                                    <td><?php echo $keys['TestID']; ?></td>
+                                                                 
                                                                     <td><?php echo $keys['Quantity_Issued']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Received']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Retained']; ?></td>
@@ -362,7 +362,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <th>CSS Code</th>
                                                                 <th>Factory Code</th>
                                                                 <th>Article</th>
-                                                                <th>Test Type</th>
+                                                            
                                                                 <th>Qty. Issed</th>
                                                                 <th>Qty. Received</th>
                                                                 <th>Qty. Retained</th>
@@ -390,7 +390,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <td><?php echo $keys['CSSNo']; ?></td>
                                                                     <td><?php echo $keys['Factory_Code']; ?></td>
                                                                     <td><?php echo $keys['Article']; ?></td>
-                                                                    <td><?php echo $keys['TestID']; ?></td>
+                                                                 
                                                                     <td><?php echo $keys['Quantity_Issued']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Received']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Retained']; ?></td>

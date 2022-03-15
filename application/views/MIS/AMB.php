@@ -595,6 +595,8 @@ $SEfficiency=0;
 </div>
 </div>
 </div>
+</div>
+</div>
 <?php
 
 }else{
@@ -889,7 +891,6 @@ Echo $LineName;
 }
 ?>  Production </strong>
                             </div>
-                            </div>
                             <div class="card-body">
                                 <table  id="table" class="table table-bordered table-hover table-responsive table-striped w-100" style="width: 100%;">
                                   <thead class="bg-primary-200 text-light">
@@ -1014,7 +1015,7 @@ $SEfficiency=0;
 </tbody>
 </table>
 </div> 
-
+</div>
 </div>
 </div>
 </div>
@@ -1024,13 +1025,13 @@ $SEfficiency=0;
 </div>
 </div>
 </div>
-
 <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
-    <script type="text/javascript">
-        /* Activate smart panels */
-        $('#js-page-content').smartPanel();
-    </script>
+      <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
+      <script type="text/javascript">
+          /* Activate smart panels */
+          $('#js-page-content').smartPanel();
+      </script>
+
      <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
       <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
       <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
@@ -1038,7 +1039,7 @@ $SEfficiency=0;
 
 </body>
 
- 
+</html>
 
 <script>
    $(document).ready(function() {
@@ -1149,6 +1150,7 @@ $SEfficiency=0;
     redirect('Welcome/index');
 }
 ?>
+    
 </div>
 </main>
 </div>

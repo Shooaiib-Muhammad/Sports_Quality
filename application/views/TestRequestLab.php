@@ -74,7 +74,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <th>CSS Code</th>
                                                                 <th>Factory Code</th>
                                                                 <th>Article</th>
-                                                                <th>Test Type</th>
+                                                            
                                                                 <th>Quantity Issed</th>
                                                                 <th>Quantity Received</th>
                                                                 <th>Quantity Retained</th>
@@ -100,7 +100,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <td><?php echo $keys['CSSNo']; ?></td>
                                                                     <td><?php echo $keys['Factory_Code']; ?></td>
                                                                     <td><?php echo $keys['Article']; ?></td>
-                                                                    <td><?php echo $keys['TestID']; ?></td>
+                                                                    
                                                                     <td><?php echo $keys['Quantity_Issued']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Received']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Retained']; ?></td>
@@ -141,7 +141,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <th>CSS Code</th>
                                                                 <th>Factory Code</th>
                                                                 <th>Article</th>
-                                                                <th>Test Type</th>
+                                                           
                                                                 <th>Quantity Issed</th>
                                                                 <th>Quantity Received</th>
                                                                 <th>Quantity Retained</th>
@@ -167,7 +167,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <td><?php echo $keys['CSSNo']; ?></td>
                                                                     <td><?php echo $keys['Factory_Code']; ?></td>
                                                                     <td><?php echo $keys['Article']; ?></td>
-                                                                    <td><?php echo $keys['TestID']; ?></td>
+                                                                  
                                                                     <td><?php echo $keys['Quantity_Issued']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Received']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Retained']; ?></td>
