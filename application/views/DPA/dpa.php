@@ -158,7 +158,7 @@ if (!$this->session->has_userdata('user_id')) {
                   </div>
 
                   <div class="col-md-2">
-                    <label>Article Count:</label>
+                    <label>Article Option:</label>
                     <div class="form-group-inline">
 
                       <input name="ac" id="ac" class="form-control" type="text">
@@ -658,7 +658,7 @@ if (!$this->session->has_userdata('user_id')) {
                                           <th>Factory Code </th>
                                          <th>Panel Shape</th>
                                           <th>Yield</th>
-                                          <th>Article Count</th>
+                                          <th>Article Option</th>
                                             <th>First Briefing Out</th>
                                               <th>CR1 in-house Date</th>
                                              <th>CR1 Submission date</th>
