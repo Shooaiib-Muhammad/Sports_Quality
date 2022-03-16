@@ -1297,27 +1297,20 @@ if (!$this->session->has_userdata('user_id')) {
                                         <div class="row" style="display:flex">
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
-                                                    <label for="sel1">Article :</label><br>
-                                                    <select class="js-example-basic-single" id="article" name="article" onchange="CallData()">
+                                                    <label for="sel1">CSS # :</label><br>
+                                                    <select class="js-example-basic-single" id="cssCode" name="cssCode" onchange="CallData()">
                                                         <option value="">Select one of the following</option>
-                                                        <?php foreach ($getArticles as $Key) { ?>
+                                                        <?php foreach ($GetCssNo as $Key) { ?>
 
-                                                            <option value="<?php echo $Key['ArtCode']; ?>"><?php echo $Key['ArtCode']; ?></option>
+                                                            <option value="<?php echo $Key['CSSNo']; ?>"><?php echo $Key['CSSNo']; ?></option>
                                                         <?php } ?>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
-
-                                                    <label class="control-label">Size:</label>
-                                                    <select class="form-control " id="size" name="size" onchange="CallSize()">
-                                                        <option value="">Select one of the following</option>
-
-                                                    </select>
-                                                    <!-- <div>
-                                                        <input type="text" class="form-control input-lg" id='size' name="size" placeholder="Size">
-                                                    </div> -->
+                                                    <label class="control-label">Article Code:</label>
+                                                    <input type="text" class="form-control" id="article" name="article">
                                                 </div>
                                             </div>
                                             <div class="col-md-6" style="margin-top:25px">
@@ -1327,14 +1320,6 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                 </div>
                                             </div>
-                                            <div class="col-md-6" style="margin-top:25px">
-                                                <div class="form-group">
-                                                    <label class="control-label">CSS Code:</label>
-                                                    <input type="text" class="form-control" id="cssCode" name="cssCode">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row" style="display:flex">
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
                                                     <label class="control-label">FGT TEST:</label>
@@ -1350,15 +1335,14 @@ if (!$this->session->has_userdata('user_id')) {
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
                                                     <label class="control-label">Department:</label>
-                                                    <select class="form-control" id="department" name="department">
-                                                        <option value="" disabled>Select one of the following</option>
-                                                        <option value="Production">Production</option>
-                                                        <option value="Development">Development</option>
-                                                        <option value="FGT In-line">FGT In-line Matrix</option>
-                                                    </select>
-
+                                                    <!-- Type here -->
+                                                    <input type="text" class="form-control" id="department" name="department" />
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="row" style="display:flex">
+
+
                                         </div>
 
                                         <div class="row" style="display:flex">
@@ -2694,7 +2678,7 @@ if (!$this->session->has_userdata('user_id')) {
     <script>
         $(document).ready(function() {
             // $("#article").select2();
-            $('#article').select2({
+            $('#cssCode').select2({
                 dropdownParent: $('#Modaldepartment')
             });
             // $('.js-example-basic-single').select2();

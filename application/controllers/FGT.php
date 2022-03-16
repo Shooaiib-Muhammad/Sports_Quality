@@ -14,7 +14,8 @@ class FGT extends CI_Controller
         $data['loadFGT_H'] = $this->FGT->getFGRH();
         $data['loadFGT_H_L'] = $this->FGT->getFGRHL();
         $data['getArticles'] = $this->FGT->GetArticles();
-
+        
+        $data['GetCssNo'] = $this->FGT->GetCssNo();
         $this->load->view('FGT', $data);
     }
     public function undo($TID)

@@ -1633,7 +1633,14 @@ public function updatedStatusFGT($reviewStatus,$approvedStatus,$TID){
    
     }
 
+public function GetCssNo(){
+        $query = $this->db->query("SELECT        CSSNo
+FROM            dbo.tbl_lab_test_request
+WHERE        (Status = 'Send to Lab') AND (Type = 'FGT Test')");
 
+        return $query->result_array();
+    
+}
     public function getTestRequests()
     {
 
