@@ -16,7 +16,7 @@ if (!$this->session->has_userdata('user_id')) {
                 <!-- BEGIN Page Header -->
                 <?php $this->load->view('includes/top_header.php'); ?>
                 <main id="js-page-content" role="main" class="page-content">
-               
+
                     <?php if ($this->session->flashdata('info')) { ?>
                         <div class="alert alert-danger alert-dismissible show fade" id="msgbox">
                             <div class="alert-body">
@@ -48,7 +48,7 @@ if (!$this->session->has_userdata('user_id')) {
                                     </button>
                                 </div>
 
-                                
+
                                 <div class="modal-body">
                                     <form name="formDepartment" id="myformDepartment" method="POST" action="<?php echo base_url(
                                                                                                                 ''
@@ -57,15 +57,15 @@ if (!$this->session->has_userdata('user_id')) {
 
                                         <div class="row" style="display:flex">
 
-                                      
+
                                             <div class="col-md-12">
-                                            
-                                                    <label class="form-contol" for="customFile">Test Type</label>
-                                                        <input type="text" class="form-control" id="Name" name="Name">
-                                              
+
+                                                <label class="form-contol" for="customFile">Test Type</label>
+                                                <input type="text" class="form-control" id="Name" name="Name">
+
                                             </div>
-                                           
-                                                
+
+
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label class="control-label">Material Type:</label>
@@ -80,21 +80,21 @@ if (!$this->session->has_userdata('user_id')) {
 
 
                                             <div class="col-md-12 mt-4">
-                                             
-                                            <div class="custom-control custom-switch">
-                                                        <input type="checkbox" class="custom-control-input" id="status" name="Status">
-                                                    
-                                                        <label class="custom-control-label" for="status">Status</label>
-                                            </div>
+
+                                                <div class="custom-control custom-switch">
+                                                    <input type="checkbox" class="custom-control-input" id="status" name="Status">
+
+                                                    <label class="custom-control-label" for="status">Status</label>
+                                                </div>
                                             </div>
 
-                                      
+
                                         </div>
-                                      
+
                                         <div class="row">
                                             <div class="form-group">
                                                 <div>
-                                                    <button type="button" class="btn btn-primary m-3" id="save" >Save</button>
+                                                    <button type="button" class="btn btn-primary m-3" id="save">Save</button>
                                                     <button type="button" class="btn btn-primary m-3" id="editValue" style="display: none;">Update</button>
 
                                                     <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
@@ -111,10 +111,10 @@ if (!$this->session->has_userdata('user_id')) {
                         </div><!-- /.modal-dialog -->
                     </div>
 
-                   
 
 
-                  
+
+
 
                     <br><br>
                     <div class="row">
@@ -127,7 +127,7 @@ if (!$this->session->has_userdata('user_id')) {
                                 <div id="panel-1" class="panel">
                                     <div class="panel-hdr">
                                         <h2>
-                                        <i class='subheader-icon fal fa-vial'></i>    Test Types</span>
+                                            <i class='subheader-icon fal fa-vial'></i> Test Types</span>
                                         </h2>
 
                                         <?php
@@ -142,7 +142,7 @@ if (!$this->session->has_userdata('user_id')) {
             </div> -->
                                         <?php if ($Uploading == 1) { ?>
                                             <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#Modaldepartment" class="d-grid gap-2 d-md-block" id="createDepartment">+ Create Test Type</button>
-                                           <?php } ?>
+                                        <?php } ?>
 
                                     </div>
 
@@ -151,60 +151,60 @@ if (!$this->session->has_userdata('user_id')) {
 
                                         <div class="panel-content">
 
-                                        <table class="table table-striped table-hover table-sm" id="ActivityData">
-                                <thead>
-                                    <tr>
-                                    <th>Test Type</th>
-                                    <th></th>
-                                    <th>Status</th>
-                                    <th>ACTIONS</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <?php //print_r($loadFGT_H);
-                                                        foreach ($TestTypes as $keys) {
+                                            <table class="table table-striped table-hover table-sm" id="ActivityData">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Test Type</th>
+                                                        <th></th>
+                                                        <th>Status</th>
+                                                        <th>ACTIONS</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php //print_r($loadFGT_H);
+                                                    foreach ($TestTypes as $keys) {
 
-                                                        ?>
+                                                    ?>
 
-                                                            <tr>
-                                                               <td><?php echo $keys['Name']; ?></td>
-                                                        
-                                                               <td><?php echo $keys['testCatagoty']; ?></td>
-                                                          
-                                                                <td> 
-                                                                    
-                                                                    <?php if ($keys['Status'] == '1') { ?>
+                                                        <tr>
+                                                            <td><?php echo $keys['Name']; ?></td>
 
-                                                                        <span class="badge badge-success p-1"> Active</span>
-                                                                    <?php } else { ?>
-                                                                        <span class="badge badge-warning p-1">In-Active</span>
-                                                                    <?php } ?>
-                                                                </td>
-                                                               
-                                                                <td>
-                                                                        <div class="col-md-2">
-                                                                            <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo $keys['TestID']; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
-                                                                            <button type="button" style="display: inline-block;" id="undo.<?php echo $keys['TestID']; ?>" value="<?php echo $keys['TestID']; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button>
+                                                            <td><?php echo $keys['testCatagoty']; ?></td>
 
-                                                                        </div>
-                                                                </td>
-                                                         
-                                                              
-                                                            </tr>
+                                                            <td>
+
+                                                                <?php if ($keys['Status'] == '1') { ?>
+
+                                                                    <span class="badge badge-success p-1"> Active</span>
+                                                                <?php } else { ?>
+                                                                    <span class="badge badge-warning p-1">In-Active</span>
+                                                                <?php } ?>
+                                                            </td>
+
+                                                            <td>
+                                                                <div class="col-md-2">
+                                                                    <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo $keys['TestID']; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
+                                                                    <button type="button" style="display: inline-block;" id="undo.<?php echo $keys['TestID']; ?>" value="<?php echo $keys['TestID']; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button>
+
+                                                                </div>
+                                                            </td>
 
 
-                                                        <?php
-                                                        } ?>
-                                
-                                </tbody>
-                            </table>
-                                          
-                    </div>
+                                                        </tr>
 
-                </div>
 
-            </div>
-    </div>
+                                                    <?php
+                                                    } ?>
+
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
 
 
 
@@ -224,177 +224,188 @@ if (!$this->session->has_userdata('user_id')) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
+        $('.undobtn').click(function() {
+            let id = this.id;
+            let split_value = id.split(".");
+            var TID = split_value[1];
+            var proceed = confirm("Are you sure you want to Delete?");
+            if (proceed) {
+                url = "<?php echo base_url(''); ?>LabController/undoTestType/" + TID
+                $.get(url, function(data) {
+                    alert("Data Deleted Successfully");
+                    location.reload();
+                });
+            } else {
+                alert("Undo Cancel");
+            }
 
-$('.undobtn').click(function(){
-     let id= this.id;
-    let split_value = id.split(".");
-     var TID =split_value[1];
-var proceed = confirm("Are you sure you want to Delete?");
-if (proceed) {
-    url = "<?php echo base_url(''); ?>LabController/undoTestType/"+ TID 
-     $.get(url, function(data){
-            alert("Data Deleted Successfully");
-           location.reload();
-            });
-} else {
-  alert("Undo Cancel");
-}
-  
-});
-
-$('#createDepartment').click(function(){
-    $('#IdValue').val("");
-      $('#Name').val("");
-      $('#status').prop('checked', false);
-      $('#save').css('display','block');
-      $('#editValue').css('display','none');
-});
-
-$(".updatebtn").click(function(e) {
-  
-     let id= this.id;
-     let split_value = id.split(".");
-     var TID =split_value[1];
-     url = "<?php echo base_url(''); ?>LabController/TestTypeById";
-     $('#save').css('display','none');
-      $('#editValue').css('display','block');
-     $.post(url,{'Id':TID},
-  function(data, status){
-      console.log("Data",data)
-      $('#IdValue').val(TID);
-      $('#Name').val(data[0].Name);
-      $('#testCataqoty').val(data[0].testtype);
-      if(data[0].Status == 1){
-        $('#status').prop('checked', true);
-      }
-      else{
-        $('#status').prop('checked', false);
-      }
-      $('#changeTitle').text("Edit Test Type");
-    
-      $('#Modaldepartment').modal('toggle');
-  }); 
-          
-});
-
-$('#editValue').click(function(e){
-    
-             e.preventDefault();
-             let id = $('#IdValue').val();
-             let name = $('#Name').val();
-             let testtype = $('#testtype').val();
-
-             let status;
-             if($("#status").is(':checked'))
-              status = true  // checked
-             else
-               status = false   // unchecked
-              let url = "<?php echo base_url(''); ?>LabController/EditTestType"
-
-              $.post(url,{'Id':id,'Name':name, 'Status':status, 'testCatagoty':testtype },
-  function(data, status){
-    alert("Data Updated Successfully! Wait for page to be Reloaded")
-setInterval(function(){   window.location.reload(); }, 3000);
- 
-  }); 
         });
 
-        $('#save').click(function(e){
-             e.preventDefault();
-             let name = $('#Name').val();
-             let testtype = $('#testtype').val();
-            
-             console.log(testtype);
-             console.log(testtype);
-             let status;
-             if($("#status").is(':checked'))
-              status = true  // checked
-             else
-               status = false   // unchecked
-              let url = "<?php echo base_url(''); ?>LabController/AddTestType"
-              $.post(url,{'Name':name, 'Status':status, 'testCatagoty':testtype },
-  function(data, status){
-    alert("Data Inserted Successfully! Wait for page to be Reloaded")
-setInterval(function(){   window.location.reload(); }, 3000);
- 
-  }); 
+        $('#createDepartment').click(function() {
+            $('#IdValue').val("");
+            $('#Name').val("");
+            $('#status').prop('checked', false);
+            $('#save').css('display', 'block');
+            $('#editValue').css('display', 'none');
         });
-                $(document).ready(function()
-            {
-            $('#ActivityData').dataTable(
-                {
-                    responsive: false,
-                    lengthChange: false,
-                    dom:
-                        /*	--- Layout Structure 
-                        	--- Options
-                        	l	-	length changing input control
-                        	f	-	filtering input
-                        	t	-	The table!
-                        	i	-	Table information summary
-                        	p	-	pagination control
-                        	r	-	processing display element
-                        	B	-	buttons
-                        	R	-	ColReorder
-                        	S	-	Select
 
-                        	--- Markup
-                        	< and >				- div element
-                        	<"class" and >		- div with a class
-                        	<"#id" and >		- div with an ID
-                        	<"#id.class" and >	- div with an ID and a class
+        $(".updatebtn").click(function(e) {
 
-                        	--- Further reading
-                        	https://datatables.net/reference/option/dom
-                        	--------------------------------------
-                         */
-                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-                        "<'row'<'col-sm-12'tr>>" +
-                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                    buttons: [
-                        /*{
-                        	extend:    'colvis',
-                        	text:      'Column Visibility',
-                        	titleAttr: 'Col visibility',
-                        	className: 'mr-sm-3'
-                        },*/
-                        {
-                            extend: 'pdfHtml5',
-                            text: 'PDF',
-                            titleAttr: 'Generate PDF',
-                            className: 'btn-outline-danger btn-sm mr-1'
-                        },
-                        {
-                            extend: 'excelHtml5',
-                            text: 'Excel',
-                            titleAttr: 'Generate Excel',
-                            className: 'btn-outline-success btn-sm mr-1'
-                        },
-                        {
-                            extend: 'csvHtml5',
-                            text: 'CSV',
-                            titleAttr: 'Generate CSV',
-                            className: 'btn-outline-primary btn-sm mr-1'
-                        },
-                        {
-                            extend: 'copyHtml5',
-                            text: 'Copy',
-                            titleAttr: 'Copy to clipboard',
-                            className: 'btn-outline-primary btn-sm mr-1'
-                        },
-                        {
-                            extend: 'print',
-                            text: 'Print',
-                            titleAttr: 'Print Table',
-                            className: 'btn-outline-primary btn-sm'
-                        }
-                    ]
+            let id = this.id;
+            let split_value = id.split(".");
+            var TID = split_value[1];
+            url = "<?php echo base_url(''); ?>LabController/TestTypeById";
+            $('#save').css('display', 'none');
+            $('#editValue').css('display', 'block');
+            $.post(url, {
+                    'Id': TID
+                },
+                function(data, status) {
+                    console.log("Data", data)
+                    $('#IdValue').val(TID);
+                    $('#Name').val(data[0].Name);
+                    $('#testCataqoty').val(data[0].testtype);
+                    if (data[0].Status == 1) {
+                        $('#status').prop('checked', true);
+                    } else {
+                        $('#status').prop('checked', false);
+                    }
+                    $('#changeTitle').text("Edit Test Type");
+
+                    $('#Modaldepartment').modal('toggle');
                 });
 
+        });
 
+        $('#editValue').click(function(e) {
+
+            e.preventDefault();
+            let id = $('#IdValue').val();
+            let name = $('#Name').val();
+            let testtype = $('#testtype').val();
+
+            let status;
+            if ($("#status").is(':checked'))
+                status = true // checked
+            else
+                status = false // unchecked
+            let url = "<?php echo base_url(''); ?>LabController/EditTestType"
+
+            $.post(url, {
+                    'Id': id,
+                    'Name': name,
+                    'Status': status,
+                    'testCatagoty': testtype
+                },
+                function(data, status) {
+                    alert("Data Updated Successfully! Wait for page to be Reloaded")
+                    setInterval(function() {
+                        window.location.reload();
+                    }, 3000);
+
+                });
+        });
+
+        $('#save').click(function(e) {
+            e.preventDefault();
+            let name = $('#Name').val();
+            let testtype = $('#testtype').val();
+
+            console.log(testtype);
+            console.log(testtype);
+            let status;
+            if ($("#status").is(':checked'))
+                status = true // checked
+            else
+                status = false // unchecked
+            let url = "<?php echo base_url(''); ?>LabController/AddTestType"
+            $.post(url, {
+                    'Name': name,
+                    'Status': status,
+                    'testCatagoty': testtype
+                },
+                function(data, status) {
+                    alert("Data Inserted Successfully! Wait for page to be Reloaded")
+                    setInterval(function() {
+                        window.location.reload();
+                    }, 3000);
+
+                });
+        });
+        $(document).ready(function() {
+            $('#ActivityData').dataTable({
+                responsive: false,
+                lengthChange: false,
+                dom:
+                    /*	--- Layout Structure 
+                    	--- Options
+                    	l	-	length changing input control
+                    	f	-	filtering input
+                    	t	-	The table!
+                    	i	-	Table information summary
+                    	p	-	pagination control
+                    	r	-	processing display element
+                    	B	-	buttons
+                    	R	-	ColReorder
+                    	S	-	Select
+
+                    	--- Markup
+                    	< and >				- div element
+                    	<"class" and >		- div with a class
+                    	<"#id" and >		- div with an ID
+                    	<"#id.class" and >	- div with an ID and a class
+
+                    	--- Further reading
+                    	https://datatables.net/reference/option/dom
+                    	--------------------------------------
+                     */
+                    "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                buttons: [
+                    /*{
+                    	extend:    'colvis',
+                    	text:      'Column Visibility',
+                    	titleAttr: 'Col visibility',
+                    	className: 'mr-sm-3'
+                    },*/
+                    {
+                        extend: 'pdfHtml5',
+                        text: 'PDF',
+                        titleAttr: 'Generate PDF',
+                        className: 'btn-outline-danger btn-sm mr-1'
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Excel',
+                        titleAttr: 'Generate Excel',
+                        className: 'btn-outline-success btn-sm mr-1'
+                    },
+                    {
+                        extend: 'csvHtml5',
+                        text: 'CSV',
+                        titleAttr: 'Generate CSV',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'copyHtml5',
+                        text: 'Copy',
+                        titleAttr: 'Copy to clipboard',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Print',
+                        titleAttr: 'Print Table',
+                        className: 'btn-outline-primary btn-sm'
+                    }
+                ]
             });
+
+
+        });
     </script>
 
     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
@@ -1634,7 +1645,7 @@ setInterval(function(){   window.location.reload(); }, 3000);
         });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js" integrity="sha512-gtII6Z4fZyONX9GBrF28JMpodY4vIOI0lBjAtN/mcK7Pz19Mu1HHIRvXH6bmdChteGpEccxZxI0qxXl9anY60w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
- 
+
 
     </body>
 

@@ -1732,8 +1732,15 @@ WHERE        (Status = 'Send to Lab') AND (Type = 'FGT Test')");
         return $query->result_array();
    
     }
+    public function getTestType()
+    {
 
-    public function AddTestType($name,$status,$testtype)
+        $query = $this->db->query(" SELECT * 
+    FROM            dbo.tbl_test_types");
+
+        return $query->result_array();
+    }
+    public function AddTestType($name, $status, $testtype)
     {
 
         $query = $this->db->query("INSERT  INTO dbo.tbl_test_types 
@@ -1741,13 +1748,11 @@ WHERE        (Status = 'Send to Lab') AND (Type = 'FGT Test')");
         VALUES
         ('$name','$status', '$testtype')");
 
-        if($query){
+        if ($query) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
-   
     }
 
     public function AddRequest($testtype, $Type, $Sample_RequestDate, $Factory_Code, $Quantity_Issued, $Status, $po, $supplier)

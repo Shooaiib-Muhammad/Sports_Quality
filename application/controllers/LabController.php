@@ -26,13 +26,7 @@ class LabController extends CI_Controller
         $this->load->view('FailDetails', $data);
     }
 
-    public function TestType()
-    {
-        $data['TestTypes'] = $this->l->getTestType();
-        // $data['detailsData'] = $this->l->getDetails($_GET['id']);
-
-        $this->load->view('LabTestType', $data);
-    }
+    
 
     public function TestRequest()
     {
@@ -80,7 +74,14 @@ class LabController extends CI_Controller
         $data['getTestByLabAcknowledge'] = $this->l->getTestByLabAcknowledge();
         $this->load->view('TestRequestLab', $data);
     }
+    public function TestType()
+    {
+       
+        $data['TestTypes'] = $this->l->getTestType();
+        // $data['detailsData'] = $this->l->getDetails($_GET['id']);
 
+        $this->load->view('LabTestType', $data);
+    }
     public function TestReceive()
     {
         // $data['TestTypes'] = $this->l->getTestType();
@@ -119,8 +120,9 @@ class LabController extends CI_Controller
     {
         $Name = $_POST['Name'];
         $Status = $_POST['Status'];
+        $testtype = $_POST['testCatagoty'];
         // $data['detailsData'] = $this->l->getDetails($_GET['id']);
-        $data = $this->l->AddTestType($Name, $Status);
+        $data = $this->l->AddTestType($Name, $Status, $testtype);
 
         return $this->output
             ->set_content_type('application/json')
