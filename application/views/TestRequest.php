@@ -181,8 +181,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                 <input type="date" class="form-control" id="rDate" name="rDate">
                                                                             </div>
                                                                             <div class="col-md-6">
+
                                                                                 <label class="form-contol" for="customFile">Type</label>
-                                                                                <select class="form-control" id="testtype" name="testtype" onchange="Callpo()">
+                                                                                <select class="form-control" id="type" name="type" onchange="Callpo()">
                                                                                     <option value="" selected disabled>Select Type</option>
                                                                                     <option value="Production">Production</option>
                                                                                     <option value="Development">Development</option>
@@ -191,7 +192,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             </div>
                                                                             <div class="col-md-6">
                                                                                 <label class="form-contol" for="customFile">Test Catagory</label>
-                                                                                <select class="form-control" id="type" name="type">
+                                                                                <select class="form-control" id="typeCatagory" name="typeCatagory">
                                                                                     <option value="" selected disabled>Select Type</option>
                                                                                     <option value="Material Test">Material Test</option>
                                                                                     <option value="FGT Test">FGT Test</option>
@@ -258,11 +259,64 @@ if (!$this->session->has_userdata('user_id')) {
 
 
                                                                         <?php
-                                                                       // print_r($RData);
+                                                                        // print_r($RData);
                                                                         if ($this->session->has_userdata('MAXID')) {
-                                                                            if ($RData[0]['TestType'] == 'Production') {
+                                                                            if ($RData[0]['Type'] == 'Production') {
                                                                                 //echo "I am here";
                                                                         ?>
+
+
+
+
+                                                                                <div class="col-md-6 mt-2">
+
+
+                                                                                    <div class="form-group">
+                                                                                        <label for="sel1">Article Selection</label><br>
+                                                                                        <select class="form-control" id="selection" name="selection" onchange="toggleArticle()">
+                                                                                            <option value="" disabled>Select one of the following</option>
+                                                                                            <option value="">Select one of the following</option>
+                                                                                            <option value="Auto">Auto</option>
+                                                                                            <option value="Manual">Manual</option>
+
+
+                                                                                        </select>
+
+                                                                                    </div>
+
+
+                                                                                </div>
+
+                                                                                <div class="col-md-6 mt-2" style="display: none;" id="autoArticle">
+                                                                                    <div class="form-group">
+
+                                                                                        <label for="sel1">Select Article :</label><br>
+                                                                                        <select class="form-control" id="ArtCodeAuto" name="ArtCodeAuto">
+                                                                                            <option value="">Select one of the following</option>
+                                                                                            <?php foreach ($Articles as $Key) { ?>
+
+                                                                                                <option value="<?php echo $Key['ArtCode']; ?>"><?php echo $Key['ArtCode']; ?></option>
+                                                                                            <?php } ?>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6 mt-2" id="manualArticle">
+
+
+                                                                                    <div class="form-group">
+                                                                                        <label for="sel1">Article</label><br>
+                                                                                        <input class="form-control" id="article" name="article" />
+
+                                                                                    </div>
+
+
+                                                                                </div>
+
+                                                                            <?php
+                                                                            }
+                                                                            if ($RData[0]['Type'] == 'Development') {
+                                                                                //echo "I am here";
+                                                                            ?>
 
 
 
@@ -375,9 +429,6 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                 <div>
                                                                                     <button type="button" class="btn btn-success " id="AddItems">Add Items</button>
 
-                                                                                    <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
-
-                                                                                    <!-- <button class="btn btn-danger" data-dismiss="modal" style="display:inline-block;">Close</button> -->
 
                                                                                 </div>
                                                                             </div>
@@ -388,9 +439,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                 <div>
                                                                                     <button type="button" class="btn btn-success " id="Addtest">Add Test</button>
 
-                                                                                    <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
 
-                                                                                    <!-- <button class="btn btn-danger" data-dismiss="modal" style="display:inline-block;">Close</button> -->
 
                                                                                 </div>
                                                                             </div>
@@ -407,20 +456,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     ?>
                                                                         <table class="table table-striped table-hover table-sm" id="ActivityData2">
                                                                             <thead>
-
                                                                                 <tr>
-                                                                                    <th>Request No</th>
-                                                                                    <th>Request Date</th>
-
-
-                                                                                    <th>Factory Code</th>
                                                                                     <th>Article Code</th>
-
-
-
-                                                                                   
-
-
+                                                                                    <th>Action</th>
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
@@ -429,17 +467,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                     foreach ($getDetails as $keys) {
                                                                                 ?>
                                                                                         <tr>
-                                                                                            <td><?php echo $keys['RequestID']; ?></td>
-                                                                                            <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
 
 
+                                                                                            <td><?php echo $keys['Article']; ?>
 
+                                                                                            </td>
+                                                                                            <td> <button id="undo.<?php echo $keys['DTID']; ?>" value="<?php echo $keys['DTID']; ?>" type="button" class="btn btn-xs btn-danger undoitemsbtn">Undo</button></td>
 
-                                                                                            <td><?php echo $keys['Factory_Code']; ?></td>
-
-                                                                                            <td><?php echo $keys['Article']; ?></td>
-
-                                                                                           
                                                                                         </tr>
                                                                                 <?php
                                                                                     }
@@ -454,16 +488,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             <thead>
 
                                                                                 <tr>
-                                                                                    <th>Request No</th>
-                                                                                    <th>Request Date</th>
 
-
-                                                                                    <th>Factory Code</th>
                                                                                     <th>Item Name</th>
+                                                                                    <th>Action</th>
 
 
 
-                                                                                
+
 
 
                                                                                 </tr>
@@ -474,15 +505,12 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                     foreach ($getDetails as $keys) {
                                                                                 ?>
                                                                                         <tr>
-                                                                                            <td><?php echo $keys['RequestID']; ?></td>
-                                                                                            <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
 
+                                                                                            <td><?php echo $keys['L4Name']; ?>
 
+                                                                                            </td>
 
-                                                                                            <td><?php echo $keys['Factory_Code']; ?></td>
-                                                                                            <td><?php echo $keys['L4Name']; ?></td>
-
-                                                                                           
+                                                                                            <td> <button id="undo.<?php echo $keys['DTID']; ?>" value="<?php echo $keys['DTID']; ?>" type="button" class="btn btn-xs btn-danger undoitemsbtn">Undo</button></td>
                                                                                         </tr>
                                                                                 <?php
                                                                                     }
@@ -506,17 +534,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             <thead>
 
                                                                                 <tr>
-
-
-
-
-                                                                                    <th>Request No:</th>
                                                                                     <th>Test Name</th>
 
-
-
                                                                                     <th>Status</th>
-
+                                                                                    <th>Action</th>
 
                                                                                 </tr>
                                                                             </thead>
@@ -526,17 +547,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                     foreach ($TypeDetails as $keys) {
                                                                                 ?>
                                                                                         <tr>
-                                                                                            <td><?php echo $keys['RequestID']; ?></td>
 
+                                                                                            <td><?php echo $keys['Name']; ?>
 
-
-
-
-
-
-                                                                                            <td><?php echo $keys['Name']; ?></td>
+                                                                                            </td>
 
                                                                                             <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
+                                                                                            <td> <button id="undo.<?php echo $keys['TID']; ?>" value="<?php echo $keys['TID']; ?>" type="button" class="btn btn-xs btn-danger undobtn">Undo</button></td>
                                                                                         </tr>
                                                                                 <?php
                                                                                     }
@@ -551,17 +568,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             <thead>
 
                                                                                 <tr>
-                                                                                    <th>Request No</th>
-
-
-
 
                                                                                     <th>Test Name</th>
-
-
-
                                                                                     <th>Status</th>
-
+                                                                                    <th>Action</th>
 
                                                                                 </tr>
                                                                             </thead>
@@ -571,15 +581,18 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                     foreach ($TypeDetails as $keys) {
                                                                                 ?>
                                                                                         <tr>
-                                                                                            <td><?php echo $keys['RequestID']; ?></td>
 
 
 
 
 
-                                                                                            <td><?php echo $keys['Name']; ?></td>
+
+                                                                                            <td><?php echo $keys['Name']; ?>
+
+                                                                                            </td>
 
                                                                                             <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
+                                                                                            <td> <button id="undo.<?php echo $keys['TID']; ?>" value="<?php echo $keys['TID']; ?>" type="button" class="btn btn-xs btn-danger undobtn">Undo</button></td>
                                                                                         </tr>
                                                                                 <?php
                                                                                     }
@@ -739,7 +752,7 @@ if (!$this->session->has_userdata('user_id')) {
             // alert("Heloo");
             e.preventDefault();
             let Type = $('#type').val();
-            let testType = $('#testtype').val();
+            let typeCatagory = $('#typeCatagory').val();
             let Sample_RequestDate = $('#rDate').val();
             let Factory_Code = $('#fCode').val();
 
@@ -753,7 +766,7 @@ if (!$this->session->has_userdata('user_id')) {
             // alert(url);
             $.post(url, {
                     'Type': Type,
-                    'testType': testType,
+                    'testType': typeCatagory,
                     'Sample_RequestDate': Sample_RequestDate,
                     'Factory_Code': Factory_Code,
                     'po': po,
@@ -764,7 +777,7 @@ if (!$this->session->has_userdata('user_id')) {
                 function(data, status) {
                     console.log('data', data)
                     if (data == true) {
-                       // alert("Data Inserted Successfully! Click on Ok to Reload the Page")
+                        // alert("Data Inserted Successfully! Click on Ok to Reload the Page")
                         window.location.reload();
                     } else {
                         alert("Data is not Inserted Successfully!")
@@ -774,6 +787,50 @@ if (!$this->session->has_userdata('user_id')) {
                 });
         });
 
+        $(".undobtn").click(function(e) {
+            let id = this.id;
+
+            let split_value = id.split(".");
+
+            var TID = split_value[1];
+            url = "<?php echo base_url(''); ?>LabController/undotest/" + TID
+            // alert(url);
+            var proceed = confirm("Are you sure you want to Delete?");
+            if (proceed) {
+                $.get(url, function(data) {
+                    alert("Test Deleted Successfully");
+                    location.reload();
+                });
+            } else {
+                alert("Update Cancel");
+            }
+
+
+        });
+        $(".undoitemsbtn").click(function(e) {
+            let id = this.id;
+
+            let split_value = id.split(".");
+
+            var DTID = split_value[1];
+
+            // var TIDD = $(`#TID${split_value[1]}`).val();
+
+            //alert(TID);
+            url = "<?php echo base_url(''); ?>LabController/undotestitems/" + DTID
+            // alert(url);
+            var proceed = confirm("Are you sure you want to Delete?");
+            if (proceed) {
+                $.get(url, function(data) {
+                    alert("Item Deleted Successfully");
+                    location.reload();
+                });
+            } else {
+                alert("Update Cancel");
+            }
+
+
+        });
 
         function Refresh() {
             //alert("Refresh Successfully");
@@ -817,7 +874,7 @@ if (!$this->session->has_userdata('user_id')) {
                 function(data, status) {
                     console.log('data', data)
                     if (data == true) {
-                       // alert("Data Inserted Successfully! Click on Ok to Reload the Page")
+                        // alert("Data Inserted Successfully! Click on Ok to Reload the Page")
                         window.location.reload();
                     } else {
                         alert("Data is not Inserted Successfully!")
@@ -857,7 +914,7 @@ if (!$this->session->has_userdata('user_id')) {
                 function(data, status) {
                     console.log('data', data)
                     if (data == true) {
-                       // alert("Test Inserted Successfully! Click on Ok to Reload the Page")
+                        // alert("Test Inserted Successfully! Click on Ok to Reload the Page")
                         window.location.reload();
                     } else {
                         alert("Data is not Inserted Successfully!")

@@ -1825,9 +1825,16 @@ WHERE        (TID = $ID)");
             return false;
         }
     }
-    public function AddNewrequest(){
-
+    public function undotestTypeDetails($TID){
+        $this->db->where('TID', $TID);
+        $this->db->delete('Tbl_Test_Type_Details');
     }
+    public function undotestitems($TID)
+    {
+        $this->db->where('TID', $TID);
+        $this->db->delete('Tbl_Test_Request_Details');
+    }
+    
     public function getRequestdetails($ID)
     {
 

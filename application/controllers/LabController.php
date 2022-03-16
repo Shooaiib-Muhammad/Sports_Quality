@@ -59,9 +59,9 @@ class LabController extends CI_Controller
         // $data['detailsData'] = $this->l->getDetails($_GET['id']);
         $data['Articles'] = $this->l->GetArticles();
         //print_r($data['RData']);
-        if($data['RData'][0]['Type']== 'Material Test'){
+        if($data['RData'][0]['TestType']== 'Material Test'){
             $data['getTestTypes'] = $this->l->getTestTypematerial();
-        }elseif ($data['RData'][0]['Type'] == 'FGT Test') {
+        }elseif ($data['RData'][0]['TestType'] == 'FGT Test') {
             $data['getTestTypes'] = $this->l->getTestTypeFGT();
         }
        
@@ -1330,10 +1330,23 @@ class LabController extends CI_Controller
             );
         }
     }
-    public function undo($TID)
+    public function undotest($TID)
     {
-        $data['undo'] = $this->l->undo($TID);
+        $data = $this->l->undotestTypeDetails($TID);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
     }
+    public function undotestitems($DTID)
+    {
+        $data = $this->l->undotestitems($DTID);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+    
     public function undoTestType($TID)
     {
         $data['undoTestType'] = $this->l->undoTestType($TID);
