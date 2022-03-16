@@ -123,12 +123,12 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                 </div>
                                                                                 <div class="col-md-6">
                                                                                     <label class="form-contol" for="customFile">Test Catagory</label>
-                                                                                    <select class="form-control" id="testtype" name="testtype">
+                                                                                    <select class="form-control" id="Test" name="Test">
 
                                                                                         <option value="<?php echo $TestType; ?>"><?php echo $TestType; ?></option>
 
                                                                                     </select>
-
+                                                                                    <input type="text" hidden="true" value="<?php echo $TestType; ?>" id="testCatagpryData" name="typeCatagory" />
                                                                                 </div>
                                                                                 <div class="col-md-6 mt-2">
                                                                                     <label for="sel1">Select Factory Code :</label>
@@ -359,53 +359,36 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                     <div class="form-group">
                                                                                         <label for="sel1">Article</label><br>
                                                                                         <input class="form-control" id="article" name="article" />
-
                                                                                     </div>
 
 
                                                                                 </div>
 
-                                                                                <?php
+                                                                            <?php
                                                                             }
                                                                         }
                                                                         if ($this->session->has_userdata('MAXID')) {
-                                                                            if ($RData) {
-                                                                                if ($PONo) {
-                                                                                ?>
-                                                                                    <div class="col-md-6">
-
-                                                                                        <label class="form-contol" for="customFile">Item Name :</label>
-
-                                                                                        <select class="form-control js-example-basic-single" id="name" name="name">
-                                                                                            <option value="" disabled>Select one of the following</option>
-                                                                                            <?php foreach ($GetItems as $items) { ?>
-                                                                                                <option value="<?php echo $items['Code']; ?>"><?php echo $items['L4Name']; ?></option>
-                                                                                            <?php } ?>
-
-
-                                                                                        </select>
-                                                                                    </div>
-                                                                            <?php
-                                                                                }
-                                                                            }
-                                                                        } else {
+                                                                            if ($RData[0]['Type'] == 'Material') {
                                                                             ?>
+                                                                                <div class="col-md-6">
+
+                                                                                    <label class="form-contol" for="customFile">Item Name :</label>
+
+                                                                                    <select class="form-control js-example-basic-single" id="name" name="name">
+                                                                                        <option value="" disabled>Select one of the following</option>
+                                                                                        <?php foreach ($GetItems as $items) { ?>
+                                                                                            <option value="<?php echo $items['Code']; ?>"><?php echo $items['L4Name']; ?></option>
+                                                                                        <?php } ?>
+
+
+                                                                                    </select>
+                                                                                </div>
                                                                         <?php
+                                                                            }
                                                                         }
+
                                                                         ?>
-                                                                        <div class="col-md-12 Poinfo">
 
-                                                                            <label class="form-contol" for="customFile">Item Name :</label>
-                                                                            <select class="form-control js-example-basic-single" id="name" name="name">
-                                                                                <option value="" disabled>Select one of the following</option>
-                                                                                <?php foreach ($GetItems as $items) { ?>
-                                                                                    <option value="<?php echo $items['Code']; ?>"><?php echo $items['L4Name']; ?></option>
-                                                                                <?php } ?>
-
-
-                                                                            </select>
-
-                                                                        </div>
 
 
                                                                         <div class="col-md-6 mt-2">
@@ -438,7 +421,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             <div class="form-group">
                                                                                 <div>
                                                                                     <button type="button" class="btn btn-success " id="Addtest">Add Test</button>
-
+                                                                                    <button type="button" class="btn btn-success " id="Alltest">Load All Test</button>
 
 
                                                                                 </div>
@@ -732,7 +715,7 @@ if (!$this->session->has_userdata('user_id')) {
         }
 
         function Callpo() {
-            let SelectType = $('#testtype').val();
+            let SelectType = $('#type').val();
             if (SelectType == 'Material') {
 
                 $('#manualArticle').css('display', 'none')
@@ -748,6 +731,22 @@ if (!$this->session->has_userdata('user_id')) {
 
 
         }
+
+
+        $('#Alltest').click(function(e) {
+            // alert("Heloo");
+            e.preventDefault();
+            let typeCatagory = $('#testCatagpryData').val();
+
+            let RID = $('#RID').val();
+            let url = "<?php echo base_url(''); ?>LabController/loadAlltest/" + typeCatagory + "/" + RID
+            //alert(url);
+            $.get(url, function(data) {
+                alert("All Test Inserted Successfully");
+                window.location.reload();
+            });
+
+        });
         $('#save').click(function(e) {
             // alert("Heloo");
             e.preventDefault();
@@ -844,28 +843,16 @@ if (!$this->session->has_userdata('user_id')) {
             });
         }
         $('#AddItems').click(function(e) {
-            //alert("Heloo");
+            alert("Heloo");
             e.preventDefault();
-            // let Type = $('#type').val();
-
             let name = $('#name').val();
-
             let RID = $('#RID').val();
             let article = $('#article').val();
             let ArtCodeAuto = $('#ArtCodeAuto').val();
-
-            // let Quantity_Issued = $('#qIssued').val();
-            // let Status = "Pending";
-
-            // let po = $('#po').val();
-            // let suppliername = $('#supplier').val();
-
             let url = "<?php echo base_url(''); ?>LabController/AddRdetails"
-            //alert(url);
+            alert(url);
             $.post(url, {
                     'RID': RID,
-
-
                     'Code': name,
                     'Article': article,
                     'ArtCodeAuto': ArtCodeAuto,
@@ -874,7 +861,7 @@ if (!$this->session->has_userdata('user_id')) {
                 function(data, status) {
                     console.log('data', data)
                     if (data == true) {
-                        // alert("Data Inserted Successfully! Click on Ok to Reload the Page")
+                        alert("Data Inserted Successfully! Click on Ok to Reload the Page")
                         window.location.reload();
                     } else {
                         alert("Data is not Inserted Successfully!")

@@ -82,6 +82,23 @@ class LabController extends CI_Controller
 
         $this->load->view('LabTestType', $data);
     }
+    public function loadAlltest($typeCatagory, $RID){
+        $typeCatagory = str_replace("%20", " ", $typeCatagory);
+       
+       
+        $data['LoadData'] = $this->l->LoadDatacatagory($typeCatagory);
+    
+        foreach ($data['LoadData'] as $keys) {
+            $TestID = $keys['TestID'];
+            $testtype = $keys['typeCatagory'];
+            $RID = $RID;
+            $data = $this->l->AddRdetailsTest($RID,  $TestID, $testtype);
+        }
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+    }
     public function TestReceive()
     {
         // $data['TestTypes'] = $this->l->getTestType();
@@ -171,7 +188,7 @@ class LabController extends CI_Controller
 
     public function AddRdetails()
     {
- 
+
         $RID = $_POST['RID'];
       
         $Code = $_POST['Code'];
@@ -191,12 +208,7 @@ class LabController extends CI_Controller
         } else {
             $Code = 'Null';
         }
-        
-        // Echo $testtype;
-        //         echo $supplier;
-        // die;
 
-        // $data['detailsData'] = $this->l->getDetails($_GET['id']);
         $data = $this->l->AddRdetails($RID,  $Code, $Article);
 
         return $this->output
@@ -211,14 +223,6 @@ class LabController extends CI_Controller
 
         $TestID = $_POST['TestID'];
         $testtype = $_POST['testtype'];
-
-      
-
-        // Echo $testtype;
-        //         echo $supplier;
-        // die;
-
-        // $data['detailsData'] = $this->l->getDetails($_GET['id']);
         $data = $this->l->AddRdetailsTest($RID,  $TestID, $testtype);
 
         return $this->output

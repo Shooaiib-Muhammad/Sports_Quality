@@ -1732,6 +1732,13 @@ WHERE        (Status = 'Send to Lab') AND (Type = 'FGT Test')");
         return $query->result_array();
    
     }
+    public function LoadDatacatagory($testCatagoty){
+        $query = $this->db->query("SELECT        dbo.tbl_test_types.*
+FROM            dbo.tbl_test_types
+WHERE        (testCatagoty = '$testCatagoty')");
+
+        return $query->result_array();
+    }
     public function getTestType()
     {
 
