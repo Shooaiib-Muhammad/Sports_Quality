@@ -14,7 +14,7 @@ class FGT extends CI_Controller
         $data['loadFGT_H'] = $this->FGT->getFGRH();
         $data['loadFGT_H_L'] = $this->FGT->getFGRHL();
         $data['getArticles'] = $this->FGT->GetArticles();
-        
+
         $data['GetCssNo'] = $this->FGT->GetCssNo();
         $this->load->view('FGT', $data);
     }
@@ -153,7 +153,7 @@ class FGT extends CI_Controller
         } else {
             $pictureDrum = '';
         }
-       
+
         $data = $this->FGT->FGT_H_insertion(
             $dataArray[0],
             $dataArray[1],
@@ -196,7 +196,7 @@ class FGT extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
-    
+
 
     public function updated($reviewStatus, $approvedStatus, $TID)
     {
@@ -273,19 +273,32 @@ class FGT extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
-    
 
-    
-    public function getTableData(){
- 
-       
+
+
+    public function getTableData()
+    {
+
+
         $sDate = $_POST["startDate"];
         $eDate = $_POST["endDate"];
-        $data = $this->FGT->getTableData($sDate,$eDate);
+        $data = $this->FGT->getTableData($sDate, $eDate);
 
         return $this->output
-        ->set_content_type('application/json')
-        ->set_status_header(200)
-        ->set_output(json_encode($data));
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+    public function getData()
+    {
+
+
+
+        $data['css'] = $this->FGT->getData($_POST['css']);
+        $data['cssTable'] = $this->FGT->gettableCssData($_POST['css']);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
     }
 }

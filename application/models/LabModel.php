@@ -1498,6 +1498,25 @@ Status
 //                 redirect('DevelopmentController/master_form');
 //             }
 }
+    public function getData($css)
+    {
+        $query = $this->db
+            ->query("SELECT      dbo.view_FGT_Css_Data.*
+        FROM            dbo.view_FGT_Css_Data
+        WHERE        (CSSNo = '$css')
+        ");
+        return $query->result_array();
+    }
+    public function gettableCssData($css)
+    {
+        $query = $this->db
+            ->query("Select view_FGT_CSS_test.* 
+        From view_FGT_CSS_test 
+        WHERE        (CSSNo = '$css')
+        ");
+        return $query->result_array();
+    }
+   
 
 public function Process($article){
        $query = $this->db->query("SELECT        dbo.view_Dev_Process.*
@@ -1636,7 +1655,7 @@ public function updatedStatusFGT($reviewStatus,$approvedStatus,$TID){
 public function GetCssNo(){
         $query = $this->db->query("SELECT        CSSNo
 FROM            dbo.tbl_lab_test_request
-WHERE        (Status = 'Send to Lab') AND (Type = 'FGT Test')");
+WHERE        (Status = 'Send to Lab') AND (TestType = 'FGT Test')");
 
         return $query->result_array();
     

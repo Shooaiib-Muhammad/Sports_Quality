@@ -510,7 +510,7 @@ if (!$this->session->has_userdata('user_id')) {
                <tr>
                    <th style="font-size: large;font-weight:bold;padding:50px" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS SIZE 5</th>
                    <th></th>
-                   <th></th>
+                  <th></th>
                    <th></th>
                    <th></th>
                    <th></th>
@@ -1298,7 +1298,7 @@ if (!$this->session->has_userdata('user_id')) {
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
                                                     <label for="sel1">CSS # :</label><br>
-                                                    <select class="js-example-basic-single" id="cssCode" name="cssCode" onchange="CallData()">
+                                                    <select class="js-example-basic-single" id="cssCode" name="cssCode" onchange="getData()">
                                                         <option value="">Select one of the following</option>
                                                         <?php foreach ($GetCssNo as $Key) { ?>
 
@@ -1530,6 +1530,18 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <label class="control-label">NOTE:</label>
                                                     <div>
                                                         <input type="text" class="form-control input-lg" id='note' name="note" placeholder="">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="row" style="display:flex">
+                                            <div class="col-md-12" style="margin-top:25px">
+                                                <div class="form-group">
+
+                                                    <div id="data">
+
                                                     </div>
                                                 </div>
 
@@ -2821,37 +2833,37 @@ if (!$this->session->has_userdata('user_id')) {
                 responsive: false,
                 lengthChange: false,
                 dom:
-                    /*	--- Layout Structure 
-                    	--- Options
-                    	l	-	length changing input control
-                    	f	-	filtering input
-                    	t	-	The table!
-                    	i	-	Table information summary
-                    	p	-	pagination control
-                    	r	-	processing display element
-                    	B	-	buttons
-                    	R	-	ColReorder
-                    	S	-	Select
+                    /*     --- Layout Structure 
+                              --- Options
+                              l               -              length changing input control
+                              f              -              filtering input
+                             t              -              The table!
+                              i               -              Table information summary
+                              p             -              pagination control
+                              r              -              processing display element
+                              B             -              buttons
+                              R             -              ColReorder
+                              S              -              Select
 
-                    	--- Markup
-                    	< and >				- div element
-                    	<"class" and >		- div with a class
-                    	<"#id" and >		- div with an ID
-                    	<"#id.class" and >	- div with an ID and a class
+                              --- Markup
+                              < and >                                                 - div element
+                              <"class" and >                    - div with a class
+                              <"#id" and >                       - div with an ID
+                             <"#id.class" and >             - div with an ID and a class
 
-                    	--- Further reading
-                    	https://datatables.net/reference/option/dom
-                    	--------------------------------------
+                              --- Further reading
+                              https://datatables.net/reference/option/dom
+                              --------------------------------------
                      */
                     "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
                     "<'row'<'col-sm-12'tr>>" +
                     "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                 buttons: [
                     /*{
-                    	extend:    'colvis',
-                    	text:      'Column Visibility',
-                    	titleAttr: 'Col visibility',
-                    	className: 'mr-sm-3'
+                              extend:    'colvis',
+                              text:      'Column Visibility',
+                              titleAttr: 'Col visibility',
+                              className: 'mr-sm-3'
                     },*/
                     {
                         extend: 'pdfHtml5',
@@ -2999,8 +3011,8 @@ if (!$this->session->has_userdata('user_id')) {
                         html += `
         <tr>
 <td id="fgtype${element.TID}"> ${element.FGTType}</td>
- <td ${element.ArtCode}</td>
- <td>${element.WorkNo}</td>
+<td ${element.ArtCode}</td>
+<td>${element.WorkNo}</td>
                         <td>${element.labno}</td>
                         <td>${element.testdate}</td>
                         <td>${element.tastcat}</td>   
@@ -3051,7 +3063,7 @@ ${reviewStatus == '1' ?
               <label class="custom-control-label" for="customreview${element.TID}" disabled></label>
           </div>`
       }
- `   }
+`   }
   </td>
     <td>
 
@@ -3129,37 +3141,37 @@ ${reviewStatus == '1' ?
                         responsive: false,
                         lengthChange: false,
                         dom:
-                            /*	--- Layout Structure 
-                            	--- Options
-                            	l	-	length changing input control
-                            	f	-	filtering input
-                            	t	-	The table!
-                            	i	-	Table information summary
-                            	p	-	pagination control
-                            	r	-	processing display element
-                            	B	-	buttons
-                            	R	-	ColReorder
-                            	S	-	Select
+                            /*            --- Layout Structure 
+                             --- Options
+                            l               -              length changing input control
+                            f              -              filtering input
+                            t              -              The table!
+                            i               -              Table information summary
+                            p             -              pagination control
+                            r              -              processing display element
+                            B             -              buttons
+                            R             -              ColReorder
+                            S              -              Select
 
-                            	--- Markup
-                            	< and >				- div element
-                            	<"class" and >		- div with a class
-                            	<"#id" and >		- div with an ID
-                            	<"#id.class" and >	- div with an ID and a class
+                             --- Markup
+                            < and >                                                 - div element
+                            <"class" and >                    - div with a class
+                            <"#id" and >                       - div with an ID
+                            <"#id.class" and >             - div with an ID and a class
 
-                            	--- Further reading
-                            	https://datatables.net/reference/option/dom
-                            	--------------------------------------
+                            --- Further reading
+                            https://datatables.net/reference/option/dom
+                            --------------------------------------
                              */
                             "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
                             "<'row'<'col-sm-12'tr>>" +
                             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                         buttons: [
                             /*{
-                            	extend:    'colvis',
-                            	text:      'Column Visibility',
-                            	titleAttr: 'Col visibility',
-                            	className: 'mr-sm-3'
+                             extend:    'colvis',
+                            text:      'Column Visibility',
+                            titleAttr: 'Col visibility',
+                            className: 'mr-sm-3'
                             },*/
                             {
                                 extend: 'pdfHtml5',
@@ -3916,18 +3928,18 @@ ${reviewStatus == '1' ?
     </div>
     <!-- END Page Settings -->
     <!-- base vendor bundle: 
-			 DOC: if you remove pace.js from core please note on Internet Explorer some CSS animations may execute before a page is fully loaded, resulting 'jump' animations 
-						+ pace.js (recommended)
-						+ jquery.js (core)
-						+ jquery-ui-cust.js (core)
-						+ popper.js (core)
-						+ bootstrap.js (core)
-						+ slimscroll.js (extension)
-						+ app.navigation.js (core)
-						+ ba-throttle-debounce.js (core)
-						+ waves.js (extension)
-						+ smartpanels.js (extension)
-						+ src/../jquery-snippets.js (core) -->
+                                                 DOC: if you remove pace.js from core please note on Internet Explorer some CSS animations may execute before a page is fully loaded, resulting 'jump' animations 
+                                                                                                + pace.js (recommended)
+                                                                                                + jquery.js (core)
+                                                                                                + jquery-ui-cust.js (core)
+                                                                                                + popper.js (core)
+                                                                                                + bootstrap.js (core)
+                                                                                                + slimscroll.js (extension)
+                                                                                                + app.navigation.js (core)
+                                                                                                + ba-throttle-debounce.js (core)
+                                                                                                + waves.js (extension)
+                                                                                                + smartpanels.js (extension)
+                                                                                                + src/../jquery-snippets.js (core) -->
     <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
     <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
     <script type="text/javascript">
@@ -3944,37 +3956,37 @@ ${reviewStatus == '1' ?
             responsive: true,
             lengthChange: false,
             dom:
-                /*	--- Layout Structure 
-                	--- Options
-                	l	-	length changing input control
-                	f	-	filtering input
-                	t	-	The table!
-                	i	-	Table information summary
-                	p	-	pagination control
-                	r	-	processing display element
-                	B	-	buttons
-                	R	-	ColReorder
-                	S	-	Select
+                /*          --- Layout Structure 
+                              --- Options
+                              l               -              length changing input control
+                              f              -              filtering input
+                              t              -              The table!
+                              i               -              Table information summary
+                              p             -              pagination control
+                              r              -              processing display element
+                              B             -              buttons
+                              R             -              ColReorder
+                              S              -              Select
 
-                	--- Markup
-                	< and >				- div element
-                	<"class" and >		- div with a class
-                	<"#id" and >		- div with an ID
-                	<"#id.class" and >	- div with an ID and a class
+                              --- Markup
+                              < and >                                                 - div element
+                              <"class" and >                    - div with a class
+                              <"#id" and >                       - div with an ID
+                              <"#id.class" and >             - div with an ID and a class
 
-                	--- Further reading
-                	https://datatables.net/reference/option/dom
-                	--------------------------------------
+                              --- Further reading
+                              https://datatables.net/reference/option/dom
+                              --------------------------------------
                  */
                 "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
             buttons: [
                 /*{
-                	extend:    'colvis',
-                	text:      'Column Visibility',
-                	titleAttr: 'Col visibility',
-                	className: 'mr-sm-3'
+                              extend:    'colvis',
+                              text:      'Column Visibility',
+                              titleAttr: 'Col visibility',
+                              className: 'mr-sm-3'
                 },*/
                 {
                     extend: 'pdfHtml5',
@@ -4117,19 +4129,19 @@ ${reviewStatus == '1' ?
                             -- convert using https://babeljs.io online transpiler
                             return `
                             <a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>
-                            	<i class="fal fa-times"></i>
+                            <i class="fal fa-times"></i>
                             </a>
                             <div class='dropdown d-inline-block dropleft '>
-                            	<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>
-                            		<i class="fal fa-ellipsis-v"></i>
-                            	</a>
-                            	<div class='dropdown-menu'>
-                            		<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>
-                            		<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>
-                            	</div>
+                            <a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>
+                                             <i class="fal fa-ellipsis-v"></i>
+                            </a>
+                            <div class='dropdown-menu'>
+                                             <a class='dropdown-item' href='javascript:void(0);'>Change Status</a>
+                                             <a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>
+                            </div>
                             </div>`;
-                            	
-                            ES5 example below:	
+                            
+                            ES5 example below:        
 
                             */
                             return "\n\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>\n\t\t\t\t\t\t\t<i class=\"fal fa-times\"></i>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t<div class='dropdown d-inline-block dropleft'>\n\t\t\t\t\t\t\t<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>\n\t\t\t\t\t\t\t\t<i class=\"fal fa-ellipsis-v\"></i>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t<div class='dropdown-menu'>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>";
@@ -4154,7 +4166,7 @@ ${reviewStatus == '1' ?
                             barWidth: 30 * 30 * 60 * 1000 * 80,
                             lineWidth: 0,
                             /*fillColor: {
-                            	colors: [color.primary._500, color.primary._900]
+                            colors: [color.primary._500, color.primary._900]
                             },*/
                             fillColor: {
                                 colors: [{
@@ -5284,6 +5296,132 @@ ${reviewStatus == '1' ?
             WinPrint.close();
         }
     </script>
+    <script>
+        function getData() {
+            css = $("#cssCode").val();
+            $("#article").val(' ');
+            $("#tetype").val(' ');
+            $("#department").val(' ');
+            $("#pcolors").val(' ');
+            $("#pshape").val(' ');
+            $("#backing").val(' ');
+            $("#bladder").val(' ');
+            $("#cmat").val(' ');
+            $("#data").html(' ')
+            url = "<?php echo base_url(''); ?>FGT/getData"
+            $.post(url, {
+                "css": css
+            }, function(data) {
+                console.log(data);
+                $("#article").val(data['css'][0]['Article']);
+                $("#tetype").val(data['css'][0]['TestType']);
+                $("#department").val(data['css'][0]['Department']);
+                $("#pcolors").val(data['css'][0]['PrintingColors']);
+                $("#pshape").val(data['css'][0]['PanelShape']);
+                $("#backing").val(data['css'][0]['L4Name']);
+                $("#bladder").val(data['css'][1]['L4Name']);
+                $("#cmat").val(data['css'][2]['L4Name']);
+
+                let i = 1;
+                console.log(data, "hello");
+                let appendtable = '';
+                appendtable += `<table class="table table-striped table-hover table-sm" id="ActivityData" >
+                            <thead>
+                                <tr  class="bg-primary-200"  style="color:white;">
+                                <th>#SR</th>
+                                 <th>Name  </th>  
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>`
+                data['cssTable'].forEach((element) => {
+                    console.log("hello", element)
+
+                    appendtable += `<tr>
+                            <td>${i++} </td>
+                            <td> ${element.Name} </td>
+                               
+                                    </tr>`
+                })
+
+                appendtable += `</tbody>
+
+                            </table>`
+                $("#data").html(appendtable)
+                $('#ActivityData').dataTable({
+                    responsive: false,
+                    lengthChange: false,
+                    dom:
+                        /* --- Layout Structure 
+                             --- Options
+                             l               -              length changing input control
+                             f              -              filtering input
+                             t              -              The table!
+                             i               -              Table information summary
+                             p             -              pagination control
+                             r              -              processing display element
+                             B             -              buttons
+                             R             -              ColReorder
+                             S              -              Select
+
+                             --- Markup
+                             < and >                                                 - div element
+                             <"class" and >                    - div with a class
+                             <"#id" and >                       - div with an ID
+                             <"#id.class" and >             - div with an ID and a class
+
+                             --- Further reading
+                             https://datatables.net/reference/option/dom
+                             --------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                             extend:    'colvis',
+                             text:      'Column Visibility',
+                             titleAttr: 'Col visibility',
+                             className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+
+            })
+        }
+    </script>
+
+
     </body>
 
     </html>
