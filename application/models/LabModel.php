@@ -1617,6 +1617,15 @@ public function updatedStatusFGT($reviewStatus,$approvedStatus,$TID){
 
         return $query->result_array();
     }
+
+    public function getTestId($CssNo){
+        $query = $this->db->query("SELECT        dbo.view_Lab_Test_H.*, TID,CSSNO
+        FROM            dbo.view_Lab_Test_H
+        WHERE        (CSSNO = '$CssNo')");
+
+        return $query->result_array();
+    }
+
     public function getTableDatalab($sDate, $eDate)
     {
 
@@ -2238,6 +2247,20 @@ return $query->result_array();
         $query = $this->db
         ->query("SELECT        dbo.view_FGT_D.*
 FROM            dbo.view_FGT_D Where TID=$id");
+return $query->result_array();
+    }
+
+    public function FGT_PRINT_Head_CSSNO($CSSNO){
+        $query = $this->db
+        ->query("SELECT        dbo.view_FGT_H.*
+FROM            dbo.view_FGT_H Where cssCode='$CSSNO'");
+return $query->result_array();
+    }
+    
+    public function FGT_PRINT_Details_CSSNO($CSSNO){
+        $query = $this->db
+        ->query("SELECT        dbo.view_FGT_D.*
+FROM            dbo.view_FGT_D Where cssCode='$CSSNO'");
 return $query->result_array();
     }
 

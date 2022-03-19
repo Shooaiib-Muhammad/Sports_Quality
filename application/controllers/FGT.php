@@ -274,7 +274,15 @@ class FGT extends CI_Controller
             ->set_output(json_encode($data));
     }
 
-
+    public function FGT_PRINT_CSSNO()
+    {
+        $data['head'] = $this->FGT->FGT_PRINT_Head_CSSNO($_POST['CssNo']);
+        $data['detail'] = $this->FGT->FGT_PRINT_Details_CSSNO($_POST['CssNo']);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
 
     public function getTableData()
     {

@@ -365,6 +365,16 @@ class LabController extends CI_Controller
             ->set_output(json_encode($data));
     }
 
+    public function getTestId()
+    {
+        $CssNo = $_POST['CssNo'];
+        $data = $this->l->getTestId($CssNo);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+
     public function getHead()
     {
         $TID = $_POST['TID'];

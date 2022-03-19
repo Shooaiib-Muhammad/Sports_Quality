@@ -39,6 +39,3116 @@ if (!$this->session->has_userdata('user_id')) {
                     <?php } ?>
 
                     <br><br>
+
+  <!-- Modal SOCCER BALL INDOOR-->
+  <div class="modal fade bd-example-modal-xl" id="soccerBallsIndoor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">FGT Report</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card" id="printFGT">
+                                        <div class="card-body">
+                                            <!-- <table class="table">
+               <tr>
+                   <th style="font-size: large;font-weight:bold;padding:50px" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS INDOOR</th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+               </tr>
+           </table> -->
+                                            <table class="table">
+                                                <tr>
+                                                    <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th style="font-size: x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR SOCCERBALLS INDOOR</th>
+                                                    <th> </th>
+                                                </tr>
+                                            </table>
+                                            <!-- <h4 class="modal-title text-center m-4" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS INDOOR</h4> -->
+                                            <div class="container-fluid p-5">
+                                                <div class="row p-2">
+                                                    <div class="col-sm-4">
+                                                        <table class="table table-striped p-0">
+                                                            <tbody style="border: 1px solid;padding:0px">
+                                                                <tr>
+                                                                    <th style="border: 1px solid;" id="workingNoIndoor"></th>
+                                                                    <td class="text-center" id="articleNoIndoor"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;"><br>LAB #</th>
+                                                                    <td id="content32" class="text-center"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;"><br>TESTING DATE</th>
+                                                                    <td id="content33" class="text-center"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">TEST ACC. TO CAT:</th>
+                                                                    <td id="content34" class="text-center"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">FIFA STAMP</th>
+                                                                    <td id="content35" class="text-center"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">PRODUCTION MONTH</th>
+                                                                    <td id="content36" class="text-center">Jul-21</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <table class="table table-striped p-0">
+                                                            <tbody style="border: 1px solid;padding:0px">
+                                                                <tr style="padding: 0px;">
+                                                                    <th colspan="2" style="border: 1px solid; text-align:center">Construction</th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;"><br>COVER MAT.</th>
+                                                                    <td id="content37" class="text-center"><br></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;"><br><br>BACKING</th>
+                                                                    <td id="content38" class="text-center"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;"><br>BLADDER</th>
+                                                                    <td id="content39" class="text-center"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">BALLTYPE</th>
+                                                                    <td id="content40" class="text-center"></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <table class="table table-striped">
+                                                            <tbody style="border: 1px solid;">
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">TEST TYPE</th>
+                                                                    <td id="content41" class="text-center"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;"><br>MAIN MAT.COLOR</th>
+                                                                    <td id="content42" class="text-center"><br>White</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">PRINTING COLORS</th>
+                                                                    <td id="content43" class="text-center">Silver Met,<br>Solar Orange, Black, </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">RESULT</th>
+                                                                    <td id="content44" class="text-center">Fail</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;"><br>TESTED BY</th>
+                                                                    <td id="content45" class="text-center"><br>Imran Munir</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <div style="margin: 15px auto" class="container-fluid p-2">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <table class="table table-striped">
+                                                                <tbody style="border: 1px solid;">
+                                                                    <tr>
+                                                                        <th style="border: 1px solid">Category 1</th>
+                                                                        <td>- all balls stamped with "FIFA Quality PRO" logo (replaced "FIFA APPROVED") or destined for getting the "FIFA Quality PRO" logo, whatever price!
+                                                                            <br> -all balls with a "FOB price" of 10.01 or more USD, with or without FIFA logo!
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <th style="border: 1px solid">Category 2</th>
+                                                                        <td>- all balls stamped with "FIFA Quality PRO" logo (replaced "FIFA APPROVED") or destined for getting the "FIFA Quality PRO" logo, whatever price!
+                                                                            <br> -all balls with a "FOB price" of 10.01 or more USD, with or without FIFA logo!
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <th style="border: 1px solid">Category 3</th>
+                                                                        <td>- all balls stamped with "FIFA Quality PRO" logo (replaced "FIFA APPROVED") or destined for getting the "FIFA Quality PRO" logo, whatever price!
+                                                                            <br> -all balls with a "FOB price" of 10.01 or more USD, with or without FIFA logo!
+                                                                        </td>
+                                                                    </tr>
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="container-fluid p-2">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <table class="table table-striped">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <th class="text-center" style="border: 1px solid">TEST</th>
+                                                                        <th class="text-center" style="border: 1px solid">METHOD</th>
+                                                                        <th class="text-center" style="border: 1px solid">Condition</th>
+                                                                        <th class="text-center" colspan="4" style="border: 1px solid;">Requirement</th>
+                                                                        <th colspan="2" class="text-center" style="border: 1px solid">Result</th>
+                                                                        <th style="border: 1px solid ">Remarks</th>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <!-- <th style="border: 1px solid ">Static Properties</th> -->
+                                                                        <th style="border: 1px solid ">Static Properties</th>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid;"></td>
+                                                                        <td class="text-center" style="border: 1px solid; width:2%">
+                                                                            <b>UNIT</b>
+                                                                        <th style="border: 1px solid; width:7% ">CAT1</th>
+                                                                        <th style="border: 1px solid ">CAT.2</th>
+                                                                        <th style="border: 1px solid ">CAT.3</th>
+                                                                        </td>
+                                                                        <th colspan="2" class="text-center" style="border: 1px solid; border-collapse:collapse">
+                                                                            min / max
+
+                                                                        </th>
+                                                                        <td style="border: 1px solid "></td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Weight</td>
+                                                                        <td style="border: 1px solid ">FGT-35</td>
+                                                                        <td style="border: 1px solid ">0.8 bar</td>
+                                                                        <td style="border: 1px solid ">
+                                                                            <b>g</b>
+                                                                        <td style="border: 1px solid ">420-445</td>
+                                                                        <td style="border: 1px solid ">420-450</td>
+
+                                                                        <td style="border: 1px solid; ">
+                                                                            410-450
+                                                                        </td>
+                                                                        </td>
+                                                                        <td id="content46" class="text-center" style="border: 1px solid;  ">
+
+                                                                        <td id="content47" style="border: 1px solid "></td>
+                                                                        </td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Circumference (CSM)</td>
+                                                                        <td style="border: 1px solid ">FGT-37</td>
+                                                                        <td style="border: 1px solid ">0.8 bar</td>
+                                                                        <td style="border: 1px solid ">
+                                                                            <b>cm</b>
+                                                                        <td style="border: 1px solid ">68,5-69,5</td>
+                                                                        <td style="border: 1px solid ">68,0-69,5</td>
+
+                                                                        <td class="text-center" style="border: 1px solid; border-collapse:collapse ">
+                                                                            68,0-70,0
+                                                                        </td>
+                                                                        </td>
+                                                                        <td id="content48" style="border: 1px solid "></td>
+                                                                        <td id="content49" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Dev. in Sphericity in ref. to 100% roundness CSM</td>
+                                                                        <td style="border: 1px solid ">FGT-37</td>
+                                                                        <td style="border: 1px solid ">0.8 bar</td>
+                                                                        <td style="border: 1px solid ">
+                                                                            <b>%</b>
+                                                                        <td style="border: 1px solid ">max 1,3</td>
+                                                                        <td style="border: 1px solid ">max 1,6</td>
+                                                                        <td style="border: 1px solid ">max 1,6</td>
+                                                                        </td>
+                                                                        <td id="content50" style="border: 1px solid "></td>
+                                                                        <td id="content51" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Loss of pressure</td>
+                                                                        <td style="border: 1px solid ">FGT-38</td>
+                                                                        <td class="text-center" style="border: 1px solid ">1.0 bar<br>evaluation after 72h</td>
+                                                                        <td style="border: 1px solid ">
+                                                                            <b>%</b>
+                                                                        <td style="border: 1px solid ">max 20</td>
+                                                                        <td style="border: 1px solid ">max 25</td>
+                                                                        <td style="border: 1px solid ">max 25</td>
+                                                                        </td>
+                                                                        <td id="content52" style="border: 1px solid "></td>
+                                                                        <td id="content53" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th style="border: 1px solid ">Dynamic Properties</th>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td colspan="8" style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Rebound at RT</td>
+                                                                        <td style="border: 1px solid ">FGT-39</td>
+                                                                        <td style="border: 1px solid ">0.6 bar</td>
+                                                                        <td style="border: 1px solid ">cm</td>
+                                                                        <td style="border: 1px solid ">55-65</td>
+                                                                        <td style="border: 1px solid ">50-65</td>
+                                                                        <td style="border: 1px solid ">50-65</td>
+                                                                        <td id="content54" style="border: 1px solid "></td>
+                                                                        <td id="content55" style="border: 1px solid; border-collapse:collapse">
+
+                                                                        </td>
+                                                                        <td style="border: 1px solid "></td>
+
+                                                                    </tr>
+                                                                    <tr>
+
+                                                                    <tr>
+                                                                        <th style="border: 1px solid ">Shooter Test</th>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid ">0.8 bar</td>
+                                                                        <td colspan="4" style="border: 1px solid ">cyles: &nbsp &nbsp &nbsp &nbsp &nbsp 2000x
+                                                                        </td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Increase in Circumference</td>
+                                                                        <td style="border: 1px solid ">FGT-41<br>FGT-37</td>
+                                                                        <td style="border: 1px solid ">after cycles completed</td>
+                                                                        <td style="border: 1px solid ">cm</td>
+                                                                        <td style="border: 1px solid ">max 1,0</td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td id="content56" style="border: 1px solid "></td>
+                                                                        <td id="content57" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Dev. in Sphericity in ref. to 100% roundness CSM</td>
+                                                                        <td style="border: 1px solid ">FGT-41<br>FGT-37</td>
+                                                                        <td style="border: 1px solid ">after cycles completed</td>
+                                                                        <td style="border: 1px solid ">%</td>
+                                                                        <td style="border: 1px solid ">max 1,3</td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td id="content58" style="border: 1px solid "></td>
+                                                                        <td id="content59" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Change of pressure in ref. to initial pressure</td>
+                                                                        <td style="border: 1px solid ">FGT-41</td>
+                                                                        <td style="border: 1px solid ">after cycles completed</td>
+                                                                        <td style="border: 1px solid ">bar</td>
+                                                                        <td style="border: 1px solid ">max 0,1</td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td id="content60" style="border: 1px solid "></td>
+                                                                        <td id="content61" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Material</td>
+                                                                        <td style="border: 1px solid ">FGT-41</td>
+                                                                        <td style="border: 1px solid ">after cycles completed</td>
+                                                                        <td colspan="2" style="border: 1px solid ">stiching / bonding <br> + air valve undamaged <br> & no delamination <br> (seam/valve:no damage:)</td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td id="content62" style="border: 1px solid "></td>
+                                                                        <td id="content63" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th style="border: 1px solid ">Printing Durability</th>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td colspan="8" style="border: 1px solid "></td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Abrasion resistence on 2 panels</td>
+                                                                        <td style="border: 1px solid ">FGT-43</td>
+                                                                        <td style="border: 1px solid ">on 2 panels - 1x50cycl;<br>9 kPa load, Sandpaper P150</td>
+                                                                        <td colspan="4" style="border: 1px solid ">dyestuff still visible; not smeared</td>
+                                                                        <td id="content64" style="border: 1px solid "></td>
+                                                                        <td id="content65" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+
+                                                                    </tr>
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div style="margin: 15px auto" class="container-fluid p-2">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <table class="table table-striped col-12">
+                                                                <tbody style="border: 1px solid;">
+                                                                    <tr>
+                                                                        <th rowspan="3" style="border: 1px solid">Note: <span id="contentNoteFGT"></span></th>
+
+                                                                    </tr>
+
+
+
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <table class="table table-striped col-12">
+                                                                <tbody style="border: 1px solid;">
+                                                                    <tr>
+                                                                        <th style="border: 1px solid">Remarks:</th>
+                                                                        <td>Test request obvious problems before,during and after tests Improvements</td>
+                                                                    </tr>
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <table class="table">
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                            <span>Sohail Rasheed </span>
+                                                        </th>
+                                                        <th></th>
+
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFGT"> </span>
+                                                        </th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+
+
+                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                            <span id="testApprovedFGT"> </span>
+                                                        </th>
+                                                    </tr>
+                                                </table>
+
+                                                <table class="table">
+                                                    <tr>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Fresh Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="FreshPhotoIndoor" height="150px" width="200px" alt="FreshPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Shooter Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="ShooterPhotoIndoor" height="150px" width="200px" alt="ShooterPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Hydrolysis Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="HydroPhotoIndoor" height="150px" width="200px" alt="HydroPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Drum Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="DrumPhotoIndoor" height="150px" width="200px" alt="DrumPhoto" />
+                                                        </th>
+                                                    </tr>
+                                                </table>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary" onclick="printDiv('printFGT')">Print Report</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Modal SOCCER SIZE 5 BALLS -->
+                    <div class="modal fade bd-example-modal-xl" id="soccerBallsSize5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">FGT Report</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="printSoccerBallsSize5">
+                                    <div class="card" id="printFGTSize5">
+                                        <div class="card-body">
+                                            <!-- <table class="table">
+               <tr>
+                   <th style="font-size: large;font-weight:bold;padding:50px" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS SIZE 5</th>
+                   <th></th>
+                  <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+               </tr>
+           </table> -->
+                                            <?php
+                                            $Uploading = $this->session->userdata('Uploading');
+                                            $RS = $this->session->userdata('ReviewStatus');
+                                            $AS = $this->session->userdata('ApprovalStatus');
+
+
+                                            // if($Uploading==1){
+
+                                            ?>
+                                            <table class="table">
+                                                <tr>
+                                                    <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th style="font-size: x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR SOCCERBALLS SIZE 5</th>
+                                                    <th> </th>
+                                                </tr>
+                                            </table>
+
+                                            <!-- <h4 class="modal-title text-center m-4" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS SIZE 5</h4> -->
+                                            <div class="container-fluid ">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <table class="table table-striped">
+                                                            <tbody style="border: 1px solid;">
+                                                                <tr>
+                                                                    <th style="border: 1px solid;" id="workingNoSize5"></th>
+                                                                    <td class="text-center" id="articleNoSize5"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">LAB #</th>
+                                                                    <td id="content66" class="text-center"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">TESTING DATE</th>
+                                                                    <td id="content67" class="text-center"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">TEST ACC. TO CAT:</th>
+                                                                    <td id="content68" class="text-center"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">FIFA STAMP</th>
+                                                                    <td id="content69" class="text-center"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">PRODUCTION MONTH</th>
+                                                                    <td id="content70" class="text-center"></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <table class="table table-striped">
+                                                            <tbody style="border: 1px solid;">
+                                                                <tr>
+                                                                    <th colspan="2" style="border: 1px solid; text-align:center">Construction</th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">COVER MAT.</th>
+                                                                    <td id="content71" class="text-center"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">BACKING</th>
+                                                                    <td id="content72" class="text-center"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">BLADDER</th>
+                                                                    <td id="content73" class="text-center"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">BALLTYPE</th>
+                                                                    <td id="content74" class="text-center"></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <table class="table table-striped">
+                                                            <tbody style="border: 1px solid;">
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">TEST TYPE</th>
+                                                                    <td id="content75" class="text-center"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">MAIN MAT.COLOR</th>
+                                                                    <td id="content76" class="text-center"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">PRINTING COLORS</th>
+                                                                    <td id="content77" class="text-center"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">RESULT</th>
+                                                                    <td id="content78" class="text-center"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">TESTED BY</th>
+                                                                    <td id="content79" class="text-center"></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <div style="margin: 1px auto" class="container-fluid ">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <table class="table table-striped">
+                                                                <tbody style="border: 1px solid;">
+                                                                    <tr>
+                                                                        <th style="border: 1px solid">Category 1</th>
+                                                                        <td>- all balls stamped with "FIFA Quality PRO" logo (replaced "FIFA APPROVED") or destined for getting the "FIFA Quality PRO" logo, whatever price!
+                                                                            <br> -all balls with a "FOB price" of 10.01 or more USD, with or without FIFA logo!
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <th style="border: 1px solid">Category 2</th>
+                                                                        <td>- all balls stamped with "FIFA Quality PRO" logo (replaced "FIFA APPROVED") or destined for getting the "FIFA Quality PRO" logo, whatever price!
+                                                                            <br> -all balls with a "FOB price" of 10.01 or more USD, with or without FIFA logo!
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <th style="border: 1px solid">Category 3</th>
+                                                                        <td>- all balls stamped with "FIFA Quality PRO" logo (replaced "FIFA APPROVED") or destined for getting the "FIFA Quality PRO" logo, whatever price!
+                                                                            <br> -all balls with a "FOB price" of 10.01 or more USD, with or without FIFA logo!
+                                                                        </td>
+                                                                    </tr>
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <table class="table table-striped">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <th class="text-center" style="border: 1px solid">TEST</th>
+                                                                        <th class="text-center" style="border: 1px solid">METHOD</th>
+                                                                        <th class="text-center" style="border: 1px solid">Condition</th>
+                                                                        <th class="text-center" colspan="4" style="border: 1px solid;">Requirement</th>
+                                                                        <th colspan="2" class="text-center" style="border: 1px solid">Result</th>
+                                                                        <th style="border: 1px solid ">Remarks</th>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <!-- <th style="border: 1px solid ">Static Properties</th> -->
+                                                                        <th style="border: 1px solid ">Static Properties</th>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid;"></td>
+                                                                        <td class="text-center" style="border: 1px solid; width:2%">
+                                                                            <b>UNIT</b>
+                                                                        <th style="border: 1px solid; width:7% ">CAT1</th>
+                                                                        <th style="border: 1px solid; width:7%">CAT.2</th>
+                                                                        <th style="border: 1px solid; width:7% ">CAT.3</th>
+                                                                        </td>
+                                                                        <th colspan="2" class="text-center" style="border: 1px solid; border-collapse:collapse">
+                                                                            min / max
+
+                                                                        </th>
+                                                                        <td style="border: 1px solid "></td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Weight</td>
+                                                                        <td style="border: 1px solid ">FGT-35</td>
+                                                                        <td style="border: 1px solid ">0.8 bar</td>
+                                                                        <td style="border: 1px solid ">
+                                                                            <b>g</b>
+                                                                        <td style="border: 1px solid ">420-445</td>
+                                                                        <td style="border: 1px solid ">420-450</td>
+
+                                                                        <td style="border: 1px solid; ">
+                                                                            410-450
+                                                                        </td>
+                                                                        </td>
+                                                                        <td id="content80" style="border: 1px solid;  ">
+
+                                                                        <td id="content81" style="border: 1px solid "></td>
+                                                                        </td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Circumference (CSM)</td>
+                                                                        <td style="border: 1px solid ">FGT-37</td>
+                                                                        <td style="border: 1px solid ">0.8 bar</td>
+                                                                        <td style="border: 1px solid ">
+                                                                            <b>cm</b>
+                                                                        <td style="border: 1px solid ">68,5-69,5</td>
+                                                                        <td style="border: 1px solid ">68,0-69,5</td>
+
+                                                                        <td style="border: 1px solid; border-collapse:collapse ">
+                                                                            68,0-70,0
+                                                                        </td>
+                                                                        </td>
+                                                                        <td id="content82" style="border: 1px solid ">68.6</td>
+                                                                        <td id="content83" style="border: 1px solid ">69.3</td>
+                                                                        <td style="border: 1px solid "></td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Dev. in Sphericity in ref. to 100% roundness CSM</td>
+                                                                        <td style="border: 1px solid ">FGT-37</td>
+                                                                        <td style="border: 1px solid ">0.8 bar</td>
+                                                                        <td style="border: 1px solid ">
+                                                                            <b>%</b>
+                                                                        <td style="border: 1px solid ">max 1,3</td>
+                                                                        <td style="border: 1px solid ">max 1,6</td>
+                                                                        <td style="border: 1px solid ">max 1,6</td>
+                                                                        </td>
+                                                                        <td id="content84" style="border: 1px solid ">0.96</td>
+                                                                        <td id="content85" style="border: 1px solid ">1.19</td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Loss of pressure</td>
+                                                                        <td style="border: 1px solid ">FGT-38</td>
+                                                                        <td style="border: 1px solid ">1.0 bar<br>evaluation after 72h</td>
+                                                                        <td style="border: 1px solid ">
+                                                                            <b>%</b>
+                                                                        <td style="border: 1px solid ">max 20</td>
+                                                                        <td style="border: 1px solid ">max 25</td>
+                                                                        <td style="border: 1px solid ">max 25</td>
+                                                                        </td>
+                                                                        <td id="content86" style="border: 1px solid ">10</td>
+                                                                        <td id="content87" style="border: 1px solid ">12</td>
+                                                                        <td style="border: 1px solid "></td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th style="border: 1px solid ">Dynamic Properties</th>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td colspan="8" style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Rebound at RT</td>
+                                                                        <td style="border: 1px solid ">FGT-39</td>
+                                                                        <td style="border: 1px solid ">0.6 bar</td>
+                                                                        <td style="border: 1px solid ">cm</td>
+                                                                        <td style="border: 1px solid ">55-65</td>
+                                                                        <td style="border: 1px solid ">50-65</td>
+                                                                        <td style="border: 1px solid ">50-65</td>
+                                                                        <td id="content88" style="border: 1px solid "></td>
+                                                                        <td id="content89" style="border: 1px solid; border-collapse:collapse">
+
+                                                                        </td>
+                                                                        <td style="border: 1px solid "></td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Rebound at 5ºC</td>
+                                                                        <td style="border: 1px solid ">FGT-39</td>
+                                                                        <td style="border: 1px solid ">0.8 bar; 5ºC/12h fridge</td>
+                                                                        <td style="border: 1px solid ">cm</td>
+                                                                        <td style="border: 1px solid ">min 130</td>
+                                                                        <td style="border: 1px solid ">min 120</td>
+                                                                        <td style="border: 1px solid ">min 110</td>
+                                                                        <td id="content90" style="border: 1px solid "></td>
+                                                                        <td id="content91" style="border: 1px solid; border-collapse:collapse">
+
+                                                                        </td>
+                                                                        <td style="border: 1px solid "></td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Rebound at 0*C</td>
+                                                                        <td style="border: 1px solid ">FGT-39</td>
+                                                                        <td style="border: 1px solid ">0.8 bar; 5ºC/12h fridge</td>
+                                                                        <td style="border: 1px solid ">cm</td>
+                                                                        <td style="border: 1px solid ">120 min</td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td id="content92" style="border: 1px solid "></td>
+                                                                        <td id="content93" style="border: 1px solid; border-collapse:collapse">
+
+                                                                        </td>
+                                                                        <td style="border: 1px solid "></td>
+
+                                                                    </tr>
+                                                                    <tr>
+
+                                                                    <tr>
+                                                                        <th style="border: 1px solid ">Shooter Test</th>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid ">0.8 bar</td>
+                                                                        <td colspan="4" style="border: 1px solid ">cyles: &nbsp &nbsp &nbsp &nbsp &nbsp 2000x
+                                                                        </td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Increase in Circumference</td>
+                                                                        <td style="border: 1px solid ">FGT-41<br>FGT-37</td>
+                                                                        <td style="border: 1px solid ">after cycles completed</td>
+                                                                        <td style="border: 1px solid ">cm</td>
+                                                                        <td style="border: 1px solid ">max 1,0</td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td id="content94" style="border: 1px solid "></td>
+                                                                        <td id="content95" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Dev. in Sphericity in ref. to 100% roundness CSM</td>
+                                                                        <td style="border: 1px solid ">FGT-41<br>FGT-37</td>
+                                                                        <td style="border: 1px solid ">after cycles completed</td>
+                                                                        <td style="border: 1px solid ">%</td>
+                                                                        <td style="border: 1px solid ">max 1,3</td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td id="content96" style="border: 1px solid "></td>
+                                                                        <td id="content97" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Change of pressure in ref. to initial pressure</td>
+                                                                        <td style="border: 1px solid ">FGT-41</td>
+                                                                        <td style="border: 1px solid ">after cycles completed</td>
+                                                                        <td style="border: 1px solid ">bar</td>
+                                                                        <td style="border: 1px solid ">max 0,1</td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td id="content98" style="border: 1px solid "></td>
+                                                                        <td id="content99" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Material</td>
+                                                                        <td style="border: 1px solid ">FGT-41</td>
+                                                                        <td style="border: 1px solid ">after cycles completed</td>
+                                                                        <td colspan="4" style="border: 1px solid ">stiching / bonding + air valve<br> undamaged & no delamination <br> (seam/valve:no damage:)</td>
+                                                                        <td id="content100" style="border: 1px solid "></td>
+                                                                        <td id="content101" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th colspan="10" style="border: 1px solid ">Water Resistence
+                                                                        </th>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Water uptake</td>
+                                                                        <td style="border: 1px solid ">FGT-40</td>
+                                                                        <td style="border: 1px solid ">after 300 cycles</td>
+                                                                        <td style="border: 1px solid ">%</td>
+                                                                        <td style="border: 1px solid ">max 10% / ball</td>
+                                                                        <td style="border: 1px solid ">max 10% / ball</td>
+                                                                        <td style="border: 1px solid ">max 15% / ball</td>
+                                                                        <td id="content102" style="border: 1px solid "></td>
+                                                                        <td id="content103" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Increase in Circumference</td>
+                                                                        <td style="border: 1px solid ">FGT-40<br>FGT-37</td>
+                                                                        <td style="border: 1px solid ">after 300 cycles</td>
+                                                                        <td style="border: 1px solid ">%</td>
+                                                                        <td style="border: 1px solid ">max 0,5</td>
+                                                                        <td style="border: 1px solid ">max 0,8</td>
+                                                                        <td style="border: 1px solid ">max 1,0</td>
+                                                                        <td id="content104" style="border: 1px solid "></td>
+                                                                        <td id="content105" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Dev in Sphericity in ref. to 100% roundness CSM</td>
+                                                                        <td style="border: 1px solid ">FGT-40<br>FGT-37</td>
+                                                                        <td style="border: 1px solid ">after 300 cycles</td>
+                                                                        <td style="border: 1px solid ">%</td>
+                                                                        <td style="border: 1px solid ">max 1,5</td>
+                                                                        <td style="border: 1px solid ">max 1,6</td>
+                                                                        <td style="border: 1px solid ">max 1,6</td>
+                                                                        <td id="content106" style="border: 1px solid "></td>
+                                                                        <td id="content107" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th style="border: 1px solid ">Printing Durability</th>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td colspan="8" style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Drum Test</td>
+                                                                        <td style="border: 1px solid ">FGT-50</td>
+                                                                        <td style="border: 1px solid ">0.8 bar/240 minutes-/<br>wet</td>
+                                                                        <td colspan="4" style="border: 1px solid ">Priniting is visible around the ball</td>
+                                                                        <td id="content108" style="border: 1px solid "></td>
+                                                                        <td id="content109" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Abrasion resistence on 2 panels after water test w/<br>Sandpapergrade P150</td>
+                                                                        <td style="border: 1px solid ">FGT-43</td>
+                                                                        <td style="border: 1px solid ">1x50cycl;<br>9 kPa load</td>
+                                                                        <td colspan="4" style="border: 1px solid ">dyestuff still visible; not smeared</td>
+                                                                        <td id="content110" style="border: 1px solid "></td>
+                                                                        <td id="content111" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <th style="border: 1px solid ">Climatic-Strength Test</th>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td colspan="8" style="border: 1px solid "></td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">UV light Fastness</td>
+                                                                        <td style="border: 1px solid ">FGT-04</td>
+                                                                        <td style="border: 1px solid ">2h/550W</td>
+                                                                        <td colspan="4" style="border: 1px solid ">min 3 acc. greyscale</td>
+                                                                        <td id="content112" style="border: 1px solid "></td>
+                                                                        <td id="content113" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Ozon Test Rubber(Only on balls with Rubber<br>Surface</td>
+                                                                        <td style="border: 1px solid ">FGT-46</td>
+                                                                        <td style="border: 1px solid ">24h</td>
+                                                                        <td colspan="4" style="border: 1px solid ">DIN 5350 Cat. 1</td>
+                                                                        <td id="content114" style="border: 1px solid "></td>
+                                                                        <td id="content115" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Hydrolysis-Lamination</td>
+                                                                        <td style="border: 1px solid ">FGT-01</td>
+                                                                        <td style="border: 1px solid ">60ºC; 95% R.h.<br>7 days</td>
+                                                                        <td colspan="4" style="border: 1px solid ">no delamination</td>
+                                                                        <td id="content116" style="border: 1px solid "></td>
+                                                                        <td id="content117" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Hydrolysis-Color Change</td>
+                                                                        <td style="border: 1px solid ">FGT-01</td>
+                                                                        <td style="border: 1px solid ">60ºC; 95% R.h.<br>7 days</td>
+                                                                        <td colspan="4" style="border: 1px solid ">min 3 acc. greyscale</td>
+                                                                        <td id="content118" style="border: 1px solid "></td>
+                                                                        <td id="content119" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+
+                                                                    </tr>
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div style="margin: 5px auto" class="container-fluid">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <table class="table table-striped col-12">
+                                                                <tbody style="border: 1px solid;">
+                                                                    <tr>
+                                                                        <th rowspan="3" style="border: 1px solid">Note:<span id="contentNoteSize5"></span></th>
+
+                                                                    </tr>
+
+
+
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <table class="table table-striped col-12">
+                                                                <tbody style="border: 1px solid;">
+                                                                    <tr>
+                                                                        <th style="border: 1px solid">Remarks:</th>
+                                                                        <td>Test request obvious problems before,during and after tests Improvements</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <table class="table">
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                            <span>Sohail Rasheed </span>
+                                                        </th>
+                                                        <th></th>
+
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedSize5"> </span>
+                                                        </th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+
+
+                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                            <span id="testApprovedSize5"> </span>
+                                                        </th>
+                                                    </tr>
+                                                </table>
+
+                                                <table class="table">
+                                                    <tr>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Fresh Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="FreshPhotoSize5" height="150px" width="200px" alt="FreshPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Shooter Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="ShooterPhotoSize5" height="150px" width="200px" alt="ShooterPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Hydrolysis Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="HydroPhotoSize5" height="150px" width="200px" alt="HydroPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Drum Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="DrumPhotoSize5" height="150px" width="200px" alt="DrumPhoto" />
+                                                        </th>
+                                                    </tr>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button onclick="printDiv('printFGTSize5')" type="button" class="btn btn-primary">Print Report</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal fade bd-example-modal-xl" id="FGTReportModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">FGT Report</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card" id="printFGTSoccer">
+                                        <div class="card-body">
+                                            <!-- <table class="table">
+               <tr>
+                   <th style="font-size: large;font-weight:bold;padding:50px">FGT REPORT FOR AIRLINES MINI <span id="titleBalls">()</span></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+               </tr>
+           </table> -->
+
+                                            <table class="table">
+                                                <tr>
+                                                    <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th style="font-size:x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR AIRLINES MINI <span id="titleBalls">()</span></th>
+                                                    <th> </th>
+                                                </tr>
+                                            </table>
+                                            <!-- <h4 class="text-center m-4">FGT REPORT FOR AIRLINES MINI <span id="titleBalls">()</span></h4> -->
+
+                                            <div class="container-fluid p-5">
+                                                <div class="row p-2">
+                                                    <div class="col-sm-4">
+                                                        <table class="table table-striped">
+                                                            <tbody style="border: 1px solid;">
+                                                                <tr>
+                                                                    <th style="border: 1px solid;" id="workingNoMini"></th>
+                                                                    <td class="text-center" id="articleNoMini"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">FACTORY Code</th>
+                                                                    <td class="text-center">Forward Sports</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;"><br>LAB #</th>
+                                                                    <td class="text-center" id="content2"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;"><br>TESTING DATE</th>
+                                                                    <td class="text-center" id="content3"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">TEST ACC. TO CAT</th>
+                                                                    <td class="text-center" id="content4"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">PRODUCTION MONTH</th>
+                                                                    <td class="text-center" id="content5"></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                    <div class="col-4">
+                                                        <table class="table table-striped">
+                                                            <tbody style="border: 1px solid;">
+                                                                <tr>
+                                                                    <th colspan="2" style="border: 1px solid; text-align:center">Construction</th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">MODEL</th>
+                                                                    <td class="text-center" id="content6"></td>
+                                                                </tr>
+                                                                <!-- <tr>
+                        <th style="border: 1px solid;"><br><br>INNER</th>
+                        <td class="text-center" id="content7"></td>
+                    </tr> -->
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">PANEL SHAPE</th>
+                                                                    <td class="text-center" id="content8"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">REMARK</th>
+                                                                    <td class="text-center" id="content9"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">BALL TYPE</th>
+                                                                    <td class="text-center" id="content10"></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <table class="table table-striped">
+                                                            <tbody style="border: 1px solid;">
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">TEST TYPE</th>
+                                                                    <td class="text-center" id="content11"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;"><br>MAIN MAT. COLOR</th>
+                                                                    <td class="text-center" id="content12"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">PRINTING COLORS</th>
+                                                                    <td class="text-center" id="content13"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">RESULT</th>
+                                                                    <td class="text-center" id="content14"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;"><br>TESTED BY</th>
+                                                                    <td class="text-center" id="content15"></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <div class="container-fluid p-2">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <table class="table table-striped">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <th class="text-center" style="border: 1px solid">TEST</th>
+                                                                        <th class="text-center" style="border: 1px solid">METHOD</th>
+                                                                        <th class="text-center" style="border: 1px solid">Condition</th>
+                                                                        <th class="text-center" colspan="2" style="border: 1px solid;">Requirement</th>
+                                                                        <th colspan="4" class="text-center" style="border: 1px solid">Result</th>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td style="border: 1px solid"></td>
+                                                                        <td style="border: 1px solid"></td>
+                                                                        <td style="border: 1px solid"></td>
+                                                                        <th style="border: 1px solid; border-collapse: collapse">
+                                                                            Unit
+                                                                        <th style="border: 1px solid">Airless Mini Soccerball</th>
+                                                                        </th>
+                                                                        <td style="border: 1px solid">1</td>
+                                                                        <td style="border: 1px solid">2</td>
+                                                                        <td style="border: 1px solid">2</td>
+                                                                        <td style="border: 1px solid">3</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <!-- <th style="border: 1px solid ">Static Properties</th> -->
+                                                                        <th style="border: 1px solid ">Static Properties</th>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid; border-collapse:collapse"></td>
+                                                                        <td class="text-center" style="border: 1px solid ">
+                                                                            <b></b>
+                                                                        <th class="text-center" style="border: 1px solid "></th>
+                                                                        <th class="text-center" style="border: 1px solid "></th>
+                                                                        <th class="text-center" colspan="2" style="border: 1px solid "></th>
+                                                                        </td>
+
+                                                                        <td style="border: 1px solid "></td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Weight</td>
+                                                                        <td style="border: 1px solid ">FGT-35</td>
+                                                                        <td style="border: 1px solid ">RT/24h</td>
+                                                                        <td style="border: 1px solid ">
+                                                                            <b>g</b>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td id="content16" style="border: 1px solid "></td>
+                                                                        <td id="content17" style="border: 1px solid "></td>
+                                                                        <td id="content18" style="border: 1px solid "></td>
+
+                                                                        </td>
+                                                                        <td id="content19" class="text-center" style="border: 1px solid;  ">
+
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Circumference</td>
+                                                                        <td style="border: 1px solid ">FGT-36</td>
+                                                                        <td style="border: 1px solid ">RT/24h</td>
+                                                                        <td style="border: 1px solid ">
+                                                                            <b>cm</b>
+                                                                        <td id="content20" style="border: 1px solid "></td>
+                                                                        <td id="content21" style="border: 1px solid "></td>
+
+                                                                        <td id="content22" class="text-center" style="border: 1px solid; border-collapse:collapse ">
+
+                                                                        </td>
+                                                                        </td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Dynamic Properties</td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td colspan="7" style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Rebound at RT</td>
+                                                                        <td style="border: 1px solid ">FGT-39</td>
+                                                                        <td class="text-center" style="border: 1px solid ">RT/24h</td>
+                                                                        <td style="border: 1px solid ">
+                                                                            <b>cm</b>
+                                                                        <td style="border: 1px solid ">min .85</td>
+                                                                        <td id="content23" style="border: 1px solid "></td>
+
+                                                                        <td id="content24" class="text-center" style="border: 1px solid "></td>
+                                                                        </td>
+                                                                        <td id="content25" style="border: 1px solid "></td>
+                                                                        <td id="content26" style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th style="border: 1px solid ">Water Uptake / Durability</th>
+                                                                        <td colspan="8" style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Drum Test</td>
+                                                                        <td style="border: 1px solid ">FGT-50</td>
+                                                                        <td style="border: 1px solid ">240 mnutes - wet</td>
+                                                                        <td class="text-center" colspan="2" style="border: 1px solid ">water uptake max. 15%/ no delamination</td>
+                                                                        <td id="content27" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th style="border: 1px solid ">Light Fastness</th>
+                                                                        <td colspan="8" style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">UV Light Fastness</td>
+                                                                        <td style="border: 1px solid ">FGT-04</td>
+                                                                        <td class="text-center" style="border: 1px solid ">2h/550W</td>
+                                                                        <td class="text-center" colspan="2" style="border: 1px solid ">max 3 acc. greyscale</td>
+                                                                        <th id="content28" class="text-center" style="border: 1px solid "></th>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th style="border: 1px solid ">Hydrolysis</th>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td colspan="7" style="border: 1px solid "></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Lamination</td>
+                                                                        <td style="border: 1px solid ">FGT-01</td>
+                                                                        <td style="border: 1px solid ">60*C; 95% r.H.<br>3 days</td>
+                                                                        <td class="text-center" colspan="2" style="border: 1px solid ">no delamination</td>
+                                                                        <td id="content29" class="text-center" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="border: 1px solid ">Color Change</td>
+                                                                        <td style="border: 1px solid ">FGT-01</td>
+                                                                        <td style="border: 1px solid ">60*C; 95% r.H.<br>3 days</td>
+                                                                        <td class="text-center" colspan="2" style="border: 1px solid ">max 3 acc. greyscale</td>
+                                                                        <td id="content30" class="text-center" style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid "></td>
+                                                                    </tr>
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div style="margin: 15px auto" class="container-fluid p-2">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <table class="table table-striped col-12">
+                                                                <tbody style="border: 1px solid;">
+                                                                    <tr>
+                                                                        <th rowspan="3" style="border: 1px solid">Note:<span id="contentNoteSoccer"></span></th>
+
+                                                                    </tr>
+
+
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <table class="table table-striped col-12">
+                                                                <tbody style="border: 1px solid;">
+                                                                    <tr>
+                                                                        <th style="border: 1px solid">Remarks:</th>
+                                                                        <td id="content31"></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <table class="table">
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                            <span>Sohail Rasheed </span>
+                                                        </th>
+                                                        <th></th>
+
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedSoccer"> </span>
+                                                        </th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+
+
+                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                            <span id="testApprovedSoccer"> </span>
+                                                        </th>
+                                                    </tr>
+                                                </table>
+
+                                                <table class="table">
+                                                    <tr>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Fresh Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="FreshPhotoSoccer" height="150px" width="200px" alt="FreshPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Shooter Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="ShooterPhotoSoccer" height="150px" width="200px" alt="ShooterPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Hydrolysis Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="HydroPhotoSoccer" height="150px" width="200px" alt="HydroPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Drum Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="DrumPhotoSoccer" height="150px" width="200px" alt="DrumPhoto" />
+                                                        </th>
+                                                    </tr>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" onclick="printDiv('printFGTSoccer')">Print Report</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+<!-- Model Carton HTML -->
+
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLabel" ><b>Report</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="card" id="printCard">
+  <div class="card-body">
+
+       <div class="row">
+       <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Carton</th>
+                <th></th>
+               </tr>
+           </table>
+           <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+          <table class="table">
+          <tr>    
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNo"> </span></label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTest"> </span></label></th>
+        </tr>
+        <tr>      
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="size"> </span> </label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="pono"> </span></label></th>
+        </tr>
+            </table>
+           <!-- <div class="col-md-6">
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDate"> </span></label></div>
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierName"> </span></label></div>
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRef"> </span></label></div>
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Quantity Carton:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="quantityCarton"> </span></label></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mt-3" >
+                <table class="table table-bordered" style="border:2px solid black">
+                    <thead>
+                        <tr style="border:2px solid black">
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Requirement</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Value</th>
+                            <th style="text-align: center;font-size:large;border:2px solid black">  
+                            Result
+                            </th>
+                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
+                         
+
+                        </tr>
+                    </thead>
+                    <tbody id= "DetailsTest">
+                    
+                    </tbody>                
+                </table>
+            </div>
+
+            <div class="col-md-2"></div>
+            <!-- <div class="col-md-4">
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="Conclusion"> </span></label></div>
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span >Sohail Ghouri </span></th>
+          <th></th>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformed"> </span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewed"> </span>
+            </th>
+            <th></th>
+                    <th></th>
+                    <th></th>
+             
+
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    <span id="testApproved"> </span></th>
+                </tr>
+            </table>
+
+            <table class="table">
+                <tr>
+           
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  <th>
+                      <h5 style="font-weight:bold;color:black">Carton Image</h5>
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="cartonImage" height="250px" width="300px" alt="CartonPhoto" />
+                  </th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+            </table>
+            <!-- <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
+        </div>
+
+       </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printCard')" data-dismiss="modal">Print Report</button>
+      </div>
+      <div class="card-footer text-muted">
+  Forward Sports Pvt. Ltd.
+  </div>
+    </div>
+  </div>
+</div>
+ 
+        <!-- End Model Carton HTML -->
+
+        <!-- Modal -->
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+    <div class="modal-header" style="background-color: rgb(255,10,10);color:white">
+        <h5 class="modal-title" id="exampleModalCenterTitle" style="font-size:xx-large;">Alert!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="card" id="printCard">
+  <div class="card-body">
+
+      <h3>Hello <b><?php echo $this->session->userdata('Username');  ?></b> &#128522;</h3>
+      <h4>The report isn't uploaded by Lab Team yet &#128577;</h4>                          
+      <h4>Kindly wait for the lab team to upload the results then you will be able to see the report!</h4> 
+      <h3><b>Thanks in Advance</b> &#10084;</h3>
+       </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+      <div class="card-footer text-muted">
+  Forward Sports Pvt. Ltd.
+  </div>
+    </div>
+  </div>
+</div>
+
+<!-- Model Carton HTML -->
+
+<div class="modal fade bd-example-modal-lg" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(255,10,10);color:white">
+      <div class="icon-box">
+      Hello
+	    </div>
+        <button type="button" class="close" style="color: white;font-size:xx-large" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="card" id="printCard">
+  <div class="card-body">
+
+  
+
+       </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printCard')" data-dismiss="modal">Print Report</button>
+      </div>
+      <div class="card-footer text-muted">
+  Forward Sports Pvt. Ltd.
+  </div>
+    </div>
+  </div>
+</div>
+ 
+        <!-- End Model Error HTML -->
+  <!-- Model Foam HTML -->
+
+  <div class="modal fade bd-example-modal-lg" id="exampleModalFoam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLabel" ><b>Report</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="card" id="printCardFoam">
+  <div class="card-body">
+
+       <div class="row">
+       <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Foam</th>
+                <th> </th>
+               </tr>
+           </table>
+           <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+          <table class="table">
+          <tr>    
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFoam"> </span></label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFoam"> </span></label></th>
+        </tr>
+        <tr>      
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoFoam"> </span></label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></th>     
+    </tr>
+            </table>
+           <!-- <div class="col-md-6">
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFoam"> </span></label></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mt-3" >
+                <table class="table table-bordered" style="border:2px solid black">
+                    <thead>
+                        <tr style="border:2px solid black">
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
+                            <th style="text-align: center;font-size:large;border:2px solid black">  
+                            Standard
+                            </th>
+                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
+                         
+
+                        </tr>
+                    </thead>
+                    <tbody id= "DetailsTestFoam">
+                    
+                    </tbody>                
+                </table>
+            </div>
+
+            <div class="col-md-2"></div>
+            <!-- <div class="col-md-4">
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionFoam"> </span></label></div>
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span >Sohail Ghouri </span></th>
+          <th></th>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedFoam"> </span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedFoam"> </span>
+            </th>
+            <th></th>
+                    <th></th>
+                    <th></th>
+             
+
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    <span id="testApprovedFoam"> </span></th>
+                </tr>
+            </table>
+            <table class="table">
+                <tr>
+                <th></th>
+         
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  <th>
+                      <h5 style="font-weight:bold;color:black">Foam Image</h5>
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="foamImage" height="250px" width="300px" alt="FoamPhoto" />
+                  </th>
+                </tr>
+            </table>
+            <!-- <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
+        </div>
+
+       </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printCardFoam')" data-dismiss="modal">Print Report</button>
+      </div>
+      <div class="card-footer text-muted">
+  Forward Sports Pvt. Ltd.
+  </div>
+    </div>
+  </div>
+</div>
+ 
+        <!-- End Model Foam HTML -->
+
+ <!-- Model Fabric HTML -->
+
+ <div class="modal fade bd-example-modal-lg" id="exampleModalFabric" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLabel" ><b>Report</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="card" id="printCardFabric">
+  <div class="card-body">
+
+       <div class="row">
+       <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Fabric</th>
+                <td  style="font-size: small;padding:0%">
+                <table class="table table-bordered" style="font-size: small;padding:0%">
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Document</th>
+                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Revision</th>
+                        <td style="font-size: small;padding:1%">0</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Copy</th>
+                        <td style="font-size: small;padding:1%">03</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Holder</th>
+                        <td style="font-size: small;padding:1%">Lab</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Status</th>
+                        <td style="font-size: small;padding:1%">Controlled</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Date</th>
+                        <td style="font-size: small;padding:1%">1/Jul/21</td>
+                    </tr>
+                </table>
+                </td>
+               </tr>
+           </table>
+           <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+          <table class="table">
+          <tr>    
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFabric"> </span></label></th>
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSNoFabric"> </span></label></th>
+    
+        </tr>
+        <tr>     
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFabric"> </span></label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFabric"> </span></label></th>     
+    </tr>
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialNameFabric"> </span></label></th>
+    </tr>
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="ResultFabric"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoFabric"> </span></label></th>
+</tr>
+    <tr>
+    <!-- <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameFabric"> </span></label></th> -->
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></th>
+    </tr>
+            </table>
+           <!-- <div class="col-md-6">
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mt-3" >
+                <table class="table table-bordered" style="border:2px solid black">
+                    <thead>
+                        <tr style="border:2px solid black">
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Uncertainty</th>
+                            <th style="text-align: center;font-size:large;border:2px solid black">  
+                            Remark
+                            </th>
+                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
+                         
+
+                        </tr>
+                    </thead>
+                    <tbody id= "DetailsTestFabric">
+                    
+                    </tbody>                
+                </table>
+            </div>
+
+            <div class="col-md-2"></div>
+            <!-- <div class="col-md-4">
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionFabric"> </span></label></div>
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span >Sohail Ghouri </span></th>
+          <th></th>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedFabric"> </span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedFabric"> </span>
+            </th>
+            <th></th>
+                    <th></th>
+                    <th></th>
+             
+
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    <span id="testApprovedFabric"> </span></th>
+                </tr>
+            </table>
+            <table class="table">
+                <tr>
+                <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  <th>
+                      <h5 style="font-weight:bold;color:black">Fabric Image</h5>
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fabricImage" height="250px" width="300px" alt="FabricPhoto" />
+                  </th>
+                </tr>
+            </table>
+            <!-- <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
+        </div>
+
+       </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printCardFabric')" data-dismiss="modal">Print Report</button>
+      </div>
+      <div class="card-footer text-muted">
+  Forward Sports Pvt. Ltd.
+  </div>
+    </div>
+  </div>
+</div>
+ 
+        <!-- End Model Fabric HTML -->
+
+<!-- Model Material HTML -->
+
+<div class="modal fade bd-example-modal-lg" id="exampleModalMaterial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLabel" ><b>Report</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="card" id="printCardMaterial">
+  <div class="card-body">
+
+       <div class="row">
+       <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Material</th>
+                <td  style="font-size: small;padding:0%">
+                <table class="table table-bordered" style="font-size: small;padding:0%">
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Document</th>
+                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Revision</th>
+                        <td style="font-size: small;padding:1%">0</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Copy</th>
+                        <td style="font-size: small;padding:1%">03</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Holder</th>
+                        <td style="font-size: small;padding:1%">Lab</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Status</th>
+                        <td style="font-size: small;padding:1%">Controlled</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Date</th>
+                        <td style="font-size: small;padding:1%">1/Jul/21</td>
+                    </tr>
+                </table>
+                </td>
+               </tr>
+           </table>
+           <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+          <table class="table">
+          <tr>    
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoMaterial"> </span></label></th>
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSNoMaterial"> </span></label></th>
+    
+        </tr>
+        <tr>     
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMaterial"> </span></label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateMaterial"> </span></label></th>     
+    </tr>
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialNameMaterial"> </span></label></th>
+    </tr>
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="ResultMaterial"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoMaterial"> </span></label></th>
+</tr>
+    <tr>
+    <!-- <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameFabric"> </span></label></th> -->
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefMaterial"> </span></label></th>
+    </tr>
+            </table>
+           <!-- <div class="col-md-6">
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mt-3" >
+                <table class="table table-bordered" style="border:2px solid black">
+                    <thead>
+                        <tr style="border:2px solid black">
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Uncertainty</th>
+                            <th style="text-align: center;font-size:large;border:2px solid black">  
+                            Remark
+                            </th>
+                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
+                         
+
+                        </tr>
+                    </thead>
+                    <tbody id= "DetailsTestMaterial">
+                    
+                    </tbody>                
+                </table>
+            </div>
+
+            <div class="col-md-2"></div>
+            <!-- <div class="col-md-4">
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionMaterial"> </span></label></div>
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span >Sohail Ghouri </span></th>
+          <th></th>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedMaterial"> </span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedMaterial"> </span>
+            </th>
+            <th></th>
+                    <th></th>
+                    <th></th>
+             
+
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    <span id="testApprovedMaterial"> </span></th>
+                </tr>
+            </table>
+            <table class="table">
+                <tr>
+                <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  <th>
+                      <h5 style="font-weight:bold;color:black">Material Image</h5>
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="materialImage" height="250px" width="300px" alt="MaterialPhoto" />
+                  </th>
+                </tr>
+            </table>
+            <!-- <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
+        </div>
+
+       </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printCardMaterial')" data-dismiss="modal">Print Report</button>
+      </div>
+      <div class="card-footer text-muted">
+  Forward Sports Pvt. Ltd.
+  </div>
+    </div>
+  </div>
+</div>
+ 
+        <!-- End Model Material HTML -->
+
+         <!-- Model Thread HTML -->
+
+         <div class="modal fade bd-example-modal-lg" id="exampleModalThread" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLabel" ><b>Report</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="card" id="printCardThread">
+  <div class="card-body">
+
+       <div class="row">
+       <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Thread</th>
+                <td  style="font-size: small;padding:0%">
+                <table class="table table-bordered" style="font-size: small;padding:0%">
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Document</th>
+                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Revision</th>
+                        <td style="font-size: small;padding:1%">0</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Copy</th>
+                        <td style="font-size: small;padding:1%">03</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Holder</th>
+                        <td style="font-size: small;padding:1%">Lab</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Status</th>
+                        <td style="font-size: small;padding:1%">Controlled</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Date</th>
+                        <td style="font-size: small;padding:1%">1/Jul/21</td>
+                    </tr>
+                </table>
+                </td>
+               </tr>
+           </table>
+           <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+          <table class="table">
+          <tr>    
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoThread"> </span></label></th>
+       
+        </tr>
+        <tr>     
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestThread"> </span></label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateThread"> </span></label></th>     
+    </tr>
+
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameThread"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefThread"> </span></label></th>
+    </tr>
+
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoThread"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Thickness:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="thicknessThread"> </span></label></th>
+   
+</tr>
+
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Linear Density:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="linearDensityThread"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Twist Per Inch:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="twistThread"> </span></label></th>
+    </tr>
+ 
+ 
+            </table>
+           <!-- <div class="col-md-6">
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mt-3" >
+                <table class="table table-bordered" style="border:2px solid black">
+                    <thead>
+                        <tr style="border:2px solid black">
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Date</th>
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Ext. at Max. Load (mm)</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Max. Load (N)</th>
+                            <th style="text-align: center;font-size:large;border:2px solid black">  
+                            Ext. at 350.0 N (mm)
+                            </th>
+                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
+                         
+
+                        </tr>
+                    </thead>
+                    <tbody id= "DetailsTestThread">
+                    
+                    </tbody>                
+                </table>
+            </div>
+
+            <div class="col-md-2"></div>
+            <!-- <div class="col-md-4">
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionThread"> </span></label></div>
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span >Sohail Ghouri </span></th>
+          <th></th>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedThread"> </span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedThread"> </span>
+            </th>
+            <th></th>
+                    <th></th>
+                    <th></th>
+             
+
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    <span id="testApprovedThread"> </span></th>
+                </tr>
+            </table>
+            <table class="table">
+                <tr>
+                <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  <th>
+                      <h5 style="font-weight:bold;color:black">Thread Image</h5>
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadImage" height="250px" width="300px" alt="ThreadPhoto" />
+                  </th>
+                </tr>
+            </table>
+            <!-- <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
+        </div>
+
+       </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printCardThread')" data-dismiss="modal">Print Report</button>
+      </div>
+      <div class="card-footer text-muted">
+  Forward Sports Pvt. Ltd.
+  </div>
+    </div>
+  </div>
+</div>
+ 
+        <!-- End Model Thread HTML -->
+
+
+        <!-- Model MS Thread HTML -->
+
+        <div class="modal fade bd-example-modal-lg" id="exampleModalMSThread" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLabel" ><b>Report</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="card" id="printCardMSThread">
+  <div class="card-body">
+
+       <div class="row">
+       <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of MS Thread</th>
+                <td  style="font-size: small;padding:0%">
+                <table class="table table-bordered" style="font-size: small;padding:0%">
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Document</th>
+                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Revision</th>
+                        <td style="font-size: small;padding:1%">0</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Copy</th>
+                        <td style="font-size: small;padding:1%">03</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Holder</th>
+                        <td style="font-size: small;padding:1%">Lab</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Status</th>
+                        <td style="font-size: small;padding:1%">Controlled</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Date</th>
+                        <td style="font-size: small;padding:1%">1/Jul/21</td>
+                    </tr>
+                </table>
+                </td>
+               </tr>
+           </table>
+           <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+          <table class="table">
+          <tr>    
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoMSThread"> </span></label></th>
+          <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMSThread"> </span></label></th>   
+        </tr>
+        <tr>     
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="MaterialNameMSThread"> </span></label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateMSThread"> </span></label></th>     
+    </tr>
+
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameMSThread"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefMSThread"> </span></label></th>
+    </tr>
+
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoMSThread"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="statusMSThread"> </span></label></th>
+   
+</tr>
+            </table>
+           <!-- <div class="col-md-6">
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mt-3" >
+                <table class="table table-bordered" style="border:2px solid black">
+                    <thead>
+                        <tr style="border:2px solid black">
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Method</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
+                            <th style="text-align: center;font-size:large;border:2px solid black">  
+                           Requirement
+                            </th>
+                            <th style="text-align: center;font-size:large;border:2px solid black">  
+                           Result
+                            </th>
+                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
+                         
+
+                        </tr>
+                    </thead>
+                    <tbody id= "DetailsTestMSThread">
+                    
+                    </tbody>                
+                </table>
+            </div>
+
+            <div class="col-md-2"></div>
+            <!-- <div class="col-md-4">
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionMSThread"> </span></label></div>
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span >Sohail Ghouri </span></th>
+          <th></th>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedMSThread"> </span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedMSThread"> </span>
+            </th>
+            <th></th>
+                    <th></th>
+                    <th></th>
+             
+
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    <span id="testApprovedMSThread"> </span></th>
+                </tr>
+            </table>
+            <table class="table">
+                <tr>
+                <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  <th>
+                      <h5 style="font-weight:bold;color:black">MS Thread Image</h5>
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadMSImage" height="250px" width="300px" alt="MSThreadPhoto" />
+                  </th>
+                </tr>
+            </table>
+            <!-- <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
+        </div>
+
+       </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printCardMSThread')" data-dismiss="modal">Print Report</button>
+      </div>
+      <div class="card-footer text-muted">
+  Forward Sports Pvt. Ltd.
+  </div>
+    </div>
+  </div>
+</div>
+ 
+        <!-- End Model MS Thread HTML -->
+
+ <!-- Model Blader HTML -->
+
+ <div class="modal fade bd-example-modal-lg" id="exampleModalBlader" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLabel" ><b>Report</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="card" id="printCardBlader">
+  <div class="card-body">
+
+       <div class="row">
+       <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Blader</th>
+                <th> </th>
+               </tr>
+           </table>
+           <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+          <table class="table">
+          <tr>    
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoBlader"> </span></label></th>
+          <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestBlader"> </span></label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateBlader"> </span></label></th>         
+        </tr>
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameBlader"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefBlader"> </span></label></th>
+    </tr>
+
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialBlader"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="sizeBlader"> </span></label></th>
+   
+</tr>
+
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Hardness:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="hardnessBlader"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoBlader"> </span></label></th>
+ 
+    </tr>
+ 
+ 
+            </table>
+           <!-- <div class="col-md-6">
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mt-3" >
+                <table class="table table-bordered" style="border:2px solid black">
+                    <thead>
+                        <tr style="border:2px solid black">
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 1</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 2</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 3</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 4</th>
+                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
+                         
+
+                        </tr>
+                    </thead>
+                    <tbody id= "DetailsTestBlader">
+                    
+                    </tbody>                
+                </table>
+            </div>
+
+            <div class="col-md-2"></div>
+            <!-- <div class="col-md-4">
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Remarks:</span> <span style="font-size: medium;font-weight:bold" id="remarksBlader"> </span></label></div>
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span >Sohail Ghouri </span></th>
+          <th></th>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedBlader"> </span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedBlader"> </span>
+            </th>
+            <th></th>
+                    <th></th>
+                    <th></th>
+             
+
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    <span id="testApprovedBlader"> </span></th>
+                </tr>
+            </table>
+            <table class="table">
+                <tr>
+                <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  <th>
+                      <h5 style="font-weight:bold;color:black">Blader Image</h5>
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="bladerImage" height="250px" width="300px" alt="BladerPhoto" />
+                  </th>
+                </tr>
+            </table>
+            <!-- <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
+        </div>
+
+       </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printCardBlader')" data-dismiss="modal">Print Report</button>
+      </div>
+      <div class="card-footer text-muted">
+  Forward Sports Pvt. Ltd.
+  </div>
+    </div>
+  </div>
+</div>
+ 
+        <!-- End Model Blader HTML -->
+
+<!-- Model FGT HTML -->
+
+<div class="modal fade bd-example-modal-lg" id="exampleModalFGT" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLabel" ><b>Report</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="card" id="printCardFGT">
+  <div class="card-body">
+
+       <div class="row">
+       <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>CSM Test Report of Football</th>
+                <td  style="font-size: small;padding:0%">
+                <table class="table table-bordered" style="font-size: small;padding:0%">
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Document</th>
+                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Revision</th>
+                        <td style="font-size: small;padding:1%">0</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Copy</th>
+                        <td style="font-size: small;padding:1%">03</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Holder</th>
+                        <td style="font-size: small;padding:1%">Lab Manager</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Status</th>
+                        <td style="font-size: small;padding:1%">Controlled</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Date</th>
+                        <td style="font-size: small;padding:1%">1/Jul/21</td>
+                    </tr>
+                </table>
+                </td>
+               </tr>
+           </table>
+           <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+          <table class="table">
+          <tr>    
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFGT"> </span></label></th>
+          <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFGT"> </span></label></th>
+        </tr>
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Model Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="modelNameFGT"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS Code:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSCodeFGT"> </span></label></th>
+    </tr>
+
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Pressure:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="pressureFGT"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Temp/Humidity:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="TempHumFGT"> </span></label></th>
+   
+</tr>
+
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Article:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="articleFGT"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Category:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="categoryFGT"> </span></label></th>
+ 
+    </tr>
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="sizeFGT"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Tested For:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testedForFGT"> </span></label></th>
+ 
+    </tr>
+ 
+            </table>
+           <!-- <div class="col-md-6">
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mt-3" >
+                <table class="table table-bordered" style="border:2px solid black">
+                    <thead>
+                        <tr style="border:2px solid black">
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Weight</th>
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Circumference Min</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Circumference Max</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Deviation</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Rebound Test</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Remarks</th>
+                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
+                         
+
+                        </tr>
+                    </thead>
+                    <tbody id= "DetailsTestFGT">
+                    
+                    </tbody>                
+                </table>
+            </div>
+
+            <div class="col-md-2"></div>
+            <!-- <div class="col-md-4">
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Note:</span> <span style="font-size: medium;font-weight:bold" id="noteFGT"> </span></label></div>
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span >Sohail Ghouri </span></th>
+          <th></th>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedFGT"> </span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedFGT"> </span>
+            </th>
+            <th></th>
+                    <th></th>
+                    <th></th>
+             
+
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    <span id="testApprovedFGT"> </span></th>
+                </tr>
+            </table>
+            <table class="table">
+                <tr>
+                <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  <th>
+                      <h5 style="font-weight:bold;color:black">FGT CSM Image</h5>
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fgtImage" height="250px" width="300px" alt="FGTCSMPhoto" />
+                  </th>
+                </tr>
+            </table>
+            <!-- <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
+        </div>
+
+       </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printCardFGT')" data-dismiss="modal">Print Report</button>
+      </div>
+      <div class="card-footer text-muted">
+  Forward Sports Pvt. Ltd.
+  </div>
+    </div>
+  </div>
+</div>
+ 
+        <!-- End Model FGT HTML -->
+
                     <div class="row">
                         <div class="col-md-12">
 
@@ -597,13 +3707,14 @@ if (!$this->session->has_userdata('user_id')) {
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
-
-                                                <table class="table table-striped table-hover table-sm" id="ActivityData2">
+                                                                    
+                                                <table class="table table-striped table-hover table-sm" id="ActivityData5">
                                                     <thead>
 
                                                         <tr>
                                                             <th>Request Date</th>
                                                             <th>Type</th>
+                                                            <th>CSS Code</th>
                                                             <th>Factory Code</th>
                                                             <th>Article</th>
 
@@ -615,6 +3726,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <th>Sender Signature Returned</th>
                                                             <th>Status</th>
                                                             <th>Requester Acknowlegement</th>
+                                                            <th>View Result</th>
                                                             <th>ACTIONS</th>
                                                         </tr>
                                                     </thead>
@@ -627,6 +3739,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <tr>
                                                                 <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
                                                                 <td><?php echo $keys['Type']; ?></td>
+                                                                <td><?php echo $keys['CSSNo']; ?></td>
+                                                                
                                                                 <td><?php echo $keys['Factory_Code']; ?></td>
                                                                 <td><?php echo $keys['Article']; ?></td>
 
@@ -638,6 +3752,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <td> <span class="badge badge-primary p-1"><?php echo $keys['SRETSenderID']; ?></span></td>
                                                                 <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
                                                                 <td> <span class="badge badge-warning p-1"><?php echo $keys['finalStatus']; ?></span></td>
+                                                               <td>
+                                                               <button type="button" class="btn btn-warning btn-xs printButton" id="btnPrint.<?php Echo $keys['CSSNo']; ?>,<?php Echo $keys['TestType']; ?>" ><i class="fal fa-print" aria-hidden="true"></i></button>
+               
+                                                               </td>
                                                                 <td>
                                                                     <?php if ($keys['finalStatus'] == 'Pending') {
 
@@ -732,6 +3850,637 @@ if (!$this->session->has_userdata('user_id')) {
 
         }
 
+        $(".printButton").click(function(e) {
+
+ 
+let id= this.id;
+
+let split_value = id.split(".");
+
+var CssNo =split_value[1].split(',')[0];
+var typeOfTest =split_value[1].split(',')[1];
+let testTypeGet;
+if(typeOfTest == 'Material Test'){
+    let urlForResult = '<?php echo base_url('LabController/getTestId'); ?>' 
+let url2 = '<?php echo base_url('LabController/getDetails'); ?>'
+$.post(urlForResult, {'CssNo':CssNo},
+function(data, status) {
+if(data[0]){
+    let TID = data[0].TID
+
+testTypeGet = data[0].ItemType;
+
+if(data[0].ItemType.trim() == 'Carton'){
+$("#testNo").text(data[0].TestNO);
+$("#dateTest").text(data[0].Date);
+$("#pono").text(data[0].PO);
+$("#receiveDate").text(data[0].Receiving_Date);
+$("#size").text(data[0].Size);
+$("#supplierName").text(data[0].Supplier_Name);
+$("#supplierRef").text(data[0].Supplier_Ref);
+$("#quantityCarton").text(data[0].Quantity_Carton);
+if(data[0].image != null && data[0].image != ""){
+       $("#cartonImage").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#cartonImage").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+
+$("#testPerformed").text(data[0].performedBy);
+data[0].Approvalname? $("#testApproved").text(data[0].Approvalname):$("#testApproved").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+
+data[0].reviewName? $("#testReviewed").text(data[0].reviewName):$("#testReviewed").text("Pending");
+$("#Conclusion").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Test}</td>
+                   <td style="border:2px solid black">${element.Requirments}</td>
+                   <td style="border:2px solid black">${element.Value}</td>
+                   <td style="border:2px solid black">
+                  ${element.result}
+                   </td>
+               </tr>`
+});
+
+$("#DetailsTest").html(html);
+
+});
+$('#exampleModal').modal('toggle');
+}
+else if(data[0].ItemType.trim() == 'Foam'){
+$("#testNoFoam").text(data[0].TestNO);
+$("#dateTestFoam").text(data[0].Date);
+$("#ponoFoam").text(data[0].PO);
+$("#receiveDateFoam").text(data[0].Receiving_Date);
+
+$("#supplierRefFoam").text(data[0].Supplier_Ref);
+
+$("#testPerformedFoam").text(data[0].performedBy);
+data[0].Approvalname? $("#testApprovedFoam").text(data[0].Approvalname):$("#testApprovedFoam").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if(data[0].image != null && data[0].image != ""){
+       $("#foamImage").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#foamImage").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].reviewName? $("#testReviewedFoam").text(data[0].reviewName):$("#testReviewedFoam").text("Pending");
+$("#ConclusionFoam").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Test}</td>
+                   <td style="border:2px solid black">${element.result}</td>
+                   <td style="border:2px solid black">${element.Unit}</td>
+                   <td style="border:2px solid black">
+                  ${element.Standard}
+                   </td>
+               </tr>`
+});
+
+$("#DetailsTestFoam").html(html);
+
+});
+$('#exampleModalFoam').modal('toggle');
+}
+else if(data[0].ItemType.trim() == 'Fabric'){
+$("#testNoFabric").text(data[0].TestNO);
+$("#dateTestFabric").text(data[0].Date);
+$("#ponoFabric").text(data[0].PO);
+$("#receiveDateFabric").text(data[0].Receiving_Date);
+
+$("#supplierRefFabric").text(data[0].Supplier_Ref);
+
+$("#testPerformedFabric").text(data[0].performedBy);
+$("#ResultFabric").text(data[0].Result);
+$("#CSSNoFabric").text(data[0].CSSNO);
+$("#materialNameFabric").text(data[0].Size);
+
+data[0].Approvalname? $("#testApprovedFabric").text(data[0].Approvalname):$("#testApprovedFabric").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if(data[0].image != null && data[0].image != ""){
+       $("#fabricImage").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#fabricImage").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].reviewName? $("#testReviewedFabric").text(data[0].reviewName):$("#testReviewedFabric").text("Pending");
+$("#ConclusionFabric").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Test}</td>
+                   <td style="border:2px solid black">${element.result}</td>
+                   <td style="border:2px solid black">${element.Uncertainty}</td>
+                   <td style="border:2px solid black">
+                  ${element.ReMarks}
+                   </td>
+               </tr>`
+});
+
+$("#DetailsTestFabric").html(html);
+
+});
+$('#exampleModalFabric').modal('toggle');
+}
+else if(data[0].ItemType.trim() == 'Material'){
+$("#testNoMaterial").text(data[0].TestNO);
+$("#dateTestMaterial").text(data[0].Date);
+$("#ponoMaterial").text(data[0].PO);
+$("#receiveDateMaterial").text(data[0].Receiving_Date);
+
+$("#supplierRefMaterial").text(data[0].Supplier_Ref);
+
+$("#testPerformedMaterial").text(data[0].performedBy);
+$("#ResultMaterial").text(data[0].Result);
+$("#CSSNoMaterial").text(data[0].CSSNO);
+$("#materialNameMaterial").text(data[0].Size);
+if(data[0].image != null && data[0].image != ""){
+       $("#materialImage").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#materialImage").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].Approvalname? $("#testApprovedMaterial").text(data[0].Approvalname):$("#testApprovedMaterial").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+
+data[0].reviewName? $("#testReviewedMaterial").text(data[0].reviewName):$("#testReviewedMaterial").text("Pending");
+$("#ConclusionMaterial").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Test}</td>
+                   <td style="border:2px solid black">${element.result}</td>
+                   <td style="border:2px solid black">${element.Uncertainty}</td>
+                   <td style="border:2px solid black">
+                  ${element.ReMarks}
+                   </td>
+               </tr>`
+});
+
+$("#DetailsTestMaterial").html(html);
+
+});
+$('#exampleModalMaterial').modal('toggle');
+}
+else if(data[0].ItemType.trim() == 'Thread'){
+
+$("#testNoThread").text(data[0].TestNO);
+$("#dateTestThread").text(data[0].Date);
+$("#ponoThread").text(data[0].PO);
+$("#receiveDateThread").text(data[0].Receiving_Date);
+$("#thicknessThread").text(data[0].Thickness);
+$("#supplierNameThread").text(data[0].Supplier_Name);
+$("#supplierRefThread").text(data[0].Supplier_Ref);
+$("#linearDensityThread").text(data[0].LinearDensity);
+$("#twistThread").text(data[0].TwistPerInch);
+$("#testPerformedThread").text(data[0].performedBy);
+data[0].Approvalname? $("#testApprovedThread").text(data[0].Approvalname):$("#testApprovedThread").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if(data[0].image != null && data[0].image != ""){
+       $("#threadImage").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#threadImage").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].reviewName? $("#testReviewedThread").text(data[0].reviewName):$("#testReviewedThread").text("Pending");
+$("#ConclusionThread").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+let i=0;
+let extMax = 0;
+let Max = 0;
+let ext = 0;
+data.forEach(element => {
+
+ extMax += parseInt(element.ExtatMax);
+ Max += parseInt(element.MaxLoad);
+ ext += parseInt(element.Ext);
+   html += `<tr>
+                   <td style="border:2px solid black">${element.TDate}</td>
+                   <td style="border:2px solid black">${element.ExtatMax}</td>
+                   <td style="border:2px solid black">${element.MaxLoad}</td>
+                   <td style="border:2px solid black">
+                  ${element.Ext}
+                   </td>
+               </tr>`
+});
+let sizeOfThread = data.length;
+html += `<tr>
+<td style="border:2px solid black">Average</td>
+                   <td style="border:2px solid black">${extMax/sizeOfThread}</td>
+                   <td style="border:2px solid black">${Max/sizeOfThread}</td>
+                   <td style="border:2px solid black">
+                  ${ext/sizeOfThread}
+                   </td>
+</tr>`
+
+$("#DetailsTestThread").html(html);
+
+});
+$('#exampleModalThread').modal('toggle');
+}
+else if(data[0].ItemType.trim() == 'Blader')
+{
+$("#testNoBlader").text(data[0].TestNO);
+$("#dateTestBlader").text(data[0].Date);
+$("#ponoBlader").text(data[0].PO);
+$("#receiveDateBlader").text(data[0].Receiving_Date);
+
+$("#supplierNameBlader").text(data[0].Supplier_Name);
+$("#supplierRefBlader").text(data[0].Supplier_Ref);
+$("#hardnessBlader").text(data[0].Hardness);
+$("#sizeBlader").text(data[0].Size);
+$("#materialBlader").text(data[0].material);
+$("#testPerformedBlader").text(data[0].performedBy);
+data[0].Approvalname? $("#testApprovedBlader").text(data[0].Approvalname):$("#testApprovedBlader").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if(data[0].image != null && data[0].image != ""){
+       $("#bladerImage").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#bladerImage").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].reviewName? $("#testReviewedBlader").text(data[0].reviewName):$("#testReviewedBlader").text("Pending");
+$("#Conclusion").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Test}</td>
+                   <td style="border:2px solid black">${element.Unit}</td>
+                   <td style="border:2px solid black">${element.result1}</td>
+                   <td style="border:2px solid black">${element.result2}</td>
+                   <td style="border:2px solid black">${element.result3}</td>
+                   <td style="border:2px solid black">${element.result4}</td>
+          
+               </tr>`
+});
+
+$("#DetailsTestBlader").html(html);
+
+});
+$('#exampleModalBlader').modal('toggle');
+
+}
+else if(data[0].ItemType.trim() == 'FGT')
+{
+
+$("#testNoFGT").text(data[0].TestNO);
+$("#dateTestFGT").text(data[0].Date);
+$("#modelNameFGT").text(data[0].ModelName);
+$("#CSSCodeFGT").text(data[0].CSSNO);
+
+$("#pressureFGT").text(data[0].Pressure);
+$("#TempHumFGT").text(data[0].TempHumidity);
+$("#articleFGT").text(data[0].Article);
+$("#categoryFGT").text(data[0].Category);
+$("#sizeFGT").text(data[0].Size);
+$("#testedForFGT").text(data[0].Testedfor);
+$("#testPerformedFGT").text(data[0].performedBy);
+$("#noteFGT").text(data[0].Note);
+if(data[0].image != null && data[0].image != ""){
+       $("#fgtImage").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#fgtImage").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].Approvalname? $("#testApprovedFGT").text(data[0].Approvalname):$("#testApprovedFGT").text("Pending");
+
+//  $("#Incharge").text(data[0].Approvalname);
+
+data[0].reviewName? $("#testReviewedFGT").text(data[0].reviewName):$("#testReviewedFGT").text("Pending");
+$("#ConclusionFGT").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Weight?element.Weight:''}</td>
+                   <td style="border:2px solid black">${element.CircumferenceMin?element.CircumferenceMin:''}</td>
+                   <td style="border:2px solid black">${element.CircumferenceMax?element.CircumferenceMax:''}</td>
+                   <td style="border:2px solid black">${element.Deviation?element.Deviation:''}</td>
+                   <td style="border:2px solid black">${element.ReboundTest?element.ReboundTest:''}</td>
+                   <td style="border:2px solid black">${element.Remarks?element.Remarks:''}</td>
+          
+               </tr>`
+});
+
+$("#DetailsTestFGT").html(html);
+
+});
+$('#exampleModalFGT').modal('toggle');
+
+}
+else if(data[0].ItemType.trim() == 'MS Thread'){
+
+$("#testNoMSThread").text(data[0].TestNO);
+$("#dateTestMSThread").text(data[0].Date);
+$("#ponoMSThread").text(data[0].PO);
+$("#receiveDateMSThread").text(data[0].Receiving_Date);
+$("#MaterialNameMSThread").text(data[0].material);
+$("#supplierNameMSThread").text(data[0].Supplier_Name);
+$("#supplierRefMSThread").text(data[0].Supplier_Ref);
+$("#testPerformedMSThread").text(data[0].performedBy);
+data[0].Approvalname? $("#testApprovedMSThread").text(data[0].Approvalname):$("#testApprovedMSThread").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if(data[0].image != null && data[0].image != ""){
+      $("#threadMSImage").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+  }
+  else{
+      $("#threadMSImage").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+  }
+data[0].reviewName? $("#testReviewedMSThread").text(data[0].reviewName):$("#testReviewedMSThread").text("Pending");
+$("#ConclusionMSThread").text(data[0].Result);
+$("#statusMSThread").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                  <td style="border:2px solid black">${element.Test}</td>
+                  <td style="border:2px solid black">${element.Method}</td>
+                  <td style="border:2px solid black">${element.Unit}</td>
+                  <td style="border:2px solid black">${element.Requirments}</td>
+                  <td style="border:2px solid black">${element.result}</td>
+              </tr>`
+});
+
+$("#DetailsTestMSThread").html(html);
+
+});
+$('#exampleModalMSThread').modal('toggle');
+}
+
+}
+else{
+    $('#errorModal').modal('toggle');
+}
+
+});
+
+}
+else if(typeOfTest == 'FGT Test'){
+
+    url = "<?php echo base_url(''); ?>FGT/FGT_PRINT_CSSNO"
+            $.post(url, {
+                CssNo
+            }, function(data) {
+                if(data['head'][0]){
+                    console.log("Data Get", data['head'][0].FGTType)
+                if (data['head'][0].FGTType == "SOCCER BALLS" || data['head'][0].FGTType == "SOCCERBALLS") {
+
+                    $("#titleBalls").text(data['head'][0].FGTType);
+                    $("#workingNoMini").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
+                    $("#articleNoMini").text(data['head'][0].ArtCode != '' ? data['head'][0].ArtCode : 'Article Code: Nil');
+                    $("#content2").text(data['head'][0].labno);
+                    $("#content3").text(data['head'][0].testdate);
+                    $("#content4").text(data['head'][0].tastcat);
+                    $("#content5").text(data['head'][0].productionmonth);
+                    $("#content6").text(data['head'][0].modal);
+                    //   $("#content7").text(data['head'][0].Innervalue);
+                    $("#content8").text(data['head'][0].panel_shape);
+                    $("#content9").text(data['head'][0].remark);
+                    $("#content10").text(data['head'][0].balltype);
+                    $("#content11").text(data['head'][0].testtype);
+                    $("#content12").text(data['head'][0].mainmatcolor);
+                    $("#content13").text(data['head'][0].printngscolors);
+                    $("#content14").text(data['head'][0].result);
+                    $("#content15").text(data['head'][0].Performedby);
+                    $("#contentNoteSoccer").text(data['head'][0].Note);
+                    if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
+                        $("#FreshPhotoSoccer").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
+                    } else {
+                        $("#FreshPhotoSoccer").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureShooter != null && data['head'][0].pictureShooter != "") {
+                        $("#ShooterPhotoSoccer").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureShooter);
+                    } else {
+                        $("#ShooterPhotoSoccer").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureHydro != null && data['head'][0].pictureHydro != "") {
+                        $("#HydroPhotoSoccer").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureHydro);
+                    } else {
+                        $("#HydroPhotoSoccer").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureDrum != null && data['head'][0].pictureDrum != "") {
+                        $("#DrumPhotoSoccer").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureDrum);
+                    } else {
+                        $("#DrumPhotoSoccer").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+
+                    $("#testReviewedSoccer").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
+                    $("#testApprovedSoccer").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
+                    if (data['detail'][0]) {
+                        $("#content16").text(data['detail'][0].weight1);
+                        $("#content17").text(data['detail'][0].weight2);
+                        $("#content21").text(data['detail'][0].cir1);
+                        $("#content22").text(data['detail'][0].cir2);
+                        $("#content23").text(data['detail'][0].rebound_rt1);
+                        $("#content24").text(data['detail'][0].rebound_rt2);
+                        $("#content27").text(data['detail'][0].drum_test_pd1);
+                        $("#content28").text(data['detail'][0].uv_light_fast_cst1);
+                        $("#content29").text(data['detail'][0].hydrolysis_lam1);
+                        $("#content30").text(data['detail'][0].hydrolysis_color1);
+                        $("#content31").text(data['head'][0].remark);
+                    }
+
+
+
+
+                    $('#FGTReportModal').modal('toggle');
+                } else if (data['head'][0].FGTType == "SOCCER BALL SIZE 5") {
+                    console.log("from aSIZE 5", data);
+                    $("#content66").text(data['head'][0].labno);
+                    $("#workingNoSize5").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
+                    $("#articleNoSize5").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
+                    $("#content67").text(data['head'][0].testdate);
+                    $("#content68").text(data['head'][0].tastcat);
+                    $("#content69").text(data['head'][0].fifiastemp);
+                    $("#content70").text(data['head'][0].productionmonth);
+                    $("#content71").text(data['head'][0].covermat);
+                    $("#content72").text(data['head'][0].backing);
+                    $("#content73").text(data['head'][0].bladder);
+                    $("#content74").text(data['head'][0].balltype);
+                    $("#content75").text(data['head'][0].testtype);
+                    $("#content76").text(data['head'][0].mainmatcolor);
+                    $("#content77").text(data['head'][0].printngscolors);
+                    $("#content78").text(data['head'][0].result);
+                    $("#content79").text(data['head'][0].Performedby);
+                    if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
+                        $("#FreshPhotoSize5").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
+                    } else {
+                        $("#FreshPhotoSize5").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureShooter != null && data['head'][0].pictureShooter != "") {
+                        $("#ShooterPhotoSize5").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureShooter);
+                    } else {
+                        $("#ShooterPhotoSize5").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureHydro != null && data['head'][0].pictureHydro != "") {
+                        $("#HydroPhotoSize5").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureHydro);
+                    } else {
+                        $("#HydroPhotoSize5").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureDrum != null && data['head'][0].pictureDrum != "") {
+                        $("#DrumPhotoSize5").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureDrum);
+                    } else {
+                        $("#DrumPhotoSize5").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+
+
+
+                    $("#contentNoteSize5").text(data['head'][0].Note);
+                    $("#testReviewedSize5").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
+                    $("#testApprovedSize5").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
+                    if (data['detail'][0]) {
+                        $("#content80").text(data['detail'][0].weight1);
+                        $("#content81").text(data['detail'][0].weight2);
+                        $("#content82").text(data['detail'][0].cir1);
+                        $("#content83").text(data['detail'][0].cir2);
+                        $("#content84").text(data['detail'][0].sphericity_sp1);
+                        $("#content85").text(data['detail'][0].sphericity_sp2);
+                        $("#content86").text(data['detail'][0].loss_of_pressure1);
+                        $("#content87").text(data['detail'][0].loss_of_pressure2);
+                        $("#content88").text(data['detail'][0].rebound_rt1);
+                        $("#content89").text(data['detail'][0].rebound_rt2);
+                        $("#content90").text(data['detail'][0].rebound_5_1);
+                        $("#content91").text(data['detail'][0].rebound_5_2);
+                        $("#content92").text(data['detail'][0].rebound_0_1);
+                        $("#content93").text(data['detail'][0].rebound_0_2);
+                        $("#content94").text(data['detail'][0].cir_st_1);
+                        $("#content95").text(data['detail'][0].cir_st_2);
+                        $("#content96").text(data['detail'][0].sphericity_st1);
+                        $("#content97").text(data['detail'][0].sphericity_st2);
+                        $("#content98").text(data['detail'][0].ch_of_pressure_st1);
+                        $("#content99").text(data['detail'][0].ch_of_pressure_st2);
+                        $("#content100").text(data['detail'][0].material_st1);
+                        $("#content101").text(data['detail'][0].material_st2);
+                        $("#content102").text(data['detail'][0].water_uptake_wrt1);
+                        $("#content103").text(data['detail'][0].water_uptake_wrt2);
+                        $("#content104").text(data['detail'][0].cir1_wrt);
+                        $("#content105").text(data['detail'][0].cir2_wrt);
+                        $("#content106").text(data['detail'][0].sphericity_wrt1);
+                        $("#content107").text(data['detail'][0].sphericity_wrt2);
+                        $("#content108").text(data['detail'][0].drum_test_pd1);
+                        $("#content109").text(data['detail'][0].drum_test_pd2);
+                        $("#content110").text(data['detail'][0].abraison_resistance_pd1);
+                        $("#content111").text(data['detail'][0].abraison_resistance_pd2);
+                        $("#content112").text(data['detail'][0].uv_light_fast_cst1);
+                        $("#content113").text(data['detail'][0].uv_light_fast_cst2);
+                        $("#content114").text(data['detail'][0].ozon_test_cst1);
+                        $("#content115").text(data['detail'][0].ozon_test_cst2);
+                        $("#content116").text(data['detail'][0].hydrolysis_lam1);
+                        $("#content117").text(data['detail'][0].hydrolysis_lam2);
+                        $("#content118").text(data['detail'][0].hydrolysis_color1);
+                        $("#content119").text(data['detail'][0].hydrolysis_color2);
+                    }
+
+                    $('#soccerBallsSize5').modal('toggle');
+
+                } else {
+                    console.log("from soccerBallsIndoor", data);
+                    $("#content32").text(data['head'][0].labno);
+                    $("#workingNoIndoor").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
+                    $("#articleNoIndoor").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
+                    $("#content33").text(data['head'][0].testdate);
+                    $("#content34").text(data['head'][0].tastcat);
+                    $("#content35").text(data['head'][0].fifiastemp);
+                    $("#content36").text(data['head'][0].productionmonth);
+                    $("#content37").text(data['head'][0].covermat);
+                    $("#content38").text(data['head'][0].backing);
+                    $("#content39").text(data['head'][0].bladder);
+                    $("#content40").text(data['head'][0].balltype);
+                    $("#content41").text(data['head'][0].testtype);
+                    $("#content42").text(data['head'][0].mainmatcolor);
+                    $("#content43").text(data['head'][0].printngscolors);
+                    $("#content44").text(data['head'][0].result);
+                    $("#content45").text(data['head'][0].Performedby);
+                    $("#contentNoteFGT").text(data['head'][0].Note);
+                    if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
+                        $("#FreshPhotoIndoor").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
+                    } else {
+                        $("#FreshPhotoIndoor").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureShooter != null && data['head'][0].pictureShooter != "") {
+                        $("#ShooterPhotoIndoor").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureShooter);
+                    } else {
+                        $("#ShooterPhotoIndoor").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureHydro != null && data['head'][0].pictureHydro != "") {
+                        $("#HydroPhotoIndoor").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureHydro);
+                    } else {
+                        $("#HydroPhotoIndoor").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureDrum != null && data['head'][0].pictureDrum != "") {
+                        $("#DrumPhotoIndoor").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureDrum);
+                    } else {
+                        $("#DrumPhotoIndoor").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+
+                    $("#testReviewedFGT").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
+                    $("#testApprovedFGT").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
+                    if (data['detail'][0]) {
+                        $("#content46").text(data['detail'][0].weight1);
+                        $("#content47").text(data['detail'][0].weight2);
+                        $("#content48").text(data['detail'][0].cir1);
+                        $("#content49").text(data['detail'][0].cir2);
+                        $("#content50").text(data['detail'][0].sphericity_sp1);
+                        $("#content51").text(data['detail'][0].sphericity_sp2);
+                        $("#content52").text(data['detail'][0].loss_of_pressure1);
+                        $("#content53").text(data['detail'][0].loss_of_pressure2);
+                        $("#content54").text(data['detail'][0].rebound_0_1);
+                        $("#content55").text(data['detail'][0].rebound_0_2);
+                        $("#content56").text(data['detail'][0].cir_st_1);
+                        $("#content57").text(data['detail'][0].cir_st_2);
+                        $("#content58").text(data['detail'][0].sphericity_sp1);
+                        $("#content59").text(data['detail'][0].sphericity_sp2);
+                        $("#content60").text(data['detail'][0].ch_of_pressure_st1);
+                        $("#content61").text(data['detail'][0].ch_of_pressure_st2);
+                        $("#content62").text(data['detail'][0].material_st1);
+                        $("#content63").text(data['detail'][0].material_st2);
+                        $("#content64").text(data['detail'][0].abraison_resistance_pd1);
+                        $("#content65").text(data['detail'][0].abraison_resistance_pd2);
+                    }
+
+
+
+
+
+
+                    $('#soccerBallsIndoor').modal('toggle');
+
+                }
+                }
+                else{
+                    $('#errorModal').modal('toggle');  
+                }
+           
+            })
+}
+
+
+});
 
         $('#Alltest').click(function(e) {
             // alert("Heloo");
@@ -1005,8 +4754,77 @@ if (!$this->session->has_userdata('user_id')) {
                 ]
             });
 
-            $('#ActivityData2').dataTable({
+            $('#ActivityData5').dataTable({
                 responsive: false,
+                lengthChange: false,
+                dom:
+                    /*	--- Layout Structure 
+                    	--- Options
+                    	l	-	length changing input control
+                    	f	-	filtering input
+                    	t	-	The table!
+                    	i	-	Table information summary
+                    	p	-	pagination control
+                    	r	-	processing display element
+                    	B	-	buttons
+                    	R	-	ColReorder
+                    	S	-	Select
+
+                    	--- Markup
+                    	< and >				- div element
+                    	<"class" and >		- div with a class
+                    	<"#id" and >		- div with an ID
+                    	<"#id.class" and >	- div with an ID and a class
+
+                    	--- Further reading
+                    	https://datatables.net/reference/option/dom
+                    	--------------------------------------
+                     */
+                    "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                buttons: [
+                    /*{
+                    	extend:    'colvis',
+                    	text:      'Column Visibility',
+                    	titleAttr: 'Col visibility',
+                    	className: 'mr-sm-3'
+                    },*/
+                    {
+                        extend: 'pdfHtml5',
+                        text: 'PDF',
+                        titleAttr: 'Generate PDF',
+                        className: 'btn-outline-danger btn-sm mr-1'
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Excel',
+                        titleAttr: 'Generate Excel',
+                        className: 'btn-outline-success btn-sm mr-1'
+                    },
+                    {
+                        extend: 'csvHtml5',
+                        text: 'CSV',
+                        titleAttr: 'Generate CSV',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'copyHtml5',
+                        text: 'Copy',
+                        titleAttr: 'Copy to clipboard',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Print',
+                        titleAttr: 'Print Table',
+                        className: 'btn-outline-primary btn-sm'
+                    }
+                ]
+            });
+
+            $('#ActivityData2').dataTable({
+                responsive: true,
                 lengthChange: false,
                 dom:
                     /*	--- Layout Structure 

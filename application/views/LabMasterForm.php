@@ -253,9 +253,10 @@ if (!$this->session->has_userdata('user_id')) {
  
         <!-- End Model Carton HTML -->
 
-         <!-- Model Carton Comparison HTML -->
-<!-- 
-<div class="modal fade bd-example-modal-xl" id="exampleModalComparison" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                <!-- Model Carton HTML Standard -->
+
+<div class="modal fade bd-example-modal-lg" id="exampleModalStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
@@ -265,32 +266,45 @@ if (!$this->session->has_userdata('user_id')) {
         </button>
       </div>
       <div class="modal-body">
-      <div class="card" id="printCard">
+      <div class="card" id="printCardStandard">
   <div class="card-body">
+
        <div class="row">
            <div class="col-md-6">
-           <h3 style="color: black;font-weight:bold;font-size:medium;text-align:center">RM test report </h3>
-           <div class="row" style="padding: 10px;border: 2px solid black">
+           <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
        <table class="table">
                <tr>
-                   <th style="font-size: Medium;font-weight:bold;padding:20px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Carton</th>
-            
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Carton</th>
+                <th></th>
                </tr>
            </table>
+           <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
           <table class="table">
           <tr>    
-          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoComp"> </span></label></th>
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestComp"> </span></label></th>
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoStandard"> </span></label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestStandard"> </span></label></th>
         </tr>
         <tr>      
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="sizeComp"> </span> </label></th>
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoComp"> </span></label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="sizeStandard"> </span> </label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoStandard"> </span></label></th>
         </tr>
             </table>
-           <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateComp"> </span></label></div>
-            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameComp"> </span></label></div>
-            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefComp"> </span></label></div>
-            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Quantity Carton:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="quantityCartonComp"> </span></label></div>
+           <!-- <div class="col-md-6">
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateStandard"> </span></label></div>
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameStandard"> </span></label></div>
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefStandard"> </span></label></div>
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Quantity Carton:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="quantityCartonStandard"> </span></label></div>
             <div class="col-md-2"></div>
             <div class="col-md-10 mt-3" >
                 <table class="table table-bordered" style="border:2px solid black">
@@ -302,39 +316,75 @@ if (!$this->session->has_userdata('user_id')) {
                             <th style="text-align: center;font-size:large;border:2px solid black">  
                             Result
                             </th>
-           
+                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
                          
 
                         </tr>
                     </thead>
-                    <tbody id= "DetailsTestComp">
+                    <tbody id= "DetailsTestStandard">
                     
                     </tbody>                
                 </table>
             </div>
 
             <div class="col-md-2"></div>
-         
-            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionComp"> </span></label></div>
-        
+            <!-- <div class="col-md-4">
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionStandard"> </span></label></div>
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
             <table class="table">
                 <tr>
                     <th></th>
-                 
+                    <th></th>
                     <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
                     <span >Sohail Ghouri </span></th>
           <th></th>
-             
-                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
-                    <span id="testPerformedComp"> </span></th>
                     <th></th>
-                
-                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedComp"> </span>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedStandard"> </span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedStandard"> </span>
             </th>
             <th></th>
-               
+                    <th></th>
+                    <th></th>
+             
+
                     <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                    <span id="testApprovedComp"> </span></th>
+                    <span id="testApprovedStandard"> </span></th>
                 </tr>
             </table>
 
@@ -351,7 +401,7 @@ if (!$this->session->has_userdata('user_id')) {
                     <th></th>
                   <th>
                       <h5 style="font-weight:bold;color:black">Carton Image</h5>
-                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="cartonImageComp" height="250px" width="300px" alt="CartonPhoto" />
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="cartonImageStandard" height="250px" width="300px" alt="CartonPhoto" />
                   </th>
                   <th></th>
                   <th></th>
@@ -360,129 +410,31 @@ if (!$this->session->has_userdata('user_id')) {
                   <th></th>
                 </tr>
             </table>
-     
+            <!-- <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
         </div>
-           </div>
-           <div class="col-md-6">
-           <h3 style="color: black;font-weight:bold;font-size:medium;text-align:center">Development test report </h3>
-           <div class="row" style="padding: 10px;border: 2px solid black">
-       <table class="table">
-               <tr>
-                   <th style="font-size: Medium;font-weight:bold;padding:20px">Store Department of Forward Sports (Pvt) Ltd<br>4 Point System Inspection Report</th>
-
-               </tr>
-           </table>
-          <table class="table">
-          <tr>    
-         <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestCompCartonStore"> </span></label></th>
-       
-        </tr>
-        <tr> 
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoCompCartonStore"> </span></label></th>
-     
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Color:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="colorCompCartonStore"> </span> </label></th>  
-         
-        </tr>
-        <tr>     
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold">Fabric Description:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="descCompCartonStore"> </span> </label></th>
-       </tr>
-   <tr>     
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Sup.Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supCompCartonStore"> </span> </label></th>
-   </tr>
-    </table>
-    <h1>    Length (meter)</h1>
-    <table class="table">
-    <tr>
-    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> On Tag:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="len1CompCartonStore"> </span> </label></th>
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Actual:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="len2CompCartonStore"> </span> </label></th>
-    </tr>
-    </table>
-    <h1>    width (meter)</h1>
-    <table class="table">
-    <tr>
-    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> On Tag:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="width1CompCartonStore"> </span> </label></th>
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Actual:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="width2CompCartonStore"> </span> </label></th>
-    </tr>
-
-    </table>
-
-    <h1>    Defect 1: <span id="defect1"></span> </h1>
-    <table class="table">
-    <tr>
-    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 0-3":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect11CompCartonStore"> </span> </label></th>
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 3-6":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect12CompCartonStore"> </span> </label></th>
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 6-9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect13CompCartonStore"> </span> </label></th>
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> >9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect14CompCartonStore"> </span> </label></th>
-  
-    </tr>
-
-    </table>
-    <h1>    Defect 2: <span id="defect2"></span> </h1>
-    <table class="table">
-    <tr>
-    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 0-3":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect21CompCartonStore"> </span> </label></th>
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 3-6":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect22CompCartonStore"> </span> </label></th>
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 6-9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect23CompCartonStore"> </span> </label></th>
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> >9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect24CompCartonStore"> </span> </label></th>
-  
-    </tr>
-
-    </table>
-    <h1>    Defect 3: <span id="defect3"></span> </h1>
-    <table class="table">
-    <tr>
-    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 0-3":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect31CompCartonStore"> </span> </label></th>
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 3-6":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect32CompCartonStore"> </span> </label></th>
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 6-9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect33CompCartonStore"> </span> </label></th>
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> >9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect34CompCartonStore"> </span> </label></th>
-  
-    </tr>
-
-    </table>      
-    <h1>    Defect 4: <span id="defect4"></span> </h1>
-    <table class="table">
-    <tr>
-    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 0-3":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect41CompCartonStore"> </span> </label></th>
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 3-6":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect42CompCartonStore"> </span> </label></th>
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 6-9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect43CompCartonStore"> </span> </label></th>
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> >9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect44CompCartonStore"> </span> </label></th>
-  
-    </tr>
-
-    </table>
-
-    <h1>    Hole <span id="hole"></span> </h1>
-    <table class="table">
-    <tr>
-    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 0-1":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="hole1CompCartonStore"> </span> </label></th>
-        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> >1":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="hole2CompCartonStore"> </span> </label></th>
-    </tr>
-
-    </table>
-    <div class="row">
-        <div class="col-md-12">
-        <h1>    Total Point Found: <span id="totalCompCartonStore"></span> </h1>
-
-        </div>
-        <div class="col-md-12">
-    <h1>    Points/1000 Squre Meter: <span id="pointsCompCartonStore"></span> </h1>
-        </div>
-        <div class="col-md-12">
-    <h1>    Status: <span id="statusCompCartonStore"></span> </h1>
+        <div class="col-md-6">
+        <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Standards</h3>
+           <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="cartonImageStandardComp" height="80%" width="100%" alt="StandardReport" />
+           
         </div>
     </div>
- </div>
-
-
-   
-</div>
-</div>
-      
- </div>
+       </div>
 </div>
       </div>
       <div class="modal-footer">
-
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printCardStandard')" data-dismiss="modal">Print Report</button>
       </div>
       <div class="card-footer text-muted">
   Forward Sports Pvt. Ltd.
@@ -490,10 +442,8 @@ if (!$this->session->has_userdata('user_id')) {
     </div>
   </div>
 </div>
-  -->
-        <!-- End Model Comparison Carton HTML -->
-
-
+ 
+    
       <!-- Model Foam HTML -->
 
       <div class="modal fade bd-example-modal-lg" id="exampleModalFoam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -669,6 +619,189 @@ if (!$this->session->has_userdata('user_id')) {
 </div>
  
         <!-- End Model Foam HTML -->
+
+ <!-- Model Foam HTML Standard -->
+
+ <div class="modal fade bd-example-modal-lg" id="exampleModalFoamStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLabel" ><b>Report</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="card" id="printCardFoamStandard">
+  <div class="card-body">
+
+       <div class="row">
+           <div class="col-md-6">
+           <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
+       <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Foam</th>
+                <th> </th>
+               </tr>
+           </table>
+           <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+          <table class="table">
+          <tr>    
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFoamStandard"> </span></label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFoamStandard"> </span></label></th>
+        </tr>
+        <tr>      
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoFoamStandard"> </span></label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoamStandard"> </span></label></th>     
+    </tr>
+            </table>
+           <!-- <div class="col-md-6">
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFoamStandard"> </span></label></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mt-3" >
+                <table class="table table-bordered" style="border:2px solid black">
+                    <thead>
+                        <tr style="border:2px solid black">
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
+                            <th style="text-align: center;font-size:large;border:2px solid black">  
+                            Standard
+                            </th>
+                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
+                         
+
+                        </tr>
+                    </thead>
+                    <tbody id= "DetailsTestFoamStandard">
+                    
+                    </tbody>                
+                </table>
+            </div>
+
+            <div class="col-md-2"></div>
+            <!-- <div class="col-md-4">
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionFoamStandard"> </span></label></div>
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span >Sohail Ghouri </span></th>
+          <th></th>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedFoamStandard"> </span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedFoamStandard"> </span>
+            </th>
+            <th></th>
+                    <th></th>
+                    <th></th>
+             
+
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    <span id="testApprovedFoamStandard"> </span></th>
+                </tr>
+            </table>
+            <table class="table">
+                <tr>
+                <th></th>
+         
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  <th>
+                      <h5 style="font-weight:bold;color:black">Foam Image</h5>
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="foamImageStandard" height="250px" width="300px" alt="FoamPhoto" />
+                  </th>
+                </tr>
+            </table>
+            <!-- <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
+        </div>
+        <div class="col-md-6">
+        <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Standards</h3>
+           <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="foamImageStandardComp" height="80%" width="100%" alt="StandardReport" />
+           
+        </div>
+</div>
+       </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printCardFoamStandard')" data-dismiss="modal">Print Report</button>
+      </div>
+      <div class="card-footer text-muted">
+  Forward Sports Pvt. Ltd.
+  </div>
+    </div>
+  </div>
+</div>
+ 
+        <!-- End Model Foam HTML Standard -->
 
   <!-- Model Fabric HTML -->
 
@@ -884,6 +1017,212 @@ if (!$this->session->has_userdata('user_id')) {
  
         <!-- End Model Fabric HTML -->
 
+ <!-- Model Fabric HTML Standard -->
+
+ <div class="modal fade bd-example-modal-lg" id="exampleModalFabricStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLabel" ><b>Report</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="card" id="printCardFabricStandard">
+  <div class="card-body">
+
+       <div class="row">
+           <div class="col-md-6">
+               <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
+       <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Fabric</th>
+                <td  style="font-size: small;padding:0%">
+                <table class="table table-bordered" style="font-size: small;padding:0%">
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Document</th>
+                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Revision</th>
+                        <td style="font-size: small;padding:1%">0</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Copy</th>
+                        <td style="font-size: small;padding:1%">03</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Holder</th>
+                        <td style="font-size: small;padding:1%">Lab</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Status</th>
+                        <td style="font-size: small;padding:1%">Controlled</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Date</th>
+                        <td style="font-size: small;padding:1%">1/Jul/21</td>
+                    </tr>
+                </table>
+                </td>
+               </tr>
+           </table>
+           <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+          <table class="table">
+          <tr>    
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFabricStandard"> </span></label></th>
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSNoFabricStandard"> </span></label></th>
+    
+        </tr>
+        <tr>     
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFabricStandard"> </span></label></th>
+        <th><span style="font-size: medium;font-weight:bold;background-color:white;"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFabricStandard"> </span></th>     
+    </tr>
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialNameFabricStandard"> </span></label></th>
+    </tr>
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="ResultFabricStandard"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoFabricStandard"> </span></label></th>
+</tr>
+    <tr>
+    <!-- <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameFabric"> </span></label></th> -->
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabricStandard"> </span></label></th>
+    </tr>
+            </table>
+           <!-- <div class="col-md-6">
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mt-3" >
+                <table class="table table-bordered" style="border:2px solid black">
+                    <thead>
+                        <tr style="border:2px solid black">
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Uncertainty</th>
+                            <th style="text-align: center;font-size:large;border:2px solid black">  
+                            Remark
+                            </th>
+                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
+                         
+
+                        </tr>
+                    </thead>
+                    <tbody id= "DetailsTestFabricStandard">
+                    
+                    </tbody>                
+                </table>
+            </div>
+
+            <div class="col-md-2"></div>
+            <!-- <div class="col-md-4">
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionFabricStandard"> </span></label></div>
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+            <table class="table">
+       
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span >Sohail Ghouri </span></th>
+ 
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedFabricStandard"> </span></th>
+          
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedFabricStandard"> </span>
+            </th>
+       
+             
+
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    <span id="testApprovedFabricStandard"> </span></th>
+                </tr>
+            </table>
+            <table class="table">
+                <tr>
+           
+                  <th>
+                      <h5 style="font-weight:bold;color:black">Fabric Image</h5>
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fabricImageStandard" height="250px" width="300px" alt="FabricPhoto" />
+                  </th>
+                </tr>
+            </table>
+            <!-- <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
+           </div>
+           <div class="col-md-6">
+           <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Standards</h3>
+           <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fabricImageStandardComp" height="80%" width="100%" alt="StandardReport" />
+           </div>
+        </div>
+
+       </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printCardFabricStandard')" data-dismiss="modal">Print Report</button>
+      </div>
+      <div class="card-footer text-muted">
+  Forward Sports Pvt. Ltd.
+  </div>
+    </div>
+  </div>
+</div>
+ 
+        <!-- End Model Fabric HTML Standard -->
+
           <!-- Model Fabric Comparison HTML -->
 
   <div class="modal fade bd-example-modal-lg" id="exampleModalFabricComparison" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -908,34 +1247,7 @@ if (!$this->session->has_userdata('user_id')) {
                    <tr>
 
                        <th style="font-size: Medium;font-weight:bold;padding:20px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Fabric</th>
-                    <!-- <td  style="font-size: small;padding:0%">
-                    <table class="table table-bordered" style="font-size: small;padding:0%">
-                        <tr style="font-size: small;padding:0%">
-                            <th style="font-size: small;padding:1%">Document</th>
-                            <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
-                        </tr>
-                        <tr style="font-size: small;padding:0%">
-                            <th style="font-size: small;padding:1%">Revision</th>
-                            <td style="font-size: small;padding:1%">0</td>
-                        </tr>
-                        <tr style="font-size: small;padding:0%">
-                            <th style="font-size: small;padding:1%">Copy</th>
-                            <td style="font-size: small;padding:1%">03</td>
-                        </tr>
-                        <tr style="font-size: small;padding:0%">
-                            <th style="font-size: small;padding:1%">Holder</th>
-                            <td style="font-size: small;padding:1%">Lab</td>
-                        </tr>
-                        <tr style="font-size: small;padding:0%">
-                            <th style="font-size: small;padding:1%">Status</th>
-                            <td style="font-size: small;padding:1%">Controlled</td>
-                        </tr>
-                        <tr style="font-size: small;padding:0%">
-                            <th style="font-size: small;padding:1%">Date</th>
-                            <td style="font-size: small;padding:1%">1/Jul/21</td>
-                        </tr>
-                    </table>
-                    </td> -->
+             
                    </tr>
                </table>
               <table class="table">
@@ -1160,7 +1472,7 @@ if (!$this->session->has_userdata('user_id')) {
         <!-- End Model Fabric Comparison HTML -->
 
 
- <!-- Model Fabric HTML -->
+ <!-- Model Material HTML -->
 
  <div class="modal fade bd-example-modal-lg" id="exampleModalMaterial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
@@ -1372,8 +1684,230 @@ if (!$this->session->has_userdata('user_id')) {
   </div>
 </div>
  
-        <!-- End Model Fabric HTML -->
+        <!-- End Model Material HTML -->
 
+    
+ <!-- Model Material HTML Standard -->
+
+ <div class="modal fade bd-example-modal-lg" id="exampleModalMaterialStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLabel" ><b>Report</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="card" id="printCardMaterialStandard">
+  <div class="card-body">
+
+       <div class="row">
+           <div class="col-md-6">
+           <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
+       <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Material</th>
+                <td  style="font-size: small;padding:0%">
+                <table class="table table-bordered" style="font-size: small;padding:0%">
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Document</th>
+                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Revision</th>
+                        <td style="font-size: small;padding:1%">0</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Copy</th>
+                        <td style="font-size: small;padding:1%">03</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Holder</th>
+                        <td style="font-size: small;padding:1%">Lab</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Status</th>
+                        <td style="font-size: small;padding:1%">Controlled</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Date</th>
+                        <td style="font-size: small;padding:1%">1/Jul/21</td>
+                    </tr>
+                </table>
+                </td>
+               </tr>
+           </table>
+           <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+          <table class="table">
+          <tr>    
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoMaterialStandard"> </span></label></th>
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSNoMaterialStandard"> </span></label></th>
+    
+        </tr>
+        <tr>     
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMaterialStandard"> </span></label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateMaterialStandard"> </span></label></th>     
+    </tr>
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialNameMaterialStandard"> </span></label></th>
+    </tr>
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="ResultMaterialStandard"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoMaterialStandard"> </span></label></th>
+</tr>
+    <tr>
+    <!-- <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameFabric"> </span></label></th> -->
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefMaterialStandard"> </span></label></th>
+    </tr>
+            </table>
+           <!-- <div class="col-md-6">
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mt-3" >
+                <table class="table table-bordered" style="border:2px solid black">
+                    <thead>
+                        <tr style="border:2px solid black">
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Uncertainty</th>
+                            <th style="text-align: center;font-size:large;border:2px solid black">  
+                            Remark
+                            </th>
+                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
+                         
+
+                        </tr>
+                    </thead>
+                    <tbody id= "DetailsTestMaterialStandard">
+                    
+                    </tbody>                
+                </table>
+            </div>
+
+            <div class="col-md-2"></div>
+            <!-- <div class="col-md-4">
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionMaterialStandard"> </span></label></div>
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span >Sohail Ghouri </span></th>
+          <th></th>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedMaterialStandard"> </span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedMaterialStandard"> </span>
+            </th>
+            <th></th>
+                    <th></th>
+                    <th></th>
+             
+
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    <span id="testApprovedMaterialStandard"> </span></th>
+                </tr>
+            </table>
+            <table class="table">
+                <tr>
+                <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  <th>
+                      <h5 style="font-weight:bold;color:black">Material Image</h5>
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="materialImageStandard" height="250px" width="300px" alt="MaterialPhoto" />
+                  </th>
+                </tr>
+            </table>
+            <!-- <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
+       </div>
+       <div class="col-md-6">
+       <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Standards</h3>
+           <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="materialImageStandardComp" height="80%" width="100%" alt="StandardReport" />
+           
+       </div>
+  </div>
+
+       </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printCardMaterialStandard')" data-dismiss="modal">Print Report</button>
+      </div>
+      <div class="card-footer text-muted">
+  Forward Sports Pvt. Ltd.
+  </div>
+    </div>
+  </div>
+</div>
+ 
+        <!-- End Model Material HTML Standard -->
 
           <!-- Model Thread HTML -->
 
@@ -1595,6 +2129,235 @@ if (!$this->session->has_userdata('user_id')) {
  
         <!-- End Model Thread HTML -->
 
+  <!-- Model Thread HTML Standard -->
+
+  <div class="modal fade bd-example-modal-lg" id="exampleModalThreadStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLabel" ><b>Report</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="card" id="printCardThreadStandard">
+  <div class="card-body">
+
+       <div class="row">
+           <div class="col-md-6">
+           <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
+       <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Thread</th>
+                <td  style="font-size: small;padding:0%">
+                <table class="table table-bordered" style="font-size: small;padding:0%">
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Document</th>
+                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Revision</th>
+                        <td style="font-size: small;padding:1%">0</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Copy</th>
+                        <td style="font-size: small;padding:1%">03</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Holder</th>
+                        <td style="font-size: small;padding:1%">Lab</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Status</th>
+                        <td style="font-size: small;padding:1%">Controlled</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Date</th>
+                        <td style="font-size: small;padding:1%">1/Jul/21</td>
+                    </tr>
+                </table>
+                </td>
+               </tr>
+           </table>
+           <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+          <table class="table">
+          <tr>    
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoThreadStandard"> </span></label></th>
+       
+        </tr>
+        <tr>     
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestThreadStandard"> </span></label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateThreadStandard"> </span></label></th>     
+    </tr>
+
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameThreadStandard"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefThreadStandard"> </span></label></th>
+    </tr>
+
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoThreadStandard"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Thickness:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="thicknessThreadStandard"> </span></label></th>
+   
+</tr>
+
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Linear Density:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="linearDensityThreadStandard"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Twist Per Inch:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="twistThreadStandard"> </span></label></th>
+    </tr>
+ 
+ 
+            </table>
+           <!-- <div class="col-md-6">
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mt-3" >
+                <table class="table table-bordered" style="border:2px solid black">
+                    <thead>
+                        <tr style="border:2px solid black">
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Date</th>
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Ext. at Max. Load (mm)</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Max. Load (N)</th>
+                            <th style="text-align: center;font-size:large;border:2px solid black">  
+                            Ext. at 350.0 N (mm)
+                            </th>
+                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
+                         
+
+                        </tr>
+                    </thead>
+                    <tbody id= "DetailsTestThreadStandard">
+                    
+                    </tbody>                
+                </table>
+            </div>
+
+            <div class="col-md-2"></div>
+            <!-- <div class="col-md-4">
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionThreadStandard"> </span></label></div>
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span >Sohail Ghouri </span></th>
+          <th></th>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedThreadStandard"> </span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedThreadStandard"> </span>
+            </th>
+            <th></th>
+                    <th></th>
+                    <th></th>
+             
+
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    <span id="testApprovedThreadStandard"> </span></th>
+                </tr>
+            </table>
+            <table class="table">
+                <tr>
+                <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  <th>
+                      <h5 style="font-weight:bold;color:black">Thread Image</h5>
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadImageStandard" height="250px" width="300px" alt="ThreadPhoto" />
+                  </th>
+                </tr>
+            </table>
+            <!-- <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
+            </div>
+            <div class="col-md-6">
+            <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Standards</h3>
+           <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadImageStandardComp" height="80%" width="100%" alt="StandardReport" />
+           
+            </div>
+        </div>
+
+       </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printCardThreadStandard')" data-dismiss="modal">Print Report</button>
+      </div>
+      <div class="card-footer text-muted">
+  Forward Sports Pvt. Ltd.
+  </div>
+    </div>
+  </div>
+</div>
+ 
+        <!-- End Model Thread HTML Standard -->
+
+
 
           <!-- Model MS Thread HTML -->
 
@@ -1812,6 +2575,229 @@ if (!$this->session->has_userdata('user_id')) {
  
         <!-- End Model MS Thread HTML -->
 
+   <!-- Model MS Thread HTML Standard -->
+
+   <div class="modal fade bd-example-modal-lg" id="exampleModalMSThreadStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLabel" ><b>Report</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="card" id="printCardMSThreadStandard">
+  <div class="card-body">
+
+       <div class="row">
+           <div class="col-md-6">
+           <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
+       <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of MS Thread</th>
+                <td  style="font-size: small;padding:0%">
+                <table class="table table-bordered" style="font-size: small;padding:0%">
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Document</th>
+                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Revision</th>
+                        <td style="font-size: small;padding:1%">0</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Copy</th>
+                        <td style="font-size: small;padding:1%">03</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Holder</th>
+                        <td style="font-size: small;padding:1%">Lab</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Status</th>
+                        <td style="font-size: small;padding:1%">Controlled</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Date</th>
+                        <td style="font-size: small;padding:1%">1/Jul/21</td>
+                    </tr>
+                </table>
+                </td>
+               </tr>
+           </table>
+           <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+          <table class="table">
+          <tr>    
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoMSThreadStandard"> </span></label></th>
+          <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMSThreadStandard"> </span></label></th>   
+        </tr>
+        <tr>     
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="MaterialNameMSThreadStandard"> </span></label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateMSThreadStandard"> </span></label></th>     
+    </tr>
+
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameMSThreadStandard"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefMSThreadStandard"> </span></label></th>
+    </tr>
+
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoMSThreadStandard"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="statusMSThreadStandard"> </span></label></th>
+   
+</tr>
+            </table>
+           <!-- <div class="col-md-6">
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mt-3" >
+                <table class="table table-bordered" style="border:2px solid black">
+                    <thead>
+                        <tr style="border:2px solid black">
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Method</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
+                            <th style="text-align: center;font-size:large;border:2px solid black">  
+                           Requirement
+                            </th>
+                            <th style="text-align: center;font-size:large;border:2px solid black">  
+                           Result
+                            </th>
+                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
+                         
+
+                        </tr>
+                    </thead>
+                    <tbody id= "DetailsTestMSThreadStandard">
+                    
+                    </tbody>                
+                </table>
+            </div>
+
+            <div class="col-md-2"></div>
+            <!-- <div class="col-md-4">
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionMSThreadStandard"> </span></label></div>
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span >Sohail Ghouri </span></th>
+          <th></th>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedMSThreadStandard"> </span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedMSThreadStandard"> </span>
+            </th>
+            <th></th>
+                    <th></th>
+                    <th></th>
+             
+
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    <span id="testApprovedMSThreadStandard"> </span></th>
+                </tr>
+            </table>
+            <table class="table">
+                <tr>
+                <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  <th>
+                      <h5 style="font-weight:bold;color:black">MS Thread Image</h5>
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadMSImageStandard" height="250px" width="300px" alt="MSThreadPhoto" />
+                  </th>
+                </tr>
+            </table>
+            <!-- <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
+        </div>
+      </div>
+      <div class="col-md-6">
+      <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Standards</h3>
+           <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadMSImageStandardComp" height="80%" width="100%" alt="StandardReport" />
+           
+      </div>
+       </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printCardMSThreadStandard')" data-dismiss="modal">Print Report</button>
+      </div>
+      <div class="card-footer text-muted">
+  Forward Sports Pvt. Ltd.
+  </div>
+    </div>
+  </div>
+</div>
+ 
+        <!-- End Model MS Thread HTML Standard -->
+
 
    <!-- Model Blader HTML -->
 
@@ -2002,6 +2988,205 @@ if (!$this->session->has_userdata('user_id')) {
 </div>
  
         <!-- End Model Blader HTML -->
+
+  <!-- Model Blader HTML Standard -->
+
+  <div class="modal fade bd-example-modal-lg" id="exampleModalBladerStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLabel" ><b>Report</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="card" id="printCardBladerStandard">
+  <div class="card-body">
+
+       <div class="row">
+           <div class="col-md-6">
+           <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
+       <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Blader</th>
+                <th> </th>
+               </tr>
+           </table>
+           <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+          <table class="table">
+          <tr>    
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoBladerStandard"> </span></label></th>
+          <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestBladerStandard"> </span></label></th>
+        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateBladerStandard"> </span></label></th>         
+        </tr>
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameBladerStandard"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefBladerStandard"> </span></label></th>
+    </tr>
+
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialBladerStandard"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="sizeBladerStandard"> </span></label></th>
+   
+</tr>
+
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Hardness:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="hardnessBladerStandard"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoBladerStandard"> </span></label></th>
+ 
+    </tr>
+ 
+ 
+            </table>
+           <!-- <div class="col-md-6">
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mt-3" >
+                <table class="table table-bordered" style="border:2px solid black">
+                    <thead>
+                        <tr style="border:2px solid black">
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 1</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 2</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 3</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 4</th>
+                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
+                         
+
+                        </tr>
+                    </thead>
+                    <tbody id= "DetailsTestBladerStandard">
+                    
+                    </tbody>                
+                </table>
+            </div>
+
+            <div class="col-md-2"></div>
+            <!-- <div class="col-md-4">
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Remarks:</span> <span style="font-size: medium;font-weight:bold" id="remarksBladerStandard"> </span></label></div>
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span >Sohail Ghouri </span></th>
+          <th></th>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedBladerStandard"> </span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedBladerStandard"> </span>
+            </th>
+            <th></th>
+                    <th></th>
+                    <th></th>
+             
+
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    <span id="testApprovedBladerStandard"> </span></th>
+                </tr>
+            </table>
+            <table class="table">
+                <tr>
+                <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  <th>
+                      <h5 style="font-weight:bold;color:black">Blader Image</h5>
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="bladerImageStandard" height="250px" width="300px" alt="BladerPhoto" />
+                  </th>
+                </tr>
+            </table>
+            <!-- <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
+            </div>
+            <div class="col-md-6">
+            <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Standards</h3>
+           <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="bladerImageStandardComp" height="80%" width="100%" alt="StandardReport" />
+           
+            </div>
+        </div>
+
+       </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printCardBladerStandard')" data-dismiss="modal">Print Report</button>
+      </div>
+      <div class="card-footer text-muted">
+  Forward Sports Pvt. Ltd.
+  </div>
+    </div>
+  </div>
+</div>
+ 
+        <!-- End Model Blader HTML Standard -->
+
 
 
  <!-- Model FGT HTML -->
@@ -2225,6 +3410,233 @@ if (!$this->session->has_userdata('user_id')) {
         <!-- End Model FGT HTML -->
 
 
+ <!-- Model FGT HTML Standard -->
+
+ <div class="modal fade bd-example-modal-lg" id="exampleModalFGTStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+        <h5 class="modal-title" id="exampleModalLabel" ><b>Report</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="card" id="printCardFGTStandard">
+  <div class="card-body">
+
+       <div class="row">
+           <div class="col-md-6">
+           <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
+       <table class="table">
+               <tr>
+               <th><img src="<?php echo base_url()?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+             
+                   <th></th>
+                   <th></th>
+                   <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>CSM Test Report of Football</th>
+                <td  style="font-size: small;padding:0%">
+                <table class="table table-bordered" style="font-size: small;padding:0%">
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Document</th>
+                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Revision</th>
+                        <td style="font-size: small;padding:1%">0</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Copy</th>
+                        <td style="font-size: small;padding:1%">03</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Holder</th>
+                        <td style="font-size: small;padding:1%">Lab Manager</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Status</th>
+                        <td style="font-size: small;padding:1%">Controlled</td>
+                    </tr>
+                    <tr style="font-size: small;padding:0%">
+                        <th style="font-size: small;padding:1%">Date</th>
+                        <td style="font-size: small;padding:1%">1/Jul/21</td>
+                    </tr>
+                </table>
+                </td>
+               </tr>
+           </table>
+           <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+          <table class="table">
+          <tr>    
+          <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFGTStandard"> </span></label></th>
+          <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFGTStandard"> </span></label></th>
+        </tr>
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Model Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="modelNameFGTStandard"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS Code:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSCodeFGTStandard"> </span></label></th>
+    </tr>
+
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Pressure:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="pressureFGTStandard"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Temp/Humidity:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="TempHumFGTStandard"> </span></label></th>
+   
+</tr>
+
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Article:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="articleFGTStandard"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Category:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="categoryFGTStandard"> </span></label></th>
+ 
+    </tr>
+    <tr>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="sizeFGTStandard"> </span></label></th>
+    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Tested For:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testedForFGTStandard"> </span></label></th>
+ 
+    </tr>
+ 
+            </table>
+           <!-- <div class="col-md-6">
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mt-3" >
+                <table class="table table-bordered" style="border:2px solid black">
+                    <thead>
+                        <tr style="border:2px solid black">
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Weight</th>
+                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Circumference Min</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Circumference Max</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Deviation</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Rebound Test</th>
+                                  <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Remarks</th>
+                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
+                         
+
+                        </tr>
+                    </thead>
+                    <tbody id= "DetailsTestFGTStandard">
+                    
+                    </tbody>                
+                </table>
+            </div>
+
+            <div class="col-md-2"></div>
+            <!-- <div class="col-md-4">
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Note:</span> <span style="font-size: medium;font-weight:bold" id="noteFGTStandard"> </span></label></div>
+            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                    <span >Sohail Ghouri </span></th>
+          <th></th>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                    <span id="testPerformedFGTStandard"> </span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span  id="testReviewedFGTStandard"> </span>
+            </th>
+            <th></th>
+                    <th></th>
+                    <th></th>
+             
+
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                    <span id="testApprovedFGTStandard"> </span></th>
+                </tr>
+            </table>
+            <table class="table">
+                <tr>
+                <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  <th>
+                      <h5 style="font-weight:bold;color:black">FGT CSM Image</h5>
+                      <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fgtImageStandard" height="250px" width="300px" alt="FGTCSMPhoto" />
+                  </th>
+                </tr>
+            </table>
+            <!-- <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
+        </div>
+      </div>
+      <div class="col-md-6">
+      <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Standards</h3>
+           <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fgtImageStandardComp" height="80%" width="100%" alt="StandardReport" />
+           
+      </div>
+       </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="printDiv('printCardFGTStandard')" data-dismiss="modal">Print Report</button>
+      </div>
+      <div class="card-footer text-muted">
+  Forward Sports Pvt. Ltd.
+  </div>
+    </div>
+  </div>
+</div>
+ 
+        <!-- End Model FGT HTML Standard -->
+
 <?php
  $Uploading = $this->session->userdata('Uploading');
   $RS = $this->session->userdata('ReviewStatus');
@@ -2438,6 +3850,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                   
                                                                    <th>Actions </th>
                                                                    <th>Comparison</th>
+                                                                   <th>Standard</th>
                                                                        <th>Undo </th>
                                                             
                                                                   
@@ -2587,24 +4000,22 @@ if (!$this->session->has_userdata('user_id')) {
                 <div class="col-md-2">
                 <button type="button" class="btn btn-info btn-xs updatebtn" id="btn.<?php Echo $Key['TID']; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
                 </div>
-                <div class="col-md-2">
-               </div>
+            
                
-                <div class="col-md-2">
-             
-             </div>
+          
                 <div class="col-md-2">
                 <button type="button" class="btn btn-warning btn-xs printButton" id="btnPrint.<?php Echo $Key['TID']; ?>" ><i class="fal fa-print" aria-hidden="true"></i></button>
                 </div>
             </div>
-          
-            <?php
+</td>
+
+<?php
     if($Key['ItemType']=='Fabric'){
         ?>
             <td>
              <div class="col-md-2">
                
-             <button type="button" class="btn btn-warning btn-xs comparisonButton waves-effect waves-themed" id="btnPrint.${element.TID}">Compare</button>
+             <button type="button" class="btn btn-warning btn-xs comparisonButton waves-effect waves-themed" id="btnPrint.${element.TID}">standard</button>
            
       
                 </div>
@@ -2622,9 +4033,34 @@ else{
 
 <?php
 }
-?>     
+?>    
+    
+          
+<?php
+    if(trim($Key['Size'],"")=='Azuga W-V85B Hi White Star' || trim($Key['Size'],"")=='B3766 181MP' || trim($Key['Size'],'')=='FB107' || trim($Key['Size'],'')=='FB122' || trim($Key['Size'],'')=='PU 357 Signal Green' || trim($Key['Size'],'')=='TPU FIlm 0.15mm White'){
+        ?>
+            <td>
+             <div class="col-md-2">
+               
+             <button type="button" class="btn btn-warning btn-xs standardButton waves-effect waves-themed" id="btnPrint.${element.TID}">Standard</button>
            
-           </td>   
+      
+                </div>
+    </td>
+    <?php
+}
+else{
+        ?>
+           <td>
+             <div class="col-md-2">
+               
+         
+                </div>
+    </td>
+
+<?php
+}
+?>   
             <td> <div class="col-md-2">
                
             <button type="button" id="undo.<?php echo $Key['TID'];?>" value="<?php echo $Key['TID'];?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> 
@@ -2744,6 +4180,7 @@ $.post(url, {'startDate':stDate,'endDate':enDate},
                                                                   
                                                                    <th>Actions </th>
                                                                    <th>Comparison</th>
+                                                                   <th>Standard</th>
                                                                      <th>Undo </th>
                                                             
                                                                   
@@ -2857,10 +4294,6 @@ ${reviewStatus == '1' ?
                 <button type="button" class="btn btn-warning btn-xs customprintButton waves-effect waves-themed" id="btnPrint.${element.TID}"><i class="fal fa-print" aria-hidden="true"></i></button>
             </div>
         </div>
-
-
-
-
     </td>
       ${ element.ItemType == "Fabric"? 
   ` <td>
@@ -2878,6 +4311,21 @@ ${reviewStatus == '1' ?
                 </div>
     </td>`}
 
+    ${(element.Size != null ?element.Size.trim()=='Azuga W-V85B Hi White Star':element.Size=='Azuga W-V85B Hi White Star') || (element.Size != null ?element.Size.trim()=='B3766 181MP':element.Size=='B3766 181MP') || (element.Size != null ?element.Size.trim()=='FB107':element.Size=='FB107') || (element.Size != null ?element.Size.trim()=='FB 122':element.Size=='FB 122') || (element.Size != null ?element.Size.trim()=='PU 357 Signal Green':element.Size=='PU 357 Signal Green') || (element.Size != null ?element.Size.trim()=='TPU FIlm 0.15mm White':element.Size=='TPU FIlm 0.15mm White')? 
+ ` <td>
+             <div class="col-md-2">
+               
+             <button type="button" class="btn btn-warning btn-xs customstandardButton waves-effect waves-themed" id="btnPrint.${element.TID}">Standard</button>
+           
+      
+                </div>
+    </td>`:`<td>
+             <div class="col-md-2">
+               
+          
+      
+                </div>
+    </td>`}
            
             <td>
              <div class="col-md-2">
@@ -3005,6 +4453,7 @@ $.post(url, {'startDate':sDate,'endDate':eDate},
                                                                   
                                                                    <th>Actions </th>
                                                                    <th>Comparison</th>
+                                                                   <th>Standard</th>
                                                                       <th>Undo </th>
                                                             
                                                                   
@@ -3128,6 +4577,22 @@ ${reviewStatus == '1' ?
              <div class="col-md-2">
                
              <button type="button" class="btn btn-warning btn-xs customcomparisonButton waves-effect waves-themed" id="btnPrint.${element.TID}">Compare</button>
+           
+      
+                </div>
+    </td>`:`<td>
+             <div class="col-md-2">
+               
+          
+      
+                </div>
+    </td>`}
+
+    ${(element.Size != null ?element.Size.trim()=='Azuga W-V85B Hi White Star':element.Size=='Azuga W-V85B Hi White Star') || (element.Size != null ?element.Size.trim()=='B3766 181MP':element.Size=='B3766 181MP') || (element.Size != null ?element.Size.trim()=='FB107':element.Size=='FB107') || (element.Size != null ?element.Size.trim()=='FB 122':element.Size=='FB 122') || (element.Size != null ?element.Size.trim()=='PU 357 Signal Green':element.Size=='PU 357 Signal Green') || (element.Size != null ?element.Size.trim()=='TPU FIlm 0.15mm White':element.Size=='TPU FIlm 0.15mm White')? 
+  ` <td>
+             <div class="col-md-2">
+               
+             <button type="button" class="btn btn-warning btn-xs customstandardButton waves-effect waves-themed" id="btnPrint.${element.TID}">Standard</button>
            
       
                 </div>
@@ -3721,6 +5186,885 @@ $.post(url, {'TID':TID},
     });
         
      });
+     
+     $("#customData").on('click','.customstandardButton',function(e) {
+ 
+ 
+let id= this.id;
+
+let split_value = id.split(".");
+
+var TID =split_value[1];
+let testTypeGet;
+let url = '<?php echo base_url('LabController/getHead'); ?>'
+let url2 = '<?php echo base_url('LabController/getDetails'); ?>'
+$.post(url, {'TID':TID},
+function(data, status) {
+
+testTypeGet = data[0].ItemType;
+
+if(data[0].ItemType.trim() == 'Carton'){
+$("#testNoStandard").text(data[0].TestNO);
+$("#dateTestStandard").text(data[0].Date);
+$("#ponoStandard").text(data[0].PO);
+$("#receiveDateStandard").text(data[0].Receiving_Date);
+$("#sizeStandard").text(data[0].Size);
+$("#supplierNameStandard").text(data[0].Supplier_Name);
+$("#supplierRefStandard").text(data[0].Supplier_Ref);
+$("#quantityCartonStandard").text(data[0].Quantity_Carton);
+if(data[0].Size?data[0].Size.trim():data[0].Size == "FB 122"){
+    $("#cartonImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB122.JPG');
+}
+else if(data[0].Size?data[0].Size.trim():data[0].Size == "FB107"){
+    $("#cartonImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB107.JPG');
+}
+if(data[0].image != null && data[0].image != ""){
+       $("#cartonImageStandard").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#cartonImageStandard").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+
+$("#testPerformedStandard").text(data[0].performedBy);
+data[0].Approvalname? $("#testApprovedStandard").text(data[0].Approvalname):$("#testApprovedStandard").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+
+data[0].reviewName? $("#testReviewedStandard").text(data[0].reviewName):$("#testReviewedStandard").text("Pending");
+$("#ConclusionStandard").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Test}</td>
+                   <td style="border:2px solid black">${element.Requirments}</td>
+                   <td style="border:2px solid black">${element.Value}</td>
+                   <td style="border:2px solid black">
+                  ${element.result}
+                   </td>
+               </tr>`
+});
+
+$("#DetailsTestStandard").html(html);
+
+});
+$('#exampleModalStandard').modal('toggle');
+}
+else if(data[0].ItemType.trim() == 'Foam'){
+$("#testNoFoamStandard").text(data[0].TestNO);
+$("#dateTestFoamStandard").text(data[0].Date);
+$("#ponoFoamStandard").text(data[0].PO);
+$("#receiveDateFoamStandard").text(data[0].Receiving_Date);
+
+$("#supplierRefFoamStandard").text(data[0].Supplier_Ref);
+
+$("#testPerformedFoamStandard").text(data[0].performedBy);
+if(data[0].Size?data[0].Size.trim():data[0].Size == "FB 122"){
+    $("#foamImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB122.JPG');
+}
+else if(data[0].Size?data[0].Size.trim():data[0].Size == "FB107"){
+    $("#foamImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB107.JPG');
+}
+data[0].Approvalname? $("#testApprovedFoamStandard").text(data[0].Approvalname):$("#testApprovedFoamStandard").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if(data[0].image != null && data[0].image != ""){
+       $("#foamImageStandard").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#foamImageStandard").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].reviewName? $("#testReviewedFoamStandard").text(data[0].reviewName):$("#testReviewedFoamStandard").text("Pending");
+$("#ConclusionFoamStandard").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Test}</td>
+                   <td style="border:2px solid black">${element.result}</td>
+                   <td style="border:2px solid black">${element.Unit}</td>
+                   <td style="border:2px solid black">
+                  ${element.Standard}
+                   </td>
+               </tr>`
+});
+
+$("#DetailsTestFoamStandard").html(html);
+
+});
+$('#exampleModalFoamStandard').modal('toggle');
+}
+else if(data[0].ItemType.trim() == 'Fabric'){
+$("#testNoFabricStandard").text(data[0].TestNO);
+$("#dateTestFabricStandard").text(data[0].Date);
+$("#ponoFabricStandard").text(data[0].PO);
+$("#receiveDateFabricStandard").text(data[0].Receiving_Date);
+
+$("#supplierRefFabricStandard").text(data[0].Supplier_Ref);
+$("#materialNameFabricStandard").text(data[0].Size);
+
+$("#testPerformedFabricStandard").text(data[0].performedBy);
+$("#ResultFabricStandard").text(data[0].Result);
+$("#CSSNoFabricStandard").text(data[0].CSSNO);
+if(data[0].Size?data[0].Size.trim():data[0].Size == "FB 122"){
+    $("#fabricImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB122.JPG');
+}
+else if(data[0].Size?data[0].Size.trim():data[0].Size == "FB107"){
+    $("#fabricImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB107.JPG');
+}
+
+console.log("Article Name",data[0].Size)
+data[0].Approvalname? $("#testApprovedFabricStandard").text(data[0].Approvalname):$("#testApprovedFabricStandard").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if(data[0].image != null && data[0].image != ""){
+       $("#fabricImageStandard").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#fabricImageStandard").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].reviewName? $("#testReviewedFabricStandard").text(data[0].reviewName):$("#testReviewedFabricStandard").text("Pending");
+$("#ConclusionFabricStandard").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Test}</td>
+                   <td style="border:2px solid black">${element.result}</td>
+                   <td style="border:2px solid black">${element.Uncertainty}</td>
+                   <td style="border:2px solid black">
+                  ${element.ReMarks}
+                   </td>
+               </tr>`
+});
+
+$("#DetailsTestFabricStandard").html(html);
+
+});
+$('#exampleModalFabricStandard').modal('toggle');
+}
+else if(data[0].ItemType.trim() == 'Material'){
+$("#testNoMaterialStandard").text(data[0].TestNO);
+$("#dateTestMaterialStandard").text(data[0].Date);
+$("#ponoMaterialStandard").text(data[0].PO);
+$("#receiveDateMaterialStandard").text(data[0].Receiving_Date);
+
+$("#supplierRefMaterialStandard").text(data[0].Supplier_Ref);
+
+$("#testPerformedMaterialStandard").text(data[0].performedBy);
+$("#ResultMaterialStandard").text(data[0].Result);
+$("#CSSNoMaterialStandard").text(data[0].CSSNO);
+$("#materialNameMaterialStandard").text(data[0].Size);
+if(data[0].Size?data[0].Size.trim():data[0].Size == "FB 122"){
+    $("#materialImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB122.JPG');
+}
+else if(data[0].Size?data[0].Size.trim():data[0].Size == "FB107"){
+    $("#materialImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB107.JPG');
+}
+
+
+if(data[0].image != null && data[0].image != ""){
+       $("#materialImageStandard").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#materialImageStandard").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].Approvalname? $("#testApprovedMaterialStandard").text(data[0].Approvalname):$("#testApprovedMaterialStandard").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+
+data[0].reviewName? $("#testReviewedMaterialStandard").text(data[0].reviewName):$("#testReviewedMaterialStandard").text("Pending");
+$("#ConclusionMaterialStandard").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Test}</td>
+                   <td style="border:2px solid black">${element.result}</td>
+                   <td style="border:2px solid black">${element.Uncertainty}</td>
+                   <td style="border:2px solid black">
+                  ${element.ReMarks}
+                   </td>
+               </tr>`
+});
+
+$("#DetailsTestMaterialStandard").html(html);
+
+});
+$('#exampleModalMaterialStandard').modal('toggle');
+}
+else if(data[0].ItemType.trim() == 'Thread'){
+
+$("#testNoThreadStandard").text(data[0].TestNO);
+$("#dateTestThreadStandard").text(data[0].Date);
+$("#ponoThreadStandard").text(data[0].PO);
+$("#receiveDateThreadStandard").text(data[0].Receiving_Date);
+$("#thicknessThreadStandard").text(data[0].Thickness);
+$("#supplierNameThreadStandard").text(data[0].Supplier_Name);
+$("#supplierRefThreadStandard").text(data[0].Supplier_Ref);
+$("#linearDensityThreadStandard").text(data[0].LinearDensity);
+$("#twistThreadStandard").text(data[0].TwistPerInch);
+$("#testPerformedThreadStandard").text(data[0].performedBy);
+if(data[0].Size?data[0].Size.trim():data[0].Size == "FB 122"){
+    $("#threadImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB122.JPG');
+}
+else if(data[0].Size?data[0].Size.trim():data[0].Size == "FB107"){
+    $("#threadImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB107.JPG');
+}
+
+data[0].Approvalname? $("#testApprovedThreadStandard").text(data[0].Approvalname):$("#testApprovedThreadStandard").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if(data[0].image != null && data[0].image != ""){
+       $("#threadImageStandard").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#threadImageStandard").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].reviewName? $("#testReviewedThreadStandard").text(data[0].reviewName):$("#testReviewedThreadStandard").text("Pending");
+$("#ConclusionThreadStandard").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+let i=0;
+let extMax = 0;
+let Max = 0;
+let ext = 0;
+data.forEach(element => {
+
+ extMax += parseInt(element.ExtatMax);
+ Max += parseInt(element.MaxLoad);
+ ext += parseInt(element.Ext);
+   html += `<tr>
+                   <td style="border:2px solid black">${element.TDate}</td>
+                   <td style="border:2px solid black">${element.ExtatMax}</td>
+                   <td style="border:2px solid black">${element.MaxLoad}</td>
+                   <td style="border:2px solid black">
+                  ${element.Ext}
+                   </td>
+               </tr>`
+});
+let sizeOfThread = data.length;
+html += `<tr>
+<td style="border:2px solid black">Average</td>
+                   <td style="border:2px solid black">${extMax/sizeOfThread}</td>
+                   <td style="border:2px solid black">${Max/sizeOfThread}</td>
+                   <td style="border:2px solid black">
+                  ${ext/sizeOfThread}
+                   </td>
+</tr>`
+
+$("#DetailsTestThreadStandard").html(html);
+
+});
+$('#exampleModalThreadStandard').modal('toggle');
+}
+else if(data[0].ItemType.trim() == 'Blader')
+{
+$("#testNoBladerStandard").text(data[0].TestNO);
+$("#dateTestBladerStandard").text(data[0].Date);
+$("#ponoBladerStandard").text(data[0].PO);
+$("#receiveDateBladerStandard").text(data[0].Receiving_Date);
+
+$("#supplierNameBladerStandard").text(data[0].Supplier_Name);
+$("#supplierRefBladerStandard").text(data[0].Supplier_Ref);
+$("#hardnessBladerStandard").text(data[0].Hardness);
+$("#sizeBladerStandard").text(data[0].Size);
+$("#materialBladerStandard").text(data[0].material);
+$("#testPerformedBladerStandard").text(data[0].performedBy);
+if(data[0].Size?data[0].Size.trim():data[0].Size == "FB 122"){
+    $("#bladerImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB122.JPG');
+}
+else if(data[0].Size?data[0].Size.trim():data[0].Size == "FB107"){
+    $("#bladerImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB107.JPG');
+}
+
+
+data[0].Approvalname? $("#testApprovedBladerStandard").text(data[0].Approvalname):$("#testApprovedBladerStandard").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if(data[0].image != null && data[0].image != ""){
+       $("#bladerImageStandard").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#bladerImageStandard").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].reviewName? $("#testReviewedBladerStandard").text(data[0].reviewName):$("#testReviewedBladerStandard").text("Pending");
+$("#ConclusionStandard").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Test}</td>
+                   <td style="border:2px solid black">${element.Unit}</td>
+                   <td style="border:2px solid black">${element.result1}</td>
+                   <td style="border:2px solid black">${element.result2}</td>
+                   <td style="border:2px solid black">${element.result3}</td>
+                   <td style="border:2px solid black">${element.result4}</td>
+          
+               </tr>`
+});
+
+$("#DetailsTestBladerStandard").html(html);
+
+});
+$('#exampleModalBladerStandard').modal('toggle');
+
+}
+else if(data[0].ItemType.trim() == 'FGT')
+{
+
+$("#testNoFGTStandard").text(data[0].TestNO);
+$("#dateTestFGTStandard").text(data[0].Date);
+$("#modelNameFGTStandard").text(data[0].ModelName);
+$("#CSSCodeFGTStandard").text(data[0].CSSNO);
+
+$("#pressureFGTStandard").text(data[0].Pressure);
+$("#TempHumFGTStandard").text(data[0].TempHumidity);
+$("#articleFGTStandard").text(data[0].Article);
+$("#categoryFGTStandard").text(data[0].Category);
+$("#sizeFGTStandard").text(data[0].Size);
+$("#testedForFGTStandard").text(data[0].Testedfor);
+$("#testPerformedFGTStandard").text(data[0].performedBy);
+$("#noteFGTStandard").text(data[0].Note);
+if(data[0].Size?data[0].Size.trim():data[0].Size == "FB 122"){
+    $("#fgtImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB122.JPG');
+}
+else if(data[0].Size?data[0].Size.trim():data[0].Size == "FB107"){
+    $("#fgtImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB107.JPG');
+}
+
+if(data[0].image != null && data[0].image != ""){
+       $("#fgtImageStandard").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#fgtImageStandard").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].Approvalname? $("#testApprovedFGTStandard").text(data[0].Approvalname):$("#testApprovedFGTStandard").text("Pending");
+
+//  $("#Incharge").text(data[0].Approvalname);
+
+data[0].reviewName? $("#testReviewedFGTStandard").text(data[0].reviewName):$("#testReviewedFGTStandard").text("Pending");
+$("#ConclusionFGTStandard").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Weight?element.Weight:''}</td>
+                   <td style="border:2px solid black">${element.CircumferenceMin?element.CircumferenceMin:''}</td>
+                   <td style="border:2px solid black">${element.CircumferenceMax?element.CircumferenceMax:''}</td>
+                   <td style="border:2px solid black">${element.Deviation?element.Deviation:''}</td>
+                   <td style="border:2px solid black">${element.ReboundTest?element.ReboundTest:''}</td>
+                   <td style="border:2px solid black">${element.Remarks?element.Remarks:''}</td>
+          
+               </tr>`
+});
+
+$("#DetailsTestFGTStandard").html(html);
+
+});
+$('#exampleModalFGTStandard').modal('toggle');
+
+}
+else if(data[0].ItemType.trim() == 'MS Thread'){
+
+$("#testNoMSThread").text(data[0].TestNO);
+$("#dateTestMSThread").text(data[0].Date);
+$("#ponoMSThread").text(data[0].PO);
+$("#receiveDateMSThread").text(data[0].Receiving_Date);
+$("#MaterialNameMSThread").text(data[0].material);
+$("#supplierNameMSThread").text(data[0].Supplier_Name);
+$("#supplierRefMSThread").text(data[0].Supplier_Ref);
+$("#testPerformedMSThread").text(data[0].performedBy);
+if(data[0].Size?data[0].Size.trim():data[0].Size == "FB 122"){
+    $("#threadMSImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB122.JPG');
+}
+else if(data[0].Size?data[0].Size.trim():data[0].Size == "FB107"){
+    $("#threadMSImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB107.JPG');
+}
+
+data[0].Approvalname? $("#testApprovedMSThread").text(data[0].Approvalname):$("#testApprovedMSThread").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if(data[0].image != null && data[0].image != ""){
+      $("#threadMSImage").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+  }
+  else{
+      $("#threadMSImage").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+  }
+data[0].reviewName? $("#testReviewedMSThread").text(data[0].reviewName):$("#testReviewedMSThread").text("Pending");
+$("#ConclusionMSThread").text(data[0].Result);
+$("#statusMSThread").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                  <td style="border:2px solid black">${element.Test}</td>
+                  <td style="border:2px solid black">${element.Method}</td>
+                  <td style="border:2px solid black">${element.Unit}</td>
+                  <td style="border:2px solid black">${element.Requirments}</td>
+                  <td style="border:2px solid black">${element.result}</td>
+              </tr>`
+});
+
+$("#DetailsTestMSThread").html(html);
+
+});
+$('#exampleModalMSThread').modal('toggle');
+}
+
+
+});
+
+});
+
+
+$(".customstandardButton").click(function(e) {
+ 
+
+    let id= this.id;
+
+let split_value = id.split(".");
+
+var TID =split_value[1];
+let testTypeGet;
+let url = '<?php echo base_url('LabController/getHead'); ?>'
+let url2 = '<?php echo base_url('LabController/getDetails'); ?>'
+$.post(url, {'TID':TID},
+function(data, status) {
+
+testTypeGet = data[0].ItemType;
+
+if(data[0].ItemType.trim() == 'Carton'){
+$("#testNoStandard").text(data[0].TestNO);
+$("#dateTestStandard").text(data[0].Date);
+$("#ponoStandard").text(data[0].PO);
+$("#receiveDateStandard").text(data[0].Receiving_Date);
+$("#sizeStandard").text(data[0].Size);
+$("#supplierNameStandard").text(data[0].Supplier_Name);
+$("#supplierRefStandard").text(data[0].Supplier_Ref);
+$("#quantityCartonStandard").text(data[0].Quantity_Carton);
+if(data[0].Size?data[0].Size.trim():data[0].Size == "FB 122"){
+    $("#cartonImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB122.JPG');
+}
+else if(data[0].Size?data[0].Size.trim():data[0].Size == "FB107"){
+    $("#cartonImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB107.JPG');
+}
+if(data[0].image != null && data[0].image != ""){
+       $("#cartonImageStandard").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#cartonImageStandard").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+
+$("#testPerformedStandard").text(data[0].performedBy);
+data[0].Approvalname? $("#testApprovedStandard").text(data[0].Approvalname):$("#testApprovedStandard").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+
+data[0].reviewName? $("#testReviewedStandard").text(data[0].reviewName):$("#testReviewedStandard").text("Pending");
+$("#ConclusionStandard").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Test}</td>
+                   <td style="border:2px solid black">${element.Requirments}</td>
+                   <td style="border:2px solid black">${element.Value}</td>
+                   <td style="border:2px solid black">
+                  ${element.result}
+                   </td>
+               </tr>`
+});
+
+$("#DetailsTestStandard").html(html);
+
+});
+$('#exampleModalStandard').modal('toggle');
+}
+else if(data[0].ItemType.trim() == 'Foam'){
+$("#testNoFoamStandard").text(data[0].TestNO);
+$("#dateTestFoamStandard").text(data[0].Date);
+$("#ponoFoamStandard").text(data[0].PO);
+$("#receiveDateFoamStandard").text(data[0].Receiving_Date);
+
+$("#supplierRefFoamStandard").text(data[0].Supplier_Ref);
+
+$("#testPerformedFoamStandard").text(data[0].performedBy);
+if(data[0].Size?data[0].Size.trim():data[0].Size == "FB 122"){
+    $("#foamImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB122.JPG');
+}
+else if(data[0].Size?data[0].Size.trim():data[0].Size == "FB107"){
+    $("#foamImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB107.JPG');
+}
+data[0].Approvalname? $("#testApprovedFoamStandard").text(data[0].Approvalname):$("#testApprovedFoamStandard").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if(data[0].image != null && data[0].image != ""){
+       $("#foamImageStandard").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#foamImageStandard").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].reviewName? $("#testReviewedFoamStandard").text(data[0].reviewName):$("#testReviewedFoamStandard").text("Pending");
+$("#ConclusionFoamStandard").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Test}</td>
+                   <td style="border:2px solid black">${element.result}</td>
+                   <td style="border:2px solid black">${element.Unit}</td>
+                   <td style="border:2px solid black">
+                  ${element.Standard}
+                   </td>
+               </tr>`
+});
+
+$("#DetailsTestFoamStandard").html(html);
+
+});
+$('#exampleModalFoamStandard').modal('toggle');
+}
+else if(data[0].ItemType.trim() == 'Fabric'){
+$("#testNoFabricStandard").text(data[0].TestNO);
+$("#dateTestFabricStandard").text(data[0].Date);
+$("#ponoFabricStandard").text(data[0].PO);
+$("#receiveDateFabricStandard").text(data[0].Receiving_Date);
+
+$("#supplierRefFabricStandard").text(data[0].Supplier_Ref);
+$("#materialNameFabricStandard").text(data[0].Size);
+
+$("#testPerformedFabricStandard").text(data[0].performedBy);
+$("#ResultFabricStandard").text(data[0].Result);
+$("#CSSNoFabricStandard").text(data[0].CSSNO);
+if(data[0].Size?data[0].Size.trim():data[0].Size == "FB 122"){
+    $("#fabricImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB122.JPG');
+}
+else if(data[0].Size?data[0].Size.trim():data[0].Size == "FB107"){
+    $("#fabricImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB107.JPG');
+}
+
+console.log("Article Name",data[0].Size)
+data[0].Approvalname? $("#testApprovedFabricStandard").text(data[0].Approvalname):$("#testApprovedFabricStandard").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if(data[0].image != null && data[0].image != ""){
+       $("#fabricImageStandard").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#fabricImageStandard").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].reviewName? $("#testReviewedFabricStandard").text(data[0].reviewName):$("#testReviewedFabricStandard").text("Pending");
+$("#ConclusionFabricStandard").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Test}</td>
+                   <td style="border:2px solid black">${element.result}</td>
+                   <td style="border:2px solid black">${element.Uncertainty}</td>
+                   <td style="border:2px solid black">
+                  ${element.ReMarks}
+                   </td>
+               </tr>`
+});
+
+$("#DetailsTestFabricStandard").html(html);
+
+});
+$('#exampleModalFabricStandard').modal('toggle');
+}
+else if(data[0].ItemType.trim() == 'Material'){
+$("#testNoMaterialStandard").text(data[0].TestNO);
+$("#dateTestMaterialStandard").text(data[0].Date);
+$("#ponoMaterialStandard").text(data[0].PO);
+$("#receiveDateMaterialStandard").text(data[0].Receiving_Date);
+
+$("#supplierRefMaterialStandard").text(data[0].Supplier_Ref);
+
+$("#testPerformedMaterialStandard").text(data[0].performedBy);
+$("#ResultMaterialStandard").text(data[0].Result);
+$("#CSSNoMaterialStandard").text(data[0].CSSNO);
+$("#materialNameMaterialStandard").text(data[0].Size);
+if(data[0].Size?data[0].Size.trim():data[0].Size == "FB 122"){
+    $("#materialImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB122.JPG');
+}
+else if(data[0].Size?data[0].Size.trim():data[0].Size == "FB107"){
+    $("#materialImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB107.JPG');
+}
+
+
+if(data[0].image != null && data[0].image != ""){
+       $("#materialImageStandard").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#materialImageStandard").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].Approvalname? $("#testApprovedMaterialStandard").text(data[0].Approvalname):$("#testApprovedMaterialStandard").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+
+data[0].reviewName? $("#testReviewedMaterialStandard").text(data[0].reviewName):$("#testReviewedMaterialStandard").text("Pending");
+$("#ConclusionMaterialStandard").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Test}</td>
+                   <td style="border:2px solid black">${element.result}</td>
+                   <td style="border:2px solid black">${element.Uncertainty}</td>
+                   <td style="border:2px solid black">
+                  ${element.ReMarks}
+                   </td>
+               </tr>`
+});
+
+$("#DetailsTestMaterialStandard").html(html);
+
+});
+$('#exampleModalMaterialStandard').modal('toggle');
+}
+else if(data[0].ItemType.trim() == 'Thread'){
+
+$("#testNoThreadStandard").text(data[0].TestNO);
+$("#dateTestThreadStandard").text(data[0].Date);
+$("#ponoThreadStandard").text(data[0].PO);
+$("#receiveDateThreadStandard").text(data[0].Receiving_Date);
+$("#thicknessThreadStandard").text(data[0].Thickness);
+$("#supplierNameThreadStandard").text(data[0].Supplier_Name);
+$("#supplierRefThreadStandard").text(data[0].Supplier_Ref);
+$("#linearDensityThreadStandard").text(data[0].LinearDensity);
+$("#twistThreadStandard").text(data[0].TwistPerInch);
+$("#testPerformedThreadStandard").text(data[0].performedBy);
+if(data[0].Size?data[0].Size.trim():data[0].Size == "FB 122"){
+    $("#threadImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB122.JPG');
+}
+else if(data[0].Size?data[0].Size.trim():data[0].Size == "FB107"){
+    $("#threadImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB107.JPG');
+}
+
+data[0].Approvalname? $("#testApprovedThreadStandard").text(data[0].Approvalname):$("#testApprovedThreadStandard").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if(data[0].image != null && data[0].image != ""){
+       $("#threadImageStandard").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#threadImageStandard").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].reviewName? $("#testReviewedThreadStandard").text(data[0].reviewName):$("#testReviewedThreadStandard").text("Pending");
+$("#ConclusionThreadStandard").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+let i=0;
+let extMax = 0;
+let Max = 0;
+let ext = 0;
+data.forEach(element => {
+
+ extMax += parseInt(element.ExtatMax);
+ Max += parseInt(element.MaxLoad);
+ ext += parseInt(element.Ext);
+   html += `<tr>
+                   <td style="border:2px solid black">${element.TDate}</td>
+                   <td style="border:2px solid black">${element.ExtatMax}</td>
+                   <td style="border:2px solid black">${element.MaxLoad}</td>
+                   <td style="border:2px solid black">
+                  ${element.Ext}
+                   </td>
+               </tr>`
+});
+let sizeOfThread = data.length;
+html += `<tr>
+<td style="border:2px solid black">Average</td>
+                   <td style="border:2px solid black">${extMax/sizeOfThread}</td>
+                   <td style="border:2px solid black">${Max/sizeOfThread}</td>
+                   <td style="border:2px solid black">
+                  ${ext/sizeOfThread}
+                   </td>
+</tr>`
+
+$("#DetailsTestThreadStandard").html(html);
+
+});
+$('#exampleModalThreadStandard').modal('toggle');
+}
+else if(data[0].ItemType.trim() == 'Blader')
+{
+$("#testNoBladerStandard").text(data[0].TestNO);
+$("#dateTestBladerStandard").text(data[0].Date);
+$("#ponoBladerStandard").text(data[0].PO);
+$("#receiveDateBladerStandard").text(data[0].Receiving_Date);
+
+$("#supplierNameBladerStandard").text(data[0].Supplier_Name);
+$("#supplierRefBladerStandard").text(data[0].Supplier_Ref);
+$("#hardnessBladerStandard").text(data[0].Hardness);
+$("#sizeBladerStandard").text(data[0].Size);
+$("#materialBladerStandard").text(data[0].material);
+$("#testPerformedBladerStandard").text(data[0].performedBy);
+if(data[0].Size?data[0].Size.trim():data[0].Size == "FB 122"){
+    $("#bladerImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB122.JPG');
+}
+else if(data[0].Size?data[0].Size.trim():data[0].Size == "FB107"){
+    $("#bladerImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB107.JPG');
+}
+
+
+data[0].Approvalname? $("#testApprovedBladerStandard").text(data[0].Approvalname):$("#testApprovedBladerStandard").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if(data[0].image != null && data[0].image != ""){
+       $("#bladerImageStandard").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#bladerImageStandard").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].reviewName? $("#testReviewedBladerStandard").text(data[0].reviewName):$("#testReviewedBladerStandard").text("Pending");
+$("#ConclusionStandard").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Test}</td>
+                   <td style="border:2px solid black">${element.Unit}</td>
+                   <td style="border:2px solid black">${element.result1}</td>
+                   <td style="border:2px solid black">${element.result2}</td>
+                   <td style="border:2px solid black">${element.result3}</td>
+                   <td style="border:2px solid black">${element.result4}</td>
+          
+               </tr>`
+});
+
+$("#DetailsTestBladerStandard").html(html);
+
+});
+$('#exampleModalBladerStandard').modal('toggle');
+
+}
+else if(data[0].ItemType.trim() == 'FGT')
+{
+
+$("#testNoFGTStandard").text(data[0].TestNO);
+$("#dateTestFGTStandard").text(data[0].Date);
+$("#modelNameFGTStandard").text(data[0].ModelName);
+$("#CSSCodeFGTStandard").text(data[0].CSSNO);
+
+$("#pressureFGTStandard").text(data[0].Pressure);
+$("#TempHumFGTStandard").text(data[0].TempHumidity);
+$("#articleFGTStandard").text(data[0].Article);
+$("#categoryFGTStandard").text(data[0].Category);
+$("#sizeFGTStandard").text(data[0].Size);
+$("#testedForFGTStandard").text(data[0].Testedfor);
+$("#testPerformedFGTStandard").text(data[0].performedBy);
+$("#noteFGTStandard").text(data[0].Note);
+if(data[0].Size?data[0].Size.trim():data[0].Size == "FB 122"){
+    $("#fgtImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB122.JPG');
+}
+else if(data[0].Size?data[0].Size.trim():data[0].Size == "FB107"){
+    $("#fgtImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB107.JPG');
+}
+
+if(data[0].image != null && data[0].image != ""){
+       $("#fgtImageStandard").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+   }
+   else{
+       $("#fgtImageStandard").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+   }
+data[0].Approvalname? $("#testApprovedFGTStandard").text(data[0].Approvalname):$("#testApprovedFGTStandard").text("Pending");
+
+//  $("#Incharge").text(data[0].Approvalname);
+
+data[0].reviewName? $("#testReviewedFGTStandard").text(data[0].reviewName):$("#testReviewedFGTStandard").text("Pending");
+$("#ConclusionFGTStandard").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                   <td style="border:2px solid black">${element.Weight?element.Weight:''}</td>
+                   <td style="border:2px solid black">${element.CircumferenceMin?element.CircumferenceMin:''}</td>
+                   <td style="border:2px solid black">${element.CircumferenceMax?element.CircumferenceMax:''}</td>
+                   <td style="border:2px solid black">${element.Deviation?element.Deviation:''}</td>
+                   <td style="border:2px solid black">${element.ReboundTest?element.ReboundTest:''}</td>
+                   <td style="border:2px solid black">${element.Remarks?element.Remarks:''}</td>
+          
+               </tr>`
+});
+
+$("#DetailsTestFGTStandard").html(html);
+
+});
+$('#exampleModalFGTStandard').modal('toggle');
+
+}
+else if(data[0].ItemType.trim() == 'MS Thread'){
+
+$("#testNoMSThread").text(data[0].TestNO);
+$("#dateTestMSThread").text(data[0].Date);
+$("#ponoMSThread").text(data[0].PO);
+$("#receiveDateMSThread").text(data[0].Receiving_Date);
+$("#MaterialNameMSThread").text(data[0].material);
+$("#supplierNameMSThread").text(data[0].Supplier_Name);
+$("#supplierRefMSThread").text(data[0].Supplier_Ref);
+$("#testPerformedMSThread").text(data[0].performedBy);
+if(data[0].Size?data[0].Size.trim():data[0].Size == "FB 122"){
+    $("#threadMSImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB122.JPG');
+}
+else if(data[0].Size?data[0].Size.trim():data[0].Size == "FB107"){
+    $("#threadMSImageStandardComp").attr('src','<?php echo base_url(); ?>assets/img/img/FB107.JPG');
+}
+
+data[0].Approvalname? $("#testApprovedMSThread").text(data[0].Approvalname):$("#testApprovedMSThread").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if(data[0].image != null && data[0].image != ""){
+      $("#threadMSImage").attr('src','<?php echo base_url(); ?>assets/img/img/'+data[0].image);
+  }
+  else{
+      $("#threadMSImage").attr('src','<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+  }
+data[0].reviewName? $("#testReviewedMSThread").text(data[0].reviewName):$("#testReviewedMSThread").text("Pending");
+$("#ConclusionMSThread").text(data[0].Result);
+$("#statusMSThread").text(data[0].Result);
+$.post(url2, {'TID':TID},
+function(data, status) {
+
+html = ''
+data.forEach(element => {
+  html += `<tr>
+                  <td style="border:2px solid black">${element.Test}</td>
+                  <td style="border:2px solid black">${element.Method}</td>
+                  <td style="border:2px solid black">${element.Unit}</td>
+                  <td style="border:2px solid black">${element.Requirments}</td>
+                  <td style="border:2px solid black">${element.result}</td>
+              </tr>`
+});
+
+$("#DetailsTestMSThread").html(html);
+
+});
+$('#exampleModalMSThread').modal('toggle');
+}
+
+
+});
+
+});
 
      $(".comparisonButton").click(function(e) {
  
@@ -4225,6 +6569,7 @@ $.post(url, {'TID':TID},
  
  });
 
+ 
      $("#customData").on('click','.customcomparisonButton',function(e) {
  
 let id= this.id;

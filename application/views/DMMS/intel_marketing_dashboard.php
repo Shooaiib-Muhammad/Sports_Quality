@@ -116,7 +116,7 @@
             <main id="js-page-content" role="main" class="page-content">
                 <ol class="breadcrumb page-breadcrumb">
                     <li class="breadcrumb-item"><a href="<?php echo base_url(
-                                                                'index.php/main/Maintance_Dashboard'
+                                                                'index.php/main/dmms_dashboard'
                                                             ); ?>">Dashboard</a></li>
 
                     <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>

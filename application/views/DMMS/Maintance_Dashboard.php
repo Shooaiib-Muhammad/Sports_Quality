@@ -34,10 +34,7 @@ if (!$this->session->has_userdata('user_id')) {
     <!-- END Left Aside -->
     <div class="page-content-wrapper">
       <!-- BEGIN Page Header -->
-      <?php
-
-      $this->load->view('includes/top_header.php');
-      ?>
+  
       <!-- END Page Header -->
       <!-- BEGIN Page Content -->
       <!-- the #js-page-content id is needed for some plugins to initialize -->
