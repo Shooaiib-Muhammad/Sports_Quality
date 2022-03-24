@@ -14,8 +14,95 @@ class DashboardModel extends CI_Model
         ");
                 return $query->result_array();
     }
-
+public function monthlyOrder(){
    
+
+$query = $this->db
+->query("SELECT        FactoryCode, SUM(OrderQty) AS OrderQty
+FROM            dbo.View_PO_OrderQty_Sum
+GROUP BY FactoryCode, Month, Year
+HAVING        (Month = 03) AND (Year = 2022)");
+        return $query->result_array();
+   
+}
+public function getMonthtlyOrder_Article_Wise(){
+   
+$query = $this->db
+->query(" SELECT        SUM(dbo.View_PO_OrderQty_Sum.OrderQty) AS OrderQty, dbo.tbl_Pro_Article.ArtCode
+FROM            dbo.View_PO_OrderQty_Sum INNER JOIN
+                         dbo.tbl_Pro_Article ON dbo.View_PO_OrderQty_Sum.ClientID = dbo.tbl_Pro_Article.ClientID AND dbo.View_PO_OrderQty_Sum.ModelID = dbo.tbl_Pro_Article.ModelID AND 
+                         dbo.View_PO_OrderQty_Sum.ArtID = dbo.tbl_Pro_Article.ArtID
+WHERE        (dbo.View_PO_OrderQty_Sum.FactoryCode = 'B34001') AND (dbo.View_PO_OrderQty_Sum.Year = 2022) AND (dbo.View_PO_OrderQty_Sum.Month = 03)
+GROUP BY dbo.tbl_Pro_Article.ArtCode");
+        return $query->result_array();
+}
+   
+public function getMonthtlyOrder_Article_Wise02(){
+   
+    $query = $this->db
+    ->query(" SELECT        SUM(dbo.View_PO_OrderQty_Sum.OrderQty) AS OrderQty, dbo.tbl_Pro_Article.ArtCode
+    FROM            dbo.View_PO_OrderQty_Sum INNER JOIN
+                             dbo.tbl_Pro_Article ON dbo.View_PO_OrderQty_Sum.ClientID = dbo.tbl_Pro_Article.ClientID AND dbo.View_PO_OrderQty_Sum.ModelID = dbo.tbl_Pro_Article.ModelID AND 
+                             dbo.View_PO_OrderQty_Sum.ArtID = dbo.tbl_Pro_Article.ArtID
+    WHERE        (dbo.View_PO_OrderQty_Sum.FactoryCode = 'B34002') AND (dbo.View_PO_OrderQty_Sum.Year = 2022) AND (dbo.View_PO_OrderQty_Sum.Month = 03)
+    GROUP BY dbo.tbl_Pro_Article.ArtCode");
+            return $query->result_array();
+    }
+    public function getMonthtlyOrder_Article_Wise03(){
+   
+        $query = $this->db
+        ->query(" SELECT        SUM(dbo.View_PO_OrderQty_Sum.OrderQty) AS OrderQty, dbo.tbl_Pro_Article.ArtCode
+        FROM            dbo.View_PO_OrderQty_Sum INNER JOIN
+                                 dbo.tbl_Pro_Article ON dbo.View_PO_OrderQty_Sum.ClientID = dbo.tbl_Pro_Article.ClientID AND dbo.View_PO_OrderQty_Sum.ModelID = dbo.tbl_Pro_Article.ModelID AND 
+                                 dbo.View_PO_OrderQty_Sum.ArtID = dbo.tbl_Pro_Article.ArtID
+        WHERE        (dbo.View_PO_OrderQty_Sum.FactoryCode = 'B34003') AND (dbo.View_PO_OrderQty_Sum.Year = 2022) AND (dbo.View_PO_OrderQty_Sum.Month = 03)
+        GROUP BY dbo.tbl_Pro_Article.ArtCode");
+                return $query->result_array();
+        }
+        public function getMonthtlyOrder_Article_Wise04(){
+   
+            $query = $this->db
+            ->query(" SELECT        SUM(dbo.View_PO_OrderQty_Sum.OrderQty) AS OrderQty, dbo.tbl_Pro_Article.ArtCode
+            FROM            dbo.View_PO_OrderQty_Sum INNER JOIN
+                                     dbo.tbl_Pro_Article ON dbo.View_PO_OrderQty_Sum.ClientID = dbo.tbl_Pro_Article.ClientID AND dbo.View_PO_OrderQty_Sum.ModelID = dbo.tbl_Pro_Article.ModelID AND 
+                                     dbo.View_PO_OrderQty_Sum.ArtID = dbo.tbl_Pro_Article.ArtID
+            WHERE        (dbo.View_PO_OrderQty_Sum.FactoryCode = 'B34004') AND (dbo.View_PO_OrderQty_Sum.Year = 2022) AND (dbo.View_PO_OrderQty_Sum.Month = 03)
+            GROUP BY dbo.tbl_Pro_Article.ArtCode");
+                    return $query->result_array();
+            }
+            public function getMonthtlyOrder_Article_Wise05(){
+   
+                $query = $this->db
+                ->query(" SELECT        SUM(dbo.View_PO_OrderQty_Sum.OrderQty) AS OrderQty, dbo.tbl_Pro_Article.ArtCode
+                FROM            dbo.View_PO_OrderQty_Sum INNER JOIN
+                                         dbo.tbl_Pro_Article ON dbo.View_PO_OrderQty_Sum.ClientID = dbo.tbl_Pro_Article.ClientID AND dbo.View_PO_OrderQty_Sum.ModelID = dbo.tbl_Pro_Article.ModelID AND 
+                                         dbo.View_PO_OrderQty_Sum.ArtID = dbo.tbl_Pro_Article.ArtID
+                WHERE        (dbo.View_PO_OrderQty_Sum.FactoryCode = 'B34005') AND (dbo.View_PO_OrderQty_Sum.Year = 2022) AND (dbo.View_PO_OrderQty_Sum.Month = 03)
+                GROUP BY dbo.tbl_Pro_Article.ArtCode");
+                        return $query->result_array();
+                }
+                public function getMonthtlyOrder_Article_Wise06(){
+   
+                    $query = $this->db
+                    ->query(" SELECT        SUM(dbo.View_PO_OrderQty_Sum.OrderQty) AS OrderQty, dbo.tbl_Pro_Article.ArtCode
+                    FROM            dbo.View_PO_OrderQty_Sum INNER JOIN
+                                             dbo.tbl_Pro_Article ON dbo.View_PO_OrderQty_Sum.ClientID = dbo.tbl_Pro_Article.ClientID AND dbo.View_PO_OrderQty_Sum.ModelID = dbo.tbl_Pro_Article.ModelID AND 
+                                             dbo.View_PO_OrderQty_Sum.ArtID = dbo.tbl_Pro_Article.ArtID
+                    WHERE        (dbo.View_PO_OrderQty_Sum.FactoryCode = 'B34006') AND (dbo.View_PO_OrderQty_Sum.Year = 2022) AND (dbo.View_PO_OrderQty_Sum.Month = 03)
+                    GROUP BY dbo.tbl_Pro_Article.ArtCode");
+                            return $query->result_array();
+                    }
+                    public function getMonthtlyOrder_Article_WiseAll(){
+   
+                        $query = $this->db
+                        ->query("SELECT        SUM(dbo.View_PO_OrderQty_Sum.OrderQty) AS OrderQty, dbo.tbl_Pro_Article.ArtCode, dbo.View_PO_OrderQty_Sum.FactoryCode
+                        FROM            dbo.View_PO_OrderQty_Sum INNER JOIN
+                                                 dbo.tbl_Pro_Article ON dbo.View_PO_OrderQty_Sum.ClientID = dbo.tbl_Pro_Article.ClientID AND dbo.View_PO_OrderQty_Sum.ModelID = dbo.tbl_Pro_Article.ModelID AND 
+                                                 dbo.View_PO_OrderQty_Sum.ArtID = dbo.tbl_Pro_Article.ArtID
+                        WHERE        (dbo.View_PO_OrderQty_Sum.Year = 2022) AND (dbo.View_PO_OrderQty_Sum.Month = 03)
+                        GROUP BY dbo.tbl_Pro_Article.ArtCode, dbo.View_PO_OrderQty_Sum.FactoryCode");
+                                return $query->result_array();
+                        }
     public function FactoryWiseProduction($Day, $Month, $Year)
     {
         
@@ -23,6 +110,15 @@ class DashboardModel extends CI_Model
 FROM            dbo.tbl_Production_View
 WHERE        (TranDate = CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
 GROUP BY FactoryCode");
+        return $result = $query->result_array();
+    }
+    public function FactoryWiseProductionmonthly()
+    {
+        
+        $query = $this->db->query("SELECT        SUM(Checked) AS TotalChecked, SUM(Pass) AS pass, SUM(Fail) AS Fail, FactoryCode
+        FROM            dbo.tbl_Production_View
+        WHERE        (MONTH(TranDate) = 03) AND (YEAR(TranDate) = 2022)
+        GROUP BY FactoryCode");
         return $result = $query->result_array();
     }
     public function targets($Day, $Month, $Year)

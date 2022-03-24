@@ -55,6 +55,154 @@ if (!$this->session->has_userdata('user_id')) {
                                 /* display: flex; */
                             }
 
+                            /* mine highchart css here  */
+                            
+                            .highcharts-figureMine,
+                            .highcharts-data-table table {
+                            
+                                width: 1800px;
+                                margin: 1em auto;
+                            }
+                            #containerMine {
+                               height: 400px;
+                           }
+
+                                        .highcharts-data-table table {
+                                            font-family: Verdana, sans-serif;
+                                            border-collapse: collapse;
+                                            border: 1px solid #ebebeb;
+                                            margin: 10px auto;
+                                            text-align: center;
+                                            width: 100%;
+                                            max-width: 500px;
+                                        }
+
+                                        .highcharts-data-table caption {
+                                            padding: 1em 0;
+                                            font-size: 1.2em;
+                                            color: #555;
+                                        }
+
+                                        .highcharts-data-table th {
+                                            font-weight: 600;
+                                            padding: 0.5em;
+                                        }
+
+                                        .highcharts-data-table td,
+                                        .highcharts-data-table th,
+                                        .highcharts-data-table caption {
+                                            padding: 0.5em;
+                                        }
+
+                                        .highcharts-data-table thead tr,
+                                        .highcharts-data-table tr:nth-child(even) {
+                                            background: #f8f8f8;
+                                        }
+
+                                        .highcharts-data-table tr:hover {
+                                            background: #f1f7ff;
+                                        }
+
+                                    /*Ends here mineHighchart  */
+
+                                    /* order produce css starts here  */
+                                        .highcharts-figureOP,
+                                        .highcharts-data-table table {
+                                           width: 1000px;
+                                            margin: 1em auto;
+                                        }
+
+                                        #orderProduce {
+                                            height: 400px;
+                                        }
+
+                                        .highcharts-data-table table {
+                                            font-family: Verdana, sans-serif;
+                                            border-collapse: collapse;
+                                            border: 1px solid #ebebeb;
+                                            margin: 10px auto;
+                                            text-align: center;
+                                            width: 100%;
+                                            max-width: 500px;
+                                        }
+
+                                        .highcharts-data-table caption {
+                                            padding: 1em 0;
+                                            font-size: 1.2em;
+                                            color: #555;
+                                        }
+
+                                        .highcharts-data-table th {
+                                            font-weight: 600;
+                                            padding: 0.5em;
+                                        }
+
+                                        .highcharts-data-table td,
+                                        .highcharts-data-table th,
+                                        .highcharts-data-table caption {
+                                            padding: 0.5em;
+                                        }
+
+                                        .highcharts-data-table thead tr,
+                                        .highcharts-data-table tr:nth-child(even) {
+                                            background: #f8f8f8;
+                                        }
+
+                                        .highcharts-data-table tr:hover {
+                                            background: #f1f7ff;
+                                        }
+
+                                        /* order produce ends here */
+
+                                        /* Produce orders starts from here  */
+                                             
+
+                                            .highcharts-figurePO,
+                                            .highcharts-data-table table {
+                                                width: 1800px;
+                                                margin: 1em auto;
+                                            }
+
+                                            #datatable {
+                                                font-family: Verdana, sans-serif;
+                                                border-collapse: collapse;
+                                                border: 1px solid #ebebeb;
+                                                margin: 10px auto;
+                                                text-align: center;
+                                                width: 100%;
+                                                max-width: 500px;
+                                            }
+
+                                            #datatable caption {
+                                                padding: 1em 0;
+                                                font-size: 1.2em;
+                                                color: #555;
+                                            }
+
+                                            #datatable th {
+                                                font-weight: 600;
+                                                padding: 0.5em;
+                                            }
+
+                                            #datatable td,
+                                            #datatable th,
+                                            #datatable caption {
+                                                padding: 0.5em;
+                                            }
+
+                                            #datatable thead tr,
+                                            #datatable tr:nth-child(even) {
+                                                background: #f8f8f8;
+                                            }
+
+                                            #datatable tr:hover {
+                                                background: #f1f7ff;
+                                            }
+                                            /* Produce orders css ends here */
+
+
+
+
                             .highcharts-figurerft {
                                 height: 450px;
                                 display: flex;
@@ -139,13 +287,62 @@ if (!$this->session->has_userdata('user_id')) {
                         </style>
                         <script src="<?php echo base_url(); ?>/assets/js/highcharts.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/data.js"></script>
+                        <script src="<?php echo base_url(); ?>/assets/js/series-label.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/drilldown.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/export-data.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/accessibility.js"></script>
                         <?php
+                    //    print_r($monthlyOrder007);
+                    //    die;
+// $MonthlyOrders = [];
+// //Print_r($last5dayProduction);
+// foreach ($monthlyOrder as $key) {
+//     $FactoryCode=  $key['FactoryCode'];
+//     $OrderQty= $key['OrderQty'];
+//         [$FactoryCode,$OrderQty],
+// }
+//     array_push($lastCheck, $Checklast);
+//     ['factoryCode', 24.8],
 
-                        $data_points1 = [];
+    $MonthlyOrders = array();
+foreach($monthlyOrder as $key) {
+  $FactoryCode=  $key['FactoryCode'];
+//     $OrderQty= $key['OrderQty'];
+    
+// $point2 = array($FactoryCode , $OrderQty);
+
+$point2 = [
+    'name' => $key['FactoryCode'],
+    'y' => $key['OrderQty'],
+    'drilldown' => $key['FactoryCode'],
+];
+
+
+if($FactoryCode=='B34001'){
+    $B34001Mnonth=$key['OrderQty'];
+}
+if($FactoryCode=='B34002'){
+    $B34002Mnonth=$key['OrderQty'];
+}
+if($FactoryCode=='B34003'){
+    $B34003Mnonth=$key['OrderQty'];
+}
+if($FactoryCode=='B34004'){
+    $B34004Mnonth=$key['OrderQty'];
+}
+if($FactoryCode=='B34005'){
+    $B34005Mnonth=$key['OrderQty'];
+}
+if($FactoryCode=='B34006'){
+    $B34006Mnonth=$key['OrderQty'];
+}
+if($FactoryCode=='B34007'){
+    $B34007Mnonth=$key['OrderQty'];
+}
+array_push($MonthlyOrders, $point2);       
+}
+                  $data_points1 = [];
                         $data_pointsRFT = [];
                         $data_pointsFail = [];
                         $b34001 = [];
@@ -260,7 +457,7 @@ if (!$this->session->has_userdata('user_id')) {
                                 $Check = $key['TotalChecked'];
                                 $PassQty = $key['pass'];
                                 $RFT = ($PassQty / $Check) * 100;
-                                array_push($b34001RFT, $key['RFT']);
+                                array_push($b34001RFT, $RFT);
                             }
                             if ($key['FactoryCode'] == 'B34002') {
                                 array_push($b34002, $key['pass']);
@@ -269,7 +466,7 @@ if (!$this->session->has_userdata('user_id')) {
                                 $Check = $key['TotalChecked'];
                                 $PassQty = $key['pass'];
                                 $RFT = ($PassQty / $Check) * 100;
-                                array_push($b34002RFT, $key['RFT']);
+                                array_push($b34002RFT, $RFT);
                             }
                             if ($key['FactoryCode'] == 'B34003') {
                                 array_push($b34003, $key['pass']);
@@ -363,23 +560,22 @@ if (!$this->session->has_userdata('user_id')) {
                         // echo '</pre>';
 
                         $RFTTop = $Produced - $Fail;
-if($Produced==0){
-     $RFT =0;
-
-}else{
+                        if ($Produced == 0) {
+                            $RFT = 0;
+                        } else {
                             $RFT = ($RFTTop / $Produced);
-                           
-}
+                        }
 
-    $FinalRF = ($RFT * 100);
-    if ($Checked==0){
+                        $FinalRF = ($RFT * 100);
+                        if ($Checked == 0) {
                             $Precentage = 0;
-    }else{
+                        } else {
                             $Precentage = (($Checked - $Fail) / $Checked) * 100;
-    }
-                      
+                        }
+
                         $Finalprenentage = 100 - $Precentage;
                         $B34001data_points2 = [];
+                        $B34001data_order = [];
                         $graph001 = [];
                         $graph001RFT = [];
                         $B34001ArtRFT = [];
@@ -396,14 +592,23 @@ if($Produced==0){
                         $B34005ArtFail = [];
                         $B34006ArtFail = [];
                         $B34007ArtFail = [];
-                        foreach ($CodeB34001 as $key) {
+                        $B34001Artorder = [];
+                        $B34002Artorder = [];
+                        $B34003Artorder = [];
+                        $B34004Artorder = [];
+                        $B34005Artorder = [];
+                        $B34006Artorder = [];
+                        $B34007Artorder = [];
+                        foreach ($CodeB34001 as $key) 
+                        {
 
                             $pointB43001 = [
                                 $key['ArtCode'],
                                 Round($key['PassQty']),
                             ];
-
                             array_push($B34001data_points2, $pointB43001);
+
+                                                   
                             $Data001 = [
                                 $key['ArtCode'],
                                 $key['PassQty'],
@@ -429,8 +634,204 @@ if($Produced==0){
                             ];
                             array_push($B34001ArtFail, $MainFail01);
                         }
+                        
+                        // foreach ($monthlyOrder001 as $key) 
+                        // {
+                           
+                         
+                        // }
+                        // foreach ($monthlyOrder002 as $key) 
+                        // {
+                         
+                        // }
+
+                        // foreach ($monthlyOrder003 as $key) 
+                        // {
+                          
+                        // }
+
+                        // foreach ($monthlyOrder004 as $key) 
+                        // {
+                         
+                        // }
+ 
 
 
+                        // foreach ($monthlyOrder005 as $key) 
+                        // {
+                           
+                        // }
+
+
+                        // foreach ($monthlyOrder006 as $key) 
+                        // {
+                        //     $OrderB43006 = [
+                        //         $key['ArtCode'],
+                        //         Round($key['OrderQty']),
+                        //     ];   
+                        //     array_push($B34006Artorder, $OrderB43006);
+                        // }
+
+
+                        foreach ($monthlyOrderall as $key) 
+                        { 
+                            $FactoryCode=$key['FactoryCode'];
+
+                                if($FactoryCode=='B34007'){
+                                    $OrderB43007 = [
+                                        $key['ArtCode'],
+                                        Round($key['OrderQty']),
+                                    ];   
+                                    array_push($B34007Artorder, $OrderB43007);
+                                    $B43007Order=$key['OrderQty'];
+                                }
+                                if($FactoryCode=='B34006'){
+                                    $OrderB43006 = [
+                                        $key['ArtCode'],
+                                        Round($key['OrderQty']),
+                                    ];   
+                                    array_push($B34006Artorder, $OrderB43006);
+                                    $B43006Order=$key['OrderQty'];
+                                }
+                                if($FactoryCode=='B34005'){
+                                    $OrderB43005 = [
+                                        $key['ArtCode'],
+                                        Round($key['OrderQty']),
+                                    ];   
+                                    array_push($B34005Artorder, $OrderB43005);
+                                    $B43005Order=$key['OrderQty'];
+                                }
+                                if($FactoryCode=='B34004'){
+                                    $OrderB43004 = [
+                                        $key['ArtCode'],
+                                        Round($key['OrderQty']),
+                                    ];   
+                                    array_push($B34004Artorder, $OrderB43004);
+                                    $B43004Order=$key['OrderQty'];
+                                }
+                                if($FactoryCode=='B34003'){
+                                    $OrderB43003 = [
+                                        $key['ArtCode'],
+                                        Round($key['OrderQty']),
+                                    ];   
+                                    array_push($B34003Artorder, $OrderB43003);
+                                    $B43003Order=$key['OrderQty'];
+                                }
+                                if($FactoryCode=='B34002'){
+                                    $OrderB43002 = [
+                                        $key['ArtCode'],
+                                        Round($key['OrderQty']),
+                                    ];   
+                                    array_push($B34002Artorder, $OrderB43002);
+                                    $B43002Order=$key['OrderQty'];
+                                }
+                                if($FactoryCode=='B34001'){
+                                    $OrderB43001 = [
+                                        $key['ArtCode'],
+                                        Round($key['OrderQty']),
+                                    ];   
+                                    array_push($B34001Artorder, $OrderB43001);
+                                    $B43001Order=$key['OrderQty'];
+                                }
+             
+                        }
+                        // print_r($monthlyOrderall);
+                        // print_r($B43002Order);
+                        
+                        foreach($FactoryWiseProductionmonthly as $Keys)
+                        {
+                            $FactoryCode=$Keys['FactoryCode'];
+                            if($FactoryCode=='B34007'){
+                                $B43007Pass=$Keys['TotalChecked'];
+                                if($B43007Pass){
+                                    $B43007Pass=$Keys['TotalChecked'];
+                                }else{
+                                    $B43007Pass=0;
+                                }
+                            }
+                            else if($FactoryCode=='B34006'){
+                                $B43006Pass=$Keys['TotalChecked'];
+                                if($B43006Pass){
+                                    $B43006Pass=$Keys['TotalChecked']; 
+                                }else{
+                                    $B43005Pass =0;
+                                }
+                            }
+                            else if($FactoryCode=='B34005'){
+                                $B43005Pass=$Keys['TotalChecked'];
+                                if($B43005Pass){
+                                    $B43005Pass=$Keys['TotalChecked'];
+                                }else{
+                                    $B43005Pass =0;
+                                }
+                            }
+                            else if($FactoryCode=='B34004'){
+                                $B43004Pass=$Keys['TotalChecked'];
+                                if($B43004Pass){
+                                    $B43004Pass=$Keys['TotalChecked'];
+                                }else{
+                                    $B43004Pass=0;
+                                }
+                            }
+                            else if($FactoryCode=='B34003'){
+                                $B43003Pass=$Keys['TotalChecked'];
+                                if($B43003Pass){
+                                    $B43003Pass=$Keys['TotalChecked'];
+                                }else{
+                                    $B43003Pass=0;
+                                }
+                            }
+                            else if($FactoryCode=='B34002'){
+                                $B43002Pass=$Keys['TotalChecked'];
+                                if($B43002Pass){
+                                    $B43002Pass=$Keys['TotalChecked'];
+                                }else{
+                                    $B43002Pass=0;
+                                }
+                            }else if($FactoryCode=='B34001'){
+                                $B43001Pass=$Keys['TotalChecked'];
+                                if($B43001Pass){
+                                    $B43001Pass=$Keys['TotalChecked'];
+                                }else{
+                                    $B43001Pass=0;
+                                }
+                            }else{
+                                $B43002Pass=0;
+                                $B43003Pass=0;
+                                $B43004Pass=0;
+                                
+                            }
+                        }
+
+                        // Total percentage of the Production 
+                        $totalProduction = $B43001Pass+$B43002Pass+ $B43003Pass+$B43004Pass+$B43005Pass+$B43006Pass+$B43007Pass;
+                        $B43001Per = ($B43001Pass / $totalProduction)*100;
+                        $B43002Per = ($B43002Pass / $totalProduction)*100;
+                        $B43003Per = ($B43003Pass / $totalProduction)*100;
+                        $B43004Per = ($B43004Pass / $totalProduction)*100;
+                        $B43005Per = ($B43005Pass / $totalProduction)*100;
+                        $B43006Per = ($B43006Pass / $totalProduction)*100;
+                        $B43007Per = ($B43007Pass / $totalProduction)*100;
+
+                        // echo $B43001Per;
+                        // echo "<br>";
+                        // echo $B43002Per;
+                        // echo "<br>";
+                        // echo $B43003Per;
+                        // echo "<br>";
+                        // echo $B43004Per;
+                        // echo "<br>";
+                        // echo $B43005Per;
+                        // echo "<br>";
+                        // echo $B43006Per;
+                        // echo "<br>";
+                        // echo $B43007Per;
+
+
+
+
+
+                       
                         $B34002data_points2 = [];
                         foreach ($CodeB34002 as $key) {
 
@@ -594,6 +995,7 @@ if($Produced==0){
                                             <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Production</a></li>
                                             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">RFT</a></li>
                                             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3">Defects</a></li>
+                                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-4">Orders</a></li>
                                         </ul>
                                         <div class="tab-content py-3">
 
@@ -895,7 +1297,7 @@ if($Produced==0){
 
                                                         </div>
                                                         <div id="AllPrddef"></div>
-                                                        <div id="weeklydef"></div>
+                                                        <div id="weeklydef"> </div>
                                                         <div id="monthlydef"></div>
                                                         <div id="yearlydef"></div>
 
@@ -923,6 +1325,74 @@ if($Produced==0){
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <div class="tab-pane fade" id="tab_direction-4" role="tabpanel">
+                                                <figure class="highcharts-figureMine">
+                                                    <div id="containerMine"></div>
+                                                   
+                                                </figure>
+                                                <br>
+                                              
+                                                                                                
+                                            </div>
+                                            <div>
+                                            <script src= "<?php echo base_url(); ?>/assets/js/highcharts.js"></script>
+                                            <script src= "<?php echo base_url(); ?>/assets/js/data.js"></script>
+                                            <script src= "<?php echo base_url(); ?>/assets/js/exporting.js"></script>
+                                            <script src= "<?php echo base_url(); ?>/assets/js/accessibility.js"></script>
+                                            <div>
+                                                <figure class="highcharts-figurePO">
+                                                <div id="produceOrder"></div>
+                                            
+
+                                                <table id="datatable" hidden="true">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Order</th>
+                                                            <th>Produced</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>B34001</th>
+                                                            <td><?php echo $B34001Mnonth; ?></td>
+                                                            <td><?php echo $B43001Pass ;?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>B34002</th>
+                                                            <td><?php echo $B34002Mnonth; ?></td>
+                                                            <td><?php echo $B43002Pass ;?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>B34003</th>
+                                                            <td><?php echo $B34003Mnonth; ?></td>
+                                                            <td><?php echo $B43003Pass ;?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>B34004</th>
+                                                            <td><?php echo $B34004Mnonth; ?></td>
+                                                            <td><?php echo $B43004Pass ;?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>B34005</th>
+                                                            <td><?php echo $B34005Mnonth; ?></td>
+                                                            <td><?php echo $B43005Pass ;?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>B34006</th>
+                                                            <td><?php echo $B34006Mnonth; ?></td>
+                                                            <td><?php echo $B43006Pass ;?></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>B34007</th>
+                                                            <td><?php echo $B34007Mnonth; ?></td>
+                                                            <td><?php echo $B43007Pass ;?></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </figure>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -937,13 +1407,7 @@ if($Produced==0){
                 </div>
             </div>
 
-            <script src="https://code.highcharts.com/highcharts.js"></script>
-            <script src="https://code.highcharts.com/highcharts-more.js"></script>
-            <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-            <script src="https://code.highcharts.com/modules/exporting.js"></script>
-            <script src="https://code.highcharts.com/modules/export-data.js"></script>
-            <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
+        
             <?php
             $Datess = [];
             $WEEKLYRFT001 = [];
@@ -1714,6 +2178,10 @@ if($Produced==0){
                     }
 
                 });
+                //external highchart added here 
+//                
+// highchartsMine ends here
+
                 Highcharts.chart('monthlydata', {
 
                     title: {
@@ -2945,6 +3413,155 @@ if($Produced==0){
                         ]
                     }
                 });
+                
+// Create the chart
+
+// containerMine starts from  here 
+
+Highcharts.chart('containerMine', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Monthly Orders'
+    },
+    // subtitle: {
+    //     text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+    // },
+    accessibility: {
+        announceNewData: {
+            enabled: true
+        }
+    },
+    xAxis: {
+        type: 'category'
+    },
+    yAxis: {
+        title: {
+            text: 'Total Orders'
+        }
+
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true,
+                format: '{point.y:.0f}'
+            }
+        }
+    },
+
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b> of Total<br/>'
+    },
+
+    series: [
+{
+                        name: "Orders",
+                        colorByPoint: true,
+                        data: <?php echo json_encode($MonthlyOrders, JSON_NUMERIC_CHECK); ?>,
+
+                    }
+      ],
+    drilldown: {
+        breadcrumbs: {
+            position: {
+                align: 'right'
+            }
+        },
+        series: [
+            {
+                name: "B34001",
+                id: "B34001",
+                data: <?php echo json_encode(
+                                            $B34001Artorder,
+                                            JSON_NUMERIC_CHECK
+                                        ); ?>,
+            },
+            {
+                name: "B34002",
+                id: "B34002",
+                data: <?php echo json_encode(
+                                            $B34002Artorder,
+                                            JSON_NUMERIC_CHECK
+                                        ); ?>,
+            },
+            {
+                name: "B34003",
+                id: "B34003",
+                data: <?php echo json_encode(
+                                            $B34003Artorder,
+                                            JSON_NUMERIC_CHECK
+                                        ); ?>,
+            },
+            {
+                name: "B34004",
+                id: "B34004",
+                data: <?php echo json_encode(
+                                            $B34004Artorder,
+                                            JSON_NUMERIC_CHECK
+                                        ); ?>,
+            },
+            {
+                name: "B34005",
+                id: "B34005",
+                data: <?php echo json_encode(
+                                            $B34005Artorder,
+                                            JSON_NUMERIC_CHECK
+                                        ); ?>,
+            },
+            {
+                name: "B34006",
+                id: "B34006",
+                data: <?php echo json_encode(
+                                            $B34006Artorder,
+                                            JSON_NUMERIC_CHECK
+                                        ); ?>,
+            },
+            {
+                name: "B34007",
+                id: "B34007",
+                data: <?php echo json_encode(
+                                            $B34007Artorder,
+                                            JSON_NUMERIC_CHECK
+                                        ); ?>,
+            }
+        ]
+    }
+});
+// containerMine ends here 
+
+
+// Produce orders start from here 
+Highcharts.chart('produceOrder', {
+    data: {
+        table: 'datatable'
+    },
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Orders vs Produce'
+    },
+    yAxis: {
+        allowDecimals: false,
+        title: {
+            text: 'Production'
+        }
+    },
+    tooltip: {
+        formatter: function () {
+            return '<b>' + this.series.name + '</b><br/>' +
+                this.point.y + ' ' + this.point.name.toUpperCase();
+        }
+    }
+});
+               
                 Highcharts.chart('AllPrdrft', {
                     chart: {
                         type: 'column'
@@ -3608,7 +4225,7 @@ if($Produced==0){
 
                 </div>
             </footer>
-          
+
             <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
             <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
 

@@ -37,6 +37,15 @@ class DashboardController extends CI_Controller
 		$data['getYearly'] = $this->ID->getYear();
 		$data['weekDate'] = $this->ID->weekDates();
 		$data['monthlydate'] = $this->ID->monthlydate();
+		$data['monthlyOrder'] = $this->ID->monthlyOrder();
+		// $data['monthlyOrder001'] = $this->ID->getMonthtlyOrder_Article_Wise();
+		// $data['monthlyOrder002'] = $this->ID->getMonthtlyOrder_Article_Wise02();
+		// $data['monthlyOrder003'] = $this->ID->getMonthtlyOrder_Article_Wise03();
+		// $data['monthlyOrder004'] = $this->ID->getMonthtlyOrder_Article_Wise04();
+		// $data['monthlyOrder005'] = $this->ID->getMonthtlyOrder_Article_Wise05();
+		// $data['monthlyOrder006'] = $this->ID->getMonthtlyOrder_Article_Wise06();
+		$data['monthlyOrderall'] = $this->ID->getMonthtlyOrder_Article_WiseAll();
+		$data['FactoryWiseProductionmonthly'] = $this->ID->FactoryWiseProductionmonthly();
 		
 		$data['Year'] = $this->ID->Year();
 	$this->load->view('Dashboard', $data);	
