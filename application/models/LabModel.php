@@ -2273,5 +2273,277 @@ FROM            dbo.view_store_transaction
 WHERE      (LotNo = '$lotNo') AND (Date = CONVERT(DATETIME, '$StartDate 00:00:00', 102))");
 return $query->result_array();
     }
+
+    public function addHeadDataMSMaterial(
+        $TestNo,
+        $DateGet,
+        $MaterialRef,
+        $PoNo,
+        $picture,
+        $testGroup,
+        $testPerformer,
+        $childArray
+    ) {
+      
+        date_default_timezone_set('Asia/Karachi');
+        $Date = date('Y-m-d H:i:s');
+        $user_id = $this->session->userdata('user_id');
+
+        $user_id;
+        $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_H
+              (TestNO
+              ,Date
+              ,PO
+              ,MaterialRef
+              ,Entrydate
+              ,UserID
+              ,image
+              ,TestType
+              ,testGroup
+              ,performedBy)
+        VALUES
+              ('$TestNo'
+              ,'$DateGet'
+              ,'$PoNo'
+              ,'$MaterialRef'
+              ,'$Date'
+              ,'$user_id'
+              ,'$picture'
+              ,'MS Material'
+              ,'$testGroup'
+              ,'$testPerformer')");
+        $Id = $this->db->insert_id();
+        echo $Id;
+        $bladerIter = 0;
+    
+        foreach ($childArray as $key => $value) {
+            // $testNo = $value[0];
+            // $PONo = $value[1];
+        if($bladerIter == 0){
+            $TEST = $value[2];
+            $METHOD = $value[3];
+                $UNIT = $value[4];
+                $Requirement = $value[5];
+                $RESULTS = $value[6];
+                
+                    $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+                 (TID
+           ,Test
+           ,Method
+           ,Unit
+           ,Requirments
+           ,result
+          )
+     VALUES
+           ('$Id'
+           ,'$TEST'
+           ,'$METHOD'
+           ,'$UNIT'
+           ,'$Requirement'
+           ,'$RESULTS'
+         )");
+                   $bladerIter +=1;
+        }    
+        else{
+            $TEST = $value[3];
+            $METHOD = $value[4];
+                $UNIT = $value[5];
+                $Requirement = $value[6];
+                $RESULTS = $value[7];
+        
+            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+            (TID
+           ,Test
+           ,Method
+           ,Unit
+           ,Requirments
+           ,result
+          )
+     VALUES
+     ('$Id'
+           ,'$TEST'
+           ,'$METHOD'
+           ,'$UNIT'
+           ,'$Requirement'
+           ,'$RESULTS'
+         )");
+           $bladerIter +=1;
+        }
+        
+        }
+    }
+
+    public function addHeadDataPolyBag(
+        $TestNo,
+        $PO,
+        $Receiveddate,
+        $DateGet,
+        $PolyBag,
+        $VenderName,
+        $result,
+        $picture,
+        $testGroup,
+        $testPerformer,
+        $childArray
+    ) {
+
+      
+      
+        date_default_timezone_set('Asia/Karachi');
+        $Date = date('Y-m-d H:i:s');
+        $user_id = $this->session->userdata('user_id');
+
+        $user_id;
+        $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_H
+              (TestNO
+              ,Date
+              ,PO
+              ,Receiving_Date
+              ,PolyBag
+              ,VenderName
+              ,Result
+              ,Entrydate
+              ,UserID
+              ,image
+              ,TestType
+              ,testGroup
+              ,performedBy)
+        VALUES
+              ('$TestNo'
+              ,'$DateGet'
+              ,'$PO'
+              ,'$Receiveddate'
+              ,'$PolyBag'
+              ,'$VenderName'
+              ,'$result'
+              ,'$Date'
+              ,'$user_id'
+              ,'$picture'
+              ,'PolyBag Material'
+              ,'$testGroup'
+              ,'$testPerformer')");
+        $Id = $this->db->insert_id();
+        echo $Id;
+        if($result=='Fail' || $result=='fail'){
+            $mail = new PHPMailer(true);
+    try{
+    
+    
+      //Server settings
+    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+    $mail->isSMTP();                                            //Send using SMTP
+    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+    $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
+    $mail->Password   = 'Forward123';                               //SMTP password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+    $mail->IsHTML(true);
+    //Recipients
+    $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
+    // $mail->addAddress("itdev@forward.pk"); 
+    $mail->addAddress("hufsa@forward.pk"); 
+    $mail->addAddress("sohail@forward.pk"); 
+    $mail->addAddress("store@forward.pk"); 
+    $mail->AddCC('abaid@forward.pk');
+    $mail->AddCC('imran@forward.pk');
+    
+     $mail->AddCC('waseembutt@forward.pk');
+     $mail->AddCC('tafseer@forward.pk');
+        $mail->AddCC('shoaib@forward.pk');
+        $mail->AddCC('fsqa@forward.pk');
+              $mail->AddCC('oman@forward.pk');
+                 $mail->AddCC('abdulhaseeb@forward.pk');
+                 $mail->AddCC('yaseen@forward.pk');
+                 $mail->AddCC('zainabbas@forward.pk');
+    $mail->Subject = "FGT Failure";
+    $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
+    <div style="margin-left:40%;">
+    <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
+    '.$PolyBag .' Test Report Result Alert</th></tr>
+    <tr><th>Test Date:</th><td>'.$DateGet .'</td></tr>
+    <tr><th>PolyBag.</th><td>'.$PolyBag .'</td></tr>
+    <tr><th>Test No.</th><td>'.$TestNo .'</td></tr>
+    <tr><th>PO.</th><td>'.$PO .'</td></tr>
+    <tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
+    <tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetailsPolyBag?id='.$Id.'</td></tr>
+    <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This PolyBag Material has Been Failed</th></tr>
+    </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
+    
+    
+    //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
+    //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
+    $mail->send();
+    echo 'Message has been sent';
+    } catch (Exception $e) {
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+}
+        $bladerIter = 0;
+    
+      
+        foreach ($childArray as $key => $value) {
+            // $testNo = $value[0];
+            // $PONo = $value[1];
+        if($bladerIter == 0){
+            $srno = $value[2];
+            $TEST = $value[3];
+                $UNIT = $value[4];
+                $standard = $value[5];
+                $RESULTS = $value[6];
+                $Remarks = $value[7];
+                
+                    $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+                 (TID,
+                 srno
+           ,Test
+           ,Unit
+           ,Standard
+           ,result
+           ,ReMarks
+          )
+     VALUES
+           ('$Id'
+           ,'$srno'
+           ,'$TEST'
+           ,'$UNIT'
+           ,'$standard'
+           ,'$RESULTS'
+           ,'$Remarks'
+         )");
+                   $bladerIter +=1;
+        }    
+        else{
+            $srno = $value[2];
+            $TEST = $value[3];
+                $UNIT = $value[4];
+                $standard = $value[5];
+                $RESULTS = $value[6];
+                $Remarks = $value[7];
+        
+            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+            (TID,
+                 srno
+           ,Test
+           ,Unit
+           ,Standard
+           ,result
+           ,ReMarks
+          )
+     VALUES
+     ('$Id'
+           ,'$srno'
+           ,'$TEST'
+           ,'$UNIT'
+           ,'$standard'
+           ,'$RESULTS'
+           ,'$Remarks'
+         )");
+           $bladerIter +=1;
+        }
+        
+        }
+
+    }
    
 }

@@ -1389,4 +1389,151 @@ class LabController extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
+
+    public function addHeadDataMSMaterial(){
+
+
+        if (!empty($_FILES['file']['name'])) {
+
+            $config['upload_path'] = 'assets\img\img';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['file_name'] = basename($_FILES["file"]["name"]);
+
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if ($this->upload->do_upload('file')) {
+                $uploadData = $this->upload->data();
+                $picture = $uploadData['file_name'];
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = 'assets/img/img/' . $picture;
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = FALSE;
+                $config['quality'] = '60%';
+                $config['width'] = 800;
+                $config['height'] = 600;
+                $config['new_image'] = 'assets/img/img/' . $picture;
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+            } else {
+                echo "helll";
+
+                $picture = '';
+            }
+        } else {
+
+            $picture = '';
+        }
+
+
+        $headerValue = $_POST['HeaderArray'];
+     
+        $header = explode(",", $headerValue);
+
+        $childValue = $_POST['ChildArray'];
+        $child = explode("]", $childValue);
+        $childArray = [];
+        foreach ($child as $key => $value) {
+            $arraySplit = explode(',', $value);
+            array_push($childArray, $arraySplit);
+        }
+        
+        array_pop($childArray);
+        $TestNo = $header[0];
+        $Date = $header[1];
+        $MaterialRef = $header[2];
+        $PoNo = $header[3];
+        $testGroup = $_POST['testGroup'];
+        $testPerformer = $_POST['testPerformer'];
+        $this->l->addHeadDataMSMaterial(
+            $TestNo,
+            $Date,
+            $MaterialRef,
+            $PoNo,
+            $picture,
+            $testGroup,
+            $testPerformer,
+            $childArray
+        );
+    }
+
+    public function addHeadDataPolyBag(){
+
+       
+        if (!empty($_FILES['file']['name'])) {
+
+            $config['upload_path'] = 'assets\img\img';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['file_name'] = basename($_FILES["file"]["name"]);
+
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if ($this->upload->do_upload('file')) {
+                $uploadData = $this->upload->data();
+                $picture = $uploadData['file_name'];
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = 'assets/img/img/' . $picture;
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = FALSE;
+                $config['quality'] = '60%';
+                $config['width'] = 800;
+                $config['height'] = 600;
+                $config['new_image'] = 'assets/img/img/' . $picture;
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+            } else {
+                echo "helll";
+
+                $picture = '';
+            }
+        } else {
+
+            $picture = '';
+        }
+
+
+        $headerValue = $_POST['HeaderArray'];
+     
+        $header = explode(",", $headerValue);
+
+        $childValue = $_POST['ChildArray'];
+        $child = explode("]", $childValue);
+        $childArray = [];
+        foreach ($child as $key => $value) {
+            $arraySplit = explode(',', $value);
+            array_push($childArray, $arraySplit);
+        }
+        
+        // echo "<pre>";
+        // print_r($header);
+        // die;
+        // echo "</pre>";
+        array_pop($childArray);
+        $TestNo = $header[0];
+        $PO = $header[1];
+        $Receiveddate = $header[2];
+        $Date = $header[3];
+        $PolyBag = $header[4];
+        $VenderName = $header[5];
+        $result = $header[6];
+        $testGroup = $_POST['testGroup'];
+        $testPerformer = $_POST['testPerformer'];
+        $this->l->addHeadDataPolyBag(
+            $TestNo,
+            $PO,
+            $Receiveddate,
+            $Date,
+            $PolyBag,
+            $VenderName,
+            $result,
+            $picture,
+            $testGroup,
+            $testPerformer,
+            $childArray
+        );
+
+    }
 }

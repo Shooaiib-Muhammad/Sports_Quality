@@ -4682,6 +4682,7 @@ else if(typeOfTest == 'FGT Test'){
         });
         $(document).ready(function() {
             $("#ArtCodeAuto").select2();
+            $("#name").select2();
             let currentDate = new Date().toJSON().substr(0, 10);
             $('#rDate').val(currentDate);
             $("#tType").select2();

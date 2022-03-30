@@ -51,6 +51,55 @@ class DashboardController extends CI_Controller
 	$this->load->view('Dashboard', $data);	
 		
     }
+	public function B34001(){
+		$Month = date('m');
+			$Year = date('Y');
+			$Day = date('d');
+			$data['CodeB34001'] = $this->ID->B34001($Day, $Month, $Year);
+		$this->load->view('HSArticles', $data);
+	}
+	public function B34002(){
+		$Month = date('m');
+			$Year = date('Y');
+			$Day = date('d');
+			$data['CodeB34002'] = $this->ID->B34002($Day, $Month, $Year);
+		$this->load->view('TM002Articles', $data);
+	}
+	public function B34003(){
+		$Month = date('m');
+			$Year = date('Y');
+			$Day = date('d');
+			$data['CodeB34003'] = $this->ID->B34003($Day, $Month, $Year);
+		$this->load->view('TM003Articles', $data);
+	}
+	public function B34004(){
+		$Month = date('m');
+			$Year = date('Y');
+			$Day = date('d');
+			$data['CodeB34004'] = $this->ID->B34004($Day, $Month, $Year);
+		$this->load->view('TM004Articles', $data);
+	}
+	public function B34005(){
+		$Month = date('m');
+			$Year = date('Y');
+			$Day = date('d');
+		$data['CodeB34005'] = $this->ID->B34005($Day, $Month, $Year);
+		$this->load->view('MSArticles', $data);
+	}
+	public function B34006(){
+		$Month = date('m');
+			$Year = date('Y');
+			$Day = date('d');
+			$data['CodeB34006'] = $this->ID->B34006($Day, $Month, $Year);
+		$this->load->view('AMbArticles', $data);
+	}
+	public function B34007(){
+		$Month = date('m');
+			$Year = date('Y');
+			$Day = date('d');
+			$data['CodeB34007'] = $this->ID->B34007($Day, $Month, $Year);
+		$this->load->view('LFBArticles', $data);
+	}
 
 
 }
