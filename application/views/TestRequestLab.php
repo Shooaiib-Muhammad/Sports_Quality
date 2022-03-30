@@ -56,7 +56,7 @@ if (!$this->session->has_userdata('user_id')) {
                                     <div class="panel-container show">
 
                                         <div class="panel-content">
-                                        <ul class="nav nav-pills" role="tablist">
+                                            <ul class="nav nav-pills" role="tablist">
                                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Pending Requests</a></li>
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Acknowledged Requests</a></li>
 
@@ -64,8 +64,8 @@ if (!$this->session->has_userdata('user_id')) {
 
                                             <div class="tab-content py-3">
 
-                                            <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
-                                            <table class="table table-striped table-hover table-sm" id="ActivityData2">
+                                                <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
+                                                    <table class="table table-striped table-hover table-sm" id="ActivityData2">
                                                         <thead>
 
                                                             <tr>
@@ -73,8 +73,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <th>Type</th>
                                                                 <th>CSS Code</th>
                                                                 <th>Factory Code</th>
-                                                                <th>Article</th>
-                                                            
+                                                                <th>Article / Material Name</th>
+
                                                                 <th>Quantity Issed</th>
                                                                 <th>Quantity Received</th>
                                                                 <th>Quantity Retained</th>
@@ -100,7 +100,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <td><?php echo $keys['CSSNo']; ?></td>
                                                                     <td><?php echo $keys['Factory_Code']; ?></td>
                                                                     <td><?php echo $keys['Article']; ?></td>
-                                                                    
+
                                                                     <td><?php echo $keys['Quantity_Issued']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Received']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Retained']; ?></td>
@@ -111,7 +111,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
                                                                     <td> <span class="badge badge-primary p-1"><?php echo $keys['senderSignatureRec']; ?></span></td>
                                                                     <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
-                                                                 
+
                                                                     <td>
 
                                                                         <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtnBacktoSender" id="btn.<?php echo $keys['TID']; ?>">Acknowledge</button>
@@ -129,10 +129,10 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                         </tbody>
                                                     </table>
-                                            </div>
-                                           
-                                            <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
-                                            <table class="table table-striped table-hover table-sm" id="ActivityData3">
+                                                </div>
+
+                                                <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
+                                                    <table class="table table-striped table-hover table-sm" id="ActivityData3">
                                                         <thead>
 
                                                             <tr>
@@ -140,8 +140,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <th>Type</th>
                                                                 <th>CSS Code</th>
                                                                 <th>Factory Code</th>
-                                                                <th>Article</th>
-                                                           
+                                                                <th>Article / Material Name</th>
+
                                                                 <th>Quantity Issed</th>
                                                                 <th>Quantity Received</th>
                                                                 <th>Quantity Retained</th>
@@ -156,7 +156,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <?php //print_r($loadFGT_H);
+                                                            <?php 
+                                                           // print_r($getTestByLabAcknowledge);
                                                             foreach ($getTestByLabAcknowledge as $keys) {
 
                                                             ?>
@@ -167,7 +168,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <td><?php echo $keys['CSSNo']; ?></td>
                                                                     <td><?php echo $keys['Factory_Code']; ?></td>
                                                                     <td><?php echo $keys['Article']; ?></td>
-                                                                  
+
                                                                     <td><?php echo $keys['Quantity_Issued']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Received']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Retained']; ?></td>
@@ -178,7 +179,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
                                                                     <td> <span class="badge badge-primary p-1"><?php echo $keys['senderSignatureRec']; ?></span></td>
                                                                     <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
-                                                                 
+
                                                                     <td>
 
                                                                         <button type="button" style="display: inline-block;" class="btn btn-danger btn-xs" id="btn.<?php echo $keys['TID']; ?>" disabled>Locked</button>
@@ -196,7 +197,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                         </tbody>
                                                     </table>
-                                            </div>
+                                                </div>
 
                                             </div>
 
@@ -226,38 +227,38 @@ if (!$this->session->has_userdata('user_id')) {
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-            $(".updatebtnBacktoSender").click(function(e) {
+        $(".updatebtnBacktoSender").click(function(e) {
             let id = this.id;
             let split_value = id.split(".");
             var TID = split_value[1];
             let proceed = confirm("Are you sure you want to acknowledge Receipt?");
             if (proceed) {
-   
-            url = "<?php echo base_url(''); ?>LabController/TestRequestById";
-            url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestLabAcknowledge";
-            $.post(url, {
-                'Id': TID
-            }, function(data, status) {
-                $.post(url2, {
+
+                url = "<?php echo base_url(''); ?>LabController/TestRequestById";
+                url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestLabAcknowledge";
+                $.post(url, {
                     'Id': TID
                 }, function(data, status) {
-                    alert("Data Updated Successfully! Click on Ok to Reload the Page")
-                    window.location.reload();
+                    $.post(url2, {
+                        'Id': TID
+                    }, function(data, status) {
+                        alert("Data Updated Successfully! Click on Ok to Reload the Page")
+                        window.location.reload();
+                    });
                 });
-            });
-            }
-            else{
-                alert("Sending Cancel");  
+            } else {
+                alert("Sending Cancel");
             }
         });
-        function toggleArticle(){
+
+        function toggleArticle() {
             let selectionValue = $('#selection').val();
-            if(selectionValue == 'Auto'){
-                $('#autoArticle').css('display','block')
-                $('#manualArticle').css('display','none')
-            }else{
-                $('#autoArticle').css('display','none')
-                $('#manualArticle').css('display','block')
+            if (selectionValue == 'Auto') {
+                $('#autoArticle').css('display', 'block')
+                $('#manualArticle').css('display', 'none')
+            } else {
+                $('#autoArticle').css('display', 'none')
+                $('#manualArticle').css('display', 'block')
             }
         }
         $('#save').click(function(e) {
@@ -266,13 +267,12 @@ if (!$this->session->has_userdata('user_id')) {
             let Sample_RequestDate = $('#rDate').val();
             let Factory_Code = $('#fCode').val();
             let Article;
-            if($('#selection').val == 'Manual'){
+            if ($('#selection').val == 'Manual') {
                 Article = $('#article').val();
-            }
-            else{
+            } else {
                 Article = $('#ArtCodeAuto').val();
             }
-            
+
             let TestID = $('#tType').val();
             let Quantity_Issued = $('#qIssued').val();
             let Status = "Pending";
@@ -308,17 +308,16 @@ if (!$this->session->has_userdata('user_id')) {
             let proceed = confirm("Are you sure you want Acknowledge the Results?");
             if (proceed) {
 
-            url2 = "<?php echo base_url(''); ?>LabController/AcknowledgeResult";
-           
+                url2 = "<?php echo base_url(''); ?>LabController/AcknowledgeResult";
+
                 $.post(url2, {
                     'Id': TID,
                 }, function(data, status) {
                     alert("Data Updated Successfully! Click on Ok to Reload the Page")
                     window.location.reload();
                 });
-            }
-            else{
-                alert("Acknowledgement Cancel");  
+            } else {
+                alert("Acknowledgement Cancel");
             }
         });
         $(document).ready(function() {

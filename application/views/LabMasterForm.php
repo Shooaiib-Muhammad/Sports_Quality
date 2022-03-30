@@ -3710,36 +3710,52 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </div>
                                                     <div class="row">
 
-<div class="col-md-12">
-<div class="form-group mt-4">
-    <div class="custom-file">
-        <?php
-        if ($Uploading == 1) {
+                                                        <div class="col-md-12">
+                                                            <div class="form-group mt-4">
+                                                                <div class="custom-file">
+                                                                    <?php
+                                                                    if ($Uploading == 1) {
 
 
-        ?>
-            <input type="file" class="custom-file-input" id="customFile" onchange="fileSelect(this.files);" name="CottonData" accept=".xlsx, .xls, .csv">
+                                                                    ?>
+                                                                        <input type="file" class="custom-file-input" id="customFile" onchange="fileSelect(this.files);" name="CottonData" accept=".xlsx, .xls, .csv">
 
-            <label class="custom-file-label" for="customFile">Choose file</label>
-        <?php
+                                                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                                                    <?php
 
-        } else {
-        ?>
-            <input type="file" disabled="disabled" lass="custom-file-input" id="customFile" onchange="fileSelect(this.files);" name="CottonData" accept=".xlsx, .xls, .csv">
+                                                                    } else {
+                                                                    ?>
+                                                                        <input type="file" disabled="disabled" lass="custom-file-input" id="customFile" onchange="fileSelect(this.files);" name="CottonData" accept=".xlsx, .xls, .csv">
 
-            <label class="custom-file-label" for="customFile">Choose file</label>
-        <?PHP
-        }
-        ?>
-    </div>
-</div>
-</div>
+                                                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                                                    <?PHP
+                                                                    }
+                                                                    ?>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label for="sel1">Select CSS # :</label><br>
+                                                                <select class="form-control" id="cssCode" name="cssCode" onchange="getData()">
+                                                                    <option value="">Select one of the following</option>
+                                                                    <?php foreach ($getCssNo as $Key) { ?>
+
+                                                                        <option value="<?php echo $Key['CSSNo']; ?>"><?php echo $Key['CSSNo']; ?></option>
+                                                                    <?php } ?>
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
 
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label>Select Test Type</label>
-                                                                <select class="form-control" id="testType" onchange="SetSheetNo()">
+                                                                <input type="number" class="form-control" id="testType" required readonly="readonly" hidden>
+                                                                <input type="text" class="form-control" id="materialType" required readonly="readonly">
+                                                                <!-- <select class="form-control" id="testType" onchange="SetSheetNo()">
+
                                                                     <option value="" selected>Select Test Type</option>
                                                                     <option value="1">Carton Test</option>
                                                                     <option value="2">Foam</option>
@@ -3751,7 +3767,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <option value="8">MS Thread</option>
                                                                     <option value="9">MS Material</option>
                                                                     <option value="10">Poly Bag</option>
-                                                                </select>
+                                                                </select> -->
                                                             </div>
                                                         </div>
 
@@ -3765,11 +3781,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label>Test Group</label>
-                                                                <select class="form-control" id="testGroup">
+
+                                                                <input type="text" class="form-control" id="testGroup" required readonly="readonly">
+                                                                <!-- <select class="form-control" id="testGroup">
                                                                     <option value="" selected>Select Test Group</option>
                                                                     <option value="Development">Development</option>
                                                                     <option value="Production">Production</option>
-                                                                </select>
+                                                                </select> -->
                                                             </div>
                                                         </div>
 
@@ -8944,6 +8962,7 @@ ${reviewStatus == '1' ?
                 e.preventDefault();
                 $("#submitData").css("display", "none");
                 $("#sendHeaderValues").css("display", "block");
+                let CssCodeValue = $("#cssCode").val();
                 let testType = $("#testType").val();
 
                 if (testType == 1) {
@@ -9088,7 +9107,7 @@ ${reviewStatus == '1' ?
                                 if (element.TestNo != undefined || element.PONo != undefined) {
                                     testNumber = element.TestNo;
                                     PONumber = element.PONo;
-                                    let arrayHead = [element.TestNo, element.CSSNO, element.TestDate, element.ItemName, element.PONo, element.ReceivingDate, element.SupplierName, element.SupplierRef, element.Quantity, element.Result, element.ItemType];
+                                    let arrayHead = [element.TestNo, CssCodeValue, element.TestDate, element.ItemName, element.PONo, element.ReceivingDate, element.SupplierName, element.SupplierRef, element.Quantity, element.Result, element.ItemType];
                                     let arrayBody = [element.Test, element.Requirement, element.Result, element.Uncertainty, element.Remark, ']'];
                                     HeaderArray.push(arrayHead);
                                     ChildArray.push(arrayBody)
@@ -9246,7 +9265,7 @@ ${reviewStatus == '1' ?
                                 if (element.TestNo != undefined || element.PONo != undefined) {
                                     testNumber = element.TestNo;
                                     PONumber = element.PONo;
-                                    let arrayHead = [element.TestNo, element.CSSNO, element.TestDate, element.ItemName, element.PONo, element.ReceivingDate, element.SupplierName, element.SupplierRef, element.Quantity, element.Result, element.ItemType];
+                                    let arrayHead = [element.TestNo, CssCodeValue, element.TestDate, element.ItemName, element.PONo, element.ReceivingDate, element.SupplierName, element.SupplierRef, element.Quantity, element.Result, element.ItemType];
                                     let arrayBody = [element.Test, element.Requirement, element.Result, element.Uncertainty, element.Remark, ']'];
                                     HeaderArray.push(arrayHead);
                                     ChildArray.push(arrayBody)
@@ -9297,7 +9316,7 @@ ${reviewStatus == '1' ?
                                 if (element.TestNo != undefined || element.PONo != undefined) {
                                     testNumber = element.TestNo;
                                     PONumber = element.PONo;
-                                    let arrayHead = [element.TestNo, element.Date, element.ModelName, element.CSSCode, element.Pressure, element.TempHumidity, element.Article, element.Category, element.size, element.Testedfor, element.Note];
+                                    let arrayHead = [element.TestNo, element.Date, element.ModelName, CssCodeValue, element.Pressure, element.TempHumidity, element.Article, element.Category, element.size, element.Testedfor, element.Note];
                                     let arrayBody = [element.Weight, element.CircumferenceMin, element.CircumferenceMax, element.Deviation, element.ReboundTest, element.Remarks, ']'];
                                     HeaderArray.push(arrayHead);
                                     ChildArray.push(arrayBody)
@@ -9364,113 +9383,111 @@ ${reviewStatus == '1' ?
 
                         }
                     }
+                } else if (testType == 9) {
+
+                    if (fileSelectStore) {
+
+                        this.filetoupload = fileSelectStore;
+                        //show image review
+                        var reader = new FileReader();
+                        reader.readAsDataURL(this.filetoupload);
+                        this.fileNameStore = this.filetoupload.name;
+                        this.file = fileSelectStore;
+                        let fileReader = new FileReader();
+                        fileReader.readAsArrayBuffer(this.file);
+                        fileReader.onload = (e) => {
+                            this.arrayBuffer = fileReader.result;
+                            var data = new Uint8Array(this.arrayBuffer);
+                            var arr = new Array();
+                            for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+                            var bstr = arr.join("");
+                            var workbook = XLSX.read(bstr, {
+                                type: "binary"
+                            });
+                            let sheetNo = $("#sheetNo").val();
+                            // alert(sheetNo);
+                            var first_sheet_name = workbook.SheetNames[sheetNo - 1];
+                            var worksheet = workbook.Sheets[first_sheet_name];
+                            //  console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));    
+                            let arraylist = XLSX.utils.sheet_to_json(worksheet, {
+                                raw: false
+                            });
+                            this.filelist = arraylist;
+                            let testNumber;
+                            let PONumber
+                            this.filelist.forEach(element => {
+                                console.log("File Values", element)
+                                if (element.TestNumber != undefined || element.PONo != undefined) {
+                                    testNumber = element.TestNumber;
+                                    PONumber = element.PONo;
+                                    let arrayHead = [element.TestNumber, element.Date, element.MaterialReference, element.PONo, ']'];
+                                    let arrayBody = [element.TestNumber, element.PONo, element.TEST, element.METHOD, element.UNIT, element.Requirement, element.RESULTS, ']'];
+                                    HeaderArray.push(arrayHead);
+                                    ChildArray.push(arrayBody)
+                                } else {
+                                    let arrayBody = [testNumber, PONumber, element.TEST, element.METHOD, element.UNIT, element.Requirement, element.RESULTS, , ']'];
+                                    ChildArray.push(arrayBody)
+                                }
+                            });
+                            $("#headerData").val(HeaderArray);
+                            $("#childData").val(ChildArray);
+
+
+                        }
+                    }
+                } else if (testType == 10) {
+
+                    if (fileSelectStore) {
+
+                        this.filetoupload = fileSelectStore;
+                        //show image review
+                        var reader = new FileReader();
+                        reader.readAsDataURL(this.filetoupload);
+                        this.fileNameStore = this.filetoupload.name;
+                        this.file = fileSelectStore;
+                        let fileReader = new FileReader();
+                        fileReader.readAsArrayBuffer(this.file);
+                        fileReader.onload = (e) => {
+                            this.arrayBuffer = fileReader.result;
+                            var data = new Uint8Array(this.arrayBuffer);
+                            var arr = new Array();
+                            for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+                            var bstr = arr.join("");
+                            var workbook = XLSX.read(bstr, {
+                                type: "binary"
+                            });
+                            let sheetNo = $("#sheetNo").val();
+                            // alert(sheetNo);
+                            var first_sheet_name = workbook.SheetNames[sheetNo - 1];
+                            var worksheet = workbook.Sheets[first_sheet_name];
+                            //  console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));    
+                            let arraylist = XLSX.utils.sheet_to_json(worksheet, {
+                                raw: false
+                            });
+                            this.filelist = arraylist;
+                            let testNumber;
+                            let PONumber
+                            this.filelist.forEach(element => {
+                                console.log("File Values", element)
+                                if (element.TestNO != undefined || element.PO != undefined) {
+                                    testNumber = element.TestNO;
+                                    PONumber = element.PO;
+                                    let arrayHead = [element.TestNO, element.PO, element.Receiveddate, element.Date, element.PolyBag, element.VenderName, element.result, ']'];
+                                    let arrayBody = [element.TestNO, element.PO, element.Srno, element.Test, element.Unit, element.Standard, element.Result, element.Remarks, ']'];
+                                    HeaderArray.push(arrayHead);
+                                    ChildArray.push(arrayBody)
+                                } else {
+                                    let arrayBody = [testNumber, PONumber, element.Srno, element.Test, element.Unit, element.Standard, element.Result, element.Remarks, ']'];
+                                    ChildArray.push(arrayBody)
+                                }
+                            });
+                            $("#headerData").val(HeaderArray);
+                            $("#childData").val(ChildArray);
+
+
+                        }
+                    }
                 }
-                else if (testType == 9) {
-
-if (fileSelectStore) {
-
-    this.filetoupload = fileSelectStore;
-    //show image review
-    var reader = new FileReader();
-    reader.readAsDataURL(this.filetoupload);
-    this.fileNameStore = this.filetoupload.name;
-    this.file = fileSelectStore;
-    let fileReader = new FileReader();
-    fileReader.readAsArrayBuffer(this.file);
-    fileReader.onload = (e) => {
-        this.arrayBuffer = fileReader.result;
-        var data = new Uint8Array(this.arrayBuffer);
-        var arr = new Array();
-        for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
-        var bstr = arr.join("");
-        var workbook = XLSX.read(bstr, {
-            type: "binary"
-        });
-        let sheetNo = $("#sheetNo").val();
-        // alert(sheetNo);
-        var first_sheet_name = workbook.SheetNames[sheetNo - 1];
-        var worksheet = workbook.Sheets[first_sheet_name];
-        //  console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));    
-        let arraylist = XLSX.utils.sheet_to_json(worksheet, {
-            raw: false
-        });
-        this.filelist = arraylist;
-        let testNumber;
-        let PONumber
-        this.filelist.forEach(element => {
-                console.log("File Values", element)
-            if (element.TestNumber != undefined || element.PONo != undefined) {
-                testNumber = element.TestNumber;
-                PONumber = element.PONo;
-                let arrayHead = [element.TestNumber, element.Date, element.MaterialReference, element.PONo, ']'];
-                let arrayBody = [element.TestNumber, element.PONo, element.TEST, element.METHOD, element.UNIT, element.Requirement, element.RESULTS, ']'];
-                HeaderArray.push(arrayHead);
-                ChildArray.push(arrayBody)
-            } else {
-                let arrayBody = [testNumber, PONumber, element.TEST, element.METHOD, element.UNIT, element.Requirement, element.RESULTS,, ']'];
-                ChildArray.push(arrayBody)
-            }
-        });
-        $("#headerData").val(HeaderArray);
-        $("#childData").val(ChildArray);
-
-
-    }
-}
-}
-else if (testType == 10) {
-
-if (fileSelectStore) {
-
-    this.filetoupload = fileSelectStore;
-    //show image review
-    var reader = new FileReader();
-    reader.readAsDataURL(this.filetoupload);
-    this.fileNameStore = this.filetoupload.name;
-    this.file = fileSelectStore;
-    let fileReader = new FileReader();
-    fileReader.readAsArrayBuffer(this.file);
-    fileReader.onload = (e) => {
-        this.arrayBuffer = fileReader.result;
-        var data = new Uint8Array(this.arrayBuffer);
-        var arr = new Array();
-        for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
-        var bstr = arr.join("");
-        var workbook = XLSX.read(bstr, {
-            type: "binary"
-        });
-        let sheetNo = $("#sheetNo").val();
-        // alert(sheetNo);
-        var first_sheet_name = workbook.SheetNames[sheetNo - 1];
-        var worksheet = workbook.Sheets[first_sheet_name];
-        //  console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));    
-        let arraylist = XLSX.utils.sheet_to_json(worksheet, {
-            raw: false
-        });
-        this.filelist = arraylist;
-        let testNumber;
-        let PONumber
-        this.filelist.forEach(element => {
-                console.log("File Values", element)
-            if (element.TestNO != undefined || element.PO != undefined) {
-                testNumber = element.TestNO;
-                PONumber = element.PO;
-                let arrayHead = [element.TestNO,element.PO,element.Receiveddate, element.Date, element.PolyBag, element.VenderName,element.result, ']'];
-                let arrayBody = [element.TestNO, element.PO, element.Srno, element.Test, element.Unit, element.Standard, element.Result,element.Remarks, ']'];
-                HeaderArray.push(arrayHead);
-                ChildArray.push(arrayBody)
-            } else {
-                let arrayBody = [testNumber, PONumber, element.Srno, element.Test, element.Unit, element.Standard, element.Result,element.Remarks, ']'];
-                ChildArray.push(arrayBody)
-            }
-        });
-        $("#headerData").val(HeaderArray);
-        $("#childData").val(ChildArray);
-
-
-    }
-}
-}
             });
 
             $("#sendHeaderValues").click(function(e) {
@@ -9479,7 +9496,7 @@ if (fileSelectStore) {
                 var fd = new FormData();
                 var files = $("#img")[0].files[0];
                 $("#alertShown").css("display", "block");
-
+                let CssCodeValue = $("#cssCode").val();
                 let testGroup = $("#testGroup").val();
                 let testPerformer = $("#testPerformer").val();
                 fd.append('file', files);
@@ -9487,7 +9504,7 @@ if (fileSelectStore) {
                 fd.append('ChildArray', ChildArray);
                 fd.append('testGroup', testGroup);
                 fd.append('testPerformer', testPerformer);
-
+                fd.append('CSSCodeValue', CssCodeValue);
                 let testType = $("#testType").val();
                 if (testType == 1) {
                     url = '<?php echo base_url('LabController/addHeadData'); ?>'
@@ -9624,12 +9641,12 @@ if (fileSelectStore) {
 
                         }
                     });
-                } else if(testType == 9) {
-                   
-                    
+                } else if (testType == 9) {
+
+
                     url = '<?php echo base_url('LabController/addHeadDataMSMaterial'); ?>'
 
-                   
+
                     $.ajax({
                         url: url,
                         type: 'post',
@@ -9647,31 +9664,30 @@ if (fileSelectStore) {
                         }
                     });
 
+                } else if (testType == 10) {
+
+
+                    url = '<?php echo base_url('LabController/addHeadDataPolyBag'); ?>'
+
+
+                    $.ajax({
+                        url: url,
+                        type: 'post',
+                        data: fd,
+                        contentType: false,
+                        processData: false,
+                        function(data, status) {
+
+                            console.log(data);
+
+                            // setInterval(function() {
+                            //     window.location.reload();
+                            // }, 2000);
+
+                        }
+                    });
+
                 }
-                else if(testType == 10) {
-                   
-                    
-                   url = '<?php echo base_url('LabController/addHeadDataPolyBag'); ?>'
-
-                  
-                   $.ajax({
-                       url: url,
-                       type: 'post',
-                       data: fd,
-                       contentType: false,
-                       processData: false,
-                       function(data, status) {
-
-                           console.log(data);
-
-                           // setInterval(function() {
-                           //     window.location.reload();
-                           // }, 2000);
-
-                       }
-                   });
-
-               }
 
             });
 
@@ -9703,6 +9719,86 @@ if (fileSelectStore) {
             //                                                         <option value="4">Thread</option>
             //                                                         <option value="5">SR Blader</option>
             //                                                     </select>
+            function getData() {
+                css = $("#cssCode").val();
+                //alert("heloo");
+
+                url = "<?php echo base_url(''); ?>LabController/getCssRaw"
+                $.post(url, {
+                    "css": css
+                }, function(data) {
+                    console.log(data);
+                    //alert(data);
+                    materialType = data[0]['MaterialType'];
+                    Type = data[0]['Type'];
+                    $("#sheetNo").val(2);
+                    $("#materialType").val(materialType);
+                    if (materialType == 'Carton Test') {
+                        testType = 1;
+                    } else if (materialType == 'Foam') {
+                        testType = 2;
+                    } else if (materialType == 'Fabric') {
+                        testType = 3;
+                    } else if (materialType == 'Thread') {
+                        testType = 4;
+                    } else if (materialType == 'SR Blader') {
+                        testType = 5;
+                    } else if (materialType == 'Material') {
+                        testType = 6;
+                    } else if (materialType == 'FGT Report') {
+                        testType = 7;
+                    } else if (materialType == 'MS Thread') {
+                        testType = 8;
+                    } else if (materialType == 'MS Thread') {
+                        testType = 9;
+                    } else if (materialType == 'Poly Bag') {
+                        testType = 10;
+                    }
+
+                    //testtype=    $("#testType").val(testType);
+
+                    let Sheetvalue;
+                    if (testType == 1) {
+                        Sheetvalue = 2;
+                    } else if (testType == 2) {
+                        Sheetvalue = 2;
+                    } else if (testType == 3) {
+                        Sheetvalue = 2;
+                    } else if (testno == 4) {
+                        Sheetvalue = 2;
+                    } else if (testType == 5) {
+                        Sheetvalue = 2;
+                    } else if (testType == 6) {
+                        Sheetvalue = 2;
+                    } else if (testType == 7) {
+                        Sheetvalue = 2;
+                    } else if (testType == 8) {
+                        Sheetvalue = 2;
+                    } else if (testType == 9) {
+                        Sheetvalue = 2;
+                    } else if (testType == 10) {
+                        Sheetvalue = 2;
+                    }
+                    //alert(materialType);
+                    //alert(testType);
+                    //alert(Sheetvalue);
+                    $("#testType").val(testType);
+
+
+
+                    //s
+                    //alert(Type);
+                    $("#testGroup").val(Type);
+                    // $("#pshape").val(data['css'][0]['PanelShape']);
+                    // $("#backing").val(data['css'][0]['L4Name']);
+                    // $("#bladder").val(data['css'][1]['L4Name']);
+                    // $("#cmat").val(data['css'][2]['L4Name']);
+
+                });
+            }
+
+
+
             function SetSheetNo() {
                 testno = $("#testType").val();
                 //alert(testno);
@@ -9723,11 +9819,9 @@ if (fileSelectStore) {
                     Sheetvalue = 2;
                 } else if (testno == 8) {
                     Sheetvalue = 2;
-                }
-                else if (testno == 9) {
+                } else if (testno == 9) {
                     Sheetvalue = 2;
-                }
-                else if (testno == 10) {
+                } else if (testno == 10) {
                     Sheetvalue = 2;
                 }
 

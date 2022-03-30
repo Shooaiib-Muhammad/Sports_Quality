@@ -25,7 +25,8 @@ class LabModel extends CI_Model
         $picture,
         $testGroup,
         $testPerformer,
-        $child
+        $child,
+        $CSSValueAdd
     ) {
     
         date_default_timezone_set('Asia/Karachi');
@@ -38,6 +39,7 @@ class LabModel extends CI_Model
               ,Date
               ,Size
               ,PO
+              ,CSSNO
               ,Receiving_Date
               ,Supplier_Name
               ,Supplier_Ref
@@ -55,6 +57,7 @@ class LabModel extends CI_Model
               ,'$TestDate'
               ,'$ItemName'
               ,'$PONo'
+              ,'$CSSValueAdd'
               ,'$ReceivingDate'
               ,'$SupplierName'
               ,'$SupplierRef'
@@ -189,7 +192,8 @@ class LabModel extends CI_Model
         $picture,
         $testGroup,
         $testPerformer,
-        $child
+        $child,
+        $CSSValueAdd
     ) {
         date_default_timezone_set('Asia/Karachi');
         $Date = date('Y-m-d H:i:s');
@@ -200,6 +204,7 @@ class LabModel extends CI_Model
               (TestNO
               ,Date
               ,PO
+              ,CSSNO
               ,Receiving_Date
               ,Supplier_Ref
               ,Entrydate
@@ -212,6 +217,7 @@ class LabModel extends CI_Model
               ('$testNo'
               ,'$TestDate'
               ,'$PONo'
+              ,'$CSSValueAdd'
               ,'$ReceivingDate'
               ,'$SupplierRef'
               ,'$Date'
@@ -297,7 +303,8 @@ class LabModel extends CI_Model
         $picture,
         $testGroup,
         $testPerformer,
-        $child
+        $child,
+        $CSSValueAdd
     ) {
 
 
@@ -339,7 +346,7 @@ class LabModel extends CI_Model
               ,'$Result'
               ,'$ItemType'
               ,'$picture'
-              , '$CSSNO'
+              , '$CSSValueAdd'
               ,'Fabric'
               ,'$testGroup'
               ,'$testPerformer'
@@ -473,7 +480,8 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         $picture,
         $testGroup,
         $testPerformer,
-        $child
+        $child,
+        $CSSValueAdd
     ) {
 
 
@@ -515,7 +523,7 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
               ,'$Result'
               ,'$ItemType'
               ,'$picture'
-              , '$CSSNO'
+              , '$CSSValueAdd'
               ,'Material'
               ,'$testGroup'
               ,'$testPerformer'
@@ -651,7 +659,8 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         ,$thickness
         , $LinearDensity
         ,$twisrPerInch
-        ,$Result
+        ,$Result,
+        $CSSValueAdd
 
     ) {
         date_default_timezone_set('Asia/Karachi');
@@ -663,6 +672,7 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
               (TestNO
               ,Date
               ,PO
+              ,CSSNO
               ,Receiving_Date
               ,Supplier_Name
               ,Supplier_Ref
@@ -681,6 +691,7 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
               ('$testNo'
               ,'$TestDate'
               ,'$PONo'
+              ,'$CSSValueAdd'
               ,'$ReceivingDate'
               ,'$SupplierName'
               ,'$SupplierRef'
@@ -824,7 +835,8 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         $testPerformer,
         $child
         ,$Result
-        ,$MaterialName
+        ,$MaterialName,
+        $CSSValueAdd
     ) {
         date_default_timezone_set('Asia/Karachi');
         $Date = date('Y-m-d H:i:s');
@@ -840,6 +852,7 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
               (TestNO
               ,Date
               ,PO
+              ,CSSNO
               ,Receiving_Date
               ,Supplier_Name
               ,Supplier_Ref
@@ -856,6 +869,7 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
               ('$testNo'
               ,'$TestDate'
               ,'$PONo'
+              ,'$CSSValueAdd'
               ,'$ReceivingDate'
               ,'$SupplierName'
               ,'$SupplierRef'
@@ -1002,7 +1016,8 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         $child,
         $material
         ,$hardness
-        ,$remarks
+        ,$remarks,
+        $CSSValueAdd
     ) {
         date_default_timezone_set('Asia/Karachi');
         $Date = date('Y-m-d H:i:s');
@@ -1014,6 +1029,7 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
               ,Date
               ,Size
               ,PO
+              ,CSSNO
               ,Receiving_Date
               ,Supplier_Name
               ,Supplier_Ref
@@ -1031,6 +1047,7 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
               ,'$TestDate'
               ,'$Size'
               ,'$PONo'
+              ,'$CSSValueAdd'
               ,'$ReceivingDate'
               ,'$SupplierName'
               ,'$SupplierRef'
@@ -1201,7 +1218,8 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         $childArray ,
         $size,
         $Testedfor
-        ,$Note
+        ,$Note,
+        $CSSValueAdd
     ) {
         date_default_timezone_set('Asia/Karachi');
         $Date = date('Y-m-d H:i:s');
@@ -1230,7 +1248,7 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
               ('$TestNo'
               ,'$DateGet'
               ,'$ModelName'
-              ,'$CSSCode'
+              ,'$CSSValueAdd'
               ,'$Pressure'
               ,'$TempHumidity'
               ,'$Article'
@@ -1736,7 +1754,25 @@ WHERE        (Status = 'Send to Lab') AND (TestType = 'FGT Test')");
         return $query->result_array();
    
     }
+public function getmateialCssNO(){
 
+        $query = $this->db->query("SELECT        CSSNo
+FROM            dbo.tbl_lab_test_request
+WHERE        (Status = 'Send to Lab') AND (LabAcknowledgementStatus = 'Acknowledged') AND (Type = 'Material')");
+
+
+        return $query->result_array();
+    }
+    Public function getrawCss($Css){
+        
+        $query = $this->db->query("SELECT        view_get_Css_Data.*
+FROM            dbo.view_get_Css_Data
+WHERE        (CSSNo = '$Css')");
+
+
+        return $query->result_array();
+    }
+    
     public function getTestByRequester()
     {
         $user = $this->session->userdata('user_id');
@@ -1790,14 +1826,14 @@ WHERE        (testCatagoty = '$testCatagoty')");
         }
     }
 
-    public function AddRequest($testtype, $Type, $Sample_RequestDate, $Factory_Code, $Quantity_Issued, $Status, $po, $supplier)
+    public function AddRequest($testtype, $Type, $Sample_RequestDate, $Factory_Code, $Quantity_Issued, $Status, $po, $supplier, $MaterialType)
     {
         $user = $this->session->userdata('user_id');
         $userReceiver = 388;
         $query = $this->db->query("INSERT  INTO dbo.tbl_lab_test_request 
-      (Type,Sample_RequestDate,Factory_Code,Quantity_Issued,Status,SRSenderID,SRReceiverID,finalStatus,TestType,PONo,SupplierName)
+      (Type,Sample_RequestDate,Factory_Code,Quantity_Issued,Status,SRSenderID,SRReceiverID,finalStatus,TestType,PONo,SupplierName,MaterialType)
         VALUES
-        ('$Type','$Sample_RequestDate','$Factory_Code',$Quantity_Issued,'$Status',$user,$userReceiver,'Pending','$testtype', '$po', '$supplier')");
+        ('$Type','$Sample_RequestDate','$Factory_Code',$Quantity_Issued,'$Status',$user,$userReceiver,'Pending','$testtype', '$po', '$supplier','$MaterialType')");
         $RID = $this->db->insert_id();
 
 
@@ -1829,7 +1865,7 @@ WHERE        (Status = 1)");
     public function getRequestData($ID)
     {
         
-        $query = $this->db->query("SELECT        TID, Type, TestType, CONVERT(Varchar, Sample_RequestDate, 103) AS Sample_RequestDate, Factory_Code, PONo, SupplierName, Quantity_Issued
+        $query = $this->db->query("SELECT        TID, Type, TestType, CONVERT(Varchar, Sample_RequestDate, 103) AS Sample_RequestDate, Factory_Code, PONo, SupplierName, Quantity_Issued,MaterialType
 FROM            dbo.tbl_lab_test_request
 WHERE        (TID = $ID)");
 
@@ -2282,7 +2318,8 @@ return $query->result_array();
         $picture,
         $testGroup,
         $testPerformer,
-        $childArray
+        $childArray,
+        $CSSValueAdd
     ) {
       
         date_default_timezone_set('Asia/Karachi');
@@ -2294,6 +2331,7 @@ return $query->result_array();
               (TestNO
               ,Date
               ,PO
+              ,CSSNO
               ,MaterialRef
               ,Entrydate
               ,UserID
@@ -2305,6 +2343,7 @@ return $query->result_array();
               ('$TestNo'
               ,'$DateGet'
               ,'$PoNo'
+              ,'$CSSValueAdd'
               ,'$MaterialRef'
               ,'$Date'
               ,'$user_id'
@@ -2384,7 +2423,8 @@ return $query->result_array();
         $picture,
         $testGroup,
         $testPerformer,
-        $childArray
+        $childArray,
+        $CSSValueAdd
     ) {
 
       
@@ -2398,6 +2438,7 @@ return $query->result_array();
               (TestNO
               ,Date
               ,PO
+              ,CSSNO
               ,Receiving_Date
               ,PolyBag
               ,VenderName
@@ -2412,6 +2453,7 @@ return $query->result_array();
               ('$TestNo'
               ,'$DateGet'
               ,'$PO'
+              ,'$CSSValueAdd'
               ,'$Receiveddate'
               ,'$PolyBag'
               ,'$VenderName'

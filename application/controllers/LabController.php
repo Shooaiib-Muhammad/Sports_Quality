@@ -159,6 +159,8 @@ class LabController extends CI_Controller
         $Factory_Code = $_POST['Factory_Code'];
         // $Article = $_POST['Article'];
         // $TestID = $_POST['TestID'];
+
+        $MaterialType = $_POST['MaterialType'];
         $Quantity_Issued = $_POST['Quantity_Issued'];
         $Status = $_POST['Status'];
         $po = $_POST['po'];
@@ -173,12 +175,17 @@ class LabController extends CI_Controller
         } else {
             $supplier = 'Null';
         }
+        if ($MaterialType){
+            $MaterialType = $_POST['MaterialType'];
+        }else{
+            $MaterialType = 'Null';
+        }
 // Echo $testtype;
 //         echo $supplier;
 // die;
 
         // $data['detailsData'] = $this->l->getDetails($_GET['id']);
-        $data = $this->l->AddRequest($testtype, $Type, $Sample_RequestDate, $Factory_Code, $Quantity_Issued, $Status, $po, $supplier);
+        $data = $this->l->AddRequest($testtype, $Type, $Sample_RequestDate, $Factory_Code, $Quantity_Issued, $Status, $po, $supplier, $MaterialType);
 
         return $this->output
             ->set_content_type('application/json')
@@ -337,7 +344,20 @@ class LabController extends CI_Controller
     public function master_form()
     {
         $data['Labtest'] = $this->l->labtest();
+        $data['getCssNo'] = $this->l->getmateialCssNO();
+        
+        
         $this->load->view('LabMasterForm', $data);
+    }
+public function getCssRaw(){
+        //$data['getCssNo'] =
+        $data =$this->l->getrawCss($_POST['css']);
+        // print_r($data);
+        // die;
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
     }
 
     public function main_form()
@@ -501,6 +521,7 @@ class LabController extends CI_Controller
 
 
         $headerValue = $_POST['HeaderArray'];
+        $CSSValueAdd = $_POST['CSSCodeValue'];
         $header = explode(",", $headerValue);
 
         $childValue = $_POST['ChildArray'];
@@ -538,6 +559,7 @@ class LabController extends CI_Controller
             $testGroup,
             $testPerformer,
             $childArray
+            ,$CSSValueAdd
         );
     }
 
@@ -581,6 +603,7 @@ class LabController extends CI_Controller
 
 
         $headerValue = $_POST['HeaderArray'];
+        $CSSValueAdd = $_POST['CSSCodeValue'];
         $header = explode(",", $headerValue);
 
         $childValue = $_POST['ChildArray'];
@@ -609,6 +632,7 @@ class LabController extends CI_Controller
             $testGroup,
             $testPerformer,
             $childArray
+            ,$CSSValueAdd
         );
     }
 
@@ -652,6 +676,7 @@ class LabController extends CI_Controller
 
 
         $headerValue = $_POST['HeaderArray'];
+        $CSSValueAdd = $_POST['CSSCodeValue'];
         $header = explode(",", $headerValue);
 
         $childValue = $_POST['ChildArray'];
@@ -751,6 +776,7 @@ class LabController extends CI_Controller
             $testGroup,
             $testPerformer,
             $childArray
+            ,$CSSValueAdd
         );
     }
 
@@ -794,6 +820,7 @@ class LabController extends CI_Controller
 
 
         $headerValue = $_POST['HeaderArray'];
+        $CSSValueAdd = $_POST['CSSCodeValue'];
         $header = explode(",", $headerValue);
 
         $childValue = $_POST['ChildArray'];
@@ -892,6 +919,7 @@ class LabController extends CI_Controller
             $testGroup,
             $testPerformer,
             $childArray
+            ,$CSSValueAdd
         );
     }
 
@@ -936,6 +964,7 @@ class LabController extends CI_Controller
 
 
         $headerValue = $_POST['HeaderArray'];
+        $CSSValueAdd = $_POST['CSSCodeValue'];
         $header = explode(",", $headerValue);
 
         $childValue = $_POST['ChildArray'];
@@ -1028,7 +1057,8 @@ class LabController extends CI_Controller
             $Thickness,
             $LinearDensity,
             $TwistPerInch,
-            $Result
+            $Result,
+            $CSSValueAdd
         );
     }
 
@@ -1072,6 +1102,7 @@ class LabController extends CI_Controller
 
 
         $headerValue = $_POST['HeaderArray'];
+        $CSSValueAdd = $_POST['CSSCodeValue'];
         $header = explode(",", $headerValue);
 
         $childValue = $_POST['ChildArray'];
@@ -1160,7 +1191,8 @@ class LabController extends CI_Controller
             $testPerformer,
             $childArray,
             $Result,
-            $MaterialName
+            $MaterialName,
+            $CSSValueAdd
         );
     }
 
@@ -1204,6 +1236,7 @@ class LabController extends CI_Controller
 
 
         $headerValue = $_POST['HeaderArray'];
+        $CSSValueAdd = $_POST['CSSCodeValue'];
         $header = explode(",", $headerValue);
 
         $childValue = $_POST['ChildArray'];
@@ -1240,7 +1273,8 @@ class LabController extends CI_Controller
             $childArray,
             $Material,
             $Hardness,
-            $Remarks
+            $Remarks,
+            $CSSValueAdd
         );
     }
 
@@ -1284,6 +1318,7 @@ class LabController extends CI_Controller
 
 
         $headerValue = $_POST['HeaderArray'];
+        $CSSValueAdd = $_POST['CSSCodeValue'];
         $header = explode(",", $headerValue);
 
         $childValue = $_POST['ChildArray'];
@@ -1322,7 +1357,8 @@ class LabController extends CI_Controller
             $childArray,
             $size,
             $Testedfor,
-            $Note
+            $Note,
+            $CSSValueAdd
         );
     }
 
@@ -1428,7 +1464,7 @@ class LabController extends CI_Controller
 
 
         $headerValue = $_POST['HeaderArray'];
-     
+        $CSSValueAdd = $_POST['CSSCodeValue'];
         $header = explode(",", $headerValue);
 
         $childValue = $_POST['ChildArray'];
@@ -1454,7 +1490,8 @@ class LabController extends CI_Controller
             $picture,
             $testGroup,
             $testPerformer,
-            $childArray
+            $childArray,
+            $CSSValueAdd
         );
     }
 
@@ -1496,7 +1533,7 @@ class LabController extends CI_Controller
 
 
         $headerValue = $_POST['HeaderArray'];
-     
+        $CSSValueAdd = $_POST['CSSCodeValue'];
         $header = explode(",", $headerValue);
 
         $childValue = $_POST['ChildArray'];
@@ -1532,7 +1569,8 @@ class LabController extends CI_Controller
             $picture,
             $testGroup,
             $testPerformer,
-            $childArray
+            $childArray,
+            $CSSValueAdd
         );
 
     }

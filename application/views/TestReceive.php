@@ -236,11 +236,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <th>Request Date</th>
                                                                 <th>Type</th>
                                                                 <th>Factory Code</th>
-                                                                <th>Article</th>
+                                                                <th>Article / Material Name</th>
                                                              
                                                                 <th>Quantity Issed</th>
                         
-                                                                <!-- <th>Sender Reference</th> -->
+                                                                <th>Sender Reference</th>
                                                                 <th>Receiver Signature</th>
                                                                 <th>Status</th>
                                                                 <th>ACTIONS</th>
@@ -260,7 +260,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                    
                                                                     <td><?php echo $keys['Quantity_Issued']; ?></td>
                                                             
-                                                                    <!-- <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderID']; ?></span></td> -->
+                                                                    <td> <span class="badge badge-danger p-1"><?php echo $keys['SRSenderID']; ?></span></td>
                                                                     <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
                                                                    <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
                                                                  
@@ -292,7 +292,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <th>Type</th>
                                                                 <th>CSS Code</th>
                                                                 <th>Factory Code</th>
-                                                                <th>Article</th>
+                                                                <th>Article / Material Name</th>
                                                             
                                                                 <th>Quantity Issed</th>
                                                                 <th>Quantity Received</th>
@@ -300,7 +300,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <th>Quantity Returned</th>
                                                                 <th>Lab Result</th>
                                                                 <th>Lab Status</th>
-                                                                <!-- <th>Sender Reference</th> -->
+                                                                <th>Sender Reference</th>
                                                                 <th>Receiver Signature</th>
                                                                 <th>Sender Signature</th>
                                                                 <th>Status</th>
@@ -326,7 +326,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <td><?php echo $keys['Quantity_Returned']; ?></td>
                                                                     <td><?php echo $keys['Result']; ?></td>
                                                                     <td><span class="badge badge-secondary p-1"><?php echo $keys['LabAcknowledgementStatus']; ?></span></td>
-                                                                    <!-- <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderID']; ?></span></td> -->
+                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderID']; ?></span></td>
                                                                     <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
                                                                     <td> <span class="badge badge-primary p-1"><?php echo $keys['senderSignatureRec']; ?></span></td>
                                                                     <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
