@@ -379,7 +379,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                              
                                                             </div> -->
                                                             <div class="col-md-2">
-                                                               
+
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
@@ -387,8 +387,8 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                             </div>
                                                             <div class="col-md-2">
-                                                               
-                                                               </div>
+
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -697,16 +697,16 @@ if (!$this->session->has_userdata('user_id')) {
                                                               
                                                             </div> -->
                                                             <div class="col-md-2">
-                                                               
-                                                               </div>
+
+                                                            </div>
                                                             <div class="col-md-8">
                                                                 <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
                                                                 <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="foamImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
 
                                                             </div>
                                                             <div class="col-md-2">
-                                                               
-                                                               </div>
+
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1075,15 +1075,15 @@ if (!$this->session->has_userdata('user_id')) {
                                                               
                                                             </div> -->
                                                             <div class="col-md-2">
-                                                               
-                                                               </div>
+
+                                                            </div>
                                                             <div class="col-md-8">
                                                                 <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
                                                                 <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fabricImageStandardComp" style='margin-top:10px' height="100%" width="100%" alt="StandardReport" />
                                                             </div>
                                                             <div class="col-md-2">
-                                                               
-                                                               </div>
+
+                                                            </div>
                                                         </div>
 
                                                     </div>
@@ -1721,16 +1721,16 @@ if (!$this->session->has_userdata('user_id')) {
                                                             
                                                             </div> -->
                                                             <div class="col-md-2">
-                                                               
-                                                               </div>
+
+                                                            </div>
                                                             <div class="col-md-8">
                                                                 <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
                                                                 <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="materialImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
 
                                                             </div>
                                                             <div class="col-md-2">
-                                                               
-                                                               </div>
+
+                                                            </div>
                                                         </div>
 
                                                     </div>
@@ -2128,16 +2128,16 @@ if (!$this->session->has_userdata('user_id')) {
                                                               
                                                             </div> -->
                                                             <div class="col-md-2">
-                                                               
-                                                               </div>
+
+                                                            </div>
                                                             <div class="col-md-8">
                                                                 <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
                                                                 <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
 
                                                             </div>
                                                             <div class="col-md-2">
-                                                               
-                                                               </div>
+
+                                                            </div>
                                                         </div>
 
                                                     </div>
@@ -2529,15 +2529,15 @@ if (!$this->session->has_userdata('user_id')) {
                                                               
                                                             </div> -->
                                                             <div class="col-md-2">
-                                                            
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
-                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadMSImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
 
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
+                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadMSImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
+
+                                                            </div>
+                                                            <div class="col-md-2">
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2583,7 +2583,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th> </th>
                                                                 </tr>
                                                             </table>
-                                                           <table class="table">
+                                                            <table class="table">
                                                                 <tr>
                                                                     <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoBlader"> </span></label></th>
                                                                     <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestBlader"> </span></label></th>
@@ -2608,7 +2608,7 @@ if (!$this->session->has_userdata('user_id')) {
 
 
                                                             </table>
-                                                             <div class="col-md-2"></div>
+                                                            <div class="col-md-2"></div>
                                                             <div class="col-md-10 mt-3">
                                                                 <table class="table table-bordered" style="border:2px solid black">
                                                                     <thead>
@@ -2619,7 +2619,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 2</th>
                                                                             <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 3</th>
                                                                             <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 4</th>
-                                                                
+
 
 
                                                                         </tr>
@@ -2631,9 +2631,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                             </div>
 
                                                             <div class="col-md-2"></div>
-                                                         
+
                                                             <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Remarks:</span> <span style="font-size: medium;font-weight:bold" id="remarksBlader"> </span></label></div>
-                                                      
+
                                                             <table class="table">
                                                                 <tr>
                                                                     <th></th>
@@ -2678,7 +2678,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </th>
                                                                 </tr>
                                                             </table>
-                                                         
+
                                                         </div>
 
                                                     </div>
@@ -2822,7 +2822,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                              
                                                             </div> -->
                                                             <div class="col-md-2">
-                                                            
+
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
@@ -2830,7 +2830,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                             </div>
                                                             <div class="col-md-2">
-                                                            
+
                                                             </div>
                                                         </div>
 
@@ -3230,17 +3230,17 @@ if (!$this->session->has_userdata('user_id')) {
                                                               
                                                             </div> -->
                                                             <div class="col-md-2">
-                                                            
-                                                            </div>
-                                                        <div class="col-md-8">
-                                                            <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
-                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fgtImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
 
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            
                                                             </div>
-                            </div>
+                                                            <div class="col-md-8">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
+                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fgtImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
+
+                                                            </div>
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -3650,8 +3650,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                             </td>
 
                                                             <!-- <?php
-                                                            if ($Key['ItemType'] == 'Fabric') {
-                                                            ?>
+                                                                    if ($Key['ItemType'] == 'Fabric') {
+                                                                    ?>
                                                                 <td>
                                                                     <div class="col-md-2">
 
@@ -3661,7 +3661,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </div>
                                                                 </td>
                                                             <?php
-                                                            } else {
+                                                                    } else {
                                                             ?>
                                                                 <td>
                                                                     <div class="col-md-2">
@@ -3671,7 +3671,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </td>
 
                                                             <?php
-                                                            }
+                                                                    }
                                                             ?> -->
 
 
@@ -3681,7 +3681,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <td>
                                                                     <div class="col-md-2">
 
-                                                                        <button type="button" class="btn btn-warning btn-xs standardButton waves-effect waves-themed" id="btnPrint.${element.TID}">Standard</button>
+                                                                        <button type="button" class="btn btn-warning btn-xs standardButton waves-effect waves-themed" id="btnPrint.${element.TID}">Development Reports</button>
 
 
                                                                     </div>
@@ -3940,7 +3940,7 @@ ${reviewStatus == '1' ?
  ` <td>
              <div class="col-md-2">
                
-             <button type="button" class="btn btn-warning btn-xs customstandardButton waves-effect waves-themed" id="btnPrint.${element.TID}">Standard</button>
+             <button type="button" class="btn btn-warning btn-xs customstandardButton waves-effect waves-themed" id="btnPrint.${element.TID}">Development Reports</button>
            
       
                 </div>
@@ -4204,7 +4204,7 @@ ${reviewStatus == '1' ?
   ` <td>
              <div class="col-md-2">
                
-             <button type="button" class="btn btn-warning btn-xs customstandardButton waves-effect waves-themed" id="btnPrint.${element.TID}">Standard</button>
+             <button type="button" class="btn btn-warning btn-xs customstandardButton waves-effect waves-themed" id="btnPrint.${element.TID}">Development Reports</button>
            
       
                 </div>
