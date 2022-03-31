@@ -1886,6 +1886,14 @@ WHERE        (TID = $ID)");
             return false;
         }
     }
+    public function getrequesttest($Requestid){
+        $query = $this->db->query(" SELECT * 
+    FROM            dbo.view_get_test_name
+    WHERE RequestID='$Requestid'");
+
+        return $query->result_array();
+
+    }
     public function requesttestYpe($RID){
         
         $query = $this->db->query(" SELECT * 

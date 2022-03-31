@@ -71,10 +71,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <tr>
                                                                 <th>Request Date</th>
                                                                 <th>Type</th>
+                                                                <th>Material</th>
                                                                 <th>CSS Code</th>
                                                                 <th>Factory Code</th>
                                                                 <th>Article / Material Name</th>
-
+                                                                <th>Test Requested</th>
                                                                 <th>Quantity Issed</th>
                                                                 <th>Quantity Received</th>
                                                                 <th>Quantity Retained</th>
@@ -90,17 +91,33 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </thead>
                                                         <tbody>
                                                             <?php //print_r($loadFGT_H);
+                                                            $this->load->model('LabModel', 'l');
                                                             foreach ($getTestByLabPending as $keys) {
-
+                                                                $Requestid = $keys['TID'];
+                                                                $gettests = $this->l->getrequesttest($Requestid);
+                                                                //   print_r($gettests);
+                                                                if ($gettests) {
+                                                                    // $name = implode(",", $gettests['Name']);
+                                                                    // echo $name;
+                                                                    //echo 'The values are: ';
+                                                                    $result = '';
+                                                                    foreach ($gettests as $key) {
+                                                                        $result .= $key['Name'] . ',';
+                                                                    }
+                                                                    $result = rtrim($result, ',');
+                                                                } else {
+                                                                    $result = '';
+                                                                }
                                                             ?>
 
                                                                 <tr>
                                                                     <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
                                                                     <td><?php echo $keys['Type']; ?></td>
+                                                                    <td><?php echo $keys['MaterialType']; ?></td>
                                                                     <td><?php echo $keys['CSSNo']; ?></td>
                                                                     <td><?php echo $keys['Factory_Code']; ?></td>
                                                                     <td><?php echo $keys['Article']; ?></td>
-
+                                                                    <td> <?php echo $result; ?></td>
                                                                     <td><?php echo $keys['Quantity_Issued']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Received']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Retained']; ?></td>
@@ -138,10 +155,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <tr>
                                                                 <th>Request Date</th>
                                                                 <th>Type</th>
+                                                                <th>Material</th>
                                                                 <th>CSS Code</th>
                                                                 <th>Factory Code</th>
                                                                 <th>Article / Material Name</th>
-
+                                                                <th>Test Requested</th>
                                                                 <th>Quantity Issed</th>
                                                                 <th>Quantity Received</th>
                                                                 <th>Quantity Retained</th>
@@ -156,19 +174,36 @@ if (!$this->session->has_userdata('user_id')) {
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <?php 
-                                                           // print_r($getTestByLabAcknowledge);
-                                                            foreach ($getTestByLabAcknowledge as $keys) {
+                                                            <?php
 
+                                                            // print_r($getTestByLabAcknowledge);
+                                                            foreach ($getTestByLabAcknowledge as $keys) {
+                                                                $Requestid = $keys['TID'];
+                                                                $gettests = $this->l->getrequesttest($Requestid);
+                                                                //   print_r($gettests);
+                                                                if ($gettests) {
+                                                                    // $name = implode(",", $gettests['Name']);
+                                                                    // echo $name;
+                                                                    //echo 'The values are: ';
+                                                                    $result = '';
+                                                                    foreach ($gettests as $key) {
+                                                                        $result .= $key['Name'] . ',';
+                                                                    }
+                                                                    $result = rtrim($result, ',');
+                                                                } else {
+                                                                    $result = '';
+                                                                }
                                                             ?>
 
                                                                 <tr>
                                                                     <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
                                                                     <td><?php echo $keys['Type']; ?></td>
+
+                                                                    <td><?php echo $keys['MaterialType']; ?></td>
                                                                     <td><?php echo $keys['CSSNo']; ?></td>
                                                                     <td><?php echo $keys['Factory_Code']; ?></td>
                                                                     <td><?php echo $keys['Article']; ?></td>
-
+                                                                    <td> <?php echo $result; ?></td>
                                                                     <td><?php echo $keys['Quantity_Issued']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Received']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Retained']; ?></td>

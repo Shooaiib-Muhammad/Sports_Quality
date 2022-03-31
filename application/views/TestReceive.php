@@ -235,11 +235,12 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <tr>
                                                                 <th>Request Date</th>
                                                                 <th>Type</th>
+                                                                <th>Material</th>
                                                                 <th>Factory Code</th>
                                                                 <th>Article / Material Name</th>
-                                                             
+                                                                <th>Test Requested</th>
                                                                 <th>Quantity Issed</th>
-                        
+
                                                                 <th>Sender Reference</th>
                                                                 <th>Receiver Signature</th>
                                                                 <th>Status</th>
@@ -248,23 +249,40 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </thead>
                                                         <tbody>
                                                             <?php //print_r($loadFGT_H);
+                                                            $this->load->model('LabModel', 'l');
                                                             foreach ($getTestRequests as $keys) {
+                                                                $Requestid = $keys['TID'];
+                                                                $gettests = $this->l->getrequesttest($Requestid);
+                                                                //   print_r($gettests);
+                                                                if ($gettests) {
+                                                                    // $name = implode(",", $gettests['Name']);
+                                                                    // echo $name;
+                                                                    //echo 'The values are: ';
+                                                                    $result = '';
+                                                                    foreach ($gettests as $key) {
+                                                                        $result .= $key['Name'] . ',';
+                                                                    }
+                                                                    $result = rtrim($result, ',');
+                                                                } else {
+                                                                    $result = '';
+                                                                }
 
                                                             ?>
 
                                                                 <tr>
                                                                     <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
                                                                     <td><?php echo $keys['Type']; ?></td>
+                                                                    <td><?php echo $keys['MaterialType']; ?></td>
                                                                     <td><?php echo $keys['Factory_Code']; ?></td>
                                                                     <td><?php echo $keys['Article']; ?></td>
-                                                                   
+                                                                    <td> <?php echo $result; ?></td>
                                                                     <td><?php echo $keys['Quantity_Issued']; ?></td>
-                                                            
+
                                                                     <td> <span class="badge badge-danger p-1"><?php echo $keys['SRSenderID']; ?></span></td>
                                                                     <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
-                                                                   <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
-                                                                 
-                                                                   <td>
+                                                                    <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
+
+                                                                    <td>
                                                                         <div class="col-md-2">
                                                                             <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo $keys['TID']; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
                                                                             <!-- <button type="button" style="display: inline-block;" id="undo.<?php echo $keys['TID']; ?>" value="<?php echo $keys['TID']; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> -->
@@ -290,10 +308,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <tr>
                                                                 <th>Request Date</th>
                                                                 <th>Type</th>
+                                                                <th>Material</th>
                                                                 <th>CSS Code</th>
                                                                 <th>Factory Code</th>
                                                                 <th>Article / Material Name</th>
-                                                            
+                                                                <th>Test Requested</th>
                                                                 <th>Quantity Issed</th>
                                                                 <th>Quantity Received</th>
                                                                 <th>Quantity Retained</th>
@@ -310,16 +329,31 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <tbody>
                                                             <?php //print_r($loadFGT_H);
                                                             foreach ($getTestRequestsSendToLab as $keys) {
-
+                                                                $Requestid = $keys['TID'];
+                                                                $gettests = $this->l->getrequesttest($Requestid);
+                                                                //   print_r($gettests);
+                                                                if ($gettests) {
+                                                                    // $name = implode(",", $gettests['Name']);
+                                                                    // echo $name;
+                                                                    //echo 'The values are: ';
+                                                                    $result = '';
+                                                                    foreach ($gettests as $key) {
+                                                                        $result .= $key['Name'] . ',';
+                                                                    }
+                                                                    $result = rtrim($result, ',');
+                                                                } else {
+                                                                    $result = '';
+                                                                }
                                                             ?>
 
                                                                 <tr>
                                                                     <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
                                                                     <td><?php echo $keys['Type']; ?></td>
+                                                                    <td><?php echo $keys['MaterialType']; ?></td>
                                                                     <td><?php echo $keys['CSSNo']; ?></td>
                                                                     <td><?php echo $keys['Factory_Code']; ?></td>
                                                                     <td><?php echo $keys['Article']; ?></td>
-                                                                 
+                                                                    <td> <?php echo $result; ?></td>
                                                                     <td><?php echo $keys['Quantity_Issued']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Received']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Retained']; ?></td>
@@ -330,7 +364,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
                                                                     <td> <span class="badge badge-primary p-1"><?php echo $keys['senderSignatureRec']; ?></span></td>
                                                                     <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
-                                                                 
+
                                                                     <td>
 
                                                                         <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtnBacktoSender" id="btn.<?php echo $keys['TID']; ?>">Back to Sender</button>
@@ -359,10 +393,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <tr>
                                                                 <th>Request Date</th>
                                                                 <th>Type</th>
+                                                                <th>Material</th>
                                                                 <th>CSS Code</th>
                                                                 <th>Factory Code</th>
-                                                                <th>Article</th>
-                                                            
+                                                                <th>Article / Material Name</th>
+                                                                <th>Test Requested</th>
                                                                 <th>Qty. Issed</th>
                                                                 <th>Qty. Received</th>
                                                                 <th>Qty. Retained</th>
@@ -381,21 +416,36 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <tbody>
                                                             <?php //print_r($loadFGT_H);
                                                             foreach ($getTestRequestsSendToRequester as $keys) {
-
+                                                                $Requestid = $keys['TID'];
+                                                                $gettests = $this->l->getrequesttest($Requestid);
+                                                                //   print_r($gettests);
+                                                                if ($gettests) {
+                                                                    // $name = implode(",", $gettests['Name']);
+                                                                    // echo $name;
+                                                                    //echo 'The values are: ';
+                                                                    $result = '';
+                                                                    foreach ($gettests as $key) {
+                                                                        $result .= $key['Name'] . ',';
+                                                                    }
+                                                                    $result = rtrim($result, ',');
+                                                                } else {
+                                                                    $result = '';
+                                                                }
                                                             ?>
 
                                                                 <tr>
                                                                     <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
                                                                     <td><?php echo $keys['Type']; ?></td>
+                                                                    <td><?php echo $keys['MaterialType']; ?></td>
                                                                     <td><?php echo $keys['CSSNo']; ?></td>
                                                                     <td><?php echo $keys['Factory_Code']; ?></td>
                                                                     <td><?php echo $keys['Article']; ?></td>
-                                                                 
+                                                                    <td> <?php echo $result; ?></td>
                                                                     <td><?php echo $keys['Quantity_Issued']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Received']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Retained']; ?></td>
                                                                     <td><?php echo $keys['Quantity_Returned']; ?></td>
-                                                                    <td><?php echo ($keys['Quantity_Received'] -$keys['Quantity_Returned']) ?></td>
+                                                                    <td><?php echo ($keys['Quantity_Received'] - $keys['Quantity_Returned']) ?></td>
                                                                     <!-- <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderID']; ?></span></td> -->
                                                                     <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
                                                                     <td> <span class="badge badge-primary p-1"><?php echo $keys['senderSignatureRec']; ?></span></td>
@@ -484,25 +534,24 @@ if (!$this->session->has_userdata('user_id')) {
             var TID = split_value[1];
             let proceed = confirm("Are you sure you want send Results back to Requester?");
             if (proceed) {
-            let quantity = prompt("Enter Quantity Returned");
-            url = "<?php echo base_url(''); ?>LabController/TestRequestById";
-            url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestBackToSender";
-            $.post(url, {
-                'Id': TID
-            }, function(data, status) {
-                $.post(url2, {
-                    'Id': TID,
-                    'Quantity':quantity,
-                    'receiverId': data[0].SRSenderID,
-                    'senderId': data[0].SRReceiverID
+                let quantity = prompt("Enter Quantity Returned");
+                url = "<?php echo base_url(''); ?>LabController/TestRequestById";
+                url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestBackToSender";
+                $.post(url, {
+                    'Id': TID
                 }, function(data, status) {
-                    alert("Data Updated Successfully! Click on Ok to Reload the Page")
-                    window.location.reload();
+                    $.post(url2, {
+                        'Id': TID,
+                        'Quantity': quantity,
+                        'receiverId': data[0].SRSenderID,
+                        'senderId': data[0].SRReceiverID
+                    }, function(data, status) {
+                        alert("Data Updated Successfully! Click on Ok to Reload the Page")
+                        window.location.reload();
+                    });
                 });
-            });
-            }
-            else{
-                alert("Sending Cancel");  
+            } else {
+                alert("Sending Cancel");
             }
         });
 
