@@ -3768,6 +3768,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <th>Factory Code</th>
                                                             <th>Article / Material Name</th>
                                                             <th>Test Requested</th>
+                                                            <th>Due Date</th>
+                                                            <th>Complete Date</th>
                                                             <th>Quantity Issed</th>
                                                             <th>Sender Reference</th>
                                                             <th>Receiver Signature Receiving</th>
@@ -3810,6 +3812,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <td><?php echo $keys['Factory_Code']; ?></td>
                                                                 <td><?php echo $keys['Article']; ?></td>
                                                                 <td> <?php echo $result; ?></td>
+                                                                <td><?php echo date('d-m-Y', strtotime($keys['Due_Date'])); ?></td>
+                                                                <td><?php echo date('d-m-Y', strtotime($keys['CompletationDate'])); ?></td>
                                                                 <td><?php echo $keys['Quantity_Issued']; ?></td>
                                                                 <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderIDName']; ?></span></td>
                                                                 <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
