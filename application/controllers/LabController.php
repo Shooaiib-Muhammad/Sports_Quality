@@ -1390,6 +1390,14 @@ public function getCssRaw(){
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
+    public function undo($TID)
+    {
+        $data = $this->l->undo($TID);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
     public function undotestitems($DTID)
     {
         $data = $this->l->undotestitems($DTID);

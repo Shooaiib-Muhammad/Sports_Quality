@@ -273,7 +273,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div class="card-body">
 
                                                         <div class="row">
-                                                            <div class="col-md-6">
+                                                            <!-- <div class="col-md-6">
                                                                 <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
                                                                 <table class="table">
                                                                     <tr>
@@ -285,10 +285,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <th></th>
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-           <div class="col-md-3"></div>
-           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
-                                                                <table class="table">
+                                                               <table class="table">
                                                                     <tr>
                                                                         <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoStandard"> </span></label></th>
                                                                         <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestStandard"> </span></label></th>
@@ -298,13 +295,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoStandard"> </span></label></th>
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-6">
-            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-            </div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
-                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateStandard"> </span></label></div>
+                                                                  <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateStandard"> </span></label></div>
                                                                 <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameStandard"> </span></label></div>
                                                                 <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefStandard"> </span></label></div>
                                                                 <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Quantity Carton:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="quantityCartonStandard"> </span></label></div>
@@ -319,15 +310,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                 <th style="text-align: center;font-size:large;border:2px solid black">
                                                                                     Result
                                                                                 </th>
-                                                                                <!-- <table style="width: 100%;">
-                                   <thead >
-                                       <tr >
-                                        <th>1</th>
-                                        <th>2</th>
-                                        <th>3</th>
-                                       </tr>
-                                   </thead> 
-                                </table> -->
+                                                                        
 
 
                                                                             </tr>
@@ -339,32 +322,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </div>
 
                                                                 <div class="col-md-2"></div>
-                                                                <!-- <div class="col-md-4">
-                <table class="table table-bordered" style="border:2px solid black"> 
-                       <thead>
-                           <tr>
-                               <th style="border:2px solid black">Lab Reading</th>
-                               <th colspan="2" style="border:2px solid black">Humidity</th>
-                           </tr>
-                       </thead>
-                       <tbody>
-                           <tr >
-                               <td rowspan="2"></td>
-                               <td style="border:2px solid black">Max</td>
-                               <td style="border:2px solid black">Min</td>
-                           </tr>
-                           <tr >
-                             
-                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                               
-                           </tr>
-                       </tbody>         
-                </table>
-            </div> -->
+                                                                
                                                                 <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionStandard"> </span></label></div>
-                                                                <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
-
+                                                              
                                                                 <table class="table">
                                                                     <tr>
                                                                         <th></th>
@@ -416,31 +376,26 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <th></th>
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-          Habib Ur Rehman
-            </div>
-            <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-            Sohail Ghouri
-            </div>
-            <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-            Sohail Ghouri
-            </div> -->
+                                                             
+                                                            </div> -->
+                                                            <div class="col-md-2">
+                                                               
                                                             </div>
-                                                            <div class="col-md-6">
-                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Standards</h3>
+                                                            <div class="col-md-8">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
                                                                 <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="cartonImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
 
                                                             </div>
+                                                            <div class="col-md-2">
+                                                               
+                                                               </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardStandard')" data-dismiss="modal">Print Report</button>
+                                                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardStandard')" data-dismiss="modal">Print Report</button> -->
                                             </div>
                                             <div class="card-footer text-muted">
                                                 Forward Sports Pvt. Ltd.
@@ -645,7 +600,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div class="card-body">
 
                                                         <div class="row">
-                                                            <div class="col-md-6">
+                                                            <!-- <div class="col-md-6">
                                                                 <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
                                                                 <table class="table">
                                                                     <tr>
@@ -657,10 +612,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <th> </th>
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-           <div class="col-md-3"></div>
-           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
-                                                                <table class="table">
+                                                              <table class="table">
                                                                     <tr>
                                                                         <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFoamStandard"> </span></label></th>
                                                                         <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFoamStandard"> </span></label></th>
@@ -670,13 +622,6 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoamStandard"> </span></label></th>
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-6">
-            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-            </div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
-                                                                <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
                                                                 <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFoamStandard"> </span></label></div>
                                                                 <div class="col-md-2"></div>
                                                                 <div class="col-md-10 mt-3">
@@ -689,15 +634,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                 <th style="text-align: center;font-size:large;border:2px solid black">
                                                                                     Standard
                                                                                 </th>
-                                                                                <!-- <table style="width: 100%;">
-                                   <thead >
-                                       <tr >
-                                        <th>1</th>
-                                        <th>2</th>
-                                        <th>3</th>
-                                       </tr>
-                                   </thead> 
-                                </table> -->
+                                                                        
 
 
                                                                             </tr>
@@ -709,32 +646,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </div>
 
                                                                 <div class="col-md-2"></div>
-                                                                <!-- <div class="col-md-4">
-                <table class="table table-bordered" style="border:2px solid black"> 
-                       <thead>
-                           <tr>
-                               <th style="border:2px solid black">Lab Reading</th>
-                               <th colspan="2" style="border:2px solid black">Humidity</th>
-                           </tr>
-                       </thead>
-                       <tbody>
-                           <tr >
-                               <td rowspan="2"></td>
-                               <td style="border:2px solid black">Max</td>
-                               <td style="border:2px solid black">Min</td>
-                           </tr>
-                           <tr >
-                             
-                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                               
-                           </tr>
-                       </tbody>         
-                </table>
-            </div> -->
+                                                              
                                                                 <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionFoamStandard"> </span></label></div>
-                                                                <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
-
+                                                            
                                                                 <table class="table">
                                                                     <tr>
                                                                         <th></th>
@@ -780,31 +694,26 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         </th>
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-          Habib Ur Rehman
-            </div>
-            <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-            Sohail Ghouri
-            </div>
-            <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-            Sohail Ghouri
-            </div> -->
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Standards</h3>
+                                                              
+                                                            </div> -->
+                                                            <div class="col-md-2">
+                                                               
+                                                               </div>
+                                                            <div class="col-md-8">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
                                                                 <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="foamImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
 
                                                             </div>
+                                                            <div class="col-md-2">
+                                                               
+                                                               </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardFoamStandard')" data-dismiss="modal">Print Report</button>
+                                                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardFoamStandard')" data-dismiss="modal">Print Report</button> -->
                                             </div>
                                             <div class="card-footer text-muted">
                                                 Forward Sports Pvt. Ltd.
@@ -1048,7 +957,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div class="card-body">
 
                                                         <div class="row">
-                                                            <div class="col-md-6">
+                                                            <!-- <div class="col-md-6">
                                                                 <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
                                                                 <table class="table">
                                                                     <tr>
@@ -1087,9 +996,6 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         </td>
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-           <div class="col-md-3"></div>
-           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
                                                                 <table class="table">
                                                                     <tr>
                                                                         <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFabricStandard"> </span></label></th>
@@ -1108,19 +1014,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoFabricStandard"> </span></label></th>
                                                                     </tr>
                                                                     <tr>
-                                                                        <!-- <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameFabric"> </span></label></th> -->
                                                                         <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabricStandard"> </span></label></th>
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-6">
-            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-            </div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
-                                                                <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
-                                                                <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
-                                                                <div class="col-md-2"></div>
+                                                               <div class="col-md-2"></div>
                                                                 <div class="col-md-10 mt-3">
                                                                     <table class="table table-bordered" style="border:2px solid black">
                                                                         <thead>
@@ -1131,15 +1028,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                 <th style="text-align: center;font-size:large;border:2px solid black">
                                                                                     Remark
                                                                                 </th>
-                                                                                <!-- <table style="width: 100%;">
-                                   <thead >
-                                       <tr >
-                                        <th>1</th>
-                                        <th>2</th>
-                                        <th>3</th>
-                                       </tr>
-                                   </thead> 
-                                </table> -->
+                                                                         
 
 
                                                                             </tr>
@@ -1151,32 +1040,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </div>
 
                                                                 <div class="col-md-2"></div>
-                                                                <!-- <div class="col-md-4">
-                <table class="table table-bordered" style="border:2px solid black"> 
-                       <thead>
-                           <tr>
-                               <th style="border:2px solid black">Lab Reading</th>
-                               <th colspan="2" style="border:2px solid black">Humidity</th>
-                           </tr>
-                       </thead>
-                       <tbody>
-                           <tr >
-                               <td rowspan="2"></td>
-                               <td style="border:2px solid black">Max</td>
-                               <td style="border:2px solid black">Min</td>
-                           </tr>
-                           <tr >
-                             
-                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                               
-                           </tr>
-                       </tbody>         
-                </table>
-            </div> -->
-                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionFabricStandard"> </span></label></div>
-                                                                <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
 
+                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionFabricStandard"> </span></label></div>
+                                                             
                                                                 <table class="table">
 
                                                                     <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
@@ -1206,31 +1072,26 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         </th>
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-          Habib Ur Rehman
-            </div>
-            <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-            Sohail Ghouri
-            </div>
-            <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-            Sohail Ghouri
-            </div> -->
+                                                              
+                                                            </div> -->
+                                                            <div class="col-md-2">
+                                                               
+                                                               </div>
+                                                            <div class="col-md-8">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
+                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fabricImageStandardComp" style='margin-top:10px' height="100%" width="100%" alt="StandardReport" />
                                                             </div>
-                                                            <div class="col-md-6">
-                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Standards</h3>
-                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fabricImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
-                                                            </div>
+                                                            <div class="col-md-2">
+                                                               
+                                                               </div>
                                                         </div>
 
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardFabricStandard')" data-dismiss="modal">Print Report</button>
+                                                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardFabricStandard')" data-dismiss="modal">Print Report</button> -->
                                             </div>
                                             <div class="card-footer text-muted">
                                                 Forward Sports Pvt. Ltd.
@@ -1727,7 +1588,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div class="card-body">
 
                                                         <div class="row">
-                                                            <div class="col-md-6">
+                                                            <!-- <div class="col-md-6">
                                                                 <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
                                                                 <table class="table">
                                                                     <tr>
@@ -1766,9 +1627,6 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         </td>
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-           <div class="col-md-3"></div>
-           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
                                                                 <table class="table">
                                                                     <tr>
                                                                         <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoMaterialStandard"> </span></label></th>
@@ -1787,19 +1645,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoMaterialStandard"> </span></label></th>
                                                                     </tr>
                                                                     <tr>
-                                                                        <!-- <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameFabric"> </span></label></th> -->
                                                                         <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefMaterialStandard"> </span></label></th>
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-6">
-            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-            </div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
-                                                                <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
-                                                                <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
-                                                                <div class="col-md-2"></div>
+                                                              <div class="col-md-2"></div>
                                                                 <div class="col-md-10 mt-3">
                                                                     <table class="table table-bordered" style="border:2px solid black">
                                                                         <thead>
@@ -1810,15 +1659,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                 <th style="text-align: center;font-size:large;border:2px solid black">
                                                                                     Remark
                                                                                 </th>
-                                                                                <!-- <table style="width: 100%;">
-                                   <thead >
-                                       <tr >
-                                        <th>1</th>
-                                        <th>2</th>
-                                        <th>3</th>
-                                       </tr>
-                                   </thead> 
-                                </table> -->
+                                                                    
 
 
                                                                             </tr>
@@ -1830,32 +1671,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </div>
 
                                                                 <div class="col-md-2"></div>
-                                                                <!-- <div class="col-md-4">
-                <table class="table table-bordered" style="border:2px solid black"> 
-                       <thead>
-                           <tr>
-                               <th style="border:2px solid black">Lab Reading</th>
-                               <th colspan="2" style="border:2px solid black">Humidity</th>
-                           </tr>
-                       </thead>
-                       <tbody>
-                           <tr >
-                               <td rowspan="2"></td>
-                               <td style="border:2px solid black">Max</td>
-                               <td style="border:2px solid black">Min</td>
-                           </tr>
-                           <tr >
-                             
-                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                               
-                           </tr>
-                       </tbody>         
-                </table>
-            </div> -->
+                                                              
                                                                 <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionMaterialStandard"> </span></label></div>
-                                                                <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
-
+                                                          
                                                                 <table class="table">
                                                                     <tr>
                                                                         <th></th>
@@ -1900,32 +1718,27 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         </th>
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-          Habib Ur Rehman
-            </div>
-            <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-            Sohail Ghouri
-            </div>
-            <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-            Sohail Ghouri
-            </div> -->
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Standards</h3>
+                                                            
+                                                            </div> -->
+                                                            <div class="col-md-2">
+                                                               
+                                                               </div>
+                                                            <div class="col-md-8">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
                                                                 <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="materialImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
 
                                                             </div>
+                                                            <div class="col-md-2">
+                                                               
+                                                               </div>
                                                         </div>
 
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardMaterialStandard')" data-dismiss="modal">Print Report</button>
+                                                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardMaterialStandard')" data-dismiss="modal">Print Report</button> -->
                                             </div>
                                             <div class="card-footer text-muted">
                                                 Forward Sports Pvt. Ltd.
@@ -2175,7 +1988,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div class="card-body">
 
                                                         <div class="row">
-                                                            <div class="col-md-6">
+                                                            <!-- <div class="col-md-6">
                                                                 <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
                                                                 <table class="table">
                                                                     <tr>
@@ -2214,10 +2027,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         </td>
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-           <div class="col-md-3"></div>
-           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
-                                                                <table class="table">
+                                                              <table class="table">
                                                                     <tr>
                                                                         <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoThreadStandard"> </span></label></th>
 
@@ -2245,15 +2055,7 @@ if (!$this->session->has_userdata('user_id')) {
 
 
                                                                 </table>
-                                                                <!-- <div class="col-md-6">
-            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-            </div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
-                                                                <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
-                                                                <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
-                                                                <div class="col-md-2"></div>
+                                                               <div class="col-md-2"></div>
                                                                 <div class="col-md-10 mt-3">
                                                                     <table class="table table-bordered" style="border:2px solid black">
                                                                         <thead>
@@ -2264,15 +2066,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                 <th style="text-align: center;font-size:large;border:2px solid black">
                                                                                     Ext. at 350.0 N (mm)
                                                                                 </th>
-                                                                                <!-- <table style="width: 100%;">
-                                   <thead >
-                                       <tr >
-                                        <th>1</th>
-                                        <th>2</th>
-                                        <th>3</th>
-                                       </tr>
-                                   </thead> 
-                                </table> -->
+                                                                                
 
 
                                                                             </tr>
@@ -2284,32 +2078,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </div>
 
                                                                 <div class="col-md-2"></div>
-                                                                <!-- <div class="col-md-4">
-                <table class="table table-bordered" style="border:2px solid black"> 
-                       <thead>
-                           <tr>
-                               <th style="border:2px solid black">Lab Reading</th>
-                               <th colspan="2" style="border:2px solid black">Humidity</th>
-                           </tr>
-                       </thead>
-                       <tbody>
-                           <tr >
-                               <td rowspan="2"></td>
-                               <td style="border:2px solid black">Max</td>
-                               <td style="border:2px solid black">Min</td>
-                           </tr>
-                           <tr >
-                             
-                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                               
-                           </tr>
-                       </tbody>         
-                </table>
-            </div> -->
+                                                            
                                                                 <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionThreadStandard"> </span></label></div>
-                                                                <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
-
+                                                             
                                                                 <table class="table">
                                                                     <tr>
                                                                         <th></th>
@@ -2354,32 +2125,27 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         </th>
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-          Habib Ur Rehman
-            </div>
-            <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-            Sohail Ghouri
-            </div>
-            <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-            Sohail Ghouri
-            </div> -->
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Standards</h3>
+                                                              
+                                                            </div> -->
+                                                            <div class="col-md-2">
+                                                               
+                                                               </div>
+                                                            <div class="col-md-8">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
                                                                 <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
 
                                                             </div>
+                                                            <div class="col-md-2">
+                                                               
+                                                               </div>
                                                         </div>
 
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardThreadStandard')" data-dismiss="modal">Print Report</button>
+                                                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardThreadStandard')" data-dismiss="modal">Print Report</button> -->
                                             </div>
                                             <div class="card-footer text-muted">
                                                 Forward Sports Pvt. Ltd.
@@ -2627,7 +2393,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div class="card-body">
 
                                                         <div class="row">
-                                                            <div class="col-md-6">
+                                                            <!-- <div class="col-md-6">
                                                                 <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
                                                                 <table class="table">
                                                                     <tr>
@@ -2666,10 +2432,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         </td>
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-           <div class="col-md-3"></div>
-           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
-                                                                <table class="table">
+                                                                 <table class="table">
                                                                     <tr>
                                                                         <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoMSThreadStandard"> </span></label></th>
                                                                         <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMSThreadStandard"> </span></label></th>
@@ -2690,15 +2453,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-6">
-            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-            </div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
-                                                                <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
-                                                                <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
-                                                                <div class="col-md-2"></div>
+                                                                 <div class="col-md-2"></div>
                                                                 <div class="col-md-10 mt-3">
                                                                     <table class="table table-bordered" style="border:2px solid black">
                                                                         <thead>
@@ -2712,15 +2467,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                 <th style="text-align: center;font-size:large;border:2px solid black">
                                                                                     Result
                                                                                 </th>
-                                                                                <!-- <table style="width: 100%;">
-                                   <thead >
-                                       <tr >
-                                        <th>1</th>
-                                        <th>2</th>
-                                        <th>3</th>
-                                       </tr>
-                                   </thead> 
-                                </table> -->
+                                                                        
 
 
                                                                             </tr>
@@ -2732,32 +2479,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </div>
 
                                                                 <div class="col-md-2"></div>
-                                                                <!-- <div class="col-md-4">
-                <table class="table table-bordered" style="border:2px solid black"> 
-                       <thead>
-                           <tr>
-                               <th style="border:2px solid black">Lab Reading</th>
-                               <th colspan="2" style="border:2px solid black">Humidity</th>
-                           </tr>
-                       </thead>
-                       <tbody>
-                           <tr >
-                               <td rowspan="2"></td>
-                               <td style="border:2px solid black">Max</td>
-                               <td style="border:2px solid black">Min</td>
-                           </tr>
-                           <tr >
-                             
-                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                               
-                           </tr>
-                       </tbody>         
-                </table>
-            </div> -->
+                                                               
                                                                 <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionMSThreadStandard"> </span></label></div>
-                                                                <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
-
+                                                              
                                                                 <table class="table">
                                                                     <tr>
                                                                         <th></th>
@@ -2802,31 +2526,26 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         </th>
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-          Habib Ur Rehman
-            </div>
-            <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-            Sohail Ghouri
-            </div>
-            <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-            Sohail Ghouri
-            </div> -->
-                                                            </div>
+                                                              
+                                                            </div> -->
+                                                            <div class="col-md-2">
+                                                            
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Standards</h3>
+                                                            <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
                                                             <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadMSImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
 
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardMSThreadStandard')" data-dismiss="modal">Print Report</button>
+                                                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardMSThreadStandard')" data-dismiss="modal">Print Report</button> -->
                                             </div>
                                             <div class="card-footer text-muted">
                                                 Forward Sports Pvt. Ltd.
@@ -2864,10 +2583,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th> </th>
                                                                 </tr>
                                                             </table>
-                                                            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-           <div class="col-md-3"></div>
-           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
-                                                            <table class="table">
+                                                           <table class="table">
                                                                 <tr>
                                                                     <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoBlader"> </span></label></th>
                                                                     <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestBlader"> </span></label></th>
@@ -2892,15 +2608,7 @@ if (!$this->session->has_userdata('user_id')) {
 
 
                                                             </table>
-                                                            <!-- <div class="col-md-6">
-            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-            </div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
-                                                            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
-                                                            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
-                                                            <div class="col-md-2"></div>
+                                                             <div class="col-md-2"></div>
                                                             <div class="col-md-10 mt-3">
                                                                 <table class="table table-bordered" style="border:2px solid black">
                                                                     <thead>
@@ -2911,15 +2619,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 2</th>
                                                                             <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 3</th>
                                                                             <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 4</th>
-                                                                            <!-- <table style="width: 100%;">
-                                   <thead >
-                                       <tr >
-                                        <th>1</th>
-                                        <th>2</th>
-                                        <th>3</th>
-                                       </tr>
-                                   </thead> 
-                                </table> -->
+                                                                
 
 
                                                                         </tr>
@@ -2931,32 +2631,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                             </div>
 
                                                             <div class="col-md-2"></div>
-                                                            <!-- <div class="col-md-4">
-                <table class="table table-bordered" style="border:2px solid black"> 
-                       <thead>
-                           <tr>
-                               <th style="border:2px solid black">Lab Reading</th>
-                               <th colspan="2" style="border:2px solid black">Humidity</th>
-                           </tr>
-                       </thead>
-                       <tbody>
-                           <tr >
-                               <td rowspan="2"></td>
-                               <td style="border:2px solid black">Max</td>
-                               <td style="border:2px solid black">Min</td>
-                           </tr>
-                           <tr >
-                             
-                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                               
-                           </tr>
-                       </tbody>         
-                </table>
-            </div> -->
+                                                         
                                                             <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Remarks:</span> <span style="font-size: medium;font-weight:bold" id="remarksBlader"> </span></label></div>
-                                                            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
-
+                                                      
                                                             <table class="table">
                                                                 <tr>
                                                                     <th></th>
@@ -3001,18 +2678,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </th>
                                                                 </tr>
                                                             </table>
-                                                            <!-- <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-          Habib Ur Rehman
-            </div>
-            <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-            Sohail Ghouri
-            </div>
-            <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-            Sohail Ghouri
-            </div> -->
+                                                         
                                                         </div>
 
                                                     </div>
@@ -3047,7 +2713,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div class="card-body">
 
                                                         <div class="row">
-                                                            <div class="col-md-6">
+                                                            <!-- <div class="col-md-6">
                                                                 <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
                                                                 <table class="table">
                                                                     <tr>
@@ -3059,10 +2725,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <th> </th>
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-           <div class="col-md-3"></div>
-           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
-                                                                <table class="table">
+                                                               <table class="table">
                                                                     <tr>
                                                                         <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoBladerStandard"> </span></label></th>
                                                                         <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestBladerStandard"> </span></label></th>
@@ -3087,14 +2750,6 @@ if (!$this->session->has_userdata('user_id')) {
 
 
                                                                 </table>
-                                                                <!-- <div class="col-md-6">
-            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-            </div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
-                                                                <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
-                                                                <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
                                                                 <div class="col-md-2"></div>
                                                                 <div class="col-md-10 mt-3">
                                                                     <table class="table table-bordered" style="border:2px solid black">
@@ -3106,15 +2761,6 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                 <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 2</th>
                                                                                 <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 3</th>
                                                                                 <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 4</th>
-                                                                                <!-- <table style="width: 100%;">
-                                   <thead >
-                                       <tr >
-                                        <th>1</th>
-                                        <th>2</th>
-                                        <th>3</th>
-                                       </tr>
-                                   </thead> 
-                                </table> -->
 
 
                                                                             </tr>
@@ -3126,32 +2772,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </div>
 
                                                                 <div class="col-md-2"></div>
-                                                                <!-- <div class="col-md-4">
-                <table class="table table-bordered" style="border:2px solid black"> 
-                       <thead>
-                           <tr>
-                               <th style="border:2px solid black">Lab Reading</th>
-                               <th colspan="2" style="border:2px solid black">Humidity</th>
-                           </tr>
-                       </thead>
-                       <tbody>
-                           <tr >
-                               <td rowspan="2"></td>
-                               <td style="border:2px solid black">Max</td>
-                               <td style="border:2px solid black">Min</td>
-                           </tr>
-                           <tr >
-                             
-                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                               
-                           </tr>
-                       </tbody>         
-                </table>
-            </div> -->
+                                                           
                                                                 <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Remarks:</span> <span style="font-size: medium;font-weight:bold" id="remarksBladerStandard"> </span></label></div>
-                                                                <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
-
+                                                             
                                                                 <table class="table">
                                                                     <tr>
                                                                         <th></th>
@@ -3196,23 +2819,18 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         </th>
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-          Habib Ur Rehman
-            </div>
-            <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-            Sohail Ghouri
-            </div>
-            <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-            Sohail Ghouri
-            </div> -->
+                                                             
+                                                            </div> -->
+                                                            <div class="col-md-2">
+                                                            
                                                             </div>
-                                                            <div class="col-md-6">
-                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Standards</h3>
+                                                            <div class="col-md-8">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
                                                                 <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="bladerImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
 
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                            
                                                             </div>
                                                         </div>
 
@@ -3220,8 +2838,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardBladerStandard')" data-dismiss="modal">Print Report</button>
+                                                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardBladerStandard')" data-dismiss="modal">Print Report</button> -->
                                             </div>
                                             <div class="card-footer text-muted">
                                                 Forward Sports Pvt. Ltd.
@@ -3474,7 +3092,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div class="card-body">
 
                                                         <div class="row">
-                                                            <div class="col-md-6">
+                                                            <!-- <div class="col-md-6">
                                                                 <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
                                                                 <table class="table">
                                                                     <tr>
@@ -3513,10 +3131,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         </td>
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-           <div class="col-md-3"></div>
-           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
-                                                                <table class="table">
+                                                               <table class="table">
                                                                     <tr>
                                                                         <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFGTStandard"> </span></label></th>
                                                                         <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFGTStandard"> </span></label></th>
@@ -3544,15 +3159,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </tr>
 
                                                                 </table>
-                                                                <!-- <div class="col-md-6">
-            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-            </div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
-                                                                <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
-                                                                <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
-                                                                <div class="col-md-2"></div>
+                                                                  <div class="col-md-2"></div>
                                                                 <div class="col-md-10 mt-3">
                                                                     <table class="table table-bordered" style="border:2px solid black">
                                                                         <thead>
@@ -3563,16 +3170,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                 <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Deviation</th>
                                                                                 <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Rebound Test</th>
                                                                                 <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Remarks</th>
-                                                                                <!-- <table style="width: 100%;">
-                                   <thead >
-                                       <tr >
-                                        <th>1</th>
-                                        <th>2</th>
-                                        <th>3</th>
-                                       </tr>
-                                   </thead> 
-                                </table> -->
-
+                                                                   
 
                                                                             </tr>
                                                                         </thead>
@@ -3583,33 +3181,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </div>
 
                                                                 <div class="col-md-2"></div>
-                                                                <!-- <div class="col-md-4">
-                <table class="table table-bordered" style="border:2px solid black"> 
-                       <thead>
-                           <tr>
-                               <th style="border:2px solid black">Lab Reading</th>
-                               <th colspan="2" style="border:2px solid black">Humidity</th>
-                           </tr>
-                       </thead>
-                       <tbody>
-                           <tr >
-                               <td rowspan="2"></td>
-                               <td style="border:2px solid black">Max</td>
-                               <td style="border:2px solid black">Min</td>
-                           </tr>
-                           <tr >
-                             
-                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                               
-                           </tr>
-                       </tbody>         
-                </table>
-            </div> -->
+                                                             
                                                                 <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Note:</span> <span style="font-size: medium;font-weight:bold" id="noteFGTStandard"> </span></label></div>
-                                                                <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
-
-                                                                <table class="table">
+                                                               <table class="table">
                                                                     <tr>
                                                                         <th></th>
                                                                         <th></th>
@@ -3653,31 +3227,26 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         </th>
                                                                     </tr>
                                                                 </table>
-                                                                <!-- <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-          Habib Ur Rehman
-            </div>
-            <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-            Sohail Ghouri
-            </div>
-            <div class="col-md-4 mt-2">
-            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-            Sohail Ghouri
-            </div> -->
+                                                              
+                                                            </div> -->
+                                                            <div class="col-md-2">
+                                                            
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Standards</h3>
+                                                        <div class="col-md-8">
+                                                            <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
                                                             <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fgtImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
 
                                                         </div>
+                                                        <div class="col-md-2">
+                                                            
+                                                            </div>
+                            </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardFGTStandard')" data-dismiss="modal">Print Report</button>
+                                                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardFGTStandard')" data-dismiss="modal">Print Report</button> -->
                                             </div>
                                             <div class="card-footer text-muted">
                                                 Forward Sports Pvt. Ltd.
@@ -3781,7 +3350,6 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label>Test Group</label>
-
                                                                 <input type="text" class="form-control" id="testGroup" required readonly="readonly">
                                                                 <!-- <select class="form-control" id="testGroup">
                                                                     <option value="" selected>Select Test Group</option>
@@ -3920,8 +3488,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <th>Approved By </th>
 
                                                         <th>Actions </th>
-                                                        <th>Comparison</th>
-                                                        <th>Standard</th>
+                                                        <!-- <th>Comparison</th> -->
+                                                        <th>Development Report</th>
                                                         <th>Undo </th>
 
 
@@ -4081,7 +3649,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </div>
                                                             </td>
 
-                                                            <?php
+                                                            <!-- <?php
                                                             if ($Key['ItemType'] == 'Fabric') {
                                                             ?>
                                                                 <td>
@@ -4104,7 +3672,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                             <?php
                                                             }
-                                                            ?>
+                                                            ?> -->
 
 
                                                             <?php
@@ -4252,8 +3820,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th>Approved By </th>
                                                                   
                                                                    <th>Actions </th>
-                                                                   <th>Comparison</th>
-                                                                   <th>Standard</th>
+                                                                   <th>Development Report</th>
                                                                      <th>Undo </th>
                                                             
                                                                   
@@ -4368,21 +3935,6 @@ ${reviewStatus == '1' ?
             </div>
         </div>
     </td>
-      ${ element.ItemType == "Fabric"? 
-  ` <td>
-             <div class="col-md-2">
-               
-             <button type="button" class="btn btn-warning btn-xs customcomparisonButton waves-effect waves-themed" id="btnPrint.${element.TID}">Compare</button>
-           
-      
-                </div>
-    </td>`:`<td>
-             <div class="col-md-2">
-               
-          
-      
-                </div>
-    </td>`}
 
     ${(element.Size != null ?element.Size.trim()=='Azuga W-V85B Hi White Star':element.Size=='Azuga W-V85B Hi White Star') || (element.Size != null ?element.Size.trim()=='B3766 181MP':element.Size=='B3766 181MP') || (element.Size != null ?element.Size.trim()=='FB107':element.Size=='FB107') || (element.Size != null ?element.Size.trim()=='FB 122':element.Size=='FB 122') || (element.Size != null ?element.Size.trim()=='PU 357 Signal Green':element.Size=='PU 357 Signal Green') || (element.Size != null ?element.Size.trim()=='TPU Film 0.15mm White':element.Size=='TPU Film 0.15mm White')? 
  ` <td>
@@ -4528,8 +4080,7 @@ ${reviewStatus == '1' ?
                                                                     <th>Approved By </th>
                                                                   
                                                                    <th>Actions </th>
-                                                                   <th>Comparison</th>
-                                                                   <th>Standard</th>
+                                                                   <th>Development Report</th>
                                                                       <th>Undo </th>
                                                             
                                                                   
@@ -4648,21 +4199,6 @@ ${reviewStatus == '1' ?
 
 
     </td>
-    ${ element.ItemType == "Fabric"? 
-  ` <td>
-             <div class="col-md-2">
-               
-             <button type="button" class="btn btn-warning btn-xs customcomparisonButton waves-effect waves-themed" id="btnPrint.${element.TID}">Compare</button>
-           
-      
-                </div>
-    </td>`:`<td>
-             <div class="col-md-2">
-               
-          
-      
-                </div>
-    </td>`}
 
     ${(element.Size != null ?element.Size.trim()=='Azuga W-V85B Hi White Star':element.Size=='Azuga W-V85B Hi White Star') || (element.Size != null ?element.Size.trim()=='B3766 181MP':element.Size=='B3766 181MP') || (element.Size != null ?element.Size.trim()=='FB107':element.Size=='FB107') || (element.Size != null ?element.Size.trim()=='FB 122':element.Size=='FB 122') || (element.Size != null ?element.Size.trim()=='PU 357 Signal Green':element.Size=='PU 357 Signal Green') || (element.Size != null ?element.Size.trim()=='TPU Film 0.15mm White':element.Size=='TPU Film 0.15mm White')? 
   ` <td>
@@ -9784,11 +9320,11 @@ ${reviewStatus == '1' ?
                     //alert(Sheetvalue);
                     $("#testType").val(testType);
 
-
-
-                    //s
-                    //alert(Type);
                     $("#testGroup").val(Type);
+
+                    //
+                    //alert(Sheetvalue);
+                    // $("#pcolors").val(data['css'][0]['PrintingColors']);
                     // $("#pshape").val(data['css'][0]['PanelShape']);
                     // $("#backing").val(data['css'][0]['L4Name']);
                     // $("#bladder").val(data['css'][1]['L4Name']);
