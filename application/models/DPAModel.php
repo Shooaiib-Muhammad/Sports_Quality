@@ -65,7 +65,8 @@ WHERE        (FactoryCode = '$fc') AND (SesonalRange = '$season')
     $approve,
     $finalcs,
     $br,
-    $mcs){
+    $mcs,
+        $DevType){
 
         $user=$this->session->has_userdata('user_id');
         $query = $this->db->query("INSERT INTO  dbo . Tbl_Dev_DPA 
@@ -101,9 +102,9 @@ WHERE        (FactoryCode = '$fc') AND (SesonalRange = '$season')
            FIFA_authorization_validity_Date,
            Ball_Picture,
            EntryDate,
-           UserID,ArtCode,Yield )
+           UserID,ArtCode,Yield ,DevType)
   VALUES
-        ( '$art' , '$client'   , '$model'     , '$fcode'    , '$ac'  , '$fbo'     , '$inhousedate'  ,  '$csdate','$inhouse','$cs','$cr1comments','$inhousedate1','$csdate1','$inhouse1','$cs1','$cr2comments','$postD','$comments','$approve','$buymodel','$buyarticle','$revdate','$finalcs','$br','$mcs','$retail','$cars','$remarks','$mktg','$fifa',' ', '$inhousedate ', ' $user','$article','$yields' )");
+        ( '$art' , '$client'   , '$model'     , '$fcode'    , '$ac'  , '$fbo'     , '$inhousedate'  ,  '$csdate','$inhouse','$cs','$cr1comments','$inhousedate1','$csdate1','$inhouse1','$cs1','$cr2comments','$postD','$comments','$approve','$buymodel','$buyarticle','$revdate','$finalcs','$br','$mcs','$retail','$cars','$remarks','$mktg','$fifa',' ', '$inhousedate ', ' $user','$article','$yields','$DevType')");
         
       
 

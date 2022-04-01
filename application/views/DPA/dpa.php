@@ -297,6 +297,18 @@ if (!$this->session->has_userdata('user_id')) {
                     </div>
                   </div>
                   <div class="col-md-2">
+                    <label>Development Type:</label>
+                    <div class="form-group-inline">
+                      <select name="DevType" id="DevType" class="form-control">
+                        <option value="New">New</option>
+                        <option value="Carry Over">Carry Over</option>
+
+                      </select>
+                      <!-- <input name="DevType" id="DevType" class="form-control" type="text"> -->
+
+                    </div>
+                  </div>
+                  <div class="col-md-2">
                     <label>MKTG FC(GLOBAL):</label>
                     <div class="form-group-inline">
 
@@ -381,6 +393,7 @@ if (!$this->session->has_userdata('user_id')) {
                       <label>MCS:</label>
                     </div>
                   </div>
+
                   <div class="col-md-4 mt-4">
 
                     <div class="form-group-inline">
@@ -562,6 +575,7 @@ if (!$this->session->has_userdata('user_id')) {
       let cr2comments = $("#cr2comments").val();
       let postD = $("#postD").val();
       let comments = $("#comments").val();
+      let DevType = $("#DevType").val();
       let buymodel = $("#buymodel").val();
       let buyarticle = $("#buyarticle").val();
       let revdate = $("#revdate").val();
@@ -578,7 +592,7 @@ if (!$this->session->has_userdata('user_id')) {
       let finalcs = $("#finalcs").prop('checked');
       let br = $("#br").prop('checked');
       let mcs = $("#mcs").prop('checked');
-
+      //alert(DevType);
       data = {
         "article": article,
         "working": working,
@@ -615,7 +629,8 @@ if (!$this->session->has_userdata('user_id')) {
         "approve": approve,
         "finalcs": finalcs,
         "br": br,
-        "mcs": mcs
+        "mcs": mcs,
+        "DevType": DevType
 
       }
 
@@ -684,6 +699,7 @@ if (!$this->session->has_userdata('user_id')) {
                                              <th>Final CS Confirm</th>
                                              <th>Br Status</th>
                                              <th>MCS</th>
+                                                  <th>Development  Type</th>
                                              <th>Actions</th>
                                               
                                        
@@ -726,6 +742,7 @@ if (!$this->session->has_userdata('user_id')) {
                                           <td>${element.Final_CS_Confirmation}</td>
                                           <td>${element.BR_Status}</td>
                                           <td>${element.MCS}</td>
+                                               <td>${element.DevType}</td>
                                           <td><button type="button" class="btn btn-danger" onclick="deleterecord(${element.TID})">Delete</button></td>
                                         </tr>`
         })

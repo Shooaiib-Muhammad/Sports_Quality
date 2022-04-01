@@ -62,6 +62,21 @@ class LabController extends CI_Controller
         $data['getRequesterRequests'] = $this->l->getTestByRequester();
         $this->load->view('TestRequest', $data);
     }
+    public function Gettest(){
+        
+        $data =$this->l->getalltest();
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+    public function requestArticles(){
+        $data = $this->l->GetArticles();
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
     public function NewRequest()
     {
         $this->session->unset_userdata("MAXID");
@@ -108,7 +123,14 @@ class LabController extends CI_Controller
         $data['getTestRequestsSendToRequester'] = $this->l->getTestRequestsSendToRequester();
         $this->load->view('TestReceive', $data);
     }
-
+public function RDashbaord(){
+        // $data['TestTypes'] = $this->l->getTestType();
+        // $data['detailsData'] = $this->l->getDetails($_GET['id']);
+        // $data['getTestRequests'] = $this->l->getTestRequests();
+        // $data['getTestRequestsSendToLab'] = $this->l->getTestRequestsSendToLab();
+        // $data['getTestRequestsSendToRequester'] = $this->l->getTestRequestsSendToRequester();
+        $this->load->view('RDashbaord');
+}
     public function TestTypeById()
     {
         $idGet = $_POST['Id'];

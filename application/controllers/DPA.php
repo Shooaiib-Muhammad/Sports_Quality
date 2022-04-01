@@ -67,8 +67,9 @@ class DPA extends CI_Controller
   $_POST["approve"],
   $_POST["finalcs"],
   $_POST["br"],
-  $_POST["mcs"]);
-
+  $_POST["mcs"],
+    $_POST["DevType"]);
+  
   
   return $this->output
   ->set_content_type('application/json')

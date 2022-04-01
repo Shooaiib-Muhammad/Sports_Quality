@@ -1659,7 +1659,40 @@ public function updatedStatusFGT($reviewStatus,$approvedStatus,$TID){
         return $query->result_array();
    
     }
+    public function GetTypeConter(){
+        
+        $query = $this->db->query("SELECT        Type, Result
+FROM            dbo.view_test_Type_Counter
+WHERE        (Type = 'Development')");
 
+        return $query->result_array();
+    }
+    public function GetArticlesData()
+    {
+
+        $query = $this->db->query("SELECT        Type, Result
+FROM            dbo.view_test_Type_Counter
+WHERE        (Type = 'Development')");
+
+        return $query->result_array();
+    }
+    public function gettestCounter()
+    {
+
+        $query = $this->db->query("SELECT        Type, Result
+FROM            dbo.view_test_Type_Counter
+WHERE        (Type = 'Development')");
+
+        return $query->result_array();
+    }
+    public function getalltest()
+    {
+
+        $query = $this->db->query(" SELECT * 
+    FROM            dbo.tbl_test_types");
+
+        return $query->result_array();
+    }
     public function getTestTypematerial()
     {
 
