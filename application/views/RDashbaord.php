@@ -713,19 +713,19 @@
            let datesplitend_date = e_date.split("-");
            let end_date = datesplitend_date[2] + "/" + datesplitend_date[1] + "/" + datesplitend_date[0];
            if (supplier == 2) {
-            supplierName = $('#loadMaterial').val();
+            ArticleName = $('#loadMaterial').val();
             $("#loadChart").css("display", 'none')
             $("#CustomChart").css("display", 'block')
             $.ajax({
 
              url: "<?php echo base_url(
-                    'MIS/Lab/getDatewiseSupplier'
+                    'LabController/GetArticlesData'
                    ); ?>",
              method: "GET",
              data: {
               "c_date": c_date,
               "e_date": e_date,
-              "supplierName": supplierName
+              "ArticleName": ArticleName
              },
              success: function(data) {
               var appenTable = '';

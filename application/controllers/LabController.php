@@ -1604,4 +1604,29 @@ public function getCssRaw(){
         );
 
     }
+    public function GetArticlesData(){
+        $data['supplier'] = $this->l->getDatewiseSupplier(
+            $_GET['c_date'],
+            $_GET['e_date'],
+            $_GET['ArticleName']
+        );
+        // $data['suppliermaterial'] = $this->Development_Model->getDatewisematerial(
+        //     $_GET['c_date'],
+        //     $_GET['e_date'],
+        //     $_GET['supplierName']
+        // );
+        // $data['suppliertable'] = $this->Development_Model->customTablesuplier(
+        //     $_GET['c_date'],
+        //     $_GET['e_date'],
+        //     $_GET['supplierName']
+        // );
+        // return $this->output
+        //     ->set_content_type('application/json')
+        //     ->set_status_header(200)
+        //     ->set_output(json_encode($data));
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
 }

@@ -1659,32 +1659,7 @@ public function updatedStatusFGT($reviewStatus,$approvedStatus,$TID){
         return $query->result_array();
    
     }
-    public function GetTypeConter(){
-        
-        $query = $this->db->query("SELECT        Type, Result
-FROM            dbo.view_test_Type_Counter
-WHERE        (Type = 'Development')");
-
-        return $query->result_array();
-    }
-    public function GetArticlesData()
-    {
-
-        $query = $this->db->query("SELECT        Type, Result
-FROM            dbo.view_test_Type_Counter
-WHERE        (Type = 'Development')");
-
-        return $query->result_array();
-    }
-    public function gettestCounter()
-    {
-
-        $query = $this->db->query("SELECT        Type, Result
-FROM            dbo.view_test_Type_Counter
-WHERE        (Type = 'Development')");
-
-        return $query->result_array();
-    }
+    
     public function getalltest()
     {
 
@@ -2628,5 +2603,38 @@ return $query->result_array();
         }
 
     }
-   
+    public function GetTypeConter($c_date, $e_date, $Type) //1
+    {
+
+        $query = $this->db->query("SELECT        Type, Result
+FROM            dbo.view_test_Type_Counter
+WHERE        (Type = '$Type') AND (Sample_RequestDate BETWEEN CONVERT(DATETIME, '$c_date 00:00:00', 102) AND CONVERT(DATETIME, '$e_date 00:00:00', 102))");
+
+        return $query->result_array();
+    }
+    public function GetArticlesData($c_date, $e_date, $Article) //2
+    {
+        $query = $this->db->query("SELECT        Type, Result
+FROM            dbo.view_Article_Wise_COunter
+WHERE         (Type = '$Article') AND (Sample_RequestDate BETWEEN CONVERT(DATETIME, '$c_date 00:00:00', 102) AND CONVERT(DATETIME, '$e_date 00:00:00', 102))");
+        return $query->result_array();
+    }
+//     public function ($Article)
+//     {
+
+//         $query = $this->db->query("SELECT        Type, Result
+// FROM            dbo.view_Article_Wise_COunter
+// WHERE         (Type = '$Article') AND (Sample_RequestDate BETWEEN CONVERT(DATETIME, '2022-03-31 00:00:00', 102) AND CONVERT(DATETIME, '2022-03-31 00:00:00', 102))");
+
+//         return $query->result_array();
+//     }
+    public function gettestCounter($c_date, $e_date,$Name) //3
+    {
+
+        $query = $this->db->query("SELECT        Type, Result
+FROM            dbo.view_test_types_Counter
+WHERE        (Name = '$Name') AND (Sample_RequestDate BETWEEN CONVERT(DATETIME, '$c_date 00:00:00', 102) AND CONVERT(DATETIME, '$e_date 00:00:00', 102))");
+
+        return $query->result_array();
+    }
 }
