@@ -3,9 +3,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 include("./application/views/includes/Exception.php");
 include("./application/views/includes/PHPMailer.php");
 include("./application/views/includes/SMTP.php");
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+
 class LabModel extends CI_Model
 {
     public $skillName;
@@ -28,7 +30,7 @@ class LabModel extends CI_Model
         $child,
         $CSSValueAdd
     ) {
-    
+
         date_default_timezone_set('Asia/Karachi');
         $Date = date('Y-m-d H:i:s');
         $user_id = $this->session->userdata('user_id');
@@ -73,70 +75,70 @@ class LabModel extends CI_Model
         $Id = $this->db->insert_id();
         echo $Id;
 
-        if($Result=='Fail' || $Result=='fail'){
+        if ($Result == 'Fail' || $Result == 'fail') {
             $mail = new PHPMailer(true);
-    try{
-    
-    
-      //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-    $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
-    $mail->Password   = 'Forward123';                               //SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-    $mail->IsHTML(true);
-    //Recipients
-    $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-    // $mail->addAddress("itdev@forward.pk"); 
-    $mail->addAddress("hufsa@forward.pk"); 
-    $mail->addAddress("sohail@forward.pk"); 
-    $mail->addAddress("store@forward.pk"); 
-    $mail->AddCC('abaid@forward.pk');
-    $mail->AddCC('imran@forward.pk');
-    
-     $mail->AddCC('waseembutt@forward.pk');
-     $mail->AddCC('tafseer@forward.pk');
-        $mail->AddCC('shoaib@forward.pk');
-        $mail->AddCC('fsqa@forward.pk');
-              $mail->AddCC('oman@forward.pk');
-                 $mail->AddCC('abdulhaseeb@forward.pk');
-                   $mail->AddCC('zainabbas@forward.pk');
-    $mail->AddCC('yaseen@forward.pk');
-    $mail->Subject = "Raw Material Failure";
-    $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
+            try {
+
+
+                //Server settings
+                $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+                $mail->isSMTP();                                            //Send using SMTP
+                $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+                $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
+                $mail->Password   = 'Forward123';                               //SMTP password
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+                $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                $mail->IsHTML(true);
+                //Recipients
+                $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
+                // $mail->addAddress("itdev@forward.pk"); 
+                $mail->addAddress("hufsa@forward.pk");
+                $mail->addAddress("sohail@forward.pk");
+                $mail->addAddress("store@forward.pk");
+                $mail->AddCC('abaid@forward.pk');
+                $mail->AddCC('imran@forward.pk');
+
+                $mail->AddCC('waseembutt@forward.pk');
+                $mail->AddCC('tafseer@forward.pk');
+                $mail->AddCC('shoaib@forward.pk');
+                $mail->AddCC('fsqa@forward.pk');
+                $mail->AddCC('oman@forward.pk');
+                $mail->AddCC('abdulhaseeb@forward.pk');
+                $mail->AddCC('zainabbas@forward.pk');
+                $mail->AddCC('yaseen@forward.pk');
+                $mail->Subject = "Raw Material Failure";
+                $mail->Body = '<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
     <div style="margin-left:40%;">
     <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
     Carton Test Report Result Alert</th></tr>
-    <tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
-    <tr><th>Material Name:</th><td>'.$ItemName .'</td></tr>
-    <tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
-    <tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
-    <tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetails?id='.$Id.'</td></tr>
+    <tr><th>PO NO.</th><td>' . $PONo . '</td></tr>
+    <tr><th>Material Name:</th><td>' . $ItemName . '</td></tr>
+    <tr><th>Supplier Name.</th><td>' . $SupplierName . '</td></tr>
+    <tr><th>Test Performed By.</th><td>' . trim($testPerformer, " ") . '</td></tr>
+    <tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetails?id=' . $Id . '</td></tr>
     <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
     </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
-    
-    
-    //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
-    //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
-    $mail->send();
-    echo 'Message has been sent';
-    } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    }
-    }
+
+
+                //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
+                //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
+                $mail->send();
+                echo 'Message has been sent';
+            } catch (Exception $e) {
+                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            }
+        }
         $iterCotton = 0;
         foreach ($child as $key => $value) {
-            if($iterCotton == 0){
+            if ($iterCotton == 0) {
                 $testNo = $value[0];
                 $PONo = $value[1];
                 $Requirement = $value[2];
                 $Test = $value[3];
-                  $Results = $value[4];
-                     $Value = $value[5];
-              
+                $Results = $value[4];
+                $Value = $value[5];
+
                 $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
                (TID
                ,Test
@@ -152,17 +154,16 @@ class LabModel extends CI_Model
                ,'$Value'
                ,'$Date'
                ,'$user_id')");
-               $iterCotton += 1;
-            }
-            else{
+                $iterCotton += 1;
+            } else {
                 $testNo = $value[1];
-            $PONo = $value[2];
-            $Requirement = $value[3];
-            $Test = $value[4];
-              $Results = $value[5];
-                 $Value = $value[6];
-          
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+                $PONo = $value[2];
+                $Requirement = $value[3];
+                $Test = $value[4];
+                $Results = $value[5];
+                $Value = $value[6];
+
+                $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
            (TID
            ,Test
            ,Requirments
@@ -177,9 +178,8 @@ class LabModel extends CI_Model
            ,'$Value'
            ,'$Date'
            ,'$user_id')");
-           $iterCotton += 1;
+                $iterCotton += 1;
             }
-            
         }
     }
 
@@ -230,61 +230,58 @@ class LabModel extends CI_Model
         echo $Id;
         $iterFoam = 0;
         foreach ($child as $key => $value) {
-           if($iterFoam == 0){
-            $testNo = $value[0];
-            $PONo = $value[1];
-            $Test = $value[2];
-            $Standard = $value[3];
-            $Unit = $value[4];
-            $Results = $value[5];
-        
-          
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
-           (TID
-           ,Test
-           ,Standard
-           ,Unit
-           ,result
-           ,EntryDate
-           ,user_ID)
-     VALUES
-           ('$Id'
-           ,'$Test'
-           ,'$Standard'
-           ,'$Unit'
-           ,'$Results'
-           ,'$Date'
-           ,'$user_id')");
-           $iterFoam +=1;
-           }
-           else
-           {
-            $testNo = $value[1];
-            $PONo = $value[2];
-            $Test = $value[3];
-            $Standard = $value[4];
-            $Unit = $value[5];
-            $Results = $value[6];
-        
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
-           (TID
-           ,Test
-           ,Standard
-           ,Unit
-           ,result
-           ,EntryDate
-           ,user_ID)
-     VALUES
-           ('$Id'
-           ,'$Test'
-           ,'$Standard'
-           ,'$Unit'
-           ,'$Results'
-           ,'$Date'
-           ,'$user_id')");
-           $iterFoam +=1;
-           }
+            if ($iterFoam == 0) {
+                $testNo = $value[0];
+                $PONo = $value[1];
+                $Test = $value[2];
+                $Standard = $value[3];
+                $Unit = $value[4];
+                $Results = $value[5];
 
+
+                $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+           (TID
+           ,Test
+           ,Standard
+           ,Unit
+           ,result
+           ,EntryDate
+           ,user_ID)
+     VALUES
+           ('$Id'
+           ,'$Test'
+           ,'$Standard'
+           ,'$Unit'
+           ,'$Results'
+           ,'$Date'
+           ,'$user_id')");
+                $iterFoam += 1;
+            } else {
+                $testNo = $value[1];
+                $PONo = $value[2];
+                $Test = $value[3];
+                $Standard = $value[4];
+                $Unit = $value[5];
+                $Results = $value[6];
+
+                $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+           (TID
+           ,Test
+           ,Standard
+           ,Unit
+           ,result
+           ,EntryDate
+           ,user_ID)
+     VALUES
+           ('$Id'
+           ,'$Test'
+           ,'$Standard'
+           ,'$Unit'
+           ,'$Results'
+           ,'$Date'
+           ,'$user_id')");
+                $iterFoam += 1;
+            }
         }
     }
 
@@ -353,71 +350,71 @@ class LabModel extends CI_Model
               )");
         $Id = $this->db->insert_id();
 
-if($Result=='Fail' || $Result=='fail'){
-        $mail = new PHPMailer(true);
-try{
+        if ($Result == 'Fail' || $Result == 'fail') {
+            $mail = new PHPMailer(true);
+            try {
 
 
-  //Server settings
-$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-$mail->isSMTP();                                            //Send using SMTP
-$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-$mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
-$mail->Password   = 'Forward123';                               //SMTP password
-$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-$mail->IsHTML(true);
-//Recipients
-$mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-// $mail->addAddress("itdev@forward.pk"); 
-$mail->addAddress("hufsa@forward.pk"); 
-$mail->addAddress("sohail@forward.pk"); 
-$mail->addAddress("store@forward.pk"); 
-$mail->AddCC('abaid@forward.pk');
-$mail->AddCC('imran@forward.pk');
+                //Server settings
+                $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+                $mail->isSMTP();                                            //Send using SMTP
+                $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+                $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
+                $mail->Password   = 'Forward123';                               //SMTP password
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+                $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                $mail->IsHTML(true);
+                //Recipients
+                $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
+                // $mail->addAddress("itdev@forward.pk"); 
+                $mail->addAddress("hufsa@forward.pk");
+                $mail->addAddress("sohail@forward.pk");
+                $mail->addAddress("store@forward.pk");
+                $mail->AddCC('abaid@forward.pk');
+                $mail->AddCC('imran@forward.pk');
 
- $mail->AddCC('waseembutt@forward.pk');
- $mail->AddCC('tafseer@forward.pk');
-    $mail->AddCC('shoaib@forward.pk');
-    $mail->AddCC('fsqa@forward.pk');
-          $mail->AddCC('oman@forward.pk');
-             $mail->AddCC('abdulhaseeb@forward.pk');
-             $mail->AddCC('yaseen@forward.pk');
-             $mail->AddCC('zainabbas@forward.pk');
-$mail->Subject = "Raw Material Failure";
-$mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
+                $mail->AddCC('waseembutt@forward.pk');
+                $mail->AddCC('tafseer@forward.pk');
+                $mail->AddCC('shoaib@forward.pk');
+                $mail->AddCC('fsqa@forward.pk');
+                $mail->AddCC('oman@forward.pk');
+                $mail->AddCC('abdulhaseeb@forward.pk');
+                $mail->AddCC('yaseen@forward.pk');
+                $mail->AddCC('zainabbas@forward.pk');
+                $mail->Subject = "Raw Material Failure";
+                $mail->Body = '<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
 <div style="margin-left:40%;">
 <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
 Fabric Test Report Result Alert</th></tr>
-<tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
-<tr><th>Material Name:</th><td>'.$ItemName .'</td></tr>
-<tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
-<tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
-<tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetails?id='.$Id.'</td></tr>
+<tr><th>PO NO.</th><td>' . $PONo . '</td></tr>
+<tr><th>Material Name:</th><td>' . $ItemName . '</td></tr>
+<tr><th>Supplier Name.</th><td>' . $SupplierName . '</td></tr>
+<tr><th>Test Performed By.</th><td>' . trim($testPerformer, " ") . '</td></tr>
+<tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetails?id=' . $Id . '</td></tr>
 <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
 </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
 
 
-//  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
-//$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
-$mail->send();
-echo 'Message has been sent';
-} catch (Exception $e) {
-echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-}
-}
+                //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
+                //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
+                $mail->send();
+                echo 'Message has been sent';
+            } catch (Exception $e) {
+                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            }
+        }
         echo $Id;
-        $i=0;
+        $i = 0;
         foreach ($child as $key => $value) {
-           if($i==0){
-            $Requirement = $value[1];
-            $Test = $value[0];
-            $Results = $value[2];
-            $Uncertainity = $value[3];
-            $Remarks = $value[4];
-          
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+            if ($i == 0) {
+                $Requirement = $value[1];
+                $Test = $value[0];
+                $Results = $value[2];
+                $Uncertainity = $value[3];
+                $Remarks = $value[4];
+
+                $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
            (TID
            ,Test
            ,Requirments
@@ -433,17 +430,16 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
            '$Remarks'
            ,'$Date'
            ,'$user_id')");
-           $i +=1;
-           }
-           else{
-    
-            $Requirement = $value[2];
-            $Test = $value[1];
-            $Results = $value[3];
-            $Uncertainity = $value[4];
-            $Remarks = $value[5];
-          
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+                $i += 1;
+            } else {
+
+                $Requirement = $value[2];
+                $Test = $value[1];
+                $Results = $value[3];
+                $Uncertainity = $value[4];
+                $Remarks = $value[5];
+
+                $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
            (TID
            ,Test
            ,Requirments
@@ -459,9 +455,8 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
            '$Remarks'
            ,'$Date'
            ,'$user_id')");
-           $i +=1;
-           }
-            
+                $i += 1;
+            }
         }
     }
 
@@ -530,72 +525,72 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
               )");
         $Id = $this->db->insert_id();
 
-            if($Result=='Fail' || $Result=='fail'){
-        $mail = new PHPMailer(true);
-try{
+        if ($Result == 'Fail' || $Result == 'fail') {
+            $mail = new PHPMailer(true);
+            try {
 
 
-  //Server settings
-$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-$mail->isSMTP();                                            //Send using SMTP
-$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-$mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
-$mail->Password   = 'Forward123';                               //SMTP password
-$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-$mail->IsHTML(true);
-//Recipients
-$mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-// $mail->addAddress("itdev@forward.pk"); 
-$mail->addAddress("hufsa@forward.pk"); 
-$mail->addAddress("sohail@forward.pk"); 
-$mail->addAddress("store@forward.pk"); 
-$mail->AddCC('abaid@forward.pk');
-$mail->AddCC('imran@forward.pk');
+                //Server settings
+                $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+                $mail->isSMTP();                                            //Send using SMTP
+                $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+                $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
+                $mail->Password   = 'Forward123';                               //SMTP password
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+                $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                $mail->IsHTML(true);
+                //Recipients
+                $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
+                // $mail->addAddress("itdev@forward.pk"); 
+                $mail->addAddress("hufsa@forward.pk");
+                $mail->addAddress("sohail@forward.pk");
+                $mail->addAddress("store@forward.pk");
+                $mail->AddCC('abaid@forward.pk');
+                $mail->AddCC('imran@forward.pk');
 
- $mail->AddCC('waseembutt@forward.pk');
- $mail->AddCC('tafseer@forward.pk');
-    $mail->AddCC('shoaib@forward.pk');
-    $mail->AddCC('fsqa@forward.pk');
-          $mail->AddCC('oman@forward.pk');
-             $mail->AddCC('abdulhaseeb@forward.pk');
-             $mail->AddCC('yaseen@forward.pk');
-             $mail->AddCC('zainabbas@forward.pk');
-$mail->Subject = "Raw Material Failure";
-$mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
+                $mail->AddCC('waseembutt@forward.pk');
+                $mail->AddCC('tafseer@forward.pk');
+                $mail->AddCC('shoaib@forward.pk');
+                $mail->AddCC('fsqa@forward.pk');
+                $mail->AddCC('oman@forward.pk');
+                $mail->AddCC('abdulhaseeb@forward.pk');
+                $mail->AddCC('yaseen@forward.pk');
+                $mail->AddCC('zainabbas@forward.pk');
+                $mail->Subject = "Raw Material Failure";
+                $mail->Body = '<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
 <div style="margin-left:40%;">
 <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
 Material Test Report Result Alert</th></tr>
-<tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
-<tr><th>Material Name:</th><td>'.$ItemName .'</td></tr>
-<tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
-<tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
-<tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetails?id='.$Id.'</td></tr>
+<tr><th>PO NO.</th><td>' . $PONo . '</td></tr>
+<tr><th>Material Name:</th><td>' . $ItemName . '</td></tr>
+<tr><th>Supplier Name.</th><td>' . $SupplierName . '</td></tr>
+<tr><th>Test Performed By.</th><td>' . trim($testPerformer, " ") . '</td></tr>
+<tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetails?id=' . $Id . '</td></tr>
 <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
 </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
 
 
-//  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
-//$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
-$mail->send();
-echo 'Message has been sent';
-} catch (Exception $e) {
-echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-}
-}
+                //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
+                //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
+                $mail->send();
+                echo 'Message has been sent';
+            } catch (Exception $e) {
+                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            }
+        }
 
         echo $Id;
-        $i=0;
+        $i = 0;
         foreach ($child as $key => $value) {
-           if($i==0){
-            $Requirement = $value[1];
-            $Test = $value[0];
-            $Results = $value[2];
-            $Uncertainity = $value[3];
-            $Remarks = $value[4];
-          
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+            if ($i == 0) {
+                $Requirement = $value[1];
+                $Test = $value[0];
+                $Results = $value[2];
+                $Uncertainity = $value[3];
+                $Remarks = $value[4];
+
+                $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
            (TID
            ,Test
            ,Requirments
@@ -611,17 +606,16 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
            '$Remarks'
            ,'$Date'
            ,'$user_id')");
-           $i +=1;
-           }
-           else{
-    
-            $Requirement = $value[2];
-            $Test = $value[1];
-            $Results = $value[3];
-            $Uncertainity = $value[4];
-            $Remarks = $value[5];
-          
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+                $i += 1;
+            } else {
+
+                $Requirement = $value[2];
+                $Test = $value[1];
+                $Results = $value[3];
+                $Uncertainity = $value[4];
+                $Remarks = $value[5];
+
+                $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
            (TID
            ,Test
            ,Requirments
@@ -637,9 +631,8 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
            '$Remarks'
            ,'$Date'
            ,'$user_id')");
-           $i +=1;
-           }
-            
+                $i += 1;
+            }
         }
     }
 
@@ -655,11 +648,11 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         $picture,
         $testGroup,
         $testPerformer,
-        $child
-        ,$thickness
-        , $LinearDensity
-        ,$twisrPerInch
-        ,$Result,
+        $child,
+        $thickness,
+        $LinearDensity,
+        $twisrPerInch,
+        $Result,
         $CSSValueAdd
 
     ) {
@@ -707,74 +700,74 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
               ,'$Result'
               )");
         $Id = $this->db->insert_id();
-            if($Result=='Fail' || $Result=='fail'){
-        $mail = new PHPMailer(true);
-try{
+        if ($Result == 'Fail' || $Result == 'fail') {
+            $mail = new PHPMailer(true);
+            try {
 
 
-  //Server settings
-$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-$mail->isSMTP();                                            //Send using SMTP
-$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-$mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
-$mail->Password   = 'Forward123';                               //SMTP password
-$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-$mail->IsHTML(true);
-//Recipients
-$mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-// $mail->addAddress("itdev@forward.pk"); 
-$mail->addAddress("hufsa@forward.pk"); 
-$mail->addAddress("sohail@forward.pk"); 
-$mail->addAddress("store@forward.pk"); 
-$mail->AddCC('abaid@forward.pk');
-$mail->AddCC('imran@forward.pk');
+                //Server settings
+                $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+                $mail->isSMTP();                                            //Send using SMTP
+                $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+                $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
+                $mail->Password   = 'Forward123';                               //SMTP password
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+                $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                $mail->IsHTML(true);
+                //Recipients
+                $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
+                // $mail->addAddress("itdev@forward.pk"); 
+                $mail->addAddress("hufsa@forward.pk");
+                $mail->addAddress("sohail@forward.pk");
+                $mail->addAddress("store@forward.pk");
+                $mail->AddCC('abaid@forward.pk');
+                $mail->AddCC('imran@forward.pk');
 
- $mail->AddCC('waseembutt@forward.pk');
- $mail->AddCC('tafseer@forward.pk');
-    $mail->AddCC('shoaib@forward.pk');
-    $mail->AddCC('fsqa@forward.pk');
-          $mail->AddCC('oman@forward.pk');
-             $mail->AddCC('abdulhaseeb@forward.pk');
-             $mail->AddCC('yaseen@forward.pk');
-             $mail->AddCC('zainabbas@forward.pk');
-$mail->Subject = "Raw Material Failure";
-$mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
+                $mail->AddCC('waseembutt@forward.pk');
+                $mail->AddCC('tafseer@forward.pk');
+                $mail->AddCC('shoaib@forward.pk');
+                $mail->AddCC('fsqa@forward.pk');
+                $mail->AddCC('oman@forward.pk');
+                $mail->AddCC('abdulhaseeb@forward.pk');
+                $mail->AddCC('yaseen@forward.pk');
+                $mail->AddCC('zainabbas@forward.pk');
+                $mail->Subject = "Raw Material Failure";
+                $mail->Body = '<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
 <div style="margin-left:40%;">
 <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
 Thread Test Report Result Alert</th></tr>
-<tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
-<tr><th>Material Name:</th><td>'.$SupplierRef .'</td></tr>
-<tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
-<tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
-<tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetails?id='.$Id.'</td></tr>
+<tr><th>PO NO.</th><td>' . $PONo . '</td></tr>
+<tr><th>Material Name:</th><td>' . $SupplierRef . '</td></tr>
+<tr><th>Supplier Name.</th><td>' . $SupplierName . '</td></tr>
+<tr><th>Test Performed By.</th><td>' . trim($testPerformer, " ") . '</td></tr>
+<tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetails?id=' . $Id . '</td></tr>
 <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
 </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
 
 
-//  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
-//$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
-$mail->send();
-echo 'Message has been sent';
-} catch (Exception $e) {
-echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-}
-}
+                //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
+                //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
+                $mail->send();
+                echo 'Message has been sent';
+            } catch (Exception $e) {
+                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            }
+        }
         echo $Id;
         $iter = 0;
 
         foreach ($child as $key => $value) {
-            if($iter == 0){
+            if ($iter == 0) {
                 $testNo = $value[0];
                 $PONo = $value[1];
                 $TDate = $value[2];
                 $time = strtotime($TDate);
-                $newformat = date('Y-m-d',$time);
+                $newformat = date('Y-m-d', $time);
                 $ExtatMax = $value[3];
-                  $MaxLoad = $value[4];
-                     $Ext = $value[5];
-              
+                $MaxLoad = $value[4];
+                $Ext = $value[5];
+
                 $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
                (TID
                ,TDate
@@ -790,19 +783,18 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                ,'$Ext'
                ,'$Date'
                ,'$user_id')");
-        $iter +=1;    
-        }
-        else{
-            $testNo = $value[1];
-            $PONo = $value[2];
-            $TDate = $value[3];
-            $time = strtotime($TDate);
-            $newformat = date('Y-m-d',$time);
-            $ExtatMax = $value[4];
-              $MaxLoad = $value[5];
-                 $Ext = $value[6];
-          
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+                $iter += 1;
+            } else {
+                $testNo = $value[1];
+                $PONo = $value[2];
+                $TDate = $value[3];
+                $time = strtotime($TDate);
+                $newformat = date('Y-m-d', $time);
+                $ExtatMax = $value[4];
+                $MaxLoad = $value[5];
+                $Ext = $value[6];
+
+                $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
            (TID
            ,TDate
            ,ExtatMax
@@ -817,10 +809,9 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
            ,'$Ext'
            ,'$Date'
            ,'$user_id')");
-           $iter +=1;
+                $iter += 1;
+            }
         }
-        }
-            
     }
 
     public function AddHeaderMSThread(
@@ -833,20 +824,20 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         $picture,
         $testGroup,
         $testPerformer,
-        $child
-        ,$Result
-        ,$MaterialName,
+        $child,
+        $Result,
+        $MaterialName,
         $CSSValueAdd
     ) {
         date_default_timezone_set('Asia/Karachi');
         $Date = date('Y-m-d H:i:s');
         $user_id = $this->session->userdata('user_id');
 
-    $time = strtotime($TestDate);
-    $TDate = date('Y-m-d',$time);
+        $time = strtotime($TestDate);
+        $TDate = date('Y-m-d', $time);
 
-    $time2 = strtotime($ReceivingDate);
-    $RDate = date('Y-m-d',$time2);
+        $time2 = strtotime($ReceivingDate);
+        $RDate = date('Y-m-d', $time2);
         $user_id;
         $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_H
               (TestNO
@@ -883,75 +874,75 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
               ,'$MaterialName'
               )");
         $Id = $this->db->insert_id();
-            if($Result=='Fail' || $Result=='fail'){
-        $mail = new PHPMailer(true);
-try{
+        if ($Result == 'Fail' || $Result == 'fail') {
+            $mail = new PHPMailer(true);
+            try {
 
 
-  //Server settings
-$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-$mail->isSMTP();                                            //Send using SMTP
-$mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-$mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
-$mail->Password   = 'Forward123';                               //SMTP password
-$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-$mail->IsHTML(true);
-//Recipients
-$mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-// $mail->addAddress("itdev@forward.pk"); 
-$mail->addAddress("hufsa@forward.pk"); 
-$mail->addAddress("sohail@forward.pk"); 
-$mail->addAddress("store@forward.pk"); 
-$mail->AddCC('abaid@forward.pk');
-$mail->AddCC('imran@forward.pk');
+                //Server settings
+                $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+                $mail->isSMTP();                                            //Send using SMTP
+                $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+                $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
+                $mail->Password   = 'Forward123';                               //SMTP password
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+                $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                $mail->IsHTML(true);
+                //Recipients
+                $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
+                // $mail->addAddress("itdev@forward.pk"); 
+                $mail->addAddress("hufsa@forward.pk");
+                $mail->addAddress("sohail@forward.pk");
+                $mail->addAddress("store@forward.pk");
+                $mail->AddCC('abaid@forward.pk');
+                $mail->AddCC('imran@forward.pk');
 
- $mail->AddCC('waseembutt@forward.pk');
- $mail->AddCC('tafseer@forward.pk');
-    $mail->AddCC('shoaib@forward.pk');
-    $mail->AddCC('fsqa@forward.pk');
-          $mail->AddCC('oman@forward.pk');
-             $mail->AddCC('abdulhaseeb@forward.pk');
-             $mail->AddCC('yaseen@forward.pk');
-             $mail->AddCC('zainabbas@forward.pk');
-$mail->Subject = "Raw Material Failure";
-$mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
+                $mail->AddCC('waseembutt@forward.pk');
+                $mail->AddCC('tafseer@forward.pk');
+                $mail->AddCC('shoaib@forward.pk');
+                $mail->AddCC('fsqa@forward.pk');
+                $mail->AddCC('oman@forward.pk');
+                $mail->AddCC('abdulhaseeb@forward.pk');
+                $mail->AddCC('yaseen@forward.pk');
+                $mail->AddCC('zainabbas@forward.pk');
+                $mail->Subject = "Raw Material Failure";
+                $mail->Body = '<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
 <div style="margin-left:40%;">
 <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
 MS Thread Test Report Result Alert</th></tr>
-<tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
-<tr><th>Material Name:</th><td>'.$SupplierRef .'</td></tr>
-<tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
-<tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
-<tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetails?id='.$Id.'</td></tr>
+<tr><th>PO NO.</th><td>' . $PONo . '</td></tr>
+<tr><th>Material Name:</th><td>' . $SupplierRef . '</td></tr>
+<tr><th>Supplier Name.</th><td>' . $SupplierName . '</td></tr>
+<tr><th>Test Performed By.</th><td>' . trim($testPerformer, " ") . '</td></tr>
+<tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetails?id=' . $Id . '</td></tr>
 <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
 </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
 
 
-//  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
-//$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
-$mail->send();
-echo 'Message has been sent';
-} catch (Exception $e) {
-echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-}
-}
+                //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
+                //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
+                $mail->send();
+                echo 'Message has been sent';
+            } catch (Exception $e) {
+                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            }
+        }
         echo $Id;
         $iter = 0;
 
         foreach ($child as $key => $value) {
-            if($iter == 0){
+            if ($iter == 0) {
                 $testNo = $value[0];
                 $PONo = $value[1];
                 $Test = $value[2];
                 // $time = strtotime($TDate);
                 // $newformat = date('Y-m-d',$time);
                 $Method = $value[3];
-                  $Unit = $value[4];
-                     $Requirement = $value[5];
-                     $Result = $value[6];
-                     
+                $Unit = $value[4];
+                $Requirement = $value[5];
+                $Result = $value[6];
+
                 $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
                (TID
                ,Test
@@ -969,17 +960,16 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                ,'$Result'
                ,'$Date'
                ,'$user_id')");
-        $iter +=1;    
-        }
-        else{
-            $testNo = $value[1];
-            $PONo = $value[2];
-            $Test = $value[3];
-            $Method = $value[4];
-            $Unit = $value[5];
-            $Requirement = $value[6];
-            $Result = $value[7];
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+                $iter += 1;
+            } else {
+                $testNo = $value[1];
+                $PONo = $value[2];
+                $Test = $value[3];
+                $Method = $value[4];
+                $Unit = $value[5];
+                $Requirement = $value[6];
+                $Result = $value[7];
+                $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
            (TID
            ,Test
             ,Method
@@ -996,10 +986,9 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         ,'$Result'
         ,'$Date'
         ,'$user_id')");
-           $iter +=1;
+                $iter += 1;
+            }
         }
-        }
-            
     }
 
     public function AddHeaderBlader(
@@ -1014,9 +1003,9 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         $testGroup,
         $testPerformer,
         $child,
-        $material
-        ,$hardness
-        ,$remarks,
+        $material,
+        $hardness,
+        $remarks,
         $CSSValueAdd
     ) {
         date_default_timezone_set('Asia/Karachi');
@@ -1066,9 +1055,9 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         foreach ($child as $key => $value) {
             // $testNo = $value[0];
             // $PONo = $value[1];
-        if($bladerIter == 0){
-            $Test = $value[2];
-            $Unit = $value[3];
+            if ($bladerIter == 0) {
+                $Test = $value[2];
+                $Unit = $value[3];
                 $Results1 = $value[4];
                 $Results2 = $value[5];
                 $Results3 = $value[6];
@@ -1084,8 +1073,8 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                 $DecreaseInPr = $value[16];
                 $TPressure = $value[17];
                 $PercentageLeakage = $value[18];
-                
-                    $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+
+                $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
                    (TID
                    ,Test
                    ,EntryDate
@@ -1130,28 +1119,27 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                    ,'$PercentageLeakage'
         
                    ,'$Unit')");
-                   $bladerIter +=1;
-        }    
-        else{
-            $Test = $value[3];
-    $Unit = $value[4];
-        $Results1 = $value[5];
-        $Results2 = $value[6];
-        $Results3 = $value[7];
-        $Results4 = $value[8];
-        $ValveTest = $value[9];
-        $SpecificGravity = $value[10];
-        $ResilienceTest = $value[11];
-        $AbrasionLossOfWt = $value[12];
-        $StabilityTest = $value[13];
-        $MigrationTest = $value[14];
-        $AirDate = $value[15];
-        $Day = $value[16];
-        $DecreaseInPr = $value[17];
-        $TPressure = $value[18];
-        $PercentageLeakage = $value[19];
-        
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+                $bladerIter += 1;
+            } else {
+                $Test = $value[3];
+                $Unit = $value[4];
+                $Results1 = $value[5];
+                $Results2 = $value[6];
+                $Results3 = $value[7];
+                $Results4 = $value[8];
+                $ValveTest = $value[9];
+                $SpecificGravity = $value[10];
+                $ResilienceTest = $value[11];
+                $AbrasionLossOfWt = $value[12];
+                $StabilityTest = $value[13];
+                $MigrationTest = $value[14];
+                $AirDate = $value[15];
+                $Day = $value[16];
+                $DecreaseInPr = $value[17];
+                $TPressure = $value[18];
+                $PercentageLeakage = $value[19];
+
+                $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
            (TID
            ,Test
            ,EntryDate
@@ -1196,9 +1184,8 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
            ,'$PercentageLeakage'
 
            ,'$Unit')");
-           $bladerIter +=1;
-        }
-        
+                $bladerIter += 1;
+            }
         }
     }
 
@@ -1215,10 +1202,10 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         $picture,
         $testGroup,
         $testPerformer,
-        $childArray ,
+        $childArray,
         $size,
-        $Testedfor
-        ,$Note,
+        $Testedfor,
+        $Note,
         $CSSValueAdd
     ) {
         date_default_timezone_set('Asia/Karachi');
@@ -1265,19 +1252,19 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         $Id = $this->db->insert_id();
         echo $Id;
         $bladerIter = 0;
-  
+
         foreach ($childArray as $key => $value) {
             // $testNo = $value[0];
             // $PONo = $value[1];
-        if($bladerIter == 0){
-            $Weight = $value[0];
-            $CircumferenceMin = $value[1];
+            if ($bladerIter == 0) {
+                $Weight = $value[0];
+                $CircumferenceMin = $value[1];
                 $CircumferenceMax = $value[2];
                 $Deviation = $value[3];
                 $ReboundTest = $value[4];
                 $Remarks = $value[5];
-                
-                    $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+
+                $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
                  (TID
            ,Weight
            ,CircumferenceMin
@@ -1295,17 +1282,16 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
            ,'$ReboundTest'
            ,'$Remarks'
          )");
-                   $bladerIter +=1;
-        }    
-        else{
-            $Weight = $value[2];
-            $CircumferenceMin = $value[3];
+                $bladerIter += 1;
+            } else {
+                $Weight = $value[2];
+                $CircumferenceMin = $value[3];
                 $CircumferenceMax = $value[4];
                 $Deviation = $value[5];
                 $ReboundTest = $value[6];
                 $Remarks = $value[7];
-        
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+
+                $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
            (TID
            ,Weight
            ,CircumferenceMin
@@ -1323,9 +1309,8 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
            ,'$ReboundTest'
            ,'$Remarks'
          )");
-           $bladerIter +=1;
-        }
-        
+                $bladerIter += 1;
+            }
         }
     }
 
@@ -1356,10 +1341,11 @@ echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         $this->db->where('SkillID', $id);
         $this->db->delete('tbl_DMMS_Skills');
     }
-    public function labtest(){
+    public function labtest()
+    {
         $Date = date('Y-m-d');
-      //$Date  = date('d/m/Y');
- $query = $this->db
+        //$Date  = date('d/m/Y');
+        $query = $this->db
             ->query(" SELECT        dbo.view_lab_test.*
 FROM            dbo.view_lab_test
 WHERE        (Entrydate BETWEEN CONVERT(DATETIME, '$Date 00:00:00', 102) AND CONVERT(DATETIME, '$Date 00:00:00', 102))");
@@ -1367,25 +1353,28 @@ WHERE        (Entrydate BETWEEN CONVERT(DATETIME, '$Date 00:00:00', 102) AND CON
 
         return $query->result_array();
     }
-      public function labtestD($TestNO){
-      $Date  = date('d/m/Y');
- $query = $this->db
+    public function labtestD($TestNO)
+    {
+        $Date  = date('d/m/Y');
+        $query = $this->db
             ->query(" SELECT        dbo.view_lab_test_D.*
 FROM            dbo.view_lab_test_D
 WHERE        (TestNO ='$TestNO')");
 
         return $query->result_array();
     }
-    public function Vendors(){
-        
-$query = $this->db
+    public function Vendors()
+    {
+
+        $query = $this->db
             ->query("SELECT        VendorName, Status, VendorId
 FROM            dbo.tbl_Pro_Vendor");
 
         return $query->result_array();
     }
-    public function AddActivity($FC,$name,$status, $testtype){
- $query = $this->db->query("INSERT INTO tbl_Dev_Activities
+    public function AddActivity($FC, $name, $status, $testtype)
+    {
+        $query = $this->db->query("INSERT INTO tbl_Dev_Activities
            (VendorID
            ,Name
            ,Status
@@ -1396,93 +1385,100 @@ FROM            dbo.tbl_Pro_Vendor");
            ,'$name',
            $status,
            '$testtype' )");
-        if($query ){
- $this->session->set_flashdata('info', 'Activity Saved Successfully');
-        redirect('DevelopmentController/master_form');
-            } else {
-                $this->session->set_flashdata('danger', 'Activity Not  Saved');
-                redirect('DevelopmentController/master_form');
-            }
+        if ($query) {
+            $this->session->set_flashdata('info', 'Activity Saved Successfully');
+            redirect('DevelopmentController/master_form');
+        } else {
+            $this->session->set_flashdata('danger', 'Activity Not  Saved');
+            redirect('DevelopmentController/master_form');
+        }
     }
-    public function Activities(){
+    public function Activities()
+    {
         $query = $this->db->query(" SELECT        dbo.view_Dev_Activity.*
 FROM            dbo.view_Dev_Activity");
 
         return $query->result_array();
     }
-    public function updateActivity($TID,$name,$status,$testtype){
-         $query = $this->db->query("UPDATE   dbo .tbl_Dev_Activities 
+    public function updateActivity($TID, $name, $status, $testtype)
+    {
+        $query = $this->db->query("UPDATE   dbo .tbl_Dev_Activities 
             SET   Name  =  '$name',Status  =  '$status', testCatagoty = '$testtype'
           WHERE  ActivityID='$TID'");
-            
-//             if($query ){
-//  $this->session->set_flashdata('info', 'Activity Updated Successfully');
-//         redirect('DevelopmentController/master_form');
-//             } else {
-//                 $this->session->set_flashdata('danger', 'Activity Not Updated ');
-//                 redirect('DevelopmentController/master_form');
-//             }
-            
+
+        //             if($query ){
+        //  $this->session->set_flashdata('info', 'Activity Updated Successfully');
+        //         redirect('DevelopmentController/master_form');
+        //             } else {
+        //                 $this->session->set_flashdata('danger', 'Activity Not Updated ');
+        //                 redirect('DevelopmentController/master_form');
+        //             }
+
     }
-    
-     public function GetPOM(){
+
+    public function GetPOM()
+    {
         $query = $this->db->query(" SELECT        dbo.view_Dev_POM.*
 FROM            dbo.view_Dev_POM");
 
         return $query->result_array();
     }
-    
-       public function undoFGT($TID){
-         
-       $query = $this->db->query("DELETE    FROM  tbl_FGT_D
+
+    public function undoFGT($TID)
+    {
+
+        $query = $this->db->query("DELETE    FROM  tbl_FGT_D
       WHERE TID=$TID");
-      if($query){
+        if ($query) {
             $query = $this->db->query("DELETE FROM tbl_FGT_H
       WHERE TID=$TID");
-       if($query){
-           $this->session->set_flashdata('danger', 'Data Deleted Successfully');
-           redirect('FGT/index');
-       }
-      }
-        
+            if ($query) {
+                $this->session->set_flashdata('danger', 'Data Deleted Successfully');
+                redirect('FGT/index');
+            }
+        }
     }
-    public function undo($TID){
-        
-       $query = $this->db->query("DELETE  FROM Tbl_Lab_Test_D
+    public function undo($TID)
+    {
+
+        $query = $this->db->query("DELETE  FROM Tbl_Lab_Test_D
       WHERE TID=$TID");
-      if($query){
+        if ($query) {
             $query = $this->db->query("DELETE FROM Tbl_Lab_Test_H
       WHERE TID=$TID");
-       if($query){
-           $this->session->set_flashdata('danger', 'Data Deleted Successfully');
-           redirect('LabController/master_form');
-       }
-      }
+            if ($query) {
+                $this->session->set_flashdata('danger', 'Data Deleted Successfully');
+                redirect('LabController/master_form');
+            }
+        }
     }
 
-    public function undoTestType($TID){
-        
+    public function undoTestType($TID)
+    {
+
         $query = $this->db->query("DELETE  FROM dbo.tbl_test_types
        WHERE TestID=$TID");
-     }
-    public function CallData($ArtCode){
-            $query = $this->db->query(" SELECT        dbo.view_Dev_Articles.*
-FROM            dbo.view_Dev_Articles Where ArtCode='$ArtCode'" );
+    }
+    public function CallData($ArtCode)
+    {
+        $query = $this->db->query(" SELECT        dbo.view_Dev_Articles.*
+FROM            dbo.view_Dev_Articles Where ArtCode='$ArtCode'");
 
         return $query->result_array();
-}
-public function LoadData($FactoryCode){
-       $query = $this->db->query("SELECT        dbo.view_Dev_Activity.*
+    }
+    public function LoadData($FactoryCode)
+    {
+        $query = $this->db->query("SELECT        dbo.view_Dev_Activity.*
 FROM            dbo.view_Dev_Activity
-WHERE        (VendorName = '$FactoryCode')" );
+WHERE        (VendorName = '$FactoryCode')");
 
         return $query->result_array();
-
-}
-public function insertion($ActivityID,$VendorID,$Balls,$ArticleID,$CID,$MID,$Size,$Type){
-    $Date = date('Y-m-d H:i:s');
+    }
+    public function insertion($ActivityID, $VendorID, $Balls, $ArticleID, $CID, $MID, $Size, $Type)
+    {
+        $Date = date('Y-m-d H:i:s');
         $user_id = $this->session->userdata('user_id');
-     $query = $this->db->query("INSERT INTO tbl_Dev_Process
+        $query = $this->db->query("INSERT INTO tbl_Dev_Process
            (ActivityID
            ,VendorID
            
@@ -1508,14 +1504,14 @@ Status
            ,'$Size'
            ,'$Type'
            ,'In Process')");
-//         if($query ){
-//  $this->session->set_flashdata('info', 'Activity Saved Successfully');
-//         redirect('DevelopmentController/master_form');
-//             } else {
-//                 $this->session->set_flashdata('danger', 'Activity Not  Saved');
-//                 redirect('DevelopmentController/master_form');
-//             }
-}
+        //         if($query ){
+        //  $this->session->set_flashdata('info', 'Activity Saved Successfully');
+        //         redirect('DevelopmentController/master_form');
+        //             } else {
+        //                 $this->session->set_flashdata('danger', 'Activity Not  Saved');
+        //                 redirect('DevelopmentController/master_form');
+        //             }
+    }
     public function getData($css)
     {
         $query = $this->db
@@ -1534,93 +1530,99 @@ Status
         ");
         return $query->result_array();
     }
-   
 
-public function Process($article){
-       $query = $this->db->query("SELECT        dbo.view_Dev_Process.*
+
+    public function Process($article)
+    {
+        $query = $this->db->query("SELECT        dbo.view_Dev_Process.*
 FROM            dbo.view_Dev_Process
-WHERE        (ArtCode = '$article')" );
+WHERE        (ArtCode = '$article')");
 
         return $query->result_array();
-
-}
-public function updateprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate,$percentageComplete){
-$Status=str_replace("%20"," ", $Status);
-	// Echo $ProcessEndDate;
-    //         die;
-    if($Status=='Complete'){
-         $Date = date('Y-m-d H:i:s');
-                $query = $this->db->query("UPDATE    dbo .tbl_Dev_Process 
+    }
+    public function updateprocess($TID, $Balls, $Status, $date_make, $ProcessEndDate, $percentageComplete)
+    {
+        $Status = str_replace("%20", " ", $Status);
+        // Echo $ProcessEndDate;
+        //         die;
+        if ($Status == 'Complete') {
+            $Date = date('Y-m-d H:i:s');
+            $query = $this->db->query("UPDATE    dbo .tbl_Dev_Process 
             SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make',Status  =  '$Status' ,CompleteDate='$Date' ,ProcessEndDate='$ProcessEndDate',percentageComplete = $percentageComplete 
-          WHERE  TID='$TID'");  
-            }else{
-                  $query = $this->db->query("UPDATE   dbo .tbl_Dev_Process 
+          WHERE  TID='$TID'");
+        } else {
+            $query = $this->db->query("UPDATE   dbo .tbl_Dev_Process 
             SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make',Status  =  '$Status',ProcessEndDate='$ProcessEndDate',percentageComplete = $percentageComplete 
           WHERE  TID='$TID'");
-            }
-   
-}
-public function  updatecprocess($TID ,$Balls,$Status,$date_make,$ProcessEndDate,$rootcasuse,$action,$percentageComplete){
- $Date = date('Y-m-d H:i:s');
-                $query = $this->db->query("UPDATE    dbo .tbl_Dev_Process 
+        }
+    }
+    public function  updatecprocess($TID, $Balls, $Status, $date_make, $ProcessEndDate, $rootcasuse, $action, $percentageComplete)
+    {
+        $Date = date('Y-m-d H:i:s');
+        $query = $this->db->query("UPDATE    dbo .tbl_Dev_Process 
             SET   NoOfBalls  =  '$Balls',RDate  =  '$date_make',Status  =  '$Status' ,CompleteDate='$Date' ,ProcessEndDate='$ProcessEndDate' ,rootcasue='$rootcasuse',
             action='$action',percentageComplete = $percentageComplete
-          WHERE  TID='$TID'");  
-    
-}
-public function undoActivity($TID){
+          WHERE  TID='$TID'");
+    }
+    public function undoActivity($TID)
+    {
         $query = $this->db->query("DELETE  FROM tbl_Dev_Activities
       WHERE ActivityID=$TID");
-}
-public function GetArticles(){
-     $query = $this->db->query(" SELECT        dbo.view_Dev_Articles.*
+    }
+    public function GetArticles()
+    {
+        $query = $this->db->query(" SELECT        dbo.view_Dev_Articles.*
 FROM            dbo.view_Dev_Articles");
 
         return $query->result_array();
-}
-public function getSize($ArtCode){
-      $query = $this->db->query(" SELECT        dbo.view_Article_Size.*
+    }
+    public function getSize($ArtCode)
+    {
+        $query = $this->db->query(" SELECT        dbo.view_Article_Size.*
 FROM            dbo.view_Article_Size
 Where ArtCode='$ArtCode' ");
 
         return $query->result_array();
-}
-public function updatedStatus($reviewStatus,$approvedStatus,$TID){
-    if($reviewStatus==1){
- $user_id = $this->session->userdata('user_id');
-    }else{
- $user_id = 0;
     }
-   if($approvedStatus==1){
- $user_id1 = $this->session->userdata('user_id');
-    }else{
- $user_id1 = 0;
-    }
-    
+    public function updatedStatus($reviewStatus, $approvedStatus, $TID)
+    {
+        if ($reviewStatus == 1) {
+            $user_id = $this->session->userdata('user_id');
+        } else {
+            $user_id = 0;
+        }
+        if ($approvedStatus == 1) {
+            $user_id1 = $this->session->userdata('user_id');
+        } else {
+            $user_id1 = 0;
+        }
 
-    $query = $this->db->query("UPDATE   dbo .Tbl_Lab_Test_H 
+
+        $query = $this->db->query("UPDATE   dbo .Tbl_Lab_Test_H 
     SET   ApprovedStatus  =  '$approvedStatus',ReviewStatus  =  '$reviewStatus',ReviewBy=$user_id,ApproveBy=$user_id1
   WHERE  TID='$TID'");
-}
-public function updatedStatusFGT($reviewStatus,$approvedStatus,$TID){
-    if($reviewStatus==1){
- $user_id = $this->session->userdata('user_id');
-    }else{
- $user_id = 0;
     }
-   if($approvedStatus==1){
- $user_id1 = $this->session->userdata('user_id');
-    }else{
- $user_id1 = 0;
-    }
-    
-  
-      $query = $this->db->query("UPDATE   dbo .tbl_FGT_H 
+    public function updatedStatusFGT($reviewStatus, $approvedStatus, $TID)
+    {
+        if ($reviewStatus == 1) {
+            $user_id = $this->session->userdata('user_id');
+        } else {
+            $user_id = 0;
+        }
+        if ($approvedStatus == 1) {
+            $user_id1 = $this->session->userdata('user_id');
+        } else {
+            $user_id1 = 0;
+        }
+
+
+        $query = $this->db->query("UPDATE   dbo .tbl_FGT_H 
     SET   ApprovedStatus  =  '$approvedStatus',ReviewStatus  =  '$reviewStatus',Reviewby=$user_id,ApprovedBy=$user_id1
   WHERE  TID='$TID'");
-}
+    }
 
-  public function getDetails($Id){
+    public function getDetails($Id)
+    {
         $query = $this->db->query(" SELECT        TID, dbo.view_Lab_test_Details.*
         FROM            dbo.view_Lab_test_Details
         WHERE        (TID = '$Id')");
@@ -1628,7 +1630,8 @@ public function updatedStatusFGT($reviewStatus,$approvedStatus,$TID){
         return $query->result_array();
     }
 
-    public function getHead($Id){
+    public function getHead($Id)
+    {
         $query = $this->db->query(" SELECT        dbo.view_Lab_Test_H.*, TID
         FROM            dbo.view_Lab_Test_H
         WHERE        (TID = '$Id')");
@@ -1636,7 +1639,8 @@ public function updatedStatusFGT($reviewStatus,$approvedStatus,$TID){
         return $query->result_array();
     }
 
-    public function getTestId($CssNo){
+    public function getTestId($CssNo)
+    {
         $query = $this->db->query("SELECT        dbo.view_Lab_Test_H.*, TID,CSSNO
         FROM            dbo.view_Lab_Test_H
         WHERE        (CSSNO = '$CssNo')");
@@ -1657,9 +1661,8 @@ public function updatedStatusFGT($reviewStatus,$approvedStatus,$TID){
      WHERE       (Entrydate BETWEEN CONVERT(DATETIME, '$newSDateObj 00:00:00', 102) AND CONVERT(DATETIME, '$newEDateObj 00:00:00', 102))");
 
         return $query->result_array();
-   
     }
-    
+
     public function getalltest()
     {
 
@@ -1675,26 +1678,24 @@ public function updatedStatusFGT($reviewStatus,$approvedStatus,$TID){
     FROM            dbo.tbl_test_types  WHERE        (testCatagoty = 'Material Test')");
 
         return $query->result_array();
-   
     }
-     public function getTestTypeFGT()
+    public function getTestTypeFGT()
     {
 
         $query = $this->db->query(" SELECT * 
     FROM            dbo.tbl_test_types  WHERE        (testCatagoty = 'FGT Test')");
 
         return $query->result_array();
-   
     }
 
-public function GetCssNo(){
+    public function GetCssNo()
+    {
         $query = $this->db->query("SELECT        CSSNo
 FROM            dbo.tbl_lab_test_request
 WHERE        (Status = 'Send to Lab') AND (TestType = 'FGT Test')");
 
         return $query->result_array();
-    
-}
+    }
     public function getTestRequests()
     {
 
@@ -1702,7 +1703,6 @@ WHERE        (Status = 'Send to Lab') AND (TestType = 'FGT Test')");
         FROM    dbo.View_Test_Request_Pending");
 
         return $query->result_array();
-   
     }
 
     public function getTestRequestsSendToLab()
@@ -1712,7 +1712,6 @@ WHERE        (Status = 'Send to Lab') AND (TestType = 'FGT Test')");
         FROM    dbo.View_Test_Request_Send_to_Lab");
 
         return $query->result_array();
-   
     }
 
     public function getTestRequestsSendToRequester()
@@ -1722,7 +1721,6 @@ WHERE        (Status = 'Send to Lab') AND (TestType = 'FGT Test')");
         FROM    dbo.View_Test_Request_Send_to_Requester");
 
         return $query->result_array();
-   
     }
 
     public function TestTypeById($id)
@@ -1734,35 +1732,33 @@ WHERE        (Status = 'Send to Lab') AND (TestType = 'FGT Test')");
     ");
 
         return $query->result_array();
-   
     }
 
     public function getTestByLabPending()
     {
-     
+
         $query = $this->db->query("SELECT   dbo.View_Test_Request_Pending_Lab.*     
         FROM    dbo.View_Test_Request_Pending_Lab
 
     ");
-    
+
 
         return $query->result_array();
-   
     }
 
     public function getTestByLabAcknowledge()
     {
-     
+
         $query = $this->db->query("SELECT   dbo.View_Test_Request_Acknowledge_Lab.*     
         FROM    dbo.View_Test_Request_Acknowledge_Lab
 
     ");
-    
+
 
         return $query->result_array();
-   
     }
-public function getmateialCssNO(){
+    public function getmateialCssNO()
+    {
 
         $query = $this->db->query("SELECT        CSSNo
 FROM            dbo.tbl_lab_test_request
@@ -1771,8 +1767,9 @@ WHERE        (Status = 'Send to Lab') AND (LabAcknowledgementStatus = 'Acknowled
 
         return $query->result_array();
     }
-    Public function getrawCss($Css){
-        
+    public function getrawCss($Css)
+    {
+
         $query = $this->db->query("SELECT        view_get_Css_Data.*
 FROM            dbo.view_get_Css_Data
 WHERE        (CSSNo = '$Css')");
@@ -1780,7 +1777,7 @@ WHERE        (CSSNo = '$Css')");
 
         return $query->result_array();
     }
-    
+
     public function getTestByRequester()
     {
         $user = $this->session->userdata('user_id');
@@ -1790,7 +1787,6 @@ WHERE        (CSSNo = '$Css')");
     ");
 
         return $query->result_array();
-   
     }
 
     public function TestRequestById($id)
@@ -1802,9 +1798,9 @@ WHERE        (CSSNo = '$Css')");
     ");
 
         return $query->result_array();
-   
     }
-    public function LoadDatacatagory($testCatagoty){
+    public function LoadDatacatagory($testCatagoty)
+    {
         $query = $this->db->query("SELECT        dbo.tbl_test_types.*
 FROM            dbo.tbl_test_types
 WHERE        (testCatagoty = '$testCatagoty')");
@@ -1846,15 +1842,14 @@ WHERE        (testCatagoty = '$testCatagoty')");
 
 
         $this->session->set_userdata('MAXID', $RID);
-        if($query){
+        if ($query) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
-
     }
-    public function getmaxID(){
+    public function getmaxID()
+    {
         $user = $this->session->userdata('user_id');
         $query = $this->db->query("SELECT        MAX(TID) AS MaXID
 FROM            dbo.tbl_lab_test_request
@@ -1862,8 +1857,9 @@ WHERE        (SRSenderID = $user)");
 
         return $query->result_array();
     }
-    public function GetItems(){
-        
+    public function GetItems()
+    {
+
         $query = $this->db->query("SELECT        L4Name, Code
 FROM            dbo.tbl_Inv_L4
 WHERE        (Status = 1)");
@@ -1872,7 +1868,7 @@ WHERE        (Status = 1)");
     }
     public function getRequestData($ID)
     {
-        
+
         $query = $this->db->query("SELECT        TID, Type, TestType, CONVERT(Varchar, Sample_RequestDate, 103) AS Sample_RequestDate, Factory_Code, PONo, SupplierName, Quantity_Issued,MaterialType
 FROM            dbo.tbl_lab_test_request
 WHERE        (TID = $ID)");
@@ -1880,7 +1876,8 @@ WHERE        (TID = $ID)");
         return $query->result_array();
     }
     public function
-    AddRdetailsTest($RID,  $TestID, $testtype){
+    AddRdetailsTest($RID,  $TestID, $testtype)
+    {
         $user = $this->session->userdata('user_id');
         $Date = date('Y-m-d H:i:s');
         $query = $this->db->query("INSERT  INTO dbo.Tbl_Test_Type_Details 
@@ -1894,23 +1891,25 @@ WHERE        (TID = $ID)");
             return false;
         }
     }
-    public function getrequesttest($Requestid){
+    public function getrequesttest($Requestid)
+    {
         $query = $this->db->query(" SELECT * 
     FROM            dbo.view_get_test_name
     WHERE RequestID='$Requestid'");
 
         return $query->result_array();
-
     }
-    public function requesttestYpe($RID){
-        
+    public function requesttestYpe($RID)
+    {
+
         $query = $this->db->query(" SELECT * 
     FROM            dbo.view_lab_test_Types
     WHERE RequestID='$RID'");
 
         return $query->result_array();
     }
-    public function AddRdetails($RID, $Code, $Article){
+    public function AddRdetails($RID, $Code, $Article)
+    {
         $user = $this->session->userdata('user_id');
         $Date = date('Y-m-d H:i:s');
         $query = $this->db->query("INSERT  INTO dbo.Tbl_Test_Request_Details 
@@ -1924,7 +1923,8 @@ WHERE        (TID = $ID)");
             return false;
         }
     }
-    public function undotestTypeDetails($TID){
+    public function undotestTypeDetails($TID)
+    {
         $this->db->where('TID', $TID);
         $this->db->delete('Tbl_Test_Type_Details');
     }
@@ -1933,7 +1933,7 @@ WHERE        (TID = $ID)");
         $this->db->where('TID', $TID);
         $this->db->delete('Tbl_Test_Request_Details');
     }
-    
+
     public function getRequestdetails($ID)
     {
 
@@ -1943,25 +1943,23 @@ WHERE        (TID = $ID)");
 
         return $query->result_array();
     }
-    
-    public function EditTestType($id,$name,$status,$testtype)
+
+    public function EditTestType($id, $name, $status, $testtype)
     {
-        
+
         $query = $this->db->query("UPDATE dbo.tbl_test_types 
         SET Name = '$name',Status = '$status', testCatagoty = '$testtype'
         WHERE TestID='$id'
         ");
 
-        if($query){
+        if ($query) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
-   
     }
 
-    public function EditTestRequest($TID,$Sample_Receiving_Date,$CSSNo,$Quantity_Received,$Quantity_Retained, $Due_Date,$CompletationDate,$Remarks,$senderSignature)
+    public function EditTestRequest($TID, $Sample_Receiving_Date, $CSSNo, $Quantity_Received, $Quantity_Retained, $Due_Date, $CompletationDate, $Remarks, $senderSignature)
     {
         $user = $this->session->userdata('user_id');
         $query = $this->db->query("UPDATE dbo.tbl_lab_test_request 
@@ -1970,16 +1968,14 @@ WHERE        (TID = $ID)");
         WHERE TID='$TID'
         ");
 
-        if($query){
+        if ($query) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
-   
     }
 
-    public function EditTestRequestBackToSender($TID,$Quantity,$senderId ,$ReceiverId)
+    public function EditTestRequestBackToSender($TID, $Quantity, $senderId, $ReceiverId)
     {
         $query = $this->db->query("UPDATE dbo.tbl_lab_test_request 
         SET SRETSenderID = '$senderId',SRETReceiverID = '$ReceiverId',Quantity_Returned = $Quantity,Status='Send Back to Requester'
@@ -1987,13 +1983,11 @@ WHERE        (TID = $ID)");
         WHERE TID='$TID'
         ");
 
-        if($query){
+        if ($query) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
-   
     }
 
     public function EditTestRequestLabAcknowledge($TID)
@@ -2004,13 +1998,11 @@ WHERE        (TID = $ID)");
         WHERE TID='$TID'
         ");
 
-        if($query){
+        if ($query) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
-   
     }
 
     public function AcknowledgeResult($TID)
@@ -2021,31 +2013,60 @@ WHERE        (TID = $ID)");
         WHERE TID='$TID'
         ");
 
-        if($query){
+        if ($query) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
-   
     }
 
-public function getTableData($sDate,$eDate){
+    public function getTableData($sDate, $eDate)
+    {
 
-   
-    $newSDate = strtotime($sDate);
-    $newEDate = strtotime($eDate);
-    $newSDateObj = date('Y-m-d',$newSDate);
-    $newEDateObj = date('Y-m-d',$newEDate);
-    
-    $query = $this->db->query("SELECT        dbo.view_FGT_H.*
+
+        $newSDate = strtotime($sDate);
+        $newEDate = strtotime($eDate);
+        $newSDateObj = date('Y-m-d', $newSDate);
+        $newEDateObj = date('Y-m-d', $newEDate);
+
+        $query = $this->db->query("SELECT        dbo.view_FGT_H.*
     FROM            dbo.view_FGT_H
     WHERE       (moosadate BETWEEN CONVERT(DATETIME, '$newSDateObj 00:00:00', 102) AND CONVERT(DATETIME, '$newEDateObj 00:00:00', 102))");
 
-       return $query->result_array();
-}
-public function FGT_H_insertion($fgttype,$lbno,$tdate,$testcat,$fifastump,$pmonth,$cmat,$backing,$fgbladderttype,
-    $btype,$ttype,$cssCode,$mmcolor,$pcolors,$result,$fn,$m,$pshape,$rem,$testperformedby,$note,$pictureFresh,$pictureShooter,$pictureHydro,$pictureDrum,$article,$size,$tetype,$department, $fgttest) {
+        return $query->result_array();
+    }
+    public function FGT_H_insertion(
+        $fgttype,
+        $lbno,
+        $tdate,
+        $testcat,
+        $fifastump,
+        $pmonth,
+        $cmat,
+        $backing,
+        $fgbladderttype,
+        $btype,
+        $ttype,
+        $cssCode,
+        $mmcolor,
+        $pcolors,
+        $result,
+        $fn,
+        $m,
+        $pshape,
+        $rem,
+        $testperformedby,
+        $note,
+        $pictureFresh,
+        $pictureShooter,
+        $pictureHydro,
+        $pictureDrum,
+        $article,
+        $size,
+        $tetype,
+        $department,
+        $fgttest
+    ) {
         date_default_timezone_set('Asia/Karachi');
         $Date = date('Y-m-d H:i:s');
         $user_id = $this->session->userdata('user_id');
@@ -2118,86 +2139,88 @@ public function FGT_H_insertion($fgttype,$lbno,$tdate,$testcat,$fifastump,$pmont
               )");
 
         $Id = $this->db->insert_id();
-        
-        if($result=='Fail' || $result=='fail'){
+
+        if ($result == 'Fail' || $result == 'fail') {
             $mail = new PHPMailer(true);
-    try{
-    
-    
-      //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-    $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
-    $mail->Password   = 'Forward123';                               //SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-    $mail->IsHTML(true);
-    //Recipients
-    $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-    // $mail->addAddress("itdev@forward.pk"); 
-    $mail->addAddress("hufsa@forward.pk"); 
-    $mail->addAddress("sohail@forward.pk"); 
-    $mail->addAddress("store@forward.pk"); 
-    $mail->AddCC('abaid@forward.pk');
-    $mail->AddCC('imran@forward.pk');
-    
-     $mail->AddCC('waseembutt@forward.pk');
-     $mail->AddCC('tafseer@forward.pk');
-        $mail->AddCC('shoaib@forward.pk');
-        $mail->AddCC('fsqa@forward.pk');
-              $mail->AddCC('oman@forward.pk');
-                 $mail->AddCC('abdulhaseeb@forward.pk');
-                 $mail->AddCC('yaseen@forward.pk');
-                 $mail->AddCC('zainabbas@forward.pk');
-    $mail->Subject = "FGT Failure";
-    $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
+            try {
+
+
+                //Server settings
+                $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+                $mail->isSMTP();                                            //Send using SMTP
+                $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+                $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
+                $mail->Password   = 'Forward123';                               //SMTP password
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+                $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                $mail->IsHTML(true);
+                //Recipients
+                $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
+                // $mail->addAddress("itdev@forward.pk"); 
+                $mail->addAddress("hufsa@forward.pk");
+                $mail->addAddress("sohail@forward.pk");
+                $mail->addAddress("store@forward.pk");
+                $mail->AddCC('abaid@forward.pk');
+                $mail->AddCC('imran@forward.pk');
+
+                $mail->AddCC('waseembutt@forward.pk');
+                $mail->AddCC('tafseer@forward.pk');
+                $mail->AddCC('shoaib@forward.pk');
+                $mail->AddCC('fsqa@forward.pk');
+                $mail->AddCC('oman@forward.pk');
+                $mail->AddCC('abdulhaseeb@forward.pk');
+                $mail->AddCC('yaseen@forward.pk');
+                $mail->AddCC('zainabbas@forward.pk');
+                $mail->Subject = "FGT Failure";
+                $mail->Body = '<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
     <div style="margin-left:40%;">
     <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
-    '.$fgttype . ' Test Report Result Alert</th></tr>
-    <tr><th>Test Date:</th><td>'.$tdate .'</td></tr>
-    <tr><th>FGT Type.</th><td>'.$fgttype .'</td></tr>
-    <tr><th>Lab No.</th><td>'.$lbno .'</td></tr>
-    <tr><th>Test Category.</th><td>'.$testcat .'</td></tr>
-    <tr><th>Article.</th><td>'.$article .'</td></tr>
-    <tr><th>Size.</th><td>'.$size .'</td></tr>
-    <tr><th>Test Performed By.</th><td>'. trim($testperformedby," ") .'</td></tr>
-    <tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetailsFGT?id='.$Id.'</td></tr>
+    ' . $fgttype . ' Test Report Result Alert</th></tr>
+    <tr><th>Test Date:</th><td>' . $tdate . '</td></tr>
+    <tr><th>FGT Type.</th><td>' . $fgttype . '</td></tr>
+    <tr><th>Lab No.</th><td>' . $lbno . '</td></tr>
+    <tr><th>Test Category.</th><td>' . $testcat . '</td></tr>
+    <tr><th>Article.</th><td>' . $article . '</td></tr>
+    <tr><th>Size.</th><td>' . $size . '</td></tr>
+    <tr><th>Test Performed By.</th><td>' . trim($testperformedby, " ") . '</td></tr>
+    <tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetailsFGT?id=' . $Id . '</td></tr>
     <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This FGT has Been Failed</th></tr>
     </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
-    
-    
-    //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
-    //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
-    $mail->send();
-    echo 'Message has been sent';
-    } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    }
-    }
 
+
+                //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
+                //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
+                $mail->send();
+                echo 'Message has been sent';
+            } catch (Exception $e) {
+                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            }
+        }
     }
-    public function getFGRH(){
+    public function getFGRH()
+    {
         $Date = date('Y-m-d');
-     
+
         $query = $this->db
-        ->query("SELECT        dbo.view_FGT_H.*
+            ->query("SELECT        dbo.view_FGT_H.*
     FROM            dbo.view_FGT_H
     WHERE         (moosadate BETWEEN CONVERT(DATETIME, '$Date 00:00:00', 102) AND CONVERT(DATETIME, '$Date 00:00:00', 102))");
-return $query->result_array();
+        return $query->result_array();
     }
 
-    public function getFGRHL(){
+    public function getFGRHL()
+    {
         $Date = date('d/m/Y');
-     
+
         $query = $this->db
-        ->query("SELECT   dbo.view_FGT_H_L.*
+            ->query("SELECT   dbo.view_FGT_H_L.*
     FROM            dbo.view_FGT_H_L
     WHERE         (moosadate BETWEEN '$Date' AND '$Date')");
-return $query->result_array();
+        return $query->result_array();
     }
-    public function FGT_D_insertion($TID,$w1,$w2,$c1_sp,$c2_sp,$sp1_sp,$sp2_sp,$lp1,$lp2,$rrt1,$rrt2,$rrt51,$rrt52,$rrt01,$rrt02,$c1_dp,$c2_dp,$sp_dp1,$sp_dp2,$lp_dp1,$lp_dp2,$m1,$m2,$wup1,$wup2,$c1_wrt,$c2_wrt,$sp1_wrt,$sp2_wrt,$dt1,$dt2,$abr1,$abr2,$uvlf1,$uvlf2,$otr1,$otr2,$hl1,$hl2,$hcc1,$hcc2){
+    public function FGT_D_insertion($TID, $w1, $w2, $c1_sp, $c2_sp, $sp1_sp, $sp2_sp, $lp1, $lp2, $rrt1, $rrt2, $rrt51, $rrt52, $rrt01, $rrt02, $c1_dp, $c2_dp, $sp_dp1, $sp_dp2, $lp_dp1, $lp_dp2, $m1, $m2, $wup1, $wup2, $c1_wrt, $c2_wrt, $sp1_wrt, $sp2_wrt, $dt1, $dt2, $abr1, $abr2, $uvlf1, $uvlf2, $otr1, $otr2, $hl1, $hl2, $hcc1, $hcc2)
+    {
         date_default_timezone_set('Asia/Karachi');
         $Date = date('Y-m-d H:i:s');
         $user_id = $this->session->userdata('user_id');
@@ -2288,42 +2311,47 @@ return $query->result_array();
               ,'$hcc2'
               ,$user_id,'$Date')");
     }
-    public function FGT_PRINT_Head($id){
+    public function FGT_PRINT_Head($id)
+    {
         $query = $this->db
-        ->query("SELECT        dbo.view_FGT_H.*
+            ->query("SELECT        dbo.view_FGT_H.*
 FROM            dbo.view_FGT_H Where TID=$id");
-return $query->result_array();
+        return $query->result_array();
     }
-    
-    public function FGT_PRINT_Details($id){
+
+    public function FGT_PRINT_Details($id)
+    {
         $query = $this->db
-        ->query("SELECT        dbo.view_FGT_D.*
+            ->query("SELECT        dbo.view_FGT_D.*
 FROM            dbo.view_FGT_D Where TID=$id");
-return $query->result_array();
+        return $query->result_array();
     }
 
-    public function FGT_PRINT_Head_CSSNO($CSSNO){
+    public function FGT_PRINT_Head_CSSNO($CSSNO)
+    {
         $query = $this->db
-        ->query("SELECT        dbo.view_FGT_H.*
+            ->query("SELECT        dbo.view_FGT_H.*
 FROM            dbo.view_FGT_H Where cssCode='$CSSNO'");
-return $query->result_array();
-    }
-    
-    public function FGT_PRINT_Details_CSSNO($CSSNO){
-        $query = $this->db
-        ->query("SELECT        dbo.view_FGT_D.*
-FROM            dbo.view_FGT_D Where cssCode='$CSSNO'");
-return $query->result_array();
+        return $query->result_array();
     }
 
-    public function Get_Comparison_Data($lotNo,$StartDate){
-    
+    public function FGT_PRINT_Details_CSSNO($CSSNO)
+    {
         $query = $this->db
-        ->query("SELECT    SuplierID, LotNo, lengthOntage, lengthactual, widthOntage, widthactual, Def1, Def2, Def3, Def4, Def11, Def21, Def31, Def41, Def12, Def22, Def32, Def42, Def13, Def23, Def33, Def43, Hole1, Hole2, Name, Name2, Name3, Name4, 
+            ->query("SELECT        dbo.view_FGT_D.*
+FROM            dbo.view_FGT_D Where cssCode='$CSSNO'");
+        return $query->result_array();
+    }
+
+    public function Get_Comparison_Data($lotNo, $StartDate)
+    {
+
+        $query = $this->db
+            ->query("SELECT    SuplierID, LotNo, lengthOntage, lengthactual, widthOntage, widthactual, Def1, Def2, Def3, Def4, Def11, Def21, Def31, Def41, Def12, Def22, Def32, Def42, Def13, Def23, Def33, Def43, Hole1, Hole2, Name, Name2, Name3, Name4, 
         TID, Date, SupplierName, fabric, Color, CONVERT(varchar, Date, 103) AS Datee
 FROM            dbo.view_store_transaction
 WHERE      (LotNo = '$lotNo') AND (Date = CONVERT(DATETIME, '$StartDate 00:00:00', 102))");
-return $query->result_array();
+        return $query->result_array();
     }
 
     public function addHeadDataMSMaterial(
@@ -2337,7 +2365,7 @@ return $query->result_array();
         $childArray,
         $CSSValueAdd
     ) {
-      
+
         date_default_timezone_set('Asia/Karachi');
         $Date = date('Y-m-d H:i:s');
         $user_id = $this->session->userdata('user_id');
@@ -2370,18 +2398,18 @@ return $query->result_array();
         $Id = $this->db->insert_id();
         echo $Id;
         $bladerIter = 0;
-    
+
         foreach ($childArray as $key => $value) {
             // $testNo = $value[0];
             // $PONo = $value[1];
-        if($bladerIter == 0){
-            $TEST = $value[2];
-            $METHOD = $value[3];
+            if ($bladerIter == 0) {
+                $TEST = $value[2];
+                $METHOD = $value[3];
                 $UNIT = $value[4];
                 $Requirement = $value[5];
                 $RESULTS = $value[6];
-                
-                    $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+
+                $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
                  (TID
            ,Test
            ,Method
@@ -2397,16 +2425,15 @@ return $query->result_array();
            ,'$Requirement'
            ,'$RESULTS'
          )");
-                   $bladerIter +=1;
-        }    
-        else{
-            $TEST = $value[3];
-            $METHOD = $value[4];
+                $bladerIter += 1;
+            } else {
+                $TEST = $value[3];
+                $METHOD = $value[4];
                 $UNIT = $value[5];
                 $Requirement = $value[6];
                 $RESULTS = $value[7];
-        
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+
+                $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
             (TID
            ,Test
            ,Method
@@ -2422,9 +2449,8 @@ return $query->result_array();
            ,'$Requirement'
            ,'$RESULTS'
          )");
-           $bladerIter +=1;
-        }
-        
+                $bladerIter += 1;
+            }
         }
     }
 
@@ -2443,8 +2469,8 @@ return $query->result_array();
         $CSSValueAdd
     ) {
 
-      
-      
+
+
         date_default_timezone_set('Asia/Karachi');
         $Date = date('Y-m-d H:i:s');
         $user_id = $this->session->userdata('user_id');
@@ -2482,76 +2508,76 @@ return $query->result_array();
               ,'$testPerformer')");
         $Id = $this->db->insert_id();
         echo $Id;
-        if($result=='Fail' || $result=='fail'){
+        if ($result == 'Fail' || $result == 'fail') {
             $mail = new PHPMailer(true);
-    try{
-    
-    
-      //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-    $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
-    $mail->Password   = 'Forward123';                               //SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-    $mail->IsHTML(true);
-    //Recipients
-    $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-    // $mail->addAddress("itdev@forward.pk"); 
-    $mail->addAddress("hufsa@forward.pk"); 
-    $mail->addAddress("sohail@forward.pk"); 
-    $mail->addAddress("store@forward.pk"); 
-    $mail->AddCC('abaid@forward.pk');
-    $mail->AddCC('imran@forward.pk');
-    
-     $mail->AddCC('waseembutt@forward.pk');
-     $mail->AddCC('tafseer@forward.pk');
-        $mail->AddCC('shoaib@forward.pk');
-        $mail->AddCC('fsqa@forward.pk');
-              $mail->AddCC('oman@forward.pk');
-                 $mail->AddCC('abdulhaseeb@forward.pk');
-                 $mail->AddCC('yaseen@forward.pk');
-                 $mail->AddCC('zainabbas@forward.pk');
-    $mail->Subject = "FGT Failure";
-    $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
+            try {
+
+
+                //Server settings
+                $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+                $mail->isSMTP();                                            //Send using SMTP
+                $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+                $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
+                $mail->Password   = 'Forward123';                               //SMTP password
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+                $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                $mail->IsHTML(true);
+                //Recipients
+                $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
+                // $mail->addAddress("itdev@forward.pk"); 
+                $mail->addAddress("hufsa@forward.pk");
+                $mail->addAddress("sohail@forward.pk");
+                $mail->addAddress("store@forward.pk");
+                $mail->AddCC('abaid@forward.pk');
+                $mail->AddCC('imran@forward.pk');
+
+                $mail->AddCC('waseembutt@forward.pk');
+                $mail->AddCC('tafseer@forward.pk');
+                $mail->AddCC('shoaib@forward.pk');
+                $mail->AddCC('fsqa@forward.pk');
+                $mail->AddCC('oman@forward.pk');
+                $mail->AddCC('abdulhaseeb@forward.pk');
+                $mail->AddCC('yaseen@forward.pk');
+                $mail->AddCC('zainabbas@forward.pk');
+                $mail->Subject = "FGT Failure";
+                $mail->Body = '<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
     <div style="margin-left:40%;">
     <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
-    '.$PolyBag .' Test Report Result Alert</th></tr>
-    <tr><th>Test Date:</th><td>'.$DateGet .'</td></tr>
-    <tr><th>PolyBag.</th><td>'.$PolyBag .'</td></tr>
-    <tr><th>Test No.</th><td>'.$TestNo .'</td></tr>
-    <tr><th>PO.</th><td>'.$PO .'</td></tr>
-    <tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
-    <tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetailsPolyBag?id='.$Id.'</td></tr>
+    ' . $PolyBag . ' Test Report Result Alert</th></tr>
+    <tr><th>Test Date:</th><td>' . $DateGet . '</td></tr>
+    <tr><th>PolyBag.</th><td>' . $PolyBag . '</td></tr>
+    <tr><th>Test No.</th><td>' . $TestNo . '</td></tr>
+    <tr><th>PO.</th><td>' . $PO . '</td></tr>
+    <tr><th>Test Performed By.</th><td>' . trim($testPerformer, " ") . '</td></tr>
+    <tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetailsPolyBag?id=' . $Id . '</td></tr>
     <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This PolyBag Material has Been Failed</th></tr>
     </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
-    
-    
-    //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
-    //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
-    $mail->send();
-    echo 'Message has been sent';
-    } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    }
-}
+
+
+                //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
+                //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
+                $mail->send();
+                echo 'Message has been sent';
+            } catch (Exception $e) {
+                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            }
+        }
         $bladerIter = 0;
-    
-      
+
+
         foreach ($childArray as $key => $value) {
             // $testNo = $value[0];
             // $PONo = $value[1];
-        if($bladerIter == 0){
-            $srno = $value[2];
-            $TEST = $value[3];
+            if ($bladerIter == 0) {
+                $srno = $value[2];
+                $TEST = $value[3];
                 $UNIT = $value[4];
                 $standard = $value[5];
                 $RESULTS = $value[6];
                 $Remarks = $value[7];
-                
-                    $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+
+                $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
                  (TID,
                  srno
            ,Test
@@ -2569,17 +2595,16 @@ return $query->result_array();
            ,'$RESULTS'
            ,'$Remarks'
          )");
-                   $bladerIter +=1;
-        }    
-        else{
-            $srno = $value[2];
-            $TEST = $value[3];
+                $bladerIter += 1;
+            } else {
+                $srno = $value[2];
+                $TEST = $value[3];
                 $UNIT = $value[4];
                 $standard = $value[5];
                 $RESULTS = $value[6];
                 $Remarks = $value[7];
-        
-            $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
+
+                $query = $this->db->query(" INSERT INTO Tbl_Lab_Test_D
             (TID,
                  srno
            ,Test
@@ -2597,13 +2622,11 @@ return $query->result_array();
            ,'$RESULTS'
            ,'$Remarks'
          )");
-           $bladerIter +=1;
+                $bladerIter += 1;
+            }
         }
-        
-        }
-
     }
-    public function GetTypeConter($c_date, $e_date, $Type) //1
+    public function getTesttype1($c_date, $e_date, $Type) //1
     {
 
         $query = $this->db->query("SELECT        Type, Result
@@ -2614,24 +2637,24 @@ WHERE        (Type = '$Type') AND (Sample_RequestDate BETWEEN CONVERT(DATETIME, 
     }
     public function GetArticlesData($c_date, $e_date, $Article) //2
     {
-        $query = $this->db->query("SELECT        Type, Result
+        $query = $this->db->query("SELECT     Sample_RequestDate, TID,  Article, Result
 FROM            dbo.view_Article_Wise_COunter
-WHERE         (Type = '$Article') AND (Sample_RequestDate BETWEEN CONVERT(DATETIME, '$c_date 00:00:00', 102) AND CONVERT(DATETIME, '$e_date 00:00:00', 102))");
+WHERE         (Article = '$Article') AND (Sample_RequestDate BETWEEN CONVERT(DATETIME, '$c_date 00:00:00', 102) AND CONVERT(DATETIME, '$e_date 00:00:00', 102))");
         return $query->result_array();
     }
-//     public function ($Article)
-//     {
+    //     public function ($Article)
+    //     {
 
-//         $query = $this->db->query("SELECT        Type, Result
-// FROM            dbo.view_Article_Wise_COunter
-// WHERE         (Type = '$Article') AND (Sample_RequestDate BETWEEN CONVERT(DATETIME, '2022-03-31 00:00:00', 102) AND CONVERT(DATETIME, '2022-03-31 00:00:00', 102))");
+    //         $query = $this->db->query("SELECT        Type, Result
+    // FROM            dbo.view_Article_Wise_COunter
+    // WHERE         (Type = '$Article') AND (Sample_RequestDate BETWEEN CONVERT(DATETIME, '2022-03-31 00:00:00', 102) AND CONVERT(DATETIME, '2022-03-31 00:00:00', 102))");
 
-//         return $query->result_array();
-//     }
-    public function gettestCounter($c_date, $e_date,$Name) //3
+    //         return $query->result_array();
+    //     }
+    public function getTestrequest($c_date, $e_date, $Name) //3
     {
 
-        $query = $this->db->query("SELECT        Type, Result
+        $query = $this->db->query("SELECT         Sample_RequestDate, TID,Name, Result
 FROM            dbo.view_test_types_Counter
 WHERE        (Name = '$Name') AND (Sample_RequestDate BETWEEN CONVERT(DATETIME, '$c_date 00:00:00', 102) AND CONVERT(DATETIME, '$e_date 00:00:00', 102))");
 
