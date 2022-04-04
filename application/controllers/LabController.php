@@ -26,53 +26,51 @@ class LabController extends CI_Controller
         $this->load->view('FailDetails', $data);
     }
 
-
+    
 
     public function TestRequest()
     {
-
+        
         $data['MAXID'] = $this->l->getmaxID();
-        $RID = $data['MAXID'][0]['MaXID'];
+        $RID= $data['MAXID'][0]['MaXID'];
 
         if ($this->session->has_userdata('MAXID')) {
-            $data['RData'] = $this->l->getRequestData($RID);
-        } else {
-            $data['RData'] = null;
+        $data['RData'] = $this->l->getRequestData($RID);
+        }else{
+              $data['RData'] =null;
         }
         $data['GetItems'] = $this->l->GetItems();
-
+       
         if ($this->session->has_userdata('MAXID')) {
-
+            
             $data['TypeDetails'] = $this->l->requesttestYpe($RID);
             $data['getDetails'] = $this->l->getRequestdetails($RID);
         } else {
-            $data['getDetails'] = null;
-            $data['TypeDetails'] = null;
+            $data['getDetails'] =null;
+             $data['TypeDetails'] =null;
         }
         // $data['TestTypes'] = $this->l->getTestType();
         // $data['detailsData'] = $this->l->getDetails($_GET['id']);
         $data['Articles'] = $this->l->GetArticles();
         //print_r($data['RData']);
-        if ($data['RData'][0]['TestType'] == 'Material Test') {
+        if($data['RData'][0]['TestType']== 'Material Test'){
             $data['getTestTypes'] = $this->l->getTestTypematerial();
-        } elseif ($data['RData'][0]['TestType'] == 'FGT Test') {
+        }elseif ($data['RData'][0]['TestType'] == 'FGT Test') {
             $data['getTestTypes'] = $this->l->getTestTypeFGT();
         }
-
+       
         $data['getRequesterRequests'] = $this->l->getTestByRequester();
         $this->load->view('TestRequest', $data);
     }
-    public function Gettest()
-    {
-
-        $data = $this->l->getalltest();
+    public function Gettest(){
+        
+        $data =$this->l->getalltest();
         return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
-    public function requestArticles()
-    {
+    public function requestArticles(){
         $data = $this->l->GetArticles();
         return $this->output
             ->set_content_type('application/json')
@@ -82,6 +80,7 @@ class LabController extends CI_Controller
     public function NewRequest()
     {
         $this->session->unset_userdata("MAXID");
+       
     }
     public function TestRequestLab()
     {
@@ -92,19 +91,18 @@ class LabController extends CI_Controller
     }
     public function TestType()
     {
-
+       
         $data['TestTypes'] = $this->l->getTestType();
         // $data['detailsData'] = $this->l->getDetails($_GET['id']);
 
         $this->load->view('LabTestType', $data);
     }
-    public function loadAlltest($typeCatagory, $RID)
-    {
+    public function loadAlltest($typeCatagory, $RID){
         $typeCatagory = str_replace("%20", " ", $typeCatagory);
-
-
+       
+       
         $data['LoadData'] = $this->l->LoadDatacatagory($typeCatagory);
-
+    
         foreach ($data['LoadData'] as $keys) {
             $TestID = $keys['TestID'];
             $testtype = $keys['typeCatagory'];
@@ -112,9 +110,9 @@ class LabController extends CI_Controller
             $data = $this->l->AddRdetailsTest($RID,  $TestID, $testtype);
         }
         return $this->output
-            ->set_content_type('application/json')
-            ->set_status_header(200)
-            ->set_output(json_encode($data));
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
     }
     public function TestReceive()
     {
@@ -125,15 +123,14 @@ class LabController extends CI_Controller
         $data['getTestRequestsSendToRequester'] = $this->l->getTestRequestsSendToRequester();
         $this->load->view('TestReceive', $data);
     }
-    public function RDashbaord()
-    {
+public function RDashbaord(){
         // $data['TestTypes'] = $this->l->getTestType();
         // $data['detailsData'] = $this->l->getDetails($_GET['id']);
         // $data['getTestRequests'] = $this->l->getTestRequests();
         // $data['getTestRequestsSendToLab'] = $this->l->getTestRequestsSendToLab();
         // $data['getTestRequestsSendToRequester'] = $this->l->getTestRequestsSendToRequester();
         $this->load->view('RDashbaord');
-    }
+}
     public function TestTypeById()
     {
         $idGet = $_POST['Id'];
@@ -174,10 +171,10 @@ class LabController extends CI_Controller
 
     public function AddRequest()
     {
-        //  print_r($_POST);
-        //  die;
-        // Echo $_POST;
-        // die;
+    //  print_r($_POST);
+    //  die;
+// Echo $_POST;
+// die;
         $testtype = $_POST['testType'];
         $Type = $_POST['Type'];
         $Sample_RequestDate = $_POST['Sample_RequestDate'];
@@ -200,14 +197,14 @@ class LabController extends CI_Controller
         } else {
             $supplier = 'Null';
         }
-        if ($MaterialType) {
+        if ($MaterialType){
             $MaterialType = $_POST['MaterialType'];
-        } else {
+        }else{
             $MaterialType = 'Null';
         }
-        // Echo $testtype;
-        //         echo $supplier;
-        // die;
+// Echo $testtype;
+//         echo $supplier;
+// die;
 
         // $data['detailsData'] = $this->l->getDetails($_GET['id']);
         $data = $this->l->AddRequest($testtype, $Type, $Sample_RequestDate, $Factory_Code, $Quantity_Issued, $Status, $po, $supplier, $MaterialType);
@@ -222,18 +219,18 @@ class LabController extends CI_Controller
     {
 
         $RID = $_POST['RID'];
-
+      
         $Code = $_POST['Code'];
         $ArtCodeAuto = $_POST['ArtCodeAuto'];
-
+        
         $Article = $_POST['Article'];
-
+        
         if ($Article) {
             $Article = $_POST['Article'];
         } else if ($ArtCodeAuto) {
             $Article = $_POST['ArtCodeAuto'];
-        } else {
-            $Article = 'Null';
+        }else{
+            $Article='Null';
         }
         if ($Code) {
             $Code = $_POST['Code'];
@@ -262,7 +259,7 @@ class LabController extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
-
+    
     public function EditTestType()
     {
 
@@ -370,14 +367,13 @@ class LabController extends CI_Controller
     {
         $data['Labtest'] = $this->l->labtest();
         $data['getCssNo'] = $this->l->getmateialCssNO();
-
-
+        
+        
         $this->load->view('LabMasterForm', $data);
     }
-    public function getCssRaw()
-    {
+public function getCssRaw(){
         //$data['getCssNo'] =
-        $data = $this->l->getrawCss($_POST['css']);
+        $data =$this->l->getrawCss($_POST['css']);
         // print_r($data);
         // die;
         return $this->output
@@ -584,8 +580,8 @@ class LabController extends CI_Controller
             $picture,
             $testGroup,
             $testPerformer,
-            $childArray,
-            $CSSValueAdd
+            $childArray
+            ,$CSSValueAdd
         );
     }
 
@@ -657,8 +653,8 @@ class LabController extends CI_Controller
             $picture,
             $testGroup,
             $testPerformer,
-            $childArray,
-            $CSSValueAdd
+            $childArray
+            ,$CSSValueAdd
         );
     }
 
@@ -801,8 +797,8 @@ class LabController extends CI_Controller
             $picture,
             $testGroup,
             $testPerformer,
-            $childArray,
-            $CSSValueAdd
+            $childArray
+            ,$CSSValueAdd
         );
     }
 
@@ -944,8 +940,8 @@ class LabController extends CI_Controller
             $picture,
             $testGroup,
             $testPerformer,
-            $childArray,
-            $CSSValueAdd
+            $childArray
+            ,$CSSValueAdd
         );
     }
 
@@ -1432,7 +1428,7 @@ class LabController extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
-
+    
     public function undoTestType($TID)
     {
         $data['undoTestType'] = $this->l->undoTestType($TID);
@@ -1460,8 +1456,7 @@ class LabController extends CI_Controller
             ->set_output(json_encode($data));
     }
 
-    public function addHeadDataMSMaterial()
-    {
+    public function addHeadDataMSMaterial(){
 
 
         if (!empty($_FILES['file']['name'])) {
@@ -1509,7 +1504,7 @@ class LabController extends CI_Controller
             $arraySplit = explode(',', $value);
             array_push($childArray, $arraySplit);
         }
-
+        
         array_pop($childArray);
         $TestNo = $header[0];
         $Date = $header[1];
@@ -1530,10 +1525,9 @@ class LabController extends CI_Controller
         );
     }
 
-    public function addHeadDataPolyBag()
-    {
+    public function addHeadDataPolyBag(){
 
-
+       
         if (!empty($_FILES['file']['name'])) {
 
             $config['upload_path'] = 'assets\img\img';
@@ -1579,7 +1573,7 @@ class LabController extends CI_Controller
             $arraySplit = explode(',', $value);
             array_push($childArray, $arraySplit);
         }
-
+        
         // echo "<pre>";
         // print_r($header);
         // die;
@@ -1608,40 +1602,28 @@ class LabController extends CI_Controller
             $childArray,
             $CSSValueAdd
         );
-    }
-    public function GetArticlesData()
-    {
 
-        $data['supplier'] = $this->l->GetArticlesData(
-            $_POST['c_date'],
-            $_POST['e_date'],
-            $_POST['ArticleName']
-        );
-        return $this->output
-            ->set_content_type('application/json')
-            ->set_status_header(200)
-            ->set_output(json_encode($data));
     }
-    public function getTestrequest()
-    {
-        $data = $this->l->getTestrequest(
-            $_POST['c_date'],
-            $_POST['e_date'],
-            $_POST['materialName']
+    public function GetArticlesData(){
+        $data['supplier'] = $this->l->getDatewiseSupplier(
+            $_GET['c_date'],
+            $_GET['e_date'],
+            $_GET['ArticleName']
         );
-        return $this->output
-            ->set_content_type('application/json')
-            ->set_status_header(200)
-            ->set_output(json_encode($data));
-    }
-
-    public function getTesttype()
-    {
-        $data = $this->l->getTesttype1(
-            $_POST['c_date'],
-            $_POST['e_date'],
-            $_POST['testtype']
-        );
+        // $data['suppliermaterial'] = $this->Development_Model->getDatewisematerial(
+        //     $_GET['c_date'],
+        //     $_GET['e_date'],
+        //     $_GET['supplierName']
+        // );
+        // $data['suppliertable'] = $this->Development_Model->customTablesuplier(
+        //     $_GET['c_date'],
+        //     $_GET['e_date'],
+        //     $_GET['supplierName']
+        // );
+        // return $this->output
+        //     ->set_content_type('application/json')
+        //     ->set_status_header(200)
+        //     ->set_output(json_encode($data));
         return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)

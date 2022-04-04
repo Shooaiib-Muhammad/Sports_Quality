@@ -21,7 +21,7 @@ $query = $this->db
 ->query("SELECT        FactoryCode, SUM(OrderQty) AS OrderQty
 FROM            dbo.View_PO_OrderQty_Sum
 GROUP BY FactoryCode, Month, Year
-HAVING        (Month = 03) AND (Year = 2022)");
+HAVING        (Month = 04) AND (Year = 2022)");
         return $query->result_array();
    
 }
@@ -117,7 +117,7 @@ GROUP BY FactoryCode");
         
         $query = $this->db->query("SELECT        SUM(Checked) AS TotalChecked, SUM(Pass) AS pass, SUM(Fail) AS Fail, FactoryCode
         FROM            dbo.tbl_Production_View
-        WHERE        (MONTH(TranDate) = 03) AND (YEAR(TranDate) = 2022)
+        WHERE        (MONTH(TranDate) = 04) AND (YEAR(TranDate) = 2022)
         GROUP BY FactoryCode");
         return $result = $query->result_array();
     }

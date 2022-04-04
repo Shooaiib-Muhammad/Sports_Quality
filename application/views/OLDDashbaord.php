@@ -104,55 +104,6 @@ if (!$this->session->has_userdata('user_id')) {
                                 background: #f1f7ff;
                             }
 
-
-                                            
-
-                                            .highcharts-figureOrder,
-                                            .highcharts-data-table table {
-                                            width: 405px;
-                                            margin: 1em auto;
-                                            }
-                                            #containerOrder{
-                                                height: 400px;
-                                            }
-                                            
-
-                                            #datatable {
-                                            font-family: Verdana, sans-serif;
-                                            border-collapse: collapse;
-                                            border: 1px solid #ebebeb;
-                                            margin: 10px auto;
-                                            text-align: center;
-                                            width: 100%;
-                                            max-width: 500px;
-                                            }
-
-                                            #datatable caption {
-                                            padding: 1em 0;
-                                            font-size: 1.2em;
-                                            color: #555;
-                                            }
-
-                                            #datatable th {
-                                            font-weight: 600;
-                                            padding: 0.5em;
-                                            }
-
-                                            #datatable td,
-                                            #datatable th,
-                                            #datatable caption {
-                                            padding: 0.5em;
-                                            }
-
-                                            #datatable thead tr,
-                                            #datatable tr:nth-child(even) {
-                                            background: #f8f8f8;
-                                            }
-
-                                            #datatable tr:hover {
-                                            background: #f1f7ff;
-                                            }
-
                             /*Ends here mineHighchart  */
 
                             /* order produce css starts here  */
@@ -250,54 +201,6 @@ if (!$this->session->has_userdata('user_id')) {
                             }
 
                             /* Produce orders css ends here */
-
-
-                            .highcharts-figurePO1,
-                            .highcharts-data-table table {
-                                width: 1800px;
-                                margin: 1em auto;
-                            }
-
-                            #datatable1 {
-                                font-family: Verdana, sans-serif;
-                                border-collapse: collapse;
-                                border: 1px solid #ebebeb;
-                                margin: 10px auto;
-                                text-align: center;
-                                width: 100%;
-                                max-width: 500px;
-                            }
-
-                            #datatable1 caption {
-                                padding: 1em 0;
-                                font-size: 1.2em;
-                                color: #555;
-                            }
-
-                            #datatable1 th {
-                                font-weight: 600;
-                                padding: 0.5em;
-                            }
-
-                            #datatable1 td,
-                            #datatable1 th,
-                            #datatable1 caption {
-                                padding: 0.5em;
-                            }
-
-                            #datatable1 thead tr,
-                            #datatable1 tr:nth-child(even) {
-                                background: #f8f8f8;
-                            }
-
-                            #datatable1 tr:hover {
-                                background: #f1f7ff;
-                            }
-
-
-
-
-
                             .machinecolor{
                                 background-color: #FF9999 ;
                             }
@@ -388,14 +291,7 @@ if (!$this->session->has_userdata('user_id')) {
                             .highcharts-figure4>* {
                                 flex: 1 1 80px;
                             }
-
-    
-
-
-
                         </style>
-                             <script src="<?php echo base_url(); ?>/assets/js/jquery.min.js" type="text/javascript">
-                </script>
                         <script src="<?php echo base_url(); ?>/assets/js/highcharts.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/data.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/series-label.js"></script>
@@ -901,7 +797,6 @@ if (!$this->session->has_userdata('user_id')) {
                                 $B43002Pass = 0;
                                 $B43003Pass = 0;
                                 $B43004Pass = 0;
-                                $B43001Pass= 0;
                             }
                         }
 
@@ -1093,145 +988,119 @@ if (!$this->session->has_userdata('user_id')) {
                                             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2" role="tab">RFT</a></li>
                                             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3" role="tab">Defects</a></li>
                                         </ul> -->
-                                        <!-- <ul class="nav nav-pills" role="tablist">
+                                        <ul class="nav nav-pills" role="tablist">
                                             <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Production</a></li>
                                             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">RFT</a></li>
                                             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3">Defects</a></li>
                                             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-4">Orders</a></li>
-                                        </ul> -->
-                                        <div class="tab-content py-2">
+                                        </ul>
+                                        <div class="tab-content py-3">
 
-                                             <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
+                                            <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
                                                 <div class="col-lg-12">
-                                                    <div class="panel-container show ">
-                                                        <div class="panel-content poisition-relative ">
-                                                            <div class="pb-3 pt-0 mt-0">
+                                                    <div class="panel-container show">
+                                                        <div class="panel-content poisition-relative">
+                                                            <div class="pb-5 pt-3">
                                                                 <div class="row">
-                                                                    <!-- <div class="subheader  mx-5">    -->
-                                                                    <div class="col-lg-1">
-                                                                    <div class="subheader-block d-lg-flex align-items-center">
-                                                                        <div class="d-inline-flex flex-column justify-content-center mr-3">
-                                                                            <span class="fw-300 fs-xs d-block opacity-50">
-                                                                                <small>Total Manufactured</small>
-                                                                            </span>
-                                                                            <span class="fw-500 fs-xl d-block color-primary-500">
-                                                                            <?php  echo $Produced; ?>
-                                                                            </span>
+                                                                    <div class="col-lg-2">
+                                                                        <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3 mb-12">
+                                                                            <div class="d-inline-flex flex-column justify-content-center">
+                                                                                <span class="fw-300 fs-xs d-block">
+                                                                                    <label class="fs-lg mb-3">Total Manufactured</label>
+                                                                                </span>
+                                                                                <span class="fw-500 fs-xl d-block color-danger-500 count">
+                                                                                    <h1> <?php echo $Produced; ?></h1>
+                                                                                </span>
+                                                                            </div>
+                                                                            <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#cff02b" sparkHeight="32px" sparkBarWidth="5px" values=" <?php echo $last5pass; ?>"></span>
                                                                         </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#886ab5" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5pass; ?>"></span>
                                                                     </div>
-                                            
-                                                                    </div>
-                                                                    <div class="col-lg-1">
-                                                                    <div class="subheader-block d-lg-flex align-items-center">
-                                                                        <div class="d-inline-flex flex-column justify-content-center mr-3">
-                                                                            <span class="fw-300 fs-xs d-block opacity-50">
-                                                                                <small>Total Checked</small>
-                                                                            </span>
-                                                                            <span class="fw-500 fs-xl d-block color-primary-500">
-                                                                            <?php  echo $Checked; ?>
-                                                                            </span>
+                                                                    <div class="col-lg-2">
+                                                                        <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3 mb-12">
+                                                                            <div class="d-inline-flex flex-column justify-content-center mr-3">
+                                                                                <span class="fw-300 fs-xs d-block">
+                                                                                    <label class="fs-lg mb-3">Total Checked</label>
+                                                                                </span>
+                                                                                <span class="fw-500 fs-xl d-block color-danger-500 count">
+                                                                                    <h1><?php echo $Checked; ?></h1>
+                                                                                </span>
+                                                                            </div>
+                                                                            <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#fc8c03" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5check; ?>"></span>
                                                                         </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#8FBC8F" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5check; ?>"></span>
                                                                     </div>
-
-                                                    
-                                                                    </div>
-                                                                    <div class="col-lg-1">
-                                                                    <div class="subheader-block d-lg-flex align-items-center">
-                                                                        <div class="d-inline-flex flex-column justify-content-center mr-3">
-                                                                            <span class="fw-300 fs-xs d-block opacity-50">
-                                                                                <small>Total Pass</small>
-                                                                            </span>
-                                                                            <span class="fw-500 fs-xl d-block color-primary-500">
-                                                                            <?php  echo $Produced; ?>
-                                                                            </span>
+                                                                    <div class="col-lg-2">
+                                                                        <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
+                                                                            <div class="d-inline-flex flex-column justify-content-center mr-3">
+                                                                                <span class="fw-300 fs-xs d-block">
+                                                                                    <label class="fs-lg mb-3">Total Pass</label>
+                                                                                </span>
+                                                                                <span class="fw-500 fs-xl d-block color-danger-500 count">
+                                                                                    <h1> <?php echo $Produced; ?></h1>
+                                                                                </span>
+                                                                            </div>
+                                                                            <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#03fce3" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5pass; ?>"></span>
                                                                         </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#778899" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5pass; ?>"></span>
                                                                     </div>
+                                                                    <div class="col-lg-2">
+                                                                        <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
+                                                                            <div class="d-inline-flex flex-column justify-content-center mr-3">
+                                                                                <span class="fw-300 fs-xs d-block">
+                                                                                    <label class="fs-lg mb-3">Total Fail</label>
+                                                                                </span>
+                                                                                <span class="fw-500 fs-xl d-block color-danger-500 count">
+                                                                                    <h1> <?php echo $Fail; ?></h1>
+                                                                                </span>
+                                                                            </div>
+                                                                            <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#fe6bb0" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5fail; ?>"></span>
 
-                                                                        
-                                                                    </div>
-                                                                    <div class="col-lg-1">
-                                                                    <div class="subheader-block d-lg-flex align-items-center">
-                                                                        <div class="d-inline-flex flex-column justify-content-center mr-3">
-                                                                            <span class="fw-300 fs-xs d-block opacity-50">
-                                                                                <small>Total Fail</small>
-                                                                            </span>
-                                                                            <span class="fw-500 fs-xl d-block color-primary-500">
-                                                                            <?php  echo $Fail; ?>
-                                                                            </span>
                                                                         </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#696969" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5fail; ?>"></span>
                                                                     </div>
+                                                                    <div class="col-lg-2">
+                                                                        <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
+                                                                            <div class="d-inline-flex flex-column justify-content-center mr-3">
+                                                                                <span class="fw-300 fs-xs d-block">
+                                                                                    <label class="fs-lg mb-3">Avg. RFT</label>
+                                                                                </span>
+                                                                                <span class="fw-500 fs-xl d-block color-danger-500 ">
+                                                                                    <h1> <i class="count"> <?php echo Round($FinalRF, 2) ?> </i> %</h1>
+                                                                                </span>
+                                                                            </div>
+                                                                            <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#03cafc" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5rft; ?>"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-2">
+                                                                        <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
+                                                                            <div class="d-inline-flex flex-column justify-content-center mr-3">
+                                                                                <span class="fw-300 fs-xs d-block">
+                                                                                    <label class="fs-lg mb-3">Defected Precentage </label>
+                                                                                </span>
+                                                                                <span class="fw-300 fs-xl d-block color-danger-500">
+                                                                                    <h1> <i class="count"><?php echo Round($Finalprenentage, 2); ?></i> % </h1>
+                                                                                </span>
+                                                                            </div>
+                                                                            <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#c203fc" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5def; ?>"></span>
+                                                                        </div>
                                                                     </div>
 
-                                                                    
-                                                                <!-- </div> -->
-                                                                
-                                                                <div class="col-lg-3">
-                                                                </div>
-                                                                <div class="col-lg-3">
-                                                                </div>
-                                                                <!-- <div class="rightbar row " style="margin-left: 36%;"> -->
-                                                                <div class="col-lg-1">
-                                                                    <div><?php
-                                                                    $FinalRF;
-                                                                    $Finalprenentage;
-                                                                      $RFTVALUE=$FinalRF/10;
-                                                                      
-
-                                                                    ?>
-                                                                        <span class="peity-donut"  data-peity="{ &quot;fill&quot;: [&quot;#967bbd&quot;, &quot;#ccbfdf&quot;],  &quot;innerRadius&quot;: 14, &quot;radius&quot;: 20 }"><?php  echo Round($RFTVALUE,0);  ?>/10</span>
-                                                                   </div>
-                                                                    <div>
-                                                                        <label class="fs-sm mb-0 mt-md-0">Avg. RFT</label>
-                                                                        <h4 class="font-weight-bold mb-0"><?php echo Round($FinalRF, 2) ?>%</h4>
-                                                                    </div>
-                                                                    <!-- <div class="mr-2">
-                                                                    <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#778899" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5rft; ?>"></span>
-                                                                    </div> -->
-                                                                </div>
-
-                                                            
-                                                            
-                                                            <div class="col-lg-1">
-                                                                    <div>
-                                                                        <span class="peity-donut"  data-peity="{ &quot;fill&quot;: [&quot;#2196F3&quot;, &quot;#9acffa&quot;],  &quot;innerRadius&quot;: 14, &quot;radius&quot;: 20 }" ><?php  echo Round($Finalprenentage,0);?>/10</span>
-                                                                
-                                                                    </div>
-                                                                    <div>
-                                                                        <label class="fs-sm mb-0 mt-md-0">Defected Precentage</label>
-                                                                        <h4 class="font-weight-bold mb-0"><?php echo Round($Finalprenentage, 2); ?>%</h4>
-                                                                    </div>
-                                                                </div>
 
 
-                                                                <!-- </div> -->
-                                                                    
-                                                                    
 
 
-                                                                        
-                                                                    
+
+
+
 
                                                                 </div>
                                                             </div>
                                                         </div>
 
                                                     </div>
-                                                 </div>
+                                                </div>
 
-                                                 
-                                            
-                                                 <div class=" col-xl-12 col-sm-12  d-flex flex-row">
-
-                                                     <div class=" col-sm-6 col-xl-6">
-
-                                                    <div class="row">
-                                                    <div class="col-sm-6 col-xl-6" >
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-xl-3">
                                                     <a href="<?php echo base_url('/')?>DashboardController/B34001"> 
-                                                        <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g" >
+                                                        <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
                                                             <div class="">
                                                                 <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                                                     <?php echo Round($b34001 ? $b34001[0] : 0, 0) ?>
@@ -1242,7 +1111,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </div>
                                                     </a>
                                                     </div>
-                                                    <div class="col-sm-6 col-xl-6">
+                                                    <div class="col-sm-6 col-xl-3">
                                                     <a href="<?php echo base_url('/')?>DashboardController/B34002"> 
                                                         <div class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
                                                             <div class="">
@@ -1255,15 +1124,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </div>
                                                         </a>
                                                     </div>
-                                                   </div>
-                                                 <!-- <div class="col-md-4 " id="DailyGraph" >
-                                                        <div id="AllPrd1"></div>
-                                                    </div> -->
-
-                                                   
-
-                                                 <div class="row">
-                                                    <div class="col-sm-6 col-xl-6">
+                                                    <div class="col-sm-6 col-xl-3">
                                                     <a href="<?php echo base_url('/')?>DashboardController/B34003"> 
                                                         <div class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
                                                             <div class="">
@@ -1276,7 +1137,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </div>
                                                     </a>
                                                     </div>
-                                                    <div class="col-sm-6 col-xl-6">
+                                                    <div class="col-sm-6 col-xl-3">
                                                     <a href="<?php echo base_url('/')?>DashboardController/B34004"> 
                                                         <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white mb-g">
                                                             <div class="">
@@ -1289,9 +1150,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </div>
                                                         </a>
                                                     </div>
-                                                 </div>
-                                                 <div class="row">
-                                                    <div class="col-sm-6 col-xl-6">
+                                                    
+                                                    <div class="col-sm-6 col-xl-3">
                                                                 <a href="<?php echo base_url('/')?>DashboardController/B34005">    
                                                                     <div class="p-3  machinecolor rounded overflow-hidden position-relative text-white mb-g" >
                                                                 
@@ -1308,7 +1168,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </a>
                                                             
                                                     </div>
-                                                    <div class="col-sm-6 col-xl-6">
+                                                    <div class="col-sm-6 col-xl-3">
                                                     <a href="<?php echo base_url('/')?>DashboardController/B34006"> 
                                                         <div class="p-3 bg-info rounded overflow-hidden position-relative text-white mb-g">
                                                             <div class="">
@@ -1321,9 +1181,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </div>
                                                         </a>
                                                     </div>
-                                                  </div>
-                                                    <div class="row ">
-                                                    <div class="col-sm-6 col-xl-6 ">
+                                                    <div class="col-sm-6 col-xl-3">
                                                      <a href="<?php echo base_url('/')?>DashboardController/B34007"> 
                                                         <div class="p-3 lfbcolor rounded overflow-hidden position-relative text-white mb-g">
                                                             <div class="">
@@ -1335,130 +1193,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
                                                         </div>
                                                     </a>
-                                                   </div>
-                                                   </div>
-                                                 </div>
-
-
-
-                                                             <div class="col-md-6  col-xl-6 d-flex flex-row   ">
-                                                              <!-- For graphs -->
-                                                                    <div class=" container d-flex flex-column">
-                                                                       <div class="row">
-                                                                        <div class="col-md-12 col-xl-12 d-flex flex-row ">
-                                                                            <div class="col-md-12 col-xl-12" id="DailyGraph" >
-                                                                                <div id="AllPrd1"></div>
-                                                                             </div> 
-
-                                                                            <!-- <div class="col-md-6 col-xl-6 " id="DailyGraph" >
-                                                                                <div id="AllPrd2"></div>
-                                                                            </div> -->
-                                                                        </div>
-
-                                                                    </div>
-                                                               
-                                                         <div class="row">
-                                                                    <div class="col-md-12 col-xl-12 d-flex flex-row"  >
-
-                                                                        <div class="col-md-6 col-xl-6" >
-                                                                            <div id="monthlydata1"></div>    
-                                                                        </div>
-                                                            
-                                                                  <div class=" col-md-6 col-xl-6" >
-                                                                     <figure class="highcharts-figureOrder">
-                                                                       <div id="containerOrder"></div>
-                                                   
-
-                                                
-                                                                     <table id="datatable"  hidden="true">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th></th>
-                                                                                <th>Order</th>
-                                                                                <th>Produce</th>
-                                                                            </tr>
-                                                                       </thead>
-
-                                                                       <tbody>
-                                                                            <tr>
-                                                                                <th>B34001</th>
-                                                                                <td><?php echo $B34001Mnonth; ?></td>
-                                                                                <td><?php echo $B43001Pass; ?></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th>B34002</th>
-                                                                                <td><?php echo $B34002Mnonth; ?></td>
-                                                                                <td><?php echo $B43002Pass; ?></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th>B34003</th>
-                                                                                <td><?php echo $B34003Mnonth; ?></td>
-                                                                                <td><?php echo $B43003Pass; ?></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th>B34004</th>
-                                                                                <td><?php echo $B34004Mnonth; ?></td>
-                                                                                <td><?php echo $B43004Pass; ?></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th>B34005</th>
-                                                                                <td><?php echo $B34005Mnonth; ?></td>
-                                                                                <td><?php echo $B43005Pass; ?></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th>B34006</th>
-                                                                                <td><?php echo $B34006Mnonth; ?></td>
-                                                                                <td><?php echo $B43006Pass; ?></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th>B34007</th>
-                                                                                <td><?php echo $B34007Mnonth; ?></td>
-                                                                                <td><?php echo $B43007Pass; ?></td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                     </table>
-                                                                 </figure>  
-                                                                      
-                                                               </div>
-
-                                                              </div>
-                                                           </div>
-                                                       </div>
-                                                                
-                                                        
                                                     </div>
-
-
-                                                </div> 
-
-                                             </div>
-
-                                                
-                                                      <!-- <script src="<?php echo base_url(); ?>/assets/js/highcharts.js"></script>
-                                                                <script src="<?php echo base_url(); ?>/assets/js/data.js"></script>
-                                                                <script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>
-                                                                <script src="<?php echo base_url(); ?>/assets/js/accessibility.js"></script> -->
-                                                    <!-- <script src="https://code.highcharts.com/highcharts.js"></script>
-                                                  <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                                                 <script src="https://code.highcharts.com/modules/export-data.js"></script>
-                                                 <script src="https://code.highcharts.com/modules/accessibility.js"></script> -->
-
-                                                            
-                                                              
-                                                        
-                                                           
-                                                                                                                            
-                                             
-                                                                     
-
-
-                                           
-                                               
-                                               
-                                                   
-                                               
-
-                                                 <!-- <center>
+                                                </div>
+                                                <!-- <center>
                                                     <div class="row">
                                                         <figure class="highcharts-figure">
                                                             <div id="container-speed0" class="chart-container"></div>
@@ -1499,10 +1236,10 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                         </figure>
                                                     </div>
-                                                   </center> -->
-                                                 <br>
+                                                </center> -->
+                                                <br>
 
-                                                 <div class="row">
+                                                <div class="row">
                                                     <div class="col-md-4">
                                                     </div>
                                                     <div class="col-md-4">
@@ -1560,7 +1297,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div class="col-md-6">
                                                         <div id="lfbprd"></div>
                                                     </div>
-                                               </div>
+                                                </div>
 
 
                                             </div>
@@ -1693,18 +1430,63 @@ if (!$this->session->has_userdata('user_id')) {
 
                                             </div>
                                             <div>
-                                               <!-- <script src="<?php echo base_url(); ?>/assets/js/highcharts.js"></script>
+                                                <script src="<?php echo base_url(); ?>/assets/js/highcharts.js"></script>
                                                 <script src="<?php echo base_url(); ?>/assets/js/data.js"></script>
                                                 <script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>
                                                 <script src="<?php echo base_url(); ?>/assets/js/accessibility.js"></script>
-                                                 <div>
+                                                <div>
                                                     <figure class="highcharts-figurePO">
                                                         <div id="produceOrder"></div>
 
 
-                                                        
+                                                        <table id="datatable" hidden="true">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th>Order</th>
+                                                                    <th>Produced</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th>B34001</th>
+                                                                    <td><?php echo $B34001Mnonth; ?></td>
+                                                                    <td><?php echo $B43001Pass; ?></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>B34002</th>
+                                                                    <td><?php echo $B34002Mnonth; ?></td>
+                                                                    <td><?php echo $B43002Pass; ?></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>B34003</th>
+                                                                    <td><?php echo $B34003Mnonth; ?></td>
+                                                                    <td><?php echo $B43003Pass; ?></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>B34004</th>
+                                                                    <td><?php echo $B34004Mnonth; ?></td>
+                                                                    <td><?php echo $B43004Pass; ?></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>B34005</th>
+                                                                    <td><?php echo $B34005Mnonth; ?></td>
+                                                                    <td><?php echo $B43005Pass; ?></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>B34006</th>
+                                                                    <td><?php echo $B34006Mnonth; ?></td>
+                                                                    <td><?php echo $B43006Pass; ?></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>B34007</th>
+                                                                    <td><?php echo $B34007Mnonth; ?></td>
+                                                                    <td><?php echo $B43007Pass; ?></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
                                                     </figure>
-                                                </div> -->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -2569,83 +2351,6 @@ if (!$this->session->has_userdata('user_id')) {
                         }
 
                     });
-                    Highcharts.chart('monthlydata1', {
-
-title: {
-    text: 'Monthly Production'
-},
-
-
-
-yAxis: {
-    title: {
-        text: 'Number of Balls'
-    }
-},
-
-xAxis: {
-    categories: <?php echo json_encode($monthlydateFinal, JSON_NUMERIC_CHECK); ?>,
-    // accessibility: {
-    //     rangeDescription: 'Range: 2010 to 2017'
-    // }
-},
-
-legend: {
-    layout: 'vertical',
-    align: 'right',
-    verticalAlign: 'middle'
-},
-
-plotOptions: {
-    series: {
-        label: {
-            connectorAllowed: false
-        },
-
-    }
-},
-
-series: [{
-    name: 'B34001',
-    data: <?php echo json_encode($MONTHLY001, JSON_NUMERIC_CHECK); ?>
-}, {
-    name: 'B34002',
-    data: <?php echo json_encode($MONTHLY002, JSON_NUMERIC_CHECK); ?>
-}, {
-    name: 'B34003',
-    data: <?php echo json_encode($MONTHLY003, JSON_NUMERIC_CHECK); ?>
-}, {
-    name: 'B34004',
-    data: <?php echo json_encode($MONTHLY004, JSON_NUMERIC_CHECK); ?>
-}, {
-    name: 'B34005',
-    data: <?php echo json_encode($MONTHLY005, JSON_NUMERIC_CHECK); ?>
-}, {
-    name: 'B34006',
-    data: <?php echo json_encode($MONTHLY006, JSON_NUMERIC_CHECK); ?>
-}, {
-    name: 'B34007',
-    data: <?php echo json_encode($MONTHLY007, JSON_NUMERIC_CHECK); ?>
-}],
-
-responsive: {
-    rules: [{
-        condition: {
-            maxWidth: 500
-        },
-        chartOptions: {
-            legend: {
-                layout: 'horizontal',
-                align: 'center',
-                verticalAlign: 'bottom'
-            }
-        }
-    }]
-}
-
-});
-
-
 
 
                     Highcharts.chart('yearlydata', {
@@ -3802,436 +3507,6 @@ responsive: {
                             ]
                         }
                     });
-                    Highcharts.chart('AllPrd1', {
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: 'Today Production'
-                        },
-
-                        accessibility: {
-                            announceNewData: {
-                                enabled: true
-                            }
-                        },
-                        xAxis: {
-                            type: 'category'
-                        },
-                        yAxis: {
-                            title: {
-                                text: 'Total Production'
-                            }
-
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y:.1f}'
-                                }
-                            }
-                        },
-
-                        tooltip: {
-                            headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
-                            pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
-                        },
-
-                        series: [{
-                            name: "Production",
-                            colorByPoint: true,
-                            data: <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>,
-
-                        }],
-                        drilldown: {
-                            series: [{
-                                    name: "B34001",
-                                    id: "B34001",
-                                    data: <?php echo json_encode(
-                                                $B34001data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34002",
-                                    id: "B34002",
-                                    data: <?php echo json_encode(
-                                                $B34002data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34003",
-                                    id: "B34003",
-                                    data: <?php echo json_encode(
-                                                $B34003data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34004",
-                                    id: "B34004",
-                                    data: <?php echo json_encode(
-                                                $B34004data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34005",
-                                    id: "B34005",
-                                    data: <?php echo json_encode(
-                                                $B34005data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34006",
-                                    id: "B34006",
-                                    data: <?php echo json_encode(
-                                                $B34006data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34007",
-                                    id: "B34007",
-                                    data: <?php echo json_encode(
-                                                $B34007data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-
-                                }
-                            ]
-                        }
-                    });
-                    Highcharts.chart('AllPrd2', {
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: 'Today Production'
-                        },
-
-                        accessibility: {
-                            announceNewData: {
-                                enabled: true
-                            }
-                        },
-                        xAxis: {
-                            type: 'category'
-                        },
-                        yAxis: {
-                            title: {
-                                text: 'Total Production'
-                            }
-
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y:.1f}'
-                                }
-                            }
-                        },
-
-                        tooltip: {
-                            headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
-                            pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
-                        },
-
-                        series: [{
-                            name: "Production",
-                            colorByPoint: true,
-                            data: <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>,
-
-                        }],
-                        drilldown: {
-                            series: [{
-                                    name: "B34001",
-                                    id: "B34001",
-                                    data: <?php echo json_encode(
-                                                $B34001data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34002",
-                                    id: "B34002",
-                                    data: <?php echo json_encode(
-                                                $B34002data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34003",
-                                    id: "B34003",
-                                    data: <?php echo json_encode(
-                                                $B34003data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34004",
-                                    id: "B34004",
-                                    data: <?php echo json_encode(
-                                                $B34004data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34005",
-                                    id: "B34005",
-                                    data: <?php echo json_encode(
-                                                $B34005data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34006",
-                                    id: "B34006",
-                                    data: <?php echo json_encode(
-                                                $B34006data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34007",
-                                    id: "B34007",
-                                    data: <?php echo json_encode(
-                                                $B34007data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-
-                                }
-                            ]
-                        }
-                    });
-                    Highcharts.chart('AllPrd3', {
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: 'Today Production'
-                        },
-
-                        accessibility: {
-                            announceNewData: {
-                                enabled: true
-                            }
-                        },
-                        xAxis: {
-                            type: 'category'
-                        },
-                        yAxis: {
-                            title: {
-                                text: 'Total Production'
-                            }
-
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y:.1f}'
-                                }
-                            }
-                        },
-
-                        tooltip: {
-                            headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
-                            pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
-                        },
-
-                        series: [{
-                            name: "Production",
-                            colorByPoint: true,
-                            data: <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>,
-
-                        }],
-                        drilldown: {
-                            series: [{
-                                    name: "B34001",
-                                    id: "B34001",
-                                    data: <?php echo json_encode(
-                                                $B34001data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34002",
-                                    id: "B34002",
-                                    data: <?php echo json_encode(
-                                                $B34002data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34003",
-                                    id: "B34003",
-                                    data: <?php echo json_encode(
-                                                $B34003data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34004",
-                                    id: "B34004",
-                                    data: <?php echo json_encode(
-                                                $B34004data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34005",
-                                    id: "B34005",
-                                    data: <?php echo json_encode(
-                                                $B34005data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34006",
-                                    id: "B34006",
-                                    data: <?php echo json_encode(
-                                                $B34006data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34007",
-                                    id: "B34007",
-                                    data: <?php echo json_encode(
-                                                $B34007data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-
-                                }
-                            ]
-                        }
-                    });
-
-                    Highcharts.chart('AllPrd4', {
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: 'Today Production'
-                        },
-
-                        accessibility: {
-                            announceNewData: {
-                                enabled: true
-                            }
-                        },
-                        xAxis: {
-                            type: 'category'
-                        },
-                        yAxis: {
-                            title: {
-                                text: 'Total Production'
-                            }
-
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y:.1f}'
-                                }
-                            }
-                        },
-
-                        tooltip: {
-                            headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
-                            pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
-                        },
-
-                        series: [{
-                            name: "Production",
-                            colorByPoint: true,
-                            data: <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>,
-
-                        }],
-                        drilldown: {
-                            series: [{
-                                    name: "B34001",
-                                    id: "B34001",
-                                    data: <?php echo json_encode(
-                                                $B34001data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34002",
-                                    id: "B34002",
-                                    data: <?php echo json_encode(
-                                                $B34002data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34003",
-                                    id: "B34003",
-                                    data: <?php echo json_encode(
-                                                $B34003data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34004",
-                                    id: "B34004",
-                                    data: <?php echo json_encode(
-                                                $B34004data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34005",
-                                    id: "B34005",
-                                    data: <?php echo json_encode(
-                                                $B34005data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34006",
-                                    id: "B34006",
-                                    data: <?php echo json_encode(
-                                                $B34006data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34007",
-                                    id: "B34007",
-                                    data: <?php echo json_encode(
-                                                $B34007data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-
-                                }
-                            ]
-                        }
-                    });
-
 
                     // Create the chart
 
@@ -4351,78 +3626,6 @@ responsive: {
                         }
                     });
                     // containerMine ends here 
-       
-//                     Highcharts.chart('containerOrder', {
-//   data: {
-//     table: 'datatable'
-//   },
-//   chart: {
-//     type: 'column'
-//   },
-//   title: {
-//     text: 'Data extracted from a HTML table in the page'
-//   },
-//   yAxis: {
-//     allowDecimals: false,
-//     title: {
-//       text: 'Units'
-//     }
-//   },
-//   tooltip: {
-//     formatter: function () {
-//       return '<b>' + this.series.name + '</b><br/>' +
-//         this.point.y + ' ' + this.point.name.toLowerCase();
-//     }
-//   }
-// });
-
-//                     Highcharts.chart('containerOrder', {
-//     data: {
-//         table: 'datatablecontainerOrder'
-//     },
-//     chart: {
-//         type: 'column'
-//     },
-//     title: {
-//         text: 'Data extracted from a HTML table in the page'
-//     },
-//     yAxis: {
-//         allowDecimals: false,
-//         title: {
-//             text: 'Units'
-//         }
-//     },
-//     tooltip: {
-//         formatter: function () {
-//             return '<b>' + this.series.name + '</b><br/>' +
-//                 this.point.y + ' ' + this.point.name.toLowerCase();
-//         }
-//     }
-// });
-
-                    // Highcharts.chart('containerOrder', {
-                    //                 data: {
-                    //                     table: 'datatable'
-                    //                 },
-                    //                 chart: {
-                    //                     type: 'column'
-                    //                 },
-                    //                 title: {
-                    //                     text: 'Data extracted from a HTML table in the page'
-                    //                 },
-                    //                 yAxis: {
-                    //                     allowDecimals: false,
-                    //                     title: {
-                    //                     text: 'Units'
-                    //                     }
-                    //                 },
-                    //                 tooltip: {
-                    //                     formatter: function () {
-                    //                     return '<b>' + this.series.name + '</b><br/>' +
-                    //                         this.point.y + ' ' + this.point.name.toLowerCase();
-                    //                     }
-                    //                 }
-                    //                 });
 
 
                     // Produce orders start from here 
@@ -4449,31 +3652,6 @@ responsive: {
                             }
                         }
                     });
-
-                    Highcharts.chart('produceOrder1', {
-                        data: {
-                            table: 'datatable1'
-                        },
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: 'Orders vs Produce'
-                        },
-                        yAxis: {
-                            allowDecimals: false,
-                            title: {
-                                text: 'Production'
-                            }
-                        },
-                        tooltip: {
-                            formatter: function() {
-                                return '<b>' + this.series.name + '</b><br/>' +
-                                    this.point.y + ' ' + this.point.name.toUpperCase();
-                            }
-                        }
-                    });
-
 
                     Highcharts.chart('AllPrdrft', {
                         chart: {
@@ -5121,41 +4299,13 @@ responsive: {
                         }]
                     });
                 </script>
-           
-                <script>
-                    $(document).ready(function() { 
-                           
-                        Highcharts.chart('containerOrder', {
-                        data: {
-                            table: 'datatable'
-                        },
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: 'Order vs Produce'
-                        },
-                        yAxis: {
-                            allowDecimals: false,
-                            title: {
-                            text: 'Units'
-                            }
-                        },
-                        tooltip: {
-                            formatter: function () {
-                            return '<b>' + this.series.name + '</b><br/>' +
-                                this.point.y + ' ' + this.point.name.toLowerCase();
-                            }
-                        }
-                        });
-                    
-                    });
-                    </script>
+                <script src="<?php echo base_url(); ?>/assets/js//jquery.min.js" type="text/javascript">
+                </script>
                 <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
                 <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
                 <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
                 <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
-                <!-- <script src="js/statistics/sparkline/sparkline.bundle.js"></script> -->
+                <script src="js/statistics/sparkline/sparkline.bundle.js"></script>
                 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
                 <!-- BEGIN Page Footer -->
                 <footer class="page-footer" role="contentinfo">
@@ -5167,8 +4317,8 @@ responsive: {
                     </div>
                 </footer>
 
-                <!-- <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script> -->
-                <!-- <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script> -->
+                <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
+                <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
 
 
 
@@ -5914,8 +5064,8 @@ responsive: {
         <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
         <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
         <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
-        <!-- <script src="js/vendors.bundle.js"></script> -->
-        <!-- <script src="js/app.bundle.js"></script> -->
+        <script src="js/vendors.bundle.js"></script>
+        <script src="js/app.bundle.js"></script>
         <script type="text/javascript">
             /* Activate smart panels */
             $('#js-page-content').smartPanel();
@@ -6022,12 +5172,6 @@ responsive: {
 
                 });
             });
-        </script>
-        <script>
-            $(".pie").peity("pie");
-            $(".donut").peity("donut");
-            $(".line").peity("line");
-            $(".bar").peity("bar");
         </script>
     </body>
 
