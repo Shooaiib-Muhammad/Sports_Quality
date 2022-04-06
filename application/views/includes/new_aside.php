@@ -170,6 +170,7 @@
                         <li>
                             <a href="<?php echo base_url(
                                             ''
+
                                         ); ?>LabController/TestRequest" title="How it works" data-filter-tags="theme settings how it works">
                                 <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Request Form</span>
                             </a>
@@ -208,14 +209,14 @@
                                     <a href="<?php echo base_url(
                                                     'MIS/MS'
                                                 ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Machine Stich Ball</span>
+                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Machine Stitch Ball</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url(
                                                     'MIS/HS'
                                                 ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Hand Stich Ball</span>
+                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Hand Stitch Ball</span>
                                     </a>
                                 </li>
                                 <li>
