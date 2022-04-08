@@ -199,38 +199,67 @@ if ($this->session->userdata('userStus')==1) {
                     <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-4">
-                            <div class="card mb-3 widget-content bg-arielle-smile">
-                                <div class="widget-content-wrapper text-white">
-                                    <div class="widget-content-left">
+                            <div class="card mb-3 widget-content" style="background: rgb(29,179,196);
+background: linear-gradient(90deg, rgba(29,179,196,1) 25%, rgba(69,198,213,1) 50%, rgba(81,177,189,1) 75%);">
+                                <div class="widget-content-wrapper text-white p-1">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                        <div class="widget-content-left p-1">
                                         <div class="widget-heading">Total Checked</div>
                                     </div>
-                                    <div class="widget-content-right">
-                                        <div class="widget-numbers text-white" id="check"> <?php r($check) ?></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                        <div class="widget-content-right p-1 mt-1">
+                                        <div id="check"> 
+                                            <h2><b><?php r($check) ?></b></h2>
+                                        </div>
+                                    </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card mb-3 widget-content bg-happy-green">
-                                <div class="widget-content-wrapper text-white">
-                                    <div class="widget-content-left">
+                            <div class="card mb-3 widget-content" style="background: rgb(148,171,61);
+background: linear-gradient(90deg, rgba(148,171,61,0.9332107843137255) 28%, rgba(74,166,74,1) 74%);">
+                                <div class="widget-content-wrapper text-white p-1">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                        <div class="widget-content-left p-1">
                                         <div class="widget-heading">Total Pass</div>
                                     </div>
-                                    <div class="widget-content-right">
-                                        <div class="widget-numbers text-white" id="pass" ><span> <?php r($pass) ?></span></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                        <div class="widget-content-right p-1">
+                                        <div class="widget-numbers text-white mt-1" id="pass" >
+                                            <h2> <b><?php r($pass) ?></b></h2>
+                                        </div>
+                                    </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="card mb-3 widget-content bg-midnight-bloom">
-                                <div class="widget-content-wrapper text-white">
-                                    <div class="widget-content-left">
+                            <div class="card mb-3 widget-content" style="background: rgb(31,103,138);
+background: linear-gradient(90deg, rgba(31,103,138,1) 18%, rgba(51,86,110,1) 89%);">
+                                <div class="widget-content-wrapper text-white p-1">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                        <div class="widget-content-left p-1">
                                         <div class="widget-heading">Total Fail</div>
                                     </div>
-                                    <div class="widget-content-right">
-                                        <div class="widget-numbers text-white" id="fail"><span> <?php r($fail) ?></span></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                        <div class="widget-content-right p-1 mt-1">
+                                        <div class="widget-numbers text-white" id="fail">
+                                            <h2> <b><?php r($fail) ?></b></h2>
+                                        </div>
                                     </div>
+                                        </div>
+
+                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>
