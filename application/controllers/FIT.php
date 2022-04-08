@@ -45,6 +45,33 @@ class FIT extends CI_Controller
   ->set_status_header(200)
   ->set_output(json_encode($data));
  }
+ public function EditTest()
+ {
+
+
+  $data = $this->FIT_Model->EditTest(
+   $_POST["TID"],
+   $_POST["Type"],
+   $_POST["Name"],
+   $_POST["Method"],
+   $_POST["Sprice"],
+   $_POST["PPrice"],
+   $_POST["GPrice"],
+   $_POST["SDays"],
+   $_POST["PDays"],
+   $_POST["Ggays"],
+   $_POST["SDesc"],
+   $_POST["Pdesc"],
+   $_POST["GDesc"],
+   $_POST["status"]
+  );
+
+  
+  return $this->output
+   ->set_content_type('application/json')
+   ->set_status_header(200)
+   ->set_output(json_encode($data));
+ }
  public function submit()
  {
 
@@ -66,7 +93,7 @@ class FIT extends CI_Controller
    $_POST["status"]
   );
 
-
+ 
   return $this->output
    ->set_content_type('application/json')
    ->set_status_header(200)

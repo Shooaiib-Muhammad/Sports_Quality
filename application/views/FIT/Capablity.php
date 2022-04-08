@@ -314,7 +314,7 @@ if (!$this->session->has_userdata('user_id')) {
    var proceed = confirm("Are you sure you want to Delete?");
    if (proceed) {
     url = "<?php echo base_url(''); ?>FIT/Undotest/" + TID
-    alert(url);
+    //alert(url);
     $.get(url, function(data) {
      alert("Data Deleted Successfully");
      location.reload();
@@ -360,12 +360,12 @@ if (!$this->session->has_userdata('user_id')) {
      $("#SDesc").val(data[0].StandardDesc);
      $("#Pdesc").val(data[0].PermimumDesc);
      $("#GDesc").val(data[0].GoldenDesc);
-     //$("#status").val(data[0].Method);
-     // if (data[0].Status == 1) {
-     //  $('#status').prop('checked', true);
-     // } else {
-     //  $('#status').prop('checked', false);
-     // }
+     $("#status").val(data[0].status);
+     if (data[0].Status == 1) {
+      $('#status').prop('checked', true);
+     } else {
+      $('#status').prop('checked', false);
+     }
      $('#changeTitle').text("Edit Test");
 
      $('#Modaldepartment').modal('toggle');
@@ -377,27 +377,50 @@ if (!$this->session->has_userdata('user_id')) {
 
    e.preventDefault();
    let id = $('#IdValue').val();
-   let name = $('#Name').val();
-   let testtype = $('#testtype').val();
+   let Type = $("#Type").val();
+   let Name = $("#Name").val();
+   let Method = $("#Method").val();
+   let Sprice = $("#Sprice").val();
+   let PPrice = $("#PPrice").val();
+   let GPrice = $("#GPrice").val();
+   let SDays = $("#SDays").val();
+   let PDays = $("#PDays").val();
+   let Ggays = $("#Ggays").val();
+   let SDesc = $("#SDesc").val();
+   let Pdesc = $("#Pdesc").val();
+   let GDesc = $("#GDesc").val();
+   let status
 
-   let status;
    if ($("#status").is(':checked'))
-    status = true // checked
+    status = 1 // checked
    else
-    status = false // unchecked
-   let url = "<?php echo base_url(''); ?>LabController/EditTestType"
+    status = 0 // unchecked
+
+   let url = "<?php echo base_url(''); ?>FIT/EditTest"
 
    $.post(url, {
-     'Id': id,
-     'Name': name,
-     'Status': status,
-     'testCatagoty': testtype
+
+     'TID': id,
+     "Type": Type,
+     "Name": Name,
+     "Method": Method,
+     "Sprice": Sprice,
+     "PPrice": PPrice,
+     "GPrice": GPrice,
+     "SDays": SDays,
+     "PDays": PDays,
+     "Ggays": Ggays,
+     "SDesc": SDesc,
+     "GDesc": GDesc,
+     "Pdesc": Pdesc,
+     "status": status
     },
     function(data, status) {
      alert("Data Updated Successfully! Wait for page to be Reloaded")
-     setInterval(function() {
-      window.location.reload();
-     }, 3000);
+     window.location.reload();
+     // setInterval(function() {
+     //  window.location.reload();
+     // }, 3000);
 
     });
   });

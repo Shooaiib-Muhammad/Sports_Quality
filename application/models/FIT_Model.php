@@ -35,7 +35,27 @@ WHERE        (FactoryCode = '$fc') AND (SesonalRange = '$season')
   return  $query->result_array();
  }
 
+public function EditTest(
+    $TID,
+    $Type,
+    $Name,
+    $Method,
+    $Sprice,
+    $GPrice,
+    $PPrice,
+    $SDays,
+    $PDays,
+    $Ggays,
+    $SDesc,
+    $Pdesc,
+    $GDesc,
+    $status){
+    $query = $this->db->query("UPDATE    dbo .Tbl_Fit_Lab_Capability 
+            SET   Type  =  '$Type',Name  =  '$Name',Method  =  '$Method' ,StandardPrice='$Sprice' ,PremimumPrice='$PPrice' ,GoldenPrice='$GPrice',
+            StandardDays='$SDays',PermimumDays = '$PDays',GoldenDays= '$Ggays',StandardDesc= '$SDesc',PermimumDesc= '$Pdesc',GoldenDesc= '$GDesc',Status='$status'
+          WHERE  TestID='$TID'");  
 
+}
 
  public function submit(
    $Type,
