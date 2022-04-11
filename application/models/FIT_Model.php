@@ -18,6 +18,13 @@ class FIT_Model extends CI_Model
   FROM            dbo.Tbl_Fit_Lab_Capability");
   return  $query->result_array();
  }
+ public function CallDataD()
+ {
+
+  $query = $this->db->query("SELECT      dbo.view_FIt_Package_D.*
+  FROM            dbo.view_FIt_Package_D");
+  return  $query->result_array();
+ }
   public function gettestData($TID)
   {
 
@@ -38,6 +45,7 @@ WHERE        (FactoryCode = '$fc') AND (SesonalRange = '$season')
 public function EditTest(
     $TID,
     $Type,
+    $Type1,
     $Name,
     $Method,
     $Sprice,
@@ -49,16 +57,18 @@ public function EditTest(
     $SDesc,
     $Pdesc,
     $GDesc,
-    $status){
+    $image
+    ){
     $query = $this->db->query("UPDATE    dbo .Tbl_Fit_Lab_Capability 
             SET   Type  =  '$Type',Name  =  '$Name',Method  =  '$Method' ,StandardPrice='$Sprice' ,PremimumPrice='$PPrice' ,GoldenPrice='$GPrice',
-            StandardDays='$SDays',PermimumDays = '$PDays',GoldenDays= '$Ggays',StandardDesc= '$SDesc',PermimumDesc= '$Pdesc',GoldenDesc= '$GDesc',Status='$status'
+            StandardDays='$SDays',PermimumDays = '$PDays',GoldenDays= '$Ggays',StandardDesc= '$SDesc',PermimumDesc= '$Pdesc',GoldenDesc= '$GDesc',Image='$image',TestType='$Type1'
           WHERE  TestID='$TID'");  
 
 }
 
  public function submit(
    $Type,
+   $Type1,
    $Name,
    $Method,
    $Sprice,
@@ -70,13 +80,15 @@ public function EditTest(
    $SDesc,
    $Pdesc,
    $GDesc,
-   $status
+   $status,
+   $picture
  ) {
 
   $user = $this->session->has_userdata('user_id');
   $query = $this->db->query("INSERT INTO  dbo . Tbl_Fit_Lab_Capability 
         (  
    Type,
+   TestType,
 Name,
 Method,
 StandardPrice	,
@@ -88,9 +100,10 @@ GoldenDays,
 StandardDesc,
 PermimumDesc,
 GoldenDesc,
-   status)
+   status,image)
   VALUES
         ('$Type',
+        '$Type1',
    '$Name',
    '$Method',
    '$Sprice',
@@ -102,7 +115,8 @@ GoldenDesc,
    '$SDesc',
    '$Pdesc',
    '$GDesc',
-   1)");
+   1,
+   '$picture')");
  }
 
 
@@ -122,4 +136,79 @@ WHERE        (dbo.View_156.EmpPic IS NOT NULL)");
   // $query = $this->db->query("DELETE FROM dbo . Tbl_Fit_Lab_Capability WHERE (TestID = '$id')");
   // return $query;
  }
+
+ public function submitPackage($Type,
+ $Name,
+ $Method,
+ $status
+
+) {
+
+$user = $this->session->has_userdata('user_id');
+
+if($status=='on' || $status=='On'){
+$sta=1;
+}else{
+  $sta=0;
+}
+$query = $this->db->query("INSERT INTO  dbo . tbl_Fit_Pckg_D 
+      (  
+TestID,
+Name,
+Method,
+ Status)
+VALUES
+      (
+        '$Type',
+ '$Name',
+ '$Method',
+ $sta
+ )");
+ return $query;
+ }
+
+ public function TestType(){
+  $query = $this->db->query("SELECT   TestID, Name, TestType
+  FROM            dbo.Tbl_Fit_Lab_Capability
+  WHERE        (TestType = 'Package')");
+    return $query->result_array();
+
+ }
+
+ public function Deletetest($id){
+  
+  
+  $query = $this->db->query("DELETE   FROM dbo.Tbl_Fit_Lab_Capability
+  WHERE TestID='$id'");
+ }
+ public function Deletepkg($id){
+  
+  
+  $query = $this->db->query("DELETE   FROM dbo.tbl_Fit_Pckg_D
+  WHERE ID='$id'");
+ }
+
+ public function updatePkg($id,$testname,$pkgname,$method,$status){
+
+  if($status=='on' || $status=='On'){
+    $checked=1;
+  }else{
+    $checked=0;
+  }
+  $query = $this->db->query("UPDATE    dbo .tbl_Fit_Pckg_D 
+  SET   TestID  =  '$testname',Name  =  '$pkgname',Method  =  '$method' ,Status='$checked'
+ 
+WHERE  ID='$id'"); 
+ return;
+ }
+
+ public function editPkg($id){
+  
+  $query = $this->db->query("SELECT        dbo.view_FIt_Package_D.*
+  FROM            dbo.view_FIt_Package_D
+  WHERE        (ID = $id)");
+    return  $query->result_array();
+ }
+
+
 }

@@ -21,7 +21,10 @@ class FIT extends CI_Controller
  {
 
    $data['getData'] = $this->FIT_Model->CallData();
+   $data['TestType']=$this->FIT_Model->TestType();
    
+   $data['getPckg']=$this->FIT_Model->CallDataD();
+  
   $this->load->view('FIT/Capablity', $data);
  }
  
@@ -48,22 +51,56 @@ class FIT extends CI_Controller
  public function EditTest()
  {
 
+  $allData=explode(",",$_POST['data']);
 
+ 
+
+  if (!empty($_FILES['file']['name'])) {
+    $config['upload_path'] = 'assets\img\img';
+    $config['allowed_types'] = 'jpg|jpeg|png|gif';
+    $config['file_name'] = basename($_FILES['file']['name']);
+
+    //Load upload library and initialize configuration
+    $this->load->library('upload', $config);
+    $this->upload->initialize($config);
+
+    if ($this->upload->do_upload('file')) {
+        $uploadData = $this->upload->data();
+        $pictureFresh = $uploadData['file_name'];
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = 'assets/img/img/' . $pictureFresh;
+        $config['create_thumb'] = false;
+        $config['maintain_ratio'] = false;
+        $config['quality'] = '60%';
+        $config['width'] = 800;
+        $config['height'] = 600;
+        $config['new_image'] = 'assets/img/img/' . $pictureFresh;
+        $this->load->library('image_lib', $config);
+        $this->image_lib->resize();
+    } else {
+        echo 'nothing';
+
+        $pictureFresh = '';
+    }
+} else {
+    $pictureFresh = '';
+}
   $data = $this->FIT_Model->EditTest(
-   $_POST["TID"],
-   $_POST["Type"],
-   $_POST["Name"],
-   $_POST["Method"],
-   $_POST["Sprice"],
-   $_POST["PPrice"],
-   $_POST["GPrice"],
-   $_POST["SDays"],
-   $_POST["PDays"],
-   $_POST["Ggays"],
-   $_POST["SDesc"],
-   $_POST["Pdesc"],
-   $_POST["GDesc"],
-   $_POST["status"]
+    $allData[0],
+    $allData[1],
+    $allData[2],
+    $allData[3],
+    $allData[4],
+    $allData[5],
+    $allData[6],
+    $allData[7],
+    $allData[8],
+    $allData[9],
+    $allData[10],
+    $allData[11],
+    $allData[12],
+    $allData[13],
+    $pictureFresh
   );
 
   
@@ -75,22 +112,55 @@ class FIT extends CI_Controller
  public function submit()
  {
 
+  $allData=explode(",",$_POST['data']);
+  if (!empty($_FILES['file']['name'])) {
+    $config['upload_path'] = 'assets\img\img';
+    $config['allowed_types'] = 'jpg|jpeg|png|gif';
+    $config['file_name'] = basename($_FILES['file']['name']);
+
+    //Load upload library and initialize configuration
+    $this->load->library('upload', $config);
+    $this->upload->initialize($config);
+
+    if ($this->upload->do_upload('file')) {
+        $uploadData = $this->upload->data();
+        $pictureFresh = $uploadData['file_name'];
+        $config['image_library'] = 'gd2';
+        $config['source_image'] = 'assets/img/img/' . $pictureFresh;
+        $config['create_thumb'] = false;
+        $config['maintain_ratio'] = false;
+        $config['quality'] = '60%';
+        $config['width'] = 800;
+        $config['height'] = 600;
+        $config['new_image'] = 'assets/img/img/' . $pictureFresh;
+        $this->load->library('image_lib', $config);
+        $this->image_lib->resize();
+    } else {
+        echo 'nothing';
+
+        $pictureFresh = '';
+    }
+} else {
+    $pictureFresh = '';
+}
+
 
   $data = $this->FIT_Model->submit(
-   $_POST["Type"],
-   $_POST["Name"],
-   $_POST["Method"],
-   $_POST["Sprice"],
-   $_POST["Sprice"],
-   $_POST["GPrice"],
-   $_POST["PPrice"],
-   $_POST["SDays"],
-   $_POST["PDays"],
-   $_POST["Ggays"],
-   $_POST["SDesc"],
-   $_POST["Pdesc"],
-   $_POST["GDesc"],
-   $_POST["status"]
+    $allData[0],
+    $allData[1],
+    $allData[2],
+    $allData[3],
+    $allData[4],
+    $allData[5],
+    $allData[6],
+    $allData[7],
+    $allData[8],
+    $allData[9],
+    $allData[10],
+    $allData[11],
+    $allData[12],
+    $allData[13],
+    $pictureFresh
   );
 
  
@@ -120,5 +190,52 @@ class FIT extends CI_Controller
   //  ->set_output(json_encode($data));
 
   $data['undoTestType'] = $this->FIT_Model->undobtn($TID);
+ }
+ public function submitPackage()
+ {
+  $allData=explode(",",$_POST['data']);
+  $data = $this->FIT_Model->submitPackage(
+    $allData[0],
+    $allData[1],
+    $allData[2],
+    $allData[3]
+    
+  );
+
+  
+  return $this->output
+   ->set_content_type('application/json')
+   ->set_status_header(200)
+   ->set_output(json_encode($data));
+
+ 
+ }
+
+ public function Deletetest(){
+
+  echo $_GET['TID'];
+  $data['delete'] = $this->FIT_Model->Deletetest($_GET['TID']);
+ }
+ public function Deletepkg(){
+
+  $data['delete'] = $this->FIT_Model->Deletepkg($_GET['TID']);
+ }
+ public function updatePkg(){
+
+  
+       
+
+   $data['delete'] = $this->FIT_Model->updatePkg($_POST['Id'],$_POST['pkgtype'],$_POST['PName'],$_POST['PMethod'],$_POST['status']);
+   return $this;
+ }
+
+ public function editPkg(){
+  $Id = $_POST['Id'];
+  $data = $this->FIT_Model->editPkg($Id);
+
+  return $this->output
+  ->set_content_type('application/json')
+  ->set_status_header(200)
+  ->set_output(json_encode($data));
  }
 }
