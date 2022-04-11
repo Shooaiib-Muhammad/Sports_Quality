@@ -55,6 +55,7 @@ class FIT extends CI_Controller
 
  
 
+  
   if (!empty($_FILES['file']['name'])) {
     $config['upload_path'] = 'assets\img\img';
     $config['allowed_types'] = 'jpg|jpeg|png|gif';
@@ -100,6 +101,7 @@ class FIT extends CI_Controller
     $allData[11],
     $allData[12],
     $allData[13],
+    $allData[14],
     $pictureFresh
   );
 

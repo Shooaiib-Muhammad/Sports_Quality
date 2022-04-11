@@ -694,8 +694,11 @@ if (!$this->session->has_userdata('user_id')) {
       let SDesc = $("#SDesc").val();
       let Pdesc = $("#Pdesc").val();
       let GDesc = $("#GDesc").val();
-      let status
-
+      
+      if ($("#status").is(':checked'))
+        status = 1 // checked
+      else
+        status = 0 // unchecked
       data = [
         id,
         Type,
@@ -714,11 +717,9 @@ if (!$this->session->has_userdata('user_id')) {
         status
 
       ]
-      if ($("#status").is(':checked'))
-        status = 1 // checked
-      else
-        status = 0 // unchecked
+  
 
+        
       let url = "<?php echo base_url(''); ?>FIT/EditTest"
       var fd = new FormData();
       var files = $("#avatar")[0].files[0];

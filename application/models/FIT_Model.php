@@ -57,11 +57,12 @@ public function EditTest(
     $SDesc,
     $Pdesc,
     $GDesc,
+    $status,
     $image
     ){
     $query = $this->db->query("UPDATE    dbo .Tbl_Fit_Lab_Capability 
             SET   Type  =  '$Type',Name  =  '$Name',Method  =  '$Method' ,StandardPrice='$Sprice' ,PremimumPrice='$PPrice' ,GoldenPrice='$GPrice',
-            StandardDays='$SDays',PermimumDays = '$PDays',GoldenDays= '$Ggays',StandardDesc= '$SDesc',PermimumDesc= '$Pdesc',GoldenDesc= '$GDesc',Image='$image',TestType='$Type1'
+            StandardDays='$SDays',PermimumDays = '$PDays',GoldenDays= '$Ggays',StandardDesc= '$SDesc',PermimumDesc= '$Pdesc',GoldenDesc= '$GDesc',Image='$image',TestType='$Type1',Status='$status'
           WHERE  TestID='$TID'");  
 
 }
