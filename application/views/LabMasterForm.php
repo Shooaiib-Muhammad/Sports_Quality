@@ -83,18 +83,48 @@ if (!$this->session->has_userdata('user_id')) {
                                             <div class="modal-body">
                                                 <div class="card" id="printCard">
                                                     <div class="card-body">
+                                                    
+                                                            <!-- <div class="col-sm-12">
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                            </div> -->
+                                                    
 
                                                         <div class="row">
-                                                            <table class="table">
+                                                        <div class="col-sm-12 d-flex flex-row">
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;" > Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Carton </h3>
+                                                           
+                                                            
+                                                             <!-- <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;">Test Report Of Carton</h3> -->
+                                                            
+                                                            
+                                                            <!-- <table class="table">
                                                                 <tr>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
-
-                                                                    <th></th>
-                                                                    <th></th>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /></th> <br>
                                                                     <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Carton</th>
-                                                                    <th></th>
+                                    
                                                                 </tr>
-                                                            </table>
+                                                            </table> -->
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
            <div class="col-md-3"></div>
            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
@@ -421,16 +451,29 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div class="card-body">
 
                                                         <div class="row">
-                                                            <table class="table">
+                                                            <!-- <table class="table">
                                                                 <tr>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
 
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Foam</th>
                                                                     <th> </th>
                                                                 </tr>
-                                                            </table>
+                                                            </table> -->
+                                                            <div class="col-sm-12 d-flex flex-row">
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                            </div>
+                                             
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;" > Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Foam </h3>
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
            <div class="col-md-3"></div>
            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
@@ -742,11 +785,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <div class="row">
                                                             <table class="table">
                                                                 <tr>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
 
+                                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" />  </th>
                                                                     <th></th>
-                                                                    <th></th>
-                                                                    <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Fabric</th>
+                                                                    <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Fabric</th> -->
                                                                     <td style="font-size: small;padding:0%">
                                                                         <table class="table table-bordered" style="font-size: small;padding:0%">
                                                                             <tr style="font-size: small;padding:0%">
@@ -777,6 +820,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </td>
                                                                 </tr>
                                                             </table>
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;" > Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Fabric </h3>
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
            <div class="col-md-3"></div>
            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
@@ -1372,11 +1416,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <div class="row">
                                                             <table class="table">
                                                                 <tr>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
 
+                                                                    <th>  <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" />  </th>
                                                                     <th></th>
-                                                                    <th></th>
-                                                                    <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Material</th>
+                                                                    <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Material</th> -->
                                                                     <td style="font-size: small;padding:0%">
                                                                         <table class="table table-bordered" style="font-size: small;padding:0%">
                                                                             <tr style="font-size: small;padding:0%">
@@ -1407,6 +1451,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </td>
                                                                 </tr>
                                                             </table>
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;" > Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Material </h3>
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
            <div class="col-md-3"></div>
            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
@@ -1767,11 +1812,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <div class="row">
                                                             <table class="table">
                                                                 <tr>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
 
+                                                                    <th>  <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" />  </th>
                                                                     <th></th>
-                                                                    <th></th>
-                                                                    <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Thread</th>
+                                                                    <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Thread</th> -->
                                                                     <td style="font-size: small;padding:0%">
                                                                         <table class="table table-bordered" style="font-size: small;padding:0%">
                                                                             <tr style="font-size: small;padding:0%">
@@ -1802,6 +1847,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </td>
                                                                 </tr>
                                                             </table>
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;" > Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Thread </h3>
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
            <div class="col-md-3"></div>
            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
@@ -2176,11 +2222,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <div class="row">
                                                             <table class="table">
                                                                 <tr>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" class="ml-5" alt="report_logo" width="250px" height="100px" /></th>
 
+                                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
                                                                     <th></th>
-                                                                    <th></th>
-                                                                    <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of MS Thread</th>
+                                                                    <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of MS Thread</th> -->
                                                                     <td style="font-size: small;padding:0%">
                                                                         <table class="table table-bordered" style="font-size: small;padding:0%">
                                                                             <tr style="font-size: small;padding:0%">
@@ -2211,6 +2257,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </td>
                                                                 </tr>
                                                             </table>
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;" > Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of MS Thread </h3>
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
            <div class="col-md-3"></div>
            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
@@ -2575,14 +2622,15 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <div class="row">
                                                             <table class="table">
                                                                 <tr>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
 
+                                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
                                                                     <th></th>
-                                                                    <th></th>
-                                                                    <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Blader</th>
+                                                                    <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Blader</th> -->
                                                                     <th> </th>
                                                                 </tr>
                                                             </table>
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;" > Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Blader </h3>
                                                             <table class="table">
                                                                 <tr>
                                                                     <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoBlader"> </span></label></th>
@@ -2872,9 +2920,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <tr>
                                                                     <th><img src="<?php echo base_url() ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
 
+                                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
                                                                     <th></th>
-                                                                    <th></th>
-                                                                    <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>CSM Test Report of Football</th>
+                                                                    <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>CSM Test Report of Football</th> -->
                                                                     <td style="font-size: small;padding:0%">
                                                                         <table class="table table-bordered" style="font-size: small;padding:0%">
                                                                             <tr style="font-size: small;padding:0%">
@@ -2905,6 +2953,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </td>
                                                                 </tr>
                                                             </table>
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;" > Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> CSM Test Report of Football </h3>
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
            <div class="col-md-3"></div>
            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->

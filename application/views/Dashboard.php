@@ -32,6 +32,7 @@ if (!$this->session->has_userdata('user_id')) {
                     </div> -->
 
                         <style>
+           
                             /* set default zoom property of a page  */
                             html
                             {zoom: 67%;} 
@@ -286,7 +287,7 @@ if (!$this->session->has_userdata('user_id')) {
                                 font-weight: 600;
                                 padding: 0.5em;
                             }
-
+                           
                             #datatable td,
                             #datatable th,
                             #datatable caption {
@@ -1169,13 +1170,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <div class="subheader-block d-lg-flex align-items-center">
                                                                         <div class="d-inline-flex flex-column justify-content-center mr-3">
                                                                             <span class="fw-300 fs-xs d-block opacity-50">
-                                                                                <small>Total Manufactured</small>
+                                                                                <h4 style="color: #FF9999;font-weight:bold">Total Prod</h4>
                                                                             </span>
-                                                                            <span class="fw-500 fs-xl d-block color-primary-500">
+                                                                            <span class="mh-100 fs-xl d-block color-primary-500" style="font-weight:bold">
                                                                             <?php  echo $Produced; ?>
                                                                             </span>
                                                                         </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#886ab5" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5pass; ?>"></span>
+                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#886ab5" sparkHeight="40px" sparkBarWidth="7px" values="<?php echo $last5pass; ?>"></span>
                                                                     </div>
                                             
                                                                     </div>
@@ -1183,13 +1184,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <div class="subheader-block d-lg-flex align-items-center">
                                                                         <div class="d-inline-flex flex-column justify-content-center mr-3">
                                                                             <span class="fw-300 fs-xs d-block opacity-50">
-                                                                                <small>Total Checked</small>
+                                                                                <h4 style="color: #FF9999;font-weight:bold">Total Check</h4>
                                                                             </span>
-                                                                            <span class="fw-500 fs-xl d-block color-primary-500">
+                                                                            <span class="mh-100 fs-xl d-block color-primary-500 " style="font-weight:bold">
                                                                             <?php  echo $Checked; ?>
                                                                             </span>
                                                                         </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#8FBC8F" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5check; ?>"></span>
+                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#8FBC8F" sparkHeight="40px" sparkBarWidth="7px" values="<?php echo $last5check; ?>"></span>
                                                                     </div>
 
                                                     
@@ -1198,13 +1199,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <div class="subheader-block d-lg-flex align-items-center">
                                                                         <div class="d-inline-flex flex-column justify-content-center mr-3">
                                                                             <span class="fw-300 fs-xs d-block opacity-50">
-                                                                                <small>Total Pass</small>
+                                                                                <h4 style="color: #FF9999;font-weight:bold">Total Pass</h4>
                                                                             </span>
-                                                                            <span class="fw-500 fs-xl d-block color-primary-500">
+                                                                            <span class="mh-100 fs-xl d-block color-primary-500" style="font-weight:bold">
                                                                             <?php  echo $Produced; ?>
                                                                             </span>
                                                                         </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#778899" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5pass; ?>"></span>
+                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#778899" sparkHeight="40px" sparkBarWidth="7px" values="<?php echo $last5pass; ?>"></span>
                                                                     </div>
 
                                                                         
@@ -1213,13 +1214,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <div class="subheader-block d-lg-flex align-items-center">
                                                                         <div class="d-inline-flex flex-column justify-content-center mr-3">
                                                                             <span class="fw-300 fs-xs d-block opacity-50">
-                                                                                <small>Total Fail</small>
+                                                                                <h4 style="color: #FF9999;font-weight:bold">Total Fail</h4>
                                                                             </span>
-                                                                            <span class="fw-500 fs-xl d-block color-primary-500">
+                                                                            <span class="mh-100 fs-xl d-block color-primary-500" style="font-weight:bold">
                                                                             <?php  echo $Fail; ?>
                                                                             </span>
                                                                         </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#696969" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5fail; ?>"></span>
+                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#696969" sparkHeight="40px" sparkBarWidth="7px" values="<?php echo $last5fail; ?>"></span>
                                                                     </div>
                                                                     </div>
 
@@ -1231,7 +1232,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <div class="col-lg-3">
                                                                 </div> -->
                                                                 <!-- <div class="rightbar row " style="margin-left: 36%;"> -->
-                                                                <div class="col-md--2">
+                                                                <div class="col-md-2 d-flex ">
                                                                     <div><?php
                                                                     $FinalRF;
                                                                     $Finalprenentage;
@@ -1239,12 +1240,15 @@ if (!$this->session->has_userdata('user_id')) {
                                                                      // Echo $RFTVALUE;
 
                                                                     ?>
-                                                                        <span class="peity-donut"  data-peity="{ &quot;fill&quot;: [&quot;#967bbd&quot;, &quot;#ccbfdf&quot;],  &quot;innerRadius&quot;: 14, &quot;radius&quot;: 20 }"><?php  echo Round($RFTVALUE,0);  ?>/10</span>
-                                                                   </div>
-                                                                    <div>
-                                                                        <label class="fs-sm mb-0 mt-md-0">Avg. RFT</label>
+                                                                        
+                                                                   
+                                                                        <h4 class="  mb-0 mt-md-0">Avg  RFT</h4>
                                                                         <h4 class="font-weight-bold mb-0"><?php echo Round($FinalRF, 2) ?>%</h4>
                                                                     </div>
+                                                                    <div>
+                                                                    <span class="peity-donut"  data-peity="{ &quot;fill&quot;: [&quot;#967bbd&quot;, &quot;#ccbfdf&quot;],  &quot;innerRadius&quot;: 14, &quot;radius&quot;: 20 }"><?php  echo Round($RFTVALUE,0);  ?>/10</span>
+                                                                    </div>
+                                                                   
                                                                     <!-- <div class="mr-2">
                                                                     <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#778899" sparkHeight="32px" sparkBarWidth="5px" values="<?php echo $last5rft; ?>"></span>
                                                                     </div> -->
@@ -1252,15 +1256,16 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                             
                                                             
-                                                            <div class="col-md-2">
+                                                            <div class="col-md-2 d-flex">
+                                                                     <div>
+                                                                        <h4 class="mb-0 mt-md-0 ">Def Percentage </h4>
+                                                                        <h4 class="font-weight-bold mb-0"><?php echo Round($Finalprenentage, 2); ?>%</h4>
+                                                                    </div>
                                                                     <div>
                                                                         <span class="peity-donut"  data-peity="{ &quot;fill&quot;: [&quot;#2196F3&quot;, &quot;#9acffa&quot;],  &quot;innerRadius&quot;: 14, &quot;radius&quot;: 20 }" ><?php  echo Round($Finalprenentage,0);?>/10</span>
                                                                 
                                                                     </div>
-                                                                    <div>
-                                                                        <label class="fs-sm mb-0 mt-md-0">Defected Precentage</label>
-                                                                        <h4 class="font-weight-bold mb-0"><?php echo Round($Finalprenentage, 2); ?>%</h4>
-                                                                    </div>
+                                                                    
                                                             </div>
                                                             
                                                             
@@ -2849,7 +2854,7 @@ if (!$this->session->has_userdata('user_id')) {
                         }
 
                     });
-                    Highcharts.chart('monthlydata1', {
+ Highcharts.chart('monthlydata1', {
 
 title: {
     text: 'Monthly Production'
