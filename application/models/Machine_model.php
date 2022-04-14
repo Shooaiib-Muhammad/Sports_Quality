@@ -29,6 +29,7 @@ class Machine_model extends CI_Model
                 'ReviewStatus' => $result->ReviewStatus,
                 'ApprovalStatus' => $result->ApprovalStatus,
                 'testRequest' => $result->testRequest,
+                'FIT' => $result->FIT,
             ];
 
             $Status = $result->Status;

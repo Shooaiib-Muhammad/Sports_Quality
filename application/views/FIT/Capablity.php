@@ -360,10 +360,10 @@ if (!$this->session->has_userdata('user_id')) {
 
                         <div class="panel-content">
 
-                          <table class="table table-striped table-hover table-md table-responsive" id="ActivityData1">
+                          <table class="table" id="datatable">
                             <thead>
                               <tr>
-                              <!-- <th>Method</th>
+                                <!-- <th>Method</th>
                                 <th>Status</th> -->
                                 <th>Package Name</th>
                                 <th>Test Name</th>
@@ -381,13 +381,14 @@ if (!$this->session->has_userdata('user_id')) {
                                 $ID = $Key['ID'];
                               ?>
                                 <tr>
-                                  <td id="testid" style="display:none"><?php echo $Key['TestID']; ?> </td>
-                                  <td id="idPkg" style="display:none"><?php echo $Key['ID']; ?> </td>
+                               
                                   <td id="testname"><?php echo $name; ?> </td>
                                   <td id="pkgnamee"><?php echo $Key['Name']; ?> </td>
 
-                                  <td id="methodname"><?php echo $Key['Method']; ?> </td>
-                                  <td id="statusvalue"><?php echo $Key['Status']==1?'<span class="badge badge-success">Active</span>':'<span class="badge badge-secondary">in-active</span>'; ?> </td>
+                                  <td id="methodname"><?php echo $Key['Method']; ?> <input type="text" id="idPkg" style="display:none" value="<?php echo $Key['ID']; ?>">
+                                    <input type="text" id="testid" style="display:none" value="<?php echo $Key['TestID']; ?>">
+                                  </td>
+                                  <td id="statusvalue"><?php echo $Key['Status'] == 1 ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-secondary">in-active</span>'; ?> </td>
                                   <td>
                                     <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatePkg" id="btn.<?php echo $ID; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
                                     <button type="button" style="display: inline-block;" id="undo.<?php echo $ID; ?>" value="<?php echo $ID; ?>" class="btn btn-danger btn-xs deletebtn"><i class="fal fa-trash" aria-hidden="true"></i></button>
@@ -513,6 +514,151 @@ if (!$this->session->has_userdata('user_id')) {
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script>
+    $(document).ready(function() {
+      //alert('heloo');
+      $('#ActivityData').dataTable({
+        responsive: false,
+        lengthChange: false,
+        dom:
+          /*	--- Layout Structure 
+          	--- Options
+          	l	-	length changing input control
+          	f	-	filtering input
+          	t	-	The table!
+          	i	-	Table information summary
+          	p	-	pagination control
+          	r	-	processing display element
+          	B	-	buttons
+          	R	-	ColReorder
+          	S	-	Select
+
+          	--- Markup
+          	< and >				- div element
+          	<"class" and >		- div with a class
+          	<"#id" and >		- div with an ID
+          	<"#id.class" and >	- div with an ID and a class
+
+          	--- Further reading
+          	https://datatables.net/reference/option/dom
+          	--------------------------------------
+           */
+          "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+          "<'row'<'col-sm-12'tr>>" +
+          "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+        buttons: [
+          /*{
+          	extend:    'colvis',
+          	text:      'Column Visibility',
+          	titleAttr: 'Col visibility',
+          	className: 'mr-sm-3'
+          },*/
+          {
+            extend: 'pdfHtml5',
+            text: 'PDF',
+            titleAttr: 'Generate PDF',
+            className: 'btn-outline-danger btn-sm mr-1'
+          },
+          {
+            extend: 'excelHtml5',
+            text: 'Excel',
+            titleAttr: 'Generate Excel',
+            className: 'btn-outline-success btn-sm mr-1'
+          },
+          {
+            extend: 'csvHtml5',
+            text: 'CSV',
+            titleAttr: 'Generate CSV',
+            className: 'btn-outline-primary btn-sm mr-1'
+          },
+          {
+            extend: 'copyHtml5',
+            text: 'Copy',
+            titleAttr: 'Copy to clipboard',
+            className: 'btn-outline-primary btn-sm mr-1'
+          },
+          {
+            extend: 'print',
+            text: 'Print',
+            titleAttr: 'Print Table',
+            className: 'btn-outline-primary btn-sm'
+          }
+        ]
+      });
+
+
+
+
+
+      $('#datatable').dataTable({
+        responsive: false,
+        lengthChange: false,
+        dom:
+          /*	--- Layout Structure 
+          	--- Options
+          	l	-	length changing input control
+          	f	-	filtering input
+          	t	-	The table!
+          	i	-	Table information summary
+          	p	-	pagination control
+          	r	-	processing display element
+          	B	-	buttons
+          	R	-	ColReorder
+          	S	-	Select
+
+          	--- Markup
+          	< and >				- div element
+          	<"class" and >		- div with a class
+          	<"#id" and >		- div with an ID
+          	<"#id.class" and >	- div with an ID and a class
+
+          	--- Further reading
+          	https://datatables.net/reference/option/dom
+          	--------------------------------------
+           */
+          "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+          "<'row'<'col-sm-12'tr>>" +
+          "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+        buttons: [
+          /*{
+          	extend:    'colvis',
+          	text:      'Column Visibility',
+          	titleAttr: 'Col visibility',
+          	className: 'mr-sm-3'
+          },*/
+          {
+            extend: 'pdfHtml5',
+            text: 'PDF',
+            titleAttr: 'Generate PDF',
+            className: 'btn-outline-danger btn-sm mr-1'
+          },
+          {
+            extend: 'excelHtml5',
+            text: 'Excel',
+            titleAttr: 'Generate Excel',
+            className: 'btn-outline-success btn-sm mr-1'
+          },
+          {
+            extend: 'csvHtml5',
+            text: 'CSV',
+            titleAttr: 'Generate CSV',
+            className: 'btn-outline-primary btn-sm mr-1'
+          },
+          {
+            extend: 'copyHtml5',
+            text: 'Copy',
+            titleAttr: 'Copy to clipboard',
+            className: 'btn-outline-primary btn-sm mr-1'
+          },
+          {
+            extend: 'print',
+            text: 'Print',
+            titleAttr: 'Print Table',
+            className: 'btn-outline-primary btn-sm'
+          }
+        ]
+      });
+    });
+
     $('.undobtn').click(function() {
 
       let id = this.id;
@@ -522,7 +668,9 @@ if (!$this->session->has_userdata('user_id')) {
       if (proceed) {
         url = "<?php echo base_url(''); ?>FIT/Deletetest/"
         //alert(url);
-        $.get(url, {"TID": TID},function(data) {
+        $.get(url, {
+          "TID": TID
+        }, function(data) {
           alert("Data Deleted Successfully");
           location.reload();
         });
@@ -659,17 +807,17 @@ if (!$this->session->has_userdata('user_id')) {
         'PName': PName,
         'PMethod': PMethod,
         'status': status,
-        
+
       }
 
       $.ajax({
         url: url,
         type: 'post',
         data: data,
-        success:function(data) {
+        success: function(data) {
           alert("Data Updated Successfully")
-      location.reload();
-          
+          location.reload();
+
 
         }
       });
@@ -694,7 +842,7 @@ if (!$this->session->has_userdata('user_id')) {
       let SDesc = $("#SDesc").val();
       let Pdesc = $("#Pdesc").val();
       let GDesc = $("#GDesc").val();
-      
+
       if ($("#status").is(':checked'))
         status = 1 // checked
       else
@@ -717,9 +865,9 @@ if (!$this->session->has_userdata('user_id')) {
         status
 
       ]
-  
 
-        
+
+
       let url = "<?php echo base_url(''); ?>FIT/EditTest"
       var fd = new FormData();
       var files = $("#avatar")[0].files[0];
@@ -732,7 +880,7 @@ if (!$this->session->has_userdata('user_id')) {
         data: fd,
         contentType: false,
         processData: false,
-        success:function(data) {
+        success: function(data) {
           alert("Data Updated Successfully")
           location.reload();
 
@@ -820,9 +968,9 @@ if (!$this->session->has_userdata('user_id')) {
         data: fd,
         contentType: false,
         processData: false,
-        success:function(data) {
+        success: function(data) {
           alert("Data Inserted Successfully")
-      location.reload();
+          location.reload();
 
         }
       });
@@ -861,161 +1009,11 @@ if (!$this->session->has_userdata('user_id')) {
         data: fd,
         contentType: false,
         processData: false,
-        success:function(data) {
+        success: function(data) {
           alert("Data Inserted Successfully")
-      location.reload();
+          location.reload();
 
         }
-      });
-
-
-    });
-
-    function submit() {
-
-    }
-    $(document).ready(function() {
-      $('#ActivityData').dataTable({
-        responsive: false,
-        lengthChange: false,
-        dom:
-          /*	--- Layout Structure 
-          	--- Options
-          	l	-	length changing input control
-          	f	-	filtering input
-          	t	-	The table!
-          	i	-	Table information summary
-          	p	-	pagination control
-          	r	-	processing display element
-          	B	-	buttons
-          	R	-	ColReorder
-          	S	-	Select
-
-          	--- Markup
-          	< and >				- div element
-          	<"class" and >		- div with a class
-          	<"#id" and >		- div with an ID
-          	<"#id.class" and >	- div with an ID and a class
-
-          	--- Further reading
-          	https://datatables.net/reference/option/dom
-          	--------------------------------------
-           */
-          "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-          "<'row'<'col-sm-12'tr>>" +
-          "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        buttons: [
-          /*{
-          	extend:    'colvis',
-          	text:      'Column Visibility',
-          	titleAttr: 'Col visibility',
-          	className: 'mr-sm-3'
-          },*/
-          {
-            extend: 'pdfHtml5',
-            text: 'PDF',
-            titleAttr: 'Generate PDF',
-            className: 'btn-outline-danger btn-sm mr-1'
-          },
-          {
-            extend: 'excelHtml5',
-            text: 'Excel',
-            titleAttr: 'Generate Excel',
-            className: 'btn-outline-success btn-sm mr-1'
-          },
-          {
-            extend: 'csvHtml5',
-            text: 'CSV',
-            titleAttr: 'Generate CSV',
-            className: 'btn-outline-primary btn-sm mr-1'
-          },
-          {
-            extend: 'copyHtml5',
-            text: 'Copy',
-            titleAttr: 'Copy to clipboard',
-            className: 'btn-outline-primary btn-sm mr-1'
-          },
-          {
-            extend: 'print',
-            text: 'Print',
-            titleAttr: 'Print Table',
-            className: 'btn-outline-primary btn-sm'
-          }
-        ]
-      });
-
-
-    });
-  </script>
-  <script>
-    $(document).ready(function() {
-      $('#ActivityData1').dataTable({
-        responsive: false,
-        lengthChange: false,
-        dom:
-          /*	--- Layout Structure 
-          	--- Options
-          	l	-	length changing input control
-          	f	-	filtering input
-          	t	-	The table!
-          	i	-	Table information summary
-          	p	-	pagination control
-          	r	-	processing display element
-          	B	-	buttons
-          	R	-	ColReorder
-          	S	-	Select
-
-          	--- Markup
-          	< and >				- div element
-          	<"class" and >		- div with a class
-          	<"#id" and >		- div with an ID
-          	<"#id.class" and >	- div with an ID and a class
-
-          	--- Further reading
-          	https://datatables.net/reference/option/dom
-          	--------------------------------------
-           */
-          "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-          "<'row'<'col-sm-12'tr>>" +
-          "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        buttons: [
-          /*{
-          	extend:    'colvis',
-          	text:      'Column Visibility',
-          	titleAttr: 'Col visibility',
-          	className: 'mr-sm-3'
-          },*/
-          {
-            extend: 'pdfHtml5',
-            text: 'PDF',
-            titleAttr: 'Generate PDF',
-            className: 'btn-outline-danger btn-sm mr-1'
-          },
-          {
-            extend: 'excelHtml5',
-            text: 'Excel',
-            titleAttr: 'Generate Excel',
-            className: 'btn-outline-success btn-sm mr-1'
-          },
-          {
-            extend: 'csvHtml5',
-            text: 'CSV',
-            titleAttr: 'Generate CSV',
-            className: 'btn-outline-primary btn-sm mr-1'
-          },
-          {
-            extend: 'copyHtml5',
-            text: 'Copy',
-            titleAttr: 'Copy to clipboard',
-            className: 'btn-outline-primary btn-sm mr-1'
-          },
-          {
-            extend: 'print',
-            text: 'Print',
-            titleAttr: 'Print Table',
-            className: 'btn-outline-primary btn-sm'
-          }
-        ]
       });
 
 

@@ -145,15 +145,20 @@ class Main extends CI_Controller
                 $data['lfb_team'] = $this->t->countlfb(24);
                 $data['packing_count' ] = $this->m->countpackingInstalledMachines(25);
                 $admin = $this->session->userdata('admin');
-                $lab = $this->session->userdata('lab');
-                $Dev = $this->session->userdata('Dev');
-               if($admin == '1') {
+                // $lab = $this->session->userdata('lab');
+                // $Dev = $this->session->userdata('Dev');
+            // // $FIT = $this->session->userdata('FIT');
+            // // Echo $FIT;
+            // die;
+             if($admin == '1') {
                     redirect('DashboardController');
-               }elseif($lab == '1')  {
-                    redirect('LabController/master_form');
-               }elseif($Dev == '1'){
-                    redirect('DevelopmentController/Process');
-               }
+           }else {
+                  redirect('LabController/TestRequest');
+             }
+            //         redirect('DevelopmentController/Process');
+            //    } elseif ($FIT == '1') {
+            //         redirect('FIT/Capablity');
+            //     }
                 // $this->load->view('Dmms_Dashboard', $data);
             }
         }

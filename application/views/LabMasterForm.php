@@ -9313,11 +9313,13 @@ ${reviewStatus == '1' ?
                     "css": css
                 }, function(data) {
                     console.log(data);
-                    //alert(data);
+                   
                     materialType = data[0]['MaterialType'];
                     Type = data[0]['Type'];
+                     //alert(Type);
                     $("#sheetNo").val(2);
                     $("#materialType").val(materialType);
+                    
                     if (materialType == 'Carton Test') {
                         testType = 1;
                     } else if (materialType == 'Foam') {

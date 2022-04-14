@@ -16,7 +16,7 @@ class AMS extends CI_Model
     public function loginn($username, $password)
     {
       
-      $query = $this->db->query("SELECT       Asset,project,Dmms, LoginName, passwd, UserSataus, UserID
+      $query = $this->db->query("SELECT       Asset,project,FIT,Dmms, LoginName, passwd, UserSataus, UserID
       FROM            tbl_MIS_User
       WHERE        (LoginName = '$username') AND (passwd = '$password') AND (UserSataus = '1') AND (webstatus = '1')");
 
@@ -30,12 +30,13 @@ class AMS extends CI_Model
                 'Asset' => $result->Asset,
                 'project' => $result->project,
                 'Dmms' => $result->Dmms,
+                'FIT' => $result->FIT,
                 
             );
             $Status = $result->UserSataus;
          
-           //echo $Status;
-           // Die;
+        //    echo $Status;
+        //    Die;
       
             if($Status==0){
                 $this->session->set_flashdata('info', 'Your Account Has Been Disable');
