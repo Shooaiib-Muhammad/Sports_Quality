@@ -122,10 +122,10 @@ if (!$this->session->has_userdata('user_id')) {
                         <input type="number" class="form-control" id="PPrice" name="PPrice">
 
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-4" hidden>
 
                         <label class="form-contol" for="customFile">Golden Price:</label>
-                        <input type="number" class="form-control" id="GPrice" name="GPrice">
+                        <input type="number" class="form-control" value="0" id="GPrice" name="GPrice">
 
                       </div>
                       <div class="col-md-4">
@@ -140,10 +140,10 @@ if (!$this->session->has_userdata('user_id')) {
                         <input type="number" class="form-control" id="PDays" name="PDays">
 
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-4" hidden>
 
                         <label class="form-contol" for="customFile">Golden Days:</label>
-                        <input type="number" class="form-control" id="Ggays" name="Ggays">
+                        <input type="number" class="form-control" value="0" id="Ggays" name="Ggays">
 
                       </div>
                       <div class="col-md-4">
@@ -158,10 +158,10 @@ if (!$this->session->has_userdata('user_id')) {
                         <input type="text" class="form-control" id="Pdesc" name="Pdesc">
 
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-4" hidden>
 
                         <label class="form-contol" for="customFile">Golden Description:</label>
-                        <input type="text" class="form-control" id="GDesc" name="GDesc">
+                        <input type="text" class="form-control" value="0" id="GDesc" name="GDesc">
 
                       </div>
 
@@ -274,13 +274,13 @@ if (!$this->session->has_userdata('user_id')) {
 
                                 <th>Standard Price</th>
                                 <th>Premimum Price</th>
-                                <th>Golden Price</th>
+                                <!-- <th>Golden Price</th> -->
                                 <th>Standard Days</th>
                                 <th>Permimum Days</th>
-                                <th>Golden Days</th>
+                                <!-- <th>Golden Days</th> -->
                                 <th>Standard Desc</th>
                                 <th>Permimum Desc</th>
-                                <th>Golden Desc</th>
+                                <!-- <th>Golden Desc</th> -->
                                 <th>Image</th>
                                 <th>Status</th>
 
@@ -301,15 +301,17 @@ if (!$this->session->has_userdata('user_id')) {
                                   <td><?php echo $Key['Method']; ?> </td>
                                   <td><?php echo $Key['StandardPrice']; ?> </td>
                                   <td><?php echo $Key['PremimumPrice']; ?> </td>
-                                  <td><?php echo $Key['GoldenPrice']; ?> </td>
+                                  <!-- <td><?php echo $Key['GoldenPrice']; ?> </td> -->
                                   <td><?php echo $Key['StandardDays']; ?> </td>
                                   <td><?php echo $Key['PermimumDays']; ?> </td>
-                                  <td><?php echo $Key['GoldenDays']; ?> </td>
+                                  <!-- <td><?php echo $Key['GoldenDays']; ?> </td> -->
                                   <td><?php echo $Key['StandardDesc']; ?> </td>
                                   <td><?php echo $Key['PermimumDesc']; ?> </td>
-                                  <td><?php echo $Key['GoldenDesc']; ?> </td>
+                                  <!-- <td><?php echo $Key['GoldenDesc']; ?> </td> -->
                                   <td> <img style="border-radius:15px;" src="<?php echo base_url('assets/img/img/' . $Key['Image']) ?>" alt="no Image" width="40" height="40"></td>
-                                  <td><?php echo $Key['Status']; ?> </td>
+                                  <td>
+
+                                   <?php echo $Key['Status'] == 1 ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">in-active</span>'; ?></td>
                                   <td>
                                     <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo $TestID; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
                                     <button type="button" style="display: inline-block;" id="undo.<?php echo $TestID; ?>" value="<?php echo $TestID; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button>
@@ -381,7 +383,7 @@ if (!$this->session->has_userdata('user_id')) {
                                 $ID = $Key['ID'];
                               ?>
                                 <tr>
-                               
+
                                   <td id="testname"><?php echo $name; ?> </td>
                                   <td id="pkgnamee"><?php echo $Key['Name']; ?> </td>
 
@@ -835,13 +837,13 @@ if (!$this->session->has_userdata('user_id')) {
       let Method = $("#Method").val();
       let Sprice = $("#Sprice").val();
       let PPrice = $("#PPrice").val();
-      let GPrice = $("#GPrice").val();
+      let GPrice = 0;
       let SDays = $("#SDays").val();
       let PDays = $("#PDays").val();
-      let Ggays = $("#Ggays").val();
+      let Ggays = 0;
       let SDesc = $("#SDesc").val();
       let Pdesc = $("#Pdesc").val();
-      let GDesc = $("#GDesc").val();
+      let GDesc = 0;
 
       if ($("#status").is(':checked'))
         status = 1 // checked
@@ -860,8 +862,8 @@ if (!$this->session->has_userdata('user_id')) {
         PDays,
         Ggays,
         SDesc,
-        GDesc,
         Pdesc,
+        GDesc,
         status
 
       ]
@@ -925,13 +927,13 @@ if (!$this->session->has_userdata('user_id')) {
       let Method = $("#Method").val();
       let Sprice = $("#Sprice").val();
       let PPrice = $("#PPrice").val();
-      let GPrice = $("#GPrice").val();
+      let GPrice = 0;
       let SDays = $("#SDays").val();
       let PDays = $("#PDays").val();
-      let Ggays = $("#Ggays").val();
+      let Ggays = 0;
       let SDesc = $("#SDesc").val();
       let Pdesc = $("#Pdesc").val();
-      let GDesc = $("#GDesc").val();
+      let GDesc = 0;
       let status = $("#status").val();
 
       //let mcs = $("#mcs").prop('checked');
@@ -948,8 +950,8 @@ if (!$this->session->has_userdata('user_id')) {
         PDays,
         Ggays,
         SDesc,
-        GDesc,
         Pdesc,
+        GDesc,
         status
 
       ]
