@@ -106,7 +106,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> 
                                                                 </div>
                                                                 <div class="col-sm-4">
-                                                                <img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                <img src="<?php echo base_url() ?>assets/img/adidasLogo.svg" alt="report_logo" width="250px" height="100px" /> 
                                                                 </div>
                                                             </div>
                                                             

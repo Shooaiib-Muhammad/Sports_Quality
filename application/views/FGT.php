@@ -74,14 +74,15 @@ if (!$this->session->has_userdata('user_id')) {
            </table> -->
                                             <table class="table">
                                                 <tr>
-                                                    <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
 
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th style="font-size: x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR SOCCERBALLS INDOOR</th>
+                                                    <th> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                    <th> <img src="<?php echo base_url() ?>assets/img/adidasLogo.svg" alt="report_logo" width="250px" height="100px" /></th>
+                                                    <!-- <th style="font-size: x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR SOCCERBALLS INDOOR</th> -->
                                                     <th> </th>
                                                 </tr>
                                             </table>
+                                            <h3 style="font-size: x-large;font-weight:bold;padding:50px" class="text-center" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR SOCCERBALLS INDOOR</h3>
                                             <!-- <h4 class="modal-title text-center m-4" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS INDOOR</h4> -->
                                             <div class="container-fluid p-5">
                                                 <div class="row p-2">
