@@ -7,7 +7,7 @@ class Payment extends CI_Model
     {
         $query = $this->db->query("SELECT        view_Outward_transaction.*
         FROM            dbo.view_Outward_transaction
-        WHERE        (AccountsStatus IS NULL)");
+        WHERE        (AccountsStatus IS NULL) and (Evidence_pic IS Not NULL)");
       return  $query->result_array();
     }
     public function getApproved()

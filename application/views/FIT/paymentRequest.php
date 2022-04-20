@@ -86,6 +86,36 @@ if (!$this->session->has_userdata('user_id')) {
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->
                     </div>
+                    <div id="Modaldepartment1" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: rgb(83,78,130);color:white;font-weight:bolder">
+                                    <h1 class="modal-title" id="changeTitle">Evidence Verification </h1>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" style="color: white;">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form name="formDepartment" id="myformDepartment" method="POST" action="<?php echo base_url(
+                                                                                                                ''
+                                                                                                            ); ?>LabController/EditRequest">
+                                      
+
+                                     
+                                      <h4 style="margin-left:12px;font-weight:bold">Image :</h4>
+                                             
+                                             <div class="col-md-4 mt-2">
+                                             <img src="no image" alt="no image" id="aafaq" width="400" height="500">
+                                             </div>
+       
+
+                                        
+                                    </form>
+
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
           <div id="panel-1" class="panel">
                       <div class="panel-hdr">
                         <h2>
@@ -142,6 +172,7 @@ if (!$this->session->has_userdata('user_id')) {
                              ?>
 
                               <?php
+                              //print_r($getpending);
                               foreach ($getpending as $Key) {
                                 $InvoiceId = $Key['Invoice_ID'];
                                 $testNames = explode(",",$Key['TestName']);
@@ -164,6 +195,21 @@ if (!$this->session->has_userdata('user_id')) {
                                   <td>                                   
                                    <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" 
                                    id="btn.<?php Echo  $InvoiceId ?>">Verify</button>
+                                </td>
+                                <td>    <?php
+                                
+if($Key['Evidence_pic']){
+?>
+ <button type="button" style="display: inline-block;" class="btn btn-info btn-xs verifybtn" 
+                                   id="btn.<?php Echo  $InvoiceId ?>">Verify Evidence</button>
+<?php
+}else{
+  ?>
+   <button type="button" style="display: inline-block;" class="btn btn-danger btn-xs " 
+                                   id="btn.<?php Echo  $InvoiceId ?>">Evidence not uploaded</button>
+  <?php
+}                         ?>                               
+                                  
                                 </td>
                                 </tr>
                               <?php
@@ -355,7 +401,8 @@ if (!$this->session->has_userdata('user_id')) {
               <div class="form-group">
                 <div>
                   <button type="button" class="btn btn-primary m-3" id="savepkg">Save</button>
-                  <button type="button" class="btn btn-primary m-3" id="editpkg" style="display: none;">Update</button>
+                  <button type="button" class="btn btn-primary m-3" id="editpkg" 
+                  style="display: none;">Update</button>
 
                   <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
 
@@ -652,7 +699,7 @@ if (!$this->session->has_userdata('user_id')) {
     });
 
     $(".updatebtn").click(function(e) {
-        //$('#Modaldepartment').modal('toggle');
+        $('#Modaldepartment').modal('toggle');
 
             let id = this.id;
             let split_value = id.split(".");
@@ -679,6 +726,26 @@ if (!$this->session->has_userdata('user_id')) {
 
                 });
 
+    });
+    $(".verifybtn").click(function(e) {
+        $('#Modaldepartment1').modal('toggle');
+           let id = this.id;
+            let split_value = id.split(".");
+            var TID = split_value[1];
+            //alert(TID);
+            url = "<?php echo base_url(''); ?>UploadResult/getimage";
+            $.post(url, {
+            'TID': TID
+        },
+        function(data) {
+         //alert(data[0]['Evidence_pic']);
+          console.log("Data", data)
+          image = '<?php echo '/BookLabTest/Assets/Paymentimg/' ?>' + data[0]['Evidence_pic']
+          $("#aafaq").attr("src", image);
+          $('#IdValue').val(TID);
+        
+        });      
+    
     });
 
     $(".updatePkg").click(function(e) {
