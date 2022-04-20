@@ -593,6 +593,14 @@
                                 <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Lab Capability </span>
                             </a>
                         </li>
+                          
+                        <li>
+                            <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>PaymentRequest/payment" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Payment Request </span>
+                            </a>
+                        </li>
                         <li>
                             <a href="<?php echo base_url(
                                             ''
@@ -602,14 +610,7 @@
                         </li>
 
                                              
-                      
-                        <li>
-                            <a href="<?php echo base_url(
-                                            ''
-                                        ); ?>PaymentRequest/payment" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Payment Request </span>
-                            </a>
-                        </li>
+                    
                         <li>
                             <a href="<?php echo base_url(
                                             ''

@@ -10,6 +10,8 @@ class Upload extends CI_Model
         WHERE        (Result IS NULL) and (AccountsStatus =1)");
       return  $query->result_array();
     }
+   
+    
     public function getApproved()
     {
         $query = $this->db->query("SELECT        view_Outward_transaction.*
@@ -33,13 +35,15 @@ public function Submit($pictureFresh,$ID){
     }
 
 }
+public function getimage($TID)
+{
 
-// public function Submit($pictureFresh,$TID) {
-//       print_r($pictureFresh);
-//       die;
- 
-  
-//   }
+  $query = $this->db->query("SELECT        view_Outward_transaction.*
+  FROM            dbo.view_Outward_transaction
+  WHERE         dbo.view_Outward_transaction.TID= $TID");
+  return  $query->result_array();
+}
+
 
 
 }

@@ -48,21 +48,16 @@ public function EditTest(
     $Type1,
     $Name,
     $Method,
-    $Sprice,
-    $GPrice,
-    $PPrice,
     $SDays,
     $PDays,
-    $Ggays,
-    $SDesc,
-    $Pdesc,
-    $GDesc,
-    $status,
-    $image
+    $Sprice,
+    $PPrice,
+    $purpose,
+    $squantity,
+    $status ,$image
     ){
     $query = $this->db->query("UPDATE    dbo .Tbl_Fit_Lab_Capability 
-            SET   Type  =  '$Type',Name  =  '$Name',Method  =  '$Method' ,StandardPrice='$Sprice' ,PremimumPrice='$PPrice' ,GoldenPrice='$GPrice',
-            StandardDays='$SDays',PermimumDays = '$PDays',GoldenDays= '$Ggays',StandardDesc= '$SDesc',PermimumDesc= '$Pdesc',GoldenDesc= '$GDesc',Image='$image',TestType='$Type1',Status='$status'
+            SET   Type  =  '$Type', TestType='$Type1', Name  =  '$Name',Method  =  '$Method',SDays='$SDays' ,PDays = '$PDays' ,StandardPrice='$Sprice' ,PremimumPrice='$PPrice', Purpose ='$purpose', Sample_Quantity='$squantity',Image='$image',Status='$status'
           WHERE  TestID='$TID'");  
 
 }
@@ -72,15 +67,12 @@ public function EditTest(
    $Type1,
    $Name,
    $Method,
-   $Sprice,
-   $GPrice,
-   $PPrice,
    $SDays,
    $PDays,
-   $Ggays,
-   $SDesc,
-   $Pdesc,
-   $GDesc,
+   $Sprice,
+   $PPrice,
+   $purpose,
+   $squantity,
    $status,
    $picture
  ) {
@@ -94,28 +86,24 @@ Name,
 Method,
 StandardPrice	,
 PremimumPrice,
-GoldenPrice	,
-StandardDays,
-PermimumDays,
-GoldenDays,
-StandardDesc,
-PermimumDesc,
-GoldenDesc,
+SDays,
+PDays,
+Purpose,
+Sample_Quantity,
+
    status,image)
   VALUES
         ('$Type',
         '$Type1',
    '$Name',
    '$Method',
-   '$Sprice',
-   '$GPrice',
-   '$PPrice',
    '$SDays',
    '$PDays',
-   '$Ggays',
-   '$SDesc',
-   '$Pdesc',
-   '$GDesc',
+   
+   '$Sprice',
+   '$PPrice',
+   '$purpose',
+   '$squantity',
    1,
    '$picture')");
  }

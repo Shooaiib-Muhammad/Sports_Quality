@@ -99,7 +99,7 @@ if (!$this->session->has_userdata('user_id')) {
                       </div>
                       <div class="col-md-4">
 
-                        <label class="form-contol" for="customFile">Method:</label>
+                        <label class="form-contol" for="customFile">Test Reference:</label>
                         <input type="text" class="form-control" id="Method" name="Method">
 
                       </div>
@@ -112,58 +112,47 @@ if (!$this->session->has_userdata('user_id')) {
            </div> -->
                       <div class="col-md-4">
 
-                        <label class="form-contol" for="customFile">Standard Price :</label>
+                        <label class="form-contol" for="customFile">Standard Time:</label>
+                        <input type="text" class="form-control" id="SDays" name="SDays">
+
+                      </div>
+
+                      <div class="col-md-4">
+
+                        <label class="form-contol" for="customFile">Urgent Time:</label>
+                        <input type="text" class="form-control" id="PDays" name="PDays">
+
+                      </div>
+                      <div class="col-md-4">
+
+                        <label class="form-contol" for="customFile">Standard Price (USD) :</label>
                         <input type="number" class="form-control" id="Sprice" name="Sprice">
 
                       </div>
                       <div class="col-md-4">
 
-                        <label class="form-contol" for="customFile">Premimum Price:</label>
+                        <label class="form-contol" for="customFile">Urgent Price (USD):</label>
                         <input type="number" class="form-control" id="PPrice" name="PPrice">
 
                       </div>
-                      <div class="col-md-4" hidden>
 
-                        <label class="form-contol" for="customFile">Golden Price:</label>
-                        <input type="number" class="form-control" value="0" id="GPrice" name="GPrice">
 
-                      </div>
+
+
                       <div class="col-md-4">
 
-                        <label class="form-contol" for="customFile">Standard Days:</label>
-                        <input type="number" class="form-control" id="SDays" name="SDays">
+                        <label class="form-contol" for="customFile">Sample_Quantity:</label>
+                        <input type="text" class="form-control" id="squantity" name="squantity">
 
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-4 d-flex flex-column">
 
-                        <label class="form-contol" for="customFile">Premimum Days:</label>
-                        <input type="number" class="form-control" id="PDays" name="PDays">
-
-                      </div>
-                      <div class="col-md-4" hidden>
-
-                        <label class="form-contol" for="customFile">Golden Days:</label>
-                        <input type="number" class="form-control" value="0" id="Ggays" name="Ggays">
+                        <label class="form-contol" for="customFile">Purpose:</label>
+                        <!-- <input type="textarea" class="form-control" id="purpose" name="purpose"> -->
+                        <textarea name="text" form="form-control" id="purpose" name="purpose" rows="4" cols="50"></textarea>
 
                       </div>
-                      <div class="col-md-4">
 
-                        <label class="form-contol" for="customFile">Standard Description:</label>
-                        <input type="text" class="form-control" id="SDesc" name="SDesc">
-
-                      </div>
-                      <div class="col-md-4">
-
-                        <label class="form-contol" for="customFile">Premimum Description:</label>
-                        <input type="text" class="form-control" id="Pdesc" name="Pdesc">
-
-                      </div>
-                      <div class="col-md-4" hidden>
-
-                        <label class="form-contol" for="customFile">Golden Description:</label>
-                        <input type="text" class="form-control" value="0" id="GDesc" name="GDesc">
-
-                      </div>
 
                       <div class="col-md-12">
 
@@ -268,22 +257,17 @@ if (!$this->session->has_userdata('user_id')) {
                               <tr>
                                 <th>Test NO</th>
                                 <th>Name</th>
-                                <th>material Type</th>
+                                <th>Type</th>
                                 <th>Test Type</th>
-                                <th>Method</th>
-
+                                <th>Test Reference</th>
+                                <th>Standard Time</th>
+                                <th>Urgent Time</th>
                                 <th>Standard Price</th>
-                                <th>Premimum Price</th>
-                                <!-- <th>Golden Price</th> -->
-                                <th>Standard Days</th>
-                                <th>Permimum Days</th>
-                                <!-- <th>Golden Days</th> -->
-                                <th>Standard Desc</th>
-                                <th>Permimum Desc</th>
-                                <!-- <th>Golden Desc</th> -->
+                                <th>Urgent Price</th>
+                                <th>Purpose </th>
+                                <th>Sample Quantity</th>
                                 <th>Image</th>
                                 <th>Status</th>
-
                                 <th>Action</th>
                               </tr>
                             </thead>
@@ -301,17 +285,15 @@ if (!$this->session->has_userdata('user_id')) {
                                   <td><?php echo $Key['Method']; ?> </td>
                                   <td><?php echo $Key['StandardPrice']; ?> </td>
                                   <td><?php echo $Key['PremimumPrice']; ?> </td>
-                                  <!-- <td><?php echo $Key['GoldenPrice']; ?> </td> -->
-                                  <td><?php echo $Key['StandardDays']; ?> </td>
-                                  <td><?php echo $Key['PermimumDays']; ?> </td>
-                                  <!-- <td><?php echo $Key['GoldenDays']; ?> </td> -->
-                                  <td><?php echo $Key['StandardDesc']; ?> </td>
-                                  <td><?php echo $Key['PermimumDesc']; ?> </td>
-                                  <!-- <td><?php echo $Key['GoldenDesc']; ?> </td> -->
+                                  <td><?php echo $Key['SDays']; ?> </td>
+                                  <td><?php echo $Key['PDays']; ?> </td>
+                                  <td><?php echo $Key['Purpose']; ?> </td>
+                                  <td><?php echo $Key['Sample_Quantity']; ?> </td>
+
                                   <td> <img style="border-radius:15px;" src="<?php echo base_url('assets/img/img/' . $Key['Image']) ?>" alt="no Image" width="40" height="40"></td>
                                   <td>
 
-                                   <?php echo $Key['Status'] == 1 ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">in-active</span>'; ?></td>
+                                    <?php echo $Key['Status'] == 1 ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">in-active</span>'; ?></td>
                                   <td>
                                     <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo $TestID; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
                                     <button type="button" style="display: inline-block;" id="undo.<?php echo $TestID; ?>" value="<?php echo $TestID; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button>
@@ -734,15 +716,18 @@ if (!$this->session->has_userdata('user_id')) {
           $('#Type1').val(data[0]['TestType']);
           $('#Name').val(data[0].Name);
           $('#Method').val(data[0].Method);
+          $("#SDays").val(data[0].SDays);
+          $("#PDays").val(data[0].PDays);
           $("#Sprice").val(data[0].StandardPrice);
           $("#PPrice").val(data[0].PremimumPrice);
-          $("#GPrice").val(data[0].GoldenPrice);
-          $("#SDays").val(data[0].StandardDays);
-          $("#PDays").val(data[0].PermimumDays);
-          $("#Ggays").val(data[0].GoldenDays);
-          $("#SDesc").val(data[0].StandardDesc);
-          $("#Pdesc").val(data[0].PermimumDesc);
-          $("#GDesc").val(data[0].GoldenDesc);
+          // $("#GPrice").val(data[0].GoldenPrice);
+          $("#purpose").val(data[0].Purpose);
+          $("#squantity").val(data[0].Sample_Quantity);
+
+          // $("#Ggays").val(data[0].GoldenDays);
+          // $("#SDesc").val(data[0].StandardDesc);
+          // $("#Pdesc").val(data[0].PermimumDesc);
+          // $("#GDesc").val(data[0].GoldenDesc);
           $("#status").val(data[0].status);
           if (data[0].Status == 1) {
             $('#status').prop('checked', true);
@@ -835,15 +820,17 @@ if (!$this->session->has_userdata('user_id')) {
       let Type1 = $("#Type1").val();
       let Name = $("#Name").val();
       let Method = $("#Method").val();
-      let Sprice = $("#Sprice").val();
-      let PPrice = $("#PPrice").val();
-      let GPrice = 0;
       let SDays = $("#SDays").val();
       let PDays = $("#PDays").val();
-      let Ggays = 0;
-      let SDesc = $("#SDesc").val();
-      let Pdesc = $("#Pdesc").val();
-      let GDesc = 0;
+      let Sprice = $("#Sprice").val();
+      let PPrice = $("#PPrice").val();
+      let purpose = $("#purpose").val();
+      let squantity = $("#squantity").val();
+      //let image = $("#avatar").val();
+      //alert(SDays);
+
+
+
 
       if ($("#status").is(':checked'))
         status = 1 // checked
@@ -855,15 +842,12 @@ if (!$this->session->has_userdata('user_id')) {
         Type1,
         Name,
         Method,
-        Sprice,
-        PPrice,
-        GPrice,
         SDays,
         PDays,
-        Ggays,
-        SDesc,
-        Pdesc,
-        GDesc,
+        Sprice,
+        PPrice,
+        purpose,
+        squantity,
         status
 
       ]
@@ -874,8 +858,10 @@ if (!$this->session->has_userdata('user_id')) {
       var fd = new FormData();
       var files = $("#avatar")[0].files[0];
       fd.append('file', files);
+      var datais = fd.append('file', files);
       fd.append('data', data)
-
+      //fd.append('file', files);
+      //alert(files);
       $.ajax({
         url: url,
         type: 'post',
@@ -925,15 +911,16 @@ if (!$this->session->has_userdata('user_id')) {
       let Type1 = $("#Type1").val();
       let Name = $("#Name").val();
       let Method = $("#Method").val();
-      let Sprice = $("#Sprice").val();
-      let PPrice = $("#PPrice").val();
-      let GPrice = 0;
       let SDays = $("#SDays").val();
       let PDays = $("#PDays").val();
-      let Ggays = 0;
-      let SDesc = $("#SDesc").val();
-      let Pdesc = $("#Pdesc").val();
-      let GDesc = 0;
+      let Sprice = $("#Sprice").val();
+      let PPrice = $("#PPrice").val();
+      // let Ggays = 0;
+      // let SDesc = $("#SDesc").val();
+      // let Pdesc = $("#Pdesc").val();
+      let purpose = $("#purpose").val();
+      let squantity = $("#squantity").val();
+      // let GDesc = 0;
       let status = $("#status").val();
 
       //let mcs = $("#mcs").prop('checked');
@@ -943,15 +930,17 @@ if (!$this->session->has_userdata('user_id')) {
         Type1,
         Name,
         Method,
-        Sprice,
-        PPrice,
-        GPrice,
         SDays,
         PDays,
-        Ggays,
-        SDesc,
-        Pdesc,
-        GDesc,
+        Sprice,
+        PPrice,
+        // GPrice,
+        purpose,
+        squantity,
+        // Ggays,
+        // SDesc,
+        // Pdesc,
+        // GDesc,
         status
 
       ]

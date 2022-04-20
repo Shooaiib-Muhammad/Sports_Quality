@@ -17,6 +17,16 @@ class UploadResult extends CI_Controller {
     //     $data['getApproved']=$this->Approved->getApproved();
     //     $this->load->view('FIT/pendingRequest',$data);
     // }
+    
+    public function getimage()
+ {
+  $TID = $_POST['TID'];
+  $data = $this->Upload->getimage($TID);
+  return $this->output
+  ->set_content_type('application/json')
+  ->set_status_header(200)
+  ->set_output(json_encode($data));
+ }
     public function AddCssNo(){
         $ID=$_POST['TID'];
         $CssNo=$_POST['CSSNo'];
@@ -38,7 +48,7 @@ class UploadResult extends CI_Controller {
 
     public function Submit()
     {
-$TID=$_POST['ID'];
+    $TID=$_POST['ID'];
   if (!empty($_FILES['avatar']['name'])) {
       
     $config['upload_path'] = 'assets\img\img';

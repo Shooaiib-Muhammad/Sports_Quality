@@ -118,7 +118,8 @@ if (!$this->session->has_userdata('user_id')) {
 <div class="tab-content py-3">
 
     <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
-       <table class="table table-striped table-hover table-md table-responsive" id="ActivityData1">
+    <div class="table-responsive">
+       <table class="table " id="ActivityData1">
                             <thead>
                               <tr>
                                 <th>Invoice ID</th>
@@ -129,6 +130,7 @@ if (!$this->session->has_userdata('user_id')) {
                                 <th>Country</th>
                                 <th>Status</th>
                                 <th>Action</th>
+                                <th>Verify Evidence</th>
                                 
                               </tr>
                             </thead>
@@ -173,9 +175,11 @@ if (!$this->session->has_userdata('user_id')) {
                             </tbody>
                           </table>
     </div>
+    </div>
     <div class="tab-pane fade " id="tab_direction-2" role="tabpanel">
+    <div class="table-responsive">
 
-        <table class="table table-striped table-hover table-md table-responsive" id="ActivityData">
+        <table class="table " id="ActivityData">
                             <thead>
                               <tr>
                                 <th>Invoice ID</th>
@@ -231,6 +235,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                             </tbody>
                           </table>
+    </div>
 
     </div>
 

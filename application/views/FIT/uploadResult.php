@@ -89,6 +89,50 @@ if (!$this->session->has_userdata('user_id')) {
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->
                     </div>
+                    <div id="Modaldepartment1" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: rgb(83,78,130);color:white;font-weight:bolder">
+                                    <h1 class="modal-title" id="changeTitle">Result</h1>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" style="color: white;">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form  enctype="multipart/form-data" id="" method="POST" action="<?php echo base_url(''); ?>UploadResult/Submit">
+                                      
+
+                                        <div class="row" style="display:flex">
+
+
+                                            <div class="col-md-6">
+                                            
+                          
+                                              
+                                              <h4 style="margin-left:12px;font-weight:bold">Image :</h4>
+                                             
+                                              <div class="col-md-4 mt-2">
+                                              <img src="no image" alt="no image" id="aafaq" width="400" height="500">
+                                              </div>
+        
+                                            </div>
+
+                                           
+
+                                           
+
+                                           
+                                            
+
+                                        </div>
+
+                                        
+                                    </form>
+
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
           <div id="panel-1" class="panel">
                       <div class="panel-hdr">
                         <h2>
@@ -229,7 +273,7 @@ if (!$this->session->has_userdata('user_id')) {
                                   <td> <img style="border-radius:15px;" src="<?php echo base_url('assets/img/img/' . $Key['Result']) ?>" alt="no Image" width="40" height="40"></td>
                                
                                   <td><span class="badge badge-primary p-1"><?php echo $Key['Request_Status']; ?> </span></td>
-                                  <td> <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" 
+                                  <td> <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn1" 
                                    id="btn.<?php Echo  $InvoiceId ?>">view</button> </td>
                                 </tr>
                               <?php
@@ -658,6 +702,7 @@ if (!$this->session->has_userdata('user_id')) {
 
     $(".updatebtn").click(function(e) {
         $('#Modaldepartment').modal('toggle');
+        
 
             let id = this.id;
             let split_value = id.split(".");
@@ -680,6 +725,29 @@ if (!$this->session->has_userdata('user_id')) {
             //         window.location.reload();
 
             //     });
+
+    });
+    $(".updatebtn1").click(function(e) {
+        $('#Modaldepartment1').modal('toggle');
+        
+
+            let id = this.id;
+            let split_value = id.split(".");
+            var TID = split_value[1];
+            //alert(TID);
+           // $('#IdValue').val(TID);
+            url = "<?php echo base_url(''); ?>UploadResult/getimage";
+            $.post(url, {
+            'TID': TID
+        },
+        function(data) {
+         // alert(data);
+          console.log("Data", data)
+          image = '<?php echo base_url('assets/img/img/') ?>' + data[0]['Result']
+          $("#aafaq").attr("src", image);
+          $('#IdValue').val(TID);
+        
+        });        
 
     });
 
