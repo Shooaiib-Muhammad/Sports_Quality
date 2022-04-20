@@ -593,7 +593,7 @@
                                 <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Lab Capability </span>
                             </a>
                         </li>
-                          
+
                         <li>
                             <a href="<?php echo base_url(
                                             ''
@@ -609,8 +609,8 @@
                             </a>
                         </li>
 
-                                             
-                    
+
+
                         <li>
                             <a href="<?php echo base_url(
                                             ''
@@ -669,6 +669,13 @@
                                                 ''
                                             ); ?>LabController/TestRequestLab" title="Introduction" data-filter-tags="application intel introduction">
                                     <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Test Requests Received </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url(
+                                                ''
+                                            ); ?>FIT/Capablity" title="How it works" data-filter-tags="theme settings how it works">
+                                    <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Lab Capability </span>
                                 </a>
                             </li>
                         </ul>
@@ -791,9 +798,9 @@
 
                         </ul>
                     </li>
-            <?php
+                <?php
                 }
-                
+
                 if ($FIT == '1') {
                 ?>
                     <li>
@@ -809,26 +816,56 @@
                                 <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashoard</span>
                             </a>
                         </li> -->
-                            <li>
-                                <a href="<?php echo base_url(
-                                                ''
-                                            ); ?>FIT/Capablity" title="How it works" data-filter-tags="theme settings how it works">
-                                    <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Lab Capability </span>
-                                </a>
-                            </li>
-
-                        </ul>
+                            li>
+                            <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>FitDashboard/dashboard" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Dashboard </span>
+                            </a>
                     </li>
-                <?php
-                }
+                    <li>
+                        <a href="<?php echo base_url(
+                                        ''
+                                    ); ?>FIT/Capablity" title="How it works" data-filter-tags="theme settings how it works">
+                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Lab Capability </span>
+                        </a>
+                    </li>
 
-                
-            } ?>
+                    <li>
+                        <a href="<?php echo base_url(
+                                        ''
+                                    ); ?>PaymentRequest/payment" title="How it works" data-filter-tags="theme settings how it works">
+                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Payment Request </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(
+                                        ''
+                                    ); ?>PendingRequest/pendingRequest" title="How it works" data-filter-tags="theme settings how it works">
+                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Test Requests </span>
+                        </a>
+                    </li>
+
+
+
+                    <li>
+                        <a href="<?php echo base_url(
+                                        ''
+                                    ); ?>UploadResult/upload" title="How it works" data-filter-tags="theme settings how it works">
+                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Upload Result </span>
+                        </a>
+                    </li>
+
             </ul>
+            </li>
+    <?php
+                }
+            } ?>
+    </ul>
 
 
 
-            <div class="filter-message js-filter-message bg-success-600"></div>
+    <div class="filter-message js-filter-message bg-success-600"></div>
     </nav>
     <!-- END PRIMARY NAVIGATION -->
     <!-- NAV FOOTER -->

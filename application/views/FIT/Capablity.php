@@ -283,10 +283,11 @@ if (!$this->session->has_userdata('user_id')) {
                                   <td><?php echo $Key['Type']; ?> </td>
                                   <td><?php echo $Key['TestType']; ?> </td>
                                   <td><?php echo $Key['Method']; ?> </td>
-                                  <td><?php echo $Key['StandardPrice']; ?> </td>
-                                  <td><?php echo $Key['PremimumPrice']; ?> </td>
+
                                   <td><?php echo $Key['SDays']; ?> </td>
                                   <td><?php echo $Key['PDays']; ?> </td>
+                                  <td><?php echo $Key['StandardPrice']; ?> </td>
+                                  <td><?php echo $Key['PremimumPrice']; ?> </td>
                                   <td><?php echo $Key['Purpose']; ?> </td>
                                   <td><?php echo $Key['Sample_Quantity']; ?> </td>
 
