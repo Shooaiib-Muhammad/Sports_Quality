@@ -84,10 +84,10 @@ public function EditTest(
    TestType,
 Name,
 Method,
-StandardPrice	,
-PremimumPrice,
 SDays,
 PDays,
+StandardPrice	,
+PremimumPrice,
 Purpose,
 Sample_Quantity,
 

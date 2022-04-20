@@ -112,16 +112,16 @@ class FIT extends CI_Controller
  {
 
   $allData=explode(",",$_POST['data']);
-  if (!empty($_FILES['file']['name'])) {
-    $config['upload_path'] = 'assets\img\img';
-    $config['allowed_types'] = 'jpg|jpeg|png|gif';
-    $config['file_name'] = basename($_FILES['file']['name']);
+    if (!empty($_FILES['file']['name'])) {
+      $config['upload_path'] = 'assets\img\img';
+      $config['allowed_types'] = 'jpg|jpeg|png|gif';
+      $config['file_name'] = basename($_FILES['file']['name']);
 
-    //Load upload library and initialize configuration
-    $this->load->library('upload', $config);
-    $this->upload->initialize($config);
+      //Load upload library and initialize configuration
+      $this->load->library('upload', $config);
+      $this->upload->initialize($config);
 
-    if ($this->upload->do_upload('file')) {
+      if ($this->upload->do_upload('file')) {
         $uploadData = $this->upload->data();
         $pictureFresh = $uploadData['file_name'];
         $config['image_library'] = 'gd2';
@@ -134,14 +134,14 @@ class FIT extends CI_Controller
         $config['new_image'] = 'assets/img/img/' . $pictureFresh;
         $this->load->library('image_lib', $config);
         $this->image_lib->resize();
-    } else {
+      } else {
         echo 'nothing';
 
         $pictureFresh = '';
+      }
+    } else {
+      $pictureFresh = '';
     }
-} else {
-    $pictureFresh = '';
-}
 
 
   $data = $this->FIT_Model->submit(

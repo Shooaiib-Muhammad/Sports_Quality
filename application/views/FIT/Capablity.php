@@ -260,10 +260,10 @@ if (!$this->session->has_userdata('user_id')) {
                                 <th>Type</th>
                                 <th>Test Type</th>
                                 <th>Test Reference</th>
-                                <th>Standard Time</th>
-                                <th>Urgent Time</th>
-                                <th>Standard Price</th>
-                                <th>Urgent Price</th>
+                                <th>Standard Days</th>
+                                <th>Urgent Days</th>
+                                <th>Standard Price (USD)</th>
+                                <th>Urgent Price (USD)</th>
                                 <th>Purpose </th>
                                 <th>Sample Quantity</th>
                                 <th>Image</th>
