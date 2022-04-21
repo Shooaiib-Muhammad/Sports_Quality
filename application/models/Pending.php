@@ -15,7 +15,7 @@ public function AddCSSNo($ID,$CssNo){
     // $query = $this->db->query("update Set CSSNo='$CssNo' , LabStatus=1,ProceedDate='$Date' Where Id= '$ID'");
     
     $query = $this->db->query("update  dbo . tbl_Outward_Transaction
-      Set CSSNo='$CssNo' , LabStatus=1,labProceedDate='$Date',Request_Status='Proceed By Lab' Where TID= '$ID'");
+      Set CSSNo='$CssNo' , LabStatus=1,labProceedDate='$Date',Request_Status='Proceed to Lab' Where TID= '$ID'");
    // return  $query->result_array();
 
     if($query){

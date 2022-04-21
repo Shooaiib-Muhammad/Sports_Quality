@@ -24,7 +24,7 @@ public function Submit($pictureFresh,$ID){
     // $query = $this->db->query("update Set CSSNo='$CssNo' , LabStatus=1,ProceedDate='$Date' Where Id= '$ID'");
     
     $query = $this->db->query("update  dbo . tbl_Outward_Transaction
-      Set  Result='$pictureFresh',RDate='$Date',Request_Status='Result Uploaded ' Where TID= '$ID'");
+      Set  Result='$pictureFresh',RDate='$Date',Request_Status='Result Uploaded' Where TID= '$ID'");
    // return  $query->result_array();
 
     if($query){
