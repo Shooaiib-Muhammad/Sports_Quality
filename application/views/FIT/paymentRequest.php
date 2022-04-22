@@ -176,7 +176,7 @@ if (!$this->session->has_userdata('user_id')) {
                               foreach ($getpending as $Key) {
                                 $InvoiceId = $Key['Invoice_ID'];
                                 $testNames = explode(",",$Key['TestName']);
-                              
+                                $TID = $Key['TID'];
                               ?>
                                 <tr>
                                   <td><?php echo $InvoiceId; ?> </td>
@@ -194,19 +194,19 @@ if (!$this->session->has_userdata('user_id')) {
                                   <td>  <span class="badge badge-danger p-1">Payment Pending</span></td>
                                   <td>                                   
                                    <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" 
-                                   id="btn.<?php Echo  $InvoiceId ?>">Verify</button>
+                                   id="btn.<?php Echo  $TID ?>">Verify</button>
                                 </td>
                                 <td>    <?php
                                 
 if($Key['Evidence_pic']){
 ?>
  <button type="button" style="display: inline-block;" class="btn btn-info btn-xs verifybtn" 
-                                   id="btn.<?php Echo  $InvoiceId ?>">Verify Evidence</button>
+                                   id="btn.<?php Echo  $TID ?>">Verify Evidence</button>
 <?php
 }else{
   ?>
    <button type="button" style="display: inline-block;" class="btn btn-danger btn-xs " 
-                                   id="btn.<?php Echo  $InvoiceId ?>">Evidence not uploaded</button>
+                                   id="btn.<?php Echo  $TID ?>">Evidence not uploaded</button>
   <?php
 }                         ?>                               
                                   
@@ -252,7 +252,7 @@ if($Key['Evidence_pic']){
                               foreach ($getApproved as $Key) {
                                 $InvoiceId = $Key['Invoice_ID'];
                                 $testNames = explode(",",$Key['TestName']);
-                              
+                                $TID = $Key['TID'];
                               ?>
                                 <tr>
                                   <td><?php echo $InvoiceId; ?> </td>
