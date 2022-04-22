@@ -218,6 +218,28 @@ FROM            dbo.tbl_Outward_Transaction
 WHERE        (AccountsStatus = 1)");
     return  $query->result_array();
 }
+  public function getpendingAccounts()
+  {
+
+    $query = $this->db->query("SELECT        COUNT(TID) AS TID
+FROM            dbo.tbl_Outward_Transaction
+        WHERE        (AccountsStatus IS NULL)");
+    return  $query->result_array();
+  }
+  public function proceedtolab(){
+    $query = $this->db->query("SELECT        COUNT(TID) AS TID
+FROM            dbo.tbl_Outward_Transaction
+        WHERE        (labStatus=1)");
+    return  $query->result_array();
+    
+  }
+  public function resultuploaded()
+  {
+    $query = $this->db->query("SELECT        COUNT(TID) AS TID
+FROM            dbo.tbl_Outward_Transaction
+        WHERE        (RDate IS NOT NULL)");
+    return  $query->result_array();
+  }
 public function RequestCOunter(){
     $query = $this->db->query("SELECT        COUNT(TID) AS TID
 FROM            dbo.tbl_Outward_Transaction");

@@ -199,12 +199,7 @@ if (!$this->session->has_userdata('user_id')) {
                 </div>
 
               </div>
-<?php
-$totalrequest = $RequestCOunter[0]['TID'];
-$approvedrequest=$getApproved[0]['TID'];
-$apprvedPrec= ($approvedrequest/ $totalrequest)*100;
-//Echo $apprvedPrec;
-?>
+
               <div class="col-lg-6">
                 <div id="panel-1" class="panel">
                   <div class="panel-hdr">
@@ -224,6 +219,20 @@ $apprvedPrec= ($approvedrequest/ $totalrequest)*100;
                       Request <span class="fw-300"><i>Status</i></span>
                     </h2>
                   </div>
+                  <?php
+                  $totalrequest = $RequestCOunter[0]['TID'];
+                  $approvedrequest = $getApproved[0]['TID'];
+                  $pendingrequest = $getpendingAccounts[0]['TID'];
+                  $proceedtolab = $proceedtolab[0]['TID'];
+
+                  $resultuploaded = $result[0]['TID'];
+                  $apprvedPrec = ($approvedrequest / $totalrequest) * 100;
+                  $PendingPrec = ($pendingrequest / $totalrequest) * 100;
+                  $labproceed = ($proceedtolab / $totalrequest) * 100;
+                  $resultup = ($resultuploaded / $totalrequest) * 100;
+
+                  //Echo $apprvedPrec;
+                  ?>
                   <div class="panel-container show">
                     <div class="panel-content poisition-relative">
                       <div class="pb-5 pt-3">
@@ -234,7 +243,7 @@ $apprvedPrec= ($approvedrequest/ $totalrequest)*100;
                             </div>
                             <div>
                               <label class="fs-sm mb-0">Accounts Approval</label>
-                              <h4 class="font-weight-bold mb-0"><?php Echo Round($apprvedPrec,2);?> %</h4>
+                              <h4 class="font-weight-bold mb-0"><?php echo Round($apprvedPrec, 2); ?> %</h4>
                             </div>
                           </div>
                           <div class="col-6 col-xl-3 d-sm-flex align-items-center">
@@ -243,7 +252,8 @@ $apprvedPrec= ($approvedrequest/ $totalrequest)*100;
                             </div>
                             <div>
                               <label class="fs-sm mb-0">Pending Accounts Approval</label>
-                              <h4 class="font-weight-bold mb-0">759</h4>
+
+                              <h4 class="font-weight-bold mb-0"><?php echo Round($PendingPrec, 2); ?> %</h4>
                             </div>
                           </div>
                           <div class="col-6 col-xl-3 d-sm-flex align-items-center">
@@ -252,7 +262,8 @@ $apprvedPrec= ($approvedrequest/ $totalrequest)*100;
                             </div>
                             <div>
                               <label class="fs-sm mb-0">Proceed to Lab</label>
-                              <h4 class="font-weight-bold mb-0">12.17%</h4>
+
+                              <h4 class="font-weight-bold mb-0"><?php echo Round($labproceed, 2); ?> %</h4>
                             </div>
                           </div>
                           <div class="col-6 col-xl-3 d-sm-flex align-items-center">
@@ -261,7 +272,9 @@ $apprvedPrec= ($approvedrequest/ $totalrequest)*100;
                             </div>
                             <div>
                               <label class="fs-sm mb-0">Result Uploaded</label>
-                              <h4 class="font-weight-bold mb-0">19.77%</h4>
+                              
+                              <h4 class="font-weight-bold mb-0"><?php echo Round($resultup, 2); ?> %</h4>
+                              
                             </div>
                           </div>
                         </div>

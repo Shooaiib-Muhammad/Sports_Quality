@@ -19,6 +19,9 @@ class FitDashboard extends CI_Controller {
         $data['getAmount'] = $this->FIT_Model->getAmount();
         $data['WeeklyData'] = $this->FIT_Model->getWeeklyrequestData();
         $data['getCountryCOunter'] = $this->FIT_Model->getCountryCOunter();
+        $data['getpendingAccounts'] = $this->FIT_Model->getpendingAccounts();
+        $data['proceedtolab'] = $this->FIT_Model->proceedtolab();
+        $data['result'] = $this->FIT_Model->resultuploaded();
         
         $this->load->view('FIT/Fitdashboard',$data);
     }
