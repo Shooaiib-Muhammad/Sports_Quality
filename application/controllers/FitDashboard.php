@@ -11,14 +11,15 @@ class FitDashboard extends CI_Controller {
      $this->load->library('session');
     }
     public function dashboard(){
-   
+
+
+        $data['RequestCOunter'] = $this->FIT_Model->RequestCOunter();
+        $data['getuser'] = $this->FIT_Model->getuser();
+        $data['getApproved'] = $this->FIT_Model->getApproved();
+        $data['getAmount'] = $this->FIT_Model->getAmount();
+        $data['WeeklyData'] = $this->FIT_Model->getWeeklyrequestData();
+        $data['getCountryCOunter'] = $this->FIT_Model->getCountryCOunter();
         
-//    $data['getData'] = $this->FIT_Model->CallData();
-//    $data['TestType']=$this->FIT_Model->TestType();
-   
-//    $data['getPckg']=$this->FIT_Model->CallDataD();
-  
-//   $this->load->view('FIT/Capablity', $data);
-        $this->load->view('FIT/Fitdashboard');
+        $this->load->view('FIT/Fitdashboard',$data);
     }
 }

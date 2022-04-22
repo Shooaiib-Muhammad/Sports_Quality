@@ -199,5 +199,46 @@ WHERE  ID='$id'");
     return  $query->result_array();
  }
 
+public function getAmount(){
+    $query = $this->db->query(" SELECT        SUM(Amount) AS Amount
+FROM            dbo.tbl_Outward_Transaction");
+    return  $query->result_array();
+ 
+}
+public function getuser(){
+  
+    $query = $this->db->query("SELECT        COUNT(UserID) AS UserID
+FROM            dbo.tbl_Outward_Users");
+    return  $query->result_array();
+}
+public function getApproved(){
+  
+    $query = $this->db->query("SELECT        COUNT(TID) AS TID
+FROM            dbo.tbl_Outward_Transaction
+WHERE        (AccountsStatus = 1)");
+    return  $query->result_array();
+}
+public function RequestCOunter(){
+    $query = $this->db->query("SELECT        COUNT(TID) AS TID
+FROM            dbo.tbl_Outward_Transaction");
+    return  $query->result_array();
+  }
+  
+  public function getWeeklyrequestData(){
+    
+    $query = $this->db->query("SELECT        COUNT(TID) AS Counter, CONVERT(varchar, RequestDate, 103) AS RequestDate, SUM(Amount) AS Amount
+FROM            dbo.tbl_Outward_Transaction
+GROUP BY CONVERT(varchar, RequestDate, 103)
+HAVING        (CONVERT(varchar, RequestDate, 103) BETWEEN '15/04/2022' AND '22/04/2022')");
+    return  $query->result_array();
+  
+  }
+  public function getCountryCOunter(){
+    
+    $query = $this->db->query("SELECT        COUNT(TID) AS Count, Supplier
+FROM            dbo.view_request_invoice
+GROUP BY Supplier");
+    return  $query->result_array();
+  }
 
 }

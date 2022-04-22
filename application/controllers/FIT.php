@@ -14,6 +14,7 @@ class FIT extends CI_Controller
  public function index()
  {
 
+  
   // $data['Articles'] = $this->l->GetArticles();
   $this->load->view('FIT/Dashbaord');
  }

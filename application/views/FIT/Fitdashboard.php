@@ -48,193 +48,233 @@ if (!$this->session->has_userdata('user_id')) {
               </div>
             </div>
           <?php } ?>
+          <style>
+            #container {
+              height: 400px;
+            }
+
+            .highcharts-figure,
+            .highcharts-data-table table {
+              min-width: 310px;
+              max-width: 800px;
+              margin: 1em auto;
+            }
+
+            .highcharts-data-table table {
+              font-family: Verdana, sans-serif;
+              border-collapse: collapse;
+              border: 1px solid #ebebeb;
+              margin: 10px auto;
+              text-align: center;
+              width: 100%;
+              max-width: 500px;
+            }
+
+            .highcharts-data-table caption {
+              padding: 1em 0;
+              font-size: 1.2em;
+              color: #555;
+            }
+
+            .highcharts-data-table th {
+              font-weight: 600;
+              padding: 0.5em;
+            }
+
+            .highcharts-data-table td,
+            .highcharts-data-table th,
+            .highcharts-data-table caption {
+              padding: 0.5em;
+            }
+
+            .highcharts-data-table thead tr,
+            .highcharts-data-table tr:nth-child(even) {
+              background: #f8f8f8;
+            }
+
+            .highcharts-data-table tr:hover {
+              background: #f1f7ff;
+            }
+
+            #container {
+              height: 400px;
+            }
+
+            .highcharts-figure,
+            .highcharts-data-table table {
+              min-width: 310px;
+              max-width: 800px;
+              margin: 1em auto;
+            }
+
+            .highcharts-data-table table {
+              font-family: Verdana, sans-serif;
+              border-collapse: collapse;
+              border: 1px solid #ebebeb;
+              margin: 10px auto;
+              text-align: center;
+              width: 100%;
+              max-width: 500px;
+            }
+
+            .highcharts-data-table caption {
+              padding: 1em 0;
+              font-size: 1.2em;
+              color: #555;
+            }
+
+            .highcharts-data-table th {
+              font-weight: 600;
+              padding: 0.5em;
+            }
+
+            .highcharts-data-table td,
+            .highcharts-data-table th,
+            .highcharts-data-table caption {
+              padding: 0.5em;
+            }
+
+            .highcharts-data-table thead tr,
+            .highcharts-data-table tr:nth-child(even) {
+              background: #f8f8f8;
+            }
+
+            .highcharts-data-table tr:hover {
+              background: #f1f7ff;
+            }
+          </style>
+
 
           <div class="container-fluid">
-              <div class="row">
-                  <div class="col-md-3">
-                  <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
-                          <div class="">
-                               <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                 21.5k
-                                <small class="m-0 l-h-n">Total Request</small>
-                             </h3>
-                         </div>
-                      <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                  <div class="p-3 bg-warning-300 rounded overflow-hidden position-relative text-white mb-g">
-                          <div class="">
-                               <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                 21.5k
-                                <small class="m-0 l-h-n">Active Users</small>
-                             </h3>
-                         </div>
-                      <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
-                    </div>
-                      
-                  </div>
-                  <div class="col-md-3">
-                  <div class="p-3 bg-success-300 rounded overflow-hidden position-relative text-white mb-g">
-                          <div class="">
-                               <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                 21.5k
-                                <small class="m-0 l-h-n">Approved Request</small>
-                             </h3>
-                         </div>
-                      <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
-                    </div>
-                      
-                  </div>
-                  <div class="col-md-3">
-                  <div class="p-3 bg-info-300 rounded overflow-hidden position-relative text-white mb-g">
-                          <div class="">
-                               <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                 21.5k
-                                <small class="m-0 l-h-n">Amount Gain</small>
-                             </h3>
-                         </div>
-                      <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
-                    </div>
-                      
-                  </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
+                  <div class="">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
-                  <div class="col-lg-8">
-                                <div id="panel-1" class="panel">
-                                    <div class="panel-hdr">
-                                        <h2>
-                                            Marketing profits
-                                        </h2>
-                                    </div>
-                                    <div class="panel-container show">
-                                        <div class="panel-content bg-subtlelight-fade">
-                                            <div id="js-checkbox-toggles" class="d-flex mb-3">
-                                                <div class="custom-control custom-switch mr-2">
-                                                    <input type="checkbox" class="custom-control-input" name="gra-0" id="gra-0" checked="checked">
-                                                    <label class="custom-control-label" for="gra-0">Target Profit</label>
-                                                </div>
-                                                <div class="custom-control custom-switch mr-2">
-                                                    <input type="checkbox" class="custom-control-input" name="gra-1" id="gra-1" checked="checked">
-                                                    <label class="custom-control-label" for="gra-1">Actual Profit</label>
-                                                </div>
-                                                <div class="custom-control custom-switch mr-2">
-                                                    <input type="checkbox" class="custom-control-input" name="gra-2" id="gra-2" checked="checked">
-                                                    <label class="custom-control-label" for="gra-2">User Signups</label>
-                                                </div>
-                                            </div>
-                                            <div id="flot-toggles" class="w-100 mt-4" style="height: 300px"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                            <div id="panel-2" class="panel panel-locked" data-panel-sortable data-panel-collapsed data-panel-close>
-                                    <div class="panel-hdr">
-                                        <h2>
-                                            Test & Packages
-                                        </h2>
-                                    </div>
-                                    <div class="panel-container show" style="height: 374px;">
-                                        <div class="panel-content poisition-relative mt-5">
-                                            
-                                                   <div class="d-flex mt-2 mb-5 ">
-                                                        Balls
-                                                        <span class="d-inline-block ml-auto">130 / 500</span>
-                                                    </div>
-                                                    <div class="progress progress-sm mb-5">
-                                                        <div class="progress-bar bg-fusion-400 " role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="d-flex mb-5">
-                                                        Bags
-                                                        <span class="d-inline-block ml-auto">440 TB</span>
-                                                    </div>
-                                                    <div class="progress progress-sm mb-5">
-                                                        <div class="progress-bar bg-success-500" role="progressbar" style="width: 34%;" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="d-flex mb-5">
-                                                        Raw Material
-                                                        <span class="d-inline-block ml-auto">77%</span>
-                                                    </div>
-                                                    <div class="progress progress-sm mb-5">
-                                                        <div class="progress-bar bg-info-400" role="progressbar" style="width: 77%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-                            </div>
 
-                            <div class="col-lg-6">
-                                <div id="panel-2" class="panel panel-locked" data-panel-sortable data-panel-collapsed data-panel-close>
-                                    <div class="panel-hdr">
-                                        <h2>
-                                            Country Wise /<span class="fw-500"><i>Counter</i></span>
-                                        </h2>
-                                    </div>
-                                    <div class="panel-container show">
-                                        <div class="panel-content poisition-relative">
-                                        <div class="d-flex mt-2 mb-5 ">
-                                                        Balls
-                                                        <span class="d-inline-block ml-auto">130 / 500</span>
-                                                    </div>
-                                                    <div class="progress progress-sm mb-5">
-                                                        <div class="progress-bar bg-fusion-400 " role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="d-flex mb-5">
-                                                        Bags
-                                                        <span class="d-inline-block ml-auto">440 TB</span>
-                                                    </div>
-                                                    <div class="progress progress-sm mb-5">
-                                                        <div class="progress-bar bg-success-500" role="progressbar" style="width: 34%;" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="d-flex mb-5">
-                                                        Raw Material
-                                                        <span class="d-inline-block ml-auto">77%</span>
-                                                    </div>
-                                                    <div class="progress progress-sm mb-5">
-                                                        <div class="progress-bar bg-info-400" role="progressbar" style="width: 77%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                            <!-- <div id="flot-area" style="width:100%; height:300px;"></div> -->
-                                        </div>
-                                    </div>
-                                </div>
+                      <?php echo $RequestCOunter[0]['TID']; ?>
+
+
+                      <small class="m-0 l-h-n">Total Request</small>
+                    </h3>
+                  </div>
+                  <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="p-3 bg-warning-300 rounded overflow-hidden position-relative text-white mb-g">
+                  <div class="">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                      <?php echo $getuser[0]['UserID']; ?>
+                      <small class="m-0 l-h-n">Active Users</small>
+                    </h3>
+                  </div>
+                  <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
+                </div>
+
+              </div>
+              <div class="col-md-3">
+                <div class="p-3 bg-success-300 rounded overflow-hidden position-relative text-white mb-g">
+                  <div class="">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                      <?php echo $getApproved[0]['TID']; ?>
+                      <small class="m-0 l-h-n">Approved Request</small>
+                    </h3>
+                  </div>
+                  <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
+                </div>
+
+              </div>
+              <div class="col-md-3">
+                <div class="p-3 bg-info-300 rounded overflow-hidden position-relative text-white mb-g">
+                  <div class="">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                      $ <?php echo $getAmount[0]['Amount']; ?>
+                      <small class="m-0 l-h-n">Amount Gain</small>
+                    </h3>
+                  </div>
+                  <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
+                </div>
+
+              </div>
+<?php
+$totalrequest = $RequestCOunter[0]['TID'];
+$approvedrequest=$getApproved[0]['TID'];
+$apprvedPrec= ($approvedrequest/ $totalrequest)*100;
+//Echo $apprvedPrec;
+?>
+              <div class="col-lg-6">
+                <div id="panel-1" class="panel">
+                  <div class="panel-hdr">
+                    <h2>
+                      Weekly Amount
+                    </h2>
+                  </div>
+                  <div class="panel-container show">
+                    <div id="container"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div id="panel-3" class="panel panel-locked" data-panel-sortable data-panel-collapsed data-panel-close>
+                  <div class="panel-hdr">
+                    <h2>
+                      Request <span class="fw-300"><i>Status</i></span>
+                    </h2>
+                  </div>
+                  <div class="panel-container show">
+                    <div class="panel-content poisition-relative">
+                      <div class="pb-5 pt-3">
+                        <div class="row">
+                          <div class="col-6 col-xl-3 d-sm-flex align-items-center">
+                            <div class="p-2 mr-3 bg-info-200 rounded">
+                              <span class="peity-bar" data-peity="{&quot;fill&quot;: [&quot;#fff&quot;], &quot;width&quot;: 27, &quot;height&quot;: 27 }">3,4,5,8,2</span>
                             </div>
-                            <div class="col-lg-6">
-                                <div id="panel-3" class="panel panel-locked" data-panel-sortable data-panel-collapsed data-panel-close>
-                                    <div class="panel-hdr">
-                                        <h2>
-                                            Supplier Wise / <span class="fw-500"><i>Counter</i></span>
-                                        </h2>
-                                    </div>
-                                    <div class="panel-container show">
-                                        <div class="panel-content poisition-relative">
-                                        <div class="d-flex mt-2 mb-5 ">
-                                                        Balls
-                                                        <span class="d-inline-block ml-auto">130 / 500</span>
-                                                    </div>
-                                                    <div class="progress progress-sm mb-5">
-                                                        <div class="progress-bar bg-fusion-400 " role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="d-flex mb-5">
-                                                        Bags
-                                                        <span class="d-inline-block ml-auto">440 TB</span>
-                                                    </div>
-                                                    <div class="progress progress-sm mb-5">
-                                                        <div class="progress-bar bg-success-500" role="progressbar" style="width: 34%;" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="d-flex mb-5">
-                                                        Raw Material
-                                                        <span class="d-inline-block ml-auto">77%</span>
-                                                    </div>
-                                                    <div class="progress progress-sm mb-5">
-                                                        <div class="progress-bar bg-info-400" role="progressbar" style="width: 77%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                            <!-- <div id="flotVisit" style="width:100%; height:208px;"></div> -->
-                                        </div>
-                                    </div>
-                                </div>
+                            <div>
+                              <label class="fs-sm mb-0">Accounts Approval</label>
+                              <h4 class="font-weight-bold mb-0"><?php Echo Round($apprvedPrec,2);?> %</h4>
                             </div>
-                         <!-- <div class="col-md-4">
+                          </div>
+                          <div class="col-6 col-xl-3 d-sm-flex align-items-center">
+                            <div class="p-2 mr-3 bg-info-300 rounded">
+                              <span class="peity-bar" data-peity="{&quot;fill&quot;: [&quot;#fff&quot;], &quot;width&quot;: 27, &quot;height&quot;: 27 }">5,3,1,7,9</span>
+                            </div>
+                            <div>
+                              <label class="fs-sm mb-0">Pending Accounts Approval</label>
+                              <h4 class="font-weight-bold mb-0">759</h4>
+                            </div>
+                          </div>
+                          <div class="col-6 col-xl-3 d-sm-flex align-items-center">
+                            <div class="p-2 mr-3 bg-success-300 rounded">
+                              <span class="peity-bar" data-peity="{&quot;fill&quot;: [&quot;#fff&quot;], &quot;width&quot;: 27, &quot;height&quot;: 27 }">3,4,3,5,5</span>
+                            </div>
+                            <div>
+                              <label class="fs-sm mb-0">Proceed to Lab</label>
+                              <h4 class="font-weight-bold mb-0">12.17%</h4>
+                            </div>
+                          </div>
+                          <div class="col-6 col-xl-3 d-sm-flex align-items-center">
+                            <div class="p-2 mr-3 bg-success-500 rounded">
+                              <span class="peity-bar" data-peity="{&quot;fill&quot;: [&quot;#fff&quot;], &quot;width&quot;: 27, &quot;height&quot;: 27 }">6,4,7,5,6</span>
+                            </div>
+                            <div>
+                              <label class="fs-sm mb-0">Result Uploaded</label>
+                              <h4 class="font-weight-bold mb-0">19.77%</h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div id="containerpie"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <!-- <div class="col-md-4">
                                                     <h3 class="text-center">Test & Packages</h3>
                                                     <div class="d-flex mt-2">
                                                         Balls
@@ -261,10 +301,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                     
                                                    
                   </div> -->
-              </div>
+            </div>
           </div>
 
-        
+
 
 
 
@@ -1703,6 +1743,7 @@ if (!$this->session->has_userdata('user_id')) {
         }
       ]
     });
+
     /* defined datas */
     var dataTargetProfit = [
       [1354586000000, 153],
@@ -2016,316 +2057,402 @@ if (!$this->session->has_userdata('user_id')) {
 
 
     });
-    var flot_toggle = function()
+    var flot_toggle = function() {
+
+      var data = [{
+          label: "Target Profit",
+          data: dataTargetProfit,
+          color: color.info._400,
+          bars: {
+            show: true,
+            align: "center",
+            barWidth: 30 * 30 * 60 * 1000 * 80,
+            lineWidth: 0,
+            /*fillColor: {
+            	colors: [color.primary._500, color.primary._900]
+            },*/
+            fillColor: {
+              colors: [{
+                  opacity: 0.9
+                },
                 {
-
-                    var data = [
-                    {
-                        label: "Target Profit",
-                        data: dataTargetProfit,
-                        color: color.info._400,
-                        bars:
-                        {
-                            show: true,
-                            align: "center",
-                            barWidth: 30 * 30 * 60 * 1000 * 80,
-                            lineWidth: 0,
-                            /*fillColor: {
-                            	colors: [color.primary._500, color.primary._900]
-                            },*/
-                            fillColor:
-                            {
-                                colors: [
-                                {
-                                    opacity: 0.9
-                                },
-                                {
-                                    opacity: 0.1
-                                }]
-                            }
-                        },
-                        highlightColor: 'rgba(255,255,255,0.3)',
-                        shadowSize: 0
-                    },
-                    {
-                        label: "Actual Profit",
-                        data: dataProfit,
-                        color: color.warning._500,
-                        lines:
-                        {
-                            show: true,
-                            lineWidth: 2
-                        },
-                        shadowSize: 0,
-                        points:
-                        {
-                            show: true
-                        }
-                    },
-                    {
-                        label: "User Signups",
-                        data: dataSignups,
-                        color: color.success._500,
-                        lines:
-                        {
-                            show: true,
-                            lineWidth: 2
-                        },
-                        shadowSize: 0,
-                        points:
-                        {
-                            show: true
-                        }
-                    }]
-
-                    var options = {
-                        grid:
-                        {
-                            hoverable: true,
-                            clickable: true,
-                            tickColor: '#f2f2f2',
-                            borderWidth: 1,
-                            borderColor: '#f2f2f2'
-                        },
-                        tooltip: true,
-                        tooltipOpts:
-                        {
-                            cssClass: 'tooltip-inner',
-                            defaultTheme: false
-                        },
-                        xaxis:
-                        {
-                            mode: "time"
-                        },
-                        yaxes:
-                        {
-                            tickFormatter: function(val, axis)
-                            {
-                                return "$" + val;
-                            },
-                            max: 1200
-                        }
-
-                    };
-
-                    var plot2 = null;
-
-                    function plotNow()
-                    {
-                        var d = [];
-                        $("#js-checkbox-toggles").find(':checkbox').each(function()
-                        {
-                            if ($(this).is(':checked'))
-                            {
-                                d.push(data[$(this).attr("name").substr(4, 1)]);
-                            }
-                        });
-                        if (d.length > 0)
-                        {
-                            if (plot2)
-                            {
-                                plot2.setData(d);
-                                plot2.draw();
-                            }
-                            else
-                            {
-                                plot2 = $.plot($("#flot-toggles"), d, options);
-                            }
-                        }
-
-                    };
-
-                    $("#js-checkbox-toggles").find(':checkbox').on('change', function()
-                    {
-                        plotNow();
-                    });
-                    plotNow()
+                  opacity: 0.1
                 }
-                flot_toggle();
+              ]
+            }
+          },
+          highlightColor: 'rgba(255,255,255,0.3)',
+          shadowSize: 0
+        },
+        {
+          label: "Actual Profit",
+          data: dataProfit,
+          color: color.warning._500,
+          lines: {
+            show: true,
+            lineWidth: 2
+          },
+          shadowSize: 0,
+          points: {
+            show: true
+          }
+        },
+        {
+          label: "User Signups",
+          data: dataSignups,
+          color: color.success._500,
+          lines: {
+            show: true,
+            lineWidth: 2
+          },
+          shadowSize: 0,
+          points: {
+            show: true
+          }
+        }
+      ]
 
-                 /* flot area */
-                 var flotArea = $.plot($('#flot-area'), [
-                {
-                    data: dataSet1,
-                    label: 'New Customer',
-                    color: color.success._200
-                },
-                {
-                    data: dataSet2,
-                    label: 'Returning Customer',
-                    color: color.info._200
-                }],
-                {
-                    series:
-                    {
-                        lines:
-                        {
-                            show: true,
-                            lineWidth: 2,
-                            fill: true,
-                            fillColor:
-                            {
-                                colors: [
-                                {
-                                    opacity: 0
-                                },
-                                {
-                                    opacity: 0.5
-                                }]
-                            }
-                        },
-                        shadowSize: 0
-                    },
-                    points:
-                    {
-                        show: true,
-                    },
-                    legend:
-                    {
-                        noColumns: 1,
-                        position: 'nw'
-                    },
-                    grid:
-                    {
-                        hoverable: true,
-                        clickable: true,
-                        borderColor: '#ddd',
-                        tickColor: '#ddd',
-                        aboveData: true,
-                        borderWidth: 0,
-                        labelMargin: 5,
-                        backgroundColor: 'transparent'
-                    },
-                    yaxis:
-                    {
-                        tickLength: 1,
-                        min: 0,
-                        max: 15,
-                        color: '#eee',
-                        font:
-                        {
-                            size: 0,
-                            color: '#999'
-                        }
-                    },
-                    xaxis:
-                    {
-                        tickLength: 1,
-                        color: '#eee',
-                        font:
-                        {
-                            size: 10,
-                            color: '#999'
-                        }
-                    }
+      var options = {
+        grid: {
+          hoverable: true,
+          clickable: true,
+          tickColor: '#f2f2f2',
+          borderWidth: 1,
+          borderColor: '#f2f2f2'
+        },
+        tooltip: true,
+        tooltipOpts: {
+          cssClass: 'tooltip-inner',
+          defaultTheme: false
+        },
+        xaxis: {
+          mode: "time"
+        },
+        yaxes: {
+          tickFormatter: function(val, axis) {
+            return "$" + val;
+          },
+          max: 1200
+        }
 
-                });
+      };
 
-                var flotVisit = $.plot('#flotVisit', [
-                {
-                    data: [
-                        [3, 0],
-                        [4, 1],
-                        [5, 3],
-                        [6, 3],
-                        [7, 10],
-                        [8, 11],
-                        [9, 12],
-                        [10, 9],
-                        [11, 12],
-                        [12, 8],
-                        [13, 5]
-                    ],
-                    color: color.success._200
-                },
-                {
-                    data: [
-                        [1, 0],
-                        [2, 0],
-                        [3, 1],
-                        [4, 2],
-                        [5, 2],
-                        [6, 5],
-                        [7, 8],
-                        [8, 12],
-                        [9, 9],
-                        [10, 11],
-                        [11, 5]
-                    ],
-                    color: color.info._200
-                }],
-                {
-                    series:
-                    {
-                        shadowSize: 0,
-                        lines:
-                        {
-                            show: true,
-                            lineWidth: 2,
-                            fill: true,
-                            fillColor:
-                            {
-                                colors: [
-                                {
-                                    opacity: 0
-                                },
-                                {
-                                    opacity: 0.12
-                                }]
-                            }
-                        }
-                    },
-                    grid:
-                    {
-                        borderWidth: 0
-                    },
-                    yaxis:
-                    {
-                        min: 0,
-                        max: 15,
-                        tickColor: '#ddd',
-                        ticks: [
-                            [0, ''],
-                            [5, '100K'],
-                            [10, '200K'],
-                            [15, '300K']
-                        ],
-                        font:
-                        {
-                            color: '#444',
-                            size: 10
-                        }
-                    },
-                    xaxis:
-                    {
+      var plot2 = null;
 
-                        tickColor: '#eee',
-                        ticks: [
-                            [2, '2am'],
-                            [3, '3am'],
-                            [4, '4am'],
-                            [5, '5am'],
-                            [6, '6am'],
-                            [7, '7am'],
-                            [8, '8am'],
-                            [9, '9am'],
-                            [10, '1pm'],
-                            [11, '2pm'],
-                            [12, '3pm'],
-                            [13, '4pm']
-                        ],
-                        font:
-                        {
-                            color: '#999',
-                            size: 9
-                        }
-                    }
-                });
+      function plotNow() {
+        var d = [];
+        $("#js-checkbox-toggles").find(':checkbox').each(function() {
+          if ($(this).is(':checked')) {
+            d.push(data[$(this).attr("name").substr(4, 1)]);
+          }
+        });
+        if (d.length > 0) {
+          if (plot2) {
+            plot2.setData(d);
+            plot2.draw();
+          } else {
+            plot2 = $.plot($("#flot-toggles"), d, options);
+          }
+        }
 
+      };
 
+      $("#js-checkbox-toggles").find(':checkbox').on('change', function() {
+        plotNow();
+      });
+      plotNow()
+    }
+    flot_toggle();
+
+    /* flot area */
+    var flotArea = $.plot($('#flot-area'), [{
+        data: dataSet1,
+        label: 'New Customer',
+        color: color.success._200
+      },
+      {
+        data: dataSet2,
+        label: 'Returning Customer',
+        color: color.info._200
+      }
+    ], {
+      series: {
+        lines: {
+          show: true,
+          lineWidth: 2,
+          fill: true,
+          fillColor: {
+            colors: [{
+                opacity: 0
+              },
+              {
+                opacity: 0.5
+              }
+            ]
+          }
+        },
+        shadowSize: 0
+      },
+      points: {
+        show: true,
+      },
+      legend: {
+        noColumns: 1,
+        position: 'nw'
+      },
+      grid: {
+        hoverable: true,
+        clickable: true,
+        borderColor: '#ddd',
+        tickColor: '#ddd',
+        aboveData: true,
+        borderWidth: 0,
+        labelMargin: 5,
+        backgroundColor: 'transparent'
+      },
+      yaxis: {
+        tickLength: 1,
+        min: 0,
+        max: 15,
+        color: '#eee',
+        font: {
+          size: 0,
+          color: '#999'
+        }
+      },
+      xaxis: {
+        tickLength: 1,
+        color: '#eee',
+        font: {
+          size: 10,
+          color: '#999'
+        }
+      }
+
+    });
+
+    var flotVisit = $.plot('#flotVisit', [{
+        data: [
+          [3, 0],
+          [4, 1],
+          [5, 3],
+          [6, 3],
+          [7, 10],
+          [8, 11],
+          [9, 12],
+          [10, 9],
+          [11, 12],
+          [12, 8],
+          [13, 5]
+        ],
+        color: color.success._200
+      },
+      {
+        data: [
+          [1, 0],
+          [2, 0],
+          [3, 1],
+          [4, 2],
+          [5, 2],
+          [6, 5],
+          [7, 8],
+          [8, 12],
+          [9, 9],
+          [10, 11],
+          [11, 5]
+        ],
+        color: color.info._200
+      }
+    ], {
+      series: {
+        shadowSize: 0,
+        lines: {
+          show: true,
+          lineWidth: 2,
+          fill: true,
+          fillColor: {
+            colors: [{
+                opacity: 0
+              },
+              {
+                opacity: 0.12
+              }
+            ]
+          }
+        }
+      },
+      grid: {
+        borderWidth: 0
+      },
+      yaxis: {
+        min: 0,
+        max: 15,
+        tickColor: '#ddd',
+        ticks: [
+          [0, ''],
+          [5, '100K'],
+          [10, '200K'],
+          [15, '300K']
+        ],
+        font: {
+          color: '#444',
+          size: 10
+        }
+      },
+      xaxis: {
+
+        tickColor: '#eee',
+        ticks: [
+          [2, '2am'],
+          [3, '3am'],
+          [4, '4am'],
+          [5, '5am'],
+          [6, '6am'],
+          [7, '7am'],
+          [8, '8am'],
+          [9, '9am'],
+          [10, '1pm'],
+          [11, '2pm'],
+          [12, '3pm'],
+          [13, '4pm']
+        ],
+        font: {
+          color: '#999',
+          size: 9
+        }
+      }
+    });
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js" integrity="sha512-gtII6Z4fZyONX9GBrF28JMpodY4vIOI0lBjAtN/mcK7Pz19Mu1HHIRvXH6bmdChteGpEccxZxI0qxXl9anY60w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <?php
 
+  //print_r($WeeklyData);
+  // $datapoints = array();
+  $datapoints = [];
+  foreach ($WeeklyData as $key) {
+
+    $points = [
+      $key['RequestDate'],
+      Round($key['Amount']),
+    ];
+
+
+    array_push($datapoints, $points);
+  }
+  $DataCountry = [];
+  foreach ($getCountryCOunter as $key) {
+
+    $Country = [
+      $key['Supplier'],
+      Round($key['Count']),
+    ];
+
+
+    array_push($DataCountry, $Country);
+  }
+
+  ?>
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  <script>
+    Highcharts.chart('containerpie', {
+      chart: {
+        type: 'pie',
+        options3d: {
+          enabled: true,
+          alpha: 45,
+          beta: 0
+        }
+      },
+      title: {
+        text: 'Supplier Wise Counter'
+      },
+      accessibility: {
+        point: {
+          valueSuffix: '%'
+        }
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          depth: 35,
+          dataLabels: {
+            enabled: true,
+            format: '{point.name}'
+          }
+        }
+      },
+      series: [{
+        type: 'pie',
+        name: 'Request Counter',
+        data: <?php echo json_encode(
+                $DataCountry,
+                JSON_NUMERIC_CHECK
+              ); ?>
+      }]
+    });
+    Highcharts.chart('container', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Weekly Amount'
+      },
+      // subtitle: {
+      //   text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
+      // },
+      xAxis: {
+        type: 'category',
+        labels: {
+          rotation: -45,
+          style: {
+            fontSize: '13px',
+            fontFamily: 'Verdana, sans-serif'
+          }
+        }
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Amount (USD)'
+        }
+      },
+      legend: {
+        enabled: false
+      },
+      tooltip: {
+        pointFormat: 'Amount <b>{point.y:0f} USD </b>'
+      },
+      series: [{
+        name: 'Amount',
+        colorByPoint: true,
+        data: <?php echo json_encode(
+                $datapoints,
+                JSON_NUMERIC_CHECK
+              ); ?>,
+        dataLabels: {
+          enabled: true,
+          // rotation: -90,
+          color: '#808080',
+          align: 'center',
+          //format: '{point.y:}', // one decimal
+          y: 10, // 10 pixels down from the top
+          style: {
+            fontSize: '13px',
+            fontFamily: 'Verdana, sans-serif'
+          }
+        }
+      }]
+    });
+  </script>
 
   </body>
 
