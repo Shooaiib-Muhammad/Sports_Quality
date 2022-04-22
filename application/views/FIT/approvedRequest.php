@@ -19,167 +19,34 @@ if (!$this->session->has_userdata('user_id')) {
 
           <div class="subheader">
             <h1 class="subheader-title">
-              <i class='subheader-icon fal fa-chart-area'></i> Test Request</span>
+
+              <!-- <i class='subheader-icon fal fa-chart-area'></i>  Approved Request</span> -->
+              <ol class="breadcrumb ">
+            <i class="subheader-icon fal fa-chart-area"></i>
+            <li class="breadcrumb-item"><a href="<?php echo base_url('FitDashboard/dashboard') ?>">Dashboard</a></li>
+            <li class='subheader-icon fal fa-chart-area breadcrumb-item'></li>  Approved Request
+           </ol>
 
             </h1>
           </div>
-          <div id="Modaldepartment" class="modal fade">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header" style="background-color: rgb(83,78,130);color:white;font-weight:bolder">
-                                    <h1 class="modal-title" id="changeTitle">Test Request Receiving Form</h1>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true" style="color: white;">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form name="formDepartment" id="myformDepartment" method="POST" action="<?php echo base_url(
-                                                                                                                ''
-                                                                                                            ); ?>LabController/EditRequest">
-                                      
-
-                                        <div class="row" style="display:flex">
-
-
-                                            <div class="col-md-6">
-
-                                                <label class="form-contol" for="customFile">Invice-NO.</label>
-                                                <input type="text"  readonly="true" class="form-control" id="IdValue" name="ID">
-
-                                            </div>
-
-                                            <div class="col-md-6">
-
-                                                <label class="form-contol" for="customFile">CSS #</label>
-                                                <input type="text" class="form-control" id="cssNo" name="cssNo">
-
-                                            </div>
-
-                                           
-
-                                            <!-- <div class="col-md-6 mt-2">
-
-                                                <label class="form-contol" for="customFile">Quantity Returned</label>
-                                                <input type="number" class="form-control" id="qReturned" name="qReturned">
-
-                                            </div> -->
-
-                                            
-
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="form-group">
-                                                <div>
-                                                    <button type="button" class="btn btn-primary m-3" id="save">Save</button>
-
-                                                    <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
-
-                                                    <!-- <button class="btn btn-danger" data-dismiss="modal" style="display:inline-block;">Close</button> -->
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-
-                                </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                    </div>
+          
+                   
           <div id="panel-1" class="panel">
                       <div class="panel-hdr">
                         <h2>
-                          <i class='subheader-icon fal fa-vial'></i> Test Requests</span>
+                          <i class='subheader-icon fal fa-vial'></i> Approved Requests</span>
                         </h2>
-
-                        <?php
-                        $Uploading = $this->session->userdata('Uploading');
-                        $RS = $this->session->userdata('ReviewStatus');
-                        $AS = $this->session->userdata('ApprovalStatus');
-                        ?>
-                       
-
-                        <!-- <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#Modaldepartment" class="d-grid gap-2 d-md-block" id="createDepartment">+ Create New Test</button> -->
-
-
                       </div>
 
 
-                      <div class="panel-container show">
+     <div class="panel-container show">
 <div class="panel-content">
-
-<ul class="nav nav-pills" role="tablist">
-    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Pending</a></li>
-    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Approved</a></li>
- 
-
-</ul>
 
 <div class="tab-content py-3">
 
     <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
-      <div class="table-responsive">
-       <table class="table " id="ActivityData">
-                            <thead>
-                              <tr>
-                                <th>Invoice ID</th>
-                                <th>Request Date</th>
-                                <th>Test Name</th>
-                                <th>Amount</th>
-                                <th>Supplier</th>
-                                <th>Country</th>
-                                <th>Status</th>
-                                <th>Add Css No</th>
-                                
-                              </tr>
-                            </thead>
-                            <tbody>
-
-                             <?php
-                              //  print_r($getApproved);
-                              // print_r($getApproved);
-                             ?>
-
-                              <?php
-                              foreach ($getpending as $Key) {
-                                $InvoiceId = $Key['Invoice_ID'];
-                                $testNames = explode(",",$Key['TestName']);
-                              
-                              ?>
-                                <tr>
-                                  <td><?php echo $InvoiceId; ?> </td>
-                                  <td><?php echo $Key['RequestDate']; ?> </td>
-                                  <td>
-                                   <?php foreach ($testNames as $test) {
-                                     ?>
-                                  
-                                  <span class="badge badge-info p-1"><?php echo $test; ?></span>
-                              <?php  } ?> 
-                                </td>
-                                  <td><?php echo $Key['Amount']; ?> </td>
-                                  <td><?php echo $Key['Supplier']; ?> </td>
-                                  <td><?php echo $Key['Country']; ?> </td>
-                                  <td>  <span class="badge badge-danger p-1">Pending</span></td>
-                                  <td>                                   
-                                   <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" 
-                                   id="btn.<?php Echo  $InvoiceId ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
-                                </td>
-                                </tr>
-                              <?php
-                              }
-                              ?>
-
-
-
-                            </tbody>
-                          </table>
-                          </div>
-    </div>
-    <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
-
     <div class="table-responsive">
-
-        <table class="table " id="ActivityData1">
+       <table class="table " id="ActivityData1">
                             <thead>
                               <tr>
                                 <th>Invoice ID</th>
@@ -187,63 +54,54 @@ if (!$this->session->has_userdata('user_id')) {
                                 <th>Test Name</th>
                                 <th>Amount</th>
                                 <th>Supplier</th>
-                                <th>Country</th>
-                                <th>Status</th>
-                                <th>Css No</th>
-                                <th>lab Proceed Date</th>
-                                <th>Request Status</th>
-                                
+                                <th>Account Status</th>
+                                <th>Verification Date</th>
                               </tr>
                             </thead>
                             <tbody>
 
-                             <?php
-                              //  print_r($getApproved);
-                              // print_r($getApproved);
+                            <!-- <?php
+                             echo "<pre>";
+                             print_r($arequest);
+                             echo "</pre>";
+                           ?> -->
+                            <?php 
+                           foreach($arequest as $key) {
+                            $testNames = explode(",",$key['TestName']);
                              ?>
-
-                              <?php
-                              foreach ($getApproved as $Key) {
-                                $InvoiceId = $Key['Invoice_ID'];
-                                $testNames = explode(",",$Key['TestName']);
-                              
-                              ?>
-                                <tr>
-                                  <td><?php echo $InvoiceId; ?> </td>
-                                  <td><?php echo $Key['RequestDate']; ?> </td>
-                                  <td>
+                             <tr>
+                               <td><?php echo $key['Invoice_ID'] ?></td>
+                               <td><?php echo $key['RequestDate'] ?></td>
+                               <!-- <td><?php echo $key['TestName'] ?></td> -->
+                               <td>
                                    <?php foreach ($testNames as $test) {
                                      ?>
                                   
                                   <span class="badge badge-info p-1"><?php echo $test; ?></span>
                               <?php  } ?> 
                                 </td>
-                                  <td><?php echo $Key['Amount']; ?> </td>
-                                  <td><?php echo $Key['Supplier']; ?> </td>
-                                  <td><?php echo $Key['Country']; ?> </td>
-                                  <td>  <span class="badge badge-danger p-1">Proceed</span></td>
-                                  <td><?php echo $Key['CSSNo']; ?> </td>
-                                  <td><?php echo $Key['labProceedDate']; ?> </td>
-                                  <td><span class="badge badge-primary p-1"><?php echo $Key['Request_Status']; ?> </span></td>
-                                
-                                </tr>
-                              <?php
-                              }
-                              ?>
+                               <td><?php echo $key['Amount'] ?></td>
+                               <td><?php echo $key['Supplier'] ?></td>
+                               <td><?php echo $key['AccountsStatus'] ?></td>
+                               <td><?php echo $key['AccountsverfiyDate'] ?></td>
+                            </tr>
+                        <?php
+                           }
+                            ?>
+
+                             
 
 
 
                             </tbody>
                           </table>
-                          </div>
-
+    </div>
     </div>
 
-    
-</div>
+  </div>
 
-</div>
-                        <div class="panel-content">
+  </div>
+   <div class="panel-content">
 
 
 
@@ -355,7 +213,8 @@ if (!$this->session->has_userdata('user_id')) {
               <div class="form-group">
                 <div>
                   <button type="button" class="btn btn-primary m-3" id="savepkg">Save</button>
-                  <button type="button" class="btn btn-primary m-3" id="editpkg" style="display: none;">Update</button>
+                  <button type="button" class="btn btn-primary m-3" id="editpkg" 
+                  style="display: none;">Update</button>
 
                   <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
 
@@ -654,12 +513,51 @@ if (!$this->session->has_userdata('user_id')) {
     $(".updatebtn").click(function(e) {
         $('#Modaldepartment').modal('toggle');
 
-        let id = this.id;
+            let id = this.id;
             let split_value = id.split(".");
             var TID = split_value[1];
             //alert(TID);
-            $('#IdValue').val(TID);
+            // $('#IdValue').val(TID);
+            // e.preventDefault();
+            // let TID = $('#IdValue').val();
+           
+            // let CSSNo = $('#cssNo').val();
+    
 
+
+            let url = "<?php echo base_url(''); ?>PaymentRequest/verify"
+
+            $.post(url, {
+                    'TID': TID,
+                    
+                   
+                },
+                function(data, status) {
+                    alert("Data Updated Successfully! Click on Ok to Reload the Page")
+                    window.location.reload();
+
+                });
+
+    });
+    $(".verifybtn").click(function(e) {
+        $('#Modaldepartment1').modal('toggle');
+           let id = this.id;
+            let split_value = id.split(".");
+            var TID = split_value[1];
+            //alert(TID);
+            url = "<?php echo base_url(''); ?>UploadResult/getimage";
+            $.post(url, {
+            'TID': TID
+        },
+        function(data) {
+         //alert(data[0]['Evidence_pic']);
+          console.log("Data", data)
+          image = '<?php echo '/BookLabTest/Assets/Paymentimg/' ?>' + data[0]['Evidence_pic']
+          $("#aafaq").attr("src", image);
+          $('#IdValue').val(TID);
+        
+        });      
+    
     });
 
     $(".updatePkg").click(function(e) {

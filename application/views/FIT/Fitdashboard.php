@@ -144,32 +144,31 @@ if (!$this->session->has_userdata('user_id')) {
             }
           </style>
 
-
+                  
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-3">
                 <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
-                  <div class="">
-                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
-
-
-
-                      <?php echo $RequestCOunter[0]['TID']; ?>
-
-
-                      <small class="m-0 l-h-n">Total Request</small>
-                    </h3>
-                  </div>
-                  <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
+                    <div class="">
+                                <a href="<?php echo base_url('/')?>ViewResultFit/totalrequest">    
+                                                                         
+                                    <h3 class="display-4 d-block l-h-n m-0 fw-500  text-white">
+                                      <?php echo $RequestCOunter[0]['TID']; ?>
+                                      <small class="m-0 l-h-n">Total Request</small>
+                                  </h3>                                           
+                                  </a>
+                       </div>                           
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="p-3 bg-warning-300 rounded overflow-hidden position-relative text-white mb-g">
                   <div class="">
-                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                  <a href="<?php echo base_url('/')?>ViewResultFit/activeuser">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500 text-white">
                       <?php echo $getuser[0]['UserID']; ?>
                       <small class="m-0 l-h-n">Active Users</small>
                     </h3>
+                  </a>
                   </div>
                   <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
                 </div>
@@ -178,10 +177,12 @@ if (!$this->session->has_userdata('user_id')) {
               <div class="col-md-3">
                 <div class="p-3 bg-success-300 rounded overflow-hidden position-relative text-white mb-g">
                   <div class="">
-                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                  <a href="<?php echo base_url('/')?>ViewResultFit/approvedrequest">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500 text-white">
                       <?php echo $getApproved[0]['TID']; ?>
                       <small class="m-0 l-h-n">Approved Request</small>
                     </h3>
+                  </a>
                   </div>
                   <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
                 </div>
@@ -190,10 +191,12 @@ if (!$this->session->has_userdata('user_id')) {
               <div class="col-md-3">
                 <div class="p-3 bg-info-300 rounded overflow-hidden position-relative text-white mb-g">
                   <div class="">
-                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                  <a href="<?php echo base_url('/')?>ViewResultFit/amountgain">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500 text-white">
                       $ <?php echo $getAmount[0]['Amount']; ?>
                       <small class="m-0 l-h-n">Amount Gain</small>
                     </h3>
+                  </a>
                   </div>
                   <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
                 </div>

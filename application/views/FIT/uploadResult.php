@@ -191,7 +191,7 @@ if (!$this->session->has_userdata('user_id')) {
                               foreach ($getpending as $Key) {
                                 $InvoiceId = $Key['Invoice_ID'];
                                 $testNames = explode(",",$Key['TestName']);
-                                $TID = $Key['TID'];
+                              
                               ?>
                                 <tr>
                                   <td><?php echo $InvoiceId; ?> </td>
@@ -209,7 +209,7 @@ if (!$this->session->has_userdata('user_id')) {
                                   <td>  <span class="badge badge-danger p-1">Payment Pending</span></td>
                                   <td>                                   
                                    <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" 
-                                   id="btn.<?php Echo  $TID ?>">Upload</button>
+                                   id="btn.<?php Echo  $InvoiceId ?>">Upload</button>
                                 </td>
                                 </tr>
                               <?php
@@ -252,7 +252,7 @@ if (!$this->session->has_userdata('user_id')) {
                               foreach ($getApproved as $Key) {
                                 $InvoiceId = $Key['Invoice_ID'];
                                 $testNames = explode(",",$Key['TestName']);
-                                $TID = $Key['TID'];
+                              
                               ?>
                                 <tr>
                                   <td><?php echo $InvoiceId; ?> </td>
@@ -274,7 +274,7 @@ if (!$this->session->has_userdata('user_id')) {
                                
                                   <td><span class="badge badge-primary p-1"><?php echo $Key['Request_Status']; ?> </span></td>
                                   <td> <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn1" 
-                                   id="btn.<?php Echo  $TID ?>">view</button> </td>
+                                   id="btn.<?php Echo  $InvoiceId ?>">view</button> </td>
                                 </tr>
                               <?php
                               }
