@@ -169,7 +169,7 @@ if (!$this->session->has_userdata('user_id')) {
        <table class="table" id="ActivityData1">
                             <thead>
                               <tr>
-                                <th>Invoice ID</th>
+                                <th>Invoice No</th>
                                 <th>Request Date</th>
                                 <th>Test Name</th>
                                 <th>Amount</th>
@@ -227,7 +227,7 @@ if (!$this->session->has_userdata('user_id')) {
         <table class="table" id="ActivityData">
                             <thead>
                               <tr>
-                                <th>Invoice ID</th>
+                                <th>Invoice No</th>
                                 <th>Request Date</th>
                                 <th>Test Name</th>
                                 <th>Amount</th>

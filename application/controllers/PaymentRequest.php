@@ -28,6 +28,7 @@ class PaymentRequest extends CI_Controller {
         
         $data['getpending']=$this->Payment->getPending();
         $data['getApproved']=$this->Payment->getApproved();
+        $data['pendingEvidance'] = $this->Payment->pendingEvidance();
    
         $this->load->view('FIT/paymentRequest', $data);
     }

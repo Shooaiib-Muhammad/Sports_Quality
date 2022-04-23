@@ -33,4 +33,10 @@ public function verify($ID){
     }
 
 }
+public function pendingEvidance(){
+    $query = $this->db->query("SELECT        view_Outward_transaction.*
+        FROM            dbo.view_Outward_transaction
+        WHERE        (Evidence_pic IS NULL) And  (AccountsStatus IS NULL)");
+    return  $query->result_array();
+}
 }

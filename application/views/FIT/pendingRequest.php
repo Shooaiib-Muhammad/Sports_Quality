@@ -24,238 +24,303 @@ if (!$this->session->has_userdata('user_id')) {
             </h1>
           </div>
           <div id="Modaldepartment" class="modal fade">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header" style="background-color: rgb(83,78,130);color:white;font-weight:bolder">
-                                    <h1 class="modal-title" id="changeTitle">Test Request Receiving Form</h1>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true" style="color: white;">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form name="formDepartment" id="myformDepartment" method="POST" action="<?php echo base_url(
-                                                                                                                ''
-                                                                                                            ); ?>LabController/EditRequest">
-                                      
-
-                                        <div class="row" style="display:flex">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header" style="background-color: rgb(83,78,130);color:white;font-weight:bolder">
+                  <h1 class="modal-title" id="changeTitle">Test Request Receiving Form</h1>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="color: white;">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form name="formDepartment" id="myformDepartment" method="POST" action="<?php echo base_url(
+                                                                                            ''
+                                                                                          ); ?>LabController/EditRequest">
 
 
-                                            <div class="col-md-6">
+                    <div class="row" style="display:flex">
 
-                                                <label class="form-contol" for="customFile">Invice-NO.</label>
-                                                <input type="text"  readonly="true" class="form-control" id="IdValue" name="ID">
 
-                                            </div>
+                      <div class="col-md-6" hidden>
 
-                                            <div class="col-md-6">
+                        <label class="form-contol" for="customFile">Invice-NO.</label>
+                        <input type="text" readonly="true" class="form-control" id="IdValue" name="ID">
 
-                                                <label class="form-contol" for="customFile">CSS #</label>
-                                                <input type="text" class="form-control" id="cssNo" name="cssNo">
 
-                                            </div>
+                      </div>
 
-                                           
+                      <div class="col-md-6">
 
-                                            <!-- <div class="col-md-6 mt-2">
+                        <label class="form-contol" for="customFile">CSS #</label>
+                        <input type="text" class="form-control" id="cssNo" name="cssNo">
+
+                      </div>
+
+
+
+                      <!-- <div class="col-md-6 mt-2">
 
                                                 <label class="form-contol" for="customFile">Quantity Returned</label>
                                                 <input type="number" class="form-control" id="qReturned" name="qReturned">
 
                                             </div> -->
 
-                                            
 
-                                        </div>
 
-                                        <div class="row">
-                                            <div class="form-group">
-                                                <div>
-                                                    <button type="button" class="btn btn-primary m-3" id="save">Save</button>
-
-                                                    <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
-
-                                                    <!-- <button class="btn btn-danger" data-dismiss="modal" style="display:inline-block;">Close</button> -->
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-
-                                </div>
-                            </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
                     </div>
-          <div id="panel-1" class="panel">
-                      <div class="panel-hdr">
-                        <h2>
-                          <i class='subheader-icon fal fa-vial'></i> Test Requests</span>
-                        </h2>
 
-                        <?php
-                        $Uploading = $this->session->userdata('Uploading');
-                        $RS = $this->session->userdata('ReviewStatus');
-                        $AS = $this->session->userdata('ApprovalStatus');
-                        ?>
-                       
+                    <div class="row">
+                      <div class="form-group">
+                        <div>
+                          <button type="button" class="btn btn-primary m-3" id="save">Save</button>
 
-                        <!-- <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#Modaldepartment" class="d-grid gap-2 d-md-block" id="createDepartment">+ Create New Test</button> -->
+                          <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
 
-
-                      </div>
-
-
-                      <div class="panel-container show">
-<div class="panel-content">
-
-<ul class="nav nav-pills" role="tablist">
-    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Pending</a></li>
-    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Approved</a></li>
- 
-
-</ul>
-
-<div class="tab-content py-3">
-
-    <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
-      <div class="table-responsive">
-       <table class="table " id="ActivityData">
-                            <thead>
-                              <tr>
-                                <th>Invoice ID</th>
-                                <th>Request Date</th>
-                                <th>Test Name</th>
-                                <th>Amount</th>
-                                <th>Supplier</th>
-                                <th>Country</th>
-                                <th>Status</th>
-                                <th>Add Css No</th>
-                                
-                              </tr>
-                            </thead>
-                            <tbody>
-
-                             <?php
-                              //  print_r($getApproved);
-                              // print_r($getApproved);
-                             ?>
-
-                              <?php
-                              foreach ($getpending as $Key) {
-                                $InvoiceId = $Key['Invoice_ID'];
-                                $testNames = explode(",",$Key['TestName']);
-                              
-                              ?>
-                                <tr>
-                                  <td><?php echo $InvoiceId; ?> </td>
-                                  <td><?php echo $Key['RequestDate']; ?> </td>
-                                  <td>
-                                   <?php foreach ($testNames as $test) {
-                                     ?>
-                                  
-                                  <span class="badge badge-info p-1"><?php echo $test; ?></span>
-                              <?php  } ?> 
-                                </td>
-                                  <td><?php echo $Key['Amount']; ?> </td>
-                                  <td><?php echo $Key['Supplier']; ?> </td>
-                                  <td><?php echo $Key['Country']; ?> </td>
-                                  <td>  <span class="badge badge-danger p-1">Pending</span></td>
-                                  <td>                                   
-                                   <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" 
-                                   id="btn.<?php Echo  $InvoiceId ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
-                                </td>
-                                </tr>
-                              <?php
-                              }
-                              ?>
-
-
-
-                            </tbody>
-                          </table>
-                          </div>
-    </div>
-    <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
-
-    <div class="table-responsive">
-
-        <table class="table " id="ActivityData1">
-                            <thead>
-                              <tr>
-                                <th>Invoice ID</th>
-                                <th>Request Date</th>
-                                <th>Test Name</th>
-                                <th>Amount</th>
-                                <th>Supplier</th>
-                                <th>Country</th>
-                                <th>Status</th>
-                                <th>Css No</th>
-                                <th>lab Proceed Date</th>
-                                <th>Request Status</th>
-                                
-                              </tr>
-                            </thead>
-                            <tbody>
-
-                             <?php
-                              //  print_r($getApproved);
-                              // print_r($getApproved);
-                             ?>
-
-                              <?php
-                              foreach ($getApproved as $Key) {
-                                $InvoiceId = $Key['Invoice_ID'];
-                                $testNames = explode(",",$Key['TestName']);
-                              
-                              ?>
-                                <tr>
-                                  <td><?php echo $InvoiceId; ?> </td>
-                                  <td><?php echo $Key['RequestDate']; ?> </td>
-                                  <td>
-                                   <?php foreach ($testNames as $test) {
-                                     ?>
-                                  
-                                  <span class="badge badge-info p-1"><?php echo $test; ?></span>
-                              <?php  } ?> 
-                                </td>
-                                  <td><?php echo $Key['Amount']; ?> </td>
-                                  <td><?php echo $Key['Supplier']; ?> </td>
-                                  <td><?php echo $Key['Country']; ?> </td>
-                                  <td>  <span class="badge badge-danger p-1">Proceed</span></td>
-                                  <td><?php echo $Key['CSSNo']; ?> </td>
-                                  <td><?php echo $Key['labProceedDate']; ?> </td>
-                                  <td><span class="badge badge-primary p-1"><?php echo $Key['Request_Status']; ?> </span></td>
-                                
-                                </tr>
-                              <?php
-                              }
-                              ?>
-
-
-
-                            </tbody>
-                          </table>
-                          </div>
-
-    </div>
-
-    
-</div>
-
-</div>
-                        <div class="panel-content">
-
-
-
-                          
-
-
+                          <!-- <button class="btn btn-danger" data-dismiss="modal" style="display:inline-block;">Close</button> -->
 
                         </div>
-
                       </div>
-
                     </div>
+                  </form>
+
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div>
+          <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+              <h2>
+                <i class='subheader-icon fal fa-vial'></i> Test Requests</span>
+              </h2>
+
+              <?php
+              $Uploading = $this->session->userdata('Uploading');
+              $RS = $this->session->userdata('ReviewStatus');
+              $AS = $this->session->userdata('ApprovalStatus');
+              ?>
+
+
+              <!-- <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#Modaldepartment" class="d-grid gap-2 d-md-block" id="createDepartment">+ Create New Test</button> -->
+
+
+            </div>
+
+
+            <div class="panel-container show">
+              <div class="panel-content">
+
+                <ul class="nav nav-pills" role="tablist">
+                  <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Pending</a></li>
+                  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Approved</a></li>
+                  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Accounts Pending</a></li>
+
+                </ul>
+
+                <div class="tab-content py-3">
+
+                  <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
+                    <div class="table-responsive">
+                      <table class="table " id="ActivityData">
+                        <thead>
+                          <tr>
+                            <th>Invoice No</th>
+                            <th>Request Date</th>
+                            <th>Test Name</th>
+                            <th>Amount</th>
+                            <th>Supplier</th>
+                            <th>Country</th>
+                            <th>Status</th>
+                            <th>Add Css No</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          <?php
+                          //  print_r($getApproved);
+                          // print_r($getApproved);
+                          ?>
+
+                          <?php
+                          foreach ($getpending as $Key) {
+                            $InvoiceId = $Key['Invoice_ID'];
+                            $testNames = explode(",", $Key['TestName']);
+                            $TID = $Key['TID'];
+                          ?>
+                            <tr>
+                              <td id="InvoiceID"><?php echo $InvoiceId; ?> </td>
+                              <td><?php echo $Key['RequestDate']; ?> </td>
+                              <td>
+                                <?php foreach ($testNames as $test) {
+                                ?>
+
+                                  <span class="badge badge-info p-1"><?php echo $test; ?></span>
+                                <?php  } ?>
+                              </td>
+                              <td><?php echo $Key['Amount']; ?> </td>
+                              <td><?php echo $Key['Supplier']; ?> </td>
+                              <td><?php echo $Key['Country']; ?> </td>
+                              <td> <span class="badge badge-danger p-1">Pending</span></td>
+                              <td>
+                                <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo  $TID; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
+                              </td>
+                            </tr>
+                          <?php
+                          }
+                          ?>
+
+
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
+
+                    <div class="table-responsive">
+
+                      <table class="table " id="ActivityData1">
+                        <thead>
+                          <tr>
+                            <th>Invoice No</th>
+                            <th>Request Date</th>
+                            <th>Test Name</th>
+                            <th>Amount</th>
+                            <th>Supplier</th>
+                            <th>Country</th>
+                            <th>Status</th>
+                            <th>Css No</th>
+                            <th>lab Proceed Date</th>
+                            <th>Request Status</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          <?php
+                          //  print_r($getApproved);
+                          // print_r($getApproved);
+                          ?>
+
+                          <?php
+                          foreach ($getApproved as $Key) {
+                            $InvoiceId = $Key['Invoice_ID'];
+                            $testNames = explode(",", $Key['TestName']);
+                            $TID = $Key['TID'];
+                          ?>
+                            <tr>
+                              <td><?php echo $InvoiceId; ?> </td>
+                              <td><?php echo $Key['RequestDate']; ?> </td>
+                              <td>
+                                <?php foreach ($testNames as $test) {
+                                ?>
+
+                                  <span class="badge badge-info p-1"><?php echo $test; ?></span>
+                                <?php  } ?>
+                              </td>
+                              <td><?php echo $Key['Amount']; ?> </td>
+                              <td><?php echo $Key['Supplier']; ?> </td>
+                              <td><?php echo $Key['Country']; ?> </td>
+                              <td> <span class="badge badge-danger p-1">Proceed</span></td>
+                              <td><?php echo $Key['CSSNo']; ?> </td>
+                              <td><?php echo $Key['labProceedDate']; ?> </td>
+                              <td><span class="badge badge-primary p-1"><?php echo $Key['Request_Status']; ?> </span></td>
+
+                            </tr>
+                          <?php
+                          }
+                          ?>
+
+
+
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </div>
+                  <div class="tab-pane fade" id="tab_direction-3" role="tabpanel">
+
+                    <div class="table-responsive">
+
+                      <table class="table " id="ActivityData1">
+                        <thead>
+                          <tr>
+                            <th>Invoice No</th>
+                            <th>Request Date</th>
+                            <th>Test Name</th>
+                            <th>Amount</th>
+                            <th>Supplier</th>
+                            <th>Country</th>
+                            <th>Status</th>
+                            <th>Css No</th>
+                            <th>lab Proceed Date</th>
+                            <th>Request Status</th>
+                            <th>Add Css No</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          <?php
+                          //  print_r($getApproved);
+                          // print_r($getApproved);
+                          ?>
+
+                          <?php
+                          foreach ($getApproved as $Key) {
+                            $InvoiceId = $Key['Invoice_ID'];
+                            $testNames = explode(",", $Key['TestName']);
+                            $TID = $Key['TID'];
+                          ?>
+                            <tr>
+                              <td><?php echo $InvoiceId; ?> </td>
+                              <td><?php echo $Key['RequestDate']; ?> </td>
+                              <td>
+                                <?php foreach ($testNames as $test) {
+                                ?>
+
+                                  <span class="badge badge-info p-1"><?php echo $test; ?></span>
+                                <?php  } ?>
+                              </td>
+                              <td><?php echo $Key['Amount']; ?> </td>
+                              <td><?php echo $Key['Supplier']; ?> </td>
+                              <td><?php echo $Key['Country']; ?> </td>
+                              <td> <span class="badge badge-danger p-1">Proceed</span></td>
+                              <td><?php echo $Key['CSSNo']; ?> </td>
+                              <td><?php echo $Key['labProceedDate']; ?> </td>
+                              <td><span class="badge badge-primary p-1"><?php echo $Key['Request_Status']; ?> </span></td>
+                              <td>
+                                <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo  $TID; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
+                              </td>
+                            </tr>
+                          <?php
+                          }
+                          ?>
+
+
+
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+              <div class="panel-content">
+
+
+
+
+
+
+
+              </div>
+
+            </div>
+
+          </div>
 
 
 
@@ -282,7 +347,7 @@ if (!$this->session->has_userdata('user_id')) {
             </div>
           <?php } ?>
 
-         
+
 
       </div>
     </div>
@@ -293,83 +358,7 @@ if (!$this->session->has_userdata('user_id')) {
   </div>
 
   <!-- Packages Modal -->
-  <div id="packageModal" class="modal fade ">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header" style="background-color: rgb(83,78,130);color:white;font-weight:bolder">
-          <h1 class="modal-title" id="changeTitle">Add New Package</h1>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true" style="color: white;">&times;</span>
-          </button>
-        </div>
 
-
-        <div class="modal-body">
-          <form name="formDepartment" id="myformDepartment" method="POST" enctype="multipart/form-data" action="<?php echo base_url(
-                                                                                                                  ''
-                                                                                                                ); ?>FIT/submit">
-            <input type="hidden" name="Id" id="idvalue1" value="">
-
-            <div class="row" style="display:flex">
-
-
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label class="control-label">Type:</label>
-                  <select class="form-control" id="TypePkg" name="TestID">
-                    <option value="">Select one of the following</option>
-                    <?php foreach ($TestType as $test) : ?>
-                      <option value="<?php echo $test['TestID']; ?>"><?php echo $test['Name']; ?></option>
-                    <?php endforeach; ?>
-                  </select>
-
-
-
-                </div>
-              </div>
-
-              <div class="col-md-12">
-
-                <label class="form-contol" for="customFile">Name:</label>
-                <input type="text" class="form-control" id="PName" name="Name">
-
-              </div>
-              <div class="col-md-12">
-
-                <label class="form-contol" for="customFile">Method:</label>
-                <input type="text" class="form-control" id="PMethod" name="Method">
-
-              </div>
-              <div class="col-md-12 mt-4">
-
-                <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="pstatus" name="Status">
-
-                  <label class="custom-control-label" for="pstatus">Status</label>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="row">
-              <div class="form-group">
-                <div>
-                  <button type="button" class="btn btn-primary m-3" id="savepkg">Save</button>
-                  <button type="button" class="btn btn-primary m-3" id="editpkg" style="display: none;">Update</button>
-
-                  <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
-
-                  <!-- <button class="btn btn-danger" data-dismiss="modal" style="display:inline-block;">Close</button> -->
-
-                </div>
-              </div>
-            </div>
-          </form>
-
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div>
 
 
   <script src="<?php echo base_url(); ?>/assets/js//jquery.min.js" type="text/javascript"></script>
@@ -652,13 +641,14 @@ if (!$this->session->has_userdata('user_id')) {
     });
 
     $(".updatebtn").click(function(e) {
-        $('#Modaldepartment').modal('toggle');
+      $('#Modaldepartment').modal('toggle');
 
-        let id = this.id;
-            let split_value = id.split(".");
-            var TID = split_value[1];
-            //alert(TID);
-            $('#IdValue').val(TID);
+      let id = this.id;
+      let split_value = id.split(".");
+      var TID = split_value[1];
+      //alert(TID);
+      $('#IdValue').val(TID);
+
 
     });
 
@@ -826,26 +816,26 @@ if (!$this->session->has_userdata('user_id')) {
     });
 
     $('#save').click(function(e) {
-    
+
       e.preventDefault();
-            let TID = $('#IdValue').val();
-           
-            let CSSNo = $('#cssNo').val();
-    
+      let TID = $('#IdValue').val();
+
+      let CSSNo = $('#cssNo').val();
 
 
-            let url = "<?php echo base_url(''); ?>PendingRequest/AddCssNo"
 
-            $.post(url, {
-                    'TID': TID,
-                    'CSSNo': CSSNo,
-                   
-                },
-                function(data, status) {
-                    alert("Data Updated Successfully! Click on Ok to Reload the Page")
-                    window.location.reload();
+      let url = "<?php echo base_url(''); ?>PendingRequest/AddCssNo"
 
-                });
+      $.post(url, {
+          'TID': TID,
+          'CSSNo': CSSNo,
+
+        },
+        function(data, status) {
+          alert("Data Updated Successfully! Click on Ok to Reload the Page")
+          window.location.reload();
+
+        });
 
 
     });
@@ -2035,313 +2025,271 @@ if (!$this->session->has_userdata('user_id')) {
 
 
     });
-    var flot_toggle = function()
+    var flot_toggle = function() {
+
+      var data = [{
+          label: "Target Profit",
+          data: dataTargetProfit,
+          color: color.info._400,
+          bars: {
+            show: true,
+            align: "center",
+            barWidth: 30 * 30 * 60 * 1000 * 80,
+            lineWidth: 0,
+            /*fillColor: {
+            	colors: [color.primary._500, color.primary._900]
+            },*/
+            fillColor: {
+              colors: [{
+                  opacity: 0.9
+                },
                 {
-
-                    var data = [
-                    {
-                        label: "Target Profit",
-                        data: dataTargetProfit,
-                        color: color.info._400,
-                        bars:
-                        {
-                            show: true,
-                            align: "center",
-                            barWidth: 30 * 30 * 60 * 1000 * 80,
-                            lineWidth: 0,
-                            /*fillColor: {
-                            	colors: [color.primary._500, color.primary._900]
-                            },*/
-                            fillColor:
-                            {
-                                colors: [
-                                {
-                                    opacity: 0.9
-                                },
-                                {
-                                    opacity: 0.1
-                                }]
-                            }
-                        },
-                        highlightColor: 'rgba(255,255,255,0.3)',
-                        shadowSize: 0
-                    },
-                    {
-                        label: "Actual Profit",
-                        data: dataProfit,
-                        color: color.warning._500,
-                        lines:
-                        {
-                            show: true,
-                            lineWidth: 2
-                        },
-                        shadowSize: 0,
-                        points:
-                        {
-                            show: true
-                        }
-                    },
-                    {
-                        label: "User Signups",
-                        data: dataSignups,
-                        color: color.success._500,
-                        lines:
-                        {
-                            show: true,
-                            lineWidth: 2
-                        },
-                        shadowSize: 0,
-                        points:
-                        {
-                            show: true
-                        }
-                    }]
-
-                    var options = {
-                        grid:
-                        {
-                            hoverable: true,
-                            clickable: true,
-                            tickColor: '#f2f2f2',
-                            borderWidth: 1,
-                            borderColor: '#f2f2f2'
-                        },
-                        tooltip: true,
-                        tooltipOpts:
-                        {
-                            cssClass: 'tooltip-inner',
-                            defaultTheme: false
-                        },
-                        xaxis:
-                        {
-                            mode: "time"
-                        },
-                        yaxes:
-                        {
-                            tickFormatter: function(val, axis)
-                            {
-                                return "$" + val;
-                            },
-                            max: 1200
-                        }
-
-                    };
-
-                    var plot2 = null;
-
-                    function plotNow()
-                    {
-                        var d = [];
-                        $("#js-checkbox-toggles").find(':checkbox').each(function()
-                        {
-                            if ($(this).is(':checked'))
-                            {
-                                d.push(data[$(this).attr("name").substr(4, 1)]);
-                            }
-                        });
-                        if (d.length > 0)
-                        {
-                            if (plot2)
-                            {
-                                plot2.setData(d);
-                                plot2.draw();
-                            }
-                            else
-                            {
-                                plot2 = $.plot($("#flot-toggles"), d, options);
-                            }
-                        }
-
-                    };
-
-                    $("#js-checkbox-toggles").find(':checkbox').on('change', function()
-                    {
-                        plotNow();
-                    });
-                    plotNow()
+                  opacity: 0.1
                 }
-                flot_toggle();
+              ]
+            }
+          },
+          highlightColor: 'rgba(255,255,255,0.3)',
+          shadowSize: 0
+        },
+        {
+          label: "Actual Profit",
+          data: dataProfit,
+          color: color.warning._500,
+          lines: {
+            show: true,
+            lineWidth: 2
+          },
+          shadowSize: 0,
+          points: {
+            show: true
+          }
+        },
+        {
+          label: "User Signups",
+          data: dataSignups,
+          color: color.success._500,
+          lines: {
+            show: true,
+            lineWidth: 2
+          },
+          shadowSize: 0,
+          points: {
+            show: true
+          }
+        }
+      ]
 
-                 /* flot area */
-                 var flotArea = $.plot($('#flot-area'), [
-                {
-                    data: dataSet1,
-                    label: 'New Customer',
-                    color: color.success._200
-                },
-                {
-                    data: dataSet2,
-                    label: 'Returning Customer',
-                    color: color.info._200
-                }],
-                {
-                    series:
-                    {
-                        lines:
-                        {
-                            show: true,
-                            lineWidth: 2,
-                            fill: true,
-                            fillColor:
-                            {
-                                colors: [
-                                {
-                                    opacity: 0
-                                },
-                                {
-                                    opacity: 0.5
-                                }]
-                            }
-                        },
-                        shadowSize: 0
-                    },
-                    points:
-                    {
-                        show: true,
-                    },
-                    legend:
-                    {
-                        noColumns: 1,
-                        position: 'nw'
-                    },
-                    grid:
-                    {
-                        hoverable: true,
-                        clickable: true,
-                        borderColor: '#ddd',
-                        tickColor: '#ddd',
-                        aboveData: true,
-                        borderWidth: 0,
-                        labelMargin: 5,
-                        backgroundColor: 'transparent'
-                    },
-                    yaxis:
-                    {
-                        tickLength: 1,
-                        min: 0,
-                        max: 15,
-                        color: '#eee',
-                        font:
-                        {
-                            size: 0,
-                            color: '#999'
-                        }
-                    },
-                    xaxis:
-                    {
-                        tickLength: 1,
-                        color: '#eee',
-                        font:
-                        {
-                            size: 10,
-                            color: '#999'
-                        }
-                    }
+      var options = {
+        grid: {
+          hoverable: true,
+          clickable: true,
+          tickColor: '#f2f2f2',
+          borderWidth: 1,
+          borderColor: '#f2f2f2'
+        },
+        tooltip: true,
+        tooltipOpts: {
+          cssClass: 'tooltip-inner',
+          defaultTheme: false
+        },
+        xaxis: {
+          mode: "time"
+        },
+        yaxes: {
+          tickFormatter: function(val, axis) {
+            return "$" + val;
+          },
+          max: 1200
+        }
 
-                });
+      };
 
-                var flotVisit = $.plot('#flotVisit', [
-                {
-                    data: [
-                        [3, 0],
-                        [4, 1],
-                        [5, 3],
-                        [6, 3],
-                        [7, 10],
-                        [8, 11],
-                        [9, 12],
-                        [10, 9],
-                        [11, 12],
-                        [12, 8],
-                        [13, 5]
-                    ],
-                    color: color.success._200
-                },
-                {
-                    data: [
-                        [1, 0],
-                        [2, 0],
-                        [3, 1],
-                        [4, 2],
-                        [5, 2],
-                        [6, 5],
-                        [7, 8],
-                        [8, 12],
-                        [9, 9],
-                        [10, 11],
-                        [11, 5]
-                    ],
-                    color: color.info._200
-                }],
-                {
-                    series:
-                    {
-                        shadowSize: 0,
-                        lines:
-                        {
-                            show: true,
-                            lineWidth: 2,
-                            fill: true,
-                            fillColor:
-                            {
-                                colors: [
-                                {
-                                    opacity: 0
-                                },
-                                {
-                                    opacity: 0.12
-                                }]
-                            }
-                        }
-                    },
-                    grid:
-                    {
-                        borderWidth: 0
-                    },
-                    yaxis:
-                    {
-                        min: 0,
-                        max: 15,
-                        tickColor: '#ddd',
-                        ticks: [
-                            [0, ''],
-                            [5, '100K'],
-                            [10, '200K'],
-                            [15, '300K']
-                        ],
-                        font:
-                        {
-                            color: '#444',
-                            size: 10
-                        }
-                    },
-                    xaxis:
-                    {
+      var plot2 = null;
 
-                        tickColor: '#eee',
-                        ticks: [
-                            [2, '2am'],
-                            [3, '3am'],
-                            [4, '4am'],
-                            [5, '5am'],
-                            [6, '6am'],
-                            [7, '7am'],
-                            [8, '8am'],
-                            [9, '9am'],
-                            [10, '1pm'],
-                            [11, '2pm'],
-                            [12, '3pm'],
-                            [13, '4pm']
-                        ],
-                        font:
-                        {
-                            color: '#999',
-                            size: 9
-                        }
-                    }
-                });
+      function plotNow() {
+        var d = [];
+        $("#js-checkbox-toggles").find(':checkbox').each(function() {
+          if ($(this).is(':checked')) {
+            d.push(data[$(this).attr("name").substr(4, 1)]);
+          }
+        });
+        if (d.length > 0) {
+          if (plot2) {
+            plot2.setData(d);
+            plot2.draw();
+          } else {
+            plot2 = $.plot($("#flot-toggles"), d, options);
+          }
+        }
 
+      };
 
+      $("#js-checkbox-toggles").find(':checkbox').on('change', function() {
+        plotNow();
+      });
+      plotNow()
+    }
+    flot_toggle();
+
+    /* flot area */
+    var flotArea = $.plot($('#flot-area'), [{
+        data: dataSet1,
+        label: 'New Customer',
+        color: color.success._200
+      },
+      {
+        data: dataSet2,
+        label: 'Returning Customer',
+        color: color.info._200
+      }
+    ], {
+      series: {
+        lines: {
+          show: true,
+          lineWidth: 2,
+          fill: true,
+          fillColor: {
+            colors: [{
+                opacity: 0
+              },
+              {
+                opacity: 0.5
+              }
+            ]
+          }
+        },
+        shadowSize: 0
+      },
+      points: {
+        show: true,
+      },
+      legend: {
+        noColumns: 1,
+        position: 'nw'
+      },
+      grid: {
+        hoverable: true,
+        clickable: true,
+        borderColor: '#ddd',
+        tickColor: '#ddd',
+        aboveData: true,
+        borderWidth: 0,
+        labelMargin: 5,
+        backgroundColor: 'transparent'
+      },
+      yaxis: {
+        tickLength: 1,
+        min: 0,
+        max: 15,
+        color: '#eee',
+        font: {
+          size: 0,
+          color: '#999'
+        }
+      },
+      xaxis: {
+        tickLength: 1,
+        color: '#eee',
+        font: {
+          size: 10,
+          color: '#999'
+        }
+      }
+
+    });
+
+    var flotVisit = $.plot('#flotVisit', [{
+        data: [
+          [3, 0],
+          [4, 1],
+          [5, 3],
+          [6, 3],
+          [7, 10],
+          [8, 11],
+          [9, 12],
+          [10, 9],
+          [11, 12],
+          [12, 8],
+          [13, 5]
+        ],
+        color: color.success._200
+      },
+      {
+        data: [
+          [1, 0],
+          [2, 0],
+          [3, 1],
+          [4, 2],
+          [5, 2],
+          [6, 5],
+          [7, 8],
+          [8, 12],
+          [9, 9],
+          [10, 11],
+          [11, 5]
+        ],
+        color: color.info._200
+      }
+    ], {
+      series: {
+        shadowSize: 0,
+        lines: {
+          show: true,
+          lineWidth: 2,
+          fill: true,
+          fillColor: {
+            colors: [{
+                opacity: 0
+              },
+              {
+                opacity: 0.12
+              }
+            ]
+          }
+        }
+      },
+      grid: {
+        borderWidth: 0
+      },
+      yaxis: {
+        min: 0,
+        max: 15,
+        tickColor: '#ddd',
+        ticks: [
+          [0, ''],
+          [5, '100K'],
+          [10, '200K'],
+          [15, '300K']
+        ],
+        font: {
+          color: '#444',
+          size: 10
+        }
+      },
+      xaxis: {
+
+        tickColor: '#eee',
+        ticks: [
+          [2, '2am'],
+          [3, '3am'],
+          [4, '4am'],
+          [5, '5am'],
+          [6, '6am'],
+          [7, '7am'],
+          [8, '8am'],
+          [9, '9am'],
+          [10, '1pm'],
+          [11, '2pm'],
+          [12, '3pm'],
+          [13, '4pm']
+        ],
+        font: {
+          color: '#999',
+          size: 9
+        }
+      }
+    });
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js" integrity="sha512-gtII6Z4fZyONX9GBrF28JMpodY4vIOI0lBjAtN/mcK7Pz19Mu1HHIRvXH6bmdChteGpEccxZxI0qxXl9anY60w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 

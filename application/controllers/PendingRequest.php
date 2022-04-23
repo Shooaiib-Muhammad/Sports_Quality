@@ -15,9 +15,10 @@ class PendingRequest extends CI_Controller {
     public function pendingRequest(){
 
         $data['getpending']=$this->Pending->getPending();
-        $data['getApproved']=$this->Approved->getApproved();
+        $data['getApproved']=$this->Pending->getApproved();
         $this->load->view('FIT/pendingRequest',$data);
     }
+    
     public function AddCssNo(){
         $ID=$_POST['TID'];
         $CssNo=$_POST['CSSNo'];

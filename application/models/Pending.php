@@ -7,8 +7,15 @@ class Pending extends CI_Model
     {
         $query = $this->db->query("SELECT        view_Outward_transaction.*
         FROM            dbo.view_Outward_transaction
-        WHERE        (labStatus IS NULL)");
+        WHERE        (labStatus IS NULL) And (AccountsStatus=1)");
       return  $query->result_array();
+    }
+    public function getApproved()
+    {
+        $query = $this->db->query("SELECT        view_Outward_transaction.*
+        FROM            dbo.view_Outward_transaction
+        WHERE        (labStatus=1)");
+        return  $query->result_array();
     }
 public function AddCSSNo($ID,$CssNo){
     $Date= date("Y/m/d");
@@ -26,4 +33,11 @@ public function AddCSSNo($ID,$CssNo){
     }
 
 }
+    public function pendingAccounts()
+    {
+        $query = $this->db->query("SELECT        view_Outward_transaction.*
+        FROM            dbo.view_Outward_transaction
+        WHERE        (AccountsStatus IS NULL) and (labStatus IS NULL)");
+        return  $query->result_array();
+    }
 }
