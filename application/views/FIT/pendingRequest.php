@@ -112,7 +112,7 @@ if (!$this->session->has_userdata('user_id')) {
                 <ul class="nav nav-pills" role="tablist">
                   <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Pending</a></li>
                   <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Approved</a></li>
-                  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Accounts Pending</a></li>
+                  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3">Accounts Pending</a></li>
 
                 </ul>
 
@@ -160,7 +160,7 @@ if (!$this->session->has_userdata('user_id')) {
                               <td><?php echo $Key['Amount']; ?> </td>
                               <td><?php echo $Key['Supplier']; ?> </td>
                               <td><?php echo $Key['Country']; ?> </td>
-                              <td> <span class="badge badge-danger p-1">Pending</span></td>
+                              <td> <span class="badge badge-danger p-1"><?php echo $Key['Request_Status']; ?> </span></td>
                               <td>
                                 <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo  $TID; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
                               </td>
@@ -188,11 +188,12 @@ if (!$this->session->has_userdata('user_id')) {
                             <th>Amount</th>
                             <th>Supplier</th>
                             <th>Country</th>
-                            <th>Status</th>
-                            <th>Css No</th>
-                            <th>lab Proceed Date</th>
-                            <th>Request Status</th>
 
+                            <th>Css No</th>
+                            <th>Sample Received Date</th>
+
+                            <th>Request Status</th>
+                            <th>Proceed to Lab</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -207,6 +208,7 @@ if (!$this->session->has_userdata('user_id')) {
                             $InvoiceId = $Key['Invoice_ID'];
                             $testNames = explode(",", $Key['TestName']);
                             $TID = $Key['TID'];
+                            $labStatus = $Key['labStatus'];
                           ?>
                             <tr>
                               <td><?php echo $InvoiceId; ?> </td>
@@ -221,11 +223,24 @@ if (!$this->session->has_userdata('user_id')) {
                               <td><?php echo $Key['Amount']; ?> </td>
                               <td><?php echo $Key['Supplier']; ?> </td>
                               <td><?php echo $Key['Country']; ?> </td>
-                              <td> <span class="badge badge-danger p-1">Proceed</span></td>
-                              <td><?php echo $Key['CSSNo']; ?> </td>
-                              <td><?php echo $Key['labProceedDate']; ?> </td>
-                              <td><span class="badge badge-primary p-1"><?php echo $Key['Request_Status']; ?> </span></td>
 
+                              <td><?php echo $Key['CSSNo']; ?> </td>
+                              <td><?php echo $Key['MaterialteceivedDate']; ?> </td>
+                              <td><span class="badge badge-primary p-1"><?php echo $Key['Request_Status']; ?> </span></td>
+                              <td>
+                                <?php
+                                if ($labStatus == 0) {
+                                ?>
+                                  <button type="button" style="display: inline-block;" class="btn btn-info btn-xs labproceed" id="btn.<?php echo  $TID ?>">Proceed to Lab</button>
+                                <?php
+                                } else {
+                                ?>
+                                  <span class="badge badge-success p-1">Proceed to Lab</span>
+                                <?php
+                                }
+                                ?>
+
+                              </td>
                             </tr>
                           <?php
                           }
@@ -242,7 +257,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                     <div class="table-responsive">
 
-                      <table class="table " id="ActivityData1">
+                      <table class="table " id="ActivityData2">
                         <thead>
                           <tr>
                             <th>Invoice No</th>
@@ -251,9 +266,7 @@ if (!$this->session->has_userdata('user_id')) {
                             <th>Amount</th>
                             <th>Supplier</th>
                             <th>Country</th>
-                            <th>Status</th>
-                            <th>Css No</th>
-                            <th>lab Proceed Date</th>
+
                             <th>Request Status</th>
                             <th>Add Css No</th>
 
@@ -267,7 +280,7 @@ if (!$this->session->has_userdata('user_id')) {
                           ?>
 
                           <?php
-                          foreach ($getApproved as $Key) {
+                          foreach ($pendingAccounts as $Key) {
                             $InvoiceId = $Key['Invoice_ID'];
                             $testNames = explode(",", $Key['TestName']);
                             $TID = $Key['TID'];
@@ -285,9 +298,7 @@ if (!$this->session->has_userdata('user_id')) {
                               <td><?php echo $Key['Amount']; ?> </td>
                               <td><?php echo $Key['Supplier']; ?> </td>
                               <td><?php echo $Key['Country']; ?> </td>
-                              <td> <span class="badge badge-danger p-1">Proceed</span></td>
-                              <td><?php echo $Key['CSSNo']; ?> </td>
-                              <td><?php echo $Key['labProceedDate']; ?> </td>
+
                               <td><span class="badge badge-primary p-1"><?php echo $Key['Request_Status']; ?> </span></td>
                               <td>
                                 <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo  $TID; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
@@ -371,6 +382,39 @@ if (!$this->session->has_userdata('user_id')) {
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script>
+    $(".labproceed").click(function(e) {
+      //$('#Modaldepartment').modal('toggle');
+
+      let id = this.id;
+      let split_value = id.split(".");
+      var TID = split_value[1];
+      //alert(TID);
+      // $('#IdValue').val(TID);
+      // e.preventDefault();
+      // let TID = $('#IdValue').val();
+
+      // let CSSNo = $('#cssNo').val();
+
+
+      var proceed = confirm("Are you sure you want to Proceed to Lab ?");
+      if (proceed) {
+        let url = "<?php echo base_url(''); ?>PendingRequest/proceedtolab"
+
+        $.post(url, {
+            'TID': TID,
+
+
+          },
+          function(data, status) {
+            alert("Data Updated Successfully! Click on Ok to Reload the Page")
+            window.location.reload();
+
+          });
+      } else {
+
+        alert("undo Cancel");
+      }
+    });
     $(document).ready(function() {
       //alert('heloo');
       $('#ActivityData').dataTable({
@@ -511,7 +555,74 @@ if (!$this->session->has_userdata('user_id')) {
       });
 
 
+      $('#ActivityData2').dataTable({
+        responsive: false,
+        lengthChange: false,
+        dom:
+          /*	--- Layout Structure 
+          	--- Options
+          	l	-	length changing input control
+          	f	-	filtering input
+          	t	-	The table!
+          	i	-	Table information summary
+          	p	-	pagination control
+          	r	-	processing display element
+          	B	-	buttons
+          	R	-	ColReorder
+          	S	-	Select
 
+          	--- Markup
+          	< and >				- div element
+          	<"class" and >		- div with a class
+          	<"#id" and >		- div with an ID
+          	<"#id.class" and >	- div with an ID and a class
+
+          	--- Further reading
+          	https://datatables.net/reference/option/dom
+          	--------------------------------------
+           */
+          "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+          "<'row'<'col-sm-12'tr>>" +
+          "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+        buttons: [
+          /*{
+          	extend:    'colvis',
+          	text:      'Column Visibility',
+          	titleAttr: 'Col visibility',
+          	className: 'mr-sm-3'
+          },*/
+          {
+            extend: 'pdfHtml5',
+            text: 'PDF',
+            titleAttr: 'Generate PDF',
+            className: 'btn-outline-danger btn-sm mr-1'
+          },
+          {
+            extend: 'excelHtml5',
+            text: 'Excel',
+            titleAttr: 'Generate Excel',
+            className: 'btn-outline-success btn-sm mr-1'
+          },
+          {
+            extend: 'csvHtml5',
+            text: 'CSV',
+            titleAttr: 'Generate CSV',
+            className: 'btn-outline-primary btn-sm mr-1'
+          },
+          {
+            extend: 'copyHtml5',
+            text: 'Copy',
+            titleAttr: 'Copy to clipboard',
+            className: 'btn-outline-primary btn-sm mr-1'
+          },
+          {
+            extend: 'print',
+            text: 'Print',
+            titleAttr: 'Print Table',
+            className: 'btn-outline-primary btn-sm'
+          }
+        ]
+      });
 
 
       $('#datatable').dataTable({
@@ -817,69 +928,80 @@ if (!$this->session->has_userdata('user_id')) {
 
     $('#save').click(function(e) {
 
-      e.preventDefault();
-      let TID = $('#IdValue').val();
+          e.preventDefault();
+          let TID = $('#IdValue').val();
 
-      let CSSNo = $('#cssNo').val();
+          let CSSNo = $('#cssNo').val();
+          let lenghofid = $('#cssNo').val().length
+          //alert(lenghofid);
+          var proceed = confirm("Are you sure you want to Add Css NO ?");
+          if (proceed) {
+            if (lenghofid == 0) {
+              alert('Enter CSS NO')
+
+            } else {
+              let url = "<?php echo base_url(''); ?>PendingRequest/AddCssNo"
+
+              $.post(url, {
+                  'TID': TID,
+                  'CSSNo': CSSNo,
+
+                },
+                function(data, status) {
+                  alert("Data Updated Successfully! Click on Ok to Reload the Page")
+                  window.location.reload();
+
+                });
+            }
+          }
+          else{
+            alert("Unno Cancel")
+          }
 
 
 
-      let url = "<?php echo base_url(''); ?>PendingRequest/AddCssNo"
+          });
 
-      $.post(url, {
-          'TID': TID,
-          'CSSNo': CSSNo,
+        $('#savepkg').click(function(e) {
+          //  alert("I am here");
+          let Type = $("#TypePkg").val();
+          let Name = $("#PName").val();
+          let Method = $("#PMethod").val();
+          let status = $("#pstatus").val();
 
-        },
-        function(data, status) {
-          alert("Data Updated Successfully! Click on Ok to Reload the Page")
-          window.location.reload();
+          //let mcs = $("#mcs").prop('checked');
+          //alert(GDesc);
+          data = [
+            Type,
+            Name,
+            Method,
+            status
+
+          ]
+
+
+
+          url = "<?php echo base_url(''); ?>FIT/submitPackage/"
+          var fd = new FormData();
+          // var files = $("#avatar")[0].files[0];
+          // fd.append('file', files);
+          fd.append('data', data)
+
+          $.ajax({
+            url: url,
+            type: 'post',
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+              alert("Data Inserted Successfully")
+              location.reload();
+
+            }
+          });
+
 
         });
-
-
-    });
-
-    $('#savepkg').click(function(e) {
-      //  alert("I am here");
-      let Type = $("#TypePkg").val();
-      let Name = $("#PName").val();
-      let Method = $("#PMethod").val();
-      let status = $("#pstatus").val();
-
-      //let mcs = $("#mcs").prop('checked');
-      //alert(GDesc);
-      data = [
-        Type,
-        Name,
-        Method,
-        status
-
-      ]
-
-
-
-      url = "<?php echo base_url(''); ?>FIT/submitPackage/"
-      var fd = new FormData();
-      // var files = $("#avatar")[0].files[0];
-      // fd.append('file', files);
-      fd.append('data', data)
-
-      $.ajax({
-        url: url,
-        type: 'post',
-        data: fd,
-        contentType: false,
-        processData: false,
-        success: function(data) {
-          alert("Data Inserted Successfully")
-          location.reload();
-
-        }
-      });
-
-
-    });
   </script>
   <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
   <!-- BEGIN Page Footer -->

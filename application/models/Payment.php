@@ -22,7 +22,7 @@ public function verify($ID){
     // $query = $this->db->query("update Set CSSNo='$CssNo' , LabStatus=1,ProceedDate='$Date' Where Id= '$ID'");
     
     $query = $this->db->query("update  dbo . tbl_Outward_Transaction
-      Set  AccountsStatus=1,AccountsverfiyDate='$Date',Request_Status='Payment Proceed' Where TID= '$ID'");
+      Set  AccountsStatus=1,AccountsverfiyDate='$Date',Request_Status='Accounts Verfication Done' Where TID= '$ID'");
    // return  $query->result_array();
 
     if($query){
@@ -33,10 +33,13 @@ public function verify($ID){
     }
 
 }
+  
+    
 public function pendingEvidance(){
     $query = $this->db->query("SELECT        view_Outward_transaction.*
         FROM            dbo.view_Outward_transaction
         WHERE        (Evidence_pic IS NULL) And  (AccountsStatus IS NULL)");
     return  $query->result_array();
 }
+
 }

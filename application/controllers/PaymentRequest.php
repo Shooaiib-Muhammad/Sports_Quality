@@ -32,4 +32,6 @@ class PaymentRequest extends CI_Controller {
    
         $this->load->view('FIT/paymentRequest', $data);
     }
+   
+    
 }

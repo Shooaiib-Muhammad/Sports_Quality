@@ -175,7 +175,7 @@ if (!$this->session->has_userdata('user_id')) {
                             <th>Request Status</th>
 
                           </tr>
-                        </thead>s
+                        </thead>
                         <tbody>
 
                           <?php
@@ -231,7 +231,7 @@ if (!$this->session->has_userdata('user_id')) {
                             <th>Amount</th>
                             <th>Supplier</th>
                             <th>Country</th>
-                       
+
                             <th>Request Status</th>
                             <th>Accounts Verfication</th>
                           </tr>
@@ -263,7 +263,7 @@ if (!$this->session->has_userdata('user_id')) {
                               <td>$ <?php echo $Key['Amount']; ?> </td>
                               <td><?php echo $Key['Supplier']; ?> </td>
                               <td><?php echo $Key['Country']; ?> </td>
-                        
+
                               <td><span class="badge badge-primary p-1"><?php echo $Key['Request_Status']; ?> </span></td>
                               <td>
                                 <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo  $TID ?>">Verify</button>
@@ -684,7 +684,7 @@ if (!$this->session->has_userdata('user_id')) {
     });
 
     $(".updatebtn").click(function(e) {
-      $('#Modaldepartment').modal('toggle');
+      //$('#Modaldepartment').modal('toggle');
 
       let id = this.id;
       let split_value = id.split(".");
@@ -696,28 +696,34 @@ if (!$this->session->has_userdata('user_id')) {
 
       // let CSSNo = $('#cssNo').val();
 
+      var proceed = confirm("Are you sure you want to verify?");
+      if (proceed) {
+
+        let url = "<?php echo base_url(''); ?>PaymentRequest/verify"
+
+        $.post(url, {
+            'TID': TID,
 
 
-      let url = "<?php echo base_url(''); ?>PaymentRequest/verify"
+          },
+          function(data, status) {
+            alert("Data Updated Successfully! Click on Ok to Reload the Page")
+            window.location.reload();
 
-      $.post(url, {
-          'TID': TID,
-
-
-        },
-        function(data, status) {
-          alert("Data Updated Successfully! Click on Ok to Reload the Page")
-          window.location.reload();
-
-        });
+          });
+      } else {
+        alert("Undo Cancel");
+      }
 
     });
+
     $(".verifybtn").click(function(e) {
       $('#Modaldepartment1').modal('toggle');
       let id = this.id;
       let split_value = id.split(".");
       var TID = split_value[1];
       //alert(TID);
+
       url = "<?php echo base_url(''); ?>UploadResult/getimage";
       $.post(url, {
           'TID': TID

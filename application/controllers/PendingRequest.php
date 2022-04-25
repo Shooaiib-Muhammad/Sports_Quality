@@ -16,9 +16,21 @@ class PendingRequest extends CI_Controller {
 
         $data['getpending']=$this->Pending->getPending();
         $data['getApproved']=$this->Pending->getApproved();
+        
+        $data['pendingAccounts'] = $this->Pending->pendingAccounts();
         $this->load->view('FIT/pendingRequest',$data);
     }
-    
+    public function proceedtolab()
+    {
+        $ID = $_POST['TID'];
+        // $CssNo=$_POST['CSSNo'];
+        $data = $this->Pending->proceedtolab($ID);
+
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
     public function AddCssNo(){
         $ID=$_POST['TID'];
         $CssNo=$_POST['CSSNo'];
