@@ -8,7 +8,7 @@ class RWPD_Model extends CI_Model
   $query = $this->db->query("SELECT        SUM(BallCounter) AS BallCounter, MachineName
         FROM            dbo.view_RWPD_Line_Wise_OutPut
         WHERE        (DateName BETWEEN CONVERT(DATETIME, '$s_date 00:00:00', 102) AND CONVERT(DATETIME, '$e_date 00:00:00', 102))
-        GROUP BY MachineName
+        GROUP BY MachineName ORDER BY MachineName
         ");
   return  $query->result_array();
  }
