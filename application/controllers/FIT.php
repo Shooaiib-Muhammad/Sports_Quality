@@ -100,6 +100,7 @@ class FIT extends CI_Controller
     $allData[9],
     $allData[10],
     $allData[11],
+    $allData[12],
       $pictureFresh
   );
 
@@ -109,6 +110,8 @@ class FIT extends CI_Controller
    ->set_status_header(200)
    ->set_output(json_encode($data));
  }
+
+
  public function submit()
  {
 
@@ -157,6 +160,7 @@ class FIT extends CI_Controller
     $allData[8],
     $allData[9],
     $allData[10],
+    $allData[11],
     $pictureFresh
   );
 

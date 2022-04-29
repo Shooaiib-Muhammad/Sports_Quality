@@ -93,6 +93,18 @@ if (!$this->session->has_userdata('user_id')) {
                       </div>
                       <div class="col-md-4">
 
+                        <div class="form-group">
+                          <label class="control-label">Test Type:</label>
+                          <select class="form-control" id="testType" name="testType">
+                            <option value="">Select one of the following</option>
+                            <option value="Accredited">Accredited</option>
+                            <option value="Non-Accredited">Non-Accredited</option>
+                          </select>
+
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+
                         <label class="form-contol" for="customFile">Test Name:</label>
                         <input type="text" class="form-control" id="Name" name="">
 
@@ -143,6 +155,16 @@ if (!$this->session->has_userdata('user_id')) {
 
                         <label class="form-contol" for="customFile">Sample_Quantity:</label>
                         <input type="text" class="form-control" id="squantity" name="squantity">
+
+                      </div>
+                      <div class="col-md-4">
+
+                       
+
+                      </div>
+                      <div class="col-md-4">
+
+                        
 
                       </div>
                       <div class="col-md-4 d-flex flex-column">
@@ -256,6 +278,7 @@ if (!$this->session->has_userdata('user_id')) {
                             <thead>
                               <tr>
                                 <th>Test NO</th>
+                                <th>Test Type</th>
                                 <th>Name</th>
                                 <th>Type</th>
                                 <th>Test Type</th>
@@ -279,11 +302,11 @@ if (!$this->session->has_userdata('user_id')) {
                               ?>
                                 <tr>
                                   <td><?php echo $TestID; ?> </td>
+                                  <td><?php echo $Key['AType']; ?> </td>
                                   <td><?php echo $Key['Name']; ?> </td>
                                   <td><?php echo $Key['Type']; ?> </td>
                                   <td><?php echo $Key['TestType']; ?> </td>
                                   <td><?php echo $Key['Method']; ?> </td>
-
                                   <td><?php echo $Key['SDays']; ?> </td>
                                   <td><?php echo $Key['PDays']; ?> </td>
                                   <td><?php echo $Key['StandardPrice']; ?> </td>
@@ -699,7 +722,7 @@ if (!$this->session->has_userdata('user_id')) {
       let id = this.id;
       let split_value = id.split(".");
       var TID = split_value[1];
-      //alert(TID);
+     
       url = "<?php echo base_url(''); ?>FIT/gettestData";
       $('#save').css('display', 'none');
       $('#editValue').css('display', 'block');
@@ -710,26 +733,24 @@ if (!$this->session->has_userdata('user_id')) {
         },
         function(data) {
           console.log("Data", data)
+          atype=data[0]['AType'];
+          testResult=atype.trim();
           image = '<?php echo base_url('assets/img/img/') ?>' + data[0]['Image']
           $("#aafaq").attr("src", image);
           $('#IdValue').val(TID);
           $('#Type').val(data[0]['Type']);
           $('#Type1').val(data[0]['TestType']);
+           $('#testType').val(testResult);
           $('#Name').val(data[0].Name);
           $('#Method').val(data[0].Method);
           $("#SDays").val(data[0].SDays);
           $("#PDays").val(data[0].PDays);
           $("#Sprice").val(data[0].StandardPrice);
           $("#PPrice").val(data[0].PremimumPrice);
-          // $("#GPrice").val(data[0].GoldenPrice);
           $("#purpose").val(data[0].Purpose);
           $("#squantity").val(data[0].Sample_Quantity);
-
-          // $("#Ggays").val(data[0].GoldenDays);
-          // $("#SDesc").val(data[0].StandardDesc);
-          // $("#Pdesc").val(data[0].PermimumDesc);
-          // $("#GDesc").val(data[0].GoldenDesc);
           $("#status").val(data[0].status);
+
           if (data[0].Status == 1) {
             $('#status').prop('checked', true);
           } else {
@@ -819,6 +840,7 @@ if (!$this->session->has_userdata('user_id')) {
       let id = $('#IdValue').val();
       let Type = $("#Type").val();
       let Type1 = $("#Type1").val();
+      let testType = $("#testType").val();
       let Name = $("#Name").val();
       let Method = $("#Method").val();
       let SDays = $("#SDays").val();
@@ -827,8 +849,9 @@ if (!$this->session->has_userdata('user_id')) {
       let PPrice = $("#PPrice").val();
       let purpose = $("#purpose").val();
       let squantity = $("#squantity").val();
+      //let AType = $("#AType").val();
       //let image = $("#avatar").val();
-      //alert(SDays);
+      // alert(testType);
 
 
 
@@ -841,6 +864,7 @@ if (!$this->session->has_userdata('user_id')) {
         id,
         Type,
         Type1,
+        testType,
         Name,
         Method,
         SDays,
@@ -910,38 +934,30 @@ if (!$this->session->has_userdata('user_id')) {
       //alert("I am here");
       let Type = $("#Type").val();
       let Type1 = $("#Type1").val();
+      let testType = $("#testType").val();
       let Name = $("#Name").val();
       let Method = $("#Method").val();
       let SDays = $("#SDays").val();
       let PDays = $("#PDays").val();
       let Sprice = $("#Sprice").val();
       let PPrice = $("#PPrice").val();
-      // let Ggays = 0;
-      // let SDesc = $("#SDesc").val();
-      // let Pdesc = $("#Pdesc").val();
       let purpose = $("#purpose").val();
-      let squantity = $("#squantity").val();
-      // let GDesc = 0;
+      let squantity = $("#squantity").val(); 
       let status = $("#status").val();
 
-      //let mcs = $("#mcs").prop('checked');
-      //alert(GDesc);
+      
       data = [
         Type,
         Type1,
+        testType,
         Name,
         Method,
         SDays,
         PDays,
         Sprice,
-        PPrice,
-        // GPrice,
+        PPrice, 
         purpose,
         squantity,
-        // Ggays,
-        // SDesc,
-        // Pdesc,
-        // GDesc,
         status
 
       ]

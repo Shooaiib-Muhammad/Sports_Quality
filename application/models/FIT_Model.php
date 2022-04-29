@@ -46,6 +46,7 @@ public function EditTest(
     $TID,
     $Type,
     $Type1,
+    $testType,
     $Name,
     $Method,
     $SDays,
@@ -57,7 +58,7 @@ public function EditTest(
     $status ,$image
     ){
     $query = $this->db->query("UPDATE    dbo .Tbl_Fit_Lab_Capability 
-            SET   Type  =  '$Type', TestType='$Type1', Name  =  '$Name',Method  =  '$Method',SDays='$SDays' ,PDays = '$PDays' ,StandardPrice='$Sprice' ,PremimumPrice='$PPrice', Purpose ='$purpose', Sample_Quantity='$squantity',Image='$image',Status='$status'
+            SET   Type  =  '$Type', TestType='$Type1', AType =' $testType' ,Name  =  '$Name',Method  =  '$Method',SDays='$SDays' ,PDays = '$PDays' ,StandardPrice='$Sprice' ,PremimumPrice='$PPrice', Purpose ='$purpose', Sample_Quantity='$squantity',Image='$image',Status='$status'
           WHERE  TestID='$TID'");  
 
 }
@@ -65,6 +66,7 @@ public function EditTest(
  public function submit(
    $Type,
    $Type1,
+   $testType,
    $Name,
    $Method,
    $SDays,
@@ -82,6 +84,7 @@ public function EditTest(
         (  
    Type,
    TestType,
+   AType,
 Name,
 Method,
 SDays,
@@ -95,6 +98,7 @@ Sample_Quantity,
   VALUES
         ('$Type',
         '$Type1',
+        '$testType',
    '$Name',
    '$Method',
    '$SDays',

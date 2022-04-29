@@ -622,6 +622,12 @@
 
                     </ul>
                 </li>
+                <li>
+                    <a href="<?php echo base_url('Efficiency') ?>" title="Theme Settings" data-filter-tags="theme settings">
+
+                        <span class="nav-link-text" data-i18n="nav.theme_settings">Efficiency</span>
+                    </a>
+                </li>
 
             </ul>
         <?php } else { ?>
