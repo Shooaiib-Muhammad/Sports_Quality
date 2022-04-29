@@ -95,10 +95,10 @@ $query_builder = TRUE;
 // );
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'avserver',
-	'username' => 'Gear',
-	'password' => 'Waqas@123',
-	'database' => 'ERPFG',
+	'hostname' => 'Server',
+	'username' => 'Ajax',
+	'password' => 'Forward@123',
+	'database' => 'MIS',
 	'dbdriver' => 'sqlsrv',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

@@ -628,7 +628,12 @@
                         <span class="nav-link-text" data-i18n="nav.theme_settings">Efficiency</span>
                     </a>
                 </li>
+                <li>
+                    <a href="<?php echo base_url('RWPD') ?>" title="Theme Settings" data-filter-tags="theme settings">
 
+                        <span class="nav-link-text" data-i18n="nav.theme_settings">RWPD</span>
+                    </a>
+                </li>
             </ul>
         <?php } else { ?>
             <ul id="js-nav-menu" class="nav-menu">
