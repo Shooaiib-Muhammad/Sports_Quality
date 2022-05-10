@@ -618,6 +618,27 @@
                                 <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Upload Result </span>
                             </a>
                         </li>
+                        <li>
+                        <a href="<?php echo base_url(
+                                        ''
+                                    ); ?>MaterialType/getMaterial" title="How it works" data-filter-tags="theme settings how it works">
+                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Material Type </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(
+                                        ''
+                                    ); ?>BagType/getBags" title="How it works" data-filter-tags="theme settings how it works">
+                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Bag Type </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(
+                                        ''
+                                    ); ?>BallType/getBalls" title="How it works" data-filter-tags="theme settings how it works">
+                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Ball Type </span>
+                        </a>
+                    </li>
 
 
                     </ul>
@@ -857,6 +878,28 @@
                                         ''
                                     ); ?>UploadResult/upload" title="How it works" data-filter-tags="theme settings how it works">
                             <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Upload Result </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="<?php echo base_url(
+                                        ''
+                                    ); ?>MaterialType/getMaterial" title="How it works" data-filter-tags="theme settings how it works">
+                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Material Type </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(
+                                        ''
+                                    ); ?>BagType/getBags" title="How it works" data-filter-tags="theme settings how it works">
+                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Ball Type </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(
+                                        ''
+                                    ); ?>BallType/getBalls" title="How it works" data-filter-tags="theme settings how it works">
+                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Bag Type </span>
                         </a>
                     </li>
 

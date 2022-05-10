@@ -15,91 +15,105 @@ class DashboardModel extends CI_Model
                 return $query->result_array();
     }
 public function monthlyOrder(){
-   
+        $Month = date('m');
+        $Year = date('Y');
 
 $query = $this->db
 ->query("SELECT        FactoryCode, SUM(OrderQty) AS OrderQty
 FROM            dbo.View_PO_OrderQty_Sum
 GROUP BY FactoryCode, Month, Year
-HAVING        (Month = 04) AND (Year = 2022)");
+HAVING        (Month = $Month) AND (Year = $Year)");
         return $query->result_array();
    
 }
 public function getMonthtlyOrder_Article_Wise(){
-   
+        $Month = date('m');
+        $Year = date('Y');
 $query = $this->db
 ->query(" SELECT        SUM(dbo.View_PO_OrderQty_Sum.OrderQty) AS OrderQty, dbo.tbl_Pro_Article.ArtCode
 FROM            dbo.View_PO_OrderQty_Sum INNER JOIN
                          dbo.tbl_Pro_Article ON dbo.View_PO_OrderQty_Sum.ClientID = dbo.tbl_Pro_Article.ClientID AND dbo.View_PO_OrderQty_Sum.ModelID = dbo.tbl_Pro_Article.ModelID AND 
                          dbo.View_PO_OrderQty_Sum.ArtID = dbo.tbl_Pro_Article.ArtID
-WHERE        (dbo.View_PO_OrderQty_Sum.FactoryCode = 'B34001') AND (dbo.View_PO_OrderQty_Sum.Year = 2022) AND (dbo.View_PO_OrderQty_Sum.Month = 03)
+WHERE        (dbo.View_PO_OrderQty_Sum.FactoryCode = 'B34001') 
+AND (dbo.View_PO_OrderQty_Sum.Year = $Year) AND (dbo.View_PO_OrderQty_Sum.Month = $Month)
 GROUP BY dbo.tbl_Pro_Article.ArtCode");
         return $query->result_array();
 }
    
 public function getMonthtlyOrder_Article_Wise02(){
-   
+        $Month = date('m');
+        $Year = date('Y');
     $query = $this->db
     ->query(" SELECT        SUM(dbo.View_PO_OrderQty_Sum.OrderQty) AS OrderQty, dbo.tbl_Pro_Article.ArtCode
     FROM            dbo.View_PO_OrderQty_Sum INNER JOIN
                              dbo.tbl_Pro_Article ON dbo.View_PO_OrderQty_Sum.ClientID = dbo.tbl_Pro_Article.ClientID AND dbo.View_PO_OrderQty_Sum.ModelID = dbo.tbl_Pro_Article.ModelID AND 
                              dbo.View_PO_OrderQty_Sum.ArtID = dbo.tbl_Pro_Article.ArtID
-    WHERE        (dbo.View_PO_OrderQty_Sum.FactoryCode = 'B34002') AND (dbo.View_PO_OrderQty_Sum.Year = 2022) AND (dbo.View_PO_OrderQty_Sum.Month = 03)
+    WHERE        (dbo.View_PO_OrderQty_Sum.FactoryCode = 'B34002') AND (dbo.View_PO_OrderQty_Sum.Year = $Year) 
+    AND (dbo.View_PO_OrderQty_Sum.Month =$Month)
     GROUP BY dbo.tbl_Pro_Article.ArtCode");
             return $query->result_array();
     }
     public function getMonthtlyOrder_Article_Wise03(){
-   
+        $Month = date('m');
+        $Year = date('Y');
         $query = $this->db
         ->query(" SELECT        SUM(dbo.View_PO_OrderQty_Sum.OrderQty) AS OrderQty, dbo.tbl_Pro_Article.ArtCode
         FROM            dbo.View_PO_OrderQty_Sum INNER JOIN
                                  dbo.tbl_Pro_Article ON dbo.View_PO_OrderQty_Sum.ClientID = dbo.tbl_Pro_Article.ClientID AND dbo.View_PO_OrderQty_Sum.ModelID = dbo.tbl_Pro_Article.ModelID AND 
                                  dbo.View_PO_OrderQty_Sum.ArtID = dbo.tbl_Pro_Article.ArtID
-        WHERE        (dbo.View_PO_OrderQty_Sum.FactoryCode = 'B34003') AND (dbo.View_PO_OrderQty_Sum.Year = 2022) AND (dbo.View_PO_OrderQty_Sum.Month = 03)
+        WHERE        (dbo.View_PO_OrderQty_Sum.FactoryCode = 'B34003') 
+        AND (dbo.View_PO_OrderQty_Sum.Year = $Year) AND (dbo.View_PO_OrderQty_Sum.Month = $Month)
         GROUP BY dbo.tbl_Pro_Article.ArtCode");
                 return $query->result_array();
         }
         public function getMonthtlyOrder_Article_Wise04(){
-   
+                $Month = date('m');
+                $Year = date('Y');
             $query = $this->db
             ->query(" SELECT        SUM(dbo.View_PO_OrderQty_Sum.OrderQty) AS OrderQty, dbo.tbl_Pro_Article.ArtCode
             FROM            dbo.View_PO_OrderQty_Sum INNER JOIN
                                      dbo.tbl_Pro_Article ON dbo.View_PO_OrderQty_Sum.ClientID = dbo.tbl_Pro_Article.ClientID AND dbo.View_PO_OrderQty_Sum.ModelID = dbo.tbl_Pro_Article.ModelID AND 
                                      dbo.View_PO_OrderQty_Sum.ArtID = dbo.tbl_Pro_Article.ArtID
-            WHERE        (dbo.View_PO_OrderQty_Sum.FactoryCode = 'B34004') AND (dbo.View_PO_OrderQty_Sum.Year = 2022) AND (dbo.View_PO_OrderQty_Sum.Month = 03)
+            WHERE        (dbo.View_PO_OrderQty_Sum.FactoryCode = 'B34004') AND 
+            (dbo.View_PO_OrderQty_Sum.Year = $Year) AND (dbo.View_PO_OrderQty_Sum.Month = $Month)
             GROUP BY dbo.tbl_Pro_Article.ArtCode");
                     return $query->result_array();
             }
             public function getMonthtlyOrder_Article_Wise05(){
-   
+                $Month = date('m');
+                $Year = date('Y');
                 $query = $this->db
                 ->query(" SELECT        SUM(dbo.View_PO_OrderQty_Sum.OrderQty) AS OrderQty, dbo.tbl_Pro_Article.ArtCode
                 FROM            dbo.View_PO_OrderQty_Sum INNER JOIN
                                          dbo.tbl_Pro_Article ON dbo.View_PO_OrderQty_Sum.ClientID = dbo.tbl_Pro_Article.ClientID AND dbo.View_PO_OrderQty_Sum.ModelID = dbo.tbl_Pro_Article.ModelID AND 
                                          dbo.View_PO_OrderQty_Sum.ArtID = dbo.tbl_Pro_Article.ArtID
-                WHERE        (dbo.View_PO_OrderQty_Sum.FactoryCode = 'B34005') AND (dbo.View_PO_OrderQty_Sum.Year = 2022) AND (dbo.View_PO_OrderQty_Sum.Month = 03)
+                WHERE        (dbo.View_PO_OrderQty_Sum.FactoryCode = 'B34005')
+                 AND (dbo.View_PO_OrderQty_Sum.Year = $Year) AND (dbo.View_PO_OrderQty_Sum.Month = $Month)
                 GROUP BY dbo.tbl_Pro_Article.ArtCode");
                         return $query->result_array();
                 }
                 public function getMonthtlyOrder_Article_Wise06(){
-   
+                        $Month = date('m');
+                        $Year = date('Y');
                     $query = $this->db
                     ->query(" SELECT        SUM(dbo.View_PO_OrderQty_Sum.OrderQty) AS OrderQty, dbo.tbl_Pro_Article.ArtCode
                     FROM            dbo.View_PO_OrderQty_Sum INNER JOIN
                                              dbo.tbl_Pro_Article ON dbo.View_PO_OrderQty_Sum.ClientID = dbo.tbl_Pro_Article.ClientID AND dbo.View_PO_OrderQty_Sum.ModelID = dbo.tbl_Pro_Article.ModelID AND 
                                              dbo.View_PO_OrderQty_Sum.ArtID = dbo.tbl_Pro_Article.ArtID
-                    WHERE        (dbo.View_PO_OrderQty_Sum.FactoryCode = 'B34006') AND (dbo.View_PO_OrderQty_Sum.Year = 2022) AND (dbo.View_PO_OrderQty_Sum.Month = 03)
+                    WHERE        (dbo.View_PO_OrderQty_Sum.FactoryCode = 'B34006') AND 
+                    (dbo.View_PO_OrderQty_Sum.Year = $Year) AND (dbo.View_PO_OrderQty_Sum.Month = $Month)
                     GROUP BY dbo.tbl_Pro_Article.ArtCode");
                             return $query->result_array();
                     }
                     public function getMonthtlyOrder_Article_WiseAll(){
-   
+                        $Month = date('m');
+                        $Year = date('Y');
                         $query = $this->db
                         ->query("SELECT        SUM(dbo.View_PO_OrderQty_Sum.OrderQty) AS OrderQty, dbo.tbl_Pro_Article.ArtCode, dbo.View_PO_OrderQty_Sum.FactoryCode
                         FROM            dbo.View_PO_OrderQty_Sum INNER JOIN
                                                  dbo.tbl_Pro_Article ON dbo.View_PO_OrderQty_Sum.ClientID = dbo.tbl_Pro_Article.ClientID AND dbo.View_PO_OrderQty_Sum.ModelID = dbo.tbl_Pro_Article.ModelID AND 
                                                  dbo.View_PO_OrderQty_Sum.ArtID = dbo.tbl_Pro_Article.ArtID
-                        WHERE        (dbo.View_PO_OrderQty_Sum.Year = 2022) AND (dbo.View_PO_OrderQty_Sum.Month = 03)
+                        WHERE        (dbo.View_PO_OrderQty_Sum.Year = $Year) AND (dbo.View_PO_OrderQty_Sum.Month = $Month)
                         GROUP BY dbo.tbl_Pro_Article.ArtCode, dbo.View_PO_OrderQty_Sum.FactoryCode");
                                 return $query->result_array();
                         }

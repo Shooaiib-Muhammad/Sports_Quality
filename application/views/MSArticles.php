@@ -215,15 +215,60 @@ if (!$this->session->has_userdata('user_id')) {
 <?php
 
 //Print_r($CodeB34005);
-                    $B34005data_points2 = [];
-                        foreach ($CodeB34005 as $key) {
+$MSProductiongraph = [];
+                foreach ($CodeB34005  as $key) {
+                    $Data005 = [
+                        //$key['LineName'],
+                        $key['Pass'],
+                    ];
+                    array_push($MSProductiongraph, $Data005);
+                }
+                $MSLines = [];
+                foreach ($CodeB34005  as $key) {
 
-                            $pointB43005 = [
-                                $key['ArtCode'],
-                                Round($key['Pass']),
-                            ];
-                            array_push($B34005data_points2, $pointB43005);
-                        }
+                    $LinesData = [
+                        $key['LineName'],
+                        //$key['Pass'],
+                    ];
+
+                    array_push($MSLines, $LinesData);
+                    $Check = $key['TotalChecked'];
+                    $PassQty = $key['Pass'];
+                    $TMRFT = ($PassQty / $Check) * 100;
+                    $MainMSRFT = [
+
+                        $key['LineName'],
+                        Round($TMRFT, 2),
+
+                    ];
+                   // array_push($MSRFTFinal, $MainMSRFT);
+                    // $MainMSFail = [
+
+                    //     $key['LineName'],
+                    //     $key['Fail'],
+
+                    // ];
+                   // array_push($MSFinal, $MainMSFail);
+                }
+                $MSLinesFail = [];
+                foreach ($CodeB34005  as $key) {
+
+                    $LinesDataFail = [
+                        // $key['LineName'],
+                        $key['Fail'],
+                    ];
+
+                    array_push($MSLinesFail, $LinesDataFail);
+                }
+                    // $B34005data_points2 = [];
+                    //     foreach ($CodeB34005 as $key) {
+
+                    //         $pointB43005 = [
+                    //             $key['ArtCode'],
+                    //             Round($key['Pass']),
+                    //         ];
+                    //         array_push($B34005data_points2, $pointB43005);
+                    //     }
                            // Print_r($B34005data_points2);
                             // echo json_encode(
                             //     $B34005data_points2,
@@ -233,77 +278,84 @@ if (!$this->session->has_userdata('user_id')) {
 ?>
       <!-- These scripts  are for highcharts -->
       <script>
-            Highcharts.chart('container05', {
-  chart: {
-    type: 'column'
-  },
-  title: {
-    text: 'Articles Wise '
-  },
-  
-  xAxis: {
-    type: 'category',
-    labels: {
-      rotation: -45,
-      style: {
-        fontSize: '13px',
-        fontFamily: 'Verdana, sans-serif'
-      }
-    }
-  },
-  yAxis: {
-    min: 0,
-  },
-  legend: {
-    enabled: false
-  },
-  tooltip: {
-    // pointFormat: 'OutPut'
-  },
-  series: [{
-    name: 'Articles Wise',
-    colorByPoint: true,
-    data: <?php echo json_encode(
-                                                $B34005data_points2,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-    // data: [
-    //     <?php echo json_encode($B34005data_points2, JSON_NUMERIC_CHECK); ?>
-    //   ['Shanghai', 24.2],
-    //   ['Beijing', 20.8],
-    //   ['Karachi', 14.9],
-    //   ['Shenzhen', 13.7],
-    //   ['Guangzhou', 13.1],
-    //   ['Istanbul', 12.7],
-    //   ['Mumbai', 12.4],
-    //   ['Moscow', 12.2],
-    //   ['São Paulo', 12.0],
-    //   ['Delhi', 11.7],
-    //   ['Kinshasa', 11.5],
-    //   ['Tianjin', 11.2],
-    //   ['Lahore', 11.1],
-    //   ['Jakarta', 10.6],
-    //   ['Dongguan', 10.6],
-    //   ['Lagos', 10.6],
-    //   ['Bengaluru', 10.3],
-    //   ['Seoul', 9.8],
-    //   ['Foshan', 9.3],
-    //   ['Tokyo', 9.3]
-    // ],
-    dataLabels: {
-      enabled: true,
-      rotation: -90,
-      color: '#FFFFFF',
-      align: 'right',
-      format: '{point.y:.1f}', // one decimal
-      y: 10, // 10 pixels down from the top
-      style: {
-        fontSize: '13px',
-        fontFamily: 'Verdana, sans-serif'
-      }
-    }
-  }]
-});
+          Highcharts.chart('container05', {
+                        chart: {
+                            zoomType: 'xy'
+                        },
+                        title: {
+                            text: 'Machine Stitched Hall Production'
+                        },
+                        subtitle: {
+                            text: 'Total Output'
+                        },
+                        xAxis: [{
+                            categories: <?php echo json_encode($MSLines, JSON_NUMERIC_CHECK); ?>,
+
+
+                            crosshair: true
+                        }],
+                        yAxis: [{ // Primary yAxis
+                            labels: {
+                                format: '{value}',
+                                style: {
+                                    color: Highcharts.getOptions().colors[1]
+                                }
+                            },
+                            title: {
+                                text: 'Fail Quantity',
+                                style: {
+                                    color: Highcharts.getOptions().colors[1]
+                                }
+                            }
+                        }, { // Secondary yAxis
+                            title: {
+                                text: 'Pass Quantity ',
+                                style: {
+                                    color: Highcharts.getOptions().colors[0]
+                                }
+                            },
+                            labels: {
+                                format: '{value} ',
+                                style: {
+                                    color: Highcharts.getOptions().colors[0]
+                                }
+                            },
+                            opposite: true
+                        }],
+                        tooltip: {
+                            shared: true
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'left',
+                            x: 120,
+                            verticalAlign: 'top',
+                            y: 100,
+                            floating: true,
+                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                                'rgba(255,255,255,0.25)'
+                        },
+                        series: [{
+                            name: 'Pass Quantity',
+                            type: 'column',
+                            colorByPoint: true,
+                            yAxis: 1,
+                            data: <?php echo json_encode($MSProductiongraph, JSON_NUMERIC_CHECK); ?>,
+                            // tooltip: {
+                            //     valueSuffix: ''
+                            // }
+
+                        }, {
+                            name: 'Fail Quantity',
+                            type: 'spline',
+                            color: 'red',
+                            data: <?php echo json_encode($MSLinesFail, JSON_NUMERIC_CHECK); ?>,
+                            // tooltip: {
+                            //     valueSuffix: ''
+                            // }
+                        }]
+                    });
+
         </script>
                     
 

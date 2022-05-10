@@ -67,32 +67,32 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-2">
-                  <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
-                    <div class="">
-                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
-                        <small class="m-0 l-h-n">Total Balls</small>
-                      </h3>
-                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
-
-                        <?php echo $total; ?>
-                      </h3>
-                    </div>
-                    <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
-                  </div>
-                </div>
               </div>
             </form>
           </div>
         </div>
         <div class="row mt-4">
+          <div class="col-md-2">
+            <div class="p-3 bg-dark-300 rounded overflow-hidden position-relative text-white mb-g" style="background-color:black;">
+              <div class="">
+                <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
+                  <small class="m-0 l-h-n">Total Balls Count</small>
+                </h3>
+                <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                  <?php echo $total; ?>
+                </h3>
+                <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+              </div>
+              <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
+            </div>
+          </div>
           <?php foreach ($machineCounter as $mcounter) {
-
-            $no = $mcounter['MachineName'] ?>
-            <div class="col-sm-6 col-xl-3">
-
+            $no = $mcounter['MachineName']
+          ?>
+            <div class="col-sm-6 col-xl-2">
 
               <?php
               if ($no == 1) {
@@ -1342,7 +1342,7 @@ $newpo = implode(",", $po);
       type: 'column'
     },
     title: {
-      text: 'PO Wise Ball Counter'
+      text: 'PO Wise Ball Count'
     },
     xAxis: {
       categories: [
@@ -1353,7 +1353,7 @@ $newpo = implode(",", $po);
     yAxis: {
       min: 0,
       title: {
-        text: 'PO Wise Ball Counter'
+        text: 'PO Wise Ball Count'
       }
     },
 
@@ -1364,7 +1364,7 @@ $newpo = implode(",", $po);
       }
     },
     series: [{
-      name: 'Po Wise Ball Counter',
+      name: 'Po Wise Ball Count',
       colorByPoint: true,
       data: [<?php echo $newCounter; ?>]
 
@@ -1376,7 +1376,7 @@ $newpo = implode(",", $po);
       type: 'pie'
     },
     title: {
-      text: 'Article Wise Ball COunter'
+      text: 'Article Wise Ball Count'
     },
 
     accessibility: {

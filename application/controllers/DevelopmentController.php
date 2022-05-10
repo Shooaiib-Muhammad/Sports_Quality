@@ -10,7 +10,7 @@ class DevelopmentController extends CI_Controller
         $this->load->model('Department_model', 'd');
         $this->load->model('Machine_model', 'm');
         $this->load->model('Team_model', 't');
-           $this->load->model('LabModel', 'l');
+         $this->load->model('LabModel', 'l');
     }
 
     public function index()

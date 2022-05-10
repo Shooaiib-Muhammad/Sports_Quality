@@ -51,6 +51,12 @@ class DashboardController extends CI_Controller
 	$this->load->view('Dashboard', $data);	
 		
     }
+	public function getMonthss(){
+		$Month = date('m');
+		$Year = date('Y');
+		$Day = date('d');
+		$data['MSProd'] = $this->ID->GetMsproduction($Day, $Month, $Year);
+	}
 	public function B34001(){
 		$Month = date('m');
 			$Year = date('Y');
@@ -83,7 +89,8 @@ class DashboardController extends CI_Controller
 		$Month = date('m');
 			$Year = date('Y');
 			$Day = date('d');
-		$data['CodeB34005'] = $this->ID->B34005($Day, $Month, $Year);
+		//$data['CodeB34005'] = $this->ID->B34005($Day, $Month, $Year);
+		$data['CodeB34005'] = $this->ID->GetMsproduction($Day, $Month, $Year);
 		$this->load->view('MSArticles', $data);
 	}
 	public function B34006(){
@@ -91,6 +98,7 @@ class DashboardController extends CI_Controller
 			$Year = date('Y');
 			$Day = date('d');
 			$data['CodeB34006'] = $this->ID->B34006($Day, $Month, $Year);
+
 		$this->load->view('AMbArticles', $data);
 	}
 	public function B34007(){

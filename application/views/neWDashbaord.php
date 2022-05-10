@@ -32,10 +32,6 @@ if (!$this->session->has_userdata('user_id')) {
                     </div> -->
 
                         <style>
-                            .panelAlign{
-                                padding:5%;
-                                height: 75vh;
-                            }
            
                             /* set default zoom property of a page  */
                             html
@@ -1139,21 +1135,12 @@ if (!$this->session->has_userdata('user_id')) {
                             array_push($B34007ArtFail, $MainFail07);
                         }
                         ?>
-                         <ul class="nav nav-pills justify-content-center mb-5" role="tablist">
-                                            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Production</a></li>
-                                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">RFT</a></li>
-                                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3">Defects</a></li>
-                                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-4">Orders</a></li>
-                                           
-                                        </ul>
-                        <div class="row" style="align-items:center ;">
+                        <div class="row">
+                            <div id="panel-3" class="panel">
 
+                                <div class="panel-container show">
 
-                            <div id="panel-3" class="panel" style="padding:12px;">
-
-                                <div class="panel-container show" >
-
-                                    <div class="panel-content nav nav-pills justify-content-center"   >
+                                    <div class="panel-content nav nav-pills justify-content-center">
 
                                         <!-- <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item btn btn-success"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1" role="tab">Production</a></li>
@@ -1166,9 +1153,9 @@ if (!$this->session->has_userdata('user_id')) {
                                             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3">Defects</a></li>
                                             <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-4">Orders</a></li>
                                         </ul> -->
-                                                <div class="tab-content py-2" >
+                                                <div class="tab-content py-2">
 
-                                                  <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel" style="margin: 0;">
+                                                  <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
                                                   <div class="col-lg-12">
                                                     <div class="panel-container show ">
                                                         <div class="panel-content poisition-relative ">
@@ -1176,9 +1163,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                <div class="row">
                                                                     <!-- <div class="subheader  mx-5">    -->
                                                  <div class="col-md-12 d-flex flex-row">
-                                                    <div class="col-md-6 ">
+                                                    <div class="col-md-6">
 
-                                                        <div class="col-md-12 d-flex flex-row justify-content-center mb-5">
+                                                        <div class="col-md-12 d-flex flex-row justify-content-start">
                                                                     <div class="col-md-2">
                                                                     <div class="subheader-block d-lg-flex align-items-center">
                                                                         <div class="d-inline-flex flex-column justify-content-center mr-3">
@@ -1189,7 +1176,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             <?php  echo $Produced; ?>
                                                                             </span>
                                                                         </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#886ab5" sparkHeight="50px" sparkBarWidth="10px" values="<?php echo $last5pass; ?>"></span>
+                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#886ab5" sparkHeight="40px" sparkBarWidth="7px" values="<?php echo $last5pass; ?>"></span>
                                                                     </div>
                                             
                                                                     </div>
@@ -1203,7 +1190,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             <?php  echo $Checked; ?>
                                                                             </span>
                                                                         </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#8FBC8F" sparkHeight="50px" sparkBarWidth="10px" values="<?php echo $last5check; ?>"></span>
+                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#8FBC8F" sparkHeight="40px" sparkBarWidth="7px" values="<?php echo $last5check; ?>"></span>
                                                                     </div>
 
                                                     
@@ -1218,7 +1205,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             <?php  echo $Produced; ?>
                                                                             </span>
                                                                         </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#778899" sparkHeight="50px" sparkBarWidth="10px" values="<?php echo $last5pass; ?>"></span>
+                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#778899" sparkHeight="40px" sparkBarWidth="7px" values="<?php echo $last5pass; ?>"></span>
                                                                     </div>
 
                                                                         
@@ -1233,7 +1220,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             <?php  echo $Fail; ?>
                                                                             </span>
                                                                         </div>
-                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#696969" sparkHeight="50px" sparkBarWidth="10px" values="<?php echo $last5fail; ?>"></span>
+                                                                        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#696969" sparkHeight="40px" sparkBarWidth="7px" values="<?php echo $last5fail; ?>"></span>
                                                                     </div>
                                                                     </div>
 
@@ -1369,7 +1356,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                           <div class="col-md-12 ">
 
                                                           <div class="col-md-12">
-                                                          <a href="<?php echo base_url('/')?>DashboardController/getMonthss">    
+                                                          <a href="<?php echo base_url('/')?>DashboardController/B34005">    
                                                                     <div class="p-3  machinecolor rounded overflow-hidden position-relative text-white mb-g" >
                                                                 
                                                                         <div class="">
@@ -1861,13 +1848,16 @@ if (!$this->session->has_userdata('user_id')) {
                                                </div>
 
 
-                                               <div class="tab-pane fade mx-5 p-5 panelAlign" id="tab_direction-2" role="tabpanel" style=" height : 90vh; width :100%;">
-                                                <div class="row" >
+                                            </div>
 
-                                                    <div class="col-md-12">
-                                                        <h1 class="text-start">Filter Criteria : </h1>
-                                                        <div class="row ">
 
+                                            <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
+                                                <div class="row">
+
+                                                    <div class="col-md-6">
+                                                        <div class="row ml-10">
+
+                                                            <!-- <h1 class="frame-heading">Filter Criteria :</h1> -->
 
                                                             <div class="frame-wrap">
                                                                 <div class="custom-control custom-radio custom-control-inline">
@@ -1894,70 +1884,100 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <div id="monthlyrft"></div>
                                                         <div id="yearlyrft"></div>
                                                     </div>
-                                                    
+                                                    <figure class="highcharts-figurerft">
+                                                        <div id="container-speedrft" class="chart-containerrft"></div>
+
+                                                    </figure>
                                                 </div>
 
-                                               
+                                                <div class="row">
+
+                                                    <div class="col-md-6">
+                                                        <div id="hsprdrft"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div id="tmprdrft"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div id="msprdrft"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div id="ambprdrft"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div id="lfbprdrft"></div>
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <div class="tab-pane fade" id="tab_direction-3" role="tabpanel">
 
+                                                <div class="row">
 
-                                         <div class="tab-pane fade mx-5 p-5 panelAlign" id="tab_direction-3" role="tabpanel" style="height : 90vh; width :100%;">
+                                                    <div class="col-md-6">
+                                                        <div class="row">
 
-                                            <div class="row">
-
-                                                <div class="col-md-12">
-                                                    <h1 class=" text-start">Filter Criteria :  </h1>
-                                                    <div class="row">
-
-                                                        
-                                                        <div class="frame-wrap">
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" id="defaultInline9Radio" name="inlineDefaultRadiosExample3" checked="">
-                                                                <label class="custom-control-label" for="defaultInline9Radio">1D</label>
+                                                            <!-- <h1 class="frame-heading">Filter Criteria :</h1> -->
+                                                            <br>
+                                                            <div class="frame-wrap">
+                                                                <div class="custom-control custom-radio custom-control-inline">
+                                                                    <input type="radio" class="custom-control-input" id="defaultInline9Radio" name="inlineDefaultRadiosExample3" checked="">
+                                                                    <label class="custom-control-label" for="defaultInline9Radio">1D</label>
+                                                                </div>
+                                                                <div class="custom-control custom-radio custom-control-inline">
+                                                                    <input type="radio" class="custom-control-input" id="defaultInline10Radio" name="inlineDefaultRadiosExample3">
+                                                                    <label class="custom-control-label" for="defaultInline10Radio">7D</label>
+                                                                </div>
+                                                                <div class="custom-control custom-radio custom-control-inline">
+                                                                    <input type="radio" class="custom-control-input" id="defaultInline11Radio" name="inlineDefaultRadiosExample3">
+                                                                    <label class="custom-control-label" for="defaultInline11Radio">1M</label>
+                                                                </div>
+                                                                <div class="custom-control custom-radio custom-control-inline">
+                                                                    <input type="radio" class="custom-control-input" id="defaultInline12Radio" name="inlineDefaultRadiosExample3">
+                                                                    <label class="custom-control-label" for="defaultInline12Radio">1Y</label>
+                                                                </div>
                                                             </div>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" id="defaultInline10Radio" name="inlineDefaultRadiosExample3">
-                                                                <label class="custom-control-label" for="defaultInline10Radio">7D</label>
-                                                            </div>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" id="defaultInline11Radio" name="inlineDefaultRadiosExample3">
-                                                                <label class="custom-control-label" for="defaultInline11Radio">1M</label>
-                                                            </div>
-                                                            <div class="custom-control custom-radio custom-control-inline">
-                                                                <input type="radio" class="custom-control-input" id="defaultInline12Radio" name="inlineDefaultRadiosExample3">
-                                                                <label class="custom-control-label" for="defaultInline12Radio">1Y</label>
-                                                            </div>
+
                                                         </div>
+                                                        <div id="AllPrddef"></div>
+                                                        <div id="weeklydef"> </div>
+                                                        <div id="monthlydef"></div>
+                                                        <div id="yearlydef"></div>
 
                                                     </div>
-                                                    <div id="AllPrddef"></div>
-                                                    <div id="weeklydef"> </div>
-                                                    <div id="monthlydef"></div>
-                                                    <div id="yearlydef"></div>
+                                                    <figure class="highcharts-figurerft">
+                                                        <div id="container-speeddef" class="chart-containerrft"></div>
 
+                                                    </figure>
                                                 </div>
-                                               
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div id="hsprddef"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div id="tmprddef"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div id="msprddef"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div id="ambprddef"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div id="lfbprddef"></div>
+                                                    </div>
+                                                </div>
                                             </div>
 
-                                        </div>
+                                            <div class="tab-pane fade" id="tab_direction-4" role="tabpanel">
+                                                <figure class="highcharts-figureMine">
+                                                    <div id="containerMine"></div>
+
+                                                </figure>
+                                                <br>
 
 
-                                        <div class="tab-pane fade" id="tab_direction-4" role="tabpanel">
-                                            <figure class="highcharts-figureMine">
-                                                <div id="containerMine"></div>
-
-                                            </figure>
-                                            <br>
-
-
-                                        </div>
-                                            </div> <!-- tab content ends here -->
-
-
-                                            
-                                         
-
-            
+                                            </div>
+                                            <div>
                                                <!-- <script src="<?php echo base_url(); ?>/assets/js/highcharts.js"></script>
                                                 <script src="<?php echo base_url(); ?>/assets/js/data.js"></script>
                                                 <script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>
@@ -1970,8 +1990,6 @@ if (!$this->session->has_userdata('user_id')) {
                                                         
                                                     </figure>
                                                 </div> -->
-
-
                                             </div>
                                         </div>
                                     </div>
@@ -1982,7 +2000,7 @@ if (!$this->session->has_userdata('user_id')) {
 
 
 
-                            </div> <!-- row ends here --> 
+                            </div>
                         </div>
                 </div>
 
@@ -3627,7 +3645,7 @@ responsive: {
                         });
                     });
                 </script>
-                
+
                 <?php
 
                 $TMProductiongraph = [];
@@ -3741,222 +3759,6 @@ responsive: {
 
                 ?>
                 <script>
-                    $(document).ready(function(){
-                        Highcharts.chart('AllPrddef', {
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: 'Today Defects'
-                        },
-
-                        accessibility: {
-                            announceNewData: {
-                                enabled: true
-                            }
-                        },
-                        xAxis: {
-                            type: 'category'
-                        },
-                        yAxis: {
-                            title: {
-                                text: 'Defects '
-                            }
-
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y:.1f} '
-                                }
-                            }
-                        },
-
-                        tooltip: {
-                            headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
-                            pointFormat: '<span style="color:{point.color}">{point.name}</span>:  <br/>'
-                        },
-
-                        series: [{
-                            name: "Defects",
-                            colorByPoint: true,
-                            data: <?php echo json_encode($data_pointsFail, JSON_NUMERIC_CHECK); ?>,
-
-                        }],
-                        drilldown: {
-                            series: [{
-                                    name: "B34001",
-                                    id: "B34001",
-                                    data: <?php echo json_encode(
-                                                $B34001ArtFail,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34002",
-                                    id: "B34002",
-                                    data: <?php echo json_encode(
-                                                $B34002ArtFail,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34003",
-                                    id: "B34003",
-                                    data: <?php echo json_encode(
-                                                $B34003ArtFail,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34004",
-                                    id: "B34004",
-                                    data: <?php echo json_encode(
-                                                $B34004ArtFail,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34005",
-                                    id: "B34005",
-                                    data: <?php echo json_encode(
-                                                $B34005ArtFail,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34006",
-                                    id: "B34006",
-                                    data: <?php echo json_encode(
-                                                $B34006ArtFail,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34007",
-                                    id: "B34007",
-                                    data: <?php echo json_encode(
-                                                $B34007ArtFail,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-
-                                }
-                            ]
-                        }
-                    });
-                    Highcharts.chart('AllPrdrft', {
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: 'Today RFT'
-                        },
-
-                        accessibility: {
-                            announceNewData: {
-                                enabled: true
-                            }
-                        },
-                        xAxis: {
-                            type: 'category'
-                        },
-                        yAxis: {
-                            title: {
-                                text: 'RFT '
-                            }
-
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y:.1f} %'
-                                }
-                            }
-                        },
-
-                        tooltip: {
-                            headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
-                            pointFormat: '<span style="color:{point.color}">{point.name}</span>: % <br/>'
-                        },
-
-                        series: [{
-                            name: "Production",
-                            colorByPoint: true,
-                            data: <?php echo json_encode($data_pointsRFT, JSON_NUMERIC_CHECK); ?>,
-
-                        }],
-                        drilldown: {
-                            series: [{
-                                    name: "B34001",
-                                    id: "B34001",
-                                    data: <?php echo json_encode(
-                                                $B34001ArtRFT,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34002",
-                                    id: "B34002",
-                                    data: <?php echo json_encode(
-                                                $B34002ArtRFT,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34003",
-                                    id: "B34003",
-                                    data: <?php echo json_encode(
-                                                $B34003ArtRFT,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34004",
-                                    id: "B34004",
-                                    data: <?php echo json_encode(
-                                                $B34004ArtRFT,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34005",
-                                    id: "B34005",
-                                    data: <?php echo json_encode(
-                                                $B34005ArtRFT,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34006",
-                                    id: "B34006",
-                                    data: <?php echo json_encode(
-                                                $B34006ArtRFT,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-                                },
-                                {
-                                    name: "B34007",
-                                    id: "B34007",
-                                    data: <?php echo json_encode(
-                                                $B34007ArtRFT,
-                                                JSON_NUMERIC_CHECK
-                                            ); ?>,
-
-                                }
-                            ]
-                        }
-                    });
-                    })
                     // Highcharts.chart('hsprd', {
                     //     chart: {
                     //         type: 'column'

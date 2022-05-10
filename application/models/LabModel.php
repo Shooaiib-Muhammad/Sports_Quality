@@ -1378,9 +1378,9 @@ WHERE        (TestNO ='$TestNO')");
     }
     public function Vendors(){
         
-$query = $this->db
+   $query = $this->db
             ->query("SELECT        VendorName, Status, VendorId
-FROM            dbo.tbl_Pro_Vendor");
+   FROM            dbo.tbl_Pro_Vendor");
 
         return $query->result_array();
     }
