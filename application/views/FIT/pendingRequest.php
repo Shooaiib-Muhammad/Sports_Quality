@@ -146,23 +146,19 @@ if (!$this->session->has_userdata('user_id')) {
                             $InvoiceId = $Key['Invoice_ID'];
                             $testNames = explode(",", $Key['TestName']);
                             $TID = $Key['TID'];
+                            $DID = $Key['DID'];
                           ?>
                             <tr>
                               <td id="InvoiceID"><?php echo $InvoiceId; ?> </td>
                               <td><?php echo $Key['RequestDate']; ?> </td>
-                              <td>
-                                <?php foreach ($testNames as $test) {
-                                ?>
-
-                                  <span class="badge badge-info p-1"><?php echo $test; ?></span>
-                                <?php  } ?>
-                              </td>
+                             
+                              <td><span class="badge badge-info p-1"><?php echo $Key['Name']; ?> </span></td>
                               <td><?php echo $Key['Amount']; ?> </td>
                               <td><?php echo $Key['Supplier']; ?> </td>
                               <td><?php echo $Key['Country']; ?> </td>
                               <td> <span class="badge badge-danger p-1"><?php echo $Key['Request_Status']; ?> </span></td>
                               <td>
-                                <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo  $TID; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
+                                <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo  $DID; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
                               </td>
                             </tr>
                           <?php
@@ -209,6 +205,7 @@ if (!$this->session->has_userdata('user_id')) {
                             $testNames = explode(",", $Key['TestName']);
                             $TID = $Key['TID'];
                             $labStatus = $Key['labStatus'];
+                            $DID = $Key['DID'];
                           ?>
                             <tr>
                               <td><?php echo $InvoiceId; ?> </td>
@@ -231,7 +228,7 @@ if (!$this->session->has_userdata('user_id')) {
                                 <?php
                                 if ($labStatus == 0) {
                                 ?>
-                                  <button type="button" style="display: inline-block;" class="btn btn-info btn-xs labproceed" id="btn.<?php echo  $TID ?>">Proceed to Lab</button>
+                                  <button type="button" style="display: inline-block;" class="btn btn-info btn-xs labproceed" id="btn.<?php echo  $DID ?>">Proceed to Lab</button>
                                 <?php
                                 } else {
                                 ?>
@@ -301,7 +298,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                               <td><span class="badge badge-primary p-1"><?php echo $Key['Request_Status']; ?> </span></td>
                               <td>
-                                <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo  $TID; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
+                                <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo  $DID; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
                               </td>
                             </tr>
                           <?php
@@ -928,80 +925,79 @@ if (!$this->session->has_userdata('user_id')) {
 
     $('#save').click(function(e) {
 
-          e.preventDefault();
-          let TID = $('#IdValue').val();
+      e.preventDefault();
+      let TID = $('#IdValue').val();
 
-          let CSSNo = $('#cssNo').val();
-          let lenghofid = $('#cssNo').val().length
-          //alert(lenghofid);
-          var proceed = confirm("Are you sure you want to Add Css NO ?");
-          if (proceed) {
-            if (lenghofid == 0) {
-              alert('Enter CSS NO')
+      let CSSNo = $('#cssNo').val();
+      let lenghofid = $('#cssNo').val().length
+      //alert(lenghofid);
+      var proceed = confirm("Are you sure you want to Add Css NO ?");
+      if (proceed) {
+        if (lenghofid == 0) {
+          alert('Enter CSS NO')
 
-            } else {
-              let url = "<?php echo base_url(''); ?>PendingRequest/AddCssNo"
+        } else {
+          let url = "<?php echo base_url(''); ?>PendingRequest/AddCssNo"
 
-              $.post(url, {
-                  'TID': TID,
-                  'CSSNo': CSSNo,
+          $.post(url, {
+              'TID': TID,
+              'CSSNo': CSSNo,
 
-                },
-                function(data, status) {
-                  alert("Data Updated Successfully! Click on Ok to Reload the Page")
-                  window.location.reload();
+            },
+            function(data, status) {
+              alert("Data Updated Successfully! Click on Ok to Reload the Page")
+              window.location.reload();
 
-                });
-            }
-          }
-          else{
-            alert("Unno Cancel")
-          }
-
-
-
-          });
-
-        $('#savepkg').click(function(e) {
-          //  alert("I am here");
-          let Type = $("#TypePkg").val();
-          let Name = $("#PName").val();
-          let Method = $("#PMethod").val();
-          let status = $("#pstatus").val();
-
-          //let mcs = $("#mcs").prop('checked');
-          //alert(GDesc);
-          data = [
-            Type,
-            Name,
-            Method,
-            status
-
-          ]
+            });
+        }
+      } else {
+        alert("Unno Cancel")
+      }
 
 
 
-          url = "<?php echo base_url(''); ?>FIT/submitPackage/"
-          var fd = new FormData();
-          // var files = $("#avatar")[0].files[0];
-          // fd.append('file', files);
-          fd.append('data', data)
+    });
 
-          $.ajax({
-            url: url,
-            type: 'post',
-            data: fd,
-            contentType: false,
-            processData: false,
-            success: function(data) {
-              alert("Data Inserted Successfully")
-              location.reload();
+    $('#savepkg').click(function(e) {
+      //  alert("I am here");
+      let Type = $("#TypePkg").val();
+      let Name = $("#PName").val();
+      let Method = $("#PMethod").val();
+      let status = $("#pstatus").val();
 
-            }
-          });
+      //let mcs = $("#mcs").prop('checked');
+      //alert(GDesc);
+      data = [
+        Type,
+        Name,
+        Method,
+        status
+
+      ]
 
 
-        });
+
+      url = "<?php echo base_url(''); ?>FIT/submitPackage/"
+      var fd = new FormData();
+      // var files = $("#avatar")[0].files[0];
+      // fd.append('file', files);
+      fd.append('data', data)
+
+      $.ajax({
+        url: url,
+        type: 'post',
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+          alert("Data Inserted Successfully")
+          location.reload();
+
+        }
+      });
+
+
+    });
   </script>
   <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
   <!-- BEGIN Page Footer -->

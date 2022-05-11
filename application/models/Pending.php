@@ -5,15 +5,15 @@ class Pending extends CI_Model
 {
     public function getPending()
     {
-        $query = $this->db->query("SELECT        view_Outward_transaction.*
-        FROM            dbo.view_Outward_transaction
+        $query = $this->db->query("SELECT        view_Outward_Transaction_D.*
+        FROM            dbo.view_Outward_Transaction_D
         WHERE         (AccountsStatus=1) and (MaterialInStatus IS NULL)");
       return  $query->result_array();
     }
     public function getApproved()
     {
-        $query = $this->db->query("SELECT        view_Outward_transaction.*
-        FROM            dbo.view_Outward_transaction
+        $query = $this->db->query("SELECT        view_Lab_Add_Css.*
+        FROM            dbo.view_Lab_Add_Css
         WHERE        (MaterialInStatus=1)");
         return  $query->result_array();
     }
@@ -21,8 +21,9 @@ public function AddCSSNo($ID,$CssNo){
     $Date= date("Y/m/d");
     // $query = $this->db->query("update Set CSSNo='$CssNo' , LabStatus=1,ProceedDate='$Date' Where Id= '$ID'");
     
-    $query = $this->db->query("update  dbo . tbl_Outward_Transaction
-      Set CSSNo='$CssNo' , MaterialInStatus=1,MaterialteceivedDate='$Date',Request_Status='Sample Received' Where TID= '$ID'");
+    $query = $this->db->query("update  dbo . tbl_Outward_Transaction_D
+      Set CSSNo='$CssNo' , MaterialInStatus=1,MaterialteceivedDate='$Date',Request_Status='Sample Received' Where DID= '$ID'");
+      
    // return  $query->result_array();
 
     if($query){
@@ -38,8 +39,8 @@ public function AddCSSNo($ID,$CssNo){
         $Date = date("Y/m/d");
         // $query = $this->db->query("update Set CSSNo='$CssNo' , LabStatus=1,ProceedDate='$Date' Where Id= '$ID'");
 
-        $query = $this->db->query("update  dbo . tbl_Outward_Transaction
-      Set  labStatus=1,labProceedDate='$Date',Request_Status='Proceed to lab' Where TID= '$ID'");
+        $query = $this->db->query("update  dbo . tbl_Outward_Transaction_D
+      Set  labStatus=1,labProceedDate='$Date',Request_Status='Proceed to lab' Where DID= '$ID'");
         // return  $query->result_array();
 
         if ($query) {

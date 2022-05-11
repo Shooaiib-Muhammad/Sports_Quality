@@ -196,17 +196,13 @@ if (!$this->session->has_userdata('user_id')) {
                             $InvoiceId = $Key['Invoice_ID'];
                             $testNames = explode(",", $Key['TestName']);
                             $TID = $Key['TID'];
+                            $DID = $Key['DID'];
                           ?>
                             <tr>
                               <td><?php echo $InvoiceId; ?> </td>
                               <td><?php echo $Key['RequestDate']; ?> </td>
-                              <td>
-                                <?php foreach ($testNames as $test) {
-                                ?>
-
-                                  <span class="badge badge-info p-1"><?php echo $test; ?></span>
-                                <?php  } ?>
-                              </td>
+                              
+                              <td> <span class="badge badge-info p-1"><?php echo $Key['Name']; ?></span> </td>
                               <td><?php echo $Key['Amount']; ?> </td>
                               <td><?php echo $Key['Supplier']; ?> </td>
                               <td><?php echo $Key['Country']; ?> </td>
@@ -216,7 +212,7 @@ if (!$this->session->has_userdata('user_id')) {
                               <td><?php echo $Key['labProceedDate']; ?> </td>
                               <td><span class="badge badge-primary p-1"><?php echo $Key['Request_Status']; ?> </span></td>
                               <td>
-                                <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo  $TID ?>">Upload Result </button>
+                                <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo  $DID ?>">Upload Result </button>
                               </td>
                             </tr>
                           <?php
