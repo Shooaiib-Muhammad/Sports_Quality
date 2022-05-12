@@ -38,9 +38,9 @@ public function Submit($pictureFresh,$ID){
 public function getimage($TID)
 {
 
-  $query = $this->db->query("SELECT        view_Outward_transaction.*
-  FROM            dbo.view_Outward_transaction
-  WHERE         dbo.view_Outward_transaction.TID= $TID");
+  $query = $this->db->query("SELECT        view_Outward_transaction_D.*
+  FROM            dbo.view_Outward_transaction_D
+  WHERE         dbo.view_Outward_transaction_D.TID= $TID");
   return  $query->result_array();
 }
 

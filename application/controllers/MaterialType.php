@@ -47,6 +47,15 @@ class MaterialType extends CI_Controller {
      ->set_output(json_encode($data));
 }
 
+public function singleRecordBag(){
+    $data= $this->MBB_model->singleRecordBag($_POST['id']);
+
+    return $this->output
+     ->set_content_type('application/json')
+     ->set_status_header(200)
+     ->set_output(json_encode($data));
+}
+
 public function updateMaterial(){
     $data= $this->MBB_model->updateMaterial($_POST['id'],$_POST['Mname'],$_POST['status']);
 

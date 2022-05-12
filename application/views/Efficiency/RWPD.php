@@ -1,5 +1,5 @@
 <?php $this->load->view('includes/new_header'); ?>
-
+<!--  -->
 
 <!-- BEGIN Page Wrapper -->
 <div class="page-wrapper">
@@ -21,19 +21,7 @@
             <!-- the #js-page-content id is needed for some plugins to initialize -->
             <main id="js-page-content" role="main" class="page-content">
                 <?php $id = $_GET['dept_id']; ?>
-                <ol class="breadcrumb page-breadcrumb">
-                    <li class="breadcrumb-item"><a href="<?php echo base_url(
-                                                                'Efficiency'
-                                                            ); ?>">Dashboard</a></li>
-
-                    <li class="breadcrumb-item"><a href="<?php echo base_url(
-                                                                'Efficiency/departments'
-                                                            ); ?>"> Departments</a></li>
-                    <li class="breadcrumb-item"><a href="<?php echo base_url(
-                                                                "Efficiency/sections/?id=$id"
-                                                            ); ?>"> Sections</a></li>
-                    <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
-                </ol>
+             
 
                 <div class="subheader">
                     <h1 class="subheader-title">
@@ -51,32 +39,11 @@
 
                     ?>
 
-<?php if ($d['EmployeeType'] == NULL) { ?>
-    <div class="col-sm-6 col-xl-3" id="NullEmp">
-                            <a href="javascript:void(0)">
-                                <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: rgba(255,0,0,0.8);">
-                                    <div class="">
-                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
-
-                                         <small class="m-0 l-h-n" >Employee Type Not Assigned</small>
-                                            <small class="m-0 l-h-n">Number of Employees</small>
-                                            <?php echo $d['EmpCount']; ?>
-                                            <small class="m-0 l-h-n">Real Time</small>
-                                            <?php echo $d['RealTime']; ?>
-
-                                        </h3>
-                                    </div>
-                                    <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                </div>
-                            </a>
-                        </div>
-
-    <?php } ?>
     
     <?php if ($d['EmployeeType'] == "Direct") { ?>
         <div class="col-sm-6 col-xl-3" id="direct">
                             <a href="javascript:void(0)">
-                                <div class="p-3 bg-dark rounded overflow-hidden position-relative text-white mb-g">
+                                <div style="background-color:maroon" class="p-3  rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                      
@@ -96,27 +63,7 @@
                         </div>
         <?php } ?>  
 
-        <?php if ($d['EmployeeType'] == "In-Direct") { ?>
-            <div class="col-sm-6 col-xl-3" id="indirect">
-                            <a href="javascript:void(0)">
-                                <div class="p-3 bg-info-300 rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                          
-                                                <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small>
-
-                                            <small class="m-0 l-h-n">Number of Employees</small>
-                                            <?php echo $d['EmpCount']; ?>
-                                            <small class="m-0 l-h-n">Real Time</small>
-                                            <?php echo $d['RealTime']; ?>
-
-                                        </h3>
-                                    </div>
-                                    <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                </div>
-                            </a>
-                        </div>
-        <?php } ?> 
+       
                         <!-- <div class="col-sm-6 col-xl-3">
                             <a href="javascript:void(0)">
                                 <div class="p-3 bg-info-300 rounded overflow-hidden position-relative text-white mb-g">
@@ -144,8 +91,63 @@
                             </a>
                         </div> -->
                     <?php } ?>
+           
+          <div class="col-sm-6 col-xl-3" id="direct">
+                            <a href="javascript:void(0)">
+                                <div class="p-3 bg-dark rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                        <small class="m-0 l-h-n">Total Balls Count</small>
+                                        <?php echo $total; ?>
 
+                                                <small  class="m-0 l-h-n"></small>
+                                        
+                                           
+                                           
+                                           
 
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+          <?php $Output= $total*0.58;
+         
+       
+       
+         
+          if ($realtime[1]['EmployeeType'] == "Direct") {
+           
+         
+           $Mints= $realtime[1]['RealTime'];
+        
+          }
+          
+          $Efficiecny= ($Output/$Mints)*100;
+           
+          ?>
+     
+          <div class="col-sm-6 col-xl-3" id="direct">
+                            <a href="javascript:void(0)">
+                                <div class="p-3 bg-info rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                        <small class="m-0 l-h-n">Efficiency</small>
+                                        <?php Echo Round($Efficiecny,2); ?>%
+
+                                                <small  class="m-0 l-h-n"></small>
+                                        
+                                           
+                                           
+                                           
+
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
 
                 </div>
 

@@ -40,7 +40,7 @@ class Efficiency_model extends CI_Model
   
  }
 
-  public function realTimeAtten($depart,$sect){
+ public function realTimeAtten($depart,$sect){
         
         $Month = date('m');
         $Year = date('Y');
@@ -55,4 +55,34 @@ class Efficiency_model extends CI_Model
         ");
                 return  $query->result_array(); 
  }
+public function getEmployees($section,$depart,$type){
+        $Month = date('m');
+        $Year = date('Y');
+        $Day = date('d');
+        $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+        $HRDB = $this->load->database('HRMS', TRUE);
+        $query = $HRDB->query("SELECT        DeptID, SectionID, AttDate, EmpID, AttTime, EmployeeType, CardNo, Name, DesigName
+        FROM            dbo.View_Emp_ATT_REALTIME
+        WHERE        (AttDate = CONVERT(DATETIME, '$CurrentDate 00:00:00', 102)) AND (DeptID = $depart) AND (SectionID = $section) AND (EmployeeType ='$type')
+        
+        
+        ");
+                return  $query->result_array(); 
+}
+
+public function getEmployeesNull($section,$depart,$type){
+        $Month = date('m');
+        $Year = date('Y');
+        $Day = date('d');
+        $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+        $HRDB = $this->load->database('HRMS', TRUE);
+        $query = $HRDB->query("SELECT        DeptID, SectionID, AttDate, EmpID, AttTime, EmployeeType, CardNo, Name, DesigName
+        FROM            dbo.View_Emp_ATT_REALTIME
+        WHERE        (AttDate = CONVERT(DATETIME, '$CurrentDate 00:00:00', 102)) AND (DeptID = $depart) AND (SectionID = $section) AND (EmployeeType IS NULL)
+        
+        
+        ");
+                return  $query->result_array(); 
+}
+
 }
