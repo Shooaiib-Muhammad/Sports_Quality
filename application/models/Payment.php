@@ -23,8 +23,10 @@ public function verify($ID){
     
     $query = $this->db->query("update  dbo . tbl_Outward_Transaction
       Set  AccountsStatus=1,AccountsverfiyDate='$Date',Request_Status='Accounts Verfication Done' Where TID= '$ID'");
+        // return  $query->result_array();
+        $query = $this->db->query("update  dbo . tbl_Outward_Transaction_D
+      Set  AccountsStatus=1,AccountsverfiyDate='$Date',Request_Status='Accounts Verfication Done' Where TID= '$ID'");
    // return  $query->result_array();
-
     if($query){
         return true;
     }

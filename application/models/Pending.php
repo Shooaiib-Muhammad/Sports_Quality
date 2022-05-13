@@ -51,8 +51,8 @@ public function AddCSSNo($ID,$CssNo){
     }
     public function pendingAccounts()
     {
-        $query = $this->db->query("SELECT        view_Outward_transaction.*
-        FROM            dbo.view_Outward_transaction
+        $query = $this->db->query("SELECT        view_Outward_transaction_D.*
+        FROM            dbo.view_Outward_transaction_D
         WHERE        (AccountsStatus IS NULL) and (MaterialInStatus IS NULL)");
         return  $query->result_array();
     }

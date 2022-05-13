@@ -18,7 +18,7 @@ class ResultFit extends CI_Model
     public function arequest()
     {
         $query = $this->db->query("SELECT        Invoice_ID, RequestDate, TestName, Amount, Supplier, AccountsStatus, CONVERT(Varchar, AccountsverfiyDate, 103) AS AccountsverfiyDate
-        FROM            dbo.view_Outward_transaction
+        FROM            dbo.view_Outward_transaction_D
         WHERE        (AccountsStatus = 1)");
         return $result = $query->result_array();
     }

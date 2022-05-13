@@ -7,7 +7,7 @@ class Upload extends CI_Model
     {
         $query = $this->db->query("SELECT        view_Outward_transaction_D.*
         FROM            dbo.view_Outward_transaction_D
-        WHERE        (Result IS NULL) and (AccountsStatus =1)");
+        WHERE        (Result IS NULL) and (labStatus =1)");
       return  $query->result_array();
     }
    
