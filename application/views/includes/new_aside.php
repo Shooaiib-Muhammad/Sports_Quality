@@ -486,7 +486,7 @@
                     </ul>
                 </li>
 
-                <li class="active open">
+                <li >
                     <a href="#" title="Application Intel" data-filter-tags="application intel">
                         <!-- <i class="fal fa-info-tachometer"></i> -->
                         <span class="nav-link-text" data-i18n="nav.application_intel">DMMS</span>
@@ -500,7 +500,7 @@
 
                             </a>
                         </li>
-                        <li class="active">
+                        <li>
                             <a href="<?php echo base_url(
                                             'index.php/DMMS/main/dmms_dashboard'
                                         ); ?>" title="DMMS Dashboard" data-filter-tags="application intel analytics dashboard">

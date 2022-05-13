@@ -1,6 +1,117 @@
 <?php $this->load->view('includes/new_header'); ?>
 <!--  -->
+<style>
+    .highcharts-figure .chart-container {
+        width: 100%;
+        height: 45%;
 
+
+    }
+
+    .highcharts-figure,
+    .highcharts-data-table table {
+        width: 600px;
+        margin-left: 35%;
+        margin-top: 70px;
+    }
+
+    .highcharts-data-table table {
+        font-family: Verdana, sans-serif;
+        border-collapse: collapse;
+        border: 1px solid #ebebeb;
+        margin: 10px auto;
+        text-align: center;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .highcharts-data-table caption {
+        padding: 1em 0;
+        font-size: 1.6em;
+        color: grey;
+    }
+
+    .highcharts-data-table th {
+        font-weight: 800;
+        padding: 0.5em;
+    }
+
+    .highcharts-data-table td,
+    .highcharts-data-table th,
+    .highcharts-data-table caption {
+        padding: 0.5em;
+    }
+
+    .highcharts-data-table thead tr,
+    .highcharts-data-table tr:nth-child(even) {
+        background: #f8f8f8;
+    }
+
+    .highcharts-data-table tr:hover {
+        background: grey;
+    }
+
+    @media (max-width: 600px) {
+
+        .highcharts-figure,
+        .highcharts-data-table table {
+            width: 100%;
+        }
+
+        .highcharts-figure .chart-container {
+            width: 300px;
+            float: none;
+            margin: 0 auto;
+        }
+    }
+
+    .highcharts-figureT,
+    .highcharts-data-table table {
+        min-width: 320px;
+        max-width: 500px;
+        margin: 1em auto;
+    }
+
+    #container {
+        height: 400px;
+    }
+
+    .highcharts-data-table table {
+        font-family: Verdana, sans-serif;
+        border-collapse: collapse;
+        border: 1px solid #ebebeb;
+        margin: 10px auto;
+        text-align: center;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .highcharts-data-table caption {
+        padding: 1em 0;
+        font-size: 1.2em;
+        color: #555;
+    }
+
+    .highcharts-data-table th {
+        font-weight: 600;
+        padding: 0.5em;
+    }
+
+    .highcharts-data-table td,
+    .highcharts-data-table th,
+    .highcharts-data-table caption {
+        padding: 0.5em;
+    }
+
+    .highcharts-data-table thead tr,
+    .highcharts-data-table tr:nth-child(even) {
+        background: #f8f8f8;
+    }
+
+    .highcharts-data-table tr:hover {
+        background: #f1f7ff;
+    }
+</style>
 <!-- BEGIN Page Wrapper -->
 <div class="page-wrapper">
     <div class="page-inner">
@@ -21,7 +132,7 @@
             <!-- the #js-page-content id is needed for some plugins to initialize -->
             <main id="js-page-content" role="main" class="page-content">
                 <?php $id = $_GET['dept_id']; ?>
-             
+
 
                 <div class="subheader">
                     <h1 class="subheader-title">
@@ -33,129 +144,153 @@
 
                 <div class="row">
 
+                    <div class="col-md-12 d-flex flex-row">
+
+                        <div class="col-md-1">
+
+                        </div>
+
+                        <?php foreach ($realtime as $d) {
+
+                        ?>
 
 
-                    <?php foreach ($realtime as $d) {
+                            <?php if ($d['EmployeeType'] == "Direct") { ?>
+                                <div class="col-md-2" id="direct">
+                                    <a href="javascript:void(0)">
+                                        <div style="background-color:maroon" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                            <div class="">
+                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
-                    ?>
 
-    
-    <?php if ($d['EmployeeType'] == "Direct") { ?>
-        <div class="col-sm-6 col-xl-3" id="direct">
+                                                    <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
+
+                                                    <small class="m-0 l-h-n">Number of Employees</small>
+                                                    <?php echo $d['EmpCount']; ?>
+                                                    <!-- <small class="m-0 l-h-n">Real Time</small>
+                                            <?php echo $d['RealTime']; ?> -->
+
+                                                </h3>
+                                            </div>
+                                            <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-2" id="direct">
+                                    <a href="javascript:void(0)">
+                                        <div style="background-color:grey" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                            <div class="">
+                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+
+                                                    <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
+
+                                                    <!-- <small class="m-0 l-h-n">Number of Employees</small>
+                                            <?php echo $d['EmpCount']; ?> -->
+                                                    <small class="m-0 l-h-n">Real Time</small>
+                                                    <?php echo $d['RealTime']; ?>
+
+                                                </h3>
+                                            </div>
+                                            <i class="fal fa-clock position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            <?php } ?>
+
+
+
+                        <?php } ?>
+
+                        <div class="col-md-2" id="direct">
                             <a href="javascript:void(0)">
-                                <div style="background-color:maroon" class="p-3  rounded overflow-hidden position-relative text-white mb-g">
+                                <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                     
+                                            <small class="m-0 l-h-n">Total Balls Count</small>
+                                            <?php echo $total; ?>
 
-                                                <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small>
-                                        
-                                            <small class="m-0 l-h-n">Number of Employees</small>
-                                            <?php echo $d['EmpCount']; ?>
-                                            <small class="m-0 l-h-n">Real Time</small>
-                                            <?php echo $d['RealTime']; ?>
+                                            <small class="m-0 l-h-n"></small>
+
+
+
+
 
                                         </h3>
                                     </div>
-                                    <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
                                 </div>
                             </a>
                         </div>
-        <?php } ?>  
+                        <?php $Output = $total * 0.64;
 
-       
-                        <!-- <div class="col-sm-6 col-xl-3">
+
+
+
+                        if ($realtime[1]['EmployeeType'] == "Direct") {
+
+
+                            $Mints = $realtime[1]['RealTime'];
+                        }
+
+                        $Efficiecny = ($Output / $Mints) * 100;
+
+                        ?>
+
+                        <div class="col-md-2" id="direct">
                             <a href="javascript:void(0)">
-                                <div class="p-3 bg-info-300 rounded overflow-hidden position-relative text-white mb-g">
+                                <div class="p-2 bg-info rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <?php if ($d['EmployeeType'] == NULL) { ?>
+                                            <small class="m-0 l-h-n">Efficiency</small>
+                                            <?php echo Round($Efficiecny, 2); ?>%
 
-                                                <small class="m-0 l-h-n" id="NullEmp">Employee Type Not Assigned</small>
-                                            <?php } else if ($d['EmployeeType'] == "Direct") { ?>
-
-                                                <small id="direct" class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small>
-                                            <?php } else { ?>
-                                                <small id="indirect" class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small>
-
-                                            <?php } ?>
-                                            <small class="m-0 l-h-n">Number of Employees</small>
-                                            <?php echo $d['EmpCount']; ?>
-                                            <small class="m-0 l-h-n">Real Time</small>
-                                            <?php echo $d['RealTime']; ?>
-
+                                            <small class="m-0 l-h-n"></small>
                                         </h3>
                                     </div>
-                                    <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                </div>
-                            </a>
-                        </div> -->
-                    <?php } ?>
-           
-          <div class="col-sm-6 col-xl-3" id="direct">
-                            <a href="javascript:void(0)">
-                                <div class="p-3 bg-dark rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                        <small class="m-0 l-h-n">Total Balls Count</small>
-                                        <?php echo $total; ?>
-
-                                                <small  class="m-0 l-h-n"></small>
-                                        
-                                           
-                                           
-                                           
-
-                                        </h3>
-                                    </div>
-                                    <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                </div>
-                            </a>
-                        </div>
-          <?php $Output= $total*0.58;
-         
-       
-       
-         
-          if ($realtime[1]['EmployeeType'] == "Direct") {
-           
-         
-           $Mints= $realtime[1]['RealTime'];
-        
-          }
-          
-          $Efficiecny= ($Output/$Mints)*100;
-           
-          ?>
-     
-          <div class="col-sm-6 col-xl-3" id="direct">
-                            <a href="javascript:void(0)">
-                                <div class="p-3 bg-info rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                        <small class="m-0 l-h-n">Efficiency</small>
-                                        <?php Echo Round($Efficiecny,2); ?>%
-
-                                                <small  class="m-0 l-h-n"></small>
-                                        
-                                           
-                                           
-                                           
-
-                                        </h3>
-                                    </div>
-                                    <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
                                 </div>
                             </a>
                         </div>
 
+                        <div class=" col-md-2 align-self-center" id="direct">
+                            <a href="javascript:void(0)">
+                                <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                            <h2 class="">Target <br> 67%</h2>
+
+                                        </h3>
+
+                                    </div>
+                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-1">
+
+                        </div>
+
+                    </div>
+                </div> <!-- row ends here -->
+
+
+
+
+                <div class="guage text-center ">
+                    <script src="https://code.highcharts.com/highcharts.js"></script>
+                    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+                    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+                    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+                    <figure class="highcharts-figure">
+                        <div id="container-speed" class="chart-container"></div>
+                        <!-- <div id="container-rpm" class="chart-container"></div>   -->
+                    </figure>
                 </div>
-
-
-
-
-
-
                 <div id="tableHere">
 
 
@@ -164,6 +299,11 @@
 
                 </div>
             </main>
+
+
+
+
+
             <!-- this overlay is activated only when mobile menu is triggered -->
             <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
             <!-- BEGIN Page Footer -->
@@ -1000,6 +1140,169 @@
 
         });
 
+        var gaugeOptions = {
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            exporting: {
+                enabled: false
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.1, '#55BF3B'], // green
+                    [0.5, '#DDDF0D'], // yellow
+                    [0.9, '#DF5353'] // red
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Achieved'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Achieved',
+                data: [<?php echo Round($Efficiecny, 2); ?>],
+                dataLabels: {
+                    format: '<div style="text-align:center">' +
+                        '<span style="font-size:30px"> {y} %</span><br/>' +
+                        '</div>'
+                },
+
+            }]
+
+        }));
+
+        // //The RPM gauge
+        // var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, {
+        //     yAxis: {
+        //         min: 0,
+        //         max: 5,
+        //         title: {
+        //             text: 'RPM'
+        //         }
+        //     },
+
+        //     series: [{
+        //         name: 'RPM',
+        //         data: [<?php echo Round($Efficiecny, 2); ?>],
+        //         dataLabels: {
+        //             format:
+        //                 '<div style="text-align:center">' +
+        //                 '<span style="font-size:25px">{y:.1f}</span><br/>' +
+        //                 '<span style="font-size:12px;opacity:0.4">' +
+        //                 '* 1000 / min' +
+        //                 '</span>' +
+        //                 '</div>'
+        //         },
+        //         tooltip: {
+        //             valueSuffix: ' revolutions/min'
+        //         }
+        //     }]
+
+        // }));
+
+        // Highcharts.chart('containerT', {
+        //     chart: {
+        //         plotBackgroundColor: null,
+        //         plotBorderWidth: 0,
+        //         plotShadow: false
+        //     },
+        //     title: {
+        //         text: 'Target / Achieved',
+
+        //     },
+        //     tooltip: {
+        //         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        //     },
+        //     accessibility: {
+        //         point: {
+        //             valueSuffix: '%'
+        //         }
+        //     },
+        //     plotOptions: {
+        //         pie: {
+        //             dataLabels: {
+        //                 enabled: true,
+        //                 distance: -50,
+        //                 style: {
+        //                     fontWeight: 'bold',
+        //                     color: 'white'
+        //                 }
+        //             },
+        //             startAngle: -90,
+        //             endAngle: 90,
+        //             center: ['50%', '75%'],
+        //             size: '110%'
+        //         }
+        //     },
+        //     series: [{
+        //         type: 'pie',
+        //         name: 'Browser share',
+        //         innerSize: '55%',
+        //         data: [
+        //             ['Target', <?php echo '67%'; ?>  ],
+        //             ['Achieved', <?php echo Round($Efficiecny, 2); ?>]
+        //         ]
+        //     }]
+        // });
+
+
+
+
+
 
         /* flot toggle example */
         var flot_toggle = function() {
@@ -1315,79 +1618,79 @@
 </table>`
             $("#tableHere").append(table);
             $(document).ready(function() {
-            // LoadData(stDate, enDate);
+                // LoadData(stDate, enDate);
 
-            $('#tableFormat').dataTable({
-                responsive: false,
-                lengthChange: false,
-                dom:
-                    /*	--- Layout Structure 
-                    	--- Options
-                    	l	-	length changing input control
-                    	f	-	filtering input
-                    	t	-	The table!
-                    	i	-	Table information summary
-                    	p	-	pagination control
-                    	r	-	processing display element
-                    	B	-	buttons
-                    	R	-	ColReorder
-                    	S	-	Select
+                $('#tableFormat').dataTable({
+                    responsive: false,
+                    lengthChange: false,
+                    dom:
+                        /*	--- Layout Structure 
+                        	--- Options
+                        	l	-	length changing input control
+                        	f	-	filtering input
+                        	t	-	The table!
+                        	i	-	Table information summary
+                        	p	-	pagination control
+                        	r	-	processing display element
+                        	B	-	buttons
+                        	R	-	ColReorder
+                        	S	-	Select
 
-                    	--- Markup
-                    	< and >				- div element
-                    	<"class" and >		- div with a class
-                    	<"#id" and >		- div with an ID
-                    	<"#id.class" and >	- div with an ID and a class
+                        	--- Markup
+                        	< and >				- div element
+                        	<"class" and >		- div with a class
+                        	<"#id" and >		- div with an ID
+                        	<"#id.class" and >	- div with an ID and a class
 
-                    	--- Further reading
-                    	https://datatables.net/reference/option/dom
-                    	--------------------------------------
-                     */
-                    "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-                    "<'row'<'col-sm-12'tr>>" +
-                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                buttons: [
-                    /*{
-                    	extend:    'colvis',
-                    	text:      'Column Visibility',
-                    	titleAttr: 'Col visibility',
-                    	className: 'mr-sm-3'
-                    },*/
-                    {
-                        extend: 'pdfHtml5',
-                        text: 'PDF',
-                        titleAttr: 'Generate PDF',
-                        className: 'btn-outline-danger btn-sm mr-1'
-                    },
-                    {
-                        extend: 'excelHtml5',
-                        text: 'Excel',
-                        titleAttr: 'Generate Excel',
-                        className: 'btn-outline-success btn-sm mr-1'
-                    },
-                    {
-                        extend: 'csvHtml5',
-                        text: 'CSV',
-                        titleAttr: 'Generate CSV',
-                        className: 'btn-outline-primary btn-sm mr-1'
-                    },
-                    {
-                        extend: 'copyHtml5',
-                        text: 'Copy',
-                        titleAttr: 'Copy to clipboard',
-                        className: 'btn-outline-primary btn-sm mr-1'
-                    },
-                    {
-                        extend: 'print',
-                        text: 'Print',
-                        titleAttr: 'Print Table',
-                        className: 'btn-outline-primary btn-sm'
-                    }
-                ]
+                        	--- Further reading
+                        	https://datatables.net/reference/option/dom
+                        	--------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                        	extend:    'colvis',
+                        	text:      'Column Visibility',
+                        	titleAttr: 'Col visibility',
+                        	className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+
+
             });
-
-
-        });
         })
     })
     $('#indirect').click(function() {
@@ -1431,79 +1734,79 @@
 </table>`
             $("#tableHere").append(table);
             $(document).ready(function() {
-            // LoadData(stDate, enDate);
+                // LoadData(stDate, enDate);
 
-            $('#tableFormat').dataTable({
-                responsive: false,
-                lengthChange: false,
-                dom:
-                    /*	--- Layout Structure 
-                    	--- Options
-                    	l	-	length changing input control
-                    	f	-	filtering input
-                    	t	-	The table!
-                    	i	-	Table information summary
-                    	p	-	pagination control
-                    	r	-	processing display element
-                    	B	-	buttons
-                    	R	-	ColReorder
-                    	S	-	Select
+                $('#tableFormat').dataTable({
+                    responsive: false,
+                    lengthChange: false,
+                    dom:
+                        /*	--- Layout Structure 
+                        	--- Options
+                        	l	-	length changing input control
+                        	f	-	filtering input
+                        	t	-	The table!
+                        	i	-	Table information summary
+                        	p	-	pagination control
+                        	r	-	processing display element
+                        	B	-	buttons
+                        	R	-	ColReorder
+                        	S	-	Select
 
-                    	--- Markup
-                    	< and >				- div element
-                    	<"class" and >		- div with a class
-                    	<"#id" and >		- div with an ID
-                    	<"#id.class" and >	- div with an ID and a class
+                        	--- Markup
+                        	< and >				- div element
+                        	<"class" and >		- div with a class
+                        	<"#id" and >		- div with an ID
+                        	<"#id.class" and >	- div with an ID and a class
 
-                    	--- Further reading
-                    	https://datatables.net/reference/option/dom
-                    	--------------------------------------
-                     */
-                    "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-                    "<'row'<'col-sm-12'tr>>" +
-                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                buttons: [
-                    /*{
-                    	extend:    'colvis',
-                    	text:      'Column Visibility',
-                    	titleAttr: 'Col visibility',
-                    	className: 'mr-sm-3'
-                    },*/
-                    {
-                        extend: 'pdfHtml5',
-                        text: 'PDF',
-                        titleAttr: 'Generate PDF',
-                        className: 'btn-outline-danger btn-sm mr-1'
-                    },
-                    {
-                        extend: 'excelHtml5',
-                        text: 'Excel',
-                        titleAttr: 'Generate Excel',
-                        className: 'btn-outline-success btn-sm mr-1'
-                    },
-                    {
-                        extend: 'csvHtml5',
-                        text: 'CSV',
-                        titleAttr: 'Generate CSV',
-                        className: 'btn-outline-primary btn-sm mr-1'
-                    },
-                    {
-                        extend: 'copyHtml5',
-                        text: 'Copy',
-                        titleAttr: 'Copy to clipboard',
-                        className: 'btn-outline-primary btn-sm mr-1'
-                    },
-                    {
-                        extend: 'print',
-                        text: 'Print',
-                        titleAttr: 'Print Table',
-                        className: 'btn-outline-primary btn-sm'
-                    }
-                ]
+                        	--- Further reading
+                        	https://datatables.net/reference/option/dom
+                        	--------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                        	extend:    'colvis',
+                        	text:      'Column Visibility',
+                        	titleAttr: 'Col visibility',
+                        	className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+
+
             });
-
-
-        });
         })
     })
     $('#NullEmp').click(function() {
@@ -1546,81 +1849,81 @@
 </table>`
             $("#tableHere").append(table);
             $(document).ready(function() {
-            // LoadData(stDate, enDate);
+                // LoadData(stDate, enDate);
 
-            $('#tableFormat').dataTable({
-                responsive: true,
-                lengthChange: false,
-                dom:
-                    /*	--- Layout Structure 
-                    	--- Options
-                    	l	-	length changing input control
-                    	f	-	filtering input
-                    	t	-	The table!
-                    	i	-	Table information summary
-                    	p	-	pagination control
-                    	r	-	processing display element
-                    	B	-	buttons
-                    	R	-	ColReorder
-                    	S	-	Select
+                $('#tableFormat').dataTable({
+                    responsive: true,
+                    lengthChange: false,
+                    dom:
+                        /*	--- Layout Structure 
+                        	--- Options
+                        	l	-	length changing input control
+                        	f	-	filtering input
+                        	t	-	The table!
+                        	i	-	Table information summary
+                        	p	-	pagination control
+                        	r	-	processing display element
+                        	B	-	buttons
+                        	R	-	ColReorder
+                        	S	-	Select
 
-                    	--- Markup
-                    	< and >				- div element
-                    	<"class" and >		- div with a class
-                    	<"#id" and >		- div with an ID
-                    	<"#id.class" and >	- div with an ID and a class
+                        	--- Markup
+                        	< and >				- div element
+                        	<"class" and >		- div with a class
+                        	<"#id" and >		- div with an ID
+                        	<"#id.class" and >	- div with an ID and a class
 
-                    	--- Further reading
-                    	https://datatables.net/reference/option/dom
-                    	--------------------------------------
-                     */
-                    "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-                    "<'row'<'col-sm-12'tr>>" +
-                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                buttons: [
-                    /*{
-                    	extend:    'colvis',
-                    	text:      'Column Visibility',
-                    	titleAttr: 'Col visibility',
-                    	className: 'mr-sm-3'
-                    },*/
-                    {
-                        extend: 'pdfHtml5',
-                        text: 'PDF',
-                        titleAttr: 'Generate PDF',
-                        className: 'btn-outline-danger btn-sm mr-1'
-                    },
-                    {
-                        extend: 'excelHtml5',
-                        text: 'Excel',
-                        titleAttr: 'Generate Excel',
-                        className: 'btn-outline-success btn-sm mr-1'
-                    },
-                    {
-                        extend: 'csvHtml5',
-                        text: 'CSV',
-                        titleAttr: 'Generate CSV',
-                        className: 'btn-outline-primary btn-sm mr-1'
-                    },
-                    {
-                        extend: 'copyHtml5',
-                        text: 'Copy',
-                        titleAttr: 'Copy to clipboard',
-                        className: 'btn-outline-primary btn-sm mr-1'
-                    },
-                    {
-                        extend: 'print',
-                        text: 'Print',
-                        titleAttr: 'Print Table',
-                        className: 'btn-outline-primary btn-sm'
-                    }
-                ]
+                        	--- Further reading
+                        	https://datatables.net/reference/option/dom
+                        	--------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                        	extend:    'colvis',
+                        	text:      'Column Visibility',
+                        	titleAttr: 'Col visibility',
+                        	className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+
+
             });
-
-
-        });
         })
-       
+
     })
 </script>
 
