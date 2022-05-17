@@ -32,4 +32,13 @@ class RWPD_Model extends CI_Model
        ");
   return  $query->result_array();
  }
+ Public function Cutting(){
+            $Month = date('m');
+            $Year = date('Y');
+            $Day = date('d');
+            $query = $this->db->query("SELECT        SUM(Counter) AS Counter
+FROM            dbo.view_PC_Cutting_Process
+WHERE        (Date = '$Day/$Month/$Year')");
+            return  $query->result_array();
+ }
 }

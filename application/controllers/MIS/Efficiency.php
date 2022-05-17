@@ -115,4 +115,8 @@ class Efficiency extends CI_Controller
         );
         echo 'updated';
     }
+    public function Cutting()
+    {
+        $this->load->view('FIT/Cutting');
+    }
 }

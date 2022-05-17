@@ -95,7 +95,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label class="form-control-label">Select hallnames:</label>
+                            <label class="form-control-label">Select hall Names :</label>
                             <div class="input-group" id="hallnames">
                                 <select class="form-control" id="hallValue" name="hall" style="width: 100%">
                                 </select>
