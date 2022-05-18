@@ -486,7 +486,7 @@
                     </ul>
                 </li>
 
-                <li >
+                <li>
                     <a href="#" title="Application Intel" data-filter-tags="application intel">
                         <!-- <i class="fal fa-info-tachometer"></i> -->
                         <span class="nav-link-text" data-i18n="nav.application_intel">DMMS</span>
@@ -619,26 +619,26 @@
                             </a>
                         </li>
                         <li>
-                        <a href="<?php echo base_url(
-                                        ''
-                                    ); ?>MaterialType/getMaterial" title="How it works" data-filter-tags="theme settings how it works">
-                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Material Type </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url(
-                                        ''
-                                    ); ?>BagType/getBags" title="How it works" data-filter-tags="theme settings how it works">
-                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Bag Type </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url(
-                                        ''
-                                    ); ?>BallType/getBalls" title="How it works" data-filter-tags="theme settings how it works">
-                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Ball Type </span>
-                        </a>
-                    </li>
+                            <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>MaterialType/getMaterial" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Material Type </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>BagType/getBags" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Bag Type </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>BallType/getBalls" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Ball Type </span>
+                            </a>
+                        </li>
 
 
                     </ul>
@@ -653,6 +653,13 @@
                     <a href="<?php echo base_url('RWPD') ?>" title="Theme Settings" data-filter-tags="theme settings">
 
                         <span class="nav-link-text" data-i18n="nav.theme_settings">RWPD</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?php echo base_url('Cutting/Cutting') ?>" title="Theme Settings" data-filter-tags="theme settings">
+
+                        <span class="nav-link-text" data-i18n="nav.theme_settings">Cutting</span>
                     </a>
                 </li>
             </ul>

@@ -228,10 +228,10 @@
 
 
 
-                        if ($realtime[1]['EmployeeType'] == "Direct") {
+                        if ($realtime[0]['EmployeeType'] == "Direct") {
 
 
-                            $Mints = $realtime[1]['RealTime'];
+                            $Mints = $realtime[0]['RealTime'];
                         }
 
                         $Efficiecny = ($Output / $Mints) * 100;
