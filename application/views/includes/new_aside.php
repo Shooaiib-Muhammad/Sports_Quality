@@ -278,7 +278,7 @@
                             </ul>
 
                         </li>
-
+                        <!-- 
                         <li>
                             <a href="#" title="How it works" data-filter-tags="theme settings how it works">
                                 <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Down Time</span>
@@ -295,9 +295,9 @@
 
                             </ul>
 
-                        </li>
+                        </li> -->
 
-                        <li>
+                        <!-- <li>
                             <a href="#" title="How it works" data-filter-tags="theme settings how it works">
                                 <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Efficiency</span>
                             </a>
@@ -320,7 +320,7 @@
 
                             </ul>
 
-                        </li>
+                        </li> -->
 
                         <li>
                             <a href="#" title="How it works" data-filter-tags="theme settings how it works">
@@ -686,6 +686,7 @@
 
                         </li>
 
+
                         <li>
                             <a href="<?php echo base_url('Lamination') ?>" title="How it works" data-filter-tags="theme settings how it works">
                                 <span class="" data-i18n="nav.theme_settings_how_it_works">Lamination</span>
@@ -696,44 +697,54 @@
 
                         <li>
                             <a href="<?php echo base_url('Throster') ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="" data-i18n="nav.theme_settings_how_it_works">MS Throster</span>
+                                <span class="" data-i18n="nav.theme_settings_how_it_works">Throster</span>
                             </a>
 
 
                         </li>
 
+
+
+
                         <li>
                             <a href="#" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="" data-i18n="nav.theme_settings_how_it_works">Tm Packing</span>
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Packing</span>
                             </a>
+                            <ul>
+                                <li>
+                                    <a href="<?php echo base_url("TM_Packing/TM_Packing") ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">TM Packing</span>
+                                    </a>
+                                </li>
 
+                                <li>
+                                    <a href="<?php echo base_url("AMB_Packing/AMB_Packing") ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">AMB Packing</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="<?php echo base_url('LFB_Packing/LFB_Packing') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                        <span class="" data-i18n="nav.theme_settings_how_it_works">LFB Packing</span>
+                                    </a>
+
+
+                                </li>
+
+
+                            </ul>
 
                         </li>
 
                         <li>
-                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="" data-i18n="nav.theme_settings_how_it_works">AMB Packing</span>
-                            </a>
-
-
-                        </li>
-
-                        <li>
-                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="" data-i18n="nav.theme_settings_how_it_works">UFB Packing</span>
-                            </a>
-
-
-                        </li>
-                        <li>
-                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                            <a href="<?php echo base_url('Carcas/Carcas') ?>" title="How it works" data-filter-tags="theme settings how it works">
                                 <span class="" data-i18n="nav.theme_settings_how_it_works">Carcas</span>
                             </a>
 
 
                         </li>
                         <li>
-                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                            <a href="<?php echo base_url('Core/Core') ?>" title="How it works" data-filter-tags="theme settings how it works">
                                 <span class="" data-i18n="nav.theme_settings_how_it_works">Core</span>
                             </a>
 

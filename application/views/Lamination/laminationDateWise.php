@@ -1,4 +1,3 @@
-
 <?php $this->load->view('includes/new_header'); ?>
 <!-- BEGIN Page Wrapper -->
 <div class="page-wrapper">
@@ -20,7 +19,8 @@
             <!-- the #js-page-content id is needed for some plugins to initialize -->
             <main id="js-page-content" role="main" class="page-content">
 
-                <ol class="breadcrumb page-breadcrumb">
+
+            <ol class="breadcrumb page-breadcrumb">
                     <li class="breadcrumb-item"><a href="<?php echo base_url(
                                                                 'index.php/main/dmms_dashboard'
                                                             ); ?>">Dashboard</a></li>
@@ -37,15 +37,12 @@
 
                 </div>
 
-                <div class="row">
-
-                <div class="col-md-12">
 
                 <?php
         $Month = date('m');
         $Year = date('Y');
         $Day = date('d');
-        $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+        $CurrentDate = $Day . '/' . $Month . '/' . $Year;
         ?>
 
 
@@ -59,7 +56,7 @@
                   <div class="form-group">
                     <label class="form-control-label">From Date:</label>
                     <div class="input-group">
-                      <input class="form-control" type="Date" id="SDate" name="Sdate" value="<?php echo $CurrentDate; ?>" style="width: 100%">
+                      <input class="form-control" type="Date" id="SDate" name="Sdate" value="<?php echo $startDate; ?>" style="width: 100%">
                     </div>
                   </div>
                 </div>
@@ -67,7 +64,7 @@
                   <div class="form-group">
                     <label class="form-control-label">To Date:</label>
                     <div class="input-group">
-                      <input class="form-control" type="Date" id="EDate" name="Edate" value="<?php echo $CurrentDate; ?>" style="width: 100%">
+                      <input class="form-control" type="Date" id="EDate" name="Edate" value="<?php echo $endDate; ?>" style="width: 100%">
                     </div>
                   </div>
                 </div>
@@ -88,28 +85,8 @@
           </div>
         </div>
 
-        <br>
 
-
-                </div>
-                  
-
-                   
-
-
-                </div>
-
-
-
-
-
-
-                <div class="row">
-
-
-            <div class="col-md-12">
-
-            <div class="row mt-4">
+        <div class="row mt-4">
           <div class="col-md-2">
         
             <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g" style="background-color:black;">
@@ -119,8 +96,8 @@
                   <small class="m-0 l-h-n">Total Reading</small>
                 </h3>
                 <h3 class="display-4 d-block l-h-n m-0 fw-500">
-
-            <?php echo $total; ?>
+                
+                <?php echo $total; ?>
                 </h3>
                 <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
               
@@ -131,7 +108,7 @@
 
               
             <?php foreach ($IndividualReading as $Inmachine) {
-                $no = $Inmachine['MachineName'];
+            
 
           ?>
             <div class="col-md-2">
@@ -140,7 +117,7 @@
               <div class="">
                 <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
-                  <small class="m-0 l-h-n">m1</small>
+                  <small class="m-0 l-h-n"><?php echo $Inmachine['MachineName']; ?></small>
                 </h3>
                 <h3 class="display-4 d-block l-h-n m-0 fw-500">
                 
@@ -152,10 +129,7 @@
             </div>
 
             </div>
-
-        
             
-
             <?php
             }
             ?>
@@ -169,8 +143,7 @@
 
             </div>
 
-
-            <?php
+                 <?php
 
 $GetReading = array();
 $GetReading2 = array();
@@ -185,18 +158,14 @@ array_push($GetReading2, $point2);
 }?>
 
 
-
-
-
-            
-        <div class="row">
+            <div class="row">
         <div class="col-md-12">
       
                 <div id="panel-1" class="panel">
                   <div class="panel-hdr">
                     <h2>
                       Energy Consuption
-					   <!-- <?php Print_r($getData); ?> -->
+					  <!-- <?php Print_r($getData); ?> -->
                     </h2>
                   </div>
                   <div class="panel-container show">
@@ -219,9 +188,6 @@ array_push($GetReading2, $point2);
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/modules/export-data.js"></script>
   <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
-
-
   <script>
    
     
@@ -295,15 +261,12 @@ responsive: {
 
 
 
-
-
-                </div>
             </main>
-            </div>
-            </div>
-         
-    </div>
-</div>
 
-</div>
+            </div>
 
+           </div>
+
+         </div>
+
+         </div>
