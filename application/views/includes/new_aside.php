@@ -695,8 +695,8 @@
                         </li>
 
                         <li>
-                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="" data-i18n="nav.theme_settings_how_it_works">MS Line Wise</span>
+                            <a href="<?php echo base_url('Throster') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="" data-i18n="nav.theme_settings_how_it_works">MS Throster</span>
                             </a>
 
 
