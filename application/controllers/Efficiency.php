@@ -53,7 +53,7 @@ class Efficiency extends CI_Controller
   $Month = date('m');
   $Year = date('Y');
   $Day = date('d');
-  $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+  $CurrentDate = $Day . '/' . $Month . '/' . $Year;
 
   $data['machineCounter'] = $this->RWPD->machineCounter($CurrentDate, $CurrentDate);
   $total = 0;

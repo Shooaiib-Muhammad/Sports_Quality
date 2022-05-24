@@ -12,15 +12,16 @@ class RWPD extends CI_Controller
 
  public function index()
  {
-
+// echo "I am herer";
+// die;
   $Month = date('m');
   $Year = date('Y');
   $Day = date('d');
-  $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+  $CurrentDate = $Day . '/' . $Month . '/' . $Year;
 
   $data['machineCounter'] = $this->RWPD->machineCounter($CurrentDate, $CurrentDate);
-  $data['poCounter'] = $this->RWPD->poCounter($CurrentDate, $CurrentDate);
-  $data['articleCounter'] = $this->RWPD->articleCounter($CurrentDate, $CurrentDate);
+  //$data['poCounter'] = $this->RWPD->poCounter($CurrentDate, $CurrentDate);
+  //$data['articleCounter'] = $this->RWPD->articleCounter($CurrentDate, $CurrentDate);
   $total = 0;
   foreach ($data['machineCounter'] as $count) {
 
@@ -39,8 +40,8 @@ class RWPD extends CI_Controller
  {
 
   $data['machineCounter'] = $this->RWPD->machineCounter($_POST['Sdate'], $_POST['Edate']);
-  $data['poCounter'] = $this->RWPD->poCounter($_POST['Sdate'], $_POST['Edate']);
-  $data['articleCounter'] = $this->RWPD->articleCounter($_POST['Sdate'], $_POST['Edate']);
+  //$data['poCounter'] = $this->RWPD->poCounter($_POST['Sdate'], $_POST['Edate']);
+  //$data['articleCounter'] = $this->RWPD->articleCounter($_POST['Sdate'], $_POST['Edate']);
   $total = 0;
   foreach ($data['machineCounter'] as $count) {
 

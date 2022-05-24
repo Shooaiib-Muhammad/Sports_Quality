@@ -561,15 +561,17 @@
 
                                 </a>
                             </li>
+
                         <?php } ?>
 
 
                     </ul>
                 </li>
+
                 <li>
                     <a href="#" title="Theme Settings" data-filter-tags="theme settings">
 
-                        <span class="nav-link-text" data-i18n="nav.theme_settings">FIT</span>
+                        <span class="nav-link-text" data-i18n="nav.theme_settings">Outward Request</span>
                     </a>
                     <ul>
                         <!-- <li>
@@ -618,7 +620,7 @@
                                 <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Upload Result </span>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="<?php echo base_url(
                                             ''
                                         ); ?>MaterialType/getMaterial" title="How it works" data-filter-tags="theme settings how it works">
@@ -638,28 +640,113 @@
                                         ); ?>BallType/getBalls" title="How it works" data-filter-tags="theme settings how it works">
                                 <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Ball Type </span>
                             </a>
-                        </li>
+                        </li> -->
 
 
                     </ul>
                 </li>
+
+
                 <li>
-                    <a href="<?php echo base_url('Efficiency') ?>" title="Theme Settings" data-filter-tags="theme settings">
+                    <a href="#" title="Theme Settings" data-filter-tags="theme settings">
 
                         <span class="nav-link-text" data-i18n="nav.theme_settings">Efficiency</span>
                     </a>
+                    <ul>
+
+                        <li>
+                            <a href="<?php echo base_url('Efficiency') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
+                            </a>
+
+
+                        </li>
+
+                        <li>
+                            <a href="<?php echo base_url('Efficiency/RWPD/?dept_id=23&section_id=118') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="" data-i18n="nav.theme_settings_how_it_works">RWPD</span>
+                            </a>
+
+
+                        </li>
+
+                        <li>
+                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Cutting</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="<?php echo base_url("Efficiency/Cutting/?dept_id=15&section_id=72") ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Diamond Press</span>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+
+                        </li>
+
+                        <li>
+                            <a href="<?php echo base_url('Lamination') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="" data-i18n="nav.theme_settings_how_it_works">Lamination</span>
+                            </a>
+
+
+                        </li>
+
+                        <li>
+                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="" data-i18n="nav.theme_settings_how_it_works">MS Line Wise</span>
+                            </a>
+
+
+                        </li>
+
+                        <li>
+                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="" data-i18n="nav.theme_settings_how_it_works">Tm Packing</span>
+                            </a>
+
+
+                        </li>
+
+                        <li>
+                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="" data-i18n="nav.theme_settings_how_it_works">AMB Packing</span>
+                            </a>
+
+
+                        </li>
+
+                        <li>
+                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="" data-i18n="nav.theme_settings_how_it_works">UFB Packing</span>
+                            </a>
+
+
+                        </li>
+                        <li>
+                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="" data-i18n="nav.theme_settings_how_it_works">Carcas</span>
+                            </a>
+
+
+                        </li>
+                        <li>
+                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="" data-i18n="nav.theme_settings_how_it_works">Core</span>
+                            </a>
+
+
+                        </li>
+                    </ul>
                 </li>
                 <li>
-                    <a href="<?php echo base_url('RWPD') ?>" title="Theme Settings" data-filter-tags="theme settings">
+                    <a href="<?php echo base_url(
+                                    'energy/Energycontroller'
+                                ); ?>" title="Theme Settings" data-filter-tags="theme settings">
 
-                        <span class="nav-link-text" data-i18n="nav.theme_settings">RWPD</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="<?php echo base_url('Cutting/Cutting') ?>" title="Theme Settings" data-filter-tags="theme settings">
-
-                        <span class="nav-link-text" data-i18n="nav.theme_settings">Cutting</span>
+                        <span class="nav-link-text" data-i18n="nav.theme_settings">Energy</span>
                     </a>
                 </li>
             </ul>
@@ -838,7 +925,7 @@
                     <li>
                         <a href="#" title="Theme Settings" data-filter-tags="theme settings">
 
-                            <span class="nav-link-text" data-i18n="nav.theme_settings">FIT</span>
+                            <span class="nav-link-text" data-i18n="nav.theme_settings">Outward Request</span>
                         </a>
                         <ul>
                             <!-- <li>

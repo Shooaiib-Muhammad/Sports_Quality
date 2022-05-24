@@ -5,11 +5,11 @@ class RWPD_Model extends CI_Model
 {
  public function machineCounter($s_date, $e_date)
  {
-  $query = $this->db->query("SELECT        SUM(BallCounter) AS BallCounter, MachineName
-        FROM            dbo.view_RWPD_Line_Wise_OutPut
-        WHERE        (DateName BETWEEN CONVERT(DATETIME, '$s_date 00:00:00', 102) AND CONVERT(DATETIME, '$e_date 00:00:00', 102))
-        GROUP BY MachineName ORDER BY MachineName
-        ");
+  $query = $this->db->query("SELECT        COUNT(TID) AS BallCounter,machineName AS MachineName
+
+FROM            dbo.tbl_Audiuno
+WHERE        (CONVERT(varchar, EntryDate, 103) BETWEEN '$s_date' AND '$e_date')
+GROUP BY machineName");
   return  $query->result_array();
  }
  public function poCounter($s_date, $e_date)
