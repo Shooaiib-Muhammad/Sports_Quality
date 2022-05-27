@@ -20,22 +20,22 @@
       <main id="js-page-content" role="main" class="page-content">
 
 
-      <ol class="breadcrumb page-breadcrumb">
-                    <li class="breadcrumb-item"><a href="<?php echo base_url(
-                                                                'index.php/main/dmms_dashboard'
-                                                            ); ?>">Dashboard</a></li>
+        <ol class="breadcrumb page-breadcrumb">
+          <li class="breadcrumb-item"><a href="<?php echo base_url(
+                                                  'index.php/main/dmms_dashboard'
+                                                ); ?>">Dashboard</a></li>
 
-                    <li class="breadcrumb-item"><a href="javascript:void(0);"> Dashboard</a></li>
-                    <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
-                </ol>
+          <li class="breadcrumb-item"><a href="javascript:void(0);"> Dashboard</a></li>
+          <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+        </ol>
 
-                <div class="subheader">
-                    <h1 class="subheader-title">
-                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>LFB Packing</span>
-                    </h1>
+        <div class="subheader">
+          <h1 class="subheader-title">
+            <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>LFB Packing</span>
+          </h1>
 
 
-                </div>
+        </div>
 
 
 
@@ -44,7 +44,7 @@
         $Year = date('Y');
         $Day = date('d');
         $CurrentDate = $Year . '-' . $Month . '-' . $Day;
-      //  if(SDate)
+        //  if(SDate)
         ?>
 
 
@@ -99,7 +99,7 @@
                 </h3>
                 <h3 class="display-4 d-block l-h-n m-0 fw-500">
                   <?php
-                  echo $Counter[0]['Counter'];
+                  echo $Data[0]['PassQty'];
                   ?>
 
                 </h3>
@@ -116,33 +116,34 @@
 
         <div class="row mt-4">
           <?php
-          foreach ($Throsters as $Keys) {
+          if ($Stationwise) {
+            foreach ($Stationwise as $Keys) {
           ?>
-            <div class="col-md-2">
-              <div class="p-3 bg-info-300 rounded overflow-hidden position-relative text-white mb-g" >
-                <div class="">
-                  <h3 class="display-4 d-block l-h-n m-0 fw-500">
+              <div class="col-md-2">
+                <div class="p-3 bg-info-300 rounded overflow-hidden position-relative text-white mb-g">
+                  <div class="">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
-                    <small class="m-0 l-h-n">Throster No <?php
-                                                          echo $Keys['Throster'];
-                                                          ?> </small>
-                  </h3>
-                  <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                    <?php
-                    echo $Keys['Counter'];
-                    ?>
+                      <small class="m-0 l-h-n">Station Name <?php
+                                                            echo $Keys['StationName'];
+                                                            ?> </small>
+                    </h3>
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                      <?php
+                      echo Round($Keys['PassQty'], 0);
+                      ?>
 
-                  </h3>
-                  <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                    </h3>
+                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                  </div>
+                  <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
                 </div>
-                <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
               </div>
-            </div>
 
 
           <?php
+            }
           }
-
           ?>
 
         </div>

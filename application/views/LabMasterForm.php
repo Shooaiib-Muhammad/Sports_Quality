@@ -9005,7 +9005,7 @@ ${reviewStatus == '1' ?
                                 if (element.TestNumber != undefined || element.PONo != undefined) {
                                     testNumber = element.TestNumber;
                                     PONumber = element.PONo;
-                                    let arrayHead = [element.TestNumber, element.Date, element.MaterialReference, element.PONo, ']'];
+                                    let arrayHead = [element.TestNumber, element.Date, element.MaterialReference, element.PONo,element.Status, element.Remarks, ']'];
                                     let arrayBody = [element.TestNumber, element.PONo, element.TEST, element.METHOD, element.UNIT, element.Requirement, element.RESULTS, ']'];
                                     HeaderArray.push(arrayHead);
                                     ChildArray.push(arrayBody)
@@ -9091,6 +9091,7 @@ ${reviewStatus == '1' ?
                 fd.append('testPerformer', testPerformer);
                 fd.append('CSSCodeValue', CssCodeValue);
                 let testType = $("#testType").val();
+                console.log("Test type", testType)
                 if (testType == 1) {
                     url = '<?php echo base_url('LabController/addHeadData'); ?>'
 
@@ -9336,7 +9337,7 @@ ${reviewStatus == '1' ?
                         testType = 7;
                     } else if (materialType == 'MS Thread') {
                         testType = 8;
-                    } else if (materialType == 'MS Thread') {
+                    } else if (materialType == 'MS Material') {
                         testType = 9;
                     } else if (materialType == 'Poly Bag') {
                         testType = 10;
@@ -9351,7 +9352,7 @@ ${reviewStatus == '1' ?
                         Sheetvalue = 2;
                     } else if (testType == 3) {
                         Sheetvalue = 2;
-                    } else if (testno == 4) {
+                    } else if (testType == 4) {
                         Sheetvalue = 2;
                     } else if (testType == 5) {
                         Sheetvalue = 2;
@@ -9370,7 +9371,6 @@ ${reviewStatus == '1' ?
                     //alert(testType);
                     //alert(Sheetvalue);
                     $("#testType").val(testType);
-
                     $("#testGroup").val(Type);
 
                     //

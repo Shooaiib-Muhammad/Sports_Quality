@@ -2331,6 +2331,8 @@ return $query->result_array();
         $DateGet,
         $MaterialRef,
         $PoNo,
+        $Status,
+        $Remarks,
         $picture,
         $testGroup,
         $testPerformer,
@@ -2347,6 +2349,8 @@ return $query->result_array();
               (TestNO
               ,Date
               ,PO
+              ,Result
+              ,Remarks
               ,CSSNO
               ,MaterialRef
               ,Entrydate
@@ -2359,6 +2363,8 @@ return $query->result_array();
               ('$TestNo'
               ,'$DateGet'
               ,'$PoNo'
+              ,'$Status'
+              ,'$Remarks'
               ,'$CSSValueAdd'
               ,'$MaterialRef'
               ,'$Date'

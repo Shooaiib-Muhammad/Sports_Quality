@@ -19,10 +19,10 @@ class LFB_Packing extends CI_Controller
   $Day = date('d');
   $CurrentDate = $Day . '/' . $Month . '/' . $Year;
 
-  $data['Counter'] = $this->LFB_Packing_Model->TotalCounter($CurrentDate, $CurrentDate);
+  $data['Data'] = $this->LFB_Packing_Model->TotalCounter($CurrentDate, $CurrentDate);
   
-  $data['Throsters'] = $this->LFB_Packing_Model->Throsters($CurrentDate, $CurrentDate);
-// print_r($data['Counter']);
+  $data['Stationwise'] = $this->LFB_Packing_Model->Stationwise($CurrentDate, $CurrentDate);
+// print_r($data['Stationwise']);
 // die;
   $this->load->view("LFB_Packing/LFB_Packing", $data);
  }
@@ -41,9 +41,9 @@ class LFB_Packing extends CI_Controller
   $EDay = substr($Date2, -2, 2);
   $StartDateeee = $SDay . '/' . $SMonth . '/' . $SYear;
   $EndDateeee = $EDay . '/' . $EMonth . '/' . $EYear;
-  $data['Counter'] = $this->LFB_Packing_Model->TotalCounter($StartDateeee, $EndDateeee);
+    $data['Data'] = $this->LFB_Packing_Model->TotalCounter($StartDateeee, $EndDateeee);
 
-  $data['Throsters'] = $this->LFB_Packing_Model->Throsters($StartDateeee, $EndDateeee);
+    $data['Stationwise'] = $this->LFB_Packing_Model->Stationwise($StartDateeee, $EndDateeee);
   // print_r($data['Counter']);
   // die;
   $data['SDate'] =$_POST['Sdate'];

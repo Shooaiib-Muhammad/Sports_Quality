@@ -53,9 +53,9 @@ class LabController extends CI_Controller
         // $data['detailsData'] = $this->l->getDetails($_GET['id']);
         $data['Articles'] = $this->l->GetArticles();
         //print_r($data['RData']);
-        if($data['RData'][0]['TestType']== 'Material Test'){
+        if(isset($data['RData'][0]['TestType']) == 'Material Test'){
             $data['getTestTypes'] = $this->l->getTestTypematerial();
-        }elseif ($data['RData'][0]['TestType'] == 'FGT Test') {
+        }elseif (isset($data['RData'][0]['TestType']) == 'FGT Test') {
             $data['getTestTypes'] = $this->l->getTestTypeFGT();
         }
        
@@ -1510,6 +1510,8 @@ public function getCssRaw(){
         $Date = $header[1];
         $MaterialRef = $header[2];
         $PoNo = $header[3];
+        $Status = $header[4];
+        $Remarks = $header[5];
         $testGroup = $_POST['testGroup'];
         $testPerformer = $_POST['testPerformer'];
         $this->l->addHeadDataMSMaterial(
@@ -1517,6 +1519,8 @@ public function getCssRaw(){
             $Date,
             $MaterialRef,
             $PoNo,
+            $Status,
+            $Remarks,
             $picture,
             $testGroup,
             $testPerformer,

@@ -5,18 +5,18 @@ class TM_Packing_Model extends CI_Model
 {
  public function TotalCounter($s_date, $e_date)
  {
-  $query = $this->db->query("SELECT        COUNT(Counter) AS Counter
-FROM            dbo.tbl_TM_Packing
-WHERE        (CONVERT(varchar, EntryDate, 103) BETWEEN '$s_date' AND '$e_date')");
-  return  $query->result_array();
- }
- public function Throsters($s_date, $e_date){
-  $query = $this->db->query("SELECT        PackingLine, COUNT(Counter) AS Counter
-FROM            dbo.tbl_TM_Packing
-WHERE        (CONVERT(varchar, EntryDate, 103) BETWEEN '$s_date' AND '$e_date')
-GROUP BY PackingLine");
-  return  $query->result_array();
-   
+    $query = $this->db->query("SELECT         SUM(Pass) AS PassQty
+FROM            dbo.view_Packing_TM
+WHERE        (CONVERT(varchar, DateName, 103) BETWEEN '$s_date' AND '$e_date')");
+    return  $query->result_array();
+  }
+  public function Stationwise($s_date, $e_date)
+  {
+    $query = $this->db->query("SELECT        ArtCode, IP AS StationName, SUM(Pass) AS PassQty, SAMPacking
+FROM            dbo.view_Packing_TM
+WHERE        (CONVERT(varchar, DateName, 103) BETWEEN '$s_date' AND '$e_date')
+GROUP BY ArtCode, IP, SAMPacking");
+    return  $query->result_array();
 
  
  }

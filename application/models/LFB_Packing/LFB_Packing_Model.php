@@ -5,19 +5,21 @@ class LFB_Packing_Model extends CI_Model
 {
  public function TotalCounter($s_date, $e_date)
  {
-  $query = $this->db->query("SELECT        COUNT(Counter) AS Counter
-FROM            dbo.tbl_LFB_Packing
-WHERE        (CONVERT(varchar, EntryDate, 103) BETWEEN '$s_date' AND '$e_date')");
-  return  $query->result_array();
- }
- public function Throsters($s_date, $e_date){
-  $query = $this->db->query("SELECT        PackingLine, COUNT(Counter) AS Counter
-FROM            dbo.tbl_LFB_Packing
-WHERE        (CONVERT(varchar, EntryDate, 103) BETWEEN '$s_date' AND '$e_date')
-GROUP BY PackingLine");
-  return  $query->result_array();
    
+    $query = $this->db->query("SELECT        SUM(TotalPass) AS PassQty
+FROM            dbo.view_Packing_LFB
+WHERE        (DateName BETWEEN '$s_date' AND '$e_date')");
+    return  $query->result_array();
+  }
+  public function Stationwise($s_date, $e_date)
+  {
+ 
+    $query = $this->db->query("SELECT        SAMPacking, SysIp AS StationName, ArtCode, SUM(TotalPass) AS PassQty
+FROM            dbo.view_Packing_LFB
+WHERE        (DateName BETWEEN '$s_date' AND '$e_date')
+GROUP BY SAMPacking, SysIp, ArtCode");
 
+    return  $query->result_array();
  
  }
 }

@@ -5,16 +5,17 @@ class Throster_Model extends CI_Model
 {
  public function TotalCounter($s_date, $e_date)
  {
-  $query = $this->db->query("SELECT        COUNT(Counter) AS Counter
-FROM            dbo.tbl_MS_Throster
-WHERE        (CONVERT(varchar, EntryDate, 103) BETWEEN '$s_date' AND '$e_date')");
+  $query = $this->db->query("SELECT       SUM(Pass) AS PassQty
+FROM            dbo.view_packing_MS
+WHERE        (CONVERT(varchar, DateName, 103) BETWEEN '$s_date' AND '$e_date')
+");
   return  $query->result_array();
  }
- public function Throsters($s_date, $e_date){
-  $query = $this->db->query("SELECT        Throster, COUNT(Counter) AS Counter
-FROM            dbo.tbl_MS_Throster
-WHERE        (CONVERT(varchar, EntryDate, 103) BETWEEN '$s_date' AND '$e_date')
-GROUP BY Throster");
+ public function Stationwise($s_date, $e_date){
+  $query = $this->db->query("SELECT        ArtCode, IP AS StationName, SUM(Pass) AS PassQty, SAMPacking
+FROM            dbo.view_packing_MS
+WHERE        (CONVERT(varchar, DateName, 103) BETWEEN '$s_date' AND '$e_date')
+GROUP BY ArtCode, IP, SAMPacking");
   return  $query->result_array();
    
 

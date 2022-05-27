@@ -278,7 +278,7 @@
                             </ul>
 
                         </li>
-                        <!-- 
+<!-- 
                         <li>
                             <a href="#" title="How it works" data-filter-tags="theme settings how it works">
                                 <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Down Time</span>
@@ -704,7 +704,7 @@
                         </li>
 
 
-
+    
 
                         <li>
                             <a href="#" title="How it works" data-filter-tags="theme settings how it works">
@@ -724,12 +724,12 @@
                                 </li>
 
                                 <li>
-                                    <a href="<?php echo base_url('LFB_Packing/LFB_Packing') ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                        <span class="" data-i18n="nav.theme_settings_how_it_works">LFB Packing</span>
-                                    </a>
+                            <a href="<?php echo base_url('LFB_Packing/LFB_Packing') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="" data-i18n="nav.theme_settings_how_it_works">LFB Packing</span>
+                            </a>
 
 
-                                </li>
+                        </li>
 
 
                             </ul>

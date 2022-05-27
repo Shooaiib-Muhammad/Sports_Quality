@@ -19,9 +19,9 @@ class AMB_Packing extends CI_Controller
   $Day = date('d');
   $CurrentDate = $Day . '/' . $Month . '/' . $Year;
 
-  $data['Counter'] = $this->AMB_Packing_Model->TotalCounter($CurrentDate, $CurrentDate);
+  $data['Data'] = $this->AMB_Packing_Model->TotalCounter($CurrentDate, $CurrentDate);
   
-  $data['Throsters'] = $this->AMB_Packing_Model->Throsters($CurrentDate, $CurrentDate);
+  $data['Stationwise'] = $this->AMB_Packing_Model->StationWise($CurrentDate, $CurrentDate);
 // print_r($data['Counter']);
 // die;
   $this->load->view("AMB_Packing/AMB_Packing", $data);

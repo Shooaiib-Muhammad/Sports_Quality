@@ -114,6 +114,7 @@
 
         <div class="row mt-4">
           <?php
+          if ($Throsters) {
           foreach ($Throsters as $Keys) {
           ?>
             <div class="col-md-2">
@@ -140,7 +141,7 @@
 
           <?php
           }
-
+        }
           ?>
 
         </div>

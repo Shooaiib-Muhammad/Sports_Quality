@@ -19,9 +19,9 @@ class Throster extends CI_Controller
   $Day = date('d');
   $CurrentDate = $Day . '/' . $Month . '/' . $Year;
 
-  $data['Counter'] = $this->T->TotalCounter($CurrentDate, $CurrentDate);
+  $data['Data'] = $this->T->TotalCounter($CurrentDate, $CurrentDate);
   
-  $data['Throsters'] = $this->T->Throsters($CurrentDate, $CurrentDate);
+  $data['Stationwise'] = $this->T->Stationwise($CurrentDate, $CurrentDate);
 // print_r($data['Counter']);
 // die;
   $this->load->view("Throster/Throster", $data);

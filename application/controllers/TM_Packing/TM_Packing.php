@@ -19,9 +19,9 @@ class TM_Packing extends CI_Controller
   $Day = date('d');
   $CurrentDate = $Day . '/' . $Month . '/' . $Year;
 
-  $data['Counter'] = $this->TM_Packing_Model->TotalCounter($CurrentDate, $CurrentDate);
+  $data['Data'] = $this->TM_Packing_Model->TotalCounter($CurrentDate, $CurrentDate);
   
-  $data['Throsters'] = $this->TM_Packing_Model->Throsters($CurrentDate, $CurrentDate);
+  $data['Stationwise'] = $this->TM_Packing_Model->Stationwise($CurrentDate, $CurrentDate);
 // print_r($data['Counter']);
 // die;
   $this->load->view("TM_Packing/TM_Packing", $data);
