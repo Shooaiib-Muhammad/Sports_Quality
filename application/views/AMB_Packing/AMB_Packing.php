@@ -120,14 +120,27 @@
 
           if ($Stationwise) {
             foreach ($Stationwise as $Keys) {
+              if ($Keys['StationName'] == '192.168.40.51') {
+                $StatioNamee = 'NO 1';
+              } elseif ($Keys['StationName'] == '192.168.40.52') {
+                $StatioNamee = 'NO 2';
+              } elseif ($Keys['StationName'] == '192.168.40.53') {
+                $StatioNamee = 'NO 3';
+              } elseif ($Keys['StationName'] == '192.168.40.54') {
+                $StatioNamee = 'NO 4';
+              } elseif ($Keys['StationName'] == '192.168.40.55') {
+                $StatioNamee = 'NO 5';
+              } elseif ($Keys['StationName'] == '192.168.40.56') {
+                $StatioNamee = 'NO 7';
+              }
           ?>
               <div class="col-md-2">
                 <div class="p-3 bg-info-300 rounded overflow-hidden position-relative text-white mb-g">
                   <div class="">
                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
-                      <small class="m-0 l-h-n">Station Name <?php
-                                                            echo $Keys['StationName'];
+                      <small class="m-0 l-h-n">Station  <?php
+                                                            echo $StatioNamee;
                                                             ?> </small>
                     </h3>
                     <h3 class="display-4 d-block l-h-n m-0 fw-500">

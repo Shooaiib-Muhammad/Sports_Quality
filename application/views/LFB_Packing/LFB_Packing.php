@@ -115,36 +115,130 @@
 
         </div>
 
-        <div class="row mt-4">
+        <div class="row mt-12">
           <?php
-          if ($Stationwise) {
-            foreach ($Stationwise as $Keys) {
+          // if ($Stationwise) {
+          foreach ($Stationwise as $Keys) {
+            $StationName = $Keys['StationName'];
+            if ($StationName == 'NO 1') {
           ?>
               <div class="col-md-2">
-                <div class="p-3 bg-info-300 rounded overflow-hidden position-relative text-white mb-g">
-                  <div class="">
-                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                <a href="<?php echo base_url(
+                            ''
+                          ); ?>LFB_Packing/LFB_Packing/Efficiency/1">
+                  <div class="p-3 bg-info-300 rounded overflow-hidden position-relative text-white mb-g">
+                    <div class="">
+                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
-                      <small class="m-0 l-h-n">Station <?php
-                                                            echo $Keys['StationName'];
-                                                            ?> </small>
-                    </h3>
-                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                      <?php
-                      echo Round($Keys['PassQty'], 0);
-                      ?>
+                        <small class="m-0 l-h-n">Station <?php
+                                                          echo $Keys['StationName'];
+                                                          ?> </small>
+                      </h3>
+                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                        <?php
+                        echo Round($Keys['PassQty'], 0);
+                        ?>
 
-                    </h3>
-                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                      </h3>
+                      <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                    </div>
+                    <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
                   </div>
-                  <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
-                </div>
+                </a>
+              </div>
+
+
+            <?php
+            } elseif ($StationName == 'NO 2') {
+            ?>
+              <div class="col-md-2">
+                <a href="<?php echo base_url(
+                            ''
+                          ); ?>LFB_Packing/LFB_Packing/Efficiency/2">
+                  <div class="p-3 bg-info-300 rounded overflow-hidden position-relative text-white mb-g">
+                    <div class="">
+                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                        <small class="m-0 l-h-n">Station <?php
+                                                          echo $Keys['StationName'];
+                                                          ?> </small>
+                      </h3>
+                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                        <?php
+                        echo Round($Keys['PassQty'], 0);
+                        ?>
+
+                      </h3>
+                      <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                    </div>
+                    <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
+                  </div>
+                </a>
+              </div>
+
+
+            <?php
+            } elseif ($StationName == 'NO 3') {
+            ?>
+              <div class="col-md-2">
+                <a href="<?php echo base_url(
+                            ''
+                          ); ?>LFB_Packing/LFB_Packing/Efficiency/3">
+                  <div class="p-3 bg-info-300 rounded overflow-hidden position-relative text-white mb-g">
+                    <div class="">
+                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                        <small class="m-0 l-h-n">Station <?php
+                                                          echo $Keys['StationName'];
+                                                          ?> </small>
+                      </h3>
+                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                        <?php
+                        echo Round($Keys['PassQty'], 0);
+                        ?>
+
+                      </h3>
+                      <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                    </div>
+                    <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
+                  </div>
+                </a>
+              </div>
+
+
+            <?php
+            } elseif ($StationName == 'NO 4') {
+            ?>
+              <div class="col-md-2">
+                <a href="<?php echo base_url(
+                            ''
+                          ); ?>LFB_Packing/LFB_Packing/Efficiency/4">
+                  <div class="p-3 bg-info-300 rounded overflow-hidden position-relative text-white mb-g">
+                    <div class="">
+                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                        <small class="m-0 l-h-n">Station <?php
+                                                          echo $Keys['StationName'];
+                                                          ?> </small>
+                      </h3>
+                      <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                        <?php
+                        echo Round($Keys['PassQty'], 0);
+                        ?>
+
+                      </h3>
+                      <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                    </div>
+                    <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
+                  </div>
+                </a>
               </div>
 
 
           <?php
             }
           }
+          // }
           ?>
 
         </div>
