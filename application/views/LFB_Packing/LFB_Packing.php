@@ -125,7 +125,7 @@
                   <div class="">
                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
-                      <small class="m-0 l-h-n">Station Name <?php
+                      <small class="m-0 l-h-n">Station <?php
                                                             echo $Keys['StationName'];
                                                             ?> </small>
                     </h3>

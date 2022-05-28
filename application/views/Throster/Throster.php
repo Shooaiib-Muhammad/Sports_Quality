@@ -117,6 +117,32 @@
           <?php
           if ($Stationwise) {
             foreach ($Stationwise as $Keys) {
+if($Keys['StationName']=='192.168.15.21'){
+$StatioNamee='Line NO 1-2';
+}elseif($Keys['StationName']== '192.168.15.22') {
+                $StatioNamee = 'Line NO 3-4';
+              } elseif ($Keys['StationName'] == '192.168.15.23') {
+                $StatioNamee = 'Line NO 5-6';
+              } elseif ($Keys['StationName'] == '192.168.15.24') {
+                $StatioNamee = 'Line NO 7-8';
+              } elseif ($Keys['StationName'] == '192.168.15.25') {
+                $StatioNamee = 'Line NO 9-10';
+              } elseif ($Keys['StationName'] == '192.168.15.26') {
+                $StatioNamee = 'Line NO 11-12';
+              } elseif ($Keys['StationName'] == '192.168.15.27') {
+                $StatioNamee = 'Line NO 13-14';
+              } elseif ($Keys['StationName'] == '192.168.15.28') {
+                $StatioNamee = 'Line NO 15-16';
+              } elseif ($Keys['StationName'] == '192.168.15.29') {
+                $StatioNamee = 'Line NO H3-H4';
+              } elseif ($Keys['StationName'] == '192.168.15.30') {
+                $StatioNamee = 'Line NO H1-H2';
+              } elseif ($Keys['StationName'] == '192.168.15.31') {
+                $StatioNamee = 'Line NO H5-H6';
+              }
+
+  
+
           ?>
               <div class="col-md-2">
                 <div class="p-3 bg-info-300 rounded overflow-hidden position-relative text-white mb-g">
@@ -124,7 +150,7 @@
                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
                       <small class="m-0 l-h-n">Throster No <?php
-                                                              echo $Keys['StationName'];
+                                                              echo $StatioNamee;
                                                               ?> </small>
                     </h3>
                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
