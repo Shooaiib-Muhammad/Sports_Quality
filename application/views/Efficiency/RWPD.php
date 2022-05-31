@@ -134,13 +134,13 @@
                 <?php $id = $_GET['dept_id']; ?>
 
 
-                <div class="subheader">
+                <!-- <div class="subheader">
                     <h1 class="subheader-title">
                         <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Dashboard</span>
                     </h1>
 
 
-                </div>
+                </div> -->
 
                 <div class="row">
 
@@ -276,8 +276,6 @@
                 </div> <!-- row ends here -->
 
 
-
-
                 <div class="guage text-center ">
                     <script src="https://code.highcharts.com/highcharts.js"></script>
                     <script src="https://code.highcharts.com/highcharts-more.js"></script>
@@ -291,100 +289,237 @@
                         <!-- <div id="container-rpm" class="chart-container"></div>   -->
                     </figure>
                 </div>
-                <div id="tableHere">
+                <?php
+
+                $GetHours = array();
+                $GetReading = array();
+                //$target = array();
+                //print_r($HourllyReading);
+                foreach ($HourllyReading as $key) {
+                    $point1 = array($key['balls'],);
+                    $point2 = array($key['HourName'],);
+                    $dailytarget = 3000 / 6;
+                    $point3 = $dailytarget / 8;
+
+                    array_push($GetReading, $point1);
+                    array_push($GetHours, $point2);
+                    // array_push($target, $point3);
+                    //array_push($lineNames, $key['LineName']);
+
+                } ?>
 
 
+                <div class="row">
+                    <div class="col-md-12">
 
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    RWPD OutPut
+                                    <!-- <?php Print_r($HourllyReading); ?> -->
+                                </h2>
+                            </div>
+                            <div class="panel-container show">
+                                <div id="container">
 
+                                </div>
 
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </main>
+                <style>
+
+                </style>
+
+                <!-- <script src="https://code.highcharts.com/highcharts.js"></script>
+            <script src="https://code.highcharts.com/modules/exporting.js"></script>
+            <script src="https://code.highcharts.com/modules/export-data.js"></script>
+            <script src="https://code.highcharts.com/modules/accessibility.js"></script> -->
+
+                <!-- <figure class="highcharts-figure">
+              <div id="container"></div> -->
+                <!-- <?php
+
+                        $this->load->view('adminHeader.php');
+                        ?> -->
+
+                <script src="https://code.highcharts.com/highcharts.js"></script>
+                <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+                <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+
+                <script>
+                    Highcharts.chart('container', {
+                        chart: {
+                            zoomType: 'xy'
+                        },
+                        title: {
+                            text: 'RWPD OutPut'
+                        },
+                        subtitle: {
+                            // text: 'Source: WorldClimate.com'
+                        },
+                        xAxis: [{
+                            categories: <?php echo json_encode($GetHours, JSON_NUMERIC_CHECK); ?>,
+                            crosshair: true
+                        }],
+                        yAxis: [{ // Primary yAxis
+                                labels: {
+                                    format: '{value} balls',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                },
+                                title: {
+                                    text: 'Achieved',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                }
+                            },
+                            { // Secondary yAxis
+                                title: {
+                                    text: 'Target',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[0]
+                                    }
+                                },
+
+                                opposite: true
+                            }
+                        ],
+                        tooltip: {
+                            shared: true
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'left',
+                            x: 120,
+                            verticalAlign: 'top',
+                            y: 100,
+                            floating: true,
+                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                                'rgba(255,255,255,0.25)',
+                            enabled: false
+                        },
+                        
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.0f}'
+                                }
+                            }
+                        },
+                        series: [{
+                                name: 'Achieved',
+                                type: 'column',
+                                yAxis: 1,
+
+                                data: <?php echo json_encode($GetReading, JSON_NUMERIC_CHECK); ?>,
+                                tooltip: {
+                                    valueSuffix: ' balls'
+                                }
+
+                            }
+
+                        ]
+
+
+                    });
+                </script>
 
 
 
 
 
-            <!-- this overlay is activated only when mobile menu is triggered -->
-            <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
-            <!-- BEGIN Page Footer -->
-            <footer class="page-footer" role="contentinfo">
-                <div class="d-flex align-items-center flex-1 text-muted">
-                    <span class="hidden-md-down fw-700">2021 © DMMS by&nbsp;IT Dept Forward Sports</span>
-                </div>
-                <div>
+                <!-- this overlay is activated only when mobile menu is triggered -->
+                <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
+                <!-- BEGIN Page Footer -->
+                <footer class="page-footer" role="contentinfo">
+                    <div class="d-flex align-items-center flex-1 text-muted">
+                        <span class="hidden-md-down fw-700">2021 © DMMS by&nbsp;IT Dept Forward Sports</span>
+                    </div>
+                    <div>
 
-                </div>
-            </footer>
-            <!-- END Page Footer -->
-            <!-- BEGIN Shortcuts -->
+                    </div>
+                </footer>
+                <!-- END Page Footer -->
+                <!-- BEGIN Shortcuts -->
 
-            <!-- END Shortcuts -->
-            <!-- BEGIN Color profile -->
-            <!-- this area is hidden and will not be seen on screens or screen readers -->
-            <!-- we use this only for CSS color refernce for JS stuff -->
-            <p id="js-color-profile" class="d-none">
-                <span class="color-primary-50"></span>
-                <span class="color-primary-100"></span>
-                <span class="color-primary-200"></span>
-                <span class="color-primary-300"></span>
-                <span class="color-primary-400"></span>
-                <span class="color-primary-500"></span>
-                <span class="color-primary-600"></span>
-                <span class="color-primary-700"></span>
-                <span class="color-primary-800"></span>
-                <span class="color-primary-900"></span>
-                <span class="color-info-50"></span>
-                <span class="color-info-100"></span>
-                <span class="color-info-200"></span>
-                <span class="color-info-300"></span>
-                <span class="color-info-400"></span>
-                <span class="color-info-500"></span>
-                <span class="color-info-600"></span>
-                <span class="color-info-700"></span>
-                <span class="color-info-800"></span>
-                <span class="color-info-900"></span>
-                <span class="color-danger-50"></span>
-                <span class="color-danger-100"></span>
-                <span class="color-danger-200"></span>
-                <span class="color-danger-300"></span>
-                <span class="color-danger-400"></span>
-                <span class="color-danger-500"></span>
-                <span class="color-danger-600"></span>
-                <span class="color-danger-700"></span>
-                <span class="color-danger-800"></span>
-                <span class="color-danger-900"></span>
-                <span class="color-warning-50"></span>
-                <span class="color-warning-100"></span>
-                <span class="color-warning-200"></span>
-                <span class="color-warning-300"></span>
-                <span class="color-warning-400"></span>
-                <span class="color-warning-500"></span>
-                <span class="color-warning-600"></span>
-                <span class="color-warning-700"></span>
-                <span class="color-warning-800"></span>
-                <span class="color-warning-900"></span>
-                <span class="color-success-50"></span>
-                <span class="color-success-100"></span>
-                <span class="color-success-200"></span>
-                <span class="color-success-300"></span>
-                <span class="color-success-400"></span>
-                <span class="color-success-500"></span>
-                <span class="color-success-600"></span>
-                <span class="color-success-700"></span>
-                <span class="color-success-800"></span>
-                <span class="color-success-900"></span>
-                <span class="color-fusion-50"></span>
-                <span class="color-fusion-100"></span>
-                <span class="color-fusion-200"></span>
-                <span class="color-fusion-300"></span>
-                <span class="color-fusion-400"></span>
-                <span class="color-fusion-500"></span>
-                <span class="color-fusion-600"></span>
-                <span class="color-fusion-700"></span>
-                <span class="color-fusion-800"></span>
-                <span class="color-fusion-900"></span>
-            </p>
-            <!-- END Color profile -->
+                <!-- END Shortcuts -->
+                <!-- BEGIN Color profile -->
+                <!-- this area is hidden and will not be seen on screens or screen readers -->
+                <!-- we use this only for CSS color refernce for JS stuff -->
+                <p id="js-color-profile" class="d-none">
+                    <span class="color-primary-50"></span>
+                    <span class="color-primary-100"></span>
+                    <span class="color-primary-200"></span>
+                    <span class="color-primary-300"></span>
+                    <span class="color-primary-400"></span>
+                    <span class="color-primary-500"></span>
+                    <span class="color-primary-600"></span>
+                    <span class="color-primary-700"></span>
+                    <span class="color-primary-800"></span>
+                    <span class="color-primary-900"></span>
+                    <span class="color-info-50"></span>
+                    <span class="color-info-100"></span>
+                    <span class="color-info-200"></span>
+                    <span class="color-info-300"></span>
+                    <span class="color-info-400"></span>
+                    <span class="color-info-500"></span>
+                    <span class="color-info-600"></span>
+                    <span class="color-info-700"></span>
+                    <span class="color-info-800"></span>
+                    <span class="color-info-900"></span>
+                    <span class="color-danger-50"></span>
+                    <span class="color-danger-100"></span>
+                    <span class="color-danger-200"></span>
+                    <span class="color-danger-300"></span>
+                    <span class="color-danger-400"></span>
+                    <span class="color-danger-500"></span>
+                    <span class="color-danger-600"></span>
+                    <span class="color-danger-700"></span>
+                    <span class="color-danger-800"></span>
+                    <span class="color-danger-900"></span>
+                    <span class="color-warning-50"></span>
+                    <span class="color-warning-100"></span>
+                    <span class="color-warning-200"></span>
+                    <span class="color-warning-300"></span>
+                    <span class="color-warning-400"></span>
+                    <span class="color-warning-500"></span>
+                    <span class="color-warning-600"></span>
+                    <span class="color-warning-700"></span>
+                    <span class="color-warning-800"></span>
+                    <span class="color-warning-900"></span>
+                    <span class="color-success-50"></span>
+                    <span class="color-success-100"></span>
+                    <span class="color-success-200"></span>
+                    <span class="color-success-300"></span>
+                    <span class="color-success-400"></span>
+                    <span class="color-success-500"></span>
+                    <span class="color-success-600"></span>
+                    <span class="color-success-700"></span>
+                    <span class="color-success-800"></span>
+                    <span class="color-success-900"></span>
+                    <span class="color-fusion-50"></span>
+                    <span class="color-fusion-100"></span>
+                    <span class="color-fusion-200"></span>
+                    <span class="color-fusion-300"></span>
+                    <span class="color-fusion-400"></span>
+                    <span class="color-fusion-500"></span>
+                    <span class="color-fusion-600"></span>
+                    <span class="color-fusion-700"></span>
+                    <span class="color-fusion-800"></span>
+                    <span class="color-fusion-900"></span>
+                </p>
+                <!-- END Color profile -->
         </div>
     </div>
 </div>

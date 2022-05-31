@@ -84,5 +84,14 @@ public function getEmployeesNull($section,$depart,$type){
         ");
                 return  $query->result_array(); 
 }
-
+        public function HourllyReading()
+        {
+                $Month = date('m');
+                $Year = date('Y');
+                $Day = date('d');
+                $query = $this->db->query("SELECT        balls, HourName
+FROM            dbo.view_RWPD
+WHERE        (EntryDate BETWEEN '$Day/$Month/$Year' AND '$Day/$Month/$Year')");
+                return  $query->result_array();
+        }
 }

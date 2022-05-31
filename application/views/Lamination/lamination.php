@@ -140,7 +140,7 @@
                     <div class="">
                       <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
-                        <small class="m-0 l-h-n">Lamination Machine </small>
+                        <small class="m-0 l-h-n">Lamination Machine 1</small>
                       </h3>
                       <h3 class="display-4 d-block l-h-n m-0 fw-500">
 

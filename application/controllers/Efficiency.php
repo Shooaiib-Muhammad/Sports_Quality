@@ -65,8 +65,8 @@ class Efficiency extends CI_Controller
   $data['total'] = $total;
   // echo "<pre>";
   $data['realtime'] = $this->E->realTimeAtten($_GET['dept_id'],$_GET['section_id']);
-  
 
+  $data['HourllyReading'] = $this->E->HourllyReading($CurrentDate, $CurrentDate);
   // print_r($data['realtime']);
   // die;
   $this->load->view('Efficiency/RWPD',$data);
