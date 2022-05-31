@@ -5,7 +5,7 @@ class Lamination_Model extends CI_Model
 {
  public function TotalReading($s_date, $e_date)
  {
-  $query = $this->db->query("SELECT SUM(Reading) AS TotalReading FROM dbo.view_Lamintion
+  $query = $this->db->query("SELECT MAX(Reading) AS TotalReading FROM dbo.view_Lamintion
   WHERE (EntryDate BETWEEN CONVERT(Varchar, '$s_date', 103) AND CONVERT(Varchar, '$e_date', 103))
         ");
   return  $query->result_array();
@@ -18,6 +18,14 @@ public function IndividualReading($s_date, $e_date){
         ");
   return  $query->result_array();
 }
+
+      public function HourllyReading($s_date, $e_date)
+      {
+            $query = $this->db->query("SELECT        Reading , MachineName, HourName
+FROM            dbo.view_lamination_Hourlly
+WHERE        (EntryDate BETWEEN '$s_date' AND '$e_date')");
+            return  $query->result_array();
+      }
 
 
 public function getData($s_date){
