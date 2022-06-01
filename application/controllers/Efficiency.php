@@ -30,7 +30,31 @@ class Efficiency extends CI_Controller
 
   $this->load->view('Efficiency/departments', $data);
  }
+  public function AirlessMini()
+  {
 
+    // print_r$data['departments'] = $this->E->departments();
+
+
+    $this->load->view('Efficiency/AirlessMini');
+  }
+  public function MS()
+  {
+
+    // print_r$data['departments'] = $this->E->departments();
+
+
+    $this->load->view('Efficiency/MS');
+  }
+  public function Gluing()
+  {
+
+    // print_r$data['departments'] = $this->E->departments();
+
+
+    $this->load->view('Efficiency/GLuing');
+  }
+  
  public function sections()
  {
 

@@ -66,7 +66,9 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-sm-6 col-xl-3">
+                </div>
+                <div class="row">
+                    <!-- <div class="col-sm-6 col-xl-3">
                         <a href="<?php echo base_url("Efficiency/RWPD/?dept_id=23&section_id=118") ?>">
                             <div class="p-3 bg-success-300 rounded overflow-hidden position-relative text-white mb-g">
                                 <div class="">
@@ -92,8 +94,72 @@
                                 <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
                             </div>
                         </a>
+                    </div> -->
+                    <div class="col-sm-6 col-xl-3">
+                        <a href="<?php echo base_url("Efficiency/Cutting/?dept_id=15&section_id=72") ?>">
+                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:#997300">
+                                <div class="">
+                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                        B34001
+                                        <small class="m-0 l-h-n">(Hand Stitched Balls)</small>
+                                    </h3>
+                                </div>
+                                <i class="fal fa-futbol  position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                            </div>
+                        </a>
                     </div>
-
+                    <div class="col-sm-6 col-xl-3">
+                        <a href="<?php echo base_url("Efficiency/Cutting/?dept_id=15&section_id=72") ?>">
+                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:purple">
+                                <div class="">
+                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                        B34002,B34003,B34004
+                                        <small class="m-0 l-h-n">(Thermo Bounded)</small>
+                                    </h3>
+                                </div>
+                                <i class="fal fa-futbol  position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <a href="<?php echo base_url("Efficiency/MS") ?>">
+                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:black">
+                                <div class="">
+                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                        B34005
+                                        <small class="m-0 l-h-n">(Machine Stitch Ball)</small>
+                                    </h3>
+                                </div>
+                                <i class="fal fa-futbol  position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <a href="<?php echo base_url("Efficiency/AirlessMini") ?>">
+                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:maroon">
+                                <div class="">
+                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                        B34006
+                                        <small class="m-0 l-h-n">(Airless Mini Ball)</small>
+                                    </h3>
+                                </div>
+                                <i class="fal fa-futbol  position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <a href="<?php echo base_url("Efficiency/Cutting/?dept_id=15&section_id=72") ?>">
+                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:#330066">
+                                <div class="">
+                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                        B34007
+                                        <small class="m-0 l-h-n">(Laminated FootBall)</small>
+                                    </h3>
+                                </div>
+                                <i class="fal fa-futbol  position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                            </div>
+                        </a>
+                    </div>
                 </div>
 
 
@@ -101,9 +167,120 @@
 
 
 
-                <div class="row">
 
 
+                <div class="card mb-12" hidden>
+                    <div class="row ml-12 mt-12">
+                        <div class="col-md-2">
+
+
+                            <a href="javascript:void(0)" onclick="showForm('<?php echo "B34001" ?>')">
+                                <div style="background-color:grey" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+
+
+                                            <small id="showValueB34001" class="m-0 l-h-n">Hand Stitch (B34001)</small>
+
+
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-clock position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+
+                        </div>
+                        <div class="col-md-2">
+                            <a href="javascript:void(0)" onclick="showForm('<?php echo "B34002" ?>')">
+                                <div style="background-color:rgba(204, 197, 181, 1)" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+
+
+                                            <small id="showValueB34002" class="m-0 l-h-n">Thermo Bounded
+                                                (B34002,B34003,B34004)
+                                            </small>
+
+
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-clock position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="javascript:void(0)" onclick="showForm('<?php echo "B34003" ?>')">
+                                <div style="background-color:rgba(188, 136, 147, 0.6)" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+
+
+                                            <small id="showValueB34003" class="m-0 l-h-n"> Machine Stitched (B34005)</small>
+
+
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-clock position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="javascript:void(0)" onclick="showForm('<?php echo "B34004" ?>')">
+                                <div style="background-color:rgba(26, 132, 145, 0.7)" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+
+
+                                            <small id="showValueB34004" class="m-0 l-h-n">Airless Mini (B34006)</small>
+
+
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-clock position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="javascript:void(0)" onclick="showForm('<?php echo "B34005" ?>')">
+                                <div style="background-color:rgba(26, 132, 145, 0.7)" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+
+
+                                            <small id="showValueB34005" class="m-0 l-h-n">Laminated Football (B34007)</small>
+
+
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-clock position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+
+
+
+
+                        <div class="form-row mb-2 ml-2" id="showForm" style="overflow-x:auto;">
+
+
+
+                            <!-- <div class="col-md-2">
+                                                    <div class="position-relative form-group">
+                                                        <label class="">SAM Forming </label>
+                                                        <input name="forming" id="forming" type="number" class="form-control" value="">
+                                                    </div>
+                                                </div>
+                                               -->
+
+
+                        </div>
+
+                    </div>
 
                 </div>
             </main>
