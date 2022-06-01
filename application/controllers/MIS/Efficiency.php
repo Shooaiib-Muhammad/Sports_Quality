@@ -119,4 +119,24 @@ class Efficiency extends CI_Controller
     {
         $this->load->view('FIT/Cutting');
     }
+
+    public function getFactoryCode(){
+        $data = $this->Efficiency_Model->getFactoryCode(
+            $_POST['factory_code']
+       
+        );
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+    }
+
+    public function updateArt(){
+    
+        
+       
+       
+        $data = $this->Efficiency_Model->updateArt($_POST['client'],$_POST['model'],$_POST['article'],$_POST['Assembly_SAM'],$_POST['Core_Gluing'],$_POST['Final_cleaning'],$_POST['HF_Cutting'],$_POST['Labelling_packaging'],$_POST['Panel_Preparation'],$_POST['Sheet_Sizing'],$_POST['bladder_winding']);
+        echo "Updated";
+    }
 }

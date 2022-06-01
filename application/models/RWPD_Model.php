@@ -41,6 +41,4 @@ FROM            dbo.view_PC_Cutting_Process
 WHERE        (Date = '$Day/$Month/$Year')");
             return  $query->result_array();
  }
-
- 
 }

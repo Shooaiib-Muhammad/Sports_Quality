@@ -94,4 +94,24 @@ WHERE        (ArtCode = '$article')");
  WHERE tbl_Pro_Article.ArtID='$articleID' And  tbl_Pro_Article.ModelID='$modelID' AND tbl_Pro_Article.ClientID='$clientID'");
         return $query;
     }
+    public function getFactoryCode($code){
+    
+        
+        $query = $this->db->query("SELECT      bladder_winding , ClientID, ModelID, ArtID, ArtCode, FactoryCode, Labelling_packaging, Final_cleaning, Assembly_SAM, Panel_Preparation, Sheet_Sizing, HF_Cutting, Core_Gluing, PanelShape, ModelNo, ModelName, SesonalRange, 
+        WorkNo
+FROM            dbo.view_SMV_Values
+WHERE        (FactoryCode = '$code')
+");
+                return  $query->result_array(); 
+}
+
+public function updateArt($client,$model,$article,$Assembly_SAM,$Core_Gluing,$Final_cleaning,$HF_Cutting,$Labelling_packaging,$Panel_Preparation,$Sheet_Sizing,$bladder_winding){
+
+   
+       $query = $this->db->query("UPDATE   tbl_Pro_Article    
+SET Core_Gluing=$Core_Gluing ,Assembly_SAM=$Assembly_SAM,Final_cleaning=$Final_cleaning,HF_Cutting=$HF_Cutting,Labelling_packaging=$Labelling_packaging,Panel_Preparation=$Panel_Preparation,Sheet_Sizing=$Sheet_Sizing,bladder_winding=$bladder_winding
+WHERE        (ClientID = $client) AND (ModelID = $model) AND (ArtID = $article)
+");
+                return  $query; 
+}
 }

@@ -754,7 +754,7 @@
                             <a href="<?php echo base_url(
                                             'MIS/Efficiency/samValue'
                                         ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">ADD SAM Value</span>
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">SMV Matrix</span>
                             </a>
                         </li>
                     </ul>

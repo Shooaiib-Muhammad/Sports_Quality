@@ -199,7 +199,7 @@ if (!$this->session->has_userdata('user_id')) {
                                     <h3 class="display-4 d-block l-h-n m-0 fw-500  text-white">
                                       
                                       <small class="m-0 l-h-n">Current Energy Consumed</small>
-									  <?php Echo $CallData[0]['Energy'];?> KHWs
+									  <?php Echo isset($CallData[0]['Energy'])?> KHWs
                                   </h3>                                           
                                   </a>
                        </div>                           

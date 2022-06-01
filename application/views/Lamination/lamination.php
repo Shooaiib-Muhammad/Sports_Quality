@@ -175,7 +175,7 @@
             $GetHours = array();
             $GetReading = array();
             $target = array();
-
+//print_r($HourllyReading);
             foreach ($HourllyReading as $key) {
               $point1 = array(Round($key['Reading'] * 0.05, 2),);
               $point2 = array($key['HourName'],);
@@ -270,16 +270,13 @@
 
             <!-- <figure class="highcharts-figure">
               <div id="container"></div> -->
-            <?php
+    
 
-            $this->load->view('adminHeader.php');
-            ?>
-
-            <!-- <script src="https://code.highcharts.com/highcharts.js"></script>
+            <script src="https://code.highcharts.com/highcharts.js"></script>
               <script src="https://code.highcharts.com/highcharts-3d.js"></script>
               <script src="https://code.highcharts.com/modules/exporting.js"></script>
               <script src="https://code.highcharts.com/modules/export-data.js"></script>
-              <script src="https://code.highcharts.com/modules/accessibility.js"></script> -->
+              <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
 
 
