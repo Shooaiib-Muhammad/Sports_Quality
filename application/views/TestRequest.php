@@ -3329,6 +3329,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                     <option value="Production">Production</option>
                                                                                     <option value="Development">Development</option>
                                                                                     <option value="Material">Material</option>
+                                                                                    <option value="Trial">Trial</option>
                                                                                 </select>
                                                                             </div>
                                                                             <div class="col-md-6">
@@ -3548,18 +3549,27 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                                         ?>
 
-
+                                                                        <?php
+                                                                        //Print_r($getTestTypes);
+                                                                        ?>
 
                                                                         <div class="col-md-6 mt-2">
                                                                             <div class="form-group">
                                                                                 <label for="sel1">Test Type</label><br>
                                                                                 <select class="js-example-basic-single" id="tType" name="tType">
                                                                                     <option value="">Select one of the following</option>
+                                                                                    <?php
+                                                                                    if ($getTestTypes) {
 
-                                                                                    <?php foreach ($getTestTypes as $Key) { ?>
 
-                                                                                        <option value="<?php echo $Key['TestID']; ?>"><?php echo $Key['Name']; ?></option>
-                                                                                    <?php } ?>
+                                                                                    ?>
+                                                                                        <?php foreach ($getTestTypes as $Key) { ?>
+
+                                                                                            <option value="<?php echo $Key['TestID']; ?>"><?php echo $Key['Name']; ?></option>
+                                                                                    <?php }
+                                                                                    }
+
+                                                                                    ?>
                                                                                 </select>
                                                                             </div>
                                                                         </div>
