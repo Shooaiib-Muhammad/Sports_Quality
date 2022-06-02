@@ -1047,7 +1047,7 @@ if (!$this->session->has_userdata('user_id')) {
                                 $key['ArtCode'],
                                 Round($key['pass']),
                             ];
-                            array_push($B34007data_points4, $pointB43004);
+                            array_push($B34004data_points2, $pointB43004);
 
                             $Check = $key['TotalChecked'];
                             $PassQty = $key['pass'];

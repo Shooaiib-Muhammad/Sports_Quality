@@ -134,17 +134,27 @@
                 <?php $id = $_GET['dept_id']; ?>
 
 
+                <ol class="breadcrumb page-breadcrumb">
+     <li class="breadcrumb-item"><a href="<?php echo base_url(
+                                           'Efficiency'
+                                          ); ?>">Dashboard</a></li>
 
-                <div class="subheader">
-                    <h1 class="subheader-title">
-                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Dashboard</span>
-                    </h1>
+     <li class="breadcrumb-item"><a href="<?php echo base_url(
+                                           'Efficiency/MS'
+                                          ); ?>"> Machine Stitch</a></li>
+
+     <li class="breadcrumb-item"><a href="javascript:void(0);">Labeling & Packing</a></li>
+     <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+    </ol>
+
+    
+    <div class="subheader">
+     <h1 class="subheader-title">
+      <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Labeling & Packing</span>
+     </h1>
 
 
-                    
-
-
-                </div>
+    </div>
 
                 <div class="row">
 

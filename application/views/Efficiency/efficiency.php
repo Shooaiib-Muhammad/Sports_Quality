@@ -96,7 +96,7 @@
                         </a>
                     </div> -->
                     <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo base_url("Efficiency/Cutting/?dept_id=15&section_id=72") ?>">
+                        <a href="<?php echo base_url("Efficiency/MS/Cutting/?dept_id=15&section_id=72") ?>">
                             <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:#997300">
                                 <div class="">
                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
