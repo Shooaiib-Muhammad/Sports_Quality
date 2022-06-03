@@ -198,7 +198,7 @@ if (!$this->session->has_userdata('user_id')) {
                       <h3 class="display-4 d-block l-h-n m-0 fw-500  text-white">
 
                         <small class="m-0 l-h-n">Current Energy Consumed</small>
-                        <?php echo isset($CallData[0]['Energy']) ?> KHWs
+                        <?php echo isset($CallData[0]['Energy']) ?> KW
                       </h3>
                     </a>
                   </div>
@@ -1721,31 +1721,31 @@ if (!$this->session->has_userdata('user_id')) {
   <!-- highchart scripts  end -->
 
   <?php
-
+  // print_r($AllFACILITY);
   $Facility = array();
   $Time = array();
-  foreach ($AllFACILITY as $key) {
-    $point1 = array(Round($key['Energy'], 2),);
-    $Datevalue = $key['EntryTime'];
-    array_push($Facility, $point1);
-    array_push($Time, $Datevalue);
-    //array_push($lineNames, $key['LineName']);
+  // foreach ($AllFACILITY as $key) {
+  //   $point1 = array(Round($key['Energy'], 2),);
+  //   $Datevalue = $key['EntryTime'];
+  //   array_push($Facility, $point1);
+  //   array_push($Time, $Datevalue);
+  //   //array_push($lineNames, $key['LineName']);
 
-  }
-  $printing = array();
-  foreach ($MSPRINTING as $key) {
-    $point1 = array($key['Energy'],);
-    array_push($printing, $point1);
-    //array_push($lineNames, $key['LineName']);
+  // }
+  // $printing = array();
+  // foreach ($MSPRINTING as $key) {
+  //   $point1 = array($key['Energy'],);
+  //   array_push($printing, $point1);
+  //   //array_push($lineNames, $key['LineName']);
 
-  }
-  $press = array();
-  foreach ($MSPRESS as $key) {
-    $point1 = array($key['Energy'],);
-    array_push($press, $point1);
-    //array_push($lineNames, $key['LineName']);
+  // }
+  // $press = array();
+  // foreach ($MSPRESS as $key) {
+  //   $point1 = array($key['Energy'],);
+  //   array_push($press, $point1);
+  //   //array_push($lineNames, $key['LineName']);
 
-  }
+  // }
 
   // $Facility = array();
   // $Time = array();
@@ -1777,14 +1777,14 @@ if (!$this->session->has_userdata('user_id')) {
 
   // }
   // print_r($Facility);
-  $Allfacilities = json_encode($Time);
+  // $Allfacilities = json_encode($Time);
   //Echo gettype($Allfacilities);
-  $final = str_replace('"', '', $Allfacilities);
-  echo json_encode($final, JSON_NUMERIC_CHECK);
-  $Time = str_replace('/', '', $final);
-  $EntryTime = str_replace('[', '', $Time);
+  // $final = str_replace('"', '', $Allfacilities);
+  // echo json_encode($final, JSON_NUMERIC_CHECK);
+  // $Time = str_replace('/', '', $final);
+  // $EntryTime = str_replace('[', '', $Time);
   // $Time = json_encode($final);
-  echo $EntryTime;
+  // echo $EntryTime;
   // $final = str_replace('"', '', $Allfacilities);
   // echo json_encode($final, JSON_NUMERIC_CHECK);
   // $final = str_replace('"', '', $Allfacilities);
@@ -1800,72 +1800,151 @@ if (!$this->session->has_userdata('user_id')) {
   <script src="https://code.highcharts.com/modules/export-data.js"></script>
   <script src="https://code.highcharts.com/modules/accessibility.js"></script>
   <script>
-    Highcharts.chart('container', {
-
-      title: {
-        text: ''
-      },
-
-      subtitle: {
-        text: ''
-      },
-
-      yAxis: {
-        title: {
-          text: 'KHWs'
-        }
-      },
-
-      xAxis: {
-        accessibility: {
-          //	rangeDescription: 'Range: 2010 to 2017'
-        }
-      },
-
-      legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle'
-      },
-
-      plotOptions: {
-        series: {
-          label: {
-            connectorAllowed: false
-          },
-          pointStart: 1
-        },
-        tooltip: {
-          formatter: function() {
-            return 'The value for <b>' + this.x + '</b> is <b>' + this.y + '</b>, in series ' + this.series.name;
+    $(document).ready(function() {
+      var datesArray = []
+      var energy = []
+      var msPrinting = []
+      var msPress = []
+      let url = "<?php echo base_url('/energy/Energy/getData'); ?>";
+      $.get(url, function(data, status) {
+        $.each(data['AllFACILITY'], function(index, value) {
+          if (datesArray.indexOf(value.EntryTime) === -1) {
+            datesArray.push(value.EntryTime);
           }
-        }
-      },
-
-      series: [{
-        //name: <?php echo  json_encode($Time) ?>,
-        name: "Facility",
-
-        //.data:[1,2,3,4,5]
-        data: <?php echo json_encode($Facility, JSON_NUMERIC_CHECK); ?>
-      }],
-
-      responsive: {
-        rules: [{
-          condition: {
-            maxWidth: 500
+        });
+        data['AllFACILITY'].forEach(element => {
+          energy.push(parseFloat(element['Energy']));
+        })
+        data['MSPRINTING'].forEach(element => {
+          msPrinting.push(parseFloat(element['Energy']));
+        })
+        data['MSPRESS'].forEach(element => {
+          msPress.push(parseFloat(element['Energy']));
+        })
+        let seriesData = [{
+            name: 'Facility',
+            data: energy
           },
-          chartOptions: {
-            legend: {
-              layout: 'horizontal',
-              align: 'center',
-              verticalAlign: 'bottom'
+          {
+            name: 'MS Printing',
+            data: msPrinting
+          },
+          {
+            name: 'MS Press',
+            data: msPress
+          }
+        ]
+        Highcharts.chart('container', {
+          chart: {
+            type: 'line'
+          },
+          title: {
+            text: 'Energy Data'
+          },
+
+          xAxis: {
+            categories: datesArray,
+            crosshair: true,
+            labels: {
+              enabled: false
             }
-          }
-        }]
-      }
+          },
+          yAxis: {
+            min: 0,
+            title: {
+              text: 'Energy'
+            }
+          },
+          tooltip: {
+            headerFormat: '<span style="font-size:10px">Date: {point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+              '<td style="padding:0"><b>{point.y:.1f} KW </b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+          },
+          plotOptions: {
+            series: {
+              label: {
+                connectorAllowed: false
+              },
 
+            },
+            column: {
+              pointPadding: 0.2,
+              borderWidth: 0
+            }
+          },
+          series: seriesData
+        });
+      });
     });
+    // Highcharts.chart('container', {
+
+    //   title: {
+    //     text: ''
+    //   },
+
+    //   subtitle: {
+    //     text: ''
+    //   },
+
+    //   yAxis: {
+    //     title: {
+    //       text: 'KHWs'
+    //     }
+    //   },
+
+    //   xAxis: {
+    //     accessibility: {
+    //       //	rangeDescription: 'Range: 2010 to 2017'
+    //     }
+    //   },
+
+    //   legend: {
+    //     layout: 'vertical',
+    //     align: 'right',
+    //     verticalAlign: 'middle'
+    //   },
+
+    //   plotOptions: {
+    //     series: {
+    //       label: {
+    //         connectorAllowed: false
+    //       },
+    //       pointStart: 1
+    //     },
+    //     tooltip: {
+    //       formatter: function() {
+    //         return 'The value for <b>' + this.x + '</b> is <b>' + this.y + '</b>, in series ' + this.series.name;
+    //       }
+    //     }
+    //   },
+
+    //   series: [{
+    //     //name: <?php echo  json_encode($Time) ?>,
+    //     name: "Facility",
+
+    //     //.data:[1,2,3,4,5]
+    //     data: <?php echo json_encode($Facility, JSON_NUMERIC_CHECK); ?>
+    //   }],
+
+    //   responsive: {
+    //     rules: [{
+    //       condition: {
+    //         maxWidth: 500
+    //       },
+    //       chartOptions: {
+    //         legend: {
+    //           layout: 'horizontal',
+    //           align: 'center',
+    //           verticalAlign: 'bottom'
+    //         }
+    //       }
+    //     }]
+    //   }
+
+    // });
   </script>
 
   </body>

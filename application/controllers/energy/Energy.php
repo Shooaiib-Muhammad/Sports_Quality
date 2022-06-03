@@ -23,6 +23,18 @@ class Energy extends CI_Controller
 
 		
     }
+
+	public function getData(){
+		$data['CallData'] = $this->Energy->CallData();
+		$data['getData'] = $this->Energy->getData();
+		$data['AllFACILITY'] = $this->Energy->AllFACILITY();
+		$data['MSPRINTING'] = $this->Energy->MSPRINTING();
+		$data['MSPRESS'] = $this->Energy->MSPRESS();
+		return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+	}
 	public function dashboard(){
 
 
@@ -34,4 +46,3 @@ class Energy extends CI_Controller
 		$this->load->view('energy/view',$data);
 }
 }
-?>
