@@ -40,6 +40,7 @@ class LabController extends CI_Controller
             $data['RData'] = null;
         }
         $data['GetItems'] = $this->l->GetItems();
+        $data['supplier'] = $this->l->supplier();
 
         if ($this->session->has_userdata('MAXID')) {
 

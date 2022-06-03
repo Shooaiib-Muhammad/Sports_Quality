@@ -1,4 +1,4 @@
-{<?php
+<?php
 if (!$this->session->has_userdata('user_id')) {
     redirect('');
 } else {

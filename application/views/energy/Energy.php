@@ -23,55 +23,54 @@ if (!$this->session->has_userdata('user_id')) {
 
             </h1> -->
           </div>
-		  <!-- high chart CSS start-->
+          <!-- high chart CSS start-->
 
-        <style>
-	.highcharts-figure,
-.highcharts-data-table table {
-    min-width: 360px;
-    max-width: 800px;
-    margin: 1em auto;
-}
+          <style>
+            .highcharts-figure,
+            .highcharts-data-table table {
+              min-width: 360px;
+              max-width: 800px;
+              margin: 1em auto;
+            }
 
-.highcharts-data-table table {
-    font-family: Verdana, sans-serif;
-    border-collapse: collapse;
-    border: 1px solid #ebebeb;
-    margin: 10px auto;
-    text-align: center;
-    width: 100%;
-    max-width: 500px;
-}
+            .highcharts-data-table table {
+              font-family: Verdana, sans-serif;
+              border-collapse: collapse;
+              border: 1px solid #ebebeb;
+              margin: 10px auto;
+              text-align: center;
+              width: 100%;
+              max-width: 500px;
+            }
 
-.highcharts-data-table caption {
-    padding: 1em 0;
-    font-size: 1.2em;
-    color: #555;
-}
+            .highcharts-data-table caption {
+              padding: 1em 0;
+              font-size: 1.2em;
+              color: #555;
+            }
 
-.highcharts-data-table th {
-    font-weight: 600;
-    padding: 0.5em;
-}
+            .highcharts-data-table th {
+              font-weight: 600;
+              padding: 0.5em;
+            }
 
-.highcharts-data-table td,
-.highcharts-data-table th,
-.highcharts-data-table caption {
-    padding: 0.5em;
-}
+            .highcharts-data-table td,
+            .highcharts-data-table th,
+            .highcharts-data-table caption {
+              padding: 0.5em;
+            }
 
-.highcharts-data-table thead tr,
-.highcharts-data-table tr:nth-child(even) {
-    background: #f8f8f8;
-}
+            .highcharts-data-table thead tr,
+            .highcharts-data-table tr:nth-child(even) {
+              background: #f8f8f8;
+            }
 
-.highcharts-data-table tr:hover {
-    background: #f1f7ff;
-}
+            .highcharts-data-table tr:hover {
+              background: #f1f7ff;
+            }
+          </style>
 
-		</style>
-
-			 <!-- high chart CSS end-->
+          <!-- high chart CSS end-->
 
 
           <?php if ($this->session->flashdata('info')) { ?>
@@ -189,55 +188,55 @@ if (!$this->session->has_userdata('user_id')) {
               background: #f1f7ff;
             }
           </style>
-			<div class="container-fluid">
-            	<div class="row">
-             	 <div class="col-md-3">
-                	<div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
-                   	 <div class="">
-                                <a href="ViewResultFit/totalrequest">    
-                                                                         
-                                    <h3 class="display-4 d-block l-h-n m-0 fw-500  text-white">
-                                      
-                                      <small class="m-0 l-h-n">Current Energy Consumed</small>
-									  <?php Echo isset($CallData[0]['Energy'])?> KHWs
-                                  </h3>                                           
-                                  </a>
-                       </div>                           
-                </div>
-              </div>
-              
-              
-              
-                  <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
-                </div>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
+                  <div class="">
+                    <a href="ViewResultFit/totalrequest">
 
-              </div>
-                  <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
-               
-             
-					<!-- highchart main data -->
-              <div class="col-lg-12">
-                <div id="panel-1" class="panel">
-                  <div class="panel-hdr">
-                    <h2>
-                      Energy Consuption
-					  <!-- <?php Print_r($getData); ?> -->
-                    </h2>
-                  </div>
-                  <div class="panel-container show">
-                    <div id="container">
-						
-					</div>
-					
+                      <h3 class="display-4 d-block l-h-n m-0 fw-500  text-white">
+
+                        <small class="m-0 l-h-n">Current Energy Consumed</small>
+                        <?php echo isset($CallData[0]['Energy']) ?> KHWs
+                      </h3>
+                    </a>
                   </div>
                 </div>
               </div>
-        
-                 
 
 
 
-              <!-- <div class="col-md-4">
+              <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
+            </div>
+
+          </div>
+          <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
+
+
+          <!-- highchart main data -->
+          <div class="col-lg-12">
+            <div id="panel-1" class="panel">
+              <div class="panel-hdr">
+                <h2>
+                  Energy Consuption
+                  <!-- <?php Print_r($getData); ?> -->
+                </h2>
+              </div>
+              <div class="panel-container show">
+                <div id="container">
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <!-- <div class="col-md-4">
                                                     <h3 class="text-center">Test & Packages</h3>
                                                     <div class="d-flex mt-2">
                                                         Balls
@@ -264,29 +263,29 @@ if (!$this->session->has_userdata('user_id')) {
                                                     
                                                    
                   </div> -->
-            </div>
-          </div>
-
-
-
-
-
-
       </div>
     </div>
-    <div class="col-md-4"></div>
+
+
+
+
+
+
+  </div>
+  </div>
+  <div class="col-md-4"></div>
   </div>
   </div>
   </div>
   </div>
-		<!-- script file highchart start  -->
+  <!-- script file highchart start  -->
   <script src="https://code.highcharts.com/highcharts.js"></script>
-	<script src="https://code.highcharts.com/modules/data.js"></script>
-	<script src="https://code.highcharts.com/modules/series-label.js"></script>
-	<script src="https://code.highcharts.com/modules/exporting.js"></script>
-	<script src="https://code.highcharts.com/modules/export-data.js"></script>
-	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
-     <!-- script file highchart end  -->
+  <script src="https://code.highcharts.com/modules/data.js"></script>
+  <script src="https://code.highcharts.com/modules/series-label.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  <!-- script file highchart end  -->
 
   <script src="<?php echo base_url(); ?>/assets/js//jquery.min.js" type="text/javascript"></script>
   <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
@@ -298,510 +297,7 @@ if (!$this->session->has_userdata('user_id')) {
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script>
-    $(document).ready(function() {
-      //alert('heloo');
-      $('#ActivityData').dataTable({
-        responsive: false,
-        lengthChange: false,
-        dom:
-          /*	--- Layout Structure 
-          	--- Options
-          	l	-	length changing input control
-          	f	-	filtering input
-          	t	-	The table!
-          	i	-	Table information summary
-          	p	-	pagination control
-          	r	-	processing display element
-          	B	-	buttons
-          	R	-	ColReorder
-          	S	-	Select
 
-          	--- Markup
-          	< and >				- div element
-          	<"class" and >		- div with a class
-          	<"#id" and >		- div with an ID
-          	<"#id.class" and >	- div with an ID and a class
-
-          	--- Further reading
-          	https://datatables.net/reference/option/dom
-          	--------------------------------------
-           */
-          "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-          "<'row'<'col-sm-12'tr>>" +
-          "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        buttons: [
-          /*{
-          	extend:    'colvis',
-          	text:      'Column Visibility',
-          	titleAttr: 'Col visibility',
-          	className: 'mr-sm-3'
-          },*/
-          {
-            extend: 'pdfHtml5',
-            text: 'PDF',
-            titleAttr: 'Generate PDF',
-            className: 'btn-outline-danger btn-sm mr-1'
-          },
-          {
-            extend: 'excelHtml5',
-            text: 'Excel',
-            titleAttr: 'Generate Excel',
-            className: 'btn-outline-success btn-sm mr-1'
-          },
-          {
-            extend: 'csvHtml5',
-            text: 'CSV',
-            titleAttr: 'Generate CSV',
-            className: 'btn-outline-primary btn-sm mr-1'
-          },
-          {
-            extend: 'copyHtml5',
-            text: 'Copy',
-            titleAttr: 'Copy to clipboard',
-            className: 'btn-outline-primary btn-sm mr-1'
-          },
-          {
-            extend: 'print',
-            text: 'Print',
-            titleAttr: 'Print Table',
-            className: 'btn-outline-primary btn-sm'
-          }
-        ]
-      });
-
-
-
-
-
-      $('#datatable').dataTable({
-        responsive: false,
-        lengthChange: false,
-        dom:
-          /*	--- Layout Structure 
-          	--- Options
-          	l	-	length changing input control
-          	f	-	filtering input
-          	t	-	The table!
-          	i	-	Table information summary
-          	p	-	pagination control
-          	r	-	processing display element
-          	B	-	buttons
-          	R	-	ColReorder
-          	S	-	Select
-
-          	--- Markup
-          	< and >				- div element
-          	<"class" and >		- div with a class
-          	<"#id" and >		- div with an ID
-          	<"#id.class" and >	- div with an ID and a class
-
-          	--- Further reading
-          	https://datatables.net/reference/option/dom
-          	--------------------------------------
-           */
-          "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-          "<'row'<'col-sm-12'tr>>" +
-          "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        buttons: [
-          /*{
-          	extend:    'colvis',
-          	text:      'Column Visibility',
-          	titleAttr: 'Col visibility',
-          	className: 'mr-sm-3'
-          },*/
-          {
-            extend: 'pdfHtml5',
-            text: 'PDF',
-            titleAttr: 'Generate PDF',
-            className: 'btn-outline-danger btn-sm mr-1'
-          },
-          {
-            extend: 'excelHtml5',
-            text: 'Excel',
-            titleAttr: 'Generate Excel',
-            className: 'btn-outline-success btn-sm mr-1'
-          },
-          {
-            extend: 'csvHtml5',
-            text: 'CSV',
-            titleAttr: 'Generate CSV',
-            className: 'btn-outline-primary btn-sm mr-1'
-          },
-          {
-            extend: 'copyHtml5',
-            text: 'Copy',
-            titleAttr: 'Copy to clipboard',
-            className: 'btn-outline-primary btn-sm mr-1'
-          },
-          {
-            extend: 'print',
-            text: 'Print',
-            titleAttr: 'Print Table',
-            className: 'btn-outline-primary btn-sm'
-          }
-        ]
-      });
-    });
-
-    $('.undobtn').click(function() {
-
-      let id = this.id;
-      let split_value = id.split(".");
-      var TID = split_value[1];
-      var proceed = confirm("Are you sure you want to Delete?");
-      if (proceed) {
-        url = "<?php echo base_url(''); ?>FIT/Deletetest/"
-        //alert(url);
-        $.get(url, {
-          "TID": TID
-        }, function(data) {
-          alert("Data Deleted Successfully");
-          location.reload();
-        });
-      } else {
-        alert("Undo Cancel");
-      }
-
-    });
-    $('.deletebtn').click(function() {
-
-      let id = this.id;
-      let split_value = id.split(".");
-      var TID = split_value[1];
-      var proceed = confirm("Are you sure you want to Delete?");
-      if (proceed) {
-        url = "<?php echo base_url(''); ?>FIT/Deletepkg/"
-        //alert(url);
-        $.get(url, {
-          "TID": TID
-        }, function(data) {
-          alert("Data Deleted Successfully");
-          location.reload();
-        });
-      } else {
-        alert("Undo Cancel");
-      }
-
-    });
-
-    $('#createDepartment').click(function() {
-      $('#IdValue').val("");
-      $('#Name').val("");
-      $('#status').prop('checked', false);
-      $('#save').css('display', 'block');
-      $('#editValue').css('display', 'none');
-    });
-
-    $(".updatebtn").click(function(e) {
-
-
-      let id = this.id;
-      let split_value = id.split(".");
-      var TID = split_value[1];
-      //alert(TID);
-      url = "<?php echo base_url(''); ?>FIT/gettestData";
-      $('#save').css('display', 'none');
-      $('#editValue').css('display', 'block');
-
-
-      $.post(url, {
-          'Id': TID
-        },
-        function(data) {
-          console.log("Data", data)
-          image = '<?php echo base_url('assets/img/img/') ?>' + data[0]['Image']
-          $("#aafaq").attr("src", image);
-          $('#IdValue').val(TID);
-          $('#Type').val(data[0]['Type']);
-          $('#Type1').val(data[0]['TestType']);
-          $('#Name').val(data[0].Name);
-          $('#Method').val(data[0].Method);
-          $("#Sprice").val(data[0].StandardPrice);
-          $("#PPrice").val(data[0].PremimumPrice);
-          $("#GPrice").val(data[0].GoldenPrice);
-          $("#SDays").val(data[0].StandardDays);
-          $("#PDays").val(data[0].PermimumDays);
-          $("#Ggays").val(data[0].GoldenDays);
-          $("#SDesc").val(data[0].StandardDesc);
-          $("#Pdesc").val(data[0].PermimumDesc);
-          $("#GDesc").val(data[0].GoldenDesc);
-          $("#status").val(data[0].status);
-          if (data[0].Status == 1) {
-            $('#status').prop('checked', true);
-          } else {
-            $('#status').prop('checked', false);
-          }
-          $('#changeTitle').text("Edit Test");
-
-          $('#Modaldepartment').modal('toggle');
-        });
-
-    });
-
-    $(".updatePkg").click(function(e) {
-
-
-      let id = this.id;
-      let split_value = id.split(".");
-      var TID = split_value[1];
-      url = "<?php echo base_url(''); ?>FIT/editPkg";
-      $('#savepkg').css('display', 'none');
-      $('#editpkg').css('display', 'block');
-
-
-
-      $.post(url, {
-          'Id': TID,
-
-        },
-        function(data) {
-          console.log("Data", data)
-          $('#PMethod').val(data[0]['Method']);
-          $('#PName').val(data[0]['Name']);
-          $('#TypePkg').val(data[0]['TestID']);
-          $('#idvalue1').val(data[0]['ID']);
-
-
-          if (data[0].Status == 1) {
-            $('#pstatus').prop('checked', true);
-          } else {
-            $('#pstatus').prop('checked', false);
-          }
-          $('#changeTitle').text("Edit Test");
-
-          $('#packageModal').modal('toggle');
-        });
-
-    });
-
-    $('#editpkg').click(function(e) {
-      //alert("I am here");
-
-      let idPkg = document.getElementById("idvalue1").value
-      let typepkg = document.getElementById("TypePkg").value
-      let PName = document.getElementById("PName").value
-      let PMethod = document.getElementById("PMethod").value
-      let status = document.getElementById("pstatus").value
-
-      url = "<?php echo base_url(''); ?>FIT/updatePkg/"
-
-      data = {
-        'Id': idPkg,
-        'pkgtype': typepkg,
-        'PName': PName,
-        'PMethod': PMethod,
-        'status': status,
-
-      }
-
-      $.ajax({
-        url: url,
-        type: 'post',
-        data: data,
-        success: function(data) {
-          alert("Data Updated Successfully")
-          location.reload();
-
-
-        }
-      });
-
-
-    });
-    $('#editValue').click(function(e) {
-
-
-      e.preventDefault();
-      let id = $('#IdValue').val();
-      let Type = $("#Type").val();
-      let Type1 = $("#Type1").val();
-      let Name = $("#Name").val();
-      let Method = $("#Method").val();
-      let Sprice = $("#Sprice").val();
-      let PPrice = $("#PPrice").val();
-      let GPrice = 0;
-      let SDays = $("#SDays").val();
-      let PDays = $("#PDays").val();
-      let Ggays = 0;
-      let SDesc = $("#SDesc").val();
-      let Pdesc = $("#Pdesc").val();
-      let GDesc = 0;
-
-      if ($("#status").is(':checked'))
-        status = 1 // checked
-      else
-        status = 0 // unchecked
-      data = [
-        id,
-        Type,
-        Type1,
-        Name,
-        Method,
-        Sprice,
-        PPrice,
-        GPrice,
-        SDays,
-        PDays,
-        Ggays,
-        SDesc,
-        Pdesc,
-        GDesc,
-        status
-
-      ]
-
-
-
-      let url = "<?php echo base_url(''); ?>FIT/EditTest"
-      var fd = new FormData();
-      var files = $("#avatar")[0].files[0];
-      fd.append('file', files);
-      fd.append('data', data)
-
-      $.ajax({
-        url: url,
-        type: 'post',
-        data: fd,
-        contentType: false,
-        processData: false,
-        success: function(data) {
-          alert("Data Updated Successfully")
-          location.reload();
-
-        }
-      });
-
-
-
-
-      //  $.post(url, {
-
-      //    'TID': id,
-      //    "Type": Type,
-      //    "Name": Name,
-      //    "Method": Method,
-      //    "Sprice": Sprice,
-      //    "PPrice": PPrice,
-      //    "GPrice": GPrice,
-      //    "SDays": SDays,
-      //    "PDays": PDays,
-      //    "Ggays": Ggays,
-      //    "SDesc": SDesc,
-      //    "GDesc": GDesc,
-      //    "Pdesc": Pdesc,
-      //    "status": status
-      //   },
-      //   function(data, status) {
-      //    alert("Data Updated Successfully! Wait for page to be Reloaded")
-      //    window.location.reload();
-      //    // setInterval(function() {
-      //    //  window.location.reload();
-      //    // }, 3000);
-
-      //   });
-    });
-
-    $('#save').click(function(e) {
-      //alert("I am here");
-      let Type = $("#Type").val();
-      let Type1 = $("#Type1").val();
-      let Name = $("#Name").val();
-      let Method = $("#Method").val();
-      let Sprice = $("#Sprice").val();
-      let PPrice = $("#PPrice").val();
-      let GPrice = 0;
-      let SDays = $("#SDays").val();
-      let PDays = $("#PDays").val();
-      let Ggays = 0;
-      let SDesc = $("#SDesc").val();
-      let Pdesc = $("#Pdesc").val();
-      let GDesc = 0;
-      let status = $("#status").val();
-
-      //let mcs = $("#mcs").prop('checked');
-      //alert(GDesc);
-      data = [
-        Type,
-        Type1,
-        Name,
-        Method,
-        Sprice,
-        PPrice,
-        GPrice,
-        SDays,
-        PDays,
-        Ggays,
-        SDesc,
-        Pdesc,
-        GDesc,
-        status
-
-      ]
-
-
-
-      url = "<?php echo base_url(''); ?>FIT/submit/"
-      var fd = new FormData();
-      var files = $("#avatar")[0].files[0];
-      fd.append('file', files);
-      fd.append('data', data)
-
-      $.ajax({
-        url: url,
-        type: 'post',
-        data: fd,
-        contentType: false,
-        processData: false,
-        success: function(data) {
-          alert("Data Inserted Successfully")
-          location.reload();
-
-        }
-      });
-
-
-    });
-
-    $('#savepkg').click(function(e) {
-      //  alert("I am here");
-      let Type = $("#TypePkg").val();
-      let Name = $("#PName").val();
-      let Method = $("#PMethod").val();
-      let status = $("#pstatus").val();
-
-      //let mcs = $("#mcs").prop('checked');
-      //alert(GDesc);
-      data = [
-        Type,
-        Name,
-        Method,
-        status
-
-      ]
-
-
-
-      url = "<?php echo base_url(''); ?>FIT/submitPackage/"
-      var fd = new FormData();
-      // var files = $("#avatar")[0].files[0];
-      // fd.append('file', files);
-      fd.append('data', data)
-
-      $.ajax({
-        url: url,
-        type: 'post',
-        data: fd,
-        contentType: false,
-        processData: false,
-        success: function(data) {
-          alert("Data Inserted Successfully")
-          location.reload();
-
-        }
-      });
-
-
-    });
   </script>
   <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
   <!-- BEGIN Page Footer -->
@@ -2216,23 +1712,84 @@ if (!$this->session->has_userdata('user_id')) {
   </script>
 
   <!-- highchart scripts  start -->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-	<script src="https://code.highcharts.com/modules/data.js"></script>
-	<script src="https://code.highcharts.com/modules/series-label.js"></script>
-	<script src="https://code.highcharts.com/modules/exporting.js"></script>
-	<script src="https://code.highcharts.com/modules/export-data.js"></script>
-	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
- <!-- highchart scripts  end -->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/data.js"></script>
+  <script src="https://code.highcharts.com/modules/series-label.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  <!-- highchart scripts  end -->
 
-<?php
+  <?php
 
-$GetEnergy = array();
-foreach($getData as $key) {
-$point1 = array($key['Energy'] , );
-array_push($GetEnergy, $point1); 
-//array_push($lineNames, $key['LineName']);
+  $Facility = array();
+  $Time = array();
+  foreach ($AllFACILITY as $key) {
+    $point1 = array(Round($key['Energy'], 2),);
+    $Datevalue = $key['EntryTime'];
+    array_push($Facility, $point1);
+    array_push($Time, $Datevalue);
+    //array_push($lineNames, $key['LineName']);
 
-}?>
+  }
+  $printing = array();
+  foreach ($MSPRINTING as $key) {
+    $point1 = array($key['Energy'],);
+    array_push($printing, $point1);
+    //array_push($lineNames, $key['LineName']);
+
+  }
+  $press = array();
+  foreach ($MSPRESS as $key) {
+    $point1 = array($key['Energy'],);
+    array_push($press, $point1);
+    //array_push($lineNames, $key['LineName']);
+
+  }
+
+  // $Facility = array();
+  // $Time = array();
+  // foreach ($AllFACILITY as $key) {
+  //   $Datevalue = $key['Year'] . ',' . $key['Month'] . ',' . $key['Day'] . ',' . $key['Hour'];
+
+  //   //$finalvalue = 'Date.UTC(' . $Datevalue . '),' . $value;
+  //   // $Data= [Date . UTC($key['Year'], $key['Month'], $key['Day']), $key['Energy']];
+  //   $point1 = array($finalvalue);
+
+  //   //  $point2 = array($key['EntryTime'],);
+  //   array_push($Facility, $point1);
+  //   //array_push($Time, $point2);
+  //   //array_push($lineNames, $key['LineName']);
+
+  // }
+  // $printing = array();
+  // foreach ($MSPRINTING as $key) {
+  //   $point1 = array($key['Energy'],);
+  //   array_push($printing, $point1);
+  //   //array_push($lineNames, $key['LineName']);
+
+  // }
+  // $press = array();
+  // foreach ($MSPRESS as $key) {
+  //   $point1 = array($key['Energy'],);
+  //   array_push($press, $point1);
+  //   //array_push($lineNames, $key['LineName']);
+
+  // }
+  // print_r($Facility);
+  $Allfacilities = json_encode($Time);
+  //Echo gettype($Allfacilities);
+  $final = str_replace('"', '', $Allfacilities);
+  echo json_encode($final, JSON_NUMERIC_CHECK);
+  $Time = str_replace('/', '', $final);
+  $EntryTime = str_replace('[', '', $Time);
+  // $Time = json_encode($final);
+  echo $EntryTime;
+  // $final = str_replace('"', '', $Allfacilities);
+  // echo json_encode($final, JSON_NUMERIC_CHECK);
+  // $final = str_replace('"', '', $Allfacilities);
+
+  ?>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js" integrity="sha512-gtII6Z4fZyONX9GBrF28JMpodY4vIOI0lBjAtN/mcK7Pz19Mu1HHIRvXH6bmdChteGpEccxZxI0qxXl9anY60w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -2243,74 +1800,72 @@ array_push($GetEnergy, $point1);
   <script src="https://code.highcharts.com/modules/export-data.js"></script>
   <script src="https://code.highcharts.com/modules/accessibility.js"></script>
   <script>
-   
-    
+    Highcharts.chart('container', {
 
-  
+      title: {
+        text: ''
+      },
 
+      subtitle: {
+        text: ''
+      },
 
-Highcharts.chart('container', {
+      yAxis: {
+        title: {
+          text: 'KHWs'
+        }
+      },
 
-title: {
-	text: ''
-},
+      xAxis: {
+        accessibility: {
+          //	rangeDescription: 'Range: 2010 to 2017'
+        }
+      },
 
-subtitle: {
-	text: ''
-},
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+      },
 
-yAxis: {
-	title: {
-		text: 'KHWs'
-	}
-},
+      plotOptions: {
+        series: {
+          label: {
+            connectorAllowed: false
+          },
+          pointStart: 1
+        },
+        tooltip: {
+          formatter: function() {
+            return 'The value for <b>' + this.x + '</b> is <b>' + this.y + '</b>, in series ' + this.series.name;
+          }
+        }
+      },
 
-xAxis: {
-	accessibility: {
-		rangeDescription: 'Range: 2010 to 2017'
-	}
-},
+      series: [{
+        //name: <?php echo  json_encode($Time) ?>,
+        name: "Facility",
 
-legend: {
-	layout: 'vertical',
-	align: 'right',
-	verticalAlign: 'middle'
-},
+        //.data:[1,2,3,4,5]
+        data: <?php echo json_encode($Facility, JSON_NUMERIC_CHECK); ?>
+      }],
 
-plotOptions: {
-	series: {
-		label: {
-			connectorAllowed: false
-		},
-		pointStart: 1
-	}
-},
+      responsive: {
+        rules: [{
+          condition: {
+            maxWidth: 500
+          },
+          chartOptions: {
+            legend: {
+              layout: 'horizontal',
+              align: 'center',
+              verticalAlign: 'bottom'
+            }
+          }
+        }]
+      }
 
-series: [{
-	name: 'Energy Cunsuption',
-	//.data:[1,2,3,4,5]
-	data:<?php echo json_encode($GetEnergy, JSON_NUMERIC_CHECK); ?>
-}
-],
-
-responsive: {
-	rules: [{
-		condition: {
-			maxWidth: 500
-		},
-		chartOptions: {
-			legend: {
-				layout: 'horizontal',
-				align: 'center',
-				verticalAlign: 'bottom'
-			}
-		}
-	}]
-}
-
-});
-
-	  
+    });
   </script>
 
   </body>

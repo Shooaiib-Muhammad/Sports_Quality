@@ -3284,6 +3284,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                     </div>
                                                                                     <div class="col-md-6 ">
                                                                                         <label class="form-contol" for="customFile">Supplier Name :</label>
+
+
                                                                                         <input type="text" class="form-control" value="<?php echo $SupplierName; ?>" id="supplier" name="supplier">
                                                                                     </div>
                                                                                     <div class="col-md-4 ">
@@ -3359,7 +3361,18 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             </div>
                                                                             <div class="col-md-6 Poinfo">
                                                                                 <label class="form-contol" for="customFile">Supplier Name :</label>
-                                                                                <input type="text" class="form-control" id="supplier" name="supplier">
+                                                                                <!-- <input type="text" class="form-control" id="supplier" name="supplier"> -->
+                                                                                <select class="form-control js-example-basic-single" id="supplier" name="supplier">
+                                                                                    <?php
+                                                                                    foreach ($supplier as $keys) {
+
+                                                                                    ?>
+                                                                                        <option value="<?php echo $keys['CompanyName']; ?>"><?php echo $keys['CompanyName']; ?></option>
+                                                                                    <?php
+
+                                                                                    }
+                                                                                    ?>
+                                                                                </select>
                                                                             </div>
                                                                             <div class="col-md-4 Poinfo">
                                                                                 <div class="form-group">
@@ -4764,6 +4777,7 @@ if (!$this->session->has_userdata('user_id')) {
         $(document).ready(function() {
             $("#ArtCodeAuto").select2();
             $("#name").select2();
+            $("#supplier").select2();
             let currentDate = new Date().toJSON().substr(0, 10);
             $('#rDate').val(currentDate);
             $("#tType").select2();

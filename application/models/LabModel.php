@@ -2643,4 +2643,13 @@ WHERE        (Name = '$Name') AND (Sample_RequestDate BETWEEN CONVERT(DATETIME, 
 
         return $query->result_array();
     }
+    public function supplier() //3
+    {
+
+        $query = $this->db->query("SELECT        CompanyName
+FROM            tbl_Inv_Supplier");
+
+        return $query->result_array();
+    }
+    
 }

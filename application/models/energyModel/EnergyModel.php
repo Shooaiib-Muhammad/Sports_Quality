@@ -31,5 +31,54 @@ class EnergyModel extends CI_Model
 	 WHERE        (CONVERT(Varchar, EntryDate, 103) = '$Day/$Month/$Year')");
 	 return  $query->result_array();
 	}
+	public function FACILITY(){
+		
+		$Month = date('m');
+		$Year = date('Y');
+		$Day = date('d');
 
+		$query = $this->db->query("SELECT        TOP (100) PERCENT HallName, Energy
+FROM            dbo.tbl_Prod_Energy_Info
+HAVING        (DAY(EntryTime) = $Day) AND (MONTH(EntryTime) = $Month) AND (YEAR(EntryTime) = $Year) AND (HallName = 'FACILITY')");
+		return  $query->result_array();
+	}
+	
+	public function MSPRESS()
+	{
+
+		$Month = date('m');
+		$Year = date('Y');
+		$Day = date('d');
+
+		$query = $this->db->query("SELECT        TOP (100) PERCENT HallName, Energy
+FROM            dbo.tbl_Prod_Energy_Info
+where        (DAY(EntryTime) = $Day) AND (MONTH(EntryTime) = $Month) AND (YEAR(EntryTime) = $Year) AND (HallName = 'MS PRESS') AND (Energy > 1)");
+		return  $query->result_array();
+	}
+	public function MSPRINTING()
+	{
+
+		$Month = date('m');
+		$Year = date('Y');
+		$Day = date('d');
+
+		$query = $this->db->query("SELECT        TOP (100) PERCENT HallName, Energy
+FROM            dbo.tbl_Prod_Energy_Info
+where        (DAY(EntryTime) = $Day) AND (MONTH(EntryTime) = $Month) AND (YEAR(EntryTime) = $Year) AND (HallName = 'MS PRINTING')  AND (Energy > 1)");
+		return  $query->result_array();
+	}
+	public function AllFACILITY()
+	{
+
+		$Month = date('m');
+		$Year = date('Y');
+		$Day = date('d');
+
+		$query = $this->db->query("SELECT       TOP (100) PERCENT HallName, EntryTime, Energy, DAY(EntryDate) AS Day, MONTH(EntryDate) AS Month, YEAR(EntryDate) AS Year,
+		 { fn HOUR(EntryDate) } AS Hour
+
+FROM            dbo.tbl_Prod_Energy_Info
+where        (DAY(EntryDate) = $Day) AND (MONTH(EntryDate) = $Month) AND (YEAR(EntryDate) = $Year) AND (HallName = 'FACILITY') AND (Energy > 1)");
+		return  $query->result_array();
+	}
 }

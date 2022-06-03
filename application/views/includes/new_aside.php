@@ -761,7 +761,7 @@
                 </li>
                 <li>
                     <a href="<?php echo base_url(
-                                    'energy/Energycontroller'
+                                    'energy/Energy'
                                 ); ?>" title="Theme Settings" data-filter-tags="theme settings">
 
                         <span class="nav-link-text" data-i18n="nav.theme_settings">Energy</span>
@@ -895,30 +895,30 @@
                     </li>
                 <?php }
                 ?>
-                <li>
-                    <a href="#" title="Theme Settings" data-filter-tags="theme settings">
 
-                        <span class="nav-link-text" data-i18n="nav.theme_settings">Test Request</span>
-                    </a>
-                    <ul>
-
-                        <li>
-                            <a href="<?php echo base_url(
-                                            ''
-                                        ); ?>LabController/TestRequest" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Request Form</span>
-                            </a>
-                        </li>
-
-                    </ul>
-                </li>
                 <?php
                 if ($testRequest == '1') {
 
 
                 ?>
-
                     <li>
+                        <a href="#" title="Theme Settings" data-filter-tags="theme settings">
+
+                            <span class="nav-link-text" data-i18n="nav.theme_settings">Test Request</span>
+                        </a>
+                        <ul>
+
+                            <li>
+                                <a href="<?php echo base_url(
+                                                ''
+                                            ); ?>LabController/TestRequest" title="How it works" data-filter-tags="theme settings how it works">
+                                    <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Request Form</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <!-- <li>
                         <a href="#" title="Theme Settings" data-filter-tags="theme settings">
 
                             <span class="nav-link-text" data-i18n="nav.theme_settings">Test Receive</span>
@@ -934,7 +934,7 @@
                             </li>
 
                         </ul>
-                    </li>
+                    </li> -->
                 <?php
                 }
 

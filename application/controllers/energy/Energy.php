@@ -1,6 +1,6 @@
 <?php
 
-class Energycontroller extends CI_Controller
+class Energy extends CI_Controller
 {
 
 	public function __construct()
@@ -15,8 +15,11 @@ class Energycontroller extends CI_Controller
 
 		$data['CallData'] = $this->Energy->CallData();
 		$data['getData'] = $this->Energy->getData();
+		$data['AllFACILITY'] = $this->Energy->AllFACILITY();
+		$data['MSPRINTING'] = $this->Energy->MSPRINTING();
+		$data['MSPRESS'] = $this->Energy->MSPRESS();
         // $this->load->view('energy/energyView');
-		$this->load->view('energy/view',$data);
+		$this->load->view('energy/Energy',$data);
 
 		
     }
