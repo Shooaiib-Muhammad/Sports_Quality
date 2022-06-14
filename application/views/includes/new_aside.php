@@ -769,12 +769,32 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="#" title="Theme Settings" data-filter-tags="theme settings">
+
+                        <span class="nav-link-text" data-i18n="nav.theme_settings">Energy</span>
+                    </a>
+                    <ul> <li>
                     <a href="<?php echo base_url(
                                     'energy/Energy'
                                 ); ?>" title="Theme Settings" data-filter-tags="theme settings">
 
                         <span class="nav-link-text" data-i18n="nav.theme_settings">Energy</span>
+                    </a>  </li>
+                            </ul>
+                </li>
+                <li>
+                    <a href="#" title="Theme Settings" data-filter-tags="theme settings">
+
+                        <span class="nav-link-text" data-i18n="nav.theme_settings">JUMPER Application</span>
                     </a>
+                    <ul> <li>
+                    <a href="<?php echo base_url(
+                                    'JUMPER/JUMPER'
+                                ); ?>" title="Theme Settings" data-filter-tags="theme settings">
+
+                        <span class="nav-link-text" data-i18n="nav.theme_settings">Transfer Form</span>
+                    </a>  </li>
+                            </ul>
                 </li>
             </ul>
         <?php } else { ?>
