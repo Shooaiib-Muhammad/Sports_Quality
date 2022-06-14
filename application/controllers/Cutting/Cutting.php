@@ -74,6 +74,27 @@ class Cutting extends CI_Controller
 
  }
 
+ public function HfCutting(){
+    
+    $Month = date('m'); 
+    $Year = date('Y');
+    $Day = date('d');
+    $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+    $data['hfcutting'] = $this->Cutting->HfCutting($CurrentDate);
+    $total=[];
+    foreach($data['hfcutting'] as $hf){
+        array_push($total,$hf['Counter']);
+    }
+
+   $d=0;
+    foreach($total as $t){
+        $d=$d+$t;
+    }
+    $data['totalHF']=$d;
+    $this->load->view("Cutting/HfCutting", $data);
+
+ }
+
 
 }
 

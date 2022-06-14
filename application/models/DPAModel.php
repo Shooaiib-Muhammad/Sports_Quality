@@ -5,12 +5,12 @@ class DPAModel extends CI_Model
 {
 
     public function __construct()
-	{
-		parent::__construct();
-		$this->load->database();
+    {
+        parent::__construct();
+        $this->load->database();
      $this->load->library('session');
         
-	}
+    }
 
  public function CallData($article){
 
@@ -68,6 +68,14 @@ WHERE        (FactoryCode = '$fc') AND (SesonalRange = '$season')
     $mcs,
         $DevType){
 
+            if($yields){
+                $y=$yields;
+            }else{
+                $y=0;
+            }
+        //    echo $mktg;
+        //    die; 
+
         $user=$this->session->has_userdata('user_id');
         $query = $this->db->query("INSERT INTO  dbo . Tbl_Dev_DPA 
         ( ArticleID 
@@ -104,12 +112,11 @@ WHERE        (FactoryCode = '$fc') AND (SesonalRange = '$season')
            EntryDate,
            UserID,ArtCode,Yield ,DevType)
   VALUES
-        ( '$art' , '$client'   , '$model'     , '$fcode'    , '$ac'  , '$fbo'     , '$inhousedate'  ,  '$csdate','$inhouse','$cs','$cr1comments','$inhousedate1','$csdate1','$inhouse1','$cs1','$cr2comments','$postD','$comments','$approve','$buymodel','$buyarticle','$revdate','$finalcs','$br','$mcs','$retail','$cars','$remarks','$mktg','$fifa',' ', '$inhousedate ', ' $user','$article','$yields','$DevType')");
+        ( $art , $client   , $model , '$fcode', '$ac'  , '$fbo'     , '$inhousedate'  ,  '$csdate','$inhouse','$cs','$cr1comments','$inhousedate1','$csdate1','$inhouse1','$cs1','$cr2comments','$postD','$comments','$approve','$buymodel','$buyarticle','$revdate','$finalcs','$br','$mcs','$retail','$cars','$remarks','$mktg','$fifa',' ', '$inhousedate ', $user,'$article', $y ,'$DevType')");
         
       
 
     }
-
 
           public function getimages(){
                   $query=$this->db->query("SELECT        dbo.View_156.CNIC, dbo.View_156.EmpPic
@@ -127,3 +134,5 @@ WHERE        (dbo.View_156.EmpPic IS NOT NULL)");
 
         
 }
+
+

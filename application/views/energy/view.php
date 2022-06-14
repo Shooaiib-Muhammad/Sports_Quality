@@ -3,7 +3,9 @@ if (!$this->session->has_userdata('user_id')) {
   redirect('');
 } else {
 ?>
+
   <?php $this->load->view('includes/new_header'); ?>
+
   <!-- BEGIN Page Wrapper -->
   <div class="page-wrapper">
     <div class="page-inner">
@@ -14,23 +16,62 @@ if (!$this->session->has_userdata('user_id')) {
         <!-- BEGIN Page Header -->
         <?php $this->load->view('includes/top_header.php'); ?>
         <main id="js-page-content" role="main" class="page-content">
-          <ol class="breadcrumb page-breadcrumb">
-            <li class="breadcrumb-item"><a href="<?php echo base_url(
-                                                    'index.php/main/dmms_dashboard'
-                                                  ); ?>">Dashboard</a></li>
 
-
-            <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
-          </ol>
           <div class="subheader">
-            <h1 class="subheader-title">
-              <i class='subheader-icon fal fa-chart-area'></i> Development Progress and Application</span>
+            <!-- <h1 class="subheader-title">
+              <i class='subheader-icon fal fa-chart-area'></i> Dashboard</span>
 
-            </h1>
+            </h1> -->
           </div>
+		  <!-- high chart CSS start-->
 
+        <style>
+	.highcharts-figure,
+.highcharts-data-table table {
+    min-width: 360px;
+    max-width: 800px;
+    margin: 1em auto;
+}
 
+.highcharts-data-table table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
 
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+
+.highcharts-data-table th {
+    font-weight: 600;
+    padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+    padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+
+		</style>
+
+			 <!-- high chart CSS end-->
 
 
           <?php if ($this->session->flashdata('info')) { ?>
@@ -53,792 +94,715 @@ if (!$this->session->has_userdata('user_id')) {
               </div>
             </div>
           <?php } ?>
-
-
-
-          <br><br>
-
-
-          <div id="panel-7 exampleModalEditDep" class="panel">
-            <div class="panel-hdr">
-              <h2>
-                Development Progress <span class="fw-300"><i>Application</i></span>
-              </h2>
-
-            </div>
-            <div class="panel-container show">
-              <div class="panel-content">
-
-                <div class="row">
-                  <div class="col-md-2">
-                    <div class="form-group">
-
-                      <label for="sel1">Select Article :</label>
-                      <select class="form-control" id="ArtCode" name="FC" onchange="CallData()">
-                        <option value="">Select one of the following</option>
-                        <?php foreach ($Articles as $Key) { ?>
-
-                          <option value="<?php echo $Key['ArtCode']; ?>"><?php echo $Key['ArtCode']; ?></option>
-                        <?php } ?>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="col-md-2">
-                    <label>Working:</label>
-                    <div class="form-group-inline">
-
-                      <input name="working" id="working" class="form-control" type="text" readonly="true">
-
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <label>Product Name:</label>
-                    <div class="form-group-inline">
-
-                      <input name="pname" id="pname" class="form-control" type="text" readonly="true">
-
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <label>Colorway Name:</label>
-                    <div class="form-group-inline">
-
-                      <input name="colorway" id="colorway" class="form-control" type="text" readonly="true">
-
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <label>Factory Code:</label>
-                    <div class="form-group-inline">
-
-                      <input name="fcode" id="fcode" class="form-control" type="text" readonly="true">
-
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <label>Panel Shape:</label>
-                    <div class="form-group-inline">
-
-                      <input name="pshape" id="pshape" class="form-control" type="text" readonly="true">
-
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <label>Yield:</label>
-                    <div class="form-group-inline">
-
-                      <input name="yield" id="yield" class="form-control" type="text">
-
-                    </div>
-                  </div>
-                  <div class="col-md-2" style="display:none">
-                    <label>Client Id:</label>
-                    <div class="form-group-inline">
-
-                      <input name="client" id="client" class="form-control" type="text" readonly="true">
-
-                    </div>
-                  </div>
-                  <div class="col-md-2" style="display:none">
-                    <label>Model ID:</label>
-                    <div class="form-group-inline">
-
-                      <input name="model" id="model" class="form-control" type="text" readonly="true">
-
-                    </div>
-                  </div>
-                  <div class="col-md-2" style="display:none">
-                    <label>Article Id:</label>
-                    <div class="form-group-inline">
-
-                      <input name="art" id="art" class="form-control" type="text" readonly="true">
-
-                    </div>
-                  </div>
-
-                  <div class="col-md-2">
-                    <label>Article Option:</label>
-                    <div class="form-group-inline">
-
-                      <input name="ac" id="ac" class="form-control" type="text">
-
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <label>First Briefing Out:</label>
-                    <div class="form-group-inline">
-
-                      <input name="fbo" id="fbo" class="form-control" type="Date">
-
-                    </div>
-                  </div>
-
-                  <div class="col-md-2">
-                    <label>CR1 In-House Date:</label>
-                    <div class="form-group-inline">
-
-                      <input name="inhousedate" id="inhousedate" class="form-control" type="Date">
-
-                    </div>
-                  </div>
-
-                  <div class="col-md-2">
-                    <label>CR1 CS Submission Date:</label>
-                    <div class="form-group-inline">
-
-                      <input name="csdate" id="csdate" class="form-control" type="Date">
-
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <label>CR1 Comments:</label>
-                    <div class="form-group-inline">
-
-                      <input name="cr1comments" id="cr1comments" class="form-control" type="text">
-
-                    </div>
-                  </div>
-
-                  <div class="col-md-2">
-                    <label>CR2 In-House Date:</label>
-                    <div class="form-group-inline">
-
-                      <input name="inhousedate1" id="inhousedate1" class="form-control" type="Date">
-
-                    </div>
-                  </div>
-
-                  <div class="col-md-2">
-                    <label>CR2 CS Submission Date:</label>
-                    <div class="form-group-inline">
-
-                      <input name="csdate1" id="csdate1" class="form-control" type="Date">
-
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <label>CR2 Comments:</label>
-                    <div class="form-group-inline">
-
-                      <input name="cr2comments" id="cr2comments" class="form-control" type="text">
-
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <label>Post CR2 Date:</label>
-                    <div class="form-group-inline">
-
-                      <input name="postD" id="postD" class="form-control" type="Date">
-
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <label>Comments:</label>
-                    <div class="form-group-inline">
-
-                      <input name="comments" id="comments" class="form-control" type="text">
-
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <label>Earliest Buy Model:</label>
-                    <div class="form-group-inline">
-
-                      <input name="buymodel" id="buymodel" class="form-control" type="date">
-
-                    </div>
-                  </div>
-
-                  <div class="col-md-2">
-                    <label>Earliest Buy Article:</label>
-                    <div class="form-group-inline">
-
-                      <input name="buyarticle" id="buyarticle" class="form-control" type="date">
-
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <label>REV BR Date:</label>
-                    <div class="form-group-inline">
-
-                      <input name="revdate" id="revdate" class="form-control" type="date">
-
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <label>Retail Intro:</label>
-                    <div class="form-group-inline">
-
-                      <input name="retail" id="retail" class="form-control" type="date">
-
-                    </div>
-                  </div>
-
-                  <div class="col-md-2">
-                    <label>FTY Priority:</label>
-                    <div class="form-group-inline">
-
-                      <select name="cars" id="cars" class="form-control">
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="X">X</option>
-                        <option value="Y">Y</option>
-                      </select>
-
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <label>Remarks:</label>
-                    <div class="form-group-inline">
-
-                      <input name="remarks" id="remarks" class="form-control" type="text">
-
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <label>Development Type:</label>
-                    <div class="form-group-inline">
-                      <select name="DevType" id="DevType" class="form-control">
-                        <option value="New">New</option>
-                        <option value="Carry Over">Carry Over</option>
-
-                      </select>
-                      <!-- <input name="DevType" id="DevType" class="form-control" type="text"> -->
-
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <label>MKTG FC(GLOBAL):</label>
-                    <div class="form-group-inline">
-
-                      <input name="mktg" id="mktg" class="form-control" type="text">
-
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <label>FIFA Validity:</label>
-                    <div class="form-group-inline">
-
-                      <input name="fifa" id="fifa" class="form-control" type="date">
-
-                    </div>
-                  </div>
-
-
-                  <!-- <img id="output" height="100" width="200" src="https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png" /> -->
-
-                  <div class="col-md-1">
-                    <label style=" visibility: hidden">CR1 In-House:</label>
-                    <div class="form-group-inline">
-
-                      <input name="inhouse" id="inhouse" type="checkbox">
-                      <label>CR1 In-House:</label>
-                    </div>
-                  </div>
-                  <div class="col-md-1">
-                    <label style=" visibility: hidden">CR1 CS Submission:</label>
-                    <div class="form-group-inline">
-
-                      <input name="cs" id="cs" type="checkbox">
-                      <label>CR1 CS :</label>
-                    </div>
-                  </div>
-
-                  <div class="col-md-1">
-                    <label style=" visibility: hidden">CR2 In-House:</label>
-                    <div class="form-group-inline">
-
-                      <input name="inhouse1" id="inhouse1" type="checkbox">
-                      <label>CR2 In-House:</label>
-                    </div>
-                  </div>
-                  <div class="col-md-1">
-                    <label style=" visibility: hidden">CR2 CS Submission:</label>
-                    <div class="form-group-inline">
-
-                      <input name="cs1" id="cs1" type="checkbox">
-                      <label>CR2 CS :</label>
-                    </div>
-                  </div>
-                  <div class="col-md-1">
-                    <label style=" visibility: hidden">Approved:</label>
-                    <div class="form-group-inline">
-
-                      <input name="approve" id="approve" type="checkbox">
-                      <label>Approved:</label>
-                    </div>
-                  </div>
-                  <div class="col-md-1">
-                    <label style=" visibility: hidden">Final CS Confirm:</label>
-                    <div class="form-group-inline">
-
-                      <input name="finalcs" id="finalcs" type="checkbox">
-                      <label>Final CS Confirm:</label>
-                    </div>
-                  </div>
-                  <div class="col-md-1">
-                    <label style=" visibility: hidden">BR Status:</label>
-                    <div class="form-group-inline">
-
-                      <input name="br" id="br" type="checkbox">
-                      <label>BR Status:</label>
-                    </div>
-                  </div>
-                  <div class="col-md-1">
-                    <label style=" visibility: hidden">MCS:</label>
-                    <div class="form-group-inline">
-
-                      <input name="mcs" id="mcs" type="checkbox">
-                      <label>MCS:</label>
-                    </div>
-                  </div>
-
-                  <div class="col-md-4 mt-4">
-
-                    <div class="form-group-inline">
-
-                      <button type="button" class="btn-info btn btn-md" onclick="submit()">Add</button>
-
-                    </div>
-                  </div>
-                </div><br>
-                <br>
-
-
-
-
-                <div class="row">
-                  <div class="col-sm-2">
-                    <div class="form-group">
-
-                      <label for="sel1">Select Factory Code :</label>
-                      <select class="form-control" id="fC" name="fC">
-                        <option value="">Select one of the following</option>
-
-
-                        <option value="B34001">B34001</option>
-                        <option value="B34002">B34002</option>
-                        <option value="B34003">B34003</option>
-                        <option value="B34004">B34004</option>
-                        <option value="B34005">B34005</option>
-                        <option value="B34006">B34006</option>
-                        <option value="B34007">B34007</option>
-
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-sm-2">
-                    <div class="form-group">
-
-                      <label for="sel1">Select Seasonal Range :</label>
-                      <select class="form-control" id="season" name="season">
-                        <option value="">Select one of the following</option>
-                        <option value="2005">2005</option>
-                        <option value="2006">2006</option>
-                        <option value="2007">2007</option>
-                        <option value="2008">2008</option>
-                        <option value="2009">2009</option>
-                        <option value="2010">2010</option>
-                        <option value="2011">2011</option>
-                        <option value="2012">2012</option>
-                        <option value="2013">2013</option>
-                        <option value="2014">2014</option>
-                        <option value="2015">2015</option>
-                        <option value="2016">2016</option>
-                        <option value="2017">2017</option>
-                        <option value="2018">2018</option>
-                        <option value="2019">2019</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2024">2024</option>
-                        <option value="2025">2025</option>
-                        <option value="2026">2026</option>
-                        <option value="2027">2027</option>
-                        <option value="2028">2028</option>
-                        <option value="2029">2029</option>
-                        <option value="2030">2030</option>
-
-
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-sm-3">
-                    <div class="form-group-inline">
-
-                      <button type="button" class="btn-success btn btn-md mt-3" onclick="onSearch()">Search</button>
-
-                    </div>
-                  </div>
+          <style>
+            #container {
+              height: 400px;
+            }
+
+            .highcharts-figure,
+            .highcharts-data-table table {
+              min-width: 310px;
+              max-width: 800px;
+              margin: 1em auto;
+            }
+
+            .highcharts-data-table table {
+              font-family: Verdana, sans-serif;
+              border-collapse: collapse;
+              border: 1px solid #ebebeb;
+              margin: 10px auto;
+              text-align: center;
+              width: 100%;
+              max-width: 500px;
+            }
+
+            .highcharts-data-table caption {
+              padding: 1em 0;
+              font-size: 1.2em;
+              color: #555;
+            }
+
+            .highcharts-data-table th {
+              font-weight: 600;
+              padding: 0.5em;
+            }
+
+            .highcharts-data-table td,
+            .highcharts-data-table th,
+            .highcharts-data-table caption {
+              padding: 0.5em;
+            }
+
+            .highcharts-data-table thead tr,
+            .highcharts-data-table tr:nth-child(even) {
+              background: #f8f8f8;
+            }
+
+            .highcharts-data-table tr:hover {
+              background: #f1f7ff;
+            }
+
+            #container {
+              height: 400px;
+            }
+
+            .highcharts-figure,
+            .highcharts-data-table table {
+              min-width: 310px;
+              max-width: 800px;
+              margin: 1em auto;
+            }
+
+            .highcharts-data-table table {
+              font-family: Verdana, sans-serif;
+              border-collapse: collapse;
+              border: 1px solid #ebebeb;
+              margin: 10px auto;
+              text-align: center;
+              width: 100%;
+              max-width: 500px;
+            }
+
+            .highcharts-data-table caption {
+              padding: 1em 0;
+              font-size: 1.2em;
+              color: #555;
+            }
+
+            .highcharts-data-table th {
+              font-weight: 600;
+              padding: 0.5em;
+            }
+
+            .highcharts-data-table td,
+            .highcharts-data-table th,
+            .highcharts-data-table caption {
+              padding: 0.5em;
+            }
+
+            .highcharts-data-table thead tr,
+            .highcharts-data-table tr:nth-child(even) {
+              background: #f8f8f8;
+            }
+
+            .highcharts-data-table tr:hover {
+              background: #f1f7ff;
+            }
+          </style>
+			<div class="container-fluid">
+            	<div class="row">
+             	 <div class="col-md-3">
+                	<div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
+                   	 <div class="">
+                                <a href="ViewResultFit/totalrequest">    
+                                                                         
+                                    <h3 class="display-4 d-block l-h-n m-0 fw-500  text-white">
+                                      
+                                      <small class="m-0 l-h-n">Current Energy Consumed</small>
+									  <?php Echo isset($CallData[0]['Energy'])?> KHWs
+                                  </h3>                                           
+                                  </a>
+                       </div>                           
                 </div>
-                <div class="row">
+              </div>
+              
+              
+              
+                  <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
+                </div>
 
-                  <div class="col-md-12" id="Data" style=" overflow:auto;">
-
+              </div>
+                  <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
+               
+             
+					<!-- highchart main data -->
+              <div class="col-lg-12">
+                <div id="panel-1" class="panel">
+                  <div class="panel-hdr">
+                    <h2>
+                      Energy Consuption
+					  <!-- <?php Print_r($getData); ?> -->
+                    </h2>
+                  </div>
+                  <div class="panel-container show">
+                    <div id="container">
+						
+					</div>
+					
                   </div>
                 </div>
               </div>
+        
+                 
 
+
+
+              <!-- <div class="col-md-4">
+                                                    <h3 class="text-center">Test & Packages</h3>
+                                                    <div class="d-flex mt-2">
+                                                        Balls
+                                                        <span class="d-inline-block ml-auto">130 / 500</span>
+                                                    </div>
+                                                    <div class="progress progress-sm mb-3">
+                                                        <div class="progress-bar bg-fusion-400" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        Bags
+                                                        <span class="d-inline-block ml-auto">440 TB</span>
+                                                    </div>
+                                                    <div class="progress progress-sm mb-3">
+                                                        <div class="progress-bar bg-success-500" role="progressbar" style="width: 34%;" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        Raw Material
+                                                        <span class="d-inline-block ml-auto">77%</span>
+                                                    </div>
+                                                    <div class="progress progress-sm mb-3">
+                                                        <div class="progress-bar bg-info-400" role="progressbar" style="width: 77%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    
+                                                    
+                                                   
+                  </div> -->
             </div>
           </div>
-          <br>
-
-          <div class="row">
 
 
 
-          </div>
 
 
 
       </div>
     </div>
+    <div class="col-md-4"></div>
+  </div>
+  </div>
+  </div>
+  </div>
+		<!-- script file highchart start  -->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/data.js"></script>
+	<script src="https://code.highcharts.com/modules/series-label.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+     <!-- script file highchart end  -->
 
-  </div>
-  </div>
-  </div>
-  </div>
-  <script src="<?php echo base_url(); ?>/assets/js/jquery.min.js" type="text/javascript"></script>
+  <script src="<?php echo base_url(); ?>/assets/js//jquery.min.js" type="text/javascript"></script>
   <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
   <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
   <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
   <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
-  <!-- <script src="<?php echo base_url(); ?>/assets/Select/select2.min.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script>
-    window.onload = function() {
-      $("#ArtCode").select2();
-      $("#fC").select2();
-      $("#season").select2();
+    $(document).ready(function() {
+      //alert('heloo');
+      $('#ActivityData').dataTable({
+        responsive: false,
+        lengthChange: false,
+        dom:
+          /*	--- Layout Structure 
+          	--- Options
+          	l	-	length changing input control
+          	f	-	filtering input
+          	t	-	The table!
+          	i	-	Table information summary
+          	p	-	pagination control
+          	r	-	processing display element
+          	B	-	buttons
+          	R	-	ColReorder
+          	S	-	Select
 
-    };
-    $('.mySelect2Edit').select({
-      dropdownParent: $('#exampleModalEditDep')
-    });
+          	--- Markup
+          	< and >				- div element
+          	<"class" and >		- div with a class
+          	<"#id" and >		- div with an ID
+          	<"#id.class" and >	- div with an ID and a class
 
-    function CallData() {
-      $("#working").val(' ');
-      $("#pname").val(' ');
-      $("#fcode").val(' ');
-      $("#colorway").val(' ');
-      $("#pshape").val(' ');
-      $("#client").val(' ');
-      $("#model").val(' ');
-      $("#art").val(' ');
-      let ArtCode = $("#ArtCode").val();
-
-      url = "<?php echo base_url(''); ?>DPA/CallData/"
-      $.post(url, {
-        "article": ArtCode,
-
-      }, function(articles) {
-        console.log(articles)
-        $("#working").val(articles[0]['WorkNo']);
-        $("#pname").val(articles[0]['ModelName']);
-        $("#fcode").val(articles[0]['FactoryCode']);
-        $("#colorway").val(articles[0]['PrintingColors']);
-        $("#pshape").val(articles[0]['PanelShape']);
-        // $("#yield").val(articles[0]['Yield']);
-        $("#client").val(articles[0]['ClientID']);
-        $("#model").val(articles[0]['ModelID']);
-        $("#art").val(articles[0]['ArtID']);
-
-
-
+          	--- Further reading
+          	https://datatables.net/reference/option/dom
+          	--------------------------------------
+           */
+          "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+          "<'row'<'col-sm-12'tr>>" +
+          "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+        buttons: [
+          /*{
+          	extend:    'colvis',
+          	text:      'Column Visibility',
+          	titleAttr: 'Col visibility',
+          	className: 'mr-sm-3'
+          },*/
+          {
+            extend: 'pdfHtml5',
+            text: 'PDF',
+            titleAttr: 'Generate PDF',
+            className: 'btn-outline-danger btn-sm mr-1'
+          },
+          {
+            extend: 'excelHtml5',
+            text: 'Excel',
+            titleAttr: 'Generate Excel',
+            className: 'btn-outline-success btn-sm mr-1'
+          },
+          {
+            extend: 'csvHtml5',
+            text: 'CSV',
+            titleAttr: 'Generate CSV',
+            className: 'btn-outline-primary btn-sm mr-1'
+          },
+          {
+            extend: 'copyHtml5',
+            text: 'Copy',
+            titleAttr: 'Copy to clipboard',
+            className: 'btn-outline-primary btn-sm mr-1'
+          },
+          {
+            extend: 'print',
+            text: 'Print',
+            titleAttr: 'Print Table',
+            className: 'btn-outline-primary btn-sm'
+          }
+        ]
       });
 
 
 
 
-    }
 
-    function submit() {
-      let article = $("#ArtCode").val();
-      let working = $("#working").val();
-      let pname = $("#pname").val();
-      let colorway = $("#colorway").val();
-      let fcode = $("#fcode").val();
-      let pshape = $("#pshape").val();
-      let yields = $("#yield").val();
-      let client = $("#client").val();
-      let model = $("#model").val();
-      let art = $("#art").val();
-      let ac = $("#ac").val();
-      let fbo = $("#fbo").val();
-      let inhousedate = $("#inhousedate").val();
-      let csdate = $("#csdate").val();
-      let cr1comments = $("#cr1comments").val();
-      let inhousedate1 = $("#inhousedate1").val();
-      let csdate1 = $("#csdate1").val();
-      let cr2comments = $("#cr2comments").val();
-      let postD = $("#postD").val();
-      let comments = $("#comments").val();
-      let DevType = $("#DevType").val();
-      let buymodel = $("#buymodel").val();
-      let buyarticle = $("#buyarticle").val();
-      let revdate = $("#revdate").val();
-      let retail = $("#retail").val();
-      let cars = $("#cars").val();
-      let remarks = $("#remarks").val();
-      let mktg = $("#mktg").val();
-      let fifa = $("#fifa").val();
-      let inhouse = $("#inhouse").prop('checked');
-      let cs = $("#cs").prop('checked');
-      let inhouse1 = $("#inhouse1").prop('checked');
-      let cs1 = $("#cs1").prop('checked');
-      let approve = $("#approve").prop('checked');
-      let finalcs = $("#finalcs").prop('checked');
-      let br = $("#br").prop('checked');
-      let mcs = $("#mcs").prop('checked');
-      //alert(DevType);
+      $('#datatable').dataTable({
+        responsive: false,
+        lengthChange: false,
+        dom:
+          /*	--- Layout Structure 
+          	--- Options
+          	l	-	length changing input control
+          	f	-	filtering input
+          	t	-	The table!
+          	i	-	Table information summary
+          	p	-	pagination control
+          	r	-	processing display element
+          	B	-	buttons
+          	R	-	ColReorder
+          	S	-	Select
+
+          	--- Markup
+          	< and >				- div element
+          	<"class" and >		- div with a class
+          	<"#id" and >		- div with an ID
+          	<"#id.class" and >	- div with an ID and a class
+
+          	--- Further reading
+          	https://datatables.net/reference/option/dom
+          	--------------------------------------
+           */
+          "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+          "<'row'<'col-sm-12'tr>>" +
+          "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+        buttons: [
+          /*{
+          	extend:    'colvis',
+          	text:      'Column Visibility',
+          	titleAttr: 'Col visibility',
+          	className: 'mr-sm-3'
+          },*/
+          {
+            extend: 'pdfHtml5',
+            text: 'PDF',
+            titleAttr: 'Generate PDF',
+            className: 'btn-outline-danger btn-sm mr-1'
+          },
+          {
+            extend: 'excelHtml5',
+            text: 'Excel',
+            titleAttr: 'Generate Excel',
+            className: 'btn-outline-success btn-sm mr-1'
+          },
+          {
+            extend: 'csvHtml5',
+            text: 'CSV',
+            titleAttr: 'Generate CSV',
+            className: 'btn-outline-primary btn-sm mr-1'
+          },
+          {
+            extend: 'copyHtml5',
+            text: 'Copy',
+            titleAttr: 'Copy to clipboard',
+            className: 'btn-outline-primary btn-sm mr-1'
+          },
+          {
+            extend: 'print',
+            text: 'Print',
+            titleAttr: 'Print Table',
+            className: 'btn-outline-primary btn-sm'
+          }
+        ]
+      });
+    });
+
+    $('.undobtn').click(function() {
+
+      let id = this.id;
+      let split_value = id.split(".");
+      var TID = split_value[1];
+      var proceed = confirm("Are you sure you want to Delete?");
+      if (proceed) {
+        url = "<?php echo base_url(''); ?>FIT/Deletetest/"
+        //alert(url);
+        $.get(url, {
+          "TID": TID
+        }, function(data) {
+          alert("Data Deleted Successfully");
+          location.reload();
+        });
+      } else {
+        alert("Undo Cancel");
+      }
+
+    });
+    $('.deletebtn').click(function() {
+
+      let id = this.id;
+      let split_value = id.split(".");
+      var TID = split_value[1];
+      var proceed = confirm("Are you sure you want to Delete?");
+      if (proceed) {
+        url = "<?php echo base_url(''); ?>FIT/Deletepkg/"
+        //alert(url);
+        $.get(url, {
+          "TID": TID
+        }, function(data) {
+          alert("Data Deleted Successfully");
+          location.reload();
+        });
+      } else {
+        alert("Undo Cancel");
+      }
+
+    });
+
+    $('#createDepartment').click(function() {
+      $('#IdValue').val("");
+      $('#Name').val("");
+      $('#status').prop('checked', false);
+      $('#save').css('display', 'block');
+      $('#editValue').css('display', 'none');
+    });
+
+    $(".updatebtn").click(function(e) {
+
+
+      let id = this.id;
+      let split_value = id.split(".");
+      var TID = split_value[1];
+      //alert(TID);
+      url = "<?php echo base_url(''); ?>FIT/gettestData";
+      $('#save').css('display', 'none');
+      $('#editValue').css('display', 'block');
+
+
+      $.post(url, {
+          'Id': TID
+        },
+        function(data) {
+          console.log("Data", data)
+          image = '<?php echo base_url('assets/img/img/') ?>' + data[0]['Image']
+          $("#aafaq").attr("src", image);
+          $('#IdValue').val(TID);
+          $('#Type').val(data[0]['Type']);
+          $('#Type1').val(data[0]['TestType']);
+          $('#Name').val(data[0].Name);
+          $('#Method').val(data[0].Method);
+          $("#Sprice").val(data[0].StandardPrice);
+          $("#PPrice").val(data[0].PremimumPrice);
+          $("#GPrice").val(data[0].GoldenPrice);
+          $("#SDays").val(data[0].StandardDays);
+          $("#PDays").val(data[0].PermimumDays);
+          $("#Ggays").val(data[0].GoldenDays);
+          $("#SDesc").val(data[0].StandardDesc);
+          $("#Pdesc").val(data[0].PermimumDesc);
+          $("#GDesc").val(data[0].GoldenDesc);
+          $("#status").val(data[0].status);
+          if (data[0].Status == 1) {
+            $('#status').prop('checked', true);
+          } else {
+            $('#status').prop('checked', false);
+          }
+          $('#changeTitle').text("Edit Test");
+
+          $('#Modaldepartment').modal('toggle');
+        });
+
+    });
+
+    $(".updatePkg").click(function(e) {
+
+
+      let id = this.id;
+      let split_value = id.split(".");
+      var TID = split_value[1];
+      url = "<?php echo base_url(''); ?>FIT/editPkg";
+      $('#savepkg').css('display', 'none');
+      $('#editpkg').css('display', 'block');
+
+
+
+      $.post(url, {
+          'Id': TID,
+
+        },
+        function(data) {
+          console.log("Data", data)
+          $('#PMethod').val(data[0]['Method']);
+          $('#PName').val(data[0]['Name']);
+          $('#TypePkg').val(data[0]['TestID']);
+          $('#idvalue1').val(data[0]['ID']);
+
+
+          if (data[0].Status == 1) {
+            $('#pstatus').prop('checked', true);
+          } else {
+            $('#pstatus').prop('checked', false);
+          }
+          $('#changeTitle').text("Edit Test");
+
+          $('#packageModal').modal('toggle');
+        });
+
+    });
+
+    $('#editpkg').click(function(e) {
+      //alert("I am here");
+
+      let idPkg = document.getElementById("idvalue1").value
+      let typepkg = document.getElementById("TypePkg").value
+      let PName = document.getElementById("PName").value
+      let PMethod = document.getElementById("PMethod").value
+      let status = document.getElementById("pstatus").value
+
+      url = "<?php echo base_url(''); ?>FIT/updatePkg/"
+
       data = {
-        "article": article,
-        "working": working,
-        "pname": pname,
-        "colorway": colorway,
-        "fcode": fcode,
-        "pshape": pshape,
-        "yields": yields,
-        "client": client,
-        "model": model,
-        "art": art,
-        "ac": ac,
-        "fbo": fbo,
-        "inhousedate": inhousedate,
-        "csdate": csdate,
-        "cr1comments": cr1comments,
-        "inhousedate1": inhousedate1,
-        "csdate1": csdate1,
-        "cr2comments": cr2comments,
-        "postD": postD,
-        "comments": comments,
-        "buymodel": buymodel,
-        "buyarticle": buyarticle,
-        "revdate": revdate,
-        "retail": retail,
-        "cars": cars,
-        "remarks": remarks,
-        "mktg": mktg,
-        "fifa": fifa,
-        "inhouse": inhouse,
-        "cs": cs,
-        "inhouse1": inhouse1,
-        "cs1": cs1,
-        "approve": approve,
-        "finalcs": finalcs,
-        "br": br,
-        "mcs": mcs,
-        "DevType": DevType
+        'Id': idPkg,
+        'pkgtype': typepkg,
+        'PName': PName,
+        'PMethod': PMethod,
+        'status': status,
 
       }
 
+      $.ajax({
+        url: url,
+        type: 'post',
+        data: data,
+        success: function(data) {
+          alert("Data Updated Successfully")
+          location.reload();
 
 
-      url = "<?php echo base_url(''); ?>DPA/submit/"
-      $.post(url, data, function(data) {
-        articles = JSON.parse(data)
-        console.log(articles);
-        alert('Data Inserted Successfully')
-        location.reload();
-
-
-
+        }
       });
-    }
 
-    function onSearch() {
-      fc = $("#fC").val();
-      season = $("#season").val();
 
-      urls = "<?php echo base_url(''); ?>DPA/getTableData/"
-      $.post(urls, {
-        "fc": fc,
-        "season": season,
+    });
+    $('#editValue').click(function(e) {
 
-      }, function(data) {
 
-        let i = 1;
-        console.log(data, "hello");
-        let appendtable = '';
-        appendtable += `<table class="table table-striped table-hover table-sm" id="ActivityData" >
-                                <thead>
-                                    <tr  class="bg-primary-200"  style="color:white;">
-                                    <th>#SR</th>
-                                     <th>Article  </th>
-                                       <th>Working </th>
-                                        <th>Product Name</th>
-                                        <th>Colorway Name</th>
-                                          <th>Factory Code </th>
-                                         <th>Panel Shape</th>
-                                          <th>Yield</th>
-                                          <th>Article Option</th>
-                                            <th>First Briefing Out</th>
-                                              <th>CR1 in-house Date</th>
-                                             <th>CR1 Submission date</th>
-                                             <th>CR1 Comments</th>
-                                             <th>CR2 in-house Date</th>
-                                             <th>CR2 Submission date</th>
-                                             <th>CR2 Comments</th>
-                                             <th>Post CR2 Date</th>
-                                             <th>Comments</th>
-                                             <th>Earliest Buy Model</th>
-                                             <th>Earliest Buy Article</th>
-                                             <th>REV BR Date</th>
-                                             <th>Retail Intro</th>
-                                             <th>FTY Priority</th>
-                                             <th>Remarks</th>
-                                             <th>MKTG FC(Global)</th>
-                                             <th>FIFA Validity</th>
-                                             <th>CR1 in-house</th>
-                                             <th>CR1 Submission</th>
-                                             <th>CR2 in-house</th>
-                                             <th>CR2 Submission</th>
-                                             <th>Approve</th>
-                                             <th>Final CS Confirm</th>
-                                             <th>Br Status</th>
-                                             <th>MCS</th>
-                                                  <th>Development  Type</th>
-                                             <th>Actions</th>
-                                              
-                                       
-                                    </tr>
-                                </thead>
-                                <tbody>`
-        data.forEach((element) => {
-          appendtable += `<tr>
-                                <td>#${i++} </td>
-                                <td> ${element.ArtCode} </td>
-                                       <td>${element.WorkNo} </td>
-                                        <td>${element.ModelName}</td>
-                                        <td>${element.PrintingColors}</td>
-                                          <td>${element.FactoryCode}</td>
-                                         <td>${element.PanelShape}</td>
-                                          <td>${element.Yield}</td>
-                                          <td>${element.Article_Count}</td>
-                                          <td>${element.BF_Date}</td>
-                                          <td>${element.CR1_In_House_Date}</td>
-                                          <td>${element.CR1_Subbmition_Date}</td>
-                                          <td>${element.CR1_Comments}</td>
-                                          <td>${element.CR2_In_House_Date}</td>
-                                          <td>${element.CR2_Subbmition_Date}</td>
-                                          <td>${element.CR2_Comments}</td>
-                                          <td>${element.Post_CR2_Ex_fty}</td>
-                                          <td>${element.Comments_Remarks}</td>
-                                          <td>${element.EBR_Model_Date}</td>
-                                          <td>${element.EBR_Article_Date}</td>
-                                          <td>${element.Rev_BR_Date}</td>
-                                          <td>${element.Retail_Intro}</td>
-                                          <td>${element.Fty_Priority}</td>
-                                          <td>${element.Remarks}</td>
-                                          <td>${element.Mktg_FC}</td>
-                                          <td>${element.FIFA_authorization_validity_Date}</td>
-                                          <td>${element.CR1_In_House_Status}</td>
-                                          <td>${element.CR1_Subbmition_Status}</td>
-                                          <td>${element.CR2_In_House_Status}</td>
-                                          <td>${element.CR2_Subbmition_Status}</td>
-                                          <td>${element.Approved}</td>
-                                          <td>${element.Final_CS_Confirmation}</td>
-                                          <td>${element.BR_Status}</td>
-                                          <td>${element.MCS}</td>
-                                               <td>${element.DevType}</td>
-                                          <td><button type="button" class="btn btn-danger" onclick="deleterecord(${element.TID})">Delete</button></td>
-                                        </tr>`
-        })
+      e.preventDefault();
+      let id = $('#IdValue').val();
+      let Type = $("#Type").val();
+      let Type1 = $("#Type1").val();
+      let Name = $("#Name").val();
+      let Method = $("#Method").val();
+      let Sprice = $("#Sprice").val();
+      let PPrice = $("#PPrice").val();
+      let GPrice = 0;
+      let SDays = $("#SDays").val();
+      let PDays = $("#PDays").val();
+      let Ggays = 0;
+      let SDesc = $("#SDesc").val();
+      let Pdesc = $("#Pdesc").val();
+      let GDesc = 0;
 
-        appendtable += `</tbody>
+      if ($("#status").is(':checked'))
+        status = 1 // checked
+      else
+        status = 0 // unchecked
+      data = [
+        id,
+        Type,
+        Type1,
+        Name,
+        Method,
+        Sprice,
+        PPrice,
+        GPrice,
+        SDays,
+        PDays,
+        Ggays,
+        SDesc,
+        Pdesc,
+        GDesc,
+        status
 
-                                </table>`
-
-        $("#Data").html(appendtable)
-        $('#ActivityData').dataTable({
-          responsive: false,
-          lengthChange: false,
-          dom:
-            /*	--- Layout Structure 
-            	--- Options
-            	l	-	length changing input control
-            	f	-	filtering input
-            	t	-	The table!
-            	i	-	Table information summary
-            	p	-	pagination control
-            	r	-	processing display element
-            	B	-	buttons
-            	R	-	ColReorder
-            	S	-	Select
-
-            	--- Markup
-            	< and >				- div element
-            	<"class" and >		- div with a class
-            	<"#id" and >		- div with an ID
-            	<"#id.class" and >	- div with an ID and a class
-
-            	--- Further reading
-            	https://datatables.net/reference/option/dom
-            	--------------------------------------
-             */
-            "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-          buttons: [
-            /*{
-            	extend:    'colvis',
-            	text:      'Column Visibility',
-            	titleAttr: 'Col visibility',
-            	className: 'mr-sm-3'
-            },*/
-            {
-              extend: 'pdfHtml5',
-              text: 'PDF',
-              titleAttr: 'Generate PDF',
-              className: 'btn-outline-danger btn-sm mr-1'
-            },
-            {
-              extend: 'excelHtml5',
-              text: 'Excel',
-              titleAttr: 'Generate Excel',
-              className: 'btn-outline-success btn-sm mr-1'
-            },
-            {
-              extend: 'csvHtml5',
-              text: 'CSV',
-              titleAttr: 'Generate CSV',
-              className: 'btn-outline-primary btn-sm mr-1'
-            },
-            {
-              extend: 'copyHtml5',
-              text: 'Copy',
-              titleAttr: 'Copy to clipboard',
-              className: 'btn-outline-primary btn-sm mr-1'
-            },
-            {
-              extend: 'print',
-              text: 'Print',
-              titleAttr: 'Print Table',
-              className: 'btn-outline-primary btn-sm'
-            }
-          ]
-        });
+      ]
 
 
 
+      let url = "<?php echo base_url(''); ?>FIT/EditTest"
+      var fd = new FormData();
+      var files = $("#avatar")[0].files[0];
+      fd.append('file', files);
+      fd.append('data', data)
+
+      $.ajax({
+        url: url,
+        type: 'post',
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+          alert("Data Updated Successfully")
+          location.reload();
+
+        }
       });
-    }
 
-    function deleterecord(id) {
-      path = "<?php echo base_url(''); ?>DPA/delteRecord/"
 
-      $.post(path, {
-        "id": id
-      }, function(data) {
-        alert("Data Deleted Successfully", id)
-        location.reload();
+
+
+      //  $.post(url, {
+
+      //    'TID': id,
+      //    "Type": Type,
+      //    "Name": Name,
+      //    "Method": Method,
+      //    "Sprice": Sprice,
+      //    "PPrice": PPrice,
+      //    "GPrice": GPrice,
+      //    "SDays": SDays,
+      //    "PDays": PDays,
+      //    "Ggays": Ggays,
+      //    "SDesc": SDesc,
+      //    "GDesc": GDesc,
+      //    "Pdesc": Pdesc,
+      //    "status": status
+      //   },
+      //   function(data, status) {
+      //    alert("Data Updated Successfully! Wait for page to be Reloaded")
+      //    window.location.reload();
+      //    // setInterval(function() {
+      //    //  window.location.reload();
+      //    // }, 3000);
+
+      //   });
+    });
+
+    $('#save').click(function(e) {
+      //alert("I am here");
+      let Type = $("#Type").val();
+      let Type1 = $("#Type1").val();
+      let Name = $("#Name").val();
+      let Method = $("#Method").val();
+      let Sprice = $("#Sprice").val();
+      let PPrice = $("#PPrice").val();
+      let GPrice = 0;
+      let SDays = $("#SDays").val();
+      let PDays = $("#PDays").val();
+      let Ggays = 0;
+      let SDesc = $("#SDesc").val();
+      let Pdesc = $("#Pdesc").val();
+      let GDesc = 0;
+      let status = $("#status").val();
+
+      //let mcs = $("#mcs").prop('checked');
+      //alert(GDesc);
+      data = [
+        Type,
+        Type1,
+        Name,
+        Method,
+        Sprice,
+        PPrice,
+        GPrice,
+        SDays,
+        PDays,
+        Ggays,
+        SDesc,
+        Pdesc,
+        GDesc,
+        status
+
+      ]
+
+
+
+      url = "<?php echo base_url(''); ?>FIT/submit/"
+      var fd = new FormData();
+      var files = $("#avatar")[0].files[0];
+      fd.append('file', files);
+      fd.append('data', data)
+
+      $.ajax({
+        url: url,
+        type: 'post',
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+          alert("Data Inserted Successfully")
+          location.reload();
+
+        }
       });
-    }
+
+
+    });
+
+    $('#savepkg').click(function(e) {
+      //  alert("I am here");
+      let Type = $("#TypePkg").val();
+      let Name = $("#PName").val();
+      let Method = $("#PMethod").val();
+      let status = $("#pstatus").val();
+
+      //let mcs = $("#mcs").prop('checked');
+      //alert(GDesc);
+      data = [
+        Type,
+        Name,
+        Method,
+        status
+
+      ]
+
+
+
+      url = "<?php echo base_url(''); ?>FIT/submitPackage/"
+      var fd = new FormData();
+      // var files = $("#avatar")[0].files[0];
+      // fd.append('file', files);
+      fd.append('data', data)
+
+      $.ajax({
+        url: url,
+        type: 'post',
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+          alert("Data Inserted Successfully")
+          location.reload();
+
+        }
+      });
+
+
+    });
   </script>
-
-
   <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
   <!-- BEGIN Page Footer -->
   <footer class="page-footer" role="contentinfo">
@@ -849,91 +813,17 @@ if (!$this->session->has_userdata('user_id')) {
 
     </div>
   </footer>
+  <scri src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></scri>
+  <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/js/jquery.min.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js" integrity="sha512-d5Jr3NflEZmFDdFHZtxeJtBzk0eB+kkRXWFQqEc1EKmolXjHm2IKCA7kTvXBNjIYzjXfD5XzIjaaErpkZHCkBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
   <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
   <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
   <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
-  <script>
-    $(document).ready(function() {
 
-      var contentEdits = document.querySelectorAll("[contenteditable]");
-      for (let index = 0; index < contentEdits.length; index++) {
-        contentEdits[index].style.border = 'red 2px solid';
-      }
-    });
-  </script>
-
-  <script>
-    $('#schedule').dataTable({
-      responsive: true,
-      lengthChange: false,
-      dom:
-        /*	--- Layout Structure 
-        	--- Options
-        	l	-	length changing input control
-        	f	-	filtering input
-        	t	-	The table!
-        	i	-	Table information summary
-        	p	-	pagination control
-        	r	-	processing display element
-        	B	-	buttons
-        	R	-	ColReorder
-        	S	-	Select
-
-        	--- Markup
-        	< and >				- div element
-        	<"class" and >		- div with a class
-        	<"#id" and >		- div with an ID
-        	<"#id.class" and >	- div with an ID and a class
-
-        	--- Further reading
-        	https://datatables.net/reference/option/dom
-        	--------------------------------------
-         */
-        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-        "<'row'<'col-sm-12'tr>>" +
-        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-      buttons: [
-        /*{
-        	extend:    'colvis',
-        	text:      'Column Visibility',
-        	titleAttr: 'Col visibility',
-        	className: 'mr-sm-3'
-        },*/
-        {
-          extend: 'pdfHtml5',
-          text: 'PDF',
-          titleAttr: 'Generate PDF',
-          className: 'btn-outline-danger btn-sm mr-1'
-        },
-        {
-          extend: 'excelHtml5',
-          text: 'Excel',
-          titleAttr: 'Generate Excel',
-          className: 'btn-outline-success btn-sm mr-1'
-        },
-        {
-          extend: 'csvHtml5',
-          text: 'CSV',
-          titleAttr: 'Generate CSV',
-          className: 'btn-outline-primary btn-sm mr-1'
-        },
-        {
-          extend: 'copyHtml5',
-          text: 'Copy',
-          titleAttr: 'Copy to clipboard',
-          className: 'btn-outline-primary btn-sm mr-1'
-        },
-        {
-          extend: 'print',
-          text: 'Print',
-          titleAttr: 'Print Table',
-          className: 'btn-outline-primary btn-sm'
-        }
-      ]
-    });
-  </script>
-  <!-- END Page Footer -->
   <!-- BEGIN Shortcuts -->
   <div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog" aria-labelledby="modal-shortcut" aria-hidden="true">
     <div class="modal-dialog modal-dialog-top modal-transparent" role="document">
@@ -980,6 +870,8 @@ if (!$this->session->has_userdata('user_id')) {
       </div>
     </div>
   </div>
+
+
   <!-- END Shortcuts -->
   <!-- BEGIN Color profile -->
   <!-- this area is hidden and will not be seen on screens or screen readers -->
@@ -1074,6 +966,10 @@ if (!$this->session->has_userdata('user_id')) {
       <i class="fal fa-microphone"></i>
     </a>
   </nav>
+
+
+
+
   <!-- END Quick Menu -->
   <!-- BEGIN Messenger -->
   <div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
@@ -1738,6 +1634,7 @@ if (!$this->session->has_userdata('user_id')) {
         }
       ]
     });
+
     /* defined datas */
     var dataTargetProfit = [
       [1354586000000, 153],
@@ -2048,220 +1945,374 @@ if (!$this->session->has_userdata('user_id')) {
       });
       /* flot area -- end */
 
-      var flotVisit = $.plot('#flotVisit', [{
-          data: [
-            [3, 0],
-            [4, 1],
-            [5, 3],
-            [6, 3],
-            [7, 10],
-            [8, 11],
-            [9, 12],
-            [10, 9],
-            [11, 12],
-            [12, 8],
-            [13, 5]
-          ],
-          color: color.success._200
-        },
-        {
-          data: [
-            [1, 0],
-            [2, 0],
-            [3, 1],
-            [4, 2],
-            [5, 2],
-            [6, 5],
-            [7, 8],
-            [8, 12],
-            [9, 9],
-            [10, 11],
-            [11, 5]
-          ],
-          color: color.info._200
-        }
-      ], {
-        series: {
-          shadowSize: 0,
-          lines: {
+
+
+    });
+    var flot_toggle = function() {
+
+      var data = [{
+          label: "Target Profit",
+          data: dataTargetProfit,
+          color: color.info._400,
+          bars: {
             show: true,
-            lineWidth: 2,
-            fill: true,
+            align: "center",
+            barWidth: 30 * 30 * 60 * 1000 * 80,
+            lineWidth: 0,
+            /*fillColor: {
+            	colors: [color.primary._500, color.primary._900]
+            },*/
             fillColor: {
               colors: [{
-                  opacity: 0
+                  opacity: 0.9
                 },
                 {
-                  opacity: 0.12
+                  opacity: 0.1
                 }
               ]
             }
+          },
+          highlightColor: 'rgba(255,255,255,0.3)',
+          shadowSize: 0
+        },
+        {
+          label: "Actual Profit",
+          data: dataProfit,
+          color: color.warning._500,
+          lines: {
+            show: true,
+            lineWidth: 2
+          },
+          shadowSize: 0,
+          points: {
+            show: true
           }
         },
+        {
+          label: "User Signups",
+          data: dataSignups,
+          color: color.success._500,
+          lines: {
+            show: true,
+            lineWidth: 2
+          },
+          shadowSize: 0,
+          points: {
+            show: true
+          }
+        }
+      ]
+
+      var options = {
         grid: {
-          borderWidth: 0
+          hoverable: true,
+          clickable: true,
+          tickColor: '#f2f2f2',
+          borderWidth: 1,
+          borderColor: '#f2f2f2'
         },
-        yaxis: {
-          min: 0,
-          max: 15,
-          tickColor: '#ddd',
-          ticks: [
-            [0, ''],
-            [5, '100K'],
-            [10, '200K'],
-            [15, '300K']
-          ],
-          font: {
-            color: '#444',
-            size: 10
-          }
+        tooltip: true,
+        tooltipOpts: {
+          cssClass: 'tooltip-inner',
+          defaultTheme: false
         },
         xaxis: {
+          mode: "time"
+        },
+        yaxes: {
+          tickFormatter: function(val, axis) {
+            return "$" + val;
+          },
+          max: 1200
+        }
 
-          tickColor: '#eee',
-          ticks: [
-            [2, '2am'],
-            [3, '3am'],
-            [4, '4am'],
-            [5, '5am'],
-            [6, '6am'],
-            [7, '7am'],
-            [8, '8am'],
-            [9, '9am'],
-            [10, '1pm'],
-            [11, '2pm'],
-            [12, '3pm'],
-            [13, '4pm']
-          ],
-          font: {
-            color: '#999',
-            size: 9
+      };
+
+      var plot2 = null;
+
+      function plotNow() {
+        var d = [];
+        $("#js-checkbox-toggles").find(':checkbox').each(function() {
+          if ($(this).is(':checked')) {
+            d.push(data[$(this).attr("name").substr(4, 1)]);
+          }
+        });
+        if (d.length > 0) {
+          if (plot2) {
+            plot2.setData(d);
+            plot2.draw();
+          } else {
+            plot2 = $.plot($("#flot-toggles"), d, options);
           }
         }
+
+      };
+
+      $("#js-checkbox-toggles").find(':checkbox').on('change', function() {
+        plotNow();
       });
-
-
-    });
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js" integrity="sha512-gtII6Z4fZyONX9GBrF28JMpodY4vIOI0lBjAtN/mcK7Pz19Mu1HHIRvXH6bmdChteGpEccxZxI0qxXl9anY60w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script>
-    let fileSelectStore;
-    let HeaderArray = [];
-    let ChildArray = [];
-    let IdOfNewlyEnteredRecord;
-
-    function fileSelect(event) {
-      fileSelectStore = event[0];
+      plotNow()
     }
-    $("#submitData").click(function(e) {
-      e.preventDefault();
-      $("#submitData").css("display", "none");
-      $("#sendHeaderValues").css("display", "block");
-      if (fileSelectStore) {
-        // let fileReader = new FileReader();
-        // fileReader.readAsBinaryString(fileSelectStore);
-        // fileReader.onload = (event) => {
-        //  let data = event.target.result;
-        //  let workbook = XLSX.read(data,{type:"binary"})
+    flot_toggle();
 
-        //  workbook.SheetNames.forEach(sheet => {
-        //   let rowObject = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet])
-        //   console.log("Row Object", rowObject);
-        //  });
-        // }
-
-        this.filetoupload = fileSelectStore;
-        //show image review
-        var reader = new FileReader();
-        reader.readAsDataURL(this.filetoupload);
-        this.fileNameStore = this.filetoupload.name;
-        this.file = fileSelectStore;
-        let fileReader = new FileReader();
-        fileReader.readAsArrayBuffer(this.file);
-        fileReader.onload = (e) => {
-          this.arrayBuffer = fileReader.result;
-          var data = new Uint8Array(this.arrayBuffer);
-          var arr = new Array();
-          for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
-          var bstr = arr.join("");
-          var workbook = XLSX.read(bstr, {
-            type: "binary"
-          });
-          var first_sheet_name = workbook.SheetNames[0];
-          var worksheet = workbook.Sheets[first_sheet_name];
-          //  console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));    
-          let arraylist = XLSX.utils.sheet_to_json(worksheet, {
-            raw: false
-          });
-          this.filelist = arraylist;
-          let testNumber;
-          let PONumber
-          this.filelist.forEach(element => {
-            if (element.TestNo != undefined || element.PONo != undefined) {
-              testNumber = element.TestNo;
-              PONumber = element.PONo;
-              let arrayHead = [element.TestDate, element.PONo, element.Quantity, element.ReceivingDate, element.ItemName, element.SupplierName, element.TestNo, element.SupplierRef, element.Result, element.ItemType];
-              let arrayBody = [element.TestNo, element.PONo, element.Requirement, element.Test, element.Results];
-              HeaderArray.push(arrayHead);
-              ChildArray.push(arrayBody)
-            } else {
-
-              let arrayBody = [testNumber, PONumber, element.Requirement, element.Test, element.Results];
-
-              ChildArray.push(arrayBody)
-            }
-
-
-
-
-          });
-
+    /* flot area */
+    var flotArea = $.plot($('#flot-area'), [{
+        data: dataSet1,
+        label: 'New Customer',
+        color: color.success._200
+      },
+      {
+        data: dataSet2,
+        label: 'Returning Customer',
+        color: color.info._200
+      }
+    ], {
+      series: {
+        lines: {
+          show: true,
+          lineWidth: 2,
+          fill: true,
+          fillColor: {
+            colors: [{
+                opacity: 0
+              },
+              {
+                opacity: 0.5
+              }
+            ]
+          }
+        },
+        shadowSize: 0
+      },
+      points: {
+        show: true,
+      },
+      legend: {
+        noColumns: 1,
+        position: 'nw'
+      },
+      grid: {
+        hoverable: true,
+        clickable: true,
+        borderColor: '#ddd',
+        tickColor: '#ddd',
+        aboveData: true,
+        borderWidth: 0,
+        labelMargin: 5,
+        backgroundColor: 'transparent'
+      },
+      yaxis: {
+        tickLength: 1,
+        min: 0,
+        max: 15,
+        color: '#eee',
+        font: {
+          size: 0,
+          color: '#999'
+        }
+      },
+      xaxis: {
+        tickLength: 1,
+        color: '#eee',
+        font: {
+          size: 10,
+          color: '#999'
         }
       }
 
     });
 
-    $("#sendHeaderValues").click(function(e) {
-      e.preventDefault()
-
-      $("#alertShown").css("display", "block");
-      postData = {
-        HeaderArray,
-        ChildArray
+    var flotVisit = $.plot('#flotVisit', [{
+        data: [
+          [3, 0],
+          [4, 1],
+          [5, 3],
+          [6, 3],
+          [7, 10],
+          [8, 11],
+          [9, 12],
+          [10, 9],
+          [11, 12],
+          [12, 8],
+          [13, 5]
+        ],
+        color: color.success._200
+      },
+      {
+        data: [
+          [1, 0],
+          [2, 0],
+          [3, 1],
+          [4, 2],
+          [5, 2],
+          [6, 5],
+          [7, 8],
+          [8, 12],
+          [9, 9],
+          [10, 11],
+          [11, 5]
+        ],
+        color: color.info._200
       }
+    ], {
+      series: {
+        shadowSize: 0,
+        lines: {
+          show: true,
+          lineWidth: 2,
+          fill: true,
+          fillColor: {
+            colors: [{
+                opacity: 0
+              },
+              {
+                opacity: 0.12
+              }
+            ]
+          }
+        }
+      },
+      grid: {
+        borderWidth: 0
+      },
+      yaxis: {
+        min: 0,
+        max: 15,
+        tickColor: '#ddd',
+        ticks: [
+          [0, ''],
+          [5, '100K'],
+          [10, '200K'],
+          [15, '300K']
+        ],
+        font: {
+          color: '#444',
+          size: 10
+        }
+      },
+      xaxis: {
 
-      url = '<?php echo base_url('LabController/addHeadData'); ?>'
-
-      $.post(url, postData,
-        function(data, status) {
-          setInterval(function() {
-            window.location.reload();
-          }, 6000);
-
-        });
-    });
-
-    $("#sendDetailsValues").click(function(e) {
-      e.preventDefault()
-
-      postData = {
-        ChildArray,
-        IdOfNewlyEnteredRecord
+        tickColor: '#eee',
+        ticks: [
+          [2, '2am'],
+          [3, '3am'],
+          [4, '4am'],
+          [5, '5am'],
+          [6, '6am'],
+          [7, '7am'],
+          [8, '8am'],
+          [9, '9am'],
+          [10, '1pm'],
+          [11, '2pm'],
+          [12, '3pm'],
+          [13, '4pm']
+        ],
+        font: {
+          color: '#999',
+          size: 9
+        }
       }
-
-      url = '<?php echo base_url('LabController/addBodyData'); ?>'
-
-      $.post(url, postData,
-        function(data, status) {
-
-
-          console.log(data);
-
-
-
-        });
     });
   </script>
+
+  <!-- highchart scripts  start -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/data.js"></script>
+	<script src="https://code.highcharts.com/modules/series-label.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+ <!-- highchart scripts  end -->
+
+<?php
+
+$GetEnergy = array();
+foreach($getData as $key) {
+$point1 = array($key['Energy'] , );
+array_push($GetEnergy, $point1); 
+//array_push($lineNames, $key['LineName']);
+
+}?>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js" integrity="sha512-gtII6Z4fZyONX9GBrF28JMpodY4vIOI0lBjAtN/mcK7Pz19Mu1HHIRvXH6bmdChteGpEccxZxI0qxXl9anY60w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  <script>
+   
+    
+
+  
+
+
+Highcharts.chart('container', {
+
+title: {
+	text: ''
+},
+
+subtitle: {
+	text: ''
+},
+
+yAxis: {
+	title: {
+		text: 'KHWs'
+	}
+},
+
+xAxis: {
+	accessibility: {
+		rangeDescription: 'Range: 2010 to 2017'
+	}
+},
+
+legend: {
+	layout: 'vertical',
+	align: 'right',
+	verticalAlign: 'middle'
+},
+
+plotOptions: {
+	series: {
+		label: {
+			connectorAllowed: false
+		},
+		pointStart: 1
+	}
+},
+
+series: [{
+	name: 'Energy Cunsuption',
+	//.data:[1,2,3,4,5]
+	data:<?php echo json_encode($GetEnergy, JSON_NUMERIC_CHECK); ?>
+}
+],
+
+responsive: {
+	rules: [{
+		condition: {
+			maxWidth: 500
+		},
+		chartOptions: {
+			legend: {
+				layout: 'horizontal',
+				align: 'center',
+				verticalAlign: 'bottom'
+			}
+		}
+	}]
+}
+
+});
+
+	  
+  </script>
+
   </body>
 
   </html>

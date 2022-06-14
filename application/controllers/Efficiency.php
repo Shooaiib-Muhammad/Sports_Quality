@@ -235,6 +235,30 @@ class Efficiency extends CI_Controller
     // die;
     $this->load->view('Efficiency/Cutting', $data);
   }
+  public function panelCutting()
+  {
+    $Month = date('m');
+    $Year = date('Y');
+    $Day = date('d');
+    $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+
+    $data['Counter'] = $this->RWPD->panelCutting();
+    // // $total = 0;
+    // // foreach ($data['machineCounter'] as $count) {
+
+    // //  $total = $total + $count['BallCounter'];
+    // // }
+
+    // // $data['total'] = $total;
+    // // echo "<pre>";
+    $data['realtime'] = $this->E->realTimeAtten($_GET['dept_id'], $_GET['section_id']);
+
+
+    // print_r($data['realtime']);
+    // die;
+    $this->load->view('Efficiency/panelCutting', $data);
+  }
+  
 
   public function CuttingBladderWinding()
   {

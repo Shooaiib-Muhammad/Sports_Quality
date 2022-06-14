@@ -48,6 +48,7 @@ class DashboardController extends CI_Controller
 		$data['FactoryWiseProductionmonthly'] = $this->ID->FactoryWiseProductionmonthly();
 		
 		$data['Year'] = $this->ID->Year();
+		
 	$this->load->view('Dashboard', $data);	
 		
     }

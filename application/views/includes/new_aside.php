@@ -337,7 +337,7 @@
 
                                 <li>
                                     <a href="<?php echo base_url(
-                                                    'MIS/Carcas'
+                                                    'CarcasController'
                                                 ); ?>" title="How it works" data-filter-tags="theme settings how it works">
                                         <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Carcas</span>
                                     </a>
@@ -677,10 +677,19 @@
                             <ul>
                                 <li>
                                     <a href="<?php echo base_url("Efficiency/Cutting/?dept_id=15&section_id=72") ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Diamond Press</span>
+                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Sheet Sizing</span>
                                     </a>
                                 </li>
-
+                                <li>
+                                    <a href="<?php echo base_url("Efficiency/panelCutting/?dept_id=15&section_id=72") ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Panel Cutting Press</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url("Cutting/Cutting/HfCutting") ?>" title="Hf Cutting" data-filter-tags="theme settings how it works">
+                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">HF Cutting</span>
+                                    </a>
+                                </li>
 
                             </ul>
 
@@ -737,14 +746,14 @@
                         </li>
 
                         <li>
-                            <a href="<?php echo base_url('Carcas/Carcas') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                            <a href="<?php echo base_url('CarcasController') ?>" title="How it works" data-filter-tags="theme settings how it works">
                                 <span class="" data-i18n="nav.theme_settings_how_it_works">Carcas</span>
                             </a>
 
 
                         </li>
                         <li>
-                            <a href="<?php echo base_url('Core/Core') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                            <a href="<?php echo base_url('CoreController') ?>" title="How it works" data-filter-tags="theme settings how it works">
                                 <span class="" data-i18n="nav.theme_settings_how_it_works">Core</span>
                             </a>
 
@@ -918,7 +927,7 @@
 
                         </ul>
                     </li>
-                    <!-- <li>
+                    <li>
                         <a href="#" title="Theme Settings" data-filter-tags="theme settings">
 
                             <span class="nav-link-text" data-i18n="nav.theme_settings">Test Receive</span>
@@ -934,7 +943,7 @@
                             </li>
 
                         </ul>
-                    </li> -->
+                    </li>
                 <?php
                 }
 

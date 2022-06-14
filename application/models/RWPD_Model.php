@@ -41,4 +41,14 @@ FROM            dbo.view_PC_Cutting_Process
 WHERE        (Date = '$Day/$Month/$Year')");
             return  $query->result_array();
  }
+ Public function panelCutting(){
+  $Month = date('m');
+  $Year = date('Y');
+  $Day = date('d');
+  $query = $this->db->query("SELECT        SUM(Counter) AS Counter
+FROM            dbo.view_PC_panel_Sizing
+WHERE        (Date = '$Day/$Month/$Year')");
+  return  $query->result_array();
+}
+ 
 }

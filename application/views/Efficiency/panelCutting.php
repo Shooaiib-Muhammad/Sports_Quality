@@ -137,7 +137,7 @@
 
                 <div class="subheader">
                     <h1 class="subheader-title">
-                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Sheet Sizing</span>
+                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Panel Cutting</span>
                     </h1>
 
 
