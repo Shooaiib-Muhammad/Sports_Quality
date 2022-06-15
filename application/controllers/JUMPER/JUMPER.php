@@ -43,6 +43,29 @@ public function CallDept(){
     ->set_status_header(200)
     ->set_output(json_encode($data));
 }
+public function getemployeeData($cardno){
+    
+    $data = $this->j->gethistoryData($cardno);
+  
+    return $this->output
+    ->set_content_type('application/json')
+    ->set_status_header(200)
+    ->set_output(json_encode($data));
+}
+
+public function insertion(){
+    //$history = $this->j->gethistoryData($_POST["cardno"]);
+
+    $data = $this->j->submit($_POST["cardno"],$_POST["deptId"],$_POST["sectionid"],$_POST["designationid"]);
+    
+    
+    return $this->output
+    ->set_content_type('application/json')
+    ->set_status_header(200)
+    ->set_output(json_encode($data));
+
+
+}
  public function searchData()
  {
 
@@ -91,6 +114,7 @@ public function CallDept(){
     $this->load->view("Cutting/HfCutting", $data);
 
  }
+ 
 
 
 }

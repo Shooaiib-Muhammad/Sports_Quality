@@ -54,14 +54,15 @@
 
 
 <!-- <input type="text" class="form-control" id="SDays" name="SDays"> -->
-<img src="" alt="" class="img-fluid" id="image" width="120" height="100">
+<!-- <img src="" alt="" class="img-fluid" id="image" width="120" height="100"> -->
+<div id="image"></div>
 </div>
 <div class="col-md-3">
 
 <div class="form-group">
                           <label class="control-label">Department:</label>
-                          <select class="form-control" id="dept" name="department"  onchange="Callsection()">
-                          <option id='department' value=""></option>
+                          <select class="form-control" id="department" name="department"  onchange="Callsection()">
+                       
                           <?php foreach ($alldept as $Key) { ?>
 
 <option value="<?php echo $Key['DeptID']; ?>"><?php echo $Key['DeptName']; ?></option>
@@ -77,9 +78,9 @@
 <div class="form-group">
                           <label class="control-label">Section</label>
                          
-                          <select class="form-control" id="sec" name="section">
+                          <select class="form-control" id="section" name="section">
                            
-                          <option id='section' value=""></option>
+                         
                           </select>
 
                         </div>
@@ -89,8 +90,8 @@
 <div class="form-group">
                           <label class="control-label">Designation:</label>
                       
-                          <select class="form-control" id="desig" name="designation">
-                          <option id='designation' value=""></option>
+                          <select class="form-control" id="designation" name="designation">
+                        
                           <?php foreach ($alldesig as $Key) { ?>
 
 <option value="<?php echo $Key['DesignationID']; ?>"><?php echo $Key['DesigName']; ?></option>
@@ -103,7 +104,7 @@
 <div class="col-sm-3">
 <div class="form-group">
 
-                      <button type="button" class="btn-success btn btn-md mt-3" onclick="onSearch()">Save</button>
+                      <button type="button" class="btn-success btn btn-md mt-3" onclick="onsave()">Save</button>
 
                     </div>
                   </div>
@@ -113,28 +114,12 @@
           </div>
         </div>
 
-
-        <div class="row mt-5">
-        <div class="col-md-12">
-
         <div class="row">
 
+<div class="col-md-8" id="Data" style=" overflow:auto;">
 
+</div>
         
-
-        
-
-        <div class="row">
-
-        <div class="col-md-12">
-        
-       
-
-        </div>
-
-
-        </div>
-     
         </div>
         </div>
 
@@ -1287,14 +1272,45 @@
 
 //       });
 //     }
+
+function onsave(){
+  let cardno =$("#cardno").val();
+  let deptId =$("#department").val();
+  
+  let sectionid =$("#section").val();
+  let designationid =$("#designation").val();
+
+  data = {
+        "cardno": cardno,
+        "deptId": deptId,
+        "sectionid": sectionid,
+        "designationid": designationid
+       
+
+      }
+
+
+
+      url = "<?php echo base_url(''); ?>JUMPER/JUMPER/insertion/"
+      $.post(url, data, function(data) {
+        //articles = JSON.parse(data)
+       // console.log(articles);
+        alert('Data Inserted Successfully')
+        //location.reload();
+        getemployeedata()
+
+
+
+      });
+    }
     function Callsection(){
       //alert("heloo");
-      let deptId =$("#dept").val();
+      let deptId =$("#department").val();
             //var deptId = $("#dept]").val()
             //alert(deptId);
             var url = "<?php echo base_url("JUMPER/JUMPER/Callsection/") ?>" + deptId;
             //var section = $("#sectionID").val()
-            alert(url);
+            //alert(url);
             //console.log(sec alert(deptId);tion ? "selected" : "not selected")
             $.get(url, function(data){
                 
@@ -1302,22 +1318,142 @@
                 for (let index = 0; index < data.length; index++) {
                     const element = data[index];
                     html += "<option value='"
-                    html += element.SecID
+                    html += element.SectionID
                     html += "' "
                     html += section && section == element.SecID ? "selected" : ""
                     html += " >"
-                    html += element.SecName
+                    html += element.SectionName
                     html += "</option>"
                     // html += '<option value="'+element.SecID+'" >'+element.SecName+'</option>'
                 }
 
-                $("#sec").html(html)
+                $("#section").html(html)
 
             })
         }
+function getemployeedata(){
+  
+  cardno = $("#cardno").val();
+     // season = $("#season").val();
+//alert(cardno);
+url = "<?php echo base_url(''); ?>JUMPER/JUMPER/getemployeeData/" + cardno
+      $.get(url, function(data){
+        //alert('success');
+        let i = 1;
+        console.log(data, "hello");
+        let appendtable = '';
+        appendtable += `<table class="table table-striped table-hover table-sm" id="ActivityData" >
+                                <thead>
+                                    <tr  class="bg-primary-200"  style="color:white;">
+                                    <th>Card No</th>
+                                     <th>Name  </th>
+                                     <th>Father Name</th>
+                                       <th>Depatment </th>
+                                        <th>Section</th>
+                                        <th>Designatiom</th>
+                                          <th>Transfer Date </th>
+                                          <th>Status</th>
+                                         
+                                              
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>`
+        data.forEach((element) => {
+          appendtable += `<tr>
+                                
+                                <td> ${element.cardno} </td>
+                                       <td>${element.Name} </td>
+                                        <td>${element.FatherName}</td>
+                                        <td>${element.DeptName}</td>
+                                        <td>${element.SectionName}</td>
+                                        <td>${element.DesigName}</td>
+                                        <td>${element.tdate}</td>
+                                        <td>  <button class="btn-info btn-sm"> ${element.Status?"Active" : "disable" }</button></td>
+                                        </tr>`
+        })
 
+        appendtable += `</tbody>
+
+                                </table>`
+
+        $("#Data").html(appendtable)
+        $('#ActivityData').dataTable({
+          responsive: false,
+          lengthChange: false,
+          dom:
+            /*	--- Layout Structure 
+            	--- Options
+            	l	-	length changing input control
+            	f	-	filtering input
+            	t	-	The table!
+            	i	-	Table information summary
+            	p	-	pagination control
+            	r	-	processing display element
+            	B	-	buttons
+            	R	-	ColReorder
+            	S	-	Select
+
+            	--- Markup
+            	< and >				- div element
+            	<"class" and >		- div with a class
+            	<"#id" and >		- div with an ID
+            	<"#id.class" and >	- div with an ID and a class
+
+            	--- Further reading
+            	https://datatables.net/reference/option/dom
+            	--------------------------------------
+             */
+            "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+          buttons: [
+            /*{
+            	extend:    'colvis',
+            	text:      'Column Visibility',
+            	titleAttr: 'Col visibility',
+            	className: 'mr-sm-3'
+            },*/
+            {
+              extend: 'pdfHtml5',
+              text: 'PDF',
+              titleAttr: 'Generate PDF',
+              className: 'btn-outline-danger btn-sm mr-1'
+            },
+            {
+              extend: 'excelHtml5',
+              text: 'Excel',
+              titleAttr: 'Generate Excel',
+              className: 'btn-outline-success btn-sm mr-1'
+            },
+            {
+              extend: 'csvHtml5',
+              text: 'CSV',
+              titleAttr: 'Generate CSV',
+              className: 'btn-outline-primary btn-sm mr-1'
+            },
+            {
+              extend: 'copyHtml5',
+              text: 'Copy',
+              titleAttr: 'Copy to clipboard',
+              className: 'btn-outline-primary btn-sm mr-1'
+            },
+            {
+              extend: 'print',
+              text: 'Print',
+              titleAttr: 'Print Table',
+              className: 'btn-outline-primary btn-sm'
+            }
+          ]
+        });
+
+
+
+      });
+    }
     function CallData() {
 //alert(" i am here");
+getemployeedata()
 let cardNo =$("#cardno").val();
 //alert(cardNo);
 url = "<?php echo base_url(''); ?>JUMPER/JUMPER/CallData"
@@ -1333,20 +1469,48 @@ url = "<?php echo base_url(''); ?>JUMPER/JUMPER/CallData"
         let department =  cardNo[0]['DeptName'];
         let section = cardNo[0]['SectionName'];
        let designation = cardNo[0]['DesigName'];
+       //let image = cardNo[0]['EmpPic'];
         //console.log(designation);
      // console.log(department);
         // $("#yield").val(articles[0]['Yield']);
         let DeptID= cardNo[0]['DeptID'];
         let DesignationID=   cardNo[0]['DesignationID'];
-        let SectionID=  cardNo[0]['SectionID'];
-        $('#department') .append($("<option></option>").attr("value", DeptID).text(department)); 
-         $('#section').append($("<option></option>").attr("value", SectionID).text(section)); 
-                    $('#designation').append($("<option></option>") .attr("value", DesignationID).text(designation)); 
+        //let SectionID=  cardNo[0]['SectionID'];
+        $("select[name=department]").val(DeptID);
+        $("select[name=designation]").val(DesignationID);
+        var url = "<?php echo base_url("JUMPER/JUMPER/Callsection/") ?>" + DeptID;
+    //var idofEdit = DeptID; 
+//alert(url);
+//  postData = {
+//     idofEdit
+//   }
+  $.get(url, function(data){
+// function(data, status){
+  //console.log("Data Get", data);
+  // var returnedData2 = JSON.parse(data);
+  //  dataaa1 = returnedData2;
+   options = "<option value='' disabled>Select Section</option>"
+     for (i = 0; i < data.length; i++) {
+       if(data[0].SecID == data[i].SectionID){
+        options +=  '<option value="' + data[i].SectionID + '" selected>' + data[i].SectionName + '</option>'
+       }
+     options +=  '<option value="' + data[i].SectionID + '">' + data[i].SectionName + '</option>'
+         }
+        //  console.log(options)
+        $("select[name=section]").html(options)
+
+});
+//image = '<img src="data:image/jpeg;base64,'+EmpPic+'" alt="" class="img-fluid" width="120" height="100">'
+        //$('#department') .append($("<option></option >").attr("value", DeptID).text(department)); 
+        // $('#section').append($("<option></option>").attr("value", SectionID).text(section)); 
+                    //$('#designation').append($("<option></option>") .attr("value", DesignationID).text(designation)); 
       //               html += '<img src="data:image/jpeg;base64,'+ cardNo[0][EmpPic+'" alt="" class="img-fluid" width="120" height="100">'
       // $('#image').append(html)
         // $('#section').append('<optionvalue="'SectionID'">'section'</option>')
         // $('#designation').append('<option value="'DesignationID'">'designation'</option>')
-                        
+       // $("image]").html(image)
+        
+      
       });
 
 

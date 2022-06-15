@@ -38,7 +38,49 @@ public function CallSection($Dept){
       
        return  $query->result_array();
 }
+public function submit($cardno,
+    $deptId,
+    $sectionid,
+    $designationid){
+     
+      $user=$this->session->has_userdata('user_id');
+ 
+       $HRDB = $this->load->database('HRMS', TRUE);
+      $query = $HRDB->query("update  dbo.tbl_jumper
+      Set tbl_jumper.Status=0  Where tbl_jumper.cardno= '$cardno'");
+      
+   // return  $query->result_array();
 
+    if($query){
+      $HRDB = $this->load->database('HRMS', TRUE);
+      $query = $HRDB->query("INSERT INTO  dbo.tbl_jumper 
+      (cardno,deptid,sectionid,designid,userid,Status)
+VALUES
+      ($cardno,$deptId,$sectionid,$designationid,$user,1)");
+    }
+    else{
+      $HRDB = $this->load->database('HRMS', TRUE);
+      $query = $HRDB->query("INSERT INTO  dbo.tbl_jumper 
+      (cardno,deptid,sectionid,designid,userid,Status)
+VALUES
+      ($cardno,$deptId,$sectionid,$designationid,$user,1)");
+    }
+ 
+
+
+       
+    
+        
+      
+
+    }
+    public function gethistoryData($cardno){
+      $HRDB = $this->load->database('HRMS', TRUE);
+      $query = $HRDB->query("SELECT        view_jumper.*
+      FROM            view_jumper 
+      WHERE        (view_jumper.cardno = $cardno) ORDER BY dbo.view_jumper.TID DESC");
+                  return  $query->result_array();
+    }
       public function HourllyReading($s_date, $e_date)
       {
             $query = $this->db->query("SELECT        Reading , MachineName, HourName
