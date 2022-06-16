@@ -98,4 +98,30 @@ FROM            dbo.view_RWPD
 WHERE        (EntryDate BETWEEN '$Day/$Month/$Year' AND '$Day/$Month/$Year')");
                 return  $query->result_array();
         }
+
+        public function getRWPDDateRangeDataBar($startDate,$endDate)
+        {
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT  hhghg  balls, HourName
+FROM            dbo.view_RWPD
+WHERE        (EntryDate BETWEEN '$startDay/$startMonth/$startYear' AND '$endDay/$endMonth/$endYear')");
+                return  $query->result_array();
+        }
+
+        public function getRWPDDateRangeDataLine($startDate,$endDate)
+        {
+                $Month = date('m');
+                $Year = date('Y');
+                $Day = date('d');
+                $query = $this->db->query("SELECT        balls, HourName
+FROM            dbo.view_RWPD
+WHERE        (EntryDate BETWEEN '$Day/$Month/$Year' AND '$Day/$Month/$Year')");
+                return  $query->result_array();
+        }
+        
 }

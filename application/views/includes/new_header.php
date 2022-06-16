@@ -25,16 +25,16 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         <link rel="stylesheet" media="screen, print" href="<?php echo base_url();?>/assets/css/vendors.bundle.css">
         <link rel="stylesheet" media="screen, print" href="<?php echo base_url();?>/assets/css/app.bundle.css">
         <!-- Place favicon.ico in the root directory -->
-        <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url();?>/assets/img/favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url();?>/assets/img/favicon/favicon-32x32.png">
-        <link rel="mask-icon" href="<?php echo base_url();?>/assets/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url();?>assets/img/favicon.jpg">
+        <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url();?>assets/img/favicon.jpg">
+        <link rel="mask-icon" href="<?php echo base_url();?>assets/img/favicon.jpg" color="#5bbad5">
         <link rel="stylesheet" media="screen, print" href="<?php echo base_url();?>/assets/css/datagrid/datatables/datatables.bundle.css">
           <link rel="stylesheet" href="<?php echo base_url();?>/assets/bundles/select2/dist/css/select2.min.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bundles/jquery-selectric/selectric.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bundles/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bundles/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/Select/select2.min.css">
-
+  <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.jpg" />
     </head>
     <body class="mod-bg-1 ">
         <!-- DOC: script to save and load page settings -->

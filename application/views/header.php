@@ -23,11 +23,12 @@ License: You must have a valid license purchased only from wrapbootstrap.com (li
         <meta name="msapplication-tap-highlight" content="no">
         
         <!-- base css -->
+        <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.jpg" />
         <link rel="stylesheet" media="screen, print" href="<?php echo base_url('/')?>Assets/css/vendors.bundle.css">
         <link rel="stylesheet" media="screen, print" href="<?php echo base_url('/')?>Assets/css/app.bundle.css">
         <!-- Place favicon.ico in the root directory -->
-        <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('/')?>img/Forward.png">
-        <link rel="icon" type="<?php echo base_url('/')?>img/Forward.png" sizes="32x32" href="<?php echo base_url('/')?>img/Forward.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url('/')?>assets/img/favicon.jpg"">
+        <link rel="icon" type="<?php echo base_url('/')?>img/Forward.png" sizes="32x32" href="<?php echo base_url('/')?>assets/img/favicon.jpg"">
         <link rel="mask-icon" href="<?php echo base_url('/')?>img/Forward.png" color="#5bbad5">
            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
        <!-- Custom style CSS -->

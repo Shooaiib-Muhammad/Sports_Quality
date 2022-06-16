@@ -180,25 +180,25 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </div>
                                                         <div class="col-md-2">
                                                             <div class="position-relative form-group">
-                                                                <button class="btn btn-success btn-block" id="update" style="margin-top:1.75rem; font-size:1.05rem;">Update</button>
+                                                                <button class="btn btn-primary btn-block" id="update" style="margin-top:1.75rem; font-size:1.05rem;">Update</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="card mb-3">
-                                                <div class="row ml-2 mt-2">
+                                            <div class="card mb-3 ">
+                                                <div class="row ml-2 mt-2 mr-2">
                                                     <div class="col-md-2">
 
 
-                                    <a href="javascript:void(0)" onclick="showForm('<?php echo "B34001" ?>')">
-                                                            <div style="background-color:grey" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                                        <a href="javascript:void(0)" onclick="showForm('<?php echo "B34001" ?>')">
+                                                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:#997300">
                                                                 <div class="">
                                                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
 
 
-                                                                        <small id="showValueB34001" class="m-0 l-h-n">B34001</small>
+                                                                        <small id="showValueB34001" class="m-0 l-h-n" style="font-weight:bold;">B34001</small>
 
 
                                                                     </h3>
@@ -210,13 +210,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </div>
                                                     <div class="col-md-2">
                                                         <a href="javascript:void(0)" onclick="showForm('<?php echo "B34002" ?>')">
-                                                            <div style="background-color:rgba(204, 197, 181, 1)" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:purple">
                                                                 <div class="">
                                                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
 
 
-                                                                        <small id="showValueB34002"  class="m-0 l-h-n">B34002</small>
+                                                                        <small id="showValueB34002" class="m-0 l-h-n" style="font-weight:bold;">B34002</small>
 
 
                                                                     </h3>
@@ -227,13 +227,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </div>
                                                     <div class="col-md-2">
                                                         <a href="javascript:void(0)" onclick="showForm('<?php echo "B34003" ?>')">
-                                                            <div style="background-color:rgba(188, 136, 147, 0.6)" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:purple">
                                                                 <div class="">
                                                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
 
 
-                                                                        <small id="showValueB34003"  class="m-0 l-h-n">B34003</small>
+                                                                        <small id="showValueB34003" class="m-0 l-h-n" style="font-weight:bold;">B34003</small>
 
 
                                                                     </h3>
@@ -244,13 +244,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </div>
                                                     <div class="col-md-2">
                                                         <a href="javascript:void(0)" onclick="showForm('<?php echo "B34004" ?>')">
-                                                            <div style="background-color:rgba(26, 132, 145, 0.7)" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:purple">
                                                                 <div class="">
                                                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
 
 
-                                                                        <small id="showValueB34004"  class="m-0 l-h-n">B34004</small>
+                                                                        <small id="showValueB34004" class="m-0 l-h-n" style="font-weight:bold;">B34004</small>
 
 
                                                                     </h3>
@@ -260,14 +260,14 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </a>
                                                     </div>
                                                     <div class="col-md-2">
-                                                    <a href="javascript:void(0)" onclick="showForm('<?php echo "B34005" ?>')">
-                                                            <div style="background-color:rgba(26, 132, 145, 0.7)" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                                        <a href="javascript:void(0)" onclick="showForm('<?php echo "B34005" ?>')">
+                                                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:black">
                                                                 <div class="">
                                                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
 
 
-                                                                        <small id="showValueB34005"class="m-0 l-h-n">B34005</small>
+                                                                        <small id="showValueB34005" class="m-0 l-h-n" style="font-weight:bold;">B34005</small>
 
 
                                                                     </h3>
@@ -277,14 +277,14 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </a>
                                                     </div>
                                                     <div class="col-md-2">
-                                                    <a href="javascript:void(0)" onclick="showForm('<?php echo "B34006" ?>')">
-                                                            <div style="background-color:rgba(26, 132, 145, 0.7)" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                                        <a href="javascript:void(0)" onclick="showForm('<?php echo "B34006" ?>')">
+                                                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:maroon">
                                                                 <div class="">
                                                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
 
 
-                                                                        <small id="showValueB34006" class="m-0 l-h-n">B34006</small>
+                                                                        <small id="showValueB34006" class="m-0 l-h-n" style="font-weight:bold;">B34006</small>
 
 
                                                                     </h3>
@@ -294,14 +294,14 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </a>
                                                     </div>
                                                     <div class="col-md-2">
-                                                    <a href="javascript:void(0)" onclick="showForm('<?php echo "B34007" ?>')">
-                                                            <div style="background-color:rgba(26, 132, 145, 0.7)" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                                        <a href="javascript:void(0)" onclick="showForm('<?php echo "B34007" ?>')">
+                                                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:#330066">
                                                                 <div class="">
                                                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
 
 
-                                                                        <small id="showValueB34007" class="m-0 l-h-n">B34007</small>
+                                                                        <small id="showValueB34007" class="m-0 l-h-n" style="font-weight:bold;">B34007</small>
 
 
                                                                     </h3>
@@ -311,25 +311,25 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </a>
                                                     </div>
                                                 </div>
-                                            
-                                            <div class="form-row mb-2 ml-2" id="showForm" style="overflow-x:auto;">
+                                                
+                                                <div class="form-row mb-2 ml-2" id="showForm" style="overflow-x:auto;">
 
-                                              
-                                               
-                                                <!-- <div class="col-md-2">
+
+
+                                                    <!-- <div class="col-md-2">
                                                     <div class="position-relative form-group">
                                                         <label class="">SAM Forming </label>
                                                         <input name="forming" id="forming" type="number" class="form-control" value="">
                                                     </div>
                                                 </div>
                                                -->
-                                               
-                                                
-                                            </div>
-                               
+
+
+                                                </div>
+
                                             </div>
 
-                                       
+
                                         </div>
 
 
@@ -347,168 +347,320 @@ if (!$this->session->has_userdata('user_id')) {
 
                                         <script src="<?php echo base_url(); ?>Assets/select/select2.min.js"></script>
                                         <script>
+                                            function showForm(factorCode) {
+                                                $("#showForm").html(' ');
+                                                value = document.getElementById("showValue" + factorCode).innerText;
+                                                url = "<?php echo base_url('MIS/Efficiency/getFactoryCode') ?>"
 
-                                            function showForm(factorCode){
-                                                 $("#showForm").html(' ');
-                                                 value=document.getElementById("showValue"+factorCode).innerText;
-                                                 url="<?php echo base_url('MIS/Efficiency/getFactoryCode') ?>"
-                                              
-                                                $.post(url,{"factory_code":value},function(data){
-                                                    console.log(data)
+                                                $.post(url, {
+                                                    "factory_code": value
+                                                }, function(data) {
+                                                    console.log("pakistan ", data[0]['FactoryCode'])
 
-                                                    var table='';
-                                                    table+=` <table class="table table-responsive" id="ActivityData">
+                                                    if (data[0]['FactoryCode'] == 'B34001') {
+
+                                                        var table = '';
+                                                        table += ` <table class="table table-responsive" id="ActivityData">
                         <thead>
                           <tr>
-                            
-                            <th>SesonalRange</th>
-                            <th>WorkNo</th>
-                            <th>ArtCode</th>
-                            <th>ModelName</th>
-                            <th>PanelShape</th>
-                            <th>Core_Gluing</th>
-                            <th>HF_Cutting</th>
-                            <th>Sheet_Sizing</th>
+                            <th>Article Code</th>
+                            <th>Carcas</th>
+                            <th>Lamination</th>
+                            <th>Sheet Sizing</th>
+                            <th>Panel Cutting</th>
                             <th>Panel_Preparation</th>
-                            <th>Assembly_SAM</th>
-                            <th>Final_cleaning</th>
+                            <th>Assembly</th>
                             <th>Labelling_packaging</th>
-                            <th>FactoryCode</th>
                            
-                            
-                            
-                            
-                            <th>ModelNo</th>
-                            
-                           
-                            
-                            
-                            
-                            <th>bladder_winding</th>
                             <th>Actions</th>
                           </tr>
                         </thead>
                         <tbody>`
 
-                          
-                         
-                
-                       data.forEach(e => {
-                        table+=`<tr>
-                             
-                              <td> ${e.SesonalRange}</td>
-                              <td>  ${e.WorkNo}</td>
-                              <td>${e.ArtCode} </td>
-                              <td>  ${e.ModelName}</td>
-                              <td> ${e.PanelShape}</td>
-                              <td id="Core_Gluing" contentEditable="true"> ${e.Core_Gluing}</td>
-                              <td id="HF_Cutting" contentEditable="true"> ${e.HF_Cutting}</td>
-                              <td id="Sheet_Sizing" contentEditable="true">  ${e.Sheet_Sizing}</td>
-                              <td id="Panel_Preparation" contentEditable="true">  ${e.Panel_Preparation}</td>
-                              <td id="Assembly_SAM" contentEditable="true"> ${e.Assembly_SAM}</td>
-                              <td id="Final_cleaning" contentEditable="true"> ${e.Final_cleaning} </td>
-                              <td id="Labelling_packaging" contentEditable="true">  ${e.Labelling_packaging}</td>
-                              <td>  ${e.FactoryCode}</td>
-                             
-                              
-                           
-                             
-                              <td> ${e.ModelNo} </td>
-                              
-                              
-                            
-                             
-                            
-                              <td id="bladder_winding" contentEditable="true">  ${e.bladder_winding}</td>
+
+
+
+                                                        data.forEach(e => {
+                                                            table += `<tr>
+                              <td> ${e.ArtCode}</td>
+                              <td id="Carcase01" contentEditable="true"> ${e.Carcase}</td>
+                              <td id="Lamination01" contentEditable="true">  ${e.Lamination}</td>
+                              <td id="SheetSizing01" contentEditable="true">${e.SheetSizing} </td>
+                              <td id="Panel_Cutting01" contentEditable="true">  ${e.Panel_Cutting}</td>
+                              <td id="panel_preperation01" contentEditable="true"> ${e.panel_preperation}</td>
+                              <td id="Assembling01" contentEditable="true"> ${e.Assembling}</td>
+                              <td id="labelingandPacking01" contentEditable="true"> ${e.labelingandPacking}</td>
                               <td>
-                                <button type="button" style="display: inline-block;" class="btn btn-info btn-xs " id="btn" onclick="updateArt(${e.ClientID},${e.ModelID},${e.ArtID})"><i class="fal fa-edit" aria-hidden="true"></i></button>
+                                <button type="button" style="display: inline-block;" class="btn btn-info btn-xs " id="btn" onclick="updateArt(${e.ClientID},${e.ModelID},${e.ArtID},'${e.FactoryCode}')"><i class="fal fa-edit" aria-hidden="true"></i></button>
                               </td>
                             </tr>`
-});
-                           
-                        
+                                                        });
 
 
 
-                        table+=`</tbody>
+
+
+                                                        table += `</tbody>
                       </table>`
 
-                      $("#showForm").append(table)
+                                                        $("#showForm").append(table)
+                                                    } else if (data[0]['FactoryCode'] == 'B34005') {
 
-                      $(document).ready(function() {
-            // LoadData(stDate, enDate);
-
-            $('#ActivityData').dataTable({
-                responsive: false,
-                lengthChange: false,
-                dom:
-                    /*	--- Layout Structure 
-                    	--- Options
-                    	l	-	length changing input control
-                    	f	-	filtering input
-                    	t	-	The table!
-                    	i	-	Table information summary
-                    	p	-	pagination control
-                    	r	-	processing display element
-                    	B	-	buttons
-                    	R	-	ColReorder
-                    	S	-	Select
-
-                    	--- Markup
-                    	< and >				- div element
-                    	<"class" and >		- div with a class
-                    	<"#id" and >		- div with an ID
-                    	<"#id.class" and >	- div with an ID and a class
-
-                    	--- Further reading
-                    	https://datatables.net/reference/option/dom
-                    	--------------------------------------
-                     */
-                    "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-                    "<'row'<'col-sm-12'tr>>" +
-                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                buttons: [
-                    /*{
-                    	extend:    'colvis',
-                    	text:      'Column Visibility',
-                    	titleAttr: 'Col visibility',
-                    	className: 'mr-sm-3'
-                    },*/
-                    {
-                        extend: 'pdfHtml5',
-                        text: 'PDF',
-                        titleAttr: 'Generate PDF',
-                        className: 'btn-outline-danger btn-sm mr-1'
-                    },
-                    {
-                        extend: 'excelHtml5',
-                        text: 'Excel',
-                        titleAttr: 'Generate Excel',
-                        className: 'btn-outline-success btn-sm mr-1'
-                    },
-                    {
-                        extend: 'csvHtml5',
-                        text: 'CSV',
-                        titleAttr: 'Generate CSV',
-                        className: 'btn-outline-primary btn-sm mr-1'
-                    },
-                    {
-                        extend: 'copyHtml5',
-                        text: 'Copy',
-                        titleAttr: 'Copy to clipboard',
-                        className: 'btn-outline-primary btn-sm mr-1'
-                    },
-                    {
-                        extend: 'print',
-                        text: 'Print',
-                        titleAttr: 'Print Table',
-                        className: 'btn-outline-primary btn-sm'
-                    }
-                ]
-            });
+                                                        var table = '';
+                                                        table += ` <table class="table table-responsive" id="ActivityData">
+                        <thead>
+                          <tr>
+                            <th>Article Code</th>
+                            <th>Bladder Winding</th>
+                            <th>Sheet Sizing</th>
+                            <th>Panel Cutting</th>
+                            <th>Panel_Preparation</th>
+                            <th>Assembly</th>
+                            <th>Labelling_packaging</th>
+                           
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>`
 
 
-        });
+
+
+                                                        data.forEach(e => {
+                                                            table += `<tr>
+                              <td> ${e.ArtCode}</td>
+                              <td id="bladder_Winding05" contentEditable="true"> ${e.bladder_Winding}</td>
+                              <td id="SheetSizing05" contentEditable="true">${e.SheetSizing} </td>
+                              <td id="Panel_Cutting05" contentEditable="true">  ${e.Panel_Cutting}</td>
+                              <td id="panel_preperation05" contentEditable="true"> ${e.panel_preperation}</td>
+                              <td id="Assembling05" contentEditable="true"> ${e.Assembling}</td>
+                              <td id="labelingandPacking05" contentEditable="true"> ${e.labelingandPacking}</td>
+                              <td>
+                                <button type="button" style="display: inline-block;" class="btn btn-info btn-xs " id="btn" onclick="updateArt(${e.ClientID},${e.ModelID},${e.ArtID},'${e.FactoryCode}')"><i class="fal fa-edit" aria-hidden="true"></i></button>
+                              </td>
+                            </tr>`
+                                                        });
+
+
+
+
+
+                                                        table += `</tbody>
+                      </table>`
+
+                                                        $("#showForm").append(table)
+                                                    } else if (data[0]['FactoryCode'] == 'B34006') {
+                                                        var table = '';
+                                                        table += ` <table class="table table-responsive" id="ActivityData">
+                        <thead>
+                          <tr>
+                            <th>Article Code</th>
+                            <th>Sheet Sizing</th>
+                            <th>Hf Cutting</th>
+                            <th>Assembly</th>
+                            <th>Labelling_packaging</th>
+                           
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>`
+
+
+
+
+                                                        data.forEach(e => {
+                                                            table += `<tr>
+                              <td > ${e.ArtCode}</td>
+                              
+                              <td id="SheetSizing06" contentEditable="true">${e.SheetSizing} </td>
+                              <td id="HFCutting06" contentEditable="true">  ${e.HFCutting}</td>
+                           
+                              <td id="Assembling06" contentEditable="true"> ${e.Assembling}</td>
+                              <td id="labelingandPacking06" contentEditable="true"> ${e.labelingandPacking}</td>
+                              <td>
+                                <button type="button" style="display: inline-block;" class="btn btn-info btn-xs " id="btn" onclick="updateArt(${e.ClientID},${e.ModelID},${e.ArtID},'${e.FactoryCode}')"><i class="fal fa-edit" aria-hidden="true"></i></button>
+                              </td>
+                            </tr>`
+                                                        });
+
+
+
+
+
+                                                        table += `</tbody>
+                      </table>`
+
+                                                        $("#showForm").append(table)
+                                                    } else if (data[0]['FactoryCode'] == 'B34007') {
+                                                        var table = '';
+                                                        table += ` <table class="table table-responsive" id="ActivityData">
+                        <thead>
+                          <tr>
+                          <th>Article Code</th>
+                            <th>Carcas</th>
+                            <th>Fabric Lamination</th>
+                            <th>Hf Cutting</th>
+                            <th>Panel Cutting</th>
+                           
+                            <th>Assembly</th>
+                            <th>Labelling_packaging</th>
+                           
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>`
+
+
+
+
+                                                        data.forEach(e => {
+                                                            table += `<tr>
+                              <td> ${e.ArtCode}</td>
+                              
+                              <td id="Carcase07" contentEditable="true">${e.Carcase} </td>
+                              <td id="Lamination07" contentEditable="true">  ${e.Lamination}</td>
+                              <td id="HFCutting07" contentEditable="true">  ${e.HFCutting}</td>
+                              <td id="Panel_Cutting07" contentEditable="true">  ${e.Panel_Cutting}</td>
+                           
+                              <td id="Assembling07" contentEditable="true"> ${e.Assembling}</td>
+                              <td id="labelingandPacking07" contentEditable="true"> ${e.labelingandPacking}</td>
+                              <td>
+                                <button type="button" style="display: inline-block;" class="btn btn-info btn-xs " id="btn" onclick="updateArt(${e.ClientID},${e.ModelID},${e.ArtID},'${e.FactoryCode}')"><i class="fal fa-edit" aria-hidden="true"></i></button>
+                              </td>
+                            </tr>`
+                                                        });
+
+
+
+
+
+                                                        table += `</tbody>
+                      </table>`
+
+                                                        $("#showForm").append(table)
+                                                    } else {
+                                                        var table = '';
+                                                        table += ` <table class="table table-responsive" id="ActivityData">
+                        <thead>
+                          <tr>
+                          <th>Article Code</th>
+                            <th>Carcas</th>
+                            <th>Lamination</th>
+                            <th>Panel Cutting</th>
+                           
+                            <th>Assembly</th>
+                            <th>Labelling_packaging</th>
+                           
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>`
+
+
+
+
+                                                        data.forEach(e => {
+                                                            table += `<tr>
+                              <td> ${e.ArtCode}</td>
+                              
+                              <td id="Carcase" contentEditable="true">${e.Carcase} </td>
+                              <td id="Lamination" contentEditable="true">  ${e.Lamination}</td>
+                              <td id="Panel_Cutting" contentEditable="true">  ${e.Panel_Cutting}</td>
+                           
+                              <td id="Assembling" contentEditable="true"> ${e.Assembling}</td>
+                              <td id="labelingandPacking" contentEditable="true"> ${e.labelingandPacking}</td>
+                              <td>
+                                <button type="button" style="display: inline-block;" class="btn btn-info btn-xs " id="btn" onclick="updateArt(${e.ClientID},${e.ModelID},${e.ArtID},'${e.FactoryCode}')"><i class="fal fa-edit" aria-hidden="true"></i></button>
+                              </td>
+                            </tr>`
+                                                        });
+
+
+
+
+
+                                                        table += `</tbody>
+                      </table>`
+
+                                                        $("#showForm").append(table)
+                                                    }
+
+
+
+                                                    $(document).ready(function() {
+                                                        // LoadData(stDate, enDate);
+
+                                                        $('#ActivityData').dataTable({
+                                                            responsive: false,
+                                                            lengthChange: false,
+                                                            dom:
+                                                                /*	--- Layout Structure 
+                                                                	--- Options
+                                                                	l	-	length changing input control
+                                                                	f	-	filtering input
+                                                                	t	-	The table!
+                                                                	i	-	Table information summary
+                                                                	p	-	pagination control
+                                                                	r	-	processing display element
+                                                                	B	-	buttons
+                                                                	R	-	ColReorder
+                                                                	S	-	Select
+
+                                                                	--- Markup
+                                                                	< and >				- div element
+                                                                	<"class" and >		- div with a class
+                                                                	<"#id" and >		- div with an ID
+                                                                	<"#id.class" and >	- div with an ID and a class
+
+                                                                	--- Further reading
+                                                                	https://datatables.net/reference/option/dom
+                                                                	--------------------------------------
+                                                                 */
+                                                                "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                                                                "<'row'<'col-sm-12'tr>>" +
+                                                                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                                                            buttons: [
+                                                                /*{
+                                                                	extend:    'colvis',
+                                                                	text:      'Column Visibility',
+                                                                	titleAttr: 'Col visibility',
+                                                                	className: 'mr-sm-3'
+                                                                },*/
+                                                                {
+                                                                    extend: 'pdfHtml5',
+                                                                    text: 'PDF',
+                                                                    titleAttr: 'Generate PDF',
+                                                                    className: 'btn-outline-danger btn-sm mr-1'
+                                                                },
+                                                                {
+                                                                    extend: 'excelHtml5',
+                                                                    text: 'Excel',
+                                                                    titleAttr: 'Generate Excel',
+                                                                    className: 'btn-outline-success btn-sm mr-1'
+                                                                },
+                                                                {
+                                                                    extend: 'csvHtml5',
+                                                                    text: 'CSV',
+                                                                    titleAttr: 'Generate CSV',
+                                                                    className: 'btn-outline-primary btn-sm mr-1'
+                                                                },
+                                                                {
+                                                                    extend: 'copyHtml5',
+                                                                    text: 'Copy',
+                                                                    titleAttr: 'Copy to clipboard',
+                                                                    className: 'btn-outline-primary btn-sm mr-1'
+                                                                },
+                                                                {
+                                                                    extend: 'print',
+                                                                    text: 'Print',
+                                                                    titleAttr: 'Print Table',
+                                                                    className: 'btn-outline-primary btn-sm'
+                                                                }
+                                                            ]
+                                                        });
+
+
+                                                    });
                                                 })
                                             }
                                             $(document).ready(function() {
@@ -593,35 +745,175 @@ if (!$this->session->has_userdata('user_id')) {
 
                                     </div>
                                     <script>
-                                        
-                                        function updateArt(client,model,article){
- 
-                                             Assembly_SAM=$("#Assembly_SAM").text()
-                                             Core_Gluing=$("#Core_Gluing").text()
-                                             Final_cleaning=$("#Final_cleaning").text()
-                                             HF_Cutting=$("#HF_Cutting").text()
-                                             Labelling_packaging=$("#Labelling_packaging").text()
-                                             Panel_Preparation=$("#Panel_Preparation").text()
-                                             Sheet_Sizing=$("#Sheet_Sizing").text()
-                                             bladder_winding=$("#bladder_winding").text()
-                                             
-                                            //  hey=art.parseInt();
-//                                             if (Number(art).toString() !== art){
-//     alert("leading 0 detected")
-// }
-// else{
-//     alert("false")
-// }
-                                            
-                                            
-                                             url="<?php echo base_url('MIS/Efficiency/updateArt') ?>"
-                                            
-                                              $.post(url,{"client":client,"model":model,"article":article,"Assembly_SAM":Assembly_SAM,"Core_Gluing":Core_Gluing,"Final_cleaning":Final_cleaning,"HF_Cutting":HF_Cutting,"Labelling_packaging":Labelling_packaging,"Panel_Preparation":Panel_Preparation,"Sheet_Sizing":Sheet_Sizing,"bladder_winding":bladder_winding},function(data){
+                                        function updateArt(client, model, article, factory) {
 
-                                                console.log(data);
-                                                alert("Data Updated Successfully!")
-                                                // location.reload();
-                                              })
+                                            if (factory == 'B34001') {
+
+                                                Carcase = $("#Carcase01").text()
+                                                Lamination = $("#Lamination01").text()
+                                                SheetSizing = $("#SheetSizing01").text()
+                                                //  SheetSizing= document.getElementById('SheetSizing01').innerText
+                                                HF_Cutting = $("#Panel_Cutting01").text()
+                                                Panel_Preparation = $("#panel_preperation01").text()
+                                                //  Panel_Preparation=document.getElementById('Panel_Preparation01').innerText
+                                                Assembling = $("#Assembling01").text()
+                                                labelingandPacking = $("#labelingandPacking01").text()
+
+                                                url = "<?php echo base_url('MIS/Efficiency/updateArt01') ?>"
+
+                                                $.post(url, {
+                                                    "client": client,
+                                                    "model": model,
+                                                    "article": article,
+                                                    "Carcase": Carcase,
+                                                    "Lamination": Lamination,
+                                                    "SheetSizing": SheetSizing,
+                                                    "HF_Cutting": HF_Cutting,
+                                                    "Panel_Preparation": Panel_Preparation,
+                                                    "Assembling": Assembling,
+                                                    "labelingandPacking": labelingandPacking
+                                                }, function(data) {
+
+                                                    console.log(data);
+                                                    alert("Data Updated Successfully!")
+                                                      location.reload();
+                                                })
+                                            } else if (factory == 'B34005') {
+
+                                                bladder_Winding = $("#bladder_Winding05").text()
+
+                                                SheetSizing = $("#SheetSizing05").text()
+
+                                                Panel_Cutting = $("#Panel_Cutting05").text()
+                                                Panel_Preparation = $("#panel_preperation05").text()
+                                             
+                                                Assembling = $("#Assembling05").text()
+                                                labelingandPacking = $("#labelingandPacking05").text()
+
+
+                                                // if (Panel_Preparation = '') {
+                                                //     Panel_Preparation = null
+                                                // }
+
+
+                                                 alert(Panel_Preparation)
+
+
+
+                                                url = "<?php echo base_url('MIS/Efficiency/updateArt05') ?>"
+
+                                                $.post(url, {
+                                                    "client": client,
+                                                    "model": model,
+                                                    "article": article,
+                                                    "bladder_Winding": bladder_Winding,
+                                                    "SheetSizing": SheetSizing,
+                                                    "Panel_Cutting": Panel_Cutting,
+                                                    "Panel_Preparation": Panel_Preparation,
+                                                    "Assembling": Assembling,
+                                                    "labelingandPacking": labelingandPacking
+                                                }, function(data) {
+
+                                                    console.log(data);
+                                                    alert("Data Inserted Successfully!")
+                                                     location.reload();
+                                                })
+                                            } else if (factory == 'B34006') {
+
+
+                                                SheetSizing = $("#SheetSizing06").text()
+
+                                                HF_Cutting = $("#HFCutting06").text()
+
+                                                Assembling = $("#Assembling06").text()
+                                                labelingandPacking = $("#labelingandPacking06").text()
+
+
+
+
+
+                                                url = "<?php echo base_url('MIS/Efficiency/updateArt06') ?>"
+
+                                                $.post(url, {
+                                                    "client": client,
+                                                    "model": model,
+                                                    "article": article,
+                                                    "SheetSizing": SheetSizing,
+                                                    "HF_Cutting": HF_Cutting,
+                                                    "Assembling": Assembling,
+                                                    "labelingandPacking": labelingandPacking
+                                                }, function(data) {
+
+                                                    console.log(data);
+                                                    alert("Data Inserted Successfully!")
+                                                     location.reload();
+                                                })
+                                            } else if (factory == 'B34007') {
+                                                Carcase = $("#Carcase07").text()
+                                                Lamination = $("#Lamination07").text()
+
+
+
+                                                HF_Cutting = $("#HFCutting07").text()
+                                                Panel_Cutting = $("#Panel_Cutting07").text()
+
+                                                Assembling = $("#Assembling07").text()
+                                                labelingandPacking = $("#labelingandPacking07").text()
+
+
+
+
+
+                                                url = "<?php echo base_url('MIS/Efficiency/updateArt07') ?>"
+
+                                                $.post(url, {
+                                                    "client": client,
+                                                    "model": model,
+                                                    "article": article,
+                                                    "Carcase": Carcase,
+                                                    "Lamination": Lamination,
+                                                    "HF_Cutting": HF_Cutting,
+                                                    "Panel_Cutting": Panel_Cutting,
+                                                    "Assembling": Assembling,
+                                                    "labelingandPacking": labelingandPacking
+                                                }, function(data) {
+
+                                                    console.log(data);
+                                                    alert("Data Inserted Successfully!")
+                                                     location.reload();
+                                                })
+                                            } else {
+                                                Carcase = $("#Carcase").text()
+                                                Lamination = $("#Lamination").text()
+
+                                                Panel_Cutting = $("#Panel_Cutting").text()
+
+                                                Assembling = $("#Assembling").text()
+                                                labelingandPacking = $("#labelingandPacking").text()
+
+
+
+
+
+                                                url = "<?php echo base_url('MIS/Efficiency/updateArt') ?>"
+
+                                                $.post(url, {
+                                                    "client": client,
+                                                    "model": model,
+                                                    "article": article,
+                                                    "Carcase": Carcase,
+                                                    "Lamination": Lamination,
+                                                    "Panel_Cutting": Panel_Cutting,
+                                                    "Assembling": Assembling,
+                                                    "labelingandPacking": labelingandPacking
+                                                }, function(data) {
+
+                                                    console.log(data);
+                                                    alert("Data Inserted Successfully!")
+                                                    location.reload();
+                                                })
+                                            }
+
                                         }
                                     </script>
                     </main>

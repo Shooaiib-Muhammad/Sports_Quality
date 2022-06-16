@@ -133,7 +133,24 @@
             <main id="js-page-content" role="main" class="page-content">
                 <?php $id = $_GET['dept_id']; ?>
 
+                <?php
 
+$GetHours = array();
+$GetReading = array();
+//$target = array();
+//print_r($HourllyReading);
+foreach ($HourllyReading as $key) {
+    $point1 = array($key['balls'],);
+    $point2 = array($key['HourName'],);
+    $dailytarget = 3000 / 6;
+    $point3 = $dailytarget / 8;
+
+    array_push($GetReading, $point1);
+    array_push($GetHours, $point2);
+    // array_push($target, $point3);
+    //array_push($lineNames, $key['LineName']);
+
+} ?>
                 <!-- <div class="subheader">
                     <h1 class="subheader-title">
                         <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Dashboard</span>
@@ -141,8 +158,26 @@
 
 
                 </div> -->
+                <ul class="nav nav-pills" role="tablist">
+                                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Date Filteration</a></li>
 
-                <div class="row">
+                </ul>
+                <div class="tab-content py-3">
+
+<div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel" style="background-color: white;">
+<div class="row">
+                    <div class="col-md-12">
+
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    RWPD Count
+                                 
+                                </h2>
+                            </div>
+                            <div class="panel-container show">
+                <div class="row pt-2">
 
                     <div class="col-md-12 d-flex flex-row">
 
@@ -167,8 +202,8 @@
 
                                                     <small class="m-0 l-h-n">Number of Employees</small>
                                                     <?php echo $d['EmpCount']; ?>
-                                                    <!-- <small class="m-0 l-h-n">Real Time</small>
-                                            <?php echo $d['RealTime']; ?> -->
+                                                    <!-- <small class="m-0 l-h-n">Real Time</small>-->
+                                            <!-- <?php echo $d['RealTime']; ?>  -->
 
                                                 </h3>
                                             </div>
@@ -186,8 +221,8 @@
 
                                                     <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
 
-                                                    <!-- <small class="m-0 l-h-n">Number of Employees</small>
-                                            <?php echo $d['EmpCount']; ?> -->
+                                                    <!-- <small class="m-0 l-h-n">Number of Employees</small>-->
+                                            <!-- <?php echo $d['EmpCount']; ?>  -->
                                                     <small class="m-0 l-h-n">Real Time</small>
                                                     <?php echo $d['RealTime']; ?>
 
@@ -268,14 +303,9 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-1">
-
-                        </div>
-
+                 
                     </div>
                 </div> <!-- row ends here -->
-
-
                 <div class="guage text-center ">
                     <script src="https://code.highcharts.com/highcharts.js"></script>
                     <script src="https://code.highcharts.com/highcharts-more.js"></script>
@@ -289,26 +319,14 @@
                         <!-- <div id="container-rpm" class="chart-container"></div>   -->
                     </figure>
                 </div>
-                <?php
+                <div id="tableHere" class="p-2">
 
-                $GetHours = array();
-                $GetReading = array();
-                //$target = array();
-                //print_r($HourllyReading);
-                foreach ($HourllyReading as $key) {
-                    $point1 = array($key['balls'],);
-                    $point2 = array($key['HourName'],);
-                    $dailytarget = 3000 / 6;
-                    $point3 = $dailytarget / 8;
+                </div>
+                </div>
+              </div>
 
-                    array_push($GetReading, $point1);
-                    array_push($GetHours, $point2);
-                    // array_push($target, $point3);
-                    //array_push($lineNames, $key['LineName']);
-
-                } ?>
-
-
+            </div>
+                </div>
                 <div class="row">
                     <div class="col-md-12">
 
@@ -316,7 +334,7 @@
                             <div class="panel-hdr">
                                 <h2>
                                     RWPD OutPut
-                                    <!-- <?php Print_r($HourllyReading); ?> -->
+                                  
                                 </h2>
                             </div>
                             <div class="panel-container show">
@@ -329,6 +347,51 @@
 
                     </div>
                 </div>
+</div>
+
+<div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
+<div class="card">
+
+<div class="card-body">
+    <h5 class="card-title" style="color:black;font-weight:bolder">Date Filteration</h5>
+    <div class="row">
+        <div class="col-md-2"><input class="form-control" type="date" id="startDate" /></div>
+        <div class="col-md-2"><input class="form-control" type="date" id="endDate" /></div>
+        <div class="col-md-4"><button class="btn btn-primary" id="searchRange">Search</button></div>
+    </div>
+    </div>
+    </div>
+<br>
+    <div class="row" id="dateRangeResult">
+                    <div class="col-md-12">
+
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    RWPD OutPut
+                                  
+                                </h2>
+                            </div>
+                            <div class="panel-container show">
+
+                                <div id="containerDateRangeBar">
+
+                                </div>
+
+                                <div id="containerDateRangeLine">
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+   
+</div>
+                </div>
+          
                 <style>
 
                 </style>
@@ -340,10 +403,7 @@
 
                 <!-- <figure class="highcharts-figure">
               <div id="container"></div> -->
-                <!-- <?php
-
-                        $this->load->view('adminHeader.php');
-                        ?> -->
+       
 
                 <script src="https://code.highcharts.com/highcharts.js"></script>
                 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
@@ -354,6 +414,7 @@
 
 
                 <script>
+                 
                     Highcharts.chart('container', {
                         chart: {
                             zoomType: 'xy'
@@ -437,8 +498,7 @@
 
 
 
-
-
+        
                 <!-- this overlay is activated only when mobile menu is triggered -->
                 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
                 <!-- BEGIN Page Footer -->
@@ -1208,7 +1268,9 @@
     ];
 
     $(document).ready(function() {
-
+        let currentDate = new Date().toJSON().substr(0,10);
+        $("#startDate").val(currentDate);
+        $("#endDate").val(currentDate);
         /* init datatables */
         $('#dt-basic-example').dataTable({
             responsive: true,
@@ -1710,6 +1772,15 @@
 
 
     });
+    $("#searchRange").on('click',function(e){
+        e.preventDefault()
+        let startDate = $("#startDate").val()
+        let endDate = $("#endDate").val()
+        let url = "<?php echo base_url('Efficiency/getRWPDDateRangeData') ?>";
+        $.post(url,{"startDate":startDate, "endDate":endDate},function(data, status){
+            console.log("Data", data)
+        });
+    })
 </script>
 <script>
     $('#direct').click(function() {

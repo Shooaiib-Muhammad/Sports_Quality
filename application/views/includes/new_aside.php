@@ -1,5 +1,5 @@
 <aside class="page-sidebar">
-    <div class="page-logo">
+    <!-- <div class="page-logo">
         <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">
 
             <span class="page-logo-text mr-1"> <?php echo $username = $this->session->userdata(
@@ -8,7 +8,16 @@
             <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2"></span>
             <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>
         </a>
-    </div>
+    </div> -->
+    <!-- <div class="page-logo">
+                        <a href="<?php echo base_url()?>" class="page-logo-link press-scale-down d-flex align-items-center position-relative">
+                            <img src="<?php echo base_url('/')?>Assets/img/Forward123.png" alt="Forward Sports" aria-roledescription="logo">
+                            <span class="page-logo-text mr-1">Forward Sports</span>
+                            <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2">Management System</span>
+                         
+                        </a>
+                    </div> -->
+
     <!-- BEGIN PRIMARY NAVIGATION -->
     <nav id="js-primary-nav" class="primary-nav" role="navigation">
         <div class="nav-filter">
@@ -36,6 +45,7 @@
                 <li>
                     <a href="#" title="Application Intel" data-filter-tags="application intel">
                         <!-- <i class="fa fa-angle-double-down"></i> -->
+                        <i class="fal fa-chart-bar"></i>
                         <span class="nav-link-text" data-i18n="nav.application_intel">Dashboard</span>
                     </a>
                     <ul>
@@ -57,7 +67,7 @@
                 </li>
                 <li>
                     <a href="#" title="Application Intel" data-filter-tags="application intel">
-
+                    <i class="fal fa-vial"></i>
                         <span class="nav-link-text" data-i18n="nav.application_intel">Lab</span>
                     </a>
                     <ul>
@@ -113,7 +123,7 @@
 
                 <li>
                     <a href="#" title="Theme Settings" data-filter-tags="theme settings">
-
+                    <i class="fal fa-futbol"></i>
                         <span class="nav-link-text" data-i18n="nav.theme_settings">Development</span>
                     </a>
                     <ul>
@@ -150,7 +160,7 @@
 
                 <li>
                     <a href="#" title="Theme Settings" data-filter-tags="theme settings">
-
+                    <i class="fal fa-vial"></i>
                         <span class="nav-link-text" data-i18n="nav.theme_settings">Test Request and Receive</span>
                     </a>
                     <ul>
@@ -184,7 +194,7 @@
 
                 <li>
                     <a href="#" title="Theme Settings" data-filter-tags="theme settings">
-
+                    <i class="fal fa-futbol"></i>
                         <span class="nav-link-text" data-i18n="nav.theme_settings">MIS</span>
                     </a>
                     <ul>
@@ -397,6 +407,7 @@
 
                         <li>
                             <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                            <i class="fal fa-vial"></i>
                                 <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Lab</span>
                             </a>
                             <ul>
@@ -489,6 +500,7 @@
                 <li>
                     <a href="#" title="Application Intel" data-filter-tags="application intel">
                         <!-- <i class="fal fa-info-tachometer"></i> -->
+                        <i class="fal fa-wrench"></i>
                         <span class="nav-link-text" data-i18n="nav.application_intel">DMMS</span>
                     </a>
                     <ul>
@@ -570,7 +582,7 @@
 
                 <li>
                     <a href="#" title="Theme Settings" data-filter-tags="theme settings">
-
+                    <i class="fal fa-vial"></i>
                         <span class="nav-link-text" data-i18n="nav.theme_settings">Outward Request</span>
                     </a>
                     <ul>
@@ -649,7 +661,7 @@
 
                 <li>
                     <a href="#" title="Theme Settings" data-filter-tags="theme settings">
-
+                    <i class="fal fa-futbol"></i>
                         <span class="nav-link-text" data-i18n="nav.theme_settings">Efficiency</span>
                     </a>
                     <ul>
@@ -770,7 +782,7 @@
                 </li>
                 <li>
                     <a href="#" title="Theme Settings" data-filter-tags="theme settings">
-
+                    <i class="fal fa-chart-line"></i>
                         <span class="nav-link-text" data-i18n="nav.theme_settings">Energy</span>
                     </a>
                     <ul> <li>
@@ -784,7 +796,7 @@
                 </li>
                 <li>
                     <a href="#" title="Theme Settings" data-filter-tags="theme settings">
-
+                    <i class="fal fa-exchange"></i>
                         <span class="nav-link-text" data-i18n="nav.theme_settings">JUMPER Application</span>
                     </a>
                     <ul> <li>
@@ -796,6 +808,7 @@
                     </a>  </li>
                             </ul>
                 </li>
+                
             </ul>
         <?php } else { ?>
             <ul id="js-nav-menu" class="nav-menu">
@@ -804,6 +817,7 @@
                     <li>
                         <a href="#" title="Application Intel" data-filter-tags="application intel">
                             <!-- <i class="fa fa-angle-double-down"></i> -->
+                            <i class="fal fa-vial"></i>
                             <span class="nav-link-text" data-i18n="nav.application_intel">Lab</span>
                         </a>
                         <ul>
@@ -971,7 +985,7 @@
                 ?>
                     <li>
                         <a href="#" title="Theme Settings" data-filter-tags="theme settings">
-
+                        <i class="fal fa-vial"></i>
                             <span class="nav-link-text" data-i18n="nav.theme_settings">Outward Request</span>
                         </a>
                         <ul>

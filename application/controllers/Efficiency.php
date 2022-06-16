@@ -212,6 +212,7 @@ class Efficiency extends CI_Controller
     // die;
     $this->load->view('Efficiency/RWPD', $data);
   }
+
   public function Cutting()
   {
     $Month = date('m');
@@ -598,5 +599,18 @@ class Efficiency extends CI_Controller
       ->set_content_type('application/json')
       ->set_status_header(200)
       ->set_output(json_encode($data));
+  }
+
+  public function getRWPDDateRangeData(){
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+
+    $data['BarData'] = $this->E->getRWPDDateRangeDataBar($startDate, $endDate);
+    // $data['LineData'] = $this->E->getRWPDDateRangeDataLine($startDate, $endDate);
+
+    return $this->output
+    ->set_content_type('application/json')
+    ->set_status_header(200)
+    ->set_output(json_encode($data));
   }
 }

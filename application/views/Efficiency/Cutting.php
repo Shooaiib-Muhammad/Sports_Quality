@@ -146,7 +146,26 @@
 
                 </div>
 
-                <div class="row">
+                <ul class="nav nav-pills" role="tablist">
+                                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Date Filteration</a></li>
+
+                </ul>
+                <div class="tab-content py-3">
+
+<div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel" style="background-color: white;">
+<div class="row">
+                    <div class="col-md-12">
+
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Sheet Sizing Count
+                                 
+                                </h2>
+                            </div>
+                            <div class="panel-container show">
+                <div class="row pt-2">
 
                     <div class="col-md-12 d-flex flex-row">
 
@@ -308,12 +327,82 @@
                         <!-- <div id="container-rpm" class="chart-container"></div>   -->
                     </figure>
                 </div>
-                <div id="tableHere">
+                <div id="tableHere" class="p-2">
 
 
 
 
 
+                </div>
+
+                </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Sheet Sizing OutPut
+                                  
+                                </h2>
+                            </div>
+                            <div class="panel-container show">
+                                <div id="container">
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+</div>
+
+<div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
+<div class="card">
+
+<div class="card-body">
+    <h5 class="card-title" style="color:black;font-weight:bolder">Date Filteration</h5>
+    <div class="row">
+        <div class="col-md-2"><input class="form-control" type="date" id="startDate" /></div>
+        <div class="col-md-2"><input class="form-control" type="date" id="endDate" /></div>
+        <div class="col-md-4"><button class="btn btn-primary" id="searchRange">Search</button></div>
+    </div>
+    </div>
+    </div>
+<br>
+    <div class="row" id="dateRangeResult">
+                    <div class="col-md-12">
+
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Sheet Sizing OutPut
+                                  
+                                </h2>
+                            </div>
+                            <div class="panel-container show">
+
+                                <div id="containerDateRangeBar">
+
+                                </div>
+
+                                <div id="containerDateRangeLine">
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+   
+</div>
                 </div>
             </main>
 
@@ -1090,7 +1179,9 @@
     ];
 
     $(document).ready(function() {
-
+        let currentDate = new Date().toJSON().substr(0,10);
+        $("#startDate").val(currentDate);
+        $("#endDate").val(currentDate);
         /* init datatables */
         $('#dt-basic-example').dataTable({
             responsive: true,
@@ -1592,6 +1683,16 @@
 
 
     });
+
+    $("#searchRange").on('click',function(e){
+        e.preventDefault()
+        let startDate = $("#startDate").val()
+        let endDate = $("#endDate").val()
+        let url = "<?php echo base_url('Efficiency/getRWPDDateRangeData') ?>";
+        $.post(url,{"startDate":startDate, "endDate":endDate},function(data, status){
+            console.log("Data", data)
+        });
+    })
 </script>
 <script>
     $('#direct').click(function() {

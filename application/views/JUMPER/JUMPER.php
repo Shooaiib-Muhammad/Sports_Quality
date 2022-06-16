@@ -28,11 +28,20 @@
 
 
         <!-- <div class="row clearfix"> -->
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title"><b>Employee information</b></h5>
-            <div class="row">
-            <div class="col-md-2">
+
+            <div class="row p-3">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+              <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                   Employee Information
+                                 
+                                </h2>
+                            </div>
+                            <div class="panel-container show">
+                <div class="row p-3">
+                <div class="col-md-3">
 
 <label class="form-contol" for="customFile">Enter Card No:</label>
 <input type="number" class="form-control" id="cardno" name="cardno" onchange="CallData()">
@@ -104,23 +113,37 @@
 <div class="col-sm-3">
 <div class="form-group">
 
-                      <button type="button" class="btn-success btn btn-md mt-3" onclick="onsave()">Save</button>
+                      <button type="button" class="btn-primary btn btn-md mt-3" onclick="onsave()">Save</button>
 
                     </div>
                   </div>
+                </div>
+                </div>
+        </div>
+              </div>
+              <div class="col-md-2"></div>
+          
 </div>
 
 
-          </div>
-        </div>
+     
+<div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                   Employee Transfer History
+                                 
+                                </h2>
+                            </div>
+                            <div class="panel-container show">
+        <div class="row p-3">
 
-        <div class="row">
-
-<div class="col-md-8" id="Data" style=" overflow:auto;">
+<div class="col-md-12" id="Data" style=" overflow:auto;">
 
 </div>
         
         </div>
+                            </div>
+</div>
         </div>
 
 

@@ -94,24 +94,77 @@ WHERE        (ArtCode = '$article')");
  WHERE tbl_Pro_Article.ArtID='$articleID' And  tbl_Pro_Article.ModelID='$modelID' AND tbl_Pro_Article.ClientID='$clientID'");
         return $query;
     }
-    public function getFactoryCode($code){
-    
-        
-        $query = $this->db->query("SELECT      bladder_winding , ClientID, ModelID, ArtID, ArtCode, FactoryCode, Labelling_packaging, Final_cleaning, Assembly_SAM, Panel_Preparation, Sheet_Sizing, HF_Cutting, Core_Gluing, PanelShape, ModelNo, ModelName, SesonalRange, 
-        WorkNo
+    public function getFactoryCode($code)
+    {
+
+
+        $query = $this->db->query("SELECT    view_SMV_Values.*
 FROM            dbo.view_SMV_Values
 WHERE        (FactoryCode = '$code')
 ");
-                return  $query->result_array(); 
-}
+        return  $query->result_array();
+    }
 
-public function updateArt($client,$model,$article,$Assembly_SAM,$Core_Gluing,$Final_cleaning,$HF_Cutting,$Labelling_packaging,$Panel_Preparation,$Sheet_Sizing,$bladder_winding){
+    public function updateArt01($client, $model, $article, $Carcase, $Lamination, $SheetSizing, $Panel_Cutting, $Panel_Preparation, $Assembling, $labelingandPacking)
+    {
 
-   
-       $query = $this->db->query("UPDATE   tbl_Pro_Article    
-SET Core_Gluing=$Core_Gluing ,Assembly_SAM=$Assembly_SAM,Final_cleaning=$Final_cleaning,HF_Cutting=$HF_Cutting,Labelling_packaging=$Labelling_packaging,Panel_Preparation=$Panel_Preparation,Sheet_Sizing=$Sheet_Sizing,bladder_winding=$bladder_winding
-WHERE        (ClientID = $client) AND (ModelID = $model) AND (ArtID = $article)
-");
-                return  $query; 
-}
+        // echo $HF_Cutting;
+        // die;
+       
+        // update  dbo.tbl_jumper
+        // Set tbl_jumper.Status=0 
+        // ArticleID ,ModelID,,
+        // $article ,$,$client,
+
+      
+        // $query = $this->db->query("update   tbl_Pro_Article  set Carcase=$Carcase,Lamination=$Lamination,SheetSizing=$SheetSizing,HFCutting=$HF_Cutting,panel_preperation=$Panel_Preparation,
+        // Assembling=$Assembling,labelingandPacking=$labelingandPacking  Where tbl_Pro_Article.ArticleID= '$article' 
+        // and tbl_Pro_Article.ModelID= '$model' and  tbl_Pro_Article.ClientID= '$client'");
+        $query = $this->db->query(" UPDATE tbl_Pro_Article 
+        SET Carcase=$Carcase,Lamination=$Lamination,SheetSizing=$SheetSizing,Panel_Cutting=$Panel_Cutting,panel_preperation=$Panel_Preparation,
+         Assembling=$Assembling,labelingandPacking=$labelingandPacking
+        WHERE ArtID = $article AND ModelID= $model AND ClientID= $client");
+      
+        return  $query;
+    }
+
+    public function updateArt05($client, $model, $article, $bladder_Winding, $SheetSizing, $Panel_Cutting, $Panel_Preparation, $Assembling, $labelingandPacking)
+    {
+
+        $query = $this->db->query("UPDATE tbl_Pro_Article 
+        SET bladder_Winding=$bladder_Winding,SheetSizing=$SheetSizing,Panel_Cutting=$Panel_Cutting,panel_preperation=$Panel_Preparation,
+         Assembling=$Assembling,labelingandPacking=$labelingandPacking
+        WHERE ArtID = $article AND ModelID= $model AND ClientID= $client");
+        return  $query;
+    }
+
+    public function updateArt06($client, $model, $article, $SheetSizing, $HF_Cutting, $Assembling, $labelingandPacking)
+    {
+
+        
+
+        $query = $this->db->query("UPDATE tbl_Pro_Article 
+        SET SheetSizing=$SheetSizing,HFCutting=$HF_Cutting,
+         Assembling=$Assembling,labelingandPacking=$labelingandPacking
+        WHERE ArtID = $article AND ModelID= $model AND ClientID= $client");
+        return  $query;
+    }
+    public function updateArt07($client, $model, $article, $Carcase, $Lamination, $HF_Cutting, $Panel_Cutting, $Assembling, $labelingandPacking)
+    {
+
+        $query = $this->db->query("UPDATE tbl_Pro_Article 
+        SET Carcase=$Carcase,Lamination=$Lamination,HFCutting=$HF_Cutting,Panel_Cutting=$Panel_Cutting,
+         Assembling=$Assembling,labelingandPacking=$labelingandPacking
+        WHERE ArtID = $article AND ModelID= $model AND ClientID= $client");
+        return  $query;
+    }
+
+    public function updateArt($client, $model, $article, $Carcase, $Lamination,  $Panel_Cutting, $Assembling, $labelingandPacking)
+    {
+        $query = $this->db->query("UPDATE tbl_Pro_Article 
+        SET Carcase=$Carcase,Lamination=$Lamination,Panel_Cutting=$Panel_Cutting,
+         Assembling=$Assembling,labelingandPacking=$labelingandPacking
+        WHERE ArtID = $article AND ModelID= $model AND ClientID= $client");
+        return  $query;
+    }
 }

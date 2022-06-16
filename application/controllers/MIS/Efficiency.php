@@ -126,10 +126,57 @@ class Efficiency extends CI_Controller
             $_POST['factory_code']
 
         );
+
+        // echo "<pre>";
+        // print_r($data);
+        // die;
+        // echo "</pre>";
+
+      
         return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)
             ->set_output(json_encode($data));
+    }
+
+    public function updateArt01()
+    {
+
+   
+
+
+
+        $data = $this->Efficiency_Model->updateArt01($_POST['client'], $_POST['model'], $_POST['article'], $_POST['Carcase'], $_POST['Lamination'], $_POST['SheetSizing'], $_POST['HF_Cutting'], $_POST['Panel_Preparation'], $_POST['Assembling'], $_POST['labelingandPacking']);
+        echo "INSerted";
+    }
+    public function updateArt05()
+    {
+
+
+
+
+        $data = $this->Efficiency_Model->updateArt05($_POST['client'], $_POST['model'], $_POST['article'], $_POST['bladder_Winding'], $_POST['SheetSizing'], $_POST['Panel_Cutting'], $_POST['Panel_Preparation'], $_POST['Assembling'], $_POST['labelingandPacking']);
+        echo "INSerted";
+    }
+    public function updateArt06()
+    {
+
+
+
+
+        $data = $this->Efficiency_Model->updateArt06($_POST['client'], $_POST['model'], $_POST['article'],  $_POST['SheetSizing'], $_POST['HF_Cutting'], $_POST['Assembling'], $_POST['labelingandPacking']);
+        echo "INSerted";
+    }
+
+    public function updateArt07()
+    {
+
+
+
+
+
+        $data = $this->Efficiency_Model->updateArt07($_POST['client'], $_POST['model'], $_POST['article'],  $_POST['Carcase'], $_POST['Lamination'], $_POST['HF_Cutting'], $_POST['Panel_Cutting'], $_POST['Assembling'], $_POST['labelingandPacking']);
+        echo "INSerted";
     }
 
     public function updateArt()
@@ -138,7 +185,8 @@ class Efficiency extends CI_Controller
 
 
 
-        $data = $this->Efficiency_Model->updateArt($_POST['client'], $_POST['model'], $_POST['article'], $_POST['Assembly_SAM'], $_POST['Core_Gluing'], $_POST['Final_cleaning'], $_POST['HF_Cutting'], $_POST['Labelling_packaging'], $_POST['Panel_Preparation'], $_POST['Sheet_Sizing'], $_POST['bladder_winding']);
-        echo "Updated";
+
+        $data = $this->Efficiency_Model->updateArt($_POST['client'], $_POST['model'], $_POST['article'],  $_POST['Carcase'], $_POST['Lamination'], $_POST['Panel_Cutting'], $_POST['Assembling'], $_POST['labelingandPacking']);
+        echo "INSerted";
     }
 }
