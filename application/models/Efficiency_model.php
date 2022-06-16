@@ -93,9 +93,11 @@ class Efficiency_model extends CI_Model
                 $Month = date('m');
                 $Year = date('Y');
                 $Day = date('d');
-                $query = $this->db->query("SELECT        balls, HourName
-FROM            dbo.view_RWPD
-WHERE        (EntryDate BETWEEN '$Day/$Month/$Year' AND '$Day/$Month/$Year')");
+                $query = $this->db->query("SELECT        balls, HourName,HID
+                FROM            dbo.view_RWPD_Hourlly
+WHERE        (EntryDate BETWEEN '$Day/$Month/$Year' AND '$Day/$Month/$Year') 
+GROUP BY balls, HourName,HID
+ORDER BY HID ");
                 return  $query->result_array();
         }
 

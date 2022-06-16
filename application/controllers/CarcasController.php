@@ -6,14 +6,15 @@ class CarcasController extends CI_Controller {
     {
      parent::__construct();
     
-     $this->load->model('MBB_model','mbb');
+     $this->load->model('Efficiency_model', 'E');
+     $this->load->model('carcas_model','carcas');
     }
 
     public function index(){
 
-        // $data['getballsData']= $this->mbb->getballsData();
-
-        $this->load->view('Carcas/carcas');
+        $data['getData']= $this->carcas->getData();
+        $data['realtime'] = $this->E->realTimeAtten(24, 125);
+        $this->load->view('Carcas/carcas',$data);
 
     }
 

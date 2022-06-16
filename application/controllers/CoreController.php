@@ -6,14 +6,16 @@ class CoreController extends CI_Controller {
     {
      parent::__construct();
     
-     $this->load->model('MBB_model','mbb');
+     $this->load->model('Efficiency_model', 'E');
+     $this->load->model('carcas_model','carcas');
     }
 
     public function index(){
 
         // $data['getballsData']= $this->mbb->getballsData();
-
-        $this->load->view('Core/core');
+        $data['getData']= $this->carcas->getDatacore();
+        $data['realtime'] = $this->E->realTimeAtten(3, 1165);
+        $this->load->view('Core/core',$data);
 
     }
 
