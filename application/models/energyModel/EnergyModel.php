@@ -81,4 +81,28 @@ FROM            dbo.tbl_Prod_Energy_Info
 where        (DAY(EntryDate) = $Day) AND (MONTH(EntryDate) = $Month) AND (YEAR(EntryDate) = $Year) AND (HallName = 'FACILITY') AND (Energy > 1)");
 		return  $query->result_array();
 	}
+	public function dailyenergy()
+	{
+
+		$Month = date('m');
+		$Year = date('Y');
+		$Day = date('d');
+
+		$query = $this->db->query("SELECT        TOP (100) PERCENT HallName, Energy
+FROM            dbo.tbl_Prod_Energy_Info
+where        (DAY(EntryTime) = $Day) AND (MONTH(EntryTime) = $Month) AND (YEAR(EntryTime) = $Year)  AND (Energy > 1)");
+		return  $query->result_array();
+	}
+	public function energyinfo(){
+		$Month = date('m');
+		$Year = date('Y');
+		$Day = date('d');
+
+		$query = $this->db->query("SELECT        TOP (100) PERCENT HallName, Energy, ID
+		FROM            dbo.tbl_Prod_Energy_Info
+		WHERE        (Energy > 0) AND (DAY(EntryTime) = $Day) AND (MONTH(EntryTime) = $Month) AND (YEAR(EntryTime) = $Year)
+		ORDER BY ID DESC");
+		return  $query->result_array();
+		
+	}
 }

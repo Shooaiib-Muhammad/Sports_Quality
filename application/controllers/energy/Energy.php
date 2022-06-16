@@ -13,11 +13,8 @@ class Energy extends CI_Controller
     public function index()
 	{
 
-		$data['CallData'] = $this->Energy->CallData();
-		$data['getData'] = $this->Energy->getData();
-		$data['AllFACILITY'] = $this->Energy->AllFACILITY();
-		$data['MSPRINTING'] = $this->Energy->MSPRINTING();
-		$data['MSPRESS'] = $this->Energy->MSPRESS();
+		$data['energyinfo'] = $this->Energy->energyinfo();
+		
         // $this->load->view('energy/energyView');
 		$this->load->view('energy/Energy',$data);
 
@@ -25,11 +22,19 @@ class Energy extends CI_Controller
     }
 
 	public function getData(){
-		$data['CallData'] = $this->Energy->CallData();
-		$data['getData'] = $this->Energy->getData();
-		$data['AllFACILITY'] = $this->Energy->AllFACILITY();
-		$data['MSPRINTING'] = $this->Energy->MSPRINTING();
-		$data['MSPRESS'] = $this->Energy->MSPRESS();
+		
+		// $data['CallData'] = $this->Energy->CallData();
+		// $data['getData'] = $this->Energy->getData();
+		// $data['AllFACILITY'] = $this->Energy->AllFACILITY();
+		// $data['MSPRINTING'] = $this->Energy->MSPRINTING();
+		// // $data['AMB'] = $this->Energy->AMB();
+		// // $data['Canteenhall'] = $this->Energy->Canteenhall();
+		// // $data['Compressorhall'] = $this->Energy->Compressorhall();
+		// // $data['CompressorPanelhall'] = $this->Energy->CompressorPanelhall();
+		// // $data['OVALMachinehall'] = $this->Energy->OVALMachinehall();
+		// // $data['WorkShophall'] = $this->Energy->WorkShophall();
+		// // $data['TMHALL'] = $this->Energy->TMHALL();
+$data['dailyenergy']= $this->Energy->dailyenergy();
 		return $this->output
         ->set_content_type('application/json')
         ->set_status_header(200)

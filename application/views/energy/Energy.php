@@ -188,29 +188,47 @@ if (!$this->session->has_userdata('user_id')) {
               background: #f1f7ff;
             }
           </style>
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-3">
-                <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
-                  <div class="">
-                    <a href="ViewResultFit/totalrequest">
+          <?php
+//foreach ($energyinfo as $keys){
+ //print_r($energyinfo);
+  if($energyinfo[2]['HallName']=='Compressor Panel'){
+    $CEnergy=$energyinfo[2]['Energy'];
+  }
+  if($energyinfo[0]['HallName']=='AMB'){
+    $ambEnergy=$energyinfo[0]['Energy'];
+  }
+  if($energyinfo[3]['HallName']=='MS'){
+    $MSEnergy=$energyinfo[3]['Energy'];
+  }
+  if($energyinfo[1]['HallName']=='Canteen'){
+    $CenteenEnergy=$energyinfo[1]['Energy'];
+  }
+  
+  if($energyinfo[9]['HallName']=='Compressor'){
+    $CompressorEnergy=$energyinfo[9]['Energy'];
+  }
+  if($energyinfo[1170]['HallName']=='FACILITY'){
+    $FACILITYEnergy=$energyinfo[1170]['Energy'];
+  }
 
-                      <h3 class="display-4 d-block l-h-n m-0 fw-500  text-white">
+  if($energyinfo[8]['HallName']=='MS PRINTING'){
+    $msprintingEnergy=$energyinfo[8]['Energy'];
+  }
+  if($energyinfo[4]['HallName']=='OVAL Machine'){
+    $ovalmachineEnergy=$energyinfo[4]['Energy'];
+  }
+  if($energyinfo[5]['HallName']=='TM'){
+    $tmEnergy=$energyinfo[5]['Energy'];
+  }
+  if($energyinfo[6]['HallName']=='WorkShop'){
+    $workshopEnergy=$energyinfo[6]['Energy'];
+  }
+ 
+//}
 
-                        <small class="m-0 l-h-n">Current Energy Consumed</small>
-                        <?php echo isset($CallData[0]['Energy']) ?> KW
-                      </h3>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-
-
-              <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
-            </div>
-
-          </div>
+         
+          ?>
+          <!--  -->
           <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
 
 
@@ -1804,35 +1822,111 @@ if (!$this->session->has_userdata('user_id')) {
       var datesArray = []
       var energy = []
       var msPrinting = []
+      var AMBhall = []
+      var Canteenhall = []
+      var Compressor = []
+      var CompressorPanelhall= []
+      var MShall = []
+      var OVALMachinehall = []
+      var WorkShophall = []
+      var TMHALL = []
       var msPress = []
+      // \WorkShop
+      //     \TM
+      //     \OVAL Machine
+      //     \MS
+      //     \Compressor Panel
+      //     \Compressor
+      //     \Canteen
+      //     \AMB
+         
       let url = "<?php echo base_url('/energy/Energy/getData'); ?>";
       $.get(url, function(data, status) {
-        $.each(data['AllFACILITY'], function(index, value) {
-          if (datesArray.indexOf(value.EntryTime) === -1) {
-            datesArray.push(value.EntryTime);
-          }
-        });
-        data['AllFACILITY'].forEach(element => {
+          console.log(data);
+
+
+  data['dailyenergy'].forEach(element => {
+    if(element.HallName=='Compressor Panel'){
           energy.push(parseFloat(element['Energy']));
-        })
-        data['MSPRINTING'].forEach(element => {
+        }
+        if(element.HallName=='AMB'){
+          AMBhall.push(parseFloat(element['Energy']));
+        }
+        if(element.HallName=='Canteen'){
+          Canteenhall.push(parseFloat(element['Energy']));
+        }
+        if(element.HallName=='Compressor'){
+          Compressor.push(parseFloat(element['Energy']));
+        }
+        if(element.HallName=='FACILITY'){
+          datesArray.push(parseFloat(element['Energy']));
+        }
+        if(element.HallName=='MS'){
+          MShall.push(parseFloat(element['Energy']));
+        }
+        // if(element.HallName=='MS PRESS'){
+        //   mspress.push(parseFloat(element['Energy']));
+        // }
+        if(element.HallName=='MS PRINTING'){
           msPrinting.push(parseFloat(element['Energy']));
+        }
+        if(element.HallName=='OVAL Machine'){
+          OVALMachinehall.push(parseFloat(element['Energy']));
+        }
+        if(element.HallName=='TM'){
+          TMHALL.push(parseFloat(element['Energy']));
+        }
+        if(element.HallName=='WorkShop'){
+          WorkShophall.push(parseFloat(element['Energy']));
+        }
         })
-        data['MSPRESS'].forEach(element => {
-          msPress.push(parseFloat(element['Energy']));
-        })
+
+
+       
         let seriesData = [{
-            name: 'Facility',
+            name: 'Compressor Panel',
             data: energy
+          }
+          ,
+          {
+            name: 'Airless Mini Hall',
+            data: AMBhall
+          }
+          ,
+          {
+            name: 'Canteen',
+            data: Canteenhall
+          },
+          {
+            name: 'Compressor',
+            data: Compressor
+          },
+          {
+            name: 'Facility',
+            data: datesArray
+          },
+          {
+            name: 'MS hall',
+            data: MShall
           },
           {
             name: 'MS Printing',
             data: msPrinting
           },
           {
-            name: 'MS Press',
-            data: msPress
+            name: 'OVAL Machine',
+            data: OVALMachinehall
+          },
+          {
+            name: 'TM',
+            data: TMHALL
+          },
+          {
+            name: 'WorkShop',
+            data: WorkShophall
           }
+
+          
         ]
         Highcharts.chart('container', {
           chart: {
