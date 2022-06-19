@@ -718,7 +718,7 @@
 
                         <li>
                             <a href="<?php echo base_url('Throster') ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="" data-i18n="nav.theme_settings_how_it_works">Throster</span>
+                                <span class="" data-i18n="nav.theme_settings_how_it_works">MS Lines</span>
                             </a>
 
 
@@ -734,19 +734,19 @@
                             <ul>
                                 <li>
                                     <a href="<?php echo base_url("TM_Packing/TM_Packing") ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">TM Packing</span>
+                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Thermo Bounded</span>
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="<?php echo base_url("AMB_Packing/AMB_Packing") ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">AMB Packing</span>
+                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Airless Mini</span>
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="<?php echo base_url('LFB_Packing/LFB_Packing') ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                        <span class="" data-i18n="nav.theme_settings_how_it_works">LFB Packing</span>
+                                        <span class="" data-i18n="nav.theme_settings_how_it_works">Laminated FootBall</span>
                                     </a>
 
 

@@ -108,13 +108,80 @@ ORDER BY HID");
                 $endMonth = explode("-",$endDate)[1];
                 $endYear = explode("-",$endDate)[0];
                 $endDay = explode("-",$endDate)[2];
-                $query = $this->db->query("SELECT Date, COUNT(Counter) AS Counter
+                $query = $this->db->query("SELECT        TOP (100) PERCENT Date, COUNT(Counter) AS Counter
                 FROM            dbo.view_RWPD_DT
-                WHERE        (EntryDate BETWEEN '$startDay/$startMonth/$startYear' AND '$endDay/$endMonth/$endYear')
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
                 GROUP BY Date
                 ORDER BY Date");
                 return  $query->result_array();
         }
+
+        Public function getCuttingSheetSizingDateRangeData($startDate,$endDate){
+            
+                $query = $this->db->query("SELECT        SUM(Counter) AS Counter, Date
+                FROM            dbo.view_Sheet_Sizing
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY Date
+    ");
+                return  $query->result_array();
+     }
+
+     Public function getCuttingSheetSizingDateRangeDataMachineWise($startDate,$endDate){
+        $query = $this->db->query("SELECT        SUM(Counter) AS Counter, Date, MachineName
+        FROM            dbo.view_Sheet_Sizing
+        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+        GROUP BY Date, MachineName
+        ORDER BY Date
+");
+        return  $query->result_array();
+}
+
+Public function getCuttingPanelDateRangeData($startDate,$endDate){
+            
+        $query = $this->db->query("SELECT        Date, COUNT(Counter) AS Counter
+        FROM            dbo.view_PC_Panel_Sizing
+        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+        GROUP BY Date        
+");
+        return  $query->result_array();
+}
+
+Public function getCuttingPanelDateRangeDataMachineWise($startDate,$endDate){
+$query = $this->db->query("SELECT        Date, COUNT(Counter) AS Counter, MachineName
+FROM            dbo.view_PC_Panel_Sizing
+WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+GROUP BY Date, MachineName
+ORDER BY Date
+");
+
+
+return  $query->result_array();
+}
+
+Public function getCuttingHFDateRangeData($startDate,$endDate){
+            
+        $query = $this->db->query("SELECT        TOP (100) PERCENT COUNT(Counter) AS Counter, Date
+        FROM            dbo.view_PC_HF_Cutting
+        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+        GROUP BY Date
+        ORDER BY Date
+        
+");
+        return  $query->result_array();
+}
+
+Public function getCuttingHFDateRangeDataMachineWise($startDate,$endDate){
+$query = $this->db->query("SELECT        TOP (100) PERCENT COUNT(Counter) AS Counter, Date, Name
+FROM            dbo.view_PC_HF_Cutting
+WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+GROUP BY Date, Name
+ORDER BY Date
+
+");
+
+
+return  $query->result_array();
+}
 
         public function getRWPDDateRangeDataMachine($startDate,$endDate)
         {
@@ -124,11 +191,11 @@ ORDER BY HID");
                 $endMonth = explode("-",$endDate)[1];
                 $endYear = explode("-",$endDate)[0];
                 $endDay = explode("-",$endDate)[2];
-                $query = $this->db->query("SELECT     Date, COUNT(Counter) AS Counter, Name
+                $query = $this->db->query("SELECT  Date, COUNT(Counter) AS Counter, Name
                 FROM            dbo.view_RWPD_DT          
-                WHERE        (Date BETWEEN '$startDay/$startMonth/$startYear' AND '$endDay/$endMonth/$endYear')
+                WHERE        (Date BETWEEN '$startDay/$startMonth/$startYear' AND '$endDay/$endMonth/$endYear') 
                 GROUP BY Date, Name 
-                ORDER BY Name");
+                ORDER BY Date");
                 return  $query->result_array();
         }
 

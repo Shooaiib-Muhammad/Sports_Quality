@@ -258,18 +258,26 @@ foreach ($HourllyReading as $key) {
                                 </div>
                             </a>
                         </div>
-                        <?php $Output = $total * 0.64;
+                        <?php $Output = $total * 0.58;
 
 
 
+                        $Mints = 0;
+                        if(array_key_exists(0,$realtime)){
+                            if ($realtime[0]['EmployeeType'] == "Direct") {
 
-                        if ($realtime[0]['EmployeeType'] == "Direct") {
 
-
-                            $Mints = $realtime[0]['RealTime'];
+                                $Mints = 16*5*480;
+                            }
                         }
-
-                        $Efficiecny = ($Output / $Mints) * 100;
+                     
+                        if($Mints != 0){
+                            $Efficiecny = ($Output / $Mints) * 100;
+                        }
+                        else{
+                            $Efficiecny = ($Output / 1) * 100;
+                        }
+                       
 
                         ?>
 
@@ -385,6 +393,12 @@ foreach ($HourllyReading as $key) {
     <div id="containerDateRangeLine"></div>
 
                                     </div>
+                                    <div class="col-md-12 mt-2">
+                          
+                          <div id="containerDateRangeLineMachineWise"></div>
+                      
+                                                          </div>
+                                    
                                 </div>
                                 <div id="loadingShow" style="display: none;">
                           
@@ -1284,6 +1298,7 @@ foreach ($HourllyReading as $key) {
         let currentDate = new Date().toJSON().substr(0,10);
         $("#startDate").val(currentDate);
         $("#endDate").val(currentDate);
+   
         /* init datatables */
         $('#dt-basic-example').dataTable({
             responsive: true,
@@ -1867,12 +1882,22 @@ function generateDataBottom(data1) {
         $("#loadingShow").css('display','inline-block')
         let startDate = $("#startDate").val()
         let endDate = $("#endDate").val()
+        let startDateNewFormat = startDate.split("-")[2]+"-"+startDate.split("-")[1]+"-"+startDate.split("-")[0]
+        let endDateNewFormat = endDate.split("-")[2]+"-"+endDate.split("-")[1]+"-"+endDate.split("-")[0]
         const params = new Proxy(new URLSearchParams(window.location.search), {
             get: (searchParams, prop) => searchParams.get(prop),
         });
         let section_id = params.section_id;
         let dept_id = params.dept_id;
         let datesArray = []
+        let datesArrayMachineWise = []
+        let seriesDataMachine1 = [];
+        let seriesDataMachine2 = [];
+        let seriesDataMachine3 = [];
+        let seriesDataMachine4 = [];
+        let seriesDataMachine5 = [];
+        let originalDataMachineWise = [];
+        let targetDataMachineWise = [];
         let url = "<?php echo base_url('Efficiency/getRWPDDateRangeData') ?>";
         let url2 = "<?php echo base_url('Efficiency/getRealTimeDateRange') ?>";
         $.post(url,{"startDate":startDate, "endDate":endDate},function(data, status){
@@ -1884,20 +1909,176 @@ function generateDataBottom(data1) {
         seriesDataTop = generateDataTop(data)
         seriesDataBottom = generateDataBottom(data)
   
-        }
 
+
+        for(let k = 0; k<data.MachineData.length; k++){
+            if(datesArrayMachineWise.indexOf(data.MachineData[k].Date) === -1){
+            datesArrayMachineWise.push(data.MachineData[k].Date)
+        targetDataMachineWise.push(parseFloat(67))
+        if(data.MachineData[k].Name == "Metal Detector 1"){
+                output = data.MachineData[k].Counter * 0.58
+            Minutes = (16*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            }
+            else if(data.MachineData[k].Name == "Metal Detector 2"){
+                output = data.MachineData[k].Counter * 0.58
+            Minutes = (16*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine2.push(parseFloat(efficiency))
+            seriesDataMachine1.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            }
+            else if(data.MachineData[k].Name == "Metal Detector 3"){
+                output = data.MachineData[k].Counter * 0.58
+            Minutes = (16*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine3.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            }
+            else if(data.MachineData[k].Name == "Metal Detector 4"){
+            output = data.MachineData[k].Counter * 0.58
+            Minutes = (16*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine4.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine5.push(0)
+            }
+            else if(data.MachineData[k].Name == "Metal Detector 5"){
+                output = data.MachineData[k].Counter * 0.58
+            Minutes = (16*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine5.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine1.push(0)
+            }
+    }
+    else{
+        if(data.MachineData[k].Name == "Metal Detector 1"){
+                output = data.MachineData[k].Counter * 0.58
+            Minutes = (16*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.pop()
+            seriesDataMachine1.push(parseFloat(efficiency))
+ 
+            }
+            else if(data.MachineData[k].Name == "Metal Detector 2"){
+                output = data.MachineData[k].Counter * 0.58
+            Minutes = (16*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine2.pop()
+            seriesDataMachine2.push(parseFloat(efficiency))
+
+            }
+            else if(data.MachineData[k].Name == "Metal Detector 3"){
+                output = data.MachineData[k].Counter * 0.58
+            Minutes = (16*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine3.pop()
+            seriesDataMachine3.push(parseFloat(efficiency))
+      
+            }
+            else if(data.MachineData[k].Name == "Metal Detector 4"){
+            output = data.MachineData[k].Counter * 0.58
+            Minutes = (16*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine4.pop()
+            seriesDataMachine4.push(parseFloat(efficiency))
+ 
+            }
+            else if(data.MachineData[k].Name == "Metal Detector 5"){
+                output = data.MachineData[k].Counter * 0.58
+            Minutes = (16*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine5.pop()
+            seriesDataMachine5.push(parseFloat(efficiency))
+   
+            }
+    }
+            // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
+        }
+  
+      
+        originalDataMachineWise.push({name:"Metal Detector 1",data:seriesDataMachine1},{name:"Metal Detector 2",data:seriesDataMachine2},{name:"Metal Detector 3",data:seriesDataMachine3},{name:"Metal Detector 4",data:seriesDataMachine4},{name:"Metal Detector 5",data:seriesDataMachine5},{name:"Target Efficiency",data:targetDataMachineWise})
+        }
+        // console.log("Target", targetDataMachineWise)
         for (var i = 0; i < data.BarData.length; i++) {
     if(datesArray.indexOf(data.BarData[i].Date) === -1){
         datesArray.push(data.BarData[i].Date)
+        // targetDataMachineWise.push(parseFloat(67))
     }
         }
+
+        Highcharts.chart('containerDateRangeLineMachineWise', {
+
+title: {
+    text: `Machine-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
+},
+
+yAxis: {
+    title: {
+        text: 'Efficiency'
+    }
+},
+
+xAxis: {
+    categories: datesArray,
+},
+
+legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle'
+},
+
+plotOptions: {
+    series: {
+        label: {
+            connectorAllowed: false
+        }
+    }
+},
+
+series: originalDataMachineWise,
+
+responsive: {
+    rules: [{
+        condition: {
+            maxWidth: 500
+        },
+        chartOptions: {
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
+            }
+        }
+    }]
+}
+
+});
+
+
 Highcharts.chart('containerDateRangeBar', {
     chart: {
         type: 'column'
     },
     title: {
         align: 'left',
-        text: `Data From ${startDate} To ${endDate}`
+        text: `Balls Count From ${startDateNewFormat} To ${endDateNewFormat}`
     },
     accessibility: {
         announceNewData: {
@@ -1958,31 +2139,31 @@ $.post(url2,{"startDate":startDate, "endDate":endDate,"dept_id":dept_id,"section
     let output= 0;
     let Minutes = 0;
     let efficiency = 0;
-    for(let i = 0; i<len; i++){ 
+    // for(let i = 0; i<len; i++){ 
         for(let j = 0; j<lenOuter; j++){
-            if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
+            // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
 
-            output = dataArrayOuter[j].Counter * 0.64
-            Minutes = dataInner.realtime[i].RealTime
-            efficiency = (output / Minutes) * 100
+            output = dataArrayOuter[j].Counter * 0.58
+            Minutes = (16*5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
 
             seriesData.push(parseFloat(efficiency))
             targetData.push(parseFloat(67))
-}
+// }
         }
        
-        if(i == len-1){
+        // if(i == len-1){
             originalData.push({name:"Efficiency",data:seriesData},{name:"Target Efficiency",data:targetData})
         
-        }
-    }
+        // }
+    // }
 
  }
 //  console.log(datesArray)
  Highcharts.chart('containerDateRangeLine', {
 
 title: {
-    text: `Efficiency Between ${startDate} To ${endDate}`
+    text: `Process-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
 },
 
 yAxis: {

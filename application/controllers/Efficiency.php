@@ -614,6 +614,45 @@ class Efficiency extends CI_Controller
     ->set_output(json_encode($data));
   }
 
+  public function getCuttingSheetSizingDateRangeData(){
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+
+    $data['BarData'] = $this->E->getCuttingSheetSizingDateRangeData($startDate, $endDate);
+    $data['MachineData'] = $this->E->getCuttingSheetSizingDateRangeDataMachineWise($startDate, $endDate);
+
+    return $this->output
+    ->set_content_type('application/json')
+    ->set_status_header(200)
+    ->set_output(json_encode($data));
+  }
+
+  public function getCuttingPanelDateRangeData(){
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+
+    $data['BarData'] = $this->E->getCuttingPanelDateRangeData($startDate, $endDate);
+    $data['MachineData'] = $this->E->getCuttingPanelDateRangeDataMachineWise($startDate, $endDate);
+
+    return $this->output
+    ->set_content_type('application/json')
+    ->set_status_header(200)
+    ->set_output(json_encode($data));
+  }
+
+  public function getCuttingHFDateRangeData(){
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+
+    $data['BarData'] = $this->E->getCuttingHFDateRangeData($startDate, $endDate);
+    $data['MachineData'] = $this->E->getCuttingHFDateRangeDataMachineWise($startDate, $endDate);
+
+    return $this->output
+    ->set_content_type('application/json')
+    ->set_status_header(200)
+    ->set_output(json_encode($data));
+  }
+
   public function getRealTimeDateRange(){
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];

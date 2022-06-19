@@ -145,164 +145,183 @@
 
 
                 </div>
+                <ul class="nav nav-pills" role="tablist">
+                                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Date Filteration</a></li>
 
-                <div class="row">
+                </ul>
+                <div class="tab-content py-3">
 
-                    <div class="col-md-12 d-flex flex-row">
+<div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel" style="background-color: white;">
+<div class="row">
+                    <div class="col-md-12">
 
-                        <div class="col-md-1">
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Panel Cutting Count
+                                 
+                                </h2>
+                            </div>
+                            <div class="panel-container show">
+<div class="row pt-2">
 
+<div class="col-md-12 d-flex flex-row">
+
+    <div class="col-md-1">
+
+    </div>
+
+    <?php foreach ($realtime as $d) {
+
+    ?>
+
+
+        <?php if ($d['EmployeeType'] == "Direct") { ?>
+            <div class="col-md-2" id="direct">
+                <a href="javascript:void(0)">
+                    <div style="background-color:maroon" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
+                        <div class="">
+                            <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+
+                                <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
+
+                                <small class="m-0 l-h-n">Number of Employees</small>
+                                <?php echo $d['EmpCount']; ?>
+                                <!-- <small class="m-0 l-h-n">Real Time</small>
+                        <?php echo $d['RealTime']; ?> -->
+
+                            </h3>
                         </div>
-
-                        <?php foreach ($realtime as $d) {
-
-                        ?>
-
-
-                            <?php if ($d['EmployeeType'] == "Direct") { ?>
-                                <div class="col-md-2" id="direct">
-                                    <a href="javascript:void(0)">
-                                        <div style="background-color:maroon" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
-                                            <div class="">
-                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
-
-
-                                                    <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
-
-                                                    <small class="m-0 l-h-n">Number of Employees</small>
-                                                    <?php echo $d['EmpCount']; ?>
-                                                    <!-- <small class="m-0 l-h-n">Real Time</small>
-                                            <?php echo $d['RealTime']; ?> -->
-
-                                                </h3>
-                                            </div>
-                                            <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="col-md-2" id="direct">
-                                    <a href="javascript:void(0)">
-                                        <div style="background-color:grey" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
-                                            <div class="">
-                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
-
-
-                                                    <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
-
-                                                    <!-- <small class="m-0 l-h-n">Number of Employees</small>
-                                            <?php echo $d['EmpCount']; ?> -->
-                                                    <small class="m-0 l-h-n">Real Time</small>
-                                                    <?php echo $d['RealTime']; ?>
-
-                                                </h3>
-                                            </div>
-                                            <i class="fal fa-clock position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                            <?php } ?>
-
-
-
-                        <?php } ?>
-                        <?php
-
-                        //print_r($Counter);
-                        ?>
-                        <div class="col-md-2" id="direct">
-                            <a href="javascript:void(0)">
-                                <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <small class="m-0 l-h-n">Total NO of Sheets</small>
-                                            <?php echo $Counter[0]['Counter']; ?>
-                                            <small class="m-0 l-h-n"></small>
-
-
-
-
-
-                                        </h3>
-                                    </div>
-                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <?php
-                        $total = $Counter[0]['Counter'];
-                        $Output = $total * 0.36;
-
-
-
-
-                        if (isset($d['EmployeeType']) == "Direct") {
-
-
-                            $Mints = isset($d['RealTime']);
-                        }
-
-                        $Efficiecny = ($Output / $Mints) ;
-
-                        ?>
-
-                        <div class="col-md-2" id="direct">
-                            <a href="javascript:void(0)">
-                                <div class="p-2 bg-info rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <small class="m-0 l-h-n">Efficiency</small>
-                                            <?php echo Round($Efficiecny, 2); ?>%
-                                            <small class="m-0 l-h-n"></small>
-                                        </h3>
-                                    </div>
-                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class=" col-md-2 align-self-center" id="direct">
-                            <a href="javascript:void(0)">
-                                <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <h2 class="">Target <br> 67%</h2>
-
-                                        </h3>
-
-                                    </div>
-                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-1">
-                            <!-- <?php
-                            echo $total;
-                            ?>
-                            <br>
-                            <?php
-                            echo $Output;
-                            ?>
-                            <br>
-                            <?php
-                            echo $Mints;
-                            ?> -->
-                        </div>
-
+                        <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
                     </div>
-                </div> <!-- row ends here -->
+                </a>
+            </div>
+
+            <div class="col-md-2" id="direct">
+                <a href="javascript:void(0)">
+                    <div style="background-color:grey" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
+                        <div class="">
+                            <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+
+                                <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
+
+                                <!-- <small class="m-0 l-h-n">Number of Employees</small>
+                        <?php echo $d['EmpCount']; ?> -->
+                                <small class="m-0 l-h-n">Real Time</small>
+                                <?php echo $d['RealTime']; ?>
+
+                            </h3>
+                        </div>
+                        <i class="fal fa-clock position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                    </div>
+                </a>
+            </div>
+        <?php } ?>
+
+
+
+    <?php } ?>
+    <?php
+
+    //print_r($Counter);
+    ?>
+    <div class="col-md-2" id="direct">
+        <a href="javascript:void(0)">
+            <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
+                <div class="">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                        <small class="m-0 l-h-n">Total NO of Sheets</small>
+                        <?php echo $Counter[0]['Counter']; ?>
+                        <small class="m-0 l-h-n"></small>
 
 
 
 
-                <div class="guage text-center ">
+
+                    </h3>
+                </div>
+                <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+            </div>
+        </a>
+    </div>
+    <?php
+    $total = $Counter[0]['Counter'];
+    $Output = $total * 0.36;
+
+
+
+    $Mints = 0;
+    if (isset($d['EmployeeType']) == "Direct") {
+
+
+        $Mints = isset($d['RealTime']);
+    }
+    if($Mints != 0){
+        $Efficiecny = ($Output / $Mints) ;
+    }
+    else{
+        $Efficiecny = ($Output / 1) ;
+    }
+
+    ?>
+
+    <div class="col-md-2" id="direct">
+        <a href="javascript:void(0)">
+            <div class="p-2 bg-info rounded overflow-hidden position-relative text-white mb-g">
+                <div class="">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                        <small class="m-0 l-h-n">Efficiency</small>
+                        <?php echo Round($Efficiecny, 2); ?>%
+                        <small class="m-0 l-h-n"></small>
+                    </h3>
+                </div>
+                <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+            </div>
+        </a>
+    </div>
+
+    <div class=" col-md-2 align-self-center" id="direct">
+        <a href="javascript:void(0)">
+            <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
+                <div class="">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                        <h2 class="">Target <br> 67%</h2>
+
+                    </h3>
+
+                </div>
+                <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-1">
+        <!-- <?php
+        echo $total;
+        ?>
+        <br>
+        <?php
+        echo $Output;
+        ?>
+        <br>
+        <?php
+        echo $Mints;
+        ?> -->
+    </div>
+
+</div>
+</div> <!-- row ends here -->
+
+<div class="guage text-center ">
                     <script src="https://code.highcharts.com/highcharts.js"></script>
                     <script src="https://code.highcharts.com/highcharts-more.js"></script>
                     <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
                     <script src="https://code.highcharts.com/modules/exporting.js"></script>
                     <script src="https://code.highcharts.com/modules/export-data.js"></script>
                     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
+                    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
                     <figure class="highcharts-figure">
                         <div id="container-speed" class="chart-container"></div>
                         <!-- <div id="container-rpm" class="chart-container"></div>   -->
@@ -315,11 +334,71 @@
 
 
                 </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+</div>
+<div class="tab-pane fade" id="tab_direction-2" role="tabpanel" style="background-color: white;">
+<div class="card">
+
+<div class="card-body">
+    <h5 class="card-title" style="color:black;font-weight:bolder">Date Filteration</h5>
+    <div class="row">
+        <div class="col-md-2"><input class="form-control" type="date" id="startDate" /></div>
+        <div class="col-md-2"><input class="form-control" type="date" id="endDate" /></div>
+        <div class="col-md-4"><button class="btn btn-primary" id="searchRange">Search</button></div>
+    </div>
+    </div>
+    </div>
+<br>
+<div class="row" >
+                    <div class="col-md-12">
+
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Panel Cutting OutPut
+                                  
+                                </h2>
+                            </div>
+                            <div class="panel-container show" >
+                                <div class="row" id="dateRangeResult" style="display: none;">
+                                    <div class="col-md-12">
+                                 
+    <div id="containerDateRangeBar"></div>
+
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                          
+    <div id="containerDateRangeLine"></div>
+
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                          
+                          <div id="containerDateRangeLineMachineWise"></div>
+                      
+                                                          </div>
+                           
+                                </div>
+                                <div id="loadingShow" style="display: none;">
+                          
+                                <img src="<?php echo base_url('/')?>Assets/img/loader4.gif" alt="Loading..." style="margin-left: 100%" >
+                             
+               
+                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+   
+</div>
+                </div>
+
             </main>
-
-
-
-
 
             <!-- this overlay is activated only when mobile menu is triggered -->
             <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
@@ -1090,7 +1169,9 @@
     ];
 
     $(document).ready(function() {
-
+        let currentDate = new Date().toJSON().substr(0,10);
+        $("#startDate").val(currentDate);
+        $("#endDate").val(currentDate);
         /* init datatables */
         $('#dt-basic-example').dataTable({
             responsive: true,
@@ -1592,6 +1673,474 @@
 
 
     });
+
+    function generateDataTop(data1) {
+ 
+ var ret = {},
+     ps = [],
+     series = [],
+     len = data1.BarData.length;
+
+ //concat to get points
+ for (var i = 0; i < len; i++) {
+     ps[i] = {
+         name: data1.BarData[i].Date,
+         y: data1.BarData[i].Counter,
+         drilldown: data1.BarData[i].Date
+     };
+ }
+ names = [];
+ //generate series and split points
+ for (i = 0; i < len; i++) {
+     var p = ps[i];
+   
+     series.push(p);
+ }
+ return series;
+}
+
+function generateDataBottom(data1) {
+ 
+ var ret = {},
+     ps = [],
+     series = [],
+     len = data1.MachineData.length;
+   let datesArray = []
+   let dataArray = []
+
+ //concat to get points
+ for (var i = 0; i < len; i++) {
+    if(datesArray.indexOf(data1.MachineData[i].Date) === -1){
+        datesArray.push(data1.MachineData[i].Date)
+        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,data1.MachineData[i].Counter])
+    }
+    else{
+        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,data1.MachineData[i].Counter])
+    }
+
+
+  
+ }
+
+ //generate series and split points
+ for (i = 0; i < datesArray.length; i++) {
+    let OriginaldataArray = []
+    let OriginaldataArrayDateRemove = []
+    dataArray.filter(function(e) { 
+        if(e[0] === datesArray[i]){
+            OriginaldataArray.push(e)
+        }
+    });
+    OriginaldataArray.forEach(element => {
+        // console.log("Element", element)
+        element.shift()
+        OriginaldataArrayDateRemove.push(element)
+    });
+    // console.log("data Get", OriginaldataArray)
+     var p = {
+        name: datesArray[i],
+        id: datesArray[i],
+        data: OriginaldataArrayDateRemove
+     }
+    //  console.log("Series", p)
+     series.push(p);
+ }
+ return series;
+}
+
+    $("#searchRange").on('click',function(e){
+        e.preventDefault()
+        $("#dateRangeResult").css('display','none')
+        $("#loadingShow").css('display','inline-block')
+        let startDate = $("#startDate").val()
+        let endDate = $("#endDate").val()
+        let startDateNewFormat = startDate.split("-")[2]+"-"+startDate.split("-")[1]+"-"+startDate.split("-")[0]
+        let endDateNewFormat = endDate.split("-")[2]+"-"+endDate.split("-")[1]+"-"+endDate.split("-")[0]
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        let section_id = params.section_id;
+        let dept_id = params.dept_id;
+        let datesArray = []
+        let datesArrayMachineWise = []
+        let seriesDataMachine1 = [];
+        let seriesDataMachine2 = [];
+        let seriesDataMachine3 = [];
+        let seriesDataMachine4 = [];
+        let seriesDataMachine5 = [];
+        let seriesDataMachine6 = [];
+        let seriesDataMachine7 = [];
+        let originalDataMachineWise = [];
+        let targetDataMachineWise = [];
+        let url = "<?php echo base_url('Efficiency/getCuttingPanelDateRangeData') ?>";
+        let url2 = "<?php echo base_url('Efficiency/getRealTimeDateRange') ?>";
+        $.post(url,{"startDate":startDate, "endDate":endDate},function(data, status){
+            console.log("Data Outer", data)
+        let seriesDataTop;
+        let seriesDataBottom;
+        let dataArrayOuter = data.BarData
+        if(data){
+        seriesDataTop = generateDataTop(data)
+        seriesDataBottom = generateDataBottom(data)
+  
+
+
+        for(let k = 0; k<data.MachineData.length; k++){
+            // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
+        if(datesArrayMachineWise.indexOf(data.MachineData[k].Date) === -1){
+            datesArrayMachineWise.push(data.MachineData[k].Date)
+        targetDataMachineWise.push(parseFloat(67))
+        if(data.MachineData[k].MachineName == "Panel Sizing Press 1"){
+                output = data.MachineData[k].Counter * 0.28
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine7.push(0)
+            }
+            else if(data.MachineData[k].MachineName == "Panel Sizing Press 2"){
+                output = data.MachineData[k].Counter * 0.28
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine2.push(parseFloat(efficiency))
+            seriesDataMachine4.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine7.push(0)
+            }
+            else if(data.MachineData[k].MachineName == "Panel Sizing Press 3"){
+                output = data.MachineData[k].Counter * 0.28
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine3.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine7.push(0)
+            }
+            else if(data.MachineData[k].MachineName == "Panel Sizing Press 4"){
+                output = data.MachineData[k].Counter * 0.28
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine4.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine7.push(0)
+
+            }
+            else if(data.MachineData[k].MachineName == "Panel Sizing Press 5"){
+                output = data.MachineData[k].Counter * 0.28
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine5.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+
+            }
+            else if(data.MachineData[k].MachineName == "Panel Sizing Press 6"){
+                output = data.MachineData[k].Counter * 0.28
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine6.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine7.push(0)
+
+            }
+            else if(data.MachineData[k].MachineName == "Panel Sizing Press 7"){
+                output = data.MachineData[k].Counter * 0.28
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine7.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+
+            }
+    }
+    else{
+        if(data.MachineData[k].MachineName == "Panel Sizing Press 1"){
+                output = data.MachineData[k].Counter * 0.28
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.pop()
+            seriesDataMachine1.push(parseFloat(efficiency))
+  
+            }
+            else if(data.MachineData[k].MachineName == "Panel Sizing Press 2"){
+                output = data.MachineData[k].Counter * 0.28
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine2.pop()
+            seriesDataMachine2.push(parseFloat(efficiency))
+     
+            }
+            else if(data.MachineData[k].MachineName == "Panel Sizing Press 3"){
+                output = data.MachineData[k].Counter * 0.28
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine3.pop()
+            seriesDataMachine3.push(parseFloat(efficiency))
+      
+            }
+            else if(data.MachineData[k].MachineName == "Panel Sizing Press 4"){
+                output = data.MachineData[k].Counter * 0.28
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine4.pop()
+            seriesDataMachine4.push(parseFloat(efficiency))
+            }
+            else if(data.MachineData[k].MachineName == "Panel Sizing Press 5"){
+                output = data.MachineData[k].Counter * 0.28
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine5.pop()
+            seriesDataMachine5.push(parseFloat(efficiency))
+            }
+            else if(data.MachineData[k].MachineName == "Panel Sizing Press 6"){
+                output = data.MachineData[k].Counter * 0.28
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine6.pop()
+            seriesDataMachine6.push(parseFloat(efficiency))
+            }
+            else if(data.MachineData[k].MachineName == "Panel Sizing Press 7"){
+                output = data.MachineData[k].Counter * 0.28
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine7.pop()
+            seriesDataMachine7.push(parseFloat(efficiency))
+            }
+    }
+         
+        
+
+        }
+        originalDataMachineWise.push({name:"Panel Sizing Press 1",data:seriesDataMachine1},{name:"Panel Sizing Press 2",data:seriesDataMachine2},{name:"Panel Sizing Press 3",data:seriesDataMachine3},{name:"Panel Sizing Press 4",data:seriesDataMachine4},{name:"Panel Sizing Press 5",data:seriesDataMachine5},{name:"Panel Sizing Press 6",data:seriesDataMachine6},{name:"Panel Sizing Press 7",data:seriesDataMachine7},{name:"Target Efficiency",data:targetDataMachineWise})
+        }
+         console.log("Target", datesArrayMachineWise)
+        for (var i = 0; i < data.BarData.length; i++) {
+    if(datesArray.indexOf(data.BarData[i].Date) === -1){
+        datesArray.push(data.BarData[i].Date)
+        // targetDataMachineWise.push(parseFloat(67))
+    }
+        }
+
+        Highcharts.chart('containerDateRangeLineMachineWise', {
+
+title: {
+    text: `Machine-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
+},
+
+yAxis: {
+    title: {
+        text: 'Efficiency'
+    }
+},
+
+xAxis: {
+    categories: datesArrayMachineWise,
+},
+
+legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle'
+},
+
+plotOptions: {
+    series: {
+        label: {
+            connectorAllowed: false
+        }
+    }
+},
+
+series: originalDataMachineWise,
+
+responsive: {
+    rules: [{
+        condition: {
+            maxWidth: 500
+        },
+        chartOptions: {
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
+            }
+        }
+    }]
+}
+
+});
+
+
+Highcharts.chart('containerDateRangeBar', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        align: 'left',
+        text: `Balls Count From ${startDateNewFormat} To ${endDateNewFormat}`
+    },
+    accessibility: {
+        announceNewData: {
+            enabled: true
+        }
+    },
+    xAxis: {
+        type: 'category'
+    },
+    yAxis: {
+        title: {
+            text: 'Balls Count'
+        }
+
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true,
+            }
+        }
+    },
+
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+    },
+
+    series: [
+        {
+            name: "RWPD",
+            colorByPoint: true,
+            data: seriesDataTop
+        }
+    ],
+    drilldown: {
+        breadcrumbs: {
+            position: {
+                align: 'right'
+            }
+        },
+        series: seriesDataBottom
+    }
+});
+
+$.post(url2,{"startDate":startDate, "endDate":endDate,"dept_id":dept_id,"section_id":section_id},function(dataInner, status){
+    console.log("Data Inner", dataInner)
+    let seriesData = []
+    let targetData = []
+    let originalData = []
+ if(dataInner.realtime != undefined){
+    let len = dataInner.realtime.length;
+    let lenOuter = dataArrayOuter.length;
+    let output= 0;
+    let Minutes = 0;
+    let efficiency = 0;
+    // for(let i = 0; i<len; i++){ 
+        for(let j = 0; j<lenOuter; j++){
+            // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
+
+            output = dataArrayOuter[j].Counter * 0.28
+            Minutes = (2*4*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+
+            seriesData.push(parseFloat(efficiency))
+            targetData.push(parseFloat(67))
+// }
+        }
+       
+        // if(i == len-1){
+            originalData.push({name:"Efficiency",data:seriesData},{name:"Target Efficiency",data:targetData})
+        
+        // }
+    // }
+
+ }
+//  console.log(datesArray)
+ Highcharts.chart('containerDateRangeLine', {
+
+title: {
+    text: `Process-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
+},
+
+yAxis: {
+    title: {
+        text: 'Efficiency'
+    }
+},
+
+xAxis: {
+    categories: datesArray,
+},
+
+legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle'
+},
+
+plotOptions: {
+    series: {
+        label: {
+            connectorAllowed: false
+        }
+    }
+},
+
+series: originalData,
+
+responsive: {
+    rules: [{
+        condition: {
+            maxWidth: 500
+        },
+        chartOptions: {
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
+            }
+        }
+    }]
+}
+
+});
+$("#loadingShow").css('display','none')
+$("#dateRangeResult").css('display','inline-block')
+})
+
+
+
+ });
+    })
 </script>
 <script>
     $('#direct').click(function() {

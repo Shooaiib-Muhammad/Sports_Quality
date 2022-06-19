@@ -254,14 +254,19 @@
 
 
 
-
+                        $Mints = 0;
                         if (isset($d['EmployeeType']) == "Direct") {
 
 
                             $Mints = isset($d['RealTime']);
                         }
-
-                        $Efficiecny = ($Output / $Mints) ;
+                        if($Mints != 0){
+                            $Efficiecny = ($Output / $Mints) ;
+                        }
+                        else{
+                            $Efficiecny = ($Output / 1) ;
+                        }
+                        
 
                         ?>
 
@@ -321,7 +326,7 @@
                     <script src="https://code.highcharts.com/modules/exporting.js"></script>
                     <script src="https://code.highcharts.com/modules/export-data.js"></script>
                     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
+                    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
                     <figure class="highcharts-figure">
                         <div id="container-speed" class="chart-container"></div>
                         <!-- <div id="container-rpm" class="chart-container"></div>   -->
@@ -375,7 +380,7 @@
     </div>
     </div>
 <br>
-    <div class="row" id="dateRangeResult">
+<div class="row" >
                     <div class="col-md-12">
 
                         <div id="panel-1" class="panel">
@@ -385,15 +390,31 @@
                                   
                                 </h2>
                             </div>
-                            <div class="panel-container show">
+                            <div class="panel-container show" >
+                                <div class="row" id="dateRangeResult" style="display: none;">
+                                    <div class="col-md-12">
+                                 
+    <div id="containerDateRangeBar"></div>
 
-                                <div id="containerDateRangeBar">
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                          
+    <div id="containerDateRangeLine"></div>
 
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                          
+                          <div id="containerDateRangeLineMachineWise"></div>
+                      
+                                                          </div>
+                           
                                 </div>
-
-                                <div id="containerDateRangeLine">
-
-                                </div>
+                                <div id="loadingShow" style="display: none;">
+                          
+                                <img src="<?php echo base_url('/')?>Assets/img/loader4.gif" alt="Loading..." style="margin-left: 100%" >
+                             
+               
+                </div>
                             </div>
                         </div>
 
@@ -1684,14 +1705,399 @@
 
     });
 
-    $("#searchRange").on('click',function(e){
+    function generateDataTop(data1) {
+ 
+ var ret = {},
+     ps = [],
+     series = [],
+     len = data1.BarData.length;
+
+ //concat to get points
+ for (var i = 0; i < len; i++) {
+     ps[i] = {
+         name: data1.BarData[i].Date,
+         y: data1.BarData[i].Counter,
+         drilldown: data1.BarData[i].Date
+     };
+ }
+ names = [];
+ //generate series and split points
+ for (i = 0; i < len; i++) {
+     var p = ps[i];
+   
+     series.push(p);
+ }
+ return series;
+}
+
+function generateDataBottom(data1) {
+ 
+ var ret = {},
+     ps = [],
+     series = [],
+     len = data1.MachineData.length;
+   let datesArray = []
+   let dataArray = []
+
+ //concat to get points
+ for (var i = 0; i < len; i++) {
+    if(datesArray.indexOf(data1.MachineData[i].Date) === -1){
+        datesArray.push(data1.MachineData[i].Date)
+        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,data1.MachineData[i].Counter])
+    }
+    else{
+        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,data1.MachineData[i].Counter])
+    }
+
+
+  
+ }
+
+ //generate series and split points
+ for (i = 0; i < datesArray.length; i++) {
+    let OriginaldataArray = []
+    let OriginaldataArrayDateRemove = []
+    dataArray.filter(function(e) { 
+        if(e[0] === datesArray[i]){
+            OriginaldataArray.push(e)
+        }
+    });
+    OriginaldataArray.forEach(element => {
+        // console.log("Element", element)
+        element.shift()
+        OriginaldataArrayDateRemove.push(element)
+    });
+    // console.log("data Get", OriginaldataArray)
+     var p = {
+        name: datesArray[i],
+        id: datesArray[i],
+        data: OriginaldataArrayDateRemove
+     }
+    //  console.log("Series", p)
+     series.push(p);
+ }
+ return series;
+}
+
+$("#searchRange").on('click',function(e){
         e.preventDefault()
+        $("#dateRangeResult").css('display','none')
+        $("#loadingShow").css('display','inline-block')
         let startDate = $("#startDate").val()
         let endDate = $("#endDate").val()
-        let url = "<?php echo base_url('Efficiency/getRWPDDateRangeData') ?>";
-        $.post(url,{"startDate":startDate, "endDate":endDate},function(data, status){
-            console.log("Data", data)
+        let startDateNewFormat = startDate.split("-")[2]+"-"+startDate.split("-")[1]+"-"+startDate.split("-")[0]
+        let endDateNewFormat = endDate.split("-")[2]+"-"+endDate.split("-")[1]+"-"+endDate.split("-")[0]
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
         });
+        let section_id = params.section_id;
+        let dept_id = params.dept_id;
+        let datesArray = []
+        let datesArrayMachineWise = []
+        let seriesDataMachine1 = [];
+        let seriesDataMachine2 = [];
+        let seriesDataMachine3 = [];
+        let seriesDataMachine4 = [];
+        let originalDataMachineWise = [];
+        let targetDataMachineWise = [];
+        let url = "<?php echo base_url('Efficiency/getCuttingSheetSizingDateRangeData') ?>";
+        let url2 = "<?php echo base_url('Efficiency/getRealTimeDateRange') ?>";
+        $.post(url,{"startDate":startDate, "endDate":endDate},function(data, status){
+            console.log("Data Outer", data)
+        let seriesDataTop;
+        let seriesDataBottom;
+        let dataArrayOuter = data.BarData
+        if(data){
+        seriesDataTop = generateDataTop(data)
+        seriesDataBottom = generateDataBottom(data)
+  
+
+
+        for(let k = 0; k<data.MachineData.length; k++){
+            // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
+        if(datesArrayMachineWise.indexOf(data.MachineData[k].Date) === -1){
+            datesArrayMachineWise.push(data.MachineData[k].Date)
+        targetDataMachineWise.push(parseFloat(67))
+        if(data.MachineData[k].MachineName == "Sheet Sizing Press 1"){
+                output = data.MachineData[k].Counter * 0.10
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            }
+            else if(data.MachineData[k].MachineName == "Sheet Sizing Press 2"){
+                output = data.MachineData[k].Counter * 0.10
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine2.push(parseFloat(efficiency))
+            seriesDataMachine1.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            }
+            else if(data.MachineData[k].MachineName == "Sheet Sizing Press 3"){
+                output = data.MachineData[k].Counter * 0.10
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine3.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine4.push(0)
+            }
+            else if(data.MachineData[k].MachineName == "Sheet Sizing Press 4"){
+                output = data.MachineData[k].Counter * 0.10
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine4.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine3.push(0)
+
+            }
+    }
+    else{
+        if(data.MachineData[k].MachineName == "Sheet Sizing Press 1"){
+                output = data.MachineData[k].Counter * 0.10
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.pop()
+            seriesDataMachine1.push(parseFloat(efficiency))
+  
+            }
+            else if(data.MachineData[k].MachineName == "Sheet Sizing Press 2"){
+                output = data.MachineData[k].Counter * 0.10
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine2.pop()
+            seriesDataMachine2.push(parseFloat(efficiency))
+     
+            }
+            else if(data.MachineData[k].MachineName == "Sheet Sizing Press 3"){
+                output = data.MachineData[k].Counter * 0.10
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine3.pop()
+            seriesDataMachine3.push(parseFloat(efficiency))
+      
+            }
+            else if(data.MachineData[k].MachineName == "Sheet Sizing Press 4"){
+                output = data.MachineData[k].Counter * 0.10
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine4.pop()
+            seriesDataMachine4.push(parseFloat(efficiency))
+    
+
+            }
+    }
+         
+        
+
+        }
+        originalDataMachineWise.push({name:"Sheet Sizing Press 1",data:seriesDataMachine1},{name:"Sheet Sizing Press 2",data:seriesDataMachine2},{name:"Sheet Sizing Press 3",data:seriesDataMachine3},{name:"Sheet Sizing Press 4",data:seriesDataMachine4},{name:"Target Efficiency",data:targetDataMachineWise})
+        }
+         console.log("Target", datesArrayMachineWise)
+        for (var i = 0; i < data.BarData.length; i++) {
+    if(datesArray.indexOf(data.BarData[i].Date) === -1){
+        datesArray.push(data.BarData[i].Date)
+        // targetDataMachineWise.push(parseFloat(67))
+    }
+        }
+
+        Highcharts.chart('containerDateRangeLineMachineWise', {
+
+title: {
+    text: `Machine-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
+},
+
+yAxis: {
+    title: {
+        text: 'Efficiency'
+    }
+},
+
+xAxis: {
+    categories: datesArrayMachineWise,
+},
+
+legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle'
+},
+
+plotOptions: {
+    series: {
+        label: {
+            connectorAllowed: false
+        }
+    }
+},
+
+series: originalDataMachineWise,
+
+responsive: {
+    rules: [{
+        condition: {
+            maxWidth: 500
+        },
+        chartOptions: {
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
+            }
+        }
+    }]
+}
+
+});
+
+
+Highcharts.chart('containerDateRangeBar', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        align: 'left',
+        text: `Balls Count From ${startDateNewFormat} To ${endDateNewFormat}`
+    },
+    accessibility: {
+        announceNewData: {
+            enabled: true
+        }
+    },
+    xAxis: {
+        type: 'category'
+    },
+    yAxis: {
+        title: {
+            text: 'Balls Count'
+        }
+
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true,
+            }
+        }
+    },
+
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+    },
+
+    series: [
+        {
+            name: "RWPD",
+            colorByPoint: true,
+            data: seriesDataTop
+        }
+    ],
+    drilldown: {
+        breadcrumbs: {
+            position: {
+                align: 'right'
+            }
+        },
+        series: seriesDataBottom
+    }
+});
+
+$.post(url2,{"startDate":startDate, "endDate":endDate,"dept_id":dept_id,"section_id":section_id},function(dataInner, status){
+    console.log("Data Inner", dataInner)
+    let seriesData = []
+    let targetData = []
+    let originalData = []
+ if(dataInner.realtime != undefined){
+    let len = dataInner.realtime.length;
+    let lenOuter = dataArrayOuter.length;
+    let output= 0;
+    let Minutes = 0;
+    let efficiency = 0;
+    // for(let i = 0; i<len; i++){ 
+        for(let j = 0; j<lenOuter; j++){
+            // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
+
+            output = dataArrayOuter[j].Counter * 0.10
+            Minutes = (2*4*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+
+            seriesData.push(parseFloat(efficiency))
+            targetData.push(parseFloat(67))
+// }
+        }
+       
+        // if(i == len-1){
+            originalData.push({name:"Efficiency",data:seriesData},{name:"Target Efficiency",data:targetData})
+        
+        // }
+    // }
+
+ }
+//  console.log(datesArray)
+ Highcharts.chart('containerDateRangeLine', {
+
+title: {
+    text: `Process-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
+},
+
+yAxis: {
+    title: {
+        text: 'Efficiency'
+    }
+},
+
+xAxis: {
+    categories: datesArray,
+},
+
+legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle'
+},
+
+plotOptions: {
+    series: {
+        label: {
+            connectorAllowed: false
+        }
+    }
+},
+
+series: originalData,
+
+responsive: {
+    rules: [{
+        condition: {
+            maxWidth: 500
+        },
+        chartOptions: {
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
+            }
+        }
+    }]
+}
+
+});
+$("#loadingShow").css('display','none')
+$("#dateRangeResult").css('display','inline-block')
+})
+
+
+
+ });
     })
 </script>
 <script>

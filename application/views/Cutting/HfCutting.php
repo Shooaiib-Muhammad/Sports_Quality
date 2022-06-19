@@ -36,9 +36,26 @@
 
         </div>
 
+        <ul class="nav nav-pills" role="tablist">
+                                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Date Filteration</a></li>
 
+                </ul>
+                <div class="tab-content py-3">
 
-        <?php
+<div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel" style="background-color: white;">
+<div class="row">
+                    <div class="col-md-12">
+
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    HF Cutting Count
+                                 
+                                </h2>
+                            </div>
+                            <div class="panel-container show">
+                            <?php
         $Month = date('m');
         $Year = date('Y');
         $Day = date('d');
@@ -46,49 +63,7 @@
         //  if(SDate)
         ?>
 
-
-        <!-- <div class="row clearfix"> -->
-        <div class="card" hidden>
-          <div class="card-body">
-            <h5 class="card-title"><b>Date Filteration</b></h5>
-            <form method="post" action="<?php echo base_url('Throster/searchData') ?>">
-              <div class="row clearfix">
-                <div class="col-md-2" style="margin-right:20px;">
-                  <div class="form-group">
-                    <label class="form-control-label">From Date:</label>
-                    <div class="input-group">
-                      <input class="form-control" type="Date" id="SDate" name="Sdate" value="<?php echo $CurrentDate; ?>" style="width: 100%">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-2">
-                  <div class="form-group">
-                    <label class="form-control-label">To Date:</label>
-                    <div class="input-group">
-                      <input class="form-control" type="Date" id="EDate" name="Edate" value="<?php echo $CurrentDate; ?>" style="width: 100%">
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="col-md-1">
-                  <div class="form-group">
-                    <label class=" form-control-label"></label>
-                    <div style="margin:18px" class="input-group">
-                      <br>
-                      <br>
-
-                      <button type="submit" id="submit" class="btn btn-primary " style="border-radius: 15px;"><i class="fa fa-search"></i> Search</button>
-
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="row mt-4">
+        <div class="row p-2">
           <div class="col-md-2">
             <div class="p-3 bg-dark-300 rounded overflow-hidden position-relative text-white mb-g" style="background-color:black;">
               <div class="">
@@ -171,6 +146,72 @@
 
 
         </div>
+                            </div>
+                        </div>
+                    </div>
+</div>
+</div>
+
+<div class="tab-pane fade" id="tab_direction-2" role="tabpanel" style="background-color: white;">
+<div class="card">
+
+<div class="card-body">
+    <h5 class="card-title" style="color:black;font-weight:bolder">Date Filteration</h5>
+    <div class="row">
+        <div class="col-md-2"><input class="form-control" type="date" id="startDate" /></div>
+        <div class="col-md-2"><input class="form-control" type="date" id="endDate" /></div>
+        <div class="col-md-4"><button class="btn btn-primary" id="searchRange">Search</button></div>
+    </div>
+    </div>
+    </div>
+<br>
+<div class="row" >
+                    <div class="col-md-12">
+
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Sheet Sizing OutPut
+                                  
+                                </h2>
+                            </div>
+                            <div class="panel-container show" >
+                                <div class="row" id="dateRangeResult" style="display: none;">
+                                    <div class="col-md-12">
+                                 
+    <div id="containerDateRangeBar"></div>
+
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                          
+    <div id="containerDateRangeLine"></div>
+
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                          
+                          <div id="containerDateRangeLineMachineWise"></div>
+                      
+                                                          </div>
+                           
+                                </div>
+                                <div id="loadingShow" style="display: none;">
+                          
+                                <img src="<?php echo base_url('/')?>Assets/img/loader4.gif" alt="Loading..." style="margin-left: 100%" >
+                             
+               
+                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+   
+</div>
+                </div>
+
+   
       </main>
       <!-- this overlay is activated only when mobile menu is triggered -->
       <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
@@ -876,6 +917,13 @@
 <script src="<?php echo base_url(); ?>assets/js/statistics/flot/flot.bundle.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/datagrid/datatables/datatables.bundle.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+                    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+                    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+                    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+                    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
 <script>
   /* defined datas */
   var dataTargetProfit = [
@@ -942,7 +990,9 @@
   ];
 
   $(document).ready(function() {
-
+    let currentDate = new Date().toJSON().substr(0,10);
+        $("#startDate").val(currentDate);
+        $("#endDate").val(currentDate);
     /* init datatables */
     $('#dt-basic-example').dataTable({
       responsive: true,
@@ -1281,6 +1331,1859 @@
 
 
   });
+
+  function generateDataTop(data1) {
+ 
+ var ret = {},
+     ps = [],
+     series = [],
+     len = data1.BarData.length;
+
+ //concat to get points
+ for (var i = 0; i < len; i++) {
+     ps[i] = {
+         name: data1.BarData[i].Date,
+         y: data1.BarData[i].Counter,
+         drilldown: data1.BarData[i].Date
+     };
+ }
+ names = [];
+ //generate series and split points
+ for (i = 0; i < len; i++) {
+     var p = ps[i];
+   
+     series.push(p);
+ }
+ return series;
+}
+
+function generateDataBottom(data1) {
+ 
+ var ret = {},
+     ps = [],
+     series = [],
+     len = data1.MachineData.length;
+   let datesArray = []
+   let dataArray = []
+
+ //concat to get points
+ for (var i = 0; i < len; i++) {
+    if(datesArray.indexOf(data1.MachineData[i].Date) === -1){
+        datesArray.push(data1.MachineData[i].Date)
+        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,data1.MachineData[i].Counter])
+    }
+    else{
+        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,data1.MachineData[i].Counter])
+    }
+
+
+  
+ }
+
+ //generate series and split points
+ for (i = 0; i < datesArray.length; i++) {
+    let OriginaldataArray = []
+    let OriginaldataArrayDateRemove = []
+    dataArray.filter(function(e) { 
+        if(e[0] === datesArray[i]){
+            OriginaldataArray.push(e)
+        }
+    });
+    OriginaldataArray.forEach(element => {
+        // console.log("Element", element)
+        element.shift()
+        OriginaldataArrayDateRemove.push(element)
+    });
+    // console.log("data Get", OriginaldataArray)
+     var p = {
+        name: datesArray[i],
+        id: datesArray[i],
+        data: OriginaldataArrayDateRemove
+     }
+    //  console.log("Series", p)
+     series.push(p);
+ }
+ return series;
+}
+
+$("#searchRange").on('click',function(e){
+        e.preventDefault()
+        $("#dateRangeResult").css('display','none')
+        $("#loadingShow").css('display','inline-block')
+        let startDate = $("#startDate").val()
+        let endDate = $("#endDate").val()
+        let startDateNewFormat = startDate.split("-")[2]+"-"+startDate.split("-")[1]+"-"+startDate.split("-")[0]
+        let endDateNewFormat = endDate.split("-")[2]+"-"+endDate.split("-")[1]+"-"+endDate.split("-")[0]
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        let section_id = params.section_id;
+        let dept_id = params.dept_id;
+        let datesArray = []
+        let datesArrayMachineWise = []
+        let seriesDataMachine1 = [];
+        let seriesDataMachine2 = [];
+        let seriesDataMachine3 = [];
+        let seriesDataMachine4 = [];
+        let seriesDataMachine5 = [];
+        let seriesDataMachine6 = [];
+        let seriesDataMachine7 = [];
+        let seriesDataMachine8 = [];
+        let seriesDataMachine9 = [];
+        let seriesDataMachine10 = [];
+        let seriesDataMachine11 = [];
+        let seriesDataMachine12 = [];
+        let seriesDataMachine13 = [];
+        let seriesDataMachine14 = [];
+        let seriesDataMachine15 = [];
+        let seriesDataMachine16 = [];
+        let seriesDataMachine17 = [];
+        let seriesDataMachine18 = [];
+        let seriesDataMachine19 = [];
+        let seriesDataMachine20 = [];
+        let seriesDataMachine21 = [];
+        let seriesDataMachine22 = [];
+        let seriesDataMachine23 = [];
+        let seriesDataMachine24 = [];
+        let seriesDataMachine25 = [];
+        let seriesDataMachine26 = [];
+        let seriesDataMachine27 = [];
+        let seriesDataMachine28 = [];
+        let seriesDataMachine29 = [];
+        let seriesDataMachine30 = [];
+        let seriesDataMachine31 = [];
+        let seriesDataMachine32 = [];
+        let originalDataMachineWise = [];
+        let targetDataMachineWise = [];
+        let url = "<?php echo base_url('Efficiency/getCuttingHFDateRangeData') ?>";
+        let url2 = "<?php echo base_url('Efficiency/getRealTimeDateRange') ?>";
+        $.post(url,{"startDate":startDate, "endDate":endDate},function(data, status){
+            console.log("Data Outer", data)
+        let seriesDataTop;
+        let seriesDataBottom;
+        let dataArrayOuter = data.BarData
+        if(data){
+        seriesDataTop = generateDataTop(data)
+        seriesDataBottom = generateDataBottom(data)
+  
+
+
+        for(let k = 0; k<data.MachineData.length; k++){
+            // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
+        if(datesArrayMachineWise.indexOf(data.MachineData[k].Date) === -1){
+            datesArrayMachineWise.push(data.MachineData[k].Date)
+        targetDataMachineWise.push(parseFloat(67))
+        if(data.MachineData[k].Name == "HF-01"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-02"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine2.push(parseFloat(efficiency))
+            seriesDataMachine1.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-03"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine3.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-04"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine4.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+
+            }
+            else if(data.MachineData[k].Name == "HF-05"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine5.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-06"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine6.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-07"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine7.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+
+            }
+            else if(data.MachineData[k].Name == "HF-08"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine8.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-09"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine9.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-10"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine10.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+
+            }
+            else if(data.MachineData[k].Name == "HF-11"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine11.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-12"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine12.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-13"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine13.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+
+            }
+            else if(data.MachineData[k].Name == "HF-14"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine14.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-15"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine15.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-16"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine16.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+
+            }
+            else if(data.MachineData[k].Name == "HF-17"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine17.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-18"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine18.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-19"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine19.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+
+            }
+            else if(data.MachineData[k].Name == "HF-20"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine20.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-21"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine21.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-22"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine22.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-23"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine23.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-24"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine24.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-25"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine25.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+
+            }
+            else if(data.MachineData[k].Name == "HF-26"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine26.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-27"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine27.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+
+            }
+            else if(data.MachineData[k].Name == "HF-28"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine28.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-29"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine29.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-30"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine30.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine32.push(0)
+
+            }
+            else if(data.MachineData[k].Name == "HF-31"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine31.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine32.push(0)
+            }
+            else if(data.MachineData[k].Name == "HF-32"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine32.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+            seriesDataMachine9.push(0)
+            seriesDataMachine10.push(0)
+            seriesDataMachine11.push(0)
+            seriesDataMachine12.push(0)
+            seriesDataMachine13.push(0)
+            seriesDataMachine14.push(0)
+            seriesDataMachine15.push(0)
+            seriesDataMachine16.push(0)
+            seriesDataMachine17.push(0)
+            seriesDataMachine18.push(0)
+            seriesDataMachine19.push(0)
+            seriesDataMachine20.push(0)
+            seriesDataMachine21.push(0)
+            seriesDataMachine22.push(0)
+            seriesDataMachine23.push(0)
+            seriesDataMachine24.push(0)
+            seriesDataMachine25.push(0)
+            seriesDataMachine26.push(0)
+            seriesDataMachine27.push(0)
+            seriesDataMachine28.push(0)
+            seriesDataMachine29.push(0)
+            seriesDataMachine30.push(0)
+            seriesDataMachine31.push(0)
+            seriesDataMachine1.push(0)
+            }
+          
+    }
+    else{
+      if(data.MachineData[k].Name == "HF-01"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.pop()
+            seriesDataMachine1.push(parseFloat(efficiency))
+        
+            }
+            else if(data.MachineData[k].Name == "HF-02"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine2.pop()
+            seriesDataMachine2.push(parseFloat(efficiency))
+         
+            }
+            else if(data.MachineData[k].Name == "HF-03"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine3.pop()
+            seriesDataMachine3.push(parseFloat(efficiency))
+         
+            }
+            else if(data.MachineData[k].Name == "HF-04"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine4.pop()
+            seriesDataMachine4.push(parseFloat(efficiency))
+       
+
+            }
+            else if(data.MachineData[k].Name == "HF-05"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine5.pop()
+            seriesDataMachine5.push(parseFloat(efficiency))
+        
+            }
+            else if(data.MachineData[k].Name == "HF-06"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine6.pop()
+            seriesDataMachine6.push(parseFloat(efficiency))
+
+            }
+            else if(data.MachineData[k].Name == "HF-07"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine7.pop()
+            seriesDataMachine7.push(parseFloat(efficiency))
+    
+
+            }
+            else if(data.MachineData[k].Name == "HF-08"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine8.pop()
+            seriesDataMachine8.push(parseFloat(efficiency))
+
+            }
+            else if(data.MachineData[k].Name == "HF-09"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine9.pop()
+            seriesDataMachine9.push(parseFloat(efficiency))
+ 
+            }
+            else if(data.MachineData[k].Name == "HF-10"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine10.pop()
+            seriesDataMachine10.push(parseFloat(efficiency))
+   
+
+            }
+            else if(data.MachineData[k].Name == "HF-11"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine11.pop()
+            seriesDataMachine11.push(parseFloat(efficiency))
+  
+            }
+            else if(data.MachineData[k].Name == "HF-12"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine12.pop()
+            seriesDataMachine12.push(parseFloat(efficiency))
+     
+            }
+            else if(data.MachineData[k].Name == "HF-13"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine13.pop()
+            seriesDataMachine13.push(parseFloat(efficiency))
+         
+
+            }
+            else if(data.MachineData[k].Name == "HF-14"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine14.pop()
+            seriesDataMachine14.push(parseFloat(efficiency))
+       
+            }
+            else if(data.MachineData[k].Name == "HF-15"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine15.pop()
+            seriesDataMachine15.push(parseFloat(efficiency))
+  
+            }
+            else if(data.MachineData[k].Name == "HF-16"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine16.pop()
+            seriesDataMachine16.push(parseFloat(efficiency))
+
+
+            }
+            else if(data.MachineData[k].Name == "HF-17"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine17.pop()
+            seriesDataMachine17.push(parseFloat(efficiency))
+
+            }
+            else if(data.MachineData[k].Name == "HF-18"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine18.pop()
+            seriesDataMachine18.push(parseFloat(efficiency))
+   
+            }
+            else if(data.MachineData[k].Name == "HF-19"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine19.pop()
+            seriesDataMachine19.push(parseFloat(efficiency))
+    
+
+            }
+            else if(data.MachineData[k].Name == "HF-20"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine20.pop()
+            seriesDataMachine20.push(parseFloat(efficiency))
+   
+            }
+            else if(data.MachineData[k].Name == "HF-21"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine21.pop()
+            seriesDataMachine21.push(parseFloat(efficiency))
+  
+            }
+            else if(data.MachineData[k].Name == "HF-22"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine22.pop()
+            seriesDataMachine22.push(parseFloat(efficiency))
+ 
+            }
+            else if(data.MachineData[k].Name == "HF-23"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine23.pop()
+            seriesDataMachine23.push(parseFloat(efficiency))
+  
+            }
+            else if(data.MachineData[k].Name == "HF-24"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine24.pop()
+            seriesDataMachine24.push(parseFloat(efficiency))
+      
+            }
+            else if(data.MachineData[k].Name == "HF-25"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine25.pop()
+            seriesDataMachine25.push(parseFloat(efficiency))
+     
+
+            }
+            else if(data.MachineData[k].Name == "HF-26"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine26.pop()
+            seriesDataMachine26.push(parseFloat(efficiency))
+    
+            }
+            else if(data.MachineData[k].Name == "HF-27"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine27.pop()
+            seriesDataMachine27.push(parseFloat(efficiency))
+        
+
+            }
+            else if(data.MachineData[k].Name == "HF-28"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine28.pop()
+            seriesDataMachine28.push(parseFloat(efficiency))
+    
+            }
+            else if(data.MachineData[k].Name == "HF-29"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine29.pop()
+            seriesDataMachine29.push(parseFloat(efficiency))
+       
+            }
+            else if(data.MachineData[k].Name == "HF-30"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine30.pop()
+            seriesDataMachine30.push(parseFloat(efficiency))
+      
+
+            }
+            else if(data.MachineData[k].Name == "HF-31"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine31.pop()
+            seriesDataMachine31.push(parseFloat(efficiency))
+        
+            }
+            else if(data.MachineData[k].Name == "HF-32"){
+                output = data.MachineData[k].Counter * 2.87
+            Minutes = (1.5*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine32.pop()
+            seriesDataMachine32.push(parseFloat(efficiency))
+    
+            }
+    }
+         
+        
+
+        }
+        originalDataMachineWise.push(
+          {name:"HF-01",data:seriesDataMachine1},
+          {name:"HF-02",data:seriesDataMachine2},
+          {name:"HF-03",data:seriesDataMachine3},
+          {name:"HF-04",data:seriesDataMachine4},
+
+          {name:"HF-05",data:seriesDataMachine5},
+          {name:"HF-06",data:seriesDataMachine6},
+          {name:"HF-07",data:seriesDataMachine7},
+          {name:"HF-08",data:seriesDataMachine8},
+
+          {name:"HF-09",data:seriesDataMachine9},
+          {name:"HF-10",data:seriesDataMachine10},
+          {name:"HF-11",data:seriesDataMachine11},
+          {name:"HF-12",data:seriesDataMachine12},
+
+          {name:"HF-13",data:seriesDataMachine13},
+          {name:"HF-14",data:seriesDataMachine14},
+          {name:"HF-15",data:seriesDataMachine15},
+          {name:"HF-16",data:seriesDataMachine16},
+
+          {name:"HF-17",data:seriesDataMachine17},
+          {name:"HF-18",data:seriesDataMachine18},
+          {name:"HF-19",data:seriesDataMachine19},
+          {name:"HF-20",data:seriesDataMachine20},
+
+          {name:"HF-21",data:seriesDataMachine21},
+          {name:"HF-22",data:seriesDataMachine22},
+          {name:"HF-23",data:seriesDataMachine23},
+          {name:"HF-24",data:seriesDataMachine24},
+
+          {name:"HF-25",data:seriesDataMachine25},
+          {name:"HF-26",data:seriesDataMachine26},
+          {name:"HF-27",data:seriesDataMachine27},
+          {name:"HF-28",data:seriesDataMachine28},
+
+          {name:"HF-29",data:seriesDataMachine29},
+          {name:"HF-30",data:seriesDataMachine30},
+          {name:"HF-31",data:seriesDataMachine31},
+          {name:"HF-32",data:seriesDataMachine32},
+          {name:"Target Efficiency",data:targetDataMachineWise}
+          )
+        }
+         console.log("Target", datesArrayMachineWise)
+        for (var i = 0; i < data.BarData.length; i++) {
+    if(datesArray.indexOf(data.BarData[i].Date) === -1){
+        datesArray.push(data.BarData[i].Date)
+        // targetDataMachineWise.push(parseFloat(67))
+    }
+        }
+
+        Highcharts.chart('containerDateRangeLineMachineWise', {
+
+title: {
+    text: `Machine-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
+},
+
+yAxis: {
+    title: {
+        text: 'Efficiency'
+    }
+},
+
+xAxis: {
+    categories: datesArrayMachineWise,
+},
+
+legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle'
+},
+
+plotOptions: {
+    series: {
+        label: {
+            connectorAllowed: false
+        }
+    }
+},
+
+series: originalDataMachineWise,
+
+responsive: {
+    rules: [{
+        condition: {
+            maxWidth: 500
+        },
+        chartOptions: {
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
+            }
+        }
+    }]
+}
+
+});
+
+
+Highcharts.chart('containerDateRangeBar', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        align: 'left',
+        text: `Balls Count From ${startDateNewFormat} To ${endDateNewFormat}`
+    },
+    accessibility: {
+        announceNewData: {
+            enabled: true
+        }
+    },
+    xAxis: {
+        type: 'category'
+    },
+    yAxis: {
+        title: {
+            text: 'Balls Count'
+        }
+
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true,
+            }
+        }
+    },
+
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+    },
+
+    series: [
+        {
+            name: "RWPD",
+            colorByPoint: true,
+            data: seriesDataTop
+        }
+    ],
+    drilldown: {
+        breadcrumbs: {
+            position: {
+                align: 'right'
+            }
+        },
+        series: seriesDataBottom
+    }
+});
+
+$.post(url2,{"startDate":startDate, "endDate":endDate,"dept_id":23,"section_id":118},function(dataInner, status){
+    console.log("Data Inner", dataInner)
+    let seriesData = []
+    let targetData = []
+    let originalData = []
+ if(dataInner.realtime != undefined){
+    let len = dataInner.realtime.length;
+    let lenOuter = dataArrayOuter.length;
+    let output= 0;
+    let Minutes = 0;
+    let efficiency = 0;
+    // for(let i = 0; i<len; i++){ 
+        for(let j = 0; j<lenOuter; j++){
+            // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
+
+            output = dataArrayOuter[j].Counter * 2.87
+            Minutes = (1.5*32*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+
+            seriesData.push(parseFloat(efficiency))
+            targetData.push(parseFloat(67))
+// }
+        }
+       
+        // if(i == len-1){
+            originalData.push({name:"Efficiency",data:seriesData},{name:"Target Efficiency",data:targetData})
+        
+        // }
+    // }
+
+ }
+//  console.log(datesArray)
+ Highcharts.chart('containerDateRangeLine', {
+
+title: {
+    text: `Process-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
+},
+
+yAxis: {
+    title: {
+        text: 'Efficiency'
+    }
+},
+
+xAxis: {
+    categories: datesArray,
+},
+
+legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle'
+},
+
+plotOptions: {
+    series: {
+        label: {
+            connectorAllowed: false
+        }
+    }
+},
+
+series: originalData,
+
+responsive: {
+    rules: [{
+        condition: {
+            maxWidth: 500
+        },
+        chartOptions: {
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
+            }
+        }
+    }]
+}
+
+});
+$("#loadingShow").css('display','none')
+$("#dateRangeResult").css('display','inline-block')
+})
+
+
+
+ });
+    })
 </script>
 
 
