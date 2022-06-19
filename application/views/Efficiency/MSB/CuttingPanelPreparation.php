@@ -133,51 +133,30 @@
             <main id="js-page-content" role="main" class="page-content">
                 <?php $id = $_GET['dept_id']; ?>
 
-                <?php
+                <ol class="breadcrumb page-breadcrumb">
+     <li class="breadcrumb-item"><a href="<?php echo base_url(
+                                           'Efficiency'
+                                          ); ?>">Dashboard</a></li>
 
-$GetHours = array();
-$GetReading = array();
-//$target = array();
-//print_r($HourllyReading);
-foreach ($HourllyReading as $key) {
-    $point1 = array($key['balls'],);
-    $point2 = array($key['HourName'],);
-    $dailytarget = 3000 / 6;
-    $point3 = $dailytarget / 8;
+     <li class="breadcrumb-item"><a href="<?php echo base_url(
+                                           'Efficiency/MS'
+                                          ); ?>"> Machine Stitch</a></li>
 
-    array_push($GetReading, $point1);
-    array_push($GetHours, $point2);
-    // array_push($target, $point3);
-    //array_push($lineNames, $key['LineName']);
+     <li class="breadcrumb-item"><a href="javascript:void(0);">Panel Preparation</a></li>
+     <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+    </ol>
 
-} ?>
-                <!-- <div class="subheader">
-                    <h1 class="subheader-title">
-                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Dashboard</span>
-                    </h1>
+    
+    <div class="subheader">
+     <h1 class="subheader-title">
+      <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Panel Preparation</span>
+     </h1>
 
 
-                </div> -->
-                <ul class="nav nav-pills" role="tablist">
-                                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Date Filteration</a></li>
+    </div>
+    
 
-                </ul>
-                <div class="tab-content py-3">
-
-<div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel" style="background-color: white;">
-<div class="row">
-                    <div class="col-md-12">
-
-                        <div id="panel-1" class="panel">
-                            <div class="panel-hdr">
-                                <h2>
-                                    RWPD Count
-                                 
-                                </h2>
-                            </div>
-                            <div class="panel-container show">
-                <div class="row pt-2">
+                <div class="row">
 
                     <div class="col-md-12 d-flex flex-row">
 
@@ -202,8 +181,8 @@ foreach ($HourllyReading as $key) {
 
                                                     <small class="m-0 l-h-n">Number of Employees</small>
                                                     <?php echo $d['EmpCount']; ?>
-                                                    <!-- <small class="m-0 l-h-n">Real Time</small>-->
-                                            <!-- <?php echo $d['RealTime']; ?>  -->
+                                                    <!-- <small class="m-0 l-h-n">Real Time</small>
+                                            <?php echo $d['RealTime']; ?> -->
 
                                                 </h3>
                                             </div>
@@ -221,8 +200,8 @@ foreach ($HourllyReading as $key) {
 
                                                     <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
 
-                                                    <!-- <small class="m-0 l-h-n">Number of Employees</small>-->
-                                            <!-- <?php echo $d['EmpCount']; ?>  -->
+                                                    <!-- <small class="m-0 l-h-n">Number of Employees</small>
+                                            <?php echo $d['EmpCount']; ?> -->
                                                     <small class="m-0 l-h-n">Real Time</small>
                                                     <?php echo $d['RealTime']; ?>
 
@@ -237,15 +216,17 @@ foreach ($HourllyReading as $key) {
 
 
                         <?php } ?>
+                        <?php
 
+                        //print_r($Counter);
+                        ?>
                         <div class="col-md-2" id="direct">
                             <a href="javascript:void(0)">
                                 <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <small class="m-0 l-h-n">Total Balls Count</small>
-                                            <?php echo $total; ?>
-
+                                            <small class="m-0 l-h-n">Total NO of Sheets</small>
+                                            <?php echo $Counter[0]['Counter']; ?>
                                             <small class="m-0 l-h-n"></small>
 
 
@@ -258,18 +239,20 @@ foreach ($HourllyReading as $key) {
                                 </div>
                             </a>
                         </div>
-                        <?php $Output = $total * 0.64;
+                        <?php
+                        $total = $Counter[0]['Counter'];
+                        $Output = $total * 0.36;
 
 
 
 
-                        if ($realtime[0]['EmployeeType'] == "Direct") {
+                        if (isset($d['EmployeeType']) == "Direct") {
 
 
-                            $Mints = $realtime[0]['RealTime'];
+                            $Mints = isset($d['RealTime']);
                         }
 
-                        $Efficiecny = ($Output / $Mints) * 100;
+                        $Efficiecny = ($Output / $Mints) ;
 
                         ?>
 
@@ -280,7 +263,6 @@ foreach ($HourllyReading as $key) {
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                             <small class="m-0 l-h-n">Efficiency</small>
                                             <?php echo Round($Efficiecny, 2); ?>%
-
                                             <small class="m-0 l-h-n"></small>
                                         </h3>
                                     </div>
@@ -303,9 +285,26 @@ foreach ($HourllyReading as $key) {
                                 </div>
                             </a>
                         </div>
-                 
+                        <div class="col-md-1">
+                            <!-- <?php
+                            echo $total;
+                            ?>
+                            <br>
+                            <?php
+                            echo $Output;
+                            ?>
+                            <br>
+                            <?php
+                            echo $Mints;
+                            ?> -->
+                        </div>
+
                     </div>
                 </div> <!-- row ends here -->
+
+
+
+
                 <div class="guage text-center ">
                     <script src="https://code.highcharts.com/highcharts.js"></script>
                     <script src="https://code.highcharts.com/highcharts-more.js"></script>
@@ -313,286 +312,106 @@ foreach ($HourllyReading as $key) {
                     <script src="https://code.highcharts.com/modules/exporting.js"></script>
                     <script src="https://code.highcharts.com/modules/export-data.js"></script>
                     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-                    <script src="https://code.highcharts.com/modules/data.js"></script>
-                    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+
                     <figure class="highcharts-figure">
                         <div id="container-speed" class="chart-container"></div>
                         <!-- <div id="container-rpm" class="chart-container"></div>   -->
                     </figure>
                 </div>
-                <div id="tableHere" class="p-2">
+                <div id="tableHere">
+
+
+
+
 
                 </div>
+            </main>
+
+
+
+
+
+            <!-- this overlay is activated only when mobile menu is triggered -->
+            <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
+            <!-- BEGIN Page Footer -->
+            <footer class="page-footer" role="contentinfo">
+                <div class="d-flex align-items-center flex-1 text-muted">
+                    <span class="hidden-md-down fw-700">2021 © DMMS by&nbsp;IT Dept Forward Sports</span>
                 </div>
-              </div>
+                <div>
 
-            </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
+            </footer>
+            <!-- END Page Footer -->
+            <!-- BEGIN Shortcuts -->
 
-                        <div id="panel-1" class="panel">
-                            <div class="panel-hdr">
-                                <h2>
-                                    RWPD OutPut
-                                  
-                                </h2>
-                            </div>
-                            <div class="panel-container show">
-                                <div id="container">
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-</div>
-
-<div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
-<div class="card">
-
-<div class="card-body">
-    <h5 class="card-title" style="color:black;font-weight:bolder">Date Filteration</h5>
-    <div class="row">
-        <div class="col-md-2"><input class="form-control" type="date" id="startDate" /></div>
-        <div class="col-md-2"><input class="form-control" type="date" id="endDate" /></div>
-        <div class="col-md-4"><button class="btn btn-primary" id="searchRange">Search</button></div>
-    </div>
-    </div>
-    </div>
-<br>
-    <div class="row" >
-                    <div class="col-md-12">
-
-                        <div id="panel-1" class="panel">
-                            <div class="panel-hdr">
-                                <h2>
-                                    RWPD OutPut
-                                  
-                                </h2>
-                            </div>
-                            <div class="panel-container show" >
-                                <div class="row" id="dateRangeResult" style="display: none;">
-                                    <div class="col-md-12">
-                                 
-    <div id="containerDateRangeBar"></div>
-
-                                    </div>
-                                    <div class="col-md-12 mt-2">
-                          
-    <div id="containerDateRangeLine"></div>
-
-                                    </div>
-                                </div>
-                                <div id="loadingShow" style="display: none;">
-                          
-                                <img src="<?php echo base_url('/')?>Assets/img/loader4.gif" alt="Loading..." style="margin-left: 100%" >
-                             
-               
-                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-              
-
-
-   
-</div>
-                </div>
-          
-                <style>
-
-                </style>
-
-                <!-- <script src="https://code.highcharts.com/highcharts.js"></script>
-            <script src="https://code.highcharts.com/modules/exporting.js"></script>
-            <script src="https://code.highcharts.com/modules/export-data.js"></script>
-            <script src="https://code.highcharts.com/modules/accessibility.js"></script> -->
-
-                <!-- <figure class="highcharts-figure">
-              <div id="container"></div> -->
-       
-
-                <script src="https://code.highcharts.com/highcharts.js"></script>
-                <script src="https://code.highcharts.com/highcharts-3d.js"></script>
-                <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                <script src="https://code.highcharts.com/modules/export-data.js"></script>
-                <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
-
-
-                <script>
-                 
-                    Highcharts.chart('container', {
-                        chart: {
-                            zoomType: 'xy'
-                        },
-                        title: {
-                            text: 'RWPD OutPut'
-                        },
-                        subtitle: {
-                            // text: 'Source: WorldClimate.com'
-                        },
-                        xAxis: [{
-                            categories: <?php echo json_encode($GetHours, JSON_NUMERIC_CHECK); ?>,
-                            crosshair: true
-                        }],
-                        yAxis: [{ // Primary yAxis
-                                labels: {
-                                    format: '{value} balls',
-                                    style: {
-                                        color: Highcharts.getOptions().colors[1]
-                                    }
-                                },
-                                title: {
-                                    text: 'Achieved',
-                                    style: {
-                                        color: Highcharts.getOptions().colors[1]
-                                    }
-                                }
-                            },
-                            { // Secondary yAxis
-                                title: {
-                                    text: 'Target',
-                                    style: {
-                                        color: Highcharts.getOptions().colors[0]
-                                    }
-                                },
-
-                                opposite: true
-                            }
-                        ],
-                        tooltip: {
-                            shared: true
-                        },
-                        legend: {
-                            layout: 'vertical',
-                            align: 'left',
-                            x: 120,
-                            verticalAlign: 'top',
-                            y: 100,
-                            floating: true,
-                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
-                                'rgba(255,255,255,0.25)',
-                            enabled: false
-                        },
-
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y:.0f}'
-                                }
-                            }
-                        },
-                        series: [{
-                                name: 'Achieved',
-                                type: 'column',
-                                yAxis: 1,
-
-                                data: <?php echo json_encode($GetReading, JSON_NUMERIC_CHECK); ?>,
-                                tooltip: {
-                                    valueSuffix: ' balls'
-                                }
-
-                            }
-
-                        ]
-
-
-                    });
-                </script>
-
-
-
-        
-                <!-- this overlay is activated only when mobile menu is triggered -->
-                <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
-                <!-- BEGIN Page Footer -->
-                <footer class="page-footer" role="contentinfo">
-                    <div class="d-flex align-items-center flex-1 text-muted">
-                        <span class="hidden-md-down fw-700">2021 © DMMS by&nbsp;IT Dept Forward Sports</span>
-                    </div>
-                    <div>
-
-                    </div>
-                </footer>
-                <!-- END Page Footer -->
-                <!-- BEGIN Shortcuts -->
-
-                <!-- END Shortcuts -->
-                <!-- BEGIN Color profile -->
-                <!-- this area is hidden and will not be seen on screens or screen readers -->
-                <!-- we use this only for CSS color refernce for JS stuff -->
-                <p id="js-color-profile" class="d-none">
-                    <span class="color-primary-50"></span>
-                    <span class="color-primary-100"></span>
-                    <span class="color-primary-200"></span>
-                    <span class="color-primary-300"></span>
-                    <span class="color-primary-400"></span>
-                    <span class="color-primary-500"></span>
-                    <span class="color-primary-600"></span>
-                    <span class="color-primary-700"></span>
-                    <span class="color-primary-800"></span>
-                    <span class="color-primary-900"></span>
-                    <span class="color-info-50"></span>
-                    <span class="color-info-100"></span>
-                    <span class="color-info-200"></span>
-                    <span class="color-info-300"></span>
-                    <span class="color-info-400"></span>
-                    <span class="color-info-500"></span>
-                    <span class="color-info-600"></span>
-                    <span class="color-info-700"></span>
-                    <span class="color-info-800"></span>
-                    <span class="color-info-900"></span>
-                    <span class="color-danger-50"></span>
-                    <span class="color-danger-100"></span>
-                    <span class="color-danger-200"></span>
-                    <span class="color-danger-300"></span>
-                    <span class="color-danger-400"></span>
-                    <span class="color-danger-500"></span>
-                    <span class="color-danger-600"></span>
-                    <span class="color-danger-700"></span>
-                    <span class="color-danger-800"></span>
-                    <span class="color-danger-900"></span>
-                    <span class="color-warning-50"></span>
-                    <span class="color-warning-100"></span>
-                    <span class="color-warning-200"></span>
-                    <span class="color-warning-300"></span>
-                    <span class="color-warning-400"></span>
-                    <span class="color-warning-500"></span>
-                    <span class="color-warning-600"></span>
-                    <span class="color-warning-700"></span>
-                    <span class="color-warning-800"></span>
-                    <span class="color-warning-900"></span>
-                    <span class="color-success-50"></span>
-                    <span class="color-success-100"></span>
-                    <span class="color-success-200"></span>
-                    <span class="color-success-300"></span>
-                    <span class="color-success-400"></span>
-                    <span class="color-success-500"></span>
-                    <span class="color-success-600"></span>
-                    <span class="color-success-700"></span>
-                    <span class="color-success-800"></span>
-                    <span class="color-success-900"></span>
-                    <span class="color-fusion-50"></span>
-                    <span class="color-fusion-100"></span>
-                    <span class="color-fusion-200"></span>
-                    <span class="color-fusion-300"></span>
-                    <span class="color-fusion-400"></span>
-                    <span class="color-fusion-500"></span>
-                    <span class="color-fusion-600"></span>
-                    <span class="color-fusion-700"></span>
-                    <span class="color-fusion-800"></span>
-                    <span class="color-fusion-900"></span>
-                </p>
-                <!-- END Color profile -->
+            <!-- END Shortcuts -->
+            <!-- BEGIN Color profile -->
+            <!-- this area is hidden and will not be seen on screens or screen readers -->
+            <!-- we use this only for CSS color refernce for JS stuff -->
+            <p id="js-color-profile" class="d-none">
+                <span class="color-primary-50"></span>
+                <span class="color-primary-100"></span>
+                <span class="color-primary-200"></span>
+                <span class="color-primary-300"></span>
+                <span class="color-primary-400"></span>
+                <span class="color-primary-500"></span>
+                <span class="color-primary-600"></span>
+                <span class="color-primary-700"></span>
+                <span class="color-primary-800"></span>
+                <span class="color-primary-900"></span>
+                <span class="color-info-50"></span>
+                <span class="color-info-100"></span>
+                <span class="color-info-200"></span>
+                <span class="color-info-300"></span>
+                <span class="color-info-400"></span>
+                <span class="color-info-500"></span>
+                <span class="color-info-600"></span>
+                <span class="color-info-700"></span>
+                <span class="color-info-800"></span>
+                <span class="color-info-900"></span>
+                <span class="color-danger-50"></span>
+                <span class="color-danger-100"></span>
+                <span class="color-danger-200"></span>
+                <span class="color-danger-300"></span>
+                <span class="color-danger-400"></span>
+                <span class="color-danger-500"></span>
+                <span class="color-danger-600"></span>
+                <span class="color-danger-700"></span>
+                <span class="color-danger-800"></span>
+                <span class="color-danger-900"></span>
+                <span class="color-warning-50"></span>
+                <span class="color-warning-100"></span>
+                <span class="color-warning-200"></span>
+                <span class="color-warning-300"></span>
+                <span class="color-warning-400"></span>
+                <span class="color-warning-500"></span>
+                <span class="color-warning-600"></span>
+                <span class="color-warning-700"></span>
+                <span class="color-warning-800"></span>
+                <span class="color-warning-900"></span>
+                <span class="color-success-50"></span>
+                <span class="color-success-100"></span>
+                <span class="color-success-200"></span>
+                <span class="color-success-300"></span>
+                <span class="color-success-400"></span>
+                <span class="color-success-500"></span>
+                <span class="color-success-600"></span>
+                <span class="color-success-700"></span>
+                <span class="color-success-800"></span>
+                <span class="color-success-900"></span>
+                <span class="color-fusion-50"></span>
+                <span class="color-fusion-100"></span>
+                <span class="color-fusion-200"></span>
+                <span class="color-fusion-300"></span>
+                <span class="color-fusion-400"></span>
+                <span class="color-fusion-500"></span>
+                <span class="color-fusion-600"></span>
+                <span class="color-fusion-700"></span>
+                <span class="color-fusion-800"></span>
+                <span class="color-fusion-900"></span>
+            </p>
+            <!-- END Color profile -->
         </div>
     </div>
 </div>
@@ -1281,9 +1100,7 @@ foreach ($HourllyReading as $key) {
     ];
 
     $(document).ready(function() {
-        let currentDate = new Date().toJSON().substr(0,10);
-        $("#startDate").val(currentDate);
-        $("#endDate").val(currentDate);
+
         /* init datatables */
         $('#dt-basic-example').dataTable({
             responsive: true,
@@ -1785,256 +1602,6 @@ foreach ($HourllyReading as $key) {
 
 
     });
-
-    function generateDataTop(data1) {
- 
- var ret = {},
-     ps = [],
-     series = [],
-     len = data1.BarData.length;
-
- //concat to get points
- for (var i = 0; i < len; i++) {
-     ps[i] = {
-         name: data1.BarData[i].Date,
-         y: data1.BarData[i].Counter,
-         drilldown: data1.BarData[i].Date
-     };
- }
- names = [];
- //generate series and split points
- for (i = 0; i < len; i++) {
-     var p = ps[i];
-   
-     series.push(p);
- }
- return series;
-}
-
-function generateDataBottom(data1) {
- 
- var ret = {},
-     ps = [],
-     series = [],
-     len = data1.MachineData.length;
-   let datesArray = []
-   let dataArray = []
-
- //concat to get points
- for (var i = 0; i < len; i++) {
-    if(datesArray.indexOf(data1.MachineData[i].Date) === -1){
-        datesArray.push(data1.MachineData[i].Date)
-        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,data1.MachineData[i].Counter])
-    }
-    else{
-        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,data1.MachineData[i].Counter])
-    }
-
-
-  
- }
-
- //generate series and split points
- for (i = 0; i < datesArray.length; i++) {
-    let OriginaldataArray = []
-    let OriginaldataArrayDateRemove = []
-    dataArray.filter(function(e) { 
-        if(e[0] === datesArray[i]){
-            OriginaldataArray.push(e)
-        }
-    });
-    OriginaldataArray.forEach(element => {
-        // console.log("Element", element)
-        element.shift()
-        OriginaldataArrayDateRemove.push(element)
-    });
-    // console.log("data Get", OriginaldataArray)
-     var p = {
-        name: datesArray[i],
-        id: datesArray[i],
-        data: OriginaldataArrayDateRemove
-     }
-    //  console.log("Series", p)
-     series.push(p);
- }
- return series;
-}
-
-
-    $("#searchRange").on('click',function(e){
-        e.preventDefault()
-        $("#dateRangeResult").css('display','none')
-        $("#loadingShow").css('display','inline-block')
-        let startDate = $("#startDate").val()
-        let endDate = $("#endDate").val()
-        const params = new Proxy(new URLSearchParams(window.location.search), {
-            get: (searchParams, prop) => searchParams.get(prop),
-        });
-        let section_id = params.section_id;
-        let dept_id = params.dept_id;
-        let datesArray = []
-        let url = "<?php echo base_url('Efficiency/getRWPDDateRangeData') ?>";
-        let url2 = "<?php echo base_url('Efficiency/getRealTimeDateRange') ?>";
-        $.post(url,{"startDate":startDate, "endDate":endDate},function(data, status){
-            console.log("Data Outer", data)
-        let seriesDataTop;
-        let seriesDataBottom;
-        let dataArrayOuter = data.BarData
-        if(data){
-        seriesDataTop = generateDataTop(data)
-        seriesDataBottom = generateDataBottom(data)
-  
-        }
-
-        for (var i = 0; i < data.BarData.length; i++) {
-    if(datesArray.indexOf(data.BarData[i].Date) === -1){
-        datesArray.push(data.BarData[i].Date)
-    }
-        }
-Highcharts.chart('containerDateRangeBar', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        align: 'left',
-        text: `Data From ${startDate} To ${endDate}`
-    },
-    accessibility: {
-        announceNewData: {
-            enabled: true
-        }
-    },
-    xAxis: {
-        type: 'category'
-    },
-    yAxis: {
-        title: {
-            text: 'Balls Count'
-        }
-
-    },
-    legend: {
-        enabled: false
-    },
-    plotOptions: {
-        series: {
-            borderWidth: 0,
-            dataLabels: {
-                enabled: true,
-            }
-        }
-    },
-
-    tooltip: {
-        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
-    },
-
-    series: [
-        {
-            name: "RWPD",
-            colorByPoint: true,
-            data: seriesDataTop
-        }
-    ],
-    drilldown: {
-        breadcrumbs: {
-            position: {
-                align: 'right'
-            }
-        },
-        series: seriesDataBottom
-    }
-});
-
-$.post(url2,{"startDate":startDate, "endDate":endDate,"dept_id":dept_id,"section_id":section_id},function(dataInner, status){
-    console.log("Data Inner", dataInner)
-    let seriesData = []
-    let targetData = []
-    let originalData = []
- if(dataInner.realtime != undefined){
-    let len = dataInner.realtime.length;
-    let lenOuter = dataArrayOuter.length;
-    let output= 0;
-    let Minutes = 0;
-    let efficiency = 0;
-    for(let i = 0; i<len; i++){ 
-        for(let j = 0; j<lenOuter; j++){
-            if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
-
-            output = dataArrayOuter[j].Counter * 0.64
-            Minutes = dataInner.realtime[i].RealTime
-            efficiency = (output / Minutes) * 100
-
-            seriesData.push(parseFloat(efficiency))
-            targetData.push(parseFloat(67))
-}
-        }
-       
-        if(i == len-1){
-            originalData.push({name:"Efficiency",data:seriesData},{name:"Target Efficiency",data:targetData})
-        
-        }
-    }
-
- }
-//  console.log(datesArray)
- Highcharts.chart('containerDateRangeLine', {
-
-title: {
-    text: `Efficiency Between ${startDate} To ${endDate}`
-},
-
-yAxis: {
-    title: {
-        text: 'Efficiency'
-    }
-},
-
-xAxis: {
-    categories: datesArray,
-},
-
-legend: {
-    layout: 'vertical',
-    align: 'right',
-    verticalAlign: 'middle'
-},
-
-plotOptions: {
-    series: {
-        label: {
-            connectorAllowed: false
-        }
-    }
-},
-
-series: originalData,
-
-responsive: {
-    rules: [{
-        condition: {
-            maxWidth: 500
-        },
-        chartOptions: {
-            legend: {
-                layout: 'horizontal',
-                align: 'center',
-                verticalAlign: 'bottom'
-            }
-        }
-    }]
-}
-
-});
-$("#loadingShow").css('display','none')
-$("#dateRangeResult").css('display','inline-block')
-})
-
-
-
- });
-    })
 </script>
 <script>
     $('#direct').click(function() {
@@ -2050,7 +1617,7 @@ $("#dateRangeResult").css('display','inline-block')
             "dept_id": dept_id,
             "direct": "Direct"
         }, function(data) {
-      
+            console.log("data", data)
 
             var table = '';
             table += `<table id="tableFormat" class="table table-bordered table-hover  table-striped w-100">
@@ -2064,7 +1631,7 @@ $("#dateRangeResult").css('display','inline-block')
   </thead>
   <tbody>`
             data.forEach(element => {
-            
+                console.log(element)
                 table += `<tr>
       <th scope="row">${element.CardNo}</th>
       <td>${element.Name}</td>
@@ -2166,7 +1733,7 @@ $("#dateRangeResult").css('display','inline-block')
             "dept_id": dept_id,
             "direct": "In-Direct"
         }, function(data) {
-       
+            console.log("data", data)
             var table = '';
             table += `<table id="tableFormat" class="table table-bordered table-hover  table-striped w-100">
             <thead class="bg-primary-200 text-light">
@@ -2179,6 +1746,7 @@ $("#dateRangeResult").css('display','inline-block')
   </thead>
   <tbody>`
             data.forEach(element => {
+                console.log(element)
                 table += `<tr>
       <th scope="row">${element.CardNo}</th>
       <td>${element.Name}</td>
@@ -2293,6 +1861,7 @@ $("#dateRangeResult").css('display','inline-block')
   </thead>
   <tbody>`
             data.forEach(element => {
+                console.log(element)
                 table += `<tr>
       <th scope="row">${element.CardNo}</th>
       <td>${element.Name}</td>

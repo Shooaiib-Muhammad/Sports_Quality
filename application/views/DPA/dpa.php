@@ -128,7 +128,7 @@ if (!$this->session->has_userdata('user_id')) {
                     <label>Yield:</label>
                     <div class="form-group-inline">
 
-                      <input name="yield" id="yield" class="form-control" type="text">
+                      <input name="yield" id="yield" class="form-control" type="number">
 
                     </div>
                   </div>
@@ -161,7 +161,7 @@ if (!$this->session->has_userdata('user_id')) {
                     <label>Article Option:</label>
                     <div class="form-group-inline">
 
-                      <input name="ac" id="ac" class="form-control" type="text">
+                      <input name="ac" id="ac" class="form-control" type="number">
 
                     </div>
                   </div>
@@ -274,7 +274,55 @@ if (!$this->session->has_userdata('user_id')) {
 
                     </div>
                   </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
 
+                      <label for="sel1">Select Seasonal Range :</label>
+                      <select class="form-control" id="seasonal" name="seasonal">
+                        <option value="">Select one of the following</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+
+
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <label>Season:</label>
+                    <div class="form-group-inline">
+                      <select name="season" id="season" class="form-control">
+                        <option value="SS">SS</option>
+                        <option value="FW">FW</option>
+
+                      </select>
+                      <!-- <input name="DevType" id="DevType" class="form-control" type="text"> -->
+
+                    </div>
+                  </div>
                   <div class="col-md-2">
                     <label>FTY Priority:</label>
                     <div class="form-group-inline">
@@ -432,7 +480,7 @@ if (!$this->session->has_userdata('user_id')) {
                     <div class="form-group">
 
                       <label for="sel1">Select Seasonal Range :</label>
-                      <select class="form-control" id="season" name="season">
+                      <select class="form-control" id="seasonal1" name="seasonal1">
                         <option value="">Select one of the following</option>
                         <option value="2005">2005</option>
                         <option value="2006">2006</option>
@@ -462,6 +510,18 @@ if (!$this->session->has_userdata('user_id')) {
                         <option value="2030">2030</option>
 
 
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+
+                      <label for="sel1">Select Season :</label>
+                      <select class="form-control" id="season1" name="season1">
+                        <option value="">Select one of the following</option>
+                        <option value="SS">SS</option>
+                        <option value="FW">FW</option>
                       </select>
                     </div>
                   </div>
@@ -555,6 +615,11 @@ if (!$this->session->has_userdata('user_id')) {
     }
 
     function submit() {
+
+
+      let seasonal = $("#seasonal").val();
+      var twoDigitYear = seasonal.toString().substr(-2);
+
       let article = $("#ArtCode").val();
       let working = $("#working").val();
       let pname = $("#pname").val();
@@ -592,7 +657,9 @@ if (!$this->session->has_userdata('user_id')) {
       let finalcs = $("#finalcs").prop('checked');
       let br = $("#br").prop('checked');
       let mcs = $("#mcs").prop('checked');
-      //alert(DevType);
+      let season = $("#season").val();
+      let finalSeason = season + twoDigitYear;
+
       data = {
         "article": article,
         "working": working,
@@ -630,7 +697,8 @@ if (!$this->session->has_userdata('user_id')) {
         "finalcs": finalcs,
         "br": br,
         "mcs": mcs,
-        "DevType": DevType
+        "DevType": DevType,
+        "finalSeason": finalSeason
 
       }
 
@@ -650,17 +718,22 @@ if (!$this->session->has_userdata('user_id')) {
 
     function onSearch() {
       fc = $("#fC").val();
-      season = $("#season").val();
+      seasonal1 = $("#seasonal1").val();
+      season1 = $("#season1").val();
+      var twoDigitYear1 = seasonal1.toString().substr(-2);
+      fSeason = season1 + twoDigitYear1;
 
-      urls = "<?php echo base_url(''); ?>DPA/getTableData/"
+
+      urls = "<?php echo base_url(''); ?>DPA/getTableData/";
       $.post(urls, {
         "fc": fc,
-        "season": season,
+        "season": seasonal1,
+        "fSeason": fSeason
 
       }, function(data) {
 
         let i = 1;
-        console.log(data, "hello");
+
         let appendtable = '';
         appendtable += `<table class="table table-striped table-hover table-sm" id="ActivityData" >
                                 <thead>
@@ -699,51 +772,122 @@ if (!$this->session->has_userdata('user_id')) {
                                              <th>Final CS Confirm</th>
                                              <th>Br Status</th>
                                              <th>MCS</th>
-                                                  <th>Development  Type</th>
-                                             <th>Actions</th>
+                                             <th>Development  Type</th>
+                                             <th>Season</th>
+                                             <th>Undo</th>
+                                             <th>Update</th>
                                               
                                        
                                     </tr>
                                 </thead>
                                 <tbody>`
         data.forEach((element) => {
-          appendtable += `<tr>
+          CR1_In_House_Datee=element.CR1_In_House_Date
+
+dd_CR1_In_House_Datee =CR1_In_House_Datee.substring(0, 2);
+mm_CR1_In_House_Datee =CR1_In_House_Datee.substring(3, 5);
+yy_CR1_In_House_Datee =CR1_In_House_Datee.substring(6, 10);
+final_CR1_In_House_Datee=yy_CR1_In_House_Datee+'-'+mm_CR1_In_House_Datee+'-'+dd_CR1_In_House_Datee
+
+
+BF_Datee=element.BF_Date
+dd_BF_Datee =BF_Datee.substring(0, 2);
+mm_BF_Datee =BF_Datee.substring(3, 5);
+yy_BF_Datee =BF_Datee.substring(6, 10);
+final_BF_Datee=yy_BF_Datee+'-'+mm_BF_Datee+'-'+dd_BF_Datee
+
+CR1_Subbmition_Datee=element.CR1_Subbmition_Date
+dd_CR1_Subbmition_Datee =CR1_Subbmition_Datee.substring(0, 2);
+mm_CR1_Subbmition_Datee =CR1_Subbmition_Datee.substring(3, 5);
+yy_CR1_Subbmition_Datee =CR1_Subbmition_Datee.substring(6, 10);
+final_CR1_Subbmition_Datee=yy_CR1_Subbmition_Datee+'-'+mm_CR1_Subbmition_Datee+'-'+dd_CR1_Subbmition_Datee
+
+
+CR2_In_House_Datee=element.CR2_In_House_Date
+dd_CR2_In_House_Datee =CR2_In_House_Datee.substring(0, 2);
+mm_CR2_In_House_Datee =CR2_In_House_Datee.substring(3, 5);
+yy_CR2_In_House_Datee=CR2_In_House_Datee.substring(6, 10);
+final_CR2_In_House_Datee=yy_CR2_In_House_Datee+'-'+mm_CR2_In_House_Datee+'-'+dd_CR2_In_House_Datee
+
+
+CR2_Subbmition_Date=element.CR2_Subbmition_Date
+dd_CR2_Subbmition_Date =CR2_Subbmition_Date.substring(0, 2);
+mm_CR2_Subbmition_Date =CR2_Subbmition_Date.substring(3, 5);
+yy_CR2_Subbmition_Date=CR2_Subbmition_Date.substring(6, 10);
+final_CR2_Subbmition_Date=yy_CR2_Subbmition_Date+'-'+mm_CR2_Subbmition_Date+'-'+dd_CR2_Subbmition_Date
+
+
+EBR_Model_Date=element.EBR_Model_Date
+dd_EBR_Model_Date =EBR_Model_Date.substring(0, 2);
+mm_EBR_Model_Date =EBR_Model_Date.substring(3, 5);
+yy_EBR_Model_Date=EBR_Model_Date.substring(6, 10);
+final_EBR_Model_Date=yy_EBR_Model_Date+'-'+mm_EBR_Model_Date+'-'+dd_EBR_Model_Date
+
+
+EBR_Article_Date=element.EBR_Article_Date
+dd_EBR_Article_Date =EBR_Article_Date.substring(0, 2);
+mm_EBR_Article_Date =EBR_Article_Date.substring(3, 5);
+yy_EBR_Article_Date=EBR_Article_Date.substring(6, 10);
+final_EBR_Article_Date=yy_EBR_Article_Date+'-'+mm_EBR_Article_Date+'-'+dd_EBR_Article_Date
+
+
+Rev_BR_Date=element.Rev_BR_Date
+dd_Rev_BR_Date =Rev_BR_Date.substring(0, 2);
+mm_Rev_BR_Date =Rev_BR_Date.substring(3, 5);
+yy_Rev_BR_Date=Rev_BR_Date.substring(6, 10);
+final_Rev_BR_Date=yy_Rev_BR_Date+'-'+mm_Rev_BR_Date+'-'+dd_Rev_BR_Date
+
+FIFA_authorization_validity_Date=element.FIFA_authorization_validity_Date
+dd_FIFA_authorization_validity_Date =FIFA_authorization_validity_Date.substring(0, 2);
+mm_FIFA_authorization_validity_Date =FIFA_authorization_validity_Date.substring(3, 5);
+yy_FIFA_authorization_validity_Date=FIFA_authorization_validity_Date.substring(6, 10);
+final_FIFA_authorization_validity_Date=yy_FIFA_authorization_validity_Date+'-'+mm_FIFA_authorization_validity_Date+'-'+dd_FIFA_authorization_validity_Date
+
+          appendtable += `<tr id="2tr">
                                 <td>#${i++} </td>
                                 <td> ${element.ArtCode} </td>
                                        <td>${element.WorkNo} </td>
-                                        <td>${element.ModelName}</td>
-                                        <td>${element.PrintingColors}</td>
+                                        <td >${element.ModelName}</td>
+                                        <td >${element.PrintingColors}</td>
                                           <td>${element.FactoryCode}</td>
-                                         <td>${element.PanelShape}</td>
-                                          <td>${element.Yield}</td>
-                                          <td>${element.Article_Count}</td>
-                                          <td>${element.BF_Date}</td>
-                                          <td>${element.CR1_In_House_Date}</td>
-                                          <td>${element.CR1_Subbmition_Date}</td>
-                                          <td>${element.CR1_Comments}</td>
-                                          <td>${element.CR2_In_House_Date}</td>
-                                          <td>${element.CR2_Subbmition_Date}</td>
-                                          <td>${element.CR2_Comments}</td>
-                                          <td>${element.Post_CR2_Ex_fty}</td>
-                                          <td>${element.Comments_Remarks}</td>
-                                          <td>${element.EBR_Model_Date}</td>
-                                          <td>${element.EBR_Article_Date}</td>
-                                          <td>${element.Rev_BR_Date}</td>
-                                          <td>${element.Retail_Intro}</td>
-                                          <td>${element.Fty_Priority}</td>
-                                          <td>${element.Remarks}</td>
-                                          <td>${element.Mktg_FC}</td>
-                                          <td>${element.FIFA_authorization_validity_Date}</td>
-                                          <td>${element.CR1_In_House_Status}</td>
-                                          <td>${element.CR1_Subbmition_Status}</td>
-                                          <td>${element.CR2_In_House_Status}</td>
-                                          <td>${element.CR2_Subbmition_Status}</td>
-                                          <td>${element.Approved}</td>
-                                          <td>${element.Final_CS_Confirmation}</td>
-                                          <td>${element.BR_Status}</td>
-                                          <td>${element.MCS}</td>
-                                               <td>${element.DevType}</td>
-                                          <td><button type="button" class="btn btn-danger" onclick="deleterecord(${element.TID})">Delete</button></td>
+                                         <td >${element.PanelShape}</td>
+                                          <td contenteditable="true" id="Yield">${element.Yield}</td>
+                                          <td contenteditable="true" id="Article_Count"> ${element.Article_Count}</td>
+                                          <td contenteditable="true" id="BF_Date" > <input type="date" value="${final_BF_Datee}"/></td>
+                                          <td contenteditable="true" id="CR1_In_House_Date"><input type="date" value="${final_CR1_In_House_Datee}"/></td>
+                                          <td contenteditable="true" id="CR1_Subbmition_Date"> <input type="date" value="${final_CR1_Subbmition_Datee}"/></td>
+                                          <td contenteditable="true" id="CR1_Comments">${element.CR1_Comments}</td>
+                                          <td contenteditable="true" id="CR2_In_House_Date"> <input type="date" value="${final_CR2_In_House_Datee}"/></td>
+                                          <td contenteditable="true" id="CR2_Subbmition_Date"><input type="date" value="${final_CR2_Subbmition_Date}"/></td>
+                                          <td contenteditable="true" id="CR2_Comments">${element.CR2_Comments}</td>
+                                          <td contenteditable="true" id="Post_CR2_Ex_fty"><input type="date" value="${element.Post_CR2_Ex_fty}"/></td>
+                                          <td contenteditable="true" id="Comments_Remarks">${element.Comments_Remarks}</td>
+                                          <td contenteditable="true" id="EBR_Model_Date"><input type="date" value="${final_EBR_Model_Date}"/></td>
+                                          <td contenteditable="true" id="EBR_Article_Date"><input type="date" value="${final_EBR_Article_Date}"/></td>
+                                          <td contenteditable="true" id="Rev_BR_Date"><input type="date" value="${final_Rev_BR_Date}"/></td>
+                                          <td contenteditable="true" id="Retail_Intro"><input type="date" value="${element.Retail_Intro}"/></td>
+                                          <td contenteditable="true" id="Fty_Priority">${element.Fty_Priority}</td>
+                                          <td contenteditable="true" id="Remarks">${element.Remarks}</td>
+                                          <td contenteditable="true" id="Mktg_FC">${element.Mktg_FC}</td>
+                                          <td contenteditable="true" id="FIFA_authorization_validity_Date"><input type="date" value="${final_FIFA_authorization_validity_Date}"/></td>
+                                          <td contenteditable="true" id="CR1_In_House_Status">${element.CR1_In_House_Status}</td>
+                                          <td contenteditable="true" id="CR1_Subbmition_Status">${element.CR1_Subbmition_Status}</td>
+                                          <td contenteditable="true" id="CR2_In_House_Status">${element.CR2_In_House_Status}</td>
+                                          <td contenteditable="true" id="CR2_Subbmition_Status">${element.CR2_Subbmition_Status}</td>
+                                          <td contenteditable="true" id="Approved">${element.Approved}</td>
+                                          <td contenteditable="true" id="Final_CS_Confirmation">${element.Final_CS_Confirmation}</td>
+                                          <td contenteditable="true" id="BR_Status">${element.BR_Status}</td>
+                                          <td contenteditable="true" id="MCS">${element.MCS}</td>
+                                               <td contenteditable="true" id="DevTypeN">${element.DevType}</td>
+                                               <td contenteditable="true" id="seasonN">${element.season}</td>
+                                             
+                                          <td>
+                                          <button type="button" class="btn btn-danger" onclick="deleterecord(${element.TID})">Delete</button>
+                                      
+                                          </td>
+                                          <td>
+                                          <button type="button" class="btn btn-info" onclick="updaterecord(${element.TID})">Update</button>
+                                          </td>
                                         </tr>`
         })
 
@@ -2261,6 +2405,85 @@ if (!$this->session->has_userdata('user_id')) {
 
         });
     });
+
+    function updaterecord(id) {
+      // let ModelName = $("#ModelName").text()
+      // let PrintingColors = $("#PrintingColors").text()
+      // let PanelShape = $("#PanelShape").text()
+      let Yield = $("#Yield").text()
+      let Article_Count = $("#Article_Count").text()
+      let BF_Date=$('#2tr td:eq(9) input').val();
+      let CR1_In_House_Date = $('#2tr td:eq(10) input').val();
+      let CR1_Subbmition_Date = $('#2tr td:eq(11) input').val();
+      let CR1_Comments = $("#CR1_Comments").text()
+      let CR2_In_House_Date = $('#2tr td:eq(13) input').val();
+      let CR2_Subbmition_Date = $('#2tr td:eq(14) input').val();
+      let CR2_Comments = $("#CR2_Comments").text()
+      let Post_CR2_Ex_fty = $('#2tr td:eq(16) input').val();
+      let Comments_Remarks = $("#Comments_Remarks").text()
+      let EBR_Model_Date = $('#2tr td:eq(18) input').val();
+      let EBR_Article_Date = $('#2tr td:eq(19) input').val();
+      let Rev_BR_Date = $('#2tr td:eq(20) input').val();
+      let Retail_Intro = $('#2tr td:eq(21) input').val();
+      let Fty_Priority = $("#Fty_Priority").text()
+      let Remarks = $("#Remarks").text()
+      let Mktg_FC = $("#Mktg_FC").text()
+      let FIFA_authorization_validity_Date = $('#2tr td:eq(25) input').val();
+      let CR1_In_House_Status = $("#CR1_In_House_Status").text()
+      let CR1_Subbmition_Status = $("#CR1_Subbmition_Status").text()
+      let CR2_In_House_Status = $("#CR2_In_House_Status").text()
+      let CR2_Subbmition_Status = $("#CR2_Subbmition_Status").text()
+      let Approved = $("#Approved").text()
+      let Final_CS_Confirmation = $("#Final_CS_Confirmation").text()
+      let BR_Status = $("#BR_Status").text()
+      let MCS = $("#MCS").text()
+      let DevTypeN = $("#DevTypeN").text()
+      let seasonN = $("#seasonN").text()
+      
+      data = {
+
+
+        "id":id,
+        // "ModelName":ModelName,
+        // "PrintingColors" :PrintingColors,
+        // "PanelShape" :PanelShape,
+        "Yield" :Yield,
+        "Article_Count":Article_Count, 
+        "BF_Date":BF_Date, 
+        "CR1_In_House_Date":CR1_In_House_Date, 
+        "CR1_Subbmition_Date":CR1_Subbmition_Date, 
+        "CR1_Comments":CR1_Comments, 
+        "CR2_In_House_Date":CR2_In_House_Date, 
+        "CR2_Subbmition_Date":CR2_Subbmition_Date, 
+        "CR2_Comments" :CR2_Comments,
+        "Post_CR2_Ex_fty":Post_CR2_Ex_fty ,
+        "Comments_Remarks":Comments_Remarks, 
+        "EBR_Model_Date":EBR_Model_Date, 
+        "EBR_Article_Date":EBR_Article_Date, 
+        "Rev_BR_Date":Rev_BR_Date, 
+        "Retail_Intro" :Retail_Intro,
+        "Fty_Priority":Fty_Priority, 
+        "Remarks":Remarks, 
+        "Mktg_FC":Mktg_FC, 
+        "FIFA_authorization_validity_Date" :FIFA_authorization_validity_Date,
+        "CR1_In_House_Status":CR1_In_House_Status, 
+        "CR1_Subbmition_Status":CR1_Subbmition_Status, 
+        "CR2_In_House_Status":CR2_In_House_Status, 
+        "CR2_Subbmition_Status":CR2_Subbmition_Status,
+        "Approved":Approved, 
+        "Final_CS_Confirmation":Final_CS_Confirmation, 
+        "BR_Status":BR_Status, 
+        "MCS" :MCS,
+        "DevTypeN" :DevTypeN,
+        "seasonN" :seasonN
+
+      }
+      url = '<?php echo base_url('DPA/updateDPA') ?>';
+
+      $.post(url,data, function(data) {
+        console.log('updated');
+      })
+    }
   </script>
   </body>
 

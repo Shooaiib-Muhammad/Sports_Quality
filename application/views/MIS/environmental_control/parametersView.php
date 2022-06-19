@@ -20,8 +20,8 @@ if (!$this->session->has_userdata('user_id')) {
         <main id="js-page-content" role="main" class="page-content">
 
           <div class="col-lg-12" style="margin-bottom:20px">
-         
-                    <div class="subheader">
+
+          <div class="subheader">
                         <h1 class="subheader-title">
                             <i class='subheader-icon fal fa-chart-area'></i>Conveyers</span>
 
@@ -70,7 +70,6 @@ if (!$this->session->has_userdata('user_id')) {
     ?>
 
 
-    <!-- <div class="row clearfix"> -->
     <div class="card">
       <div class="card-body">
         <h5 class="card-title"><b>Date Filteration</b></h5>
@@ -181,14 +180,7 @@ if (!$this->session->has_userdata('user_id')) {
     <div class="card">
       <div class="card-body">
 
-        <div class="row">
-          <div class="col-md-12" >
-            <div id="Tempmax"></div>
-          </div>
-          <div class="col-md-12">
-            <div id="TempMin"></div>
-          </div>
-        </div>
+      
         <div class="row">
           <div class="col-md-12">
             <div id="lineChartTemp"></div>
@@ -203,23 +195,25 @@ if (!$this->session->has_userdata('user_id')) {
 
 
 
-
-    <script src="<?php echo base_url(); ?>assets/js/chart.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/jquery.min.js" type="text/javascript"></script>
-    
     <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
       <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
       <script type="text/javascript">
-
           /* Activate smart panels */
           $('#js-page-content').smartPanel();
+
       </script>
-    <script src="<?php echo base_url(); ?>/assets/charts/highcharts.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/charts/data.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/charts/drilldown.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/charts/exporting.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/charts/export-data.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/charts/accessibility.js"></script>
+
+
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+
+
+<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+
     <script>
       window.onload = function() {
 
@@ -848,74 +842,9 @@ let seriestempMin = [
   }
 
 });
-Highcharts.chart('Tempmax', {
-              chart: {
-                type: 'column'
-              },
-              title: {
-                text: 'Temprature Maximum'
-              },
-              xAxis: {
-                categories: dateValueMax,
-                crosshair: true
-              },
-              yAxis: {
-                min: 0,
-                title: {
-                  text: 'Temprature (Max)'
-                }
-              },
-              tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                  '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-              },
-              plotOptions: {
-                column: {
-                  pointPadding: 0.2,
-                  borderWidth: 0
-                }
-              },
-              series: seriestempMax
-            });
 
-            Highcharts.chart('TempMin', {
-              chart: {
-                type: 'column'
-              },
-              title: {
-                text: 'Temperature Minimum'
-              },
-              xAxis: {
-                categories: dateValueMin,
-                crosshair: true
-              },
 
-              yAxis: {
-                min: 0,
-                title: {
-                  text: 'Temprature (min)'
-                }
-              },
-              tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                  '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-              },
-              plotOptions: {
-                column: {
-                  pointPadding: 0.2,
-                  borderWidth: 0
-                }
-              },
-              series: seriestempMin
-            });
+           
 }
 })
 }
@@ -1722,74 +1651,9 @@ else if(conveyer39Min.length > 0){
   }
 
 });
-Highcharts.chart('Tempmax', {
-              chart: {
-                type: 'column'
-              },
-              title: {
-                text: 'Temprature Maximum'
-              },
-              xAxis: {
-                categories: dateValueMax,
-                crosshair: true
-              },
-              yAxis: {
-                min: 0,
-                title: {
-                  text: 'Temprature (Max)'
-                }
-              },
-              tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                  '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-              },
-              plotOptions: {
-                column: {
-                  pointPadding: 0.2,
-                  borderWidth: 0
-                }
-              },
-              series: seriestempMax
-            });
 
-            Highcharts.chart('TempMin', {
-              chart: {
-                type: 'column'
-              },
-              title: {
-                text: 'Temperature Minimum'
-              },
-              xAxis: {
-                categories: dateValueMin,
-                crosshair: true
-              },
 
-              yAxis: {
-                min: 0,
-                title: {
-                  text: 'Temprature (min)'
-                }
-              },
-              tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                  '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-              },
-              plotOptions: {
-                column: {
-                  pointPadding: 0.2,
-                  borderWidth: 0
-                }
-              },
-              series: seriestempMin
-            });
+        
 }
 })
 }
@@ -2541,74 +2405,7 @@ let seriestempMin = [
   }
 
 });
-Highcharts.chart('Tempmax', {
-              chart: {
-                type: 'column'
-              },
-              title: {
-                text: 'Temprature Maximum'
-              },
-              xAxis: {
-                categories: dateValueMax,
-                crosshair: true
-              },
-              yAxis: {
-                min: 0,
-                title: {
-                  text: 'Temprature (Max)'
-                }
-              },
-              tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                  '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-              },
-              plotOptions: {
-                column: {
-                  pointPadding: 0.2,
-                  borderWidth: 0
-                }
-              },
-              series: seriestempMax
-            });
 
-            Highcharts.chart('TempMin', {
-              chart: {
-                type: 'column'
-              },
-              title: {
-                text: 'Temperature Minimum'
-              },
-              xAxis: {
-                categories: dateValueMin,
-                crosshair: true
-              },
-
-              yAxis: {
-                min: 0,
-                title: {
-                  text: 'Temprature (min)'
-                }
-              },
-              tooltip: {
-                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                  '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
-                footerFormat: '</table>',
-                shared: true,
-                useHTML: true
-              },
-              plotOptions: {
-                column: {
-                  pointPadding: 0.2,
-                  borderWidth: 0
-                }
-              },
-              series: seriestempMin
-            });
 }
 })
 
@@ -3028,19 +2825,37 @@ Highcharts.chart('Tempmax', {
       }
     </script>
 
+    </div>
 
+    </body>
+
+
+    <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
+      <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
+      <script type="text/javascript">
+          /* Activate smart panels */
+          $('#js-page-content').smartPanel();
+      </script>
 
   <?php } else {redirect('Welcome/index');}
 ?>
 
 
-          </div>
-        </main>
-      </div>
-    </div>
-  </div>
-</div>
+  
 
 <?php
 }
 ?>
+
+          </div>
+
+        </main>
+
+      </div>
+
+    </div>
+
+    </div>
+
+  </div>         
+                  

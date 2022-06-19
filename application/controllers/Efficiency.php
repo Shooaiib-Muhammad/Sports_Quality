@@ -606,11 +606,25 @@ class Efficiency extends CI_Controller
     $endDate = $_POST['endDate'];
 
     $data['BarData'] = $this->E->getRWPDDateRangeDataBar($startDate, $endDate);
-    // $data['LineData'] = $this->E->getRWPDDateRangeDataLine($startDate, $endDate);
+    $data['MachineData'] = $this->E->getRWPDDateRangeDataMachine($startDate, $endDate);
 
     return $this->output
     ->set_content_type('application/json')
     ->set_status_header(200)
     ->set_output(json_encode($data));
   }
+
+  public function getRealTimeDateRange(){
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+
+    $data['realtime'] = $this->E->realTimeAttenDateRange($_POST['dept_id'], $_POST['section_id'],$startDate,$endDate);
+
+    return $this->output
+    ->set_content_type('application/json')
+    ->set_status_header(200)
+    ->set_output(json_encode($data));
+  }
+
+
 }

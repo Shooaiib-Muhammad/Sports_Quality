@@ -32,6 +32,7 @@ class DPA extends CI_Controller
  public function submit(){
   
  
+  
   $data = $this->DPAModel->submit($_POST["article"],
   $_POST["working"],
   $_POST["pname"],
@@ -68,7 +69,8 @@ class DPA extends CI_Controller
   $_POST["finalcs"],
   $_POST["br"],
   $_POST["mcs"],
-    $_POST["DevType"]);
+    $_POST["DevType"],
+  $_POST['finalSeason']);
   
   
   return $this->output
@@ -78,7 +80,8 @@ class DPA extends CI_Controller
  }
 
  public function getTableData(){
-  $data = $this->DPAModel->getTableData($_POST['fc'],$_POST['season']);
+
+  $data = $this->DPAModel->getTableData($_POST['fc'],$_POST['season'],$_POST['fSeason']);
   return $this->output
   ->set_content_type('application/json')
   ->set_status_header(200)
@@ -88,5 +91,48 @@ class DPA extends CI_Controller
  public function delteRecord(){
  
   $data = $this->DPAModel->delteRecord($_POST['id']);
+ }
+
+ public function updateDPA(){
+  // echo "<pre>";
+  // print_r($_POST);
+  // die;
+  // echo "</pre>";
+
+  $data = $this->DPAModel->updateDPA( $_POST['id'],
+  // $_POST['PrintingColors'],
+  // $_POST['PanelShape'],
+  $_POST['Yield'],
+  $_POST['Article_Count'],
+  $_POST['BF_Date'],
+  $_POST['CR1_In_House_Date'],
+  $_POST['CR1_Subbmition_Date'],
+  $_POST['CR1_Comments'],
+  $_POST['CR2_In_House_Date'],
+  $_POST['CR2_Subbmition_Date'],
+  $_POST['CR2_Comments'],
+  $_POST['Post_CR2_Ex_fty'],
+  $_POST['Comments_Remarks'],
+  $_POST['EBR_Model_Date'],
+  $_POST['EBR_Article_Date'],
+  $_POST['Rev_BR_Date'],
+  $_POST['Retail_Intro'],
+  $_POST['Fty_Priority'],
+  $_POST['Remarks'],
+  $_POST['Mktg_FC'],
+  $_POST['FIFA_authorization_validity_Date'],
+  $_POST['CR1_In_House_Status'],
+  $_POST['CR1_Subbmition_Status'],
+  $_POST['CR2_In_House_Status'],
+  $_POST['CR2_Subbmition_Status'],
+  $_POST['Approved'],
+  $_POST['Final_CS_Confirmation'],
+  $_POST['BR_Status'],
+  $_POST['MCS'],
+  $_POST['DevTypeN'],
+  $_POST['seasonN']);
+
+  echo "Updated";
+
  }
 }

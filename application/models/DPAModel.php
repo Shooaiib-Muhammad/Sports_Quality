@@ -20,10 +20,10 @@ class DPAModel extends CI_Model
           return  $query->result_array(); 
  }
 
- public function getTableData($fc,$season){
+ public function getTableData($fc,$season,$fSeason){
     $query = $this->db->query("SELECT dbo.view_Dev_DPA_Article.*
 FROM dbo.view_Dev_DPA_Article 
-WHERE        (FactoryCode = '$fc') AND (SesonalRange = '$season')
+WHERE        (FactoryCode = '$fc') AND (season = '$fSeason')
 ");
             return  $query->result_array();
  }
@@ -66,7 +66,7 @@ WHERE        (FactoryCode = '$fc') AND (SesonalRange = '$season')
     $finalcs,
     $br,
     $mcs,
-        $DevType){
+        $DevType,$season){
 
             if($yields){
                 $y=$yields;
@@ -110,9 +110,9 @@ WHERE        (FactoryCode = '$fc') AND (SesonalRange = '$season')
            FIFA_authorization_validity_Date,
            Ball_Picture,
            EntryDate,
-           UserID,ArtCode,Yield ,DevType)
+           UserID,ArtCode,Yield ,DevType,season)
   VALUES
-        ( $art , $client   , $model , '$fcode', '$ac'  , '$fbo'     , '$inhousedate'  ,  '$csdate','$inhouse','$cs','$cr1comments','$inhousedate1','$csdate1','$inhouse1','$cs1','$cr2comments','$postD','$comments','$approve','$buymodel','$buyarticle','$revdate','$finalcs','$br','$mcs','$retail','$cars','$remarks','$mktg','$fifa',' ', '$inhousedate ', $user,'$article', $y ,'$DevType')");
+        ( $art , $client   , $model , '$fcode', '$ac'  , '$fbo'     , '$inhousedate'  ,  '$csdate','$inhouse','$cs','$cr1comments','$inhousedate1','$csdate1','$inhouse1','$cs1','$cr2comments','$postD','$comments','$approve','$buymodel','$buyarticle','$revdate','$finalcs','$br','$mcs','$retail','$cars','$remarks','$mktg','$fifa',' ', '$inhousedate ', $user,'$article', $y ,'$DevType','$season')");
         
       
 
@@ -132,7 +132,46 @@ WHERE        (dbo.View_156.EmpPic IS NOT NULL)");
                   return $query;  
           }
 
+        public function updateDPA($id,
+        // $PrintingColors,
+        // $PanelShape,
+        $Yield,
+        $Article_Count,
+        $BF_Date,
+        $CR1_In_House_Date,
+        $CR1_Subbmition_Date,
+        $CR1_Comments,
+        $CR2_In_House_Date,
+        $CR2_Subbmition_Date,
+        $CR2_Comments,
+        $Post_CR2_Ex_fty,
+        $Comments_Remarks,
+        $EBR_Model_Date,
+        $EBR_Article_Date,
+        $Rev_BR_Date,
+        $Retail_Intro,
+        $Fty_Priority,
+        $Remarks,
+        $Mktg_FC,
+        $FIFA_authorization_validity_Date,
+        $CR1_In_House_Status,
+        $CR1_Subbmition_Status,
+        $CR2_In_House_Status,
+        $CR2_Subbmition_Status,
+        $Approved,
+        $Final_CS_Confirmation,
+        $BR_Status,
+        $MCS,
+        $DevTypeN,
+        $seasonN){
         
+       
+
+$query=$this->db->query("UPDATE dbo . Tbl_Dev_DPA
+SET  Yield=$Yield,Article_Count=$Article_Count,BF_Date='$BF_Date',CR1_In_House_Date='$CR1_In_House_Date',CR1_Subbmition_Date='$CR1_Subbmition_Date',CR1_Comments='$CR1_Comments',CR2_In_House_Date='$CR2_In_House_Date',CR2_Subbmition_Date='$CR2_Subbmition_Date',CR2_Comments='$CR2_Comments',Post_CR2_Ex_fty='$Post_CR2_Ex_fty',Comments_Remarks='$Comments_Remarks',EBR_Model_Date='$EBR_Model_Date',EBR_Article_Date='$EBR_Article_Date',Rev_BR_Date='$Rev_BR_Date',Retail_Intro='$Retail_Intro',Fty_Priority='$Fty_Priority',Remarks='$Remarks',Mktg_FC='$Mktg_FC',FIFA_authorization_validity_Date='$FIFA_authorization_validity_Date',CR1_In_House_Status=$CR1_In_House_Status,CR1_Subbmition_Status=$CR1_Subbmition_Status,CR2_In_House_Status=$CR2_In_House_Status,CR2_Subbmition_Status=$CR2_Subbmition_Status,Approved=$Approved,Final_CS_Confirmation=$Final_CS_Confirmation,BR_Status=$BR_Status,MCS=$MCS,DevType='$DevTypeN',season='$seasonN'
+WHERE  (TID = '$id')");
+    return $query;  
+        }
 }
 
 

@@ -118,9 +118,9 @@ if (!$this->session->has_userdata('user_id')) {
                                 <body>
                                     <div id="right-panel" class="right-panel">
 
-                                        <div class="container-fluid">
+                                        <div class="container-fluid" >
                                             <div class="card mb-3">
-                                                <div class="card-body">
+                                                <div class="card-body" hidden>
                                                     <div class="form-row">
 
                                                         <div class="col-md-2" style="display:none">

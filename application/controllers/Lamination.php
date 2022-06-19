@@ -50,36 +50,17 @@ class Lamination extends CI_Controller
     public function searchData()
     {
 
-     $startDate = date("d/m/Y", strtotime($_POST['Sdate']));
-     $endDate = date("d/m/Y", strtotime($_POST['Edate']));
+     $startDate = date("d/m/Y", strtotime($_POST['startDate']));
+     $endDate = date("d/m/Y", strtotime($_POST['endDate']));
 
-     $data['getData'] = $this->Lamination->getData($startDate, $endDate);
-     $data['TotalReading'] = $this->Lamination->TotalReading($startDate, $endDate);
-     $data['IndividualReading'] = $this->Lamination->IndividualReading($startDate, $endDate);
-        $data['HourllyReading'] = $this->Lamination->HourllyReading($startDate, $endDate);
-     $total = 0;
-     
-
-   
-     foreach ($data['TotalReading'] as $reading) {
-
-        $total = $total + $reading['TotalReading'];
-
-       }
-
-
-    
-
-
-    $data['total']=$total;
-    $data['startDate'] = $_POST['Sdate'];
-    $data['endDate'] = $_POST['Edate'];
-     
-     // echo "<pre>";
-     //   print_r($data['articleCounter']);
-     //   echo "</pre>";
-     // // // die;
-     $this->load->view("Lamination/laminationDateWise", $data);
+    //  $data['getData'] = $this->Lamination->getData($startDate, $endDate);
+     $data['TotalReading'] = $this->Lamination->TotalReadingDateRange($startDate, $endDate);
+     $data['IndividualReading'] = $this->Lamination->IndividualReadingDateRange($startDate, $endDate);
+    // $data['HourllyReading'] = $this->Lamination->HourllyReading($startDate, $endDate);
+    return $this->output
+    ->set_content_type('application/json')
+    ->set_status_header(200)
+    ->set_output(json_encode($data));
     }
 
    }

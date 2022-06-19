@@ -49,10 +49,9 @@ class Efficiency_model extends CI_Model
                 $Day = date('d');
                 $CurrentDate = $Year . '-' . $Month . '-' . $Day;
                 $HRDB = $this->load->database('HRMS', TRUE);
-                $query = $HRDB->query("SELECT        EmployeeType, COUNT(EmpCount) AS EmpCount, SUM(RealTime) AS RealTime, SectionName, DeptName, SectionID, DeptID, AttDate, EmpCount AS Count
-        FROM            dbo.View_Emp_ATT_REALTIME_CALC_Final
-        GROUP BY EmployeeType, SectionName, DeptName, SectionID, DeptID, AttDate, EmpCount
-        HAVING        (AttDate = CONVERT(DATETIME, '$CurrentDate 00:00:00', 102)) AND (DeptID = $depart) AND (SectionID = $sect)
+                $query = $HRDB->query("SELECT        AttDate, RealTime, EmpCount, EmployeeType, SectionName, DeptName
+                FROM            dbo.View_Emp_ATT_REALTIME_CALC_Final
+        WHERE        (AttDate = CONVERT(DATETIME, '$CurrentDate 00:00:00', 102)) AND (DeptID = $depart) AND (SectionID = $sect) AND (EmployeeType = 'Direct')
         
         ");
                 return  $query->result_array();
@@ -97,7 +96,7 @@ class Efficiency_model extends CI_Model
                 FROM            dbo.view_RWPD_Hourlly
 WHERE        (EntryDate BETWEEN '$Day/$Month/$Year' AND '$Day/$Month/$Year') 
 GROUP BY balls, HourName,HID
-ORDER BY HID ");
+ORDER BY HID");
                 return  $query->result_array();
         }
 
@@ -109,20 +108,46 @@ ORDER BY HID ");
                 $endMonth = explode("-",$endDate)[1];
                 $endYear = explode("-",$endDate)[0];
                 $endDay = explode("-",$endDate)[2];
-                $query = $this->db->query("SELECT  hhghg  balls, HourName
-FROM            dbo.view_RWPD
-WHERE        (EntryDate BETWEEN '$startDay/$startMonth/$startYear' AND '$endDay/$endMonth/$endYear')");
+                $query = $this->db->query("SELECT Date, COUNT(Counter) AS Counter
+                FROM            dbo.view_RWPD_DT
+                WHERE        (EntryDate BETWEEN '$startDay/$startMonth/$startYear' AND '$endDay/$endMonth/$endYear')
+                GROUP BY Date
+                ORDER BY Date");
                 return  $query->result_array();
         }
 
-        public function getRWPDDateRangeDataLine($startDate,$endDate)
+        public function getRWPDDateRangeDataMachine($startDate,$endDate)
         {
-                $Month = date('m');
-                $Year = date('Y');
-                $Day = date('d');
-                $query = $this->db->query("SELECT        balls, HourName
-FROM            dbo.view_RWPD
-WHERE        (EntryDate BETWEEN '$Day/$Month/$Year' AND '$Day/$Month/$Year')");
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT     Date, COUNT(Counter) AS Counter, Name
+                FROM            dbo.view_RWPD_DT          
+                WHERE        (Date BETWEEN '$startDay/$startMonth/$startYear' AND '$endDay/$endMonth/$endYear')
+                GROUP BY Date, Name 
+                ORDER BY Name");
+                return  $query->result_array();
+        }
+
+        public function realTimeAttenDateRange($depart, $sect,$startDate,$endDate)
+        {
+
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $HRDB = $this->load->database('HRMS', TRUE);
+        
+                $query = $HRDB->query("SELECT AttDate, CONVERT(Varchar, AttDate, 103) AS AttDate1,RealTime, EmpCount, EmployeeType, SectionName, DeptName
+                FROM            dbo.View_Emp_ATT_REALTIME_CALC_Final
+                WHERE        (AttDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND (CONVERT(DATETIME, '$endDate 00:00:00', 102))) AND (DeptID = $depart) AND (SectionID = $sect) AND (EmployeeType = 'Direct')
+                ORDER BY AttDate
+        ");
                 return  $query->result_array();
         }
         

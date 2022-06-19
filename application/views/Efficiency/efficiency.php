@@ -96,7 +96,7 @@
                         </a>
                     </div> -->
                     <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo base_url("Efficiency/MS/Cutting/?dept_id=15&section_id=72") ?>">
+                        <a href="<?php echo base_url("Efficiency/HSB34001") ?>">
                             <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:#997300">
                                 <div class="">
                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
@@ -109,7 +109,7 @@
                         </a>
                     </div>
                     <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo base_url("Efficiency/Cutting/?dept_id=15&section_id=72") ?>">
+                        <a href="<?php echo base_url("Efficiency/TMB") ?>">
                             <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:purple">
                                 <div class="">
                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
@@ -122,7 +122,7 @@
                         </a>
                     </div>
                     <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo base_url("Efficiency/MS") ?>">
+                        <a href="<?php echo base_url("Efficiency/MSB") ?>">
                             <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:black">
                                 <div class="">
                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
@@ -135,7 +135,7 @@
                         </a>
                     </div>
                     <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo base_url("Efficiency/AirlessMini") ?>">
+                        <a href="<?php echo base_url("Efficiency/AMB") ?>">
                             <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:maroon">
                                 <div class="">
                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
@@ -148,7 +148,7 @@
                         </a>
                     </div>
                     <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo base_url("Efficiency/Cutting/?dept_id=15&section_id=72") ?>">
+                        <a href="<?php echo base_url("Efficiency/LFB") ?>">
                             <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:#330066">
                                 <div class="">
                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">

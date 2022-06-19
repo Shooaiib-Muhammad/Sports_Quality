@@ -20,6 +20,9 @@ if (!$this->session->has_userdata('user_id')) {
         <main id="js-page-content" role="main" class="page-content">
 
           <div class="col-lg-12" style="margin-bottom:20px">
+
+
+          
           <ol class="breadcrumb page-breadcrumb">
                         <li class="breadcrumb-item"><a href="<?php echo base_url(
                                                                     'index.php/main/dmms_dashboard'
@@ -63,7 +66,6 @@ if (!$this->session->has_userdata('user_id')) {
     ?>
 
 
-    <!-- <div class="row clearfix"> -->
     <div class="card">
       <div class="card-body">
         <h5 class="card-title"><b>Date Filteration</b></h5>
@@ -151,25 +153,25 @@ if (!$this->session->has_userdata('user_id')) {
 
 
 
+      
 
 
 
-    <script src="<?php echo base_url(); ?>assets/js/chart.js"></script>
-      <script src="<?php echo base_url(); ?>assets/js/jquery.min.js" type="text/javascript"></script>
-      <?php $this->load->View('AdminFooter'); ?>
-      <script src="<?php echo base_url(); ?>/assets/charts/highcharts.js"></script>
-      <script src="<?php echo base_url(); ?>/assets/charts/data.js"></script>
-      <script src="<?php echo base_url(); ?>/assets/charts/drilldown.js"></script>
-      <script src="<?php echo base_url(); ?>/assets/charts/exporting.js"></script>
-      <script src="<?php echo base_url(); ?>/assets/charts/export-data.js"></script>
-      <script src="<?php echo base_url(); ?>/assets/charts/accessibility.js"></script>
-
+      <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
+      <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
       <script type="text/javascript">
-
           /* Activate smart panels */
           $('#js-page-content').smartPanel();
       </script>
-    
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+
+
+<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+
+  
 
 
 
@@ -3330,17 +3332,28 @@ Highcharts.chart('lineChartHum', {
       }
     </script>
 
+</div>
+
+</body>
 
 
   <?php } else {redirect('Welcome/index');}
 ?>
 
-          </div>
-        </main>
-      </div>
-    </div>
-  </div>
-</div>
+      
 <?php 
 }
 ?>
+
+          </div>
+
+        </main>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  </div>
+

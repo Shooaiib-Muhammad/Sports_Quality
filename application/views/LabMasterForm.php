@@ -2216,7 +2216,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="card" id="printCardMSThread">
+                                                <div class="card" id="printCardMSMaterial">
                                                     <div class="card-body">
 
                                                         <div class="row">
@@ -2263,7 +2263,7 @@ if (!$this->session->has_userdata('user_id')) {
            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
                                                             <table class="table">
                                                                 <tr>
-                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoMSThread"> </span></label></th>
+                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoMSThread">  </span></label></th>
                                                                     <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMSThread"> </span></label></th>
                                                                 </tr>
                                                                 <tr>
@@ -2413,7 +2413,7 @@ if (!$this->session->has_userdata('user_id')) {
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardMSThread')" data-dismiss="modal">Print Report</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardMSMaterial')" data-dismiss="modal">Print Report</button>
                                             </div>
                                             <div class="card-footer text-muted">
                                                 Forward Sports Pvt. Ltd.
@@ -2745,6 +2745,217 @@ if (!$this->session->has_userdata('user_id')) {
 
                                 <!-- End Model Blader HTML -->
 
+  <!-- Model MS Materail HTML -->
+
+  <div class="modal fade bd-example-modal-lg" id="exampleModalMSMaterial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCardMSMaterialL">
+                                                    <div class="card-body">
+
+                                                    <div class="row">
+        <div class="col-md-9">
+            <table class="table">
+                <tr>
+                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
+    
+                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
+                    <th></th>
+                    <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Blader</th> -->
+                    <th> </th>
+                </tr>
+            </table>
+            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;" > Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Master </h3>
+            <table class="table">
+                <tr>
+                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testMSMaterial">  </span></label></th>
+                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMSMaterial"> </span></label></th>
+                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateMSMaterial"> </span></label></th>
+                </tr>
+                <tr>
+                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameMSMaterial"> </span></label></th>
+                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Po#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="poMSMaterial"> </span></label></th>
+                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="MaterialNameMSMaterial"> </span></label></th>
+
+                </tr>
+    
+                <tr>
+                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Thickness:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="thicknessMSMaterial"> </span></label></th>
+                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold">  Hardness:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="hardnessMSMaterial"> </span></label></th>
+                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Visual Result:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="visualResultMSMaterialr"> </span></label></th>
+
+                </tr>
+
+    
+    
+            </table>
+            <div class="col-md-2"></div>
+            <div class="col-md-10 mt-3">
+                <table class="table table-bordered " >
+                    <thead>
+                        <tr class="border">
+                            <th class="border border-dark" style="text-align: center;font-size:large;">Test</th>
+                            <th class="border border-dark" style="text-align: center;font-size:large;">Requirement</th>
+                            <th class="border border-dark" colspan="6" style="text-align: center;font-size:large;">Results
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="DetailsTestMSMaterial">
+    
+                        <tr>
+                            <th class="border" rowspan="2">
+                                Upper Film Declamination Strength
+                                
+                            </th>
+                            
+                            <td class="border" colspan="3">
+                                <th class="border">1
+                                    <th class="border">2</th>
+                                    <th class="border">3</th>
+                                </th>
+                            </td>
+                        </tr>
+
+                        
+                        
+                        
+    
+                    </tbody>
+                </table>
+            </div>
+    
+            <div class="col-md-2"></div>
+    
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="visualResultMSMaterialr">  </span></label></div>
+    
+            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="Conclusion"> </span></label></div>
+    
+    
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+                        <span>Bilal Tahir </span>
+                    </th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th> <span style="font-size: medium;font-weight:bold"> </span><br>
+                        <span id="testPerformedMSMaterial"> </span>
+                    </th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span style="font-size: medium;font-weight:bold"></span><br><span id="testReviewedMSMaterial"> </span>
+                    </th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+    
+    
+                    <th> <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+                        <span id="testApprovedMSMaterial"> Sohail Ghouri </span>
+                    </th>
+                </tr>
+            </table>
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>
+                        <h5 style="font-weight:bold;color:black">Note:</h5>
+                        <span id="testApprovedMSMaterial"> N.T Not Tested </span>
+    
+                    </th>
+                </tr>
+            </table>
+
+
+
+            
+        </div>
+
+    
+    <div class="col-md-3">
+    <div class="row mb-5 mt-5">
+                <div class="col-md-9 p-1">
+                    <div class="row mt-5 d-flex justify-content-center text-center">
+                        <div class="col-md-6 border border-dark p-3">
+                            <span> <b>Hardness:</b></span>
+        
+                        </div>
+                    </div>
+                    
+                    <div class="row d-flex justify-content-center text-center">
+                        <div class="col-md-6 border border-dark p-2">
+                            <span > <b>46.4Akser C</b></span>
+                        </div>
+                    </div>
+                    <div class="row  d-flex justify-content-center text-center">
+                        <div class="col-md-6 border border-dark p-2">
+                            <span> <b>Resillance</b></span>
+                        </div>
+                    </div>
+        
+                    <div class="row  d-flex justify-content-center text-center">
+                        <div class="col-md-6 border border-dark p-2">
+                            <span> <b>48.1%</b></span>
+                        </div>
+                    </div>
+                    <div class="row  d-flex justify-content-center text-center">
+                        <div class="col-md-6 border border-dark p-2">
+                            <span> <b>Compression</b></span>
+                        </div>
+                    </div>
+        
+                    <div class="row  d-flex justify-content-center text-center">
+                        <div class="col-md-6 border border-dark p-2">
+                            <span> <b>91.3%</b></span>
+                        </div>
+                    </div>
+                    <div class="row  d-flex justify-content-center text-center">
+                        <div class="col-md-6 border border-dark p-2">
+                            <span> <b>Migration on PVC film</b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+
+    </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardMSMaterialL')" data-dismiss="modal">Print Report</button>
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- End Model MS Material HTML -->
+
                                 <!-- Model Blader HTML Standard -->
 
                                 <div class="modal fade bd-example-modal-lg" id="exampleModalBladerStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -3022,6 +3233,37 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </tbody>
                                                                 </table>
                                                             </div>
+
+
+                                                            <div class="col-md-10 mt-3">
+                                                                <table class="table table-bordered" style="border:2px solid black">
+                                                                    <thead>
+                                                                        <tr style="border:2px solid black">
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Weight</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Circumference Min</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Circumference Max</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Deviation</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Rebound Test</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Remarks</th>
+                                                                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
+
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="DetailsTestFGT">
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
 
                                                             <div class="col-md-2"></div>
                                                             <!-- <div class="col-md-4">
@@ -3712,9 +3954,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <?php
                                                                     } else {
                                                             ?>
-                                                                <td>
-                                                                    <div class="col-md-2">
-
+                                                            
 
                                                                     </div>
                                                                 </td>
@@ -4748,6 +4988,8 @@ ${reviewStatus == '1' ?
                                                     $("#DetailsTestBlader").html(html);
 
                                                 });
+
+
                                             $('#exampleModalBlader').modal('toggle');
 
                                         } else if (data[0].ItemType.trim() == 'FGT') {
@@ -4797,9 +5039,21 @@ ${reviewStatus == '1' ?
                                                     $("#DetailsTestFGT").html(html);
 
                                                 });
+
+
+
+
+                                        
+                                                
+
+
+
                                             $('#exampleModalFGT').modal('toggle');
 
-                                        } else if (data[0].ItemType.trim() == 'MS Thread') {
+                                        } 
+                                        
+                                        
+                                        else if (data[0].ItemType.trim() == 'MS Thread') {
 
                                             $("#testNoMSThread").text(data[0].TestNO);
                                             $("#dateTestMSThread").text(data[0].Date);
@@ -6270,6 +6524,8 @@ ${reviewStatus == '1' ?
                                                     $("#DetailsTestBlader").html(html);
 
                                                 });
+
+
                                             $('#exampleModalBlader').modal('toggle');
 
                                         } else if (data[0].ItemType.trim() == 'FGT') {
@@ -6319,49 +6575,52 @@ ${reviewStatus == '1' ?
                                                     $("#DetailsTestFGT").html(html);
 
                                                 });
-                                            $('#exampleModalFGT').modal('toggle');
+                                       
 
-                                        } else if (data[0].ItemType.trim() == 'MS Thread') {
 
-                                            $("#testNoMSThread").text(data[0].TestNO);
-                                            $("#dateTestMSThread").text(data[0].Date);
-                                            $("#ponoMSThread").text(data[0].PO);
-                                            $("#receiveDateMSThread").text(data[0].Receiving_Date);
-                                            $("#MaterialNameMSThread").text(data[0].material);
-                                            $("#supplierNameMSThread").text(data[0].Supplier_Name);
-                                            $("#supplierRefMSThread").text(data[0].Supplier_Ref);
-                                            $("#testPerformedMSThread").text(data[0].performedBy);
-                                            data[0].Approvalname ? $("#testApprovedMSThread").text(data[0].Approvalname) : $("#testApprovedMSThread").text("Pending");
-                                            //  $("#Incharge").text(data[0].Approvalname);
-                                            if (data[0].image != null && data[0].image != "") {
-                                                $("#threadMSImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
-                                            } else {
-                                                $("#threadMSImage").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                            }
-                                            data[0].reviewName ? $("#testReviewedMSThread").text(data[0].reviewName) : $("#testReviewedMSThread").text("Pending");
-                                            $("#ConclusionMSThread").text(data[0].Result);
-                                            $("#statusMSThread").text(data[0].Result);
-                                            $.post(url2, {
-                                                    'TID': TID
-                                                },
-                                                function(data, status) {
-
-                                                    html = ''
-                                                    data.forEach(element => {
-                                                        html += `<tr>
-                   <td style="border:2px solid black">${element.Test}</td>
-                   <td style="border:2px solid black">${element.Method}</td>
-                   <td style="border:2px solid black">${element.Unit}</td>
-                   <td style="border:2px solid black">${element.Requirments}</td>
-                   <td style="border:2px solid black">${element.result}</td>
-               </tr>`
-                                                    });
-
-                                                    $("#DetailsTestMSThread").html(html);
-
-                                                });
                                             $('#exampleModalMSThread').modal('toggle');
                                         }
+                                        else if (data[0].ItemType.trim() == 'MS Thread') {
+
+$("#testNoMSThread").text(data[0].TestNO);
+$("#dateTestMSThread").text(data[0].Date);
+$("#ponoMSThread").text(data[0].PO);
+$("#receiveDateMSThread").text(data[0].Receiving_Date);
+$("#MaterialNameMSThread").text(data[0].material);
+$("#supplierNameMSThread").text(data[0].Supplier_Name);
+$("#supplierRefMSThread").text(data[0].Supplier_Ref);
+$("#testPerformedMSThread").text(data[0].performedBy);
+data[0].Approvalname ? $("#testApprovedMSThread").text(data[0].Approvalname) : $("#testApprovedMSThread").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if (data[0].image != null && data[0].image != "") {
+    $("#threadMSImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
+} else {
+    $("#threadMSImage").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+}
+data[0].reviewName ? $("#testReviewedMSThread").text(data[0].reviewName) : $("#testReviewedMSThread").text("Pending");
+$("#ConclusionMSThread").text(data[0].Result);
+$("#statusMSThread").text(data[0].Result);
+$.post(url2, {
+        'TID': TID
+    },
+    function(data, status) {
+
+        html = ''
+        data.forEach(element => {
+            html += `<tr>
+<td style="border:2px solid black">${element.Test}</td>
+<td style="border:2px solid black">${element.Method}</td>
+<td style="border:2px solid black">${element.Unit}</td>
+<td style="border:2px solid black">${element.Requirments}</td>
+<td style="border:2px solid black">${element.result}</td>
+</tr>`
+        });
+
+        $("#DetailsTestMSThread").html(html);
+
+    });
+$('#exampleModalMSThread').modal('toggle');
+}
 
 
                                     });
@@ -7194,9 +7453,62 @@ ${reviewStatus == '1' ?
                                                     $("#DetailsTestFGT").html(html);
 
                                                 });
+                                                
                                             $('#exampleModalFGT').modal('toggle');
 
-                                        } else if (data[0].ItemType.trim() == 'MS Thread') {
+                                        } 
+                                        else if (data[0].ItemType.trim() == 'MS Material') {
+
+$("#testMSMaterial").text(data[0].TestNO);
+$("#dateTestMSMaterial").text(data[0].Date);
+$("#ponoMSMaterial").text(data[0].PO);
+$("#receiveDateMSMaterial").text(data[0].Receiving_Date);
+$("#MaterialNameMSMaterial").text(data[0].material);
+$("#supplierNameMSMaterial").text(data[0].Supplier_Name);
+$("#poMSMaterial").text(data[0].PO);
+$("#thicknessMSMaterial").text(data[0].Thickness);
+$("#hardnessMSMaterial").text(data[0].Hardness);
+$("#MSMaterial").text(data[0].Thickness);
+$("#visualResultMSMaterialr").text(data[0].Result);
+
+
+$("#testPerformedMSMaterial").text(data[0].performedBy);
+data[0].Approvalname ? $("#testApprovedMSMaterial").text(data[0].Approvalname) : $("#testApprovedMSMaterial").text("Pending");
+//  $("#Incharge").text(data[0].Approvalname);
+if (data[0].image != null && data[0].image != "") {
+    $("#threadMSImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
+} else {
+    $("#threadMSImage").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+}
+data[0].reviewName ? $("#testReviewedMSMaterial").text(data[0].reviewName) : $("#testReviewedMSMaterial").text("Pending");
+$("#ConclusionMSMaterial").text(data[0].Result);
+$("#statusMSMaterial").text(data[0].Result);
+$.post(url2, {
+        'TID': TID
+    },
+    function(data, status) {
+
+        html = ''
+        data.forEach(element => {
+            html += `<tr>
+<td style="border:2px solid black">${element.Test}</td>
+<td style="border:2px solid black">${element.Method}</td>
+<td style="border:2px solid black">${element.Unit}</td>
+<td style="border:2px solid black">${element.Requirments}</td>
+<td style="border:2px solid black">${element.result}</td>
+</tr>`
+        });
+
+        
+
+    });
+
+
+$('#exampleModalMSMaterial').modal('toggle');
+
+
+}
+                                        else if (data[0].ItemType.trim() == 'MS Thread') {
 
                                             $("#testNoMSThread").text(data[0].TestNO);
                                             $("#dateTestMSThread").text(data[0].Date);

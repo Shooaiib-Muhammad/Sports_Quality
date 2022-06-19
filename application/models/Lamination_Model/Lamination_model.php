@@ -19,6 +19,25 @@ public function IndividualReading($s_date, $e_date){
   return  $query->result_array();
 }
 
+public function TotalReadingDateRange($s_date, $e_date)
+{
+ $query = $this->db->query("SELECT MAX(Reading) AS TotalReading, EntryDate FROM dbo.view_Lamintion
+ WHERE (EntryDate BETWEEN CONVERT(Varchar, '$s_date', 103) AND CONVERT(Varchar, '$e_date', 103))
+ GROUP BY EntryDate
+ ORDER BY EntryDate
+       ");
+ return  $query->result_array();
+}
+
+public function IndividualReadingDateRange($s_date, $e_date){
+$query = $this->db->query("SELECT MAX(Reading) AS Reading, MachineName, EntryDate FROM dbo.view_Lamintion
+ WHERE (EntryDate BETWEEN CONVERT(Varchar, '$s_date', 103) AND CONVERT(Varchar, '$e_date', 103))
+ GROUP BY MachineName, EntryDate
+ ORDER BY EntryDate
+       ");
+ return  $query->result_array();
+}
+
       public function HourllyReading($s_date, $e_date)
       {
             $query = $this->db->query("SELECT        Reading , MachineName, HourName
