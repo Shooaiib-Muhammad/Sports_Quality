@@ -105,4 +105,12 @@ where        (DAY(EntryTime) = $Day) AND (MONTH(EntryTime) = $Month) AND (YEAR(E
 		return  $query->result_array();
 		
 	}
+	public function getEnergyDt($date1 ,$date2){
+
+		$query = $this->db->query("SELECT        HallName, Energy, ID, EntryTime, EntryDate
+		FROM            dbo.view_energy_info
+		WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$date1 00:00:00', 102) AND CONVERT(DATETIME, '$date2 00:00:00', 102)) AND (Energy > 0)");
+		return  $query->result_array();
+		
+	}
 }

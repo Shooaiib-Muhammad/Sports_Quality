@@ -50,4 +50,13 @@ $data['dailyenergy']= $this->Energy->dailyenergy();
 	
 		$this->load->view('energy/view',$data);
 }
+public function getEnergyDt($date1 ,$date2){
+	//echo "i am hjere";
+		$data= $this->Energy->getEnergyDt($date1 ,$date2);
+		return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+	}
+
 }

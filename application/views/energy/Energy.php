@@ -191,38 +191,38 @@ if (!$this->session->has_userdata('user_id')) {
           <?php
 //foreach ($energyinfo as $keys){
  //print_r($energyinfo);
-  if($energyinfo[2]['HallName']=='Compressor Panel'){
-    $CEnergy=$energyinfo[2]['Energy'];
-  }
-  if($energyinfo[0]['HallName']=='AMB'){
-    $ambEnergy=$energyinfo[0]['Energy'];
-  }
-  if($energyinfo[3]['HallName']=='MS'){
-    $MSEnergy=$energyinfo[3]['Energy'];
-  }
-  if($energyinfo[1]['HallName']=='Canteen'){
-    $CenteenEnergy=$energyinfo[1]['Energy'];
-  }
+  // if($energyinfo[2]['HallName']=='Compressor Panel'){
+  //   $CEnergy=$energyinfo[2]['Energy'];
+  // }
+  // if($energyinfo[0]['HallName']=='AMB'){
+  //   $ambEnergy=$energyinfo[0]['Energy'];
+  // }
+  // if($energyinfo[3]['HallName']=='MS'){
+  //   $MSEnergy=$energyinfo[3]['Energy'];
+  // }
+  // if($energyinfo[1]['HallName']=='Canteen'){
+  //   $CenteenEnergy=$energyinfo[1]['Energy'];
+  // }
   
-  if($energyinfo[9]['HallName']=='Compressor'){
-    $CompressorEnergy=$energyinfo[9]['Energy'];
-  }
-  if($energyinfo[1170]['HallName']=='FACILITY'){
-    $FACILITYEnergy=$energyinfo[1170]['Energy'];
-  }
+  // if($energyinfo[9]['HallName']=='Compressor'){
+  //   $CompressorEnergy=$energyinfo[9]['Energy'];
+  // }
+  // if($energyinfo[1170]['HallName']=='FACILITY'){
+  //   $FACILITYEnergy=$energyinfo[1170]['Energy'];
+  // }
 
-  if($energyinfo[8]['HallName']=='MS PRINTING'){
-    $msprintingEnergy=$energyinfo[8]['Energy'];
-  }
-  if($energyinfo[4]['HallName']=='OVAL Machine'){
-    $ovalmachineEnergy=$energyinfo[4]['Energy'];
-  }
-  if($energyinfo[5]['HallName']=='TM'){
-    $tmEnergy=$energyinfo[5]['Energy'];
-  }
-  if($energyinfo[6]['HallName']=='WorkShop'){
-    $workshopEnergy=$energyinfo[6]['Energy'];
-  }
+  // if($energyinfo[8]['HallName']=='MS PRINTING'){
+  //   $msprintingEnergy=$energyinfo[8]['Energy'];
+  // }
+  // if($energyinfo[4]['HallName']=='OVAL Machine'){
+  //   $ovalmachineEnergy=$energyinfo[4]['Energy'];
+  // }
+  // if($energyinfo[5]['HallName']=='TM'){
+  //   $tmEnergy=$energyinfo[5]['Energy'];
+  // }
+  // if($energyinfo[6]['HallName']=='WorkShop'){
+  //   $workshopEnergy=$energyinfo[6]['Energy'];
+  // }
  
 //}
 
@@ -234,11 +234,60 @@ if (!$this->session->has_userdata('user_id')) {
 
           <!-- highchart main data -->
           <div class="col-lg-12">
+          <?php
+        $Month = date('m');
+        $Year = date('Y');
+        $Day = date('d');
+        $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+        ?>
+
+
+        <!-- <div class="row clearfix"> -->
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><b>Date Filteration</b></h5>
+            
+              <div class="row clearfix">
+                <div class="col-md-2" style="margin-right:20px;">
+                  <div class="form-group">
+                    <label class="form-control-label">From Date:</label>
+                    <div class="input-group">
+                      <input class="form-control" type="Date" id="date1" name="Sdate" value="<?php echo $CurrentDate; ?>" style="width: 100%">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="form-control-label">To Date:</label>
+                    <div class="input-group">
+                      <input class="form-control" type="Date" id="date2" name="Edate" value="<?php echo $CurrentDate; ?>" style="width: 100%">
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="col-md-1">
+                  <div class="form-group">
+                 
+                    <div style="margin:18px" class="input-group">
+                      <br>
+                      <br>
+
+                      <button type="button" class="btn-primary btn btn-md mt-3" onclick="loadData()">Save</button>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+         
+          </div>
+        </div>
             <div id="panel-1" class="panel">
               <div class="panel-hdr">
                 <h2>
-                  Energy Consuption
-                  <!-- <?php Print_r($getData); ?> -->
+                  Today Energy Consuption
+               
                 </h2>
               </div>
               <div class="panel-container show">
@@ -247,42 +296,17 @@ if (!$this->session->has_userdata('user_id')) {
                 </div>
 
               </div>
+           
             </div>
+            <div class="col-md-8">
+  <div id="Data"></div>
+  </div>
+      </div>
+    </div>
           </div>
 
 
-
-
-
-          <!-- <div class="col-md-4">
-                                                    <h3 class="text-center">Test & Packages</h3>
-                                                    <div class="d-flex mt-2">
-                                                        Balls
-                                                        <span class="d-inline-block ml-auto">130 / 500</span>
-                                                    </div>
-                                                    <div class="progress progress-sm mb-3">
-                                                        <div class="progress-bar bg-fusion-400" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="d-flex">
-                                                        Bags
-                                                        <span class="d-inline-block ml-auto">440 TB</span>
-                                                    </div>
-                                                    <div class="progress progress-sm mb-3">
-                                                        <div class="progress-bar bg-success-500" role="progressbar" style="width: 34%;" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <div class="d-flex">
-                                                        Raw Material
-                                                        <span class="d-inline-block ml-auto">77%</span>
-                                                    </div>
-                                                    <div class="progress progress-sm mb-3">
-                                                        <div class="progress-bar bg-info-400" role="progressbar" style="width: 77%;" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    
-                                                    
-                                                   
-                  </div> -->
-      </div>
-    </div>
+          
 
 
 
@@ -291,7 +315,7 @@ if (!$this->session->has_userdata('user_id')) {
 
   </div>
   </div>
-  <div class="col-md-4"></div>
+ 
   </div>
   </div>
   </div>
@@ -314,9 +338,7 @@ if (!$this->session->has_userdata('user_id')) {
 
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-  <script>
-
-  </script>
+  
   <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
   <!-- BEGIN Page Footer -->
   <footer class="page-footer" role="contentinfo">
@@ -1819,6 +1841,7 @@ if (!$this->session->has_userdata('user_id')) {
   <script src="https://code.highcharts.com/modules/accessibility.js"></script>
   <script>
     $(document).ready(function() {
+      loadData()
       var datesArray = []
       var energy = []
       var msPrinting = []
@@ -1946,7 +1969,7 @@ if (!$this->session->has_userdata('user_id')) {
           yAxis: {
             min: 0,
             title: {
-              text: 'Energy'
+              text: 'Energy (KV)'
             }
           },
           tooltip: {
@@ -1971,74 +1994,246 @@ if (!$this->session->has_userdata('user_id')) {
           },
           series: seriesData
         });
+        
       });
+      function loadData(){
+
+//var Type = $("select[name='Type']").val()
+  var date1 =  $("#date1").val()
+    var date2 = $("#date2").val()
+ // alert(date1);
+      let  url = "<?php echo base_url("Energy/energy/getEnergyDt/") ?>" + date1 + "/" + date2
+//alert(url);
+ $.get(url, function(data) {
+console.log(data);
+//  for (var i = 0; i < data.length; i++) {
+
+  let appendtable = '';
+        appendtable += `<table class="table table-striped table-hover table-sm" id="ActivityData" >
+                                <thead>
+                                    <tr  class="bg-primary-200"  style="color:white;">
+                                    <th>Date </th>
+                                    <th>Hall Name</th>
+                                     <th>KV  </th>
+                                     <th>Date and Time</th>
+                                      
+                                        
+                                         
+                                              
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>`
+        data.forEach((element) => {
+          appendtable += `<tr>
+          <td>${element.EntryDate}</td>
+                                <td> ${element.HallName} </td>
+                                       <td>${element.Energy} </td>
+                                        <td>${element.EntryTime}</td>
+                                     
+                                
+                                        </tr>`
+        })
+
+        appendtable += `</tbody>
+
+                                </table>`
+ 
+ 
+     $("#Data").html(appendtable)
+     $('#ActivityData').dataTable({
+          responsive: false,
+          lengthChange: false,
+          dom:
+            /*	--- Layout Structure 
+            	--- Options
+            	l	-	length changing input control
+            	f	-	filtering input
+            	t	-	The table!
+            	i	-	Table information summary
+            	p	-	pagination control
+            	r	-	processing display element
+            	B	-	buttons
+            	R	-	ColReorder
+            	S	-	Select
+
+            	--- Markup
+            	< and >				- div element
+            	<"class" and >		- div with a class
+            	<"#id" and >		- div with an ID
+            	<"#id.class" and >	- div with an ID and a class
+
+            	--- Further reading
+            	https://datatables.net/reference/option/dom
+            	--------------------------------------
+             */
+            "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+          buttons: [
+            /*{
+            	extend:    'colvis',
+            	text:      'Column Visibility',
+            	titleAttr: 'Col visibility',
+            	className: 'mr-sm-3'
+            },*/
+            {
+              extend: 'pdfHtml5',
+              text: 'PDF',
+              titleAttr: 'Generate PDF',
+              className: 'btn-outline-danger btn-sm mr-1'
+            },
+            {
+              extend: 'excelHtml5',
+              text: 'Excel',
+              titleAttr: 'Generate Excel',
+              className: 'btn-outline-success btn-sm mr-1'
+            },
+            {
+              extend: 'csvHtml5',
+              text: 'CSV',
+              titleAttr: 'Generate CSV',
+              className: 'btn-outline-primary btn-sm mr-1'
+            },
+            {
+              extend: 'copyHtml5',
+              text: 'Copy',
+              titleAttr: 'Copy to clipboard',
+              className: 'btn-outline-primary btn-sm mr-1'
+            },
+            {
+              extend: 'print',
+              text: 'Print',
+              titleAttr: 'Print Table',
+              className: 'btn-outline-primary btn-sm'
+            }
+          ]
+        });
+ });
+        }
     });
-    // Highcharts.chart('container', {
+    
+    function loadData(){
 
-    //   title: {
-    //     text: ''
-    //   },
+//var Type = $("select[name='Type']").val()
+  var date1 =  $("#date1").val()
+    var date2 = $("#date2").val()
+  //alert(date1);
+      let  url = "<?php echo base_url("Energy/energy/getEnergyDt/") ?>" + date1 + "/" + date2
+//alert(url);
+ $.get(url, function(data) {
+console.log(data);
+//  for (var i = 0; i < data.length; i++) {
 
-    //   subtitle: {
-    //     text: ''
-    //   },
+  let appendtable = '';
+        appendtable += `<table class="table table-striped table-hover table-sm" id="ActivityData" >
+                                <thead>
+                                    <tr  class="bg-primary-200"  style="color:white;">
+                                    <th>Date </th>
+                                    <th>Hall Name</th>
+                                     <th>Volate  </th>
+                                     <th>Date and Time</th>
+                                    
+                                        
+                                         
+                                              
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>`
+        data.forEach((element) => {
+          appendtable += `<tr>
+          <td>${element.EntryDate}</td>
+                                <td> ${element.HallName} </td>
+                                       <td>${element.Energy} </td>
+                                        <td>${element.EntryTime}</td>
+                                       
+                                
+                                        </tr>`
+        })
 
-    //   yAxis: {
-    //     title: {
-    //       text: 'KHWs'
-    //     }
-    //   },
+        appendtable += `</tbody>
 
-    //   xAxis: {
-    //     accessibility: {
-    //       //	rangeDescription: 'Range: 2010 to 2017'
-    //     }
-    //   },
+                                </table>`
+ 
+ 
+     $("#Data").html(appendtable)
+     $('#ActivityData').dataTable({
+          responsive: false,
+          lengthChange: false,
+          dom:
+            /*	--- Layout Structure 
+            	--- Options
+            	l	-	length changing input control
+            	f	-	filtering input
+            	t	-	The table!
+            	i	-	Table information summary
+            	p	-	pagination control
+            	r	-	processing display element
+            	B	-	buttons
+            	R	-	ColReorder
+            	S	-	Select
 
-    //   legend: {
-    //     layout: 'vertical',
-    //     align: 'right',
-    //     verticalAlign: 'middle'
-    //   },
+            	--- Markup
+            	< and >				- div element
+            	<"class" and >		- div with a class
+            	<"#id" and >		- div with an ID
+            	<"#id.class" and >	- div with an ID and a class
 
-    //   plotOptions: {
-    //     series: {
-    //       label: {
-    //         connectorAllowed: false
-    //       },
-    //       pointStart: 1
-    //     },
-    //     tooltip: {
-    //       formatter: function() {
-    //         return 'The value for <b>' + this.x + '</b> is <b>' + this.y + '</b>, in series ' + this.series.name;
-    //       }
-    //     }
-    //   },
+            	--- Further reading
+            	https://datatables.net/reference/option/dom
+            	--------------------------------------
+             */
+            "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+          buttons: [
+            /*{
+            	extend:    'colvis',
+            	text:      'Column Visibility',
+            	titleAttr: 'Col visibility',
+            	className: 'mr-sm-3'
+            },*/
+            {
+              extend: 'pdfHtml5',
+              text: 'PDF',
+              titleAttr: 'Generate PDF',
+              className: 'btn-outline-danger btn-sm mr-1'
+            },
+            {
+              extend: 'excelHtml5',
+              text: 'Excel',
+              titleAttr: 'Generate Excel',
+              className: 'btn-outline-success btn-sm mr-1'
+            },
+            {
+              extend: 'csvHtml5',
+              text: 'CSV',
+              titleAttr: 'Generate CSV',
+              className: 'btn-outline-primary btn-sm mr-1'
+            },
+            {
+              extend: 'copyHtml5',
+              text: 'Copy',
+              titleAttr: 'Copy to clipboard',
+              className: 'btn-outline-primary btn-sm mr-1'
+            },
+            {
+              extend: 'print',
+              text: 'Print',
+              titleAttr: 'Print Table',
+              className: 'btn-outline-primary btn-sm'
+            }
+          ]
+        });
+ });
+        }
 
-    //   series: [{
-    //     //name: <?php echo  json_encode($Time) ?>,
-    //     name: "Facility",
+  
 
-    //     //.data:[1,2,3,4,5]
-    //     data: <?php echo json_encode($Facility, JSON_NUMERIC_CHECK); ?>
-    //   }],
+      
 
-    //   responsive: {
-    //     rules: [{
-    //       condition: {
-    //         maxWidth: 500
-    //       },
-    //       chartOptions: {
-    //         legend: {
-    //           layout: 'horizontal',
-    //           align: 'center',
-    //           verticalAlign: 'bottom'
-    //         }
-    //       }
-    //     }]
-    //   }
-
-    // });
+  
   </script>
 
   </body>

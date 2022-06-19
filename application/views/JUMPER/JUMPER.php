@@ -1523,15 +1523,7 @@ url = "<?php echo base_url(''); ?>JUMPER/JUMPER/CallData"
         $("select[name=section]").html(options)
 
 });
-//image = '<img src="data:image/jpeg;base64,'+EmpPic+'" alt="" class="img-fluid" width="120" height="100">'
-        //$('#department') .append($("<option></option >").attr("value", DeptID).text(department)); 
-        // $('#section').append($("<option></option>").attr("value", SectionID).text(section)); 
-                    //$('#designation').append($("<option></option>") .attr("value", DesignationID).text(designation)); 
-      //               html += '<img src="data:image/jpeg;base64,'+ cardNo[0][EmpPic+'" alt="" class="img-fluid" width="120" height="100">'
-      // $('#image').append(html)
-        // $('#section').append('<optionvalue="'SectionID'">'section'</option>')
-        // $('#designation').append('<option value="'DesignationID'">'designation'</option>')
-       // $("image]").html(image)
+
         
       
       });
