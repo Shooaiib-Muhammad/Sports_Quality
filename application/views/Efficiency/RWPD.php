@@ -150,7 +150,8 @@ foreach ($HourllyReading as $key) {
     // array_push($target, $point3);
     //array_push($lineNames, $key['LineName']);
 
-} ?>
+} 
+?>
                 <!-- <div class="subheader">
                     <h1 class="subheader-title">
                         <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Dashboard</span>

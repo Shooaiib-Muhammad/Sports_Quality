@@ -217,5 +217,16 @@ return  $query->result_array();
         ");
                 return  $query->result_array();
         }
-        
+        public function gettingambcoreData($startDate,$endDate){
+            
+                
+                $query = $this->db->query("SELECT        Date, COUNT(counter) AS Counter
+                FROM            dbo.view_PC_Core
+                WHERE        (Entrydate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY Date
+                
+    ");
+                return  $query->result_array();
+
+        }
 }

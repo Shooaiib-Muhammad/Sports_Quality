@@ -664,6 +664,17 @@ class Efficiency extends CI_Controller
     ->set_status_header(200)
     ->set_output(json_encode($data));
   }
+public function gettingambcoreData(){
+$startDate = $_POST['startDate'];
+$endDate = $_POST['endDate'];
 
+$data['BarData'] = $this->E->gettingambcoreData($startDate, $endDate);
+//$data['MachineData'] = $this->E->getCuttingSheetSizingDateRangeDataMachineWise($startDate, $endDate);
+
+return $this->output
+->set_content_type('application/json')
+->set_status_header(200)
+->set_output(json_encode($data));
+}
 
 }

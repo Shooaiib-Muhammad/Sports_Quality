@@ -765,7 +765,7 @@
 
                         </li>
                         <li>
-                            <a href="<?php echo base_url('CoreController') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                            <a href="<?php echo base_url('CoreController/?dept_id=3&section_id=1165') ?>" title="How it works" data-filter-tags="theme settings how it works">
                                 <span class="" data-i18n="nav.theme_settings_how_it_works">Core</span>
                             </a>
 

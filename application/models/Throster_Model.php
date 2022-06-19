@@ -12,10 +12,11 @@ WHERE        (CONVERT(varchar, DateName, 103) BETWEEN '$s_date' AND '$e_date')
   return  $query->result_array();
  }
  public function Stationwise($s_date, $e_date){
-  $query = $this->db->query("SELECT         IP AS StationName, SUM(Pass) AS PassQty
+  $query = $this->db->query("SELECT         IP AS StationName, SUM(Pass) AS PassQty,LineID
 FROM            dbo.view_packing_MS
 WHERE        (CONVERT(varchar, DateName, 103) BETWEEN '$s_date' AND '$e_date')
-GROUP BY  IP");
+GROUP BY  IP,LineID
+Order By LineID");
   return  $query->result_array();
    
 

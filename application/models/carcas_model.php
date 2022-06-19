@@ -13,10 +13,10 @@ class carcas_model extends CI_Model
     }
     public function getDatacore()
     {
-        $query = $this->db->query("SELECT        COUNT(Counter) AS Counter,  EntryDate
-        FROM            dbo.view_core
-        WHERE        (EntryDate BETWEEN '15/06/2022' AND '16/06/2022')
-        GROUP BY  EntryDate");
+        $query = $this->db->query("SELECT        Date, COUNT(counter) AS Counter
+        FROM            dbo.view_PC_Core
+        WHERE        (Entrydate = CONVERT(DATETIME, '2022-06-18 00:00:00', 102))
+        GROUP BY Date");
       return  $query->result_array();
     }
 public function AddCSSNo($ID,$CssNo){
@@ -34,5 +34,34 @@ public function AddCSSNo($ID,$CssNo){
         return false;
     }
 
+}
+
+public function realTimeAtten($depart, $sect)
+{
+
+        $Month = date('m');
+        $Year = date('Y');
+        $Day = date('d');
+        $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+        $HRDB = $this->load->database('HRMS', TRUE);
+        $query = $HRDB->query("SELECT        AttDate, RealTime, EmpCount, EmployeeType, SectionName, DeptName
+        FROM            dbo.View_Emp_ATT_REALTIME_CALC_Final
+WHERE        (AttDate = CONVERT(DATETIME, '$CurrentDate 00:00:00', 102)) AND (DeptID = $depart) AND (SectionID = $sect) AND (EmployeeType = 'Direct')
+
+");
+        return  $query->result_array();
+}
+public function HourllyCore(){
+  $Month = date('m');
+  $Year = date('Y');
+  $Day = date('d');
+  $query = $this->db->query("SELECT        TOP (100) PERCENT dbo.view_PC_Core.Date, COUNT(dbo.view_PC_Core.counter) AS Counter, dbo.view_PC_Core.HID, dbo.tbl_PC_AMB_Hours.HourName
+  FROM            dbo.view_PC_Core INNER JOIN
+                           dbo.tbl_PC_AMB_Hours ON dbo.view_PC_Core.HID = dbo.tbl_PC_AMB_Hours.Hour
+  WHERE        (dbo.view_PC_Core.Entrydate BETWEEN CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102) AND CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
+  GROUP BY dbo.view_PC_Core.Date, dbo.view_PC_Core.HID, dbo.tbl_PC_AMB_Hours.HourName
+  ORDER BY dbo.view_PC_Core.HID
+  ");
+return  $query->result_array();
 }
 }
