@@ -1,4 +1,117 @@
 <?php $this->load->view('includes/new_header'); ?>
+<!--  -->
+<style>
+    .highcharts-figure .chart-container {
+        width: 100%;
+        height: 45%;
+
+
+    }
+
+    .highcharts-figure,
+    .highcharts-data-table table {
+        width: 600px;
+        margin-left: 35%;
+        margin-top: 70px;
+    }
+
+    .highcharts-data-table table {
+        font-family: Verdana, sans-serif;
+        border-collapse: collapse;
+        border: 1px solid #ebebeb;
+        margin: 10px auto;
+        text-align: center;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .highcharts-data-table caption {
+        padding: 1em 0;
+        font-size: 1.6em;
+        color: grey;
+    }
+
+    .highcharts-data-table th {
+        font-weight: 800;
+        padding: 0.5em;
+    }
+
+    .highcharts-data-table td,
+    .highcharts-data-table th,
+    .highcharts-data-table caption {
+        padding: 0.5em;
+    }
+
+    .highcharts-data-table thead tr,
+    .highcharts-data-table tr:nth-child(even) {
+        background: #f8f8f8;
+    }
+
+    .highcharts-data-table tr:hover {
+        background: grey;
+    }
+
+    @media (max-width: 600px) {
+
+        .highcharts-figure,
+        .highcharts-data-table table {
+            width: 100%;
+        }
+
+        .highcharts-figure .chart-container {
+            width: 300px;
+            float: none;
+            margin: 0 auto;
+        }
+    }
+
+    .highcharts-figureT,
+    .highcharts-data-table table {
+        min-width: 320px;
+        max-width: 500px;
+        margin: 1em auto;
+    }
+
+    #container {
+        height: 400px;
+    }
+
+    .highcharts-data-table table {
+        font-family: Verdana, sans-serif;
+        border-collapse: collapse;
+        border: 1px solid #ebebeb;
+        margin: 10px auto;
+        text-align: center;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .highcharts-data-table caption {
+        padding: 1em 0;
+        font-size: 1.2em;
+        color: #555;
+    }
+
+    .highcharts-data-table th {
+        font-weight: 600;
+        padding: 0.5em;
+    }
+
+    .highcharts-data-table td,
+    .highcharts-data-table th,
+    .highcharts-data-table caption {
+        padding: 0.5em;
+    }
+
+    .highcharts-data-table thead tr,
+    .highcharts-data-table tr:nth-child(even) {
+        background: #f8f8f8;
+    }
+
+    .highcharts-data-table tr:hover {
+        background: #f1f7ff;
+    }
+</style>
 <!-- BEGIN Page Wrapper -->
 <div class="page-wrapper">
     <div class="page-inner">
@@ -18,272 +131,311 @@
             <!-- BEGIN Page Content -->
             <!-- the #js-page-content id is needed for some plugins to initialize -->
             <main id="js-page-content" role="main" class="page-content">
+               
 
-                <ol class="breadcrumb page-breadcrumb">
-                    <li class="breadcrumb-item"><a href="<?php echo base_url(
-                                                                'index.php/main/dmms_dashboard'
-                                                            ); ?>">Dashboard</a></li>
 
-                    <li class="breadcrumb-item"><a href="javascript:void(0);"> Dashboard</a></li>
-                    <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
-                </ol>
 
                 <div class="subheader">
                     <h1 class="subheader-title">
-                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Dashboard</span>
+                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Airless Mini Assembling Production</span>
                     </h1>
 
 
+                    
+
+
                 </div>
 
+                <ul class="nav nav-pills" role="tablist">
+                                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Date Filteration</a></li>
+
+                </ul>
+                <div class="tab-content py-3">
+
+<div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel" style="background-color: white;">
+<div class="row">
+                    <div class="col-md-12">
+
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                Airless Mini Assembling Total Counter
+                                 
+                                </h2>
+                            </div>
+                            <div class="panel-container show">
+                <div class="row pt-2">
+
+                    <div class="col-md-12 d-flex flex-row">
+
+                        <div class="col-md-1">
+
+                        </div>
+
+                        <?php
+                        //  foreach ($realtime as $d) {
+
+                        ?>
+
+
+                            <?php 
+                            //if ($d['EmployeeType'] == "Direct") {
+                              
+                              ?>
+                                <div class="col-md-2" id="direct">
+                                    <a href="javascript:void(0)">
+                                        <div style="background-color:maroon" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                            <div class="">
+                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+
+                                                    <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
+
+                                                    <small class="m-0 l-h-n">Number of Employees</small>
+                                                   20
+                                                    <!-- <small class="m-0 l-h-n">Real Time</small>
+                                             -->
+
+                                                </h3>
+                                            </div>
+                                            <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                
+                            <?php 
+                          
+                          // } 
+                          ?>
+
+
+
+                        <?php 
+                      
+                      // } 
+                      ?>
+                        <?php
+
+                        //print_r($Counter);
+                        ?>
+                        <div class="col-md-2" id="direct">
+                            <a href="javascript:void(0)">
+                                <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                            <small class="m-0 l-h-n">Total NO of Balls</small>
+                                            <?php echo Round($Data[0]['PassQty'],0); ?>
+                                            <small class="m-0 l-h-n"></small>
+
+
+
+
+
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <?php
+                        $total = $Data[0]['PassQty'];
+                        $Output = $total *8.9;
+
+
+
+                        //$Mints = 0;
+                       // if (isset($d['EmployeeType']) == "Direct") {
+
+
+                            $Mints = (20*24)*480;
+                        
+                            $Efficiecny = ($Output / $Mints)*100 ;
+                        //}
+                        
+
+                        ?>
+
+                        <div class="col-md-2" id="direct">
+                            <a href="javascript:void(0)">
+                                <div class="p-2 bg-info rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                            <small class="m-0 l-h-n">Efficiency</small>
+                                            <?php echo Round($Efficiecny, 2); ?>%
+                                            <small class="m-0 l-h-n"></small>
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class=" col-md-2 align-self-center" id="direct">
+                            <a href="javascript:void(0)">
+                                <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                            <h2 class="">Target <br> 67%</h2>
+
+                                        </h3>
+
+                                    </div>
+                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-1">
+                            <!-- <?php
+                            echo $total;
+                            ?>
+                            <br>
+                            <?php
+                            echo $Output;
+                            ?>
+                            <br>
+                            <?php
+                            echo $Mints;
+                            ?> -->
+                        </div>
+
+                    </div>
+                </div> <!-- row ends here -->
+
+
+
+<?php
+
+$GetHours = array();
+$GetReading = array();
+//$target = array();
+//print_r($HourllyReading);
+foreach ($Stationwise as $key) {
+    $point1 = array($key['PassQty'],);
+    $point2 = array($key['StationName'],);
+    $dailytarget = 3000 / 6;
+    $point3 = $dailytarget / 8;
+
+    array_push($GetReading, $point1);
+    array_push($GetHours, $point2);
+    // array_push($target, $point3);
+    //array_push($lineNames, $key['LineName']);
+
+} 
+?>
+                <div class="guage text-center ">
+                    <script src="https://code.highcharts.com/highcharts.js"></script>
+                    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+                    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+                    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+                    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+                    <figure class="highcharts-figure">
+                        <div id="container-speed" class="chart-container"></div>
+                        <!-- <div id="container-rpm" class="chart-container"></div>   -->
+                    </figure>
+                </div>
+                <div id="tableHere" class="p-2">
+
+
+
+
+
+                </div>
+
+                </div>
+                        </div>
+
+                    </div>
+                </div>
                 <div class="row">
+                    <div class="col-md-12">
 
-
-                    <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo base_url("Efficiency/departments") ?>">
-                            <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
-                                <div class="">
-                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                        <?php echo $total ?>
-                                        <small class="m-0 l-h-n">Attended Minutes</small>
-                                    </h3>
-                                </div>
-                                <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                Airless Mini Assembling Station Wise OutPut
+                                  
+                                </h2>
                             </div>
-                        </a>
-                    </div>
+                            <div class="panel-container show">
+                                <div id="container">
 
-                    <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo base_url("index.php/Sections/Dept_Sections/1") ?>">
-                            <div class="p-3 bg-info-300 rounded overflow-hidden position-relative text-white mb-g">
-                                <div class="">
-                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                        <?php echo $total ?>
-                                        <small class="m-0 l-h-n">Produced Minutes</small>
-                                    </h3>
                                 </div>
-                                <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+
                             </div>
-                        </a>
+                        </div>
+
                     </div>
                 </div>
-                <div class="row">
-                    <!-- <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo base_url("Efficiency/RWPD/?dept_id=23&section_id=118") ?>">
-                            <div class="p-3 bg-success-300 rounded overflow-hidden position-relative text-white mb-g">
-                                <div class="">
-                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                        RWPD
-                                        <small class="m-0 l-h-n">Packing</small>
-                                    </h3>
-                                </div>
-                                <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                            </div>
-                        </a>
-                    </div>
+</div>
 
-                    <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo base_url("Efficiency/Cutting/?dept_id=15&section_id=72") ?>">
-                            <div class="p-3 bg-info-300 rounded overflow-hidden position-relative text-white mb-g">
-                                <div class="">
-                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                        Cutting
-                                        <small class="m-0 l-h-n">MLP</small>
-                                    </h3>
-                                </div>
-                                <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+<div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
+<div class="card">
+
+<div class="card-body">
+    <h5 class="card-title" style="color:black;font-weight:bolder">Date Filteration</h5>
+    <div class="row">
+        <div class="col-md-2"><input class="form-control" type="date" id="startDate" /></div>
+        <div class="col-md-2"><input class="form-control" type="date" id="endDate" /></div>
+        <div class="col-md-4"><button class="btn btn-primary" id="searchRange">Search</button></div>
+    </div>
+    </div>
+    </div>
+<br>
+<div class="row" >
+                    <div class="col-md-12">
+
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                Airless Mini Forming OutPut
+                                  
+                                </h2>
                             </div>
-                        </a>
-                    </div> -->
-                    <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo base_url("Efficiency/HSB34001") ?>">
-                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:#997300">
-                                <div class="">
-                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                    Hand Stitched 
-                                        <small class="m-0 l-h-n"> B34001</small>
-                                    </h3>
+                            <div class="panel-container show" >
+                                <div class="row" id="dateRangeResult" style="display: none;">
+                                    <div class="col-md-12">
+                                 
+    <div id="containerDateRangeBar"></div>
+
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                          
+    <div id="containerDateRangeLine"></div>
+
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                          
+                          <div id="containerDateRangeLineMachineWise"></div>
+                      
+                                                          </div>
+                           
                                 </div>
-                                <i class="fal fa-futbol  position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                <div id="loadingShow" style="display: none;">
+                          
+                                <img src="<?php echo base_url('/')?>Assets/img/loader4.gif" alt="Loading..." style="margin-left: 100%" >
+                             
+               
+                </div>
                             </div>
-                        </a>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo base_url("Efficiency/TMB") ?>">
-                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:purple">
-                                <div class="">
-                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                    Thermo Bounded
-                                        <small class="m-0 l-h-n">  B34002,B34003,B34004</small>
-                                    </h3>
-                                </div>
-                                <i class="fal fa-futbol  position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo base_url("Efficiency/MSB") ?>">
-                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:black">
-                                <div class="">
-                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                        Machine Stitch
-                                        <small class="m-0 l-h-n">B34005</small>
-                                    </h3>
-                                </div>
-                                <i class="fal fa-futbol  position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo base_url("Efficiency/AMB") ?>">
-                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:maroon">
-                                <div class="">
-                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                    Airless Mini 
-                                        <small class="m-0 l-h-n">B34006</small>
-                                    </h3>
-                                </div>
-                                <i class="fal fa-futbol  position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <a href="<?php echo base_url("Efficiency/LFB") ?>">
-                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:#330066">
-                                <div class="">
-                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                    Laminated FootBall
-                                        <small class="m-0 l-h-n"> B34007</small>
-                                    </h3>
-                                </div>
-                                <i class="fal fa-futbol  position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                            </div>
-                        </a>
+                        </div>
+
                     </div>
                 </div>
 
 
-
-
-
-
-
-
-                <div class="card mb-12" hidden>
-                    <div class="row ml-12 mt-12">
-                        <div class="col-md-2">
-
-
-                            <a href="javascript:void(0)" onclick="showForm('<?php echo "B34001" ?>')">
-                                <div style="background-color:grey" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
-
-
-
-                                            <small id="showValueB34001" class="m-0 l-h-n">Hand Stitch (B34001)</small>
-
-
-                                        </h3>
-                                    </div>
-                                    <i class="fal fa-clock position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                </div>
-                            </a>
-
-                        </div>
-                        <div class="col-md-2">
-                            <a href="javascript:void(0)" onclick="showForm('<?php echo "B34002" ?>')">
-                                <div style="background-color:rgba(204, 197, 181, 1)" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
-
-
-
-                                            <small id="showValueB34002" class="m-0 l-h-n">Thermo Bounded
-                                                (B34002,B34003,B34004)
-                                            </small>
-
-
-                                        </h3>
-                                    </div>
-                                    <i class="fal fa-clock position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="javascript:void(0)" onclick="showForm('<?php echo "B34003" ?>')">
-                                <div style="background-color:rgba(188, 136, 147, 0.6)" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
-
-
-
-                                            <small id="showValueB34003" class="m-0 l-h-n"> Machine Stitched (B34005)</small>
-
-
-                                        </h3>
-                                    </div>
-                                    <i class="fal fa-clock position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="javascript:void(0)" onclick="showForm('<?php echo "B34004" ?>')">
-                                <div style="background-color:rgba(26, 132, 145, 0.7)" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
-
-
-
-                                            <small id="showValueB34004" class="m-0 l-h-n">Airless Mini (B34006)</small>
-
-
-                                        </h3>
-                                    </div>
-                                    <i class="fal fa-clock position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-2">
-                            <a href="javascript:void(0)" onclick="showForm('<?php echo "B34005" ?>')">
-                                <div style="background-color:rgba(26, 132, 145, 0.7)" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
-
-
-
-                                            <small id="showValueB34005" class="m-0 l-h-n">Laminated Football (B34007)</small>
-
-
-                                        </h3>
-                                    </div>
-                                    <i class="fal fa-clock position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                </div>
-                            </a>
-                        </div>
-
-
-
-
-                        <div class="form-row mb-2 ml-2" id="showForm" style="overflow-x:auto;">
-
-
-
-                            <!-- <div class="col-md-2">
-                                                    <div class="position-relative form-group">
-                                                        <label class="">SAM Forming </label>
-                                                        <input name="forming" id="forming" type="number" class="form-control" value="">
-                                                    </div>
-                                                </div>
-                                               -->
-
-
-                        </div>
-
-                    </div>
-
+   
+</div>
                 </div>
             </main>
+
+
+
+
+
             <!-- this overlay is activated only when mobile menu is triggered -->
             <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
             <!-- BEGIN Page Footer -->
@@ -988,6 +1140,88 @@
 <script src="<?php echo base_url(); ?>assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/datagrid/datatables/datatables.bundle.js"></script>
 <script>
+                 
+                    Highcharts.chart('container', {
+                        chart: {
+                            zoomType: 'xy'
+                        },
+                        title: {
+                            text: 'Machine Stitch Line Wise OutPut'
+                        },
+                        subtitle: {
+                            // text: 'Source: WorldClimate.com'
+                        },
+                        xAxis: [{
+                            categories: <?php echo json_encode($GetHours, JSON_NUMERIC_CHECK); ?>,
+                            crosshair: true
+                        }],
+                        yAxis: [{ // Primary yAxis
+                                labels: {
+                                    format: '{value} balls',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                },
+                                title: {
+                                    text: 'Achieved',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                }
+                            },
+                            { // Secondary yAxis
+                                title: {
+                                    text: 'Target',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[0]
+                                    }
+                                },
+
+                                opposite: true
+                            }
+                        ],
+                        tooltip: {
+                            shared: true
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'left',
+                            x: 120,
+                            verticalAlign: 'top',
+                            y: 100,
+                            floating: true,
+                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                                'rgba(255,255,255,0.25)',
+                            enabled: false
+                        },
+
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.0f}'
+                                }
+                            }
+                        },
+                        series: [{
+                                name: 'Achieved',
+                                type: 'column',
+                                yAxis: 1,
+
+                                data: <?php echo json_encode($GetReading, JSON_NUMERIC_CHECK); ?>,
+                                tooltip: {
+                                    valueSuffix: ' balls'
+                                }
+
+                            }
+
+                        ]
+
+
+                    });
+                </script>
+<script>
     /* defined datas */
     var dataTargetProfit = [
         [1354586000000, 153],
@@ -1053,7 +1287,9 @@
     ];
 
     $(document).ready(function() {
-
+        let currentDate = new Date().toJSON().substr(0,10);
+        $("#startDate").val(currentDate);
+        $("#endDate").val(currentDate);
         /* init datatables */
         $('#dt-basic-example').dataTable({
             responsive: true,
@@ -1119,6 +1355,169 @@
             ]
 
         });
+
+        var gaugeOptions = {
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            exporting: {
+                enabled: false
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.1, '#55BF3B'], // green
+                    [0.5, '#DDDF0D'], // yellow
+                    [0.9, '#DF5353'] // red
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Achieved'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Achieved',
+                data: [<?php echo Round($Efficiecny, 2); ?>],
+                dataLabels: {
+                    format: '<div style="text-align:center">' +
+                        '<span style="font-size:30px"> {y} %</span><br/>' +
+                        '</div>'
+                },
+
+            }]
+
+        }));
+
+        // //The RPM gauge
+        // var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, {
+        //     yAxis: {
+        //         min: 0,
+        //         max: 5,
+        //         title: {
+        //             text: 'RPM'
+        //         }
+        //     },
+
+        //     series: [{
+        //         name: 'RPM',
+        //         data: [<?php echo Round($Efficiecny, 2); ?>],
+        //         dataLabels: {
+        //             format:
+        //                 '<div style="text-align:center">' +
+        //                 '<span style="font-size:25px">{y:.1f}</span><br/>' +
+        //                 '<span style="font-size:12px;opacity:0.4">' +
+        //                 '* 1000 / min' +
+        //                 '</span>' +
+        //                 '</div>'
+        //         },
+        //         tooltip: {
+        //             valueSuffix: ' revolutions/min'
+        //         }
+        //     }]
+
+        // }));
+
+        // Highcharts.chart('containerT', {
+        //     chart: {
+        //         plotBackgroundColor: null,
+        //         plotBorderWidth: 0,
+        //         plotShadow: false
+        //     },
+        //     title: {
+        //         text: 'Target / Achieved',
+
+        //     },
+        //     tooltip: {
+        //         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        //     },
+        //     accessibility: {
+        //         point: {
+        //             valueSuffix: '%'
+        //         }
+        //     },
+        //     plotOptions: {
+        //         pie: {
+        //             dataLabels: {
+        //                 enabled: true,
+        //                 distance: -50,
+        //                 style: {
+        //                     fontWeight: 'bold',
+        //                     color: 'white'
+        //                 }
+        //             },
+        //             startAngle: -90,
+        //             endAngle: 90,
+        //             center: ['50%', '75%'],
+        //             size: '110%'
+        //         }
+        //     },
+        //     series: [{
+        //         type: 'pie',
+        //         name: 'Browser share',
+        //         innerSize: '55%',
+        //         data: [
+        //             ['Target', <?php echo '67%'; ?>  ],
+        //             ['Achieved', <?php echo Round($Efficiecny, 2); ?>]
+        //         ]
+        //     }]
+        // });
+
+
+
+
 
 
         /* flot toggle example */
@@ -1392,7 +1791,753 @@
 
 
     });
+
+    function generateDataTop(data1) {
+ 
+ var ret = {},
+     ps = [],
+     series = [],
+     len = data1.BarData.length;
+
+ //concat to get points
+ for (var i = 0; i < len; i++) {
+     ps[i] = {
+         name: data1.BarData[i].Date,
+         y: data1.BarData[i].Counter,
+         drilldown: data1.BarData[i].Date
+     };
+ }
+ names = [];
+ //generate series and split points
+ for (i = 0; i < len; i++) {
+     var p = ps[i];
+   
+     series.push(p);
+ }
+ return series;
+}
+
+function generateDataBottom(data1) {
+ 
+ var ret = {},
+     ps = [],
+     series = [],
+     len = data1.MachineData.length;
+   let datesArray = []
+   let dataArray = []
+
+ //concat to get points
+ for (var i = 0; i < len; i++) {
+    if(datesArray.indexOf(data1.MachineData[i].Date) === -1){
+        datesArray.push(data1.MachineData[i].Date)
+        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,data1.MachineData[i].Counter])
+    }
+    else{
+        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,data1.MachineData[i].Counter])
+    }
+
+
+  
+ }
+
+ //generate series and split points
+ for (i = 0; i < datesArray.length; i++) {
+    let OriginaldataArray = []
+    let OriginaldataArrayDateRemove = []
+    dataArray.filter(function(e) { 
+        if(e[0] === datesArray[i]){
+            OriginaldataArray.push(e)
+        }
+    });
+    OriginaldataArray.forEach(element => {
+        // console.log("Element", element)
+        element.shift()
+        OriginaldataArrayDateRemove.push(element)
+    });
+    // console.log("data Get", OriginaldataArray)
+     var p = {
+        name: datesArray[i],
+        id: datesArray[i],
+        data: OriginaldataArrayDateRemove
+     }
+    //  console.log("Series", p)
+     series.push(p);
+ }
+ return series;
+}
+
+$("#searchRange").on('click',function(e){
+        e.preventDefault()
+        $("#dateRangeResult").css('display','none')
+        $("#loadingShow").css('display','inline-block')
+        let startDate = $("#startDate").val()
+        let endDate = $("#endDate").val()
+        let startDateNewFormat = startDate.split("-")[2]+"-"+startDate.split("-")[1]+"-"+startDate.split("-")[0]
+        let endDateNewFormat = endDate.split("-")[2]+"-"+endDate.split("-")[1]+"-"+endDate.split("-")[0]
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        let section_id = params.section_id;
+        let dept_id = params.dept_id;
+        let datesArray = []
+        let datesArrayMachineWise = []
+        let seriesDataMachine1 = [];
+        let seriesDataMachine2 = [];
+        let seriesDataMachine3 = [];
+        let seriesDataMachine4 = [];
+        let originalDataMachineWise = [];
+        let targetDataMachineWise = [];
+        let url = "<?php echo base_url('Efficiency/getCuttingSheetSizingDateRangeData') ?>";
+        let url2 = "<?php echo base_url('Efficiency/getRealTimeDateRange') ?>";
+        $.post(url,{"startDate":startDate, "endDate":endDate},function(data, status){
+            console.log("Data Outer", data)
+        let seriesDataTop;
+        let seriesDataBottom;
+        let dataArrayOuter = data.BarData
+        if(data){
+        seriesDataTop = generateDataTop(data)
+        seriesDataBottom = generateDataBottom(data)
+  
+
+
+        for(let k = 0; k<data.MachineData.length; k++){
+            // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
+        if(datesArrayMachineWise.indexOf(data.MachineData[k].Date) === -1){
+            datesArrayMachineWise.push(data.MachineData[k].Date)
+        targetDataMachineWise.push(parseFloat(67))
+        if(data.MachineData[k].MachineName == "Sheet Sizing Press 1"){
+                output = data.MachineData[k].Counter * 0.10
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            }
+            else if(data.MachineData[k].MachineName == "Sheet Sizing Press 2"){
+                output = data.MachineData[k].Counter * 0.10
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine2.push(parseFloat(efficiency))
+            seriesDataMachine1.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            }
+            else if(data.MachineData[k].MachineName == "Sheet Sizing Press 3"){
+                output = data.MachineData[k].Counter * 0.10
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine3.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine4.push(0)
+            }
+            else if(data.MachineData[k].MachineName == "Sheet Sizing Press 4"){
+                output = data.MachineData[k].Counter * 0.10
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine4.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine1.push(0)
+            seriesDataMachine3.push(0)
+
+            }
+    }
+    else{
+        if(data.MachineData[k].MachineName == "Sheet Sizing Press 1"){
+                output = data.MachineData[k].Counter * 0.10
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.pop()
+            seriesDataMachine1.push(parseFloat(efficiency))
+  
+            }
+            else if(data.MachineData[k].MachineName == "Sheet Sizing Press 2"){
+                output = data.MachineData[k].Counter * 0.10
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine2.pop()
+            seriesDataMachine2.push(parseFloat(efficiency))
+     
+            }
+            else if(data.MachineData[k].MachineName == "Sheet Sizing Press 3"){
+                output = data.MachineData[k].Counter * 0.10
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine3.pop()
+            seriesDataMachine3.push(parseFloat(efficiency))
+      
+            }
+            else if(data.MachineData[k].MachineName == "Sheet Sizing Press 4"){
+                output = data.MachineData[k].Counter * 0.10
+            Minutes = (2*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine4.pop()
+            seriesDataMachine4.push(parseFloat(efficiency))
+    
+
+            }
+    }
+         
+        
+
+        }
+        originalDataMachineWise.push({name:"Sheet Sizing Press 1",data:seriesDataMachine1},{name:"Sheet Sizing Press 2",data:seriesDataMachine2},{name:"Sheet Sizing Press 3",data:seriesDataMachine3},{name:"Sheet Sizing Press 4",data:seriesDataMachine4},{name:"Target Efficiency",data:targetDataMachineWise})
+        }
+         console.log("Target", datesArrayMachineWise)
+        for (var i = 0; i < data.BarData.length; i++) {
+    if(datesArray.indexOf(data.BarData[i].Date) === -1){
+        datesArray.push(data.BarData[i].Date)
+        // targetDataMachineWise.push(parseFloat(67))
+    }
+        }
+
+        Highcharts.chart('containerDateRangeLineMachineWise', {
+
+title: {
+    text: `Machine-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
+},
+
+yAxis: {
+    title: {
+        text: 'Efficiency'
+    }
+},
+
+xAxis: {
+    categories: datesArrayMachineWise,
+},
+
+legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle'
+},
+
+plotOptions: {
+    series: {
+        label: {
+            connectorAllowed: false
+        }
+    }
+},
+
+series: originalDataMachineWise,
+
+responsive: {
+    rules: [{
+        condition: {
+            maxWidth: 500
+        },
+        chartOptions: {
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
+            }
+        }
+    }]
+}
+
+});
+
+
+Highcharts.chart('containerDateRangeBar', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        align: 'left',
+        text: `Balls Count From ${startDateNewFormat} To ${endDateNewFormat}`
+    },
+    accessibility: {
+        announceNewData: {
+            enabled: true
+        }
+    },
+    xAxis: {
+        type: 'category'
+    },
+    yAxis: {
+        title: {
+            text: 'Balls Count'
+        }
+
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true,
+            }
+        }
+    },
+
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+    },
+
+    series: [
+        {
+            name: "RWPD",
+            colorByPoint: true,
+            data: seriesDataTop
+        }
+    ],
+    drilldown: {
+        breadcrumbs: {
+            position: {
+                align: 'right'
+            }
+        },
+        series: seriesDataBottom
+    }
+});
+
+$.post(url2,{"startDate":startDate, "endDate":endDate,"dept_id":dept_id,"section_id":section_id},function(dataInner, status){
+    console.log("Data Inner", dataInner)
+    let seriesData = []
+    let targetData = []
+    let originalData = []
+ if(dataInner.realtime != undefined){
+    let len = dataInner.realtime.length;
+    let lenOuter = dataArrayOuter.length;
+    let output= 0;
+    let Minutes = 0;
+    let efficiency = 0;
+    // for(let i = 0; i<len; i++){ 
+        for(let j = 0; j<lenOuter; j++){
+            // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
+
+            output = dataArrayOuter[j].Counter * 0.10
+            Minutes = (2*4*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+
+            seriesData.push(parseFloat(efficiency))
+            targetData.push(parseFloat(67))
+// }
+        }
+       
+        // if(i == len-1){
+            originalData.push({name:"Efficiency",data:seriesData},{name:"Target Efficiency",data:targetData})
+        
+        // }
+    // }
+
+ }
+//  console.log(datesArray)
+ Highcharts.chart('containerDateRangeLine', {
+
+title: {
+    text: `Process-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
+},
+
+yAxis: {
+    title: {
+        text: 'Efficiency'
+    }
+},
+
+xAxis: {
+    categories: datesArray,
+},
+
+legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle'
+},
+
+plotOptions: {
+    series: {
+        label: {
+            connectorAllowed: false
+        }
+    }
+},
+
+series: originalData,
+
+responsive: {
+    rules: [{
+        condition: {
+            maxWidth: 500
+        },
+        chartOptions: {
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
+            }
+        }
+    }]
+}
+
+});
+$("#loadingShow").css('display','none')
+$("#dateRangeResult").css('display','inline-block')
+})
+
+
+
+ });
+    })
 </script>
+<script>
+    $('#direct').click(function() {
+        $("#tableHere").html(' ');
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        let section_id = params.section_id;
+        let dept_id = params.dept_id;
+        url = "<?php echo base_url('Efficiency/getEmployees') ?>";
+        $.post(url, {
+            "section_id": section_id,
+            "dept_id": dept_id,
+            "direct": "Direct"
+        }, function(data) {
+            console.log("data", data)
+
+            var table = '';
+            table += `<table id="tableFormat" class="table table-bordered table-hover  table-striped w-100">
+            <thead class="bg-primary-200 text-light">
+    <tr>
+      <th scope="col">Card NO</th>
+      <th scope="col">Name</th>
+      <th scope="col">Designation</th>
+      <th scope="col">Attendance Time</th>
+    </tr>
+  </thead>
+  <tbody>`
+            data.forEach(element => {
+                console.log(element)
+                table += `<tr>
+      <th scope="row">${element.CardNo}</th>
+      <td>${element.Name}</td>
+      <td>${element.DesigName}</td>
+      <td>${(element.AttTime).split(" ")[1]}</td>
+    </tr>`
+            });
+
+
+            table += `</tbody>
+</table>`
+            $("#tableHere").append(table);
+            $(document).ready(function() {
+                // LoadData(stDate, enDate);
+
+                $('#tableFormat').dataTable({
+                    responsive: false,
+                    lengthChange: false,
+                    dom:
+                        /*	--- Layout Structure 
+                        	--- Options
+                        	l	-	length changing input control
+                        	f	-	filtering input
+                        	t	-	The table!
+                        	i	-	Table information summary
+                        	p	-	pagination control
+                        	r	-	processing display element
+                        	B	-	buttons
+                        	R	-	ColReorder
+                        	S	-	Select
+
+                        	--- Markup
+                        	< and >				- div element
+                        	<"class" and >		- div with a class
+                        	<"#id" and >		- div with an ID
+                        	<"#id.class" and >	- div with an ID and a class
+
+                        	--- Further reading
+                        	https://datatables.net/reference/option/dom
+                        	--------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                        	extend:    'colvis',
+                        	text:      'Column Visibility',
+                        	titleAttr: 'Col visibility',
+                        	className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+
+
+            });
+        })
+    })
+    $('#indirect').click(function() {
+        $("#tableHere").html(' ');
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        let section_id = params.section_id;
+        let dept_id = params.dept_id;
+        url = "<?php echo base_url('Efficiency/getEmployees') ?>";
+        $.post(url, {
+            "section_id": section_id,
+            "dept_id": dept_id,
+            "direct": "In-Direct"
+        }, function(data) {
+            console.log("data", data)
+            var table = '';
+            table += `<table id="tableFormat" class="table table-bordered table-hover  table-striped w-100">
+            <thead class="bg-primary-200 text-light">
+            <tr>
+      <th scope="col">Card NO</th>
+      <th scope="col">Name</th>
+      <th scope="col">Designation</th>
+      <th scope="col">Attendance Time</th>
+    </tr>
+  </thead>
+  <tbody>`
+            data.forEach(element => {
+                console.log(element)
+                table += `<tr>
+      <th scope="row">${element.CardNo}</th>
+      <td>${element.Name}</td>
+      <td>${element.DesigName}</td>
+      <td>${(element.AttTime).split(" ")[1]}</td>
+    </tr>`
+            });
+
+
+
+            table += `</tbody>
+</table>`
+            $("#tableHere").append(table);
+            $(document).ready(function() {
+                // LoadData(stDate, enDate);
+
+                $('#tableFormat').dataTable({
+                    responsive: false,
+                    lengthChange: false,
+                    dom:
+                        /*	--- Layout Structure 
+                        	--- Options
+                        	l	-	length changing input control
+                        	f	-	filtering input
+                        	t	-	The table!
+                        	i	-	Table information summary
+                        	p	-	pagination control
+                        	r	-	processing display element
+                        	B	-	buttons
+                        	R	-	ColReorder
+                        	S	-	Select
+
+                        	--- Markup
+                        	< and >				- div element
+                        	<"class" and >		- div with a class
+                        	<"#id" and >		- div with an ID
+                        	<"#id.class" and >	- div with an ID and a class
+
+                        	--- Further reading
+                        	https://datatables.net/reference/option/dom
+                        	--------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                        	extend:    'colvis',
+                        	text:      'Column Visibility',
+                        	titleAttr: 'Col visibility',
+                        	className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+
+
+            });
+        })
+    })
+    $('#NullEmp').click(function() {
+        $("#tableHere").html(' ');
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        let section_id = params.section_id;
+        let dept_id = params.dept_id;
+        url = "<?php echo base_url('Efficiency/getEmployeesNull') ?>";
+        $.post(url, {
+            "section_id": section_id,
+            "dept_id": dept_id,
+            "direct": "IS NULL"
+        }, function(data) {
+            var table = '';
+            table += `<table id="tableFormat" class="table table-bordered table-hover  table-striped w-100">
+            <thead class="bg-primary-200 text-light">
+            <tr>
+      <th scope="col">Card NO</th>
+      <th scope="col">Name</th>
+      <th scope="col">Designation</th>
+      <th scope="col">Attendance Time</th>
+    </tr>
+  </thead>
+  <tbody>`
+            data.forEach(element => {
+                console.log(element)
+                table += `<tr>
+      <th scope="row">${element.CardNo}</th>
+      <td>${element.Name}</td>
+      <td>${element.DesigName}</td>
+      <td>${(element.AttTime).split(" ")[1]}</td>
+    </tr>`
+            });
+
+
+
+            table += `</tbody>
+</table>`
+            $("#tableHere").append(table);
+            $(document).ready(function() {
+                // LoadData(stDate, enDate);
+
+                $('#tableFormat').dataTable({
+                    responsive: true,
+                    lengthChange: false,
+                    dom:
+                        /*	--- Layout Structure 
+                        	--- Options
+                        	l	-	length changing input control
+                        	f	-	filtering input
+                        	t	-	The table!
+                        	i	-	Table information summary
+                        	p	-	pagination control
+                        	r	-	processing display element
+                        	B	-	buttons
+                        	R	-	ColReorder
+                        	S	-	Select
+
+                        	--- Markup
+                        	< and >				- div element
+                        	<"class" and >		- div with a class
+                        	<"#id" and >		- div with an ID
+                        	<"#id.class" and >	- div with an ID and a class
+
+                        	--- Further reading
+                        	https://datatables.net/reference/option/dom
+                        	--------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                        	extend:    'colvis',
+                        	text:      'Column Visibility',
+                        	titleAttr: 'Col visibility',
+                        	className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+
+
+            });
+        })
+
+    })
+</script>
+
 </body>
 
 </html>
