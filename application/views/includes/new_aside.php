@@ -683,17 +683,17 @@
                         </li>
 
                         <li>
-                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                            <a href="#" title="Cutting" data-filter-tags="theme settings how it works">
                                 <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Cutting</span>
                             </a>
                             <ul>
                                 <li>
-                                    <a href="<?php echo base_url("Efficiency/Cutting/?dept_id=15&section_id=72") ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                    <a href="<?php echo base_url("Efficiency/Cutting/?dept_id=15&section_id=72") ?>" title="Sheet Sizing" data-filter-tags="theme settings how it works">
                                         <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Sheet Sizing</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo base_url("Efficiency/panelCutting/?dept_id=15&section_id=72") ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                    <a href="<?php echo base_url("Efficiency/panelCutting/?dept_id=15&section_id=72") ?>" title="Panel Cutting Press" data-filter-tags="theme settings how it works">
                                         <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Panel Cutting Press</span>
                                     </a>
                                 </li>
@@ -709,21 +709,21 @@
 
 
                         <li>
-                            <a href="<?php echo base_url('Lamination') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                            <a href="<?php echo base_url('Lamination') ?>" title="Lamination" data-filter-tags="theme settings how it works">
                                 <span class="" data-i18n="nav.theme_settings_how_it_works">Lamination</span>
                             </a>
 
 
                         </li>
                         <li>
-                            <a href="<?php echo base_url('winding') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                            <a href="<?php echo base_url('winding') ?>" title="Bladder Winding" data-filter-tags="theme settings how it works">
                                 <span class="" data-i18n="nav.theme_settings_how_it_works">Bladder Winding</span>
                             </a>
 
 
                         </li>
                         <li>
-                            <a href="<?php echo base_url('Throster') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                            <a href="<?php echo base_url('Throster') ?>" title="MS Lines" data-filter-tags="theme settings how it works">
                                 <span class="" data-i18n="nav.theme_settings_how_it_works">MS Lines</span>
                             </a>
 
@@ -734,28 +734,28 @@
 
 
                         <li>
-                            <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                            <a href="#" title="Packing" data-filter-tags="theme settings how it works">
                                 <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Packing</span>
                             </a>
                             <ul>
                                 <li>
-                                    <a href="<?php echo base_url("TM_Packing/TM_Packing") ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                    <a href="<?php echo base_url("TM_Packing/TM_Packing") ?>" title="TM Assembling & Packing" data-filter-tags="theme settings how it works">
                                         <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">TM Assembling & Packing</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo base_url("AMB_Forming/AMB_Forming") ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                    <a href="<?php echo base_url("AMB_Forming/AMB_Forming") ?>" title="AMB Assembling" data-filter-tags="theme settings how it works">
                                         <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">AMB Assembling</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo base_url("AMB_Packing/AMB_Packing") ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                    <a href="<?php echo base_url("AMB_Packing/AMB_Packing") ?>" title="AMB Packing" data-filter-tags="theme settings how it works">
                                         <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">AMB Packing</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="<?php echo base_url('LFB_Packing/LFB_Packing') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                    <a href="<?php echo base_url('LFB_Packing/LFB_Packing') ?>" title="Laminated FootBall" data-filter-tags="theme settings how it works">
                                         <span class="" data-i18n="nav.theme_settings_how_it_works">Laminated FootBall</span>
                                     </a>
 
