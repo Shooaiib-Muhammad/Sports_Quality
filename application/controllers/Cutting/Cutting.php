@@ -7,7 +7,7 @@ class Cutting extends CI_Controller
  public function __construct()
  {
   parent::__construct();
-
+  $this->load->model('Efficiency_model', 'E');
   $this->load->model('Cutting/Cutting_Model', 'Cutting');
  }
 
@@ -80,6 +80,7 @@ class Cutting extends CI_Controller
     $Year = date('Y');
     $Day = date('d');
     $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+    $data['HourllyReading'] = $this->E->HourllyReadingHFCutting($CurrentDate, $CurrentDate);
     $data['hfcutting'] = $this->Cutting->HfCutting($CurrentDate);
     $total=[];
     foreach($data['hfcutting'] as $hf){

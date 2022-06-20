@@ -19,6 +19,24 @@
       <!-- the #js-page-content id is needed for some plugins to initialize -->
       <main id="js-page-content" role="main" class="page-content">
 
+      <?php
+
+$GetHours = array();
+$GetReading = array();
+//$target = array();
+//print_r($HourllyReading);
+foreach ($HourllyReading as $key) {
+    $point1 = array($key['Counter'] * 5.25,);
+    $point2 = array($key['HourName'],);
+    $dailytarget = 3000 / 6;
+    $point3 = $dailytarget / 8;
+
+    array_push($GetReading, $point1);
+    array_push($GetHours, $point2);
+    // array_push($target, $point3);
+    //array_push($lineNames, $key['LineName']);
+
+} ?>
         <ol class="breadcrumb page-breadcrumb">
           <!-- <li class="breadcrumb-item"><a href="<?php echo base_url(
                                                   'Efficiency'
@@ -44,6 +62,7 @@
                 <div class="tab-content py-3">
 
 <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel" style="background-color: white;">
+<div id="currentDateData">
 <div class="row">
                     <div class="col-md-12">
 
@@ -51,6 +70,212 @@
                             <div class="panel-hdr">
                                 <h2>
                                     HF Cutting Count
+                                 
+                                </h2>
+                            </div>
+                            <div class="panel-container show">
+                <div class="row pt-2">
+
+                    <div class="col-md-12 d-flex flex-row">
+
+                        <div class="col-md-1">
+
+                        </div>
+
+
+
+
+                                <div class="col-md-2" id="direct">
+                                    <a href="javascript:void(0)">
+                                        <div style="background-color:maroon" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                            <div class="">
+                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+
+                                                    <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
+
+                                                    <small class="m-0 l-h-n">Number of Employees</small>
+                                                    <!-- <?php echo $d['EmpCount']; ?> -->
+                                                    <span id="employeeId"> </span>
+                                                    <!-- <small class="m-0 l-h-n">Real Time</small>
+                                            <?php echo $d['RealTime']; ?> -->
+
+                                                </h3>
+                                            </div>
+                                            <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-2" id="direct">
+                                    <a href="javascript:void(0)">
+                                        <div style="background-color:grey" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                            <div class="">
+                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+
+                                                    <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
+
+                                                    <!-- <small class="m-0 l-h-n">Number of Employees</small>
+                                            <?php echo $d['EmpCount']; ?> -->
+                                                    <small class="m-0 l-h-n">Real Time</small>
+                                                    <span id="realTimeId"> </span>
+
+                                                </h3>
+                                            </div>
+                                            <i class="fal fa-clock position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                   
+
+                        <?php
+
+                        //print_r($Counter);
+                        ?>
+                        <div class="col-md-2" id="direct">
+                            <a href="javascript:void(0)">
+                                <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                            <small class="m-0 l-h-n">Total NO of Balls</small>
+                                            <span id="counterValueId"><?php echo $totalHF*0.2; ?></span>
+                                            <small class="m-0 l-h-n"></small>
+
+
+
+
+
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <?php
+                        // $total = $Counter[0]['Counter'];
+                        $Output = $totalHF * 0.2 * 2.87;
+
+
+
+                        $Mints = 0;
+                        if (isset($d['EmployeeType']) == "Direct") {
+
+
+                            $Mints = isset($d['RealTime']);
+                        }
+                        if($Mints != 0){
+                            $Efficiecny = ($Output / $Mints) ;
+                        }
+                        else{
+                            $Efficiecny = ($Output / 1) ;
+                        }
+                        
+
+                        ?>
+
+                        <div class="col-md-2" id="direct">
+                            <a href="javascript:void(0)">
+                                <div class="p-2 bg-info rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                            <small class="m-0 l-h-n">Efficiency</small>
+                                            <span id="efficiencyValueId"></span>
+                                            <small class="m-0 l-h-n"></small>
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class=" col-md-2 align-self-center" id="direct">
+                            <a href="javascript:void(0)">
+                                <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                            <h2 class="">Target <br> 67%</h2>
+
+                                        </h3>
+
+                                    </div>
+                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-1">
+                            <!-- <?php
+                            echo $total;
+                            ?>
+                            <br>
+                            <?php
+                            echo $Output;
+                            ?>
+                            <br>
+                            <?php
+                            echo $Mints;
+                            ?> -->
+                        </div>
+
+                    </div>
+                </div> <!-- row ends here -->
+
+
+
+
+                <div class="guage text-center ">
+                    <script src="https://code.highcharts.com/highcharts.js"></script>
+                    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+                    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+                    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+                    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+                    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+                    <figure class="highcharts-figure">
+                        <div id="container-speed" class="chart-container"></div>
+                        <!-- <div id="container-rpm" class="chart-container"></div>   -->
+                    </figure>
+                </div>
+                <div id="tableHere" class="p-2">
+
+
+
+
+
+                </div>
+
+                </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    HF Cutting Output
+                                  
+                                </h2>
+                            </div>
+                            <div class="panel-container show">
+                                <div id="container">
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    HF Cutting Machine Wise
                                  
                                 </h2>
                             </div>
@@ -69,11 +294,11 @@
               <div class="">
                 <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
-                  <small class="m-0 l-h-n">Total Sheets</small>
+                  <small class="m-0 l-h-n">Total Balls</small>
                 </h3>
                 <h3 class="display-4 d-block l-h-n m-0 fw-500">
                   <?php
-                  echo $totalHF;
+                  echo $totalHF*0.2;
                   ?>
 
                 </h3>
@@ -105,7 +330,7 @@
                     </h3>
                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
                       <?php
-                      echo $Keys['Counter'];
+                      echo $Keys['Counter']*0.2;
                       ?>
 
                     </h3>
@@ -126,7 +351,7 @@
 
 
 
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-6">
             <div id="container"></div>
           </div>
@@ -136,20 +361,31 @@
           </div>
 
 
-        </div>
+        </div> -->
 
 
 
 
-        <div class="row">
+        <!-- <div class="row">
 
 
 
-        </div>
+        </div> -->
                             </div>
                         </div>
                     </div>
 </div>
+   </div>
+   <div id="sundayStatus" style="display: none;">
+   <div class="card">
+
+<div class="card-body">
+   <h1 style="font-family:cursive;margin-left: 40%;padding: 50px;">Hello <?php echo $_SESSION['Username']; ?>!<br>It's Sunday so current date data isn't available.<br> Have a happy Sunday!</h1>  
+</div>
+   </div>
+</div>
+
+
 </div>
 
 <div class="tab-pane fade" id="tab_direction-2" role="tabpanel" style="background-color: white;">
@@ -171,7 +407,7 @@
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    Sheet Sizing OutPut
+                                    HF Cutting Output
                                   
                                 </h2>
                             </div>
@@ -990,9 +1226,227 @@
   ];
 
   $(document).ready(function() {
-    let currentDate = new Date().toJSON().substr(0,10);
+    var EfficiencyFinal;
+        var EfficiencyFinalArray = [];
+        let counterValue = $("#counterValueId").text()
+        let currentDate = new Date().toJSON().substr(0,10);
+        let dateGet = new Date()
+        let dayId = dateGet.getDay()
         $("#startDate").val(currentDate);
         $("#endDate").val(currentDate);
+        var date1 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),7,45,0); // Thu Sep 16 2010 13:30:58
+var date2 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),dateGet.getHours(),dateGet.getMinutes(),dateGet.getSeconds()); // Tue Aug 18 2015 14:20:48
+
+let dateDifference;
+let minutes;
+if(dayId == 0){
+$("#currentDateData").css('display','none');
+$("#sundayStatus").css('display',"inline-block");
+}
+else{
+    if(dateGet.getHours() >= 7 && dateGet.getHours() <= 16){
+    
+    if(dateGet.getHours() >= 14){
+        dateDifference = date2 - date1;
+    minutes = Math.floor(dateDifference / 60000);
+    EfficiencyFinal = (((counterValue*2.87)/(minutes*52.5) )*100).toFixed(2)
+    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+    if(dayId == 5){
+        $("#realTimeId").text((minutes*52.5)-(60*8))
+    }
+    else{
+        $("#realTimeId").text((minutes*52.5)-(45*8))
+    }
+    
+    $("#employeeId").text(52.5)
+    $("#efficiencyValueId").text(EfficiencyFinal + " %")
+    console.log(EfficiencyFinalArray)
+    var gaugeOptions = {
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            exporting: {
+                enabled: false
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.1, '#55BF3B'], // green
+                    [0.5, '#DDDF0D'], // yellow
+                    [0.9, '#DF5353'] // red
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Achieved'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Achieved',
+                data: EfficiencyFinalArray,
+                dataLabels: {
+                    format: '<div style="text-align:center">' +
+                        '<span style="font-size:30px"> {y} %</span><br/>' +
+                        '</div>'
+                },
+
+            }]
+
+        }));
+    }  
+    else{
+        dateDifference = date2 - date1;
+    minutes = Math.floor(dateDifference / 60000);
+    EfficiencyFinal = (((counterValue*2.87)/(minutes*52.5) )*100).toFixed(2)
+    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+    console.log(EfficiencyFinalArray)
+    $("#realTimeId").text(minutes*52.5)
+    $("#employeeId").text(52.5)
+    $("#efficiencyValueId").text(EfficiencyFinal + " %")
+    var gaugeOptions = {
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            exporting: {
+                enabled: false
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.1, '#55BF3B'], // green
+                    [0.5, '#DDDF0D'], // yellow
+                    [0.9, '#DF5353'] // red
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Achieved'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Achieved',
+                data: EfficiencyFinalArray,
+                dataLabels: {
+                    format: '<div style="text-align:center">' +
+                        '<span style="font-size:30px"> {y} %</span><br/>' +
+                        '</div>'
+                },
+
+            }]
+
+        }));
+    } 
+}
+else{
+    $("#realTimeId").text(0)
+    $("#employeeId").text(0)
+    $("#efficiencyValueId").text("0 %")
+}
+}
     /* init datatables */
     $('#dt-basic-example').dataTable({
       responsive: true,
@@ -1343,7 +1797,7 @@
  for (var i = 0; i < len; i++) {
      ps[i] = {
          name: data1.BarData[i].Date,
-         y: data1.BarData[i].Counter,
+         y: data1.BarData[i].Counter*0.2,
          drilldown: data1.BarData[i].Date
      };
  }
@@ -1370,10 +1824,10 @@ function generateDataBottom(data1) {
  for (var i = 0; i < len; i++) {
     if(datesArray.indexOf(data1.MachineData[i].Date) === -1){
         datesArray.push(data1.MachineData[i].Date)
-        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,data1.MachineData[i].Counter])
+        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,data1.MachineData[i].Counter*0.2])
     }
     else{
-        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,data1.MachineData[i].Counter])
+        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,data1.MachineData[i].Counter*0.2])
     }
 
 
@@ -1472,9 +1926,9 @@ $("#searchRange").on('click',function(e){
             // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
         if(datesArrayMachineWise.indexOf(data.MachineData[k].Date) === -1){
             datesArrayMachineWise.push(data.MachineData[k].Date)
-        targetDataMachineWise.push(parseFloat(67))
+        targetDataMachineWise.push(parseFloat(64))
         if(data.MachineData[k].Name == "HF-01"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine1.push(parseFloat(efficiency))
@@ -1511,7 +1965,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-02"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine2.push(parseFloat(efficiency))
@@ -1548,7 +2002,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-03"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine3.push(parseFloat(efficiency))
@@ -1585,7 +2039,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-04"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine4.push(parseFloat(efficiency))
@@ -1623,7 +2077,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-05"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine5.push(parseFloat(efficiency))
@@ -1660,7 +2114,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-06"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine6.push(parseFloat(efficiency))
@@ -1697,7 +2151,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-07"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine7.push(parseFloat(efficiency))
@@ -1735,7 +2189,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-08"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine8.push(parseFloat(efficiency))
@@ -1772,7 +2226,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-09"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine9.push(parseFloat(efficiency))
@@ -1809,7 +2263,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-10"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine10.push(parseFloat(efficiency))
@@ -1847,7 +2301,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-11"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine11.push(parseFloat(efficiency))
@@ -1884,7 +2338,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-12"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine12.push(parseFloat(efficiency))
@@ -1921,7 +2375,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-13"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine13.push(parseFloat(efficiency))
@@ -1959,7 +2413,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-14"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine14.push(parseFloat(efficiency))
@@ -1996,7 +2450,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-15"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine15.push(parseFloat(efficiency))
@@ -2033,7 +2487,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-16"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine16.push(parseFloat(efficiency))
@@ -2071,7 +2525,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-17"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine17.push(parseFloat(efficiency))
@@ -2108,7 +2562,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-18"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine18.push(parseFloat(efficiency))
@@ -2145,7 +2599,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-19"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine19.push(parseFloat(efficiency))
@@ -2183,7 +2637,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-20"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine20.push(parseFloat(efficiency))
@@ -2220,7 +2674,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-21"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine21.push(parseFloat(efficiency))
@@ -2257,7 +2711,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-22"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine22.push(parseFloat(efficiency))
@@ -2294,7 +2748,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-23"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine23.push(parseFloat(efficiency))
@@ -2331,7 +2785,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-24"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine24.push(parseFloat(efficiency))
@@ -2368,7 +2822,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-25"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine25.push(parseFloat(efficiency))
@@ -2406,7 +2860,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-26"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine26.push(parseFloat(efficiency))
@@ -2443,7 +2897,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-27"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine27.push(parseFloat(efficiency))
@@ -2481,7 +2935,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-28"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine28.push(parseFloat(efficiency))
@@ -2518,8 +2972,8 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-29"){
-                output = data.MachineData[k].Counter * 2.87
-            Minutes = (1.5*480);
+                output = data.MachineData[k].Counter * 0.2 * 2.87
+            Minutes = (1.5*480); 
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine29.push(parseFloat(efficiency))
             seriesDataMachine2.push(0)
@@ -2555,7 +3009,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-30"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine30.push(parseFloat(efficiency))
@@ -2593,7 +3047,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-31"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine31.push(parseFloat(efficiency))
@@ -2630,7 +3084,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine32.push(0)
             }
             else if(data.MachineData[k].Name == "HF-32"){
-                output = data.MachineData[k].Counter * 2.87
+                output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine32.push(parseFloat(efficiency))
@@ -2670,7 +3124,7 @@ $("#searchRange").on('click',function(e){
     }
     else{
       if(data.MachineData[k].Name == "HF-01"){
-                output = data.MachineData[k].Counter * 2.87
+          output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine1.pop()
@@ -2678,7 +3132,7 @@ $("#searchRange").on('click',function(e){
         
             }
             else if(data.MachineData[k].Name == "HF-02"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine2.pop()
@@ -2686,7 +3140,7 @@ $("#searchRange").on('click',function(e){
          
             }
             else if(data.MachineData[k].Name == "HF-03"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine3.pop()
@@ -2694,7 +3148,7 @@ $("#searchRange").on('click',function(e){
          
             }
             else if(data.MachineData[k].Name == "HF-04"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine4.pop()
@@ -2703,7 +3157,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-05"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine5.pop()
@@ -2711,7 +3165,7 @@ $("#searchRange").on('click',function(e){
         
             }
             else if(data.MachineData[k].Name == "HF-06"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine6.pop()
@@ -2719,7 +3173,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-07"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine7.pop()
@@ -2728,7 +3182,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-08"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine8.pop()
@@ -2736,7 +3190,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-09"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine9.pop()
@@ -2744,7 +3198,7 @@ $("#searchRange").on('click',function(e){
  
             }
             else if(data.MachineData[k].Name == "HF-10"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine10.pop()
@@ -2753,7 +3207,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-11"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine11.pop()
@@ -2761,7 +3215,7 @@ $("#searchRange").on('click',function(e){
   
             }
             else if(data.MachineData[k].Name == "HF-12"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine12.pop()
@@ -2769,7 +3223,7 @@ $("#searchRange").on('click',function(e){
      
             }
             else if(data.MachineData[k].Name == "HF-13"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine13.pop()
@@ -2778,7 +3232,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-14"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine14.pop()
@@ -2786,7 +3240,7 @@ $("#searchRange").on('click',function(e){
        
             }
             else if(data.MachineData[k].Name == "HF-15"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine15.pop()
@@ -2794,7 +3248,7 @@ $("#searchRange").on('click',function(e){
   
             }
             else if(data.MachineData[k].Name == "HF-16"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine16.pop()
@@ -2803,7 +3257,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-17"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine17.pop()
@@ -2811,7 +3265,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-18"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine18.pop()
@@ -2819,7 +3273,7 @@ $("#searchRange").on('click',function(e){
    
             }
             else if(data.MachineData[k].Name == "HF-19"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine19.pop()
@@ -2828,7 +3282,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-20"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine20.pop()
@@ -2836,7 +3290,7 @@ $("#searchRange").on('click',function(e){
    
             }
             else if(data.MachineData[k].Name == "HF-21"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine21.pop()
@@ -2844,7 +3298,7 @@ $("#searchRange").on('click',function(e){
   
             }
             else if(data.MachineData[k].Name == "HF-22"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine22.pop()
@@ -2852,7 +3306,7 @@ $("#searchRange").on('click',function(e){
  
             }
             else if(data.MachineData[k].Name == "HF-23"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine23.pop()
@@ -2860,7 +3314,7 @@ $("#searchRange").on('click',function(e){
   
             }
             else if(data.MachineData[k].Name == "HF-24"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine24.pop()
@@ -2868,7 +3322,7 @@ $("#searchRange").on('click',function(e){
       
             }
             else if(data.MachineData[k].Name == "HF-25"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine25.pop()
@@ -2877,7 +3331,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-26"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine26.pop()
@@ -2885,7 +3339,7 @@ $("#searchRange").on('click',function(e){
     
             }
             else if(data.MachineData[k].Name == "HF-27"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine27.pop()
@@ -2894,7 +3348,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-28"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine28.pop()
@@ -2902,7 +3356,7 @@ $("#searchRange").on('click',function(e){
     
             }
             else if(data.MachineData[k].Name == "HF-29"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine29.pop()
@@ -2910,7 +3364,7 @@ $("#searchRange").on('click',function(e){
        
             }
             else if(data.MachineData[k].Name == "HF-30"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine30.pop()
@@ -2919,7 +3373,7 @@ $("#searchRange").on('click',function(e){
 
             }
             else if(data.MachineData[k].Name == "HF-31"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine31.pop()
@@ -2927,7 +3381,7 @@ $("#searchRange").on('click',function(e){
         
             }
             else if(data.MachineData[k].Name == "HF-32"){
-                output = data.MachineData[k].Counter * 2.87
+              output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine32.pop()
@@ -3081,7 +3535,7 @@ Highcharts.chart('containerDateRangeBar', {
 
     series: [
         {
-            name: "RWPD",
+            name: "HF Cutting",
             colorByPoint: true,
             data: seriesDataTop
         }
@@ -3111,12 +3565,12 @@ $.post(url2,{"startDate":startDate, "endDate":endDate,"dept_id":23,"section_id":
         for(let j = 0; j<lenOuter; j++){
             // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
 
-            output = dataArrayOuter[j].Counter * 2.87
+            output = dataArrayOuter[j].Counter * 0.2 * 2.87
             Minutes = (1.5*32*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
 
             seriesData.push(parseFloat(efficiency))
-            targetData.push(parseFloat(67))
+            targetData.push(parseFloat(64))
 // }
         }
        
@@ -3184,6 +3638,86 @@ $("#dateRangeResult").css('display','inline-block')
 
  });
     })
+
+    Highcharts.chart('container', {
+                        chart: {
+                            zoomType: 'xy'
+                        },
+                        title: {
+                            text: 'HF Cutting Output'
+                        },
+                        subtitle: {
+                            // text: 'Source: WorldClimate.com'
+                        },
+                        xAxis: [{
+                            categories: <?php echo json_encode($GetHours, JSON_NUMERIC_CHECK); ?>,
+                            crosshair: true
+                        }],
+                        yAxis: [{ // Primary yAxis
+                                labels: {
+                                    format: '{value} balls',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                },
+                                title: {
+                                    text: 'Achieved',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                }
+                            },
+                            { // Secondary yAxis
+                                title: {
+                                    text: 'Target',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[0]
+                                    }
+                                },
+
+                                opposite: true
+                            }
+                        ],
+                        tooltip: {
+                            shared: true
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'left',
+                            x: 120,
+                            verticalAlign: 'top',
+                            y: 100,
+                            floating: true,
+                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                                'rgba(255,255,255,0.25)',
+                            enabled: false
+                        },
+
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.0f}'
+                                }
+                            }
+                        },
+                        series: [{
+                                name: 'Achieved',
+                                type: 'column',
+                                yAxis: 1,
+
+                                data: <?php echo json_encode($GetReading, JSON_NUMERIC_CHECK); ?>,
+                                tooltip: {
+                                    valueSuffix: ' balls'
+                                }
+
+                            }
+
+                        ]
+
+
+                    });
 </script>
 
 

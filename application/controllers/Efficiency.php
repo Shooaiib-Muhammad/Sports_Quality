@@ -219,7 +219,7 @@ class Efficiency extends CI_Controller
     $Year = date('Y');
     $Day = date('d');
     $CurrentDate = $Year . '-' . $Month . '-' . $Day;
-
+    $data['HourllyReading'] = $this->E->HourllyReadingCutting($CurrentDate, $CurrentDate);
     $data['Counter'] = $this->RWPD->Cutting();
     // // $total = 0;
     // // foreach ($data['machineCounter'] as $count) {
@@ -242,7 +242,7 @@ class Efficiency extends CI_Controller
     $Year = date('Y');
     $Day = date('d');
     $CurrentDate = $Year . '-' . $Month . '-' . $Day;
-
+    $data['HourllyReading'] = $this->E->HourllyReadingPanelCutting($CurrentDate, $CurrentDate);
     $data['Counter'] = $this->RWPD->panelCutting();
     // // $total = 0;
     // // foreach ($data['machineCounter'] as $count) {
@@ -333,7 +333,34 @@ class Efficiency extends CI_Controller
     // die;
     $this->load->view('Efficiency/MS/CuttingPanelCutting', $data);
   }
+  public function HSB34001(){
 
+    $this->load->view('Efficiency/HSB34001');
+  }
+
+  public function TMB(){
+
+    $this->load->view('Efficiency/TMB');
+  }
+  public function LFB(){
+
+    $this->load->view('Efficiency/LFB');
+  }
+  public function AMB()
+  {
+
+
+
+    $this->load->view('Efficiency/AMB');
+  }
+  public function MSB()
+  {
+
+    // print_r$data['departments'] = $this->E->departments();
+
+
+    $this->load->view('Efficiency/MSB');
+  }
   public function CuttingPanelPreparation()
   {
     $Month = date('m');
@@ -653,6 +680,21 @@ class Efficiency extends CI_Controller
     ->set_output(json_encode($data));
   }
 
+  public function getLaminationDateRangeData(){
+    
+    $startDate = date("Y-m-d", strtotime($_POST['startDate']));
+    $endDate = date("Y-m-d", strtotime($_POST['endDate']));
+
+   //  $data['getData'] = $this->Lamination->getData($startDate, $endDate);
+    $data['BarData'] = $this->E->getLaminationDateRangeData($startDate, $endDate);
+    $data['MachineData'] = $this->E->getLaminationDateRangeDataMachineWise($startDate, $endDate);
+
+    return $this->output
+    ->set_content_type('application/json')
+    ->set_status_header(200)
+    ->set_output(json_encode($data));
+  }
+
   public function getRealTimeDateRange(){
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
@@ -664,17 +706,17 @@ class Efficiency extends CI_Controller
     ->set_status_header(200)
     ->set_output(json_encode($data));
   }
-public function gettingambcoreData(){
-$startDate = $_POST['startDate'];
-$endDate = $_POST['endDate'];
-
-$data['BarData'] = $this->E->gettingambcoreData($startDate, $endDate);
-//$data['MachineData'] = $this->E->getCuttingSheetSizingDateRangeDataMachineWise($startDate, $endDate);
-
-return $this->output
-->set_content_type('application/json')
-->set_status_header(200)
-->set_output(json_encode($data));
-}
+  public function gettingambcoreData(){
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+    
+    $data['BarData'] = $this->E->gettingambcoreData($startDate, $endDate);
+    //$data['MachineData'] = $this->E->getCuttingSheetSizingDateRangeDataMachineWise($startDate, $endDate);
+    
+    return $this->output
+    ->set_content_type('application/json')
+    ->set_status_header(200)
+    ->set_output(json_encode($data));
+    }
 
 }

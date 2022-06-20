@@ -1,3 +1,4 @@
+
 <?php $this->load->view('includes/new_header'); ?>
 <!--  -->
 <style>
@@ -127,6 +128,25 @@
 
             $this->load->view('includes/top_header.php');
             ?>
+
+<?php
+
+$GetHours = array();
+$GetReading = array();
+//$target = array();
+//print_r($HourllyReading);
+foreach ($HourllyReading as $key) {
+    $point1 = array($key['Counter'] * 5.25,);
+    $point2 = array($key['HourName'],);
+    $dailytarget = 3000 / 6;
+    $point3 = $dailytarget / 8;
+
+    array_push($GetReading, $point1);
+    array_push($GetHours, $point2);
+    // array_push($target, $point3);
+    //array_push($lineNames, $key['LineName']);
+
+} ?>
             <!-- END Page Header -->
             <!-- BEGIN Page Content -->
             <!-- the #js-page-content id is needed for some plugins to initialize -->
@@ -154,6 +174,7 @@
                 <div class="tab-content py-3">
 
 <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel" style="background-color: white;">
+<div id="currentDateData">
 <div class="row">
                     <div class="col-md-12">
 
@@ -173,12 +194,7 @@
 
                         </div>
 
-                        <?php foreach ($realtime as $d) {
-
-                        ?>
-
-
-                            <?php if ($d['EmployeeType'] == "Direct") { ?>
+               
                                 <div class="col-md-2" id="direct">
                                     <a href="javascript:void(0)">
                                         <div style="background-color:maroon" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
@@ -189,7 +205,8 @@
                                                     <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
 
                                                     <small class="m-0 l-h-n">Number of Employees</small>
-                                                    <?php echo $d['EmpCount']; ?>
+                                                    <!-- <?php echo $d['EmpCount']; ?> -->
+                                                    <span id="employeeId"> </span>
                                                     <!-- <small class="m-0 l-h-n">Real Time</small>
                                             <?php echo $d['RealTime']; ?> -->
 
@@ -212,7 +229,7 @@
                                                     <!-- <small class="m-0 l-h-n">Number of Employees</small>
                                             <?php echo $d['EmpCount']; ?> -->
                                                     <small class="m-0 l-h-n">Real Time</small>
-                                                    <?php echo $d['RealTime']; ?>
+                                                    <span id="realTimeId"> </span>
 
                                                 </h3>
                                             </div>
@@ -220,11 +237,7 @@
                                         </div>
                                     </a>
                                 </div>
-                            <?php } ?>
-
-
-
-                        <?php } ?>
+               
                         <?php
 
                         //print_r($Counter);
@@ -234,8 +247,8 @@
                                 <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <small class="m-0 l-h-n">Total NO of Sheets</small>
-                                            <?php echo $Counter[0]['Counter']; ?>
+                                            <small class="m-0 l-h-n">Total NO of Balls</small>
+                                            <span id="counterValueId"><?php echo $Counter[0]['Counter']*5.25; ?></span>
                                             <small class="m-0 l-h-n"></small>
 
 
@@ -250,7 +263,7 @@
                         </div>
                         <?php
                         $total = $Counter[0]['Counter'];
-                        $Output = $total * 0.36;
+                        $Output = $total * 5.25 * 0.10;
 
 
 
@@ -276,7 +289,7 @@
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                             <small class="m-0 l-h-n">Efficiency</small>
-                                            <?php echo Round($Efficiecny, 2); ?>%
+                                            <span id="efficiencyValueId"></span>
                                             <small class="m-0 l-h-n"></small>
                                         </h3>
                                     </div>
@@ -365,6 +378,15 @@
 
                     </div>
                 </div>
+   </div>
+   <div id="sundayStatus" style="display: none;">
+   <div class="card">
+
+<div class="card-body">
+   <h1 style="font-family:cursive;margin-left: 40%;padding: 50px;">Hello <?php echo $_SESSION['Username']; ?>!<br>It's Sunday so current date data isn't available.<br> Have a happy Sunday!</h1>  
+</div>
+   </div>
+</div>
 </div>
 
 <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
@@ -1200,76 +1222,44 @@
     ];
 
     $(document).ready(function() {
+    
+        var EfficiencyFinal;
+        var EfficiencyFinalArray = [];
+        let counterValue = $("#counterValueId").text()
+        console.log((counterValue/2920)*100)
         let currentDate = new Date().toJSON().substr(0,10);
+        let dateGet = new Date()
+        let dayId = dateGet.getDay()
         $("#startDate").val(currentDate);
         $("#endDate").val(currentDate);
-        /* init datatables */
-        $('#dt-basic-example').dataTable({
-            responsive: true,
-            dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
-                "<'row'<'col-sm-12'tr>>" +
-                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-            buttons: [{
-                    extend: 'colvis',
-                    text: 'Column Visibility',
-                    titleAttr: 'Col visibility',
-                    className: 'btn-outline-default'
-                },
-                {
-                    extend: 'csvHtml5',
-                    text: 'CSV',
-                    titleAttr: 'Generate CSV',
-                    className: 'btn-outline-default'
-                },
-                {
-                    extend: 'copyHtml5',
-                    text: 'Copy',
-                    titleAttr: 'Copy to clipboard',
-                    className: 'btn-outline-default'
-                },
-                {
-                    extend: 'print',
-                    text: '<i class="fal fa-print"></i>',
-                    titleAttr: 'Print Table',
-                    className: 'btn-outline-default'
-                }
+        var date1 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),7,45,0); // Thu Sep 16 2010 13:30:58
+var date2 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),dateGet.getHours(),dateGet.getMinutes(),dateGet.getSeconds()); // Tue Aug 18 2015 14:20:48
 
-            ],
-            columnDefs: [{
-                    targets: -1,
-                    title: '',
-                    orderable: false,
-                    render: function(data, type, full, meta) {
-
-                        /*
-                        -- ES6
-                        -- convert using https://babeljs.io online transpiler
-                        return `
-                        <a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>
-                        	<i class="fal fa-times"></i>
-                        </a>
-                        <div class='dropdown d-inline-block dropleft '>
-                        	<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>
-                        		<i class="fal fa-ellipsis-v"></i>
-                        	</a>
-                        	<div class='dropdown-menu'>
-                        		<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>
-                        		<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>
-                        	</div>
-                        </div>`;
-                        	
-                        ES5 example below:	
-
-                        */
-                        return "\n\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>\n\t\t\t\t\t\t\t<i class=\"fal fa-times\"></i>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t<div class='dropdown d-inline-block dropleft'>\n\t\t\t\t\t\t\t<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>\n\t\t\t\t\t\t\t\t<i class=\"fal fa-ellipsis-v\"></i>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t<div class='dropdown-menu'>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>";
-                    },
-                },
-
-            ]
-
-        });
-
-        var gaugeOptions = {
+let dateDifference;
+let minutes;
+if(dayId == 0){
+$("#currentDateData").css('display','none');
+$("#sundayStatus").css('display',"inline-block");
+}
+else{
+    if(dateGet.getHours() >= 7 && dateGet.getHours() <= 16){
+    
+    if(dateGet.getHours() >= 14){
+        dateDifference = date2 - date1;
+    minutes = Math.floor(dateDifference / 60000);
+    EfficiencyFinal = (((counterValue*2*0.10)/(minutes*8) )*100).toFixed(2)
+    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+    if(dayId == 5){
+        $("#realTimeId").text((minutes*8)-(60*8))
+    }
+    else{
+        $("#realTimeId").text((minutes*8)-(45*8))
+    }
+    
+    $("#employeeId").text(8)
+    $("#efficiencyValueId").text(EfficiencyFinal + " %")
+    console.log(EfficiencyFinalArray)
+    var gaugeOptions = {
             chart: {
                 type: 'solidgauge'
             },
@@ -1343,7 +1333,7 @@
 
             series: [{
                 name: 'Achieved',
-                data: [<?php echo Round($Efficiecny, 2); ?>],
+                data: EfficiencyFinalArray,
                 dataLabels: {
                     format: '<div style="text-align:center">' +
                         '<span style="font-size:30px"> {y} %</span><br/>' +
@@ -1353,6 +1343,178 @@
             }]
 
         }));
+    }  
+    else{
+        dateDifference = date2 - date1;
+    minutes = Math.floor(dateDifference / 60000);
+    EfficiencyFinal = (((counterValue*2*0.10)/(minutes*8) )*100).toFixed(2)
+    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+    console.log(EfficiencyFinalArray)
+    $("#realTimeId").text(minutes*8)
+    $("#employeeId").text(8)
+    $("#efficiencyValueId").text(EfficiencyFinal + " %")
+    var gaugeOptions = {
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            exporting: {
+                enabled: false
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.1, '#55BF3B'], // green
+                    [0.5, '#DDDF0D'], // yellow
+                    [0.9, '#DF5353'] // red
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Achieved'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Achieved',
+                data: EfficiencyFinalArray,
+                dataLabels: {
+                    format: '<div style="text-align:center">' +
+                        '<span style="font-size:30px"> {y} %</span><br/>' +
+                        '</div>'
+                },
+
+            }]
+
+        }));
+    } 
+}
+else{
+    $("#realTimeId").text(0)
+    $("#employeeId").text(0)
+    $("#efficiencyValueId").text("0 %")
+}
+}
+
+// checking with date is more recent to get the other out of it and store the result in dateDifference variable
+
+        /* init datatables */
+        $('#dt-basic-example').dataTable({
+            responsive: true,
+            dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            buttons: [{
+                    extend: 'colvis',
+                    text: 'Column Visibility',
+                    titleAttr: 'Col visibility',
+                    className: 'btn-outline-default'
+                },
+                {
+                    extend: 'csvHtml5',
+                    text: 'CSV',
+                    titleAttr: 'Generate CSV',
+                    className: 'btn-outline-default'
+                },
+                {
+                    extend: 'copyHtml5',
+                    text: 'Copy',
+                    titleAttr: 'Copy to clipboard',
+                    className: 'btn-outline-default'
+                },
+                {
+                    extend: 'print',
+                    text: '<i class="fal fa-print"></i>',
+                    titleAttr: 'Print Table',
+                    className: 'btn-outline-default'
+                }
+
+            ],
+            columnDefs: [{
+                    targets: -1,
+                    title: '',
+                    orderable: false,
+                    render: function(data, type, full, meta) {
+
+                        /*
+                        -- ES6
+                        -- convert using https://babeljs.io online transpiler
+                        return `
+                        <a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>
+                        	<i class="fal fa-times"></i>
+                        </a>
+                        <div class='dropdown d-inline-block dropleft '>
+                        	<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>
+                        		<i class="fal fa-ellipsis-v"></i>
+                        	</a>
+                        	<div class='dropdown-menu'>
+                        		<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>
+                        		<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>
+                        	</div>
+                        </div>`;
+                        	
+                        ES5 example below:	
+
+                        */
+                        return "\n\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>\n\t\t\t\t\t\t\t<i class=\"fal fa-times\"></i>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t<div class='dropdown d-inline-block dropleft'>\n\t\t\t\t\t\t\t<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>\n\t\t\t\t\t\t\t\t<i class=\"fal fa-ellipsis-v\"></i>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t<div class='dropdown-menu'>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>";
+                    },
+                },
+
+            ]
+
+        });
+
+
 
         // //The RPM gauge
         // var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, {
@@ -1716,7 +1878,7 @@
  for (var i = 0; i < len; i++) {
      ps[i] = {
          name: data1.BarData[i].Date,
-         y: data1.BarData[i].Counter,
+         y: (data1.BarData[i].Counter * 5.25),
          drilldown: data1.BarData[i].Date
      };
  }
@@ -1743,10 +1905,10 @@ function generateDataBottom(data1) {
  for (var i = 0; i < len; i++) {
     if(datesArray.indexOf(data1.MachineData[i].Date) === -1){
         datesArray.push(data1.MachineData[i].Date)
-        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,data1.MachineData[i].Counter])
+        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,(data1.MachineData[i].Counter*5.25)])
     }
     else{
-        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,data1.MachineData[i].Counter])
+        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,(data1.MachineData[i].Counter*5.25)])
     }
 
 
@@ -1819,7 +1981,7 @@ $("#searchRange").on('click',function(e){
             datesArrayMachineWise.push(data.MachineData[k].Date)
         targetDataMachineWise.push(parseFloat(67))
         if(data.MachineData[k].MachineName == "Sheet Sizing Press 1"){
-                output = data.MachineData[k].Counter * 0.10
+                output = data.MachineData[k].Counter * 2 * 0.10
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine1.push(parseFloat(efficiency))
@@ -1828,7 +1990,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine4.push(0)
             }
             else if(data.MachineData[k].MachineName == "Sheet Sizing Press 2"){
-                output = data.MachineData[k].Counter * 0.10
+                output = data.MachineData[k].Counter * 2 * 0.10
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine2.push(parseFloat(efficiency))
@@ -1837,7 +1999,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine4.push(0)
             }
             else if(data.MachineData[k].MachineName == "Sheet Sizing Press 3"){
-                output = data.MachineData[k].Counter * 0.10
+                output = data.MachineData[k].Counter * 7 * 0.10
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine3.push(parseFloat(efficiency))
@@ -1846,7 +2008,7 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine4.push(0)
             }
             else if(data.MachineData[k].MachineName == "Sheet Sizing Press 4"){
-                output = data.MachineData[k].Counter * 0.10
+                output = data.MachineData[k].Counter * 7 * 0.10
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine4.push(parseFloat(efficiency))
@@ -1858,7 +2020,7 @@ $("#searchRange").on('click',function(e){
     }
     else{
         if(data.MachineData[k].MachineName == "Sheet Sizing Press 1"){
-                output = data.MachineData[k].Counter * 0.10
+                output = data.MachineData[k].Counter * 2 * 0.10
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine1.pop()
@@ -1866,7 +2028,7 @@ $("#searchRange").on('click',function(e){
   
             }
             else if(data.MachineData[k].MachineName == "Sheet Sizing Press 2"){
-                output = data.MachineData[k].Counter * 0.10
+                output = data.MachineData[k].Counter * 2 * 0.10
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine2.pop()
@@ -1874,7 +2036,7 @@ $("#searchRange").on('click',function(e){
      
             }
             else if(data.MachineData[k].MachineName == "Sheet Sizing Press 3"){
-                output = data.MachineData[k].Counter * 0.10
+                output = data.MachineData[k].Counter * 7 * 0.10
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine3.pop()
@@ -1882,7 +2044,7 @@ $("#searchRange").on('click',function(e){
       
             }
             else if(data.MachineData[k].MachineName == "Sheet Sizing Press 4"){
-                output = data.MachineData[k].Counter * 0.10
+                output = data.MachineData[k].Counter * 7 * 0.10
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine4.pop()
@@ -2026,7 +2188,7 @@ $.post(url2,{"startDate":startDate, "endDate":endDate,"dept_id":dept_id,"section
         for(let j = 0; j<lenOuter; j++){
             // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
 
-            output = dataArrayOuter[j].Counter * 0.10
+            output = dataArrayOuter[j].Counter * 5.25 * 0.10
             Minutes = (2*4*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
 
@@ -2101,6 +2263,86 @@ $("#dateRangeResult").css('display','inline-block')
     })
 </script>
 <script>
+
+Highcharts.chart('container', {
+                        chart: {
+                            zoomType: 'xy'
+                        },
+                        title: {
+                            text: 'Sheet Sizing Output'
+                        },
+                        subtitle: {
+                            // text: 'Source: WorldClimate.com'
+                        },
+                        xAxis: [{
+                            categories: <?php echo json_encode($GetHours, JSON_NUMERIC_CHECK); ?>,
+                            crosshair: true
+                        }],
+                        yAxis: [{ // Primary yAxis
+                                labels: {
+                                    format: '{value} balls',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                },
+                                title: {
+                                    text: 'Achieved',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                }
+                            },
+                            { // Secondary yAxis
+                                title: {
+                                    text: 'Target',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[0]
+                                    }
+                                },
+
+                                opposite: true
+                            }
+                        ],
+                        tooltip: {
+                            shared: true
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'left',
+                            x: 120,
+                            verticalAlign: 'top',
+                            y: 100,
+                            floating: true,
+                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                                'rgba(255,255,255,0.25)',
+                            enabled: false
+                        },
+
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.0f}'
+                                }
+                            }
+                        },
+                        series: [{
+                                name: 'Achieved',
+                                type: 'column',
+                                yAxis: 1,
+
+                                data: <?php echo json_encode($GetReading, JSON_NUMERIC_CHECK); ?>,
+                                tooltip: {
+                                    valueSuffix: ' balls'
+                                }
+
+                            }
+
+                        ]
+
+
+                    });
     $('#direct').click(function() {
         $("#tableHere").html(' ');
         const params = new Proxy(new URLSearchParams(window.location.search), {

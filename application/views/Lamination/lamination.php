@@ -273,13 +273,13 @@ $CurrentDate = $Year . '-' . $Month . '-' . $Day;
 </div>
 
 <br>
-    <div class="row" >
+<div class="row" >
                     <div class="col-md-12">
 
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    Lamination OutPut
+                                    Panel Cutting OutPut
                                   
                                 </h2>
                             </div>
@@ -290,11 +290,17 @@ $CurrentDate = $Year . '-' . $Month . '-' . $Day;
     <div id="containerDateRangeBar"></div>
 
                                     </div>
-                                    <!-- <div class="col-md-12 mt-2">
+                                    <div class="col-md-12 mt-2">
                           
     <div id="containerDateRangeLine"></div>
 
-                                    </div> -->
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                          
+                          <div id="containerDateRangeLineMachineWise"></div>
+                      
+                                                          </div>
+                           
                                 </div>
                                 <div id="loadingShow" style="display: none;">
                           
@@ -1638,20 +1644,19 @@ $CurrentDate = $Year . '-' . $Month . '-' . $Day;
 
 
     });
-
     function generateDataTop(data1) {
  
  var ret = {},
      ps = [],
      series = [],
-     len = data1.TotalReading.length;
+     len = data1.BarData.length;
 
  //concat to get points
  for (var i = 0; i < len; i++) {
      ps[i] = {
-         name: data1.TotalReading[i].EntryDate,
-         y: data1.TotalReading[i].TotalReading,
-         drilldown: data1.TotalReading[i].EntryDate
+         name: data1.BarData[i].Date,
+         y: data1.BarData[i].Reading,
+         drilldown: data1.BarData[i].Date
      };
  }
  names = [];
@@ -1663,24 +1668,23 @@ $CurrentDate = $Year . '-' . $Month . '-' . $Day;
  }
  return series;
 }
-
-function generateDataBottom(data1) {
+    function generateDataBottom(data1) {
  
  var ret = {},
      ps = [],
      series = [],
-     len = data1.IndividualReading.length;
+     len = data1.MachineData.length;
    let datesArray = []
    let dataArray = []
 
  //concat to get points
  for (var i = 0; i < len; i++) {
-    if(datesArray.indexOf(data1.IndividualReading[i].EntryDate) === -1){
-        datesArray.push(data1.IndividualReading[i].EntryDate)
-        dataArray.push([data1.IndividualReading[i].EntryDate,data1.IndividualReading[i].MachineName.replace(/(\r\n|\n|\r)/gm, ""),data1.IndividualReading[i].Reading])
+    if(datesArray.indexOf(data1.MachineData[i].Date) === -1){
+        datesArray.push(data1.MachineData[i].Date)
+        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,data1.MachineData[i].Reading])
     }
     else{
-        dataArray.push([data1.IndividualReading[i].EntryDate,data1.IndividualReading[i].MachineName.replace(/(\r\n|\n|\r)/gm, ""),data1.IndividualReading[i].Reading])
+        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,data1.MachineData[i].Reading])
     }
 
 
@@ -1713,31 +1717,161 @@ function generateDataBottom(data1) {
  return series;
 }
 
-
-    $("#searchRange").on('click',function(e){
+$("#searchRange").on('click',function(e){
         e.preventDefault()
         $("#dateRangeResult").css('display','none')
         $("#loadingShow").css('display','inline-block')
         let startDate = $("#startDate").val()
         let endDate = $("#endDate").val()
+        let startDateNewFormat = startDate.split("-")[2]+"-"+startDate.split("-")[1]+"-"+startDate.split("-")[0]
+        let endDateNewFormat = endDate.split("-")[2]+"-"+endDate.split("-")[1]+"-"+endDate.split("-")[0]
         const params = new Proxy(new URLSearchParams(window.location.search), {
             get: (searchParams, prop) => searchParams.get(prop),
         });
         let section_id = params.section_id;
         let dept_id = params.dept_id;
         let datesArray = []
-        let url = "<?php echo base_url('Lamination/searchData') ?>";
-        // let url2 = "<?php echo base_url('Efficiency/getRealTimeDateRange') ?>";
+        let datesArrayMachineWise = []
+        let seriesDataMachine1 = [];
+        let seriesDataMachine2 = [];
+        let seriesDataMachine3 = [];
+        let seriesDataMachine4 = [];
+        let originalDataMachineWise = [];
+        let targetDataMachineWise = [];
+        let url = "<?php echo base_url('Efficiency/getLaminationDateRangeData') ?>";
+        let url2 = "<?php echo base_url('Efficiency/getRealTimeDateRange') ?>";
         $.post(url,{"startDate":startDate, "endDate":endDate},function(data, status){
             console.log("Data Outer", data)
         let seriesDataTop;
         let seriesDataBottom;
+        let dataArrayOuter = data.BarData
         if(data){
         seriesDataTop = generateDataTop(data)
         seriesDataBottom = generateDataBottom(data)
-          console.log("Series Date top", seriesDataTop)
-          console.log("Series Date bottom", seriesDataBottom)
+  
+
+
+        for(let k = 0; k<data.MachineData.length; k++){
+            // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
+        if(datesArrayMachineWise.indexOf(data.MachineData[k].Date) === -1){
+            datesArrayMachineWise.push(data.MachineData[k].Date)
+        targetDataMachineWise.push(parseFloat(67))
+        if(data.MachineData[k].Name == "Lamination Machine 1"){
+                output = data.MachineData[k].Reading * 0.32
+            Minutes = (3*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            }
+            else if(data.MachineData[k].Name == "Lamination Machine 2"){
+                output = data.MachineData[k].Reading * 0.32
+            Minutes = (3*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine2.push(parseFloat(efficiency))
+            seriesDataMachine1.push(0)
+            seriesDataMachine3.push(0)
+            }
+            else if(data.MachineData[k].Name == "Lamination Machine 3"){
+                output = data.MachineData[k].Reading * 0.32
+            Minutes = (3*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine3.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine1.push(0)
+            }
+          
+    }
+    else{
+        if(data.MachineData[k].Name == "Lamination Machine 1"){
+                output = data.MachineData[k].Reading * 0.32
+            Minutes = (3*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.pop()
+            seriesDataMachine1.push(parseFloat(efficiency))
+  
+            }
+            else if(data.MachineData[k].Name == "Lamination Machine 2"){
+                output = data.MachineData[k].Reading * 0.32
+            Minutes = (3*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine2.pop()
+            seriesDataMachine2.push(parseFloat(efficiency))
+     
+            }
+            else if(data.MachineData[k].Name == "Lamination Machine 3"){
+                output = data.MachineData[k].Reading * 0.32
+            Minutes = (3*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine3.pop()
+            seriesDataMachine3.push(parseFloat(efficiency))
+      
+            }
+     
+    }
+         
+        
+
         }
+        originalDataMachineWise.push({name:"Lamination Machine 1",data:seriesDataMachine1},{name:"Lamination Machine 2",data:seriesDataMachine2},{name:"Lamination Machine 3",data:seriesDataMachine3},{name:"Target Efficiency",data:targetDataMachineWise})
+        }
+         console.log("Target", datesArrayMachineWise)
+        for (var i = 0; i < data.BarData.length; i++) {
+    if(datesArray.indexOf(data.BarData[i].Date) === -1){
+        datesArray.push(data.BarData[i].Date)
+        // targetDataMachineWise.push(parseFloat(67))
+    }
+        }
+
+        Highcharts.chart('containerDateRangeLineMachineWise', {
+
+title: {
+    text: `Machine-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
+},
+
+yAxis: {
+    title: {
+        text: 'Efficiency'
+    }
+},
+
+xAxis: {
+    categories: datesArrayMachineWise,
+},
+
+legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle'
+},
+
+plotOptions: {
+    series: {
+        label: {
+            connectorAllowed: false
+        }
+    }
+},
+
+series: originalDataMachineWise,
+
+responsive: {
+    rules: [{
+        condition: {
+            maxWidth: 500
+        },
+        chartOptions: {
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
+            }
+        }
+    }]
+}
+
+});
+
 
 Highcharts.chart('containerDateRangeBar', {
     chart: {
@@ -1745,7 +1879,7 @@ Highcharts.chart('containerDateRangeBar', {
     },
     title: {
         align: 'left',
-        text: `Data From ${startDate} To ${endDate}`
+        text: `Balls Count From ${startDateNewFormat} To ${endDateNewFormat}`
     },
     accessibility: {
         announceNewData: {
@@ -1795,86 +1929,91 @@ Highcharts.chart('containerDateRangeBar', {
     }
 });
 
-// $.post(url2,{"startDate":startDate, "endDate":endDate,"dept_id":dept_id,"section_id":section_id},function(dataInner, status){
-//     console.log("Data Inner", dataInner)
-//     let seriesData = []
-//     let targetData = []
-//     let originalData = []
-//  if(dataInner.realtime != undefined){
-//     let len = dataInner.realtime.length;
-//     let output= 0;
-//     let Minutes = 0;
-//     let efficiency = 0;
-//     for(let i = 0; i<len; i++){
-//         if(dataArrayOuter[i]){
-//             output = dataArrayOuter[i].Counter * 0.64
-//             Minutes = dataInner.realtime[i].RealTime
-//             efficiency = (output / Minutes) * 100
+$.post(url2,{"startDate":startDate, "endDate":endDate,"dept_id":23,"section_id":118},function(dataInner, status){
+    console.log("Data Inner", dataInner)
+    let seriesData = []
+    let targetData = []
+    let originalData = []
+ if(dataInner.realtime != undefined){
+    let len = dataInner.realtime.length;
+    let lenOuter = dataArrayOuter.length;
+    let output= 0;
+    let Minutes = 0;
+    let efficiency = 0;
+    // for(let i = 0; i<len; i++){ 
+        for(let j = 0; j<lenOuter; j++){
+            // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
 
-//             seriesData.push(parseFloat(efficiency))
-//             targetData.push(parseFloat(67))
-//         }
-//         if(i == len-1){
-//             originalData.push({name:"Efficiency",data:seriesData},{name:"Target Efficiency",data:targetData})
-        
-//         }
-//     }
+            output = dataArrayOuter[j].Reading * 0.32
+            Minutes = (3*3*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
 
-//  }
-// //  console.log(datesArray)
-//  Highcharts.chart('containerDateRangeLine', {
-
-// title: {
-//     text: `Efficiency Between ${startDate} To ${endDate}`
-// },
-
-// yAxis: {
-//     title: {
-//         text: 'Efficiency'
-//     }
-// },
-
-// xAxis: {
-//     categories: datesArray,
-// },
-
-// legend: {
-//     layout: 'vertical',
-//     align: 'right',
-//     verticalAlign: 'middle'
-// },
-
-// plotOptions: {
-//     series: {
-//         label: {
-//             connectorAllowed: false
-//         }
-//     }
-// },
-
-// series: originalData,
-
-// responsive: {
-//     rules: [{
-//         condition: {
-//             maxWidth: 500
-//         },
-//         chartOptions: {
-//             legend: {
-//                 layout: 'horizontal',
-//                 align: 'center',
-//                 verticalAlign: 'bottom'
-//             }
-//         }
-//     }]
+            seriesData.push(parseFloat(efficiency))
+            targetData.push(parseFloat(67))
 // }
+        }
+       
+        // if(i == len-1){
+            originalData.push({name:"Efficiency",data:seriesData},{name:"Target Efficiency",data:targetData})
+        
+        // }
+    // }
 
-// });
+ }
+//  console.log(datesArray)
+ Highcharts.chart('containerDateRangeLine', {
 
-// })
+title: {
+    text: `Process-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
+},
 
+yAxis: {
+    title: {
+        text: 'Efficiency'
+    }
+},
+
+xAxis: {
+    categories: datesArray,
+},
+
+legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle'
+},
+
+plotOptions: {
+    series: {
+        label: {
+            connectorAllowed: false
+        }
+    }
+},
+
+series: originalData,
+
+responsive: {
+    rules: [{
+        condition: {
+            maxWidth: 500
+        },
+        chartOptions: {
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
+            }
+        }
+    }]
+}
+
+});
 $("#loadingShow").css('display','none')
 $("#dateRangeResult").css('display','inline-block')
+})
+
+
 
  });
     })

@@ -391,7 +391,7 @@ foreach ($Stationwise as $key) {
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    Airless Mini Packing OutPut
+                                    Sheet Sizing OutPut
                                   
                                 </h2>
                             </div>

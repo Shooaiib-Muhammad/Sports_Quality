@@ -40,7 +40,7 @@ $query = $this->db->query("SELECT MAX(Reading) AS Reading, MachineName, EntryDat
 
       public function HourllyReading($s_date, $e_date)
       {
-            $query = $this->db->query("SELECT        Reading , MachineName, HourName
+            $query = $this->db->query("SELECT        Reading ,  HourName
 FROM            dbo.view_lamination_Hourlly
 WHERE        (EntryDate BETWEEN '$s_date' AND '$e_date')");
             return  $query->result_array();

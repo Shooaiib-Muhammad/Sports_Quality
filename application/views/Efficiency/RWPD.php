@@ -150,8 +150,7 @@ foreach ($HourllyReading as $key) {
     // array_push($target, $point3);
     //array_push($lineNames, $key['LineName']);
 
-} 
-?>
+} ?>
                 <!-- <div class="subheader">
                     <h1 class="subheader-title">
                         <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Dashboard</span>
@@ -167,6 +166,7 @@ foreach ($HourllyReading as $key) {
                 <div class="tab-content py-3">
 
 <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel" style="background-color: white;">
+<div id="currentDateData">
 <div class="row">
                     <div class="col-md-12">
 
@@ -191,7 +191,7 @@ foreach ($HourllyReading as $key) {
                         ?>
 
 
-                            <?php if ($d['EmployeeType'] == "Direct") { ?>
+                            
                                 <div class="col-md-2" id="direct">
                                     <a href="javascript:void(0)">
                                         <div style="background-color:maroon" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
@@ -202,9 +202,10 @@ foreach ($HourllyReading as $key) {
                                                     <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
 
                                                     <small class="m-0 l-h-n">Number of Employees</small>
-                                                    <?php echo $d['EmpCount']; ?>
-                                                    <!-- <small class="m-0 l-h-n">Real Time</small>-->
-                                            <!-- <?php echo $d['RealTime']; ?>  -->
+                                                    <!-- <?php echo $d['EmpCount']; ?> -->
+                                                    <span id="employeeId"> </span>
+                                                    <!-- <small class="m-0 l-h-n">Real Time</small>
+                                            <?php echo $d['RealTime']; ?> -->
 
                                                 </h3>
                                             </div>
@@ -222,10 +223,10 @@ foreach ($HourllyReading as $key) {
 
                                                     <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
 
-                                                    <!-- <small class="m-0 l-h-n">Number of Employees</small>-->
-                                            <!-- <?php echo $d['EmpCount']; ?>  -->
+                                                    <!-- <small class="m-0 l-h-n">Number of Employees</small>
+                                            <?php echo $d['EmpCount']; ?> -->
                                                     <small class="m-0 l-h-n">Real Time</small>
-                                                    <?php echo $d['RealTime']; ?>
+                                                    <span id="realTimeId"> </span>
 
                                                 </h3>
                                             </div>
@@ -233,20 +234,22 @@ foreach ($HourllyReading as $key) {
                                         </div>
                                     </a>
                                 </div>
-                            <?php } ?>
+                      
 
 
 
                         <?php } ?>
+                        <?php
 
+                        //print_r($Counter);
+                        ?>
                         <div class="col-md-2" id="direct">
                             <a href="javascript:void(0)">
                                 <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <small class="m-0 l-h-n">Total Balls Count</small>
-                                            <?php echo $total; ?>
-
+                                            <small class="m-0 l-h-n">Total NO of Balls</small>
+                                            <span id="counterValueId"><?php echo $total ?></span>
                                             <small class="m-0 l-h-n"></small>
 
 
@@ -259,26 +262,25 @@ foreach ($HourllyReading as $key) {
                                 </div>
                             </a>
                         </div>
-                        <?php $Output = $total * 0.58;
+                        <?php
+                        // $total = $total;;
+                        $Output = $total * 0.58;
 
 
 
                         $Mints = 0;
-                        if(array_key_exists(0,$realtime)){
-                            if ($realtime[0]['EmployeeType'] == "Direct") {
+                        if (isset($d['EmployeeType']) == "Direct") {
 
 
-                                $Mints = 16*5*480;
-                            }
+                            $Mints = isset($d['RealTime']);
                         }
-                     
                         if($Mints != 0){
-                            $Efficiecny = ($Output / $Mints) * 100;
+                            $Efficiecny = ($Output / $Mints) ;
                         }
                         else{
-                            $Efficiecny = ($Output / 1) * 100;
+                            $Efficiecny = ($Output / 1) ;
                         }
-                       
+                        
 
                         ?>
 
@@ -288,8 +290,7 @@ foreach ($HourllyReading as $key) {
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                             <small class="m-0 l-h-n">Efficiency</small>
-                                            <?php echo Round($Efficiecny, 2); ?>%
-
+                                            <span id="efficiencyValueId"></span>
                                             <small class="m-0 l-h-n"></small>
                                         </h3>
                                     </div>
@@ -312,9 +313,26 @@ foreach ($HourllyReading as $key) {
                                 </div>
                             </a>
                         </div>
-                 
+                        <div class="col-md-1">
+                            <!-- <?php
+                            echo $total;
+                            ?>
+                            <br>
+                            <?php
+                            echo $Output;
+                            ?>
+                            <br>
+                            <?php
+                            echo $Mints;
+                            ?> -->
+                        </div>
+
                     </div>
                 </div> <!-- row ends here -->
+
+
+
+
                 <div class="guage text-center ">
                     <script src="https://code.highcharts.com/highcharts.js"></script>
                     <script src="https://code.highcharts.com/highcharts-more.js"></script>
@@ -322,7 +340,6 @@ foreach ($HourllyReading as $key) {
                     <script src="https://code.highcharts.com/modules/exporting.js"></script>
                     <script src="https://code.highcharts.com/modules/export-data.js"></script>
                     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-                    <script src="https://code.highcharts.com/modules/data.js"></script>
                     <script src="https://code.highcharts.com/modules/drilldown.js"></script>
                     <figure class="highcharts-figure">
                         <div id="container-speed" class="chart-container"></div>
@@ -331,11 +348,16 @@ foreach ($HourllyReading as $key) {
                 </div>
                 <div id="tableHere" class="p-2">
 
-                </div>
-                </div>
-              </div>
 
-            </div>
+
+
+
+                </div>
+
+                </div>
+                        </div>
+
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
@@ -343,7 +365,7 @@ foreach ($HourllyReading as $key) {
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    RWPD OutPut
+                                    RWPD Output
                                   
                                 </h2>
                             </div>
@@ -357,6 +379,15 @@ foreach ($HourllyReading as $key) {
 
                     </div>
                 </div>
+   </div>
+   <div id="sundayStatus" style="display: none;">
+   <div class="card">
+
+<div class="card-body">
+   <h1 style="font-family:cursive;margin-left: 40%;padding: 50px;">Hello <?php echo $_SESSION['Username']; ?>!<br>It's Sunday so current date data isn't available.<br> Have a happy Sunday!</h1>  
+</div>
+   </div>
+</div>
 </div>
 
 <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
@@ -1296,77 +1327,42 @@ foreach ($HourllyReading as $key) {
     ];
 
     $(document).ready(function() {
+        var EfficiencyFinal;
+        var EfficiencyFinalArray = [];
+        let counterValue = $("#counterValueId").text()
         let currentDate = new Date().toJSON().substr(0,10);
+        let dateGet = new Date()
+        let dayId = dateGet.getDay()
         $("#startDate").val(currentDate);
         $("#endDate").val(currentDate);
-   
-        /* init datatables */
-        $('#dt-basic-example').dataTable({
-            responsive: true,
-            dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
-                "<'row'<'col-sm-12'tr>>" +
-                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-            buttons: [{
-                    extend: 'colvis',
-                    text: 'Column Visibility',
-                    titleAttr: 'Col visibility',
-                    className: 'btn-outline-default'
-                },
-                {
-                    extend: 'csvHtml5',
-                    text: 'CSV',
-                    titleAttr: 'Generate CSV',
-                    className: 'btn-outline-default'
-                },
-                {
-                    extend: 'copyHtml5',
-                    text: 'Copy',
-                    titleAttr: 'Copy to clipboard',
-                    className: 'btn-outline-default'
-                },
-                {
-                    extend: 'print',
-                    text: '<i class="fal fa-print"></i>',
-                    titleAttr: 'Print Table',
-                    className: 'btn-outline-default'
-                }
+        var date1 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),7,45,0); // Thu Sep 16 2010 13:30:58
+var date2 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),dateGet.getHours(),dateGet.getMinutes(),dateGet.getSeconds()); // Tue Aug 18 2015 14:20:48
 
-            ],
-            columnDefs: [{
-                    targets: -1,
-                    title: '',
-                    orderable: false,
-                    render: function(data, type, full, meta) {
-
-                        /*
-                        -- ES6
-                        -- convert using https://babeljs.io online transpiler
-                        return `
-                        <a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>
-                        	<i class="fal fa-times"></i>
-                        </a>
-                        <div class='dropdown d-inline-block dropleft '>
-                        	<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>
-                        		<i class="fal fa-ellipsis-v"></i>
-                        	</a>
-                        	<div class='dropdown-menu'>
-                        		<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>
-                        		<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>
-                        	</div>
-                        </div>`;
-                        	
-                        ES5 example below:	
-
-                        */
-                        return "\n\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>\n\t\t\t\t\t\t\t<i class=\"fal fa-times\"></i>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t<div class='dropdown d-inline-block dropleft'>\n\t\t\t\t\t\t\t<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>\n\t\t\t\t\t\t\t\t<i class=\"fal fa-ellipsis-v\"></i>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t<div class='dropdown-menu'>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>";
-                    },
-                },
-
-            ]
-
-        });
-
-        var gaugeOptions = {
+let dateDifference;
+let minutes;
+if(dayId == 0){
+$("#currentDateData").css('display','none');
+$("#sundayStatus").css('display',"inline-block");
+}
+else{
+    if(dateGet.getHours() >= 7 && dateGet.getHours() <= 16){
+    
+    if(dateGet.getHours() >= 14){
+        dateDifference = date2 - date1;
+    minutes = Math.floor(dateDifference / 60000);
+    EfficiencyFinal = (((counterValue*0.58)/(minutes*80) )*100).toFixed(2)
+    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+    if(dayId == 5){
+        $("#realTimeId").text((minutes*80)-(60*8))
+    }
+    else{
+        $("#realTimeId").text((minutes*80)-(45*8))
+    }
+    
+    $("#employeeId").text(80)
+    $("#efficiencyValueId").text(EfficiencyFinal + " %")
+    console.log(EfficiencyFinalArray)
+    var gaugeOptions = {
             chart: {
                 type: 'solidgauge'
             },
@@ -1440,7 +1436,7 @@ foreach ($HourllyReading as $key) {
 
             series: [{
                 name: 'Achieved',
-                data: [<?php echo Round($Efficiecny, 2); ?>],
+                data: EfficiencyFinalArray,
                 dataLabels: {
                     format: '<div style="text-align:center">' +
                         '<span style="font-size:30px"> {y} %</span><br/>' +
@@ -1450,6 +1446,260 @@ foreach ($HourllyReading as $key) {
             }]
 
         }));
+    }  
+    else{
+        dateDifference = date2 - date1;
+    minutes = Math.floor(dateDifference / 60000);
+    EfficiencyFinal = (((counterValue*0.58)/(minutes*80) )*100).toFixed(2)
+    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+    console.log(EfficiencyFinalArray)
+    $("#realTimeId").text(minutes*80)
+    $("#employeeId").text(80)
+    $("#efficiencyValueId").text(EfficiencyFinal + " %")
+    var gaugeOptions = {
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            exporting: {
+                enabled: false
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.1, '#55BF3B'], // green
+                    [0.5, '#DDDF0D'], // yellow
+                    [0.9, '#DF5353'] // red
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Achieved'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Achieved',
+                data: EfficiencyFinalArray,
+                dataLabels: {
+                    format: '<div style="text-align:center">' +
+                        '<span style="font-size:30px"> {y} %</span><br/>' +
+                        '</div>'
+                },
+
+            }]
+
+        }));
+    } 
+}
+else{
+    $("#realTimeId").text(0)
+    $("#employeeId").text(0)
+    $("#efficiencyValueId").text("0 %")
+}
+}
+
+   
+        /* init datatables */
+        $('#dt-basic-example').dataTable({
+            responsive: true,
+            dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            buttons: [{
+                    extend: 'colvis',
+                    text: 'Column Visibility',
+                    titleAttr: 'Col visibility',
+                    className: 'btn-outline-default'
+                },
+                {
+                    extend: 'csvHtml5',
+                    text: 'CSV',
+                    titleAttr: 'Generate CSV',
+                    className: 'btn-outline-default'
+                },
+                {
+                    extend: 'copyHtml5',
+                    text: 'Copy',
+                    titleAttr: 'Copy to clipboard',
+                    className: 'btn-outline-default'
+                },
+                {
+                    extend: 'print',
+                    text: '<i class="fal fa-print"></i>',
+                    titleAttr: 'Print Table',
+                    className: 'btn-outline-default'
+                }
+
+            ],
+            columnDefs: [{
+                    targets: -1,
+                    title: '',
+                    orderable: false,
+                    render: function(data, type, full, meta) {
+
+                        /*
+                        -- ES6
+                        -- convert using https://babeljs.io online transpiler
+                        return `
+                        <a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>
+                        	<i class="fal fa-times"></i>
+                        </a>
+                        <div class='dropdown d-inline-block dropleft '>
+                        	<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>
+                        		<i class="fal fa-ellipsis-v"></i>
+                        	</a>
+                        	<div class='dropdown-menu'>
+                        		<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>
+                        		<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>
+                        	</div>
+                        </div>`;
+                        	
+                        ES5 example below:	
+
+                        */
+                        return "\n\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>\n\t\t\t\t\t\t\t<i class=\"fal fa-times\"></i>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t<div class='dropdown d-inline-block dropleft'>\n\t\t\t\t\t\t\t<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>\n\t\t\t\t\t\t\t\t<i class=\"fal fa-ellipsis-v\"></i>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t<div class='dropdown-menu'>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>";
+                    },
+                },
+
+            ]
+
+        });
+
+        // var gaugeOptions = {
+        //     chart: {
+        //         type: 'solidgauge'
+        //     },
+
+        //     title: null,
+
+        //     pane: {
+        //         center: ['50%', '85%'],
+        //         size: '140%',
+        //         startAngle: -90,
+        //         endAngle: 90,
+        //         background: {
+        //             backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+        //             innerRadius: '60%',
+        //             outerRadius: '100%',
+        //             shape: 'arc'
+        //         }
+        //     },
+
+        //     exporting: {
+        //         enabled: false
+        //     },
+
+        //     tooltip: {
+        //         enabled: false
+        //     },
+
+        //     // the value axis
+        //     yAxis: {
+        //         stops: [
+        //             [0.1, '#55BF3B'], // green
+        //             [0.5, '#DDDF0D'], // yellow
+        //             [0.9, '#DF5353'] // red
+        //         ],
+        //         lineWidth: 0,
+        //         tickWidth: 0,
+        //         minorTickInterval: null,
+        //         tickAmount: 2,
+        //         title: {
+        //             y: -70
+        //         },
+        //         labels: {
+        //             y: 16
+        //         }
+        //     },
+
+        //     plotOptions: {
+        //         solidgauge: {
+        //             dataLabels: {
+        //                 y: 5,
+        //                 borderWidth: 0,
+        //                 useHTML: true
+        //             }
+        //         }
+        //     }
+        // };
+
+        // // The speed gauge
+        // var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+        //     yAxis: {
+        //         min: 0,
+        //         max: 100,
+        //         title: {
+        //             text: 'Achieved'
+        //         }
+        //     },
+
+        //     credits: {
+        //         enabled: false
+        //     },
+
+        //     series: [{
+        //         name: 'Achieved',
+        //         data: [<?php echo Round($Efficiecny, 2); ?>],
+        //         dataLabels: {
+        //             format: '<div style="text-align:center">' +
+        //                 '<span style="font-size:30px"> {y} %</span><br/>' +
+        //                 '</div>'
+        //         },
+
+        //     }]
+
+        // }));
 
         // //The RPM gauge
         // var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, {

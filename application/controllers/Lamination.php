@@ -16,7 +16,7 @@ class Lamination extends CI_Controller
         $Month = date('m');
         $Year = date('Y');
         $Day = date('d');
-        $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+        $CurrentDate = $Year . '-' . $Month . '-' . $Day;
 
 
         $data['TotalReading'] = $this->Lamination->TotalReading($CurrentDate, $CurrentDate);
@@ -50,8 +50,8 @@ class Lamination extends CI_Controller
     public function searchData()
     {
 
-     $startDate = date("d/m/Y", strtotime($_POST['startDate']));
-     $endDate = date("d/m/Y", strtotime($_POST['endDate']));
+     $startDate = date("Y-m-d", strtotime($_POST['startDate']));
+     $endDate = date("Y-m-d", strtotime($_POST['endDate']));
 
     //  $data['getData'] = $this->Lamination->getData($startDate, $endDate);
      $data['TotalReading'] = $this->Lamination->TotalReadingDateRange($startDate, $endDate);
@@ -62,6 +62,7 @@ class Lamination extends CI_Controller
     ->set_status_header(200)
     ->set_output(json_encode($data));
     }
+
 
    }
 

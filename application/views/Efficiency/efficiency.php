@@ -100,8 +100,8 @@
                             <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:#997300">
                                 <div class="">
                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                    Hand Stitched 
-                                        <small class="m-0 l-h-n"> B34001</small>
+                                        B34001
+                                        <small class="m-0 l-h-n">(Hand Stitched Balls)</small>
                                     </h3>
                                 </div>
                                 <i class="fal fa-futbol  position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
@@ -113,8 +113,8 @@
                             <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:purple">
                                 <div class="">
                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                    Thermo Bounded
-                                        <small class="m-0 l-h-n">  B34002,B34003,B34004</small>
+                                        B34002,03,04
+                                        <small class="m-0 l-h-n">(Thermo Bounded)</small>
                                     </h3>
                                 </div>
                                 <i class="fal fa-futbol  position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
@@ -126,8 +126,8 @@
                             <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:black">
                                 <div class="">
                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                        Machine Stitch
-                                        <small class="m-0 l-h-n">B34005</small>
+                                        B34005
+                                        <small class="m-0 l-h-n">(Machine Stitch Ball)</small>
                                     </h3>
                                 </div>
                                 <i class="fal fa-futbol  position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
@@ -139,8 +139,8 @@
                             <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:maroon">
                                 <div class="">
                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                    Airless Mini 
-                                        <small class="m-0 l-h-n">B34006</small>
+                                        B34006
+                                        <small class="m-0 l-h-n">(Airless Mini Ball)</small>
                                     </h3>
                                 </div>
                                 <i class="fal fa-futbol  position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
@@ -152,8 +152,8 @@
                             <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:#330066">
                                 <div class="">
                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                    Laminated FootBall
-                                        <small class="m-0 l-h-n"> B34007</small>
+                                        B34007
+                                        <small class="m-0 l-h-n">(Laminated FootBall)</small>
                                     </h3>
                                 </div>
                                 <i class="fal fa-futbol  position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>

@@ -100,6 +100,37 @@ ORDER BY HID");
                 return  $query->result_array();
         }
 
+        public function HourllyReadingPanelCutting()
+        {
+                $Month = date('m');
+                $Year = date('Y');
+                $Day = date('d');
+                $query = $this->db->query("SELECT        TOP (100) PERCENT dbo.view_PC_Panel_Sizing.Date, COUNT(dbo.view_PC_Panel_Sizing.Counter) AS Counter, dbo.tbl_PC_AMB_Hours.HourName, dbo.tbl_PC_AMB_Hours.HourID
+                FROM            dbo.view_PC_Panel_Sizing INNER JOIN
+                                         dbo.tbl_PC_AMB_Hours ON dbo.view_PC_Panel_Sizing.HID = dbo.tbl_PC_AMB_Hours.Hour
+                WHERE        (dbo.view_PC_Panel_Sizing.EntryDate BETWEEN CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102) AND CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
+                GROUP BY dbo.view_PC_Panel_Sizing.Date, dbo.tbl_PC_AMB_Hours.HourName, dbo.tbl_PC_AMB_Hours.HourID
+                ORDER BY dbo.tbl_PC_AMB_Hours.HourID
+                ");
+                return  $query->result_array();
+        }
+
+        public function HourllyReadingHFCutting()
+        {
+                $Month = date('m');
+                $Year = date('Y');
+                $Day = date('d');
+                $query = $this->db->query("SELECT        TOP (100) PERCENT COUNT(dbo.view_PC_HF_Cutting.Counter) AS Counter, dbo.tbl_PC_AMB_Hours.HourName
+                FROM            dbo.view_PC_HF_Cutting INNER JOIN
+                                         dbo.tbl_PC_AMB_Hours ON dbo.view_PC_HF_Cutting.HID = dbo.tbl_PC_AMB_Hours.Hour
+                WHERE        (dbo.view_PC_HF_Cutting.EntryDate BETWEEN CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102) AND CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
+                GROUP BY dbo.tbl_PC_AMB_Hours.HourID, dbo.tbl_PC_AMB_Hours.HourName
+                ORDER BY dbo.tbl_PC_AMB_Hours.HourID
+                
+                ");
+                return  $query->result_array();
+        }
+
         public function getRWPDDateRangeDataBar($startDate,$endDate)
         {
                 $startMonth = explode("-",$startDate)[1];
@@ -178,10 +209,38 @@ GROUP BY Date, Name
 ORDER BY Date
 
 ");
+return  $query->result_array();
+}
+
+
+Public function getLaminationDateRangeData($startDate,$endDate){
+            
+        $query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.view_lamination_Process.Date
+        FROM            dbo.view_lamination_Process INNER JOIN
+                                 dbo.tbl_PC_AMB_Hours ON dbo.view_lamination_Process.HID = dbo.tbl_PC_AMB_Hours.Hour
+        WHERE        (dbo.view_lamination_Process.EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+        GROUP BY dbo.view_lamination_Process.Date
+        ORDER BY Date
+        
+");
+        return  $query->result_array();
+}
+
+Public function getLaminationDateRangeDataMachineWise($startDate,$endDate){
+$query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.view_lamination_Process.Date, dbo.view_lamination_Process.Name
+FROM            dbo.view_lamination_Process INNER JOIN
+                         dbo.tbl_PC_AMB_Hours ON dbo.view_lamination_Process.HID = dbo.tbl_PC_AMB_Hours.Hour
+WHERE        (dbo.view_lamination_Process.EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+GROUP BY dbo.view_lamination_Process.Date, dbo.view_lamination_Process.Name
+
+ORDER BY Date
+
+");
 
 
 return  $query->result_array();
 }
+
 
         public function getRWPDDateRangeDataMachine($startDate,$endDate)
         {
@@ -228,5 +287,19 @@ return  $query->result_array();
     ");
                 return  $query->result_array();
 
+        }
+
+        public function HourllyReadingCutting()
+        {
+                $Month = date('m');
+                $Year = date('Y');
+                $Day = date('d');
+                $query = $this->db->query("SELECT        TOP (100) PERCENT dbo.tbl_PC_AMB_Hours.HourName, COUNT(dbo.view_PC_Cutting_Process.Counter) AS Counter
+                FROM            dbo.view_PC_Cutting_Process INNER JOIN
+                                         dbo.tbl_PC_AMB_Hours ON dbo.view_PC_Cutting_Process.HID = dbo.tbl_PC_AMB_Hours.HourID
+                WHERE        (dbo.view_PC_Cutting_Process.EntryDate = CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
+                GROUP BY dbo.tbl_PC_AMB_Hours.HourName, dbo.view_PC_Cutting_Process.HID, dbo.tbl_PC_AMB_Hours.HourID
+                ORDER BY dbo.tbl_PC_AMB_Hours.HourID");
+                return  $query->result_array();
         }
 }

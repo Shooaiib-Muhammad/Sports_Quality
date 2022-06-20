@@ -285,7 +285,7 @@
                                 <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <h2 class="">Target <br> 67%</h2>
+                                            <h2 class="">Target <br> 64%</h2>
 
                                         </h3>
 
@@ -346,7 +346,7 @@
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    Airles Mini Core Hourlly OutPut
+                                    Airless Mini Core Hourlly OutPut
                                   
                                 </h2>
                             </div>
@@ -381,7 +381,7 @@
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    Sheet Sizing OutPut
+                                    Airless Mini Core OutPut
                                   
                                 </h2>
                             </div>
@@ -397,11 +397,11 @@
     <div id="containerDateRangeLine"></div>
 
                                     </div>
-                                    <div class="col-md-12 mt-2">
+                                    <!-- <div class="col-md-12 mt-2">
                           
                           <div id="containerDateRangeLineMachineWise"></div>
                       
-                                                          </div>
+                                                          </div> -->
                            
                                 </div>
                                 <div id="loadingShow" style="display: none;">
@@ -1802,19 +1802,18 @@ foreach ($HourllyCore as $key) {
 
     });
 
-    function generateDataTop(data1) {
+    function generateDataTop(data) {
  
  var ret = {},
      ps = [],
      series = [],
-     len = data1.BarData.length;
+     len = data.BarData.length;
 
  //concat to get points
  for (var i = 0; i < len; i++) {
      ps[i] = {
-         name: data1.BarData[i].Date,
-         y: data1.BarData[i].Counter,
-         drilldown: data1.BarData[i].Date
+         name: data.BarData[i].Date,
+         y: data.BarData[i].Counter
      };
  }
  names = [];
@@ -1827,54 +1826,54 @@ foreach ($HourllyCore as $key) {
  return series;
 }
 
-function generateDataBottom(data1) {
+// function generateDataBottom(data1) {
  
- var ret = {},
-     ps = [],
-     series = [],
-     len = data1.MachineData.length;
-   let datesArray = []
-   let dataArray = []
+//  var ret = {},
+//      ps = [],
+//      series = [],
+//      len = data1.MachineData.length;
+//    let datesArray = []
+//    let dataArray = []
 
- //concat to get points
- for (var i = 0; i < len; i++) {
-    if(datesArray.indexOf(data1.MachineData[i].Date) === -1){
-        datesArray.push(data1.MachineData[i].Date)
-        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,data1.MachineData[i].Counter])
-    }
-    else{
-        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,data1.MachineData[i].Counter])
-    }
+//  //concat to get points
+//  for (var i = 0; i < len; i++) {
+//     if(datesArray.indexOf(data1.MachineData[i].Date) === -1){
+//         datesArray.push(data1.MachineData[i].Date)
+//         dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,data1.MachineData[i].Counter])
+//     }
+//     else{
+//         dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,data1.MachineData[i].Counter])
+//     }
 
 
   
- }
+//  }
 
- //generate series and split points
- for (i = 0; i < datesArray.length; i++) {
-    let OriginaldataArray = []
-    let OriginaldataArrayDateRemove = []
-    dataArray.filter(function(e) { 
-        if(e[0] === datesArray[i]){
-            OriginaldataArray.push(e)
-        }
-    });
-    OriginaldataArray.forEach(element => {
-        // console.log("Element", element)
-        element.shift()
-        OriginaldataArrayDateRemove.push(element)
-    });
-    // console.log("data Get", OriginaldataArray)
-     var p = {
-        name: datesArray[i],
-        id: datesArray[i],
-        data: OriginaldataArrayDateRemove
-     }
-    //  console.log("Series", p)
-     series.push(p);
- }
- return series;
-}
+//  //generate series and split points
+//  for (i = 0; i < datesArray.length; i++) {
+//     let OriginaldataArray = []
+//     let OriginaldataArrayDateRemove = []
+//     dataArray.filter(function(e) { 
+//         if(e[0] === datesArray[i]){
+//             OriginaldataArray.push(e)
+//         }
+//     });
+//     OriginaldataArray.forEach(element => {
+//         // console.log("Element", element)
+//         element.shift()
+//         OriginaldataArrayDateRemove.push(element)
+//     });
+//     // console.log("data Get", OriginaldataArray)
+//      var p = {
+//         name: datesArray[i],
+//         id: datesArray[i],
+//         data: OriginaldataArrayDateRemove
+//      }
+//     //  console.log("Series", p)
+//      series.push(p);
+//  }
+//  return series;
+// }
 
 $("#searchRange").on('click',function(e){
     //alert("hlooo");
@@ -1891,6 +1890,10 @@ $("#searchRange").on('click',function(e){
         let section_id = params.section_id;
         let dept_id = params.dept_id;
         let datesArray = []
+        let dataArray = []
+        let seriesData = []
+        let targetData = []
+        let originalData = []
         // let datesArrayMachineWise = []
         // let seriesDataMachine1 = [];
         // let seriesDataMachine2 = [];
@@ -1909,12 +1912,19 @@ $("#searchRange").on('click',function(e){
         seriesDataTop = generateDataTop(data)
         //seriesDataBottom = generateDataBottom(data)
   
-console.log("Data Outer", seriesDataTop)
+        for(let k = 0; k<data.BarData.length; k++){
+          output = dataArrayOuter[k].Counter * 0.05
+            Minutes = (1*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
 
+            seriesData.push(parseFloat(efficiency))
+            targetData.push(parseFloat(64))
+          datesArray.push(data.BarData[k].Date)
+          dataArray.push(data.BarData[k].Counter)
+        }
+        originalData.push({name:"Efficiency",data:seriesData},{name:"Target Efficiency",data:targetData})
         }
         
-        
-
 
 Highcharts.chart('containerDateRangeBar', {
     chart: {
@@ -1964,35 +1974,61 @@ Highcharts.chart('containerDateRangeBar', {
     ]
 });
 
+Highcharts.chart('containerDateRangeLine', {
+
+title: {
+    text: `Process-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
+},
+
+yAxis: {
+    title: {
+        text: 'Efficiency'
+    }
+},
+
+xAxis: {
+    categories: datesArray,
+},
+
+legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle'
+},
+
+plotOptions: {
+    series: {
+        label: {
+            connectorAllowed: false
+        }
+    }
+},
+
+series: originalData,
+
+responsive: {
+    rules: [{
+        condition: {
+            maxWidth: 500
+        },
+        chartOptions: {
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
+            }
+        }
+    }]
+}
+
+});
 
 
-
-
+$("#loadingShow").css('display','none')
+$("#dateRangeResult").css('display','inline-block')
  });
     })
-    function generateDataTop(data) {
- 
- var ret = {},
-     ps = [],
-     series = [],
-     len = data.BarData.length;
 
- //concat to get points
- for (var i = 0; i < len; i++) {
-     ps[i] = {
-         name: data.BarData[i].Date,
-         y: data.BarData[i].Counter
-     };
- }
- names = [];
- //generate series and split points
- for (i = 0; i < len; i++) {
-     var p = ps[i];
-   
-     series.push(p);
- }
- return series;
-}
 </script>
 <script>
     $('#direct').click(function() {
