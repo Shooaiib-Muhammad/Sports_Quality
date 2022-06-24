@@ -172,6 +172,12 @@ SET  Yield=$Yield,Article_Count=$Article_Count,BF_Date='$BF_Date',CR1_In_House_D
 WHERE  (TID = '$id')");
     return $query;  
         }
+
+        public function allDPA(){
+            $query=$this->db->query(" SELECT dbo.view_Dev_DPA_Article.*
+            FROM dbo.view_Dev_DPA_Article");
+                  return $query->result_array();   
+        }
 }
 
 

@@ -30,6 +30,7 @@ class Machine_model extends CI_Model
                 'ApprovalStatus' => $result->ApprovalStatus,
                 'testRequest' => $result->testRequest,
                 'FIT' => $result->FIT,
+                'DPA_Status' => $result->DPA_Status,
             ];
 
             $Status = $result->Status;

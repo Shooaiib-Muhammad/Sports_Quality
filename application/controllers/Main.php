@@ -133,25 +133,28 @@ class Main extends CI_Controller
                 //     'packing_count'
                 // ] = $this->m->countpackingInstalledMachines(25);
                 // $this->load->view('Dmms_Dashboard', $data);
-                $data['amb_count'] = $this->m->countambInstalledMachines(1);
-                $data['amb_team'] = $this->t->countamb(1);
-                $data['ms1_count'] = $this->m->countms1InstalledMachines(7);
-                $data['ms1_team'] = $this->t->countms1(7);
-                $data['ms2_count'] = $this->m->countms2InstalledMachines(6);
-                $data['ms2_team'] = $this->t->countms2(6);
-                $data['tm_count'] = $this->m->counttmInstalledMachines(3);
-                $data['tm_team'] = $this->t->counttm(3);
-                $data['lfb_count'] = $this->m->countlfbInstalledMachines(24);
-                $data['lfb_team'] = $this->t->countlfb(24);
-                $data['packing_count' ] = $this->m->countpackingInstalledMachines(25);
+                // $data['amb_count'] = $this->m->countambInstalledMachines(1);
+                // $data['amb_team'] = $this->t->countamb(1);
+                // $data['ms1_count'] = $this->m->countms1InstalledMachines(7);
+                // $data['ms1_team'] = $this->t->countms1(7);
+                // $data['ms2_count'] = $this->m->countms2InstalledMachines(6);
+                // $data['ms2_team'] = $this->t->countms2(6);
+                // $data['tm_count'] = $this->m->counttmInstalledMachines(3);
+                // $data['tm_team'] = $this->t->counttm(3);
+                // $data['lfb_count'] = $this->m->countlfbInstalledMachines(24);
+                // $data['lfb_team'] = $this->t->countlfb(24);
+                // $data['packing_count' ] = $this->m->countpackingInstalledMachines(25);
                 $admin = $this->session->userdata('admin');
-                // $lab = $this->session->userdata('lab');
+                $DPA = $this->session->userdata('DPA_Status');
                 // $Dev = $this->session->userdata('Dev');
             // // $FIT = $this->session->userdata('FIT');
             // // Echo $FIT;
             // die;
              if($admin == '1') {
                     redirect('DashboardController');
+           }else if($DPA == '1'){
+            redirect('DPA');
+
            }else {
                   redirect('LabController/TestRequest');
              }

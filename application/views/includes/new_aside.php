@@ -37,6 +37,7 @@
         $admin = $this->session->userdata('admin');
         $testRequest = $this->session->userdata('testRequest');
         $FIT = $this->session->userdata('FIT');
+        $DPA =  $this->session->userdata('DPA_Status');
         // Echo $FIT;
         // die;
         ?>
@@ -120,7 +121,7 @@
                     </ul>
                 </li>
 
-
+              
                 <li>
                     <a href="#" title="Theme Settings" data-filter-tags="theme settings">
                     <i class="fal fa-futbol"></i>
@@ -1073,6 +1074,29 @@
             </li>
     <?php
                 }
+          
+                if ($DPA=='1'){
+                ?>
+                <li>
+                    <a href="#" title="Theme Settings" data-filter-tags="theme settings">
+                    <i class="fal fa-futbol"></i>
+                        <span class="nav-link-text" data-i18n="nav.theme_settings">Development</span>
+                    </a>
+                    <ul>
+                       
+                        <li>
+                            <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>DPA" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">DPA</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <?php
+                
+                                    }
+                                
             } ?>
     </ul>
 

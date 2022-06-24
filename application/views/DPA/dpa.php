@@ -15,19 +15,12 @@ if (!$this->session->has_userdata('user_id')) {
         <?php $this->load->view('includes/top_header.php'); ?>
         <main id="js-page-content" role="main" class="page-content">
           <ol class="breadcrumb page-breadcrumb">
-            <li class="breadcrumb-item"><a href="<?php echo base_url(
-                                                    'index.php/main/dmms_dashboard'
-                                                  ); ?>">Dashboard</a></li>
+
 
 
             <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
           </ol>
-          <div class="subheader">
-            <h1 class="subheader-title">
-              <i class='subheader-icon fal fa-chart-area'></i> Development Progress and Application</span>
-
-            </h1>
-          </div>
+       
 
 
 
@@ -56,7 +49,7 @@ if (!$this->session->has_userdata('user_id')) {
 
 
 
-          <br><br>
+      
 
 
           <div id="panel-7 exampleModalEditDep" class="panel">
@@ -69,7 +62,20 @@ if (!$this->session->has_userdata('user_id')) {
             <div class="panel-container show">
               <div class="panel-content">
 
-                <div class="row">
+              <?php
+              $DPA =  $this->session->userdata('DPA_Status');
+          
+                if ($DPA =='1'){
+                ?>
+                <div class="row" hidden>
+                  <?php
+                  
+                }else{
+                  ?>
+                   <div class="row">
+                  <?php
+                }
+                ?>
                   <div class="col-md-2">
                     <div class="form-group">
 
@@ -519,7 +525,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                       <label for="sel1">Select Season :</label>
                       <select class="form-control" id="season1" name="season1">
-                        <option value="">Select one of the following</option>
+                        <option selected value="">Select one of the following</option>
                         <option value="SS">SS</option>
                         <option value="FW">FW</option>
                       </select>
@@ -529,7 +535,7 @@ if (!$this->session->has_userdata('user_id')) {
                     <div class="form-group-inline">
 
                       <button type="button" class="btn-success btn btn-md mt-3" onclick="onSearch()">Search</button>
-                      <!-- <button type="button" class="btn-info btn btn-md mt-3" onclick="onClear()">Clear</button> -->
+                      <button type="button" class="btn-info btn btn-md mt-3" onclick="onClear()">Clear</button>
                     </div>
                     
                   </div>
@@ -537,8 +543,104 @@ if (!$this->session->has_userdata('user_id')) {
                 </div>
                 <div class="row">
 
-                  <div class="col-md-12" id="Data" style=" overflow:auto;">
-
+                  <div class="col-md-12 mt-4" id="Data" style=" overflow:auto;">
+                  <!-- <table class="table table-striped table-hover table-sm" id="ActivityData" >
+                                <thead>
+                                    <tr  class="bg-primary-200"  style="color:white;">
+                                    <th>#SR</th>
+                                     <th>Article  </th>
+                                       <th>Working </th>
+                                        <th>Product Name</th>
+                                        <th>Colorway Name</th>
+                                          <th>Factory Code </th>
+                                         <th>Panel Shape</th>
+                                          <th>Yield</th>
+                                          <th>Article Option</th>
+                                            <th>First Briefing Out</th>
+                                              <th>CR1 in-house Date</th>
+                                             <th>CR1 Submission date</th>
+                                             <th>CR1 Comments</th>
+                                             <th>CR2 in-house Date</th>
+                                             <th>CR2 Submission date</th>
+                                             <th>CR2 Comments</th>
+                                             <th>Post CR2 Date</th>
+                                             <th>Comments</th>
+                                             <th>Earliest Buy Model</th>
+                                             <th>Earliest Buy Article</th>
+                                             <th>REV BR Date</th>
+                                             <th>Retail Intro</th>
+                                             <th>FTY Priority</th>
+                                             <th>Remarks</th>
+                                             <th>MKTG FC(Global)</th>
+                                             <th>FIFA Validity</th>
+                                             <th>CR1 in-house</th>
+                                             <th>CR1 Submission</th>
+                                             <th>CR2 in-house</th>
+                                             <th>CR2 Submission</th>
+                                             <th>Approve</th>
+                                             <th>Final CS Confirm</th>
+                                             <th>Br Status</th>
+                                             <th>MCS</th>
+                                             <th>Development  Type</th>
+                                             <th>Season</th>
+                                             <th>Undo</th>
+                                             <th>Update</th>
+                                              
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  <?php $i=1;
+                                   foreach($allDPA as $DPA){ ?>
+                                <tr id="2tr">
+                                <td>#<?php echo $i++?> </td>
+                                <td><?php echo $DPA['ArtCode']?> </td>
+                                       <td><?php echo $DPA['WorkNo']?> </td>
+                                        <td > <?php echo $DPA['ModelName']?></td>
+                                        <td ><?php echo $DPA['PrintingColors']?></td>
+                                          <td><?php echo $DPA['FactoryCode']?></td>
+                                         <td ><?php echo $DPA['PanelShape']?></td>
+                                          <td contenteditable="true" id="Yield"><?php echo $DPA['Yield']?></td>
+                                          <td contenteditable="true" id="Article_Count"><?php echo $DPA['Article_Count']?></td>
+                                          <td contenteditable="true" id="BF_Date" > <?php echo $DPA['BF_Date']?></td>
+                                          <td contenteditable="true" id="CR1_In_House_Date"><?php echo $DPA['CR1_In_House_Date']?></td>
+                                          <td contenteditable="true" id="CR1_Subbmition_Date"><?php echo $DPA['CR1_Subbmition_Date']?></td>
+                                          <td contenteditable="true" id="CR1_Comments"><?php echo $DPA['CR1_Comments']?></td>
+                                          <td contenteditable="true" id="CR2_In_House_Date"> <?php echo $DPA['CR2_In_House_Date']?></td>
+                                          <td contenteditable="true" id="CR2_Subbmition_Date"><?php echo $DPA['CR2_Subbmition_Date']?></td>
+                                          <td contenteditable="true" id="CR2_Comments"><?php echo $DPA['CR2_Comments']?></td>
+                                          <td contenteditable="true" id="Post_CR2_Ex_fty"><?php echo $DPA['Post_CR2_Ex_fty']?></td>
+                                          <td contenteditable="true" id="Comments_Remarks"><?php echo $DPA['Comments_Remarks']?></td>
+                                          <td contenteditable="true" id="EBR_Model_Date"><?php echo $DPA['EBR_Model_Date']?></td>
+                                          <td contenteditable="true" id="EBR_Article_Date"><?php echo $DPA['EBR_Article_Date']?></td>
+                                          <td contenteditable="true" id="Rev_BR_Date"><?php echo $DPA['Rev_BR_Date']?></td>
+                                          <td contenteditable="true" id="Retail_Intro"><?php echo $DPA['Retail_Intro']?></td>
+                                          <td contenteditable="true" id="Fty_Priority"><?php echo $DPA['Fty_Priority']?></td>
+                                          <td contenteditable="true" id="Remarks"><?php echo $DPA['Remarks']?></td>
+                                          <td contenteditable="true" id="Mktg_FC"><?php echo $DPA['Mktg_FC']?></td>
+                                          <td contenteditable="true" id="FIFA_authorization_validity_Date"><?php echo $DPA['FIFA_authorization_validity_Date']?></td>
+                                          <td contenteditable="true" id="CR1_In_House_Status"><?php echo $DPA['CR1_In_House_Status']?></td>
+                                          <td contenteditable="true" id="CR1_Subbmition_Status"><?php echo $DPA['CR1_Subbmition_Status']?></td>
+                                          <td contenteditable="true" id="CR2_In_House_Status"><?php echo $DPA['CR2_In_House_Status']?></td>
+                                          <td contenteditable="true" id="CR2_Subbmition_Status"><?php echo $DPA['CR2_Subbmition_Status']?></td>
+                                          <td contenteditable="true" id="Approved"><?php echo $DPA['Approved']?></td>
+                                          <td contenteditable="true" id="Final_CS_Confirmation"><?php echo $DPA['Final_CS_Confirmation']?></td>
+                                          <td contenteditable="true" id="BR_Status"><?php echo $DPA['BR_Status']?></td>
+                                          <td contenteditable="true" id="MCS"><?php echo $DPA['MCS']?></td>
+                                               <td contenteditable="true" id="DevTypeN"><?php echo $DPA['DevType']?></td>
+                                               <td contenteditable="true" id="seasonN"><?php echo $DPA['season']?></td>
+                                             
+                                          <td>
+                                          <button type="button" class="btn btn-danger" onclick="deleterecord(<?php echo $DPA['TID']?>)">Delete</button>
+                                      
+                                          </td>
+                                          <td>
+                                          <button type="button" class="btn btn-info" onclick="updaterecord(<?php echo $DPA['TID']?>)">Update</button>
+                                          </td>
+                                        </tr>
+                                        <?php }?>
+                                </tbody>
+                  </table> -->
                   </div>
                 </div>
               </div>
@@ -776,9 +878,17 @@ if (!$this->session->has_userdata('user_id')) {
                                              <th>MCS</th>
                                              <th>Development  Type</th>
                                              <th>Season</th>
+                                             <?php
+                                             if ($DPA =='1'){}else{
+                                          ?>
                                              <th>Undo</th>
                                              <th>Update</th>
                                               
+                                             <?php
+                                             
+      }
+      
+      ?>
                                        
                                     </tr>
                                 </thead>
@@ -883,13 +993,26 @@ final_FIFA_authorization_validity_Date=yy_FIFA_authorization_validity_Date+'-'+m
                                                <td contenteditable="true" id="DevTypeN">${element.DevType}</td>
                                                <td contenteditable="true" id="seasonN">${element.season}</td>
                                              
+                                               <?php
+                                             if ($DPA =='1'){}else{
+                                          ?>
                                           <td>
-                                          <button type="button" class="btn btn-danger" onclick="deleterecord(${element.TID})">Delete</button>
-                                      
+                                   
+                                        
+                                                <button type="button" class="btn btn-danger" onclick="deleterecord(${element.TID})">Delete</button>
+                                             
                                           </td>
                                           <td>
-                                          <button type="button" class="btn btn-info" onclick="updaterecord(${element.TID})">Update</button>
+                                     
+                                                 <button type="button" class="btn btn-info" onclick="updaterecord(${element.TID})">Update</button>
+                                            
+                                        
                                           </td>
+                                          <?php
+                                          
+                                             }
+                                             
+                                             ?>
                                         </tr>`
         })
 
@@ -975,12 +1098,13 @@ final_FIFA_authorization_validity_Date=yy_FIFA_authorization_validity_Date+'-'+m
 
     function onClear(){
       
-      $('#fC').append(`<option value="">
+      location.reload();
+      // $('#fC').append(`<option value="">
                                       
-                                  </option>`);
-      // fc = $("#fC").append('<option ></option>');
-      seasonal1 = $("#seasonal1").val();
-      season1 = $("#season1").val();
+      //                             </option>`);
+      // // fc = $("#fC").append('<option ></option>');
+      // seasonal1 = $("#seasonal1").val();
+      // season1 = $("#season1").val();
     }
     function deleterecord(id) {
       path = "<?php echo base_url(''); ?>DPA/delteRecord/"
@@ -1961,70 +2085,74 @@ final_FIFA_authorization_validity_Date=yy_FIFA_authorization_validity_Date+'-'+m
     $(document).ready(function() {
 
       /* init datatables */
-      $('#dt-basic-example').dataTable({
-        responsive: true,
-        dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
-          "<'row'<'col-sm-12'tr>>" +
-          "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-        buttons: [{
-            extend: 'colvis',
-            text: 'Column Visibility',
-            titleAttr: 'Col visibility',
-            className: 'btn-outline-default'
-          },
-          {
-            extend: 'csvHtml5',
-            text: 'CSV',
-            titleAttr: 'Generate CSV',
-            className: 'btn-outline-default'
-          },
-          {
-            extend: 'copyHtml5',
-            text: 'Copy',
-            titleAttr: 'Copy to clipboard',
-            className: 'btn-outline-default'
-          },
-          {
-            extend: 'print',
-            text: '<i class="fal fa-print"></i>',
-            titleAttr: 'Print Table',
-            className: 'btn-outline-default'
-          }
+      $('#ActivityData').dataTable({
+          responsive: false,
+          lengthChange: false,
+          dom:
+            /*	--- Layout Structure 
+            	--- Options
+            	l	-	length changing input control
+            	f	-	filtering input
+            	t	-	The table!
+            	i	-	Table information summary
+            	p	-	pagination control
+            	r	-	processing display element
+            	B	-	buttons
+            	R	-	ColReorder
+            	S	-	Select
 
-        ],
-        columnDefs: [{
-            targets: -1,
-            title: '',
-            orderable: false,
-            render: function(data, type, full, meta) {
+            	--- Markup
+            	< and >				- div element
+            	<"class" and >		- div with a class
+            	<"#id" and >		- div with an ID
+            	<"#id.class" and >	- div with an ID and a class
 
-              /*
-              -- ES6
-              -- convert using https://babeljs.io online transpiler
-              return `
-              <a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>
-              	<i class="fal fa-times"></i>
-              </a>
-              <div class='dropdown d-inline-block dropleft '>
-              	<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>
-              		<i class="fal fa-ellipsis-v"></i>
-              	</a>
-              	<div class='dropdown-menu'>
-              		<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>
-              		<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>
-              	</div>
-              </div>`;
-              	
-              ES5 example below:	
-
-              */
-              return "\n\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>\n\t\t\t\t\t\t\t<i class=\"fal fa-times\"></i>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t<div class='dropdown d-inline-block dropleft'>\n\t\t\t\t\t\t\t<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>\n\t\t\t\t\t\t\t\t<i class=\"fal fa-ellipsis-v\"></i>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t<div class='dropdown-menu'>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>";
+            	--- Further reading
+            	https://datatables.net/reference/option/dom
+            	--------------------------------------
+             */
+            "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+          buttons: [
+            /*{
+            	extend:    'colvis',
+            	text:      'Column Visibility',
+            	titleAttr: 'Col visibility',
+            	className: 'mr-sm-3'
+            },*/
+            {
+              extend: 'pdfHtml5',
+              text: 'PDF',
+              titleAttr: 'Generate PDF',
+              className: 'btn-outline-danger btn-sm mr-1'
             },
-          },
-
-        ]
-
-      });
+            {
+              extend: 'excelHtml5',
+              text: 'Excel',
+              titleAttr: 'Generate Excel',
+              className: 'btn-outline-success btn-sm mr-1'
+            },
+            {
+              extend: 'csvHtml5',
+              text: 'CSV',
+              titleAttr: 'Generate CSV',
+              className: 'btn-outline-primary btn-sm mr-1'
+            },
+            {
+              extend: 'copyHtml5',
+              text: 'Copy',
+              titleAttr: 'Copy to clipboard',
+              className: 'btn-outline-primary btn-sm mr-1'
+            },
+            {
+              extend: 'print',
+              text: 'Print',
+              titleAttr: 'Print Table',
+              className: 'btn-outline-primary btn-sm'
+            }
+          ]
+        });
 
 
       /* flot toggle example */
@@ -2495,6 +2623,280 @@ final_FIFA_authorization_validity_Date=yy_FIFA_authorization_validity_Date+'-'+m
       $.post(url,data, function(data) {
         console.log('updated');
       })
+    }
+  </script>
+  <script>
+
+    window.onload=function(){
+      
+      
+      var twoDigitYear1 = seasonal1.toString().substr(-2);
+      fSeason = season1 + twoDigitYear1;
+
+
+      urls = "<?php echo base_url(''); ?>DPA/dpaLoad/";
+      $.get(urls, {
+        
+
+      }, function(data) {
+
+        let i = 1;
+
+        let appendtable = '';
+        appendtable += `<table class="table table-striped table-hover table-sm" id="ActivityData" >
+                                <thead>
+                                    <tr  class="bg-primary-200"  style="color:white;">
+                                    <th>#SR</th>
+                                     <th>Article  </th>
+                                       <th>Working </th>
+                                        <th>Product Name</th>
+                                        <th>Colorway Name</th>
+                                          <th>Factory Code </th>
+                                         <th>Panel Shape</th>
+                                          <th>Yield</th>
+                                          <th>Article Option</th>
+                                            <th>First Briefing Out</th>
+                                              <th>CR1 in-house Date</th>
+                                             <th>CR1 Submission date</th>
+                                             <th>CR1 Comments</th>
+                                             <th>CR2 in-house Date</th>
+                                             <th>CR2 Submission date</th>
+                                             <th>CR2 Comments</th>
+                                             <th>Post CR2 Date</th>
+                                             <th>Comments</th>
+                                             <th>Earliest Buy Model</th>
+                                             <th>Earliest Buy Article</th>
+                                             <th>REV BR Date</th>
+                                             <th>Retail Intro</th>
+                                             <th>FTY Priority</th>
+                                             <th>Remarks</th>
+                                             <th>MKTG FC(Global)</th>
+                                             <th>FIFA Validity</th>
+                                             <th>CR1 in-house</th>
+                                             <th>CR1 Submission</th>
+                                             <th>CR2 in-house</th>
+                                             <th>CR2 Submission</th>
+                                             <th>Approve</th>
+                                             <th>Final CS Confirm</th>
+                                             <th>Br Status</th>
+                                             <th>MCS</th>
+                                             <th>Development  Type</th>
+                                             <th>Season</th>
+                                             <?php
+                                             if ($DPA =='1'){}else{
+                                          ?>
+                                             <th>Undo</th>
+                                             <th>Update</th>
+                                              
+                                             <?php
+                                             
+      }
+      
+      ?>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>`
+        data.forEach((element) => {
+          CR1_In_House_Datee=element.CR1_In_House_Date
+
+dd_CR1_In_House_Datee =CR1_In_House_Datee.substring(0, 2);
+mm_CR1_In_House_Datee =CR1_In_House_Datee.substring(3, 5);
+yy_CR1_In_House_Datee =CR1_In_House_Datee.substring(6, 10);
+final_CR1_In_House_Datee=yy_CR1_In_House_Datee+'-'+mm_CR1_In_House_Datee+'-'+dd_CR1_In_House_Datee
+
+
+BF_Datee=element.BF_Date
+dd_BF_Datee =BF_Datee.substring(0, 2);
+mm_BF_Datee =BF_Datee.substring(3, 5);
+yy_BF_Datee =BF_Datee.substring(6, 10);
+final_BF_Datee=yy_BF_Datee+'-'+mm_BF_Datee+'-'+dd_BF_Datee
+
+CR1_Subbmition_Datee=element.CR1_Subbmition_Date
+dd_CR1_Subbmition_Datee =CR1_Subbmition_Datee.substring(0, 2);
+mm_CR1_Subbmition_Datee =CR1_Subbmition_Datee.substring(3, 5);
+yy_CR1_Subbmition_Datee =CR1_Subbmition_Datee.substring(6, 10);
+final_CR1_Subbmition_Datee=yy_CR1_Subbmition_Datee+'-'+mm_CR1_Subbmition_Datee+'-'+dd_CR1_Subbmition_Datee
+
+
+CR2_In_House_Datee=element.CR2_In_House_Date
+dd_CR2_In_House_Datee =CR2_In_House_Datee.substring(0, 2);
+mm_CR2_In_House_Datee =CR2_In_House_Datee.substring(3, 5);
+yy_CR2_In_House_Datee=CR2_In_House_Datee.substring(6, 10);
+final_CR2_In_House_Datee=yy_CR2_In_House_Datee+'-'+mm_CR2_In_House_Datee+'-'+dd_CR2_In_House_Datee
+
+
+CR2_Subbmition_Date=element.CR2_Subbmition_Date
+dd_CR2_Subbmition_Date =CR2_Subbmition_Date.substring(0, 2);
+mm_CR2_Subbmition_Date =CR2_Subbmition_Date.substring(3, 5);
+yy_CR2_Subbmition_Date=CR2_Subbmition_Date.substring(6, 10);
+final_CR2_Subbmition_Date=yy_CR2_Subbmition_Date+'-'+mm_CR2_Subbmition_Date+'-'+dd_CR2_Subbmition_Date
+
+
+EBR_Model_Date=element.EBR_Model_Date
+dd_EBR_Model_Date =EBR_Model_Date.substring(0, 2);
+mm_EBR_Model_Date =EBR_Model_Date.substring(3, 5);
+yy_EBR_Model_Date=EBR_Model_Date.substring(6, 10);
+final_EBR_Model_Date=yy_EBR_Model_Date+'-'+mm_EBR_Model_Date+'-'+dd_EBR_Model_Date
+
+
+EBR_Article_Date=element.EBR_Article_Date
+dd_EBR_Article_Date =EBR_Article_Date.substring(0, 2);
+mm_EBR_Article_Date =EBR_Article_Date.substring(3, 5);
+yy_EBR_Article_Date=EBR_Article_Date.substring(6, 10);
+final_EBR_Article_Date=yy_EBR_Article_Date+'-'+mm_EBR_Article_Date+'-'+dd_EBR_Article_Date
+
+
+Rev_BR_Date=element.Rev_BR_Date
+dd_Rev_BR_Date =Rev_BR_Date.substring(0, 2);
+mm_Rev_BR_Date =Rev_BR_Date.substring(3, 5);
+yy_Rev_BR_Date=Rev_BR_Date.substring(6, 10);
+final_Rev_BR_Date=yy_Rev_BR_Date+'-'+mm_Rev_BR_Date+'-'+dd_Rev_BR_Date
+
+FIFA_authorization_validity_Date=element.FIFA_authorization_validity_Date
+dd_FIFA_authorization_validity_Date =FIFA_authorization_validity_Date.substring(0, 2);
+mm_FIFA_authorization_validity_Date =FIFA_authorization_validity_Date.substring(3, 5);
+yy_FIFA_authorization_validity_Date=FIFA_authorization_validity_Date.substring(6, 10);
+final_FIFA_authorization_validity_Date=yy_FIFA_authorization_validity_Date+'-'+mm_FIFA_authorization_validity_Date+'-'+dd_FIFA_authorization_validity_Date
+
+          appendtable += `<tr id="2tr">
+                                <td>#${i++} </td>
+                                <td> ${element.ArtCode} </td>
+                                       <td>${element.WorkNo} </td>
+                                        <td >${element.ModelName}</td>
+                                        <td >${element.PrintingColors}</td>
+                                          <td>${element.FactoryCode}</td>
+                                         <td >${element.PanelShape}</td>
+                                          <td contenteditable="true" id="Yield">${element.Yield}</td>
+                                          <td contenteditable="true" id="Article_Count"> ${element.Article_Count}</td>
+                                          <td contenteditable="true" id="BF_Date" > <input type="date" value="${final_BF_Datee}"/></td>
+                                          <td contenteditable="true" id="CR1_In_House_Date"><input type="date" value="${final_CR1_In_House_Datee}"/></td>
+                                          <td contenteditable="true" id="CR1_Subbmition_Date"> <input type="date" value="${final_CR1_Subbmition_Datee}"/></td>
+                                          <td contenteditable="true" id="CR1_Comments">${element.CR1_Comments}</td>
+                                          <td contenteditable="true" id="CR2_In_House_Date"> <input type="date" value="${final_CR2_In_House_Datee}"/></td>
+                                          <td contenteditable="true" id="CR2_Subbmition_Date"><input type="date" value="${final_CR2_Subbmition_Date}"/></td>
+                                          <td contenteditable="true" id="CR2_Comments">${element.CR2_Comments}</td>
+                                          <td contenteditable="true" id="Post_CR2_Ex_fty"><input type="date" value="${element.Post_CR2_Ex_fty}"/></td>
+                                          <td contenteditable="true" id="Comments_Remarks">${element.Comments_Remarks}</td>
+                                          <td contenteditable="true" id="EBR_Model_Date"><input type="date" value="${final_EBR_Model_Date}"/></td>
+                                          <td contenteditable="true" id="EBR_Article_Date"><input type="date" value="${final_EBR_Article_Date}"/></td>
+                                          <td contenteditable="true" id="Rev_BR_Date"><input type="date" value="${final_Rev_BR_Date}"/></td>
+                                          <td contenteditable="true" id="Retail_Intro"><input type="date" value="${element.Retail_Intro}"/></td>
+                                          <td contenteditable="true" id="Fty_Priority">${element.Fty_Priority}</td>
+                                          <td contenteditable="true" id="Remarks">${element.Remarks}</td>
+                                          <td contenteditable="true" id="Mktg_FC">${element.Mktg_FC}</td>
+                                          <td contenteditable="true" id="FIFA_authorization_validity_Date"><input type="date" value="${final_FIFA_authorization_validity_Date}"/></td>
+                                          <td contenteditable="true" id="CR1_In_House_Status">${element.CR1_In_House_Status}</td>
+                                          <td contenteditable="true" id="CR1_Subbmition_Status">${element.CR1_Subbmition_Status}</td>
+                                          <td contenteditable="true" id="CR2_In_House_Status">${element.CR2_In_House_Status}</td>
+                                          <td contenteditable="true" id="CR2_Subbmition_Status">${element.CR2_Subbmition_Status}</td>
+                                          <td contenteditable="true" id="Approved">${element.Approved}</td>
+                                          <td contenteditable="true" id="Final_CS_Confirmation">${element.Final_CS_Confirmation}</td>
+                                          <td contenteditable="true" id="BR_Status">${element.BR_Status}</td>
+                                          <td contenteditable="true" id="MCS">${element.MCS}</td>
+                                               <td contenteditable="true" id="DevTypeN">${element.DevType}</td>
+                                               <td contenteditable="true" id="seasonN">${element.season}</td>
+                                               <?php
+                                             if ($DPA =='1'){}else{
+                                          ?>
+                                          <td>
+                                   
+                                        
+                                                <button type="button" class="btn btn-danger" onclick="deleterecord(${element.TID})">Delete</button>
+                                             
+                                          </td>
+                                          <td>
+                                     
+                                                 <button type="button" class="btn btn-info" onclick="updaterecord(${element.TID})">Update</button>
+                                            
+                                        
+                                          </td>
+                                          <?php
+                                          
+                                             }
+                                             
+                                             ?>
+                                        </tr>`
+        })
+
+        appendtable += `</tbody>
+
+                                </table>`
+
+        $("#Data").html(appendtable)
+        $('#ActivityData').dataTable({
+          responsive: false,
+          lengthChange: false,
+          dom:
+            /*	--- Layout Structure 
+            	--- Options
+            	l	-	length changing input control
+            	f	-	filtering input
+            	t	-	The table!
+            	i	-	Table information summary
+            	p	-	pagination control
+            	r	-	processing display element
+            	B	-	buttons
+            	R	-	ColReorder
+            	S	-	Select
+
+            	--- Markup
+            	< and >				- div element
+            	<"class" and >		- div with a class
+            	<"#id" and >		- div with an ID
+            	<"#id.class" and >	- div with an ID and a class
+
+            	--- Further reading
+            	https://datatables.net/reference/option/dom
+            	--------------------------------------
+             */
+            "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+          buttons: [
+            /*{
+            	extend:    'colvis',
+            	text:      'Column Visibility',
+            	titleAttr: 'Col visibility',
+            	className: 'mr-sm-3'
+            },*/
+            {
+              extend: 'pdfHtml5',
+              text: 'PDF',
+              titleAttr: 'Generate PDF',
+              className: 'btn-outline-danger btn-sm mr-1'
+            },
+            {
+              extend: 'excelHtml5',
+              text: 'Excel',
+              titleAttr: 'Generate Excel',
+              className: 'btn-outline-success btn-sm mr-1'
+            },
+            {
+              extend: 'csvHtml5',
+              text: 'CSV',
+              titleAttr: 'Generate CSV',
+              className: 'btn-outline-primary btn-sm mr-1'
+            },
+            {
+              extend: 'copyHtml5',
+              text: 'Copy',
+              titleAttr: 'Copy to clipboard',
+              className: 'btn-outline-primary btn-sm mr-1'
+            },
+            {
+              extend: 'print',
+              text: 'Print',
+              titleAttr: 'Print Table',
+              className: 'btn-outline-primary btn-sm'
+            }
+          ]
+        });
+
+
+
+      });
+    
     }
   </script>
   </body>

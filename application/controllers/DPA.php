@@ -15,7 +15,20 @@ class DPA extends CI_Controller
  {
 
   $data['Articles'] = $this->l->GetArticles();
+  // $data['allDPA'] = $this->DPAModel->allDPA();
+  // echo "<pre>";
+  // print_r($data['allDPA']);
+  // die;
+  // echo "</pre>";
   $this->load->view('DPA/dpa', $data);
+ }
+
+ public function dpaLoad(){
+  $data = $this->DPAModel->allDPA();
+  return $this->output
+  ->set_content_type('application/json')
+  ->set_status_header(200)
+  ->set_output(json_encode($data));
  }
 
  public function CallData()
