@@ -140,7 +140,7 @@ $GetReading = array();
 //$target = array();
 //print_r($HourllyReading);
 foreach ($HourllyReading as $key) {
-    $point1 = array($key['Counter'] * 5.25,);
+    $point1 = array($key['Counter'] * 3.5,);
     $point2 = array($key['HourName'],);
     $dailytarget = 3000 / 6;
     $point3 = $dailytarget / 8;
@@ -380,6 +380,14 @@ foreach ($HourllyReading as $key) {
 
 <div class="card-body">
    <h1 style="font-family:cursive;margin-left: 40%;padding: 50px;">Hello <?php echo $_SESSION['Username']; ?>!<br>It's Sunday so current date data isn't available.<br> Have a happy Sunday!</h1>  
+</div>
+   </div>
+</div>
+<div id="overStatus" style="display: none;">
+   <div class="card">
+
+<div class="card-body">
+   <h1 style="font-family:cursive;margin-left: 40%;padding: 50px;">Hello <?php echo $_SESSION['Username']; ?>!<br>The Production is stopped now so current date data isn't available.<br> Have a happy Day!</h1>  
 </div>
    </div>
 </div>
@@ -1433,6 +1441,8 @@ else{
     $("#realTimeId").text(0)
     $("#employeeId").text(0)
     $("#efficiencyValueId").text("0 %")
+    $("#currentDateData").css('display','none');
+    $("#overStatus").css('display',"inline-block");
 }
 }
         /* init datatables */
@@ -2033,6 +2043,9 @@ function generateDataBottom(data1) {
         let seriesDataMachine5 = [];
         let seriesDataMachine6 = [];
         let seriesDataMachine7 = [];
+        let output= 0;
+    let Minutes = 0;
+    let efficiency = 0;
         let originalDataMachineWise = [];
         let targetDataMachineWise = [];
         let url = "<?php echo base_url('Efficiency/getCuttingPanelDateRangeData') ?>";
@@ -2054,7 +2067,7 @@ function generateDataBottom(data1) {
             datesArrayMachineWise.push(data.MachineData[k].Date)
         targetDataMachineWise.push(parseFloat(67))
         if(data.MachineData[k].MachineName == "Panel Sizing Press 1"){
-                output = data.MachineData[k].Counter * 0.28
+                output = data.MachineData[k].Counter * 0.28 * 3.5
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine1.push(parseFloat(efficiency))
@@ -2066,7 +2079,7 @@ function generateDataBottom(data1) {
             seriesDataMachine7.push(0)
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 2"){
-                output = data.MachineData[k].Counter * 0.28
+                output = data.MachineData[k].Counter * 0.28 * 3.5
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine2.push(parseFloat(efficiency))
@@ -2078,7 +2091,7 @@ function generateDataBottom(data1) {
             seriesDataMachine7.push(0)
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 3"){
-                output = data.MachineData[k].Counter * 0.28
+                output = data.MachineData[k].Counter * 0.28 * 3.5
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine3.push(parseFloat(efficiency))
@@ -2090,7 +2103,7 @@ function generateDataBottom(data1) {
             seriesDataMachine7.push(0)
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 4"){
-                output = data.MachineData[k].Counter * 0.28
+                output = data.MachineData[k].Counter * 0.28 * 3.5
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine4.push(parseFloat(efficiency))
@@ -2103,7 +2116,7 @@ function generateDataBottom(data1) {
 
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 5"){
-                output = data.MachineData[k].Counter * 0.28
+                output = data.MachineData[k].Counter * 0.28 * 3.5
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine5.push(parseFloat(efficiency))
@@ -2116,7 +2129,7 @@ function generateDataBottom(data1) {
 
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 6"){
-                output = data.MachineData[k].Counter * 0.28
+                output = data.MachineData[k].Counter * 0.28 * 3.5
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine6.push(parseFloat(efficiency))
@@ -2129,7 +2142,7 @@ function generateDataBottom(data1) {
 
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 7"){
-                output = data.MachineData[k].Counter * 0.28
+                output = data.MachineData[k].Counter * 0.28 * 3.5
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine7.push(parseFloat(efficiency))
@@ -2144,7 +2157,7 @@ function generateDataBottom(data1) {
     }
     else{
         if(data.MachineData[k].MachineName == "Panel Sizing Press 1"){
-                output = data.MachineData[k].Counter * 0.28
+                output = data.MachineData[k].Counter * 0.28 * 3.5
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine1.pop()
@@ -2152,7 +2165,7 @@ function generateDataBottom(data1) {
   
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 2"){
-                output = data.MachineData[k].Counter * 0.28
+                output = data.MachineData[k].Counter * 0.28 * 3.5
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine2.pop()
@@ -2160,7 +2173,7 @@ function generateDataBottom(data1) {
      
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 3"){
-                output = data.MachineData[k].Counter * 0.28
+                output = data.MachineData[k].Counter * 0.28 * 3.5
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine3.pop()
@@ -2168,28 +2181,28 @@ function generateDataBottom(data1) {
       
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 4"){
-                output = data.MachineData[k].Counter * 0.28
+                output = data.MachineData[k].Counter * 0.28 * 3.5
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine4.pop()
             seriesDataMachine4.push(parseFloat(efficiency))
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 5"){
-                output = data.MachineData[k].Counter * 0.28
+                output = data.MachineData[k].Counter * 0.28 * 3.5
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine5.pop()
             seriesDataMachine5.push(parseFloat(efficiency))
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 6"){
-                output = data.MachineData[k].Counter * 0.28
+                output = data.MachineData[k].Counter * 0.28 * 3.5
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine6.pop()
             seriesDataMachine6.push(parseFloat(efficiency))
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 7"){
-                output = data.MachineData[k].Counter * 0.28
+                output = data.MachineData[k].Counter * 0.28 * 3.5
             Minutes = (2*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine7.pop()
@@ -2218,7 +2231,7 @@ title: {
 
 yAxis: {
     title: {
-        text: 'Efficiency'
+        text: 'Efficiency ( % )'
     }
 },
 
@@ -2316,26 +2329,22 @@ Highcharts.chart('containerDateRangeBar', {
     }
 });
 
-$.post(url2,{"startDate":startDate, "endDate":endDate,"dept_id":dept_id,"section_id":section_id},function(dataInner, status){
-    console.log("Data Inner", dataInner)
     let seriesData = []
     let targetData = []
     let originalData = []
- if(dataInner.realtime != undefined){
-    let len = dataInner.realtime.length;
     let lenOuter = dataArrayOuter.length;
-    let output= 0;
-    let Minutes = 0;
-    let efficiency = 0;
+    let outputInner= 0;
+    let MinutesInner = 0;
+    let efficiencyInner = 0;
     // for(let i = 0; i<len; i++){ 
         for(let j = 0; j<lenOuter; j++){
             // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
 
-            output = dataArrayOuter[j].Counter * 0.28
-            Minutes = (2*4*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
+            outputInner = dataArrayOuter[j].Counter * 0.28 * 3.5
+            MinutesInner = (2*7*480);
+            efficiencyInner = ((outputInner / MinutesInner) * 100).toFixed(2)
 
-            seriesData.push(parseFloat(efficiency))
+            seriesData.push(parseFloat(efficiencyInner))
             targetData.push(parseFloat(67))
 // }
         }
@@ -2346,7 +2355,7 @@ $.post(url2,{"startDate":startDate, "endDate":endDate,"dept_id":dept_id,"section
         // }
     // }
 
- }
+ 
 //  console.log(datesArray)
  Highcharts.chart('containerDateRangeLine', {
 
@@ -2356,7 +2365,7 @@ title: {
 
 yAxis: {
     title: {
-        text: 'Efficiency'
+        text: 'Efficiency ( % )'
     }
 },
 
@@ -2398,7 +2407,7 @@ responsive: {
 });
 $("#loadingShow").css('display','none')
 $("#dateRangeResult").css('display','inline-block')
-})
+
 
 
 

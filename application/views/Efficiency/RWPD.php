@@ -185,12 +185,6 @@ foreach ($HourllyReading as $key) {
                         <div class="col-md-1">
 
                         </div>
-
-                        <?php foreach ($realtime as $d) {
-
-                        ?>
-
-
                             
                                 <div class="col-md-2" id="direct">
                                     <a href="javascript:void(0)">
@@ -234,11 +228,7 @@ foreach ($HourllyReading as $key) {
                                         </div>
                                     </a>
                                 </div>
-                      
-
-
-
-                        <?php } ?>
+                
                         <?php
 
                         //print_r($Counter);
@@ -328,12 +318,51 @@ foreach ($HourllyReading as $key) {
                         </div>
 
                     </div>
-                </div> <!-- row ends here -->
+                    <div class="col-md-6">
+
+<div class="row mt-4 p-2">
+  <?php foreach ($IndividualReading as $Inmachine) {
+   
+
+  ?>
+    <div class="col-md-6">
+
+      <div class="p-3 bg-info rounded overflow-hidden position-relative text-white mb-g">
+        <div class="">
+          <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+            <small class="m-0 l-h-n"><?php echo $Inmachine['Name']; ?></small>
+          </h3>
+          <h6 class="display-4 d-block l-h-n m-0 fw-400">
+
+            <?php echo $Inmachine['Counter']; ?>
+          </h6>
+          <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+        </div>
+        <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
+      </div>
+
+    </div>
 
 
 
 
-                <div class="guage text-center ">
+  <?php
+  }
+  ?>
+
+  </a>
+
+
+
+
+
+
+</div>
+</div>
+<div class="col-md-6">
+    
+<div class="guage">
                     <script src="https://code.highcharts.com/highcharts.js"></script>
                     <script src="https://code.highcharts.com/highcharts-more.js"></script>
                     <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
@@ -341,18 +370,25 @@ foreach ($HourllyReading as $key) {
                     <script src="https://code.highcharts.com/modules/export-data.js"></script>
                     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
                     <script src="https://code.highcharts.com/modules/drilldown.js"></script>
-                    <figure class="highcharts-figure">
+                 
                         <div id="container-speed" class="chart-container"></div>
                         <!-- <div id="container-rpm" class="chart-container"></div>   -->
-                    </figure>
+                   
                 </div>
-                <div id="tableHere" class="p-2">
+</div>
+
+                </div> <!-- row ends here -->
+
+
+
+
+                <!-- <div id="tableHere" class="p-2">
 
 
 
 
 
-                </div>
+                </div> -->
 
                 </div>
                         </div>
@@ -385,6 +421,15 @@ foreach ($HourllyReading as $key) {
 
 <div class="card-body">
    <h1 style="font-family:cursive;margin-left: 40%;padding: 50px;">Hello <?php echo $_SESSION['Username']; ?>!<br>It's Sunday so current date data isn't available.<br> Have a happy Sunday!</h1>  
+</div>
+   </div>
+</div>
+
+<div id="overStatus" style="display: none;">
+   <div class="card">
+
+<div class="card-body">
+   <h1 style="font-family:cursive;margin-left: 40%;padding: 50px;">Hello <?php echo $_SESSION['Username']; ?>!<br>The Production is stopped now so current date data isn't available.<br> Have a happy Day!</h1>  
 </div>
    </div>
 </div>
@@ -1353,10 +1398,10 @@ else{
     EfficiencyFinal = (((counterValue*0.58)/(minutes*80) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     if(dayId == 5){
-        $("#realTimeId").text((minutes*80)-(60*8))
+        $("#realTimeId").text((minutes*80)-(60*80))
     }
     else{
-        $("#realTimeId").text((minutes*80)-(45*8))
+        $("#realTimeId").text((minutes*80)-(45*80))
     }
     
     $("#employeeId").text(80)
@@ -1546,6 +1591,8 @@ else{
     $("#realTimeId").text(0)
     $("#employeeId").text(0)
     $("#efficiencyValueId").text("0 %")
+    $("#currentDateData").css('display','none');
+    $("#overStatus").css('display',"inline-block");
 }
 }
 
@@ -2156,61 +2203,62 @@ function generateDataBottom(data1) {
         let seriesDataTop;
         let seriesDataBottom;
         let dataArrayOuter = data.BarData
+        let outputOuter = 0;
+    let MinutesOuter = 0;
+    let efficiencyOuter = 0;
         if(data){
         seriesDataTop = generateDataTop(data)
         seriesDataBottom = generateDataBottom(data)
   
-
-
         for(let k = 0; k<data.MachineData.length; k++){
             if(datesArrayMachineWise.indexOf(data.MachineData[k].Date) === -1){
             datesArrayMachineWise.push(data.MachineData[k].Date)
         targetDataMachineWise.push(parseFloat(67))
         if(data.MachineData[k].Name == "Metal Detector 1"){
-                output = data.MachineData[k].Counter * 0.58
-            Minutes = (16*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine1.push(parseFloat(efficiency))
+                outputOuter = data.MachineData[k].Counter * 0.58
+            MinutesOuter = (16*480);
+            efficiencyOuter = ((outputOuter / MinutesOuter) * 100).toFixed(2)
+            seriesDataMachine1.push(parseFloat(efficiencyOuter))
             seriesDataMachine2.push(0)
             seriesDataMachine3.push(0)
             seriesDataMachine4.push(0)
             seriesDataMachine5.push(0)
             }
             else if(data.MachineData[k].Name == "Metal Detector 2"){
-                output = data.MachineData[k].Counter * 0.58
-            Minutes = (16*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine2.push(parseFloat(efficiency))
+                outputOuter = data.MachineData[k].Counter * 0.58
+            MinutesOuter = (16*480);
+            efficiencyOuter = ((outputOuter / MinutesOuter) * 100).toFixed(2)
+            seriesDataMachine2.push(parseFloat(efficiencyOuter))
             seriesDataMachine1.push(0)
             seriesDataMachine3.push(0)
             seriesDataMachine4.push(0)
             seriesDataMachine5.push(0)
             }
             else if(data.MachineData[k].Name == "Metal Detector 3"){
-                output = data.MachineData[k].Counter * 0.58
-            Minutes = (16*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine3.push(parseFloat(efficiency))
+                outputOuter = data.MachineData[k].Counter * 0.58
+            MinutesOuter = (16*480);
+            efficiencyOuter = ((outputOuter / MinutesOuter) * 100).toFixed(2)
+            seriesDataMachine3.push(parseFloat(efficiencyOuter))
             seriesDataMachine2.push(0)
             seriesDataMachine1.push(0)
             seriesDataMachine4.push(0)
             seriesDataMachine5.push(0)
             }
             else if(data.MachineData[k].Name == "Metal Detector 4"){
-            output = data.MachineData[k].Counter * 0.58
-            Minutes = (16*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine4.push(parseFloat(efficiency))
+            outputOuter = data.MachineData[k].Counter * 0.58
+            MinutesOuter = (16*480);
+            efficiencyOuter = ((outputOuter / MinutesOuter) * 100).toFixed(2)
+            seriesDataMachine4.push(parseFloat(efficiencyOuter))
             seriesDataMachine2.push(0)
             seriesDataMachine3.push(0)
             seriesDataMachine1.push(0)
             seriesDataMachine5.push(0)
             }
             else if(data.MachineData[k].Name == "Metal Detector 5"){
-                output = data.MachineData[k].Counter * 0.58
-            Minutes = (16*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine5.push(parseFloat(efficiency))
+                outputOuter = data.MachineData[k].Counter * 0.58
+            MinutesOuter = (16*480);
+            efficiency = ((outputOuter / MinutesOuter) * 100).toFixed(2)
+            seriesDataMachine5.push(parseFloat(efficiencyOuter))
             seriesDataMachine2.push(0)
             seriesDataMachine3.push(0)
             seriesDataMachine4.push(0)
@@ -2219,43 +2267,43 @@ function generateDataBottom(data1) {
     }
     else{
         if(data.MachineData[k].Name == "Metal Detector 1"){
-                output = data.MachineData[k].Counter * 0.58
-            Minutes = (16*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
+                outputOuter = data.MachineData[k].Counter * 0.58
+            MinutesOuter = (16*480);
+            efficiencyOuter = ((outputOuter / MinutesOuter) * 100).toFixed(2)
             seriesDataMachine1.pop()
-            seriesDataMachine1.push(parseFloat(efficiency))
+            seriesDataMachine1.push(parseFloat(efficiencyOuter))
  
             }
             else if(data.MachineData[k].Name == "Metal Detector 2"){
-                output = data.MachineData[k].Counter * 0.58
-            Minutes = (16*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
+                outputOuter = data.MachineData[k].Counter * 0.58
+            MinutesOuter = (16*480);
+            efficiencyOuter = ((outputOuter / MinutesOuter) * 100).toFixed(2)
             seriesDataMachine2.pop()
-            seriesDataMachine2.push(parseFloat(efficiency))
+            seriesDataMachine2.push(parseFloat(efficiencyOuter))
 
             }
             else if(data.MachineData[k].Name == "Metal Detector 3"){
-                output = data.MachineData[k].Counter * 0.58
-            Minutes = (16*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
+                outputOuter = data.MachineData[k].Counter * 0.58
+            MinutesOuter = (16*480);
+            efficiencyOuter = ((outputOuter / MinutesOuter) * 100).toFixed(2)
             seriesDataMachine3.pop()
-            seriesDataMachine3.push(parseFloat(efficiency))
+            seriesDataMachine3.push(parseFloat(efficiencyOuter))
       
             }
             else if(data.MachineData[k].Name == "Metal Detector 4"){
-            output = data.MachineData[k].Counter * 0.58
-            Minutes = (16*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
+            outputOuter = data.MachineData[k].Counter * 0.58
+            MinutesOuter = (16*480);
+            efficiencyOuter = ((outputOuter / MinutesOuter) * 100).toFixed(2)
             seriesDataMachine4.pop()
-            seriesDataMachine4.push(parseFloat(efficiency))
+            seriesDataMachine4.push(parseFloat(efficiencyOuter))
  
             }
             else if(data.MachineData[k].Name == "Metal Detector 5"){
-                output = data.MachineData[k].Counter * 0.58
-            Minutes = (16*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
+                outputOuter = data.MachineData[k].Counter * 0.58
+            MinutesOuter = (16*480);
+            efficiencyOuter = ((outputOuter / MinutesOuter) * 100).toFixed(2)
             seriesDataMachine5.pop()
-            seriesDataMachine5.push(parseFloat(efficiency))
+            seriesDataMachine5.push(parseFloat(efficiencyOuter))
    
             }
     }
@@ -2281,7 +2329,7 @@ title: {
 
 yAxis: {
     title: {
-        text: 'Efficiency'
+        text: 'Efficiency ( % )'
     }
 },
 
@@ -2379,13 +2427,10 @@ Highcharts.chart('containerDateRangeBar', {
     }
 });
 
-$.post(url2,{"startDate":startDate, "endDate":endDate,"dept_id":dept_id,"section_id":section_id},function(dataInner, status){
-    console.log("Data Inner", dataInner)
     let seriesData = []
     let targetData = []
     let originalData = []
- if(dataInner.realtime != undefined){
-    let len = dataInner.realtime.length;
+
     let lenOuter = dataArrayOuter.length;
     let output= 0;
     let Minutes = 0;
@@ -2409,7 +2454,6 @@ $.post(url2,{"startDate":startDate, "endDate":endDate,"dept_id":dept_id,"section
         // }
     // }
 
- }
 //  console.log(datesArray)
  Highcharts.chart('containerDateRangeLine', {
 
@@ -2419,7 +2463,7 @@ title: {
 
 yAxis: {
     title: {
-        text: 'Efficiency'
+        text: 'Efficiency ( % )'
     }
 },
 
@@ -2461,7 +2505,7 @@ responsive: {
 });
 $("#loadingShow").css('display','none')
 $("#dateRangeResult").css('display','inline-block')
-})
+
 
 
 

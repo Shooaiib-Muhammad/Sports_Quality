@@ -26,7 +26,7 @@ $GetReading = array();
 //$target = array();
 //print_r($HourllyReading);
 foreach ($HourllyReading as $key) {
-    $point1 = array($key['Counter'] * 5.25,);
+    $point1 = array($key['Counter'] * 0.2,);
     $point2 = array($key['HourName'],);
     $dailytarget = 3000 / 6;
     $point3 = $dailytarget / 8;
@@ -194,7 +194,7 @@ foreach ($HourllyReading as $key) {
                                 <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <h2 class="">Target <br> 67%</h2>
+                                            <h2 class="">Target <br> 64%</h2>
 
                                         </h3>
 
@@ -384,7 +384,14 @@ foreach ($HourllyReading as $key) {
 </div>
    </div>
 </div>
+<div id="overStatus" style="display: none;">
+   <div class="card">
 
+<div class="card-body">
+   <h1 style="font-family:cursive;margin-left: 40%;padding: 50px;">Hello <?php echo $_SESSION['Username']; ?>!<br>The Production is stopped now so current date data isn't available.<br> Have a happy Day!</h1>  
+</div>
+   </div>
+</div>
 
 </div>
 
@@ -1252,10 +1259,10 @@ else{
     EfficiencyFinal = (((counterValue*2.87)/(minutes*52.5) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     if(dayId == 5){
-        $("#realTimeId").text((minutes*52.5)-(60*8))
+        $("#realTimeId").text((minutes*52.5)-(60*52.5))
     }
     else{
-        $("#realTimeId").text((minutes*52.5)-(45*8))
+        $("#realTimeId").text((minutes*52.5)-(45*52.5))
     }
     
     $("#employeeId").text(52.5)
@@ -1445,6 +1452,8 @@ else{
     $("#realTimeId").text(0)
     $("#employeeId").text(0)
     $("#efficiencyValueId").text("0 %")
+    $("#currentDateData").css('display','none');
+    $("#overStatus").css('display',"inline-block");
 }
 }
     /* init datatables */
@@ -1797,7 +1806,7 @@ else{
  for (var i = 0; i < len; i++) {
      ps[i] = {
          name: data1.BarData[i].Date,
-         y: data1.BarData[i].Counter*0.2,
+         y: Math.round(data1.BarData[i].Counter*0.2),
          drilldown: data1.BarData[i].Date
      };
  }
@@ -1824,10 +1833,10 @@ function generateDataBottom(data1) {
  for (var i = 0; i < len; i++) {
     if(datesArray.indexOf(data1.MachineData[i].Date) === -1){
         datesArray.push(data1.MachineData[i].Date)
-        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,data1.MachineData[i].Counter*0.2])
+        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,Math.round(data1.MachineData[i].Counter*0.2)])
     }
     else{
-        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,data1.MachineData[i].Counter*0.2])
+        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,Math.round(data1.MachineData[i].Counter*0.2)])
     }
 
 
@@ -1907,6 +1916,9 @@ $("#searchRange").on('click',function(e){
         let seriesDataMachine30 = [];
         let seriesDataMachine31 = [];
         let seriesDataMachine32 = [];
+        let output= 0;
+    let Minutes = 0;
+    let efficiency = 0;
         let originalDataMachineWise = [];
         let targetDataMachineWise = [];
         let url = "<?php echo base_url('Efficiency/getCuttingHFDateRangeData') ?>";
@@ -3452,7 +3464,7 @@ title: {
 
 yAxis: {
     title: {
-        text: 'Efficiency'
+        text: 'Efficiency ( % )'
     }
 },
 
@@ -3550,26 +3562,23 @@ Highcharts.chart('containerDateRangeBar', {
     }
 });
 
-$.post(url2,{"startDate":startDate, "endDate":endDate,"dept_id":23,"section_id":118},function(dataInner, status){
-    console.log("Data Inner", dataInner)
+
     let seriesData = []
     let targetData = []
     let originalData = []
- if(dataInner.realtime != undefined){
-    let len = dataInner.realtime.length;
     let lenOuter = dataArrayOuter.length;
-    let output= 0;
-    let Minutes = 0;
-    let efficiency = 0;
+    let outputInner= 0;
+    let MinutesInner = 0;
+    let efficiencyInner = 0;
     // for(let i = 0; i<len; i++){ 
         for(let j = 0; j<lenOuter; j++){
             // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
 
-            output = dataArrayOuter[j].Counter * 0.2 * 2.87
-            Minutes = (1.5*32*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
+            outputInner = dataArrayOuter[j].Counter * 0.2 * 2.87
+            MinutesInner = (1.5*32*480);
+            efficiencyInner = ((outputInner / MinutesInner) * 100).toFixed(2)
 
-            seriesData.push(parseFloat(efficiency))
+            seriesData.push(parseFloat(efficiencyInner))
             targetData.push(parseFloat(64))
 // }
         }
@@ -3580,7 +3589,7 @@ $.post(url2,{"startDate":startDate, "endDate":endDate,"dept_id":23,"section_id":
         // }
     // }
 
- }
+ 
 //  console.log(datesArray)
  Highcharts.chart('containerDateRangeLine', {
 
@@ -3590,7 +3599,7 @@ title: {
 
 yAxis: {
     title: {
-        text: 'Efficiency'
+        text: 'Efficiency ( % )'
     }
 },
 
@@ -3632,9 +3641,6 @@ responsive: {
 });
 $("#loadingShow").css('display','none')
 $("#dateRangeResult").css('display','inline-block')
-})
-
-
 
  });
     })

@@ -5,13 +5,30 @@ class Bladder_model extends CI_Model
 {
     public function getData()
     {
+      $Month = date('m');
+      $Year = date('Y');
+      $Day = date('d');
         $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date
         FROM            dbo.view_Bladder_Winding_FInal
-        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '2022-06-20 00:00:00', 102) AND CONVERT(DATETIME, '2022-06-20 00:00:00', 102))
+        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102) AND CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
         GROUP BY Date
         ");
       return  $query->result_array();
     }
+    public function Stationwise()
+    {
+      $Month = date('m');
+      $Year = date('Y');
+      $Day = date('d');
+        $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date, Name
+        FROM            dbo.view_Bladder_Winding_FInal
+        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102) AND CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
+        GROUP BY Date, Name
+        
+        ");
+      return  $query->result_array();
+    }
+    
     public function getDatacore()
     {
         $query = $this->db->query("SELECT        Date, COUNT(counter) AS Counter

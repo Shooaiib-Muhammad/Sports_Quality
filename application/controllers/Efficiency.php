@@ -195,7 +195,8 @@ class Efficiency extends CI_Controller
     $Year = date('Y');
     $Day = date('d');
     $CurrentDate = $Day . '/' . $Month . '/' . $Year;
-
+    $currentDateNew = $Year . '-' . $Month . '-' . $Day;
+    $data['IndividualReading'] = $this->RWPD->IndividualReading($currentDateNew, $currentDateNew);
     $data['machineCounter'] = $this->RWPD->machineCounter($CurrentDate, $CurrentDate);
     $total = 0;
     foreach ($data['machineCounter'] as $count) {
@@ -718,5 +719,96 @@ class Efficiency extends CI_Controller
     ->set_status_header(200)
     ->set_output(json_encode($data));
     }
+
+    public function gettingCarcasData(){
+      $startDate = $_POST['startDate'];
+      $endDate = $_POST['endDate'];
+      
+      $data['BarData'] = $this->E->gettingCarcasData($startDate, $endDate);
+      //$data['MachineData'] = $this->E->getCuttingSheetSizingDateRangeDataMachineWise($startDate, $endDate);
+      
+      return $this->output
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode($data));
+      }
+
+      public function getMSLinesDateRangeData(){
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
+    
+        $data['BarData'] = $this->E->getMSLinesDateRangeData($startDate, $endDate);
+        $data['MachineData'] = $this->E->getMSLinesDateRangeDataMachineWise($startDate, $endDate);
+    
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+      }
+
+      public function getBladderWindingDateRangeData(){
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
+    
+        $data['BarData'] = $this->E->getBladderWindingDateRangeData($startDate, $endDate);
+        $data['MachineData'] = $this->E->getBladderWindingDateRangeDataMachineWise($startDate, $endDate);
+    
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+      }
+
+      public function getTMDateRangeData(){
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
+    
+        $data['BarData'] = $this->E->getTMDateRangeData($startDate, $endDate);
+        $data['MachineData'] = $this->E->getTMDateRangeDataMachineWise($startDate, $endDate);
+    
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+      }
+
+      public function getAMBAssemblingDateRangeData(){
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
+    
+        $data['BarData'] = $this->E->getAMBAssemblingDateRangeData($startDate, $endDate);
+        $data['MachineData'] = $this->E->getAMBAssemblingDateRangeDataMachineWise($startDate, $endDate);
+    
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+      }
+
+      public function getAMBPackingDateRangeData(){
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
+    
+        $data['BarData'] = $this->E->getAMBPackingDateRangeData($startDate, $endDate);
+        $data['MachineData'] = $this->E->getAMBPackingDateRangeDataMachineWise($startDate, $endDate);
+    
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+      }
+
+      public function getLFBDateRangeData(){
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
+    
+        $data['BarData'] = $this->E->getLFBDateRangeData($startDate, $endDate);
+        $data['MachineData'] = $this->E->getLFBDateRangeDataMachineWise($startDate, $endDate);
+    
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+      }
 
 }

@@ -17,7 +17,7 @@ class CoreController extends CI_Controller {
         //$data['realtime'] = $this->E->realTimeAtten(3, 1165);
      
         $data['HourllyCore']= $this->carcas->HourllyCore();
-        $data['realtime'] = $this->carcas->realTimeAtten($_GET['dept_id'], $_GET['section_id']);
+        // $data['realtime'] = $this->carcas->realTimeAtten($_GET['dept_id'], $_GET['section_id']);
         $this->load->view('Core/core',$data);
 
     }

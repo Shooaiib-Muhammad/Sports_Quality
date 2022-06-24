@@ -13,9 +13,12 @@ class carcas_model extends CI_Model
     }
     public function getDatacore()
     {
+      $Month = date('m');
+      $Year = date('Y');
+      $Day = date('d');
         $query = $this->db->query("SELECT        Date, COUNT(counter) AS Counter
         FROM            dbo.view_PC_Core
-        WHERE        (Entrydate = CONVERT(DATETIME, '2022-06-18 00:00:00', 102))
+        WHERE        (Entrydate = CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
         GROUP BY Date");
       return  $query->result_array();
     }
@@ -61,6 +64,33 @@ public function HourllyCore(){
   WHERE        (dbo.view_PC_Core.Entrydate BETWEEN CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102) AND CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
   GROUP BY dbo.view_PC_Core.Date, dbo.view_PC_Core.HID, dbo.tbl_PC_AMB_Hours.HourName
   ORDER BY dbo.view_PC_Core.HID
+  ");
+return  $query->result_array();
+}
+
+public function getDatacarcas()
+{
+  $Month = date('m');
+  $Year = date('Y');
+  $Day = date('d');
+    $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date
+    FROM            dbo.view_prd_carcas
+    WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102) AND CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
+    GROUP BY Date
+    ");
+  return  $query->result_array();
+}
+
+public function HourllyCarcas(){
+  $Month = date('m');
+  $Year = date('Y');
+  $Day = date('d');
+  $query = $this->db->query("SELECT        COUNT(dbo.view_prd_carcas.Counter) AS Counter, dbo.view_prd_carcas.Date, dbo.view_prd_carcas.HID, dbo.tbl_PC_AMB_Hours.HourName
+  FROM            dbo.view_prd_carcas INNER JOIN
+                           dbo.tbl_PC_AMB_Hours ON dbo.view_prd_carcas.HID = dbo.tbl_PC_AMB_Hours.Hour
+  WHERE        (dbo.view_prd_carcas.EntryDate BETWEEN CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102) AND CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
+  GROUP BY dbo.view_prd_carcas.Date, dbo.view_prd_carcas.HID, dbo.tbl_PC_AMB_Hours.HourName
+  
   ");
 return  $query->result_array();
 }

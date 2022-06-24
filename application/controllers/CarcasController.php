@@ -12,8 +12,13 @@ class CarcasController extends CI_Controller {
 
     public function index(){
 
-        $data['getData']= $this->carcas->getData();
-        $data['realtime'] = $this->E->realTimeAtten(24, 125);
+               // $data['getballsData']= $this->mbb->getballsData();
+               $data['getData']= $this->carcas->getDatacarcas();
+               //$data['realtime'] = $this->E->realTimeAtten(3, 1165);
+            
+               $data['HourllyCore']= $this->carcas->HourllyCarcas();
+               // $data['realtime'] = $this->carcas->realTimeAtten($_GET['dept_id'], $_GET['section_id']);
+
         $this->load->view('Carcas/carcas',$data);
 
     }

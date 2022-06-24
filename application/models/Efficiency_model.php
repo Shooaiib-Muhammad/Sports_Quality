@@ -296,10 +296,266 @@ return  $query->result_array();
                 $Day = date('d');
                 $query = $this->db->query("SELECT        TOP (100) PERCENT dbo.tbl_PC_AMB_Hours.HourName, COUNT(dbo.view_PC_Cutting_Process.Counter) AS Counter
                 FROM            dbo.view_PC_Cutting_Process INNER JOIN
-                                         dbo.tbl_PC_AMB_Hours ON dbo.view_PC_Cutting_Process.HID = dbo.tbl_PC_AMB_Hours.HourID
+                                         dbo.tbl_PC_AMB_Hours ON dbo.view_PC_Cutting_Process.HID = dbo.tbl_PC_AMB_Hours.Hour
                 WHERE        (dbo.view_PC_Cutting_Process.EntryDate = CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
                 GROUP BY dbo.tbl_PC_AMB_Hours.HourName, dbo.view_PC_Cutting_Process.HID, dbo.tbl_PC_AMB_Hours.HourID
                 ORDER BY dbo.tbl_PC_AMB_Hours.HourID");
                 return  $query->result_array();
         }
+
+        public function gettingCarcasData($startDate,$endDate){
+            
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date
+                FROM            dbo.view_prd_carcas
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startYear-$startMonth-$startDay 00:00:00', 102) AND CONVERT(DATETIME, '$endYear-$endMonth-$endDay 00:00:00', 102))
+                GROUP BY Date
+                
+                
+    ");
+                return  $query->result_array();
+
+        }
+
+        public function getMSLinesDateRangeData($startDate,$endDate){
+            
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        TOP (100) PERCENT SUM(TotalChecked) AS Counter, Date
+                FROM            dbo.view_PC_MS_Lines
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY Date
+                ORDER BY Date
+                
+                
+    ");
+                return  $query->result_array();
+
+        }
+
+        public function getMSLinesDateRangeDataMachineWise($startDate,$endDate)
+        {
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        TOP (100) PERCENT SUM(TotalChecked) AS Counter, Date, LineName AS Name
+                FROM            dbo.view_PC_MS_Lines
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY Date, LineName
+                 
+                ORDER BY LineName");
+                return  $query->result_array();
+        }
+
+        public function getBladderWindingDateRangeData($startDate,$endDate){
+            
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date
+                FROM            dbo.view_Bladder_Winding_FInal
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY Date
+                
+                ORDER BY Date
+                
+                
+    ");
+                return  $query->result_array();
+
+        }
+
+        public function getBladderWindingDateRangeDataMachineWise($startDate,$endDate)
+        {
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date, Name
+                FROM            dbo.view_Bladder_Winding_FInal
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY Date, Name
+                ORDER BY Name
+                ");
+                return  $query->result_array();
+        }
+
+        public function getTMDateRangeData($startDate,$endDate){
+            
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        CONVERT(Varchar, dbo.tbl_Inv_Tran_Date.DateName, 103) AS DateName, SUM(dbo.tbl_TM_Final_QC.Inspected) AS Pass
+                FROM            dbo.tbl_TM_Final_QC INNER JOIN
+                                         dbo.tbl_Inv_Tran_Date ON dbo.tbl_TM_Final_QC.DayNo = dbo.tbl_Inv_Tran_Date.DayNo
+                WHERE        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY CONVERT(Varchar, dbo.tbl_Inv_Tran_Date.DateName, 103)
+                ORDER BY DateName                 
+    ");
+                return  $query->result_array();
+
+        }
+
+        public function getTMDateRangeDataMachineWise($startDate,$endDate)
+        {
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        CONVERT(Varchar, dbo.tbl_Inv_Tran_Date.DateName, 103) AS DateName, SUM(dbo.tbl_TM_Final_QC.Inspected) AS Pass, dbo.tbl_TM_Final_QC.FactoryCode
+                FROM            dbo.tbl_TM_Final_QC INNER JOIN
+                                         dbo.tbl_Inv_Tran_Date ON dbo.tbl_TM_Final_QC.DayNo = dbo.tbl_Inv_Tran_Date.DayNo
+                WHERE        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY CONVERT(Varchar, dbo.tbl_Inv_Tran_Date.DateName, 103), dbo.tbl_TM_Final_QC.FactoryCode
+        
+                ");
+                return  $query->result_array();
+        }
+
+        public function getAMBAssemblingDateRangeData($startDate,$endDate){
+            
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        CONVERT(Varchar, dbo.tbl_Inv_Tran_Date.DateName, 103) AS DateName, SUM(dbo.tbl_PC_AMB_Hours_Tran.TotalChecked) AS PassQty
+                FROM            dbo.tbl_PC_AMB_Hours_Tran INNER JOIN
+                                         dbo.tbl_Inv_Tran_Date ON dbo.tbl_PC_AMB_Hours_Tran.DayID = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
+                                         dbo.tbl_PC_AMB_Line ON dbo.tbl_PC_AMB_Hours_Tran.LineID = dbo.tbl_PC_AMB_Line.LineID
+                WHERE        (dbo.tbl_PC_AMB_Hours_Tran.ProcessID = 1) AND (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY CONVERT(Varchar, dbo.tbl_Inv_Tran_Date.DateName, 103)
+                HAVING        (SUM(dbo.tbl_PC_AMB_Hours_Tran.TotalChecked) > 0)
+                ORDER BY DateName
+    ");
+                return  $query->result_array();
+
+        }
+
+        public function getAMBAssemblingDateRangeDataMachineWise($startDate,$endDate)
+        {
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        CONVERT(Varchar, dbo.tbl_Inv_Tran_Date.DateName, 103) AS DateName, SUM(dbo.tbl_PC_AMB_Hours_Tran.TotalChecked) AS PassQty, dbo.tbl_PC_AMB_Line.LineName
+                FROM            dbo.tbl_PC_AMB_Hours_Tran INNER JOIN
+                                         dbo.tbl_Inv_Tran_Date ON dbo.tbl_PC_AMB_Hours_Tran.DayID = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
+                                         dbo.tbl_PC_AMB_Line ON dbo.tbl_PC_AMB_Hours_Tran.LineID = dbo.tbl_PC_AMB_Line.LineID
+                WHERE        (dbo.tbl_PC_AMB_Hours_Tran.ProcessID = 1) AND (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY CONVERT(Varchar, dbo.tbl_Inv_Tran_Date.DateName, 103), dbo.tbl_PC_AMB_Line.LineName
+                HAVING        (SUM(dbo.tbl_PC_AMB_Hours_Tran.TotalChecked) > 0)
+                ORDER BY DateName
+                ");
+                return  $query->result_array();
+        }
+
+        public function getAMBPackingDateRangeData($startDate,$endDate){
+            
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        CONVERT(Varchar, dbo.tbl_Inv_Tran_Date.DateName, 103) AS DateName, SUM(dbo.tbl_PC_AMB_Hours_Tran.TotalChecked) AS PassQty
+                FROM            dbo.tbl_PC_AMB_Hours_Tran INNER JOIN
+                                         dbo.tbl_Inv_Tran_Date ON dbo.tbl_PC_AMB_Hours_Tran.DayID = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
+                                         dbo.tbl_PC_AMB_Line ON dbo.tbl_PC_AMB_Hours_Tran.LineID = dbo.tbl_PC_AMB_Line.LineID
+                WHERE        (dbo.tbl_PC_AMB_Hours_Tran.ProcessID = 2) AND (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY CONVERT(Varchar, dbo.tbl_Inv_Tran_Date.DateName, 103)
+                HAVING        (SUM(dbo.tbl_PC_AMB_Hours_Tran.TotalChecked) > 0)
+                ORDER BY DateName
+                    
+    ");
+                return  $query->result_array();
+
+        }
+
+        public function getAMBPackingDateRangeDataMachineWise($startDate,$endDate)
+        {
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        CONVERT(Varchar, dbo.tbl_Inv_Tran_Date.DateName, 103) AS DateName, SUM(dbo.tbl_PC_AMB_Hours_Tran.TotalChecked) AS PassQty, dbo.tbl_PC_AMB_Line.LineName
+                FROM            dbo.tbl_PC_AMB_Hours_Tran INNER JOIN
+                                         dbo.tbl_Inv_Tran_Date ON dbo.tbl_PC_AMB_Hours_Tran.DayID = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
+                                         dbo.tbl_PC_AMB_Line ON dbo.tbl_PC_AMB_Hours_Tran.LineID = dbo.tbl_PC_AMB_Line.LineID
+                WHERE        (dbo.tbl_PC_AMB_Hours_Tran.ProcessID = 2) AND (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY CONVERT(Varchar, dbo.tbl_Inv_Tran_Date.DateName, 103), dbo.tbl_PC_AMB_Line.LineName
+                HAVING        (SUM(dbo.tbl_PC_AMB_Hours_Tran.TotalChecked) > 0)
+                ORDER BY DateName
+                
+                ");
+                return  $query->result_array();
+        }
+
+        public function getLFBDateRangeData($startDate,$endDate){
+            
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        SUM(TotalPass) AS Pass, DateName
+                FROM            dbo.view_Packing_LFB
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY DateName
+                ORDER BY DateName
+                    
+    ");
+                return  $query->result_array();
+
+        }
+
+        public function getLFBDateRangeDataMachineWise($startDate,$endDate)
+        {
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        SUM(TotalPass) AS Pass, DateName, SysIp AS Name
+                FROM            dbo.view_Packing_LFB
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY DateName, SysIp
+                ORDER BY DateName
+                
+                ");
+                return  $query->result_array();
+        }
+        
+        
+        
+        
 }

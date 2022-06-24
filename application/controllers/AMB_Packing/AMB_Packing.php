@@ -18,10 +18,10 @@ class AMB_Packing extends CI_Controller
   $Year = date('Y');
   $Day = date('d');
   $CurrentDate = $Day . '/' . $Month . '/' . $Year;
-
-  $data['Data'] = $this->AMB_Packing_Model->TotalCounter($CurrentDate, $CurrentDate);
+  $CurrentDateNew = $Year . '-' . $Month . '-' . $Day;
+  $data['Data'] = $this->AMB_Packing_Model->TotalCounter($CurrentDateNew, $CurrentDateNew);
   
-  $data['Stationwise'] = $this->AMB_Packing_Model->StationWise($CurrentDate, $CurrentDate);
+  $data['Stationwise'] = $this->AMB_Packing_Model->StationWise($CurrentDateNew, $CurrentDateNew);
 // print_r($data['Counter']);
 // die;
   $this->load->view("AMB_Packing/AMB_Packing", $data);

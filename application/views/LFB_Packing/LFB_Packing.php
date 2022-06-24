@@ -131,11 +131,27 @@
             <!-- BEGIN Page Content -->
             <!-- the #js-page-content id is needed for some plugins to initialize -->
             <main id="js-page-content" role="main" class="page-content">
-               
 
+            <?php
 
+$GetHours = array();
+$GetReading = array();
+//$target = array();
+//print_r($HourllyReading);
+foreach ($Stationwise as $key) {
+    $point1 = array($key['PassQty'],);
+    $point2 = array($key['StationName'],);
+    $dailytarget = 3000 / 6;
+    $point3 = $dailytarget / 8;
 
-                <div class="subheader">
+    array_push($GetReading, $point1);
+    array_push($GetHours, $point2);
+    // array_push($target, $point3);
+    //array_push($lineNames, $key['LineName']);
+
+} 
+?>     
+    <div class="subheader">
                     <h1 class="subheader-title">
                         <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>LFB Production</span>
                     </h1>
@@ -154,13 +170,14 @@
                 <div class="tab-content py-3">
 
 <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel" style="background-color: white;">
+<div id="currentDateData">
 <div class="row">
                     <div class="col-md-12">
 
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                LFB Total Counter
+                                    LFB Count
                                  
                                 </h2>
                             </div>
@@ -173,16 +190,7 @@
 
                         </div>
 
-                        <?php
-                        //  foreach ($realtime as $d) {
-
-                        ?>
-
-
-                            <?php 
-                            //if ($d['EmployeeType'] == "Direct") {
-                              
-                              ?>
+               
                                 <div class="col-md-2" id="direct">
                                     <a href="javascript:void(0)">
                                         <div style="background-color:maroon" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
@@ -193,9 +201,10 @@
                                                     <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
 
                                                     <small class="m-0 l-h-n">Number of Employees</small>
-                                                   20
+                                                    <!-- <?php echo $d['EmpCount']; ?> -->
+                                                    <span id="employeeId"> </span>
                                                     <!-- <small class="m-0 l-h-n">Real Time</small>
-                                             -->
+                                            <?php echo $d['RealTime']; ?> -->
 
                                                 </h3>
                                             </div>
@@ -204,18 +213,27 @@
                                     </a>
                                 </div>
 
-                                
-                            <?php 
-                          
-                          // } 
-                          ?>
+                                <div class="col-md-2" id="direct">
+                                    <a href="javascript:void(0)">
+                                        <div style="background-color:grey" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                            <div class="">
+                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
 
+                                                    <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
 
-                        <?php 
-                      
-                      // } 
-                      ?>
+                                                    <!-- <small class="m-0 l-h-n">Number of Employees</small>
+                                            <?php echo $d['EmpCount']; ?> -->
+                                                    <small class="m-0 l-h-n">Real Time</small>
+                                                    <span id="realTimeId"> </span>
+
+                                                </h3>
+                                            </div>
+                                            <i class="fal fa-clock position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                        </div>
+                                    </a>
+                                </div>
+               
                         <?php
 
                         //print_r($Counter);
@@ -226,7 +244,11 @@
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                             <small class="m-0 l-h-n">Total NO of Balls</small>
-                                            <?php echo Round($Data[0]['PassQty'],0); ?>
+                                            <?php if(array_key_exists(0,$Data)) { ?>
+                                            <span id="counterValueId"><?php echo Round($Data[0]['PassQty'],0); ?></span>
+                                            <?php } else{ ?>
+                                                <span id="counterValueId">0</span>
+                                                <?php }  ?>
                                             <small class="m-0 l-h-n"></small>
 
 
@@ -239,31 +261,14 @@
                                 </div>
                             </a>
                         </div>
-                        <?php
-                        $total = $Data[0]['PassQty'];
-                        $Output = $total *8.9;
-
-
-
-                        //$Mints = 0;
-                       // if (isset($d['EmployeeType']) == "Direct") {
-
-
-                            $Mints = (20*24)*480;
-                        
-                            $Efficiecny = ($Output / $Mints)*100 ;
-                        //}
-                        
-
-                        ?>
-
+                       
                         <div class="col-md-2" id="direct">
                             <a href="javascript:void(0)">
                                 <div class="p-2 bg-info rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                             <small class="m-0 l-h-n">Efficiency</small>
-                                            <?php echo Round($Efficiecny, 2); ?>%
+                                            <span id="efficiencyValueId"></span>
                                             <small class="m-0 l-h-n"></small>
                                         </h3>
                                     </div>
@@ -277,7 +282,7 @@
                                 <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <h2 class="">Target <br> 67%</h2>
+                                            <h2 class="">Target <br> 58%</h2>
 
                                         </h3>
 
@@ -305,25 +310,7 @@
 
 
 
-<?php
 
-$GetHours = array();
-$GetReading = array();
-//$target = array();
-//print_r($HourllyReading);
-foreach ($Stationwise as $key) {
-    $point1 = array($key['PassQty'],);
-    $point2 = array($key['StationName'],);
-    $dailytarget = 3000 / 6;
-    $point3 = $dailytarget / 8;
-
-    array_push($GetReading, $point1);
-    array_push($GetHours, $point2);
-    // array_push($target, $point3);
-    //array_push($lineNames, $key['LineName']);
-
-} 
-?>
                 <div class="guage text-center ">
                     <script src="https://code.highcharts.com/highcharts.js"></script>
                     <script src="https://code.highcharts.com/highcharts-more.js"></script>
@@ -356,7 +343,7 @@ foreach ($Stationwise as $key) {
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                LFB Station Wise OutPut
+                                    LFB Output
                                   
                                 </h2>
                             </div>
@@ -370,6 +357,23 @@ foreach ($Stationwise as $key) {
 
                     </div>
                 </div>
+   </div>
+   <div id="sundayStatus" style="display: none;">
+   <div class="card">
+
+<div class="card-body">
+   <h1 style="font-family:cursive;margin-left: 40%;padding: 50px;">Hello <?php echo $_SESSION['Username']; ?>!<br>It's Sunday so current date data isn't available.<br> Have a happy Sunday!</h1>  
+</div>
+   </div>
+</div>
+<div id="overStatus" style="display: none;">
+   <div class="card">
+
+<div class="card-body">
+   <h1 style="font-family:cursive;margin-left: 40%;padding: 50px;">Hello <?php echo $_SESSION['Username']; ?>!<br>The Production is stopped now so current date data isn't available.<br> Have a happy Day!</h1>  
+</div>
+   </div>
+</div>
 </div>
 
 <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
@@ -391,7 +395,7 @@ foreach ($Stationwise as $key) {
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    Sheet Sizing OutPut
+                                    LFB Output
                                   
                                 </h2>
                             </div>
@@ -1287,76 +1291,43 @@ foreach ($Stationwise as $key) {
     ];
 
     $(document).ready(function() {
+        var EfficiencyFinal;
+        var EfficiencyFinalArray = [];
+        let counterValue = $("#counterValueId").text()
+        console.log((counterValue/2920)*100)
         let currentDate = new Date().toJSON().substr(0,10);
+        let dateGet = new Date()
+        let dayId = dateGet.getDay()
         $("#startDate").val(currentDate);
         $("#endDate").val(currentDate);
-        /* init datatables */
-        $('#dt-basic-example').dataTable({
-            responsive: true,
-            dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
-                "<'row'<'col-sm-12'tr>>" +
-                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-            buttons: [{
-                    extend: 'colvis',
-                    text: 'Column Visibility',
-                    titleAttr: 'Col visibility',
-                    className: 'btn-outline-default'
-                },
-                {
-                    extend: 'csvHtml5',
-                    text: 'CSV',
-                    titleAttr: 'Generate CSV',
-                    className: 'btn-outline-default'
-                },
-                {
-                    extend: 'copyHtml5',
-                    text: 'Copy',
-                    titleAttr: 'Copy to clipboard',
-                    className: 'btn-outline-default'
-                },
-                {
-                    extend: 'print',
-                    text: '<i class="fal fa-print"></i>',
-                    titleAttr: 'Print Table',
-                    className: 'btn-outline-default'
-                }
+        var date1 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),7,45,0); // Thu Sep 16 2010 13:30:58
+var date2 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),dateGet.getHours(),dateGet.getMinutes(),dateGet.getSeconds()); // Tue Aug 18 2015 14:20:48
 
-            ],
-            columnDefs: [{
-                    targets: -1,
-                    title: '',
-                    orderable: false,
-                    render: function(data, type, full, meta) {
-
-                        /*
-                        -- ES6
-                        -- convert using https://babeljs.io online transpiler
-                        return `
-                        <a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>
-                        	<i class="fal fa-times"></i>
-                        </a>
-                        <div class='dropdown d-inline-block dropleft '>
-                        	<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>
-                        		<i class="fal fa-ellipsis-v"></i>
-                        	</a>
-                        	<div class='dropdown-menu'>
-                        		<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>
-                        		<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>
-                        	</div>
-                        </div>`;
-                        	
-                        ES5 example below:	
-
-                        */
-                        return "\n\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>\n\t\t\t\t\t\t\t<i class=\"fal fa-times\"></i>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t<div class='dropdown d-inline-block dropleft'>\n\t\t\t\t\t\t\t<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>\n\t\t\t\t\t\t\t\t<i class=\"fal fa-ellipsis-v\"></i>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t<div class='dropdown-menu'>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>";
-                    },
-                },
-
-            ]
-
-        });
-
-        var gaugeOptions = {
+let dateDifference;
+let minutes;
+if(dayId == 0){
+$("#currentDateData").css('display','none');
+$("#sundayStatus").css('display',"inline-block");
+}
+else{
+    if(dateGet.getHours() >= 7 && dateGet.getHours() <= 16){
+    
+    if(dateGet.getHours() >= 14){
+        dateDifference = date2 - date1;
+    minutes = Math.floor(dateDifference / 60000);
+    EfficiencyFinal = (((counterValue*12.88)/(minutes*269) )*100).toFixed(2)
+    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+    if(dayId == 5){
+        $("#realTimeId").text((minutes*269)-(60*269))
+    }
+    else{
+        $("#realTimeId").text((minutes*269)-(45*269))
+    }
+    
+    $("#employeeId").text(269)
+    $("#efficiencyValueId").text(EfficiencyFinal + " %")
+    console.log(EfficiencyFinalArray)
+    var gaugeOptions = {
             chart: {
                 type: 'solidgauge'
             },
@@ -1430,7 +1401,7 @@ foreach ($Stationwise as $key) {
 
             series: [{
                 name: 'Achieved',
-                data: [<?php echo Round($Efficiecny, 2); ?>],
+                data: EfficiencyFinalArray,
                 dataLabels: {
                     format: '<div style="text-align:center">' +
                         '<span style="font-size:30px"> {y} %</span><br/>' +
@@ -1440,85 +1411,175 @@ foreach ($Stationwise as $key) {
             }]
 
         }));
+    }  
+    else{
+        dateDifference = date2 - date1;
+    minutes = Math.floor(dateDifference / 60000);
+    EfficiencyFinal = (((counterValue*12.88)/(minutes*269) )*100).toFixed(2)
+    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+    console.log(EfficiencyFinalArray)
+    $("#realTimeId").text(minutes*269)
+    $("#employeeId").text(269)
+    $("#efficiencyValueId").text(EfficiencyFinal + " %")
+    var gaugeOptions = {
+            chart: {
+                type: 'solidgauge'
+            },
 
-        // //The RPM gauge
-        // var chartRpm = Highcharts.chart('container-rpm', Highcharts.merge(gaugeOptions, {
-        //     yAxis: {
-        //         min: 0,
-        //         max: 5,
-        //         title: {
-        //             text: 'RPM'
-        //         }
-        //     },
+            title: null,
 
-        //     series: [{
-        //         name: 'RPM',
-        //         data: [<?php echo Round($Efficiecny, 2); ?>],
-        //         dataLabels: {
-        //             format:
-        //                 '<div style="text-align:center">' +
-        //                 '<span style="font-size:25px">{y:.1f}</span><br/>' +
-        //                 '<span style="font-size:12px;opacity:0.4">' +
-        //                 '* 1000 / min' +
-        //                 '</span>' +
-        //                 '</div>'
-        //         },
-        //         tooltip: {
-        //             valueSuffix: ' revolutions/min'
-        //         }
-        //     }]
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
 
-        // }));
+            exporting: {
+                enabled: false
+            },
 
-        // Highcharts.chart('containerT', {
-        //     chart: {
-        //         plotBackgroundColor: null,
-        //         plotBorderWidth: 0,
-        //         plotShadow: false
-        //     },
-        //     title: {
-        //         text: 'Target / Achieved',
+            tooltip: {
+                enabled: false
+            },
 
-        //     },
-        //     tooltip: {
-        //         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        //     },
-        //     accessibility: {
-        //         point: {
-        //             valueSuffix: '%'
-        //         }
-        //     },
-        //     plotOptions: {
-        //         pie: {
-        //             dataLabels: {
-        //                 enabled: true,
-        //                 distance: -50,
-        //                 style: {
-        //                     fontWeight: 'bold',
-        //                     color: 'white'
-        //                 }
-        //             },
-        //             startAngle: -90,
-        //             endAngle: 90,
-        //             center: ['50%', '75%'],
-        //             size: '110%'
-        //         }
-        //     },
-        //     series: [{
-        //         type: 'pie',
-        //         name: 'Browser share',
-        //         innerSize: '55%',
-        //         data: [
-        //             ['Target', <?php echo '67%'; ?>  ],
-        //             ['Achieved', <?php echo Round($Efficiecny, 2); ?>]
-        //         ]
-        //     }]
-        // });
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.1, '#55BF3B'], // green
+                    [0.5, '#DDDF0D'], // yellow
+                    [0.9, '#DF5353'] // red
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
 
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
 
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Achieved'
+                }
+            },
 
+            credits: {
+                enabled: false
+            },
 
+            series: [{
+                name: 'Achieved',
+                data: EfficiencyFinalArray,
+                dataLabels: {
+                    format: '<div style="text-align:center">' +
+                        '<span style="font-size:30px"> {y} %</span><br/>' +
+                        '</div>'
+                },
 
+            }]
+
+        }));
+    } 
+}
+else{
+    $("#realTimeId").text(0)
+    $("#employeeId").text(0)
+    $("#efficiencyValueId").text("0 %")
+    $("#currentDateData").css('display','none');
+    $("#overStatus").css('display',"inline-block");
+}
+}
+        /* init datatables */
+        $('#dt-basic-example').dataTable({
+            responsive: true,
+            dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            buttons: [{
+                    extend: 'colvis',
+                    text: 'Column Visibility',
+                    titleAttr: 'Col visibility',
+                    className: 'btn-outline-default'
+                },
+                {
+                    extend: 'csvHtml5',
+                    text: 'CSV',
+                    titleAttr: 'Generate CSV',
+                    className: 'btn-outline-default'
+                },
+                {
+                    extend: 'copyHtml5',
+                    text: 'Copy',
+                    titleAttr: 'Copy to clipboard',
+                    className: 'btn-outline-default'
+                },
+                {
+                    extend: 'print',
+                    text: '<i class="fal fa-print"></i>',
+                    titleAttr: 'Print Table',
+                    className: 'btn-outline-default'
+                }
+
+            ],
+            columnDefs: [{
+                    targets: -1,
+                    title: '',
+                    orderable: false,
+                    render: function(data, type, full, meta) {
+
+                        /*
+                        -- ES6
+                        -- convert using https://babeljs.io online transpiler
+                        return `
+                        <a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>
+                        	<i class="fal fa-times"></i>
+                        </a>
+                        <div class='dropdown d-inline-block dropleft '>
+                        	<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>
+                        		<i class="fal fa-ellipsis-v"></i>
+                        	</a>
+                        	<div class='dropdown-menu'>
+                        		<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>
+                        		<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>
+                        	</div>
+                        </div>`;
+                        	
+                        ES5 example below:	
+
+                        */
+                        return "\n\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>\n\t\t\t\t\t\t\t<i class=\"fal fa-times\"></i>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t<div class='dropdown d-inline-block dropleft'>\n\t\t\t\t\t\t\t<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>\n\t\t\t\t\t\t\t\t<i class=\"fal fa-ellipsis-v\"></i>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t<div class='dropdown-menu'>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>";
+                    },
+                },
+
+            ]
+
+        });
 
         /* flot toggle example */
         var flot_toggle = function() {
@@ -1802,9 +1863,9 @@ foreach ($Stationwise as $key) {
  //concat to get points
  for (var i = 0; i < len; i++) {
      ps[i] = {
-         name: data1.BarData[i].Date,
-         y: data1.BarData[i].Counter,
-         drilldown: data1.BarData[i].Date
+         name: data1.BarData[i].DateName,
+         y: parseFloat(data1.BarData[i].Pass),
+         drilldown: data1.BarData[i].DateName
      };
  }
  names = [];
@@ -1828,12 +1889,12 @@ function generateDataBottom(data1) {
 
  //concat to get points
  for (var i = 0; i < len; i++) {
-    if(datesArray.indexOf(data1.MachineData[i].Date) === -1){
-        datesArray.push(data1.MachineData[i].Date)
-        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,data1.MachineData[i].Counter])
+    if(datesArray.indexOf(data1.MachineData[i].DateName) === -1){
+        datesArray.push(data1.MachineData[i].DateName)
+        dataArray.push([data1.MachineData[i].DateName,data1.MachineData[i].Name,parseFloat(data1.MachineData[i].Pass)])
     }
     else{
-        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,data1.MachineData[i].Counter])
+        dataArray.push([data1.MachineData[i].DateName,data1.MachineData[i].Name,parseFloat(data1.MachineData[i].Pass)])
     }
 
 
@@ -1887,7 +1948,10 @@ $("#searchRange").on('click',function(e){
         let seriesDataMachine4 = [];
         let originalDataMachineWise = [];
         let targetDataMachineWise = [];
-        let url = "<?php echo base_url('Efficiency/getCuttingSheetSizingDateRangeData') ?>";
+        let output= 0;
+    let Minutes = 0;
+    let efficiency = 0;
+        let url = "<?php echo base_url('Efficiency/getLFBDateRangeData') ?>";
         let url2 = "<?php echo base_url('Efficiency/getRealTimeDateRange') ?>";
         $.post(url,{"startDate":startDate, "endDate":endDate},function(data, status){
             console.log("Data Outer", data)
@@ -1902,39 +1966,39 @@ $("#searchRange").on('click',function(e){
 
         for(let k = 0; k<data.MachineData.length; k++){
             // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
-        if(datesArrayMachineWise.indexOf(data.MachineData[k].Date) === -1){
-            datesArrayMachineWise.push(data.MachineData[k].Date)
-        targetDataMachineWise.push(parseFloat(67))
-        if(data.MachineData[k].MachineName == "Sheet Sizing Press 1"){
-                output = data.MachineData[k].Counter * 0.10
-            Minutes = (2*480);
+        if(datesArrayMachineWise.indexOf(data.MachineData[k].DateName) === -1){
+            datesArrayMachineWise.push(data.MachineData[k].DateName)
+        targetDataMachineWise.push(parseFloat(58))
+        if(data.MachineData[k].Name == "Station No 1"){
+                output = data.MachineData[k].Pass * 11.66
+            Minutes = (80*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine1.push(parseFloat(efficiency))
             seriesDataMachine2.push(0)
             seriesDataMachine3.push(0)
             seriesDataMachine4.push(0)
             }
-            else if(data.MachineData[k].MachineName == "Sheet Sizing Press 2"){
-                output = data.MachineData[k].Counter * 0.10
-            Minutes = (2*480);
+            else if(data.MachineData[k].Name == "Station No 2"){
+                output = data.MachineData[k].Pass *13.15
+            Minutes = (54*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine2.push(parseFloat(efficiency))
             seriesDataMachine1.push(0)
             seriesDataMachine3.push(0)
             seriesDataMachine4.push(0)
             }
-            else if(data.MachineData[k].MachineName == "Sheet Sizing Press 3"){
-                output = data.MachineData[k].Counter * 0.10
-            Minutes = (2*480);
+            else if(data.MachineData[k].Name == "Station No 3"){
+                output = data.MachineData[k].Pass * 13.15
+            Minutes = (73*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine3.push(parseFloat(efficiency))
             seriesDataMachine2.push(0)
             seriesDataMachine1.push(0)
             seriesDataMachine4.push(0)
             }
-            else if(data.MachineData[k].MachineName == "Sheet Sizing Press 4"){
-                output = data.MachineData[k].Counter * 0.10
-            Minutes = (2*480);
+            else if(data.MachineData[k].Name == "Station No 4"){
+                output = data.MachineData[k].Pass * 13.15
+            Minutes = (62*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine4.push(parseFloat(efficiency))
             seriesDataMachine2.push(0)
@@ -1944,33 +2008,33 @@ $("#searchRange").on('click',function(e){
             }
     }
     else{
-        if(data.MachineData[k].MachineName == "Sheet Sizing Press 1"){
-                output = data.MachineData[k].Counter * 0.10
-            Minutes = (2*480);
+        if(data.MachineData[k].Name == "Station No 1"){
+                output = data.MachineData[k].Pass * 11.66
+            Minutes = (80*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine1.pop()
             seriesDataMachine1.push(parseFloat(efficiency))
   
             }
-            else if(data.MachineData[k].MachineName == "Sheet Sizing Press 2"){
-                output = data.MachineData[k].Counter * 0.10
-            Minutes = (2*480);
+            else if(data.MachineData[k].Name == "Station No 2"){
+                output = data.MachineData[k].Pass * 13.15
+            Minutes = (54*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine2.pop()
             seriesDataMachine2.push(parseFloat(efficiency))
      
             }
-            else if(data.MachineData[k].MachineName == "Sheet Sizing Press 3"){
-                output = data.MachineData[k].Counter * 0.10
-            Minutes = (2*480);
+            else if(data.MachineData[k].Name == "Station No 3"){
+                output = data.MachineData[k].Pass * 13.15
+            Minutes = (73*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine3.pop()
             seriesDataMachine3.push(parseFloat(efficiency))
       
             }
-            else if(data.MachineData[k].MachineName == "Sheet Sizing Press 4"){
-                output = data.MachineData[k].Counter * 0.10
-            Minutes = (2*480);
+            else if(data.MachineData[k].Name == "Station No 4"){
+                output = data.MachineData[k].Pass * 13.15
+            Minutes = (62*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine4.pop()
             seriesDataMachine4.push(parseFloat(efficiency))
@@ -1982,12 +2046,12 @@ $("#searchRange").on('click',function(e){
         
 
         }
-        originalDataMachineWise.push({name:"Sheet Sizing Press 1",data:seriesDataMachine1},{name:"Sheet Sizing Press 2",data:seriesDataMachine2},{name:"Sheet Sizing Press 3",data:seriesDataMachine3},{name:"Sheet Sizing Press 4",data:seriesDataMachine4},{name:"Target Efficiency",data:targetDataMachineWise})
+        originalDataMachineWise.push({name:"Station No 1",data:seriesDataMachine1},{name:"Station No 2",data:seriesDataMachine2},{name:"Station No 3",data:seriesDataMachine3},{name:"Station No 4",data:seriesDataMachine4},{name:"Target Efficiency",data:targetDataMachineWise})
         }
          console.log("Target", datesArrayMachineWise)
         for (var i = 0; i < data.BarData.length; i++) {
-    if(datesArray.indexOf(data.BarData[i].Date) === -1){
-        datesArray.push(data.BarData[i].Date)
+    if(datesArray.indexOf(data.BarData[i].DateName) === -1){
+        datesArray.push(data.BarData[i].DateName)
         // targetDataMachineWise.push(parseFloat(67))
     }
         }
@@ -2083,7 +2147,7 @@ Highcharts.chart('containerDateRangeBar', {
 
     series: [
         {
-            name: "RWPD",
+            name: "LFB",
             colorByPoint: true,
             data: seriesDataTop
         }
@@ -2098,27 +2162,24 @@ Highcharts.chart('containerDateRangeBar', {
     }
 });
 
-$.post(url2,{"startDate":startDate, "endDate":endDate,"dept_id":dept_id,"section_id":section_id},function(dataInner, status){
-    console.log("Data Inner", dataInner)
+
     let seriesData = []
     let targetData = []
     let originalData = []
- if(dataInner.realtime != undefined){
-    let len = dataInner.realtime.length;
     let lenOuter = dataArrayOuter.length;
-    let output= 0;
-    let Minutes = 0;
-    let efficiency = 0;
+    let outputInner= 0;
+    let MinutesInner = 0;
+    let efficiencyInner = 0;
     // for(let i = 0; i<len; i++){ 
         for(let j = 0; j<lenOuter; j++){
             // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
 
-            output = dataArrayOuter[j].Counter * 0.10
-            Minutes = (2*4*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
+            outputInner = dataArrayOuter[j].Pass * 12.88
+            MinutesInner = (269*480);
+            efficiencyInner = ((outputInner / MinutesInner) * 100).toFixed(2)
 
-            seriesData.push(parseFloat(efficiency))
-            targetData.push(parseFloat(67))
+            seriesData.push(parseFloat(efficiencyInner))
+            targetData.push(parseFloat(58))
 // }
         }
        
@@ -2128,7 +2189,7 @@ $.post(url2,{"startDate":startDate, "endDate":endDate,"dept_id":dept_id,"section
         // }
     // }
 
- }
+ 
 //  console.log(datesArray)
  Highcharts.chart('containerDateRangeLine', {
 
@@ -2180,7 +2241,7 @@ responsive: {
 });
 $("#loadingShow").css('display','none')
 $("#dateRangeResult").css('display','inline-block')
-})
+
 
 
 

@@ -529,9 +529,11 @@ if (!$this->session->has_userdata('user_id')) {
                     <div class="form-group-inline">
 
                       <button type="button" class="btn-success btn btn-md mt-3" onclick="onSearch()">Search</button>
-
+                      <!-- <button type="button" class="btn-info btn btn-md mt-3" onclick="onClear()">Clear</button> -->
                     </div>
+                    
                   </div>
+                  
                 </div>
                 <div class="row">
 
@@ -970,6 +972,16 @@ final_FIFA_authorization_validity_Date=yy_FIFA_authorization_validity_Date+'-'+m
       });
     }
 
+
+    function onClear(){
+      
+      $('#fC').append(`<option value="">
+                                      
+                                  </option>`);
+      // fc = $("#fC").append('<option ></option>');
+      seasonal1 = $("#seasonal1").val();
+      season1 = $("#season1").val();
+    }
     function deleterecord(id) {
       path = "<?php echo base_url(''); ?>DPA/delteRecord/"
 

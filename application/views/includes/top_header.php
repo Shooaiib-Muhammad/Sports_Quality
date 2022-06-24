@@ -1,8 +1,8 @@
 <header class="page-header" role="banner">
                         <!-- we need this logo when user switches to nav-function-top -->
                         <div class="page-logo">
-        <a href="<?php echo base_url()?>" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">
-        <img src="<?php echo base_url('/')?>Assets/img/Forward123.png" alt="SmartAdmin WebApp" aria-roledescription="logo">
+        <a href="<?php echo base_url()?>DashboardController" class="page-logo-link press-scale-down d-flex align-items-center position-relative">
+        <img src="<?php echo base_url('/')?>Assets/img/Forward12355.png" alt="SmartAdmin WebApp" aria-roledescription="logo">
         <span class="page-logo-text mr-1"></span>
         <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2"></span>
         <!-- <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i> -->

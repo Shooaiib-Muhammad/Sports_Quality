@@ -15,7 +15,7 @@ class Blader extends CI_Controller {
         $Day = date('d');
         $CurrentDate = $Year . '-' . $Month . '-' . $Day;
         $data['getData'] = $this->Bladder->getData();
-       
+        $data['Stationwise'] = $this->Bladder->Stationwise($CurrentDate, $CurrentDate);
         $this->load->view("Bladder/Bladder", $data);
     }
     public function data(){

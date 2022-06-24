@@ -7,7 +7,7 @@ class RWPD_Model extends CI_Model
  {
   $query = $this->db->query("SELECT        COUNT(TID) AS BallCounter,machineName AS MachineName
 
-FROM            dbo.tbl_Audiuno
+FROM            dbo.view_RWPD_DT
 WHERE        (CONVERT(varchar, EntryDate, 103) BETWEEN '$s_date' AND '$e_date')
 GROUP BY machineName");
   return  $query->result_array();
@@ -48,6 +48,21 @@ GROUP BY machineName");
   $query = $this->db->query("SELECT        count(Counter) AS Counter
 FROM            dbo.view_PC_panel_Sizing
 WHERE        (Date = '$Day/$Month/$Year')");
+  return  $query->result_array();
+}
+
+Public function IndividualReading($startDate,$endDate){
+  $startMonth = explode("-",$startDate)[1];
+  $startYear = explode("-",$startDate)[0];
+  $startDay = explode("-",$startDate)[2];
+  $endMonth = explode("-",$endDate)[1];
+  $endYear = explode("-",$endDate)[0];
+  $endDay = explode("-",$endDate)[2];
+  $query = $this->db->query("SELECT  Date, COUNT(Counter) AS Counter, Name
+  FROM            dbo.view_RWPD_DT          
+  WHERE        (Date BETWEEN '$startDay/$startMonth/$startYear' AND '$endDay/$endMonth/$endYear') 
+  GROUP BY Date, Name 
+  ORDER BY Date");
   return  $query->result_array();
 }
  
