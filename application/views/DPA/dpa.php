@@ -963,25 +963,25 @@ final_FIFA_authorization_validity_Date=yy_FIFA_authorization_validity_Date+'-'+m
                                         <td >${element.PrintingColors}</td>
                                           <td>${element.FactoryCode}</td>
                                          <td >${element.PanelShape}</td>
-                                          <td contenteditable="true" id="Yield">${element.Yield}</td>
+                                         <td contenteditable="true" id="Yield">${element.Yield}</td>
                                           <td contenteditable="true" id="Article_Count"> ${element.Article_Count}</td>
-                                          <td contenteditable="true" id="BF_Date" > <input type="date" value="${final_BF_Datee}"/></td>
-                                          <td contenteditable="true" id="CR1_In_House_Date"><input type="date" value="${final_CR1_In_House_Datee}"/></td>
-                                          <td contenteditable="true" id="CR1_Subbmition_Date"> <input type="date" value="${final_CR1_Subbmition_Datee}"/></td>
+                                          <td contenteditable="true" id="BF_Date" > <input type="date" value="${final_BF_Datee}"/><i style="color:white;">${final_BF_Datee}</i></td>
+                                          <td contenteditable="true" id="CR1_In_House_Date"><input type="date" value="${final_CR1_In_House_Datee}"/> <i style="color:white;">${final_CR1_In_House_Datee}</i></td>
+                                          <td contenteditable="true" id="CR1_Subbmition_Date"> <input type="date" value="${final_CR1_Subbmition_Datee}"/> <i style="color:white;">${final_CR1_Subbmition_Datee}</i></td>
                                           <td contenteditable="true" id="CR1_Comments">${element.CR1_Comments}</td>
-                                          <td contenteditable="true" id="CR2_In_House_Date"> <input type="date" value="${final_CR2_In_House_Datee}"/></td>
-                                          <td contenteditable="true" id="CR2_Subbmition_Date"><input type="date" value="${final_CR2_Subbmition_Date}"/></td>
+                                          <td contenteditable="true" id="CR2_In_House_Date"> <input type="date" value="${final_CR2_In_House_Datee}"/><i style="color:white;">${final_CR2_In_House_Datee}</i></td>
+                                          <td contenteditable="true" id="CR2_Subbmition_Date"><input type="date" value="${final_CR2_Subbmition_Date}"/><i style="color:white;">${final_CR2_Subbmition_Date}</i></td>
                                           <td contenteditable="true" id="CR2_Comments">${element.CR2_Comments}</td>
                                           <td contenteditable="true" id="Post_CR2_Ex_fty"><input type="date" value="${element.Post_CR2_Ex_fty}"/></td>
                                           <td contenteditable="true" id="Comments_Remarks">${element.Comments_Remarks}</td>
-                                          <td contenteditable="true" id="EBR_Model_Date"><input type="date" value="${final_EBR_Model_Date}"/></td>
-                                          <td contenteditable="true" id="EBR_Article_Date"><input type="date" value="${final_EBR_Article_Date}"/></td>
-                                          <td contenteditable="true" id="Rev_BR_Date"><input type="date" value="${final_Rev_BR_Date}"/></td>
+                                          <td contenteditable="true" id="EBR_Model_Date"><input type="date" value="${final_EBR_Model_Date}"/><i style="color:white;">${final_EBR_Model_Date}</i></td>
+                                          <td contenteditable="true" id="EBR_Article_Date"><input type="date" value="${final_EBR_Article_Date}"/><i style="color:white;">${final_EBR_Article_Date}</i></td>
+                                          <td contenteditable="true" id="Rev_BR_Date"><input type="date" value="${final_Rev_BR_Date}"/><i style="color:white;">${final_Rev_BR_Date}</i></td>
                                           <td contenteditable="true" id="Retail_Intro"><input type="date" value="${element.Retail_Intro}"/></td>
                                           <td contenteditable="true" id="Fty_Priority">${element.Fty_Priority}</td>
                                           <td contenteditable="true" id="Remarks">${element.Remarks}</td>
                                           <td contenteditable="true" id="Mktg_FC">${element.Mktg_FC}</td>
-                                          <td contenteditable="true" id="FIFA_authorization_validity_Date"><input type="date" value="${final_FIFA_authorization_validity_Date}"/></td>
+                                          <td contenteditable="true" id="FIFA_authorization_validity_Date"><input type="date" value="${final_FIFA_authorization_validity_Date}"/><i style="color:white;">${final_FIFA_authorization_validity_Date}</i></td>
                                           <td contenteditable="true" id="CR1_In_House_Status">${element.CR1_In_House_Status}</td>
                                           <td contenteditable="true" id="CR1_Subbmition_Status">${element.CR1_Subbmition_Status}</td>
                                           <td contenteditable="true" id="CR2_In_House_Status">${element.CR2_In_House_Status}</td>
@@ -2769,23 +2769,23 @@ final_FIFA_authorization_validity_Date=yy_FIFA_authorization_validity_Date+'-'+m
                                          <td >${element.PanelShape}</td>
                                           <td contenteditable="true" id="Yield">${element.Yield}</td>
                                           <td contenteditable="true" id="Article_Count"> ${element.Article_Count}</td>
-                                          <td contenteditable="true" id="BF_Date" > <input type="date" value="${final_BF_Datee}"/></td>
-                                          <td contenteditable="true" id="CR1_In_House_Date"><input type="date" value="${final_CR1_In_House_Datee}"/></td>
-                                          <td contenteditable="true" id="CR1_Subbmition_Date"> <input type="date" value="${final_CR1_Subbmition_Datee}"/></td>
+                                          <td contenteditable="true" id="BF_Date" > <input type="date" value="${final_BF_Datee}"/><i style="color:white;">${final_BF_Datee}</i></td>
+                                          <td contenteditable="true" id="CR1_In_House_Date"><input type="date" value="${final_CR1_In_House_Datee}"/> <i style="color:white;">${final_CR1_In_House_Datee}</i></td>
+                                          <td contenteditable="true" id="CR1_Subbmition_Date"> <input type="date" value="${final_CR1_Subbmition_Datee}"/> <i style="color:white;">${final_CR1_Subbmition_Datee}</i></td>
                                           <td contenteditable="true" id="CR1_Comments">${element.CR1_Comments}</td>
-                                          <td contenteditable="true" id="CR2_In_House_Date"> <input type="date" value="${final_CR2_In_House_Datee}"/></td>
-                                          <td contenteditable="true" id="CR2_Subbmition_Date"><input type="date" value="${final_CR2_Subbmition_Date}"/></td>
+                                          <td contenteditable="true" id="CR2_In_House_Date"> <input type="date" value="${final_CR2_In_House_Datee}"/><i style="color:white;">${final_CR2_In_House_Datee}</i></td>
+                                          <td contenteditable="true" id="CR2_Subbmition_Date"><input type="date" value="${final_CR2_Subbmition_Date}"/><i style="color:white;">${final_CR2_Subbmition_Date}</i></td>
                                           <td contenteditable="true" id="CR2_Comments">${element.CR2_Comments}</td>
                                           <td contenteditable="true" id="Post_CR2_Ex_fty"><input type="date" value="${element.Post_CR2_Ex_fty}"/></td>
                                           <td contenteditable="true" id="Comments_Remarks">${element.Comments_Remarks}</td>
-                                          <td contenteditable="true" id="EBR_Model_Date"><input type="date" value="${final_EBR_Model_Date}"/></td>
-                                          <td contenteditable="true" id="EBR_Article_Date"><input type="date" value="${final_EBR_Article_Date}"/></td>
-                                          <td contenteditable="true" id="Rev_BR_Date"><input type="date" value="${final_Rev_BR_Date}"/></td>
+                                          <td contenteditable="true" id="EBR_Model_Date"><input type="date" value="${final_EBR_Model_Date}"/><i style="color:white;">${final_EBR_Model_Date}</i></td>
+                                          <td contenteditable="true" id="EBR_Article_Date"><input type="date" value="${final_EBR_Article_Date}"/><i style="color:white;">${final_EBR_Article_Date}</i></td>
+                                          <td contenteditable="true" id="Rev_BR_Date"><input type="date" value="${final_Rev_BR_Date}"/><i style="color:white;">${final_Rev_BR_Date}</i></td>
                                           <td contenteditable="true" id="Retail_Intro"><input type="date" value="${element.Retail_Intro}"/></td>
                                           <td contenteditable="true" id="Fty_Priority">${element.Fty_Priority}</td>
                                           <td contenteditable="true" id="Remarks">${element.Remarks}</td>
                                           <td contenteditable="true" id="Mktg_FC">${element.Mktg_FC}</td>
-                                          <td contenteditable="true" id="FIFA_authorization_validity_Date"><input type="date" value="${final_FIFA_authorization_validity_Date}"/></td>
+                                          <td contenteditable="true" id="FIFA_authorization_validity_Date"><input type="date" value="${final_FIFA_authorization_validity_Date}"/><i style="color:white;">${final_FIFA_authorization_validity_Date}</i></td>
                                           <td contenteditable="true" id="CR1_In_House_Status">${element.CR1_In_House_Status}</td>
                                           <td contenteditable="true" id="CR1_Subbmition_Status">${element.CR1_Subbmition_Status}</td>
                                           <td contenteditable="true" id="CR2_In_House_Status">${element.CR2_In_House_Status}</td>
