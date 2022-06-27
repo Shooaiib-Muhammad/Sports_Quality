@@ -207,7 +207,7 @@
 
                                                     <!-- <small class="m-0 l-h-n">Number of Employees</small>
                                             <?php echo $d['EmpCount']; ?> -->
-                                                    <small class="m-0 l-h-n">Real Time (Mints)</small>
+                                                    <small class="m-0 l-h-n">Real Time (Minutes)</small>
                                                     <span id="realTimeId"> </span>
 
                                                 </h3>
