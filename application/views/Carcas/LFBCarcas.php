@@ -131,48 +131,12 @@
             <!-- BEGIN Page Content -->
             <!-- the #js-page-content id is needed for some plugins to initialize -->
             <main id="js-page-content" role="main" class="page-content">
-               
-            <?php
 
-$GetHours = array();
-$GetReading = array();
-//$target = array();
-//print_r($HourllyReading);
-foreach ($Stationwise as $key) {
-    date_default_timezone_set('Asia/Karachi');
- $dateTimeObject1 = date_create(date('Y').'-'.date('m').'-'.date('d').' '.date('H').':'.date('i').''); 
-$dateTimeObject2 = date_create(date('Y').'-'.date('m').'-'.date('d').' 07:45'); 
-
-$difference = date_diff($dateTimeObject1, $dateTimeObject2); 
-$minutes = $difference->days * 24 * 60;
-$minutes += $difference->h * 60;
-$minutes += $difference->i;
-if(date('H') >= 14){
-    if(date('w') == 4){
-        $minutes = $minutes - 60;
-    }
-    else{
-        $minutes = $minutes - 45; 
-    }
-}
-
-    $point1 = array(round(((($key['PassQty']*7.74)/($minutes*20))*100),2),);
-    $point2 = array($key['StationName'],);
-    $dailytarget = 3000 / 6;
-    $point3 = $dailytarget / 8;
-    
-    array_push($GetReading, $point1);
-    array_push($GetHours, $point2);
-    // array_push($target, $point3);
-    //array_push($lineNames, $key['LineName']);
-
-} 
-?>
 
 
                 <div class="subheader">
                     <h1 class="subheader-title">
-                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Machine Stitch Production</span>
+                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>LFB Carcas</span>
                     </h1>
 
 
@@ -183,7 +147,7 @@ if(date('H') >= 14){
 
                 <ul class="nav nav-pills" role="tablist">
                                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Historial Analysis</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Historical Analysis</a></li>
 
                 </ul>
                 <div class="tab-content py-3">
@@ -196,7 +160,7 @@ if(date('H') >= 14){
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    MS Lines Count
+                                    LFB Carcas Count
                                  
                                 </h2>
                             </div>
@@ -261,8 +225,12 @@ if(date('H') >= 14){
                                 <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <small class="m-0 l-h-n">Total NO of Balls</small>
-                                            <span id="counterValueId"><?php echo Round($Data[0]['PassQty'],0); ?></span>
+                                            <small class="m-0 l-h-n">Total No of Balls</small>
+                                            <?php if(array_key_exists(0,$getData)){ ?>
+                                            <span id="counterValueId"><?php echo $getData[0]['Counter'] ?></span>
+                                            <?php } else{ ?>
+                                                <span id="counterValueId">0</span>
+                                                <?php } ?>
                                             <small class="m-0 l-h-n"></small>
 
 
@@ -275,7 +243,7 @@ if(date('H') >= 14){
                                 </div>
                             </a>
                         </div>
-                   
+                
 
                         <div class="col-md-2" id="direct">
                             <a href="javascript:void(0)">
@@ -297,7 +265,7 @@ if(date('H') >= 14){
                                 <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <h2 class="">Target <br> 67%</h2>
+                                            <h2 class="">Target <br> 58%</h2>
 
                                         </h3>
 
@@ -321,7 +289,7 @@ if(date('H') >= 14){
                         </div>
 
                     </div>
-                 
+     
 <div class="col-md-6">
     
 <div class="guage">
@@ -363,7 +331,7 @@ if(date('H') >= 14){
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    MS Lines Output
+                                   LFB  Carcas Output
                                   
                                 </h2>
                             </div>
@@ -416,7 +384,7 @@ if(date('H') >= 14){
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    MS Lines Output
+                                   LFB Carcas Output
                                   
                                 </h2>
                             </div>
@@ -432,11 +400,11 @@ if(date('H') >= 14){
     <div id="containerDateRangeLine"></div>
 
                                     </div>
-                                    <div class="col-md-12 mt-2">
+                                    <!-- <div class="col-md-12 mt-2">
                           
                           <div id="containerDateRangeLineMachineWise"></div>
                       
-                                                          </div>
+                                                          </div> -->
                            
                                 </div>
                                 <div id="loadingShow" style="display: none;">
@@ -1139,6 +1107,24 @@ if(date('H') >= 14){
         </div>
     </div>
 </div>
+<?php
+$GetHours = array();
+$GetReading = array();
+//$target = array();
+//print_r($HourllyReading);
+foreach ($HourllyCore as $key) {
+    $point1 = array($key['Counter'],);
+    $point2 = array($key['HourName'],);
+    $dailytarget = 3000 / 6;
+    $point3 = $dailytarget / 8;
+
+    array_push($GetReading, $point1);
+    array_push($GetHours, $point2);
+    // array_push($target, $point3);
+    //array_push($lineNames, $key['LineName']);
+
+} 
+?>
 <!-- END Page Settings -->
 <!-- base vendor bundle: 
 			 DOC: if you remove pace.js from core please note on Internet Explorer some CSS animations may execute before a page is fully loaded, resulting 'jump' animations 
@@ -1164,10 +1150,6 @@ if(date('H') >= 14){
 <script src="<?php echo base_url(); ?>assets/js/statistics/flot/flot.bundle.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/datagrid/datatables/datatables.bundle.js"></script>
-<script>
-                 
-                    
-                </script>
 <script>
     /* defined datas */
     var dataTargetProfit = [
@@ -1234,7 +1216,7 @@ if(date('H') >= 14){
     ];
 
     $(document).ready(function() {
-      var EfficiencyFinal;
+        var EfficiencyFinal;
         var EfficiencyFinalArray = [];
         let counterValue = $("#counterValueId").text()
         let currentDate = new Date().toJSON().substr(0,10);
@@ -1257,19 +1239,16 @@ else{
     if(dateGet.getHours() >= 14){
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    realMinutes = 0;
-    EfficiencyFinal = (((counterValue*7.74)/(minutes*<?php echo count($GetHours);?>*20) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*3.67)/(minutes*95) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     if(dayId == 5){
-        realMinutes = (minutes*20)-(60*20)
-        $("#realTimeId").text((minutes*<?php echo count($GetHours);?>*20)-(60*<?php echo count($GetHours);?>*20))
+        $("#realTimeId").text((minutes*95)-(60*95))
     }
     else{
-        realMinutes = (minutes*20)-(45*20)
-        $("#realTimeId").text((minutes*<?php echo count($GetHours);?>*20)-(45*<?php echo count($GetHours);?>*20))
+        $("#realTimeId").text((minutes*95)-(45*95))
     }
     
-    $("#employeeId").text(<?php echo count($GetHours);?>*20)
+    $("#employeeId").text(95)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     console.log(EfficiencyFinalArray)
     var gaugeOptions = {
@@ -1356,98 +1335,15 @@ else{
             }]
 
         }));
-
-        
-        Highcharts.chart('container', {
-                        chart: {
-                            zoomType: 'xy'
-                        },
-                        title: {
-                            text: 'MS Lines Efficiency (%)'
-                        },
-                        subtitle: {
-                            // text: 'Source: WorldClimate.com'
-                        },
-                        xAxis: [{
-                            categories: <?php echo json_encode($GetHours, JSON_NUMERIC_CHECK); ?>,
-                            crosshair: true
-                        }],
-                        yAxis: [{ // Primary yAxis
-                                labels: {
-                                    format: '{value} balls',
-                                    style: {
-                                        color: Highcharts.getOptions().colors[1]
-                                    }
-                                },
-                                title: {
-                                    text: 'Achieved',
-                                    style: {
-                                        color: Highcharts.getOptions().colors[1]
-                                    }
-                                }
-                            },
-                            { // Secondary yAxis
-                                title: {
-                                    text: 'Target',
-                                    style: {
-                                        color: Highcharts.getOptions().colors[0]
-                                    }
-                                },
-
-                                opposite: true
-                            }
-                        ],
-                        tooltip: {
-                            formatter: function() {                   
-                                return `<h3 style="color:blue;font-weight:bolder">Line Number :${this.x}</h3><br><h3 style="color:red;font-weight:bolder">Efficiency:${this.y} %</h3>`;
-                            }
-
-                        },
-                        legend: {
-                            layout: 'vertical',
-                            align: 'left',
-                            x: 120,
-                            verticalAlign: 'top',
-                            y: 100,
-                            floating: true,
-                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
-                                'rgba(255,255,255,0.25)',
-                            enabled: false
-                        },
-
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y:.0f} %'
-                                }
-                            }
-                        },
-                        series: [{
-                                name: 'Achieved',
-                                type: 'column',
-                                yAxis: 1,
-
-                                data: <?php echo json_encode($GetReading, JSON_NUMERIC_CHECK); ?>,
-                            
-
-                            }
-
-                        ]
-
-
-                    });
     }  
     else{
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    realMinutes = minutes*20
-    EfficiencyFinal = (((counterValue*7.74)/(minutes*<?php echo count($GetHours);?>*20) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*3.67)/(minutes*95) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     console.log(EfficiencyFinalArray)
-    $("#realTimeId").text(minutes*<?php echo count($GetHours);?>*20)
-    $("#employeeId").text(<?php echo count($GetHours);?>*20)
+    $("#realTimeId").text(minutes*95)
+    $("#employeeId").text(95)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     var gaugeOptions = {
             chart: {
@@ -1533,90 +1429,7 @@ else{
             }]
 
         }));
-
-        Highcharts.chart('container', {
-                        chart: {
-                            zoomType: 'xy'
-                        },
-                        title: {
-                            text: 'MS Lines Efficiency (%)'
-                        },
-                        subtitle: {
-                            // text: 'Source: WorldClimate.com'
-                        },
-                        xAxis: [{
-                            categories: <?php echo json_encode($GetHours, JSON_NUMERIC_CHECK); ?>,
-                            crosshair: true
-                        }],
-                        yAxis: [{ // Primary yAxis
-                                labels: {
-                                    format: '{value} balls',
-                                    style: {
-                                        color: Highcharts.getOptions().colors[1]
-                                    }
-                                },
-                                title: {
-                                    text: 'Achieved',
-                                    style: {
-                                        color: Highcharts.getOptions().colors[1]
-                                    }
-                                }
-                            },
-                            { // Secondary yAxis
-                                title: {
-                                    text: 'Target',
-                                    style: {
-                                        color: Highcharts.getOptions().colors[0]
-                                    }
-                                },
-
-                                opposite: true
-                            }
-                        ],
-                        tooltip: {
-                            formatter: function() {                   
-                                return `<h3 style="color:blue;font-weight:bolder">Line Number :${this.x}</h3><br><h3 style="color:red;font-weight:bolder">Efficiency:${this.y} %</h3>`;
-                            }
-
-                        },
-                        legend: {
-                            layout: 'vertical',
-                            align: 'left',
-                            x: 120,
-                            verticalAlign: 'top',
-                            y: 100,
-                            floating: true,
-                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
-                                'rgba(255,255,255,0.25)',
-                            enabled: false
-                        },
-
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y:.0f} %'
-                                }
-                            }
-                        },
-                        series: [{
-                                name: 'Achieved',
-                                type: 'column',
-                                yAxis: 1,
-
-                                data: <?php echo json_encode($GetReading, JSON_NUMERIC_CHECK); ?>,
-                            
-
-                            }
-
-                        ]
-
-
-                    });
     } 
- 
-   
 }
 else{
     $("#realTimeId").text(0)
@@ -1691,10 +1504,89 @@ else{
             ]
 
         });
+                    
+        Highcharts.chart('container', {
+                        chart: {
+                            zoomType: 'xy'
+                        },
+                        title: {
+                            text: 'Carcas Output'
+                        },
+                        subtitle: {
+                            // text: 'Source: WorldClimate.com'
+                        },
+                        xAxis: [{
+                            categories: <?php echo json_encode($GetHours, JSON_NUMERIC_CHECK); ?>,
+                            crosshair: true
+                        }],
+                        yAxis: [{ // Primary yAxis
+                                labels: {
+                                    format: '{value} balls',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                },
+                                title: {
+                                    text: 'Achieved',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                }
+                            },
+                            { // Secondary yAxis
+                                title: {
+                                    text: 'Target',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[0]
+                                    }
+                                },
 
-       
+                                opposite: true
+                            }
+                        ],
+                        tooltip: {
+                            shared: true
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'left',
+                            x: 120,
+                            verticalAlign: 'top',
+                            y: 100,
+                            floating: true,
+                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                                'rgba(255,255,255,0.25)',
+                            enabled: false
+                        },
 
-       
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.0f}'
+                                }
+                            }
+                        },
+                        series: [{
+                                name: 'Achieved',
+                                type: 'column',
+                                yAxis: 1,
+
+                                data: <?php echo json_encode($GetReading, JSON_NUMERIC_CHECK); ?>,
+                                tooltip: {
+                                    valueSuffix: ' balls'
+                                }
+
+                            }
+
+                        ]
+
+
+                    });
+
+
+    
 
 
 
@@ -1971,19 +1863,18 @@ else{
 
     });
 
-    function generateDataTop(data1) {
+    function generateDataTop(data) {
  
  var ret = {},
      ps = [],
      series = [],
-     len = data1.BarData.length;
+     len = data.BarData.length;
 
  //concat to get points
  for (var i = 0; i < len; i++) {
      ps[i] = {
-         name: data1.BarData[i].Date,
-         y: parseFloat(data1.BarData[i].Counter),
-         drilldown: data1.BarData[i].Date
+         name: data.BarData[i].Date,
+         y: data.BarData[i].Counter
      };
  }
  names = [];
@@ -1996,56 +1887,57 @@ else{
  return series;
 }
 
-function generateDataBottom(data1) {
+// function generateDataBottom(data1) {
  
- var ret = {},
-     ps = [],
-     series = [],
-     len = data1.MachineData.length;
-   let datesArray = []
-   let dataArray = []
+//  var ret = {},
+//      ps = [],
+//      series = [],
+//      len = data1.MachineData.length;
+//    let datesArray = []
+//    let dataArray = []
 
- //concat to get points
- for (var i = 0; i < len; i++) {
-    if(datesArray.indexOf(data1.MachineData[i].Date) === -1){
-        datesArray.push(data1.MachineData[i].Date)
-        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,parseFloat(data1.MachineData[i].Counter)])
-    }
-    else{
-        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,parseFloat(data1.MachineData[i].Counter)])
-    }
+//  //concat to get points
+//  for (var i = 0; i < len; i++) {
+//     if(datesArray.indexOf(data1.MachineData[i].Date) === -1){
+//         datesArray.push(data1.MachineData[i].Date)
+//         dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,data1.MachineData[i].Counter])
+//     }
+//     else{
+//         dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,data1.MachineData[i].Counter])
+//     }
 
 
   
- }
+//  }
 
- //generate series and split points
- for (i = 0; i < datesArray.length; i++) {
-    let OriginaldataArray = []
-    let OriginaldataArrayDateRemove = []
-    dataArray.filter(function(e) { 
-        if(e[0] === datesArray[i]){
-            OriginaldataArray.push(e)
-        }
-    });
-    OriginaldataArray.forEach(element => {
-        // console.log("Element", element)
-        element.shift()
-        OriginaldataArrayDateRemove.push(element)
-    });
-    // console.log("data Get", OriginaldataArray)
-     var p = {
-        name: datesArray[i],
-        id: datesArray[i],
-        data: OriginaldataArrayDateRemove
-     }
-    //  console.log("Series", p)
-     series.push(p);
- }
- return series;
-}
+//  //generate series and split points
+//  for (i = 0; i < datesArray.length; i++) {
+//     let OriginaldataArray = []
+//     let OriginaldataArrayDateRemove = []
+//     dataArray.filter(function(e) { 
+//         if(e[0] === datesArray[i]){
+//             OriginaldataArray.push(e)
+//         }
+//     });
+//     OriginaldataArray.forEach(element => {
+//         // console.log("Element", element)
+//         element.shift()
+//         OriginaldataArrayDateRemove.push(element)
+//     });
+//     // console.log("data Get", OriginaldataArray)
+//      var p = {
+//         name: datesArray[i],
+//         id: datesArray[i],
+//         data: OriginaldataArrayDateRemove
+//      }
+//     //  console.log("Series", p)
+//      series.push(p);
+//  }
+//  return series;
+// }
 
 $("#searchRange").on('click',function(e){
+    //alert("hlooo");
         e.preventDefault()
         $("#dateRangeResult").css('display','none')
         $("#loadingShow").css('display','inline-block')
@@ -2059,1430 +1951,41 @@ $("#searchRange").on('click',function(e){
         let section_id = params.section_id;
         let dept_id = params.dept_id;
         let datesArray = []
-        let datesArrayMachineWise = []
-        let seriesDataMachine1 = [];
-        let seriesDataMachine2 = [];
-        let seriesDataMachine3 = [];
-        let seriesDataMachine4 = [];
-        let seriesDataMachine5 = [];
-        let seriesDataMachine6 = [];
-        let seriesDataMachine7 = [];
-        let seriesDataMachine8 = [];
-        let seriesDataMachine9 = [];
-        let seriesDataMachine10 = [];
-        let seriesDataMachine11 = [];
-        let seriesDataMachine12 = [];
-        let seriesDataMachine13 = [];
-        let seriesDataMachine14 = [];
-        let seriesDataMachine15 = [];
-        let seriesDataMachine16 = [];
-        let seriesDataMachine17 = [];
-        let seriesDataMachine18 = [];
-        let seriesDataMachine19 = [];
-        let seriesDataMachine20 = [];
-        let seriesDataMachine21 = [];
-        let seriesDataMachine22 = [];
-        let seriesDataMachine23 = [];
-        let seriesDataMachine24 = [];
-        let seriesDataMachine25 = [];
-        let seriesDataMachine26 = [];
-        let seriesDataMachine27 = [];
-        let seriesDataMachine28 = [];
-        let seriesDataMachine29 = [];
-        let seriesDataMachine30 = [];
-        let seriesDataMachine31 = [];
-        let seriesDataMachine32 = [];
-        let output= 0;
-    let Minutes = 0;
-    let efficiency = 0;
-        let originalDataMachineWise = [];
+        let dataArray = []
+        let seriesData = []
+        let targetData = []
+        let originalData = []
+        // let datesArrayMachineWise = []
+        // let seriesDataMachine1 = [];
+        // let seriesDataMachine2 = [];
+        // let seriesDataMachine3 = [];
+        // let seriesDataMachine4 = [];
+        // let originalDataMachineWise = [];
         let targetDataMachineWise = [];
-        let url = "<?php echo base_url('Efficiency/getMSLinesDateRangeData') ?>";
-        let url2 = "<?php echo base_url('Efficiency/getRealTimeDateRange') ?>";
+        let url = "<?php echo base_url('Efficiency/gettingCarcasData') ?>";
         $.post(url,{"startDate":startDate, "endDate":endDate},function(data, status){
-            console.log("Data Outer", data)
+           // alert(data);
+            // console.log("Data Outer", data)
         let seriesDataTop;
         let seriesDataBottom;
         let dataArrayOuter = data.BarData
         if(data){
         seriesDataTop = generateDataTop(data)
-        seriesDataBottom = generateDataBottom(data)
-        console.log("Generate Top", seriesDataTop)
-        console.log("Generate Bottom", seriesDataBottom)
-
-        for(let k = 0; k<data.MachineData.length; k++){
-            // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
-        if(datesArrayMachineWise.indexOf(data.MachineData[k].Date) === -1){
-            datesArrayMachineWise.push(data.MachineData[k].Date)
-        targetDataMachineWise.push(parseFloat(67))
-        if(data.MachineData[k].Name == "HLine#1"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine1.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-            }
-            else if(data.MachineData[k].Name == "HLine#2"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine2.push(parseFloat(efficiency))
-            seriesDataMachine1.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-            }
-            else if(data.MachineData[k].Name == "HLine#3"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine3.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
+        //seriesDataBottom = generateDataBottom(data)
   
-            }
-            else if(data.MachineData[k].Name == "HLine#4"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
+        for(let k = 0; k<data.BarData.length; k++){
+          output = dataArrayOuter[k].Counter * 3.67
+            Minutes = (95*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine4.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
 
-
-            }
-            else if(data.MachineData[k].Name == "HLine#5"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine5.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-   
-            }
-            else if(data.MachineData[k].Name == "HLine#6"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine6.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-            }
-            else if(data.MachineData[k].Name == "HLine#7"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine7.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-
-            }
-            else if(data.MachineData[k].Name == "HLine#8"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine8.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-            }
-            else if(data.MachineData[k].Name == "Line#1"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine9.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-            }
-            else if(data.MachineData[k].Name == "Line#2"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine10.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-
-            }
-            else if(data.MachineData[k].Name == "Line#3"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine11.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-            }
-            else if(data.MachineData[k].Name == "Line#4"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine12.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-            }
-            else if(data.MachineData[k].Name == "Line#5"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine13.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-
-            }
-            else if(data.MachineData[k].Name == "Line#6"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine14.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-            }
-            else if(data.MachineData[k].Name == "Line#7"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine15.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-            }
-            else if(data.MachineData[k].Name == "Line#8"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine16.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-
-            }
-            else if(data.MachineData[k].Name == "Line#9"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine17.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-            }
-            else if(data.MachineData[k].Name == "Line#10"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine18.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-            }
-            else if(data.MachineData[k].Name == "Line#11"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine19.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-
-            }
-            else if(data.MachineData[k].Name == "Line#12"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine20.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-            }
-            else if(data.MachineData[k].Name == "Line#13"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine21.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-            }
-            else if(data.MachineData[k].Name == "Line#14"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine22.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-            }
-            else if(data.MachineData[k].Name == "Line#15"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine23.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-            }
-            else if(data.MachineData[k].Name == "Line#16"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine24.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
- 
-            }
-            else if(data.MachineData[k].Name == "Line#17"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine25.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-
-            }
-            else if(data.MachineData[k].Name == "Line#18"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine26.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-            }
-            else if(data.MachineData[k].Name == "Line#19"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine27.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine29.push(0)
-
-
-            }
-            else if(data.MachineData[k].Name == "Line#21"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480); 
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine28.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine1.push(0)
-
-            }
-            else if(data.MachineData[k].Name == "Line#22"){
-                output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine29.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
-            seriesDataMachine8.push(0)
-            seriesDataMachine9.push(0)
-            seriesDataMachine10.push(0)
-            seriesDataMachine11.push(0)
-            seriesDataMachine12.push(0)
-            seriesDataMachine13.push(0)
-            seriesDataMachine14.push(0)
-            seriesDataMachine15.push(0)
-            seriesDataMachine16.push(0)
-            seriesDataMachine17.push(0)
-            seriesDataMachine18.push(0)
-            seriesDataMachine19.push(0)
-            seriesDataMachine20.push(0)
-            seriesDataMachine21.push(0)
-            seriesDataMachine22.push(0)
-            seriesDataMachine23.push(0)
-            seriesDataMachine24.push(0)
-            seriesDataMachine25.push(0)
-            seriesDataMachine26.push(0)
-            seriesDataMachine27.push(0)
-            seriesDataMachine28.push(0)
-            seriesDataMachine1.push(0)
-       
-
-            }
-  
-    }
-    else{
-      if(data.MachineData[k].Name == "HLine#1"){
-          output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine1.pop()
-            seriesDataMachine1.push(parseFloat(efficiency))
+            seriesData.push(parseFloat(efficiency))
+            targetData.push(parseFloat(64))
+          datesArray.push(data.BarData[k].Date)
+          dataArray.push(data.BarData[k].Counter)
+        }
+        originalData.push({name:"Efficiency",data:seriesData},{name:"Target Efficiency",data:targetData})
+        }
         
-            }
-            else if(data.MachineData[k].Name == "HLine#2"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine2.pop()
-            seriesDataMachine2.push(parseFloat(efficiency))
-         
-            }
-            else if(data.MachineData[k].Name == "HLine#3"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine3.pop()
-            seriesDataMachine3.push(parseFloat(efficiency))
-         
-            }
-            else if(data.MachineData[k].Name == "HLine#4"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine4.pop()
-            seriesDataMachine4.push(parseFloat(efficiency))
-       
-
-            }
-            else if(data.MachineData[k].Name == "HLine#5"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine5.pop()
-            seriesDataMachine5.push(parseFloat(efficiency))
-        
-            }
-            else if(data.MachineData[k].Name == "HLine#6"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine6.pop()
-            seriesDataMachine6.push(parseFloat(efficiency))
-
-            }
-            else if(data.MachineData[k].Name == "HLine#7"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine7.pop()
-            seriesDataMachine7.push(parseFloat(efficiency))
-    
-
-            }
-            else if(data.MachineData[k].Name == "HLine#8"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine8.pop()
-            seriesDataMachine8.push(parseFloat(efficiency))
-
-            }
-            else if(data.MachineData[k].Name == "Line#1"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine9.pop()
-            seriesDataMachine9.push(parseFloat(efficiency))
- 
-            }
-            else if(data.MachineData[k].Name == "Line#2"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine10.pop()
-            seriesDataMachine10.push(parseFloat(efficiency))
-   
-
-            }
-            else if(data.MachineData[k].Name == "Line#3"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine11.pop()
-            seriesDataMachine11.push(parseFloat(efficiency))
-  
-            }
-            else if(data.MachineData[k].Name == "Line#4"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine12.pop()
-            seriesDataMachine12.push(parseFloat(efficiency))
-     
-            }
-            else if(data.MachineData[k].Name == "Line#5"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine13.pop()
-            seriesDataMachine13.push(parseFloat(efficiency))
-         
-
-            }
-            else if(data.MachineData[k].Name == "Line#6"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine14.pop()
-            seriesDataMachine14.push(parseFloat(efficiency))
-       
-            }
-            else if(data.MachineData[k].Name == "Line#7"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine15.pop()
-            seriesDataMachine15.push(parseFloat(efficiency))
-  
-            }
-            else if(data.MachineData[k].Name == "Line#8"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine16.pop()
-            seriesDataMachine16.push(parseFloat(efficiency))
-
-
-            }
-            else if(data.MachineData[k].Name == "Line#9"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine17.pop()
-            seriesDataMachine17.push(parseFloat(efficiency))
-
-            }
-            else if(data.MachineData[k].Name == "Line#10"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine18.pop()
-            seriesDataMachine18.push(parseFloat(efficiency))
-   
-            }
-            else if(data.MachineData[k].Name == "Line#11"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine19.pop()
-            seriesDataMachine19.push(parseFloat(efficiency))
-    
-
-            }
-            else if(data.MachineData[k].Name == "Line#12"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine20.pop()
-            seriesDataMachine20.push(parseFloat(efficiency))
-   
-            }
-            else if(data.MachineData[k].Name == "Line#13"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine21.pop()
-            seriesDataMachine21.push(parseFloat(efficiency))
-  
-            }
-            else if(data.MachineData[k].Name == "Line#14"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine22.pop()
-            seriesDataMachine22.push(parseFloat(efficiency))
- 
-            }
-            else if(data.MachineData[k].Name == "Line#15"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine23.pop()
-            seriesDataMachine23.push(parseFloat(efficiency))
-  
-            }
-            else if(data.MachineData[k].Name == "Line#16"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine24.pop()
-            seriesDataMachine24.push(parseFloat(efficiency))
-      
-            }
-            else if(data.MachineData[k].Name == "Line#17"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine25.pop()
-            seriesDataMachine25.push(parseFloat(efficiency))
-     
-
-            }
-            else if(data.MachineData[k].Name == "Line#18"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine26.pop()
-            seriesDataMachine26.push(parseFloat(efficiency))
-    
-            }
-            else if(data.MachineData[k].Name == "Line#19"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine27.pop()
-            seriesDataMachine27.push(parseFloat(efficiency))
-        
-
-            }
-            else if(data.MachineData[k].Name == "Line#21"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine28.pop()
-            seriesDataMachine28.push(parseFloat(efficiency))
-    
-            }
-            else if(data.MachineData[k].Name == "Line#22"){
-              output = data.MachineData[k].Counter * 7.74
-            Minutes = (20*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine29.pop()
-            seriesDataMachine29.push(parseFloat(efficiency))
-       
-            }
-    }
-         
-        
-
-        }
-        originalDataMachineWise.push(
-          {name:"HLine#2",data:seriesDataMachine1},
-          {name:"HLine#2",data:seriesDataMachine2},
-          {name:"HLine#3",data:seriesDataMachine3},
-          {name:"HLine#4",data:seriesDataMachine4},
-
-          {name:"HLine#5",data:seriesDataMachine5},
-          {name:"HLine#6",data:seriesDataMachine6},
-          {name:"HLine#7",data:seriesDataMachine7},
-          {name:"HLine#8",data:seriesDataMachine8},
-
-          {name:"Line#1",data:seriesDataMachine9},
-          {name:"Line#2",data:seriesDataMachine10},
-          {name:"Line#3",data:seriesDataMachine11},
-          {name:"Line#4",data:seriesDataMachine12},
-
-          {name:"Line#5",data:seriesDataMachine13},
-          {name:"Line#6",data:seriesDataMachine14},
-          {name:"Line#7",data:seriesDataMachine15},
-          {name:"Line#8",data:seriesDataMachine16},
-
-          {name:"Line#9",data:seriesDataMachine17},
-          {name:"Line#10",data:seriesDataMachine18},
-          {name:"Line#1",data:seriesDataMachine19},
-          {name:"Line#12",data:seriesDataMachine20},
-
-          {name:"Line#13",data:seriesDataMachine21},
-          {name:"Line#14",data:seriesDataMachine22},
-          {name:"Line#15",data:seriesDataMachine23},
-          {name:"Line#16",data:seriesDataMachine24},
-
-          {name:"Line#17",data:seriesDataMachine25},
-          {name:"Line#18",data:seriesDataMachine26},
-          {name:"Line#19",data:seriesDataMachine27},
-          {name:"Line#21",data:seriesDataMachine28},
-
-          {name:"Line#22",data:seriesDataMachine29},
-          {name:"Target Efficiency",data:targetDataMachineWise}
-          )
-        }
-         console.log("Target", datesArrayMachineWise)
-        for (var i = 0; i < data.BarData.length; i++) {
-    if(datesArray.indexOf(data.BarData[i].Date) === -1){
-        datesArray.push(data.BarData[i].Date)
-        // targetDataMachineWise.push(parseFloat(67))
-    }
-        }
-        console.log("Machine Wise", originalDataMachineWise)
-        Highcharts.chart('containerDateRangeLineMachineWise', {
-
-title: {
-    text: `Machine-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
-},
-
-yAxis: {
-    title: {
-        text: 'Efficiency'
-    }
-},
-
-xAxis: {
-    categories: datesArrayMachineWise,
-},
-
-legend: {
-    layout: 'vertical',
-    align: 'right',
-    verticalAlign: 'middle'
-},
-
-plotOptions: {
-    series: {
-        label: {
-            connectorAllowed: false
-        }
-    }
-},
-
-series: originalDataMachineWise,
-
-responsive: {
-    rules: [{
-        condition: {
-            maxWidth: 500
-        },
-        chartOptions: {
-            legend: {
-                layout: 'horizontal',
-                align: 'center',
-                verticalAlign: 'bottom'
-            }
-        }
-    }]
-}
-
-});
-
 
 Highcharts.chart('containerDateRangeBar', {
     chart: {
@@ -3490,7 +1993,7 @@ Highcharts.chart('containerDateRangeBar', {
     },
     title: {
         align: 'left',
-        text: `Balls Count From ${startDateNewFormat} To ${endDateNewFormat}`
+        text: `Carcas Count From ${startDateNewFormat} To ${endDateNewFormat}`
     },
     accessibility: {
         announceNewData: {
@@ -3502,7 +2005,7 @@ Highcharts.chart('containerDateRangeBar', {
     },
     yAxis: {
         title: {
-            text: 'Balls Count'
+            text: 'Carcas Count'
         }
 
     },
@@ -3525,51 +2028,14 @@ Highcharts.chart('containerDateRangeBar', {
 
     series: [
         {
-            name: "HF Cutting",
+            name: "Carcas",
             colorByPoint: true,
             data: seriesDataTop
-        }
-    ],
-    drilldown: {
-        breadcrumbs: {
-            position: {
-                align: 'right'
-            }
         },
-        series: seriesDataBottom
-    }
+    ]
 });
 
-
-    let seriesData = []
-    let targetData = []
-    let originalData = []
-    let lenOuter = dataArrayOuter.length;
-    let outputInner= 0;
-    let MinutesInner = 0;
-    let efficiencyInner = 0;
-    // for(let i = 0; i<len; i++){ 
-        for(let j = 0; j<lenOuter; j++){
-            // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
-
-            outputInner = dataArrayOuter[j].Counter * 7.74
-            MinutesInner = (20*20*480);
-            efficiencyInner = ((outputInner / MinutesInner) * 100).toFixed(2)
-
-            seriesData.push(parseFloat(efficiencyInner))
-            targetData.push(parseFloat(67))
-// }
-        }
-       
-        // if(i == len-1){
-            originalData.push({name:"Efficiency",data:seriesData},{name:"Target Efficiency",data:targetData})
-        
-        // }
-    // }
-
- 
-//  console.log(datesArray)
- Highcharts.chart('containerDateRangeLine', {
+Highcharts.chart('containerDateRangeLine', {
 
 title: {
     text: `Process-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
@@ -3577,7 +2043,7 @@ title: {
 
 yAxis: {
     title: {
-        text: 'Efficiency'
+        text: 'Efficiency %'
     }
 },
 
@@ -3617,13 +2083,13 @@ responsive: {
 }
 
 });
+
+
 $("#loadingShow").css('display','none')
 $("#dateRangeResult").css('display','inline-block')
-
  });
     })
 
-   
 </script>
 <script>
     $('#direct').click(function() {
@@ -3974,6 +2440,7 @@ $("#dateRangeResult").css('display','inline-block')
         })
 
     })
+   
 </script>
 
 </body>

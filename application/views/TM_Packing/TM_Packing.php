@@ -155,7 +155,7 @@ foreach ($Stationwise as $key) {
 
                 <div class="subheader">
                     <h1 class="subheader-title">
-                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Thermo Bounded Production</span>
+                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Thermo Bounded Assebling & Packing</span>
                     </h1>
 
 
@@ -166,7 +166,7 @@ foreach ($Stationwise as $key) {
 
                 <ul class="nav nav-pills" role="tablist">
                                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Date Filteration</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Historical Analysis</a></li>
 
                 </ul>
                 <div class="tab-content py-3">
@@ -179,7 +179,7 @@ foreach ($Stationwise as $key) {
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    Thermo Bounded Count
+                                Thermo Bounded Assebling & Packing Count
                                  
                                 </h2>
                             </div>
@@ -226,7 +226,7 @@ foreach ($Stationwise as $key) {
 
                                                     <!-- <small class="m-0 l-h-n">Number of Employees</small>
                                             <?php echo $d['EmpCount']; ?> -->
-                                                    <small class="m-0 l-h-n">Real Time</small>
+                                                    <small class="m-0 l-h-n">Real Time (Mints)e</small>
                                                     <span id="realTimeId"> </span>
 
                                                 </h3>
@@ -345,7 +345,7 @@ foreach ($Stationwise as $key) {
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    Thermo Bounded Terminal wise Output
+                                Thermo Bounded Assebling & Packing Terminal wise Output
                                   
                                 </h2>
                             </div>
@@ -397,7 +397,7 @@ foreach ($Stationwise as $key) {
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    Thermo Bounded Output
+                                Thermo Bounded Assebling & Packing Output
                                   
                                 </h2>
                             </div>
@@ -1317,16 +1317,16 @@ else{
     if(dateGet.getHours() >= 14){
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*28.22)/(minutes*40*3) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*31.33)/(minutes*55) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     if(dayId == 5){
-        $("#realTimeId").text((minutes*40*3)-(60*40*3))
+        $("#realTimeId").text((minutes*55)-(60*55))
     }
     else{
-        $("#realTimeId").text((minutes*40*3)-(45*40*3))
+        $("#realTimeId").text((minutes*55)-(45*55))
     }
     
-    $("#employeeId").text(40*3)
+    $("#employeeId").text(55)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     console.log(EfficiencyFinalArray)
     var gaugeOptions = {
@@ -1417,11 +1417,11 @@ else{
     else{
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*28.22)/(minutes*40*3) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*31.33)/(minutes*55) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     console.log(EfficiencyFinalArray)
-    $("#realTimeId").text(minutes*40*3)
-    $("#employeeId").text(40*3)
+    $("#realTimeId").text(minutes*55)
+    $("#employeeId").text(55)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     var gaugeOptions = {
             chart: {

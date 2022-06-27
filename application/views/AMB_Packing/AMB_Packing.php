@@ -155,14 +155,14 @@ foreach ($Stationwise as $key) {
 
                 <div class="subheader">
                     <h1 class="subheader-title">
-                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Airless Mini Production</span>
+                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Airless Mini Packing</span>
                     </h1>
 
                 </div>
 
                 <ul class="nav nav-pills" role="tablist">
                                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Date Filteration</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Historical Analysis</a></li>
 
                 </ul>
                 <div class="tab-content py-3">
@@ -1313,16 +1313,16 @@ else{
     if(dateGet.getHours() >= 14){
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*0.50)/(minutes*24) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*0.50)/(minutes*21) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     if(dayId == 5){
-        $("#realTimeId").text((minutes*24)-(60*24))
+        $("#realTimeId").text((minutes*21)-(60*21))
     }
     else{
-        $("#realTimeId").text((minutes*24)-(45*24))
+        $("#realTimeId").text((minutes*21)-(45*21))
     }
     
-    $("#employeeId").text(24)
+    $("#employeeId").text(21)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     console.log(EfficiencyFinalArray)
     var gaugeOptions = {
@@ -1413,11 +1413,11 @@ else{
     else{
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*0.50)/(minutes*24) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*0.50)/(minutes*21) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     console.log(EfficiencyFinalArray)
-    $("#realTimeId").text(minutes*24)
-    $("#employeeId").text(24)
+    $("#realTimeId").text(minutes*21)
+    $("#employeeId").text(21)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     var gaugeOptions = {
             chart: {

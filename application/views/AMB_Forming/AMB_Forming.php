@@ -155,7 +155,7 @@ foreach ($Stationwise as $key) {
 
                 <div class="subheader">
                     <h1 class="subheader-title">
-                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Airless Mini Assembling Production</span>
+                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Airless Mini Assembling</span>
                     </h1>
 
 
@@ -166,7 +166,7 @@ foreach ($Stationwise as $key) {
 
                 <ul class="nav nav-pills" role="tablist">
                                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Date Filteration</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Historical Analysis</a></li>
 
                 </ul>
                 <div class="tab-content py-3">

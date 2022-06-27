@@ -65,17 +65,12 @@ if (!$this->session->has_userdata('user_id')) {
               <?php
               $DPA =  $this->session->userdata('DPA_Status');
           
-                if ($DPA =='1'){
+              
                 ?>
-                <div class="row" hidden>
-                  <?php
-                  
-                }else{
-                  ?>
+              
+                 
                    <div class="row">
-                  <?php
-                }
-                ?>
+                
                   <div class="col-md-2">
                     <div class="form-group">
 
@@ -451,8 +446,19 @@ if (!$this->session->has_userdata('user_id')) {
                   <div class="col-md-4 mt-4">
 
                     <div class="form-group-inline">
+<?php
+  if ($DPA =='1'){
 
-                      <button type="button" class="btn-info btn btn-md" onclick="submit()">Add</button>
+    ?>
+    <button type="button" class="btn-info btn btn-md" disabled onclick="submit()">Add</button>
+       <?php
+  }else{
+    ?>
+ <button type="button" class="btn-info btn btn-md" onclick="submit()">Add</button>
+    <?php
+  }
+?>
+                     
 
                     </div>
                   </div>
@@ -963,7 +969,7 @@ final_FIFA_authorization_validity_Date=yy_FIFA_authorization_validity_Date+'-'+m
                                         <td >${element.PrintingColors}</td>
                                           <td>${element.FactoryCode}</td>
                                          <td >${element.PanelShape}</td>
-                                         <td contenteditable="true" id="Yield">${element.Yield}</td>
+                                         <td contenteditable="true" id="Yield">0.${element.Yield}</td>
                                           <td contenteditable="true" id="Article_Count"> ${element.Article_Count}</td>
                                           <td contenteditable="true" id="BF_Date" > <input type="date" value="${final_BF_Datee}"/><i style="color:white;">${final_BF_Datee}</i></td>
                                           <td contenteditable="true" id="CR1_In_House_Date"><input type="date" value="${final_CR1_In_House_Datee}"/> <i style="color:white;">${final_CR1_In_House_Datee}</i></td>
@@ -2767,7 +2773,7 @@ final_FIFA_authorization_validity_Date=yy_FIFA_authorization_validity_Date+'-'+m
                                         <td >${element.PrintingColors}</td>
                                           <td>${element.FactoryCode}</td>
                                          <td >${element.PanelShape}</td>
-                                          <td contenteditable="true" id="Yield">${element.Yield}</td>
+                                          <td contenteditable="true" id="Yield">0.${element.Yield}</td>
                                           <td contenteditable="true" id="Article_Count"> ${element.Article_Count}</td>
                                           <td contenteditable="true" id="BF_Date" > <input type="date" value="${final_BF_Datee}"/><i style="color:white;">${final_BF_Datee}</i></td>
                                           <td contenteditable="true" id="CR1_In_House_Date"><input type="date" value="${final_CR1_In_House_Datee}"/> <i style="color:white;">${final_CR1_In_House_Datee}</i></td>

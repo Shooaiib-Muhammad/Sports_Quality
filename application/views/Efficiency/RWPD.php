@@ -160,7 +160,7 @@ foreach ($HourllyReading as $key) {
                 </div> -->
                 <ul class="nav nav-pills" role="tablist">
                                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Date Filteration</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Historical Analysis</a></li>
 
                 </ul>
                 <div class="tab-content py-3">
@@ -219,7 +219,7 @@ foreach ($HourllyReading as $key) {
 
                                                     <!-- <small class="m-0 l-h-n">Number of Employees</small>
                                             <?php echo $d['EmpCount']; ?> -->
-                                                    <small class="m-0 l-h-n">Real Time</small>
+                                                    <small class="m-0 l-h-n">Real Time (Minutes) </small>
                                                     <span id="realTimeId"> </span>
 
                                                 </h3>
@@ -1395,16 +1395,16 @@ else{
     if(dateGet.getHours() >= 14){
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*0.58)/(minutes*80) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*0.58)/(minutes*62) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     if(dayId == 5){
-        $("#realTimeId").text((minutes*80)-(60*80))
+        $("#realTimeId").text((minutes*62)-(60*62))
     }
     else{
-        $("#realTimeId").text((minutes*80)-(45*80))
+        $("#realTimeId").text((minutes*62)-(45*62))
     }
     
-    $("#employeeId").text(80)
+    $("#employeeId").text(62)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     console.log(EfficiencyFinalArray)
     var gaugeOptions = {
@@ -1495,11 +1495,11 @@ else{
     else{
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*0.58)/(minutes*80) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*0.58)/(minutes*62) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     console.log(EfficiencyFinalArray)
-    $("#realTimeId").text(minutes*80)
-    $("#employeeId").text(80)
+    $("#realTimeId").text(minutes*62)
+    $("#employeeId").text(62)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     var gaugeOptions = {
             chart: {
@@ -2110,7 +2110,7 @@ else{
  for (var i = 0; i < len; i++) {
      ps[i] = {
          name: data1.BarData[i].Date,
-         y: data1.BarData[i].Counter,
+         y: parseInt(data1.BarData[i].Counter),
          drilldown: data1.BarData[i].Date
      };
  }
@@ -2137,10 +2137,10 @@ function generateDataBottom(data1) {
  for (var i = 0; i < len; i++) {
     if(datesArray.indexOf(data1.MachineData[i].Date) === -1){
         datesArray.push(data1.MachineData[i].Date)
-        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,data1.MachineData[i].Counter])
+        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,parseInt(data1.MachineData[i].Counter)])
     }
     else{
-        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,data1.MachineData[i].Counter])
+        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,parseInt(data1.MachineData[i].Counter)])
     }
 
 
@@ -2216,7 +2216,7 @@ function generateDataBottom(data1) {
         targetDataMachineWise.push(parseFloat(67))
         if(data.MachineData[k].Name == "Metal Detector 1"){
                 outputOuter = data.MachineData[k].Counter * 0.58
-            MinutesOuter = (16*480);
+            MinutesOuter = (12.4*480);
             efficiencyOuter = ((outputOuter / MinutesOuter) * 100).toFixed(2)
             seriesDataMachine1.push(parseFloat(efficiencyOuter))
             seriesDataMachine2.push(0)
@@ -2226,7 +2226,7 @@ function generateDataBottom(data1) {
             }
             else if(data.MachineData[k].Name == "Metal Detector 2"){
                 outputOuter = data.MachineData[k].Counter * 0.58
-            MinutesOuter = (16*480);
+            MinutesOuter = (12.4*480);
             efficiencyOuter = ((outputOuter / MinutesOuter) * 100).toFixed(2)
             seriesDataMachine2.push(parseFloat(efficiencyOuter))
             seriesDataMachine1.push(0)
@@ -2236,7 +2236,7 @@ function generateDataBottom(data1) {
             }
             else if(data.MachineData[k].Name == "Metal Detector 3"){
                 outputOuter = data.MachineData[k].Counter * 0.58
-            MinutesOuter = (16*480);
+            MinutesOuter = (12.4*480);
             efficiencyOuter = ((outputOuter / MinutesOuter) * 100).toFixed(2)
             seriesDataMachine3.push(parseFloat(efficiencyOuter))
             seriesDataMachine2.push(0)
@@ -2246,7 +2246,7 @@ function generateDataBottom(data1) {
             }
             else if(data.MachineData[k].Name == "Metal Detector 4"){
             outputOuter = data.MachineData[k].Counter * 0.58
-            MinutesOuter = (16*480);
+            MinutesOuter = (12.4*480);
             efficiencyOuter = ((outputOuter / MinutesOuter) * 100).toFixed(2)
             seriesDataMachine4.push(parseFloat(efficiencyOuter))
             seriesDataMachine2.push(0)
@@ -2256,7 +2256,7 @@ function generateDataBottom(data1) {
             }
             else if(data.MachineData[k].Name == "Metal Detector 5"){
                 outputOuter = data.MachineData[k].Counter * 0.58
-            MinutesOuter = (16*480);
+            MinutesOuter = (12.4*480);
             efficiency = ((outputOuter / MinutesOuter) * 100).toFixed(2)
             seriesDataMachine5.push(parseFloat(efficiencyOuter))
             seriesDataMachine2.push(0)
@@ -2268,7 +2268,7 @@ function generateDataBottom(data1) {
     else{
         if(data.MachineData[k].Name == "Metal Detector 1"){
                 outputOuter = data.MachineData[k].Counter * 0.58
-            MinutesOuter = (16*480);
+            MinutesOuter = (12.4*480);
             efficiencyOuter = ((outputOuter / MinutesOuter) * 100).toFixed(2)
             seriesDataMachine1.pop()
             seriesDataMachine1.push(parseFloat(efficiencyOuter))
@@ -2276,7 +2276,7 @@ function generateDataBottom(data1) {
             }
             else if(data.MachineData[k].Name == "Metal Detector 2"){
                 outputOuter = data.MachineData[k].Counter * 0.58
-            MinutesOuter = (16*480);
+            MinutesOuter = (12.4*480);
             efficiencyOuter = ((outputOuter / MinutesOuter) * 100).toFixed(2)
             seriesDataMachine2.pop()
             seriesDataMachine2.push(parseFloat(efficiencyOuter))
@@ -2284,7 +2284,7 @@ function generateDataBottom(data1) {
             }
             else if(data.MachineData[k].Name == "Metal Detector 3"){
                 outputOuter = data.MachineData[k].Counter * 0.58
-            MinutesOuter = (16*480);
+            MinutesOuter = (12.4*480);
             efficiencyOuter = ((outputOuter / MinutesOuter) * 100).toFixed(2)
             seriesDataMachine3.pop()
             seriesDataMachine3.push(parseFloat(efficiencyOuter))
@@ -2292,7 +2292,7 @@ function generateDataBottom(data1) {
             }
             else if(data.MachineData[k].Name == "Metal Detector 4"){
             outputOuter = data.MachineData[k].Counter * 0.58
-            MinutesOuter = (16*480);
+            MinutesOuter = (12.4*480);
             efficiencyOuter = ((outputOuter / MinutesOuter) * 100).toFixed(2)
             seriesDataMachine4.pop()
             seriesDataMachine4.push(parseFloat(efficiencyOuter))
@@ -2300,7 +2300,7 @@ function generateDataBottom(data1) {
             }
             else if(data.MachineData[k].Name == "Metal Detector 5"){
                 outputOuter = data.MachineData[k].Counter * 0.58
-            MinutesOuter = (16*480);
+            MinutesOuter = (12.4*480);
             efficiencyOuter = ((outputOuter / MinutesOuter) * 100).toFixed(2)
             seriesDataMachine5.pop()
             seriesDataMachine5.push(parseFloat(efficiencyOuter))
@@ -2440,7 +2440,7 @@ Highcharts.chart('containerDateRangeBar', {
             // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
 
             output = dataArrayOuter[j].Counter * 0.58
-            Minutes = (16*5*480);
+            Minutes = (62*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
 
             seriesData.push(parseFloat(efficiency))

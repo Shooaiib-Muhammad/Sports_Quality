@@ -93,5 +93,35 @@ public function HourllyCarcas(){
   
   ");
 return  $query->result_array();
+
 }
+
+
+public function getlfbDatacarcas()
+{
+  $Month = date('m');
+  $Year = date('Y');
+  $Day = date('d');
+    $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date
+    FROM            dbo.view_Prd_Lfb_Carcas
+    WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102) AND CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
+    GROUP BY Date
+    ");
+  return  $query->result_array();
+}
+
+public function HourllylfbCarcas(){
+  $Month = date('m');
+  $Year = date('Y');
+  $Day = date('d');
+  $query = $this->db->query("SELECT        COUNT(dbo.view_Prd_Lfb_Carcas.Counter) AS Counter, dbo.view_Prd_Lfb_Carcas.Date, dbo.view_Prd_Lfb_Carcas.HID, dbo.tbl_PC_AMB_Hours.HourName
+  FROM            dbo.view_Prd_Lfb_Carcas INNER JOIN
+                           dbo.tbl_PC_AMB_Hours ON dbo.view_Prd_Lfb_Carcas.HID = dbo.tbl_PC_AMB_Hours.Hour
+  WHERE        (dbo.view_Prd_Lfb_Carcas.EntryDate BETWEEN CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102) AND CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
+  GROUP BY dbo.view_Prd_Lfb_Carcas.Date, dbo.view_Prd_Lfb_Carcas.HID, dbo.tbl_PC_AMB_Hours.HourName
+  
+  ");
+return  $query->result_array();
+}
+
 }

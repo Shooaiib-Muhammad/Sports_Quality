@@ -15,11 +15,7 @@ if (!$this->session->has_userdata('user_id')) {
                      <?php $this->load->view('includes/top_header.php'); ?>
  <main id="js-page-content" role="main" class="page-content">
                         <ol class="breadcrumb page-breadcrumb">
-                            <li class="breadcrumb-item"><a href="<?php echo base_url(
-                                'index.php/main/dmms_dashboard'
-                            ); ?>">Dashboard</a></li>
-                        
-                         
+                   
                             <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
                         </ol>
                         <div class="subheader">
@@ -28,7 +24,11 @@ if (!$this->session->has_userdata('user_id')) {
                                 
                             </h1>
                         </div>
-                     
+                        <?php
+              $DPA =  $this->session->userdata('DPA_Status');
+          
+              
+                ?>
 
 
 
@@ -168,8 +168,19 @@ if (!$this->session->has_userdata('user_id')) {
                      <div class="col-md-2 mt-4">
                       
                         <div class="form-group-inline">
-                            
-                           <button type="button" class="btn-info btn btn-md" onclick="loadData()" >Load Data</button>
+                        <?php
+  if ($DPA =='1'){
+
+    ?>
+    <button type="button" class="btn-info btn btn-md" disabled onclick="loadData()" >Load Data</button>
+     <?php
+  }else{
+    ?>
+   <button type="button" class="btn-info btn btn-md" onclick="loadData()" >Load Data</button>
+    <?php
+  }
+?>
+                        
                              
                         </div>
                     </div>

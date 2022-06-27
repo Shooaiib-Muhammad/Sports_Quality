@@ -153,7 +153,7 @@ foreach ($Stationwise as $key) {
 ?>     
     <div class="subheader">
                     <h1 class="subheader-title">
-                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>LFB Production</span>
+                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>LFB Assembling & Packing</span>
                     </h1>
 
 
@@ -164,7 +164,7 @@ foreach ($Stationwise as $key) {
 
                 <ul class="nav nav-pills" role="tablist">
                                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Date Filteration</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Historical Analysis</a></li>
 
                 </ul>
                 <div class="tab-content py-3">
@@ -203,7 +203,7 @@ foreach ($Stationwise as $key) {
                                                     <small class="m-0 l-h-n">Number of Employees</small>
                                                     <!-- <?php echo $d['EmpCount']; ?> -->
                                                     <span id="employeeId"> </span>
-                                                    <!-- <small class="m-0 l-h-n">Real Time</small>
+                                                    <!-- <small class="m-0 l-h-n">Real Time (Mints) (Mints)</small>
                                             <?php echo $d['RealTime']; ?> -->
 
                                                 </h3>
@@ -224,7 +224,7 @@ foreach ($Stationwise as $key) {
 
                                                     <!-- <small class="m-0 l-h-n">Number of Employees</small>
                                             <?php echo $d['EmpCount']; ?> -->
-                                                    <small class="m-0 l-h-n">Real Time</small>
+                                                    <small class="m-0 l-h-n">Real Time (Mints)</small>
                                                     <span id="realTimeId"> </span>
 
                                                 </h3>
@@ -343,7 +343,7 @@ foreach ($Stationwise as $key) {
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    LFB Output
+                                LFB Assembling & Packing Output
                                   
                                 </h2>
                             </div>
@@ -395,7 +395,7 @@ foreach ($Stationwise as $key) {
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    LFB Output
+                                LFB Assembling & Packing Output
                                   
                                 </h2>
                             </div>
@@ -1315,16 +1315,16 @@ else{
     if(dateGet.getHours() >= 14){
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*12.88)/(minutes*269) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*12.88)/(minutes*80) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     if(dayId == 5){
-        $("#realTimeId").text((minutes*269)-(60*269))
+        $("#realTimeId").text((minutes*269)-(60*80))
     }
     else{
-        $("#realTimeId").text((minutes*269)-(45*269))
+        $("#realTimeId").text((minutes*269)-(45*80))
     }
     
-    $("#employeeId").text(269)
+    $("#employeeId").text(80)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     console.log(EfficiencyFinalArray)
     var gaugeOptions = {
@@ -1415,11 +1415,11 @@ else{
     else{
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*12.88)/(minutes*269) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*12.88)/(minutes*80) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     console.log(EfficiencyFinalArray)
-    $("#realTimeId").text(minutes*269)
-    $("#employeeId").text(269)
+    $("#realTimeId").text(minutes*80)
+    $("#employeeId").text(80)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     var gaugeOptions = {
             chart: {
@@ -2147,7 +2147,7 @@ Highcharts.chart('containerDateRangeBar', {
 
     series: [
         {
-            name: "LFB",
+            name: "LFB Assembling & Packing",
             colorByPoint: true,
             data: seriesDataTop
         }

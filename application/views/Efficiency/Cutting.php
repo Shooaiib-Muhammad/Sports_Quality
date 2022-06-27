@@ -168,7 +168,7 @@ foreach ($HourllyReading as $key) {
 
                 <ul class="nav nav-pills" role="tablist">
                                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Date Filteration</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Historical Analysis</a></li>
 
                 </ul>
                 <div class="tab-content py-3">
@@ -1260,10 +1260,10 @@ else{
         $("#realTimeId").text((minutes*8)-(60*8))
     }
     else{
-        $("#realTimeId").text((minutes*8)-(45*8))
+        $("#realTimeId").text((minutes*4)-(45*8))
     }
     
-    $("#employeeId").text(8)
+    $("#employeeId").text(4)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     console.log(EfficiencyFinalArray)
     var gaugeOptions = {
@@ -1354,11 +1354,11 @@ else{
     else{
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*0.10)/(minutes*8) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*0.10)/(minutes*4) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
 
-    $("#realTimeId").text(minutes*8)
-    $("#employeeId").text(8)
+    $("#realTimeId").text(minutes*4)
+    $("#employeeId").text(4)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     var gaugeOptions = {
             chart: {

@@ -1256,16 +1256,16 @@ else{
     if(dateGet.getHours() >= 14){
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*2.87)/(minutes*52.5) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*2.87)/(minutes*32*1.5) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     if(dayId == 5){
-        $("#realTimeId").text((minutes*52.5)-(60*52.5))
+        $("#realTimeId").text((minutes*32*1.5)-(60*32*1.5))
     }
     else{
-        $("#realTimeId").text((minutes*52.5)-(45*52.5))
+        $("#realTimeId").text((minutes*32*1.5)-(45*32*1.5))
     }
     
-    $("#employeeId").text(52.5)
+    $("#employeeId").text(32*1.5)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     console.log(EfficiencyFinalArray)
     var gaugeOptions = {
@@ -1356,11 +1356,11 @@ else{
     else{
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*2.87)/(minutes*52.5) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*2.87)/(minutes*32*1.5) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     console.log(EfficiencyFinalArray)
-    $("#realTimeId").text(minutes*52.5)
-    $("#employeeId").text(52.5)
+    $("#realTimeId").text(minutes*32*1.5)
+    $("#employeeId").text(32*1.5)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     var gaugeOptions = {
             chart: {

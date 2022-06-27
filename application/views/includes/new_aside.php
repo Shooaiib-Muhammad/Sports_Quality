@@ -757,7 +757,7 @@
 
                                 <li>
                                     <a href="<?php echo base_url('LFB_Packing/LFB_Packing') ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                        <span class="" data-i18n="nav.theme_settings_how_it_works">Laminated FootBall</span>
+                                        <span class="" data-i18n="nav.theme_settings_how_it_works">LFB Assembling & Packing</span>
                                     </a>
 
 
@@ -770,7 +770,14 @@
 
                         <li>
                             <a href="<?php echo base_url('CarcasController') ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="" data-i18n="nav.theme_settings_how_it_works">Carcas</span>
+                                <span class="" data-i18n="nav.theme_settings_how_it_works">TM Carcas</span>
+                            </a>
+
+
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url('LFBcarcas') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="" data-i18n="nav.theme_settings_how_it_works" >LFB Carcas</span>
                             </a>
 
 
@@ -1083,7 +1090,13 @@
                         <span class="nav-link-text" data-i18n="nav.theme_settings">Development</span>
                     </a>
                     <ul>
-                       
+                    <li>
+                                <a href="<?php echo base_url(
+                                                ''
+                                            ); ?>DevelopmentController/Process" title="How it works" data-filter-tags="theme settings how it works">
+                                    <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Process</span>
+                                </a>
+                            </li>
                         <li>
                             <a href="<?php echo base_url(
                                             ''

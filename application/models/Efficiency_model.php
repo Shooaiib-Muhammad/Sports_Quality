@@ -139,11 +139,11 @@ ORDER BY HID");
                 $endMonth = explode("-",$endDate)[1];
                 $endYear = explode("-",$endDate)[0];
                 $endDay = explode("-",$endDate)[2];
-                $query = $this->db->query("SELECT        TOP (100) PERCENT Date, COUNT(Counter) AS Counter
-                FROM            dbo.view_RWPD_DT
-                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
-                GROUP BY Date
-                ORDER BY Date");
+        
+                $query = $this->db->query("SELECT        SUM(Counter) AS Counter, CONVERT(varchar, Date, 103) AS Date
+                FROM            dbo.Table_15
+                WHERE        (Date BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY CONVERT(varchar, Date, 103)");
                 return  $query->result_array();
         }
 
@@ -250,11 +250,12 @@ return  $query->result_array();
                 $endMonth = explode("-",$endDate)[1];
                 $endYear = explode("-",$endDate)[0];
                 $endDay = explode("-",$endDate)[2];
-                $query = $this->db->query("SELECT  Date, COUNT(Counter) AS Counter, Name
-                FROM            dbo.view_RWPD_DT          
-                WHERE        (Date BETWEEN '$startDay/$startMonth/$startYear' AND '$endDay/$endMonth/$endYear') 
-                GROUP BY Date, Name 
-                ORDER BY Date");
+                $query = $this->db->query("SELECT        SUM(Counter) AS Counter, CONVERT(varchar, Date, 103) AS Date, Name
+                FROM            dbo.Table_15         
+                WHERE        (Date BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY CONVERT(varchar, Date, 103), Name
+                ORDER BY Date
+                ");
                 return  $query->result_array();
         }
 
@@ -313,6 +314,24 @@ return  $query->result_array();
                 $endDay = explode("-",$endDate)[2];
                 $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date
                 FROM            dbo.view_prd_carcas
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startYear-$startMonth-$startDay 00:00:00', 102) AND CONVERT(DATETIME, '$endYear-$endMonth-$endDay 00:00:00', 102))
+                GROUP BY Date
+                
+                
+    ");
+                return  $query->result_array();
+
+        }
+        public function gettinglfbCarcasData($startDate,$endDate){
+            
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date
+                FROM            dbo.view_Prd_Lfb_Carcas
                 WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startYear-$startMonth-$startDay 00:00:00', 102) AND CONVERT(DATETIME, '$endYear-$endMonth-$endDay 00:00:00', 102))
                 GROUP BY Date
                 

@@ -136,7 +136,7 @@
 
                 <div class="subheader">
                     <h1 class="subheader-title">
-                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Carcas</span>
+                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>TM Carcas</span>
                     </h1>
 
 
@@ -147,7 +147,7 @@
 
                 <ul class="nav nav-pills" role="tablist">
                                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Date Filteration</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Historical Analysis</a></li>
 
                 </ul>
                 <div class="tab-content py-3">
@@ -160,7 +160,7 @@
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    Carcas Count
+                                    TM Carcas Count
                                  
                                 </h2>
                             </div>
@@ -265,7 +265,7 @@
                                 <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <h2 class="">Target <br> 67%</h2>
+                                            <h2 class="">Target <br> 74%</h2>
 
                                         </h3>
 
@@ -331,7 +331,7 @@
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    Carcas Output
+                                   TM  Carcas Output
                                   
                                 </h2>
                             </div>
@@ -384,7 +384,7 @@
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    Carcas Output
+                                   TM Carcas Output
                                   
                                 </h2>
                             </div>
@@ -1242,13 +1242,13 @@ else{
     EfficiencyFinal = (((counterValue*3.67)/(minutes*95) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     if(dayId == 5){
-        $("#realTimeId").text((minutes*95)-(60*95))
+        $("#realTimeId").text((minutes*95)-(60*15))
     }
     else{
-        $("#realTimeId").text((minutes*95)-(45*95))
+        $("#realTimeId").text((minutes*95)-(45*15))
     }
     
-    $("#employeeId").text(95)
+    $("#employeeId").text(17)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     console.log(EfficiencyFinalArray)
     var gaugeOptions = {
@@ -1342,8 +1342,8 @@ else{
     EfficiencyFinal = (((counterValue*3.67)/(minutes*95) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     console.log(EfficiencyFinalArray)
-    $("#realTimeId").text(minutes*95)
-    $("#employeeId").text(95)
+    $("#realTimeId").text(minutes*15)
+    $("#employeeId").text(15)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     var gaugeOptions = {
             chart: {

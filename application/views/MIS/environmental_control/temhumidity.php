@@ -1852,7 +1852,7 @@ xAxis: {
  visible:false
 },
     tooltip: {
-        formatter: function() {
+      formatter: function() {
             return `Value:${this.y} , Date:"${this.x}`;
         }
     },

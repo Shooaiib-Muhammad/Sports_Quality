@@ -148,7 +148,7 @@
 
                 <ul class="nav nav-pills" role="tablist">
                                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Date Filteration</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Historical Analysis</a></li>
 
                 </ul>
                 <div class="tab-content py-3">
@@ -161,7 +161,7 @@
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    AMB Count
+                                    Airless Mini Core  Count
                                  
                                 </h2>
                             </div>
@@ -207,7 +207,7 @@
 
                                                     <!-- <small class="m-0 l-h-n">Number of Employees</small>
                                             <?php echo $d['EmpCount']; ?> -->
-                                                    <small class="m-0 l-h-n">Real Time</small>
+                                                    <small class="m-0 l-h-n">Real Time (Mints)</small>
                                                     <span id="realTimeId"> </span>
 
                                                 </h3>
@@ -266,7 +266,7 @@
                                 <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <h2 class="">Target <br> 67%</h2>
+                                            <h2 class="">Target <br> 64%</h2>
 
                                         </h3>
 
@@ -332,7 +332,7 @@
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    AMB Output
+                                    Airless Mini Core  Output
                                   
                                 </h2>
                             </div>
@@ -385,7 +385,7 @@
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    AMB Output
+                                    AIrless Mini Core  Output
                                   
                                 </h2>
                             </div>
@@ -1511,7 +1511,7 @@ else{
                             zoomType: 'xy'
                         },
                         title: {
-                            text: 'AMB Output'
+                            text: 'Airless Mini Core  Hourlly '
                         },
                         subtitle: {
                             // text: 'Source: WorldClimate.com'

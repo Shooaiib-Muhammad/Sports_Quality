@@ -8370,6 +8370,7 @@ $('#exampleModalMSMaterial').modal('toggle');
         <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
         <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
         <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
         <script>
             $('#schedule').dataTable({
                 responsive: true,
@@ -8504,7 +8505,7 @@ $('#exampleModalMSMaterial').modal('toggle');
             ];
 
             $(document).ready(function() {
-
+                $("#cssCode").select2();
                 /* init datatables */
                 $('#dt-basic-example').dataTable({
                     responsive: true,

@@ -86,19 +86,11 @@ foreach ($HourllyReading as $key) {
   //array_push($lineNames, $key['LineName']);
 
 } ?>
-        <ol class="breadcrumb page-breadcrumb">
-          <li class="breadcrumb-item"><a href="<?php echo base_url(
-                                                  'Efficiency'
-                                                ); ?>">Dashboard</a></li>
-
-
-          <li class="breadcrumb-item"><a href="javascript:void(0);"> Dashboard</a></li>
-          <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
-        </ol>
+  
 
         <div class="subheader">
           <h1 class="subheader-title">
-            <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Dashboard</span>
+            <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Lamination</span>
           </h1>
 
 
@@ -106,7 +98,7 @@ foreach ($HourllyReading as $key) {
 
         <ul class="nav nav-pills" role="tablist">
                                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Date Filteration</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Historical Analysis</a></li>
 
                 </ul>
     
@@ -1434,16 +1426,16 @@ else{
     if(dateGet.getHours() >= 14){
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*0.32)/(minutes*6) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*0.32)/(minutes*9) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     if(dayId == 5){
-        $("#realTimeId").text((minutes*6)-(60*6))
+        $("#realTimeId").text((minutes*9)-(60*9))
     }
     else{
-        $("#realTimeId").text((minutes*6)-(45*6))
+        $("#realTimeId").text((minutes*9)-(45*9))
     }
     
-    $("#employeeId").text(6)
+    $("#employeeId").text(9)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     console.log(EfficiencyFinalArray)
     var gaugeOptions = {
@@ -1534,11 +1526,11 @@ else{
     else{
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*0.32)/(minutes*6) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*0.32)/(minutes*9) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     console.log(EfficiencyFinalArray)
-    $("#realTimeId").text(minutes*6)
-    $("#employeeId").text(6)
+    $("#realTimeId").text(minutes*9)
+    $("#employeeId").text(9)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     var gaugeOptions = {
             chart: {
@@ -2273,8 +2265,8 @@ Highcharts.chart('containerDateRangeBar', {
         for(let j = 0; j<lenOuter; j++){
             // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
 
-            outputInner = dataArrayOuter[j].Reading * 0.32 * 3 * 0.05
-            MinutesInner = (3*2*480);
+            outputInner = dataArrayOuter[j].Reading * 0.32 * 0.05 * 3
+            MinutesInner = (3*3*480);
             efficiencyInner = ((outputInner / MinutesInner) * 100).toFixed(2)
 
             seriesData.push(parseFloat(efficiencyInner))

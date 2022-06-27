@@ -155,7 +155,7 @@ foreach ($HourllyReading as $key) {
 
                 <div class="subheader">
                     <h1 class="subheader-title">
-                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Panel Cutting</span>
+                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Panel Cutting Press</span>
                     </h1>
 
 
@@ -165,7 +165,7 @@ foreach ($HourllyReading as $key) {
                 </div>
                 <ul class="nav nav-pills" role="tablist">
                                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Date Filteration</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Historical Analysis</a></li>
 
                 </ul>
                 <div class="tab-content py-3">
@@ -178,7 +178,7 @@ foreach ($HourllyReading as $key) {
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    Panel Cutting Count
+                                    Panel Cutting Press Count
                                  
                                 </h2>
                             </div>
@@ -224,7 +224,7 @@ foreach ($HourllyReading as $key) {
 
                                                     <!-- <small class="m-0 l-h-n">Number of Employees</small>
                                             <?php echo $d['EmpCount']; ?> -->
-                                                    <small class="m-0 l-h-n">Real Time</small>
+                                                    <small class="m-0 l-h-n">Real Time (Minutes)</small>
                                                     <span id="realTimeId"> </span>
 
                                                 </h3>
@@ -360,7 +360,7 @@ foreach ($HourllyReading as $key) {
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    Panel Cutting Output
+                                    Panel Cutting Press Output
                                   
                                 </h2>
                             </div>
@@ -411,7 +411,7 @@ foreach ($HourllyReading as $key) {
                         <div id="panel-1" class="panel">
                             <div class="panel-hdr">
                                 <h2>
-                                    Panel Cutting OutPut
+                                    Panel Cutting Press OutPut
                                   
                                 </h2>
                             </div>
@@ -1245,16 +1245,16 @@ else{
     if(dateGet.getHours() >= 14){
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*0.28)/(minutes*14) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*0.28)/(minutes*7) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     if(dayId == 5){
-        $("#realTimeId").text((minutes*14)-(60*14))
+        $("#realTimeId").text((minutes*7)-(60*7))
     }
     else{
-        $("#realTimeId").text((minutes*14)-(45*14))
+        $("#realTimeId").text((minutes*7)-(45*7))
     }
     
-    $("#employeeId").text(14)
+    $("#employeeId").text(7)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     console.log(EfficiencyFinalArray)
     var gaugeOptions = {
@@ -1345,11 +1345,11 @@ else{
     else{
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*0.28)/(minutes*14) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*0.28)/(minutes*7) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     console.log(EfficiencyFinalArray)
-    $("#realTimeId").text(minutes*14)
-    $("#employeeId").text(14)
+    $("#realTimeId").text(minutes*7)
+    $("#employeeId").text(7)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     var gaugeOptions = {
             chart: {
@@ -2068,7 +2068,7 @@ function generateDataBottom(data1) {
         targetDataMachineWise.push(parseFloat(67))
         if(data.MachineData[k].MachineName == "Panel Sizing Press 1"){
                 output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (2*480);
+            Minutes = (1*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine1.push(parseFloat(efficiency))
             seriesDataMachine2.push(0)
@@ -2080,7 +2080,7 @@ function generateDataBottom(data1) {
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 2"){
                 output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (2*480);
+            Minutes = (1*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine2.push(parseFloat(efficiency))
             seriesDataMachine4.push(0)
@@ -2092,7 +2092,7 @@ function generateDataBottom(data1) {
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 3"){
                 output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (2*480);
+            Minutes = (1*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine3.push(parseFloat(efficiency))
             seriesDataMachine2.push(0)
@@ -2104,7 +2104,7 @@ function generateDataBottom(data1) {
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 4"){
                 output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (2*480);
+            Minutes = (1*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine4.push(parseFloat(efficiency))
             seriesDataMachine2.push(0)
@@ -2117,7 +2117,7 @@ function generateDataBottom(data1) {
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 5"){
                 output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (2*480);
+            Minutes = (1*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine5.push(parseFloat(efficiency))
             seriesDataMachine2.push(0)
@@ -2130,7 +2130,7 @@ function generateDataBottom(data1) {
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 6"){
                 output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (2*480);
+            Minutes = (1*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine6.push(parseFloat(efficiency))
             seriesDataMachine2.push(0)
@@ -2143,7 +2143,7 @@ function generateDataBottom(data1) {
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 7"){
                 output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (2*480);
+            Minutes = (1*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine7.push(parseFloat(efficiency))
             seriesDataMachine2.push(0)
@@ -2158,7 +2158,7 @@ function generateDataBottom(data1) {
     else{
         if(data.MachineData[k].MachineName == "Panel Sizing Press 1"){
                 output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (2*480);
+            Minutes = (1*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine1.pop()
             seriesDataMachine1.push(parseFloat(efficiency))
@@ -2166,7 +2166,7 @@ function generateDataBottom(data1) {
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 2"){
                 output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (2*480);
+            Minutes = (1*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine2.pop()
             seriesDataMachine2.push(parseFloat(efficiency))
@@ -2174,7 +2174,7 @@ function generateDataBottom(data1) {
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 3"){
                 output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (2*480);
+            Minutes = (1*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine3.pop()
             seriesDataMachine3.push(parseFloat(efficiency))
@@ -2182,28 +2182,28 @@ function generateDataBottom(data1) {
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 4"){
                 output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (2*480);
+            Minutes = (1*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine4.pop()
             seriesDataMachine4.push(parseFloat(efficiency))
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 5"){
                 output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (2*480);
+            Minutes = (1*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine5.pop()
             seriesDataMachine5.push(parseFloat(efficiency))
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 6"){
                 output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (2*480);
+            Minutes = (1*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine6.pop()
             seriesDataMachine6.push(parseFloat(efficiency))
             }
             else if(data.MachineData[k].MachineName == "Panel Sizing Press 7"){
                 output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (2*480);
+            Minutes = (1*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine7.pop()
             seriesDataMachine7.push(parseFloat(efficiency))
@@ -2341,7 +2341,7 @@ Highcharts.chart('containerDateRangeBar', {
             // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
 
             outputInner = dataArrayOuter[j].Counter * 0.28 * 3.5
-            MinutesInner = (2*7*480);
+            MinutesInner = (1*7*480);
             efficiencyInner = ((outputInner / MinutesInner) * 100).toFixed(2)
 
             seriesData.push(parseFloat(efficiencyInner))
