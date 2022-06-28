@@ -146,14 +146,18 @@ class Main extends CI_Controller
                 // $data['packing_count' ] = $this->m->countpackingInstalledMachines(25);
                 $admin = $this->session->userdata('admin');
                 $DPA = $this->session->userdata('DPA_Status');
+                $Efficency = $this->session->userdata('Efficency');
                 // $Dev = $this->session->userdata('Dev');
             // // $FIT = $this->session->userdata('FIT');
-            // // Echo $FIT;
+            //  Echo $Efficency;
             // die;
              if($admin == '1') {
                     redirect('DashboardController');
            }else if($DPA == '1'){
             redirect('DPA');
+
+           }else if($Efficency == '1'){
+            redirect('Efficiency');
 
            }else {
                   redirect('LabController/TestRequest');

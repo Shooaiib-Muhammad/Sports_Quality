@@ -52,7 +52,9 @@ $data['dailyenergy']= $this->Energy->dailyenergy();
 }
 public function getEnergyDt($date1 ,$date2){
 	//echo "i am hjere";
-		$data= $this->Energy->getEnergyDt($date1 ,$date2);
+		$data['tabular']= $this->Energy->getEnergyDt($date1 ,$date2);
+		$data['dailyenergy']= $this->Energy->dailyenergygraph($date1 ,$date2);
+	
 		return $this->output
         ->set_content_type('application/json')
         ->set_status_header(200)

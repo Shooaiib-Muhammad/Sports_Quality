@@ -189,44 +189,44 @@ if (!$this->session->has_userdata('user_id')) {
             }
           </style>
           <?php
-//foreach ($energyinfo as $keys){
- //print_r($energyinfo);
-  // if($energyinfo[2]['HallName']=='Compressor Panel'){
-  //   $CEnergy=$energyinfo[2]['Energy'];
-  // }
-  // if($energyinfo[0]['HallName']=='AMB'){
-  //   $ambEnergy=$energyinfo[0]['Energy'];
-  // }
-  // if($energyinfo[3]['HallName']=='MS'){
-  //   $MSEnergy=$energyinfo[3]['Energy'];
-  // }
-  // if($energyinfo[1]['HallName']=='Canteen'){
-  //   $CenteenEnergy=$energyinfo[1]['Energy'];
-  // }
-  
-  // if($energyinfo[9]['HallName']=='Compressor'){
-  //   $CompressorEnergy=$energyinfo[9]['Energy'];
-  // }
-  // if($energyinfo[1170]['HallName']=='FACILITY'){
-  //   $FACILITYEnergy=$energyinfo[1170]['Energy'];
-  // }
+          //foreach ($energyinfo as $keys){
+          //print_r($energyinfo);
+          // if($energyinfo[2]['HallName']=='Compressor Panel'){
+          //   $CEnergy=$energyinfo[2]['Energy'];
+          // }
+          // if($energyinfo[0]['HallName']=='AMB'){
+          //   $ambEnergy=$energyinfo[0]['Energy'];
+          // }
+          // if($energyinfo[3]['HallName']=='MS'){
+          //   $MSEnergy=$energyinfo[3]['Energy'];
+          // }
+          // if($energyinfo[1]['HallName']=='Canteen'){
+          //   $CenteenEnergy=$energyinfo[1]['Energy'];
+          // }
 
-  // if($energyinfo[8]['HallName']=='MS PRINTING'){
-  //   $msprintingEnergy=$energyinfo[8]['Energy'];
-  // }
-  // if($energyinfo[4]['HallName']=='OVAL Machine'){
-  //   $ovalmachineEnergy=$energyinfo[4]['Energy'];
-  // }
-  // if($energyinfo[5]['HallName']=='TM'){
-  //   $tmEnergy=$energyinfo[5]['Energy'];
-  // }
-  // if($energyinfo[6]['HallName']=='WorkShop'){
-  //   $workshopEnergy=$energyinfo[6]['Energy'];
-  // }
- 
-//}
+          // if($energyinfo[9]['HallName']=='Compressor'){
+          //   $CompressorEnergy=$energyinfo[9]['Energy'];
+          // }
+          // if($energyinfo[1170]['HallName']=='FACILITY'){
+          //   $FACILITYEnergy=$energyinfo[1170]['Energy'];
+          // }
 
-         
+          // if($energyinfo[8]['HallName']=='MS PRINTING'){
+          //   $msprintingEnergy=$energyinfo[8]['Energy'];
+          // }
+          // if($energyinfo[4]['HallName']=='OVAL Machine'){
+          //   $ovalmachineEnergy=$energyinfo[4]['Energy'];
+          // }
+          // if($energyinfo[5]['HallName']=='TM'){
+          //   $tmEnergy=$energyinfo[5]['Energy'];
+          // }
+          // if($energyinfo[6]['HallName']=='WorkShop'){
+          //   $workshopEnergy=$energyinfo[6]['Energy'];
+          // }
+
+          //}
+
+
           ?>
           <!--  -->
           <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
@@ -234,60 +234,60 @@ if (!$this->session->has_userdata('user_id')) {
 
           <!-- highchart main data -->
           <div class="col-lg-12">
-          <?php
-        $Month = date('m');
-        $Year = date('Y');
-        $Day = date('d');
-        $CurrentDate = $Year . '-' . $Month . '-' . $Day;
-        ?>
+            <?php
+            $Month = date('m');
+            $Year = date('Y');
+            $Day = date('d');
+            $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+            ?>
 
 
-        <!-- <div class="row clearfix"> -->
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title"><b>Date Filteration</b></h5>
-            
-              <div class="row clearfix">
-                <div class="col-md-2" style="margin-right:20px;">
-                  <div class="form-group">
-                    <label class="form-control-label">From Date:</label>
-                    <div class="input-group">
-                      <input class="form-control" type="Date" id="date1" name="Sdate" value="<?php echo $CurrentDate; ?>" style="width: 100%">
+            <!-- <div class="row clearfix"> -->
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title"><b>Date Filteration</b></h5>
+
+                <div class="row clearfix">
+                  <div class="col-md-2" style="margin-right:20px;">
+                    <div class="form-group">
+                      <label class="form-control-label">From Date:</label>
+                      <div class="input-group">
+                        <input class="form-control" type="Date" id="date1" name="Sdate" value="<?php echo $CurrentDate; ?>" style="width: 100%">
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-md-2">
-                  <div class="form-group">
-                    <label class="form-control-label">To Date:</label>
-                    <div class="input-group">
-                      <input class="form-control" type="Date" id="date2" name="Edate" value="<?php echo $CurrentDate; ?>" style="width: 100%">
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label class="form-control-label">To Date:</label>
+                      <div class="input-group">
+                        <input class="form-control" type="Date" id="date2" name="Edate" value="<?php echo $CurrentDate; ?>" style="width: 100%">
+                      </div>
                     </div>
                   </div>
-                </div>
 
 
-                <div class="col-md-1">
-                  <div class="form-group">
-                 
-                    <div style="margin:18px" class="input-group">
-                      <br>
-                      <br>
+                  <div class="col-md-1">
+                    <div class="form-group">
 
-                      <button type="button" class="btn-primary btn btn-md mt-3" onclick="loadData()">Save</button>
+                      <div style="margin:18px" class="input-group">
+                        <br>
+                        <br>
 
+                        <button type="button" class="btn-primary btn btn-md mt-3" onclick="loadData()">Search</button>
+
+                      </div>
                     </div>
                   </div>
+
                 </div>
 
               </div>
-         
-          </div>
-        </div>
+            </div>
             <div id="panel-1" class="panel">
               <div class="panel-hdr">
                 <h2>
                   Today Energy Consuption
-               
+
                 </h2>
               </div>
               <div class="panel-container show">
@@ -296,17 +296,17 @@ if (!$this->session->has_userdata('user_id')) {
                 </div>
 
               </div>
-           
+
             </div>
             <div class="col-md-8">
-  <div id="Data"></div>
-  </div>
+              <div id="Data"></div>
+            </div>
+          </div>
       </div>
     </div>
-          </div>
 
 
-          
+
 
 
 
@@ -315,7 +315,7 @@ if (!$this->session->has_userdata('user_id')) {
 
   </div>
   </div>
- 
+
   </div>
   </div>
   </div>
@@ -338,7 +338,7 @@ if (!$this->session->has_userdata('user_id')) {
 
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-  
+
   <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
   <!-- BEGIN Page Footer -->
   <footer class="page-footer" role="contentinfo">
@@ -1848,12 +1848,13 @@ if (!$this->session->has_userdata('user_id')) {
       var AMBhall = []
       var Canteenhall = []
       var Compressor = []
-      var CompressorPanelhall= []
+      var CompressorPanelhall = []
       var MShall = []
       var OVALMachinehall = []
       var WorkShophall = []
       var TMHALL = []
       var msPress = []
+      var msLamination=[]
       // \WorkShop
       //     \TM
       //     \OVAL Machine
@@ -1862,60 +1863,62 @@ if (!$this->session->has_userdata('user_id')) {
       //     \Compressor
       //     \Canteen
       //     \AMB
-         
+
       let url = "<?php echo base_url('/energy/Energy/getData'); ?>";
       $.get(url, function(data, status) {
-          console.log(data);
+        console.log(data);
 
 
-  data['dailyenergy'].forEach(element => {
-    if(element.HallName=='Compressor Panel'){
-          energy.push(parseFloat(element['Energy']));
-        }
-        if(element.HallName=='AMB'){
-          AMBhall.push(parseFloat(element['Energy']));
-        }
-        if(element.HallName=='Canteen'){
-          Canteenhall.push(parseFloat(element['Energy']));
-        }
-        if(element.HallName=='Compressor'){
-          Compressor.push(parseFloat(element['Energy']));
-        }
-        if(element.HallName=='FACILITY'){
-          datesArray.push(parseFloat(element['Energy']));
-        }
-        if(element.HallName=='MS'){
-          MShall.push(parseFloat(element['Energy']));
-        }
-        // if(element.HallName=='MS PRESS'){
-        //   mspress.push(parseFloat(element['Energy']));
-        // }
-        if(element.HallName=='MS PRINTING'){
-          msPrinting.push(parseFloat(element['Energy']));
-        }
-        if(element.HallName=='OVAL Machine'){
-          OVALMachinehall.push(parseFloat(element['Energy']));
-        }
-        if(element.HallName=='TM'){
-          TMHALL.push(parseFloat(element['Energy']));
-        }
-        if(element.HallName=='WorkShop'){
-          WorkShophall.push(parseFloat(element['Energy']));
-        }
+        data['dailyenergy'].forEach(element => {
+          if (element.HallName == 'Compressor Panel') {
+            energy.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'AMB') {
+            AMBhall.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'Canteen') {
+            Canteenhall.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'Compressor') {
+            Compressor.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'FACILITY') {
+            datesArray.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'MS') {
+            MShall.push(parseFloat(element['Energy']));
+          }
+          if(element.HallName=='MS PRESS'){
+            msPress.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'MS PRINTING') {
+            msPrinting.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'OVAL Machine') {
+            OVALMachinehall.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'TM') {
+            TMHALL.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'WorkShop') {
+            WorkShophall.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'MS LAMINATION') {
+            msLamination.push(parseFloat(element['Energy']));
+          }
+          
         })
 
 
-       
+
         let seriesData = [{
             name: 'Compressor Panel',
             data: energy
-          }
-          ,
+          },
           {
             name: 'Airless Mini Hall',
             data: AMBhall
-          }
-          ,
+          },
           {
             name: 'Canteen',
             data: Canteenhall
@@ -1947,9 +1950,17 @@ if (!$this->session->has_userdata('user_id')) {
           {
             name: 'WorkShop',
             data: WorkShophall
+          },
+          {
+            name: 'MS PRESS',
+            data: msPress
+          },
+          {
+            name: 'MS LAMINATION',
+            data: msLamination
           }
 
-          
+
         ]
         Highcharts.chart('container', {
           chart: {
@@ -1994,22 +2005,23 @@ if (!$this->session->has_userdata('user_id')) {
           },
           series: seriesData
         });
-        
+
       });
-      function loadData(){
 
-//var Type = $("select[name='Type']").val()
-  var date1 =  $("#date1").val()
-    var date2 = $("#date2").val()
- // alert(date1);
-      let  url = "<?php echo base_url("Energy/energy/getEnergyDt/") ?>" + date1 + "/" + date2
-//alert(url);
- $.get(url, function(data) {
-console.log(data);
-//  for (var i = 0; i < data.length; i++) {
+      function loadData() {
 
-  let appendtable = '';
-        appendtable += `<table class="table table-striped table-hover table-sm" id="ActivityData" >
+        //var Type = $("select[name='Type']").val()
+        var date1 = $("#date1").val()
+        var date2 = $("#date2").val()
+        // alert(date1);
+        let url = "<?php echo base_url("Energy/energy/getEnergyDt/") ?>" + date1 + "/" + date2
+        //alert(url);
+        $.get(url, function(data) {
+          console.log("data energy graph",data['tabular']);
+          //  for (var i = 0; i < data.length; i++) {
+
+          let appendtable = '';
+          appendtable += `<table class="table table-striped table-hover table-sm" id="ActivityData" >
                                 <thead>
                                     <tr  class="bg-primary-200"  style="color:white;">
                                     <th>Date </th>
@@ -2024,8 +2036,8 @@ console.log(data);
                                     </tr>
                                 </thead>
                                 <tbody>`
-        data.forEach((element) => {
-          appendtable += `<tr>
+          data['tabular'].forEach((element) => {
+            appendtable += `<tr>
           <td>${element.EntryDate}</td>
                                 <td> ${element.HallName} </td>
                                        <td>${element.Energy} </td>
@@ -2033,99 +2045,259 @@ console.log(data);
                                      
                                 
                                         </tr>`
-        })
+          })
 
-        appendtable += `</tbody>
+          appendtable += `</tbody>
 
                                 </table>`
- 
- 
-     $("#Data").html(appendtable)
-     $('#ActivityData').dataTable({
-          responsive: false,
-          lengthChange: false,
-          dom:
-            /*	--- Layout Structure 
-            	--- Options
-            	l	-	length changing input control
-            	f	-	filtering input
-            	t	-	The table!
-            	i	-	Table information summary
-            	p	-	pagination control
-            	r	-	processing display element
-            	B	-	buttons
-            	R	-	ColReorder
-            	S	-	Select
 
-            	--- Markup
-            	< and >				- div element
-            	<"class" and >		- div with a class
-            	<"#id" and >		- div with an ID
-            	<"#id.class" and >	- div with an ID and a class
 
-            	--- Further reading
-            	https://datatables.net/reference/option/dom
-            	--------------------------------------
-             */
-            "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-          buttons: [
-            /*{
-            	extend:    'colvis',
-            	text:      'Column Visibility',
-            	titleAttr: 'Col visibility',
-            	className: 'mr-sm-3'
-            },*/
-            {
-              extend: 'pdfHtml5',
-              text: 'PDF',
-              titleAttr: 'Generate PDF',
-              className: 'btn-outline-danger btn-sm mr-1'
-            },
-            {
-              extend: 'excelHtml5',
-              text: 'Excel',
-              titleAttr: 'Generate Excel',
-              className: 'btn-outline-success btn-sm mr-1'
-            },
-            {
-              extend: 'csvHtml5',
-              text: 'CSV',
-              titleAttr: 'Generate CSV',
-              className: 'btn-outline-primary btn-sm mr-1'
-            },
-            {
-              extend: 'copyHtml5',
-              text: 'Copy',
-              titleAttr: 'Copy to clipboard',
-              className: 'btn-outline-primary btn-sm mr-1'
-            },
-            {
-              extend: 'print',
-              text: 'Print',
-              titleAttr: 'Print Table',
-              className: 'btn-outline-primary btn-sm'
+          $("#Data").html(appendtable)
+          $('#ActivityData').dataTable({
+            responsive: false,
+            lengthChange: false,
+            dom:
+              /*	--- Layout Structure 
+              	--- Options
+              	l	-	length changing input control
+              	f	-	filtering input
+              	t	-	The table!
+              	i	-	Table information summary
+              	p	-	pagination control
+              	r	-	processing display element
+              	B	-	buttons
+              	R	-	ColReorder
+              	S	-	Select
+
+              	--- Markup
+              	< and >				- div element
+              	<"class" and >		- div with a class
+              	<"#id" and >		- div with an ID
+              	<"#id.class" and >	- div with an ID and a class
+
+              	--- Further reading
+              	https://datatables.net/reference/option/dom
+              	--------------------------------------
+               */
+              "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+              "<'row'<'col-sm-12'tr>>" +
+              "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            buttons: [
+              /*{
+              	extend:    'colvis',
+              	text:      'Column Visibility',
+              	titleAttr: 'Col visibility',
+              	className: 'mr-sm-3'
+              },*/
+              {
+                extend: 'pdfHtml5',
+                text: 'PDF',
+                titleAttr: 'Generate PDF',
+                className: 'btn-outline-danger btn-sm mr-1'
+              },
+              {
+                extend: 'excelHtml5',
+                text: 'Excel',
+                titleAttr: 'Generate Excel',
+                className: 'btn-outline-success btn-sm mr-1'
+              },
+              {
+                extend: 'csvHtml5',
+                text: 'CSV',
+                titleAttr: 'Generate CSV',
+                className: 'btn-outline-primary btn-sm mr-1'
+              },
+              {
+                extend: 'copyHtml5',
+                text: 'Copy',
+                titleAttr: 'Copy to clipboard',
+                className: 'btn-outline-primary btn-sm mr-1'
+              },
+              {
+                extend: 'print',
+                text: 'Print',
+                titleAttr: 'Print Table',
+                className: 'btn-outline-primary btn-sm'
+              }
+            ]
+          });
+
+
+
+      var datesArray = []
+      var energy = []
+      var msPrinting = []
+      var AMBhall = []
+      var Canteenhall = []
+      var Compressor = []
+      var CompressorPanelhall = []
+      var MShall = []
+      var OVALMachinehall = []
+      var WorkShophall = []
+      var TMHALL = []
+      var msPress = []
+      var msLamination=[]
+   
+
+     
+      
+
+
+        data['dailyenergy'].forEach(element => {
+          if (element.HallName == 'Compressor Panel') {
+            energy.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'AMB') {
+            AMBhall.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'Canteen') {
+            Canteenhall.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'Compressor') {
+            Compressor.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'FACILITY') {
+            datesArray.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'MS') {
+            MShall.push(parseFloat(element['Energy']));
+          }
+         
+          if (element.HallName == 'MS PRINTING') {
+            msPrinting.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'OVAL Machine') {
+            OVALMachinehall.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'TM') {
+            TMHALL.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'WorkShop') {
+            WorkShophall.push(parseFloat(element['Energy']));
+          }
+          if(element.HallName=='MS PRESS'){
+            msPress.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'MS LAMINATION') {
+            msLamination.push(parseFloat(element['Energy']));
+          }
+        })
+
+
+
+        let seriesData = [{
+            name: 'Compressor Panel',
+            data: energy
+          },
+          {
+            name: 'Airless Mini Hall',
+            data: AMBhall
+          },
+          {
+            name: 'Canteen',
+            data: Canteenhall
+          },
+          {
+            name: 'Compressor',
+            data: Compressor
+          },
+          {
+            name: 'Facility',
+            data: datesArray
+          },
+          {
+            name: 'MS hall',
+            data: MShall
+          },
+          {
+            name: 'MS Printing',
+            data: msPrinting
+          },
+          {
+            name: 'OVAL Machine',
+            data: OVALMachinehall
+          },
+          {
+            name: 'TM',
+            data: TMHALL
+          },
+          {
+            name: 'WorkShop',
+            data: WorkShophall
+          },
+          {
+            name: 'MS PRESS',
+            data: msPress
+          },
+          {
+            name: 'MS LAMINATION',
+            data: msLamination
+          }
+
+
+        ]
+        Highcharts.chart('container', {
+          chart: {
+            type: 'line'
+          },
+          title: {
+            text: 'Energy Data'
+          },
+
+          xAxis: {
+            categories: datesArray,
+            crosshair: true,
+            labels: {
+              enabled: false
             }
-          ]
+          },
+          yAxis: {
+            min: 0,
+            title: {
+              text: 'Energy (KV)'
+            }
+          },
+          tooltip: {
+            headerFormat: '<span style="font-size:10px">Date: {point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+              '<td style="padding:0"><b>{point.y:.1f} KW </b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+          },
+          plotOptions: {
+            series: {
+              label: {
+                connectorAllowed: false
+              },
+
+            },
+            column: {
+              pointPadding: 0.2,
+              borderWidth: 0
+            }
+          },
+          series: seriesData
         });
- });
-        }
+
+        });
+      }
     });
-    
-    function loadData(){
 
-//var Type = $("select[name='Type']").val()
-  var date1 =  $("#date1").val()
-    var date2 = $("#date2").val()
-  //alert(date1);
-      let  url = "<?php echo base_url("Energy/energy/getEnergyDt/") ?>" + date1 + "/" + date2
-//alert(url);
- $.get(url, function(data) {
-console.log(data);
-//  for (var i = 0; i < data.length; i++) {
+    function loadData() {
 
-  let appendtable = '';
+      //var Type = $("select[name='Type']").val()
+      var date1 = $("#date1").val()
+      var date2 = $("#date2").val()
+      dates=[]
+      //alert(date1);
+      let url = "<?php echo base_url("Energy/energy/getEnergyDt/") ?>" + date1 + "/" + date2
+      //alert(url);
+      $.get(url, function(data) {
+        console.log(data);
+        //  for (var i = 0; i < data.length; i++) {
+
+        let appendtable = '';
         appendtable += `<table class="table table-striped table-hover table-sm" id="ActivityData" >
                                 <thead>
                                     <tr  class="bg-primary-200"  style="color:white;">
@@ -2141,7 +2313,8 @@ console.log(data);
                                     </tr>
                                 </thead>
                                 <tbody>`
-        data.forEach((element) => {
+        data['tabular'].forEach((element) => {
+          dates.push(element['EntryTime']);
           appendtable += `<tr>
           <td>${element.EntryDate}</td>
                                 <td> ${element.HallName} </td>
@@ -2155,10 +2328,10 @@ console.log(data);
         appendtable += `</tbody>
 
                                 </table>`
- 
- 
-     $("#Data").html(appendtable)
-     $('#ActivityData').dataTable({
+
+
+        $("#Data").html(appendtable)
+        $('#ActivityData').dataTable({
           responsive: false,
           lengthChange: false,
           dom:
@@ -2226,14 +2399,173 @@ console.log(data);
             }
           ]
         });
- });
-        }
+        var datesArray = []
+      var energy = []
+      var msPrinting = []
+      var AMBhall = []
+      var Canteenhall = []
+      var Compressor = []
+      var CompressorPanelhall = []
+      var MShall = []
+      var OVALMachinehall = []
+      var WorkShophall = []
+      var TMHALL = []
+      var msPress = []
+   var msLamination=[]
 
-  
-
+     
       
 
-  
+
+        data['dailyenergy'].forEach(element => {
+          if (element.HallName == 'Compressor Panel') {
+            energy.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'AMB') {
+            AMBhall.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'Canteen') {
+            Canteenhall.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'Compressor') {
+            Compressor.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'FACILITY') {
+            datesArray.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'MS') {
+            MShall.push(parseFloat(element['Energy']));
+          }
+          if(element.HallName=='MS PRESS'){
+            msPress.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'MS PRINTING') {
+            msPrinting.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'OVAL Machine') {
+            OVALMachinehall.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'TM') {
+            TMHALL.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'WorkShop') {
+            WorkShophall.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'MS LAMINATION') {
+            msLamination.push(parseFloat(element['Energy']));
+          }
+        })
+
+
+
+        let seriesData = [{
+            name: 'Compressor Panel',
+            date:dates,
+            data: energy 
+          },
+          {
+            name: 'Airless Mini Hall',
+            data: AMBhall,
+            date:dates,
+          },
+          {
+            name: 'Canteen',
+            data: Canteenhall,
+            date:dates,
+          },
+          {
+            name: 'Compressor',
+            data: Compressor,
+            date:dates,
+          },
+          {
+            name: 'Facility',
+            data: datesArray,
+            date:dates,
+          },
+          {
+            name: 'MS hall',
+            data: MShall,
+            date:dates,
+          },
+          {
+            name: 'MS Printing',
+            data: msPrinting,
+            date:dates,
+          },
+          {
+            name: 'OVAL Machine',
+            data: OVALMachinehall,
+            date:dates,
+          },
+          {
+            name: 'TM',
+            data: TMHALL,
+            date:dates,
+          },
+          {
+            name: 'WorkShop',
+            data: WorkShophall,
+            date:dates,
+          },
+          {
+            name: 'MS PRESS',
+            data: msPress,
+            date:dates,
+          },
+          {
+            name: 'MS LAMINATION',
+            data: msLamination,
+            date:dates,
+          }
+
+
+        ]
+        Highcharts.chart('container', {
+          chart: {
+            type: 'line'
+          },
+          title: {
+            text: 'Energy Data'
+          },
+
+          xAxis: {
+            categories: datesArray,
+            crosshair: true,
+            labels: {
+              enabled: false
+            }
+          },
+          yAxis: {
+            min: 0,
+            title: {
+              text: 'Energy (KV)'
+            }
+          },
+          tooltip: {
+            headerFormat: '<span style="font-size:10px">Date: {series.date}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+              '<td style="padding:0"><b>{point.y:.1f} KW </b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+          },
+          plotOptions: {
+            series: {
+              label: {
+                connectorAllowed: false
+              },
+
+            },
+            column: {
+              pointPadding: 0.2,
+              borderWidth: 0
+            }
+          },
+          series: seriesData
+        });
+      });
+    }
   </script>
 
   </body>

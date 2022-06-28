@@ -38,7 +38,9 @@
         $testRequest = $this->session->userdata('testRequest');
         $FIT = $this->session->userdata('FIT');
         $DPA =  $this->session->userdata('DPA_Status');
-        // Echo $FIT;
+        $Efficency =  $this->session->userdata('Efficency');
+        $user_id = $this->session->userdata('user_id');
+        // Echo $DPA;
         // die;
         ?>
         <?php if ($admin == '1') { ?>
@@ -1081,8 +1083,11 @@
             </li>
     <?php
                 }
-          
-                if ($DPA=='1'){
+                
+                
+                                    
+               
+                if ($DPA == '1'){
                 ?>
                 <li>
                     <a href="#" title="Theme Settings" data-filter-tags="theme settings">
@@ -1109,8 +1114,157 @@
                 <?php
                 
                                     }
+                                    
+                                                        
+                                   // Echo $Efficency;
+                                    
+                                    if ($Efficency == '1'){
+                                        ?>
+                                        <li>
+                                        <a href="#" title="Theme Settings" data-filter-tags="theme settings">
+                                        <i class="fal fa-futbol"></i>
+                                            <span class="nav-link-text" data-i18n="nav.theme_settings">Efficiency</span>
+                                        </a>
+                                        <ul>
+                    
+                                            <li>
+                                                <a href="<?php echo base_url('Efficiency') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                                    <span class="" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
+                                                </a>
+                    
+                    
+                                            </li>
+                    
+                                            <li>
+                                                <a href="<?php echo base_url('Efficiency/RWPD/?dept_id=23&section_id=118') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                                    <span class="" data-i18n="nav.theme_settings_how_it_works">RWPD</span>
+                                                </a>
+                    
+                    
+                                            </li>
+                    
+                                            <li>
+                                                <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                                                    <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Cutting</span>
+                                                </a>
+                                                <ul>
+                                                    <li>
+                                                        <a href="<?php echo base_url("Efficiency/Cutting/?dept_id=15&section_id=72") ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Sheet Sizing</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="<?php echo base_url("Efficiency/panelCutting/?dept_id=15&section_id=72") ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Panel Cutting Press</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="<?php echo base_url("Cutting/Cutting/HfCutting") ?>" title="Hf Cutting" data-filter-tags="theme settings how it works">
+                                                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">HF Cutting</span>
+                                                        </a>
+                                                    </li>
+                    
+                                                </ul>
+                    
+                                            </li>
+                    
+                    
+                                            <li>
+                                                <a href="<?php echo base_url('Lamination') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                                    <span class="" data-i18n="nav.theme_settings_how_it_works">Lamination</span>
+                                                </a>
+                    
+                    
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo base_url('Blader') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                                    <span class="" data-i18n="nav.theme_settings_how_it_works">Bladder Winding</span>
+                                                </a>
+                    
+                    
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo base_url('Throster') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                                    <span class="" data-i18n="nav.theme_settings_how_it_works">MS Lines</span>
+                                                </a>
+                    
+                    
+                                            </li>
+                    
+                    
+                    
+                    
+                                            <li>
+                                                <a href="#" title="How it works" data-filter-tags="theme settings how it works">
+                                                    <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Packing</span>
+                                                </a>
+                                                <ul>
+                                                    <li>
+                                                        <a href="<?php echo base_url("TM_Packing/TM_Packing") ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">TM Assembling & Packing</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="<?php echo base_url("AMB_Forming/AMB_Forming") ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">AMB Assembling</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="<?php echo base_url("AMB_Packing/AMB_Packing") ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">AMB Packing</span>
+                                                        </a>
+                                                    </li>
+                    
+                                                    <li>
+                                                        <a href="<?php echo base_url('LFB_Packing/LFB_Packing') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                                            <span class="" data-i18n="nav.theme_settings_how_it_works">LFB Assembling & Packing</span>
+                                                        </a>
+                    
+                    
+                                                    </li>
+                    
+                    
+                                                </ul>
+                    
+                                            </li>
+                    
+                                            <li>
+                                                <a href="<?php echo base_url('CarcasController') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                                    <span class="" data-i18n="nav.theme_settings_how_it_works">TM Carcas</span>
+                                                </a>
+                    
+                    
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo base_url('LFBcarcas') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                                    <span class="" data-i18n="nav.theme_settings_how_it_works" >LFB Carcas</span>
+                                                </a>
+                    
+                    
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo base_url('CoreController/?dept_id=3&section_id=1165') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                                    <span class="" data-i18n="nav.theme_settings_how_it_works">Core</span>
+                                                </a>
+                    
+                    
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo base_url(
+                                                                'MIS/Efficiency/samValue'
+                                                            ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                                    <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">SMV Matrix</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                        <?php
+                                        
+                                                            }
                                 
-            } ?>
+            } 
+            ?>
+            
     </ul>
 
 

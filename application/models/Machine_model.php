@@ -31,6 +31,8 @@ class Machine_model extends CI_Model
                 'testRequest' => $result->testRequest,
                 'FIT' => $result->FIT,
                 'DPA_Status' => $result->DPA_Status,
+                'Efficency' => $result->Efficency,
+            
             ];
 
             $Status = $result->Status;

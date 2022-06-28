@@ -136,7 +136,7 @@ $GetReading = array();
 //$target = array();
 //print_r($HourllyReading);
 foreach ($HourllyReading as $key) {
-    $point1 = array($key['Counter'] * 5.25 * 2,);
+    $point1 = array($key['Counter'] * 5,);
     $point2 = array($key['HourName'],);
     $dailytarget = 3000 / 6;
     $point3 = $dailytarget / 8;
@@ -248,7 +248,7 @@ foreach ($HourllyReading as $key) {
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                             <small class="m-0 l-h-n">Total NO of Balls</small>
-                                            <span id="counterValueId"><?php echo $Counter[0]['Counter']*5.25*2; ?></span>
+                                            <span id="counterValueId"><?php echo $Counter[0]['Counter']*5.25; ?></span>
                                             <small class="m-0 l-h-n"></small>
 
 
@@ -263,7 +263,7 @@ foreach ($HourllyReading as $key) {
                         </div>
                         <?php
                         $total = $Counter[0]['Counter'];
-                        $Output = $total * 5.25 * 0.10;
+                        $Output = $total * 5 * 0.10;
 
 
 
@@ -1260,10 +1260,10 @@ else{
         $("#realTimeId").text((minutes*8)-(60*8))
     }
     else{
-        $("#realTimeId").text((minutes*4)-(45*8))
+        $("#realTimeId").text((minutes*8)-(45*8))
     }
     
-    $("#employeeId").text(4)
+    $("#employeeId").text(8)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     console.log(EfficiencyFinalArray)
     var gaugeOptions = {
@@ -1354,11 +1354,11 @@ else{
     else{
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*0.10)/(minutes*4) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*0.10)/(minutes*8) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
 
-    $("#realTimeId").text(minutes*4)
-    $("#employeeId").text(4)
+    $("#realTimeId").text(minutes*8)
+    $("#employeeId").text(8)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     var gaugeOptions = {
             chart: {
@@ -1887,7 +1887,7 @@ else{
  for (var i = 0; i < len; i++) {
      ps[i] = {
          name: data1.BarData[i].Date,
-         y: (data1.BarData[i].Counter * 5.25*2),
+         y: (data1.BarData[i].Counter * 5),
          drilldown: data1.BarData[i].Date
      };
  }
@@ -1915,17 +1915,17 @@ function generateDataBottom(data1) {
     if(datesArray.indexOf(data1.MachineData[i].Date) === -1){
         datesArray.push(data1.MachineData[i].Date)
         if(data1.MachineData[i].MachineName == "Sheet Sizing Press 1" || data1.MachineData[i].MachineName == "Sheet Sizing Press 2"){
-            dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,(data1.MachineData[i].Counter*3.5*2)])
+            dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,(data1.MachineData[i].Counter*3.5)])
         }else{
-            dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,(data1.MachineData[i].Counter*7*2)])
+            dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,(data1.MachineData[i].Counter*7)])
         }
         
     }
     else{
         if(data1.MachineData[i].MachineName == "Sheet Sizing Press 1" || data1.MachineData[i].MachineName == "Sheet Sizing Press 2"){
-            dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,(data1.MachineData[i].Counter*3.5*2)])
+            dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,(data1.MachineData[i].Counter*3.5)])
         }else{
-            dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,(data1.MachineData[i].Counter*7*2)])
+            dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].MachineName,(data1.MachineData[i].Counter*7)])
         }
     }
 
@@ -2002,8 +2002,8 @@ $("#searchRange").on('click',function(e){
             datesArrayMachineWise.push(data.MachineData[k].Date)
         targetDataMachineWise.push(parseFloat(67))
         if(data.MachineData[k].MachineName == "Sheet Sizing Press 1"){
-                output = data.MachineData[k].Counter * 3.5 * 0.10 *2
-            Minutes = (2*480);
+                output = data.MachineData[k].Counter * 3.5 * 0.10 
+            Minutes = (480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine1.push(parseFloat(efficiency))
             seriesDataMachine2.push(0)
@@ -2011,8 +2011,8 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine4.push(0)
             }
             else if(data.MachineData[k].MachineName == "Sheet Sizing Press 2"){
-                output = data.MachineData[k].Counter * 2 * 0.10 * 3.5
-            Minutes = (2*480);
+                output = data.MachineData[k].Counter  * 0.10 * 3.5
+            Minutes = (480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine2.push(parseFloat(efficiency))
             seriesDataMachine1.push(0)
@@ -2020,8 +2020,8 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine4.push(0)
             }
             else if(data.MachineData[k].MachineName == "Sheet Sizing Press 3"){
-                output = data.MachineData[k].Counter * 7 * 0.10 * 2
-            Minutes = (2*480);
+                output = data.MachineData[k].Counter * 7 * 0.10
+            Minutes = (480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine3.push(parseFloat(efficiency))
             seriesDataMachine2.push(0)
@@ -2029,8 +2029,8 @@ $("#searchRange").on('click',function(e){
             seriesDataMachine4.push(0)
             }
             else if(data.MachineData[k].MachineName == "Sheet Sizing Press 4"){
-                output = data.MachineData[k].Counter * 7 * 0.10 * 2
-            Minutes = (2*480);
+                output = data.MachineData[k].Counter * 7 * 0.10 
+            Minutes = (480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine4.push(parseFloat(efficiency))
             seriesDataMachine2.push(0)
@@ -2041,32 +2041,32 @@ $("#searchRange").on('click',function(e){
     }
     else{
         if(data.MachineData[k].MachineName == "Sheet Sizing Press 1"){
-                output = data.MachineData[k].Counter * 3.5 * 0.10 * 2
-            Minutes = (2*480);
+                output = data.MachineData[k].Counter * 3.5 * 0.10 
+            Minutes = (480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine1.pop()
             seriesDataMachine1.push(parseFloat(efficiency))
   
             }
             else if(data.MachineData[k].MachineName == "Sheet Sizing Press 2"){
-                output = data.MachineData[k].Counter * 2 * 0.10 * 3.5
-            Minutes = (2*480);
+                output = data.MachineData[k].Counter  * 0.10 * 3.5
+            Minutes = (480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine2.pop()
             seriesDataMachine2.push(parseFloat(efficiency))
      
             }
             else if(data.MachineData[k].MachineName == "Sheet Sizing Press 3"){
-                output = data.MachineData[k].Counter * 7 * 0.10 * 2
-            Minutes = (2*480);
+                output = data.MachineData[k].Counter * 7 * 0.10 
+            Minutes = (480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine3.pop()
             seriesDataMachine3.push(parseFloat(efficiency))
       
             }
             else if(data.MachineData[k].MachineName == "Sheet Sizing Press 4"){
-                output = data.MachineData[k].Counter * 7 * 0.10 * 2
-            Minutes = (2*480);
+                output = data.MachineData[k].Counter * 7 * 0.10 
+            Minutes = (480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine4.pop()
             seriesDataMachine4.push(parseFloat(efficiency))
@@ -2206,8 +2206,8 @@ Highcharts.chart('containerDateRangeBar', {
         for(let j = 0; j<lenOuter; j++){
             // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
 
-            outputInner = dataArrayOuter[j].Counter * 5.25 * 0.10 * 2
-            MinutesInner = (2*4*480);
+            outputInner = dataArrayOuter[j].Counter * 5.25 * 0.10 
+            MinutesInner = (4*480);
             efficiencyInner = ((outputInner / MinutesInner) * 100).toFixed(2)
 
             seriesData.push(parseFloat(efficiencyInner))

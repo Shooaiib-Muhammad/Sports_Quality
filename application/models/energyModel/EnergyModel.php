@@ -113,4 +113,11 @@ where        (DAY(EntryTime) = $Day) AND (MONTH(EntryTime) = $Month) AND (YEAR(E
 		return  $query->result_array();
 		
 	}
+
+	public function dailyenergygraph($date1 ,$date2){
+		$query = $this->db->query("SELECT        TOP (100) PERCENT HallName, Energy
+FROM            dbo.tbl_Prod_Energy_Info
+where       (EntryDate BETWEEN CONVERT(DATETIME, '$date1 00:00:00', 102) AND CONVERT(DATETIME, '$date2 00:00:00', 102)) AND (Energy > 1)");
+		return  $query->result_array();
+	}
 }

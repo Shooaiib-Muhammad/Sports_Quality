@@ -36,7 +36,7 @@ GROUP BY machineName");
             $Month = date('m');
             $Year = date('Y');
             $Day = date('d');
-            $query = $this->db->query("SELECT      count(Counter) AS Counter
+            $query = $this->db->query("SELECT      MAX(Counter) AS Counter
             FROM            dbo.view_PC_Cutting_Process
             WHERE        (Date = '$Day/$Month/$Year')");
             return  $query->result_array();

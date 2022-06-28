@@ -149,7 +149,7 @@ ORDER BY HID");
 
         Public function getCuttingSheetSizingDateRangeData($startDate,$endDate){
             
-                $query = $this->db->query("SELECT        SUM(Counter) AS Counter, Date
+                $query = $this->db->query("SELECT        MAX(Counter) AS Counter, Date
                 FROM            dbo.view_Sheet_Sizing
                 WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
                 GROUP BY Date
@@ -158,7 +158,7 @@ ORDER BY HID");
      }
 
      Public function getCuttingSheetSizingDateRangeDataMachineWise($startDate,$endDate){
-        $query = $this->db->query("SELECT        SUM(Counter) AS Counter, Date, MachineName
+        $query = $this->db->query("SELECT        MAX(Counter) AS Counter, Date, MachineName
         FROM            dbo.view_Sheet_Sizing
         WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
         GROUP BY Date, MachineName
@@ -295,7 +295,7 @@ return  $query->result_array();
                 $Month = date('m');
                 $Year = date('Y');
                 $Day = date('d');
-                $query = $this->db->query("SELECT        TOP (100) PERCENT dbo.tbl_PC_AMB_Hours.HourName, COUNT(dbo.view_PC_Cutting_Process.Counter) AS Counter
+                $query = $this->db->query("SELECT        TOP (100) PERCENT dbo.tbl_PC_AMB_Hours.HourName, MAX(dbo.view_PC_Cutting_Process.Counter) AS Counter
                 FROM            dbo.view_PC_Cutting_Process INNER JOIN
                                          dbo.tbl_PC_AMB_Hours ON dbo.view_PC_Cutting_Process.HID = dbo.tbl_PC_AMB_Hours.Hour
                 WHERE        (dbo.view_PC_Cutting_Process.EntryDate = CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))

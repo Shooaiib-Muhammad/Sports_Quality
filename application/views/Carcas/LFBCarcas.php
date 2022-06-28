@@ -206,7 +206,7 @@
 
                                                     <!-- <small class="m-0 l-h-n">Number of Employees</small>
                                             <?php echo $d['EmpCount']; ?> -->
-                                                    <small class="m-0 l-h-n">Real Time</small>
+                                                    <small class="m-0 l-h-n">Real Time (Minutes)</small>
                                                     <span id="realTimeId"> </span>
 
                                                 </h3>
@@ -1962,7 +1962,7 @@ $("#searchRange").on('click',function(e){
         // let seriesDataMachine4 = [];
         // let originalDataMachineWise = [];
         let targetDataMachineWise = [];
-        let url = "<?php echo base_url('Efficiency/gettingCarcasData') ?>";
+        let url = "<?php echo base_url('Efficiency/gettinglfbCarcasData') ?>";
         $.post(url,{"startDate":startDate, "endDate":endDate},function(data, status){
            // alert(data);
             // console.log("Data Outer", data)
