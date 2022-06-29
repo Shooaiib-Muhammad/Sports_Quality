@@ -51,9 +51,10 @@ GROUP BY dbo.view_lamination_Process.Date, dbo.view_lamination_Process.Name
 
       public function HourllyReading($s_date, $e_date)
       {
-            $query = $this->db->query("SELECT        Reading ,  HourName
+            $query = $this->db->query("SELECT   HourID,     Reading ,  HourName
 FROM            dbo.view_lamination_Hourlly
-WHERE        (EntryDate BETWEEN '$s_date' AND '$e_date')");
+WHERE        (EntryDate BETWEEN '$s_date' AND '$e_date')
+ORDER BY  HourID");
             return  $query->result_array();
       }
 

@@ -265,8 +265,9 @@
                                 <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <h2 class="">Target <br> 74%</h2>
-
+                                            <!-- <h2 class="">Target <br> 74%</h2> -->
+                                            <small class="m-0 l-h-n">Target</small>
+                                            <span >74%</span>
                                         </h3>
 
                                     </div>
@@ -1239,10 +1240,10 @@ else{
     if(dateGet.getHours() >= 14){
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*3.67)/(minutes*95) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*5.87)/(minutes*15) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     if(dayId == 5){
-        $("#realTimeId").text((minutes*95)-(60*15))
+        $("#realTimeId").text((minutes*15)-(60*15))
     }
     else{
         $("#realTimeId").text((minutes*95)-(45*15))
@@ -1339,7 +1340,7 @@ else{
     else{
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*3.67)/(minutes*95) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*5.87)/(minutes*15) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     console.log(EfficiencyFinalArray)
     $("#realTimeId").text(minutes*15)

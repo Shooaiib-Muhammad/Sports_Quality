@@ -37,18 +37,11 @@ foreach ($HourllyReading as $key) {
     //array_push($lineNames, $key['LineName']);
 
 } ?>
-        <ol class="breadcrumb page-breadcrumb">
-          <!-- <li class="breadcrumb-item"><a href="<?php echo base_url(
-                                                  'Efficiency'
-                                                ); ?>">Dashboard</a></li> -->
-
-          <li class="breadcrumb-item"><a href="javascript:void(0);"> Dashboard</a></li>
-          <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
-        </ol>
+      
 
         <div class="subheader">
           <h1 class="subheader-title">
-            <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Hf Cutting</span>
+            <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>HF Cutting</span>
           </h1>
 
 
@@ -138,7 +131,7 @@ foreach ($HourllyReading as $key) {
                                 <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <small class="m-0 l-h-n">Total NO of Balls</small>
+                                            <small class="m-0 l-h-n">Total No of Balls</small>
                                             <span id="counterValueId"><?php echo $totalHF*0.2; ?></span>
                                             <small class="m-0 l-h-n"></small>
 
@@ -194,7 +187,8 @@ foreach ($HourllyReading as $key) {
                                 <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <h2 class="">Target <br> 64%</h2>
+                                        <small class="m-0 l-h-n">Target</small>
+                                            <span >67%</span>
 
                                         </h3>
 
@@ -1266,7 +1260,7 @@ else{
     }
     
     $("#employeeId").text(32*1.5)
-    $("#efficiencyValueId").text(EfficiencyFinal + " %")
+    $("#efficiencyValueId").text(EfficiencyFinal + "%")
     console.log(EfficiencyFinalArray)
     var gaugeOptions = {
             chart: {

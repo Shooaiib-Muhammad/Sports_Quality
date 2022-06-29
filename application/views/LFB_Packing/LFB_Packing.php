@@ -243,7 +243,7 @@ foreach ($Stationwise as $key) {
                                 <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <small class="m-0 l-h-n">Total NO of Balls</small>
+                                            <small class="m-0 l-h-n">Total No of Balls</small>
                                             <?php if(array_key_exists(0,$Data)) { ?>
                                             <span id="counterValueId"><?php echo Round($Data[0]['PassQty'],0); ?></span>
                                             <?php } else{ ?>
@@ -282,8 +282,9 @@ foreach ($Stationwise as $key) {
                                 <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <h2 class="">Target <br> 58%</h2>
-
+                                            <!-- <h2 class="">Target <br> 58%</h2> -->
+                                            <small class="m-0 l-h-n">Target</small>
+                                            <span >58%</span>
                                         </h3>
 
                                     </div>

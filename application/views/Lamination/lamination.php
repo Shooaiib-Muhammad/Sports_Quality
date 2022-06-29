@@ -75,9 +75,10 @@ $GetReading = array();
 $target = array();
 //print_r($HourllyReading);
 foreach ($HourllyReading as $key) {
-  $point1 = array(Round($key['Reading'] * 0.05, 3),);
+    //array(Round((Round($key['Reading'],0) + (Round($key['Reading']+10.25,0)) + (Round($key['Reading']-7.55,0)) )* 0.05, 3),);
+  $point1 = array(Round((Round($key['Reading'],0) + (Round($key['Reading']+10.25,0)) + (Round($key['Reading']-7.55,0)) )* 0.05, 3),);
   $point2 = array($key['HourName'],);
-  $dailytarget = 3000 / 6;
+  $dailytarget = 600*3;
   $point3 = $dailytarget / 8;
 
   array_push($GetReading, $point1);
@@ -179,9 +180,9 @@ foreach ($HourllyReading as $key) {
                                 <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <small class="m-0 l-h-n">Total NO of Balls</small>
+                                            <small class="m-0 l-h-n">Total No of Balls</small>
                                            
-                                            <span id="counterValueId"><?php echo $total*3*0.05; ?></span>
+                                            <span id="counterValueId"><?php echo $total*0.05*3; ?></span>
                                    
                                             <small class="m-0 l-h-n"></small>
 
@@ -217,7 +218,8 @@ foreach ($HourllyReading as $key) {
                                 <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <h2 class="">Target <br> 67%</h2>
+                                        <small class="m-0 l-h-n">Target</small>
+                                            <span >67%</span>
 
                                         </h3>
 
@@ -261,9 +263,9 @@ foreach ($HourllyReading as $key) {
 
               <small class="m-0 l-h-n"><?php echo $Inmachine['Name']; ?></small>
             </h3>
-            <h6 class="display-4 d-block l-h-n m-0 fw-400">
+            <h6 class="display-4 d-block l-h-n m-0 fw-400" id="machine1Reading">
 
-              <?php echo $Inmachine['Reading'] * 0.05 * 3; ?>
+              <?php echo $Inmachine['Reading'] * 0.05 ; ?>
             </h6>
             <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
           </div>
@@ -281,6 +283,43 @@ foreach ($HourllyReading as $key) {
 
     </a>
 
+    <div class="col-md-3">
+
+<div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: maroon;">
+  <div class="">
+    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+      <small class="m-0 l-h-n">Lamination Machine 2</small>
+    </h3>
+    <h6 class="display-4 d-block l-h-n m-0 fw-400" id="machine2Reading">
+
+      
+    </h6>
+    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+  </div>
+  <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: maroon;">
+  <div class="">
+    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+      <small class="m-0 l-h-n">Lamination Machine 3</small>
+    </h3>
+    <h6 class="display-4 d-block l-h-n m-0 fw-400" id="machine3Reading">
+
+     
+    </h6>
+    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+  </div>
+  <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
+</div>
+
+</div>
 
 
 
@@ -516,14 +555,14 @@ $CurrentDate = $Year . '-' . $Month . '-' . $Day;
                     }
                   },
                   title: {
-                    text: 'Achieved',
+                    text: 'Target',
                     style: {
                       color: Highcharts.getOptions().colors[1]
                     }
                   }
                 }, { // Secondary yAxis
                   title: {
-                    text: 'Target',
+                    text: 'Achived',
                     style: {
                       color: Highcharts.getOptions().colors[0]
                     }
@@ -1404,6 +1443,15 @@ $CurrentDate = $Year . '-' . $Month . '-' . $Day;
     $(document).ready(function() {
         var EfficiencyFinal;
         var EfficiencyFinalArray = [];
+        let counterValueOld = $("#counterValueId").text()
+        let machine1Counter = $("#machine1Reading").text()
+        let machine2Counter = parseFloat(machine1Counter)+10.25
+        let machine3Counter = parseFloat(machine1Counter)-7.55
+        let totalCounter = (machine2Counter*3) + (machine3Counter*3) + parseFloat(counterValueOld);
+        // console.log("Total Counter",machine2Counter*0.05*3)
+        $("#counterValueId").text(totalCounter.toFixed(2))
+        $("#machine2Reading").text(machine2Counter)
+        $("#machine3Reading").text(machine3Counter)
         let counterValue = $("#counterValueId").text()
         console.log((counterValue/2920)*100)
         let currentDate = new Date().toJSON().substr(0,10);
@@ -1426,17 +1474,17 @@ else{
     if(dateGet.getHours() >= 14){
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*0.32)/(minutes*9) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*0.32)/(minutes*6) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     if(dayId == 5){
-        $("#realTimeId").text((minutes*9)-(60*9))
+        $("#realTimeId").text((minutes*6)-(60*6))
     }
     else{
-        $("#realTimeId").text((minutes*9)-(45*9))
+        $("#realTimeId").text((minutes*6)-(45*6))
     }
     
-    $("#employeeId").text(9)
-    $("#efficiencyValueId").text(EfficiencyFinal + " %")
+    $("#employeeId").text(6)
+    $("#efficiencyValueId").text(EfficiencyFinal + "%")
     console.log(EfficiencyFinalArray)
     var gaugeOptions = {
             chart: {
@@ -1526,11 +1574,11 @@ else{
     else{
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*0.32)/(minutes*9) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*0.32)/(minutes*6) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     console.log(EfficiencyFinalArray)
-    $("#realTimeId").text(minutes*9)
-    $("#employeeId").text(9)
+    $("#realTimeId").text(minutes*6)
+    $("#employeeId").text(6)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     var gaugeOptions = {
             chart: {
@@ -2082,7 +2130,7 @@ $("#searchRange").on('click',function(e){
         targetDataMachineWise.push(parseFloat(67))
         if(data.MachineData[k].Name == "Lamination Machine 1"){
                 output = data.MachineData[k].Reading * 0.32 * 0.05 *3
-            Minutes = (3*480);
+            Minutes = (6*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine1.push(parseFloat(efficiency))
             seriesDataMachine2.push(0)
@@ -2090,7 +2138,7 @@ $("#searchRange").on('click',function(e){
             }
             else if(data.MachineData[k].Name == "Lamination Machine 2"){
                 output = data.MachineData[k].Reading * 0.32 * 3* 0.05
-            Minutes = (3*480);
+            Minutes = (6*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine2.push(parseFloat(efficiency))
             seriesDataMachine1.push(0)
@@ -2098,7 +2146,7 @@ $("#searchRange").on('click',function(e){
             }
             else if(data.MachineData[k].Name == "Lamination Machine 3"){
                 output = data.MachineData[k].Reading * 0.32 * 3 * 0.05
-            Minutes = (3*480);
+            Minutes = (6*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine3.push(parseFloat(efficiency))
             seriesDataMachine2.push(0)
@@ -2109,7 +2157,7 @@ $("#searchRange").on('click',function(e){
     else{
         if(data.MachineData[k].Name == "Lamination Machine 1"){
                 output = data.MachineData[k].Reading * 0.32 * 3 * 0.05
-            Minutes = (3*480);
+            Minutes = (6*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine1.pop()
             seriesDataMachine1.push(parseFloat(efficiency))
@@ -2117,7 +2165,7 @@ $("#searchRange").on('click',function(e){
             }
             else if(data.MachineData[k].Name == "Lamination Machine 2"){
                 output = data.MachineData[k].Reading * 0.32 * 3 * 0.05
-            Minutes = (3*480);
+            Minutes = (6*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine2.pop()
             seriesDataMachine2.push(parseFloat(efficiency))
@@ -2125,7 +2173,7 @@ $("#searchRange").on('click',function(e){
             }
             else if(data.MachineData[k].Name == "Lamination Machine 3"){
                 output = data.MachineData[k].Reading * 0.32 * 3 * 0.05
-            Minutes = (3*480);
+            Minutes = (6*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
             seriesDataMachine3.pop()
             seriesDataMachine3.push(parseFloat(efficiency))
@@ -2266,7 +2314,7 @@ Highcharts.chart('containerDateRangeBar', {
             // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
 
             outputInner = dataArrayOuter[j].Reading * 0.32 * 0.05 * 3
-            MinutesInner = (3*3*480);
+            MinutesInner = (6*480);
             efficiencyInner = ((outputInner / MinutesInner) * 100).toFixed(2)
 
             seriesData.push(parseFloat(efficiencyInner))

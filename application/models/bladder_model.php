@@ -20,11 +20,11 @@ class Bladder_model extends CI_Model
       $Month = date('m');
       $Year = date('Y');
       $Day = date('d');
-        $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date, Name,MID
+        $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date, Name,ID
         FROM            dbo.view_Bladder_Winding_FInal
         WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102) AND CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
-        GROUP BY Date, Name,MID
-        ORDER BY MID
+        GROUP BY Date, Name,ID
+        ORDER BY ID
         ");
       return  $query->result_array();
     }

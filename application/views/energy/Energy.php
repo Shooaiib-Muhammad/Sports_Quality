@@ -1866,10 +1866,11 @@ if (!$this->session->has_userdata('user_id')) {
 
       let url = "<?php echo base_url('/energy/Energy/getData'); ?>";
       $.get(url, function(data, status) {
-        console.log(data);
 
+        let dates = [];
 
         data['dailyenergy'].forEach(element => {
+
           if (element.HallName == 'Compressor Panel') {
             energy.push(parseFloat(element['Energy']));
           }
@@ -1962,49 +1963,49 @@ if (!$this->session->has_userdata('user_id')) {
 
 
         ]
-        Highcharts.chart('container', {
-          chart: {
-            type: 'line'
-          },
-          title: {
-            text: 'Energy Data'
-          },
+        // Highcharts.chart('container', {
+        //   chart: {
+        //     type: 'line'
+        //   },
+        //   title: {
+        //     text: 'Energy Data'
+        //   },
 
-          xAxis: {
-            categories: datesArray,
-            crosshair: true,
-            labels: {
-              enabled: false
-            }
-          },
-          yAxis: {
-            min: 0,
-            title: {
-              text: 'Energy (KV)'
-            }
-          },
-          tooltip: {
-            headerFormat: '<span style="font-size:10px">Date: {point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-              '<td style="padding:0"><b>{point.y:.1f} KW </b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-          },
-          plotOptions: {
-            series: {
-              label: {
-                connectorAllowed: false
-              },
+        //   xAxis: {
+        //     categories: datesArray,
+        //     crosshair: true,
+        //     labels: {
+        //       enabled: false
+        //     }
+        //   },
+        //   yAxis: {
+        //     min: 0,
+        //     title: {
+        //       text: 'Energy (KV)'
+        //     }
+        //   },
+        //   tooltip: {
+        //     headerFormat: '<span style="font-size:10px">Date: {point.key}</span><table>',
+        //     pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        //       '<td style="padding:0"><b>{point.y:.1f} KW </b></td></tr>',
+        //     footerFormat: '</table>',
+        //     shared: true,
+        //     useHTML: true
+        //   },
+        //   plotOptions: {
+        //     series: {
+        //       label: {
+        //         connectorAllowed: false
+        //       },
 
-            },
-            column: {
-              pointPadding: 0.2,
-              borderWidth: 0
-            }
-          },
-          series: seriesData
-        });
+        //     },
+        //     column: {
+        //       pointPadding: 0.2,
+        //       borderWidth: 0
+        //     }
+        //   },
+        //   series: seriesData
+        // });
 
       });
 
@@ -2013,11 +2014,25 @@ if (!$this->session->has_userdata('user_id')) {
         //var Type = $("select[name='Type']").val()
         var date1 = $("#date1").val()
         var date2 = $("#date2").val()
+
+      var datesArray = []
+      var Facility = []
+      var energy = []
+      var msPrinting = []
+      var AMBhall = []
+      var Canteenhall = []
+      var Compressor = []
+      var CompressorPanelhall = []
+      var MShall = []
+      var OVALMachinehall = []
+      var WorkShophall = []
+      var TMHALL = []
+      var msPress = []
+      var msLamination=[]
         // alert(date1);
         let url = "<?php echo base_url("Energy/energy/getEnergyDt/") ?>" + date1 + "/" + date2
         //alert(url);
         $.get(url, function(data) {
-          console.log("data energy graph",data['tabular']);
           //  for (var i = 0; i < data.length; i++) {
 
           let appendtable = '';
@@ -2037,6 +2052,7 @@ if (!$this->session->has_userdata('user_id')) {
                                 </thead>
                                 <tbody>`
           data['tabular'].forEach((element) => {
+            datesArray.push(element.EntryTime)
             appendtable += `<tr>
           <td>${element.EntryDate}</td>
                                 <td> ${element.HallName} </td>
@@ -2044,7 +2060,45 @@ if (!$this->session->has_userdata('user_id')) {
                                         <td>${element.EntryTime}</td>
                                      
                                 
-                                        </tr>`
+                                        </tr>`;
+          
+           if (element.HallName == 'Compressor Panel') {
+            energy.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'AMB') {
+            AMBhall.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'Canteen') {
+            Canteenhall.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'Compressor') {
+            Compressor.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'FACILITY') {
+            Facility.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'MS') {
+            MShall.push(parseFloat(element['Energy']));
+          }
+         
+          if (element.HallName == 'MS PRINTING') {
+            msPrinting.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'OVAL Machine') {
+            OVALMachinehall.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'TM') {
+            TMHALL.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'WorkShop') {
+            WorkShophall.push(parseFloat(element['Energy']));
+          }
+          if(element.HallName=='MS PRESS'){
+            msPress.push(parseFloat(element['Energy']));
+          }
+          if (element.HallName == 'MS LAMINATION') {
+            msLamination.push(parseFloat(element['Energy']));
+          }
           })
 
           appendtable += `</tbody>
@@ -2122,69 +2176,6 @@ if (!$this->session->has_userdata('user_id')) {
             ]
           });
 
-
-
-      var datesArray = []
-      var energy = []
-      var msPrinting = []
-      var AMBhall = []
-      var Canteenhall = []
-      var Compressor = []
-      var CompressorPanelhall = []
-      var MShall = []
-      var OVALMachinehall = []
-      var WorkShophall = []
-      var TMHALL = []
-      var msPress = []
-      var msLamination=[]
-   
-
-     
-      
-
-
-        data['dailyenergy'].forEach(element => {
-          if (element.HallName == 'Compressor Panel') {
-            energy.push(parseFloat(element['Energy']));
-          }
-          if (element.HallName == 'AMB') {
-            AMBhall.push(parseFloat(element['Energy']));
-          }
-          if (element.HallName == 'Canteen') {
-            Canteenhall.push(parseFloat(element['Energy']));
-          }
-          if (element.HallName == 'Compressor') {
-            Compressor.push(parseFloat(element['Energy']));
-          }
-          if (element.HallName == 'FACILITY') {
-            datesArray.push(parseFloat(element['Energy']));
-          }
-          if (element.HallName == 'MS') {
-            MShall.push(parseFloat(element['Energy']));
-          }
-         
-          if (element.HallName == 'MS PRINTING') {
-            msPrinting.push(parseFloat(element['Energy']));
-          }
-          if (element.HallName == 'OVAL Machine') {
-            OVALMachinehall.push(parseFloat(element['Energy']));
-          }
-          if (element.HallName == 'TM') {
-            TMHALL.push(parseFloat(element['Energy']));
-          }
-          if (element.HallName == 'WorkShop') {
-            WorkShophall.push(parseFloat(element['Energy']));
-          }
-          if(element.HallName=='MS PRESS'){
-            msPress.push(parseFloat(element['Energy']));
-          }
-          if (element.HallName == 'MS LAMINATION') {
-            msLamination.push(parseFloat(element['Energy']));
-          }
-        })
-
-
-
         let seriesData = [{
             name: 'Compressor Panel',
             data: energy
@@ -2203,7 +2194,7 @@ if (!$this->session->has_userdata('user_id')) {
           },
           {
             name: 'Facility',
-            data: datesArray
+            data: Facility
           },
           {
             name: 'MS hall',
@@ -2246,10 +2237,7 @@ if (!$this->session->has_userdata('user_id')) {
 
           xAxis: {
             categories: datesArray,
-            crosshair: true,
-            labels: {
-              enabled: false
-            }
+            visible:false
           },
           yAxis: {
             min: 0,
@@ -2258,7 +2246,7 @@ if (!$this->session->has_userdata('user_id')) {
             }
           },
           tooltip: {
-            headerFormat: '<span style="font-size:10px">Date: {point.key}</span><table>',
+            headerFormat: '<span style="font-size:10px">Date: {point.x}</span><table>',
             pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
               '<td style="padding:0"><b>{point.y:.1f} KW </b></td></tr>',
             footerFormat: '</table>',
@@ -2285,7 +2273,6 @@ if (!$this->session->has_userdata('user_id')) {
     });
 
     function loadData() {
-
       //var Type = $("select[name='Type']").val()
       var date1 = $("#date1").val()
       var date2 = $("#date2").val()
@@ -2294,7 +2281,6 @@ if (!$this->session->has_userdata('user_id')) {
       let url = "<?php echo base_url("Energy/energy/getEnergyDt/") ?>" + date1 + "/" + date2
       //alert(url);
       $.get(url, function(data) {
-        console.log(data);
         //  for (var i = 0; i < data.length; i++) {
 
         let appendtable = '';
@@ -2460,63 +2446,51 @@ if (!$this->session->has_userdata('user_id')) {
 
         let seriesData = [{
             name: 'Compressor Panel',
-            date:dates,
             data: energy 
           },
           {
             name: 'Airless Mini Hall',
-            data: AMBhall,
-            date:dates,
+            data: AMBhall
           },
           {
             name: 'Canteen',
-            data: Canteenhall,
-            date:dates,
+            data: Canteenhall
           },
           {
             name: 'Compressor',
-            data: Compressor,
-            date:dates,
+            data: Compressor
           },
           {
             name: 'Facility',
-            data: datesArray,
-            date:dates,
+            data: datesArray
           },
           {
             name: 'MS hall',
-            data: MShall,
-            date:dates,
+            data: MShall
           },
           {
             name: 'MS Printing',
-            data: msPrinting,
-            date:dates,
+            data: msPrinting
           },
           {
             name: 'OVAL Machine',
-            data: OVALMachinehall,
-            date:dates,
+            data: OVALMachinehall
           },
           {
             name: 'TM',
-            data: TMHALL,
-            date:dates,
+            data: TMHALL
           },
           {
             name: 'WorkShop',
-            data: WorkShophall,
-            date:dates,
+            data: WorkShophall
           },
           {
             name: 'MS PRESS',
-            data: msPress,
-            date:dates,
+            data: msPress
           },
           {
             name: 'MS LAMINATION',
-            data: msLamination,
-            date:dates,
+            data: msLamination
           }
 
 
@@ -2530,11 +2504,8 @@ if (!$this->session->has_userdata('user_id')) {
           },
 
           xAxis: {
-            categories: datesArray,
-            crosshair: true,
-            labels: {
-              enabled: false
-            }
+            categories: dates,
+            visible:false
           },
           yAxis: {
             min: 0,
@@ -2543,7 +2514,7 @@ if (!$this->session->has_userdata('user_id')) {
             }
           },
           tooltip: {
-            headerFormat: '<span style="font-size:10px">Date: {series.date}</span><table>',
+            headerFormat: '<span style="font-size:10px">Date: {point.x}</span><table>',
             pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
               '<td style="padding:0"><b>{point.y:.1f} KW </b></td></tr>',
             footerFormat: '</table>',

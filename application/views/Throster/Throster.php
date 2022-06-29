@@ -172,7 +172,7 @@ if(date('H') >= 14){
 
                 <div class="subheader">
                     <h1 class="subheader-title">
-                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Machine Stitch Production</span>
+                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Machine Stitch</span>
                     </h1>
 
 
@@ -261,7 +261,7 @@ if(date('H') >= 14){
                                 <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <small class="m-0 l-h-n">Total NO of Balls</small>
+                                            <small class="m-0 l-h-n">Total No of Balls</small>
                                             <span id="counterValueId"><?php echo Round($Data[0]['PassQty'],0); ?></span>
                                             <small class="m-0 l-h-n"></small>
 
@@ -297,7 +297,8 @@ if(date('H') >= 14){
                                 <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <h2 class="">Target <br> 67%</h2>
+                                        <small class="m-0 l-h-n">Target</small>
+                                            <span >67%</span>
 
                                         </h3>
 

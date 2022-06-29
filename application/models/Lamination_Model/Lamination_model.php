@@ -19,7 +19,7 @@ public function IndividualReading($s_date, $e_date){
  $query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.view_lamination_Process.Date, dbo.view_lamination_Process.Name
  FROM            dbo.view_lamination_Process INNER JOIN
                           dbo.tbl_PC_AMB_Hours ON dbo.view_lamination_Process.HID = dbo.tbl_PC_AMB_Hours.Hour
- WHERE        (dbo.view_lamination_Process.EntryDate BETWEEN CONVERT(DATETIME, '$s_date 00:00:00', 102) AND CONVERT(DATETIME, '$e_date 00:00:00', 102))
+ WHERE        (dbo.view_lamination_Process.EntryDate BETWEEN CONVERT(DATETIME, '$s_date 00:00:00', 102) AND CONVERT(DATETIME, '$e_date 00:00:00', 102) AND dbo.view_lamination_Process.Name = 'Lamination Machine 1')
  GROUP BY dbo.view_lamination_Process.Date, dbo.view_lamination_Process.Name
  
         ");

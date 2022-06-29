@@ -155,7 +155,7 @@ foreach ($Stationwise as $key) {
 
                 <div class="subheader">
                     <h1 class="subheader-title">
-                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Bladder Winiding</span>
+                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Bladder Winding </span>
                     </h1>
 
 
@@ -245,7 +245,7 @@ foreach ($Stationwise as $key) {
                                 <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <small class="m-0 l-h-n">Total NO of Balls</small>
+                                            <small class="m-0 l-h-n">Total No of Balls</small>
                                             <?php if(array_key_exists(0,$getData)) { ?>
                                             <span id="counterValueId"><?php echo Round($getData[0]['Counter'],0)*6; ?></span>
                                             <?php } else{ ?>
@@ -284,8 +284,9 @@ foreach ($Stationwise as $key) {
                                 <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <h2 class="">Target <br> 67%</h2>
-
+                                            <!-- <h2 class="">Target <br> </h2> -->
+                                            <small class="m-0 l-h-n">Target</small>
+                                            <span >67%</span>
                                         </h3>
 
                                     </div>
@@ -1327,7 +1328,7 @@ else{
     }
     
     $("#employeeId").text(0.5*16)
-    $("#efficiencyValueId").text(EfficiencyFinal + " %")
+    $("#efficiencyValueId").text(EfficiencyFinal + "%")
     console.log(EfficiencyFinalArray)
     var gaugeOptions = {
             chart: {
