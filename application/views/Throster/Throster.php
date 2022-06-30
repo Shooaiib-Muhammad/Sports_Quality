@@ -1270,6 +1270,23 @@ else{
         $("#realTimeId").text((minutes*<?php echo count($GetHours);?>*20)-(45*<?php echo count($GetHours);?>*20))
     }
     
+ 
+
+
+
+//     if(dayId == 5){
+//         realMinutes = (minutes*20)-(60*20)
+//         EfficiencyFinal = (((counterValue*7.74)/(minutes*<?php echo count($GetHours);?>*20)-(45*<?php echo count($GetHours);?>*20) )*100).toFixed(2)
+       
+//         $("#realTimeId").text((minutes*<?php echo count($GetHours);?>*20)-(45*<?php echo count($GetHours);?>*20))
+//    }
+//    else{
+//     realMinutes = (minutes*20)-(45*20)
+//     EfficiencyFinal = (((counterValue*7.74)/(minutes*<?php echo count($GetHours);?>*20)-(45*<?php echo count($GetHours);?>*20) )*100).toFixed(2)
+ 
+//     $("#realTimeId").text((minutes*<?php echo count($GetHours);?>*20)-(45*<?php echo count($GetHours);?>*20))
+//    }
+//    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     $("#employeeId").text(<?php echo count($GetHours);?>*20)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     console.log(EfficiencyFinalArray)

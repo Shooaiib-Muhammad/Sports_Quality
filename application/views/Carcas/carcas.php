@@ -1240,7 +1240,7 @@ else{
     if(dateGet.getHours() >= 14){
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*5.87)/(minutes*15) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*5.87)/(minutes*95) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     if(dayId == 5){
         $("#realTimeId").text((minutes*15)-(60*15))
@@ -1248,7 +1248,19 @@ else{
     else{
         $("#realTimeId").text((minutes*95)-(45*15))
     }
-    
+//     if(dayId == 5){
+ 
+//  //EfficiencyFinal = (((counterValue*5.87)/((minutes*15)-(60*15)) )*100).toFixed(2)
+//  EfficiencyFinal = (((counterValue*3.67)/((minutes*15)-(60*15)) )*100).toFixed(2)
+//  $("#realTimeId").text((minutes*15)-(60*15))
+// }
+// else{
+//    // EfficiencyFinal = (((counterValue*5.87)/((minutes*95)-(45*15)) )*100).toFixed(2)
+//     EfficiencyFinal = (((counterValue*3.67)/(minutes*95)-(45*15)) )*100).toFixed(2)
+
+// $("#realTimeId").text((minutes*95)-(45*15))
+// }
+// EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     $("#employeeId").text(17)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     console.log(EfficiencyFinalArray)

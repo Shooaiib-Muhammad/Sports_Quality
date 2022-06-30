@@ -1250,6 +1250,19 @@ else{
         $("#realTimeId").text((minutes*1)-(45*1))
     }
     
+
+
+//     if(dayId == 5){
+//         EfficiencyFinal = (((counterValue*0.05)/((minutes*1)-(60*1)) )*100).toFixed(2)
+//         $("#realTimeId").text((minutes*1)-(60*1))
+// }
+// else{
+//     EfficiencyFinal = (((counterValue*3.67)/((minutes*1)-(45*1)) )*100).toFixed(2)
+//    $("#realTimeId").text((minutes*1)-(45*1))
+// }
+// EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+
+
     $("#employeeId").text(1)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     console.log(EfficiencyFinalArray)

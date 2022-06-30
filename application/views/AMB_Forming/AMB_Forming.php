@@ -1318,15 +1318,28 @@ else{
     if(dateGet.getHours() >= 14){
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*10.03)/(minutes*208) )*100).toFixed(2)
-    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
-    if(dayId == 5){
-        $("#realTimeId").text((minutes*208)-(60*208))
-    }
-    else{
-        $("#realTimeId").text((minutes*208)-(45*208))
-    }
+  
+   
+    // if(dayId == 5){
+    //     $("#realTimeId").text((minutes*208)-(60*208))
+    // }
+    // else{
+    //     $("#realTimeId").text((minutes*208)-(45*208))
+    // }
     
+
+
+    if(dayId == 5){
+        EfficiencyFinal = (((counterValue*10.03)/((minutes*208)-(60*208)) )*100).toFixed(2)  
+      $("#realTimeId").text((minutes*208)-(60*208))
+   }
+   else{
+    EfficiencyFinal = (((counterValue*10.03)/((minutes*208)-(45*208)) )*100).toFixed(2)   
+    $("#realTimeId").text((minutes*208)-(45*208))
+   }
+   EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+
+
     $("#employeeId").text(208)
     $("#efficiencyValueId").text(EfficiencyFinal + " %")
     console.log(EfficiencyFinalArray)
