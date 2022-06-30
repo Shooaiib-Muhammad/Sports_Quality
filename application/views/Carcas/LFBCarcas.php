@@ -1223,8 +1223,13 @@ foreach ($HourllyCore as $key) {
         let currentDate = new Date().toJSON().substr(0,10);
         let dateGet = new Date()
         let dayId = dateGet.getDay()
-        $("#startDate").val(currentDate);
-        $("#endDate").val(currentDate);
+        let today = new Date()
+let yesterday = new Date(today)
+yesterday.setDate(yesterday.getDate() - 1)
+        $("#startDate").val(yesterday.toJSON().substr(0,10));
+        $("#endDate").val(yesterday.toJSON().substr(0,10));
+        $("#startDate").attr('max',yesterday.toJSON().substr(0,10));
+        $("#endDate").attr('max',yesterday.toJSON().substr(0,10));
         var date1 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),7,45,0); // Thu Sep 16 2010 13:30:58
 var date2 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),dateGet.getHours(),dateGet.getMinutes(),dateGet.getSeconds()); // Tue Aug 18 2015 14:20:48
 
@@ -1262,7 +1267,7 @@ else{
 EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
 
     $("#employeeId").text(95)
-    $("#efficiencyValueId").text(EfficiencyFinal + " %")
+    $("#efficiencyValueId").text(EfficiencyFinal + "%")
     console.log(EfficiencyFinalArray)
     var gaugeOptions = {
             chart: {
@@ -1357,7 +1362,7 @@ EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     console.log(EfficiencyFinalArray)
     $("#realTimeId").text(minutes*95)
     $("#employeeId").text(95)
-    $("#efficiencyValueId").text(EfficiencyFinal + " %")
+    $("#efficiencyValueId").text(EfficiencyFinal + "%")
     var gaugeOptions = {
             chart: {
                 type: 'solidgauge'

@@ -1223,8 +1223,13 @@ foreach ($HourllyCore as $key) {
         let currentDate = new Date().toJSON().substr(0,10);
         let dateGet = new Date()
         let dayId = dateGet.getDay()
-        $("#startDate").val(currentDate);
-        $("#endDate").val(currentDate);
+        let today = new Date()
+let yesterday = new Date(today)
+yesterday.setDate(yesterday.getDate() - 1)
+        $("#startDate").val(yesterday.toJSON().substr(0,10));
+        $("#endDate").val(yesterday.toJSON().substr(0,10));
+        $("#startDate").attr('max',yesterday.toJSON().substr(0,10));
+        $("#endDate").attr('max',yesterday.toJSON().substr(0,10));
         var date1 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),7,45,0); // Thu Sep 16 2010 13:30:58
 var date2 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),dateGet.getHours(),dateGet.getMinutes(),dateGet.getSeconds()); // Tue Aug 18 2015 14:20:48
 
@@ -1240,29 +1245,29 @@ else{
     if(dateGet.getHours() >= 14){
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*5.87)/(minutes*95) )*100).toFixed(2)
-    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+   
+    // EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+    // if(dayId == 5){
+    //     $("#realTimeId").text((minutes*15)-(60*15))
+    // }
+    // else{
+    //     $("#realTimeId").text((minutes*95)-(45*15))
+    // }
     if(dayId == 5){
-        $("#realTimeId").text((minutes*15)-(60*15))
-    }
-    else{
-        $("#realTimeId").text((minutes*95)-(45*15))
-    }
-//     if(dayId == 5){
  
-//  //EfficiencyFinal = (((counterValue*5.87)/((minutes*15)-(60*15)) )*100).toFixed(2)
-//  EfficiencyFinal = (((counterValue*3.67)/((minutes*15)-(60*15)) )*100).toFixed(2)
-//  $("#realTimeId").text((minutes*15)-(60*15))
-// }
-// else{
-//    // EfficiencyFinal = (((counterValue*5.87)/((minutes*95)-(45*15)) )*100).toFixed(2)
-//     EfficiencyFinal = (((counterValue*3.67)/(minutes*95)-(45*15)) )*100).toFixed(2)
+ EfficiencyFinal = (((counterValue*5.87)/((minutes*15)-(60*15)) )*100).toFixed(2)
 
-// $("#realTimeId").text((minutes*95)-(45*15))
-// }
-// EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+ $("#realTimeId").text((minutes*15)-(60*15))
+}
+else{
+    EfficiencyFinal = (((counterValue*5.87)/((minutes*15)-(45*15)) )*100).toFixed(2)
+
+
+$("#realTimeId").text((minutes*15)-(45*15))
+}
+EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     $("#employeeId").text(17)
-    $("#efficiencyValueId").text(EfficiencyFinal + " %")
+    $("#efficiencyValueId").text(EfficiencyFinal + "%")
     console.log(EfficiencyFinalArray)
     var gaugeOptions = {
             chart: {
@@ -1357,7 +1362,7 @@ else{
     console.log(EfficiencyFinalArray)
     $("#realTimeId").text(minutes*15)
     $("#employeeId").text(15)
-    $("#efficiencyValueId").text(EfficiencyFinal + " %")
+    $("#efficiencyValueId").text(EfficiencyFinal + "%")
     var gaugeOptions = {
             chart: {
                 type: 'solidgauge'
@@ -1987,7 +1992,7 @@ $("#searchRange").on('click',function(e){
         //seriesDataBottom = generateDataBottom(data)
   
         for(let k = 0; k<data.BarData.length; k++){
-          output = dataArrayOuter[k].Counter * 3.67
+          output = dataArrayOuter[k].Counter * 5.87
             Minutes = (95*480);
             efficiency = ((output / Minutes) * 100).toFixed(2)
 

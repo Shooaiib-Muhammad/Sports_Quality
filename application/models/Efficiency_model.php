@@ -215,27 +215,35 @@ return  $query->result_array();
 
 Public function getLaminationDateRangeData($startDate,$endDate){
             
-        $query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.view_lamination_Process.Date
-        FROM            dbo.view_lamination_Process INNER JOIN
-                                 dbo.tbl_PC_AMB_Hours ON dbo.view_lamination_Process.HID = dbo.tbl_PC_AMB_Hours.Hour
-        WHERE        (dbo.view_lamination_Process.EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
-        GROUP BY dbo.view_lamination_Process.Date
-        ORDER BY Date
-        
-");
+        $query = $this->db->query("SELECT        SUM(Counter) AS Reading, CONVERT(varchar, Date, 103) AS Date
+        FROM            dbo.Table_16         
+        WHERE        (Date BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+        GROUP BY CONVERT(varchar, Date, 103)
+        ORDER BY Date");
+// $query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.Table_16.Date
+// FROM            dbo.view_lamination_Process INNER JOIN
+//                          dbo.tbl_PC_AMB_Hours ON dbo.view_lamination_Process.HID = dbo.tbl_PC_AMB_Hours.Hour
+// WHERE        (dbo.view_lamination_Process.EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+// GROUP BY dbo.view_lamination_Process.Date
+// ORDER BY Date
+
+// ");
         return  $query->result_array();
 }
 
 Public function getLaminationDateRangeDataMachineWise($startDate,$endDate){
-$query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.view_lamination_Process.Date, dbo.view_lamination_Process.Name
-FROM            dbo.view_lamination_Process INNER JOIN
-                         dbo.tbl_PC_AMB_Hours ON dbo.view_lamination_Process.HID = dbo.tbl_PC_AMB_Hours.Hour
-WHERE        (dbo.view_lamination_Process.EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
-GROUP BY dbo.view_lamination_Process.Date, dbo.view_lamination_Process.Name
+// $query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.view_lamination_Process.Date, dbo.view_lamination_Process.Name
+// FROM            dbo.view_lamination_Process INNER JOIN
+//                          dbo.tbl_PC_AMB_Hours ON dbo.view_lamination_Process.HID = dbo.tbl_PC_AMB_Hours.Hour
+// WHERE        (dbo.view_lamination_Process.EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+// GROUP BY dbo.view_lamination_Process.Date, dbo.view_lamination_Process.Name
 
-ORDER BY Date
-
-");
+// ORDER BY Date");
+ $query = $this->db->query("SELECT        SUM(Counter) AS Reading, CONVERT(varchar, Date, 103) AS Date, Name
+                FROM            dbo.Table_16         
+                WHERE        (Date BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY CONVERT(varchar, Date, 103), Name
+                ORDER BY Date");
 
 
 return  $query->result_array();

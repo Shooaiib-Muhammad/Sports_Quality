@@ -1241,8 +1241,13 @@ if(date('H') >= 14){
         let currentDate = new Date().toJSON().substr(0,10);
         let dateGet = new Date()
         let dayId = dateGet.getDay()
-        $("#startDate").val(currentDate);
-        $("#endDate").val(currentDate);
+        let today = new Date()
+let yesterday = new Date(today)
+yesterday.setDate(yesterday.getDate() - 1)
+        $("#startDate").val(yesterday.toJSON().substr(0,10));
+        $("#endDate").val(yesterday.toJSON().substr(0,10));
+        $("#startDate").attr('max',yesterday.toJSON().substr(0,10));
+        $("#endDate").attr('max',yesterday.toJSON().substr(0,10));
         var date1 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),7,45,0); // Thu Sep 16 2010 13:30:58
 var date2 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),dateGet.getHours(),dateGet.getMinutes(),dateGet.getSeconds()); // Tue Aug 18 2015 14:20:48
 
@@ -1259,19 +1264,21 @@ else{
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
     realMinutes = 0;
-    EfficiencyFinal = (((counterValue*7.74)/(minutes*<?php echo count($GetHours);?>*20) )*100).toFixed(2)
-    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+
+ 
     if(dayId == 5){
-        realMinutes = (minutes*20)-(60*20)
+        realMinutes = (minutes*20*20)-(60*20*20)
+        EfficiencyFinal = (((counterValue*7.74)/((minutes*20*20)-(60*20*20)) )*100).toFixed(2)
         $("#realTimeId").text((minutes*<?php echo count($GetHours);?>*20)-(60*<?php echo count($GetHours);?>*20))
     }
     else{
-        realMinutes = (minutes*20)-(45*20)
+        realMinutes = (minutes*20*20)-(45*20*20)
+        EfficiencyFinal = (((counterValue*7.74)/((minutes*20*20)-(45*20*20)) )*100).toFixed(2)
         $("#realTimeId").text((minutes*<?php echo count($GetHours);?>*20)-(45*<?php echo count($GetHours);?>*20))
     }
-    
+    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
  
-
+    console.log("Efficiency Final ", (minutes*20)-(45*20))
 
 
 //     if(dayId == 5){
@@ -1288,7 +1295,7 @@ else{
 //    }
 //    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     $("#employeeId").text(<?php echo count($GetHours);?>*20)
-    $("#efficiencyValueId").text(EfficiencyFinal + " %")
+    $("#efficiencyValueId").text(EfficiencyFinal + "%")
     console.log(EfficiencyFinalArray)
     var gaugeOptions = {
             chart: {
@@ -1466,7 +1473,7 @@ else{
     console.log(EfficiencyFinalArray)
     $("#realTimeId").text(minutes*<?php echo count($GetHours);?>*20)
     $("#employeeId").text(<?php echo count($GetHours);?>*20)
-    $("#efficiencyValueId").text(EfficiencyFinal + " %")
+    $("#efficiencyValueId").text(EfficiencyFinal + "%")
     var gaugeOptions = {
             chart: {
                 type: 'solidgauge'

@@ -1301,8 +1301,13 @@ foreach ($Stationwise as $key) {
         let currentDate = new Date().toJSON().substr(0,10);
         let dateGet = new Date()
         let dayId = dateGet.getDay()
-        $("#startDate").val(currentDate);
-        $("#endDate").val(currentDate);
+        let today = new Date()
+let yesterday = new Date(today)
+yesterday.setDate(yesterday.getDate() - 1)
+        $("#startDate").val(yesterday.toJSON().substr(0,10));
+        $("#endDate").val(yesterday.toJSON().substr(0,10));
+        $("#startDate").attr('max',yesterday.toJSON().substr(0,10));
+        $("#endDate").attr('max',yesterday.toJSON().substr(0,10));
         var date1 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),7,45,0); // Thu Sep 16 2010 13:30:58
 var date2 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),dateGet.getHours(),dateGet.getMinutes(),dateGet.getSeconds()); // Tue Aug 18 2015 14:20:48
 
@@ -1329,11 +1334,11 @@ else{
     
 
     if(dayId == 5){
-        EfficiencyFinal = (((counterValue*0.83)/((minutes*0.5*16)-(60*0.5*16)) )*100).toFixed(2)
+        EfficiencyFinal = (((counterValue*0.4)/((minutes*0.5*16)-(60*0.5*16)) )*100).toFixed(2)
         $("#realTimeId").text((minutes*0.5*16)-(60*0.5*16))
    }
    else{
-    EfficiencyFinal = (((counterValue*0.83)/((minutes*0.5*16)-(45*0.5*16)) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*0.4)/((minutes*0.5*16)-(45*0.5*16)) )*100).toFixed(2)
     $("#realTimeId").text((minutes*0.5*16)-(45*0.5*16))
    }
    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
@@ -1429,12 +1434,12 @@ else{
     else{
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*0.83)/(minutes*0.5*16) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*0.4)/(minutes*0.5*16) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     console.log(EfficiencyFinalArray)
     $("#realTimeId").text(minutes*0.5*16)
     $("#employeeId").text(0.5*16)
-    $("#efficiencyValueId").text(EfficiencyFinal + " %")
+    $("#efficiencyValueId").text(EfficiencyFinal + "%")
     var gaugeOptions = {
             chart: {
                 type: 'solidgauge'

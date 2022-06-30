@@ -1224,8 +1224,13 @@ foreach ($HourllyCore as $key) {
         let currentDate = new Date().toJSON().substr(0,10);
         let dateGet = new Date()
         let dayId = dateGet.getDay()
-        $("#startDate").val(currentDate);
-        $("#endDate").val(currentDate);
+        let today = new Date()
+let yesterday = new Date(today)
+yesterday.setDate(yesterday.getDate() - 1)
+        $("#startDate").val(yesterday.toJSON().substr(0,10));
+        $("#endDate").val(yesterday.toJSON().substr(0,10));
+        $("#startDate").attr('max',yesterday.toJSON().substr(0,10));
+        $("#endDate").attr('max',yesterday.toJSON().substr(0,10));
         var date1 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),7,45,0); // Thu Sep 16 2010 13:30:58
 var date2 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),dateGet.getHours(),dateGet.getMinutes(),dateGet.getSeconds()); // Tue Aug 18 2015 14:20:48
 
@@ -1264,7 +1269,7 @@ else{
 
 
     $("#employeeId").text(1)
-    $("#efficiencyValueId").text(EfficiencyFinal + " %")
+    $("#efficiencyValueId").text(EfficiencyFinal + "%")
     console.log(EfficiencyFinalArray)
     var gaugeOptions = {
             chart: {
@@ -1359,7 +1364,7 @@ else{
     console.log(EfficiencyFinalArray)
     $("#realTimeId").text(minutes*1)
     $("#employeeId").text(1)
-    $("#efficiencyValueId").text(EfficiencyFinal + " %")
+    $("#efficiencyValueId").text(EfficiencyFinal + "%")
     var gaugeOptions = {
             chart: {
                 type: 'solidgauge'
@@ -1525,7 +1530,7 @@ else{
                             zoomType: 'xy'
                         },
                         title: {
-                            text: 'Airless Mini Core  Hourlly '
+                            text: 'Airless Mini Core  Hourly '
                         },
                         subtitle: {
                             // text: 'Source: WorldClimate.com'
