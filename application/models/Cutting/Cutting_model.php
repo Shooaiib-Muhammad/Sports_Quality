@@ -1,19 +1,18 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Cutting_Model extends CI_Model {
+class Cutting_model extends CI_Model {
 
- public function machineCounter($s_date, $e_date)
- {
+  public function machineCounter($s_date, $e_date)
+  {
+ 
+   $query = $this->db->query("SELECT      SUM(Counter) AS BallCounter, MachineName
+   FROM            dbo.view_PC_Cutting_Process
+   WHERE       (Date BETWEEN '$s_date' AND '$e_date')
+   GROUP BY MachineName ORDER BY MachineName
+   ");
 
-  $query = $this->db->query("SELECT      SUM(Counter) AS BallCounter, MachineName
-  FROM            dbo.view_PC_Cutting_Process
-  WHERE       (Date BETWEEN '$s_date' AND '$e_date')
-  GROUP BY MachineName ORDER BY MachineName
-  ");
-  
-return  $query->result_array();
- }
+  }
 
  public function HfCutting($currentDate)
  {

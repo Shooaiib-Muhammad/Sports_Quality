@@ -65,5 +65,15 @@ Public function IndividualReading($startDate,$endDate){
   ORDER BY Date");
   return  $query->result_array();
 }
+
+public function HfCutting($currentDate)
+{
+ $query = $this->db->query("SELECT  Name, Count(Counter) AS Counter
+ FROM            dbo.view_HF_Cutting
+ WHERE        (EntryDate = '$currentDate')
+ GROUP BY Name");
+ 
+return  $query->result_array();
+}
  
 }

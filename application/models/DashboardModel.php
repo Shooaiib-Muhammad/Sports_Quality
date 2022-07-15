@@ -306,4 +306,15 @@ GROUP BY MONTH(TranDate), YEAR(TranDate)
 ORDER BY Month");
         return $result = $query->result_array();
     }
+    public function yearllyData(){
+        $Month = date('m');
+        $Year = date('Y');
+        $lastYear =$Year-1;
+        //$Year = date('Y');
+        $query = $this->db->query("SELECT       FactoryCode, SUM(Fail) AS Fail, SUM(Pass) AS Pass, SUM(Checked) AS Checked, Month, Year
+        FROM            dbo.view_Yearlly_Production
+        WHERE        (TranDate BETWEEN CONVERT(DATETIME, '$lastYear-$Month-01 00:00:00', 102) AND CONVERT(DATETIME, '$Year-$Month-01 00:00:00', 102))
+        GROUP BY FactoryCode, Month, Year");
+                return $result = $query->result_array();
+    }
 }

@@ -7,7 +7,7 @@ class AMB_Packing_Model extends CI_Model
  {
 
   
-  $query = $this->db->query("SELECT        CONVERT(Varchar, dbo.tbl_Inv_Tran_Date.DateName, 103) AS DateName, SUM(dbo.tbl_PC_AMB_Hours_Tran.TotalChecked) AS PassQty
+  $query = $this->db->query("SELECT         CONVERT(Varchar, dbo.tbl_Inv_Tran_Date.DateName, 103) AS DateName, SUM(dbo.tbl_PC_AMB_Hours_Tran.TotalChecked) AS PassQty
   FROM            dbo.tbl_PC_AMB_Hours_Tran INNER JOIN
                            dbo.tbl_Inv_Tran_Date ON dbo.tbl_PC_AMB_Hours_Tran.DayID = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
                            dbo.tbl_PC_AMB_Line ON dbo.tbl_PC_AMB_Hours_Tran.LineID = dbo.tbl_PC_AMB_Line.LineID

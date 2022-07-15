@@ -22,6 +22,7 @@ class Lamination extends CI_Controller
         $data['TotalReading'] = $this->Lamination->TotalReading($CurrentDate, $CurrentDate);
         $data['IndividualReading'] = $this->Lamination->IndividualReading($CurrentDate, $CurrentDate);
         
+        
         $data['HourllyReading'] = $this->Lamination->HourllyReading($CurrentDate, $CurrentDate);
         // $data['Lamination'] = $this->Lamination->getData($CurrentDate);
         // $data['getData'] = $this->Lamination->getData($CurrentDate);
@@ -37,7 +38,7 @@ class Lamination extends CI_Controller
 
 
         $data['total']=$total;
-
+    
 
         $this->load->view('Lamination/lamination', $data);
 

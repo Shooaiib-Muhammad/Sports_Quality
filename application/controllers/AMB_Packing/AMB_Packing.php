@@ -21,6 +21,8 @@ class AMB_Packing extends CI_Controller
   $CurrentDateNew = $Year . '-' . $Month . '-' . $Day;
   $data['Data'] = $this->AMB_Packing_Model->TotalCounter($CurrentDateNew, $CurrentDateNew);
   
+  
+
   $data['Stationwise'] = $this->AMB_Packing_Model->StationWise($CurrentDateNew, $CurrentDateNew);
 // print_r($data['Counter']);
 // die;

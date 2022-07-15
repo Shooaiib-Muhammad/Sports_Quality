@@ -3905,9 +3905,9 @@ if (!$this->session->has_userdata('user_id')) {
     <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
     <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
     <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="<?php echo base_url(); ?>/assets/Select/select2.min.js" defer></script>
+    <link href="<?php echo base_url(); ?>/assets/Select/select2.min.css" rel="stylesheet" />
+    <script src="<?php echo base_url(); ?>/assets/Select/select2.min.js"></script>
     <script>
         $('.Poinfo').css('display', 'none')
         $('#manualArticle').css('display', 'none')

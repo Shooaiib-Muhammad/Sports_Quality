@@ -197,7 +197,7 @@ foreach ($HourllyReading as $key) {
                
                                 <div class="col-md-2" id="direct">
                                     <a href="javascript:void(0)">
-                                        <div style="background-color:maroon" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                        <div style="background-color:purple" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
                                             <div class="">
                                                 <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
@@ -248,7 +248,7 @@ foreach ($HourllyReading as $key) {
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                             <small class="m-0 l-h-n">Total No of Balls</small>
-                                            <span id="counterValueId"><?php echo $Counter[0]['Counter']*5.25; ?></span>
+                                            <span id="counterValueId"><?php echo $Counter[0]['Counter']*5.25*2; ?></span>
                                             <small class="m-0 l-h-n"></small>
 
 
@@ -300,7 +300,9 @@ foreach ($HourllyReading as $key) {
 
                         <div class=" col-md-2 align-self-center" id="direct">
                             <a href="javascript:void(0)">
-                                <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
+                            <div style="background-color:maroon"
+                                 class="p-2  rounded overflow-hidden position-relative 
+                                 text-white mb-g">
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                         <small class="m-0 l-h-n">Target</small>

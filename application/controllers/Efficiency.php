@@ -9,6 +9,25 @@ class Efficiency extends CI_Controller
     $this->load->model('Efficiency_model', 'E');
 
     $this->load->model('RWPD_Model', 'RWPD');
+
+
+    $this->load->model('Lamination_Model/Lamination_Model', 'Lamination');
+
+    $this->load->model('Bladder_model','Bladder');
+
+
+    $this->load->model('Throster_Model', 'T');
+
+    $this->load->model('TM_Packing/TM_Packing_Model', 'TM_Packing_Model');
+
+    $this->load->model('AMB_Forming/AMB_Forming_Model', 'AMB_Packing_Model');
+
+    $this->load->model('LFB_Packing/LFB_Packing_Model', 'LFB_Packing_Model');
+
+    $this->load->model('AMB_Packing/AMB_Packing_Model', 'AMB_Packing_Model1');
+    
+    $this->load->model('carcas_model','carcas');
+    
   }
 
   public function index()
@@ -19,6 +38,213 @@ class Efficiency extends CI_Controller
       array_push($count, $c['DeptName']);
     }
     $data['total'] = count($count);
+
+
+     // RWPD
+
+
+     $data['count'] = $this->E->departments();
+
+     $Month = date('m');
+     $Year = date('Y');
+     $Day = date('d');
+     $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+     $currentDateNew = $Year . '-' . $Month . '-' . $Day;
+ 
+     $data['IndividualReading'] = $this->RWPD->IndividualReading($currentDateNew, $currentDateNew);
+     $data['machineCounter'] = $this->RWPD->machineCounter($CurrentDate, $CurrentDate);
+ 
+     $totalRWPD = 0;
+     foreach ($data['machineCounter'] as $count) {
+ 
+       $totalRWPD = $totalRWPD + $count['BallCounter'];
+     }
+ 
+     $data['totalRWPD'] = $totalRWPD;
+ 
+ 
+ 
+     $data['HourllyReading'] = $this->E->HourllyReading($CurrentDate, $CurrentDate);
+ 
+ 
+ 
+      // Cutting
+      $Month = date('m');
+      $Year = date('Y');
+      $Day = date('d');
+      $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+      $data['HourllyReading'] = $this->E->HourllyReadingCutting($CurrentDate, $CurrentDate);
+      $data['CounterSheetSizing'] = $this->RWPD->Cutting();
+      
+ 
+ 
+ 
+ 
+     // Panel Cutting
+     $Month = date('m');
+     $Year = date('Y');
+     $Day = date('d');
+     $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+     $data['HourllyReading'] = $this->E->HourllyReadingCutting($CurrentDate, $CurrentDate);
+     
+     $data['Cutting'] = $this->RWPD->panelCutting();
+
+     
+ 
+ 
+ 
+ 
+    // HF Cutting
+    $Month = date('m'); 
+    $Year = date('Y');
+    $Day = date('d');
+    $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+    $data['HourllyReading'] = $this->E->HourllyReadingHFCutting($CurrentDate, $CurrentDate);
+    $data['hfcutting'] = $this->RWPD->HfCutting($CurrentDate);
+    $total=[];
+    foreach($data['hfcutting'] as $hf){
+        array_push($total,$hf['Counter']);
+    }
+ 
+   $d=0;
+    foreach($total as $t){
+        $d=$d+$t;
+    }
+    $data['totalHF']=$d;
+
+
+
+     
+ 
+ 
+ 
+ 
+     // Lamination
+     $Month = date('m');
+     $Year = date('Y');
+     $Day = date('d');
+     $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+ 
+ 
+     $data['TotalReading'] = $this->Lamination->TotalReading($CurrentDate, $CurrentDate);
+     $data['IndividualReading'] = $this->Lamination->IndividualReading($CurrentDate, $CurrentDate);
+     
+     $data['HourllyReading'] = $this->Lamination->HourllyReading($CurrentDate, $CurrentDate);
+     // $data['Lamination'] = $this->Lamination->getData($CurrentDate);
+     // $data['getData'] = $this->Lamination->getData($CurrentDate);
+ 
+     $totalLamination = 0;
+ 
+ 
+     foreach ($data['TotalReading'] as $totalreading) {
+ 
+         $totalLamination = $totalLamination + $totalreading['Reading'];
+     }
+ 
+ 
+     
+ 
+     $data['totalLamination']=$totalLamination;
+     
+ 
+ 
+     // Bladder
+     $Month = date('m'); 
+     $Year = date('Y');
+     $Day = date('d');
+     $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+     $data['getDataBladder'] = $this->Bladder->getData();
+     $data['Stationwise'] = $this->Bladder->Stationwise($CurrentDate, $CurrentDate);
+ 
+ 
+ 
+ 
+     // MS Lines
+     $Month = date('m');
+     $Year = date('Y');
+     $Day = date('d');
+     $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+   
+     $data['DataMSLines'] = $this->T->TotalCounter($CurrentDate, $CurrentDate);
+     
+     $data['StationwiseMSLines'] = $this->T->Stationwise($CurrentDate, $CurrentDate);
+
+ 
+     // TM Packing
+     $Month = date('m');
+     $Year = date('Y');
+     $Day = date('d');
+     $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+   
+     $data['DataTMPacking'] = $this->TM_Packing_Model->TotalCounter($CurrentDate, $CurrentDate);
+     
+     $data['Stationwise'] = $this->TM_Packing_Model->Stationwise($CurrentDate, $CurrentDate);
+ 
+   
+     
+ 
+ 
+     // AMB Forming
+     $Month = date('m');
+     $Year = date('Y');
+     $Day = date('d');
+     $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+   
+     $data['DataAMBForming'] = $this->AMB_Packing_Model->TotalCounter($CurrentDate, $CurrentDate);
+     
+     $data['Stationwise'] = $this->AMB_Packing_Model->StationWise($CurrentDate, $CurrentDate);
+ 
+ 
+ 
+     // AMB Packing
+     $Month = date('m');
+     $Year = date('Y');
+     $Day = date('d');
+     $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+     $CurrentDateNew = $Year . '-' . $Month . '-' . $Day;
+     
+     
+     $data['DataAMBPacking'] = $this->AMB_Packing_Model1->TotalCounter($CurrentDateNew, $CurrentDateNew);
+     
+  
+
+
+ 
+ 
+     // LFB Packing
+   $Month = date('m');
+   $Year = date('Y');
+   $Day = date('d');
+   $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+ 
+   $data['DataLFBPacking'] = $this->LFB_Packing_Model->TotalCounter($CurrentDate, $CurrentDate);
+   
+   $data['Stationwise'] = $this->LFB_Packing_Model->Stationwise($CurrentDate, $CurrentDate);
+ 
+ 
+ 
+   // Carcas
+   $data['getDataTMCarcas']= $this->carcas->getDatacarcas();
+   //$data['realtime'] = $this->E->realTimeAtten(3, 1165);
+ 
+   $data['HourllyCore']= $this->carcas->HourllyCarcas();
+ 
+ 
+ 
+   // LFB Carcas
+   $data['getDataLFBCarcas']= $this->carcas->getlfbDatacarcas();
+   //$data['realtime'] = $this->E->realTimeAtten(3, 1165);
+ 
+   $data['HourllyCore']= $this->carcas->HourllylfbCarcas();
+ 
+ 
+   // Core
+   $data['getDataCore']= $this->carcas->getDatacore();
+   //$data['realtime'] = $this->E->realTimeAtten(3, 1165);
+ 
+   $data['HourllyCore']= $this->carcas->HourllyCore();
+
+    
     $this->load->view('Efficiency/efficiency', $data);
   }
 
@@ -245,14 +471,8 @@ class Efficiency extends CI_Controller
     $CurrentDate = $Year . '-' . $Month . '-' . $Day;
     $data['HourllyReading'] = $this->E->HourllyReadingPanelCutting($CurrentDate, $CurrentDate);
     $data['Counter'] = $this->RWPD->panelCutting();
-    // // $total = 0;
-    // // foreach ($data['machineCounter'] as $count) {
 
-    // //  $total = $total + $count['BallCounter'];
-    // // }
-
-    // // $data['total'] = $total;
-    // // echo "<pre>";
+    
     $data['realtime'] = $this->E->realTimeAtten($_GET['dept_id'], $_GET['section_id']);
 
 
