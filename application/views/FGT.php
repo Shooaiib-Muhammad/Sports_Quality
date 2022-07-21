@@ -4444,8 +4444,9 @@ ${reviewStatus == '1' ?
                 TID
             }, function(data) {
                 console.log("Data Get", data['head'][0].ArtCode)
-                if (type == "SOCCER BALLS" || type == "SOCCERBALLS") {
-
+                
+                if (type == " SOCCER BALLS" || type == " SOCCERBALLS") {
+                    
                     $("#titleBalls").text(data['head'][0].FGTType);
                     $("#workingNoMini").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
                     $("#articleNoMini").text(data['head'][0].ArtCode != '' ? data['head'][0].ArtCode : 'Article Code: Nil');
@@ -4505,8 +4506,8 @@ ${reviewStatus == '1' ?
 
 
                     $('#FGTReportModal').modal('toggle');
-                } else if (type == "SOCCER BALL SIZE 5") {
-                    console.log("from aSIZE 5", data);
+                } else if (type == " SOCCER BALLS SIZE 5") {
+                    
                     $("#content66").text(data['head'][0].labno);
                     $("#workingNoSize5").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
                     $("#articleNoSize5").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
@@ -4685,7 +4686,7 @@ ${reviewStatus == '1' ?
                 TID
             }, function(data) {
                 console.log("Data Get", data['head'][0].ArtCode)
-                if (type == "SOCCER BALLS" || type == "SOCCERBALLS") {
+                if (typeof(type == " SOCCER BALLS") || typeof(type == " SOCCERBALLS")) {
 
                     $("#titleBalls").text(data['head'][0].FGTType);
                     $("#workingNoMini").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
@@ -4746,7 +4747,7 @@ ${reviewStatus == '1' ?
 
 
                     $('#FGTReportModal').modal('toggle');
-                } else if (type == "SOCCER BALL SIZE 5") {
+                } else if (typeof(type == " SOCCER BALL SIZE 5")) {
                     console.log("from aSIZE 5", data);
                     $("#content66").text(data['head'][0].labno);
                     $("#workingNoSize5").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');

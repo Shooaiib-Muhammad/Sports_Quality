@@ -2231,11 +2231,13 @@ if (!$this->session->has_userdata('user_id')) {
                 $Yearly007 = [];
                 $Yearly = [];
                 $Datess = [];
-                foreach ($yearllyData as $key) {
+               // print_r($getmonthly);
+                foreach ($Yearandmonth as $key) {
                     $Month =  $key['Month'];
                     $Year =  $key['Year'];
 
-                    array_push($Yearly, $Month . '-' . $Year);
+                    array_push($Yearly, $Month . ',' . $Year);
+                    //array_push($Yearly, $Month);
                     //print_r('Updated');
 
                 }
@@ -2922,7 +2924,7 @@ responsive: {
                     Highcharts.chart('yearlydata', {
 
                         title: {
-                            text: 'Yearly Production'
+                            text: 'Yearly asasasas'
                         },
 
 
@@ -2934,7 +2936,7 @@ responsive: {
                         },
 
                         xAxis: {
-                            categories: <?php echo json_encode($yearllyData, JSON_NUMERIC_CHECK); ?>,
+                            categories: <?php echo json_encode($Yearly, JSON_NUMERIC_CHECK); ?>,
                             // accessibility: {
                             //     rangeDescription: 'Range: 2010 to 2017'
                             // }
@@ -5236,7 +5238,7 @@ responsive: {
                         },
 
                         xAxis: {
-                            categories: <?php echo json_encode($yearllyData, JSON_NUMERIC_CHECK); ?>,
+                            categories: <?php echo json_encode($Yearly, JSON_NUMERIC_CHECK); ?>,
                             // accessibility: {
                             //     rangeDescription: 'Range: 2010 to 2017'
                             // }

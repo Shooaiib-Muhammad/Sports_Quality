@@ -256,21 +256,28 @@ ORDER BY TranDate");
     {
         $lastday = date('Y-m-d', strtotime('-1 days'));
         $last7day = date('Y-m-d', strtotime('-30 days'));
-        $query = $this->db->query("SELECT        SUM(Checked) AS TotalChecked, SUM(Pass) AS pass, SUM(Fail) AS Fail, CONVERT(varchar, TranDate, 104) AS TranDate, FactoryCode
+        $query = $this->db->query("SELECT        SUM(Checked) AS TotalChecked, SUM(Pass) AS pass, SUM(Fail) AS Fail, CONVERT(varchar, TranDate, 104) AS TranDate, FactoryCode, MONTH(TranDate) AS Month, YEAR(TranDate) AS Year
 FROM            dbo.tbl_Production_View
 WHERE       (TranDate BETWEEN CONVERT(DATETIME, '$last7day 00:00:00', 102) AND CONVERT(DATETIME, '$lastday 00:00:00', 102))
-GROUP BY CONVERT(varchar, TranDate, 104), FactoryCode
+GROUP BY CONVERT(varchar, TranDate, 104), FactoryCode, MONTH(TranDate), YEAR(TranDate)
 ORDER BY TranDate");
         return $result = $query->result_array();
     }
     public function getYear()
     {
-        $Year = date('Y');
+        //$Year = date('Y');
        
-        $query = $this->db->query("SELECT        TOP (100) PERCENT SUM(Checked) AS TotalChecked, SUM(Pass) AS pass, SUM(Fail) AS Fail, FactoryCode, YEAR(TranDate) AS Year, MONTH(TranDate) AS Month
+        $query = $this->db->query("SELECT        dbo.view_Yearly_production.*
+FROM            dbo.view_Yearly_production");
+        return $result = $query->result_array();
+    }
+    public function YearData(){
+        
+$query = $this->db->query("SELECT        TOP (100) PERCENT MONTH(TranDate) AS Month, YEAR(TranDate) AS Year
 FROM            dbo.tbl_Production_View
-GROUP BY FactoryCode, YEAR(TranDate), MONTH(TranDate)
-HAVING        (YEAR(TranDate) = 2021)");
+WHERE        (TranDate >= DATEADD(yy, - 1, DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE()))))
+GROUP BY MONTH(TranDate), YEAR(TranDate)
+ORDER BY Year, Month");
         return $result = $query->result_array();
     }
     public function weekDates(){
@@ -288,13 +295,14 @@ ORDER BY TranDate");
 
     public function monthlydate()
     {
+        
         $lastday = date('Y-m-d', strtotime('-1 days'));
         $last7day = date('Y-m-d', strtotime('-30 days'));
-        $query = $this->db->query("SELECT        TOP (100) PERCENT CONVERT(varchar, TranDate, 104) AS TranDate
-FROM            dbo.tbl_Production_View
-WHERE        (TranDate BETWEEN CONVERT(DATETIME, '$last7day 00:00:00', 102) AND CONVERT(DATETIME, '$lastday 00:00:00', 102))
-GROUP BY CONVERT(varchar, TranDate, 104)
-ORDER BY TranDate");
+        $query = $this->db->query("SELECT        TOP (100) PERCENT CONVERT(varchar, TranDate, 104) AS TranDate, TranDate AS Date
+        FROM            dbo.tbl_Production_View
+        GROUP BY CONVERT(varchar, TranDate, 104), TranDate
+        HAVING        (TranDate BETWEEN CONVERT(DATETIME, '$last7day 00:00:00', 102) AND CONVERT(DATETIME, '$lastday 00:00:00', 102))
+        ORDER BY Date");
         return $result = $query->result_array();
     }
     Public function Year(){

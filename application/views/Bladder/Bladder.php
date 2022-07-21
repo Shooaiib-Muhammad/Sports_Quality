@@ -315,13 +315,14 @@ foreach ($Stationwise as $key) {
 
 
                 <div class="guage text-center ">
-                    <script src="https://code.highcharts.com/highcharts.js"></script>
-                    <script src="https://code.highcharts.com/highcharts-more.js"></script>
-                    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-                    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-                    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-                    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+                <script src="<?php echo base_url(); ?>/assets/js/highcharts.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/data.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/drilldown.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/export-data.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/accessibility.js"></script>
+                    <script src="<?php echo base_url(); ?>/assets/js/highcharts-more.js"></script>
+                    <script src="<?php echo base_url(); ?>/assets/js/solidGuage.js"></script>
                     <figure class="highcharts-figure">
                         <div id="container-speed" class="chart-container"></div>
                         <!-- <div id="container-rpm" class="chart-container"></div>   -->
@@ -1146,9 +1147,25 @@ foreach ($Stationwise as $key) {
 <script src="<?php echo base_url(); ?>assets/js/statistics/flot/flot.bundle.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/datagrid/datatables/datatables.bundle.js"></script>
+
 <script>
-                 
-                    Highcharts.chart('container', {
+           Highcharts.setOptions({
+        colors: Highcharts.map(Highcharts.getOptions().colors, function(color) {
+            return {
+                radialGradient: {
+                    cx: 0.5,
+                    cy: 0.3,
+                    r: 0.7
+                },
+                stops: [
+                    [0, color],
+                    [1, Highcharts.color(color).brighten(-0.3).get('rgb')] // darken
+                ]
+            };
+        })
+    });
+
+    Highcharts.chart('container', {
                         chart: {
                             zoomType: 'xy'
                         },
@@ -1227,8 +1244,6 @@ foreach ($Stationwise as $key) {
 
 
                     });
-                </script>
-<script>
     /* defined datas */
     var dataTargetProfit = [
         [1354586000000, 153],
@@ -1334,11 +1349,11 @@ else{
     
 
     if(dayId == 5){
-        EfficiencyFinal = (((counterValue*0.4)/((minutes*0.5*16)-(60*0.5*16)) )*100).toFixed(2)
+        EfficiencyFinal = (((counterValue*0.22)/((minutes*0.5*16)-(60*0.5*16)) )*100).toFixed(2)
         $("#realTimeId").text((minutes*0.5*16)-(60*0.5*16))
    }
    else{
-    EfficiencyFinal = (((counterValue*0.4)/((minutes*0.5*16)-(45*0.5*16)) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*0.22)/((minutes*0.5*16)-(45*0.5*16)) )*100).toFixed(2)
     $("#realTimeId").text((minutes*0.5*16)-(45*0.5*16))
    }
    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
@@ -1377,9 +1392,9 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
+                    [0.1, '#DF5353'], // green
                     [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.9, '#55BF3B'] // red
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -1434,7 +1449,7 @@ else{
     else{
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*0.4)/(minutes*0.5*16) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*0.22)/(minutes*0.5*16) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     console.log(EfficiencyFinalArray)
     $("#realTimeId").text(minutes*0.5*16)

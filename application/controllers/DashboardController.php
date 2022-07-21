@@ -38,6 +38,8 @@ class DashboardController extends CI_Controller
 		$data['weekDate'] = $this->ID->weekDates();
 		$data['monthlydate'] = $this->ID->monthlydate();
 		$data['monthlyOrder'] = $this->ID->monthlyOrder();
+		$data['Yearandmonth'] = $this->ID->YearData();
+		
 		// $data['monthlyOrder001'] = $this->ID->getMonthtlyOrder_Article_Wise();
 		// $data['monthlyOrder002'] = $this->ID->getMonthtlyOrder_Article_Wise02();
 		// $data['monthlyOrder003'] = $this->ID->getMonthtlyOrder_Article_Wise03();

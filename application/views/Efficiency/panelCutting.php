@@ -330,13 +330,14 @@ foreach ($HourllyReading as $key) {
 
 
                 <div class="guage text-center ">
-                    <script src="https://code.highcharts.com/highcharts.js"></script>
-                    <script src="https://code.highcharts.com/highcharts-more.js"></script>
-                    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-                    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-                    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-                    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+                <script src="<?php echo base_url(); ?>/assets/js/highcharts.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/data.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/drilldown.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/export-data.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/accessibility.js"></script>
+                    <script src="<?php echo base_url(); ?>/assets/js/highcharts-more.js"></script>
+                    <script src="<?php echo base_url(); ?>/assets/js/solidGuage.js"></script>
                     <figure class="highcharts-figure">
                         <div id="container-speed" class="chart-container"></div>
                         <!-- <div id="container-rpm" class="chart-container"></div>   -->
@@ -1158,6 +1159,21 @@ foreach ($HourllyReading as $key) {
 <script src="<?php echo base_url(); ?>assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/datagrid/datatables/datatables.bundle.js"></script>
 <script>
+       Highcharts.setOptions({
+        colors: Highcharts.map(Highcharts.getOptions().colors, function(color) {
+            return {
+                radialGradient: {
+                    cx: 0.5,
+                    cy: 0.3,
+                    r: 0.7
+                },
+                stops: [
+                    [0, color],
+                    [1, Highcharts.color(color).brighten(-0.3).get('rgb')] // darken
+                ]
+            };
+        })
+    });
     /* defined datas */
     var dataTargetProfit = [
         [1354586000000, 153],
@@ -1223,6 +1239,7 @@ foreach ($HourllyReading as $key) {
     ];
 
     $(document).ready(function() {
+     
         var EfficiencyFinal;
         var EfficiencyFinalArray = [];
         let counterValue = $("#counterValueId").text()

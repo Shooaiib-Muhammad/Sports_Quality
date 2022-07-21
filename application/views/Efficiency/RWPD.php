@@ -364,13 +364,14 @@ foreach ($HourllyReading as $key) {
 <div class="col-md-6">
     
 <div class="guage">
-                    <script src="https://code.highcharts.com/highcharts.js"></script>
-                    <script src="https://code.highcharts.com/highcharts-more.js"></script>
-                    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-                    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-                    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-                    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/highcharts.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/data.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/drilldown.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/export-data.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/accessibility.js"></script>
+                    <script src="<?php echo base_url(); ?>/assets/js/highcharts-more.js"></script>
+                    <script src="<?php echo base_url(); ?>/assets/js/solidGuage.js"></script>
                  
                         <div id="container-speed" class="chart-container"></div>
                         <!-- <div id="container-rpm" class="chart-container"></div>   -->
@@ -501,109 +502,6 @@ foreach ($HourllyReading as $key) {
 
                 </style>
 
-                <!-- <script src="https://code.highcharts.com/highcharts.js"></script>
-            <script src="https://code.highcharts.com/modules/exporting.js"></script>
-            <script src="https://code.highcharts.com/modules/export-data.js"></script>
-            <script src="https://code.highcharts.com/modules/accessibility.js"></script> -->
-
-                <!-- <figure class="highcharts-figure">
-              <div id="container"></div> -->
-       
-
-                <script src="https://code.highcharts.com/highcharts.js"></script>
-                <script src="https://code.highcharts.com/highcharts-3d.js"></script>
-                <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                <script src="https://code.highcharts.com/modules/export-data.js"></script>
-                <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
-
-
-                <script>
-                 
-                    Highcharts.chart('container', {
-                        chart: {
-                            zoomType: 'xy'
-                        },
-                        title: {
-                            text: 'RWPD OutPut'
-                        },
-                        subtitle: {
-                            // text: 'Source: WorldClimate.com'
-                        },
-                        xAxis: [{
-                            categories: <?php echo json_encode($GetHours, JSON_NUMERIC_CHECK); ?>,
-                            crosshair: true
-                        }],
-                        yAxis: [{ // Primary yAxis
-                                labels: {
-                                    format: '{value} balls',
-                                    style: {
-                                        color: Highcharts.getOptions().colors[1]
-                                    }
-                                },
-                                title: {
-                                    text: 'Achieved',
-                                    style: {
-                                        color: Highcharts.getOptions().colors[1]
-                                    }
-                                }
-                            },
-                            { // Secondary yAxis
-                                title: {
-                                    text: 'Target',
-                                    style: {
-                                        color: Highcharts.getOptions().colors[0]
-                                    }
-                                },
-
-                                opposite: true
-                            }
-                        ],
-                        tooltip: {
-                            shared: true
-                        },
-                        legend: {
-                            layout: 'vertical',
-                            align: 'left',
-                            x: 120,
-                            verticalAlign: 'top',
-                            y: 100,
-                            floating: true,
-                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
-                                'rgba(255,255,255,0.25)',
-                            enabled: false
-                        },
-
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y:.0f}'
-                                }
-                            }
-                        },
-                        series: [{
-                                name: 'Achieved',
-                                type: 'column',
-                                yAxis: 1,
-
-                                data: <?php echo json_encode($GetReading, JSON_NUMERIC_CHECK); ?>,
-                                tooltip: {
-                                    valueSuffix: ' balls'
-                                }
-
-                            }
-
-                        ]
-
-
-                    });
-                </script>
-
-
-
-        
                 <!-- this overlay is activated only when mobile menu is triggered -->
                 <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
                 <!-- BEGIN Page Footer -->
@@ -1296,19 +1194,34 @@ foreach ($HourllyReading as $key) {
 						+ waves.js (extension)
 						+ smartpanels.js (extension)
 						+ src/../jquery-snippets.js (core) -->
-<script src="<?php echo base_url(); ?>assets/js/vendors.bundle.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/app.bundle.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
 <script type="text/javascript">
     /* Activate smart panels */
     $('#js-page-content').smartPanel();
 </script>
 <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
-<script src="<?php echo base_url(); ?>assets/js/statistics/peity/peity.bundle.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/statistics/flot/flot.bundle.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/datagrid/datatables/datatables.bundle.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
 <script>
     /* defined datas */
+    Highcharts.setOptions({
+        colors: Highcharts.map(Highcharts.getOptions().colors, function(color) {
+            return {
+                radialGradient: {
+                    cx: 0.5,
+                    cy: 0.3,
+                    r: 0.7
+                },
+                stops: [
+                    [0, color],
+                    [1, Highcharts.color(color).brighten(-0.3).get('rgb')] // darken
+                ]
+            };
+        })
+    });
     var dataTargetProfit = [
         [1354586000000, 153],
         [1364587000000, 658],
@@ -1373,6 +1286,7 @@ foreach ($HourllyReading as $key) {
     ];
 
     $(document).ready(function() {
+       
         var EfficiencyFinal;
         var EfficiencyFinalArray = [];
         let counterValue = $("#counterValueId").text()
@@ -2104,6 +2018,86 @@ else{
 
 
     });
+
+    Highcharts.chart('container', {
+                        chart: {
+                            zoomType: 'xy'
+                        },
+                        title: {
+                            text: 'RWPD OutPut'
+                        },
+                        subtitle: {
+                            // text: 'Source: WorldClimate.com'
+                        },
+                        xAxis: [{
+                            categories: <?php echo json_encode($GetHours, JSON_NUMERIC_CHECK); ?>,
+                            crosshair: true
+                        }],
+                        yAxis: [{ // Primary yAxis
+                                labels: {
+                                    format: '{value} balls',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                },
+                                title: {
+                                    text: 'Achieved',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                }
+                            },
+                            { // Secondary yAxis
+                                title: {
+                                    text: 'Target',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[0]
+                                    }
+                                },
+
+                                opposite: true
+                            }
+                        ],
+                        tooltip: {
+                            shared: true
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'left',
+                            x: 120,
+                            verticalAlign: 'top',
+                            y: 100,
+                            floating: true,
+                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                                'rgba(255,255,255,0.25)',
+                            enabled: false
+                        },
+
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.0f}'
+                                }
+                            }
+                        },
+                        series: [{
+                                name: 'Achieved',
+                                type: 'column',
+                                yAxis: 1,
+
+                                data: <?php echo json_encode($GetReading, JSON_NUMERIC_CHECK); ?>,
+                                tooltip: {
+                                    valueSuffix: ' balls'
+                                }
+
+                            }
+
+                        ]
+
+
+                    });
 
     function generateDataTop(data1) {
  
