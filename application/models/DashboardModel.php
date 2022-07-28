@@ -273,11 +273,11 @@ FROM            dbo.view_Yearly_production");
     }
     public function YearData(){
         
-$query = $this->db->query("SELECT        TOP (100) PERCENT MONTH(TranDate) AS Month, YEAR(TranDate) AS Year
+$query = $this->db->query("SELECT        TOP (100) PERCENT MONTH(TranDate) AS Month1, YEAR(TranDate) AS Year, { fn MONTHNAME(TranDate) } AS Month
 FROM            dbo.tbl_Production_View
 WHERE        (TranDate >= DATEADD(yy, - 1, DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE()))))
-GROUP BY MONTH(TranDate), YEAR(TranDate)
-ORDER BY Year, Month");
+GROUP BY MONTH(TranDate), YEAR(TranDate), { fn MONTHNAME(TranDate) }
+ORDER BY Year, Month1");
         return $result = $query->result_array();
     }
     public function weekDates(){

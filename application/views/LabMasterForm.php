@@ -221,7 +221,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
-                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewed"> </span>
+                                                                    <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewed"> </span> -->
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br>Fatima Rasheed </span>
                                                                     </th>
                                                                     <th></th>
                                                                     <th></th>
@@ -229,7 +230,8 @@ if (!$this->session->has_userdata('user_id')) {
 
 
                                                                     <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                        <span id="testApproved"> </span>
+                                                                        <!-- <span id="testApproved"> </span> -->
+                                                                        <span > Zain Abbas</span>
                                                                     </th>
                                                                 </tr>
                                                             </table>
@@ -568,15 +570,18 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
-                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFoam"> </span>
-                                                                    </th>
+                                                                    <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFoam"> </span> -->
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span > Fatima Rasheed </span>
+                                                            
+                                                                </th>
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
 
 
                                                                     <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                        <span id="testApprovedFoam"> </span>
+                                                                        <!-- <span id="testApprovedFoam"> </span> -->
+                                                                        <span> Zain Abbas</span>
                                                                     </th>
                                                                 </tr>
                                                             </table>
@@ -927,15 +932,18 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
-                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFabric"> </span>
-                                                                    </th>
+                                                                    <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFabric"> </span> -->
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span > Fatima Rasheed </span>
+                                                                        
+                                                                </th>
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
 
 
                                                                     <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                        <span id="testApprovedFabric"> </span>
+                                                                        <!-- <span id="testApprovedFabric"> </span> -->
+                                                                        <span > Zain Abbas </span>
                                                                     </th>
                                                                 </tr>
                                                             </table>
@@ -1232,12 +1240,15 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             </th>
                                                                             <th></th>
 
-                                                                            <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedComp"> </span>
-                                                                            </th>
+                                                                            <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedComp"> </span> -->
+                                                                            <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span > Fatima Rasheed</span>
+                                                                                
+                                                                        </th>
                                                                             <th></th>
 
                                                                             <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                                <span id="testApprovedComp"> </span>
+                                                                                <!-- <span id="testApprovedComp"> </span> -->
+                                                                                <span > Zain Abbas</span>
                                                                             </th>
                                                                         </tr>
                                                                     </table>
@@ -1558,15 +1569,18 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
-                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedMaterial"> </span>
-                                                                    </th>
+                                                                    <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedMaterial"> </span> -->
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed</span>
+                                                                        
+                                                                </th>
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
 
 
                                                                     <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                        <span id="testApprovedMaterial"> </span>
+                                                                        <!-- <span id="testApprovedMaterial"> </span> -->
+                                                                        <span> Zain Abbas</span>
                                                                     </th>
                                                                 </tr>
                                                             </table>
@@ -1960,15 +1974,18 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
-                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedThread"> </span>
-                                                                    </th>
+                                                                    <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedThread"> </span> -->
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span >Fatima Rasheed </span>
+                                                                      
+                                                                </th>
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
 
 
                                                                     <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                        <span id="testApprovedThread"> </span>
+                                                                        <!-- <span id="testApprovedThread"> </span> -->
+                                                                        <span > Zain Abbas</span>
                                                                     </th>
                                                                 </tr>
                                                             </table>
@@ -2366,15 +2383,18 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
-                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedMSThread"> </span>
-                                                                    </th>
+                                                                    <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedMSThread"> </span> -->
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span > Fatima Rasheed</span>
+                                                                      
+                                                                </th>
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
 
 
                                                                     <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                        <span id="testApprovedMSThread"> </span>
+                                                                        <!-- <span id="testApprovedMSThread"> </span> -->
+                                                                        <span >Zain Abbas </span>
                                                                     </th>
                                                                 </tr>
                                                             </table>
@@ -2698,15 +2718,18 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
-                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedBlader"> </span>
-                                                                    </th>
+                                                                    <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedBlader"> </span> -->
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span > Fatima Rasheed </span>
+                                                                      
+                                                                </th>
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
 
 
                                                                     <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                        <span id="testApprovedBlader"> </span>
+                                                                        <!-- <span id="testApprovedBlader"> </span> -->
+                                                                        <span >Zain Abbas </span>
                                                                     </th>
                                                                 </tr>
                                                             </table>
@@ -2854,7 +2877,9 @@ if (!$this->session->has_userdata('user_id')) {
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th><span style="font-size: medium;font-weight:bold"></span><br><span id="testReviewedMSMaterial"> </span>
+                    <!-- <th><span style="font-size: medium;font-weight:bold"></span><br><span id="testReviewedMSMaterial"> </span> -->
+                    <th><span style="font-size: medium;font-weight:bold"></span><br><span > Fatima Rasheed</span>
+                    
                     </th>
                     <th></th>
                     <th></th>
@@ -3308,15 +3333,18 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
-                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFGT"> </span>
-                                                                    </th>
+                                                                    <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFGT"> </span> -->
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span > Fatima Rasheed</span>
+                                                                       
+                                                                </th>
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
 
 
                                                                     <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                        <span id="testApprovedFGT"> </span>
+                                                                        <!-- <span id="testApprovedFGT"> </span> -->
+                                                                        <span > Zain Abbas</span>
                                                                     </th>
                                                                 </tr>
                                                             </table>

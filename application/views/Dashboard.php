@@ -1988,7 +1988,7 @@ if (!$this->session->has_userdata('user_id')) {
                         </div>
                 </div>
 
-
+        
                 <?php
                 $Datess = [];
                 $WEEKLYRFT001 = [];
@@ -2842,6 +2842,7 @@ if (!$this->session->has_userdata('user_id')) {
                         }
 
                     });
+                    
  Highcharts.chart('monthlydata1', {
 
 title: {
@@ -6165,6 +6166,11 @@ responsive: {
             $(".line").peity("line");
             $(".bar").peity("bar");
         </script>
+                <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
     </body>
 
     </html>

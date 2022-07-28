@@ -327,8 +327,47 @@ foreach ($Stationwise as $key) {
                     </div>
                 </div>
 
+                
+        <div class="row mt-4" style="display:none">
+          <?php
+         
+            foreach ($hfcutting as $Keys) {
+                ?>
+
+              <div class="col-md-2">
+                <div class="p-3 bg-info-300 rounded overflow-hidden position-relative text-white mb-g">
+                  <div class="">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                      <small class="m-0 l-h-n"> <?php
+                                                              echo $Keys['Name'];
+                                                              ?> </small>
+                    </h3>
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                      <?php
+                      echo $Keys['Counter']*0.2;
+                      ?>
+
+                    </h3>
+                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                  </div>
+                  <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
+                </div>
+              </div>
+
+
+          <?php
+            }
+          
+
+          ?>
+
+        </div>
+
+
 
                 <div class="row">
+                
                    
                    <div style="display:none" class="col-sm-6 col-xl-4">
                        <a href="<?php echo base_url("Efficiency/AMB") ?>">
@@ -6388,6 +6427,8 @@ $("#dateRangeResult").css('display','inline-block')
   ];
 
   $(document).ready(function() {
+    <?php $HfTotalMachines = count($hfcutting); ?>
+
     var EfficiencyFinal;
         var EfficiencyFinalArray = [];
         let counterValue = $("#counterValueIdHFCutting").text()
@@ -6416,22 +6457,22 @@ else{
     if(dateGet.getHours() >= 14){
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-  
-    
+
 
     if(dayId == 5){
-      EfficiencyFinal = (((counterValue*2.87)/((minutes*32*1.5)-(60*32*1.5)) )*100).toFixed(2)
+      EfficiencyFinal = (((counterValue*2.87)/((minutes*<?php echo $HfTotalMachines; ?>*1.5)-(60*<?php echo $HfTotalMachines; ?>*1.5)) )*100).toFixed(2)
       
-      $("#realTimeIdHFCutting").text((minutes*32*1.5)-(60*32*1.5))
+      $("#realTimeIdHFCutting").text((minutes*<?php echo $HfTotalMachines; ?>*1.5)-(60*<?php echo $HfTotalMachines; ?>*1.5))
    }
    else{
-    EfficiencyFinal = (((counterValue*2.87)/((minutes*32*1.5)-(45*32*1.5)) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*2.87)/((minutes*<?php echo $HfTotalMachines; ?>*1.5)-(45*<?php echo $HfTotalMachines; ?>*1.5)) )*100).toFixed(2)
       
-       $("#realTimeIdHFCutting").text((minutes*32*1.5)-(45*32*1.5))
+       $("#realTimeIdHFCutting").text((minutes*<?php echo $HfTotalMachines; ?>*1.5)-(45*<?php echo $HfTotalMachines; ?>*1.5))
    }
    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+   
     
-    $("#employeeId").text(32*1.5)
+    $("#employeeId").text(<?php echo $HfTotalMachines; ?>*1.5)
     $("#efficiencyValueIdHFCutting").text(EfficiencyFinal + "%")
     console.log(EfficiencyFinalArray)
     var gaugeOptions = {
@@ -6522,11 +6563,11 @@ else{
     else{
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*2.87)/(minutes*32*1.5) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*2.87)/(minutes*<?php echo $HfTotalMachines; ?>*1.5) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     console.log(EfficiencyFinalArray)
-    $("#realTimeIdHFCutting").text(minutes*32*1.5)
-    $("#employeeId").text(32*1.5)
+    $("#realTimeIdHFCutting").text(minutes*<?php echo $HfTotalMachines; ?>*1.5)
+    $("#employeeId").text(<?php echo $HfTotalMachines; ?>*1.5)
     $("#efficiencyValueIdHFCutting").text(EfficiencyFinal + "%")
     var gaugeOptions = {
             chart: {
@@ -10078,18 +10119,19 @@ else{
     // }
     
 
+    
     if(dayId == 5){
-        EfficiencyFinal = (((counterValue*0.4)/((minutes*0.5*16)-(60*0.5*16)) )*100).toFixed(2)
-        $("#realTimeIdBladder").text((minutes*0.5*16)-(60*0.5*16))
+        EfficiencyFinal = (((counterValue*0.22)/((minutes*0.5*16)-(60*0.5*16)) )*100).toFixed(2)
+        $("#realTimeId").text((minutes*0.5*16)-(60*0.5*16))
    }
    else{
-    EfficiencyFinal = (((counterValue*0.4)/((minutes*0.5*16)-(45*0.5*16)) )*100).toFixed(2)
-    $("#realTimeIdBladder").text((minutes*0.5*16)-(45*0.5*16))
+    EfficiencyFinal = (((counterValue*0.22)/((minutes*0.5*16)-(45*0.5*16)) )*100).toFixed(2)
+    $("#realTimeId").text((minutes*0.5*16)-(45*0.5*16))
    }
    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
 
     $("#employeeId").text(0.5*16)
-    $("#efficiencyValueIdBladder").text(EfficiencyFinal + "%")
+    $("#efficiencyValueId").text(EfficiencyFinal + "%")
     console.log(EfficiencyFinalArray)
     var gaugeOptions = {
             chart: {
@@ -10179,7 +10221,7 @@ else{
     else{
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*0.4)/(minutes*0.5*16) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*0.22)/(minutes*0.5*16) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     console.log(EfficiencyFinalArray)
     $("#realTimeIdBladder").text(minutes*0.5*16)

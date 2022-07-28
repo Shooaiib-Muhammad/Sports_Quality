@@ -76,15 +76,21 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <tr>
                                                     <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
 
-                                                    <th> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                    <center>   <th style="text-align:Center;" > <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th></center>
                                                     <th> <img src="<?php echo base_url() ?>assets/img/adidasLogo.svg" alt="report_logo" width="250px" height="100px" /></th>
                                                     <!-- <th style="font-size: x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR SOCCERBALLS INDOOR</th> -->
-                                                    <th> </th>
+                                                    
                                                 </tr>
                                             </table>
-                                            <h3 style="font-size: x-large;font-weight:bold;padding:50px" class="text-center" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR SOCCERBALLS INDOOR</h3>
+                                            <tr><th> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                            
                                             <!-- <h4 class="modal-title text-center m-4" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS INDOOR</h4> -->
+                                            <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                    </tr>
+                    <tr><h3 style="font-size: x-large;font-weight:bold;padding:50px" class="text-center" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR SOCCERBALLS INDOOR</h3>
+                    </tr>
                                             <div class="container-fluid p-5">
+
                                                 <div class="row p-2">
                                                     <div class="col-sm-4">
                                                         <table class="table table-striped p-0">
@@ -96,6 +102,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <tr>
                                                                     <th style="border: 1px solid;"><br>LAB #</th>
                                                                     <td id="content32" class="text-center"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;"><br>Css Code :</th>
+                                                                    <td id="content3222" class="text-center"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th style="border: 1px solid;"><br>TESTING DATE</th>
@@ -446,15 +456,18 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <th></th>
                                                         <th></th>
                                                         <th></th>
-                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFGT"> </span>
-                                                        </th>
+                                                        <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFGT"> </span> -->
+                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span > Fatima Rasheed</span>
+                                                           
+                                                    </th>
                                                         <th></th>
                                                         <th></th>
                                                         <th></th>
 
 
                                                         <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                            <span id="testApprovedFGT"> </span>
+                                                            <!-- <span id="testApprovedFGT"> </span> -->
+                                                            <span > Zain Abbas</span>
                                                         </th>
                                                     </tr>
                                                 </table>
@@ -479,7 +492,16 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </th>
                                                     </tr>
                                                 </table>
-
+                                                <div class="col-12">
+                                                            <table class="table table-striped col-12">
+                                                                
+                                                                    <tr>
+                                                                        
+                                                                        <td style="text-align:Center; font-size:Bold; font-size:25;"><h2>End of Report</h2></td>
+                                                                    </tr>
+                                                                
+                                                            </table>
+                                                        </div>
                                             </div>
 
                                         </div>
@@ -538,10 +560,20 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <tr>
                                                     <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
 
+                                                  
+                                                 <center>   <th style="text-align:Center;" > <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th></center>
+                                                   
+                                                   
+                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                </tr>
+                                                <tr>
+                                                    <!-- <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th> -->
+
                                                     <th></th>
-                                                    <th></th>
+                                                    <!-- <th> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th> -->
                                                     <th style="font-size: x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR SOCCERBALLS SIZE 5</th>
                                                     <th> </th>
+                                                    <!-- <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th> -->
                                                 </tr>
                                             </table>
 
@@ -558,6 +590,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <tr>
                                                                     <th style="border: 1px solid;">LAB #</th>
                                                                     <td id="content66" class="text-center"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">CSS Code</th>
+                                                                    <td id="content666" class="text-center"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th style="border: 1px solid;">TESTING DATE</th>
@@ -1030,15 +1066,18 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <th></th>
                                                         <th></th>
                                                         <th></th>
-                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedSize5"> </span>
-                                                        </th>
+                                                        <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedSize5"> </span> -->
+                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span >Fatima Rasheed </span>
+                                                          
+                                                    </th>
                                                         <th></th>
                                                         <th></th>
                                                         <th></th>
 
 
                                                         <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                            <span id="testApprovedSize5"> </span>
+                                                            <!-- <span id="testApprovedSize5"> </span> -->
+                                                            <span >Zain Abbas </span>
                                                         </th>
                                                     </tr>
                                                 </table>
@@ -1063,7 +1102,16 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </th>
                                                     </tr>
                                                 </table>
-
+                                                <div class="col-12">
+                                                            <table class="table table-striped col-12">
+                                                                
+                                                                    <tr>
+                                                                        
+                                                                        <td style="text-align:Center; font-size:Bold; font-size:25;"><h2>End of Report</h2></td>
+                                                                    </tr>
+                                                                
+                                                            </table>
+                                                        </div>
                                             </div>
                                         </div>
                                     </div>
@@ -2094,8 +2142,18 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <tr>
                                                     <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
 
+                                                 
+                                                    <center>   <th style="text-align:Center;" > <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th></center>
+                                                    <!-- <th style="font-size:x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR AIRLINES MINI <span id="titleBalls">()</span></th> -->
+                                                   
+                                               
+                                                <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                </tr>
+                                                <tr>
+                                                    <!-- <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th> -->
+
                                                     <th></th>
-                                                    <th></th>
+                                                    <!-- <th> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th> -->
                                                     <th style="font-size:x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR AIRLINES MINI <span id="titleBalls">()</span></th>
                                                     <th> </th>
                                                 </tr>
@@ -2118,6 +2176,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <tr>
                                                                     <th style="border: 1px solid;"><br>LAB #</th>
                                                                     <td class="text-center" id="content2"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;"><br>CSS Code :</th>
+                                                                    <td class="text-center" id="content222"></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th style="border: 1px solid;"><br>TESTING DATE</th>
@@ -2386,15 +2448,18 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <th></th>
                                                         <th></th>
                                                         <th></th>
-                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedSoccer"> </span>
-                                                        </th>
+                                                        <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedSoccer"> </span> -->
+                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span >Fatima Rasheed </span>
+                                                        
+                                                    </th>
                                                         <th></th>
                                                         <th></th>
                                                         <th></th>
 
 
                                                         <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                            <span id="testApprovedSoccer"> </span>
+                                                            <!-- <span id="testApprovedSoccer"> </span> -->
+                                                            <span > Zain Abbas </span>
                                                         </th>
                                                     </tr>
                                                 </table>
@@ -2419,7 +2484,16 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </th>
                                                     </tr>
                                                 </table>
-
+                                                <div class="col-12">
+                                                            <table class="table table-striped col-12">
+                                                                
+                                                                    <tr>
+                                                                        
+                                                                        <td style="text-align:Center; font-size:Bold; font-size:25;"><h2>End of Report</h2></td>
+                                                                    </tr>
+                                                                
+                                                            </table>
+                                                        </div>
                                             </div>
                                         </div>
                                     </div>
@@ -4451,6 +4525,7 @@ ${reviewStatus == '1' ?
                     $("#workingNoMini").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
                     $("#articleNoMini").text(data['head'][0].ArtCode != '' ? data['head'][0].ArtCode : 'Article Code: Nil');
                     $("#content2").text(data['head'][0].labno);
+                    $("#content222").text(data['head'][0].cssCode);
                     $("#content3").text(data['head'][0].testdate);
                     $("#content4").text(data['head'][0].tastcat);
                     $("#content5").text(data['head'][0].productionmonth);
@@ -4509,6 +4584,7 @@ ${reviewStatus == '1' ?
                 } else if (type == " SOCCER BALLS SIZE 5") {
                     
                     $("#content66").text(data['head'][0].labno);
+                    $("#content666").text(data['head'][0].cssCode);
                     $("#workingNoSize5").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
                     $("#articleNoSize5").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
                     $("#content67").text(data['head'][0].testdate);
@@ -4598,6 +4674,7 @@ ${reviewStatus == '1' ?
                 } else {
                     console.log("from soccerBallsIndoor", data);
                     $("#content32").text(data['head'][0].labno);
+                    $("#content3222").text(data['head'][0].cssCode);
                     $("#workingNoIndoor").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
                     $("#articleNoIndoor").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
                     $("#content33").text(data['head'][0].testdate);

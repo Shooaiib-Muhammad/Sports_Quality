@@ -1265,14 +1265,6 @@ else{
     if(dateGet.getHours() >= 14){
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    // EfficiencyFinal = (((counterValue*2.87)/(minutes*32*1.5) )*100).toFixed(2)
-    // EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
-    // if(dayId == 5){
-    //     $("#realTimeId").text((minutes*32*1.5)-(60*32*1.5))
-    // }
-    // else{
-    //     $("#realTimeId").text((minutes*32*1.5)-(45*32*1.5))
-    // }
     
 
     if(dayId == 5){
