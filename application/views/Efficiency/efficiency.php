@@ -2062,9 +2062,10 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -2156,9 +2157,10 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -3464,9 +3466,10 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -4360,9 +4363,10 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -4454,9 +4458,10 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -5407,9 +5412,10 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -6506,9 +6512,10 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -9076,9 +9083,10 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                  [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -9958,6 +9966,7 @@ $("#dateRangeResult").css('display','inline-block')
                                         color: Highcharts.getOptions().colors[1]
                                     }
                                 }
+
                             },
                             { // Secondary yAxis
                                 title: {
@@ -9969,6 +9978,7 @@ $("#dateRangeResult").css('display','inline-block')
 
                                 opposite: true
                             }
+
                         ],
                         tooltip: {
                             shared: true
@@ -10164,9 +10174,10 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -10258,9 +10269,9 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -11676,9 +11687,10 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -11853,9 +11865,10 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -14142,9 +14155,10 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -14236,9 +14250,10 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -15177,9 +15192,10 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -16351,9 +16367,10 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -16445,9 +16462,10 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -17585,9 +17603,10 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -18632,9 +18651,10 @@ EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -19898,9 +19918,10 @@ EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+
                 ],
                 lineWidth: 0,
                 tickWidth: 0,

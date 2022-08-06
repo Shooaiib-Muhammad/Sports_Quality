@@ -1392,9 +1392,9 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#DF5353'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#55BF3B'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -1486,9 +1486,9 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
                 ],
                 lineWidth: 0,
                 tickWidth: 0,

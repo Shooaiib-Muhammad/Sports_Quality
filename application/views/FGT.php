@@ -420,7 +420,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <table class="table table-striped col-12">
                                                                 <tbody style="border: 1px solid;">
                                                                     <tr>
-                                                                        <th rowspan="3" style="border: 1px solid">Note: <span id="contentNoteFGT"></span></th>
+                                                                        <th rowspan="3" style="border: 1px solid">Note: sdfd<span id="contentNoteFGT"></span></th>
 
                                                                     </tr>
 
@@ -1031,7 +1031,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <table class="table table-striped col-12">
                                                                 <tbody style="border: 1px solid;">
                                                                     <tr>
-                                                                        <th rowspan="3" style="border: 1px solid">Note:<span id="contentNoteSize5"></span></th>
+                                                                        <th rowspan="3" style="border: 1px solid">Note: <span id="contentNoteSize5"></span></th>
 
                                                                     </tr>
 
@@ -1378,6 +1378,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                         ON">DESTRUCTION</option>
                                                         <option value="NON-DESTRUCTION">NON-DESTRUCTION</option>
                                                         <option value="Full FGT">Full FGT</option>
+                                                        <option value="Shooter">Shooter</option>
+                                                        <option value="Hydrolysis">Hydrolysis</option>
+
                                                     </select>
                                                 </div>
                                             </div>
@@ -1485,7 +1488,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <select class="form-control" id="ttype" name="ttype">
                                                             <option value="" disabled>Select one of the following</option>
                                                             <option value="Shooter">Shooter</option>
-                                                            <option value="Abrasion">Abrasion</option>
+                                                            <option value="Hydrolysis">Hydrolysis</option>
+                                                            <option value="Drum">Drum</option>
+                                                            <option value="Non Destructive">Non Destructive</option>
+                                                            <option value="Water Uptake">Water Uptake</option>
                                                             <option value="Full FGT">Full FGT</option>
                                                         </select>
 
@@ -2415,7 +2421,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <table class="table table-striped col-12">
                                                                 <tbody style="border: 1px solid;">
                                                                     <tr>
-                                                                        <th rowspan="3" style="border: 1px solid">Note:<span id="contentNoteSoccer"></span></th>
+                                                                        <th rowspan="3" style="border: 1px solid">Note: <span id="contentNoteSoccer"></span></th>
 
                                                                     </tr>
 
@@ -3082,7 +3088,6 @@ if (!$this->session->has_userdata('user_id')) {
                                                 </thead>
                                                 <tbody>`;
                     data.forEach(element => {
-
                         html += `
         <tr>
 <td id="fgtype${element.TID}"> ${element.FGTType}</td>
@@ -3143,7 +3148,7 @@ ${reviewStatus == '1' ?
     <td>
 
     ${element.ReviewStatus == '1'?
-            `<span class="badge badge-primary p-1">${element.reviewName}</span>`:
+            `<span class="badge badge-primary p-1">${element.ReviewName}</span>`:
             `<span class="badge badge-warning p-1">Pending</span>`
         }
     </td>
@@ -4517,7 +4522,6 @@ ${reviewStatus == '1' ?
             $.post(url, {
                 TID
             }, function(data) {
-                console.log("Data Get", data['head'][0].ArtCode)
                 
                 if (type == " SOCCER BALLS" || type == " SOCCERBALLS") {
                     
@@ -4539,7 +4543,23 @@ ${reviewStatus == '1' ?
                     $("#content13").text(data['head'][0].printngscolors);
                     $("#content14").text(data['head'][0].result);
                     $("#content15").text(data['head'][0].Performedby);
-                    $("#contentNoteSoccer").text(data['head'][0].Note);
+                
+
+
+                    // if(data['head'][0].result.toLowerCase().trim() == "urgent" || data['head'][0].remark.toLowerCase().trim() == "urgent" ){
+                    //     console.log("equal Urgent")
+                    //     $("#contentNoteSoccer").text('As per the request of customer, testing is proceeded without condition.')
+                       
+
+                    // }
+                    // else{
+                    //     console.log("Not equal Urgent", data['head'][0].result.toLowerCase().trim())
+                       $("#contentNoteSoccer").text(data['head'][0].Note);     
+
+                    // }
+
+
+                    
                     if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
                         $("#FreshPhotoSoccer").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
                     } else {
@@ -4621,9 +4641,22 @@ ${reviewStatus == '1' ?
                         $("#DrumPhotoSize5").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
                     }
 
+                    
+                    
+                    if(data['head'][0].result.toLowerCase().trim() == "urgent" || data['head'][0].remark.toLowerCase().trim() == "urgent" ){
+                     
+                        $("#contentNoteSize5").text('As per the request of customer, testing is proceeded without condition.')
+                       
+
+                    }
+                    else{
+                       $("#contentNoteSize5").text(data['head'][0].Note);     
+
+                    }
+                    
 
 
-                    $("#contentNoteSize5").text(data['head'][0].Note);
+
                     $("#testReviewedSize5").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
                     $("#testApprovedSize5").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
                     if (data['detail'][0]) {
@@ -4672,7 +4705,6 @@ ${reviewStatus == '1' ?
                     $('#soccerBallsSize5').modal('toggle');
 
                 } else {
-                    console.log("from soccerBallsIndoor", data);
                     $("#content32").text(data['head'][0].labno);
                     $("#content3222").text(data['head'][0].cssCode);
                     $("#workingNoIndoor").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
@@ -4690,7 +4722,25 @@ ${reviewStatus == '1' ?
                     $("#content43").text(data['head'][0].printngscolors);
                     $("#content44").text(data['head'][0].result);
                     $("#content45").text(data['head'][0].Performedby);
-                    $("#contentNoteFGT").text(data['head'][0].Note);
+
+            
+
+                     if(data['head'][0].result.toLowerCase().trim() == "urgent" || data['head'][0].remark.toLowerCase().trim() == "urgent" ){
+                      
+                        $("#contentNoteFGT").text('As per the request of customer, testing is proceeded without condition.')
+                       
+
+                    }
+                    else{
+                       $("#contentNoteFGT").text(data['head'][0].Note);     
+
+                    }
+                    
+
+
+
+            
+
                     if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
                         $("#FreshPhotoIndoor").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
                     } else {
@@ -4762,7 +4812,6 @@ ${reviewStatus == '1' ?
             $.post(url, {
                 TID
             }, function(data) {
-                console.log("Data Get", data['head'][0].ArtCode)
                 if (typeof(type == " SOCCER BALLS") || typeof(type == " SOCCERBALLS")) {
 
                     $("#titleBalls").text(data['head'][0].FGTType);
@@ -4782,7 +4831,19 @@ ${reviewStatus == '1' ?
                     $("#content13").text(data['head'][0].printngscolors);
                     $("#content14").text(data['head'][0].result);
                     $("#content15").text(data['head'][0].Performedby);
-                    $("#contentNoteSoccer").text(data['head'][0].Note);
+
+                    if(data['head'][0].result.toLowerCase().trim() == "urgent" || data['head'][0].remark.toLowerCase().trim() == "urgent" ){
+                    
+                        $("#contentNoteSoccer").text('As per the request of customer, testing is proceeded without condition.')
+                       
+
+                    }
+                    else{
+                       $("#contentNoteSoccer").text(data['head'][0].Note);     
+
+                    }
+
+
                     if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
                         $("#FreshPhotoSoccer").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
                     } else {
@@ -4825,7 +4886,6 @@ ${reviewStatus == '1' ?
 
                     $('#FGTReportModal').modal('toggle');
                 } else if (typeof(type == " SOCCER BALL SIZE 5")) {
-                    console.log("from aSIZE 5", data);
                     $("#content66").text(data['head'][0].labno);
                     $("#workingNoSize5").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
                     $("#articleNoSize5").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
@@ -4865,7 +4925,19 @@ ${reviewStatus == '1' ?
 
 
 
-                    $("#contentNoteSize5").text(data['head'][0].Note);
+                    if(data['head'][0].result.toLowerCase().trim() == "urgent" || data['head'][0].remark.toLowerCase().trim() == "urgent" ){
+                       
+                        $("#contentNoteSize5").text('As per the request of customer, testing is proceeded without condition.')
+                       
+
+                    }
+                    else{
+                       $("#contentNoteSize5").text(data['head'][0].Note);     
+
+                    }
+
+
+
                     $("#testReviewedSize5").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
                     $("#testApprovedSize5").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
                     if (data['detail'][0]) {
@@ -4914,7 +4986,6 @@ ${reviewStatus == '1' ?
                     $('#soccerBallsSize5').modal('toggle');
 
                 } else {
-                    console.log("from soccerBallsIndoor", data);
                     $("#content32").text(data['head'][0].labno);
                     $("#workingNoIndoor").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
                     $("#articleNoIndoor").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
@@ -4931,7 +5002,20 @@ ${reviewStatus == '1' ?
                     $("#content43").text(data['head'][0].printngscolors);
                     $("#content44").text(data['head'][0].result);
                     $("#content45").text(data['head'][0].Performedby);
-                    $("#contentNoteFGT").text(data['head'][0].Note);
+
+
+                    if(data['head'][0].result.toLowerCase().trim() == "urgent" || data['head'][0].remark.toLowerCase().trim() == "urgent" ){
+   
+                        $("#contentNoteFGT").text('As per the request of customer, testing is proceeded without condition.')
+                       
+
+                    }
+                    else{
+                       $("#contentNoteFGT").text(data['head'][0].Note);     
+
+                    }
+                    
+
                     if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
                         $("#FreshPhotoIndoor").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
                     } else {
@@ -5238,18 +5322,18 @@ ${reviewStatus == '1' ?
         }
 
 
-        $(".updbtn").click(function(e) {
+        $("#customData").on('click','.updbtn',function(e) {
             let id = this.id;
             let split_value = id.split(".");
             var TID = split_value[1];
             let reviewStatus;
-            if ($(`#review${split_value[1]}`).is(":checked")) {
+            if ($(`#customreview${split_value[1]}`).is(":checked")) {
                 reviewStatus = 1;
             } else {
                 reviewStatus = 0;
             }
             let approvedStatus;
-            if ($(`#approved${split_value[1]}`).is(":checked")) {
+            if ($(`#customapproved${split_value[1]}`).is(":checked")) {
                 approvedStatus = 1;
             } else {
                 approvedStatus = 0;

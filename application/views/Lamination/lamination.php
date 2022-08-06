@@ -1458,8 +1458,8 @@ $CurrentDate = $Year . '-' . $Month . '-' . $Day;
         let totalCounter = (machine2Counter*3) + (machine3Counter*3) + parseFloat(counterValueOld);
         // console.log("Total Counter",machine2Counter*0.05*3)
         $("#counterValueId").text(totalCounter.toFixed(2))
-        $("#machine2Reading").text(machine2Counter)
-        $("#machine3Reading").text(machine3Counter)
+        $("#machine2Reading").text(machine2Counter.toFixed(2))
+        $("#machine3Reading").text(machine3Counter.toFixed(2))
         let counterValue = $("#counterValueId").text()
         console.log((counterValue/2920)*100)
         let currentDate = new Date().toJSON().substr(0,10);
@@ -1545,9 +1545,9 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
                 ],
                 lineWidth: 0,
                 tickWidth: 0,
@@ -1639,9 +1639,9 @@ else{
             // the value axis
             yAxis: {
                 stops: [
-                    [0.1, '#55BF3B'], // green
-                    [0.5, '#DDDF0D'], // yellow
-                    [0.9, '#DF5353'] // red
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
                 ],
                 lineWidth: 0,
                 tickWidth: 0,

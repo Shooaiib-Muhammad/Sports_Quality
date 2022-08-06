@@ -83,8 +83,8 @@ if (!$this->session->has_userdata('user_id')) {
                                             <div class="modal-body">
                                                 <div class="card" id="printCard">
                                                     <div class="card-body">
-                                                    
-                                                            <!-- <div class="col-sm-12">
+
+                                                        <!-- <div class="col-sm-12">
                                                                 <div class="col-sm-4">
                                                                 <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> 
                                                                 </div>
@@ -95,27 +95,27 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /> 
                                                                 </div>
                                                             </div> -->
-                                                    
+
 
                                                         <div class="row">
-                                                        <div class="col-sm-12 d-flex flex-row">
-                                                                <div class="col-sm-4">
-                                                                <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                            <div class="col-sm-12 d-flex flex-row">
+                                                                <div class="col-sm-4" id="cortonLogoHide">
+                                                                    <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" />
                                                                 </div>
                                                                 <div class="col-sm-4">
-                                                                <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                    <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" />
                                                                 </div>
                                                                 <div class="col-sm-4">
-                                                                <img src="<?php echo base_url() ?>assets/img/adidasLogo.svg" alt="report_logo" width="250px" height="100px" /> 
+                                                                    <img src="<?php echo base_url() ?>assets/img/adidasLogo.svg" alt="report_logo" width="250px" height="100px" />
                                                                 </div>
                                                             </div>
-                                                            
-                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;" > Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Carton </h3>
-                                                           
-                                                            
-                                                             <!-- <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;">Test Report Of Carton</h3> -->
-                                                            
-                                                            
+
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Carton </h3>
+
+
+                                                            <!-- <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;">Test Report Of Carton</h3> -->
+
+
                                                             <!-- <table class="table">
                                                                 <tr>
                                                                     <th><img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
@@ -231,7 +231,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                                     <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
                                                                         <!-- <span id="testApproved"> </span> -->
-                                                                        <span > Zain Abbas</span>
+                                                                        <span> Zain Abbas</span>
                                                                     </th>
                                                                 </tr>
                                                             </table>
@@ -271,7 +271,7 @@ if (!$this->session->has_userdata('user_id')) {
             Sohail Ghouri
             </div> -->
                                                         </div>
-
+                                                        <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
                                                     </div>
                                                 </div>
                                             </div>
@@ -464,18 +464,18 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </tr>
                                                             </table> -->
                                                             <div class="col-sm-12 d-flex flex-row">
-                                                                <div class="col-sm-4">
-                                                                <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                <div class="col-sm-4" id="FoamLogoHide">
+                                                                    <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" />
                                                                 </div>
                                                                 <div class="col-sm-4">
-                                                                <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                    <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" />
                                                                 </div>
                                                                 <div class="col-sm-4">
-                                                                <img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                    <img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" />
                                                                 </div>
                                                             </div>
-                                             
-                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;" > Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Foam </h3>
+
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Foam </h3>
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
            <div class="col-md-3"></div>
            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
@@ -571,9 +571,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th></th>
                                                                     <th></th>
                                                                     <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFoam"> </span> -->
-                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span > Fatima Rasheed </span>
-                                                            
-                                                                </th>
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed </span>
+
+                                                                    </th>
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
@@ -615,7 +615,7 @@ if (!$this->session->has_userdata('user_id')) {
             Sohail Ghouri
             </div> -->
                                                         </div>
-
+                                                        <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
                                                     </div>
                                                 </div>
                                             </div>
@@ -792,7 +792,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <tr>
                                                                     <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
 
-                                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" />  </th>
+                                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
                                                                     <th></th>
                                                                     <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Fabric</th> -->
                                                                     <td style="font-size: small;padding:0%">
@@ -825,7 +825,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </td>
                                                                 </tr>
                                                             </table>
-                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;" > Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Fabric </h3>
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Fabric </h3>
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
            <div class="col-md-3"></div>
            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
@@ -933,9 +933,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th></th>
                                                                     <th></th>
                                                                     <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFabric"> </span> -->
-                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span > Fatima Rasheed </span>
-                                                                        
-                                                                </th>
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed </span>
+
+                                                                    </th>
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
@@ -943,7 +943,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                                     <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
                                                                         <!-- <span id="testApprovedFabric"> </span> -->
-                                                                        <span > Zain Abbas </span>
+                                                                        <span> Zain Abbas </span>
                                                                     </th>
                                                                 </tr>
                                                             </table>
@@ -976,7 +976,7 @@ if (!$this->session->has_userdata('user_id')) {
             Sohail Ghouri
             </div> -->
                                                         </div>
-
+                                                        <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1241,14 +1241,14 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             <th></th>
 
                                                                             <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedComp"> </span> -->
-                                                                            <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span > Fatima Rasheed</span>
-                                                                                
-                                                                        </th>
+                                                                            <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed</span>
+
+                                                                            </th>
                                                                             <th></th>
 
                                                                             <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
                                                                                 <!-- <span id="testApprovedComp"> </span> -->
-                                                                                <span > Zain Abbas</span>
+                                                                                <span> Zain Abbas</span>
                                                                             </th>
                                                                         </tr>
                                                                     </table>
@@ -1278,6 +1278,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </table>
 
                                                                 </div>
+                                                                <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <h3 style="color: black;font-weight:bold;font-size:medium;text-align:center">Development test report </h3>
@@ -1429,7 +1430,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <tr>
                                                                     <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
 
-                                                                    <th>  <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" />  </th>
+                                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
                                                                     <th></th>
                                                                     <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Material</th> -->
                                                                     <td style="font-size: small;padding:0%">
@@ -1462,7 +1463,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </td>
                                                                 </tr>
                                                             </table>
-                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;" > Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Material </h3>
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Material </h3>
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
            <div class="col-md-3"></div>
            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
@@ -1571,8 +1572,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th></th>
                                                                     <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedMaterial"> </span> -->
                                                                     <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed</span>
-                                                                        
-                                                                </th>
+
+                                                                    </th>
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
@@ -1613,6 +1614,8 @@ if (!$this->session->has_userdata('user_id')) {
             Sohail Ghouri
             </div> -->
                                                         </div>
+
+                                                        <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
 
                                                     </div>
                                                 </div>
@@ -1828,7 +1831,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <tr>
                                                                     <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
 
-                                                                    <th>  <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" />  </th>
+                                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
                                                                     <th></th>
                                                                     <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Thread</th> -->
                                                                     <td style="font-size: small;padding:0%">
@@ -1861,7 +1864,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </td>
                                                                 </tr>
                                                             </table>
-                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;" > Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Thread </h3>
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Thread </h3>
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
            <div class="col-md-3"></div>
            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
@@ -1975,9 +1978,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th></th>
                                                                     <th></th>
                                                                     <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedThread"> </span> -->
-                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span >Fatima Rasheed </span>
-                                                                      
-                                                                </th>
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span>Fatima Rasheed </span>
+
+                                                                    </th>
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
@@ -1985,7 +1988,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                                     <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
                                                                         <!-- <span id="testApprovedThread"> </span> -->
-                                                                        <span > Zain Abbas</span>
+                                                                        <span> Zain Abbas</span>
                                                                     </th>
                                                                 </tr>
                                                             </table>
@@ -2018,7 +2021,7 @@ if (!$this->session->has_userdata('user_id')) {
             Sohail Ghouri
             </div> -->
                                                         </div>
-
+                                                        <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2274,13 +2277,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </td>
                                                                 </tr>
                                                             </table>
-                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;" > Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of MS Thread </h3>
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of MS Thread </h3>
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
            <div class="col-md-3"></div>
            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
                                                             <table class="table">
                                                                 <tr>
-                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoMSThread">  </span></label></th>
+                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoMSThread"> </span></label></th>
                                                                     <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMSThread"> </span></label></th>
                                                                 </tr>
                                                                 <tr>
@@ -2384,9 +2387,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th></th>
                                                                     <th></th>
                                                                     <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedMSThread"> </span> -->
-                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span > Fatima Rasheed</span>
-                                                                      
-                                                                </th>
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed</span>
+
+                                                                    </th>
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
@@ -2394,7 +2397,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                                     <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
                                                                         <!-- <span id="testApprovedMSThread"> </span> -->
-                                                                        <span >Zain Abbas </span>
+                                                                        <span>Zain Abbas </span>
                                                                     </th>
                                                                 </tr>
                                                             </table>
@@ -2427,7 +2430,7 @@ if (!$this->session->has_userdata('user_id')) {
             Sohail Ghouri
             </div> -->
                                                         </div>
-
+                                                        <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2650,7 +2653,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th> </th>
                                                                 </tr>
                                                             </table>
-                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;" > Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Blader </h3>
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Blader </h3>
                                                             <table class="table">
                                                                 <tr>
                                                                     <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoBlader"> </span></label></th>
@@ -2719,9 +2722,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th></th>
                                                                     <th></th>
                                                                     <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedBlader"> </span> -->
-                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span > Fatima Rasheed </span>
-                                                                      
-                                                                </th>
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed </span>
+
+                                                                    </th>
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
@@ -2729,7 +2732,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                                     <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
                                                                         <!-- <span id="testApprovedBlader"> </span> -->
-                                                                        <span >Zain Abbas </span>
+                                                                        <span>Zain Abbas </span>
                                                                     </th>
                                                                 </tr>
                                                             </table>
@@ -2751,7 +2754,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                             </table>
 
                                                         </div>
-
+                                                        <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2768,9 +2771,9 @@ if (!$this->session->has_userdata('user_id')) {
 
                                 <!-- End Model Blader HTML -->
 
-  <!-- Model MS Materail HTML -->
+                                <!-- Model MS Materail HTML -->
 
-  <div class="modal fade bd-example-modal-lg" id="exampleModalMSMaterial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalMSMaterial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-xl" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
@@ -2783,188 +2786,117 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <div class="card" id="printCardMSMaterialL">
                                                     <div class="card-body">
 
-                                                    <div class="row">
-        <div class="col-md-9">
-            <table class="table">
-                <tr>
-                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
-    
-                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
-                    <th></th>
-                    <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Blader</th> -->
-                    <th> </th>
-                </tr>
-            </table>
-            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;" > Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Master </h3>
-            <table class="table">
-                <tr>
-                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testMSMaterial">  </span></label></th>
-                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMSMaterial"> </span></label></th>
-                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateMSMaterial"> </span></label></th>
-                </tr>
-                <tr>
-                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameMSMaterial"> </span></label></th>
-                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Po#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="poMSMaterial"> </span></label></th>
-                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="MaterialNameMSMaterial"> </span></label></th>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <table class="table">
+                                                                    <tr>
 
-                </tr>
-    
-                <tr>
-                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Thickness:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="thicknessMSMaterial"> </span></label></th>
-                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold">  Hardness:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="hardnessMSMaterial"> </span></label></th>
-                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Visual Result:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="visualResultMSMaterialr"> </span></label></th>
 
-                </tr>
+                                                                        <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" style="visibility:hidden" /></th>
+                                                                        <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
+                                                                        <th></th>
+                                                                        <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Blader</th> -->
+                                                                        <th> </th>
+                                                                    </tr>
+                                                                </table>
+                                                                <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of MS Material </h3>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testMSMaterial"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMSMaterial"> </span></label></th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Po#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="poMSMaterial"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Ref.:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="MaterialRefMSMaterial"> </span></label></th>
 
-    
-    
-            </table>
-            <div class="col-md-2"></div>
-            <div class="col-md-10 mt-3">
-                <table class="table table-bordered " >
-                    <thead>
-                        <tr class="border">
-                            <th class="border border-dark" style="text-align: center;font-size:large;">Test</th>
-                            <th class="border border-dark" style="text-align: center;font-size:large;">Requirement</th>
-                            <th class="border border-dark" colspan="6" style="text-align: center;font-size:large;">Results
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody id="DetailsTestMSMaterial">
-    
-                        <tr>
-                            <th class="border" rowspan="2">
-                                Upper Film Declamination Strength
-                                
-                            </th>
-                            
-                            <td class="border" colspan="3">
-                                <th class="border">1
-                                    <th class="border">2</th>
-                                    <th class="border">3</th>
-                                </th>
-                            </td>
-                        </tr>
+                                                                    </tr>
 
-                        
-                        
-                        
-    
-                    </tbody>
-                </table>
-            </div>
-    
-            <div class="col-md-2"></div>
-    
-            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="visualResultMSMaterialr">  </span></label></div>
-    
-            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="Conclusion"> </span></label></div>
-    
-    
-            <table class="table">
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th> <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                        <span>Bilal Tahir </span>
-                    </th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th> <span style="font-size: medium;font-weight:bold"> </span><br>
-                        <span id="testPerformedMSMaterial"> </span>
-                    </th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <!-- <th><span style="font-size: medium;font-weight:bold"></span><br><span id="testReviewedMSMaterial"> </span> -->
-                    <th><span style="font-size: medium;font-weight:bold"></span><br><span > Fatima Rasheed</span>
-                    
-                    </th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-    
-    
-                    <th> <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                        <span id="testApprovedMSMaterial"> Sohail Ghouri </span>
-                    </th>
-                </tr>
-            </table>
-            <table class="table">
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>
-                        <h5 style="font-weight:bold;color:black">Note:</h5>
-                        <span id="testApprovedMSMaterial"> N.T Not Tested </span>
-    
-                    </th>
-                </tr>
-            </table>
+
+                                                                </table>
+                                                                <div class="col-md-2"></div>
+                                                                <div class="col-md-10 mt-3">
+                                                                    <table class="table table-bordered ">
+                                                                        <thead>
+                                                                            <tr class="border">
+                                                                                <th class="border border-dark" style="text-align: center;font-size:large;">Test</th>
+                                                                                <th class="border border-dark" style="text-align: center;font-size:large;">Method</th>
+                                                                                <th class="border border-dark" style="text-align: center;font-size:large;">Unit</th>
+                                                                                <th class="border border-dark" style="text-align: center;font-size:large;">Requirement</th>
+                                                                                <th class="border border-dark" style="text-align: center;font-size:large;">Result</th>
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="DetailsTestMSMaterial">
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                                <div class="col-md-2"></div>
+
+                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="visualResultMSMaterialr"> </span></label></div>
+
+                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="Conclusion"> </span></label></div>
+
+
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+                                                                            <span id="testPerformedMSMaterial"> </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th><span style="font-size: medium;font-weight:bold"><u>Test Reviewed By</u> </span><br>
+                                                                            <span>Fatima Rasheed </span>
+
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <!-- <th><span style="font-size: medium;font-weight:bold"></span><br><span id="testReviewedMSMaterial"> </span> -->
+                                                                        <th><span style="font-size: medium;font-weight:bold"><u>Test Approved By</u> </span><br>
+                                                                            <span>Zain Abbas </span>
+                                                                        <th>
+
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+
+
+                                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+                                                                            <span id="testApprovedMSMaterial"> Sohail Ghouri </span>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+
+                                                                    </tr>
+                                                                </table>
 
 
 
-            
-        </div>
 
-    
-    <div class="col-md-3">
-    <div class="row mb-5 mt-5">
-                <div class="col-md-9 p-1">
-                    <div class="row mt-5 d-flex justify-content-center text-center">
-                        <div class="col-md-6 border border-dark p-3">
-                            <span> <b>Hardness:</b></span>
-        
-                        </div>
-                    </div>
-                    
-                    <div class="row d-flex justify-content-center text-center">
-                        <div class="col-md-6 border border-dark p-2">
-                            <span > <b>46.4Akser C</b></span>
-                        </div>
-                    </div>
-                    <div class="row  d-flex justify-content-center text-center">
-                        <div class="col-md-6 border border-dark p-2">
-                            <span> <b>Resillance</b></span>
-                        </div>
-                    </div>
-        
-                    <div class="row  d-flex justify-content-center text-center">
-                        <div class="col-md-6 border border-dark p-2">
-                            <span> <b>48.1%</b></span>
-                        </div>
-                    </div>
-                    <div class="row  d-flex justify-content-center text-center">
-                        <div class="col-md-6 border border-dark p-2">
-                            <span> <b>Compression</b></span>
-                        </div>
-                    </div>
-        
-                    <div class="row  d-flex justify-content-center text-center">
-                        <div class="col-md-6 border border-dark p-2">
-                            <span> <b>91.3%</b></span>
-                        </div>
-                    </div>
-                    <div class="row  d-flex justify-content-center text-center">
-                        <div class="col-md-6 border border-dark p-2">
-                            <span> <b>Migration on PVC film</b></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-    </div>
+                                                            </div>
 
 
-    </div>
 
+
+
+                                                        </div>
+                                                        <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
                                                     </div>
                                                 </div>
                                             </div>
@@ -3189,7 +3121,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </td>
                                                                 </tr>
                                                             </table>
-                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;" > Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> CSM Test Report of Football </h3>
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> CSM Test Report of Football </h3>
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
            <div class="col-md-3"></div>
            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
@@ -3260,34 +3192,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                             </div>
 
 
-                                                            <div class="col-md-10 mt-3">
-                                                                <table class="table table-bordered" style="border:2px solid black">
-                                                                    <thead>
-                                                                        <tr style="border:2px solid black">
-                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Weight</th>
-                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Circumference Min</th>
-                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Circumference Max</th>
-                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Deviation</th>
-                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Rebound Test</th>
-                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Remarks</th>
-                                                                            <!-- <table style="width: 100%;">
-                                   <thead >
-                                       <tr >
-                                        <th>1</th>
-                                        <th>2</th>
-                                        <th>3</th>
-                                       </tr>
-                                   </thead> 
-                                </table> -->
 
-
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody id="DetailsTestFGT">
-
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
 
 
                                                             <div class="col-md-2"></div>
@@ -3334,9 +3239,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th></th>
                                                                     <th></th>
                                                                     <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFGT"> </span> -->
-                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span > Fatima Rasheed</span>
-                                                                       
-                                                                </th>
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed</span>
+
+                                                                    </th>
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th></th>
@@ -3344,7 +3249,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                                     <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
                                                                         <!-- <span id="testApprovedFGT"> </span> -->
-                                                                        <span > Zain Abbas</span>
+                                                                        <span> Zain Abbas</span>
                                                                     </th>
                                                                 </tr>
                                                             </table>
@@ -3377,7 +3282,7 @@ if (!$this->session->has_userdata('user_id')) {
             Sohail Ghouri
             </div> -->
                                                         </div>
-
+                                                        <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
                                                     </div>
                                                 </div>
                                             </div>
@@ -3945,11 +3850,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <td> <?php
                                                                     if ($ApprovedStatus == '1') {
                                                                     ?>
-                                                                    <?php echo $Approvalname; ?>
+                                                                    Zain Abbas
                                                                 <?php
                                                                     } else {
                                                                 ?>
-                                                                    <span class="badge badge-warning p-1">Pending</span>
+                                                                    <span class="badge badge-warning p-1">Zain Abbas</span>
                                                                 <?php
                                                                     }
                                                                 ?>
@@ -4749,6 +4654,7 @@ ${reviewStatus == '1' ?
                                         testTypeGet = data[0].ItemType;
 
                                         if (data[0].ItemType.trim() == 'Carton') {
+                                            $("#cortonLogoHide").css("display", "none");
                                             $("#testNo").text(data[0].TestNO);
                                             $("#dateTest").text(data[0].Date);
                                             $("#pono").text(data[0].PO);
@@ -4791,6 +4697,8 @@ ${reviewStatus == '1' ?
                                                 });
                                             $('#exampleModal').modal('toggle');
                                         } else if (data[0].ItemType.trim() == 'Foam') {
+
+                                            $("#FoamLogoHide").css("display", "none");
                                             $("#testNoFoam").text(data[0].TestNO);
                                             $("#dateTestFoam").text(data[0].Date);
                                             $("#ponoFoam").text(data[0].PO);
@@ -4828,6 +4736,7 @@ ${reviewStatus == '1' ?
                                                     $("#DetailsTestFoam").html(html);
 
                                                 });
+
                                             $('#exampleModalFoam').modal('toggle');
                                         } else if (data[0].ItemType.trim() == 'Fabric') {
                                             $("#testNoFabric").text(data[0].TestNO);
@@ -4859,7 +4768,7 @@ ${reviewStatus == '1' ?
                                                     html = ''
                                                     data.forEach(element => {
                                                         html += `<tr>
-                            <td style="border:2px solid black">${element.Test}</td>
+                            <td style="border:2px solid black">${element.Test=="TEAR STRENGTH      A" || element.Test=="TEAR STRENGTH      B" || element.Test=="TENSILE STRENGTH      A" || element.Test=="TENSILE STRENGTH      B" || element.Test=="BREAKING ELONGATION      A" || element.Test=="BREAKING ELONGATION      B"?`${element.Test}    <--`:`${element.Test}`}</td>
                             <td style="border:2px solid black">${element.result}</td>
                             <td style="border:2px solid black">${element.Uncertainty}</td>
                             <td style="border:2px solid black">
@@ -4900,9 +4809,12 @@ ${reviewStatus == '1' ?
                                                 function(data, status) {
 
                                                     html = ''
+                                                    TensileWarp = "Tensile Strength Warp"
+                                                    TensileWeft = "Tensile Strength Weft"
+
                                                     data.forEach(element => {
                                                         html += `<tr>
-                            <td style="border:2px solid black">${element.Test}</td>
+                            <td style="border:2px solid black">${element.Test=="Tensile Strength Warp" || element.Test=="Tensile Strength Weft" || element.Test=="Breaking Elongation Warp" || element.Test=="Breaking Elongation Weft" || element.Test=="Breaking Elongation Weft" || element.Test=="Tear Strength Warp" || element.Test=="Tear Strength Weft"?`${element.Test}    <--`:`${element.Test}`}</td>
                             <td style="border:2px solid black">${element.result}</td>
                             <td style="border:2px solid black">${element.Uncertainty}</td>
                             <td style="border:2px solid black">
@@ -5071,17 +4983,14 @@ ${reviewStatus == '1' ?
 
 
 
-                                        
-                                                
+
+
 
 
 
                                             $('#exampleModalFGT').modal('toggle');
 
-                                        } 
-                                        
-                                        
-                                        else if (data[0].ItemType.trim() == 'MS Thread') {
+                                        } else if (data[0].ItemType.trim() == 'MS Thread') {
 
                                             $("#testNoMSThread").text(data[0].TestNO);
                                             $("#dateTestMSThread").text(data[0].Date);
@@ -5204,6 +5113,7 @@ ${reviewStatus == '1' ?
                                                 });
                                             $('#exampleModalStandard').modal('toggle');
                                         } else if (data[0].ItemType.trim() == 'Foam') {
+
                                             $("#testNoFoamStandard").text(data[0].TestNO);
                                             $("#dateTestFoamStandard").text(data[0].Date);
                                             $("#ponoFoamStandard").text(data[0].PO);
@@ -6264,6 +6174,7 @@ ${reviewStatus == '1' ?
                                                 });
                                             $('#exampleModalComparison').modal('toggle');
                                         } else if (data[0].ItemType.trim() == 'Foam') {
+                                            $("#FoamLogoHide").css("display", "none");
                                             $("#testNoFoam").text(data[0].TestNO);
                                             $("#dateTestFoam").text(data[0].Date);
                                             $("#ponoFoam").text(data[0].PO);
@@ -6436,9 +6347,12 @@ ${reviewStatus == '1' ?
                                                 function(data, status) {
 
                                                     html = ''
+                                                    TensileWarp = "Tensile Strength Warp"
+                                                    TensileWeft = "Tensile Strength Weft"
+
                                                     data.forEach(element => {
                                                         html += `<tr>
-                    <td style="border:2px solid black">${element.Test}</td>
+                            <td style="border:2px solid black">${element.Test=="Tensile Strength Warp" || element.Test=="Tensile Strength Weft" || element.Test=="Breaking Elongation Warp" || element.Test=="Breaking Elongation Weft" || element.Test=="Breaking Elongation Weft" || element.Test=="Tear Strength Warp" || element.Test=="Tear Strength Weft"?`${element.Test}    <--`:`${element.Test}`}</td>
                     <td style="border:2px solid black">${element.result}</td>
                     <td style="border:2px solid black">${element.Uncertainty}</td>
                     <td style="border:2px solid black">
@@ -6603,52 +6517,51 @@ ${reviewStatus == '1' ?
                                                     $("#DetailsTestFGT").html(html);
 
                                                 });
-                                       
+
 
 
                                             $('#exampleModalMSThread').modal('toggle');
-                                        }
-                                        else if (data[0].ItemType.trim() == 'MS Thread') {
+                                        } else if (data[0].ItemType.trim() == 'MS Thread') {
 
-$("#testNoMSThread").text(data[0].TestNO);
-$("#dateTestMSThread").text(data[0].Date);
-$("#ponoMSThread").text(data[0].PO);
-$("#receiveDateMSThread").text(data[0].Receiving_Date);
-$("#MaterialNameMSThread").text(data[0].material);
-$("#supplierNameMSThread").text(data[0].Supplier_Name);
-$("#supplierRefMSThread").text(data[0].Supplier_Ref);
-$("#testPerformedMSThread").text(data[0].performedBy);
-data[0].Approvalname ? $("#testApprovedMSThread").text(data[0].Approvalname) : $("#testApprovedMSThread").text("Pending");
-//  $("#Incharge").text(data[0].Approvalname);
-if (data[0].image != null && data[0].image != "") {
-    $("#threadMSImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
-} else {
-    $("#threadMSImage").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-}
-data[0].reviewName ? $("#testReviewedMSThread").text(data[0].reviewName) : $("#testReviewedMSThread").text("Pending");
-$("#ConclusionMSThread").text(data[0].Result);
-$("#statusMSThread").text(data[0].Result);
-$.post(url2, {
-        'TID': TID
-    },
-    function(data, status) {
+                                            $("#testNoMSThread").text(data[0].TestNO);
+                                            $("#dateTestMSThread").text(data[0].Date);
+                                            $("#ponoMSThread").text(data[0].PO);
+                                            $("#receiveDateMSThread").text(data[0].Receiving_Date);
+                                            $("#MaterialNameMSThread").text(data[0].material);
+                                            $("#supplierNameMSThread").text(data[0].Supplier_Name);
+                                            $("#supplierRefMSThread").text(data[0].Supplier_Ref);
+                                            $("#testPerformedMSThread").text(data[0].performedBy);
+                                            data[0].Approvalname ? $("#testApprovedMSThread").text(data[0].Approvalname) : $("#testApprovedMSThread").text("Pending");
+                                            //  $("#Incharge").text(data[0].Approvalname);
+                                            if (data[0].image != null && data[0].image != "") {
+                                                $("#threadMSImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
+                                            } else {
+                                                $("#threadMSImage").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                            }
+                                            data[0].reviewName ? $("#testReviewedMSThread").text(data[0].reviewName) : $("#testReviewedMSThread").text("Pending");
+                                            $("#ConclusionMSThread").text(data[0].Result);
+                                            $("#statusMSThread").text(data[0].Result);
+                                            $.post(url2, {
+                                                    'TID': TID
+                                                },
+                                                function(data, status) {
 
-        html = ''
-        data.forEach(element => {
-            html += `<tr>
+                                                    html = ''
+                                                    data.forEach(element => {
+                                                        html += `<tr>
 <td style="border:2px solid black">${element.Test}</td>
 <td style="border:2px solid black">${element.Method}</td>
 <td style="border:2px solid black">${element.Unit}</td>
 <td style="border:2px solid black">${element.Requirments}</td>
 <td style="border:2px solid black">${element.result}</td>
 </tr>`
-        });
+                                                    });
 
-        $("#DetailsTestMSThread").html(html);
+                                                    $("#DetailsTestMSThread").html(html);
 
-    });
-$('#exampleModalMSThread').modal('toggle');
-}
+                                                });
+                                            $('#exampleModalMSThread').modal('toggle');
+                                        }
 
 
                                     });
@@ -6778,6 +6691,7 @@ $('#exampleModalMSThread').modal('toggle');
                                                 });
                                             $('#exampleModalComparison').modal('toggle');
                                         } else if (data[0].ItemType.trim() == 'Foam') {
+                                            $("#FoamLogoHide").css("display", "none");
                                             $("#testNoFoam").text(data[0].TestNO);
                                             $("#dateTestFoam").text(data[0].Date);
                                             $("#ponoFoam").text(data[0].PO);
@@ -6950,9 +6864,12 @@ $('#exampleModalMSThread').modal('toggle');
                                                 function(data, status) {
 
                                                     html = ''
+                                                    TensileWarp = "Tensile Strength Warp"
+                                                    TensileWeft = "Tensile Strength Weft"
+
                                                     data.forEach(element => {
                                                         html += `<tr>
-                   <td style="border:2px solid black">${element.Test}</td>
+                            <td style="border:2px solid black">${element.Test=="Tensile Strength Warp" || element.Test=="Tensile Strength Weft" || element.Test=="Breaking Elongation Warp" || element.Test=="Breaking Elongation Weft" || element.Test=="Breaking Elongation Weft" || element.Test=="Tear Strength Warp" || element.Test=="Tear Strength Weft"?`${element.Test}    <--`:`${element.Test}`}</td>
                    <td style="border:2px solid black">${element.result}</td>
                    <td style="border:2px solid black">${element.Uncertainty}</td>
                    <td style="border:2px solid black">
@@ -7183,6 +7100,7 @@ $('#exampleModalMSThread').modal('toggle');
                                         testTypeGet = data[0].ItemType;
 
                                         if (data[0].ItemType.trim() == 'Carton') {
+                                            $("#cortonLogoHide").css("display", "none");
                                             $("#testNo").text(data[0].TestNO);
                                             $("#dateTest").text(data[0].Date);
                                             $("#pono").text(data[0].PO);
@@ -7224,6 +7142,8 @@ $('#exampleModalMSThread').modal('toggle');
                                                 });
                                             $('#exampleModal').modal('toggle');
                                         } else if (data[0].ItemType.trim() == 'Foam') {
+                                            // $("#FoamLogoHide").css("visibility", "hidden");
+                                            $("#FoamLogoHide").css("display", "none");
                                             $("#testNoFoam").text(data[0].TestNO);
                                             $("#dateTestFoam").text(data[0].Date);
                                             $("#ponoFoam").text(data[0].PO);
@@ -7263,6 +7183,7 @@ $('#exampleModalMSThread').modal('toggle');
                                                 });
                                             $('#exampleModalFoam').modal('toggle');
                                         } else if (data[0].ItemType.trim() == 'Fabric') {
+                                          
                                             $("#testNoFabric").text(data[0].TestNO);
                                             $("#dateTestFabric").text(data[0].Date);
                                             $("#ponoFabric").text(data[0].PO);
@@ -7291,8 +7212,9 @@ $('#exampleModalMSThread').modal('toggle');
 
                                                     html = ''
                                                     data.forEach(element => {
+                                                        console.log("element.Test",element.Test.trim())
                                                         html += `<tr>
-                            <td style="border:2px solid black">${element.Test}</td>
+                            <td style="border:2px solid black">${element.Test=="TEAR STRENGTH      A" || element.Test=="TEAR STRENGTH      B" || element.Test=="TENSILE STRENGTH      A" || element.Test=="TENSILE STRENGTH      B" || element.Test=="BREAKING ELONGATION      A" || element.Test=="BREAKING ELONGATION      B"?`${element.Test}    <--`:`${element.Test}`}</td>
                             <td style="border:2px solid black">${element.result}</td>
                             <td style="border:2px solid black">${element.Uncertainty}</td>
                             <td style="border:2px solid black">
@@ -7306,6 +7228,7 @@ $('#exampleModalMSThread').modal('toggle');
                                                 });
                                             $('#exampleModalFabric').modal('toggle');
                                         } else if (data[0].ItemType.trim() == 'Material') {
+                                            // alert("Called")
                                             $("#testNoMaterial").text(data[0].TestNO);
                                             $("#dateTestMaterial").text(data[0].Date);
                                             $("#ponoMaterial").text(data[0].PO);
@@ -7333,9 +7256,11 @@ $('#exampleModalMSThread').modal('toggle');
                                                 function(data, status) {
 
                                                     html = ''
+
+
                                                     data.forEach(element => {
                                                         html += `<tr>
-                            <td style="border:2px solid black">${element.Test}</td>
+                            <td style="border:2px solid black">${element.Test=="Tensile Strength Warp" || element.Test=="Tensile Strength Weft" || element.Test=="Breaking Elongation Warp" || element.Test=="Breaking Elongation Weft" || element.Test=="Breaking Elongation Weft" || element.Test=="Tear Strength Warp" || element.Test=="Tear Strength Weft"?`${element.Test}    <--`:`${element.Test}`}</td>
                             <td style="border:2px solid black">${element.result}</td>
                             <td style="border:2px solid black">${element.Uncertainty}</td>
                             <td style="border:2px solid black">
@@ -7481,62 +7406,60 @@ $('#exampleModalMSThread').modal('toggle');
                                                     $("#DetailsTestFGT").html(html);
 
                                                 });
-                                                
+
                                             $('#exampleModalFGT').modal('toggle');
 
-                                        } 
-                                        else if (data[0].ItemType.trim() == 'MS Material') {
+                                        } else if (data[0].ItemType.trim() == 'MS Material') {
 
-$("#testMSMaterial").text(data[0].TestNO);
-$("#dateTestMSMaterial").text(data[0].Date);
-$("#ponoMSMaterial").text(data[0].PO);
-$("#receiveDateMSMaterial").text(data[0].Receiving_Date);
-$("#MaterialNameMSMaterial").text(data[0].material);
-$("#supplierNameMSMaterial").text(data[0].Supplier_Name);
-$("#poMSMaterial").text(data[0].PO);
-$("#thicknessMSMaterial").text(data[0].Thickness);
-$("#hardnessMSMaterial").text(data[0].Hardness);
-$("#MSMaterial").text(data[0].Thickness);
-$("#visualResultMSMaterialr").text(data[0].Result);
+                                            $("#testMSMaterial").text(data[0].TestNO);
+                                            $("#dateTestMSMaterial").text(data[0].Date);
+                                            $("#ponoMSMaterial").text(data[0].PO);
+                                            $("#receiveDateMSMaterial").text(data[0].Receiving_Date);
+                                            $("#MaterialNameMSMaterial").text(data[0].material);
+                                            $("#supplierNameMSMaterial").text(data[0].Supplier_Name);
+                                            $("#poMSMaterial").text(data[0].PO);
+                                            $("#thicknessMSMaterial").text(data[0].Thickness);
+                                            $("#hardnessMSMaterial").text(data[0].Hardness);
+                                            $("#MSMaterial").text(data[0].Thickness);
+                                            $("#visualResultMSMaterialr").text(data[0].Result);
+                                            $("#MaterialRefMSMaterial").text(data[0].MaterialReference)
 
+                                            $("#testPerformedMSMaterial").text(data[0].performedBy);
+                                            data[0].Approvalname ? $("#testApprovedMSMaterial").text(data[0].Approvalname) : $("#testApprovedMSMaterial").text("Pending");
+                                            //  $("#Incharge").text(data[0].Approvalname);
+                                            if (data[0].image != null && data[0].image != "") {
+                                                $("#threadMSImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
+                                            } else {
+                                                $("#threadMSImage").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                            }
+                                            data[0].reviewName ? $("#testReviewedMSMaterial").text(data[0].reviewName) : $("#testReviewedMSMaterial").text("Pending");
+                                            $("#ConclusionMSMaterial").text(data[0].Result);
+                                            $("#statusMSMaterial").text(data[0].Result);
+                                            $.post(url2, {
+                                                    'TID': TID
+                                                },
+                                                function(data, status) {
 
-$("#testPerformedMSMaterial").text(data[0].performedBy);
-data[0].Approvalname ? $("#testApprovedMSMaterial").text(data[0].Approvalname) : $("#testApprovedMSMaterial").text("Pending");
-//  $("#Incharge").text(data[0].Approvalname);
-if (data[0].image != null && data[0].image != "") {
-    $("#threadMSImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
-} else {
-    $("#threadMSImage").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-}
-data[0].reviewName ? $("#testReviewedMSMaterial").text(data[0].reviewName) : $("#testReviewedMSMaterial").text("Pending");
-$("#ConclusionMSMaterial").text(data[0].Result);
-$("#statusMSMaterial").text(data[0].Result);
-$.post(url2, {
-        'TID': TID
-    },
-    function(data, status) {
-
-        html = ''
-        data.forEach(element => {
-            html += `<tr>
+                                                    html = ''
+                                                    data.forEach(element => {
+                                                        html += `<tr>
 <td style="border:2px solid black">${element.Test}</td>
 <td style="border:2px solid black">${element.Method}</td>
 <td style="border:2px solid black">${element.Unit}</td>
 <td style="border:2px solid black">${element.Requirments}</td>
 <td style="border:2px solid black">${element.result}</td>
 </tr>`
-        });
-
-        
-
-    });
+                                                    });
+                                                    $("#DetailsTestMSMaterial").html(html);
 
 
-$('#exampleModalMSMaterial').modal('toggle');
+                                                });
 
 
-}
-                                        else if (data[0].ItemType.trim() == 'MS Thread') {
+                                            $('#exampleModalMSMaterial').modal('toggle');
+
+
+                                        } else if (data[0].ItemType.trim() == 'MS Thread') {
 
                                             $("#testNoMSThread").text(data[0].TestNO);
                                             $("#dateTestMSThread").text(data[0].Date);
@@ -9346,7 +9269,7 @@ $('#exampleModalMSMaterial').modal('toggle');
                                 if (element.TestNumber != undefined || element.PONo != undefined) {
                                     testNumber = element.TestNumber;
                                     PONumber = element.PONo;
-                                    let arrayHead = [element.TestNumber, element.Date, element.MaterialReference, element.PONo,element.Status, element.Remarks, ']'];
+                                    let arrayHead = [element.TestNumber, element.Date, element.MaterialReference, element.PONo, element.Status, element.Remarks, ']'];
                                     let arrayBody = [element.TestNumber, element.PONo, element.TEST, element.METHOD, element.UNIT, element.Requirement, element.RESULTS, ']'];
                                     HeaderArray.push(arrayHead);
                                     ChildArray.push(arrayBody)
@@ -9655,13 +9578,13 @@ $('#exampleModalMSMaterial').modal('toggle');
                     "css": css
                 }, function(data) {
                     console.log(data);
-                   
+
                     materialType = data[0]['MaterialType'];
                     Type = data[0]['Type'];
-                     //alert(Type);
+                    //alert(Type);
                     $("#sheetNo").val(2);
                     $("#materialType").val(materialType);
-                    
+
                     if (materialType == 'Carton Test') {
                         testType = 1;
                     } else if (materialType == 'Foam') {

@@ -969,7 +969,7 @@ final_FIFA_authorization_validity_Date=yy_FIFA_authorization_validity_Date+'-'+m
                                         <td >${element.PrintingColors}</td>
                                           <td>${element.FactoryCode}</td>
                                          <td >${element.PanelShape}</td>
-                                         <td contenteditable="true" id="Yield">0.${element.Yield}</td>
+                                         <td contenteditable="true" id="Yield">0${element.Yield}</td>
                                           <td contenteditable="true" id="Article_Count"> ${element.Article_Count}</td>
                                           <td contenteditable="true" id="BF_Date" > <input type="date" value="${final_BF_Datee}"/><i style="color:white;">${final_BF_Datee}</i></td>
                                           <td contenteditable="true" id="CR1_In_House_Date"><input type="date" value="${final_CR1_In_House_Datee}"/> <i style="color:white;">${final_CR1_In_House_Datee}</i></td>
