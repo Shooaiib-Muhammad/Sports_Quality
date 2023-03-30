@@ -16,7 +16,7 @@ class Efficiency_model extends CI_Model
                 $HRDB = $this->load->database('HRMS', TRUE);
                 $query = $HRDB->query("SELECT DeptID, DeptName, Status, HODName
   FROM            dbo.tbl_HRM_Dept
-  WHERE        (Status = 1)");
+  WHERE        (Status = 1) and (EffStatus=1)");
                 return  $query->result_array();
         }
 
@@ -25,7 +25,7 @@ class Efficiency_model extends CI_Model
                 $HRDB = $this->load->database('HRMS', TRUE);
                 $query = $HRDB->query("SELECT        DeptID, SectionName, SectionCode, Status, SectionID
   FROM            dbo.tbl_HRM_Section
-  WHERE        (Status = 1) And (DeptID=$id)
+  WHERE        (Status = 1) And (DeptID=$id)  and (EffStatus=1)
   ");
                 return  $query->result_array();
         }
@@ -49,12 +49,11 @@ class Efficiency_model extends CI_Model
                 $Day = date('d');
                 $CurrentDate = $Year . '-' . $Month . '-' . $Day;
                 $HRDB = $this->load->database('HRMS', TRUE);
-                $query = $HRDB->query("SELECT        AttDate, RealTime, EmpCount, EmployeeType, SectionName, DeptName
-                FROM            dbo.View_Emp_ATT_REALTIME_CALC_Final
-        WHERE        (AttDate = CONVERT(DATETIME, '$CurrentDate 00:00:00', 102)) AND (DeptID = $depart) AND (SectionID = $sect) AND (EmployeeType = 'Direct')
-        
-        ");
-                return  $query->result_array();
+
+                $query = $HRDB->query("SELECT       AttDate
+FROM            dbo.view_Att_Sheet_Sizing
+WHERE        (AttDate = CONVERT(DATETIME, '$CurrentDate 00:00:00', 102))");
+                return  $query->num_rows();
         }
         public function getEmployees($section, $depart, $type)
         {
@@ -147,23 +146,73 @@ ORDER BY HID");
                 return  $query->result_array();
         }
 
-        Public function getCuttingSheetSizingDateRangeData($startDate,$endDate){
-            
-                $query = $this->db->query("SELECT        MAX(Counter) AS Counter, Date
-                FROM            dbo.view_Sheet_Sizing
-                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
-                GROUP BY Date
-    ");
+        Public function getCuttingSheetSizingDateRangeData($startDate,$endDate,$shift){
+            if($shift=='All'){
+                $query = $this->db->query(" SELECT        Date, SUM(Balls * Counter) AS Counter
+                FROM            dbo.View_Sheet_Sizing_All
+                  WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY Date  ");
+            }
+            else if($shift == 'Day'){
+                $query = $this->db->query(" SELECT        Date, SUM(Balls * Counter) AS Counter, Shift
+                FROM            dbo.View_Sheet_Sizing_All
+                  WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY Date , Shift
+                HAVING        (Shift = 'Day Shift')
+                 ");
+        }
+        else{
+                $query = $this->db->query(" SELECT        Date, SUM(Balls * Counter) AS Counter, Shift
+                FROM            dbo.View_Sheet_Sizing_All
+                  WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY Date, Shift
+                HAVING        (Shift = 'Night Shift')
+                  ");
+        }
                 return  $query->result_array();
      }
+     Public function PressWiseData($startDate,$endDate){
+            
+        $query = $this->db->query("SELECT        SUM(Counter) AS Counter, SUM(TotalBalls) AS Totalballs, SUM(TotalSheets) AS TotalSheets, MachineName
+        FROM            dbo.view_PC_SheetSizing_Final
+        WHERE        (Date = '$startDate')
+        GROUP BY MachineName");
 
-     Public function getCuttingSheetSizingDateRangeDataMachineWise($startDate,$endDate){
-        $query = $this->db->query("SELECT        MAX(Counter) AS Counter, Date, MachineName
-        FROM            dbo.view_Sheet_Sizing
-        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
-        GROUP BY Date, MachineName
-        ORDER BY Date
-");
+
+        return  $query->result_array();
+}
+
+
+     Public function getCuttingSheetSizingDateRangeDataMachineWise($startDate,$endDate,$shift){
+        if($shift=='All'){
+                $query = $this->db->query("SELECT       Date, MachineName,   Balls * Counter AS Counter
+                FROM            dbo.View_Sheet_Sizing_All
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY Date, MachineName,Balls * Counter
+                ORDER BY Date
+        ");
+            }
+            else if($shift == 'Day'){
+                $query = $this->db->query("SELECT       Date, MachineName,   Balls * Counter AS Counter, Shift
+                FROM            dbo.View_Sheet_Sizing_All
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY Date, MachineName,Balls * Counter, Shift
+                HAVING        (Shift = 'Day Shift')
+                ORDER BY Date
+               
+        ");
+        }
+        else{
+                $query = $this->db->query("SELECT       Date, MachineName,   Balls * Counter AS Counter, Shift
+                FROM            dbo.View_Sheet_Sizing_All
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY Date, MachineName,Balls * Counter, Shift
+                HAVING        (Shift = 'Night Shift')
+                ORDER BY Date
+             
+        ");
+        }
+
         return  $query->result_array();
 }
 
@@ -215,35 +264,70 @@ return  $query->result_array();
 
 Public function getLaminationDateRangeData($startDate,$endDate){
             
-        $query = $this->db->query("SELECT        SUM(Counter) AS Reading, CONVERT(varchar, Date, 103) AS Date
-        FROM            dbo.Table_16         
-        WHERE        (Date BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
-        GROUP BY CONVERT(varchar, Date, 103)
-        ORDER BY Date");
-// $query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.Table_16.Date
-// FROM            dbo.view_lamination_Process INNER JOIN
-//                          dbo.tbl_PC_AMB_Hours ON dbo.view_lamination_Process.HID = dbo.tbl_PC_AMB_Hours.Hour
-// WHERE        (dbo.view_lamination_Process.EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
-// GROUP BY dbo.view_lamination_Process.Date
-// ORDER BY Date
+        // $query = $this->db->query("SELECT        SUM(Counter) AS Reading, CONVERT(varchar, Date, 103) AS Date
+        // FROM            dbo.Table_16         
+        // WHERE        (Date BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+        // GROUP BY CONVERT(varchar, Date, 103)
+        // ORDER BY Date");
+$query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.view_lamination_Process.Date
+FROM            dbo.view_lamination_Process INNER JOIN
+                         dbo.tbl_PC_AMB_Hours ON dbo.view_lamination_Process.HID = dbo.tbl_PC_AMB_Hours.Hour
+WHERE        (dbo.view_lamination_Process.EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+GROUP BY dbo.view_lamination_Process.Date
+ORDER BY Date
 
-// ");
+");
         return  $query->result_array();
 }
 
 Public function getLaminationDateRangeDataMachineWise($startDate,$endDate){
-// $query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.view_lamination_Process.Date, dbo.view_lamination_Process.Name
-// FROM            dbo.view_lamination_Process INNER JOIN
-//                          dbo.tbl_PC_AMB_Hours ON dbo.view_lamination_Process.HID = dbo.tbl_PC_AMB_Hours.Hour
-// WHERE        (dbo.view_lamination_Process.EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
-// GROUP BY dbo.view_lamination_Process.Date, dbo.view_lamination_Process.Name
+$query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.view_lamination_Process.Date, dbo.view_lamination_Process.Name
+FROM            dbo.view_lamination_Process INNER JOIN
+                         dbo.tbl_PC_AMB_Hours ON dbo.view_lamination_Process.HID = dbo.tbl_PC_AMB_Hours.Hour
+WHERE        (dbo.view_lamination_Process.EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+GROUP BY dbo.view_lamination_Process.Date, dbo.view_lamination_Process.Name
 
-// ORDER BY Date");
- $query = $this->db->query("SELECT        SUM(Counter) AS Reading, CONVERT(varchar, Date, 103) AS Date, Name
-                FROM            dbo.Table_16         
-                WHERE        (Date BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
-                GROUP BY CONVERT(varchar, Date, 103), Name
-                ORDER BY Date");
+ORDER BY Date");
+//  $query = $this->db->query("SELECT        SUM(Counter) AS Reading, CONVERT(varchar, Date, 103) AS Date, Name
+//                 FROM            dbo.Table_16         
+//                 WHERE        (Date BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+//                 GROUP BY CONVERT(varchar, Date, 103), Name
+//                 ORDER BY Date");
+
+
+return  $query->result_array();
+}
+
+
+Public function getInflationDateRangeData($startDate,$endDate){
+            
+        // $query = $this->db->query("SELECT        SUM(Counter) AS Reading, CONVERT(varchar, Date, 103) AS Date
+        // FROM            dbo.Table_16         
+        // WHERE        (Date BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+        // GROUP BY CONVERT(varchar, Date, 103)
+        // ORDER BY Date");
+$query = $this->db->query("SELECT        EntryDate, SUM(Output) AS Output
+FROM            dbo.view_LFB_machine_wise
+WHERE        (EntryDate Between CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+GROUP BY EntryDate
+ORDER BY EntryDate
+
+");
+        return  $query->result_array();
+}
+
+Public function getInflationDateRangeDataMachineWise($startDate,$endDate){
+$query = $this->db->query("SELECT        Name, MAX(Output) AS Output, EntryDate
+FROM            dbo.view_lfb_Carcas_output
+
+WHERE        (EntryDate Between CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+GROUP BY Name, EntryDate
+ORDER BY EntryDate");
+//  $query = $this->db->query("SELECT        SUM(Counter) AS Reading, CONVERT(varchar, Date, 103) AS Date, Name
+//                 FROM            dbo.Table_16         
+//                 WHERE        (Date BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+//                 GROUP BY CONVERT(varchar, Date, 103), Name
+//                 ORDER BY Date");
 
 
 return  $query->result_array();
@@ -277,13 +361,16 @@ return  $query->result_array();
                 $endYear = explode("-",$endDate)[0];
                 $endDay = explode("-",$endDate)[2];
                 $HRDB = $this->load->database('HRMS', TRUE);
-        
-                $query = $HRDB->query("SELECT AttDate, CONVERT(Varchar, AttDate, 103) AS AttDate1,RealTime, EmpCount, EmployeeType, SectionName, DeptName
-                FROM            dbo.View_Emp_ATT_REALTIME_CALC_Final
-                WHERE        (AttDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND (CONVERT(DATETIME, '$endDate 00:00:00', 102))) AND (DeptID = $depart) AND (SectionID = $sect) AND (EmployeeType = 'Direct')
+                // SELECT       AttDate
+                // FROM            dbo.view_Att_Sheet_Sizing
+                // WHERE        (AttDate = CONVERT(DATETIME, '$CurrentDate 00:00:00', 102))
+                $query = $HRDB->query("SELECT AttDate
+                FROM            dbo.view_Att_Sheet_Sizing
+                WHERE        (AttDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102)
+                 AND (CONVERT(DATETIME, '$endDate 00:00:00', 102))) 
                 ORDER BY AttDate
         ");
-                return  $query->result_array();
+                return  $query->num_rows();
         }
         public function gettingambcoreData($startDate,$endDate){
             
@@ -419,6 +506,119 @@ return  $query->result_array();
                 FROM            dbo.view_Bladder_Winding_FInal
                 WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
                 GROUP BY Date, Name
+                ORDER BY Name
+                ");
+                return  $query->result_array();
+        }
+
+        public function getBallFormingDateRangeData($startDate,$endDate){
+            
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        SUM(OutPut) AS Counter, EntryDate AS Date
+                FROM            dbo.view_BallForming_machineWise
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY EntryDate
+                
+                ORDER BY EntryDate
+                
+                
+    ");
+                return  $query->result_array();
+
+        }
+
+        public function getBallFormingDateRangeDataMachineWise($startDate,$endDate)
+        {
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        SUM(OutPut) AS Counter, EntryDate AS Date, Name
+                FROM            dbo.view_BallForming_machineWise
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY EntryDate, Name
+                ORDER BY Name
+                ");
+                return  $query->result_array();
+        }
+
+        public function getBallShapingDateRangeData($startDate,$endDate){
+            
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        SUM(OutPut) AS Counter, EntryDate AS Date
+                FROM            dbo.view_BallShaping_machineWise
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY EntryDate
+                
+                ORDER BY EntryDate
+                
+                
+    ");
+                return  $query->result_array();
+
+        }
+
+        public function getBallShapingDateRangeDataMachineWise($startDate,$endDate)
+        {
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        SUM(OutPut) AS Counter, EntryDate AS Date, Name
+                FROM            dbo.view_BallShaping_machineWise
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY EntryDate, Name
+                ORDER BY Name
+                ");
+                return  $query->result_array();
+        }
+
+        public function getLaserCuttingDateRangeData($startDate,$endDate){
+            
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        SUM(OutPut) AS Counter, EntryTime AS Date
+                FROM            dbo.view_LaserCutting_machineWise
+                WHERE        (EntryTime BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY EntryTime
+                ORDER BY EntryTime
+                
+                
+    ");
+                return  $query->result_array();
+
+        }
+
+        public function getLaserCuttingDateRangeDataMachineWise($startDate,$endDate)
+        {
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT       SUM(OutPut) AS Counter, EntryTime AS Date, Name
+                FROM            dbo.view_LaserCutting_machineWise
+                WHERE        (EntryTime BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY EntryTime, Name
                 ORDER BY Name
                 ");
                 return  $query->result_array();
@@ -581,7 +781,247 @@ return  $query->result_array();
                 ");
                 return  $query->result_array();
         }
+
+
+        Public function dieTestingSheetSizing(){
+            
+                $query = $this->db->query("SELECT        SUM(Duration) AS Duration, EntryDate
+                FROM            dbo.view_DT_DF
+                GROUP BY EntryDate
+                HAVING        (EntryDate BETWEEN CONVERT(DATETIME, '2022-11-01 00:00:00', 102) AND CONVERT(DATETIME, '2022-12-01 00:00:00', 102))
+                
+                
+        ");
+                return  $query->result_array();
+        }
+
+
         
+        Public function dieTestingSheetSizingGraph(){
+            
+                $query = $this->db->query("SELECT        SUM(Duration) AS Duration, EntryDate, MachineName
+                FROM            dbo.view_DT_DF
+                GROUP BY EntryDate, MachineName
+                HAVING        (EntryDate BETWEEN CONVERT(DATETIME, '2022-11-01 00:00:00', 102) AND CONVERT(DATETIME, '2022-12-01 00:00:00', 102))
+                
+                
+                
+        ");
+                return  $query->result_array();
+        }
+
+        Public function panelCutting(){
+            
+                $query = $this->db->query("SELECT        SUM(Duration) AS Duration, EntryDate
+                FROM            dbo.view_PannelS_DT_DF
+                GROUP BY EntryDate
+                HAVING        (EntryDate BETWEEN '2022-11-01 00:00:00.000' AND '2022-12-01 00:00:00.000')
+                
+                
+        ");
+                return  $query->result_array();
+        }
+        Public function panelCuttingGraph(){
+            
+                $query = $this->db->query("SELECT        SUM(Duration) AS Duration, EntryDate, MachineName
+                FROM            dbo.view_PannelS_DT_DF
+                GROUP BY EntryDate, MachineName
+                HAVING        (EntryDate BETWEEN '2022-11-01 00:00:00.000' AND '2022-12-01 00:00:00.000')
+                
+                
+                
+        ");
+                return  $query->result_array();
+        }
+
+        Public function dieTestingHfCutting(){
+            
+                $query = $this->db->query("SELECT        SUM(Duration) AS Duration, Date 
+                FROM            dbo.view_HF_DT_DF
+                GROUP BY Date 
+                HAVING        (Date BETWEEN '2022-11-01 00:00:00.000' AND '2022-12-01 00:00:00.000')
+                
+                
+        ");
+                return  $query->result_array();
+        }
+        Public function dieTestingHfCuttingGraph(){
+            
+                $query = $this->db->query("SELECT        SUM(Duration) AS Duration, Date, MachineName
+                FROM            dbo.view_HF_DT_DF
+                GROUP BY Date, MachineName
+                HAVING        (Date BETWEEN '2022-11-01 00:00:00.000' AND '2022-12-01 00:00:00.000')
+                
+                
+                
+        ");
+                return  $query->result_array();
+        }
+
+
+
+        Public function ONASheetSizing(){
+            
+                $query = $this->db->query("SELECT        SUM(Duration) AS Duration, EntryDate
+                FROM            dbo.view_ONA_FD
+                GROUP BY EntryDate
+                HAVING        (EntryDate BETWEEN CONVERT(DATETIME, '2022-12-01 00:00:00', 102) AND CONVERT(DATETIME, '2022-12-01 00:00:00', 102))
+                
+                
+                
+                
+        ");
+                return  $query->result_array();
+        }
+
+        Public function ONASheetSizingGraph(){
+            
+                $query = $this->db->query("SELECT        SUM(Duration) AS Duration, EntryDate, MachineName
+                FROM            dbo.view_ONA_FD
+                GROUP BY EntryDate, MachineName
+                HAVING        (SUM(Duration) > 0) And  (EntryDate BETWEEN CONVERT(DATETIME, '2022-11-01 00:00:00', 102) AND CONVERT(DATETIME, '2022-12-01 00:00:00', 102))
+
+        ");
+                return  $query->result_array();
+        }
+
+        Public function ONAPanel(){
+            
+                $query = $this->db->query("SELECT        SUM(Duration) AS Duration, EntryDate
+                FROM            dbo.view_PannelS_ONA_DF
+                GROUP BY EntryDate
+                HAVING        (EntryDate BETWEEN '2022-11-01 00:00:00.000' AND '2022-12-01 00:00:00.000')
+                
+                
+                
+                
+        ");
+                return  $query->result_array();
+        }
+
+        Public function ONAPanelGraph(){
+            
+                $query = $this->db->query("SELECT        SUM(Duration) AS Duration, EntryDate, MachineName
+                FROM            dbo.view_PannelS_ONA_DF
+                GROUP BY EntryDate, MachineName
+                HAVING        (EntryDate BETWEEN '2022-11-01 00:00:00.000' AND '2022-12-01 00:00:00.000')
+
+        ");
+                return  $query->result_array();
+        }
+
+        Public function ONAHfCutting(){
+            
+                $query = $this->db->query("SELECT        SUM(Duration) AS Duration, Date 
+                FROM            dbo.view_HF_ONA_DF
+                GROUP BY Date 
+                HAVING        (Date BETWEEN '2022-11-01 00:00:00.000' AND '2022-12-01 00:00:00.000')
+                
+                
+        ");
+                return  $query->result_array();
+        }
+        Public function ONAHfCuttingGraph(){
+            
+                $query = $this->db->query("SELECT        SUM(Duration) AS Duration, Date, MachineName
+                FROM            dbo.view_HF_ONA_DF
+                GROUP BY Date, MachineName
+                HAVING        (Date BETWEEN '2022-11-01 00:00:00.000' AND '2022-12-01 00:00:00.000')
+                
+                
+                
+        ");
+                return  $query->result_array();
+        }
+
+        Public function machineTestingSheetSizing(){
+            
+                $query = $this->db->query("SELECT        EntryDate, Duration
+                FROM            dbo.View_MT_FD
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '2022-06-01 00:00:00', 102) AND CONVERT(DATETIME, '2022-12-01 00:00:00', 102))
+                
+                        
+        ");
+                return  $query->result_array();
+        }
+
+        Public function machineTestingSheetSizingGraph(){
+            
+                $query = $this->db->query("SELECT        EntryDate, Duration, MachineName
+                FROM            dbo.View_MT_FD
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '2022-06-01 00:00:00', 102) AND CONVERT(DATETIME, '2022-12-01 00:00:00', 102))
+                              
+        ");
+                return  $query->result_array();
+        }
+
+
+        Public function machineTestingPanel(){
+            
+                $query = $this->db->query("SELECT        SUM(Duration) AS Duration, EntryDate, MachineName
+                FROM            dbo.view_PannelS_MO_DF
+                GROUP BY EntryDate, MachineName
+                HAVING        (EntryDate BETWEEN '2022-11-01 00:00:00.000' AND '2022-12-01 00:00:00.000')
+                
+                        
+        ");
+                return  $query->result_array();
+        }
+
+        Public function machineTestingPanelGraph(){
+            
+                $query = $this->db->query("SELECT        SUM(Duration) AS Duration, EntryDate, MachineName
+                FROM            dbo.view_PannelS_MO_DF
+                GROUP BY EntryDate, MachineName
+                HAVING        (EntryDate BETWEEN '2022-11-01 00:00:00.000' AND '2022-12-01 00:00:00.000')
+                
+                        
+        ");
+                return  $query->result_array();
+        }
+
+        
+
+        Public function machineTestingHfCutting(){
+            
+                $query = $this->db->query("SELECT        SUM(Duration) AS Duration, Date 
+                FROM            dbo.view_HF_MT_DF
+                GROUP BY Date 
+                HAVING        (Date BETWEEN '2022-11-01 00:00:00.000' AND '2022-12-01 00:00:00.000')
+                
+                
+        ");
+                return  $query->result_array();
+        }
+        Public function machineTestingHfCuttingGraph(){
+            
+                $query = $this->db->query("SELECT        SUM(Duration) AS Duration, Date, MachineName
+                FROM            dbo.view_HF_MT_DF
+                GROUP BY Date, MachineName
+                HAVING        (Date BETWEEN '2022-11-01 00:00:00.000' AND '2022-12-01 00:00:00.000')
+                
+                
+                
+        ");
+                return  $query->result_array();
+        }
+
+        public function energy_C(){
+                $currentDate= date('d/m/Y');
+		$query = $this->db->query("SELECT        AVG(Energy) AS Energy, HallName
+		FROM            dbo.view_Energy
+		WHERE        (CONVERT(Varchar, EntryDate, 103) = '$currentDate')
+		GROUP BY HallName"); 
+		return  $query->result_array();
+        }
+        public function energy_C_Drill(){
+                $currentDate= date('d/m/Y');
+                $query = $this->db->query("SELECT        TOP (100) PERCENT HallName, HourName, Energy, HourID
+                FROM            dbo.View_Energy_Hourlly_Data
+                WHERE        (EntryDate = '$currentDate') 
+                ORDER BY HourID"); 
+                return  $query->result_array();
+        }
         
         
         

@@ -22,9 +22,14 @@ if (!$this->session->has_userdata('user_id')) {
           <div class="col-lg-12" style="margin-bottom:20px">
          
           <ol class="breadcrumb page-breadcrumb">
-               
-               <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
-           </ol>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url(
+                                                                    'index.php/DashboardController'
+                                                                ); ?>">Dashboard</a></li>
+                                                                <li class="breadcrumb-item"> LFB Report</li>
+
+
+                        <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                    </ol>
                     <div class="subheader">
                         <h1 class="subheader-title">
                             <i class='subheader-icon fal fa-chart-area'></i>LFB Report</span>

@@ -136,7 +136,7 @@
 
                 <div class="subheader">
                     <h1 class="subheader-title">
-                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>LFB Carcas</span>
+                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>LFB Carcas Issuance</span>
                     </h1>
 
 
@@ -267,7 +267,7 @@
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                             <!-- <h2 class="">Target <br> 58%</h2> -->
                                             <small class="m-0 l-h-n">Target</small>
-                                            <span >58%</span>
+                                            <span >60%</span>
                                         </h3>
 
                                     </div>
@@ -1236,6 +1236,9 @@ foreach ($HourllyCore as $key) {
         var EfficiencyFinal;
         var EfficiencyFinalArray = [];
         let counterValue = $("#counterValueId").text()
+
+
+
         let currentDate = new Date().toJSON().substr(0,10);
         let dateGet = new Date()
         let dayId = dateGet.getDay()

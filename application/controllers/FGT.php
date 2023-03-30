@@ -16,12 +16,31 @@ class FGT extends CI_Controller
         $data['getArticles'] = $this->FGT->GetArticles();
 
         $data['GetCssNo'] = $this->FGT->GetCssNo();
+
+        $data['getTestByLabPending'] = $this->FGT->getTestByLabPending();
+
+        $data['getFGTTestType'] = $this->FGT->FGT_H_Test_Type_View();
+
         $this->load->view('FGT', $data);
     }
     public function undo($TID)
     {
         $data['undo'] = $this->FGT->undoFGT($TID);
     }
+
+
+    public function FGT_H_Test_Type(){
+
+
+        $data = $this->FGT->FGT_H_Test_Type_Insertion($_POST['type']);
+
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+
+    }
+
     public function FGT_H()
     {
         $forDataGet = $_POST['formData'];

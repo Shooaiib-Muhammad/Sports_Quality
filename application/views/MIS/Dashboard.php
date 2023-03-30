@@ -357,7 +357,7 @@ Highcharts.chart('chartContainer2', {
     },
     series: [{
         name: 'Defect Qty',
-        data: [<?php echo join(',', $data2,) ?>]
+        data: ['<?php echo join(',', $data2,) ?>']
     }]
 });
 
@@ -1611,7 +1611,7 @@ Highcharts.chart('gaugeAll', {
         }
     },
 
-                title: {
+        title: {
             text: 'Target: <?php echo (int)$TargetFinal;?><br>Produced:<?php echo (int)$ProducesFinal;?>'
         },
 

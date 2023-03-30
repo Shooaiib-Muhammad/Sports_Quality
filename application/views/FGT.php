@@ -16,20 +16,9 @@ if (!$this->session->has_userdata('user_id')) {
                 <!-- BEGIN Page Header -->
                 <?php $this->load->view('includes/top_header.php'); ?>
                 <main id="js-page-content" role="main" class="page-content">
-                    <ol class="breadcrumb page-breadcrumb">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url(
-                                                                    'index.php/main/dmms_dashboard'
-                                                                ); ?>">FGT</a></li>
-
-
-                        <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
-                    </ol>
-                    <div class="subheader">
-                        <h1 class="subheader-title">
-                            <i class='subheader-icon fal fa-chart-area'></i> FGT</span>
-
-                        </h1>
-                    </div>
+                  
+                   
+  
 
                     <style>
                         .table th,
@@ -55,40 +44,42 @@ if (!$this->session->has_userdata('user_id')) {
                                     <div class="card" id="printFGT">
                                         <div class="card-body">
                                             <!-- <table class="table">
-               <tr>
-                   <th style="font-size: large;font-weight:bold;padding:50px" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS INDOOR</th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
-               </tr>
-           </table> -->
+                                                <tr>
+                                                    <th style="font-size: large;font-weight:bold;padding:50px" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS INDOOR</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                                                </tr>
+                                            </table> -->
                                             <table class="table">
                                                 <tr>
                                                     <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
 
-                                                    <center>   <th style="text-align:Center;" > <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th></center>
-                                                    <th> <img src="<?php echo base_url() ?>assets/img/adidasLogo.svg" alt="report_logo" width="250px" height="100px" /></th>
+                                                    <th style="text-align:Center;"> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="200px" height="100px" /> </th>
+                                                    <th></th>
                                                     <!-- <th style="font-size: x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR SOCCERBALLS INDOOR</th> -->
-                                                    
+
                                                 </tr>
                                             </table>
-                                            <tr><th> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th>
-                                            
-                                            <!-- <h4 class="modal-title text-center m-4" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS INDOOR</h4> -->
-                                            <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
-                    </tr>
-                    <tr><h3 style="font-size: x-large;font-weight:bold;padding:50px" class="text-center" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR SOCCERBALLS INDOOR</h3>
-                    </tr>
+                                            <tr>
+                                                <th> </th>
+
+                                                <!-- <h4 class="modal-title text-center m-4" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS INDOOR</h4> -->
+                                                <th> </th>
+                                            </tr>
+                                            <tr>
+                                                <h3 style="font-size: x-large;font-weight:bold;padding:50px" class="text-center" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR SOCCERBALLS INDOOR</h3>
+                                            </tr>
                                             <div class="container-fluid p-5">
 
                                                 <div class="row p-2">
@@ -148,6 +139,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th style="border: 1px solid;">BALLTYPE</th>
                                                                     <td id="content40" class="text-center"></td>
                                                                 </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">Temperature</th>
+                                                                    <td id="" class="text-center"></td>
+                                                                </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -173,6 +168,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <tr>
                                                                     <th style="border: 1px solid;"><br>TESTED BY</th>
                                                                     <td id="content45" class="text-center"><br>Imran Munir</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;"><br>Humidity</th>
+                                                                    <td id="" class="text-center"><br></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -416,26 +415,30 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                 <div style="margin: 15px auto" class="container-fluid p-2">
                                                     <div class="row">
+
                                                         <div class="col-12">
                                                             <table class="table table-striped col-12">
                                                                 <tbody style="border: 1px solid;">
                                                                     <tr>
-                                                                        <th rowspan="3" style="border: 1px solid">Note: sdfd<span id="contentNoteFGT"></span></th>
-
+                                                                        <!-- Test request obvious problems before,during and after tests Improvements -->
+                                                                        <th style="border: 1px solid">Note:</th>
+                                                                        <td>The above reported result is applicable to the sample as received at customer service section<br>
+                                                                            Report was Electronically generated, Signature are not required
+                                                                            **: These Tests are out of scope of ISO/IEC 17025-2017
+                                                                        </td>
                                                                     </tr>
-
-
-
 
                                                                 </tbody>
                                                             </table>
                                                         </div>
+
                                                         <div class="col-12">
                                                             <table class="table table-striped col-12">
                                                                 <tbody style="border: 1px solid;">
                                                                     <tr>
+                                                                        <!-- Test request obvious problems before,during and after tests Improvements -->
                                                                         <th style="border: 1px solid">Remarks:</th>
-                                                                        <td>Test request obvious problems before,during and after tests Improvements</td>
+                                                                        <td><span id="content667"></span></td>
                                                                     </tr>
 
                                                                 </tbody>
@@ -457,9 +460,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <th></th>
                                                         <th></th>
                                                         <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFGT"> </span> -->
-                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span > Fatima Rasheed</span>
-                                                           
-                                                    </th>
+                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed</span>
+
+                                                        </th>
                                                         <th></th>
                                                         <th></th>
                                                         <th></th>
@@ -467,7 +470,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                         <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
                                                             <!-- <span id="testApprovedFGT"> </span> -->
-                                                            <span > Zain Abbas</span>
+                                                            <span> Zain Abbas</span>
                                                         </th>
                                                     </tr>
                                                 </table>
@@ -493,15 +496,17 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </tr>
                                                 </table>
                                                 <div class="col-12">
-                                                            <table class="table table-striped col-12">
-                                                                
-                                                                    <tr>
-                                                                        
-                                                                        <td style="text-align:Center; font-size:Bold; font-size:25;"><h2>End of Report</h2></td>
-                                                                    </tr>
-                                                                
-                                                            </table>
-                                                        </div>
+                                                    <table class="table table-striped col-12">
+
+                                                        <tr>
+
+                                                            <td style="text-align:Center; font-size:Bold; font-size:25;">
+                                                                <h2>End of Report</h2>
+                                                            </td>
+                                                        </tr>
+
+                                                    </table>
+                                                </div>
                                             </div>
 
                                         </div>
@@ -516,6 +521,500 @@ if (!$this->session->has_userdata('user_id')) {
                     </div>
 
 
+                    <!--Soccer Ball Size 4-->
+
+                    <div class="modal fade bd-example-modal-xl" id="soccerBallsSize4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Soccer Ball Size 4</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="printSoccerBallsSize4">
+                                    <div class="card" id="">
+                                        <div class="card-body">
+
+
+                                            <table class="table">
+                                                <tr>
+                                                    <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+
+
+                                                    <center>
+                                                        <th style="text-align:Center;"> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                    </center>
+
+
+                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                </tr>
+                                                <tr>
+                                                    <!-- <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th> -->
+
+                                                    <th></th>
+                                                    <!-- <th> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th> -->
+                                                    <th style="font-size: x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>
+                                                        FGT Report for Soccerballs Size 4</th>
+                                                    <th> </th>
+                                                    <!-- <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th> -->
+                                                </tr>
+                                            </table>
+
+
+                                            <div style="display:flex;">
+                                                <div style="padding-left:30px;padding-right:30px;">
+                                                    <table border="1">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>FACTORY NAME</th>
+                                                                <td><span id="content122"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>lAB NO.</th>
+                                                                <td><span id="content123"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>TESTING DATE</th>
+                                                                <td><span id="content124"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>TEST ACC. TO CAT:</th>
+                                                                <td><span id="content125"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>FIFA STAMP</th>
+                                                                <td><span id="content126"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>PRODUCTION MONTH</th>
+                                                                <td><span id="content127"></span></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div style="padding-left:30px;padding-right:30px;">
+                                                    <table border="1">
+
+                                                        <th colspan="2" class="text-center">CONSTRUCTION</th>
+
+                                                        <tr>
+                                                            <th>CONVERT MAT.</th>
+                                                            <td><span id="content128"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>BACKING</th>
+                                                            <td><span id="content129"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>BLADDER</th>
+                                                            <td><span id="content130"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>BALLTYPE</th>
+                                                            <td><span id="content131"></span></td>
+                                                        </tr>
+
+
+                                                    </table>
+
+                                                </div>
+
+                                                <div style="padding-left:30px;padding-right:30px;">
+                                                    <table border="1">
+                                                        <tr>
+                                                            <th>TEST TYPE</th>
+                                                            <td><span id="content132"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>MAIN MAT.COLOR</th>
+                                                            <td><span id="content133"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>PRINTING COLOR</th>
+                                                            <td><span id="content134"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>RESULT</th>
+                                                            <td><span id="content135"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>TESTED BY</th>
+                                                            <td><span id="content136"></span></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <br>
+
+
+                                            <div style="margin: 1px auto" class="container-fluid ">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <table class="table table-striped">
+                                                            <tbody style="border: 1px solid;">
+                                                                <tr>
+                                                                    <th style="border: 1px solid">Category 1</th>
+                                                                    <td> -all Beach Balls with "FIFA QUALITY" logo (replace "FIFA INSPECTED")</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th style="border: 1px solid">Category 2</th>
+                                                                    <td>-all non stamped balls</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th style="border: 1px solid">Category 3</th>
+                                                                    <td> -entry price beach soccer % leisure balls</td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+                                            <div style="padding-left:30px;padding-right:30px;">
+                                                <table border="1">
+                                                    <tr>
+                                                        <th>CATEGORY 1</th>
+                                                        <td> -all Beach Balls with "FIFA QUALITY" logo (replace "FIFA INSPECTED")</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>CATEGORY 2</th>
+                                                        <td>-all non stamped balls</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+
+                                            <br>
+
+                                            <div style="padding-left:30px;padding-right:30px;">
+                                                <table border="1">
+                                                    <tr style="text-align:center;">
+                                                        <th>TEST</th>
+                                                        <th>METHOD</th>
+                                                        <th>CONDITION</th>
+                                                        <th colspan="3">REQUIREMENT</th>
+                                                        <th colspan="2">RESULT</th>
+                                                        <th>REMARKS</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Static Properties</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th style="text-align:center;">UNIT</th>
+                                                        <th style="text-align:center;">Cat.1</th>
+                                                        <th style="text-align:center;">Cat.2</th>
+                                                        <th style="text-align:center; word-spacing: 8px;" colspan="2">min / max</th>
+                                                        <td style="text-align:center;"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Weight</td>
+                                                        <td>FGT-35</td>
+                                                        <td>0.8 bar</td>
+                                                        <td>g</td>
+                                                        <td>350-390</td>
+                                                        <td>350-390</td>
+                                                        <td id="content137"></td>
+                                                        <td id="content138"></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Circumference (CSM)</td>
+                                                        <td>FGT-37</td>
+                                                        <td>0.8 bar</td>
+                                                        <td>cm</td>
+                                                        <td>63.5-66.0</td>
+                                                        <td>63.5-66.0</td>
+                                                        <td id="content139"></td>
+                                                        <td id="content140"></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dev. in Sehericity in ref. to 100% roundness CSM</td>
+                                                        <td>FGT-37</td>
+                                                        <td>0.8 bar</td>
+                                                        <td>%</td>
+                                                        <td>max 1,6</td>
+                                                        <td>max 1,8</td>
+                                                        <td id="content141"></td>
+                                                        <td id="content142"></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Loss fo Pressure</td>
+                                                        <td>FGT-38</td>
+                                                        <td>1.0 bar evalution of 72h</td>
+                                                        <td>%</td>
+                                                        <td>max 20</td>
+                                                        <td>max 20</td>
+                                                        <td id="content143"></td>
+                                                        <td id="content144"></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Dynamic Pressure</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Round at RT</td>
+                                                        <td>FGT-39</td>
+                                                        <td>0.8 bar</td>
+                                                        <td>cm</td>
+                                                        <td>115-155</td>
+                                                        <td>115-155</td>
+                                                        <td id="content145"></td>
+                                                        <td id="content146"></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Round at 5 C</td>
+                                                        <td>FGT-39</td>
+                                                        <td>0.8 bar</td>
+                                                        <td>cm</td>
+                                                        <td>min 120</td>
+                                                        <td>min 110</td>
+                                                        <td id="content147"></td>
+                                                        <td id="content148"></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Water Resistance Test</th>
+                                                        <td></td>
+                                                        <td>0.8 bar</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Water uptake</td>
+                                                        <td>FGT-40</td>
+                                                        <td>after 300 cycles</td>
+                                                        <td>%</td>
+                                                        <td>max 10%/ball</td>
+                                                        <td>max 20%/ball</td>
+                                                        <td id="content149"></td>
+                                                        <td id="content150"></td>
+
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Increase in Circumference</td>
+                                                        <td>FGT-40 FGT-37</td>
+                                                        <td>after 300 cycles</td>
+                                                        <td>cm</td>
+                                                        <td>max 0,8</td>
+                                                        <td>max 1</td>
+                                                        <td id="content151"></td>
+                                                        <td id="content152"></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dev. in Sehericity in ref. to 100% roundness CSM</td>
+                                                        <td>FGT-40 FGT-37</td>
+                                                        <td>after 300 cycles</td>
+                                                        <td>%</td>
+                                                        <td>max 1,6</td>
+                                                        <td>max 1,8</td>
+                                                        <td id="content153"></td>
+                                                        <td id="content154"></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Shooter Test</th>
+                                                        <td></td>
+                                                        <td>0.8 bar</td>
+                                                        <td>cycles:</td>
+                                                        <td>2000x</td>
+                                                        <td>1000x</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Increase in Circumference</td>
+                                                        <td>FGT-41 FGT-37</td>
+                                                        <td>after cycles completed</td>
+                                                        <td>cm</td>
+                                                        <td>max 1,5</td>
+                                                        <td>max 1,5</td>
+                                                        <td id="content156"></td>
+                                                        <td id="content157"></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dev. in Sehericity in ref. to 100% roundness CSM</td>
+                                                        <td>FGT-41 FGT-37</td>
+                                                        <td>after cycles completed</td>
+                                                        <td>%</td>
+                                                        <td>max 1,6</td>
+                                                        <td>max 1,8</td>
+                                                        <td id="content158"></td>
+                                                        <td id="content159"></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Change of pressure in ref. to 100% pressure</td>
+                                                        <td>FGT-41</td>
+                                                        <td>after cycles completed</td>
+                                                        <td>bar</td>
+                                                        <td>max 0,1</td>
+                                                        <td>max 0,1</td>
+                                                        <td id="content160"></td>
+                                                        <td id="content161"></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Material</td>
+                                                        <td>FGT-41</td>
+                                                        <td>after cycles completed</td>
+                                                        <td style="text-align:center ;" colspan="3">stitching/bonding+air value damaged % no delamination</td>
+                                                        <td id="content162"></td>
+                                                        <td id="content163"></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Printing Durability</th>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Drum Test</td>
+                                                        <td>FGT-50</td>
+                                                        <td>0.8 bar / 240 minutes-wet</td>
+                                                        <td colspan="3" style="text-align:center ;"> print is still visible around the ball</td>
+                                                        <td id="content164"></td>
+                                                        <td id="content165"></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Abrasion resistance on 2 panles after water test W/Sandpaper grade P150</td>
+                                                        <td>FGT-43</td>
+                                                        <td>1x50cycl.; 9kPa load</td>
+                                                        <td colspan="3" style="text-align:center ;"> dyestuff still visible; not smeared</td>
+                                                        <td id="content166"></td>
+                                                        <td id="content167"></td>
+                                                        <td></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th>Climate-Strenth Tests</th>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>UV Light Fastness</td>
+                                                        <td>FGT-04</td>
+                                                        <td>2h/550W</td>
+                                                        <td colspan="3" style="text-align:center ;"> min 3 acc.greyscale</td>
+                                                        <td id="content168"></td>
+                                                        <td id="content169"></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Ozon Test on Rubber (only on balls with rubber surface)</td>
+                                                        <td>FGT-46</td>
+                                                        <td>24h</td>
+                                                        <td colspan="3" style="text-align:center ;">DIN 5350 Cat.1</td>
+                                                        <td id="content170"></td>
+                                                        <td id="content171"></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Hydrolysis - Lamination</td>
+                                                        <td>FGT-01</td>
+                                                        <td>60 C ; 95% r.H.7 days</td>
+                                                        <td colspan="3" style="text-align:center ;">no delamination</td>
+                                                        <td id="content172"></td>
+                                                        <td id="content173"></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Hydrolysis - color change</td>
+                                                        <td>FGT-01</td>
+                                                        <td>60 C ; 95% r.H. 7 days</td>
+                                                        <td colspan="3" style="text-align:center ;">min 3acc.greyscale</td>
+                                                        <td id="content174"></td>
+                                                        <td id="content175"></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </table>
+
+                                                <br>
+                                                <div>
+                                                    <table border="1" style="width:100% ;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>REMARKS:</th>
+                                                                <td><span id="content175R"></span></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+
+
+                                                <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                    <!-- <span id="testApprovedSize5"> </span> -->
+                                                    <span>Zain Abbas </span>
+                                                </th>
+                                                </tr>
+                                                </table>
+
+                                                <table class="table">
+                                                    <tr>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Fresh Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="FreshPhotoSize4" height="150px" width="200px" alt="FreshPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Shooter Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="ShooterPhotoSize4" height="150px" width="200px" alt="ShooterPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Hydrolysis Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="HydroPhotoSize4" height="150px" width="200px" alt="HydroPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Drum Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="DrumPhotoSize4" height="150px" width="200px" alt="DrumPhoto" />
+                                                        </th>
+                                                    </tr>
+                                                </table>
+                                                <div class="col-12">
+                                                    <table class="table table-striped col-12">
+
+                                                        <tr>
+
+                                                            <td style="text-align:Center; font-size:Bold; font-size:25;">
+                                                                <h2>End of Report</h2>
+                                                            </td>
+                                                        </tr>
+
+                                                    </table>
+                                                </div>
+
+
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button onclick="printDiv('printSoccerBallsSize4')" type="button" class="btn btn-primary">Print Report</button>
+                                                </div>
+
+
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
                     <!-- Modal SOCCER SIZE 5 BALLS -->
                     <div class="modal fade bd-example-modal-xl" id="soccerBallsSize5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl" role="document">
@@ -527,26 +1026,27 @@ if (!$this->session->has_userdata('user_id')) {
                                     </button>
                                 </div>
                                 <div class="modal-body" id="printSoccerBallsSize5">
+                                    <!--printFGTSize5-->
                                     <div class="card" id="printFGTSize5">
                                         <div class="card-body">
                                             <!-- <table class="table">
-               <tr>
-                   <th style="font-size: large;font-weight:bold;padding:50px" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS SIZE 5</th>
-                   <th></th>
-                  <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
-               </tr>
-           </table> -->
+                                                <tr>
+                                                    <th style="font-size: large;font-weight:bold;padding:50px" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS SIZE 5</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                                                </tr>
+                                            </table> -->
                                             <?php
                                             $Uploading = $this->session->userdata('Uploading');
                                             $RS = $this->session->userdata('ReviewStatus');
@@ -560,25 +1060,27 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <tr>
                                                     <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
 
-                                                  
-                                                 <center>   <th style="text-align:Center;" > <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th></center>
-                                                   
-                                                   
-                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+
+                                                    <center>
+                                                        <th style="text-align:Center;"> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                    </center>
+
+
+                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="300px" height="180px" /> </th>
                                                 </tr>
                                                 <tr>
                                                     <!-- <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th> -->
 
                                                     <th></th>
                                                     <!-- <th> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th> -->
-                                                    <th style="font-size: x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR SOCCERBALLS SIZE 5</th>
+                                                    <th style="font-size: x-large;font-weight:bold;padding:30px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd FGT REPORT FOR SOCCERBALLS SIZE 5</th>
                                                     <th> </th>
                                                     <!-- <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th> -->
                                                 </tr>
                                             </table>
 
                                             <!-- <h4 class="modal-title text-center m-4" id="exampleModalLabel">FGT REPORT FOR SOCCERBALLS SIZE 5</h4> -->
-                                            <div class="container-fluid ">
+                                            <div class="container-fluid">
                                                 <div class="row">
                                                     <div class="col-sm-4">
                                                         <table class="table table-striped">
@@ -636,6 +1138,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th style="border: 1px solid;">BALLTYPE</th>
                                                                     <td id="content74" class="text-center"></td>
                                                                 </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">TEMPERATURE</th>
+                                                                    <td id="content74C" class="text-center"></td>
+                                                                </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -662,6 +1168,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th style="border: 1px solid;">TESTED BY</th>
                                                                     <td id="content79" class="text-center"></td>
                                                                 </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">HUMIDITY</th>
+                                                                    <td id="content79C" class="text-center"></td>
+                                                                </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -675,21 +1185,22 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <tr>
                                                                         <th style="border: 1px solid">Category 1</th>
                                                                         <td>- all balls stamped with "FIFA Quality PRO" logo (replaced "FIFA APPROVED") or destined for getting the "FIFA Quality PRO" logo, whatever price!
-                                                                            <br> -all balls with a "FOB price" of 10.01 or more USD, with or without FIFA logo!
+
+                                                                            <br>- all balls with a "FOB price" of 10.01 or more USD, with or without FIFA logo!
                                                                         </td>
                                                                     </tr>
 
                                                                     <tr>
                                                                         <th style="border: 1px solid">Category 2</th>
-                                                                        <td>- all balls stamped with "FIFA Quality PRO" logo (replaced "FIFA APPROVED") or destined for getting the "FIFA Quality PRO" logo, whatever price!
-                                                                            <br> -all balls with a "FOB price" of 10.01 or more USD, with or without FIFA logo!
+                                                                        <td>- all balls stamped with "FIFA Quality" logo (replaced "FIFA INSPECTED") or destined for getting the"FIFA Quality" logo, whatever price!
+                                                                            <br> - all balls with a "FOB price" between 5.01 USD and 10.00 USD, with or without FIFA logo!
                                                                         </td>
                                                                     </tr>
 
                                                                     <tr>
                                                                         <th style="border: 1px solid">Category 3</th>
-                                                                        <td>- all balls stamped with "FIFA Quality PRO" logo (replaced "FIFA APPROVED") or destined for getting the "FIFA Quality PRO" logo, whatever price!
-                                                                            <br> -all balls with a "FOB price" of 10.01 or more USD, with or without FIFA logo!
+                                                                        <td>- this is the basic requirement, valid for all balls with a "FOB price" less or equal to 5.00 USD, without any FIFA logo!
+
                                                                         </td>
                                                                     </tr>
 
@@ -763,8 +1274,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             68,0-70,0
                                                                         </td>
                                                                         </td>
-                                                                        <td id="content82" style="border: 1px solid ">68.6</td>
-                                                                        <td id="content83" style="border: 1px solid ">69.3</td>
+                                                                        <td id="content82" style="border: 1px solid "></td>
+                                                                        <td id="content83" style="border: 1px solid "></td>
                                                                         <td style="border: 1px solid "></td>
 
                                                                     </tr>
@@ -778,8 +1289,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <td style="border: 1px solid ">max 1,6</td>
                                                                         <td style="border: 1px solid ">max 1,6</td>
                                                                         </td>
-                                                                        <td id="content84" style="border: 1px solid ">0.96</td>
-                                                                        <td id="content85" style="border: 1px solid ">1.19</td>
+                                                                        <td id="content84" style="border: 1px solid "></td>
+                                                                        <td id="content85" style="border: 1px solid "></td>
                                                                         <td style="border: 1px solid "></td>
                                                                     </tr>
                                                                     <tr>
@@ -792,8 +1303,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <td style="border: 1px solid ">max 25</td>
                                                                         <td style="border: 1px solid ">max 25</td>
                                                                         </td>
-                                                                        <td id="content86" style="border: 1px solid ">10</td>
-                                                                        <td id="content87" style="border: 1px solid ">12</td>
+                                                                        <td id="content86" style="border: 1px solid "></td>
+                                                                        <td id="content87" style="border: 1px solid "></td>
                                                                         <td style="border: 1px solid "></td>
 
                                                                     </tr>
@@ -805,11 +1316,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <tr>
                                                                         <td style="border: 1px solid ">Rebound at RT</td>
                                                                         <td style="border: 1px solid ">FGT-39</td>
-                                                                        <td style="border: 1px solid ">0.6 bar</td>
+                                                                        <td style="border: 1px solid ">0.8 bar</td>
                                                                         <td style="border: 1px solid ">cm</td>
-                                                                        <td style="border: 1px solid ">55-65</td>
-                                                                        <td style="border: 1px solid ">50-65</td>
-                                                                        <td style="border: 1px solid ">50-65</td>
+                                                                        <td style="border: 1px solid ">135-155</td>
+                                                                        <td style="border: 1px solid ">125-155</td>
+                                                                        <td style="border: 1px solid ">115-155</td>
                                                                         <td id="content88" style="border: 1px solid "></td>
                                                                         <td id="content89" style="border: 1px solid; border-collapse:collapse">
 
@@ -853,7 +1364,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <th style="border: 1px solid ">Shooter Test</th>
                                                                         <td style="border: 1px solid "></td>
                                                                         <td style="border: 1px solid ">0.8 bar</td>
-                                                                        <td colspan="4" style="border: 1px solid ">cyles: &nbsp &nbsp &nbsp &nbsp &nbsp 2000x
+                                                                        <td colspan="4" style="border: 1px solid ">cyles: &nbsp &nbsp &nbsp &nbsp &nbsp 3500x &nbsp &nbsp 3000x &nbsp &nbsp 2500x
                                                                         </td>
                                                                         <td style="border: 1px solid "></td>
                                                                         <td style="border: 1px solid "></td>
@@ -865,9 +1376,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <td style="border: 1px solid ">FGT-41<br>FGT-37</td>
                                                                         <td style="border: 1px solid ">after cycles completed</td>
                                                                         <td style="border: 1px solid ">cm</td>
-                                                                        <td style="border: 1px solid ">max 1,0</td>
-                                                                        <td style="border: 1px solid "></td>
-                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid ">max 1.5</td>
+                                                                        <td style="border: 1px solid ">max 1.5</td>
+                                                                        <td style="border: 1px solid ">max 1.5</td>
                                                                         <td id="content94" style="border: 1px solid "></td>
                                                                         <td id="content95" style="border: 1px solid "></td>
                                                                         <td style="border: 1px solid "></td>
@@ -878,8 +1389,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <td style="border: 1px solid ">after cycles completed</td>
                                                                         <td style="border: 1px solid ">%</td>
                                                                         <td style="border: 1px solid ">max 1,3</td>
-                                                                        <td style="border: 1px solid "></td>
-                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid ">max 1,6</td>
+                                                                        <td style="border: 1px solid ">max 1,6</td>
                                                                         <td id="content96" style="border: 1px solid "></td>
                                                                         <td id="content97" style="border: 1px solid "></td>
                                                                         <td style="border: 1px solid "></td>
@@ -890,8 +1401,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <td style="border: 1px solid ">after cycles completed</td>
                                                                         <td style="border: 1px solid ">bar</td>
                                                                         <td style="border: 1px solid ">max 0,1</td>
-                                                                        <td style="border: 1px solid "></td>
-                                                                        <td style="border: 1px solid "></td>
+                                                                        <td style="border: 1px solid ">max 0,1</td>
+                                                                        <td style="border: 1px solid ">max 0,1</td>
                                                                         <td id="content98" style="border: 1px solid "></td>
                                                                         <td id="content99" style="border: 1px solid "></td>
                                                                         <td style="border: 1px solid "></td>
@@ -928,9 +1439,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <td style="border: 1px solid ">FGT-40<br>FGT-37</td>
                                                                         <td style="border: 1px solid ">after 300 cycles</td>
                                                                         <td style="border: 1px solid ">%</td>
-                                                                        <td style="border: 1px solid ">max 0,5</td>
-                                                                        <td style="border: 1px solid ">max 0,8</td>
-                                                                        <td style="border: 1px solid ">max 1,0</td>
+                                                                        <td style="border: 1px solid ">max 0.5</td>
+                                                                        <td style="border: 1px solid ">max 0.8</td>
+                                                                        <td style="border: 1px solid ">max 1.0</td>
                                                                         <td id="content104" style="border: 1px solid "></td>
                                                                         <td id="content105" style="border: 1px solid "></td>
                                                                         <td style="border: 1px solid "></td>
@@ -940,9 +1451,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <td style="border: 1px solid ">FGT-40<br>FGT-37</td>
                                                                         <td style="border: 1px solid ">after 300 cycles</td>
                                                                         <td style="border: 1px solid ">%</td>
-                                                                        <td style="border: 1px solid ">max 1,5</td>
-                                                                        <td style="border: 1px solid ">max 1,6</td>
-                                                                        <td style="border: 1px solid ">max 1,6</td>
+                                                                        <td style="border: 1px solid ">max 1.3</td>
+                                                                        <td style="border: 1px solid ">max 1.6</td>
+                                                                        <td style="border: 1px solid ">max 1.6</td>
                                                                         <td id="content106" style="border: 1px solid "></td>
                                                                         <td id="content107" style="border: 1px solid "></td>
                                                                         <td style="border: 1px solid "></td>
@@ -1027,26 +1538,29 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                 <div style="margin: 5px auto" class="container-fluid">
                                                     <div class="row">
+
                                                         <div class="col-12">
                                                             <table class="table table-striped col-12">
                                                                 <tbody style="border: 1px solid;">
                                                                     <tr>
-                                                                        <th rowspan="3" style="border: 1px solid">Note: <span id="contentNoteSize5"></span></th>
-
+                                                                        <th style="border: 1px solid">Note:</th>
+                                                                        <td>
+                                                                            The above reported result is applicable to the sample as received at customer service section
+                                                                            Report was Electronically generated, Signature are not required
+                                                                            **: These Tests are out of scope of ISO/IEC 17025-2017
+                                                                        </td>
                                                                     </tr>
-
-
-
-
                                                                 </tbody>
                                                             </table>
                                                         </div>
+
+
                                                         <div class="col-12">
                                                             <table class="table table-striped col-12">
                                                                 <tbody style="border: 1px solid;">
                                                                     <tr>
                                                                         <th style="border: 1px solid">Remarks:</th>
-                                                                        <td>Test request obvious problems before,during and after tests Improvements</td>
+                                                                        <td><span id="content120"></span></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -1067,9 +1581,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <th></th>
                                                         <th></th>
                                                         <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedSize5"> </span> -->
-                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span >Fatima Rasheed </span>
-                                                          
-                                                    </th>
+                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span>Fatima Rasheed </span>
+
+                                                        </th>
                                                         <th></th>
                                                         <th></th>
                                                         <th></th>
@@ -1077,7 +1591,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                         <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
                                                             <!-- <span id="testApprovedSize5"> </span> -->
-                                                            <span >Zain Abbas </span>
+                                                            <span>Zain Abbas </span>
                                                         </th>
                                                     </tr>
                                                 </table>
@@ -1103,15 +1617,17 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </tr>
                                                 </table>
                                                 <div class="col-12">
-                                                            <table class="table table-striped col-12">
-                                                                
-                                                                    <tr>
-                                                                        
-                                                                        <td style="text-align:Center; font-size:Bold; font-size:25;"><h2>End of Report</h2></td>
-                                                                    </tr>
-                                                                
-                                                            </table>
-                                                        </div>
+                                                    <table class="table table-striped col-12">
+
+                                                        <tr>
+
+                                                            <td style="text-align:Center; font-size:Bold; font-size:25;">
+                                                                <h2>End of Report</h2>
+                                                            </td>
+                                                        </tr>
+
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1124,6 +1640,2805 @@ if (!$this->session->has_userdata('user_id')) {
                         </div>
 
                     </div>
+
+
+
+                    <!--Soccer Balls B2B-->
+                    <div class="modal fade bd-example-modal-xl" id="soccerBallsSizeB2B" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">FGT Report</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="printSoccerBallB2B">
+                                    <div class="card" id="">
+                                        <div class="card-body">
+
+
+                                            <table class="table">
+                                                <tr>
+                                                    <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+
+
+                                                    <center>
+                                                        <th style="text-align:Center;"> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                    </center>
+
+
+                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                </tr>
+                                                <tr>
+                                                    <!-- <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th> -->
+
+                                                    <th></th>
+                                                    <!-- <th> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th> -->
+                                                    <th style="font-size: x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>
+                                                        FGT Report for Soccerballs B2B</th>
+                                                    <th> </th>
+                                                    <!-- <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th> -->
+                                                </tr>
+                                            </table>
+
+
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <table style="border:1px solid" class="table table-striped">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th style="border:1px solid">FACTORY NAME</th>
+                                                                    <td style="border:1px solid" class="text-center"><span id="content176"></span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border:1px solid">lAB NO.</th>
+                                                                    <td style="border:1px solid" class="text-center"><span id="content177"></span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border:1px solid">TESTING DATE</th>
+                                                                    <td style="border:1px solid" class="text-center"><span id="content178"></span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border:1px solid">TEST ACC. TO CAT:</th>
+                                                                    <td style="border:1px solid" class="text-center"><span id="content179"></span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border:1px solid">PRODUCTION MONTH</th>
+                                                                    <td style="border:1px solid" class="text-center"><span id="content181"></span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border:1px solid">TEMPERATURE</th>
+                                                                    <td style="border:1px solid" class="text-center"><span id="content190B"></span></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <table class="table table-striped">
+
+                                                            <table style="border:1px solid">
+
+                                                                <th colspan="2" style="text-align:center;">CONSTRUCTION</th>
+
+                                                                <tr>
+                                                                    <th style="border:1px solid">CONVERT MAT.</th>
+                                                                    <td style="border:1px solid" class="text-center"><span id="content182"></span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border:1px solid">BACKING</th>
+                                                                    <td style="border:1px solid" class="text-center"><span id="content183"></span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border:1px solid">BLADDER</th>
+                                                                    <td style="border:1px solid" class="text-center"><span id="content184"></span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border:1px solid">BALLTYPE</th>
+                                                                    <td style="border:1px solid" class="text-center"><span id="content185"></span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border:1px solid">HUMIDITY</th>
+                                                                    <td style="border:1px solid" class="text-center"><span id="content191B"></span></td>
+                                                                </tr>
+                                                            </table>
+
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <table style="border:1px solid" class="table table-striped">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th style="border:1px solid">TEST TYPE</th>
+                                                                    <td style="border:1px solid" class="text-center"><span id="content186"></span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border:1px solid">MAIN MAT.COLOR</th>
+                                                                    <td style="border:1px solid" class="text-center"><span id="content187"></span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border:1px solid">PRINTING COLOR</th>
+                                                                    <td style="border:1px solid" class="text-center"><span id="content188"></span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border:1px solid">RESULT</th>
+                                                                    <td style="border:1px solid" class="text-center"><span id="content189"></span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border:1px solid">TESTED BY</th>
+                                                                    <td style="border:1px solid"><span id="content190"></span></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+
+                                            <br>
+
+                                            <div style="margin: 1px auto" class="container-fluid ">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <table class="table table-striped">
+                                                            <tbody style="border: 1px solid;">
+                                                                <tr>
+                                                                    <th style="border: 1px solid">Category 1</th>
+                                                                    <td>size 5,4 (excel, OMB, construction)</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th style="border: 1px solid">Category 2</th>
+                                                                    <td>small soccer Balls (Midi, size 1, mini, x-mini)</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th style="border: 1px solid">Category 3</th>
+                                                                    <td>jumbo balls</td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+                                            <br>
+
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+
+                                                        <table border="1">
+                                                            <tr style="text-align:center;">
+                                                                <th>TEST</th>
+                                                                <th>METHOD</th>
+                                                                <th>CONDITION</th>
+                                                                <th colspan="5">REQUIREMENT</th>
+                                                                <th colspan="2">RESULT</th>
+                                                                <th>REMARKS</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Static Properties</th>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th style="text-align:center;">UNIT</th>
+                                                                <th style="text-align:center;" colspan="2">Cat.1</th>
+                                                                <th style="text-align:center;">Cat.2</th>
+                                                                <th style="text-align:center;">Cat.3</th>
+                                                                <th style="text-align:center; word-spacing: 12px;" colspan="2">min / max</th>
+                                                                <td style="text-align:center;"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Weight</td>
+                                                                <td>FGT-35</td>
+                                                                <td>FGT-00</td>
+                                                                <td>g</td>
+                                                                <td>410-450</td>
+                                                                <td>410-451</td>
+                                                                <td>midi 205-225 size1: 170-200 mini:140-160 x-mini:95-115</td>
+                                                                <td>mean value</td>
+                                                                <td><span id="content191"></span></td>
+                                                                <td><span id="content192"></span></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Circumference</td>
+                                                                <td>FGT-36</td>
+                                                                <td>FGT-00</td>
+                                                                <td>cm</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td>midi 205-225 size1: 170-200 mini:140-160 x-mini:95-115</td>
+                                                                <td>230,0-250.0</td>
+                                                                <td><span id="content193"></span></td>
+                                                                <td><span id="content194"></span></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Circumference (CSM)</td>
+                                                                <td>FGT-37</td>
+                                                                <td>FGT-00</td>
+                                                                <td>cm</td>
+                                                                <td>size 68,0-70,0 size 68,0-70.0</td>
+                                                                <td>59.0-60.0</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><span id="content195"></span></td>
+                                                                <td><span id="content196"></span></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Dev. in Sehericity in ref. to 100% roundness CSM</td>
+                                                                <td>FGT-37</td>
+                                                                <td>FGT-00</td>
+                                                                <td>%</td>
+                                                                <td>max 1,8</td>
+                                                                <td>max 1,6</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><span id="content197"></span></td>
+                                                                <td><span id="content198"></span></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Loss fo Pressure</td>
+                                                                <td>FGT-38</td>
+                                                                <td>FGT-00 evalution after 72h</td>
+                                                                <td>%</td>
+                                                                <td colspan="3">max 20%ball</td>
+                                                                <td></td>
+                                                                <td><span id="content199"></span></td>
+                                                                <td><span id="content200"></span></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>color check</td>
+                                                                <td>FGT-42</td>
+                                                                <td>FGT-00 </td>
+                                                                <td style="text-align:center;" colspan="5">L>40->max 3; L=40-70->max;4 L>75->max;5</td>
+                                                                <td colspan="3"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Dynamic Properties</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Round at RT</td>
+                                                                <td>FGT-39</td>
+                                                                <td>FGT-00</td>
+                                                                <td>cm</td>
+                                                                <td>min 115</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><span id="content201"></span></td>
+                                                                <td><span id="content202"></span></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Round at 5 C</td>
+                                                                <td>FGT-39</td>
+                                                                <td>FGT-00</td>
+                                                                <td>cm</td>
+                                                                <td>min 100</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><span id="content203"></span></td>
+                                                                <td><span id="content204"></span></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Water Resistance Test</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>water uptake</td>
+                                                                <td>FGT-40 </td>
+                                                                <td>after 300 cycles</td>
+                                                                <td>%</td>
+                                                                <td>max 20%/balls</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><span id="content205"></span></td>
+                                                                <td><span id="content206"></span></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Increase in Circumference</td>
+                                                                <td>FGT-40 FGT-36</td>
+                                                                <td>after 300 cycles</td>
+                                                                <td>cm</td>
+                                                                <td>max 1,5</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><span id="content207"></span></td>
+                                                                <td><span id="content208"></span></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Dev. in Sehericity in ref. to 100% roundness CSM</td>
+                                                                <td>FGT-40 FGT-37</td>
+                                                                <td>after 300 cycles</td>
+                                                                <td>%</td>
+                                                                <td>max 1,8</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><span id="content209"></span></td>
+                                                                <td><span id="content210"></span></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Shooter Test</th>
+                                                                <td></td>
+                                                                <td>0.6 bar</td>
+                                                                <td></td>
+                                                                <td>1000x</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Increase in Circumference</td>
+                                                                <td>FGT-41 FGT-36</td>
+                                                                <td>after cycles completed</td>
+                                                                <td>cm</td>
+                                                                <td>max 2</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><span id="content211"></span></td>
+                                                                <td><span id="content212"></span></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Dev. in Sehericity in ref. to 100% roundness CSM</td>
+                                                                <td>FGT-41 FGT-37</td>
+                                                                <td>after cycles completed</td>
+                                                                <td>%</td>
+                                                                <td>max 1,8</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><span id="content213"></span></td>
+                                                                <td><span id="content214"></span></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Change of pressure in ref. to 100% pressure</td>
+                                                                <td>FGT-41</td>
+                                                                <td>after cycles completed</td>
+                                                                <td>bar</td>
+                                                                <td>max 0,1</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><span id="content215"></span></td>
+                                                                <td><span id="content216"></span></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Material</td>
+                                                                <td>FGT-41</td>
+                                                                <td>after cycles completed</td>
+                                                                <td style="align-items:center" colspan="2">stitching/bonding+air value damaged % no delamination</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><span id="content217"></span></td>
+                                                                <td><span id="content218"></span></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Printing Durability</th>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Drum Test</td>
+                                                                <td>FGT-50</td>
+                                                                <td>0.6 bar /150 minutes-wet</td>
+                                                                <td colspan="3" style="text-align:center;"> print is still visible around the ball</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><span id="content219"></span></td>
+                                                                <td><span id="content220"></span></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Abrasion resistance on 2 panles after water test W/Sandpaper grade P150</td>
+                                                                <td>FGT-43</td>
+                                                                <td>1x50cycl.; 9kPa load</td>
+                                                                <td colspan="3" style="text-align:center;"> dyestuff still visible; not smeared</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><span id="content221"></span></td>
+                                                                <td><span id="content222"></span></td>
+                                                                <td></td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <th>Climate-Strenth Tests</th>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>UV Light Fastness</td>
+                                                                <td>FGT-04</td>
+                                                                <td>2h/550W</td>
+                                                                <td colspan="3" style="text-align:center;"> min 3 acc.greyscale</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><span id="content223"></span></td>
+                                                                <td><span id="content224"></span></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Hydrolysis - Lamination</td>
+                                                                <td>FGT-01</td>
+                                                                <td>60 C ; 95% 7 days</td>
+                                                                <td colspan="2">no delamination</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><span id="content225"></span></td>
+                                                                <td><span id="content226"></span></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Hydrolysis - color change</td>
+                                                                <td>FGT-01</td>
+                                                                <td>60 C ; 95% 7 days</td>
+                                                                <td colspan="2">min 3acc.greyscale</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td><span id="content227"></span></td>
+                                                                <td><span id="content228"></span></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Child Safety Tests</th>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Use Abuse Testing</td>
+                                                                <td>FGT-81</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td>pass</td>
+                                                                <td></td>
+                                                                <td><span id="content229"></span></td>
+                                                                <td><span id="content230"></span></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </table>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <br>
+                                            <div>
+                                                <table border="1" style="width:100% ;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th style="text-align:center">REMARKS:</th>
+                                                            <td>
+                                                                <table border="1">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th> Test request </th>
+                                                                            <td style="width:100% ;">R&D asghar@forward.pk</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th> failed criteria</th>
+                                                                            <td style="width:100% ;">0</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>obvious problems before, during and after tests</th>
+                                                                            <td style="width:100% ;">occur</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>improvements</th>
+                                                                            <td style="width:100% ;">nothing</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                                <table class="table">
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                            <span>Sohail Rasheed </span>
+                                                        </th>
+                                                        <th></th>
+
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedSize5"> </span> -->
+                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span>Fatima Rasheed </span>
+
+                                                        </th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+
+
+                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                            <!-- <span id="testApprovedSize5"> </span> -->
+                                                            <span>Zain Abbas </span>
+                                                        </th>
+                                                    </tr>
+                                                </table>
+
+                                                <table class="table">
+                                                    <tr>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Fresh Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="FreshPhotoSize4" height="150px" width="200px" alt="FreshPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Shooter Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="ShooterPhotoSize4" height="150px" width="200px" alt="ShooterPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Hydrolysis Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="HydroPhotoSize4" height="150px" width="200px" alt="HydroPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Drum Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="DrumPhotoSize4" height="150px" width="200px" alt="DrumPhoto" />
+                                                        </th>
+                                                    </tr>
+                                                </table>
+
+
+
+
+                                                <div class="col-12">
+                                                    <table class="table table-striped col-12">
+
+                                                        <tr>
+
+                                                            <td style="text-align:Center; font-size:Bold; font-size:25;">
+                                                                <h2>End of Report</h2>
+                                                            </td>
+                                                        </tr>
+
+                                                    </table>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button onclick="printDiv('printSoccerBallB2B')" type="button" class="btn btn-primary">Print Report</button>
+                                                </div>
+
+
+
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--Soccer Balls Beach-->
+                    <div class="modal fade bd-example-modal-xl" id="soccerBallsSizeBeach" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">FGT Report</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="printSoccerBallsBeach">
+                                    <div class="card" id="">
+                                        <div class="card-body">
+
+
+
+                                            <table class="table">
+                                                <tr>
+                                                    <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+
+
+                                                    <center>
+                                                        <th style="text-align:Center;"> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                    </center>
+
+
+                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                </tr>
+                                                <tr>
+                                                    <!-- <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th> -->
+
+                                                    <th></th>
+                                                    <!-- <th> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th> -->
+                                                    <th style="font-size: x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT Report for Soccerballs Beach</th>
+                                                    <th> </th>
+                                                    <!-- <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th> -->
+                                                </tr>
+                                            </table>
+
+
+
+
+
+
+
+
+                                            <div style="display:flex;">
+                                                <div style="padding-left:30px;padding-right:30px;">
+                                                    <table border="1">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>FACTORY NAME</th>
+                                                                <td><span id="content231"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>lAB NO.</th>
+                                                                <td><span id="content232"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>TESTING DATE</th>
+                                                                <td><span id="content233"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>TEST ACC. TO CAT:</th>
+                                                                <td><span id="content234"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>FILE STAMP</th>
+                                                                <td><span id="content235"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>PRODUCTION MONTH</th>
+                                                                <td><span id="content236"></span></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div style="padding-left:30px;padding-right:30px;">
+                                                    <table border="1">
+
+                                                        <th colspan="2" style="text-align:center;">CONSTRUCTION</th>
+
+                                                        <tr>
+                                                            <th>CONVERT MAT.</th>
+                                                            <td><span id="content237"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>BACKING</th>
+                                                            <td><span id="content238"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>BLADDER</th>
+                                                            <td><span id="content239"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>BALLTYPE</th>
+                                                            <td><span id="content240"></span></td>
+                                                        </tr>
+
+
+                                                    </table>
+
+                                                </div>
+
+                                                <div style="padding-left:30px;padding-right:30px;">
+                                                    <table border="1">
+                                                        <tr>
+                                                            <th>TEST TYPE</th>
+                                                            <td><span id="content241"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>MAIN MAT.COLOR</th>
+                                                            <td><span id="content242"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>PRINTING COLOR</th>
+                                                            <td><span id="content243"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>RESULT</th>
+                                                            <td><span id="content244"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>TESTED BY</th>
+                                                            <td><span id="content245"></span></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <br>
+
+
+
+
+                                            <div style="margin: 1px auto" class="container-fluid ">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <table class="table table-striped">
+                                                            <tbody style="border: 1px solid;">
+                                                                <tr>
+                                                                    <th style="border: 1px solid">Category 1</th>
+                                                                    <td> -all Beach Balls with "FIFA QUALITY PRO" logo (replace "FIFA approved")</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th style="border: 1px solid">Category 2</th>
+                                                                    <td> -all Beach Balls with "FIFA QUALITY" logo (replace "FIFA inspected") -> Training</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th style="border: 1px solid">Category 3</th>
+                                                                    <td> -entry price beach soccer % leisure balls</td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <br>
+                                            <div style="padding-left:30px;padding-right:30px;">
+                                                <table border="1">
+                                                    <tr style="text-align:center;">
+                                                        <th>TEST</th>
+                                                        <th>METHOD</th>
+                                                        <th>CONDITION</th>
+                                                        <th colspan="4">REQUIREMENT</th>
+                                                        <th colspan="2">RESULT</th>
+                                                        <th>REMARKS</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Static Properties</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th style="text-align:center;">UNIT</th>
+                                                        <th style="text-align:center;">Cat.1</th>
+                                                        <th style="text-align:center;">Cat.2</th>
+                                                        <th style="text-align:center;">Cat.3</th>
+                                                        <th style="text-align:center; word-spacing: 8px;" colspan="2">min / max</th>
+                                                        <td style="text-align:center; "></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Weight</td>
+                                                        <td>FGT-35</td>
+                                                        <td>mean value</td>
+                                                        <td>g</td>
+                                                        <td>420-440</td>
+                                                        <td>420-440</td>
+                                                        <td>400-440</td>
+                                                        <td><span id="content246"></span></td>
+                                                        <td><span id="content247"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Circumference (CSM)</td>
+                                                        <td>FGT-37</td>
+                                                        <td>mean value</td>
+                                                        <td>cm</td>
+                                                        <td>68,0-70,0</td>
+                                                        <td>68,0-70,0</td>
+                                                        <td>68,0-70,0</td>
+                                                        <td><span id="content248"></span></td>
+                                                        <td><span id="content249"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dev. in Sehericity in ref. to 100% roundness CSM</td>
+                                                        <td>FGT-37</td>
+                                                        <td>mean value</td>
+                                                        <td>%</td>
+                                                        <td>max 1,6</td>
+                                                        <td>max 1,6</td>
+                                                        <td>max 1,8</td>
+                                                        <td><span id="content250"></span></td>
+                                                        <td><span id="content251"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Loss fo Pressure</td>
+                                                        <td>FGT-38</td>
+                                                        <td>mean value evalution of 72h</td>
+                                                        <td>%</td>
+                                                        <td>max 20</td>
+                                                        <td>max 20</td>
+                                                        <td>max 20</td>
+                                                        <td><span id="content252"></span></td>
+                                                        <td><span id="content253"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Dynamic Properties</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Round at RT</td>
+                                                        <td>FGT-39</td>
+                                                        <td>mean value</td>
+                                                        <td>cm</td>
+                                                        <td>100-150</td>
+                                                        <td>100-150</td>
+                                                        <td>100-150</td>
+                                                        <td><span id="content254"></span></td>
+                                                        <td><span id="content255"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Water Resistance Test &npar; (This test has to conducted after the shooter test with the shooter
+                                                            test ball!</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Water uptake</td>
+                                                        <td>FGT-40</td>
+                                                        <td>after 300 cycles</td>
+                                                        <td>%</td>
+                                                        <td>min 8%/ball</td>
+                                                        <td>min 10%/ball</td>
+                                                        <td>min 12%/ball</td>
+                                                        <td><span id="content256"></span></td>
+                                                        <td><span id="content257"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Increase in Circumference</td>
+                                                        <td>FGT-40 FGT-37</td>
+                                                        <td>after 300 cycles</td>
+                                                        <td>cm</td>
+                                                        <td>max 0,8</td>
+                                                        <td>max 1,0</td>
+                                                        <td>max 1,5</td>
+                                                        <td><span id="content258"></span></td>
+                                                        <td><span id="content259"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dev. in Sehericity in ref. to 100% roundness CSM</td>
+                                                        <td>FGT-40 FGT-37</td>
+                                                        <td>after 300 cycles</td>
+                                                        <td>%</td>
+                                                        <td>max 1,6</td>
+                                                        <td>max 1,6</td>
+                                                        <td>max 1,8</td>
+                                                        <td><span id="content260"></span></td>
+                                                        <td><span id="content261"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Shooter Test</th>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>cycles:</td>
+                                                        <td>3500x</td>
+                                                        <td>3000x</td>
+                                                        <td>1000x</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Increase in Circumference</td>
+                                                        <td>FGT-41 FGT-37</td>
+                                                        <td>after cycles completed</td>
+                                                        <td>cm</td>
+                                                        <td>max 1.5</td>
+                                                        <td>max 1.5</td>
+                                                        <td>max 2</td>
+                                                        <td><span id="content262"></span></td>
+                                                        <td><span id="content263"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dev. in Sehericity in ref. to 100% roundness CSM</td>
+                                                        <td>FGT-41 FGT-37</td>
+                                                        <td>after cycles completed</td>
+                                                        <td>%</td>
+                                                        <td>max 1,6</td>
+                                                        <td>max 1,6</td>
+                                                        <td>max 1,8</td>
+                                                        <td><span id="content264"></span></td>
+                                                        <td><span id="content265"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Change of pressure in ref. to 100% pressure</td>
+                                                        <td>FGT-41</td>
+                                                        <td>after cycles completed</td>
+                                                        <td>bar</td>
+                                                        <td>max 0,1</td>
+                                                        <td>max 0,1</td>
+                                                        <td>max 0,3</td>
+                                                        <td><span id="content266"></span></td>
+                                                        <td><span id="content267"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Material</td>
+                                                        <td>FGT-41</td>
+                                                        <td>after cycles completed</td>
+                                                        <td style="text-align:center;" colspan="3">stitching/bonding+air value damaged % no delamination</td>
+                                                        <td><span id="content268"></span></td>
+                                                        <td colspan="2"><span id="content269"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Printing Durability</th>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Drum Test</td>
+                                                        <td>FGT-50</td>
+                                                        <td>mean value / 240 minutes-wet</td>
+                                                        <td colspan="3" style="text-align:center;"> print is still visible around the ball</td>
+                                                        <td></td>
+                                                        <td><span id="content270"></span></td>
+                                                        <td><span id="content271"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Abrasion resistance on 2 panles after water test W/Sandpaper grade P150</td>
+                                                        <td>FGT-43</td>
+                                                        <td>1x50cycl.; 9kPa load</td>
+                                                        <td colspan="4" style="text-align:center;"> dyestuff still visible; not smeared</td>
+                                                        <td><span id="content272"></span></td>
+                                                        <td><span id="content273"></span></td>
+                                                        <td></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th>Climate-Strenth Tests</th>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>UV Light Fastness</td>
+                                                        <td>FGT-04</td>
+                                                        <td>2h/550W</td>
+                                                        <td colspan="4" style="text-align:center;"> min 3 acc.greyscale</td>
+                                                        <td><span id="content274"></span></td>
+                                                        <td><span id="content275"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </table>
+
+                                                <br>
+                                                <div>
+                                                    <table border="1" style="width:100% ;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>REMARKS:</th>
+                                                                <td><span id="content275R"></span></td>
+
+                                                            </tr>
+
+
+
+
+
+
+                                                        </tbody>
+                                                    </table>
+
+
+
+                                                    <table class="table">
+                                                        <tr>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                                <span>Sohail Rasheed </span>
+                                                            </th>
+                                                            <th></th>
+
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedSize5"> </span> -->
+                                                            <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span>Fatima Rasheed </span>
+
+                                                            </th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+
+
+                                                            <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                                <!-- <span id="testApprovedSize5"> </span> -->
+                                                                <span>Zain Abbas </span>
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+
+                                                    <table class="table">
+                                                        <tr>
+                                                            <th>
+                                                                <h5 style="font-weight:bold;color:black">Fresh Image</h5>
+                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="FreshPhotoSoccerBallBeach" height="150px" width="200px" alt="FreshPhoto" />
+                                                            </th>
+                                                            <th>
+                                                                <h5 style="font-weight:bold;color:black">Shooter Image</h5>
+                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="ShooterPhotoSoccerBallBeach" height="150px" width="200px" alt="ShooterPhoto" />
+                                                            </th>
+                                                            <th>
+                                                                <h5 style="font-weight:bold;color:black">Hydrolysis Image</h5>
+                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="HydroPhotoSoccerBallBeach" height="150px" width="200px" alt="HydroPhoto" />
+                                                            </th>
+                                                            <th>
+                                                                <h5 style="font-weight:bold;color:black">Drum Image</h5>
+                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="DrumPhotoSoccerBallBeach" height="150px" width="200px" alt="DrumPhoto" />
+                                                            </th>
+                                                        </tr>
+                                                    </table>
+
+
+
+
+                                                    <div class="col-12">
+                                                        <table class="table table-striped col-12">
+
+                                                            <tr>
+
+                                                                <td style="text-align:Center; font-size:Bold; font-size:25;">
+                                                                    <h2>End of Report</h2>
+                                                                </td>
+                                                            </tr>
+
+                                                        </table>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button onclick="printDiv('printSoccerBallsBeach')" type="button" class="btn btn-primary">Print Report</button>
+                                                    </div>
+
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!--Soccer Balls Light-->
+                    <div class="modal fade bd-example-modal-xl" id="soccerBallsSizeLight" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">FGT Report</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="">
+
+
+
+                                    <div class="card" id="printFGTSoccerBallsLight">
+                                        <table style="margin-left:150px">
+                                            <tbody>
+
+                                                <tr>
+                                                    <th style="margin-right:100px"><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <th style="margin-left:100px"> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <th style="margin-left:600px"> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+
+
+                                        <div class="card-body">
+
+
+
+
+
+
+                                            <h2 style="font-size: x-large;font-weight:bold;padding:50px; align-text:center; margin-left:250px" id="exampleModalLabel">
+                                                Quality Assurance Lab of Forward Sports (Pvt) Ltd
+                                                <br>
+                                                FGT Report for Soccerballs Light
+                                            </h2>
+
+                                            <div style="display:flex;">
+                                                <div style="padding-left:30px;padding-right:30px;">
+                                                    <table border="1">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>FACTORY NAME</th>
+                                                                <td><span id="content286"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>lAB NO.</th>
+                                                                <td><span id="content287"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>TESTING DATE</th>
+                                                                <td><span id="content288"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>TEST ACC. TO CAT:</th>
+                                                                <td><span id="content289"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>PRODUCTION MONTH</th>
+                                                                <td><span id="content291"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>TEMPERATURE</th>
+                                                                <td><span id="content300C"></span></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div style="padding-left:30px;padding-right:30px;">
+                                                    <table border="1">
+                                                        <th colspan="2" style="text-align:center;">CONSTRUCTION</th>
+                                                        <tr>
+                                                            <th>CONVERT MAT.</th>
+                                                            <td><span id="content292"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>BACKING</th>
+                                                            <td><span id="content293"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>BLADDER</th>
+                                                            <td><span id="content294"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>BALLTYPE</th>
+                                                            <td><span id="content295"></span></td>
+                                                        </tr>
+                                                    </table>
+
+                                                </div>
+
+                                                <div style="padding-left:30px;padding-right:30px;">
+                                                    <table border="1">
+                                                        <tr>
+                                                            <th>TEST TYPE</th>
+                                                            <td><span id="content296"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>MAIN MAT.COLOR</th>
+                                                            <td><span id="content297"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>PRINTING COLOR</th>
+                                                            <td><span id="content298"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th></th>
+                                                            <td><span></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>RESULT</th>
+                                                            <td><span id="content299"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>TESTED BY</th>
+                                                            <td><span id="content300"></span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>HUMIDITY</th>
+                                                            <td><span id="content301C"></span></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <br>
+
+                                            <div style="padding-left:30px;padding-right:30px; width:100%">
+                                                <table border="1" style="width:1000px">
+                                                    <tr>
+                                                        <th>CATEGORY 1</th>
+                                                        <td> 400g - Children balls (size 5)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>CATEGORY 2</th>
+                                                        <td>350g - Children balls (size 5,4)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>CATEGORY 3</th>
+                                                        <td>290g - Children balls (size 5,4,3)</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+
+                                            <br>
+
+                                            <div style="padding-left:30px;padding-right:30px;">
+                                                <table border="1">
+                                                    <tr style="text-align:center;">
+                                                        <th>TEST</th>
+                                                        <th>METHOD</th>
+                                                        <th>CONDITION</th>
+                                                        <th colspan="4">REQUIREMENT</th>
+                                                        <th colspan="2">RESULT</th>
+                                                        <th>REMARKS</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Static Properties</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th>UNIT</th>
+                                                        <th>Cat.1</th>
+                                                        <th>Cat.2</th>
+                                                        <th colspan="1">Cat.3</th>
+                                                        <th></th>
+                                                        <!-- <th>Size 5</th>
+                                                        <th>Size 5,4</th>
+                                                        <th>Size 5,4</th>
+                                                        <th>Size 3</th>  -->
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th>Size 5</th>
+                                                        <th>Size 5,4</th>
+                                                        <th>Size 5,4</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Weight</td>
+                                                        <td>FGT-35</td>
+                                                        <td>0.6 bar</td>
+                                                        <td>g</td>
+                                                        <td>390-410</td>
+                                                        <td>360-330</td>
+                                                        <td>300-270</td>
+                                                        <td><span id="content301"></span></td>
+                                                        <td><span id="content302"></span></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Circumference (CSM)</td>
+                                                        <td>FGT-37</td>
+                                                        <td>0.6 bar</td>
+                                                        <td>cm</td>
+                                                        <td>68.0-70.0</td>
+                                                        <td>Size 5:68,0 - 70,0 Size 4:63.5-</td>
+                                                        <td>Size 5:68,0 - 70,0 Size 4:63.5-66.0</td>
+                                                        <td><span id="content303"></span></td>
+                                                        <td><span id="content304"></span></td>
+                                                        <td></td>
+                                                        <td></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dev. in Sehericity in ref. to 100% roundness CSM</td>
+                                                        <td>FGT-37</td>
+                                                        <td>0.6 bar</td>
+                                                        <td>%</td>
+                                                        <td>max 1.8</td>
+                                                        <td>max 1,6</td>
+                                                        <td colspan="1">max 1,6</td>
+                                                        <td><span id="content305"></span></td>
+                                                        <td><span id="content306"></span></td>
+                                                        <td></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Loss of Pressure</td>
+                                                        <td>FGT-38</td>
+                                                        <td>0.6 bar evalution of 72h</td>
+                                                        <td>%</td>
+                                                        <td>max 20%/ball</td>
+                                                        <td>max 20%/ball</td>
+                                                        <td colspan="1">max 20%/ball</td>
+                                                        <td><span id="content307"></span></td>
+                                                        <td><span id="content308"></span></td>
+                                                        <td></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Dynamic Properties</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Round at RT</td>
+                                                        <td>FGT-39</td>
+                                                        <td>0.6 bar </td>
+                                                        <td>cm</td>
+                                                        <td>min 115</td>
+                                                        <td>min 115</td>
+                                                        <td>min 115</td>
+                                                        <td><span id="content309"></span></td>
+                                                        <td><span id="content310"></span></td>
+                                                        <td></td>
+                                                        <td></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Round at 5 C</td>
+                                                        <td>FGT-39</td>
+                                                        <td>0.6 bar</td>
+                                                        <td>cm</td>
+                                                        <td>min 100</td>
+                                                        <td>min 100</td>
+                                                        <td>min 100</td>
+                                                        <td><span id="content311"></span></td>
+                                                        <td><span id="content312"></span></td>
+                                                        <td></td>
+                                                        <td></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Water Resistance Test</th>
+                                                        <td></td>
+                                                        <td>0.6 bar</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Water uptake</td>
+                                                        <td>FGT-40</td>
+                                                        <td>after 300 cycles</td>
+                                                        <td>%</td>
+                                                        <td>max 20%/ball</td>
+                                                        <td>max 15%/ball</td>
+                                                        <td>max 15%/ball</td>
+                                                        <td><span id="content313"></span></td>
+                                                        <td><span id="content314"></span></td>
+                                                        <td></td>
+                                                        <td></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Increase in Circumference</td>
+                                                        <td>FGT-40 FGT-36</td>
+                                                        <td>after 300 cycles</td>
+                                                        <td>cm</td>
+                                                        <td>max 1,5</td>
+                                                        <td>max 1,0</td>
+                                                        <td>max 1,0</td>
+                                                        <td><span id="content315"></span></td>
+                                                        <td><span id="content316"></span></td>
+                                                        <td></td>
+                                                        <td></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dev. in Sehericity in ref. to 100% roundness CSM</td>
+                                                        <td>FGT-40 FGT-37</td>
+                                                        <td>after 300 cycles</td>
+                                                        <td>%</td>
+                                                        <td>max 1.8</td>
+                                                        <td>max 1,6</td>
+                                                        <td>max 1,6</td>
+                                                        <td><span id="content317"></span></td>
+                                                        <td><span id="content318"></span></td>
+                                                        <td></td>
+                                                        <td></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Shooter Test</th>
+                                                        <td></td>
+                                                        <td>0.6 bar</td>
+                                                        <td></td>
+                                                        <td>1000x</td>
+                                                        <td>1000x</td>
+                                                        <td>1000x</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Increase in Circumference</td>
+                                                        <td>FGT-41 FGT-36</td>
+                                                        <td>after cycles completed</td>
+                                                        <td>cm</td>
+                                                        <td>max 2</td>
+                                                        <td>max 1.5</td>
+                                                        <td>max 1.5</td>
+                                                        <td><span id="content319"></span></td>
+                                                        <td><span id="content320"></span></td>
+                                                        <td></td>
+                                                        <td></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dev. in Sehericity in ref. to 100% roundness CSM</td>
+                                                        <td>FGT-41 FGT-37</td>
+                                                        <td>after cycles completed</td>
+                                                        <td>%</td>
+                                                        <td>max 1.8</td>
+                                                        <td>max 1,6</td>
+                                                        <td>max 1,6</td>
+                                                        <td><span id="content321"></span></td>
+                                                        <td><span id="content322"></span></td>
+                                                        <td></td>
+                                                        <td></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Change of pressure in ref. to 100% pressure</td>
+                                                        <td>FGT-41</td>
+                                                        <td>after cycles completed</td>
+                                                        <td>bar</td>
+                                                        <td>max 0,1</td>
+                                                        <td>max 0,1</td>
+                                                        <td>max 0,1</td>
+                                                        <td><span id="content323"></span></td>
+                                                        <td><span id="content324"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Material</td>
+                                                        <td>FGT-41</td>
+                                                        <td>after cycles completed</td>
+                                                        <td colspan="4">stitching/bonding+air value damaged % no delamination</td>
+                                                        <td><span id="content325"></span></td>
+                                                        <td><span id="content326"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Printing Durability</th>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Drum Test</td>
+                                                        <td>FGT-50</td>
+                                                        <td>0.6 bar / 150 minutes-wet</td>
+                                                        <td colspan="4"> print is still visible around the ball</td>
+                                                        <td><span id="content327"></span></td>
+                                                        <td><span id="content328"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Abrasion resistance on 2 panles after water test W/Sandpaper grade P150
+                                                        </td>
+                                                        <td>FGT-43</td>
+                                                        <td>1X30cycl.; 9kPa load</td>
+                                                        <td colspan="4"> dyestuff still visible; not smeared</td>
+                                                        <td><span id="content329"></span></td>
+                                                        <td><span id="content330"></span></td>
+                                                        <td></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th>Climate-Strenth Tests</th>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>UV Light Fastness</td>
+                                                        <td>FGT-04</td>
+                                                        <td>2h/550W</td>
+                                                        <td colspan="4"> min 3 acc.greyscale</td>
+                                                        <td><span id="content331"></span></td>
+                                                        <td><span id="content332"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Hydrolysis - Lamination</td>
+                                                        <td>FGT-01</td>
+                                                        <td>60 C ; 95% 7 days</td>
+                                                        <td colspan="4">no delamination</td>
+                                                        <td><span id="content333"></span></td>
+                                                        <td><span id="content334"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Hydrolysis - color change</td>
+                                                        <td>FGT-01</td>
+                                                        <td>60 C ; 95% 7 days</td>
+                                                        <td colspan="4">min 3acc.greyscale</td>
+                                                        <td><span id="content335"></span></td>
+                                                        <td><span id="content336"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </table>
+
+                                                <br>
+                                                <div>
+                                                    <table border="1" style="width:100% ;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>REMARKS:</th>
+                                                                <td><span id="content337R"></span></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+
+
+
+                                                <table class="table">
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                            <span>Sohail Rasheed </span>
+                                                        </th>
+                                                        <th></th>
+
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedSize5"> </span> -->
+                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span>Fatima Rasheed </span>
+
+                                                        </th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+
+
+                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                            <!-- <span id="testApprovedSize5"> </span> -->
+                                                            <span>Zain Abbas </span>
+                                                        </th>
+                                                    </tr>
+                                                </table>
+
+
+                                                <table class="table">
+                                                    <tr>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Fresh Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="FreshPhotoSoccerBallsLight" height="150px" width="200px" alt="FreshPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Shooter Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="ShooterPhotoSoccerBallsLight" height="150px" width="200px" alt="ShooterPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Hydrolysis Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="HydroPhotoSoccerBallsLight" height="150px" width="200px" alt="HydroPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Drum Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="DrumPhotoSoccerBallsLight" height="150px" width="200px" alt="DrumPhoto" />
+                                                        </th>
+                                                    </tr>
+                                                </table>
+
+
+
+                                                <div class="col-12">
+                                                    <table class="table table-striped col-12">
+
+                                                        <tr>
+
+                                                            <td style="text-align:Center; font-size:Bold; font-size:25;">
+                                                                <h2>End of Report</h2>
+                                                            </td>
+                                                        </tr>
+
+                                                    </table>
+                                                </div>
+
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button onclick="printDiv('printFGTSoccerBallsLight')" type="button" class="btn btn-primary">Print Report</button>
+                                                </div>
+
+
+
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <style>
+                        * {
+                            margin: 0%;
+                            padding: 0%;
+                        }
+
+                        .container1 {
+
+                            width: 100%;
+                            display: inline;
+                        }
+
+                        .table1 th,
+                        td {
+                            border: 1px solid black;
+                        }
+
+                        .table1 {
+                            display: inline;
+                            border-collapse: collapse;
+                            margin-left: 5%;
+                            margin-right: 5%;
+
+                        }
+
+                        .table1 td {
+                            width: 160px;
+                        }
+
+                        .container2 {
+                            width: 100%;
+                            margin-top: 40px;
+                            margin: 50px;
+                        }
+
+                        .table2 th,
+                        td {
+                            border: 1px solid black;
+                        }
+
+                        .table2 {
+                            border-collapse: collapse;
+                            margin-left: 2.2%;
+                            margin-right: 5%;
+                            text-align: center;
+                        }
+
+                        .table3 {
+                            margin-left: 2.2%;
+                            margin-right: 5%;
+                            width: 50%;
+                        }
+
+                        .table3 .td-3 table tbody th,
+                        td {
+                            border: 1px solid black;
+                        }
+
+                        .table3 th {
+                            border: 1px solid black;
+                            width: 8%;
+                        }
+
+                        .table3 .td-3 table tbody th,
+                        td {
+                            border-collapse: collapse;
+                        }
+
+                        .table3 .td-3 {
+                            width: 42%;
+                        }
+                    </style>
+
+
+                    <!--FGT Soccer Balls Size 3-->
+                    <div class="subheader">
+                        <h4 class="subheader-title">
+                            <a href="<?php echo base_url('LabController/labReportFGT') ?>" class="mx-4"> <button class='btn btn-primary'> <i class="fal fa-arrow-left"></i>&nbsp; Lab FGT Reports</button></a>
+                        </h1>
+                    </div>
+                    <div class="modal fade bd-example-modal-xl" id="soccerBallsSize3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">FGT Report</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="printSoccerBallsSize5">
+                                    <div class="card" id="printFGTSize5">
+                                        <div class="card-body">
+
+
+                                            <table class="table">
+                                                <tr>
+                                                    <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+
+
+                                                    <center>
+                                                        <th style="text-align:Center;"> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                    </center>
+
+
+                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                </tr>
+                                                <tr>
+                                                    <!-- <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th> -->
+
+                                                    <th></th>
+                                                    <!-- <th> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th> -->
+                                                    <th style="font-size: x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT Report for Soccerball Size 3</th>
+                                                    <th> </th>
+                                                    <!-- <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th> -->
+                                                </tr>
+                                            </table>
+
+                                            <!-- <h1 style="text-align: center ; margin: 20px">FGT Report for Soccerball Size 3 <span
+                                            style="float: right ; margin-right: 40px; ">adidas</span></h1> -->
+                                            <div class="container1">
+                                                <table class="table1">
+                                                    <tr>
+                                                        <th>FACTORY NAME</th>
+                                                        <td><span id="content341"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>LAB NO.</th>
+                                                        <td><span id="content342"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>TESTING DATE</th>
+                                                        <td><span id="content343"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>TEST ACC. TO Cat.:</th>
+                                                        <td><span id="content344"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>PRODUCTION MONTH</th>
+                                                        <td><span id="content345"></span></td>
+                                                    </tr>
+                                                </table>
+
+                                                <table class="table1">
+                                                    <tr>
+                                                        <th colspan="2">CONSTRUCTION</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>COVER MAT.</th>
+                                                        <td><span id="content346"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>BACKING</th>
+                                                        <td><span id="content347"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>BLADDER</th>
+                                                        <td><span id="content348"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>BALLTYPE</th>
+                                                        <td><span id="content349"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>TEMPERATURE</th>
+                                                        <td><span id="content349Size3"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>HUMIDITY</th>
+                                                        <td><span id="content350Size3"></span></td>
+                                                    </tr>
+                                                </table>
+
+                                                <table class="table1">
+                                                    <tr>
+                                                        <th>TEST TYPE</th>
+                                                        <td><span id="content350"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>MAIN MAT. COLOR</th>
+                                                        <td><span id="content351"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>PRINTING COLORS</th>
+                                                        <td><span id="content352"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>RESULT</th>
+                                                        <td><span id="content353"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>TESTED BY</th>
+                                                        <td><span id="content354"></span></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+
+                                            <div class="container2">
+                                                <table class="table2">
+                                                    <tr>
+                                                        <th>TEST</th>
+                                                        <th>METHOD</th>
+                                                        <th>CONDITION</th>
+                                                        <th colspan="2">REQUIREMENT</th>
+                                                        <th colspan="2">RESULT</th>
+                                                        <th>REMARKS</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: left"> <b>Static Properties</b></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td style="width: 20%"><b>UNIT</b></td>
+                                                        <td></td>
+                                                        <td colspan="2"><b>min / max</b></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> Weight</td>
+                                                        <td>FGT-35</td>
+                                                        <td>0.6 bar/24h</td>
+                                                        <td style="width: 20%">g</td>
+                                                        <td>280 - 320</td>
+                                                        <td><span id="content356"></span></td>
+                                                        <td><span id="content357"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> Circumference(CSM)</td>
+                                                        <td>FGT-37</td>
+                                                        <td>0.6 bar/24h</td>
+                                                        <td style="width: 20%">cm</td>
+                                                        <td>59,0 - 60,5</td>
+                                                        <td><span id="content358"></span></td>
+                                                        <td><span id="content359"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> Dev. in Sphericity in ref. to 100% roundness CSM</td>
+                                                        <td>FGT-37</td>
+                                                        <td>0.6 bar/24h</td>
+                                                        <td style="width: 20%">%</td>
+                                                        <td>max 1,6</td>
+                                                        <td><span id="content360"></span></td>
+                                                        <td><span id="content361"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> Loss of Pressure</td>
+                                                        <td>FGT-38</td>
+                                                        <td>1.0 bar/12h<br>evaluation after 72h</td>
+                                                        <td style="width: 20%">%</td>
+                                                        <td>max 20</td>
+                                                        <td><span id="content362"></span></td>
+                                                        <td><span id="content363"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> UV Light Fastness</td>
+                                                        <td>FGT-04</td>
+                                                        <td>2h/550W</td>
+                                                        <td style="width:20%; text-align: center;" colspan="2">min 3 acc. greyscale</td>
+                                                        <td></td>
+                                                        <td><span id="content364"></span></td>
+                                                        <td><span id="content365"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Abrasion resistance on 2 panels after water test w/<br>Sandpaper grade P150</td>
+                                                        <td>FGT-43</td>
+                                                        <td>1<small>X</small>50cycl.:<br>9 kPa load</td>
+                                                        <td style="width:20% ; text-align: center;" colspan="2">dyestuff still visible; not<br>smeared</td>
+                                                        <td></td>
+                                                        <td><span id="content366"></span></td>
+                                                        <td><span id="content367"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </table>
+
+                                                <table class="table3">
+                                                    <tr>
+                                                    </tr>
+                                                    <tr class="tr-3">
+                                                        <th>Remarks :</th>
+                                                        <td class="td-3">
+                                                            <table>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <th>Test Request</th>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                    <tr>
+
+                                                                        <th>failed criteria</th>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                    <tr>
+
+                                                                        <th>obvious problems before during and after tests</th>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                    <tr>
+
+                                                                        <th>improvements</th>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
+                                                <table class="table">
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                            <span>Sohail Rasheed </span>
+                                                        </th>
+                                                        <th></th>
+
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedSize5"> </span> -->
+                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span>Fatima Rasheed </span>
+
+                                                        </th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+
+
+                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                            <!-- <span id="testApprovedSize5"> </span> -->
+                                                            <span>Zain Abbas </span>
+                                                        </th>
+                                                    </tr>
+                                                </table>
+
+                                                <table class="table">
+                                                    <tr>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Fresh Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="FreshPhotoSize5" height="150px" width="200px" alt="FreshPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Shooter Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="ShooterPhotoSize5" height="150px" width="200px" alt="ShooterPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Hydrolysis Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="HydroPhotoSize5" height="150px" width="200px" alt="HydroPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Drum Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="DrumPhotoSize5" height="150px" width="200px" alt="DrumPhoto" />
+                                                        </th>
+                                                    </tr>
+                                                </table>
+                                                <div class="col-12">
+                                                    <table class="table table-striped col-12">
+
+                                                        <tr>
+
+                                                            <td style="text-align:Center; font-size:Bold; font-size:25;">
+                                                                <h2>End of Report</h2>
+                                                            </td>
+                                                        </tr>
+
+                                                    </table>
+
+
+
+
+                                                </div>
+
+
+
+
+
+                                            </div>
+
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button onclick="printDiv('soccerBallsSize3')" type="button" class="btn btn-primary">Print Report</button>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <!--Soccer Balls Small-->
+                    <div class="modal fade bd-example-modal-xl" id="soccerBallsSmall" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">FGT Report</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="printSoccerBallsSize4">
+                                    <div class="card" id="printFGTSizeSmall">
+                                        <div class="card-body">
+                                            <table class="table">
+                                                <tr>
+                                                    <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+
+
+                                                    <center>
+                                                        <th style="text-align:Center;"> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                    </center>
+
+
+                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                </tr>
+                                                <tr>
+                                                    <!-- <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th> -->
+
+                                                    <th></th>
+                                                    <!-- <th> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th> -->
+                                                    <th style="font-size: x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT Report for Soccerballs Small</th>
+                                                    <th> </th>
+                                                    <!-- <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th> -->
+                                                </tr>
+                                            </table>
+
+
+
+
+
+
+
+                                            <table class="table1">
+
+                                                <tbody style="border: 1px solid;">
+
+
+                                                    <tr>
+                                                        <th style="border: 1px solid;">FACTORY NAME</th>
+                                                        <td><span class="text-center" class="text-center" id="content396"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="border: 1px solid;">LAB NO.</th>
+                                                        <td><span class="text-center" id="content397"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="border: 1px solid;">TESTING DATE</th>
+                                                        <td><span class="text-center" id="content398"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="border: 1px solid;">TEST ACC. TO Cat.:</th>
+                                                        <td><span class="text-center" id="content398"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="border: 1px solid;">PRODUCTION MONTH</th>
+                                                        <td><span class="text-center" id="content399"></span></td>
+                                                    </tr>
+
+
+                                                </tbody>
+                                            </table>
+
+                                            <table class="table1">
+                                                <tr>
+                                                    <th colspan="2">CONSTRUCTION</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>COVER MAT.</th>
+                                                    <td><span id="content400"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>BACKING</th>
+                                                    <td><span id="content401"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>BLADDER</th>
+                                                    <td><span id="content402"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>BALLTYPE</th>
+                                                    <td><span id="content403"></span></td>
+                                                </tr>
+                                            </table>
+
+                                            <table class="table1">
+                                                <tr>
+                                                    <th>TEST TYPE</th>
+                                                    <td><span id="content404"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>MAIN MAT. COLOR</th>
+                                                    <td><span id="content405"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>PRINTING COLORS</th>
+                                                    <td><span id="content406"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>RESULT</th>
+                                                    <td><span id="content407"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>TESTED BY</th>
+                                                    <td><span id="content408"></span></td>
+                                                </tr>
+                                            </table>
+
+
+                                            <table class="table2">
+                                                <tr>
+                                                    <th>TEST</th>
+                                                    <th>METHOD</th>
+                                                    <th>CONDITION</th>
+                                                    <th colspan="2">REQUIREMENT</th>
+                                                    <th colspan="2">RESULT</th>
+                                                    <th>REMARKS</th>
+                                                </tr>
+                                                <tr>
+                                                    <td> <b>Static Properties</b></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td style="width: 20%"><b>UNIT</b></td>
+                                                    <td>Midi, Size 1, Mini,<br>x-Mini</td>
+                                                    <td colspan="2"><b>min / max</b></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Weight</td>
+                                                    <td>FGT-35</td>
+                                                    <td>0.4 bar</td>
+                                                    <td style="width: 20%">g</td>
+                                                    <td>Midi:205-225<br>Size 1: 170-200<br>Mini: 140-160<br>x-Mini: 33.0-34.5</td>
+                                                    <td><span id="content411"></span></td>
+                                                    <td><span id="content412"></span></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Circumference(CSM)</td>
+                                                    <td>FGT-36</td>
+                                                    <td>0.4 bar</td>
+                                                    <td style="width: 20%">cm</td>
+                                                    <td>Midi:50.0-51.5<br>Size 1: 47.0-48.5<br>Mini: 40.0-41.5<br>x-Mini: 33.0-34.5</td>
+                                                    <td><span id="content413"></span></td>
+                                                    <td><span id="content414"></span></td>
+                                                    <td></td>
+                                                </tr>
+                                            </table>
+
+                                            <table class="table3">
+                                                <tr>
+                                                </tr>
+                                                <tr>
+                                                    <th>Remarks :</th>
+                                                    <td class="td-3">
+                                                        <table>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th>Test Request</th>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+
+                                                                    <th>failed criteria</th>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+
+                                                                    <th>obvious problems before during and after tests</th>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+
+                                                                    <th>improvements</th>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+
+                                            <table class="table">
+                                                <tr>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                        <span>Sohail Rasheed </span>
+                                                    </th>
+                                                    <th></th>
+
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedSize5"> </span> -->
+                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span>Fatima Rasheed </span>
+
+                                                    </th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+
+
+                                                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                        <!-- <span id="testApprovedSize5"> </span> -->
+                                                        <span>Zain Abbas </span>
+                                                    </th>
+                                                </tr>
+                                            </table>
+
+                                            <table class="table">
+                                                <tr>
+                                                    <th>
+                                                        <h5 style="font-weight:bold;color:black">Fresh Image</h5>
+                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="FreshPhotoSize5" height="150px" width="200px" alt="FreshPhoto" />
+                                                    </th>
+                                                    <th>
+                                                        <h5 style="font-weight:bold;color:black">Shooter Image</h5>
+                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="ShooterPhotoSize5" height="150px" width="200px" alt="ShooterPhoto" />
+                                                    </th>
+                                                    <th>
+                                                        <h5 style="font-weight:bold;color:black">Hydrolysis Image</h5>
+                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="HydroPhotoSize5" height="150px" width="200px" alt="HydroPhoto" />
+                                                    </th>
+                                                    <th>
+                                                        <h5 style="font-weight:bold;color:black">Drum Image</h5>
+                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="DrumPhotoSize5" height="150px" width="200px" alt="DrumPhoto" />
+                                                    </th>
+                                                </tr>
+                                            </table>
+                                            <div class="col-12">
+                                                <table class="table table-striped col-12">
+
+                                                    <tr>
+
+                                                        <td style="text-align:Center; font-size:Bold; font-size:25;">
+                                                            <h2>End of Report</h2>
+                                                        </td>
+                                                    </tr>
+
+                                                </table>
+                                            </div>
+
+
+
+
+
+
+
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button onclick="printDiv('printFGTSizeSmall')" type="button" class="btn btn-primary">Print Report</button>
+                                            </div>
+
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <!--Society + Soccer Balls-->
+                    <div class="modal fade bd-example-modal-xl" id="soccerBallsSocietySoccerBALLS" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">FGT Report</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="printSoccerBallsSociety">
+                                    <div class="card" id="printFGTSize5">
+                                        <div class="card-body">
+
+
+                                            <table class="table">
+                                                <tr>
+                                                    <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+
+
+                                                    <center>
+                                                        <th style="text-align:Center;"> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                    </center>
+
+
+                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                </tr>
+                                                <tr>
+                                                    <!-- <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th> -->
+
+                                                    <th></th>
+                                                    <!-- <th> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th> -->
+                                                    <th style="font-size: x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR SOCIETY + SOCCERBALLS</th>
+                                                    <th> </th>
+                                                    <!-- <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th> -->
+                                                </tr>
+                                            </table>
+
+
+
+                                            <div style="display:flex;">
+                                                <div style="padding-left:30px;padding-right:30px;">
+                                                    <table border="1">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>FACTORY NAME</th>
+                                                                <td><span id="content451"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>lAB NO.</th>
+                                                                <td><span id="content452"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>TESTING DATE</th>
+                                                                <td><span id="content453"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>TEST ACC. TO CAT:</th>
+                                                                <td><span id="content455"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>FILE STAMP</th>
+                                                                <td><span id="content453"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>PRODUCTION MONTH</th>
+                                                                <td><span id="content456"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>ARTICLE NO.</th>
+                                                                <td><span id=""></span></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div style="padding-left:30px;padding-right:30px;">
+                                                    <table border="1">
+                                                        <th colspan="2" style="text-align:center;">CONSTRUCTION</th>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>CONVERT MAT.</th>
+                                                                <td><span id="content457"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>BACKING</th>
+                                                                <td><span id="content458"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>BLADDER</th>
+                                                                <td><span id="content459"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>BALLTYPE</th>
+                                                                <td><span id="content460"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>WORKING No</th>
+                                                                <td><span id=""></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>BALL NAME</th>
+                                                                <td><span id="content461"></span></td>
+                                                            </tr>
+
+                                                        </tbody>
+
+
+                                                    </table>
+
+                                                </div>
+                                                <div style="padding-left:30px;padding-right:30px;">
+                                                    <table border="1">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>TEST TYPE</th>
+                                                                <td><span id="content461"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>MAIN MAT.COLOR</th>
+                                                                <td><span id="content462"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>PRINTING COLOR</th>
+                                                                <td><span id="content463"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>RESULT</th>
+                                                                <td><span id="content464"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>TESTED BY</th>
+                                                                <td><span id="content465"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>TEMPERATURE</th>
+                                                                <td><span id="content465Society"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>HUMIDITY</th>
+                                                                <td><span id="content466Society"></span></td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <br>
+
+                                            <div style="padding-left:30px;padding-right:30px; width:100%">
+                                                <table border="1">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>CATEGORY 3</th>
+                                                            <td> -this is basic requirement, valid for all balls with a "FOB Price" less or equal to 5.00 USB,
+                                                                without any FIFA logo!</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <br>
+
+                                            <div style="padding-left:30px;padding-right:30px;">
+                                                <table border="1">
+                                                    <tr style="text-align:center;">
+                                                        <th>TEST</th>
+                                                        <th>METHOD</th>
+                                                        <th>CONDITION</th>
+                                                        <th colspan="2">REQUIREMENT</th>
+                                                        <th colspan="2">RESULT</th>
+                                                        <th>REMARKS</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Static Properties</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th style="text-align:center;">UNIT</th>
+                                                        <th style="text-align:center;">Cat.3</th>
+                                                        <th style="text-align:center; word-spacing: 12px" colspan="2">min / max</th>
+                                                        <td style="text-align:center;"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Weight</td>
+                                                        <td>FGT-35</td>
+                                                        <td>0.6 bar</td>
+                                                        <td>g</td>
+                                                        <td>410-450</td>
+                                                        <td><span id="content466"></span></td>
+                                                        <td><span id="content467"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Circumference (CSM)</td>
+                                                        <td>FGT-37</td>
+                                                        <td>0.6 bar</td>
+                                                        <td>cm</td>
+                                                        <td>68,0-70,0</td>
+                                                        <td><span id="content468"></span></td>
+                                                        <td><span id="content469"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dev. in Sehericity in ref. to 100% roundness CSM</td>
+                                                        <td>FGT-37</td>
+                                                        <td>0.6 bar</td>
+                                                        <td>%</td>
+                                                        <td>max 1,6</td>
+                                                        <td><span id="content470"></span></td>
+                                                        <td><span id="content471"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Loss fo Pressure</td>
+                                                        <td>FGT-38</td>
+                                                        <td>1.0 bar evalution after 72h</td>
+                                                        <td>%</td>
+                                                        <td>max 25</td>
+                                                        <td><span id="content472"></span></td>
+                                                        <td><span id="content473"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Dynamic Properties</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Round at RT</td>
+                                                        <td>FGT-39</td>
+                                                        <td>0.6 bar</td>
+                                                        <td>cm</td>
+                                                        <td>110-120</td>
+                                                        <td><span id="content474"></span></td>
+                                                        <td><span id="content475"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Round at 5 C</td>
+                                                        <td>FGT-39</td>
+                                                        <td>0.6 bar 5C/12h fridge</td>
+                                                        <td>cm</td>
+                                                        <td>min 110</td>
+                                                        <td><span id="content476"></span></td>
+                                                        <td><span id="content477"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Water Resistance Test</th>
+                                                        <td></td>
+                                                        <td>0.6 bar</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Water uptake</td>
+                                                        <td>FGT-40</td>
+                                                        <td>after 300 cycles</td>
+                                                        <td>%</td>
+                                                        <td>max 15%/ball</td>
+                                                        <td><span id="content478"></span></td>
+                                                        <td><span id="content479"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Increase in Circumference</td>
+                                                        <td>FGT-40 FGT-37</td>
+                                                        <td>after 300 cycles</td>
+                                                        <td>cm</td>
+                                                        <td>max 1,0</td>
+                                                        <td><span id="content480"></span></td>
+                                                        <td><span id="content481"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dev. in Sehericity in ref. to 100% roundness CSM</td>
+                                                        <td>FGT-40 FGT-37</td>
+                                                        <td>after 300 cycles</td>
+                                                        <td>%</td>
+                                                        <td>max 1,6</td>
+                                                        <td><span id="content482"></span></td>
+                                                        <td><span id="content483"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Shooter Test</th>
+                                                        <td></td>
+                                                        <td>0.8 bar</td>
+                                                        <td>cycles:</td>
+                                                        <td>3500x</td>
+                                                        <td>3000x</td>
+                                                        <td>2500x</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Increase in Circumference</td>
+                                                        <td>FGT-41 FGT-37</td>
+                                                        <td>after cycles completed</td>
+                                                        <td>cm</td>
+                                                        <td>max 1,5</td>
+                                                        <td><span id="content484"></span></td>
+                                                        <td><span id="content485"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dev. in Sehericity in ref. to 100% roundness CSM</td>
+                                                        <td>FGT-41 FGT-37</td>
+                                                        <td>after cycles completed</td>
+                                                        <td>%</td>
+                                                        <td>max 1,6</td>
+                                                        <td><span id="content486"></span></td>
+                                                        <td><span id="content487"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Change of pressure in ref. to 100% pressure</td>
+                                                        <td>FGT-41</td>
+                                                        <td>after cycles completed</td>
+                                                        <td>bar</td>
+                                                        <td>max 0,1</td>
+                                                        <td><span id="content488"></span></td>
+                                                        <td><span id="content489"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Material</td>
+                                                        <td>FGT-41</td>
+                                                        <td>after cycles completed</td>
+                                                        <td style="text-align:center;" colspan="2">stitching/bonding+air value damaged % no delamination</td>
+                                                        <td style="text-align:center;" colspan="2">stitching/bonding+air value damaged % no delamination (seam/value no
+                                                            damaged)</td>
+                                                        <td></td>
+                                                    <tr>
+                                                        <th>Printing Durability</th>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Drum Test</td>
+                                                        <td>FGT-50</td>
+                                                        <td>0.6 bar / 240 minutes-wet</td>
+                                                        <td colspan="2" style="text-align:center;"> print is still visible around the ball</td>
+                                                        <td colspan="2" style="text-align:center;"> print is still visible around the ball</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Abrasion resistance on 2 panles after water test W/Sandpaper grade P150</td>
+                                                        <td>FGT-43</td>
+                                                        <td>1x50cycl.; 9kPa load</td>
+                                                        <td colspan="2" style="text-align:center;"> dyestuff still visible; not smeared</td>
+                                                        <td colspan="2" style="text-align:center;"> dyestuff still visible; not smeared</td>
+                                                        <td></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th>Climate-Strenth Tests</th>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>UV Light Fastness</td>
+                                                        <td>FGT-04</td>
+                                                        <td>2h/550W</td>
+                                                        <td colspan="2" style="text-align:center;"> min 3 acc.greyscale</td>
+                                                        <td><span id="content490"></span></td>
+                                                        <td><span id="content491"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Ozon Test on Rubber (only on balls with rubber surface)</td>
+                                                        <td>FGT-46</td>
+                                                        <td>24h</td>
+                                                        <td colspan="2" style="text-align:center;">DIN 5350 Cat.1</td>
+                                                        <td><span id="content492"></span></td>
+                                                        <td><span id="content493"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Hydrolysis - Lamination</td>
+                                                        <td>FGT-01</td>
+                                                        <td>60 C ; 95% r.H.7 days</td>
+                                                        <td colspan="2" style="text-align:center;">no delamination</td>
+                                                        <td><span id="content494"></span></td>
+                                                        <td><span id="content495"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Hydrolysis - color change</td>
+                                                        <td>FGT-01</td>
+                                                        <td>60 C ; 95% r.H. 7 days</td>
+                                                        <td colspan="2" style="text-align:center;">min 3acc.greyscale</td>
+                                                        <td><span id="content496"></span></td>
+                                                        <td><span id="content497"></span></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </table>
+
+                                                <br>
+
+
+                                                <table border="1" style="width:100% ;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>REMARKS:</th>
+                                                            <td><span id="content465R"></span></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+
+                                                <table class="table">
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                            <span>Sohail Rasheed </span>
+                                                        </th>
+                                                        <th></th>
+
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedSize5"> </span> -->
+                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span>Fatima Rasheed </span>
+
+                                                        </th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+
+
+                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                            <!-- <span id="testApprovedSize5"> </span> -->
+                                                            <span>Zain Abbas </span>
+                                                        </th>
+                                                    </tr>
+                                                </table>
+
+                                                <table class="table">
+                                                    <tr>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Fresh Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="FreshPhotoSize5" height="150px" width="200px" alt="FreshPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Shooter Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="ShooterPhotoSize5" height="150px" width="200px" alt="ShooterPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Hydrolysis Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="HydroPhotoSize5" height="150px" width="200px" alt="HydroPhoto" />
+                                                        </th>
+                                                        <th>
+                                                            <h5 style="font-weight:bold;color:black">Drum Image</h5>
+                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="DrumPhotoSize5" height="150px" width="200px" alt="DrumPhoto" />
+                                                        </th>
+                                                    </tr>
+                                                </table>
+                                                <div class="col-12">
+                                                    <table class="table table-striped col-12">
+
+                                                        <tr>
+
+                                                            <td style="text-align:Center; font-size:Bold; font-size:25;">
+                                                                <h2>End of Report</h2>
+                                                            </td>
+                                                        </tr>
+
+                                                    </table>
+                                                </div>
+
+
+
+
+
+
+
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button onclick="printDiv('printSoccerBallsSociety')" type="button" class="btn btn-primary">Print Report</button>
+                                                </div>
+
+
+
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div id="ModalLoginForm" class="modal fade">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -1149,11 +4464,11 @@ if (!$this->session->has_userdata('user_id')) {
                                         </div>
 
                                         <!-- <div class="form-group">
-                        <label class="control-label">Password</label>
-                        <div>
-                            <input type="password" class="form-control input-lg" name="password">
-                        </div>
-                    </div> -->
+                                            <label class="control-label">Password</label>
+                                            <div>
+                                                <input type="password" class="form-control input-lg" name="password">
+                                            </div>
+                                        </div> -->
 
                                         <div class="form-group">
                                             <div>
@@ -1258,6 +4573,52 @@ if (!$this->session->has_userdata('user_id')) {
                         </div>
                     <?php } ?>
 
+                    <div id="ModalFGTTestType" class="modal fade bd-example-modal-lg">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h1 class="modal-title">Add FGT Test Type</h1>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Test Type:</label>
+                                                <input type="text" class="form-control" id="testtypes" name="testtypes" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row d-flex justify-content-center">
+
+                                        <div class="col-md-2 col-sm-12 col-xs-12 mt-4">
+
+                                            <button type="button" class="btn btn-success" id="save" onclick="Save_FGT_TestType()">Save</button>
+
+                                        </div>
+                                        <!-- <div class="col-md-2 col-sm-12 col-xs-12 mt-4">                
+                                            <button type="button" class="btn btn-danger" id="save" onclick="Delete_FGT_TestType()">Delete</button>                                    
+                                        </div> -->
+                                        <div class="col-md-2 col-sm-12 col-xs-12 mt-4">
+
+                                            <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
+                                            <button class="btn btn-warning" data-dismiss="modal">Close</button>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div id="Modaldepartment" class="modal fade bd-example-modal-lg">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -1265,9 +4626,7 @@ if (!$this->session->has_userdata('user_id')) {
                                     <h1 class="modal-title">Add FGT Head</h1>
                                 </div>
                                 <div class="modal-body">
-                                    <form name="formDepartment" id="myformDepartment" method="POST" action="<?php echo base_url(
-                                                                                                                ''
-                                                                                                            ); ?>DevelopmentController/AddActivity">
+                                    <form name="formDepartment" id="myformDepartment" method="POST" action="<?php echo base_url(''); ?>DevelopmentController/AddActivity">
                                         <!-- <input type="hidden" name="_token" value=""> -->
 
                                         <div class="row" style="display:flex">
@@ -1280,6 +4639,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <label class="custom-file-label" for="customFile">Upload Fresh Image:</label>
 
                                                     </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <span class="text-danger">Please Upload Fresh Image</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -1290,6 +4654,11 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                         <label class="custom-file-label" for="customFile">Upload Shooter Image:</label>
 
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <span class="text-danger">Please Upload Shooter Image</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1302,6 +4671,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <label class="custom-file-label" for="customFile">Upload Hydrolysis Image:</label>
 
                                                     </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <span class="text-danger">Please Upload Hydrolysis Image</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -1312,6 +4686,12 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                         <label class="custom-file-label" for="customFile">Upload Drum Image:</label>
 
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <span class="text-danger">Please Upload Drum Image</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1324,6 +4704,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <option value="SOCCER BALLS">SOCCER BALLS</option>
                                                         <option value="SOCCER INDOOR BALLS">SOCCER INDOOR BALLS</option>
                                                         <option value="SOCCER BALLS SIZE 5">SOCCER BALLS SIZE 5</option>
+                                                        <option value="SOCCER BALLS SIZE 4">SOCCER BALLS SIZE 4</option>
+                                                        <option value="SOCCER BALLS B2B">SOCCER BALLS B2B</option>
+                                                        <option value="SOCCER BALLS BEACH">SOCCER BALLS BEACH</option>
+                                                        <option value="SOCCER BALLS LIGHT">SOCCER BALLS LIGHT</option>
+                                                        <option value="SOCCER BALLS SIZE 3">SOCCER BALLS SIZE 3</option>
+                                                        <option value="SOCCER BALLS SMALL">SOCCER BALLS SMALL</option>
+                                                        <option value="SOCIETY+SOCCERBALLS">SOCIETY+SOCCERBALLS</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -1339,6 +4726,12 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <option value="Umer">Umer</option>
                                                         <option value="Bilal">Bilal</option>
                                                     </select>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <span class="text-danger">Please Select Test Performed By</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1354,25 +4747,32 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <option value="<?php echo $Key['CSSNo']; ?>"><?php echo $Key['CSSNo']; ?></option>
                                                         <?php } ?>
                                                     </select>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <span class="text-danger">Please Select Css No</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
+
                                             </div>
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
                                                     <label class="control-label">Article Code:</label>
-                                                    <input type="text" class="form-control" id="article" name="article">
+                                                    <input disabled type="text" class="form-control" id="article" name="article">
                                                 </div>
                                             </div>
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
                                                     <label class="control-label">Test Type:</label>
-                                                    <input type="text" class="form-control" id="tetype" name="tetype" />
+                                                    <input disabled type="text" class="form-control" id="tetype" name="tetype" />
 
                                                 </div>
                                             </div>
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
                                                     <label class="control-label">FGT TEST:</label>
-                                                    <select class="form-control" id="fgttest" name="fgttest">
+                                                    <select disabled class="form-control" id="fgttest" name="fgttest">
                                                         <option value="" disabled>Select one of the following</option>
                                                         <option value="DESTRUCTI
                                                         ON">DESTRUCTION</option>
@@ -1388,7 +4788,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <div class="form-group">
                                                     <label class="control-label">Department:</label>
                                                     <!-- Type here -->
-                                                    <input type="text" class="form-control" id="department" name="department" />
+                                                    <input disabled type="text" class="form-control" id="department" name="department" />
                                                 </div>
                                             </div>
                                         </div>
@@ -1401,10 +4801,16 @@ if (!$this->session->has_userdata('user_id')) {
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
                                                     <label class="control-label">Lab #:</label>
-                                                    <div>
-                                                        <input type="text" class="form-control input-lg" id='labno' name="labno" placeholder="Lab #:">
+
+                                                    <input type="text" class="form-control input-lg" id='labno' name="labno" placeholder="Lab #:">
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <span class="text-danger">Please Select Lab No</span>
+                                                        </div>
                                                     </div>
                                                 </div>
+
                                             </div>
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
@@ -1428,8 +4834,13 @@ if (!$this->session->has_userdata('user_id')) {
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
                                                     <label class="control-label">FIFA STUMP:</label>
-                                                    <div>
-                                                        <input type="text" class="form-control input-lg" id='fifastump' name="fifastump" placeholder="">
+
+                                                    <input type="text" class="form-control input-lg" id='fifastump' name="fifastump" placeholder="">
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <span class="text-danger">Please Select FIFA STUMP</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1447,7 +4858,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <div class="form-group">
                                                     <label class="control-label">COVER MAT:</label>
                                                     <div>
-                                                        <input type="text" class="form-control input-lg" id='cmat' name="cmat" placeholder="">
+                                                        <input disabled type="text" class="form-control input-lg" id='cmat' name="cmat" placeholder="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1457,7 +4868,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <div class="form-group">
                                                     <label class="control-label">BACKING:</label>
                                                     <div>
-                                                        <input type="text" class="form-control input-lg" id='backing' name="backing" placeholder="">
+                                                        <input disabled type="text" class="form-control input-lg" id='backing' name="backing" placeholder="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1465,7 +4876,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <div class="form-group">
                                                     <label class="control-label">BLADDER:</label>
                                                     <div>
-                                                        <input type="text" class="form-control input-lg" id='bladder' name="bladder" placeholder="">
+                                                        <input disabled type="text" class="form-control input-lg" id='bladder' name="bladder" placeholder="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1475,8 +4886,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <div class="form-group">
                                                     <label class="control-label">BALL TYPE:</label>
 
-                                                    <div>
-                                                        <input type="text" class="form-control input-lg" id='btype' name="btype" placeholder="">
+
+                                                    <input type="text" class="form-control input-lg" id='btype' name="btype" placeholder="">
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <span class="text-danger">Please Select Ball Type</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1487,12 +4903,19 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <label class="control-label">TEST TYPE:</label>
                                                         <select class="form-control" id="ttype" name="ttype">
                                                             <option value="" disabled>Select one of the following</option>
-                                                            <option value="Shooter">Shooter</option>
+
+                                                            <?php foreach ($getFGTTestType as $key) { ?>
+
+                                                                <option><?php echo $key['testName'] ?></option>
+
+                                                            <?php } ?>
+
+                                                            <!-- <option value="Shooter">Shooter</option>
                                                             <option value="Hydrolysis">Hydrolysis</option>
                                                             <option value="Drum">Drum</option>
                                                             <option value="Non Destructive">Non Destructive</option>
                                                             <option value="Water Uptake">Water Uptake</option>
-                                                            <option value="Full FGT">Full FGT</option>
+                                                            <option value="Full FGT">Full FGT</option> -->
                                                         </select>
 
                                                     </div>
@@ -1506,8 +4929,13 @@ if (!$this->session->has_userdata('user_id')) {
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
                                                     <label class="control-label">MAIN MAT. COLOR:</label>
-                                                    <div>
-                                                        <input type="text" class="form-control input-lg" id='mmcolor' name="mmcolor" placeholder="">
+
+                                                    <input type="text" class="form-control input-lg" id='mmcolor' name="mmcolor" placeholder="">
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <span class="text-danger">Please Select MAIN MAT COLOR</span>
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -1516,7 +4944,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <div class="form-group">
                                                     <label class="control-label">PRINTING COLORS:</label>
                                                     <div>
-                                                        <input type="text" class="form-control input-lg" id='pcolors' name="pcolors" placeholder="">
+                                                        <input disabled type="text" class="form-control input-lg" id='pcolors' name="pcolors" placeholder="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1542,19 +4970,18 @@ if (!$this->session->has_userdata('user_id')) {
                                         </div>
                                         <div class="row" style="display:flex">
                                             <!-- <div class="col-md-6" style="margin-top:25px">
-                   <div class="form-group">
-                        <label class="control-label">Inner</label>
-                        <div>
-                            <input type="text" class="form-control input-lg" id='inn' name="inn" placeholder="">
-                        </div>
-                    </div>
-
-                   </div> -->
+                                                <div class="form-group">
+                                                        <label class="control-label">Inner</label>
+                                                        <div>
+                                                            <input type="text" class="form-control input-lg" id='inn' name="inn" placeholder="">
+                                                        </div>
+                                                    </div>
+                                            </div> -->
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
                                                     <label class="control-label">Pannel Shape</label>
                                                     <div>
-                                                        <input type="text" class="form-control input-lg" id='pshape' name="pshape" placeholder="">
+                                                        <input disabled type="text" class="form-control input-lg" id='pshape' name="pshape" placeholder="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1563,8 +4990,13 @@ if (!$this->session->has_userdata('user_id')) {
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
                                                     <label class="control-label">Remarks</label>
-                                                    <div>
-                                                        <input type="text" class="form-control input-lg" id='rem' name="rem" placeholder="">
+
+                                                    <input type="text" class="form-control input-lg" id='rem' name="rem" placeholder="">
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <span class="text-danger">Please Select Remarks</span>
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -1572,14 +5004,18 @@ if (!$this->session->has_userdata('user_id')) {
                                             <div class="col-md-6" style="margin-top:25px">
                                                 <div class="form-group">
                                                     <label class="control-label">RESULT</label>
-                                                    <div>
-                                                        <input type="text" class="form-control input-lg" id='result' name="result" placeholder="">
+
+                                                    <input type="text" class="form-control input-lg" id='result' name="result" placeholder="">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <span class="text-danger">Please Select Result</span>
+                                                        </div>
                                                     </div>
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="row" style="display:flex">
+                                        <div style="display:none" class="row" style="display:flex">
                                             <div class="col-md-12" style="margin-top:25px">
                                                 <div class="form-group">
                                                     <label class="control-label">NOTE:</label>
@@ -1603,23 +5039,23 @@ if (!$this->session->has_userdata('user_id')) {
                                             </div>
 
                                         </div>
-                                        <div class="row">
-                                            <div class="form-group">
-                                                <div>
-                                                    <button type="button" class="btn btn-success m-3" id="save" onclick="Save_FGT_H()">Save</button>
 
 
-                                                    <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
-
-                                                    <button class="btn btn-success" data-dismiss="modal">Close</button>
-
-                                                </div>
-                                            </div>
-                                        </div>
                                     </form>
 
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12 col-xs-12 d-flex text-start justify-content-start">
+                                        <button type="button" class="btn btn-success" id="save" onclick="Save_FGT_H()">
+                                            Save</button>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 col-xs-12 d-flex text-end justify-content-end">
+                                        <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
+                                        <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
                             </div><!-- /.modal-content -->
+
                         </div><!-- /.modal-dialog -->
                     </div>
 
@@ -2092,22 +5528,23 @@ if (!$this->session->has_userdata('user_id')) {
                                         <div class="row" style="display:flex; margin-top:10px;">
 
                                         </div>
-                                        <div class="row">
-                                            <div class="form-group">
-                                                <div>
-                                                    <button type="button" class="btn btn-success m-3" id="save" onclick="Save_FGT_D()">Save</button>
 
-
-                                                    <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
-
-                                                    <button class="btn btn-success" data-dismiss="modal">Close</button>
-
-                                                </div>
-                                            </div>
-                                        </div>
                                     </form>
 
                                 </div>
+
+
+                                <div class="row">
+
+                                    <div class="col-md-6 col-sm-12 col-xs-12 text-start d-flex justify-content-start">
+                                        <button type="button" class="btn btn-success" id="save" onclick="Save_FGT_D()">Save</button>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 col-xs-12 d-flex text-end justify-content-end">
+                                        <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
+                                        <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->
                     </div>
@@ -2126,34 +5563,36 @@ if (!$this->session->has_userdata('user_id')) {
                                     <div class="card" id="printFGTSoccer">
                                         <div class="card-body">
                                             <!-- <table class="table">
-               <tr>
-                   <th style="font-size: large;font-weight:bold;padding:50px">FGT REPORT FOR AIRLINES MINI <span id="titleBalls">()</span></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
-               </tr>
-           </table> -->
+                                                <tr>
+                                                    <th style="font-size: large;font-weight:bold;padding:50px">FGT REPORT FOR AIRLINES MINI <span id="titleBalls">()</span></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+                                                </tr>
+                                            </table> -->
 
                                             <table class="table">
                                                 <tr>
                                                     <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
 
-                                                 
-                                                    <center>   <th style="text-align:Center;" > <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th></center>
+
+                                                    <center>
+                                                        <th style="text-align:Center;"> <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                    </center>
                                                     <!-- <th style="font-size:x-large;font-weight:bold;padding:50px" id="exampleModalLabel">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>FGT REPORT FOR AIRLINES MINI <span id="titleBalls">()</span></th> -->
-                                                   
-                                               
-                                                <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+
+
+                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
                                                 </tr>
                                                 <tr>
                                                     <!-- <th><img src="<?php echo base_url(); ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th> -->
@@ -2199,6 +5638,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th style="border: 1px solid;">PRODUCTION MONTH</th>
                                                                     <td class="text-center" id="content5"></td>
                                                                 </tr>
+
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -2214,9 +5654,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <td class="text-center" id="content6"></td>
                                                                 </tr>
                                                                 <!-- <tr>
-                        <th style="border: 1px solid;"><br><br>INNER</th>
-                        <td class="text-center" id="content7"></td>
-                    </tr> -->
+                                                                    <th style="border: 1px solid;"><br><br>INNER</th>
+                                                                    <td class="text-center" id="content7"></td>
+                                                                </tr> -->
                                                                 <tr>
                                                                     <th style="border: 1px solid;">PANEL SHAPE</th>
                                                                     <td class="text-center" id="content8"></td>
@@ -2228,6 +5668,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <tr>
                                                                     <th style="border: 1px solid;">BALL TYPE</th>
                                                                     <td class="text-center" id="content10"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;">Temperature</th>
+                                                                    <td class="text-center" id="content10Air"></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -2254,6 +5698,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <tr>
                                                                     <th style="border: 1px solid;"><br>TESTED BY</th>
                                                                     <td class="text-center" id="content15"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th style="border: 1px solid;"><br>Humidity</th>
+                                                                    <td class="text-center" id="content15Air"></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -2417,7 +5865,23 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                 <div style="margin: 15px auto" class="container-fluid p-2">
                                                     <div class="row">
+
                                                         <div class="col-12">
+                                                            <table class="table table-striped col-12">
+                                                                <tbody style="border: 1px solid;">
+                                                                    <tr>
+                                                                        <!-- id="content31" -->
+                                                                        <th style="border: 1px solid">Note:</th>
+                                                                        <td>The above reported result is applicable to the sample as received at customer service section
+                                                                            Report was Electronically generated, Signature are not required
+                                                                            **: These Tests are out of scope of ISO/IEC 17025-2017
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+                                                        <!-- <div class="col-12">
                                                             <table class="table table-striped col-12">
                                                                 <tbody style="border: 1px solid;">
                                                                     <tr>
@@ -2429,13 +5893,13 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                                 </tbody>
                                                             </table>
-                                                        </div>
+                                                        </div> -->
                                                         <div class="col-12">
                                                             <table class="table table-striped col-12">
                                                                 <tbody style="border: 1px solid;">
                                                                     <tr>
                                                                         <th style="border: 1px solid">Remarks:</th>
-                                                                        <td id="content31"></td>
+                                                                        <td><span id="content31"></span></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -2455,9 +5919,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <th></th>
                                                         <th></th>
                                                         <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedSoccer"> </span> -->
-                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span >Fatima Rasheed </span>
-                                                        
-                                                    </th>
+                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span>Fatima Rasheed </span>
+
+                                                        </th>
                                                         <th></th>
                                                         <th></th>
                                                         <th></th>
@@ -2465,7 +5929,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                         <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
                                                             <!-- <span id="testApprovedSoccer"> </span> -->
-                                                            <span > Zain Abbas </span>
+                                                            <span> Zain Abbas </span>
                                                         </th>
                                                     </tr>
                                                 </table>
@@ -2491,15 +5955,17 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </tr>
                                                 </table>
                                                 <div class="col-12">
-                                                            <table class="table table-striped col-12">
-                                                                
-                                                                    <tr>
-                                                                        
-                                                                        <td style="text-align:Center; font-size:Bold; font-size:25;"><h2>End of Report</h2></td>
-                                                                    </tr>
-                                                                
-                                                            </table>
-                                                        </div>
+                                                    <table class="table table-striped col-12">
+
+                                                        <tr>
+
+                                                            <td style="text-align:Center; font-size:Bold; font-size:25;">
+                                                                <h2>End of Report</h2>
+                                                            </td>
+                                                        </tr>
+
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -2532,15 +5998,17 @@ if (!$this->session->has_userdata('user_id')) {
                                         $AS = $this->session->userdata('ApprovalStatus');
                                         ?>
                                         <!-- <div class="panel-toolbar">
-                <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
-            </div> -->
-                                        <?php if ($Uploading == 1) { ?>
+                                            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                            <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                                        </div> -->
+                                        <!-- <?php if ($Uploading == 1) { ?>
+                                            <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#ModalFGTTestType" class="d-grid gap-2 d-md-block" id="createDepartment">+ Add FGT Test Type</button>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
                                             <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#Modaldepartment" class="d-grid gap-2 d-md-block" id="createDepartment">+ Create FGT Head</button>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                             <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#ModalDetail" class="d-grid gap-2 d-md-block" id="createDepartment">+ Add FGT Detail</button>
-                                        <?php } ?>
+                                        <?php } ?> -->
 
                                     </div>
 
@@ -2563,6 +6031,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                         <th>FGT Report</th>
                                                         <th>Article</th>
+                                                        <th>CSS #</th>
                                                         <th>Working #</th>
                                                         <th>LAB #</th>
                                                         <th>TESTING DATE</th>
@@ -2610,7 +6079,8 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                             <tr>
                                                                 <td id="fgtype<?php echo $keys['TID']; ?>"><?php echo $keys['FGTType']; ?></td>
-                                                                <td><?php echo $keys['ArtCode']; ?></td>
+                                                                <td><?php echo $keys['Article']; ?></td>
+                                                                <td><?php echo $keys['cssCode']; ?></td>
                                                                 <td><?php echo $keys['WorkNo']; ?></td>
                                                                 <td><?php echo $keys['labno']; ?></td>
                                                                 <td><?php echo $keys['testdate']; ?></td>
@@ -2646,9 +6116,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             <?php if (
                                                                                 $RS == 1
                                                                             ) { ?>
-                                                                                <input type="checkbox" class="custom-control-input" id="review<?php echo $keys['TID']; ?>">
+                                                                                <input type="checkbox" class="custom-control-input" id="review<?php echo $keys['TID']; ?>" checked>
                                                                             <?php } else { ?>
-                                                                                <input type="checkbox" disabled="disabled" class="custom-control-input" id="review<?php echo $keys['TID']; ?>">
+                                                                                <input type="checkbox" disabled="disabled" class="custom-control-input" id="review<?php echo $keys['TID']; ?>" checked>
                                                                             <?php } ?>
                                                                             <label class="custom-control-label" for="review<?php echo $keys['TID']; ?>"></label>
                                                                         </div>
@@ -2657,10 +6127,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <td>
 
                                                                     <?php if ($ReviewStatus == '1') { ?>
-
-                                                                        <span class="badge badge-success p-1"><?php echo $ReviewName; ?></span>
+                                                                        <span class="badge badge-success p-1">Fatima Rasheed</span>
+                                                                        <!-- <span class="badge badge-success p-1"><?php echo $ReviewName; ?></span> -->
                                                                     <?php } else { ?>
-                                                                        <span class="badge badge-warning p-1">Pending</span>
+                                                                        <span class="badge badge-warning p-1">Fatima Rasheed</span>
                                                                     <?php } ?>
                                                                 </td>
                                                                 <td>
@@ -2679,23 +6149,27 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                 $AS ==
                                                                                 1
                                                                             ) { ?>
-                                                                                <input type="checkbox" class="custom-control-input" id="approved<?php echo $keys['TID']; ?>">
+                                                                                <input type="checkbox" class="custom-control-input" id="approved<?php echo $keys['TID']; ?>" checked>
                                                                             <?php } else { ?>
-                                                                                <input type="checkbox" disabled="disabled" class="custom-control-input" id="approved<?php echo $keys['TID']; ?>">
+                                                                                <input type="checkbox" disabled="disabled" class="custom-control-input" id="approved<?php echo $keys['TID']; ?>" checked>
                                                                             <?php } ?>
                                                                             <label class="custom-control-label" for="approved<?php echo $keys['TID']; ?>"></label>
                                                                         </div>
                                                                     <?php } ?>
                                                                 </td>
                                                                 <td> <?php if ($ApprovedStatus == '1') { ?>
-
-                                                                        <span class="badge badge-success p-1"> <?php echo $Approvalname; ?></span>
+                                                                        <span class="badge badge-success p-1"> Zain Abbas</span>
+                                                                        <!-- <span class="badge badge-success p-1"> <?php echo $Approvalname; ?></span> -->
                                                                     <?php } else { ?>
-                                                                        <span class="badge badge-warning p-1">Pending</span>
+                                                                        <span class="badge badge-warning p-1">Zain Abbas</span>
                                                                     <?php } ?>
                                                                 </td>
 
-                                                                <td> <?php echo $keys['LoginName']; ?></td>
+                                                                <!-- <td> <?php //echo $keys['LoginName']; 
+                                                                            ?></td> -->
+                                                                <td> <?php echo $keys['Performedby']; ?></td>
+
+
                                                                 <td>
                                                                     <div class="row">
                                                                         <div class="col-md-2">
@@ -2715,11 +6189,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </div>
                                                                 </td>
                                                                 <td>
-                                                                    <div class="col-md-2">
+                                                                    <!-- <div class="col-md-2">
 
                                                                         <button type="button" id="undo.<?php echo $keys['TID']; ?>" value="<?php echo $keys['TID']; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button>
 
-                                                                    </div>
+                                                                    </div> -->
                                                                 </td>
                                                             </tr>
 
@@ -2760,11 +6234,11 @@ if (!$this->session->has_userdata('user_id')) {
         </div>
     </div>
     </div>
-    <script src="<?php echo base_url(); ?>/assets/js//jquery.min.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js//jquery.min.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>assets/js/statistics/peity/peity.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/statistics/flot/flot.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/datagrid/datatables/datatables.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -3004,16 +6478,16 @@ if (!$this->session->has_userdata('user_id')) {
 
         </div>
     </footer>
-    <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/js/jquery.min.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>assets/js/statistics/peity/peity.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/statistics/flot/flot.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/datagrid/datatables/datatables.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js" integrity="sha512-d5Jr3NflEZmFDdFHZtxeJtBzk0eB+kkRXWFQqEc1EKmolXjHm2IKCA7kTvXBNjIYzjXfD5XzIjaaErpkZHCkBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/statistics/peity/peity.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/statistics/flot/flot.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/datagrid/datatables/datatables.bundle.js"></script>
     <script>
         $(window).on('load', function() {
             //alert("I am here");
@@ -3054,6 +6528,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                    
                                                 <th>FGT Report</th>
                                                        <th>Article</th>
+                                                       <th>CSS #</th>
                                                        <th>Working #</th>
                                                     <th>LAB #</th>
                                                     <th>TESTING DATE</th>
@@ -3081,17 +6556,19 @@ if (!$this->session->has_userdata('user_id')) {
                                                            <th>TESTED BY</th>
                                                     <th>ACTIONS</th>
                                                      <th>Print Report</th>
-                                                        <th>UNDO</th>
+                                                        
                                                             
                                                                   
                                                   
                                                 </thead>
                                                 <tbody>`;
                     data.forEach(element => {
+
                         html += `
         <tr>
 <td id="fgtype${element.TID}"> ${element.FGTType}</td>
-<td ${element.ArtCode}</td>
+<td> ${element.Article}</td>
+<td> ${element.cssCode}</td>
 <td>${element.WorkNo}</td>
                         <td>${element.labno}</td>
                         <td>${element.testdate}</td>
@@ -3134,12 +6611,12 @@ ${reviewStatus == '1' ?
       `${reviewStatus == '1' ?
 
           `<div class="custom-control custom-switch">
-              <input type="checkbox" class="custom-control-input" id="customreview${element.TID}">
+              <input type="checkbox" class="custom-control-input" id="customreview${element.TID}" checked>
               <label class="custom-control-label" for="customreview${element.TID}" disabled></label>
           </div>`
           :
           `<div class="custom-control custom-switch">
-              <input type="checkbox" class="custom-control-input" id="customreview${element.TID}" disabled>
+              <input type="checkbox" class="custom-control-input" id="customreview${element.TID}" checked disabled>
               <label class="custom-control-label" for="customreview${element.TID}" disabled></label>
           </div>`
       }
@@ -3148,8 +6625,8 @@ ${reviewStatus == '1' ?
     <td>
 
     ${element.ReviewStatus == '1'?
-            `<span class="badge badge-primary p-1">${element.ReviewName}</span>`:
-            `<span class="badge badge-warning p-1">Pending</span>`
+            `<span class="badge badge-primary p-1">Fatima Rasheed</span>`:
+            `<span class="badge badge-warning p-1">Fatima Rasheed</span>`
         }
     </td>
     <td>
@@ -3167,12 +6644,12 @@ ${reviewStatus == '1' ?
        :
        `${approvalStatus == '1' ?
             `<div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="customapproved${element.TID}">
+                <input type="checkbox" class="custom-control-input" id="customapproved${element.TID}" checked>
                 <label class="custom-control-label" for="customapproved${element.TID}"></label>
             </div>`
             :
             `<div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="customapproved${element.TID}" disabled>
+                <input type="checkbox" class="custom-control-input" id="customapproved${element.TID}" checked disabled>
                 <label class="custom-control-label" for="customapproved${element.TID}"></label>
             </div>`
        }
@@ -3180,9 +6657,9 @@ ${reviewStatus == '1' ?
     </td>
     <td>
             ${element.ApprovedStatus == '1'?
-          `<span class="badge badge-primary p-1">${element.Approvalname}</span>`:
+          `<span class="badge badge-primary p-1">Zain Abbas</span>`:
           
-            `<span class="badge badge-warning p-1">Pending</span>`
+            `<span class="badge badge-warning p-1">Zain Abbas</span>`
             }
     </td>
     
@@ -3201,12 +6678,7 @@ ${reviewStatus == '1' ?
       
                 </div>
             </td>  
-            <td> <div class="col-md-2">
-               
-            <button type="button" id="undo.${element.TID}" value="${element.TID}>" class="btn btn-danger btn-xs customundobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> 
-      
-                </div>
-            </td>
+           
                       
 
       
@@ -4008,29 +7480,29 @@ ${reviewStatus == '1' ?
     </div>
     <!-- END Page Settings -->
     <!-- base vendor bundle: 
-                                                 DOC: if you remove pace.js from core please note on Internet Explorer some CSS animations may execute before a page is fully loaded, resulting 'jump' animations 
-                                                                                                + pace.js (recommended)
-                                                                                                + jquery.js (core)
-                                                                                                + jquery-ui-cust.js (core)
-                                                                                                + popper.js (core)
-                                                                                                + bootstrap.js (core)
-                                                                                                + slimscroll.js (extension)
-                                                                                                + app.navigation.js (core)
-                                                                                                + ba-throttle-debounce.js (core)
-                                                                                                + waves.js (extension)
-                                                                                                + smartpanels.js (extension)
-                                                                                                + src/../jquery-snippets.js (core) -->
-    <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
+    DOC: if you remove pace.js from core please note on Internet Explorer some CSS animations may execute before a page is fully loaded, resulting 'jump' animations 
+        + pace.js (recommended)
+        + jquery.js (core)
+        + jquery-ui-cust.js (core)
+        + popper.js (core)
+        + bootstrap.js (core)
+        + slimscroll.js (extension)
+        + app.navigation.js (core)
+        + ba-throttle-debounce.js (core)
+        + waves.js (extension)
+        + smartpanels.js (extension)
+        + src/../jquery-snippets.js (core) -->
+    <script src="<?php echo base_url(); ?>assets/js/vendors.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/app.bundle.js"></script>
     <script type="text/javascript">
         /* Activate smart panels */
         $('#js-page-content').smartPanel();
     </script>
     <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
-    <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/statistics/peity/peity.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/statistics/flot/flot.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/datagrid/datatables/datatables.bundle.js"></script>
     <script>
         $('#schedule').dataTable({
             responsive: true,
@@ -4522,9 +7994,11 @@ ${reviewStatus == '1' ?
             $.post(url, {
                 TID
             }, function(data) {
-                
+
                 if (type == " SOCCER BALLS" || type == " SOCCERBALLS") {
-                    
+
+                    // alert(type == " SOCCER BALLS" || type == " SOCCERBALLS");
+
                     $("#titleBalls").text(data['head'][0].FGTType);
                     $("#workingNoMini").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
                     $("#articleNoMini").text(data['head'][0].ArtCode != '' ? data['head'][0].ArtCode : 'Article Code: Nil');
@@ -4543,23 +8017,26 @@ ${reviewStatus == '1' ?
                     $("#content13").text(data['head'][0].printngscolors);
                     $("#content14").text(data['head'][0].result);
                     $("#content15").text(data['head'][0].Performedby);
-                
+                    $("#content377").text(data['head'][0].remark);
+
+                    $("#content10Air").text(data['head'][0].Temperature);
+                    $("#content15Air").text(data['head'][0].Humidity);
 
 
                     // if(data['head'][0].result.toLowerCase().trim() == "urgent" || data['head'][0].remark.toLowerCase().trim() == "urgent" ){
                     //     console.log("equal Urgent")
                     //     $("#contentNoteSoccer").text('As per the request of customer, testing is proceeded without condition.')
-                       
+
 
                     // }
                     // else{
                     //     console.log("Not equal Urgent", data['head'][0].result.toLowerCase().trim())
-                       $("#contentNoteSoccer").text(data['head'][0].Note);     
+                    $("#contentNoteSoccer").text('The above reported result is applicable to the sample as received at customer service section<br>Report was Electronically generated, Signature are not required<br>**: These Tests are out of scope of ISO/IEC 17025:2017');
 
                     // }
 
 
-                    
+
                     if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
                         $("#FreshPhotoSoccer").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
                     } else {
@@ -4602,9 +8079,13 @@ ${reviewStatus == '1' ?
 
                     $('#FGTReportModal').modal('toggle');
                 } else if (type == " SOCCER BALLS SIZE 5") {
-                    
+
+                    // alert(type == " SOCCER BALLS SIZE 5");
+
                     $("#content66").text(data['head'][0].labno);
                     $("#content666").text(data['head'][0].cssCode);
+
+
                     $("#workingNoSize5").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
                     $("#articleNoSize5").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
                     $("#content67").text(data['head'][0].testdate);
@@ -4619,7 +8100,14 @@ ${reviewStatus == '1' ?
                     $("#content76").text(data['head'][0].mainmatcolor);
                     $("#content77").text(data['head'][0].printngscolors);
                     $("#content78").text(data['head'][0].result);
+                    $("#content120").text(data['head'][0].remark);
                     $("#content79").text(data['head'][0].Performedby);
+
+                    $("#content74C").text(data['head'][0].Temperature);
+                    $("#content79C").text(data['head'][0].Humidity);
+
+
+
                     if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
                         $("#FreshPhotoSize5").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
                     } else {
@@ -4641,19 +8129,18 @@ ${reviewStatus == '1' ?
                         $("#DrumPhotoSize5").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
                     }
 
-                    
-                    
-                    if(data['head'][0].result.toLowerCase().trim() == "urgent" || data['head'][0].remark.toLowerCase().trim() == "urgent" ){
-                     
-                        $("#contentNoteSize5").text('As per the request of customer, testing is proceeded without condition.')
-                       
+
+
+                    if (data['head'][0].result.toLowerCase().trim() == "urgent" || data['head'][0].remark.toLowerCase().trim() == "urgent") {
+
+                        // $("#contentNoteSize5").text('As per the request of customer, testing is proceeded without condition.')
+                        $("#contentNoteSize5").text('The above reported result is applicable to the sample as received at customer service section<br>Report was Electronically generated, Signature are not required<br>**: These Tests are out of scope of ISO/IEC 17025:2017')
+
+                    } else {
+                        $("#contentNoteSize5").text('The above reported result is applicable to the sample as received at customer service section<br>Report was Electronically generated, Signature are not required<br>**: These Tests are out of scope of ISO/IEC 17025:2017');
 
                     }
-                    else{
-                       $("#contentNoteSize5").text(data['head'][0].Note);     
 
-                    }
-                    
 
 
 
@@ -4704,6 +8191,596 @@ ${reviewStatus == '1' ?
 
                     $('#soccerBallsSize5').modal('toggle');
 
+                } else if (type == " SOCCER BALLS SIZE 4") {
+
+                    $("#content122").text(data['head'][0].FactoryCode);
+                    $("#content123").text(data['head'][0].labno);
+                    $("#content124").text(data['head'][0].testdate);
+                    $("#content125").text(data['head'][0].tastcat);
+                    $("#content126").text(data['head'][0].fifiastemp);
+                    $("#content127").text(data['head'][0].productionmonth);
+                    $("#content128").text(data['head'][0].covermat);
+                    $("#content129").text(data['head'][0].backing);
+                    $("#content130").text(data['head'][0].bladder);
+                    $("#content131").text(data['head'][0].balltype);
+                    $("#content132").text(data['head'][0].testtype);
+                    $("#content133").text(data['head'][0].mainmatcolor);
+                    $("#content134").text(data['head'][0].printngscolors);
+                    $("#content135").text(data['head'][0].result);
+                    $("#content136").text(data['head'][0].Performedby);
+                    $("#content175R").text(data['head'][0].remark);
+
+
+
+                    if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
+                        $("#FreshPhotoSize4").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
+                    } else {
+                        $("#FreshPhotoSize4").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureShooter != null && data['head'][0].pictureShooter != "") {
+                        $("#ShooterPhotoSize4").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureShooter);
+                    } else {
+                        $("#ShooterPhotoSize4").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureHydro != null && data['head'][0].pictureHydro != "") {
+                        $("#HydroPhotoSize4").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureHydro);
+                    } else {
+                        $("#HydroPhotoSize4").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureDrum != null && data['head'][0].pictureDrum != "") {
+                        $("#DrumPhotoSize4").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureDrum);
+                    } else {
+                        $("#DrumPhotoSize4").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+
+
+
+                    // if(data['head'][0].result.toLowerCase().trim() == "urgent" || data['head'][0].remark.toLowerCase().trim() == "urgent" ){
+
+                    //     // $("#contentNoteSize5").text('As per the request of customer, testing is proceeded without condition.')
+                    //     $("#contentNoteSize5").text('The above reported result is applicable to the sample as received at customer service section<br>Report was Electronically generated, Signature are not required<br>**: These Tests are out of scope of ISO/IEC 17025:2017')
+
+                    // }
+                    // else{
+                    //    $("#contentNoteSize5").text('The above reported result is applicable to the sample as received at customer service section<br>Report was Electronically generated, Signature are not required<br>**: These Tests are out of scope of ISO/IEC 17025:2017');     
+
+                    // }
+
+
+
+
+                    // $("#testReviewedSize5").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
+                    // $("#testApprovedSize5").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
+                    if (data['detail'][0]) {
+                        $("#content137").text(data['detail'][0].weight1);
+                        $("#content138").text(data['detail'][0].weight2);
+                        $("#content139").text(data['detail'][0].cir1);
+                        $("#content140").text(data['detail'][0].cir2);
+                        $("#content141").text(data['detail'][0].sphericity_sp1);
+                        $("#content142").text(data['detail'][0].sphericity_sp2);
+                        $("#content143").text(data['detail'][0].loss_of_pressure1);
+                        $("#content144").text(data['detail'][0].loss_of_pressure2);
+                        $("#content145").text(data['detail'][0].rebound_rt1);
+                        $("#content146").text(data['detail'][0].rebound_rt2);
+                        $("#content147").text(data['detail'][0].rebound_5_1);
+                        $("#content148").text(data['detail'][0].rebound_5_2);
+                        $("#content149").text(data['detail'][0].rebound_0_1);
+                        $("#content150").text(data['detail'][0].rebound_0_2);
+                        $("#content151").text(data['detail'][0].cir_st_1);
+                        $("#content152").text(data['detail'][0].cir_st_2);
+                        $("#content153").text(data['detail'][0].sphericity_st1);
+                        $("#content154").text(data['detail'][0].sphericity_st2);
+                        $("#content155").text(data['detail'][0].ch_of_pressure_st1);
+                        $("#content155").text(data['detail'][0].ch_of_pressure_st2);
+                        $("#content156").text(data['detail'][0].material_st1);
+                        $("#content157").text(data['detail'][0].material_st2);
+                        $("#content158").text(data['detail'][0].water_uptake_wrt1);
+                        $("#content159").text(data['detail'][0].water_uptake_wrt2);
+                        $("#content160").text(data['detail'][0].cir1_wrt);
+                        $("#content161").text(data['detail'][0].cir2_wrt);
+                        $("#content162").text(data['detail'][0].sphericity_wrt1);
+                        $("#content163").text(data['detail'][0].sphericity_wrt2);
+                        $("#content164").text(data['detail'][0].drum_test_pd1);
+                        $("#content165").text(data['detail'][0].drum_test_pd2);
+                        $("#content166").text(data['detail'][0].abraison_resistance_pd1);
+                        $("#content167").text(data['detail'][0].abraison_resistance_pd2);
+                        $("#content168").text(data['detail'][0].uv_light_fast_cst1);
+                        $("#content169").text(data['detail'][0].uv_light_fast_cst2);
+                        $("#content170").text(data['detail'][0].ozon_test_cst1);
+                        $("#content171").text(data['detail'][0].ozon_test_cst2);
+                        $("#content172").text(data['detail'][0].hydrolysis_lam1);
+                        $("#content173").text(data['detail'][0].hydrolysis_lam2);
+                        $("#content174").text(data['detail'][0].hydrolysis_color1);
+                        $("#content175").text(data['detail'][0].hydrolysis_color2);
+                    }
+
+
+
+
+                    $('#soccerBallsSize4').modal('toggle');
+
+                } else if (type == " SOCCER BALLS B2B") {
+
+
+                    $("#content176").text(data['head'][0].FactoryCode);
+                    $("#content177").text(data['head'][0].labno);
+                    $("#content178").text(data['head'][0].testdate);
+                    $("#content179").text(data['head'][0].tastcat);
+                    $("#content180").text(data['head'][0].fifiastemp);
+                    $("#content181").text(data['head'][0].productionmonth);
+                    $("#content182").text(data['head'][0].covermat);
+                    $("#content183").text(data['head'][0].backing);
+                    $("#content184").text(data['head'][0].bladder);
+                    $("#content185").text(data['head'][0].balltype);
+                    $("#content186").text(data['head'][0].testtype);
+                    $("#content187").text(data['head'][0].mainmatcolor);
+                    $("#content188").text(data['head'][0].printngscolors);
+                    $("#content189").text(data['head'][0].result);
+                    $("#content190").text(data['head'][0].Performedby);
+                    $("#content190B").text(data['head'][0].Temperature);
+                    $("#content191B").text(data['head'][0].Humidity);
+
+
+
+
+                    $("#testReviewedSize5").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
+                    $("#testApprovedSize5").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
+                    if (data['detail'][0]) {
+                        $("#content191").text(data['detail'][0].weight1);
+                        $("#content192").text(data['detail'][0].weight2);
+                        $("#content193").text(data['detail'][0].cir1);
+                        $("#content194").text(data['detail'][0].cir2);
+                        $("#content195").text(data['detail'][0].sphericity_sp1);
+                        $("#content196").text(data['detail'][0].sphericity_sp2);
+                        $("#content197").text(data['detail'][0].loss_of_pressure1);
+                        $("#content198").text(data['detail'][0].loss_of_pressure2);
+                        $("#content199").text(data['detail'][0].rebound_rt1);
+                        $("#content200").text(data['detail'][0].rebound_rt2);
+                        $("#content201").text(data['detail'][0].rebound_5_1);
+                        $("#content202").text(data['detail'][0].rebound_5_2);
+                        $("#content203").text(data['detail'][0].rebound_0_1);
+                        $("#content204").text(data['detail'][0].rebound_0_2);
+                        $("#content205").text(data['detail'][0].cir_st_1);
+                        $("#content206").text(data['detail'][0].cir_st_2);
+                        $("#content207").text(data['detail'][0].sphericity_st1);
+                        $("#content208").text(data['detail'][0].sphericity_st2);
+                        $("#content209").text(data['detail'][0].ch_of_pressure_st1);
+                        $("#content210").text(data['detail'][0].ch_of_pressure_st2);
+                        $("#content211").text(data['detail'][0].material_st1);
+                        $("#content212").text(data['detail'][0].material_st2);
+                        $("#content213").text(data['detail'][0].water_uptake_wrt1);
+                        $("#content214").text(data['detail'][0].water_uptake_wrt2);
+                        $("#content215").text(data['detail'][0].cir1_wrt);
+                        $("#content216").text(data['detail'][0].cir2_wrt);
+                        $("#content217").text(data['detail'][0].sphericity_wrt1);
+                        $("#content218").text(data['detail'][0].sphericity_wrt2);
+                        $("#content219").text(data['detail'][0].drum_test_pd1);
+                        $("#content220").text(data['detail'][0].drum_test_pd2);
+                        $("#content221").text(data['detail'][0].abraison_resistance_pd1);
+                        $("#content222").text(data['detail'][0].abraison_resistance_pd2);
+                        $("#content223").text(data['detail'][0].uv_light_fast_cst1);
+                        $("#content224").text(data['detail'][0].uv_light_fast_cst2);
+                        $("#content225").text(data['detail'][0].ozon_test_cst1);
+                        $("#content226").text(data['detail'][0].ozon_test_cst2);
+                        $("#content227").text(data['detail'][0].hydrolysis_lam1);
+                        $("#content228").text(data['detail'][0].hydrolysis_lam2);
+                        $("#content229").text(data['detail'][0].hydrolysis_color1);
+                        $("#content230").text(data['detail'][0].hydrolysis_color2);
+                    }
+
+
+
+                    $('#soccerBallsSizeB2B').modal('toggle');
+
+                } else if (type == " SOCCER BALLS BEACH") {
+
+
+
+                    $("#content231").text(data['head'][0].FactoryCode);
+                    $("#content232").text(data['head'][0].labno);
+                    $("#content233").text(data['head'][0].testdate);
+                    $("#content234").text(data['head'][0].tastcat);
+                    $("#content235").text(data['head'][0].fifiastemp);
+                    $("#content236").text(data['head'][0].productionmonth);
+                    $("#content237").text(data['head'][0].covermat);
+                    $("#content238").text(data['head'][0].backing);
+                    $("#content239").text(data['head'][0].bladder);
+                    $("#content240").text(data['head'][0].balltype);
+                    $("#content241").text(data['head'][0].testtype);
+                    $("#content242").text(data['head'][0].mainmatcolor);
+                    $("#content243").text(data['head'][0].printngscolors);
+                    $("#content244").text(data['head'][0].result);
+                    $("#content245").text(data['head'][0].Performedby);
+                    $("#content275R").text(data['head'][0].remark);
+
+
+                    if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
+                        $("#FreshPhotoSoccerBallBeach").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
+                    } else {
+                        $("#FreshPhotoSoccerBallBeach").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureShooter != null && data['head'][0].pictureShooter != "") {
+                        $("#ShooterPhotoSoccerBallBeach").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureShooter);
+                    } else {
+                        $("#ShooterPhotoSoccerBallBeach").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureHydro != null && data['head'][0].pictureHydro != "") {
+                        $("#HydroPhotoSoccerBallBeach").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureHydro);
+                    } else {
+                        $("#HydroPhotoSoccerBallBeach").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureDrum != null && data['head'][0].pictureDrum != "") {
+                        $("#DrumPhotoSoccerBallBeach").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureDrum);
+                    } else {
+                        $("#DrumPhotoSoccerBallBeach").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+
+
+
+
+                    $("#testReviewedSize5").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
+                    $("#testApprovedSize5").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
+                    if (data['detail'][0]) {
+                        $("#content246").text(data['detail'][0].weight1);
+                        $("#content247").text(data['detail'][0].weight2);
+                        $("#content248").text(data['detail'][0].cir1);
+                        $("#content249").text(data['detail'][0].cir2);
+                        $("#content250").text(data['detail'][0].sphericity_sp1);
+                        $("#content251").text(data['detail'][0].sphericity_sp2);
+                        $("#content252").text(data['detail'][0].loss_of_pressure1);
+                        $("#content253").text(data['detail'][0].loss_of_pressure2);
+                        $("#content254").text(data['detail'][0].rebound_rt1);
+                        $("#content255").text(data['detail'][0].rebound_rt2);
+                        $("#content256").text(data['detail'][0].rebound_5_1);
+                        $("#content257").text(data['detail'][0].rebound_5_2);
+                        $("#content258").text(data['detail'][0].rebound_0_1);
+                        $("#content259").text(data['detail'][0].rebound_0_2);
+                        $("#content260").text(data['detail'][0].cir_st_1);
+                        $("#content261").text(data['detail'][0].cir_st_2);
+                        $("#content262").text(data['detail'][0].sphericity_st1);
+                        $("#content263").text(data['detail'][0].sphericity_st2);
+                        $("#content264").text(data['detail'][0].ch_of_pressure_st1);
+                        $("#content265").text(data['detail'][0].ch_of_pressure_st2);
+                        $("#content266").text(data['detail'][0].material_st1);
+                        $("#content267").text(data['detail'][0].material_st2);
+                        $("#content268").text(data['detail'][0].water_uptake_wrt1);
+                        $("#content269").text(data['detail'][0].water_uptake_wrt2);
+                        $("#content270").text(data['detail'][0].cir1_wrt);
+                        $("#content271").text(data['detail'][0].cir2_wrt);
+                        $("#content272").text(data['detail'][0].sphericity_wrt1);
+                        $("#content273").text(data['detail'][0].sphericity_wrt2);
+                        $("#content274").text(data['detail'][0].drum_test_pd1);
+                        $("#content275").text(data['detail'][0].drum_test_pd2);
+                        $("#content276").text(data['detail'][0].abraison_resistance_pd1);
+                        $("#content277").text(data['detail'][0].abraison_resistance_pd2);
+                        $("#content278").text(data['detail'][0].uv_light_fast_cst1);
+                        $("#content279").text(data['detail'][0].uv_light_fast_cst2);
+                        $("#content280").text(data['detail'][0].ozon_test_cst1);
+                        $("#content281").text(data['detail'][0].ozon_test_cst2);
+                        $("#content282").text(data['detail'][0].hydrolysis_lam1);
+                        $("#content283").text(data['detail'][0].hydrolysis_lam2);
+                        $("#content284").text(data['detail'][0].hydrolysis_color1);
+                        $("#content285").text(data['detail'][0].hydrolysis_color2);
+                    }
+
+
+                    $('#soccerBallsSizeBeach').modal('toggle');
+
+                } else if (type == " SOCCER BALLS LIGHT") {
+
+
+                    $("#content286").text(data['head'][0].FactoryCode);
+                    $("#content287").text(data['head'][0].labno);
+                    $("#content288").text(data['head'][0].testdate);
+                    $("#content289").text(data['head'][0].tastcat);
+                    $("#content290").text(data['head'][0].fifiastemp);
+                    $("#content291").text(data['head'][0].productionmonth);
+                    $("#content292").text(data['head'][0].covermat);
+                    $("#content293").text(data['head'][0].backing);
+                    $("#content294").text(data['head'][0].bladder);
+                    $("#content295").text(data['head'][0].balltype);
+                    $("#content296").text(data['head'][0].testtype);
+                    $("#content297").text(data['head'][0].mainmatcolor);
+                    $("#content298").text(data['head'][0].printngscolors);
+                    $("#content299").text(data['head'][0].result);
+                    $("#content300").text(data['head'][0].Performedby);
+                    $("#content337R").text(data['head'][0].remark);
+                    $("#content300C").text(data['head'][0].Temperature);
+                    $("#content301C").text(data['head'][0].Humidity);
+
+
+
+                    if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
+                        $("#FreshPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
+                    } else {
+                        $("#FreshPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureShooter != null && data['head'][0].pictureShooter != "") {
+                        $("#ShooterPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureShooter);
+                    } else {
+                        $("#ShooterPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureHydro != null && data['head'][0].pictureHydro != "") {
+                        $("#HydroPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureHydro);
+                    } else {
+                        $("#HydroPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureDrum != null && data['head'][0].pictureDrum != "") {
+                        $("#DrumPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureDrum);
+                    } else {
+                        $("#DrumPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+
+
+
+
+
+
+                    $("#testReviewedSize5").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
+                    $("#testApprovedSize5").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
+                    if (data['detail'][0]) {
+                        $("#content301").text(data['detail'][0].weight1);
+                        $("#content302").text(data['detail'][0].weight2);
+                        $("#content303").text(data['detail'][0].cir1);
+                        $("#content304").text(data['detail'][0].cir2);
+                        $("#content305").text(data['detail'][0].sphericity_sp1);
+                        $("#content306").text(data['detail'][0].sphericity_sp2);
+                        $("#content307").text(data['detail'][0].loss_of_pressure1);
+                        $("#content308").text(data['detail'][0].loss_of_pressure2);
+                        $("#content309").text(data['detail'][0].rebound_rt1);
+                        $("#content310").text(data['detail'][0].rebound_rt2);
+                        $("#content311").text(data['detail'][0].rebound_5_1);
+                        $("#content312").text(data['detail'][0].rebound_5_2);
+                        $("#content313").text(data['detail'][0].rebound_0_1);
+                        $("#content314").text(data['detail'][0].rebound_0_2);
+                        $("#content315").text(data['detail'][0].cir_st_1);
+                        $("#content316").text(data['detail'][0].cir_st_2);
+                        $("#content317").text(data['detail'][0].sphericity_st1);
+                        $("#content318").text(data['detail'][0].sphericity_st2);
+                        $("#content319").text(data['detail'][0].ch_of_pressure_st1);
+                        $("#content320").text(data['detail'][0].ch_of_pressure_st2);
+                        $("#content321").text(data['detail'][0].material_st1);
+                        $("#content322").text(data['detail'][0].material_st2);
+                        $("#content323").text(data['detail'][0].water_uptake_wrt1);
+                        $("#content324").text(data['detail'][0].water_uptake_wrt2);
+                        $("#content325").text(data['detail'][0].cir1_wrt);
+                        $("#content326").text(data['detail'][0].cir2_wrt);
+                        $("#content327").text(data['detail'][0].sphericity_wrt1);
+                        $("#content328").text(data['detail'][0].sphericity_wrt2);
+                        $("#content329").text(data['detail'][0].drum_test_pd1);
+                        $("#content330").text(data['detail'][0].drum_test_pd2);
+                        $("#content331").text(data['detail'][0].abraison_resistance_pd1);
+                        $("#content332").text(data['detail'][0].abraison_resistance_pd2);
+                        $("#content333").text(data['detail'][0].uv_light_fast_cst1);
+                        $("#content334").text(data['detail'][0].uv_light_fast_cst2);
+                        $("#content335").text(data['detail'][0].ozon_test_cst1);
+                        $("#content336").text(data['detail'][0].ozon_test_cst2);
+                        $("#content337").text(data['detail'][0].hydrolysis_lam1);
+                        $("#content338").text(data['detail'][0].hydrolysis_lam2);
+                        $("#content339").text(data['detail'][0].hydrolysis_color1);
+                        $("#content340").text(data['detail'][0].hydrolysis_color2);
+                    }
+
+
+
+                    $('#soccerBallsSizeLight').modal('toggle');
+
+                } else if (type == "SOCCER BALLS SIZE 3") {
+
+
+                    $("#content341").text(data['head'][0].FactoryCode);
+                    $("#content342").text(data['head'][0].labno);
+                    $("#content343").text(data['head'][0].testdate);
+                    $("#content344").text(data['head'][0].tastcat);
+                    $("#content345").text(data['head'][0].fifiastemp);
+                    $("#content346").text(data['head'][0].productionmonth);
+                    $("#content347").text(data['head'][0].covermat);
+                    $("#content348").text(data['head'][0].backing);
+                    $("#content349").text(data['head'][0].bladder);
+                    $("#content350").text(data['head'][0].balltype);
+                    $("#content351").text(data['head'][0].testtype);
+                    $("#content352").text(data['head'][0].mainmatcolor);
+                    $("#content353").text(data['head'][0].printngscolors);
+                    $("#content354").text(data['head'][0].result);
+                    $("#content355").text(data['head'][0].Performedby);
+
+                    $("#content349Size3").text(data['head'][0].Temperature);
+                    $("#content350Size3").text(data['head'][0].Humidity);
+
+
+
+                    $("#testReviewedSize5").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
+                    $("#testApprovedSize5").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
+                    if (data['detail'][0]) {
+                        $("#content356").text(data['detail'][0].weight1);
+                        $("#content357").text(data['detail'][0].weight2);
+                        $("#content358").text(data['detail'][0].cir1);
+                        $("#content359").text(data['detail'][0].cir2);
+                        $("#content360").text(data['detail'][0].sphericity_sp1);
+                        $("#content361").text(data['detail'][0].sphericity_sp2);
+                        $("#content362").text(data['detail'][0].loss_of_pressure1);
+                        $("#content363").text(data['detail'][0].loss_of_pressure2);
+                        $("#content364").text(data['detail'][0].rebound_rt1);
+                        $("#content365").text(data['detail'][0].rebound_rt2);
+                        $("#content366").text(data['detail'][0].rebound_5_1);
+                        $("#content367").text(data['detail'][0].rebound_5_2);
+                        $("#content368").text(data['detail'][0].rebound_0_1);
+                        $("#content369").text(data['detail'][0].rebound_0_2);
+                        $("#content370").text(data['detail'][0].cir_st_1);
+                        $("#content371").text(data['detail'][0].cir_st_2);
+                        $("#content372").text(data['detail'][0].sphericity_st1);
+                        $("#content373").text(data['detail'][0].sphericity_st2);
+                        $("#content374").text(data['detail'][0].ch_of_pressure_st1);
+                        $("#content375").text(data['detail'][0].ch_of_pressure_st2);
+                        $("#content376").text(data['detail'][0].material_st1);
+                        $("#content377").text(data['detail'][0].material_st2);
+                        $("#content378").text(data['detail'][0].water_uptake_wrt1);
+                        $("#content379").text(data['detail'][0].water_uptake_wrt2);
+                        $("#content380").text(data['detail'][0].cir1_wrt);
+                        $("#content381").text(data['detail'][0].cir2_wrt);
+                        $("#content382").text(data['detail'][0].sphericity_wrt1);
+                        $("#content383").text(data['detail'][0].sphericity_wrt2);
+                        $("#content384").text(data['detail'][0].drum_test_pd1);
+                        $("#content385").text(data['detail'][0].drum_test_pd2);
+                        $("#content386").text(data['detail'][0].abraison_resistance_pd1);
+                        $("#content387").text(data['detail'][0].abraison_resistance_pd2);
+                        $("#content388").text(data['detail'][0].uv_light_fast_cst1);
+                        $("#content389").text(data['detail'][0].uv_light_fast_cst2);
+                        $("#content390").text(data['detail'][0].ozon_test_cst1);
+                        $("#content391").text(data['detail'][0].ozon_test_cst2);
+                        $("#content392").text(data['detail'][0].hydrolysis_lam1);
+                        $("#content393").text(data['detail'][0].hydrolysis_lam2);
+                        $("#content394").text(data['detail'][0].hydrolysis_color1);
+                        $("#content395").text(data['detail'][0].hydrolysis_color2);
+                    }
+
+
+
+                    $('#soccerBallsSize3').modal('toggle');
+
+                } else if (type == " SOCCER BALLS SMALL") {
+
+                    $("#content396").text(data['head'][0].FactoryCode);
+                    $("#content397").text(data['head'][0].labno);
+                    $("#content398").text(data['head'][0].testdate);
+                    $("#content399").text(data['head'][0].tastcat);
+                    $("#content400").text(data['head'][0].fifiastemp);
+                    $("#content401").text(data['head'][0].productionmonth);
+                    $("#content402").text(data['head'][0].covermat);
+                    $("#content403").text(data['head'][0].backing);
+                    $("#content404").text(data['head'][0].bladder);
+                    $("#content405").text(data['head'][0].balltype);
+                    $("#content406").text(data['head'][0].testtype);
+                    $("#content407").text(data['head'][0].mainmatcolor);
+                    $("#content408").text(data['head'][0].printngscolors);
+                    $("#content409").text(data['head'][0].result);
+                    $("#content410").text(data['head'][0].Performedby);
+
+
+
+
+                    $("#testReviewedSize5").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
+                    $("#testApprovedSize5").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
+                    if (data['detail'][0]) {
+                        $("#content411").text(data['detail'][0].weight1);
+                        $("#content412").text(data['detail'][0].weight2);
+                        $("#content413").text(data['detail'][0].cir1);
+                        $("#content414").text(data['detail'][0].cir2);
+                        $("#content415").text(data['detail'][0].sphericity_sp1);
+                        $("#content416").text(data['detail'][0].sphericity_sp2);
+                        $("#content417").text(data['detail'][0].loss_of_pressure1);
+                        $("#content418").text(data['detail'][0].loss_of_pressure2);
+                        $("#content419").text(data['detail'][0].rebound_rt1);
+                        $("#content420").text(data['detail'][0].rebound_rt2);
+                        $("#content421").text(data['detail'][0].rebound_5_1);
+                        $("#content422").text(data['detail'][0].rebound_5_2);
+                        $("#content423").text(data['detail'][0].rebound_0_1);
+                        $("#content424").text(data['detail'][0].rebound_0_2);
+                        $("#content425").text(data['detail'][0].cir_st_1);
+                        $("#content426").text(data['detail'][0].cir_st_2);
+                        $("#content427").text(data['detail'][0].sphericity_st1);
+                        $("#content428").text(data['detail'][0].sphericity_st2);
+                        $("#content429").text(data['detail'][0].ch_of_pressure_st1);
+                        $("#content430").text(data['detail'][0].ch_of_pressure_st2);
+                        $("#content431").text(data['detail'][0].material_st1);
+                        $("#content432").text(data['detail'][0].material_st2);
+                        $("#content433").text(data['detail'][0].water_uptake_wrt1);
+                        $("#content434").text(data['detail'][0].water_uptake_wrt2);
+                        $("#content435").text(data['detail'][0].cir1_wrt);
+                        $("#content436").text(data['detail'][0].cir2_wrt);
+                        $("#content437").text(data['detail'][0].sphericity_wrt1);
+                        $("#content438").text(data['detail'][0].sphericity_wrt2);
+                        $("#content439").text(data['detail'][0].drum_test_pd1);
+                        $("#content440").text(data['detail'][0].drum_test_pd2);
+                        $("#content441").text(data['detail'][0].abraison_resistance_pd1);
+                        $("#content442").text(data['detail'][0].abraison_resistance_pd2);
+                        $("#content443").text(data['detail'][0].uv_light_fast_cst1);
+                        $("#content444").text(data['detail'][0].uv_light_fast_cst2);
+                        $("#content445").text(data['detail'][0].ozon_test_cst1);
+                        $("#content446").text(data['detail'][0].ozon_test_cst2);
+                        $("#content447").text(data['detail'][0].hydrolysis_lam1);
+                        $("#content448").text(data['detail'][0].hydrolysis_lam2);
+                        $("#content449").text(data['detail'][0].hydrolysis_color1);
+                        $("#content450").text(data['detail'][0].hydrolysis_color2);
+                    }
+
+
+
+                    $('#soccerBallsSmall').modal('toggle');
+
+                } else if (type == " SOCIETY+SOCCERBALLS") {
+
+
+                    $("#content451").text(data['head'][0].FactoryCode);
+                    $("#content452").text(data['head'][0].labno);
+                    $("#content453").text(data['head'][0].testdate);
+                    $("#content454").text(data['head'][0].tastcat);
+                    $("#content455").text(data['head'][0].fifiastemp);
+                    $("#content456").text(data['head'][0].productionmonth);
+                    $("#content457").text(data['head'][0].covermat);
+                    $("#content458").text(data['head'][0].backing);
+                    $("#content459").text(data['head'][0].bladder);
+                    $("#content460").text(data['head'][0].balltype);
+                    $("#content461").text(data['head'][0].testtype);
+                    $("#content462").text(data['head'][0].mainmatcolor);
+                    $("#content463").text(data['head'][0].printngscolors);
+                    $("#content464").text(data['head'][0].result);
+                    $("#content465").text(data['head'][0].Performedby);
+                    $("#content465R").text(data['head'][0].remark);
+
+
+                    $("#content465Society").text(data['head'][0].Temperature);
+                    $("#content466Society").text(data['head'][0].Humidity);
+
+
+                    $("#testReviewedSize5").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
+                    $("#testApprovedSize5").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
+                    if (data['detail'][0]) {
+                        $("#content466").text(data['detail'][0].weight1);
+                        $("#content467").text(data['detail'][0].weight2);
+                        $("#content468").text(data['detail'][0].cir1);
+                        $("#content469").text(data['detail'][0].cir2);
+                        $("#content470").text(data['detail'][0].sphericity_sp1);
+                        $("#content471").text(data['detail'][0].sphericity_sp2);
+                        $("#content472").text(data['detail'][0].loss_of_pressure1);
+                        $("#content473").text(data['detail'][0].loss_of_pressure2);
+                        $("#content474").text(data['detail'][0].rebound_rt1);
+                        $("#content475").text(data['detail'][0].rebound_rt2);
+                        $("#content476").text(data['detail'][0].rebound_5_1);
+                        $("#content477").text(data['detail'][0].rebound_5_2);
+                        $("#content478").text(data['detail'][0].rebound_0_1);
+                        $("#content479").text(data['detail'][0].rebound_0_2);
+                        $("#content480").text(data['detail'][0].cir_st_1);
+                        $("#content481").text(data['detail'][0].cir_st_2);
+                        $("#content482").text(data['detail'][0].sphericity_st1);
+                        $("#content483").text(data['detail'][0].sphericity_st2);
+                        $("#content484").text(data['detail'][0].ch_of_pressure_st1);
+                        $("#content485").text(data['detail'][0].ch_of_pressure_st2);
+                        $("#content486").text(data['detail'][0].material_st1);
+                        $("#content487").text(data['detail'][0].material_st2);
+                        $("#content488").text(data['detail'][0].water_uptake_wrt1);
+                        $("#content489").text(data['detail'][0].water_uptake_wrt2);
+                        $("#content490").text(data['detail'][0].cir1_wrt);
+                        $("#content491").text(data['detail'][0].cir2_wrt);
+                        $("#content492").text(data['detail'][0].sphericity_wrt1);
+                        $("#content493").text(data['detail'][0].sphericity_wrt2);
+                        $("#content494").text(data['detail'][0].drum_test_pd1);
+                        $("#content495").text(data['detail'][0].drum_test_pd2);
+                        $("#content496").text(data['detail'][0].abraison_resistance_pd1);
+                        $("#content497").text(data['detail'][0].abraison_resistance_pd2);
+                        $("#content498").text(data['detail'][0].uv_light_fast_cst1);
+                        $("#content499").text(data['detail'][0].uv_light_fast_cst2);
+                        $("#content500").text(data['detail'][0].ozon_test_cst1);
+                        $("#content501").text(data['detail'][0].ozon_test_cst2);
+                        $("#content502").text(data['detail'][0].hydrolysis_lam1);
+                        $("#content503").text(data['detail'][0].hydrolysis_lam2);
+                        $("#content504").text(data['detail'][0].hydrolysis_color1);
+                        $("#content505").text(data['detail'][0].hydrolysis_color2);
+                    }
+
+
+                    $('#soccerBallsSocietySoccerBALLS').modal('toggle');
+
                 } else {
                     $("#content32").text(data['head'][0].labno);
                     $("#content3222").text(data['head'][0].cssCode);
@@ -4721,25 +8798,25 @@ ${reviewStatus == '1' ?
                     $("#content42").text(data['head'][0].mainmatcolor);
                     $("#content43").text(data['head'][0].printngscolors);
                     $("#content44").text(data['head'][0].result);
+                    $("#content667").text(data['head'][0].remark);
                     $("#content45").text(data['head'][0].Performedby);
 
-            
 
-                     if(data['head'][0].result.toLowerCase().trim() == "urgent" || data['head'][0].remark.toLowerCase().trim() == "urgent" ){
-                      
-                        $("#contentNoteFGT").text('As per the request of customer, testing is proceeded without condition.')
-                       
+
+                    if (data['head'][0].result.toLowerCase().trim() == "urgent" || data['head'][0].remark.toLowerCase().trim() == "urgent") {
+
+                        // $("#contentNoteFGT").text('As per the request of customer, testing is proceeded without condition.')
+                        $("#contentNoteFGT").text('The above reported result is applicable to the sample as received at customer service section<br>Report was Electronically generated, Signature are not required<br>**: These Tests are out of scope of ISO/IEC 17025:2017')
+
+                    } else {
+                        $("#contentNoteFGT").text('The above reported result is applicable to the sample as received at customer service section<br>Report was Electronically generated, Signature are not required<br>**: These Tests are out of scope of ISO/IEC 17025:2017');
 
                     }
-                    else{
-                       $("#contentNoteFGT").text(data['head'][0].Note);     
-
-                    }
-                    
 
 
 
-            
+
+
 
                     if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
                         $("#FreshPhotoIndoor").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
@@ -4798,6 +8875,7 @@ ${reviewStatus == '1' ?
             })
         });
         $("#ActivityData").on('click', '.printButton', function(e) {
+
             // e.preventDefault();
             let id = this.id;
 
@@ -4807,17 +8885,23 @@ ${reviewStatus == '1' ?
 
             let type = $("#fgtype" + TID).text();
 
+            alert(TID)
+
 
             url = "<?php echo base_url(''); ?>FGT/FGT_PRINT"
             $.post(url, {
                 TID
             }, function(data) {
-                if (typeof(type == " SOCCER BALLS") || typeof(type == " SOCCERBALLS")) {
+
+                if (type == "SOCCER BALLS" || type == "SOCCERBALLS") {
+
+                    // alert(type == "SOCCER BALLS" || type == "SOCCERBALLS");
 
                     $("#titleBalls").text(data['head'][0].FGTType);
                     $("#workingNoMini").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
                     $("#articleNoMini").text(data['head'][0].ArtCode != '' ? data['head'][0].ArtCode : 'Article Code: Nil');
                     $("#content2").text(data['head'][0].labno);
+                    $("#content222").text(data['head'][0].cssCode);
                     $("#content3").text(data['head'][0].testdate);
                     $("#content4").text(data['head'][0].tastcat);
                     $("#content5").text(data['head'][0].productionmonth);
@@ -4831,17 +8915,21 @@ ${reviewStatus == '1' ?
                     $("#content13").text(data['head'][0].printngscolors);
                     $("#content14").text(data['head'][0].result);
                     $("#content15").text(data['head'][0].Performedby);
+                    $("#content377").text(data['head'][0].remark);
 
-                    if(data['head'][0].result.toLowerCase().trim() == "urgent" || data['head'][0].remark.toLowerCase().trim() == "urgent" ){
-                    
-                        $("#contentNoteSoccer").text('As per the request of customer, testing is proceeded without condition.')
-                       
 
-                    }
-                    else{
-                       $("#contentNoteSoccer").text(data['head'][0].Note);     
+                    // if(data['head'][0].result.toLowerCase().trim() == "urgent" || data['head'][0].remark.toLowerCase().trim() == "urgent" ){
+                    //     console.log("equal Urgent")
+                    //     $("#contentNoteSoccer").text('As per the request of customer, testing is proceeded without condition.')
 
-                    }
+
+                    // }
+                    // else{
+                    //     console.log("Not equal Urgent", data['head'][0].result.toLowerCase().trim())
+                    $("#contentNoteSoccer").text('The above reported result is applicable to the sample as received at customer service section<br>Report was Electronically generated, Signature are not required<br>**: These Tests are out of scope of ISO/IEC 17025:2017');
+
+                    // }
+
 
 
                     if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
@@ -4879,14 +8967,21 @@ ${reviewStatus == '1' ?
                         $("#content29").text(data['detail'][0].hydrolysis_lam1);
                         $("#content30").text(data['detail'][0].hydrolysis_color1);
                         $("#content31").text(data['head'][0].remark);
+
+                        $("#content10Air").text(data['head'][0].Temperature);
+                        $("#content15Air").text(data['head'][0].Humidity);
                     }
 
 
 
 
                     $('#FGTReportModal').modal('toggle');
-                } else if (typeof(type == " SOCCER BALL SIZE 5")) {
+                } else if (type == "SOCCER BALLS SIZE 5") {
+
+                    // alert(type == "SOCCER BALLS SIZE 5");
+
                     $("#content66").text(data['head'][0].labno);
+                    $("#content666").text(data['head'][0].cssCode);
                     $("#workingNoSize5").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
                     $("#articleNoSize5").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
                     $("#content67").text(data['head'][0].testdate);
@@ -4901,7 +8996,13 @@ ${reviewStatus == '1' ?
                     $("#content76").text(data['head'][0].mainmatcolor);
                     $("#content77").text(data['head'][0].printngscolors);
                     $("#content78").text(data['head'][0].result);
+                    $("#content120").text(data['head'][0].remark);
                     $("#content79").text(data['head'][0].Performedby);
+
+                    $("#content74C").text(data['head'][0].Temperature);
+                    $("#content79C").text(data['head'][0].Humidity);
+
+
                     if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
                         $("#FreshPhotoSize5").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
                     } else {
@@ -4925,16 +9026,16 @@ ${reviewStatus == '1' ?
 
 
 
-                    if(data['head'][0].result.toLowerCase().trim() == "urgent" || data['head'][0].remark.toLowerCase().trim() == "urgent" ){
-                       
-                        $("#contentNoteSize5").text('As per the request of customer, testing is proceeded without condition.')
-                       
+                    if (data['head'][0].result.toLowerCase().trim() == "urgent" || data['head'][0].remark.toLowerCase().trim() == "urgent") {
+
+                        // $("#contentNoteSize5").text('As per the request of customer, testing is proceeded without condition.')
+                        $("#contentNoteSize5").text('The above reported result is applicable to the sample as received at customer service section<br>Report was Electronically generated, Signature are not required<br>**: These Tests are out of scope of ISO/IEC 17025:2017')
+
+                    } else {
+                        $("#contentNoteSize5").text('The above reported result is applicable to the sample as received at customer service section<br>Report was Electronically generated, Signature are not required<br>**: These Tests are out of scope of ISO/IEC 17025:2017');
 
                     }
-                    else{
-                       $("#contentNoteSize5").text(data['head'][0].Note);     
 
-                    }
 
 
 
@@ -4985,8 +9086,620 @@ ${reviewStatus == '1' ?
 
                     $('#soccerBallsSize5').modal('toggle');
 
+                } else if (type == "SOCCER BALLS SIZE 4") {
+
+                    $("#content122").text(data['head'][0].FactoryCode);
+                    $("#content123").text(data['head'][0].labno);
+                    $("#content124").text(data['head'][0].testdate);
+                    $("#content125").text(data['head'][0].tastcat);
+                    $("#content126").text(data['head'][0].fifiastemp);
+                    $("#content127").text(data['head'][0].productionmonth);
+                    $("#content128").text(data['head'][0].covermat);
+                    $("#content129").text(data['head'][0].backing);
+                    $("#content130").text(data['head'][0].bladder);
+                    $("#content131").text(data['head'][0].balltype);
+                    $("#content132").text(data['head'][0].testtype);
+                    $("#content133").text(data['head'][0].mainmatcolor);
+                    $("#content134").text(data['head'][0].printngscolors);
+                    $("#content135").text(data['head'][0].result);
+                    $("#content136").text(data['head'][0].Performedby);
+                    $("#content175R").text(data['head'][0].remark);
+
+
+
+                    if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
+                        $("#FreshPhotoSize4").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
+                    } else {
+                        $("#FreshPhotoSize4").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureShooter != null && data['head'][0].pictureShooter != "") {
+                        $("#ShooterPhotoSize4").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureShooter);
+                    } else {
+                        $("#ShooterPhotoSize4").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureHydro != null && data['head'][0].pictureHydro != "") {
+                        $("#HydroPhotoSize4").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureHydro);
+                    } else {
+                        $("#HydroPhotoSize4").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureDrum != null && data['head'][0].pictureDrum != "") {
+                        $("#DrumPhotoSize4").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureDrum);
+                    } else {
+                        $("#DrumPhotoSize4").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+
+
+
+                    // if(data['head'][0].result.toLowerCase().trim() == "urgent" || data['head'][0].remark.toLowerCase().trim() == "urgent" ){
+
+                    //     // $("#contentNoteSize5").text('As per the request of customer, testing is proceeded without condition.')
+                    //     $("#contentNoteSize5").text('The above reported result is applicable to the sample as received at customer service section<br>Report was Electronically generated, Signature are not required<br>**: These Tests are out of scope of ISO/IEC 17025:2017')
+
+                    // }
+                    // else{
+                    //    $("#contentNoteSize5").text('The above reported result is applicable to the sample as received at customer service section<br>Report was Electronically generated, Signature are not required<br>**: These Tests are out of scope of ISO/IEC 17025:2017');     
+
+                    // }
+
+
+
+
+                    // $("#testReviewedSize5").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
+                    // $("#testApprovedSize5").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
+                    if (data['detail'][0]) {
+                        $("#content137").text(data['detail'][0].weight1);
+                        $("#content138").text(data['detail'][0].weight2);
+                        $("#content139").text(data['detail'][0].cir1);
+                        $("#content140").text(data['detail'][0].cir2);
+                        $("#content141").text(data['detail'][0].sphericity_sp1);
+                        $("#content142").text(data['detail'][0].sphericity_sp2);
+                        $("#content143").text(data['detail'][0].loss_of_pressure1);
+                        $("#content144").text(data['detail'][0].loss_of_pressure2);
+                        $("#content145").text(data['detail'][0].rebound_rt1);
+                        $("#content146").text(data['detail'][0].rebound_rt2);
+                        $("#content147").text(data['detail'][0].rebound_5_1);
+                        $("#content148").text(data['detail'][0].rebound_5_2);
+                        $("#content149").text(data['detail'][0].rebound_0_1);
+                        $("#content150").text(data['detail'][0].rebound_0_2);
+                        $("#content151").text(data['detail'][0].cir_st_1);
+                        $("#content152").text(data['detail'][0].cir_st_2);
+                        $("#content153").text(data['detail'][0].sphericity_st1);
+                        $("#content154").text(data['detail'][0].sphericity_st2);
+                        $("#content155").text(data['detail'][0].ch_of_pressure_st1);
+                        $("#content155").text(data['detail'][0].ch_of_pressure_st2);
+                        $("#content156").text(data['detail'][0].material_st1);
+                        $("#content157").text(data['detail'][0].material_st2);
+                        $("#content158").text(data['detail'][0].water_uptake_wrt1);
+                        $("#content159").text(data['detail'][0].water_uptake_wrt2);
+                        $("#content160").text(data['detail'][0].cir1_wrt);
+                        $("#content161").text(data['detail'][0].cir2_wrt);
+                        $("#content162").text(data['detail'][0].sphericity_wrt1);
+                        $("#content163").text(data['detail'][0].sphericity_wrt2);
+                        $("#content164").text(data['detail'][0].drum_test_pd1);
+                        $("#content165").text(data['detail'][0].drum_test_pd2);
+                        $("#content166").text(data['detail'][0].abraison_resistance_pd1);
+                        $("#content167").text(data['detail'][0].abraison_resistance_pd2);
+                        $("#content168").text(data['detail'][0].uv_light_fast_cst1);
+                        $("#content169").text(data['detail'][0].uv_light_fast_cst2);
+                        $("#content170").text(data['detail'][0].ozon_test_cst1);
+                        $("#content171").text(data['detail'][0].ozon_test_cst2);
+                        $("#content172").text(data['detail'][0].hydrolysis_lam1);
+                        $("#content173").text(data['detail'][0].hydrolysis_lam2);
+                        $("#content174").text(data['detail'][0].hydrolysis_color1);
+                        $("#content175").text(data['detail'][0].hydrolysis_color2);
+                    }
+
+
+
+
+                    $('#soccerBallsSize4').modal('toggle');
+
+                } else if (type == "SOCCER BALLS B2B") {
+
+
+                    $("#content176").text(data['head'][0].FactoryCode);
+                    $("#content177").text(data['head'][0].labno);
+                    $("#content178").text(data['head'][0].testdate);
+                    $("#content179").text(data['head'][0].tastcat);
+                    $("#content180").text(data['head'][0].fifiastemp);
+                    $("#content181").text(data['head'][0].productionmonth);
+                    $("#content182").text(data['head'][0].covermat);
+                    $("#content183").text(data['head'][0].backing);
+                    $("#content184").text(data['head'][0].bladder);
+                    $("#content185").text(data['head'][0].balltype);
+                    $("#content186").text(data['head'][0].testtype);
+                    $("#content187").text(data['head'][0].mainmatcolor);
+                    $("#content188").text(data['head'][0].printngscolors);
+                    $("#content189").text(data['head'][0].result);
+                    $("#content190").text(data['head'][0].Performedby);
+
+
+                    $("#content190B").text(data['head'][0].Temperature);
+                    $("#content191B").text(data['head'][0].Humidity);
+
+
+                    $("#testReviewedSize5").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
+                    $("#testApprovedSize5").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
+                    if (data['detail'][0]) {
+                        $("#content191").text(data['detail'][0].weight1);
+                        $("#content192").text(data['detail'][0].weight2);
+                        $("#content193").text(data['detail'][0].cir1);
+                        $("#content194").text(data['detail'][0].cir2);
+                        $("#content195").text(data['detail'][0].sphericity_sp1);
+                        $("#content196").text(data['detail'][0].sphericity_sp2);
+                        $("#content197").text(data['detail'][0].loss_of_pressure1);
+                        $("#content198").text(data['detail'][0].loss_of_pressure2);
+                        $("#content199").text(data['detail'][0].rebound_rt1);
+                        $("#content200").text(data['detail'][0].rebound_rt2);
+                        $("#content201").text(data['detail'][0].rebound_5_1);
+                        $("#content202").text(data['detail'][0].rebound_5_2);
+                        $("#content203").text(data['detail'][0].rebound_0_1);
+                        $("#content204").text(data['detail'][0].rebound_0_2);
+                        $("#content205").text(data['detail'][0].cir_st_1);
+                        $("#content206").text(data['detail'][0].cir_st_2);
+                        $("#content207").text(data['detail'][0].sphericity_st1);
+                        $("#content208").text(data['detail'][0].sphericity_st2);
+                        $("#content209").text(data['detail'][0].ch_of_pressure_st1);
+                        $("#content210").text(data['detail'][0].ch_of_pressure_st2);
+                        $("#content211").text(data['detail'][0].material_st1);
+                        $("#content212").text(data['detail'][0].material_st2);
+                        $("#content213").text(data['detail'][0].water_uptake_wrt1);
+                        $("#content214").text(data['detail'][0].water_uptake_wrt2);
+                        $("#content215").text(data['detail'][0].cir1_wrt);
+                        $("#content216").text(data['detail'][0].cir2_wrt);
+                        $("#content217").text(data['detail'][0].sphericity_wrt1);
+                        $("#content218").text(data['detail'][0].sphericity_wrt2);
+                        $("#content219").text(data['detail'][0].drum_test_pd1);
+                        $("#content220").text(data['detail'][0].drum_test_pd2);
+                        $("#content221").text(data['detail'][0].abraison_resistance_pd1);
+                        $("#content222").text(data['detail'][0].abraison_resistance_pd2);
+                        $("#content223").text(data['detail'][0].uv_light_fast_cst1);
+                        $("#content224").text(data['detail'][0].uv_light_fast_cst2);
+                        $("#content225").text(data['detail'][0].ozon_test_cst1);
+                        $("#content226").text(data['detail'][0].ozon_test_cst2);
+                        $("#content227").text(data['detail'][0].hydrolysis_lam1);
+                        $("#content228").text(data['detail'][0].hydrolysis_lam2);
+                        $("#content229").text(data['detail'][0].hydrolysis_color1);
+                        $("#content230").text(data['detail'][0].hydrolysis_color2);
+                    }
+
+
+
+                    $('#soccerBallsSizeB2B').modal('toggle');
+
+                } else if (type == "SOCCER BALLS BEACH") {
+
+
+                    $("#content231").text(data['head'][0].FactoryCode);
+                    $("#content232").text(data['head'][0].labno);
+                    $("#content233").text(data['head'][0].testdate);
+                    $("#content234").text(data['head'][0].tastcat);
+                    $("#content235").text(data['head'][0].fifiastemp);
+                    $("#content236").text(data['head'][0].productionmonth);
+                    $("#content237").text(data['head'][0].covermat);
+                    $("#content238").text(data['head'][0].backing);
+                    $("#content239").text(data['head'][0].bladder);
+                    $("#content240").text(data['head'][0].balltype);
+                    $("#content241").text(data['head'][0].testtype);
+                    $("#content242").text(data['head'][0].mainmatcolor);
+                    $("#content243").text(data['head'][0].printngscolors);
+                    $("#content244").text(data['head'][0].result);
+                    $("#content245").text(data['head'][0].Performedby);
+                    $("#content275R").text(data['head'][0].remark);
+
+
+                    if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
+                        $("#FreshPhotoSoccerBallBeach").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
+                    } else {
+                        $("#FreshPhotoSoccerBallBeach").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureShooter != null && data['head'][0].pictureShooter != "") {
+                        $("#ShooterPhotoSoccerBallBeach").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureShooter);
+                    } else {
+                        $("#ShooterPhotoSoccerBallBeach").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureHydro != null && data['head'][0].pictureHydro != "") {
+                        $("#HydroPhotoSoccerBallBeach").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureHydro);
+                    } else {
+                        $("#HydroPhotoSoccerBallBeach").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureDrum != null && data['head'][0].pictureDrum != "") {
+                        $("#DrumPhotoSoccerBallBeach").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureDrum);
+                    } else {
+                        $("#DrumPhotoSoccerBallBeach").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+
+
+
+                    $("#testReviewedSize5").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
+                    $("#testApprovedSize5").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
+                    if (data['detail'][0]) {
+                        $("#content246").text(data['detail'][0].weight1);
+                        $("#content247").text(data['detail'][0].weight2);
+                        $("#content248").text(data['detail'][0].cir1);
+                        $("#content249").text(data['detail'][0].cir2);
+                        $("#content250").text(data['detail'][0].sphericity_sp1);
+                        $("#content251").text(data['detail'][0].sphericity_sp2);
+                        $("#content252").text(data['detail'][0].loss_of_pressure1);
+                        $("#content253").text(data['detail'][0].loss_of_pressure2);
+                        $("#content254").text(data['detail'][0].rebound_rt1);
+                        $("#content255").text(data['detail'][0].rebound_rt2);
+                        $("#content256").text(data['detail'][0].rebound_5_1);
+                        $("#content257").text(data['detail'][0].rebound_5_2);
+                        $("#content258").text(data['detail'][0].rebound_0_1);
+                        $("#content259").text(data['detail'][0].rebound_0_2);
+                        $("#content260").text(data['detail'][0].cir_st_1);
+                        $("#content261").text(data['detail'][0].cir_st_2);
+                        $("#content262").text(data['detail'][0].sphericity_st1);
+                        $("#content263").text(data['detail'][0].sphericity_st2);
+                        $("#content264").text(data['detail'][0].ch_of_pressure_st1);
+                        $("#content265").text(data['detail'][0].ch_of_pressure_st2);
+                        $("#content266").text(data['detail'][0].material_st1);
+                        $("#content267").text(data['detail'][0].material_st2);
+                        $("#content268").text(data['detail'][0].water_uptake_wrt1);
+                        $("#content269").text(data['detail'][0].water_uptake_wrt2);
+                        $("#content270").text(data['detail'][0].cir1_wrt);
+                        $("#content271").text(data['detail'][0].cir2_wrt);
+                        $("#content272").text(data['detail'][0].sphericity_wrt1);
+                        $("#content273").text(data['detail'][0].sphericity_wrt2);
+                        $("#content274").text(data['detail'][0].drum_test_pd1);
+                        $("#content275").text(data['detail'][0].drum_test_pd2);
+                        $("#content276").text(data['detail'][0].abraison_resistance_pd1);
+                        $("#content277").text(data['detail'][0].abraison_resistance_pd2);
+                        $("#content278").text(data['detail'][0].uv_light_fast_cst1);
+                        $("#content279").text(data['detail'][0].uv_light_fast_cst2);
+                        $("#content280").text(data['detail'][0].ozon_test_cst1);
+                        $("#content281").text(data['detail'][0].ozon_test_cst2);
+                        $("#content282").text(data['detail'][0].hydrolysis_lam1);
+                        $("#content283").text(data['detail'][0].hydrolysis_lam2);
+                        $("#content284").text(data['detail'][0].hydrolysis_color1);
+                        $("#content285").text(data['detail'][0].hydrolysis_color2);
+                    }
+
+
+                    $('#soccerBallsSizeBeach').modal('toggle');
+
+                } else if (type == "SOCCER BALLS LIGHT") {
+
+
+                    $("#content286").text(data['head'][0].FactoryCode);
+                    $("#content287").text(data['head'][0].labno);
+                    $("#content288").text(data['head'][0].testdate);
+                    $("#content289").text(data['head'][0].tastcat);
+                    $("#content290").text(data['head'][0].fifiastemp);
+                    $("#content291").text(data['head'][0].productionmonth);
+                    $("#content292").text(data['head'][0].covermat);
+                    $("#content293").text(data['head'][0].backing);
+                    $("#content294").text(data['head'][0].bladder);
+                    $("#content295").text(data['head'][0].balltype);
+                    $("#content296").text(data['head'][0].testtype);
+                    $("#content297").text(data['head'][0].mainmatcolor);
+                    $("#content298").text(data['head'][0].printngscolors);
+                    $("#content299").text(data['head'][0].result);
+                    $("#content300").text(data['head'][0].Performedby);
+                    $("#content337R").text(data['head'][0].remark);
+                    $("#content300C").text(data['head'][0].Temperature);
+                    $("#content301C").text(data['head'][0].Humidity);
+
+
+                    if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
+                        $("#FreshPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
+                    } else {
+                        $("#FreshPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureShooter != null && data['head'][0].pictureShooter != "") {
+                        $("#ShooterPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureShooter);
+                    } else {
+                        $("#ShooterPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureHydro != null && data['head'][0].pictureHydro != "") {
+                        $("#HydroPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureHydro);
+                    } else {
+                        $("#HydroPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureDrum != null && data['head'][0].pictureDrum != "") {
+                        $("#DrumPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureDrum);
+                    } else {
+                        $("#DrumPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+
+
+
+
+
+
+                    $("#testReviewedSize5").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
+                    $("#testApprovedSize5").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
+                    if (data['detail'][0]) {
+                        $("#content301").text(data['detail'][0].weight1);
+                        $("#content302").text(data['detail'][0].weight2);
+                        $("#content303").text(data['detail'][0].cir1);
+                        $("#content304").text(data['detail'][0].cir2);
+                        $("#content305").text(data['detail'][0].sphericity_sp1);
+                        $("#content306").text(data['detail'][0].sphericity_sp2);
+                        $("#content307").text(data['detail'][0].loss_of_pressure1);
+                        $("#content308").text(data['detail'][0].loss_of_pressure2);
+                        $("#content309").text(data['detail'][0].rebound_rt1);
+                        $("#content310").text(data['detail'][0].rebound_rt2);
+                        $("#content311").text(data['detail'][0].rebound_5_1);
+                        $("#content312").text(data['detail'][0].rebound_5_2);
+                        $("#content313").text(data['detail'][0].rebound_0_1);
+                        $("#content314").text(data['detail'][0].rebound_0_2);
+                        $("#content315").text(data['detail'][0].cir_st_1);
+                        $("#content316").text(data['detail'][0].cir_st_2);
+                        $("#content317").text(data['detail'][0].sphericity_st1);
+                        $("#content318").text(data['detail'][0].sphericity_st2);
+                        $("#content319").text(data['detail'][0].ch_of_pressure_st1);
+                        $("#content320").text(data['detail'][0].ch_of_pressure_st2);
+                        $("#content321").text(data['detail'][0].material_st1);
+                        $("#content322").text(data['detail'][0].material_st2);
+                        $("#content323").text(data['detail'][0].water_uptake_wrt1);
+                        $("#content324").text(data['detail'][0].water_uptake_wrt2);
+                        $("#content325").text(data['detail'][0].cir1_wrt);
+                        $("#content326").text(data['detail'][0].cir2_wrt);
+                        $("#content327").text(data['detail'][0].sphericity_wrt1);
+                        $("#content328").text(data['detail'][0].sphericity_wrt2);
+                        $("#content329").text(data['detail'][0].drum_test_pd1);
+                        $("#content330").text(data['detail'][0].drum_test_pd2);
+                        $("#content331").text(data['detail'][0].abraison_resistance_pd1);
+                        $("#content332").text(data['detail'][0].abraison_resistance_pd2);
+                        $("#content333").text(data['detail'][0].uv_light_fast_cst1);
+                        $("#content334").text(data['detail'][0].uv_light_fast_cst2);
+                        $("#content335").text(data['detail'][0].ozon_test_cst1);
+                        $("#content336").text(data['detail'][0].ozon_test_cst2);
+                        $("#content337").text(data['detail'][0].hydrolysis_lam1);
+                        $("#content338").text(data['detail'][0].hydrolysis_lam2);
+                        $("#content339").text(data['detail'][0].hydrolysis_color1);
+                        $("#content340").text(data['detail'][0].hydrolysis_color2);
+                    }
+
+
+
+                    $('#soccerBallsSizeLight').modal('toggle');
+
+                } else if (type == "SOCCER BALLS SIZE 3") {
+
+
+                    $("#content341").text(data['head'][0].FactoryCode);
+                    $("#content342").text(data['head'][0].labno);
+                    $("#content343").text(data['head'][0].testdate);
+                    $("#content344").text(data['head'][0].tastcat);
+                    $("#content345").text(data['head'][0].fifiastemp);
+                    $("#content346").text(data['head'][0].productionmonth);
+                    $("#content347").text(data['head'][0].covermat);
+                    $("#content348").text(data['head'][0].backing);
+                    $("#content349").text(data['head'][0].bladder);
+                    $("#content350").text(data['head'][0].balltype);
+                    $("#content351").text(data['head'][0].testtype);
+                    $("#content352").text(data['head'][0].mainmatcolor);
+                    $("#content353").text(data['head'][0].printngscolors);
+                    $("#content354").text(data['head'][0].result);
+                    $("#content355").text(data['head'][0].Performedby);
+
+
+                    $("#content349Size3").text(data['head'][0].Temperature);
+                    $("#content350Size3").text(data['head'][0].Humidity);
+
+
+                    if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
+                        $("#FreshPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
+                    } else {
+                        $("#FreshPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureShooter != null && data['head'][0].pictureShooter != "") {
+                        $("#ShooterPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureShooter);
+                    } else {
+                        $("#ShooterPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureHydro != null && data['head'][0].pictureHydro != "") {
+                        $("#HydroPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureHydro);
+                    } else {
+                        $("#HydroPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+                    if (data['head'][0].pictureDrum != null && data['head'][0].pictureDrum != "") {
+                        $("#DrumPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureDrum);
+                    } else {
+                        $("#DrumPhotoSoccerBallsLight").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                    }
+
+
+
+
+                    $("#testReviewedSize5").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
+                    $("#testApprovedSize5").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
+                    if (data['detail'][0]) {
+                        $("#content356").text(data['detail'][0].weight1);
+                        $("#content357").text(data['detail'][0].weight2);
+                        $("#content358").text(data['detail'][0].cir1);
+                        $("#content359").text(data['detail'][0].cir2);
+                        $("#content360").text(data['detail'][0].sphericity_sp1);
+                        $("#content361").text(data['detail'][0].sphericity_sp2);
+                        $("#content362").text(data['detail'][0].loss_of_pressure1);
+                        $("#content363").text(data['detail'][0].loss_of_pressure2);
+                        $("#content364").text(data['detail'][0].rebound_rt1);
+                        $("#content365").text(data['detail'][0].rebound_rt2);
+                        $("#content366").text(data['detail'][0].rebound_5_1);
+                        $("#content367").text(data['detail'][0].rebound_5_2);
+                        $("#content368").text(data['detail'][0].rebound_0_1);
+                        $("#content369").text(data['detail'][0].rebound_0_2);
+                        $("#content370").text(data['detail'][0].cir_st_1);
+                        $("#content371").text(data['detail'][0].cir_st_2);
+                        $("#content372").text(data['detail'][0].sphericity_st1);
+                        $("#content373").text(data['detail'][0].sphericity_st2);
+                        $("#content374").text(data['detail'][0].ch_of_pressure_st1);
+                        $("#content375").text(data['detail'][0].ch_of_pressure_st2);
+                        $("#content376").text(data['detail'][0].material_st1);
+                        $("#content377").text(data['detail'][0].material_st2);
+                        $("#content378").text(data['detail'][0].water_uptake_wrt1);
+                        $("#content379").text(data['detail'][0].water_uptake_wrt2);
+                        $("#content380").text(data['detail'][0].cir1_wrt);
+                        $("#content381").text(data['detail'][0].cir2_wrt);
+                        $("#content382").text(data['detail'][0].sphericity_wrt1);
+                        $("#content383").text(data['detail'][0].sphericity_wrt2);
+                        $("#content384").text(data['detail'][0].drum_test_pd1);
+                        $("#content385").text(data['detail'][0].drum_test_pd2);
+                        $("#content386").text(data['detail'][0].abraison_resistance_pd1);
+                        $("#content387").text(data['detail'][0].abraison_resistance_pd2);
+                        $("#content388").text(data['detail'][0].uv_light_fast_cst1);
+                        $("#content389").text(data['detail'][0].uv_light_fast_cst2);
+                        $("#content390").text(data['detail'][0].ozon_test_cst1);
+                        $("#content391").text(data['detail'][0].ozon_test_cst2);
+                        $("#content392").text(data['detail'][0].hydrolysis_lam1);
+                        $("#content393").text(data['detail'][0].hydrolysis_lam2);
+                        $("#content394").text(data['detail'][0].hydrolysis_color1);
+                        $("#content395").text(data['detail'][0].hydrolysis_color2);
+                    }
+
+
+
+                    $('#soccerBallsSize3').modal('toggle');
+
+                } else if (type == "SOCCER BALLS SMALL") {
+
+                    $("#content396").text(data['head'][0].FactoryCode);
+                    $("#content397").text(data['head'][0].labno);
+                    $("#content398").text(data['head'][0].testdate);
+                    $("#content399").text(data['head'][0].tastcat);
+                    $("#content400").text(data['head'][0].fifiastemp);
+                    $("#content401").text(data['head'][0].productionmonth);
+                    $("#content402").text(data['head'][0].covermat);
+                    $("#content403").text(data['head'][0].backing);
+                    $("#content404").text(data['head'][0].bladder);
+                    $("#content405").text(data['head'][0].balltype);
+                    $("#content406").text(data['head'][0].testtype);
+                    $("#content407").text(data['head'][0].mainmatcolor);
+                    $("#content408").text(data['head'][0].printngscolors);
+                    $("#content409").text(data['head'][0].result);
+                    $("#content410").text(data['head'][0].Performedby);
+
+
+
+
+                    $("#testReviewedSize5").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
+                    $("#testApprovedSize5").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
+                    if (data['detail'][0]) {
+                        $("#content411").text(data['detail'][0].weight1);
+                        $("#content412").text(data['detail'][0].weight2);
+                        $("#content413").text(data['detail'][0].cir1);
+                        $("#content414").text(data['detail'][0].cir2);
+                        $("#content415").text(data['detail'][0].sphericity_sp1);
+                        $("#content416").text(data['detail'][0].sphericity_sp2);
+                        $("#content417").text(data['detail'][0].loss_of_pressure1);
+                        $("#content418").text(data['detail'][0].loss_of_pressure2);
+                        $("#content419").text(data['detail'][0].rebound_rt1);
+                        $("#content420").text(data['detail'][0].rebound_rt2);
+                        $("#content421").text(data['detail'][0].rebound_5_1);
+                        $("#content422").text(data['detail'][0].rebound_5_2);
+                        $("#content423").text(data['detail'][0].rebound_0_1);
+                        $("#content424").text(data['detail'][0].rebound_0_2);
+                        $("#content425").text(data['detail'][0].cir_st_1);
+                        $("#content426").text(data['detail'][0].cir_st_2);
+                        $("#content427").text(data['detail'][0].sphericity_st1);
+                        $("#content428").text(data['detail'][0].sphericity_st2);
+                        $("#content429").text(data['detail'][0].ch_of_pressure_st1);
+                        $("#content430").text(data['detail'][0].ch_of_pressure_st2);
+                        $("#content431").text(data['detail'][0].material_st1);
+                        $("#content432").text(data['detail'][0].material_st2);
+                        $("#content433").text(data['detail'][0].water_uptake_wrt1);
+                        $("#content434").text(data['detail'][0].water_uptake_wrt2);
+                        $("#content435").text(data['detail'][0].cir1_wrt);
+                        $("#content436").text(data['detail'][0].cir2_wrt);
+                        $("#content437").text(data['detail'][0].sphericity_wrt1);
+                        $("#content438").text(data['detail'][0].sphericity_wrt2);
+                        $("#content439").text(data['detail'][0].drum_test_pd1);
+                        $("#content440").text(data['detail'][0].drum_test_pd2);
+                        $("#content441").text(data['detail'][0].abraison_resistance_pd1);
+                        $("#content442").text(data['detail'][0].abraison_resistance_pd2);
+                        $("#content443").text(data['detail'][0].uv_light_fast_cst1);
+                        $("#content444").text(data['detail'][0].uv_light_fast_cst2);
+                        $("#content445").text(data['detail'][0].ozon_test_cst1);
+                        $("#content446").text(data['detail'][0].ozon_test_cst2);
+                        $("#content447").text(data['detail'][0].hydrolysis_lam1);
+                        $("#content448").text(data['detail'][0].hydrolysis_lam2);
+                        $("#content449").text(data['detail'][0].hydrolysis_color1);
+                        $("#content450").text(data['detail'][0].hydrolysis_color2);
+                    }
+
+
+
+                    $('#soccerBallsSmall').modal('toggle');
+
+                } else if (type == "SOCIETY+SOCCERBALLS") {
+
+
+                    $("#content451").text(data['head'][0].FactoryCode);
+                    $("#content452").text(data['head'][0].labno);
+                    $("#content453").text(data['head'][0].testdate);
+                    $("#content454").text(data['head'][0].tastcat);
+                    $("#content455").text(data['head'][0].fifiastemp);
+                    $("#content456").text(data['head'][0].productionmonth);
+                    $("#content457").text(data['head'][0].covermat);
+                    $("#content458").text(data['head'][0].backing);
+                    $("#content459").text(data['head'][0].bladder);
+                    $("#content460").text(data['head'][0].balltype);
+                    $("#content461").text(data['head'][0].testtype);
+                    $("#content462").text(data['head'][0].mainmatcolor);
+                    $("#content463").text(data['head'][0].printngscolors);
+                    $("#content464").text(data['head'][0].result);
+                    $("#content465").text(data['head'][0].Performedby);
+                    $("#content465R").text(data['head'][0].remark);
+
+
+                    $("#content465Society").text(data['head'][0].Temperature);
+                    $("#content466Society").text(data['head'][0].Humidity);
+
+
+                    $("#testReviewedSize5").text(data['head'][0].Reviewby ? data['head'][0].ReviewName : 'Pending');
+                    $("#testApprovedSize5").text(data['head'][0].ApprovedBy ? data['head'][0].Approvalname : 'Pending');
+                    if (data['detail'][0]) {
+                        $("#content466").text(data['detail'][0].weight1);
+                        $("#content467").text(data['detail'][0].weight2);
+                        $("#content468").text(data['detail'][0].cir1);
+                        $("#content469").text(data['detail'][0].cir2);
+                        $("#content470").text(data['detail'][0].sphericity_sp1);
+                        $("#content471").text(data['detail'][0].sphericity_sp2);
+                        $("#content472").text(data['detail'][0].loss_of_pressure1);
+                        $("#content473").text(data['detail'][0].loss_of_pressure2);
+                        $("#content474").text(data['detail'][0].rebound_rt1);
+                        $("#content475").text(data['detail'][0].rebound_rt2);
+                        $("#content476").text(data['detail'][0].rebound_5_1);
+                        $("#content477").text(data['detail'][0].rebound_5_2);
+                        $("#content478").text(data['detail'][0].rebound_0_1);
+                        $("#content479").text(data['detail'][0].rebound_0_2);
+                        $("#content480").text(data['detail'][0].cir_st_1);
+                        $("#content481").text(data['detail'][0].cir_st_2);
+                        $("#content482").text(data['detail'][0].sphericity_st1);
+                        $("#content483").text(data['detail'][0].sphericity_st2);
+                        $("#content484").text(data['detail'][0].ch_of_pressure_st1);
+                        $("#content485").text(data['detail'][0].ch_of_pressure_st2);
+                        $("#content486").text(data['detail'][0].material_st1);
+                        $("#content487").text(data['detail'][0].material_st2);
+                        $("#content488").text(data['detail'][0].water_uptake_wrt1);
+                        $("#content489").text(data['detail'][0].water_uptake_wrt2);
+                        $("#content490").text(data['detail'][0].cir1_wrt);
+                        $("#content491").text(data['detail'][0].cir2_wrt);
+                        $("#content492").text(data['detail'][0].sphericity_wrt1);
+                        $("#content493").text(data['detail'][0].sphericity_wrt2);
+                        $("#content494").text(data['detail'][0].drum_test_pd1);
+                        $("#content495").text(data['detail'][0].drum_test_pd2);
+                        $("#content496").text(data['detail'][0].abraison_resistance_pd1);
+                        $("#content497").text(data['detail'][0].abraison_resistance_pd2);
+                        $("#content498").text(data['detail'][0].uv_light_fast_cst1);
+                        $("#content499").text(data['detail'][0].uv_light_fast_cst2);
+                        $("#content500").text(data['detail'][0].ozon_test_cst1);
+                        $("#content501").text(data['detail'][0].ozon_test_cst2);
+                        $("#content502").text(data['detail'][0].hydrolysis_lam1);
+                        $("#content503").text(data['detail'][0].hydrolysis_lam2);
+                        $("#content504").text(data['detail'][0].hydrolysis_color1);
+                        $("#content505").text(data['detail'][0].hydrolysis_color2);
+                    }
+
+
+                    $('#soccerBallsSocietySoccerBALLS').modal('toggle');
+
                 } else {
                     $("#content32").text(data['head'][0].labno);
+                    $("#content3222").text(data['head'][0].cssCode);
                     $("#workingNoIndoor").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
                     $("#articleNoIndoor").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
                     $("#content33").text(data['head'][0].testdate);
@@ -5001,20 +9714,25 @@ ${reviewStatus == '1' ?
                     $("#content42").text(data['head'][0].mainmatcolor);
                     $("#content43").text(data['head'][0].printngscolors);
                     $("#content44").text(data['head'][0].result);
+                    $("#content667").text(data['head'][0].remark);
                     $("#content45").text(data['head'][0].Performedby);
 
 
-                    if(data['head'][0].result.toLowerCase().trim() == "urgent" || data['head'][0].remark.toLowerCase().trim() == "urgent" ){
-   
-                        $("#contentNoteFGT").text('As per the request of customer, testing is proceeded without condition.')
-                       
+
+                    if (data['head'][0].result.toLowerCase().trim() == "urgent" || data['head'][0].remark.toLowerCase().trim() == "urgent") {
+
+                        // $("#contentNoteFGT").text('As per the request of customer, testing is proceeded without condition.')
+                        $("#contentNoteFGT").text('The above reported result is applicable to the sample as received at customer service section<br>Report was Electronically generated, Signature are not required<br>**: These Tests are out of scope of ISO/IEC 17025:2017')
+
+                    } else {
+                        $("#contentNoteFGT").text('The above reported result is applicable to the sample as received at customer service section<br>Report was Electronically generated, Signature are not required<br>**: These Tests are out of scope of ISO/IEC 17025:2017');
 
                     }
-                    else{
-                       $("#contentNoteFGT").text(data['head'][0].Note);     
 
-                    }
-                    
+
+
+
+
 
                     if (data['head'][0].pictureFresh != null && data['head'][0].pictureFresh != "") {
                         $("#FreshPhotoIndoor").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data['head'][0].pictureFresh);
@@ -5071,6 +9789,7 @@ ${reviewStatus == '1' ?
 
                 }
             })
+
         });
         let fileSelectStore;
         let HeaderArray = [];
@@ -5193,6 +9912,23 @@ ${reviewStatus == '1' ?
             let TID = $("#fgtH").val();
             // alert(c2_sp);
 
+
+            // if(w1.length <= 0 || w2.length <= 0 || c1_sp.length <= 0 || c2_sp.length <= 0 || sp1_sp.length <= 0 || sp2_sp.length <= 0 
+            // || lp1.length <= 0 || lp2.length <= 0 || rrt1.length <= 0 || rrt2.length <= 0 || rrt51.length <= 0 || rrt52.length <= 0 ||  
+            // rrt01.length <= 0 || rrt02.length <= 0 || c1_dp.length <= 0 || c2_dp.length <= 0 || sp_dp1.length <= 0 || sp_dp2.length <= 0
+            // || lp_dp1.length <= 0 || lp_dp2.length <= 0 || m1.length <= 0 || m2.length <= 0 || wup1.length <= 0 || wup2.length <= 0
+            // || c1_wrt.length <= 0 || c2_wrt.length <= 0 || sp1_wrt.length <= 0 || sp2_wrt.length <= 0 || dt1.length <= 0 || dt2.length <= 0
+            // || abr1.length <= 0 || abr2.length <= 0 || uvlf1.length <= 0 || uvlf2.length <= 0 || otr1.length <= 0 || otr2.length <= 0
+            // || hl1.length <= 0 || hl2.length <= 0 || hcc1.length <= 0 || hcc2.length <= 0){
+            //                 alert("All Fields are mandatroy");
+            //             }
+            //             else{
+
+
+
+            //             }
+
+
             url = "<?php echo base_url(''); ?>FGT/FGT_D"
             // url = "<?php echo base_url(
                             ''
@@ -5247,6 +9983,41 @@ ${reviewStatus == '1' ?
                 location.reload();
             });
 
+
+        }
+
+
+        function Save_FGT_TestType() {
+            let testtypes = $("#testtypes").val();
+
+
+
+            url = "<?php echo base_url('FGT/FGT_H_Test_Type/') ?>"
+            //alert("insertion Call");
+
+            $.post(url, {
+                'type': testtypes
+            }, function(data) {
+                alert("Test Type Added!");
+
+
+                location.reload();
+            })
+
+
+            // $.ajax({
+            //     url: url,
+            //     type: 'post',
+            //     data: testtypes,
+            //     contentType: false,
+            //     processData: false,
+            //     success: function(data, status) {
+            //         alert("FGT Details inserted Successfully");
+            //         //console.log("Data Get from Function",data);
+            //         location.reload();
+            //     }
+            // });
+
         }
 
 
@@ -5265,6 +10036,7 @@ ${reviewStatus == '1' ?
             //alert("I am Ammar");
             let fgttype = $("#fgttype").val();
             let lbno = $("#labno").val();
+
             let tdate = $("#tdate").val();
             let testcat = $("#testcat").val();
             let fifastump = $("#fifastump").val();
@@ -5291,38 +10063,51 @@ ${reviewStatus == '1' ?
             let department = $('#department').val();
             let fgttest = $("#fgttest").val();
 
+
             //alert(result)
             //alert(size);
 
-            let dataSend = [fgttype ? fgttype : null, lbno ? lbno : null, tdate ? tdate : null, testcat ? testcat : null, fifastump ? fifastump : 0, pmonth ? pmonth : null, cmat ? cmat : null, backing ? backing : null, bladder ? bladder : null, btype ? btype : null, ttype ? ttype : null, cssCode ? cssCode : null, mmcolor ? mmcolor : null, pcolors ? pcolors : null, result ? result : null, fn ? fn : null, m ? m : null, pshape ? pshape : null, rem ? rem : null, testperformedby ? testperformedby : null, note ? note : null, null, null, null, null, null, article ? article : null, size ? size : null, tetype ? tetype : null, department ? department : null, fgttest ? fgttest : null];
 
-            fd.append('formData', dataSend);
-            url = "<?php echo base_url(''); ?>FGT/FGT_H"
 
-            //alert(size);
 
-            // $.post(url,{"fgttype":fgttype?fgttype:null,"labno":labno?labno:null,"tdate":tdate?tdate:null, "testcat":testcat?testcat:null, "fifastum": fifastump? fifastump:0, "pmonth": pmonth? pmonth:null, "cmat": cmat ? cmat :null, "backing": backing ? backing :null, "bladder": bladder ? bladder :null, "btype": btype ? btype :null, "ttype": ttype ? ttype :null,"mmcolor": mmcolor ? mmcolor :null, "pcolors": pcolors ? pcolors :null, "result": result ? result :null,"fn": fn ? fn :null, "m": m ? m :null, "inn": inn ? inn :null, "pshape": pshape ? pshape :null, "rem": rem ? rem :null} ,function(data){
-            //               //alert("Details   inserted Successfully");
-            //               console.log("Data Get from Function",data);
-            //            // location.reload();
-            //               });
+            if (lbno.length <= 0 || btype.length <= 0 || mmcolor.length <= 0 || rem.length <= 0 || result.length <= 0 || testperformedby.length <= 0 ||
+                fifastump.length <= 0 || fgttype.length <= 0 || tdate.length <= 0 || pmonth.length <= 0 || tetype.length <= 0 || testcat.length <= 0) {
+                alert("All Fields are mandatroy");
+            } else {
 
-            $.ajax({
-                url: url,
-                type: 'post',
-                data: fd,
-                contentType: false,
-                processData: false,
-                success: function(data, status) {
-                    alert("FGT Details inserted Successfully");
-                    //console.log("Data Get from Function",data);
-                    location.reload();
-                }
-            });
+
+                let dataSend = [fgttype ? fgttype : null, lbno ? lbno : null, tdate ? tdate : null, testcat ? testcat : null, fifastump ? fifastump : 0, pmonth ? pmonth : null, cmat ? cmat : null, backing ? backing : null, bladder ? bladder : null, btype ? btype : null, ttype ? ttype : null, cssCode ? cssCode : null, mmcolor ? mmcolor : null, pcolors ? pcolors : null, result ? result : null, fn ? fn : null, m ? m : null, pshape ? pshape : null, rem ? rem : null, testperformedby ? testperformedby : null, note ? note : null, null, null, null, null, null, article ? article : null, size ? size : null, tetype ? tetype : null, department ? department : null, fgttest ? fgttest : null];
+
+                fd.append('formData', dataSend);
+                url = "<?php echo base_url(''); ?>FGT/FGT_H"
+
+                //alert(size);
+
+                // $.post(url,{"fgttype":fgttype?fgttype:null,"labno":labno?labno:null,"tdate":tdate?tdate:null, "testcat":testcat?testcat:null, "fifastum": fifastump? fifastump:0, "pmonth": pmonth? pmonth:null, "cmat": cmat ? cmat :null, "backing": backing ? backing :null, "bladder": bladder ? bladder :null, "btype": btype ? btype :null, "ttype": ttype ? ttype :null,"mmcolor": mmcolor ? mmcolor :null, "pcolors": pcolors ? pcolors :null, "result": result ? result :null,"fn": fn ? fn :null, "m": m ? m :null, "inn": inn ? inn :null, "pshape": pshape ? pshape :null, "rem": rem ? rem :null} ,function(data){
+                //               //alert("Details   inserted Successfully");
+                //               console.log("Data Get from Function",data);
+                //            // location.reload();
+                //               });
+
+                $.ajax({
+                    url: url,
+                    type: 'post',
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function(data, status) {
+                        alert("FGT Details inserted Successfully");
+                        //console.log("Data Get from Function",data);
+                        location.reload();
+                    }
+                });
+
+            }
+
         }
 
 
-        $("#customData").on('click','.updbtn',function(e) {
+        $("#customData").on('click', '.updbtn', function(e) {
             let id = this.id;
             let split_value = id.split(".");
             var TID = split_value[1];

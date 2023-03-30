@@ -282,7 +282,7 @@ foreach ($Stationwise as $key) {
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                             <!-- <h2 class="">Target <br> 64%</h2> -->
                                             <small class="m-0 l-h-n">Target</small>
-                                            <span >64%</span>
+                                            <span >66%</span>
                                         </h3>
 
                                     </div>

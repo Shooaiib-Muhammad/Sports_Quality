@@ -23,6 +23,20 @@ class Efficiency_Model extends CI_Model
         return $query->result_array();
     }
 
+    public function HourllyReading()
+    {
+            $Month = date('m');
+            $Year = date('Y');
+            $Day = date('d');
+            $query = $this->db->query("SELECT        balls, HourName,HID
+            FROM            dbo.view_RWPD_Hourlly
+WHERE        (EntryDate BETWEEN '$Day/$Month/$Year' AND '$Day/$Month/$Year') 
+GROUP BY balls, HourName,HID
+ORDER BY HID");
+            return  $query->result_array();
+    }
+
+
     function get_UB($start, $end, $FactryCode)
     {
         $query = $this->db
@@ -72,7 +86,7 @@ class Efficiency_Model extends CI_Model
     function samValue()
     {
         $query = $this->db->query("SELECT        ArtCode
-FROM            dbo.view_PC_Articles");
+     FROM            dbo.view_PC_Articles");
         return $query->result_array();
     }
 
@@ -104,6 +118,26 @@ WHERE        (FactoryCode = '$code')
 ");
         return  $query->result_array();
     }
+
+    public function getFactoryCode_with_year($code , $years)
+    {
+
+
+        $query = $this->db->query("SELECT * FROM  dbo.view_SMV_Values WHERE (FactoryCode = '$code' AND SesonalRange = '$years')
+");
+        return  $query->result_array();
+    }
+
+    public function showMissingValues()
+    {
+
+
+        $query = $this->db->query("SELECT FactoryCode , SesonalRange , Carcase , Lamination , SheetSizing , panel_preperation , Assembling , labelingandPacking , Panel_Cutting , bladder_Winding FROM view_SMV_Values
+        WHERE Carcase is NULL AND Lamination is NULL AND SheetSizing is NULL AND panel_preperation is NULL AND Assembling is NULL AND labelingandPacking is NULL AND Panel_Cutting is NULL AND bladder_Winding is NULL;");
+        return  $query->result_array();
+    }
+
+
 
     public function updateArt01($client, $model, $article, $Carcase, $Lamination, $SheetSizing, $Panel_Cutting, $Panel_Preparation, $Assembling, $labelingandPacking)
     {
@@ -166,5 +200,26 @@ WHERE        (FactoryCode = '$code')
          Assembling=$Assembling,labelingandPacking=$labelingandPacking
         WHERE ArtID = $article AND ModelID= $model AND ClientID= $client");
         return  $query;
+    }
+    public function samValueNotification(){
+        $currDate= date("d/m/Y");
+        $query = $this->db->query("SELECT        Datename, ArtCode, ArtSize, FactoryCode
+        FROM            dbo.View_MIssing_SAM
+        WHERE        (Datename = '$currDate')");
+        return $query->result_array();
+    }
+    public function samValueNotificationDate($start,$end){
+        $SYear = substr($start, 0, 4);
+        $SMonth = substr($start, 5, 2);
+        $SDay = substr($start, -2, 2);
+        $Startdate = $SDay . '/' . $SMonth . '/' . $SYear;
+        $EYear = substr($end, 0, 4);
+        $EMonth = substr($end, 5, 2);
+        $EDay = substr($end, -2, 2);
+        $Enddate = $EDay . '/' . $EMonth . '/' . $EYear;
+        $query = $this->db->query("SELECT        Datename, ArtCode, ArtSize, FactoryCode
+        FROM            dbo.View_MIssing_SAM
+        WHERE        (Datename BETWEEN '$Startdate' AND '$Enddate')");
+        return $query->result_array();
     }
 }

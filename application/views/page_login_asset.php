@@ -15,10 +15,10 @@ if ($this->session->has_userdata('user_id')) {
 
 
 	<head>
-		<title>Forward Sports</title>
+		<title>MIS</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.jpg" />
+		<!-- <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.jpg" /> -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 		<style>
 			* {
@@ -136,7 +136,7 @@ if ($this->session->has_userdata('user_id')) {
 				border-radius: 0 9px 9px 0;
 				animation-fill-mode: forwards;
 				box-shadow: 0 2px 4px -2 rgba(0, 0, 0, 0.6);
-				background: url(<?php echo base_url(''); ?>Assets/img/twitter_profile_image.png) no-repeat center center / cover;
+				/* background: url(<?php echo base_url(''); ?>Assets/img/twitter_profile_image.png) no-repeat center center / cover; */
 			}
 
 			@keyframes moveRight {

@@ -97,6 +97,27 @@ class Efficiency extends CI_Controller
         echo json_encode($data);
     }
 
+    public function samValueInterface(){
+        $this->load->view('MIS/Efficiency/samValueNotify');
+    }
+    public function samValueNotification()
+    {
+        $data = $this->Efficiency_Model->samValueNotification();
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+    }
+    public function samValueNotificationDate()
+    {
+        // die;
+        $data = $this->Efficiency_Model->samValueNotificationDate($_POST['start-date'],$_POST['end-date']);
+        // print_r($data);
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+    }
     public function loadArticleStuff()
     {
         $data = $this->Efficiency_Model->loadArticleStuff($_GET['article']);
@@ -138,6 +159,42 @@ class Efficiency extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
+
+    public function getFactoryCode_with_year()
+    {
+        $data = $this->Efficiency_Model->getFactoryCode_with_year(
+            $_POST['factory_code'],
+            $_POST['year']
+
+        );
+
+        // echo "<pre>";
+        // print_r($data);
+        // die;
+        // echo "</pre>";
+
+      
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+
+    public function missingValues()
+    {
+        $data = $this->Efficiency_Model->showMissingValues(
+        
+
+        );
+      
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+
+
+
 
     public function updateArt01()
     {

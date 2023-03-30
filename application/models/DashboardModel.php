@@ -117,6 +117,20 @@ public function getMonthtlyOrder_Article_Wise02(){
                         GROUP BY dbo.tbl_Pro_Article.ArtCode, dbo.View_PO_OrderQty_Sum.FactoryCode");
                                 return $query->result_array();
                         }
+
+                        public function OrdersandPlanning($nextDate, $previousDate)
+                        {
+                            
+                                        
+
+                            $query = $this->db->query("SELECT TOP (100) PERCENT SUM(OrderQty) AS OrderQty, SUM(PlanQty) AS PlanQty, YEAR(CustReqDate) AS Year, { fn MONTHNAME(CustReqDate) } AS Month, MONTH(CustReqDate) AS M
+                            FROM            dbo.View_Rpt_PO_Plan_Status
+                            WHERE        (CustReqDate BETWEEN CONVERT(DATETIME, '$previousDate 00:00:00', 102) AND CONVERT(DATETIME, '$nextDate 00:00:00', 102))
+                            GROUP BY YEAR(CustReqDate), { fn MONTHNAME(CustReqDate) }, MONTH(CustReqDate)
+                            ORDER BY M");
+                            return $result = $query->result_array();
+                        }
+                            
     public function FactoryWiseProduction($Day, $Month, $Year)
     {
         
@@ -170,7 +184,8 @@ GROUP BY ArtSize, ArtCode");
     }
     public function B34004($Day, $Month, $Year)
     {
-        $query = $this->db->query("SELECT        ArtSize, ArtCode, SUM(TotalChecked) AS TotalChecked, SUM(Fail) AS Fail, SUM(pass) AS pass
+        $query = $this->db->query("SELECT        ArtSize, ArtCode, 
+        SUM(TotalChecked) AS TotalChecked, SUM(Fail) AS Fail, SUM(pass) AS pass
 FROM            dbo.view_TM_Article_Wise_Production
 WHERE        (Datename = '$Day/$Month/$Year') And (FactoryCode='B34004')
 GROUP BY ArtSize, ArtCode");
@@ -179,7 +194,7 @@ GROUP BY ArtSize, ArtCode");
 
     public function B34005($Day, $Month, $Year)
     {
-        $query = $this->db->query("SELECT        ArtSize, ArtCode, SUM(Fail) AS Fail, SUM(Pass) AS Pass, SUM(TotalChecked) AS TotalChecked
+        $query = $this->db->query("SELECT   ArtSize, ArtCode, SUM(Fail) AS Fail, SUM(Pass) AS Pass, SUM(TotalChecked) AS TotalChecked
 FROM            dbo.view_Article_Wise_MS
 WHERE        (DateName = '$Day/$Month/$Year')
 GROUP BY ArtSize, ArtCode");
@@ -209,17 +224,21 @@ FROM            dbo.view_DMMS_TMProduction
 WHERE        (Datename = '$Day/$Month/$Year')");
         return $result = $query->result_array();
     }
-    Public function GetMsproduction($Day, $Month, $Year){
+
+    public function GetMsproduction($Day, $Month, $Year){
+
        
-        $query = $this->db->query("SELECT        TOP (100) PERCENT dbo.tbl_PC_AMB_Line.LineName, SUM(dbo.tbl_PC_MS.TotalChecked) AS TotalChecked, SUM(dbo.tbl_PC_MS.Pass) AS Pass, SUM(dbo.tbl_PC_MS.Fail) AS Fail, dbo.tbl_PC_AMB_Line.LineID
-FROM            dbo.tbl_PC_MS INNER JOIN
-                         dbo.tbl_Inv_Tran_Date ON dbo.tbl_PC_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
-                         dbo.tbl_PC_AMB_Line ON dbo.tbl_PC_MS.Line = dbo.tbl_PC_AMB_Line.LineID
+        $query = $this->db->query("SELECT       TOP (100) PERCENT dbo.tbl_PC_AMB_Line.LineName, SUM(dbo.View_Union_MS.TotalChecked) AS TotalChecked, SUM(dbo.View_Union_MS.Pass) AS Pass, SUM(dbo.View_Union_MS.Fail) AS Fail, dbo.tbl_PC_AMB_Line.LineID
+FROM            dbo.View_Union_MS INNER JOIN
+                         dbo.tbl_Inv_Tran_Date ON dbo.View_Union_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
+                         dbo.tbl_PC_AMB_Line ON dbo.View_Union_MS.Line = dbo.tbl_PC_AMB_Line.LineID
 WHERE        (dbo.tbl_Inv_Tran_Date.DateName = CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
 GROUP BY dbo.tbl_PC_AMB_Line.LineName, dbo.tbl_PC_AMB_Line.LineID
 ORDER BY dbo.tbl_PC_AMB_Line.LineID");
         return $result = $query->result_array();
     }
+
+
     public function GetAMBproduction($Day, $Month, $Year)
     {
 
@@ -234,9 +253,9 @@ GROUP BY LineName");
         $lastday= date('Y-m-d', strtotime('-1 days'));
        $last7day= date('Y-m-d', strtotime('-7 days'));
         $query = $this->db->query("SELECT        SUM(Checked) AS TotalChecked, SUM(Pass) AS pass, SUM(Fail) AS Fail, TranDate
-FROM            dbo.tbl_Production_View
-WHERE        (TranDate BETWEEN CONVERT(DATETIME, '$last7day 00:00:00', 102) AND CONVERT(DATETIME, '$lastday 00:00:00', 102))
-GROUP BY TranDate");
+    FROM            dbo.tbl_Production_View
+    WHERE        (TranDate BETWEEN CONVERT(DATETIME, '$last7day 00:00:00', 102) AND CONVERT(DATETIME, '$lastday 00:00:00', 102))
+    GROUP BY TranDate");
         return $result = $query->result_array();
     }
     public function getweeklydata(){
@@ -289,6 +308,16 @@ FROM            dbo.tbl_Production_View
 WHERE       (TranDate BETWEEN CONVERT(DATETIME, '$last7day 00:00:00', 102) AND CONVERT(DATETIME, '$lastday 00:00:00', 102))
 GROUP BY CONVERT(varchar, TranDate, 104)
 ORDER BY TranDate");
+        return $result = $query->result_array();
+    }
+    public function lfbLineWise($Day, $Month, $Year){
+        $query = $this->db->query("SELECT        TOP (100) PERCENT dbo.Tbl_LFB_Lines.LineName, SUM(dbo.tbl_TM_Article_Wise_prd.TotalChecked) AS TotalChecked, SUM(dbo.tbl_TM_Article_Wise_prd.TotalPass) AS TotalPass, dbo.Tbl_LFB_Lines.LineID
+        FROM            dbo.tbl_TM_Article_Wise_prd INNER JOIN
+                                 dbo.Tbl_LFB_Lines ON dbo.tbl_TM_Article_Wise_prd.LineID = dbo.Tbl_LFB_Lines.LineID INNER JOIN
+                                 dbo.tbl_Inv_Tran_Date ON dbo.tbl_TM_Article_Wise_prd.DayID = dbo.tbl_Inv_Tran_Date.DayNo
+        WHERE        (dbo.tbl_Inv_Tran_Date.DateName = CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
+        GROUP BY dbo.Tbl_LFB_Lines.LineName, dbo.Tbl_LFB_Lines.LineID
+        ORDER BY dbo.Tbl_LFB_Lines.LineID ");
         return $result = $query->result_array();
     }
     

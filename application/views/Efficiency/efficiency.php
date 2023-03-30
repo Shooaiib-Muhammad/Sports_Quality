@@ -25,6 +25,8 @@
             <main id="js-page-content" role="main" class="page-content">
 
 
+            <!-- <?php $id = $_GET['dept_id']; ?> -->
+
 
 
             <?php
@@ -183,6 +185,100 @@ foreach ($Stationwise as $key) {
 
 } 
 ?>
+
+
+<?php
+
+// Ball Forming
+
+$GetHoursBallForming = array();
+$GetReadingBallForming = array();
+//$target = array();
+//print_r($HourllyReading);
+foreach ($StationwiseBallForming as $key) {
+    $point1 = array($key['OutPut'],);
+    $point2 = array($key['Name'],);
+    $dailytarget = 3000 / 6;
+    $point3 = $dailytarget / 8;
+
+    array_push($GetReadingBallForming, $point1);
+    array_push($GetHoursBallForming, $point2);
+    // array_push($target, $point3);
+    //array_push($lineNames, $key['LineName']);
+
+} 
+?>
+
+
+
+<?php
+
+// Ball Shaping
+
+$GetHoursBallShaping = array();
+$GetReadingBallShaping = array();
+//$target = array();
+//print_r($HourllyReading);
+foreach ($StationwiseBallShaping as $key) {
+    $point1 = array($key['OutPut'],);
+    $point2 = array($key['Name'],);
+    $dailytarget = 3000 / 6;
+    $point3 = $dailytarget / 8;
+
+    array_push($GetReadingBallShaping, $point1);
+    array_push($GetHoursBallShaping, $point2);
+    // array_push($target, $point3);
+    //array_push($lineNames, $key['LineName']);
+
+} 
+?>
+
+<?php
+
+$GetHoursTMAssembling = array();
+$GetReadingTMAssembling = array();
+//$target = array();
+//print_r($HourllyReading);
+foreach ($StationwiseTMAssembling as $key) {
+    $point1 = array($key['OutPut'],);
+    $point2 = array($key['Name'],);
+    $dailytarget = 3000 / 6;
+    $point3 = $dailytarget / 8;
+
+    array_push($GetReadingTMAssembling, $point1);
+    array_push($GetHoursTMAssembling, $point2);
+    // array_push($target, $point3);
+    //array_push($lineNames, $key['LineName']);
+
+} 
+?>
+       <?php
+
+// Laser Cutting
+
+$GetHoursLaserCutting = array();
+$GetReadingLaserCutting = array();
+//$target = array();
+//print_r($HourllyReading);
+foreach ($StationwiseLaserCutting as $key) {
+    $point1 = array($key['OutPut'],);
+    $point2 = array($key['Name'],);
+    $dailytarget = 3000 / 6;
+    $point3 = $dailytarget / 8;
+
+    array_push($GetReadingLaserCutting, $point1);
+    array_push($GetHoursLaserCutting, $point2);
+    // array_push($target, $point3);
+    //array_push($lineNames, $key['LineName']);
+
+} 
+?>
+
+
+
+
+
+
 
 
                 <ol class="breadcrumb page-breadcrumb">
@@ -437,10 +533,19 @@ foreach ($Stationwise as $key) {
      }
      ?>
 
+<?php $totalReading = 0;
+                                                        foreach ($IndividualReadingLamination as $Inmachine) {
+
+                                                            $totalReading += ($Inmachine['Reading']);
+
+                                                        }
+                                                        ?>
+
+
                                        <small class="m-0 l-h-n">Efficiency</small>
                                             <span id="efficiencyValueIdLamination"></span>
 
-                                            <span id="counterValueIdLamination"><?php echo $totalLamination*0.05*3; ?></span>
+                                            <span id="counterValueIdLamination"><?php echo $totalLamination; ?></span>
                                             <small class="m-0 l-h-n"></small>
                                         </div>
 
@@ -505,7 +610,28 @@ foreach ($Stationwise as $key) {
                                    <h3 class="display-4 d-block l-h-n m-0 fw-500 text-center">
                                        MS Lines
                                        <div class="row mt-2">
-                                        <div class="col-md-6">
+
+                                       <div class="col-md-2" id="direct">
+                            <a href="javascript:void(0)">
+                                <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                            <small class="m-0 l-h-n">Total No of Balls</small>
+                                            <span id="counterValueIdMSLines"><?php echo Round($DataMSLines[0]['PassQty'],0); ?></span>
+                                            <small class="m-0 l-h-n"></small>
+
+
+
+
+
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+
+                                        <!-- <div class="col-md-6">
 
 
 
@@ -519,7 +645,7 @@ foreach ($Stationwise as $key) {
 
                                                                                         <small class="m-0 l-h-n"></small>
 
-                                        </div>
+                                        </div> -->
 
                                         <div class="col-md-6">
                                         <small class="m-0 l-h-n">Real Time (Minutes)</small>
@@ -772,6 +898,194 @@ foreach ($Stationwise as $key) {
                            </div>
                        </a>
                    </div>
+
+                   <div style="display:none" class="col-md-2" id="direct">
+                            <a href="javascript:void(0)">
+                                <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                            <small class="m-0 l-h-n">Total No of Balls</small>
+											
+                                            <?php if(array_key_exists(0,$getDataBallForming)) { ?>
+                                            <span id="counterValueIdBallForming"><?php echo Round($getDataBallForming[0]['OutPut'],0); ?></span>
+                                            <?php } else{ ?>
+                                                <span id="counterValueIdBallForming">0</espan>
+                                                <?php }  ?>
+                                            <small class="m-0 l-h-n"></small>
+
+
+
+
+
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+
+
+                   <div style="display:none" class="col-md-2" id="direct">
+                            <a href="javascript:void(0)">
+                                <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                            <small class="m-0 l-h-n">Total No of Balls</small>
+											
+                                            <?php if(array_key_exists(0,$getDataBallShaping)) { ?>
+                                            <span id="counterValueIdBallShaping"><?php echo Round($getDataBallShaping[0]['OutPut'],0); ?></span>
+                                            <?php } else{ ?>
+                                                <span id="counterValueIdBallShaping">0</span>
+                                                <?php }  ?>
+                                            <small class="m-0 l-h-n"></small>
+
+
+
+
+
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div style="display:nonoe" class="col-md-2" id="direct">
+                            <a href="javascript:void(0)">
+                                <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                            <small class="m-0 l-h-n">Total No of Balls</small>
+											
+                                            <?php if(array_key_exists(0,$getDataTMAssembling)) { ?>
+                                            <span id="counterValueIdTMAssembling"><?php echo Round($getDataTMAssembling[0]['OutPut'],0); ?></span>
+                                            <?php } else{ ?>
+                                                <span id="counterValueIdTMAssembling">0</span>
+                                                <?php }  ?>
+                                            <small class="m-0 l-h-n"></small>
+
+
+
+
+
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+
+
+                        <div style="display:none" class="col-md-2" id="direct">
+                            <a href="javascript:void(0)">
+                                <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                            <small class="m-0 l-h-n">Total No of Sheets</small>
+											
+                                            <?php if(array_key_exists(0,$getDataLaserCutting)) { ?>
+                                            <span id="counterValueIdLaserCutting"><?php echo Round($getDataLaserCutting[0]['OutPut'],0); ?></span>
+                                            <?php } else{ ?>
+                                                <span id="counterValueIdLaserCutting">0</span>
+                                                <?php }  ?>
+                                            <small class="m-0 l-h-n"></small>
+
+
+
+
+
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+
+                        
+                        <div style="display:none" class="col-md-2" id="direct">
+                                    <a href="javascript:void(0)">
+                                        <div style="background-color:grey" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                            <div class="">
+                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+
+                                                    <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
+
+                                                    <!-- <small class="m-0 l-h-n">Number of Employees</small>
+                                            <?php echo $d['EmpCount']; ?> -->
+                                                    <small class="m-0 l-h-n">Real Time (Minutes)</small>
+                                                    <span id="realTimeIdInfilation"> </span>
+
+                                                </h3>
+                                            </div>
+                                            <i class="fal fa-clock position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                        </div>
+                                    </a>
+                                </div>
+
+
+                                <div style="display:none" class="col-md-2" id="direct">
+                            <a href="javascript:void(0)">
+                                <div class="p-2 bg-info rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                            <small class="m-0 l-h-n">Efficiency</small>
+                                            <span id="efficiencyValueIdInfilation"></span>
+                                            <small class="m-0 l-h-n"></small>
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div style="display:none" class="col-md-2" id="direct">
+                            <a href="javascript:void(0)">
+                                <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                            <small class="m-0 l-h-n">Total No of Balls</small>
+                                            <?php if(array_key_exists(0,$getDataInfilation)){ ?>
+                                            <span id="counterValueIdInfilation"><?php echo Round($getDataInfilation[0]['Output'],0); ?></span>
+                                            <?php } else{ ?>
+                                                <span id="counterValueIdInfilation">0</span>
+                                                <?php } ?>
+                                            <small class="m-0 l-h-n"></small>
+
+
+
+
+
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+
+
+                        <div style="display:none" class="col-md-2" id="direct">
+                            <a href="javascript:void(0)">
+                                <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                            <small class="m-0 l-h-n">Total No of Balls</small>
+                                            <span id="counterValueIdP"><?php echo $CounterP[0]['Counter']*5.25*2; ?></span>
+                                            <small class="m-0 l-h-n"></small>
+
+
+
+
+
+                                        </h3>
+                                    </div>
+                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+
+                           
+
 
                </div>
 
@@ -1181,12 +1495,111 @@ foreach ($Stationwise as $key) {
 
                 </div>
 
+                <div class="col-md-3">
+<div class="panel-hdr">
+<h2>
+  Ball Forming
+
+</h2>
+</div>
+
+<div class="panel-container show">
+
+<div id="container-speedBallForming" style="height:250px" class="chart-container"></div>
+
+</div>
+</div>
+
+
+                <div class="col-md-3">
+<div class="panel-hdr">
+<h2>
+  LFB Ball Shaping
+
+</h2>
+</div>
+
+<div class="panel-container show">
+
+<div id="container-speedBallShaping" style="height:250px" class="chart-container"></div>
+
+</div>
+</div>
+
+
+
            
                 </div>
 
-              
+
+                <div class="row mt-4">
 
                 
+                <div class="col-md-3">
+<div class="panel-hdr">
+<h2>
+  TM Assembling
+
+</h2>
+</div>
+
+<div class="panel-container show">
+
+<div id="container-speedTMAssembling" style="height:250px" class="chart-container"></div>
+
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="panel-hdr">
+<h2>
+  MS Laser Cutting
+
+</h2>
+</div>
+
+<div class="panel-container show">
+
+<div id="container-speedLaserCutting" style="height:250px" class="chart-container"></div>
+
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="panel-hdr">
+<h2>
+  Carcas Infilation
+
+</h2>
+</div>
+
+<div class="panel-container show">
+
+<div id="container-speedInfilation" style="height:250px" class="chart-container"></div>
+
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="panel-hdr">
+<h2>
+  Printing
+
+</h2>
+</div>
+
+<div class="panel-container show">
+
+<div id="container-speedPrinting" style="height:250px" class="chart-container"></div>
+
+</div>
+</div>
+
+
+
+                </div>
+
+       
 
                
                 </div>
@@ -4218,6 +4631,796 @@ $("#dateRangeResult").css('display','inline-block')
     })
 
 </script>
+
+<?php // TM ASSEMBLING ?>
+
+
+<script>
+      
+$(document).ready(function(){
+
+
+
+    var EfficiencyFinalTMAssembling;
+        var EfficiencyFinalArrayTMAssembling = [];
+        let counterValue = $("#counterValueIdTMAssembling").text()
+        console.log((counterValue/2920)*100)
+
+ 
+
+        let currentDate = new Date().toJSON().substr(0,10);
+        let dateGet = new Date()
+        let dayId = dateGet.getDay()
+        let today = new Date()
+let yesterday = new Date(today)
+yesterday.setDate(yesterday.getDate() - 1)
+        $("#startDate").val(yesterday.toJSON().substr(0,10));
+        $("#endDate").val(yesterday.toJSON().substr(0,10));
+        $("#startDate").attr('max',yesterday.toJSON().substr(0,10));
+        $("#endDate").attr('max',yesterday.toJSON().substr(0,10));
+        var date1 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),7,45,0); // Thu Sep 16 2010 13:30:58
+var date2 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),dateGet.getHours(),dateGet.getMinutes(),dateGet.getSeconds()); // Tue Aug 18 2015 14:20:48
+
+let dateDifference;
+let minutes;
+if(dayId == 0){
+$("#currentDateData").css('display','none');
+$("#sundayStatus").css('display',"inline-block");
+}
+else{
+    if(dateGet.getHours() >= 7 && dateGet.getHours() <= 16){
+    
+    if(dateGet.getHours() >= 14){
+        dateDifference = date2 - date1;
+    minutes = Math.floor(dateDifference / 60000);
+   
+    // EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+    // if(dayId == 5){
+    //     $("#realTimeId").text((minutes*0.5*16)-(60*0.5*16))
+    // }
+    // else{
+        
+    // }
+    
+
+    if(dayId == 5){
+        EfficiencyFinalTMAssembling = (((counterValue*0.22)/((minutes*0.5*16)-(60*0.5*16)) )*100).toFixed(2)
+        $("#realTimeId").text((minutes*0.5*16)-(60*0.5*16))
+   }
+   else{
+    EfficiencyFinalTMAssembling = (((counterValue*0.22)/((minutes*0.5*16)-(45*0.5*16)) )*100).toFixed(2)
+    $("#realTimeId").text((minutes*0.5*16)-(45*0.5*16))
+   }
+   EfficiencyFinalArrayTMAssembling.push(parseFloat(EfficiencyFinalTMAssembling))
+
+    // $("#employeeId").text(0.5*16)
+    $("#efficiencyValueId").text(EfficiencyFinalTMAssembling + "%")
+    console.log(EfficiencyFinalArrayTMAssembling)
+    var gaugeOptions = {
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            exporting: {
+                enabled: false
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speedTMAssembling', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Achieved'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Achieved',
+                data: EfficiencyFinalArrayTMAssembling,
+                dataLabels: {
+                    format: '<div style="text-align:center">' +
+                        '<span style="font-size:30px"> {y} %</span><br/>' +
+                        '</div>'
+                },
+
+            }]
+
+        }));
+    }  
+    else{
+        dateDifference = date2 - date1;
+    minutes = Math.floor(dateDifference / 60000);
+    EfficiencyFinalTMAssembling = (((counterValue*0.22)/(minutes*0.5*16) )*100).toFixed(2)
+    EfficiencyFinalArrayTMAssembling.push(parseFloat(EfficiencyFinalTMAssembling))
+    console.log(EfficiencyFinalArrayTMAssembling)
+    $("#realTimeId").text(minutes*0.5*16)
+    // $("#employeeId").text(0.5*16)
+    $("#efficiencyValueId").text(EfficiencyFinalTMAssembling + "%")
+    var gaugeOptions = {
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            exporting: {
+                enabled: false
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speedTMAssembling', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Achieved'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Achieved',
+                data: EfficiencyFinalArrayTMAssembling,
+                dataLabels: {
+                    format: '<div style="text-align:center">' +
+                        '<span style="font-size:30px"> {y} %</span><br/>' +
+                        '</div>'
+                },
+
+            }]
+
+        }));
+    } 
+}
+else{
+    $("#realTimeId").text(0)
+    // $("#employeeId").text(0)
+    $("#efficiencyValueId").text("0 %")
+    $("#currentDateData").css('display','none');
+    $("#overStatus").css('display',"inline-block");
+}
+}
+
+
+   
+})
+
+
+</script>
+
+
+<?PHP // Laser Cutting ?>
+
+
+<script>
+
+$(document).ready(function(){
+
+
+    
+    var EfficiencyFinalLaserCutting;
+        var EfficiencyFinalArrayLaserCutting = [];
+        let counterValue = $("#counterValueIdLaserCutting").text()
+        console.log((counterValue/2920)*100)
+
+
+        let currentDate = new Date().toJSON().substr(0,10);
+        let dateGet = new Date()
+        let dayId = dateGet.getDay()
+        let today = new Date()
+let yesterday = new Date(today)
+yesterday.setDate(yesterday.getDate() - 1)
+        $("#startDate").val(yesterday.toJSON().substr(0,10));
+        $("#endDate").val(yesterday.toJSON().substr(0,10));
+        $("#startDate").attr('max',yesterday.toJSON().substr(0,10));
+        $("#endDate").attr('max',yesterday.toJSON().substr(0,10));
+        var date1 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),7,45,0); // Thu Sep 16 2010 13:30:58
+var date2 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),dateGet.getHours(),dateGet.getMinutes(),dateGet.getSeconds()); // Tue Aug 18 2015 14:20:48
+
+let dateDifference;
+let minutes;
+if(dayId == 0){
+$("#currentDateData").css('display','none');
+$("#sundayStatus").css('display',"inline-block");
+}
+else{
+    if(dateGet.getHours() >= 7 && dateGet.getHours() <= 16){
+    
+    if(dateGet.getHours() >= 14){
+        dateDifference = date2 - date1;
+    minutes = Math.floor(dateDifference / 60000);
+   
+    // EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+    // if(dayId == 5){
+    //     $("#realTimeId").text((minutes*0.5*16)-(60*0.5*16))
+    // }
+    // else{
+        
+    // }
+    
+
+    if(dayId == 5){
+        EfficiencyFinalLaserCutting = (((counterValue*0.22)/((minutes*0.5*16)-(60*0.5*16)) )*100).toFixed(2)
+        $("#realTimeId").text((minutes*0.5*16)-(60*0.5*16))
+   }
+   else{
+    EfficiencyFinalLaserCutting = (((counterValue*0.22)/((minutes*0.5*16)-(45*0.5*16)) )*100).toFixed(2)
+    $("#realTimeId").text((minutes*0.5*16)-(45*0.5*16))
+
+   }
+   EfficiencyFinalArrayLaserCutting.push(parseFloat(EfficiencyFinalLaserCutting))
+
+//    alert(EfficiencyFinalArrayLaserCutting);
+
+    $("#employeeId").text(0.5*16)
+    $("#efficiencyValueId").text(EfficiencyFinalLaserCutting + "%")
+    
+    var gaugeOptions = {
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            exporting: {
+                enabled: false
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speedLaserCutting', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Achieved'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Achieved',
+                data: EfficiencyFinalArrayLaserCutting,
+                dataLabels: {
+                    format: '<div style="text-align:center">' +
+                        '<span style="font-size:30px"> {y} %</span><br/>' +
+                        '</div>'
+                },
+
+            }]
+
+        }));
+    }  
+    else{
+
+
+        dateDifference = date2 - date1;
+    minutes = Math.floor(dateDifference / 60000);
+    EfficiencyFinalLaserCutting = (((counterValue*0.5)/(minutes*2*7) )*100).toFixed(2)
+    EfficiencyFinalArrayLaserCutting.push(parseFloat(EfficiencyFinalLaserCutting))
+    console.log(EfficiencyFinalArrayLaserCutting)
+    $("#realTimeId").text(minutes*2*7)
+    $("#employeeId").text(2)
+    $("#efficiencyValueId").text(EfficiencyFinalLaserCutting + "%")
+
+    // alert(EfficiencyFinalArrayLaserCutting)
+
+    var gaugeOptions = {
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            exporting: {
+                enabled: false
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speedLaserCutting', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Achieved'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Achieved',
+                data: EfficiencyFinalArrayLaserCutting,
+                dataLabels: {
+                    format: '<div style="text-align:center">' +
+                        '<span style="font-size:30px"> {y} %</span><br/>' +
+                        '</div>'
+                },
+
+            }]
+
+        }));
+    } 
+}
+else{
+    $("#realTimeId").text(0)
+    $("#employeeId").text(0)
+    $("#efficiencyValueId").text("0 %")
+    $("#currentDateData").css('display','none');
+    $("#overStatus").css('display',"inline-block");
+}
+    
+    
+}
+
+
+})
+    
+</script>
+
+<?php // infilatin ?>
+
+<script>
+
+$(document).ready(function(){
+
+
+
+    var EfficiencyFinalInfilation;
+        var EfficiencyFinalArrayInfilation = [];
+        let counterValue = $("#counterValueIdInfilation").text()
+
+        
+
+        console.log((counterValue/2920)*100)
+
+
+
+        let currentDate = new Date().toJSON().substr(0,10);
+        let dateGet = new Date()
+        let dayId = dateGet.getDay()
+        let today = new Date()
+let yesterday = new Date(today)
+yesterday.setDate(yesterday.getDate() - 1)
+        $("#startDate").val(yesterday.toJSON().substr(0,10));
+        $("#endDate").val(yesterday.toJSON().substr(0,10));
+        $("#startDate").attr('max',yesterday.toJSON().substr(0,10));
+        $("#endDate").attr('max',yesterday.toJSON().substr(0,10));
+        var date1 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),7,45,0); // Thu Sep 16 2010 13:30:58
+var date2 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),dateGet.getHours(),dateGet.getMinutes(),dateGet.getSeconds()); // Tue Aug 18 2015 14:20:48
+
+let dateDifference;
+let minutes;
+if(dayId == 0){
+$("#currentDateData").css('display','none');
+$("#sundayStatus").css('display',"inline-block");
+}
+else{
+    if(dateGet.getHours() >= 7 && dateGet.getHours() <= 16){
+    
+    if(dateGet.getHours() >= 14){
+        dateDifference = date2 - date1;
+    minutes = Math.floor(dateDifference / 60000);
+   
+    // EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+    // if(dayId == 5){
+    //     $("#realTimeId").text((minutes*0.5*16)-(60*0.5*16))
+    // }
+    // else{
+        
+    // }
+    
+
+    if(dayId == 5){
+        EfficiencyFinalInfilation = (((counterValue*0.22)/((minutes*4*2)-(60*4*2)) )*100).toFixed(2)
+        $("#realTimeIdInfilation").text((minutes*4*2)-(60*4*2))
+   }
+   else{
+    EfficiencyFinalInfilation = (((counterValue*0.22)/((minutes*4*2)-(45*4*2)) )*100).toFixed(2)
+    $("#realTimeIdInfilation").text((minutes*4*2)-(45*4*2))
+   }
+   EfficiencyFinalArrayInfilation.push(parseFloat(EfficiencyFinalInfilation))
+
+    $("#employeeId").text(4*2)
+    $("#efficiencyValueIdInfilation").text(EfficiencyFinalInfilation + "%")
+    console.log(EfficiencyFinalArrayInfilation)
+    var gaugeOptions = {
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            exporting: {
+                enabled: false
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speedInfilation', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Achieved'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Achieved',
+                data: EfficiencyFinalArrayInfilation,
+                dataLabels: {
+                    format: '<div style="text-align:center">' +
+                        '<span style="font-size:30px"> {y} %</span><br/>' +
+                        '</div>'
+                },
+
+            }]
+
+        }));
+    }  
+    else{
+        dateDifference = date2 - date1;
+    minutes = Math.floor(dateDifference / 60000);
+    EfficiencyFinalInfilation = (((counterValue*0.22)/(minutes*4*2) )*100).toFixed(2)
+    EfficiencyFinalArrayInfilation.push(parseFloat(EfficiencyFinalInfilation))
+    console.log(EfficiencyFinalArrayInfilation)
+    $("#realTimeIdInfilation").text(minutes*4*2)
+    $("#employeeIdInfilation").text(4*2)
+    $("#efficiencyValueId").text(EfficiencyFinalInfilation + "%")
+    var gaugeOptions = {
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            exporting: {
+                enabled: false
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speedInfilation', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Achieved'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Achieved',
+                data: EfficiencyFinalArrayInfilation,
+                dataLabels: {
+                    format: '<div style="text-align:center">' +
+                        '<span style="font-size:30px"> {y} %</span><br/>' +
+                        '</div>'
+                },
+
+            }]
+
+        }));
+    } 
+}
+else{
+    $("#realTimeId").text(0)
+    $("#employeeId").text(0)
+    $("#efficiencyValueId").text("0 %")
+    $("#currentDateData").css('display','none');
+    $("#overStatus").css('display',"inline-block");
+}
+}
+
+
+})
+
+
+</script>
+
 
 
 <script src="<?php echo base_url(); ?>assets/js/datagrid/datatables/datatables.bundle.js"></script>
@@ -8998,16 +10201,27 @@ $("#dateRangeResult").css('display','inline-block')
         var EfficiencyFinal;
         var EfficiencyFinalArray = [];
         let counterValueOld = $("#counterValueIdLamination").text()
+
+
         let machine1Counter = $("#machine1Reading").text()
-        let machine2Counter = parseFloat(machine1Counter)+10.25
-        let machine3Counter = parseFloat(machine1Counter)-7.55
-        let totalCounter = (machine2Counter*3) + (machine3Counter*3) + parseFloat(counterValueOld);
+
+        let totalCounter = <?php echo $totalReading; ?>;
+
+
+        // let machine2Counter = parseFloat(machine1Counter)+10.25
+        // let machine3Counter = parseFloat(machine1Counter)-7.55
+        // let totalCounter = (machine2Counter*3) + (machine3Counter*3) + parseFloat(counterValueOld);
         // console.log("Total Counter",machine2Counter*0.05*3)
         $("#counterValueIdLamination").text(totalCounter.toFixed(2))
-        $("#machine2Reading").text(machine2Counter)
-        $("#machine3Reading").text(machine3Counter)
+        // $("#machine2Reading").text(machine2Counter)
+        // $("#machine3Reading").text(machine3Counter)
         let counterValue = $("#counterValueIdLamination").text()
+
+        
         console.log((counterValue/2920)*100)
+
+        // alert(counterValue)
+
         let currentDate = new Date().toJSON().substr(0,10);
         let dateGet = new Date()
         let dayId = dateGet.getDay()
@@ -11610,6 +12824,9 @@ $("#dateRangeResult").css('display','inline-block')
       var EfficiencyFinal;
         var EfficiencyFinalArray = [];
         let counterValue = $("#counterValueIdMSLines").text()
+
+
+       
         let currentDate = new Date().toJSON().substr(0,10);
         let dateGet = new Date()
         let dayId = dateGet.getDay()
@@ -18497,7 +19714,7 @@ $("#currentDateData").css('display','none');
 $("#sundayStatus").css('display',"inline-block");
 }
 else{
-    if(dateGet.getHours() >= 7 && dateGet.getHours() <= 16){
+    if(dateGet.getHours() >= 6 && dateGet.getHours() <= 16){
     
     if(dateGet.getHours() >= 14){
         dateDifference = date2 - date1;
@@ -18512,15 +19729,15 @@ else{
     // }
     if(dayId == 5){
  
- EfficiencyFinal = (((counterValue*5.87)/((minutes*15)-(60*15)) )*100).toFixed(2)
+ EfficiencyFinal = (((counterValue*5.87)/((minutes*22)-(60*22)) )*100).toFixed(2)
 
- $("#realTimeIdTMCarcas").text((minutes*15)-(60*15))
+ $("#realTimeIdTMCarcas").text((minutes*22)-(60*22))
 }
 else{
-    EfficiencyFinal = (((counterValue*5.87)/((minutes*15)-(45*15)) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*5.87)/((minutes*22)-(45*22)) )*100).toFixed(2)
 
 
-$("#realTimeIdTMCarcas").text((minutes*15)-(45*15))
+$("#realTimeIdTMCarcas").text((minutes*22)-(45*22))
 }
 EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     $("#employeeId").text(17)
@@ -18614,11 +19831,11 @@ EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     else{
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*5.87)/(minutes*15) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*5.87)/(minutes*22) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     console.log(EfficiencyFinalArray)
-    $("#realTimeIdTMCarcas").text(minutes*15)
-    $("#employeeId").text(15)
+    $("#realTimeIdTMCarcas").text(minutes*22)
+    $("#employeeId").text(22)
     $("#efficiencyValueIdTMCarcas").text(EfficiencyFinal + "%")
     var gaugeOptions = {
             chart: {
@@ -19741,6 +20958,8 @@ $("#dateRangeResult").css('display','inline-block')
     ];
 
     $(document).ready(function() {
+
+
         var EfficiencyFinal;
         var EfficiencyFinalArray = [];
         let counterValue = $("#counterValueIdLFBCarcas").text()
@@ -20584,10 +21803,1729 @@ $("#dateRangeResult").css('display','inline-block')
  });
     })
 
+
+
+
+</script>
+
+<?php // Ball Forming ?>
+
+
+
+
+
+<script>
+
+    $(document).ready(function() {
+    
+
+
+       var EfficiencyFinalBallForming;
+        var EfficiencyFinalArrayBallForming = [];
+        let counterValue = $("#counterValueIdBallForming").text()
+
+
+
+        console.log((counterValue/2920)*100)
+
+    
+
+        let currentDate = new Date().toJSON().substr(0,10);
+        let dateGet = new Date()
+        let dayId = dateGet.getDay()
+        let today = new Date()
+let yesterday = new Date(today)
+yesterday.setDate(yesterday.getDate() - 1)
+        $("#startDate").val(yesterday.toJSON().substr(0,10));
+        $("#endDate").val(yesterday.toJSON().substr(0,10));
+        $("#startDate").attr('max',yesterday.toJSON().substr(0,10));
+        $("#endDate").attr('max',yesterday.toJSON().substr(0,10));
+        var date1 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),7,45,0); // Thu Sep 16 2010 13:30:58
+var date2 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),dateGet.getHours(),dateGet.getMinutes(),dateGet.getSeconds()); // Tue Aug 18 2015 14:20:48
+
+let dateDifference;
+let minutes;
+
+
+if(dayId == 0){
+$("#currentDateData").css('display','none');
+$("#sundayStatus").css('display',"inline-block");
+}
+else{
+
+
+    if(dateGet.getHours() >= 7 && dateGet.getHours() <= 16){
+
+        if(dateGet.getHours() >= 14){
+
+            dateDifference = date2 - date1;
+    minutes = Math.floor(dateDifference / 60000);
+   
+    // EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+    // if(dayId == 5){
+    //     $("#realTimeId").text((minutes*0.5*16)-(60*0.5*16))
+    // }
+    // else{
+        
+    // }
+
+    
+    if(dayId == 5){
+        EfficiencyFinalBallForming = (((counterValue*0.22)/((minutes*0.5*16)-(60*0.5*16)) )*100).toFixed(2)
+        $("#realTimeId").text((minutes*0.5*16)-(60*0.5*16))
+   }
+   else{
+    EfficiencyFinalBallForming = (((counterValue*0.22)/((minutes*0.5*16)-(45*0.5*16)) )*100).toFixed(2)
+    $("#realTimeId").text((minutes*0.5*16)-(45*0.5*16))
+   }
+
+
+   EfficiencyFinalArrayBallForming.push(parseFloat(EfficiencyFinalBallForming))
+
+   var gaugeOptions = {
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            exporting: {
+                enabled: false
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speedBallForming', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Achieved'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Achieved',
+                data: EfficiencyFinalArrayBallForming,
+                dataLabels: {
+                    format: '<div style="text-align:center">' +
+                        '<span style="font-size:30px"> {y} %</span><br/>' +
+                        '</div>'
+                },
+
+            }]
+
+        }));
+
+
+
+
+        }
+        else{
+        dateDifference = date2 - date1;
+    minutes = Math.floor(dateDifference / 60000);
+    EfficiencyFinalBallForming = (((counterValue*0.22)/(minutes*0.5*16) )*100).toFixed(2)
+    EfficiencyFinalArrayBallForming.push(parseFloat(EfficiencyFinalBallForming))
+    console.log(EfficiencyFinalArrayBallForming)
+    $("#realTimeId").text(minutes*0.5*16)
+    // $("#employeeId").text(0.5*16)
+    $("#efficiencyValueId").text(EfficiencyFinalBallForming + "%")
+    var gaugeOptions = {
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            exporting: {
+                enabled: false
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speedBallForming', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Achieved'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Achieved',
+                data: EfficiencyFinalArrayBallForming,
+                dataLabels: {
+                    format: '<div style="text-align:center">' +
+                        '<span style="font-size:30px"> {y} %</span><br/>' +
+                        '</div>'
+                },
+
+            }]
+
+        }));
+    } 
+
+
+
+    }
+    else{
+    $("#realTimeId").text(0)
+    // $("#employeeId").text(0)
+    $("#efficiencyValueId").text("0 %")
+    $("#currentDateData").css('display','none');
+    $("#overStatus").css('display',"inline-block");
+}
+
+
+
+}
+
+
+
+
+    })
 </script>
 
 
 
+<?php // TM Assembling ?>
+
+
+
+<script>
+
+
+</script>
+
+
+
+
+<?php // Ball Shaping ?>
+
+<script>
+           Highcharts.setOptions({
+        colors: Highcharts.map(Highcharts.getOptions().colors, function(color) {
+            return {
+                radialGradient: {
+                    cx: 0.5,
+                    cy: 0.3,
+                    r: 0.7
+                },
+                stops: [
+                    [0, color],
+                    [1, Highcharts.color(color).brighten(-0.3).get('rgb')] // darken
+                ]
+            };
+        })
+    });
+
+    /* defined datas */
+    var dataTargetProfit = [
+        [1354586000000, 153],
+        [1364587000000, 658],
+        [1374588000000, 198],
+        [1384589000000, 663],
+        [1394590000000, 801],
+        [1404591000000, 1080],
+        [1414592000000, 353],
+        [1424593000000, 749],
+        [1434594000000, 523],
+        [1444595000000, 258],
+        [1454596000000, 688],
+        [1464597000000, 364]
+    ]
+    var dataProfit = [
+        [1354586000000, 53],
+        [1364587000000, 65],
+        [1374588000000, 98],
+        [1384589000000, 83],
+        [1394590000000, 980],
+        [1404591000000, 808],
+        [1414592000000, 720],
+        [1424593000000, 674],
+        [1434594000000, 23],
+        [1444595000000, 79],
+        [1454596000000, 88],
+        [1464597000000, 36]
+    ]
+    var dataSignups = [
+        [1354586000000, 647],
+        [1364587000000, 435],
+        [1374588000000, 784],
+        [1384589000000, 346],
+        [1394590000000, 487],
+        [1404591000000, 463],
+        [1414592000000, 479],
+        [1424593000000, 236],
+        [1434594000000, 843],
+        [1444595000000, 657],
+        [1454596000000, 241],
+        [1464597000000, 341]
+    ]
+    var dataSet1 = [
+        [0, 10],
+        [100, 8],
+        [200, 7],
+        [300, 5],
+        [400, 4],
+        [500, 6],
+        [600, 3],
+        [700, 2]
+    ];
+    var dataSet2 = [
+        [0, 9],
+        [100, 6],
+        [200, 5],
+        [300, 3],
+        [400, 3],
+        [500, 5],
+        [600, 2],
+        [700, 1]
+    ];
+
+    $(document).ready(function() {
+        var EfficiencyFinalBallShaping;
+        var EfficiencyFinalArrayBallShaping = [];
+        let counterValue = $("#counterValueIdBallShaping").text()
+        console.log((counterValue/2920)*100)
+
+        
+        let currentDate = new Date().toJSON().substr(0,10);
+        let dateGet = new Date()
+        let dayId = dateGet.getDay()
+        let today = new Date()
+let yesterday = new Date(today)
+yesterday.setDate(yesterday.getDate() - 1)
+        $("#startDate").val(yesterday.toJSON().substr(0,10));
+        $("#endDate").val(yesterday.toJSON().substr(0,10));
+        $("#startDate").attr('max',yesterday.toJSON().substr(0,10));
+        $("#endDate").attr('max',yesterday.toJSON().substr(0,10));
+        var date1 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),7,45,0); // Thu Sep 16 2010 13:30:58
+var date2 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),dateGet.getHours(),dateGet.getMinutes(),dateGet.getSeconds()); // Tue Aug 18 2015 14:20:48
+
+let dateDifference;
+let minutes;
+if(dayId == 0){
+$("#currentDateData").css('display','none');
+$("#sundayStatus").css('display',"inline-block");
+}
+else{
+    if(dateGet.getHours() >= 7 && dateGet.getHours() <= 16){
+    
+    if(dateGet.getHours() >= 14){
+        dateDifference = date2 - date1;
+    minutes = Math.floor(dateDifference / 60000);
+
+    
+
+    if(dayId == 5){
+        EfficiencyFinalBallShaping = (((counterValue*0.22)/((minutes*0.5*16)-(60*0.5*16)) )*100).toFixed(2)
+        $("#realTimeId").text((minutes*0.5*16)-(60*0.5*16))
+   }
+   else{
+    EfficiencyFinalBallShaping = (((counterValue*0.22)/((minutes*0.5*16)-(45*0.5*16)) )*100).toFixed(2)
+    $("#realTimeId").text((minutes*0.5*16)-(45*0.5*16))
+   }
+   EfficiencyFinalArrayBallShaping.push(parseFloat(EfficiencyFinalBallShaping))
+
+    $("#employeeId").text(0.5*16)
+    $("#efficiencyValueId").text(EfficiencyFinalBallShaping + "%")
+    console.log(EfficiencyFinalArrayBallShaping)
+    var gaugeOptions = {
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            exporting: {
+                enabled: false
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+     
+
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speedBallShaping', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Achieved'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Achieved',
+                data: EfficiencyFinalArrayBallShaping,
+                dataLabels: {
+                    format: '<div style="text-align:center">' +
+                        '<span style="font-size:30px"> {y} %</span><br/>' +
+                        '</div>'
+                },
+
+            }]
+
+        }));
+    }  
+    else{
+        dateDifference = date2 - date1;
+    minutes = Math.floor(dateDifference / 60000);
+    EfficiencyFinalBallShaping = (((counterValue*0.22)/(minutes*0.5*16) )*100).toFixed(2)
+    EfficiencyFinalArrayBallShaping.push(parseFloat(EfficiencyFinalBallShaping))
+    console.log(EfficiencyFinalArrayBallShaping)
+    $("#realTimeId").text(minutes*0.5*16)
+    $("#employeeId").text(0.5*16)
+    $("#efficiencyValueId").text(EfficiencyFinalBallShaping + "%")
+    var gaugeOptions = {
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            exporting: {
+                enabled: false
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                    [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speedBallShaping', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Achieved'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Achieved',
+                data: EfficiencyFinalArrayBallShaping,
+                dataLabels: {
+                    format: '<div style="text-align:center">' +
+                        '<span style="font-size:30px"> {y} %</span><br/>' +
+                        '</div>'
+                },
+
+            }]
+
+        }));
+    } 
+}
+else{
+    $("#realTimeId").text(0)
+    $("#employeeId").text(0)
+    $("#efficiencyValueId").text("0 %")
+    $("#currentDateData").css('display','none');
+    $("#overStatus").css('display',"inline-block");
+}
+}
+        /* init datatables */
+        $('#dt-basic-example').dataTable({
+            responsive: true,
+            dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            buttons: [{
+                    extend: 'colvis',
+                    text: 'Column Visibility',
+                    titleAttr: 'Col visibility',
+                    className: 'btn-outline-default'
+                },
+                {
+                    extend: 'csvHtml5',
+                    text: 'CSV',
+                    titleAttr: 'Generate CSV',
+                    className: 'btn-outline-default'
+                },
+                {
+                    extend: 'copyHtml5',
+                    text: 'Copy',
+                    titleAttr: 'Copy to clipboard',
+                    className: 'btn-outline-default'
+                },
+                {
+                    extend: 'print',
+                    text: '<i class="fal fa-print"></i>',
+                    titleAttr: 'Print Table',
+                    className: 'btn-outline-default'
+                }
+
+            ],
+            columnDefs: [{
+                    targets: -1,
+                    title: '',
+                    orderable: false,
+                    render: function(data, type, full, meta) {
+
+                     
+                        return "\n\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>\n\t\t\t\t\t\t\t<i class=\"fal fa-times\"></i>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t<div class='dropdown d-inline-block dropleft'>\n\t\t\t\t\t\t\t<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>\n\t\t\t\t\t\t\t\t<i class=\"fal fa-ellipsis-v\"></i>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t<div class='dropdown-menu'>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>";
+                    },
+                },
+
+            ]
+
+        });
+
+        /* flot toggle example */
+        var flot_toggle = function() {
+
+            var data = [{
+                    label: "Target Profit",
+                    data: dataTargetProfit,
+                    color: color.info._400,
+                    bars: {
+                        show: true,
+                        align: "center",
+                        barWidth: 30 * 30 * 60 * 1000 * 80,
+                        lineWidth: 0,
+                        /*fillColor: {
+                        	colors: [color.primary._500, color.primary._900]
+                        },*/
+                        fillColor: {
+                            colors: [{
+                                    opacity: 0.9
+                                },
+                                {
+                                    opacity: 0.1
+                                }
+                            ]
+                        }
+                    },
+                    highlightColor: 'rgba(255,255,255,0.3)',
+                    shadowSize: 0
+                },
+                {
+                    label: "Actual Profit",
+                    data: dataProfit,
+                    color: color.warning._500,
+                    lines: {
+                        show: true,
+                        lineWidth: 2
+                    },
+                    shadowSize: 0,
+                    points: {
+                        show: true
+                    }
+                },
+                {
+                    label: "User Signups",
+                    data: dataSignups,
+                    color: color.success._500,
+                    lines: {
+                        show: true,
+                        lineWidth: 2
+                    },
+                    shadowSize: 0,
+                    points: {
+                        show: true
+                    }
+                }
+            ]
+
+            var options = {
+                grid: {
+                    hoverable: true,
+                    clickable: true,
+                    tickColor: '#f2f2f2',
+                    borderWidth: 1,
+                    borderColor: '#f2f2f2'
+                },
+                tooltip: true,
+                tooltipOpts: {
+                    cssClass: 'tooltip-inner',
+                    defaultTheme: false
+                },
+                xaxis: {
+                    mode: "time"
+                },
+                yaxes: {
+                    tickFormatter: function(val, axis) {
+                        return "$" + val;
+                    },
+                    max: 1200
+                }
+
+            };
+
+            var plot2 = null;
+
+            function plotNow() {
+                var d = [];
+                $("#js-checkbox-toggles").find(':checkbox').each(function() {
+                    if ($(this).is(':checked')) {
+                        d.push(data[$(this).attr("name").substr(4, 1)]);
+                    }
+                });
+                if (d.length > 0) {
+                    if (plot2) {
+                        plot2.setData(d);
+                        plot2.draw();
+                    } else {
+                        plot2 = $.plot($("#flot-toggles"), d, options);
+                    }
+                }
+
+            };
+
+            $("#js-checkbox-toggles").find(':checkbox').on('change', function() {
+                plotNow();
+            });
+            plotNow()
+        }
+        flot_toggle();
+        /* flot toggle example -- end*/
+
+        /* flot area */
+        var flotArea = $.plot($('#flot-area'), [{
+                data: dataSet1,
+                label: 'New Customer',
+                color: color.success._200
+            },
+            {
+                data: dataSet2,
+                label: 'Returning Customer',
+                color: color.info._200
+            }
+        ], {
+            series: {
+                lines: {
+                    show: true,
+                    lineWidth: 2,
+                    fill: true,
+                    fillColor: {
+                        colors: [{
+                                opacity: 0
+                            },
+                            {
+                                opacity: 0.5
+                            }
+                        ]
+                    }
+                },
+                shadowSize: 0
+            },
+            points: {
+                show: true,
+            },
+            legend: {
+                noColumns: 1,
+                position: 'nw'
+            },
+            grid: {
+                hoverable: true,
+                clickable: true,
+                borderColor: '#ddd',
+                tickColor: '#ddd',
+                aboveData: true,
+                borderWidth: 0,
+                labelMargin: 5,
+                backgroundColor: 'transparent'
+            },
+            yaxis: {
+                tickLength: 1,
+                min: 0,
+                max: 15,
+                color: '#eee',
+                font: {
+                    size: 0,
+                    color: '#999'
+                }
+            },
+            xaxis: {
+                tickLength: 1,
+                color: '#eee',
+                font: {
+                    size: 10,
+                    color: '#999'
+                }
+            }
+
+        });
+        /* flot area -- end */
+
+        var flotVisit = $.plot('#flotVisit', [{
+                data: [
+                    [3, 0],
+                    [4, 1],
+                    [5, 3],
+                    [6, 3],
+                    [7, 10],
+                    [8, 11],
+                    [9, 12],
+                    [10, 9],
+                    [11, 12],
+                    [12, 8],
+                    [13, 5]
+                ],
+                color: color.success._200
+            },
+            {
+                data: [
+                    [1, 0],
+                    [2, 0],
+                    [3, 1],
+                    [4, 2],
+                    [5, 2],
+                    [6, 5],
+                    [7, 8],
+                    [8, 12],
+                    [9, 9],
+                    [10, 11],
+                    [11, 5]
+                ],
+                color: color.info._200
+            }
+        ], {
+            series: {
+                shadowSize: 0,
+                lines: {
+                    show: true,
+                    lineWidth: 2,
+                    fill: true,
+                    fillColor: {
+                        colors: [{
+                                opacity: 0
+                            },
+                            {
+                                opacity: 0.12
+                            }
+                        ]
+                    }
+                }
+            },
+            grid: {
+                borderWidth: 0
+            },
+            yaxis: {
+                min: 0,
+                max: 15,
+                tickColor: '#ddd',
+                ticks: [
+                    [0, ''],
+                    [5, '100K'],
+                    [10, '200K'],
+                    [15, '300K']
+                ],
+                font: {
+                    color: '#444',
+                    size: 10
+                }
+            },
+            xaxis: {
+
+                tickColor: '#eee',
+                ticks: [
+                    [2, '2am'],
+                    [3, '3am'],
+                    [4, '4am'],
+                    [5, '5am'],
+                    [6, '6am'],
+                    [7, '7am'],
+                    [8, '8am'],
+                    [9, '9am'],
+                    [10, '1pm'],
+                    [11, '2pm'],
+                    [12, '3pm'],
+                    [13, '4pm']
+                ],
+                font: {
+                    color: '#999',
+                    size: 9
+                }
+            }
+        });
+
+
+    });
+
+    function generateDataTop(data1) {
+ 
+ var ret = {},
+     ps = [],
+     series = [],
+     len = data1.BarData.length;
+
+ //concat to get points
+ for (var i = 0; i < len; i++) {
+     ps[i] = {
+         name: data1.BarData[i].Date,
+         y: parseFloat(data1.BarData[i].Counter*6),
+         drilldown: data1.BarData[i].Date
+     };
+ }
+ names = [];
+ //generate series and split points
+ for (i = 0; i < len; i++) {
+     var p = ps[i];
+   
+     series.push(p);
+ }
+ return series;
+}
+
+function generateDataBottom(data1) {
+ 
+ var ret = {},
+     ps = [],
+     series = [],
+     len = data1.MachineData.length;
+   let datesArray = []
+   let dataArray = []
+
+ //concat to get points
+ for (var i = 0; i < len; i++) {
+    if(datesArray.indexOf(data1.MachineData[i].Date) === -1){
+        datesArray.push(data1.MachineData[i].Date)
+        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,parseFloat(data1.MachineData[i].Counter*6)])
+    }
+    else{
+        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,parseFloat(data1.MachineData[i].Counter*6)])
+    }
+
+
+  
+ }
+
+ //generate series and split points
+ for (i = 0; i < datesArray.length; i++) {
+    let OriginaldataArray = []
+    let OriginaldataArrayDateRemove = []
+    dataArray.filter(function(e) { 
+        if(e[0] === datesArray[i]){
+            OriginaldataArray.push(e)
+        }
+    });
+    OriginaldataArray.forEach(element => {
+        // console.log("Element", element)
+        element.shift()
+        OriginaldataArrayDateRemove.push(element)
+    });
+    // console.log("data Get", OriginaldataArray)
+     var p = {
+        name: datesArray[i],
+        id: datesArray[i],
+        data: OriginaldataArrayDateRemove
+     }
+    //  console.log("Series", p)
+     series.push(p);
+ }
+ return series;
+}
+
+$("#searchRange").on('click',function(e){
+        e.preventDefault()
+        $("#dateRangeResult").css('display','none')
+        $("#loadingShow").css('display','inline-block')
+        let startDate = $("#startDate").val()
+        let endDate = $("#endDate").val()
+        let startDateNewFormat = startDate.split("-")[2]+"-"+startDate.split("-")[1]+"-"+startDate.split("-")[0]
+        let endDateNewFormat = endDate.split("-")[2]+"-"+endDate.split("-")[1]+"-"+endDate.split("-")[0]
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        let section_id = params.section_id;
+        let dept_id = params.dept_id;
+        let datesArray = []
+        let datesArrayMachineWise = []
+        let seriesDataMachine1 = [];
+        let seriesDataMachine2 = [];
+        let seriesDataMachine3 = [];
+        let seriesDataMachine4 = [];
+        let seriesDataMachine5 = [];
+        let seriesDataMachine6 = [];
+        let seriesDataMachine7 = [];
+        let seriesDataMachine8 = [];
+      
+        let originalDataMachineWise = [];
+        let targetDataMachineWise = [];
+        let output= 0;
+    let Minutes = 0;
+    let efficiency = 0;
+    let SAM = 0.18;
+    let NOE = '<?php echo round($RowCounterBallShaping/0.50); ?>';
+        let url = "<?php echo base_url('Efficiency/getBallShapingDateRangeData') ?>";
+        let url2 = "<?php echo base_url('Efficiency/getRealTimeDateRange') ?>";
+        $.post(url,{"startDate":startDate, "endDate":endDate},function(data, status){
+        console.log("Data Outer", data)
+        let seriesDataTop;
+        let seriesDataBottom;
+        let dataArrayOuter = data.BarData
+        if(data){
+        seriesDataTop = generateDataTop(data)
+        seriesDataBottom = generateDataBottom(data)
+  
+
+
+        for(let k = 0; k<data.MachineData.length; k++){
+            // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
+        if(datesArrayMachineWise.indexOf(data.MachineData[k].Date) === -1){
+            datesArrayMachineWise.push(data.MachineData[k].Date)
+        targetDataMachineWise.push(parseFloat(67))
+        if(data.MachineData[k].Name == "Ball Shaping 1"){
+                output = data.MachineData[k].Counter * SAM
+            Minutes = (NOE*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+         
+            }
+            else if(data.MachineData[k].Name == "Ball Shaping 2"){
+                output = data.MachineData[k].Counter * SAM
+            Minutes = (NOE*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+     
+
+            }
+            else if(data.MachineData[k].Name == "Ball Shaping 3"){
+                output = data.MachineData[k].Counter * SAM
+            Minutes = (NOE*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+
+  
+            }
+            else if(data.MachineData[k].Name == "Ball Shaping 4"){
+                output = data.MachineData[k].Counter * SAM
+            Minutes = (NOE*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+        
+
+            }
+            else if(data.MachineData[k].Name == "Ball Shaping 5"){
+                output = data.MachineData[k].Counter * SAM
+            Minutes = (NOE*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+
+   
+            }
+            else if(data.MachineData[k].Name == "Ball Shaping 6"){
+                output = data.MachineData[k].Counter * SAM
+            Minutes = (NOE*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+          
+            }
+            else if(data.MachineData[k].Name == "Ball Shaping 7"){
+                output = data.MachineData[k].Counter * SAM
+            Minutes = (NOE*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+       
+            }
+            else if(data.MachineData[k].Name == "Ball Shaping 8"){
+                output = data.MachineData[k].Counter * SAM
+            Minutes = (NOE*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.push(parseFloat(efficiency))
+            seriesDataMachine2.push(0)
+            seriesDataMachine3.push(0)
+            seriesDataMachine4.push(0)
+            seriesDataMachine5.push(0)
+            seriesDataMachine6.push(0)
+            seriesDataMachine7.push(0)
+            seriesDataMachine8.push(0)
+    
+            }
+            
+    }
+    else{
+        if(data.MachineData[k].Name == "Ball Shaping 1"){
+            output = data.MachineData[k].Counter * SAM
+            Minutes = (NOE*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine1.pop()
+            seriesDataMachine1.push(parseFloat(efficiency))
+        
+            }
+            else if(data.MachineData[k].Name == "Ball Shaping 2"){
+                output = data.MachineData[k].Counter * SAM
+            Minutes = (NOE*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine2.pop()
+            seriesDataMachine2.push(parseFloat(efficiency))
+         
+            }
+            else if(data.MachineData[k].Name == "Ball Shaping 3"){
+                output = data.MachineData[k].Counter * SAM
+            Minutes = (NOE*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine3.pop()
+            seriesDataMachine3.push(parseFloat(efficiency))
+         
+            }
+            else if(data.MachineData[k].Name == "Ball Shaping 4"){
+                output = data.MachineData[k].Counter * SAM
+            Minutes = (NOE*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine4.pop()
+            seriesDataMachine4.push(parseFloat(efficiency))
+       
+
+            }
+            else if(data.MachineData[k].Name == "Ball Shaping 5"){
+                output = data.MachineData[k].Counter * SAM
+            Minutes = (NOE*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine5.pop()
+            seriesDataMachine5.push(parseFloat(efficiency))
+        
+            }
+            else if(data.MachineData[k].Name == "Ball Shaping 6"){
+                output = data.MachineData[k].Counter * SAM
+            Minutes = (NOE*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine6.pop()
+            seriesDataMachine6.push(parseFloat(efficiency))
+
+            }
+            else if(data.MachineData[k].Name == "Ball Shaping 7"){
+                output = data.MachineData[k].Counter * SAM
+            Minutes = (NOE*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine7.pop()
+            seriesDataMachine7.push(parseFloat(efficiency))
+    
+
+            }
+            else if(data.MachineData[k].Name == "Ball Shaping 8"){
+                output = data.MachineData[k].Counter * SAM
+            Minutes = (NOE*480);
+            efficiency = ((output / Minutes) * 100).toFixed(2)
+            seriesDataMachine8.pop()
+            seriesDataMachine8.push(parseFloat(efficiency))
+
+            }
+        
+    }
+         
+        
+
+        }
+        originalDataMachineWise.push(
+          {name:"Ball Shaping 1",data:seriesDataMachine1},
+          {name:"Ball Shaping 2",data:seriesDataMachine2},
+          {name:"Ball Shaping 3",data:seriesDataMachine3},
+          {name:"Ball Shaping 4",data:seriesDataMachine4},
+
+          {name:"Ball Shaping 5",data:seriesDataMachine5},
+          {name:"Ball Shaping 6",data:seriesDataMachine6},
+          {name:"Ball Shaping 7",data:seriesDataMachine7},
+          {name:"Ball Shaping 8",data:seriesDataMachine8},
+
+        //   {name:"Bladder Winding 9",data:seriesDataMachine9},
+        //   {name:"Bladder Winding 10",data:seriesDataMachine10},
+        //   {name:"Bladder Winding 11",data:seriesDataMachine11},
+        //   {name:"Bladder Winding 12",data:seriesDataMachine12},
+
+        //   {name:"Bladder Winding 13",data:seriesDataMachine13},
+        //   {name:"Bladder Winding 14",data:seriesDataMachine14},
+        //   {name:"Bladder Winding 15",data:seriesDataMachine15},
+        //   {name:"Bladder Winding 16",data:seriesDataMachine16},
+
+          {name:"Target Efficiency",data:targetDataMachineWise}
+          )
+        }
+         console.log("Target", datesArrayMachineWise)
+        for (var i = 0; i < data.BarData.length; i++) {
+    if(datesArray.indexOf(data.BarData[i].Date) === -1){
+        datesArray.push(data.BarData[i].Date)
+        // targetDataMachineWise.push(parseFloat(67))
+    }
+        }
+
+        Highcharts.chart('containerDateRangeLineMachineWise', {
+
+title: {
+    text: `Machine-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
+},
+
+yAxis: {
+    title: {
+        text: 'Efficiency'
+    }
+},
+
+xAxis: {
+    categories: datesArrayMachineWise,
+},
+
+legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle'
+},
+
+plotOptions: {
+    series: {
+        label: {
+            connectorAllowed: false
+        }
+    }
+},
+
+series: originalDataMachineWise,
+
+responsive: {
+    rules: [{
+        condition: {
+            maxWidth: 500
+        },
+        chartOptions: {
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
+            }
+        }
+    }]
+}
+
+});
+
+
+Highcharts.chart('containerDateRangeBar', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        align: 'left',
+        text: `Balls Count From ${startDateNewFormat} To ${endDateNewFormat}`
+    },
+    accessibility: {
+        announceNewData: {
+            enabled: true
+        }
+    },
+    xAxis: {
+        type: 'category'
+    },
+    yAxis: {
+        title: {
+            text: 'Balls Count'
+        }
+
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true,
+            }
+        }
+    },
+
+    tooltip: {
+        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+    },
+
+    series: [
+        {
+            name: "Ball Shaping",
+            colorByPoint: true,
+            data: seriesDataTop
+        }
+    ],
+    drilldown: {
+        breadcrumbs: {
+            position: {
+                align: 'right'
+            }
+        },
+        series: seriesDataBottom
+    }
+});
+
+
+    let seriesData = []
+    let targetData = []
+    let originalData = []
+    let lenOuter = dataArrayOuter.length;
+    let outputInner= 0;
+    let MinutesInner = 0;
+    let efficiencyInner = 0;
+    // for(let i = 0; i<len; i++){ 
+        for(let j = 0; j<lenOuter; j++){
+            // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
+
+            outputInner = dataArrayOuter[j].Counter * 0.83 * 6
+            MinutesInner = (0.5*16*480);
+            efficiencyInner = ((outputInner / MinutesInner) * 100).toFixed(2)
+
+            seriesData.push(parseFloat(efficiencyInner))
+            targetData.push(parseFloat(67))
+// }
+        }
+       
+        // if(i == len-1){
+            originalData.push({name:"Efficiency",data:seriesData},{name:"Target Efficiency",data:targetData})
+        
+        // }
+    // }
+
+//  console.log(datesArray)
+ Highcharts.chart('containerDateRangeLine', {
+
+title: {
+    text: `Process-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
+},
+
+yAxis: {
+    title: {
+        text: 'Efficiency'
+    }
+},
+
+xAxis: {
+    categories: datesArray,
+},
+
+legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'middle'
+},
+
+plotOptions: {
+    series: {
+        label: {
+            connectorAllowed: false
+        }
+    }
+},
+
+series: originalData,
+
+responsive: {
+    rules: [{
+        condition: {
+            maxWidth: 500
+        },
+        chartOptions: {
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
+            }
+        }
+    }]
+}
+
+});
+$("#loadingShow").css('display','none')
+$("#dateRangeResult").css('display','inline-block')
+
+
+
+ });
+    })
+</script>
+
+
+
+
+<?php // Printing ?>
+
+<script>
+
+$(document).ready(function() {
+
+
+    var EfficiencyFinalP;
+        var EfficiencyFinalArrayP = [];
+        let counterValue = $("#counterValueIdP").text()
+        let currentDate = new Date().toJSON().substr(0,10);
+        let dateGet = new Date()
+        let dayId = dateGet.getDay()
+        let today = new Date()
+let yesterday = new Date(today)
+yesterday.setDate(yesterday.getDate() - 1)
+        $("#startDate").val(yesterday.toJSON().substr(0,10));
+        $("#endDate").val(yesterday.toJSON().substr(0,10));
+        $("#startDate").attr('max',yesterday.toJSON().substr(0,10));
+        $("#endDate").attr('max',yesterday.toJSON().substr(0,10));
+        var date1 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),7,45,0); // Thu Sep 16 2010 13:30:58
+var date2 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),dateGet.getHours(),dateGet.getMinutes(),dateGet.getSeconds()); // Tue Aug 18 2015 14:20:48
+
+let dateDifference;
+let minutes;
+if(dayId == 0){
+$("#currentDateData").css('display','none');
+$("#sundayStatus").css('display',"inline-block");
+}
+else{
+    if(dateGet.getHours() >= 7 && dateGet.getHours() <= 16){
+    
+    if(dateGet.getHours() >= 14){
+        dateDifference = date2 - date1;
+    minutes = Math.floor(dateDifference / 60000);
+  
+
+    if(dayId == 5){
+        EfficiencyFinalP = (((counterValue*0.10)/((minutes*8)-(60*8)) )*100).toFixed(2)
+        $("#realTimeId").text((minutes*8)-(60*8))
+    }
+    else{
+        EfficiencyFinalP = (((counterValue*0.10)/((minutes*8)-(45*8)) )*100).toFixed(2)
+        $("#realTimeId").text((minutes*8)-(45*8))
+    }
+    EfficiencyFinalArrayP.push(parseFloat(EfficiencyFinalP))
+    $("#employeeId").text(8)
+    $("#efficiencyValueId").text(EfficiencyFinalP + "%")
+    console.log(EfficiencyFinalArrayP)
+    var gaugeOptions = {
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            exporting: {
+                enabled: false
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                  [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speedPrinting', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Achieved'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Achieved',
+                data: EfficiencyFinalArrayP,
+                dataLabels: {
+                    format: '<div style="text-align:center">' +
+                        '<span style="font-size:30px"> {y} %</span><br/>' +
+                        '</div>'
+                },
+
+            }]
+
+        }));
+    }  
+    else{
+        dateDifference = date2 - date1;
+    minutes = Math.floor(dateDifference / 60000);
+    EfficiencyFinalP = (((counterValue*0.10)/(minutes*8) )*100).toFixed(2)
+    EfficiencyFinalArrayP.push(parseFloat(EfficiencyFinalP))
+
+    $("#realTimeId").text(minutes*8)
+    $("#employeeId").text(8)
+    $("#efficiencyValueId").text(EfficiencyFinalP + "%")
+    var gaugeOptions = {
+            chart: {
+                type: 'solidgauge'
+            },
+
+            title: null,
+
+            pane: {
+                center: ['50%', '85%'],
+                size: '140%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                    innerRadius: '60%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+
+            exporting: {
+                enabled: false
+            },
+
+            tooltip: {
+                enabled: false
+            },
+
+            // the value axis
+            yAxis: {
+                stops: [
+                 [0.3, '#DF5353'], // red
+                    [0.8, '#DDDF0D'], // yellow
+                    [0.9, '#55BF3B'] // green
+                ],
+                lineWidth: 0,
+                tickWidth: 0,
+                minorTickInterval: null,
+                tickAmount: 2,
+                title: {
+                    y: -70
+                },
+                labels: {
+                    y: 16
+                }
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        y: 5,
+                        borderWidth: 0,
+                        useHTML: true
+                    }
+                }
+            }
+        };
+
+        // The speed gauge
+        var chartSpeed = Highcharts.chart('container-speedPrinting', Highcharts.merge(gaugeOptions, {
+            yAxis: {
+                min: 0,
+                max: 100,
+                title: {
+                    text: 'Achieved'
+                }
+            },
+
+            credits: {
+                enabled: false
+            },
+
+            series: [{
+                name: 'Achieved',
+                data: EfficiencyFinalArrayP,
+                dataLabels: {
+                    format: '<div style="text-align:center">' +
+                        '<span style="font-size:30px"> {y} %</span><br/>' +
+                        '</div>'
+                },
+
+            }]
+
+        }));
+    } 
+}
+else{
+    $("#realTimeId").text(0)
+    $("#employeeId").text(0)
+    $("#efficiencyValueId").text("0 %")
+    $("#currentDateData").css('display','none');
+    $("#overStatus").css('display',"inline-block");
+}
+}
+
+
+
+
+})
+
+
+</script>
 
 
 

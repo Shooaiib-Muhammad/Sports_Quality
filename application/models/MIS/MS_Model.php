@@ -17,11 +17,11 @@ FROM            dbo.tbl_PC_AMB_Line");
 	{
 
 
-		$query = $this->db->query("SELECT        TOP (100) PERCENT dbo.tbl_PC_AMB_Line.LineName, SUM(dbo.tbl_PC_MS.TotalChecked) AS TotalChecked, SUM(ISNULL(dbo.tbl_PC_MS.Pass, 0) + ISNULL(dbo.tbl_PC_MS.RPass, 0)) AS Pass, SUM(dbo.tbl_PC_MS.Fail) 
-                         AS Fail, MAX(dbo.tbl_PC_MS.PresentWorkers) AS PresentWorkers
-FROM            dbo.tbl_PC_MS INNER JOIN
-                         dbo.tbl_Inv_Tran_Date ON dbo.tbl_PC_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
-                         dbo.tbl_PC_AMB_Line ON dbo.tbl_PC_MS.Line = dbo.tbl_PC_AMB_Line.LineID
+		$query = $this->db->query("SELECT        TOP (100) PERCENT dbo.tbl_PC_AMB_Line.LineName, SUM(dbo.View_union_MS.TotalChecked) AS TotalChecked, SUM(ISNULL(dbo.View_union_MS.Pass, 0) + ISNULL(dbo.View_union_MS.RPass, 0)) AS Pass, SUM(dbo.View_union_MS.Fail) 
+                         AS Fail, MAX(dbo.View_union_MS.PresentWorkers) AS PresentWorkers
+FROM            dbo.View_union_MS INNER JOIN
+                         dbo.tbl_Inv_Tran_Date ON dbo.View_union_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
+                         dbo.tbl_PC_AMB_Line ON dbo.View_union_MS.Line = dbo.tbl_PC_AMB_Line.LineID
 WHERE        (dbo.tbl_Inv_Tran_Date.DateName = CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
 GROUP BY dbo.tbl_PC_AMB_Line.LineName, dbo.tbl_PC_AMB_Line.LineID
 ORDER BY dbo.tbl_PC_AMB_Line.LineID");
@@ -36,11 +36,11 @@ ORDER BY dbo.tbl_PC_AMB_Line.LineID");
 
 
 
-			$query = $this->db->query("SELECT        TOP (100) PERCENT dbo.tbl_PC_AMB_Line.LineName, SUM(dbo.tbl_PC_MS.TotalChecked) AS TotalChecked, SUM(ISNULL(dbo.tbl_PC_MS.Pass, 0) + ISNULL(dbo.tbl_PC_MS.RPass, 0)) AS Pass, 
-                         SUM(dbo.tbl_PC_MS.Fail) AS Fail, MAX(dbo.tbl_PC_MS.PresentWorkers) AS PresentWorkers
-FROM            dbo.tbl_PC_MS INNER JOIN
-                         dbo.tbl_Inv_Tran_Date ON dbo.tbl_PC_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
-                         dbo.tbl_PC_AMB_Line ON dbo.tbl_PC_MS.Line = dbo.tbl_PC_AMB_Line.LineID
+			$query = $this->db->query("SELECT        TOP (100) PERCENT dbo.tbl_PC_AMB_Line.LineName, SUM(dbo.View_union_MS.TotalChecked) AS TotalChecked, SUM(ISNULL(dbo.View_union_MS.Pass, 0) + ISNULL(dbo.View_union_MS.RPass, 0)) AS Pass, 
+			SUM(dbo.View_union_MS.Fail) AS Fail, MAX(dbo.View_union_MS.PresentWorkers) AS PresentWorkers
+FROM            dbo.View_union_MS INNER JOIN
+			dbo.tbl_Inv_Tran_Date ON dbo.View_union_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
+			dbo.tbl_PC_AMB_Line ON dbo.View_union_MS.Line = dbo.tbl_PC_AMB_Line.LineID
 WHERE        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$Date1 00:00:00', 102) AND CONVERT(DATETIME, '$Date2 00:00:00', 102))
 GROUP BY dbo.tbl_PC_AMB_Line.LineName, dbo.tbl_PC_AMB_Line.LineID
 ORDER BY dbo.tbl_PC_AMB_Line.LineID");
@@ -68,20 +68,20 @@ ORDER BY dbo.tbl_PC_AMB_Line.LineID");
 
 
 
-			$query = $this->db->query("SELECT        TOP (100) PERCENT SUM(dbo.tbl_PC_MS.TotalChecked) AS TotalChecked, SUM(ISNULL(dbo.tbl_PC_MS.Pass, 0) + ISNULL(dbo.tbl_PC_MS.RPass, 0)) AS Pass, SUM(dbo.tbl_PC_MS.Fail) AS Fail
-FROM            dbo.tbl_PC_MS INNER JOIN
-                         dbo.tbl_Inv_Tran_Date ON dbo.tbl_PC_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
-                         dbo.tbl_PC_AMB_Line ON dbo.tbl_PC_MS.Line = dbo.tbl_PC_AMB_Line.LineID
-WHERE        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$Date1 00:00:00', 102) AND CONVERT(DATETIME, '$Date2 00:00:00', 102))");
-			return $query->result_array();
+			$query = $this->db->query("SELECT        TOP (100) PERCENT SUM(dbo.View_union_MS.TotalChecked) AS TotalChecked, SUM(ISNULL(dbo.View_union_MS.Pass, 0) + ISNULL(dbo.View_union_MS.RPass, 0)) AS Pass, SUM(dbo.View_union_MS.Fail) AS Fail
+			FROM            dbo.View_union_MS INNER JOIN
+									 dbo.tbl_Inv_Tran_Date ON dbo.View_union_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
+									 dbo.tbl_PC_AMB_Line ON dbo.View_union_MS.Line = dbo.tbl_PC_AMB_Line.LineID
+			WHERE        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$Date1 00:00:00', 102) AND CONVERT(DATETIME, '$Date2 00:00:00', 102))");
+						return $query->result_array();
 		} else {
 
-			$query = $this->db->query("SELECT        TOP (100) PERCENT SUM(dbo.tbl_PC_MS.TotalChecked) AS TotalChecked, SUM(ISNULL(dbo.tbl_PC_MS.Pass, 0) + ISNULL(dbo.tbl_PC_MS.RPass, 0)) AS Pass, SUM(dbo.tbl_PC_MS.Fail) AS Fail
-FROM            dbo.tbl_PC_MS INNER JOIN
-                         dbo.tbl_Inv_Tran_Date ON dbo.tbl_PC_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
-                         dbo.tbl_PC_AMB_Line ON dbo.tbl_PC_MS.Line = dbo.tbl_PC_AMB_Line.LineID
-WHERE        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$Date1 00:00:00', 102) AND CONVERT(DATETIME, '$Date2 00:00:00', 102)) AND 
-                         (dbo.tbl_PC_AMB_Line.LineID = $LineNo)");
+			$query = $this->db->query("SELECT        TOP (100) PERCENT SUM(dbo.View_union_MS.TotalChecked) AS TotalChecked, SUM(ISNULL(dbo.View_union_MS.Pass, 0) + ISNULL(dbo.View_union_MS.RPass, 0)) AS Pass, SUM(dbo.View_union_MS.Fail) AS Fail
+			FROM            dbo.View_union_MS INNER JOIN
+									 dbo.tbl_Inv_Tran_Date ON dbo.View_union_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
+									 dbo.tbl_PC_AMB_Line ON dbo.View_union_MS.Line = dbo.tbl_PC_AMB_Line.LineID
+			WHERE        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$Date1 00:00:00', 102) AND CONVERT(DATETIME, '$Date2 00:00:00', 102)) AND 
+									 (dbo.tbl_PC_AMB_Line.LineID = $LineNo)");
 			return $query->result_array();
 		}
 	}
@@ -102,12 +102,12 @@ WHERE        (DateName BETWEEN '$StartDateeee' AND '$EndDateeee') AND (LineID = 
 	public function GETMSDSUm($StartDateeee, $EndDateeee)
 	{
 
-		$query = $this->db->query("SELECT        TOP (100) PERCENT dbo.tbl_Inv_Tran_Date.DateName, SUM(dbo.tbl_PC_MS.TotalChecked) AS OutPut
-FROM            dbo.tbl_PC_MS INNER JOIN
-                         dbo.tbl_PC_AMB_Line ON dbo.tbl_PC_MS.Line = dbo.tbl_PC_AMB_Line.LineID INNER JOIN
-                         dbo.tbl_Inv_Tran_Date ON dbo.tbl_PC_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo
-WHERE        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN '$StartDateeee' AND '$EndDateeee')
-GROUP BY dbo.tbl_Inv_Tran_Date.DateName");
+		$query = $this->db->query("SELECT        TOP (100) PERCENT dbo.tbl_Inv_Tran_Date.DateName, SUM(dbo.View_union_MS.TotalChecked) AS OutPut
+		FROM            dbo.View_union_MS INNER JOIN
+								 dbo.tbl_PC_AMB_Line ON dbo.View_union_MS.Line = dbo.tbl_PC_AMB_Line.LineID INNER JOIN
+								 dbo.tbl_Inv_Tran_Date ON dbo.View_union_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo
+		WHERE        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN '$StartDateeee' AND '$EndDateeee')
+		GROUP BY dbo.tbl_Inv_Tran_Date.DateName");
 		return $query->result_array();
 	}
 
@@ -129,21 +129,21 @@ GROUP BY CONVERT(Varchar, DateName, 103), MONTH(DateName)");
 	public function GetAllMSData($Sdate, $Edate)
 	{
 
-		$select = "TOP (100) PERCENT  SUM(dbo.tbl_PC_MS.OpenComposit) AS OpenComposit, SUM(dbo.tbl_PC_MS.DailyComposit) AS DailyComposit, 
-		SUM(dbo.tbl_PC_MS.CompositCornersEdges) AS CompositCornersEdges, SUM(dbo.tbl_PC_MS.LooseStitch) AS LooseStitch, SUM(dbo.tbl_PC_MS.TornStitch) 
-		AS TornStitch, SUM(dbo.tbl_PC_MS.MissStitch) AS MissStitch, SUM(dbo.tbl_PC_MS.CornersOut) AS CornersOut, SUM(dbo.tbl_PC_MS.ZigZagStitch) AS ZigZagStitch, 
-		SUM(dbo.tbl_PC_MS.WrongArtWork) AS WrongArtWork, SUM(dbo.tbl_PC_MS.WrongSewingMargin) AS WrongSewingMargin, SUM(dbo.tbl_PC_MS.MaterialTorn) 
-		AS MaterialTorn, SUM(dbo.tbl_PC_MS.DisColor) AS DisColor, SUM(dbo.tbl_PC_MS.LamProblem) AS LamProblem, SUM(dbo.tbl_PC_MS.TreatOff) AS TreatOff, 
-		SUM(dbo.tbl_PC_MS.Smearing) AS Smearing, SUM(dbo.tbl_PC_MS.MissPrinting) AS MissPrinting, SUM(dbo.tbl_PC_MS.NozleMove) AS NozleMove, 
-		SUM(dbo.tbl_PC_MS.LeakPuncture) AS LeakPuncture, SUM(dbo.tbl_PC_MS.BGrade) AS BGrade, Sum(dbo.tbl_PC_MS.TotalChecked) As TotalChecked, SUM(dbo.tbl_PC_MS.UnHold) AS UnHold, SUM(dbo.tbl_PC_MS.NeedleMark) AS NeedleMark, SUM(dbo.tbl_PC_MS.VolPanelAlligment) 
-		AS VolPanelAlligment, SUM(dbo.tbl_PC_MS.CutMark) AS CutMark, SUM(dbo.tbl_PC_MS.Fail) AS Fail, SUM(ISNULL(dbo.tbl_PC_MS.Pass, 0) + ISNULL(dbo.tbl_PC_MS.RPass, 0)) AS Pass";
+		$select = "SUM(dbo.View_union_MS.OpenComposit) AS OpenComposit, SUM(dbo.View_union_MS.DailyComposit) AS DailyComposit, 
+		SUM(dbo.View_union_MS.CompositCornersEdges) AS CompositCornersEdges, SUM(dbo.View_union_MS.LooseStitch) AS LooseStitch, SUM(dbo.View_union_MS.TornStitch) 
+		AS TornStitch, SUM(dbo.View_union_MS.MissStitch) AS MissStitch, SUM(dbo.View_union_MS.CornersOut) AS CornersOut, SUM(dbo.View_union_MS.ZigZagStitch) AS ZigZagStitch, 
+		SUM(dbo.View_union_MS.WrongArtWork) AS WrongArtWork, SUM(dbo.View_union_MS.WrongSewingMargin) AS WrongSewingMargin, SUM(dbo.View_union_MS.MaterialTorn) 
+		AS MaterialTorn, SUM(dbo.View_union_MS.DisColor) AS DisColor, SUM(dbo.View_union_MS.LamProblem) AS LamProblem, SUM(dbo.View_union_MS.TreatOff) AS TreatOff, 
+		SUM(dbo.View_union_MS.Smearing) AS Smearing, SUM(dbo.View_union_MS.MissPrinting) AS MissPrinting, SUM(dbo.View_union_MS.NozleMove) AS NozleMove, 
+		SUM(dbo.View_union_MS.LeakPuncture) AS LeakPuncture, SUM(dbo.View_union_MS.BGrade) AS BGrade, Sum(dbo.View_union_MS.TotalChecked) As TotalChecked, SUM(dbo.View_union_MS.UnHold) AS UnHold, SUM(dbo.View_union_MS.NeedleMark) AS NeedleMark, SUM(dbo.View_union_MS.VolPanelAlligment) 
+		AS VolPanelAlligment, SUM(dbo.View_union_MS.CutMark) AS CutMark, SUM(dbo.View_union_MS.Fail) AS Fail, SUM(ISNULL(dbo.View_union_MS.Pass, 0) + ISNULL(dbo.View_union_MS.RPass, 0)) AS Pass";
 		$this->db->select($select)
-			->from('dbo.tbl_PC_MS')
+			->from('dbo.View_union_MS')
 			->where('DateName >= ', $Sdate)
 			->where('DateName <= ', $Edate)
 			->where('TotalChecked > ', 0)
-			->join('dbo.tbl_Inv_Tran_Date', 'dbo.tbl_PC_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo')
-			->join('dbo.tbl_PC_AMB_Line', 'dbo.tbl_PC_MS.Line = dbo.tbl_PC_AMB_Line.LineID');
+			->join('dbo.tbl_Inv_Tran_Date', 'dbo.View_union_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo')
+			->join('dbo.tbl_PC_AMB_Line', 'dbo.View_union_MS.Line = dbo.tbl_PC_AMB_Line.LineID');
 
 
 		return $this->db->get()->result();

@@ -264,6 +264,7 @@ class Quality extends CI_Controller
     public function AmbArticleWiseDateWiseAll($start_date, $end_date)
     {
         $data['data'] = $this->Quality_Modal->rpt_amb_datewise_all_articles($start_date, $end_date, 1);
+        $data['data_overall'] = $this->Quality_Modal->rpt_amb_datewise_all_articles_OverAll($start_date, $end_date, 1);
         $data['data_RP'] = $this->Quality_Modal->rpt_amb_datewise_all_articles_RP($start_date, $end_date);
         $data['data_RF'] = $this->Quality_Modal->rpt_amb_datewise_all_articles_RF($start_date, $end_date);
         $data['data_packing_RP'] = $this->Quality_Modal->rpt_amb_datewise_all_articles_Packing_RP($start_date, $end_date);
@@ -541,8 +542,18 @@ $data['POSum'] = $this->Quality_Modal->get_TM_Po_Sum($start_date, $end_date, $fc
       	$data['start_date1'] = $startDate;
 		$data['end_date1'] = $endDate;
 		return $this->load->view('MIS/Bladder', $data, false);
-
+        
      
     }
+
+    public function MsEmployeeWiseSum(){
+
+        $data =$this->Quality_Modal->MsEmployeeWiseSum($_POST['start_date'], $_POST['end_date']);  
+        return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode($data));
+    
+   }
 
 }

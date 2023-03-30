@@ -63,9 +63,7 @@ class Main extends CI_Controller
                 $data['tm_team'] = $this->t->counttm(3);
                 $data['lfb_count'] = $this->m->countlfbInstalledMachines(24);
                 $data['lfb_team'] = $this->t->countlfb(24);
-                $data[
-                    'packing_count'
-                ] = $this->m->countpackingInstalledMachines(25);
+                $data['packing_count'] = $this->m->countpackingInstalledMachines(25);
                 $this->load->view('Maintance_Dashboard', $data);
             }
         }
@@ -148,25 +146,26 @@ class Main extends CI_Controller
                 $DPA = $this->session->userdata('DPA_Status');
                 $Efficency = $this->session->userdata('Efficency');
                 // $Dev = $this->session->userdata('Dev');
-            // // $FIT = $this->session->userdata('FIT');
-            //  Echo $Efficency;
-            // die;
-             if($admin == '1') {
-                    redirect('DashboardController');
-           }else if($DPA == '1'){
-            redirect('DPA');
+                // // $FIT = $this->session->userdata('FIT');
+                //  Echo $Efficency;
+                // die;
+                //      if($admin == '1') {
+                //             redirect('DashboardController');
+                //    }else if($DPA == '1'){
+                //     redirect('DPA');
 
-           }else if($Efficency == '1'){
-            redirect('Efficiency');
+                //    }else if($Efficency == '1'){
+                //     redirect('Efficiency');
 
-           }else {
-                  redirect('LabController/TestRequest');
-             }
-            //         redirect('DevelopmentController/Process');
-            //    } elseif ($FIT == '1') {
-            //         redirect('FIT/Capablity');
-            //     }
+                //    }else {
+                //           redirect('LabController/TestRequest');
+                //      }
+                //         redirect('DevelopmentController/Process');
+                //    } elseif ($FIT == '1') {
+                //         redirect('FIT/Capablity');
+                //     }
                 // $this->load->view('Dmms_Dashboard', $data);
+                $this->load->view('landingPageView');
             }
         }
     }
@@ -185,7 +184,7 @@ class Main extends CI_Controller
         $data['lfb_team'] = $this->t->countlfb(24);
         $data['packing_count'] = $this->m->countpackingInstalledMachines(25);
 
-        $this->load->view('Dmms_Dashboard', $data);
+        $this->load->view('landingPageView', $data);
     }
 
     public function Home()

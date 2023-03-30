@@ -2,7 +2,7 @@
                     <div class="page-logo">
                         <a href="<?php echo base_url()?>dashboard" class="page-logo-link press-scale-down d-flex align-items-center position-relative">
                             <img src="<?php echo base_url('/')?>Assets/img/logo.png" alt="Forward Sports  WebApp" aria-roledescription="logo">
-                            <span class="page-logo-text mr-1">Forward Group</span>
+                            <span class="page-logo-text mr-1"></span>
                             <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2">Management System</span>
                          
                         </a>

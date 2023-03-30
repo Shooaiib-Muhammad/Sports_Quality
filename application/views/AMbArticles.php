@@ -648,7 +648,7 @@ if (!$this->session->has_userdata('user_id')) {
     <!-- BEGIN Page Footer -->
     <footer class="page-footer" role="contentinfo">
         <div class="d-flex align-items-center flex-1 text-muted">
-            <span class="hidden-md-down fw-700">2021 © Forward Sports by&nbsp;IT Dept Forward Sports</span>
+            <span class="hidden-md-down fw-700">2021 © Forward Sports by&nbsp;IT Dept </span>
         </div>
         <div>
 

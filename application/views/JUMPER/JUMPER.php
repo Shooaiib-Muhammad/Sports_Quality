@@ -19,7 +19,7 @@
       <!-- the #js-page-content id is needed for some plugins to initialize -->
       <main id="js-page-content" role="main" class="page-content">
 
-      <?php
+        <?php
         $Month = date('m');
         $Year = date('Y');
         $Day = date('d');
@@ -29,221 +29,221 @@
 
         <!-- <div class="row clearfix"> -->
 
-            <div class="row p-3">
-              <div class="col-md-2"></div>
-              <div class="col-md-8">
-              <div id="panel-1" class="panel">
-                            <div class="panel-hdr">
-                                <h2>
-                                   Employee Information
-                                 
-                                </h2>
-                            </div>
-                            <div class="panel-container show">
+        <div class="row p-3">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <div id="panel-1" class="panel">
+              <div class="panel-hdr">
+                <h2>
+                  Employee Information
+
+                </h2>
+              </div>
+              <div class="panel-container show">
                 <div class="row p-3">
-                <div class="col-md-3">
+                  <div class="col-md-3">
 
-<label class="form-contol" for="customFile">Enter Card No:</label>
-<input type="number" class="form-control" id="cardno" name="cardno" onchange="CallData()">
+                    <label class="form-contol" for="customFile">Enter Card No:</label>
+                    <input type="number" class="form-control" id="cardno" name="cardno" onchange="CallData()">
 
-</div>
-<div class="col-md-3">
+                  </div>
+                  <div class="col-md-3">
 
-<label class="form-contol" for="customFile">Name:</label>
-<input type="text" class="form-control" id="name" name="name" readonly="true">
+                    <label class="form-contol" for="customFile">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" readonly="true">
 
-</div>
-<div class="col-md-3">
+                  </div>
+                  <div class="col-md-3">
 
-<label class="form-contol" for="customFile">Father Name:</label>
-<input type="text" class="form-control" id="father" name="father" readonly="true">
+                    <label class="form-contol" for="customFile">Father Name:</label>
+                    <input type="text" class="form-control" id="father" name="father" readonly="true">
 
-</div>
-<div class="col-md-3">
+                  </div>
+                  <div class="col-md-3">
 
 
-<!-- <input type="text" class="form-control" id="SDays" name="SDays"> -->
-<!-- <img src="" alt="" class="img-fluid" id="image" width="120" height="100"> -->
-<div id="image"></div>
-</div>
-<div class="col-md-3">
+                    <!-- <input type="text" class="form-control" id="SDays" name="SDays"> -->
+                    <!-- <img src="" alt="" class="img-fluid" id="image" width="120" height="100"> -->
+                    <div id="image"></div>
+                  </div>
+                  <div class="col-md-3">
 
-<div class="form-group">
-                          <label class="control-label">Department:</label>
-                          <select class="form-control" id="department" name="department"  onchange="Callsection()">
-                       
-                          <?php foreach ($alldept as $Key) { ?>
+                    <div class="form-group">
+                      <label class="control-label">Department:</label>
+                      <select class="form-control" id="department" name="department" onchange="Callsection()">
 
-<option value="<?php echo $Key['DeptID']; ?>"><?php echo $Key['DeptName']; ?></option>
-<?php } ?>
-                           
-                          </select>
+                        <?php foreach ($alldept as $Key) { ?>
 
-                        </div>
-                       
-</div>
-<div class="col-md-3">
+                          <option value="<?php echo $Key['DeptID']; ?>"><?php echo $Key['DeptName']; ?></option>
+                        <?php } ?>
 
-<div class="form-group">
-                          <label class="control-label">Section</label>
-                         
-                          <select class="form-control" id="section" name="section">
-                           
-                         
-                          </select>
+                      </select>
 
-                        </div>
+                    </div>
 
-</div>
-<div class="col-md-3">
-<div class="form-group">
-                          <label class="control-label">Designation:</label>
-                      
-                          <select class="form-control" id="designation" name="designation">
-                        
-                          <?php foreach ($alldesig as $Key) { ?>
+                  </div>
+                  <div class="col-md-3">
 
-<option value="<?php echo $Key['DesignationID']; ?>"><?php echo $Key['DesigName']; ?></option>
-<?php } ?>
-                          </select>
-                        
-                        </div>
-                       
-</div>
-<div class="col-sm-3">
-<div class="form-group">
+                    <div class="form-group">
+                      <label class="control-label">Section</label>
+
+                      <select class="form-control" id="section" name="section">
+
+
+                      </select>
+
+                    </div>
+
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="control-label">Designation:</label>
+
+                      <select class="form-control" id="designation" name="designation">
+
+                        <?php foreach ($alldesig as $Key) { ?>
+
+                          <option value="<?php echo $Key['DesignationID']; ?>"><?php echo $Key['DesigName']; ?></option>
+                        <?php } ?>
+                      </select>
+
+                    </div>
+
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group">
 
                       <button type="button" class="btn-primary btn btn-md mt-3" onclick="onsave()">Save</button>
 
                     </div>
                   </div>
                 </div>
-                </div>
-        </div>
               </div>
-              <div class="col-md-2"></div>
-          
-</div>
-
-
-     
-<div id="panel-1" class="panel">
-                            <div class="panel-hdr">
-                                <h2>
-                                   Employee Transfer History
-                                 
-                                </h2>
-                            </div>
-                            <div class="panel-container show">
-        <div class="row p-3">
-
-<div class="col-md-12" id="Data" style=" overflow:auto;">
-
-</div>
-        
-        </div>
-                            </div>
-</div>
-        </div>
-
+            </div>
+          </div>
+          <div class="col-md-2"></div>
 
         </div>
 
 
 
- 
+        <div id="panel-1" class="panel">
+          <div class="panel-hdr">
+            <h2>
+              Employee Transfer History
 
+            </h2>
+          </div>
+          <div class="panel-container show">
+            <div class="row p-3">
 
-        <div class="row">
+              <div class="col-md-12" id="Data" style=" overflow:auto;">
 
+              </div>
 
-
+            </div>
+          </div>
         </div>
-      </main>
-      <!-- this overlay is activated only when mobile menu is triggered -->
-      <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
-      <!-- BEGIN Page Footer -->
-      <footer class="page-footer" role="contentinfo">
-        <div class="d-flex align-items-center flex-1 text-muted">
-          <span class="hidden-md-down fw-700">2021 © DMMS by&nbsp;IT Dept Forward Sports</span>
-        </div>
-        <div>
-
-        </div>
-      </footer>
-
-      <!-- END Page Footer -->
-      <!-- BEGIN Shortcuts -->
-
-      <!-- END Shortcuts -->
-      <!-- BEGIN Color profile -->
-      <!-- this area is hidden and will not be seen on screens or screen readers -->
-      <!-- we use this only for CSS color refernce for JS stuff -->
-      <p id="js-color-profile" class="d-none">
-        <span class="color-primary-50"></span>
-        <span class="color-primary-100"></span>
-        <span class="color-primary-200"></span>
-        <span class="color-primary-300"></span>
-        <span class="color-primary-400"></span>
-        <span class="color-primary-500"></span>
-        <span class="color-primary-600"></span>
-        <span class="color-primary-700"></span>
-        <span class="color-primary-800"></span>
-        <span class="color-primary-900"></span>
-        <span class="color-info-50"></span>
-        <span class="color-info-100"></span>
-        <span class="color-info-200"></span>
-        <span class="color-info-300"></span>
-        <span class="color-info-400"></span>
-        <span class="color-info-500"></span>
-        <span class="color-info-600"></span>
-        <span class="color-info-700"></span>
-        <span class="color-info-800"></span>
-        <span class="color-info-900"></span>
-        <span class="color-danger-50"></span>
-        <span class="color-danger-100"></span>
-        <span class="color-danger-200"></span>
-        <span class="color-danger-300"></span>
-        <span class="color-danger-400"></span>
-        <span class="color-danger-500"></span>
-        <span class="color-danger-600"></span>
-        <span class="color-danger-700"></span>
-        <span class="color-danger-800"></span>
-        <span class="color-danger-900"></span>
-        <span class="color-warning-50"></span>
-        <span class="color-warning-100"></span>
-        <span class="color-warning-200"></span>
-        <span class="color-warning-300"></span>
-        <span class="color-warning-400"></span>
-        <span class="color-warning-500"></span>
-        <span class="color-warning-600"></span>
-        <span class="color-warning-700"></span>
-        <span class="color-warning-800"></span>
-        <span class="color-warning-900"></span>
-        <span class="color-success-50"></span>
-        <span class="color-success-100"></span>
-        <span class="color-success-200"></span>
-        <span class="color-success-300"></span>
-        <span class="color-success-400"></span>
-        <span class="color-success-500"></span>
-        <span class="color-success-600"></span>
-        <span class="color-success-700"></span>
-        <span class="color-success-800"></span>
-        <span class="color-success-900"></span>
-        <span class="color-fusion-50"></span>
-        <span class="color-fusion-100"></span>
-        <span class="color-fusion-200"></span>
-        <span class="color-fusion-300"></span>
-        <span class="color-fusion-400"></span>
-        <span class="color-fusion-500"></span>
-        <span class="color-fusion-600"></span>
-        <span class="color-fusion-700"></span>
-        <span class="color-fusion-800"></span>
-        <span class="color-fusion-900"></span>
-      </p>
-      <!-- END Color profile -->
     </div>
+
+
   </div>
+
+
+
+
+
+
+  <div class="row">
+
+
+
+  </div>
+  </main>
+  <!-- this overlay is activated only when mobile menu is triggered -->
+  <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
+  <!-- BEGIN Page Footer -->
+  <footer class="page-footer" role="contentinfo">
+    <div class="d-flex align-items-center flex-1 text-muted">
+      <span class="hidden-md-down fw-700">2021 © DMMS by&nbsp;IT Dept Forward Sports</span>
+    </div>
+    <div>
+
+    </div>
+  </footer>
+
+  <!-- END Page Footer -->
+  <!-- BEGIN Shortcuts -->
+
+  <!-- END Shortcuts -->
+  <!-- BEGIN Color profile -->
+  <!-- this area is hidden and will not be seen on screens or screen readers -->
+  <!-- we use this only for CSS color refernce for JS stuff -->
+  <p id="js-color-profile" class="d-none">
+    <span class="color-primary-50"></span>
+    <span class="color-primary-100"></span>
+    <span class="color-primary-200"></span>
+    <span class="color-primary-300"></span>
+    <span class="color-primary-400"></span>
+    <span class="color-primary-500"></span>
+    <span class="color-primary-600"></span>
+    <span class="color-primary-700"></span>
+    <span class="color-primary-800"></span>
+    <span class="color-primary-900"></span>
+    <span class="color-info-50"></span>
+    <span class="color-info-100"></span>
+    <span class="color-info-200"></span>
+    <span class="color-info-300"></span>
+    <span class="color-info-400"></span>
+    <span class="color-info-500"></span>
+    <span class="color-info-600"></span>
+    <span class="color-info-700"></span>
+    <span class="color-info-800"></span>
+    <span class="color-info-900"></span>
+    <span class="color-danger-50"></span>
+    <span class="color-danger-100"></span>
+    <span class="color-danger-200"></span>
+    <span class="color-danger-300"></span>
+    <span class="color-danger-400"></span>
+    <span class="color-danger-500"></span>
+    <span class="color-danger-600"></span>
+    <span class="color-danger-700"></span>
+    <span class="color-danger-800"></span>
+    <span class="color-danger-900"></span>
+    <span class="color-warning-50"></span>
+    <span class="color-warning-100"></span>
+    <span class="color-warning-200"></span>
+    <span class="color-warning-300"></span>
+    <span class="color-warning-400"></span>
+    <span class="color-warning-500"></span>
+    <span class="color-warning-600"></span>
+    <span class="color-warning-700"></span>
+    <span class="color-warning-800"></span>
+    <span class="color-warning-900"></span>
+    <span class="color-success-50"></span>
+    <span class="color-success-100"></span>
+    <span class="color-success-200"></span>
+    <span class="color-success-300"></span>
+    <span class="color-success-400"></span>
+    <span class="color-success-500"></span>
+    <span class="color-success-600"></span>
+    <span class="color-success-700"></span>
+    <span class="color-success-800"></span>
+    <span class="color-success-900"></span>
+    <span class="color-fusion-50"></span>
+    <span class="color-fusion-100"></span>
+    <span class="color-fusion-200"></span>
+    <span class="color-fusion-300"></span>
+    <span class="color-fusion-400"></span>
+    <span class="color-fusion-500"></span>
+    <span class="color-fusion-600"></span>
+    <span class="color-fusion-700"></span>
+    <span class="color-fusion-800"></span>
+    <span class="color-fusion-900"></span>
+  </p>
+  <!-- END Color profile -->
+</div>
+</div>
 </div>
 <!-- END Page Wrapper -->
 <!-- BEGIN Quick Menu -->
@@ -1272,100 +1272,102 @@
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
-  <script>
-    // window.onload = function() {
-    //   $("#ArtCode").select2();
-    //   $("#fC").select2();
-    //   $("#season").select2();
+<script>
+  // window.onload = function() {
+  //   $("#ArtCode").select2();
+  //   $("#fC").select2();
+  //   $("#season").select2();
 
-    // };
-    // $('.mySelect2Edit').select({
-    //   dropdownParent: $('#exampleModalEditDep')
-    // });
-//     function Callsection() {
-//       url = "<?php echo base_url(''); ?>JUMPER/JUMPER/Callsection"
-//       let Dept =$("#Dept").val();
-//       $.post(url, {
-//         "Dept": Dept,
+  // };
+  // $('.mySelect2Edit').select({
+  //   dropdownParent: $('#exampleModalEditDep')
+  // });
+  //     function Callsection() {
+  //       url = "<?php echo base_url(''); ?>JUMPER/JUMPER/Callsection"
+  //       let Dept =$("#Dept").val();
+  //       $.post(url, {
+  //         "Dept": Dept,
 
-//       }, function(Dept) {
-// foreach(Dept as keys){
+  //       }, function(Dept) {
+  // foreach(Dept as keys){
 
-// }
+  // }
 
-//       });
-//     }
+  //       });
+  //     }
 
-function onsave(){
-  let cardno =$("#cardno").val();
-  let deptId =$("#department").val();
-  
-  let sectionid =$("#section").val();
-  let designationid =$("#designation").val();
+  function onsave() {
+    let cardno = $("#cardno").val();
+    let deptId = $("#department").val();
 
-  data = {
-        "cardno": cardno,
-        "deptId": deptId,
-        "sectionid": sectionid,
-        "designationid": designationid
-       
+    let sectionid = $("#section").val();
+    let designationid = $("#designation").val();
 
+    data = {
+      "cardno": cardno,
+      "deptId": deptId,
+      "sectionid": sectionid,
+      "designationid": designationid
+
+
+    }
+
+
+
+    url = "<?php echo base_url(''); ?>JUMPER/JUMPER/insertion/"
+    $.post(url, data, function(data) {
+      //articles = JSON.parse(data)
+      // console.log(articles);
+      alert('Data Inserted Successfully')
+      //location.reload();
+      getemployeedata()
+
+
+
+    });
+  }
+
+  function Callsection() {
+    //alert("heloo");
+    let deptId = $("#department").val();
+    //var deptId = $("#dept]").val()
+    //alert(deptId);
+    var url = "<?php echo base_url("JUMPER/JUMPER/Callsection/") ?>" + deptId;
+    //var section = $("#sectionID").val()
+    //alert(url);
+    //console.log(sec alert(deptId);tion ? "selected" : "not selected")
+    $.get(url, function(data) {
+
+      html = '<option value="">Select a Section</option>'
+      for (let index = 0; index < data.length; index++) {
+        const element = data[index];
+        html += "<option value='"
+        html += element.SectionID
+        html += "' "
+        html += section && section == element.SecID ? "selected" : ""
+        html += " >"
+        html += element.SectionName
+        html += "</option>"
+        // html += '<option value="'+element.SecID+'" >'+element.SecName+'</option>'
       }
 
+      $("#section").html(html)
 
+    })
+  }
 
-      url = "<?php echo base_url(''); ?>JUMPER/JUMPER/insertion/"
-      $.post(url, data, function(data) {
-        //articles = JSON.parse(data)
-       // console.log(articles);
-        alert('Data Inserted Successfully')
-        //location.reload();
-        getemployeedata()
+  function getemployeedata() {
 
-
-
-      });
-    }
-    function Callsection(){
-      //alert("heloo");
-      let deptId =$("#department").val();
-            //var deptId = $("#dept]").val()
-            //alert(deptId);
-            var url = "<?php echo base_url("JUMPER/JUMPER/Callsection/") ?>" + deptId;
-            //var section = $("#sectionID").val()
-            //alert(url);
-            //console.log(sec alert(deptId);tion ? "selected" : "not selected")
-            $.get(url, function(data){
-                
-                html = '<option value="">Select a Section</option>'
-                for (let index = 0; index < data.length; index++) {
-                    const element = data[index];
-                    html += "<option value='"
-                    html += element.SectionID
-                    html += "' "
-                    html += section && section == element.SecID ? "selected" : ""
-                    html += " >"
-                    html += element.SectionName
-                    html += "</option>"
-                    // html += '<option value="'+element.SecID+'" >'+element.SecName+'</option>'
-                }
-
-                $("#section").html(html)
-
-            })
-        }
-function getemployeedata(){
-  
-  cardno = $("#cardno").val();
-     // season = $("#season").val();
-//alert(cardno);
-url = "<?php echo base_url(''); ?>JUMPER/JUMPER/getemployeeData/" + cardno
-      $.get(url, function(data){
-        //alert('success');
-        let i = 1;
-        console.log(data, "hello");
-        let appendtable = '';
-        appendtable += `<table class="table table-striped table-hover table-sm" id="ActivityData" >
+    cardno = $("#cardno").val();
+    // season = $("#season").val();
+    //alert(cardno);
+    url = "<?php echo base_url(''); ?>JUMPER/JUMPER/getemployeeData/" + cardno
+    $.get(url, function(data) {
+      //alert('success');
+      let i = 1;
+      console.log(data, "hello");
+      let appendtable = '';
+      appendtable += `<table class="table table-striped table-hover table-sm" id="ActivityData" >
                                 <thead>
                                     <tr  class="bg-primary-200"  style="color:white;">
                                     <th>Card No</th>
@@ -1382,8 +1384,8 @@ url = "<?php echo base_url(''); ?>JUMPER/JUMPER/getemployeeData/" + cardno
                                     </tr>
                                 </thead>
                                 <tbody>`
-        data.forEach((element) => {
-          appendtable += `<tr>
+      data.forEach((element) => {
+        appendtable += `<tr>
                                 
                                 <td> ${element.cardno} </td>
                                        <td>${element.Name} </td>
@@ -1394,154 +1396,154 @@ url = "<?php echo base_url(''); ?>JUMPER/JUMPER/getemployeeData/" + cardno
                                         <td>${element.tdate}</td>
                                         <td>  <button class="btn-info btn-sm"> ${element.Status?"Active" : "disable" }</button></td>
                                         </tr>`
-        })
+      })
 
-        appendtable += `</tbody>
+      appendtable += `</tbody>
 
                                 </table>`
 
-        $("#Data").html(appendtable)
-        $('#ActivityData').dataTable({
-          responsive: false,
-          lengthChange: false,
-          dom:
-            /*	--- Layout Structure 
-            	--- Options
-            	l	-	length changing input control
-            	f	-	filtering input
-            	t	-	The table!
-            	i	-	Table information summary
-            	p	-	pagination control
-            	r	-	processing display element
-            	B	-	buttons
-            	R	-	ColReorder
-            	S	-	Select
+      $("#Data").html(appendtable)
+      $('#ActivityData').dataTable({
+        responsive: false,
+        lengthChange: false,
+        dom:
+          /*	--- Layout Structure 
+          	--- Options
+          	l	-	length changing input control
+          	f	-	filtering input
+          	t	-	The table!
+          	i	-	Table information summary
+          	p	-	pagination control
+          	r	-	processing display element
+          	B	-	buttons
+          	R	-	ColReorder
+          	S	-	Select
 
-            	--- Markup
-            	< and >				- div element
-            	<"class" and >		- div with a class
-            	<"#id" and >		- div with an ID
-            	<"#id.class" and >	- div with an ID and a class
+          	--- Markup
+          	< and >				- div element
+          	<"class" and >		- div with a class
+          	<"#id" and >		- div with an ID
+          	<"#id.class" and >	- div with an ID and a class
 
-            	--- Further reading
-            	https://datatables.net/reference/option/dom
-            	--------------------------------------
-             */
-            "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-          buttons: [
-            /*{
-            	extend:    'colvis',
-            	text:      'Column Visibility',
-            	titleAttr: 'Col visibility',
-            	className: 'mr-sm-3'
-            },*/
-            {
-              extend: 'pdfHtml5',
-              text: 'PDF',
-              titleAttr: 'Generate PDF',
-              className: 'btn-outline-danger btn-sm mr-1'
-            },
-            {
-              extend: 'excelHtml5',
-              text: 'Excel',
-              titleAttr: 'Generate Excel',
-              className: 'btn-outline-success btn-sm mr-1'
-            },
-            {
-              extend: 'csvHtml5',
-              text: 'CSV',
-              titleAttr: 'Generate CSV',
-              className: 'btn-outline-primary btn-sm mr-1'
-            },
-            {
-              extend: 'copyHtml5',
-              text: 'Copy',
-              titleAttr: 'Copy to clipboard',
-              className: 'btn-outline-primary btn-sm mr-1'
-            },
-            {
-              extend: 'print',
-              text: 'Print',
-              titleAttr: 'Print Table',
-              className: 'btn-outline-primary btn-sm'
-            }
-          ]
-        });
-
-
-
+          	--- Further reading
+          	https://datatables.net/reference/option/dom
+          	--------------------------------------
+           */
+          "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+          "<'row'<'col-sm-12'tr>>" +
+          "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+        buttons: [
+          /*{
+          	extend:    'colvis',
+          	text:      'Column Visibility',
+          	titleAttr: 'Col visibility',
+          	className: 'mr-sm-3'
+          },*/
+          {
+            extend: 'pdfHtml5',
+            text: 'PDF',
+            titleAttr: 'Generate PDF',
+            className: 'btn-outline-danger btn-sm mr-1'
+          },
+          {
+            extend: 'excelHtml5',
+            text: 'Excel',
+            titleAttr: 'Generate Excel',
+            className: 'btn-outline-success btn-sm mr-1'
+          },
+          {
+            extend: 'csvHtml5',
+            text: 'CSV',
+            titleAttr: 'Generate CSV',
+            className: 'btn-outline-primary btn-sm mr-1'
+          },
+          {
+            extend: 'copyHtml5',
+            text: 'Copy',
+            titleAttr: 'Copy to clipboard',
+            className: 'btn-outline-primary btn-sm mr-1'
+          },
+          {
+            extend: 'print',
+            text: 'Print',
+            titleAttr: 'Print Table',
+            className: 'btn-outline-primary btn-sm'
+          }
+        ]
       });
-    }
-    function CallData() {
-//alert(" i am here");
-getemployeedata()
-let cardNo =$("#cardno").val();
-//alert(cardNo);
-url = "<?php echo base_url(''); ?>JUMPER/JUMPER/CallData"
-      $.post(url, {
-        "cardNo": cardNo,
 
-      }, function(cardNo) {
-       // alert("heloo");
-        console.log(cardNo);
-      name=  $("#name").val(cardNo[0]['Name']);
-        //alert(name);
-        $("#father").val(cardNo[0]['FatherName']);
-        let department =  cardNo[0]['DeptName'];
-        let section = cardNo[0]['SectionName'];
-       let designation = cardNo[0]['DesigName'];
-       //let image = cardNo[0]['EmpPic'];
-        //console.log(designation);
-     // console.log(department);
-        // $("#yield").val(articles[0]['Yield']);
-        let DeptID= cardNo[0]['DeptID'];
-        let DesignationID=   cardNo[0]['DesignationID'];
-        //let SectionID=  cardNo[0]['SectionID'];
-        $("select[name=department]").val(DeptID);
-        $("select[name=designation]").val(DesignationID);
-        var url = "<?php echo base_url("JUMPER/JUMPER/Callsection/") ?>" + DeptID;
-    //var idofEdit = DeptID; 
-//alert(url);
-//  postData = {
-//     idofEdit
-//   }
-  $.get(url, function(data){
-// function(data, status){
-  //console.log("Data Get", data);
-  // var returnedData2 = JSON.parse(data);
-  //  dataaa1 = returnedData2;
-   options = "<option value='' disabled>Select Section</option>"
-     for (i = 0; i < data.length; i++) {
-       if(data[0].SecID == data[i].SectionID){
-        options +=  '<option value="' + data[i].SectionID + '" selected>' + data[i].SectionName + '</option>'
-       }
-     options +=  '<option value="' + data[i].SectionID + '">' + data[i].SectionName + '</option>'
-         }
+
+
+    });
+  }
+
+  function CallData() {
+    //alert(" i am here");
+    getemployeedata()
+    let cardNo = $("#cardno").val();
+    //alert(cardNo);
+    url = "<?php echo base_url(''); ?>JUMPER/JUMPER/CallData"
+    $.post(url, {
+      "cardNo": cardNo,
+
+    }, function(cardNo) {
+      // alert("heloo");
+      console.log(cardNo);
+      name = $("#name").val(cardNo[0]['Name']);
+      //alert(name);
+      $("#father").val(cardNo[0]['FatherName']);
+      let department = cardNo[0]['DeptName'];
+      let section = cardNo[0]['SectionName'];
+      let designation = cardNo[0]['DesigName'];
+      //let image = cardNo[0]['EmpPic'];
+      //console.log(designation);
+      // console.log(department);
+      // $("#yield").val(articles[0]['Yield']);
+      let DeptID = cardNo[0]['DeptID'];
+      let DesignationID = cardNo[0]['DesignationID'];
+      //let SectionID=  cardNo[0]['SectionID'];
+      $("select[name=department]").val(DeptID);
+      $("select[name=designation]").val(DesignationID);
+      var url = "<?php echo base_url("JUMPER/JUMPER/Callsection/") ?>" + DeptID;
+      //var idofEdit = DeptID; 
+      //alert(url);
+      //  postData = {
+      //     idofEdit
+      //   }
+      $.get(url, function(data) {
+        // function(data, status){
+        //console.log("Data Get", data);
+        // var returnedData2 = JSON.parse(data);
+        //  dataaa1 = returnedData2;
+        options = "<option value='' disabled>Select Section</option>"
+        for (i = 0; i < data.length; i++) {
+          if (data[0].SecID == data[i].SectionID) {
+            options += '<option value="' + data[i].SectionID + '" selected>' + data[i].SectionName + '</option>'
+          }
+          options += '<option value="' + data[i].SectionID + '">' + data[i].SectionName + '</option>'
+        }
         //  console.log(options)
         $("select[name=section]").html(options)
 
-});
-//image = '<img src="data:image/jpeg;base64,'+EmpPic+'" alt="" class="img-fluid" width="120" height="100">'
-        //$('#department') .append($("<option></option >").attr("value", DeptID).text(department)); 
-        // $('#section').append($("<option></option>").attr("value", SectionID).text(section)); 
-                    //$('#designation').append($("<option></option>") .attr("value", DesignationID).text(designation)); 
+      });
+      //image = '<img src="data:image/jpeg;base64,'+EmpPic+'" alt="" class="img-fluid" width="120" height="100">'
+      //$('#department') .append($("<option></option >").attr("value", DeptID).text(department)); 
+      // $('#section').append($("<option></option>").attr("value", SectionID).text(section)); 
+      //$('#designation').append($("<option></option>") .attr("value", DesignationID).text(designation)); 
       //               html += '<img src="data:image/jpeg;base64,'+ cardNo[0][EmpPic+'" alt="" class="img-fluid" width="120" height="100">'
       // $('#image').append(html)
-        // $('#section').append('<optionvalue="'SectionID'">'section'</option>')
-        // $('#designation').append('<option value="'DesignationID'">'designation'</option>')
-       // $("image]").html(image)
-        
-      
-      });
+      // $('#section').append('<optionvalue="'SectionID'">'section'</option>')
+      // $('#designation').append('<option value="'DesignationID'">'designation'</option>')
+      // $("image]").html(image)
+
+
+    });
 
 
 
 
-}
+  }
 </script>
 </body>
 
 </html>
- 

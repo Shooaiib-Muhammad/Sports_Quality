@@ -1,5 +1,24 @@
 <?php $this->load->view('includes/new_header'); ?>
 <!--  -->
+<?php 
+// Value of Die Testing
+$dieCount=0;
+foreach ($dieTestingSheetSizing as $key) {
+    $dieCount=$key['Duration'];   
+}
+$onaCount=0;
+foreach ($ONASheetSizing as $key) {
+    $onaCount=$key['Duration'];   
+}
+$machineCount=0;
+foreach ($machineTestingSheetSizing as $key) {
+    $machineCount=$key['Duration'];   
+}
+// print_r($ONASheetSizing);
+// print_r($machineTestingSheetSizingGraph);
+
+
+?>
 <style>
     .highcharts-figure .chart-container {
         width: 100%;
@@ -150,7 +169,66 @@ foreach ($HourllyReading as $key) {
     // array_push($target, $point3);
     //array_push($lineNames, $key['LineName']);
 
-} ?>
+} 
+
+
+// For DieTesting Graph
+
+$GetNameDie = array();
+$GetDurationDie = array();
+//$target = array();
+//print_r($HourllyReading);
+foreach ($dieTestingSheetSizingGraph as $key) {
+    $point1 = $key['MachineName'] ;
+    $point2 = $key['Duration'];
+    array_push($GetNameDie, $point1);
+    array_push($GetDurationDie, $point2);
+}
+
+
+// For Ona Graph
+
+
+
+
+$GetNameOna = array();
+$GetDurationOna = array();
+//$target = array();
+//print_r($HourllyReading);
+foreach ($ONASheetSizingGraph as $key) {
+    $point1 = $key['MachineName'] ;
+    $point2 = $key['Duration'];
+    array_push($GetNameOna, $point1);
+    array_push($GetDurationOna, $point2);
+}
+
+// for Machine Testing graph
+
+$GetNameMachine = array();
+$GetDurationMachine = array();
+//$target = array();
+//print_r($HourllyReading);
+foreach ($machineTestingSheetSizingGraph as $key) {
+    $point1 = $key['MachineName'] ;
+    $point2 = $key['Duration'];
+    array_push($GetNameMachine, $point1);
+    array_push($GetDurationMachine, $point2);
+}
+
+
+
+
+
+?>
+
+
+<?php
+$Month = date('m');
+$Year = date('Y');
+$Day = date('d');
+$CurrentDate = $Year . '-' . $Month . '-' . $Day;
+?>
+
 
 
                 <div class="subheader">
@@ -166,6 +244,8 @@ foreach ($HourllyReading as $key) {
                 <ul class="nav nav-pills" role="tablist">
                                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Historical Analysis</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3">Down Time</a></li>
+
 
                 </ul>
                 <div class="tab-content py-3">
@@ -183,6 +263,46 @@ foreach ($HourllyReading as $key) {
                                 </h2>
                             </div>
                             <div class="panel-container show">
+
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                <div class="container mt-5">
+                            <div style="display:none" class="row">
+                                <div class="col-md-4">
+                                <div class="form-group">
+<label class="form-control-label">From Date:</label>
+<div class="input-group">
+<input class="form-control" type="date" id="Date1" name="Date1" value="<?php echo $CurrentDate; ?>" >
+</div>
+</div>
+                                </div>
+                                <div class="col-md-4">
+                                <div class="form-group">
+<label class="form-control-label">End Date:</label>
+<div class="input-group">
+<input class="form-control" type="date" id="Date2" name="Date2" value="<?php echo $CurrentDate; ?>" >
+</div>
+</div>
+                                </div>
+
+                                <div class="col-md-4">
+<div class="form-group mt-2">
+<label class="form-control-label"></label>
+<div class="input-group">
+<button type="submit" id="getEnergyData" name="submit" class="btn btn-primary " ><i class=" fa fa-search"></i> Search</button>
+</div>                    
+</div>
+</div>
+
+
+                            </div>
+                            </div>
+                            
+
+                                </div>
+                            </div>
+
                 <div class="row pt-2">
 
                     <div class="col-md-12 d-flex flex-row">
@@ -300,7 +420,7 @@ foreach ($HourllyReading as $key) {
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                         <small class="m-0 l-h-n">Target</small>
-                                            <span >67%</span>
+                                            <span >69%</span>
 
                                         </h3>
 
@@ -326,6 +446,23 @@ foreach ($HourllyReading as $key) {
                     </div>
                 </div> <!-- row ends here -->
 
+                <div class="row">
+                <div class=" col-md-2 align-self-center" style="margin-left:150px" id="direct">
+                            <a href="javascript:void(0)">
+                                <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
+                                    <div class="">
+                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                        <small class="m-0 l-h-n">MS Laminaton Machine 2</small>
+                                            <span id="energyDataGet"></span>
+
+                                        </h3>
+
+                                    </div>
+                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                </div>
+                            </a>
+                        </div>
+                </div>
 
 
 
@@ -373,6 +510,23 @@ foreach ($HourllyReading as $key) {
 
                             </div>
                         </div>
+
+                        
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Energy Output
+                                  
+                                </h2>
+                            </div>
+                            <div class="panel-container show">
+                                <div id="energyOutput">
+
+                                </div>
+
+                            </div>
+                        </div>
+
 
                     </div>
                 </div>
@@ -451,6 +605,155 @@ foreach ($HourllyReading as $key) {
 
    
 </div>
+
+<!-- Tab direction 3 Downtime -->
+
+<div class="tab-pane fade" id="tab_direction-3" role="tabpanel">
+<div class="card">
+<div class="card-body">
+    <h5 class="card-title" style="color:black;font-weight:bolder">Date Filteration</h5>
+    <div class="row">
+        <div class="col-md-2"><input class="form-control" type="date" id="startDate" /></div>
+        <div class="col-md-2"><input class="form-control" type="date" id="endDate" /></div>
+        <div class="col-md-4"><button class="btn btn-primary" id="searchRange">Search</button></div>
+    </div>
+    </div>
+
+    </div>
+<br>
+            <div class="row" >
+                    <div class="col-md-12">
+
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Down Time of Machines
+                                  
+                                </h2>
+                            </div>
+                            <div class="panel-container show" >
+                               
+                            <div class="row">
+                            <div class="col-md-2 p-5 m-5" id="direct">
+                                    <a href="javascript:void(0)">
+                                        <div style="background-color:brown" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                            <div class="">
+                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                                                    <small class="m-0 l-h-n">Die Testing</small>
+                                                    <span> <?php echo $dieCount; ?> </span>
+                                                    
+                                                </h3>
+                                            </div>
+                                            <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-2 p-5 m-5" id="direct">
+                                    <a href="javascript:void(0)">
+                                        <div style="background-color:gray" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                            <div class="">
+                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                                                    <small class="m-0 l-h-n">ONA</small>
+                                                    <span> <?php echo $onaCount; ?> </span>
+                                                    
+                                                </h3>
+                                            </div>
+                                            <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-2 p-5 m-5" id="direct">
+                                    <a href="javascript:void(0)">
+                                        <div style="background-color:purple" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                            <div class="">
+                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                                                    <small class="m-0 l-h-n">Machine Testing</small>
+                                                    <span> <?php echo $machineCount; ?> </span>
+                                                    
+                                                </h3>
+                                            </div>
+                                            <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-2 p-5 m-5" id="direct">
+                                    <a href="javascript:void(0)">
+                                        <div style="background-color:green" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                            <div class="">
+                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                                                    <small class="m-0 l-h-n">Down Time</small>
+                                                    <span> <?php echo $dieCount+$onaCount+$machineCount; ?> </span>
+                                                    
+                                                </h3>
+                                            </div>
+                                            <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                </div>
+                
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Graphs
+                                  
+                                </h2>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="row ">
+                                    <div class="col-md-12">
+                                        <div id="containerDie">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="row ">
+                                    <div class="col-md-12">
+                                        <div id="containerOna">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="row ">
+                                    <div class="col-md-12">
+                                        <div id="containerMachine">
+
+                                        </div>
+                                    </div>
+                                </div>
+                       
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+   
+</div>
+
+
+
                 </div>
 
             </main>
@@ -1698,7 +2001,7 @@ else{
         //         name: 'Browser share',
         //         innerSize: '55%',
         //         data: [
-        //             ['Target', <?php echo '67%'; ?>  ],
+        //             ['Target', <?php echo '69%'; ?>  ],
         //             ['Achieved', <?php echo Round($Efficiecny, 2); ?>]
         //         ]
         //     }]
@@ -2099,7 +2402,7 @@ function generateDataBottom(data1) {
             // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
         if(datesArrayMachineWise.indexOf(data.MachineData[k].Date) === -1){
             datesArrayMachineWise.push(data.MachineData[k].Date)
-        targetDataMachineWise.push(parseFloat(67))
+        targetDataMachineWise.push(parseFloat(69))
         if(data.MachineData[k].MachineName == "Panel Sizing Press 1"){
                 output = data.MachineData[k].Counter * 0.28 * 3.5
             Minutes = (1*480);
@@ -2379,7 +2682,7 @@ Highcharts.chart('containerDateRangeBar', {
             efficiencyInner = ((outputInner / MinutesInner) * 100).toFixed(2)
 
             seriesData.push(parseFloat(efficiencyInner))
-            targetData.push(parseFloat(67))
+            targetData.push(parseFloat(69))
 // }
         }
        
@@ -2528,6 +2831,234 @@ $("#dateRangeResult").css('display','inline-block')
 
 
                     });
+
+                    Highcharts.chart('containerDie', {
+                        chart: {
+                            zoomType: 'xy'
+                        },
+                        title: {
+                            text: 'Die Testing '
+                        },
+                        subtitle: {
+                            // text: 'Source: WorldClimate.com'
+                        },
+                        xAxis: [{
+                            categories: <?php echo json_encode($GetNameDie, JSON_NUMERIC_CHECK); ?>,
+                            crosshair: true
+                        }],
+                        yAxis: [{ // Primary yAxis
+                                labels: {
+                                    format: '{value} balls',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                },
+                                title: {
+                                    
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                }
+                            },
+                            { // Secondary yAxis
+                                title: {
+                                    text: 'Target',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[0]
+                                    }
+                                },
+
+                                opposite: true
+                            }
+                        ],
+                        tooltip: {
+                            shared: true
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'left',
+                            x: 120,
+                            verticalAlign: 'top',
+                            y: 100,
+                            floating: true,
+                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                                'rgba(255,255,255,0.25)',
+                            enabled: false
+                        },
+
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.0f}'
+                                }
+                            }
+                        },
+                        series: [{
+                                type: 'column',
+                                yAxis: 1,
+
+                                data: <?php echo json_encode($GetDurationDie, JSON_NUMERIC_CHECK); ?>,
+                            }
+
+                        ]
+
+
+                    });
+
+                    Highcharts.chart('containerOna', {
+                        chart: {
+                            zoomType: 'xy'
+                        },
+                        title: {
+                            text: 'ONA Testing '
+                        },
+                        subtitle: {
+                            // text: 'Source: WorldClimate.com'
+                        },
+                        xAxis: [{
+                            categories: <?php echo json_encode($GetNameOna, JSON_NUMERIC_CHECK); ?>,
+                            crosshair: true
+                        }],
+                        yAxis: [{ // Primary yAxis
+                                labels: {
+                                    format: '{value} balls',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                },
+                                title: {
+                                    
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                }
+                            },
+                            { // Secondary yAxis
+                                title: {
+                                    text: 'Target',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[0]
+                                    }
+                                },
+
+                                opposite: true
+                            }
+                        ],
+                        tooltip: {
+                            shared: true
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'left',
+                            x: 120,
+                            verticalAlign: 'top',
+                            y: 100,
+                            floating: true,
+                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                                'rgba(255,255,255,0.25)',
+                            enabled: false
+                        },
+
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.0f}'
+                                }
+                            }
+                        },
+                        series: [{
+                                type: 'column',
+                                yAxis: 1,
+
+                                data: <?php echo json_encode($GetDurationOna, JSON_NUMERIC_CHECK); ?>,
+                            }
+
+                        ]
+
+
+                    });
+
+                    Highcharts.chart('containerMachine', {
+                        chart: {
+                            zoomType: 'xy'
+                        },
+                        title: {
+                            text: 'Machine Testing '
+                        },
+                        subtitle: {
+                            // text: 'Source: WorldClimate.com'
+                        },
+                        xAxis: [{
+                            categories: <?php echo json_encode($GetNameMachine, JSON_NUMERIC_CHECK); ?>,
+                            crosshair: true
+                        }],
+                        yAxis: [{ // Primary yAxis
+                                labels: {
+                                    format: '{value} balls',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                },
+                                title: {
+                                    
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                }
+                            },
+                            { // Secondary yAxis
+                                title: {
+                                    text: 'Target',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[0]
+                                    }
+                                },
+
+                                opposite: true
+                            }
+                        ],
+                        tooltip: {
+                            shared: true
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'left',
+                            x: 120,
+                            verticalAlign: 'top',
+                            y: 100,
+                            floating: true,
+                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                                'rgba(255,255,255,0.25)',
+                            enabled: false
+                        },
+
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.0f}'
+                                }
+                            }
+                        },
+                        series: [{
+                                type: 'column',
+                                yAxis: 1,
+
+                                data: <?php echo json_encode($GetDurationMachine, JSON_NUMERIC_CHECK); ?>,
+                            }
+
+                        ]
+
+
+                    });
+
+
+                    
     $('#direct').click(function() {
         $("#tableHere").html(' ');
         const params = new Proxy(new URLSearchParams(window.location.search), {
@@ -2876,6 +3407,357 @@ $("#dateRangeResult").css('display','inline-block')
         })
 
     })
+
+
+    
+    $(document).ready(function(){
+
+    
+var startDate = $("#Date1").val();
+var endDate = $("#Date2").val();
+
+//   alert(startDate);
+// alert(endDate);
+
+var HourName = [];
+var EnergyHour = [];
+var HallNameH = [];
+var HallNameHH = [];
+var EnergyHH = [];
+
+var CompressorHallNameHH = [];
+var CompressorEnergyHH = [];
+
+var CompressorPanelHallNameHH = [];
+var CompressorPanelEnergyHH = [];
+
+var AMBHallNameHH = [];
+var AMBEnergyHH = [];
+
+var TMHallNameHH = [];
+var TMEnergyHH = [];
+
+var MSHallNameHH = [];
+var MSEnergyHH = [];
+
+var WorkShopHallNameHH = [];
+var WorkShopEnergyHH = [];
+
+let url2 = "<?php echo base_url('/Lamination/getEnergy'); ?>";
+let url3 = "<?php echo base_url('/Lamination/getEnergyByHourly'); ?>";
+
+
+
+$.post(url3, {
+    'startDate':startDate, 'endDate': endDate
+}, function(data, status){
+
+    
+
+    data['datesByHourly'].forEach(element => {
+        HourName.push(element.HourName);
+        HallNameH.push(element.HallName);
+        EnergyHour.push(Number(element.Energy));
+
+        // console.log(HallNameH[11] === "MS Lamination Machine 2");
+
+
+        if(element.HallName === "MS Lamination Machine 2"){
+            HallNameHH.push(element.HallName);
+            EnergyHH.push(Number(element.Energy));
+
+    }
+    else if(element.HallName === "Compressor"){
+        CompressorHallNameHH.push(element.HallName);
+        CompressorEnergyHH.push(Number(element.Energy));
+
+    }
+    else if(element.HallName === "Compressor Panel"){
+        CompressorPanelHallNameHH.push(element.HallName);
+        CompressorPanelEnergyHH.push(Number(element.Energy));
+
+    }
+    else if(element.HallName === "AMB"){
+        AMBHallNameHH.push(element.HallName);
+        AMBEnergyHH.push(Number(element.Energy));
+
+    }
+    else if(element.HallName === "TM"){
+        TMHallNameHH.push(element.HallName);
+        TMEnergyHH.push(Number(element.Energy));
+
+    }
+    else if(element.HallName === "MS"){
+        MSHallNameHH.push(element.HallName);
+        MSEnergyHH.push(Number(element.Energy));
+
+    }
+    else if(element.HallName === "WorkShop"){
+        WorkShopHallNameHH.push(element.HallName);
+        WorkShopEnergyHH.push(Number(element.Energy));
+
+    }
+    
+
+
+    });
+    // console.log(EnergyHH);
+
+
+   
+
+})
+
+
+$.post(url2, {
+    'startDate':startDate, 'endDate': endDate
+}, function(data, status){
+    
+    
+
+    $("#energyDataGet").text(data['dates'][0].Energy)
+    $("#energyCompressor").text(data['dates'][1].Energy)
+    $("#energyMS").text(data['dates'][5].Energy)
+
+
+    
+    EHallName = [];
+    EEnergy = [];
+    
+    var MSLaminationMachine2HallNameHA = [];
+    var MSLaminationMachine2EnergyHA = [];
+
+    var CompressorHallNameHA = [];
+    var CompressorEnergyHA = [];
+
+    var CompressorPanelHallNameHA = [];
+    var CompressorPanelEnergyHA = [];
+
+    var AMBHallNameHA = [];
+    var AMBEnergyHA = [];
+
+    var TMHallNameHA = [];
+    var TMEnergyHA = [];
+
+    var MSHallNameHA = [];
+    var MSEnergyHA = [];
+
+    var WorkShopHallNameHA = [];
+    var WorkShopEnergyHA = [];
+
+    data['dates'].forEach(element => {
+
+        // console.log(element);
+        // console.log(element);
+        EHallName.push(element.HallName)
+        EEnergy.push(Number(element.Energy));
+
+
+        if(element.HallName === "MS Lamination Machine 2"){
+
+            MSLaminationMachine2HallNameHA.push(element.HallName);
+            MSLaminationMachine2EnergyHA.push(Number(element.Energy));
+
+        }
+        else if(element.HallName === "Compressor"){
+            CompressorHallNameHA.push(element.HallName);
+            CompressorEnergyHA.push(Number(element.Energy));
+           
+        }
+        else if(element.HallName === "Compressor Panel"){
+            CompressorPanelHallNameHA.push(element.HallName);
+            CompressorPanelEnergyHA.push(Number(element.Energy));
+           
+        }
+        else if(element.HallName === "AMB"){
+            AMBHallNameHA.push(element.HallName);
+            AMBEnergyHA.push(Number(element.Energy));
+           
+        }
+        else if(element.HallName === "TM"){
+            TMHallNameHA.push(element.HallName);
+            TMEnergyHA.push(Number(element.Energy));
+           
+        }
+        else if(element.HallName === "MS"){
+            MSHallNameHA.push(element.HallName);
+            MSEnergyHA.push(Number(element.Energy));
+           
+        }
+        else if(element.HallName === "WorkShop"){
+            WorkShopHallNameHA.push(element.HallName);
+            WorkShopEnergyHA.push(Number(element.Energy));
+           
+        }
+
+        
+
+
+        
+
+    
+})
+
+
+
+
+Highcharts.chart('energyOutput', {
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: 'Today Energy Consumption'
+                            },
+
+                            accessibility: {
+                                announceNewData: {
+                                    enabled: true
+                                }
+                            },
+                            xAxis: {
+                                type: 'category'
+                            },
+                            yAxis: {
+                                title: {
+                                    text: 'Current Energy'
+                                }
+
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                series: {
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y:.1f}'
+                                    }
+                                }
+                            },
+
+                            tooltip: {
+                                // headerFormat: '<span style="font-size:13px">{point.name}</span><br>',
+                                // headerFormat: '<span style="font-size:13px">{point.y:f}</span>:%<br>',
+                                pointFormat: '<span style="color:{point.color}">{point.y}</span><br/>'
+                            },           
+                        
+
+
+                            series: [
+{
+    name: "Browsers",
+    colorByPoint: true,
+    data: [
+        {
+            name: "Ms Lamination Machine 2",
+            y: MSLaminationMachine2EnergyHA[0],
+            drilldown: "Chrome"
+        },
+        {
+            name: "Compressor",
+            y: CompressorEnergyHA[0],
+            drilldown: "Chrome"
+        },
+        {
+            name: "Compressor Panel",
+            y: CompressorPanelEnergyHA[0],
+            drilldown: "Chrome"
+        },
+        {
+            name: "AMB",
+            y: AMBEnergyHA[0],
+            drilldown: "Chrome"
+        },
+        {
+            name: "TM",
+            y: TMEnergyHA[0],
+            drilldown: "Chrome"
+        },
+        {
+            name: "MS",
+            y: MSEnergyHA[0],
+            drilldown: "Chrome"
+        },
+        {
+            name: "WorkShop",
+            y: WorkShopEnergyHA[0],
+            drilldown: "Chrome"
+        },
+        
+
+
+        
+    ]
+}
+],
+                            drilldown: {
+breadcrumbs: {
+    position: {
+        align: 'right'
+    }
+},
+series: [
+    {
+        name: HallNameHH,
+        id: "Chrome",
+        data: [
+                "MS Lamination Machine 2",
+                EnergyHH
+        ],
+    },
+  
+    {
+        name: CompressorHallNameHH,
+        id: "Chrome",
+        data: CompressorEnergyHH
+    },
+    {
+        name: CompressorPanelHallNameHH,
+        id: "Chrome",
+        data: CompressorPanelEnergyHH
+    },
+  
+    {
+        name: AMBHallNameHH,
+        id: "Chrome",
+        data: AMBEnergyHH
+    },
+    {
+        name: TMHallNameHH,
+        id: "Chrome",
+        data: TMEnergyHH
+    },
+    {
+        name: MSHallNameHH,
+        id: "Chrome",
+        data: MSEnergyHH
+    },
+    {
+        name: WorkShopHallNameHH,
+        id: "Chrome",
+        data: WorkShopEnergyHH
+    },
+    
+
+
+]
+}
+
+
+                           
+                        });
+
+
+        
+
+})
+
+
+
+})
+
+
 </script>
 
 </body>

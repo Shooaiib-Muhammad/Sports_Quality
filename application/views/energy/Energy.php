@@ -6,6 +6,108 @@ if (!$this->session->has_userdata('user_id')) {
 
   <?php $this->load->view('includes/new_header'); ?>
 
+  <?php
+  
+
+
+
+  $energyDataByHourly = [];
+
+  foreach ($energy_C_By_Hourly as $key) {
+    $dataEn = [
+      'name' => $key['HourName'],
+      'y' => $key['Energy'],
+      'drilldown' => $key['HourName']
+    ];
+    array_push($energyDataByHourly, $dataEn);
+  }
+
+  $energyData = [];
+  foreach ($energy_C as $key) {
+    $dataEn = [
+      'name' => $key['HallName'],
+      'y' => $key['Energy'],
+      'drilldown' => $key['HallName']
+    ];
+    array_push($energyData, $dataEn);
+  }
+
+  $emp_data_points11 = [];
+  $emp_data_points22 = [];
+  $emp_data_points33 = [];
+  $emp_data_points44 = [];
+  $emp_data_points55 = [];
+  $emp_data_points66 = [];
+  $emp_data_points77 = [];
+  // For the Hourly Base Data of Employee
+  foreach ($energy_C_Drill as $key) {
+    if ($key['HallName'] == 'AMB') {
+      $emp_points11 = [
+        'name' => $key['HourName'],
+        'y' => $key['Energy'],
+        //'drilldown'=>$key['DID']
+      ];
+      array_push($emp_data_points11, $emp_points11);
+      // $accountEmp = $key['EmpCount'];
+    }
+    if ($key['HallName'] == 'Compressor Panel') {
+      $emp_points22 = [
+        'name' => $key['HourName'],
+        'y' => $key['Energy'],
+        //'drilldown'=>$key['DID']
+      ];
+      array_push($emp_data_points22, $emp_points22);
+      // $accountEmp = $key['EmpCount'];
+    }
+    if ($key['HallName'] == 'MS Lamination Machine 2') {
+      $emp_points33 = [
+        'name' => $key['HourName'],
+        'y' => $key['Energy'],
+        //'drilldown'=>$key['DID']
+      ];
+      array_push($emp_data_points33, $emp_points33);
+      // $accountEmp = $key['EmpCount'];
+    }
+    if ($key['HallName'] == 'MS') {
+      $emp_points44 = [
+        'name' => $key['HourName'],
+        'y' => $key['Energy'],
+        //'drilldown'=>$key['DID']
+      ];
+      array_push($emp_data_points44, $emp_points44);
+      // $accountEmp = $key['EmpCount'];
+    }
+    if ($key['HallName'] == 'TM') {
+      $emp_points55 = [
+        'name' => $key['HourName'],
+        'y' => $key['Energy'],
+        //'drilldown'=>$key['DID']
+      ];
+      array_push($emp_data_points55, $emp_points55);
+      // $accountEmp = $key['EmpCount'];
+    }
+    if ($key['HallName'] == 'WorkShop') {
+      $emp_points66 = [
+        'name' => $key['HourName'],
+        'y' => $key['Energy'],
+        //'drilldown'=>$key['DID']
+      ];
+      array_push($emp_data_points66, $emp_points66);
+      // $accountEmp = $key['EmpCount'];
+    }
+    if ($key['HallName'] == 'Compressor') {
+      $emp_points77 = [
+        'name' => $key['HourName'],
+        'y' => $key['Energy'],
+        //'drilldown'=>$key['DID']
+      ];
+      array_push($emp_data_points77, $emp_points77);
+      // $accountEmp = $key['EmpCount'];
+    }
+  }
+
+  ?>
+
   <!-- BEGIN Page Wrapper -->
   <div class="page-wrapper">
     <div class="page-inner">
@@ -23,6 +125,7 @@ if (!$this->session->has_userdata('user_id')) {
 
             </h1> -->
           </div>
+
           <!-- high chart CSS start-->
 
           <style>
@@ -283,6 +386,23 @@ if (!$this->session->has_userdata('user_id')) {
 
               </div>
             </div>
+
+  
+            <div id="panel-1" class="panel mt-5">
+              <div class="panel-hdr">
+                <h2>
+                  Today Energy Consumption By Hall
+
+                </h2>
+              </div>
+              <div class="panel-container show">
+                <div id="energyData">
+
+                </div>
+              </div>
+
+            </div>
+
             <div id="panel-1" class="panel">
               <div class="panel-hdr">
                 <h2>
@@ -303,6 +423,11 @@ if (!$this->session->has_userdata('user_id')) {
             </div>
           </div>
       </div>
+
+
+
+      </main>
+
     </div>
 
 
@@ -314,6 +439,8 @@ if (!$this->session->has_userdata('user_id')) {
 
 
   </div>
+
+
   </div>
 
   </div>
@@ -323,13 +450,17 @@ if (!$this->session->has_userdata('user_id')) {
   <!-- script file highchart start  -->
   <script src="https://code.highcharts.com/highcharts.js"></script>
   <script src="https://code.highcharts.com/modules/data.js"></script>
-  <script src="https://code.highcharts.com/modules/series-label.js"></script>
+  <script src="https://code.highcharts.com/modules/drilldown.js"></script>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/modules/export-data.js"></script>
   <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+  <script src="<?php echo base_url(); ?>assets/js/drilldown.js"></script>
+
+
   <!-- script file highchart end  -->
 
-  <script src="<?php echo base_url(); ?>/assets/js//jquery.min.js" type="text/javascript"></script>
+  <script src="<?php echo base_url(); ?>/assets/js/jquery.min.js" type="text/javascript"></script>
   <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
   <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
   <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
@@ -349,16 +480,7 @@ if (!$this->session->has_userdata('user_id')) {
 
     </div>
   </footer>
-  <scri src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></scri>
-  <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
-  <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
-  <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
-  <script src="<?php echo base_url(); ?>/assets/js/jquery.min.js" type="text/javascript"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js" integrity="sha512-d5Jr3NflEZmFDdFHZtxeJtBzk0eB+kkRXWFQqEc1EKmolXjHm2IKCA7kTvXBNjIYzjXfD5XzIjaaErpkZHCkBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
-  <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
-  <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
-  <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
 
   <!-- BEGIN Shortcuts -->
   <div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog" aria-labelledby="modal-shortcut" aria-hidden="true">
@@ -1833,41 +1955,143 @@ if (!$this->session->has_userdata('user_id')) {
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js" integrity="sha512-gtII6Z4fZyONX9GBrF28JMpodY4vIOI0lBjAtN/mcK7Pz19Mu1HHIRvXH6bmdChteGpEccxZxI0qxXl9anY60w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
   <script src="https://code.highcharts.com/highcharts.js"></script>
   <script src="https://code.highcharts.com/highcharts-3d.js"></script>
   <script src="https://code.highcharts.com/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/modules/export-data.js"></script>
   <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+  <script src="<?php echo base_url(); ?>/assets/js/series-label.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/js/drilldown.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/js/export-data.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/js/accessibility.js"></script>
+
   <script>
     $(document).ready(function() {
       loadData()
-      var datesArray = []
-      var energy = []
-      var msPrinting = []
-      var AMBhall = []
-      var Canteenhall = []
-      var Compressor = []
-      var CompressorPanelhall = []
-      var MShall = []
-      var OVALMachinehall = []
-      var WorkShophall = []
-      var TMHALL = []
-      var msPress = []
-      var msLamination=[]
-      // \WorkShop
-      //     \TM
-      //     \OVAL Machine
-      //     \MS
-      //     \Compressor Panel
-      //     \Compressor
-      //     \Canteen
-      //     \AMB
+
+
+
+      // var datesArray = []
+      // var energy = []
+      // var msPrinting = []
+      // var AMBhall = []
+      // var Canteenhall = []
+      // var Compressor = []
+      // var CompressorPanelhall = []
+      // var MShall = []
+      // var OVALMachinehall = []
+      // var WorkShophall = []
+      // var TMHALL = []
+      // var msPress = []
+      // var msLamination = []
+      // // \WorkShop
+      // //     \TM
+      // //     \OVAL Machine
+      // //     \MS
+      // //     \Compressor Panel
+      // //     \Compressor
+      // //     \Canteen
+      // //     \AMB
+
+      // let url2 = "<?php echo base_url('/energy/Energy/energy_C'); ?>";
+
+      // energy_arr = [];
+      // hall_arr = [];
+
+      // $.post(url2, function(data, status) {
+      //   // console.log(data['energy_C'][0]['Energy']);
+
+      //   data['energy_C'].forEach(element => {
+
+      //     energy_arr.push(element['Energy'])
+      //     hall_arr.push(element['HallName'])
+
+
+
+      //     data['energy_C'].forEach(element => {
+
+      //       if (element.HallName == 'MS Lamination Machine 2') {
+      //         energy_arr.push(parseFloat(element['Energy']));
+      //       }
+      //       if (element.HallName == 'WorkShop') {
+      //         energy_arr.push(parseFloat(element['Energy']));
+      //       }
+      //       if (element.HallName == 'Compressor Panel') {
+      //         energy_arr.push(parseFloat(element['Energy']));
+      //       }
+      //       if (element.HallName == 'TM') {
+      //         energy_arr.push(parseFloat(element['Energy']));
+      //       }
+      //       if (element.HallName == 'Compressor') {
+      //         energy_arr.push(parseFloat(element['Energy']));
+      //       }
+      //       if (element.HallName == 'MS') {
+      //         energy_arr.push(parseFloat(element['Energy']));
+
+      //       }
+      //       if (element.HallName == 'AMB') {
+      //         energy_arr.push(parseFloat(element['Energy']));
+
+      //       }
+
+
+
+      //     })
+
+
+      //   })
+
+
+      //   let seriesData = [{
+      //       name: 'MS Lamination Machine 2',
+      //       data: energy
+      //     },
+      //     {
+      //       name: 'WorkShop',
+      //       data: AMBhall
+      //     },
+      //     {
+      //       name: 'Compressor Panel',
+      //       data: Canteenhall
+      //     },
+      //     {
+      //       name: 'TM',
+      //       data: Compressor
+      //     },
+      //     {
+      //       name: 'Compressor',
+      //       data: datesArray
+      //     },
+      //     {
+      //       name: 'MS',
+      //       data: MShall
+      //     },
+      //     {
+      //       name: 'AMB',
+      //       data: msPrinting
+      //     },
+      //     {
+      //       name: 'OVAL Machine',
+      //       data: OVALMachinehall
+      //     },
+      //     {
+      //       name: 'TM',
+      //       data: TMHALL
+      //     },
+
+
+      //   ]
+      // })
+
+
 
       let url = "<?php echo base_url('/energy/Energy/getData'); ?>";
       $.get(url, function(data, status) {
 
         let dates = [];
+        
 
         data['dailyenergy'].forEach(element => {
 
@@ -1889,7 +2113,7 @@ if (!$this->session->has_userdata('user_id')) {
           if (element.HallName == 'MS') {
             MShall.push(parseFloat(element['Energy']));
           }
-          if(element.HallName=='MS PRESS'){
+          if (element.HallName == 'MS PRESS') {
             msPress.push(parseFloat(element['Energy']));
           }
           if (element.HallName == 'MS PRINTING') {
@@ -1907,7 +2131,7 @@ if (!$this->session->has_userdata('user_id')) {
           if (element.HallName == 'MS LAMINATION') {
             msLamination.push(parseFloat(element['Energy']));
           }
-          
+
         })
 
 
@@ -2015,20 +2239,20 @@ if (!$this->session->has_userdata('user_id')) {
         var date1 = $("#date1").val()
         var date2 = $("#date2").val()
 
-      var datesArray = []
-      var Facility = []
-      var energy = []
-      var msPrinting = []
-      var AMBhall = []
-      var Canteenhall = []
-      var Compressor = []
-      var CompressorPanelhall = []
-      var MShall = []
-      var OVALMachinehall = []
-      var WorkShophall = []
-      var TMHALL = []
-      var msPress = []
-      var msLamination=[]
+        var datesArray = []
+        var Facility = []
+        var energy = []
+        var msPrinting = []
+        var AMBhall = []
+        var Canteenhall = []
+        var Compressor = []
+        var CompressorPanelhall = []
+        var MShall = []
+        var OVALMachinehall = []
+        var WorkShophall = []
+        var TMHALL = []
+        var msPress = []
+        var msLamination = []
         // alert(date1);
         let url = "<?php echo base_url("Energy/energy/getEnergyDt/") ?>" + date1 + "/" + date2
         //alert(url);
@@ -2061,44 +2285,44 @@ if (!$this->session->has_userdata('user_id')) {
                                      
                                 
                                         </tr>`;
-          
-           if (element.HallName == 'Compressor Panel') {
-            energy.push(parseFloat(element['Energy']));
-          }
-          if (element.HallName == 'AMB') {
-            AMBhall.push(parseFloat(element['Energy']));
-          }
-          if (element.HallName == 'Canteen') {
-            Canteenhall.push(parseFloat(element['Energy']));
-          }
-          if (element.HallName == 'Compressor') {
-            Compressor.push(parseFloat(element['Energy']));
-          }
-          if (element.HallName == 'FACILITY') {
-            Facility.push(parseFloat(element['Energy']));
-          }
-          if (element.HallName == 'MS') {
-            MShall.push(parseFloat(element['Energy']));
-          }
-         
-          if (element.HallName == 'MS PRINTING') {
-            msPrinting.push(parseFloat(element['Energy']));
-          }
-          if (element.HallName == 'OVAL Machine') {
-            OVALMachinehall.push(parseFloat(element['Energy']));
-          }
-          if (element.HallName == 'TM') {
-            TMHALL.push(parseFloat(element['Energy']));
-          }
-          if (element.HallName == 'WorkShop') {
-            WorkShophall.push(parseFloat(element['Energy']));
-          }
-          if(element.HallName=='MS PRESS'){
-            msPress.push(parseFloat(element['Energy']));
-          }
-          if (element.HallName == 'MS LAMINATION') {
-            msLamination.push(parseFloat(element['Energy']));
-          }
+
+            if (element.HallName == 'Compressor Panel') {
+              energy.push(parseFloat(element['Energy']));
+            }
+            if (element.HallName == 'AMB') {
+              AMBhall.push(parseFloat(element['Energy']));
+            }
+            if (element.HallName == 'Canteen') {
+              Canteenhall.push(parseFloat(element['Energy']));
+            }
+            if (element.HallName == 'Compressor') {
+              Compressor.push(parseFloat(element['Energy']));
+            }
+            if (element.HallName == 'FACILITY') {
+              Facility.push(parseFloat(element['Energy']));
+            }
+            if (element.HallName == 'MS') {
+              MShall.push(parseFloat(element['Energy']));
+            }
+
+            if (element.HallName == 'MS PRINTING') {
+              msPrinting.push(parseFloat(element['Energy']));
+            }
+            if (element.HallName == 'OVAL Machine') {
+              OVALMachinehall.push(parseFloat(element['Energy']));
+            }
+            if (element.HallName == 'TM') {
+              TMHALL.push(parseFloat(element['Energy']));
+            }
+            if (element.HallName == 'WorkShop') {
+              WorkShophall.push(parseFloat(element['Energy']));
+            }
+            if (element.HallName == 'MS PRESS') {
+              msPress.push(parseFloat(element['Energy']));
+            }
+            if (element.HallName == 'MS LAMINATION') {
+              msLamination.push(parseFloat(element['Energy']));
+            }
           })
 
           appendtable += `</tbody>
@@ -2176,97 +2400,226 @@ if (!$this->session->has_userdata('user_id')) {
             ]
           });
 
-        let seriesData = [{
-            name: 'Compressor Panel',
-            data: energy
-          },
-          {
-            name: 'Airless Mini Hall',
-            data: AMBhall
-          },
-          {
-            name: 'Canteen',
-            data: Canteenhall
-          },
-          {
-            name: 'Compressor',
-            data: Compressor
-          },
-          {
-            name: 'Facility',
-            data: Facility
-          },
-          {
-            name: 'MS hall',
-            data: MShall
-          },
-          {
-            name: 'MS Printing',
-            data: msPrinting
-          },
-          {
-            name: 'OVAL Machine',
-            data: OVALMachinehall
-          },
-          {
-            name: 'TM',
-            data: TMHALL
-          },
-          {
-            name: 'WorkShop',
-            data: WorkShophall
-          },
-          {
-            name: 'MS PRESS',
-            data: msPress
-          },
-          {
-            name: 'MS LAMINATION',
-            data: msLamination
-          }
-
-
-        ]
-        Highcharts.chart('container', {
-          chart: {
-            type: 'line'
-          },
-          title: {
-            text: 'Energy Data'
-          },
-
-          xAxis: {
-            categories: datesArray,
-            visible:false
-          },
-          yAxis: {
-            min: 0,
-            title: {
-              text: 'Energy (KV)'
-            }
-          },
-          tooltip: {
-            headerFormat: '<span style="font-size:10px">Date: {point.x}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-              '<td style="padding:0"><b>{point.y:.1f} KW </b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-          },
-          plotOptions: {
-            series: {
-              label: {
-                connectorAllowed: false
-              },
+          let seriesData = [{
+              name: 'Compressor Panel',
+              data: energy
+            },
+            {
+              name: 'Airless Mini Hall',
+              data: AMBhall
+            },
+            {
+              name: 'Canteen',
+              data: Canteenhall
+            },
+            {
+              name: 'Compressor',
+              data: Compressor
+            },
+            {
+              name: 'Facility',
+              data: Facility
+            },
+            {
+              name: 'MS hall',
+              data: MShall
+            },
+            {
+              name: 'MS Printing',
+              data: msPrinting
+            },
+            {
+              name: 'OVAL Machine',
+              data: OVALMachinehall
+            },
+            {
+              name: 'TM',
+              data: TMHALL
+            },
+            {
+              name: 'WorkShop',
+              data: WorkShophall
 
             },
-            column: {
-              pointPadding: 0.2,
-              borderWidth: 0
+            {
+              name: 'MS PRESS',
+              data: msPress
+            },
+            {
+              name: 'MS LAMINATION',
+              data: msLamination
             }
-          },
-          series: seriesData
-        });
+
+
+          ]
+
+
+          Highcharts.chart('energyData', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Energy Data By Hall'
+            },
+
+            accessibility: {
+              announceNewData: {
+                enabled: true
+              }
+            },
+            xAxis: {
+              type: 'category'
+            },
+            yAxis: {
+              title: {
+                text: 'Today Energy Consumption'
+              }
+
+            },
+            legend: {
+              enabled: false
+            },
+            plotOptions: {
+              // series: {
+              //     borderWidth: 0,
+              //     dataLabels: {
+              //         enabled: true,
+              //         format: '{point.y:.1f}'
+              //     }
+              // }
+            },
+
+            tooltip: {
+              // headerFormat: '<span style="font-size:13px">{point.name}</span><br>',
+              // headerFormat: '<span style="font-size:13px">{point.y:f}</span>:%<br>',
+              pointFormat: '<span style="color:{point.color}">{point.y} KW</span><br/>'
+            },
+
+            series: [{
+              name: "Energy",
+              colorByPoint: true,
+              data: <?php echo json_encode($energyData, JSON_NUMERIC_CHECK); ?>,
+
+            }],
+            drilldown: {
+              series: [{
+
+                  id: 'AMB',
+                  color: '#346CDD',
+
+                  data: <?php echo json_encode(
+                          $emp_data_points11,
+                          JSON_NUMERIC_CHECK
+                        ); ?>,
+
+                },
+                {
+
+                  id: 'Compressor Panel',
+                  color: '#346CDD',
+
+                  data: <?php echo json_encode(
+                          $emp_data_points22,
+                          JSON_NUMERIC_CHECK
+                        ); ?>,
+                },
+                {
+
+                  id: 'MS Lamination Machine 2',
+                  color: '#346CDD',
+                  data: <?php echo json_encode(
+                          $emp_data_points33,
+                          JSON_NUMERIC_CHECK
+                        ); ?>,
+                },
+                {
+
+                  id: 'MS',
+                  color: '#346CDD',
+
+                  data: <?php echo json_encode(
+                          $emp_data_points44,
+                          JSON_NUMERIC_CHECK
+                        ); ?>,
+                },
+                {
+
+                  id: 'TM',
+                  color: '#F88379',
+
+                  data: <?php echo json_encode(
+                          $emp_data_points55,
+                          JSON_NUMERIC_CHECK
+                        ); ?>,
+                },
+                {
+
+                id: 'WorkShop',
+                color: '#346CDD',
+
+                data: <?php echo json_encode(
+                        $emp_data_points66,
+                        JSON_NUMERIC_CHECK
+                      ); ?>,
+                },
+                {
+
+                id: 'Compressor',
+                color: '#F88379',
+
+                data: <?php echo json_encode(
+                        $emp_data_points77,
+                        JSON_NUMERIC_CHECK
+                      ); ?>,
+                }
+              ]
+            }
+
+
+
+
+          });
+
+          Highcharts.chart('container', {
+            chart: {
+              type: 'line'
+            },
+            title: {
+              text: 'Energy Data'
+            },
+
+            xAxis: {
+              categories: datesArray,
+              visible: false
+            },
+            yAxis: {
+              min: 0,
+              title: {
+                text: 'Energy (KV)'
+              }
+            },
+            tooltip: {
+              headerFormat: '<span style="font-size:10px">Date: {point.x}</span><table>',
+              pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} KW </b></td></tr>',
+              footerFormat: '</table>',
+              shared: true,
+              useHTML: true
+            },
+            plotOptions: {
+              series: {
+                label: {
+                  connectorAllowed: false
+                },
+
+              },
+              column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+              }
+            },
+            series: seriesData
+          });
 
         });
       }
@@ -2276,7 +2629,7 @@ if (!$this->session->has_userdata('user_id')) {
       //var Type = $("select[name='Type']").val()
       var date1 = $("#date1").val()
       var date2 = $("#date2").val()
-      dates=[]
+      dates = []
       //alert(date1);
       let url = "<?php echo base_url("Energy/energy/getEnergyDt/") ?>" + date1 + "/" + date2
       //alert(url);
@@ -2386,21 +2739,21 @@ if (!$this->session->has_userdata('user_id')) {
           ]
         });
         var datesArray = []
-      var energy = []
-      var msPrinting = []
-      var AMBhall = []
-      var Canteenhall = []
-      var Compressor = []
-      var CompressorPanelhall = []
-      var MShall = []
-      var OVALMachinehall = []
-      var WorkShophall = []
-      var TMHALL = []
-      var msPress = []
-   var msLamination=[]
+        var energy = []
+        var msPrinting = []
+        var AMBhall = []
+        var Canteenhall = []
+        var Compressor = []
+        var CompressorPanelhall = []
+        var MShall = []
+        var OVALMachinehall = []
+        var WorkShophall = []
+        var TMHALL = []
+        var msPress = []
+        var msLamination = []
 
-     
-      
+
+
 
 
         data['dailyenergy'].forEach(element => {
@@ -2422,7 +2775,7 @@ if (!$this->session->has_userdata('user_id')) {
           if (element.HallName == 'MS') {
             MShall.push(parseFloat(element['Energy']));
           }
-          if(element.HallName=='MS PRESS'){
+          if (element.HallName == 'MS PRESS') {
             msPress.push(parseFloat(element['Energy']));
           }
           if (element.HallName == 'MS PRINTING') {
@@ -2446,7 +2799,7 @@ if (!$this->session->has_userdata('user_id')) {
 
         let seriesData = [{
             name: 'Compressor Panel',
-            data: energy 
+            data: energy
           },
           {
             name: 'Airless Mini Hall',
@@ -2505,7 +2858,7 @@ if (!$this->session->has_userdata('user_id')) {
 
           xAxis: {
             categories: dates,
-            visible:false
+            visible: false
           },
           yAxis: {
             min: 0,
@@ -2536,6 +2889,73 @@ if (!$this->session->has_userdata('user_id')) {
           series: seriesData
         });
       });
+
+      // Highcharts.chart('container1', {
+      //   chart: {
+      //     type: 'column'
+      //   },
+      //   title: {
+      //     text: 'Today Production (Article Wise)'
+      //   },
+
+      //   accessibility: {
+      //     announceNewData: {
+      //       enabled: true
+      //     }
+      //   },
+      //   xAxis: {
+      //     type: 'category'
+      //   },
+      //   yAxis: {
+      //     title: {
+      //       text: 'Total Production'
+      //     }
+
+      //   },
+      //   legend: {
+      //     enabled: false
+      //   },
+      //   plotOptions: {
+      //     // series: {
+      //     //     borderWidth: 0,
+      //     //     dataLabels: {
+      //     //         enabled: true,
+      //     //         format: '{point.y:.1f}'
+      //     //     }
+      //     // }
+      //   },
+
+      //   tooltip: {
+      //     // headerFormat: '<span style="font-size:13px">{point.name}</span><br>',
+      //     // headerFormat: '<span style="font-size:13px">{point.y:f}</span>:%<br>',
+      //     pointFormat: '<span style="color:{point.color}">{point.y}</span><br/>'
+      //   },
+
+      //   series: [{
+      //     name: "Production",
+      //     colorByPoint: true,
+      //     data: <?php echo json_encode($energyData, JSON_NUMERIC_CHECK); ?>,
+
+
+      //   }],
+
+
+      //   drilldown: {
+      //     series: [{
+      //       data: <?php echo json_encode($energyDataByHourly, JSON_NUMERIC_CHECK); ?>
+      //     }]
+
+      //   }
+
+
+
+      // });
+
+
+
+
+
+
     }
   </script>
 

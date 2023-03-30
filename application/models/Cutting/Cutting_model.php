@@ -16,9 +16,13 @@ class Cutting_model extends CI_Model {
 
  public function HfCutting($currentDate)
  {
-  $query = $this->db->query("SELECT  Name, Count(Counter) AS Counter
+  $Month = date('m');
+  $Year = date('Y');
+  $Day = date('d');
+  $Date=$Year.'-'.$Month.'-'.$Day;
+  $query = $this->db->query("SELECT        Name, COUNT(Counter) AS Counter
   FROM            dbo.view_HF_Cutting
-  WHERE        (EntryDate = '$currentDate')
+  WHERE        (Date = CONVERT(DATETIME, '$Date 00:00:00', 102))
   GROUP BY Name");
   
 return  $query->result_array();

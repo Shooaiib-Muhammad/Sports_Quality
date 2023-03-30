@@ -25,14 +25,17 @@ class Machine_model extends CI_Model
                 'Dev' => $result->Dev,
                 'store' => $result->store,
                 'admin' => $result->admin,
-                 'Uploading' => $result->Uploading,
+                'Uploading' => $result->Uploading,
                 'ReviewStatus' => $result->ReviewStatus,
                 'ApprovalStatus' => $result->ApprovalStatus,
                 'testRequest' => $result->testRequest,
                 'FIT' => $result->FIT,
                 'DPA_Status' => $result->DPA_Status,
                 'Efficency' => $result->Efficency,
-            
+                'MIS_Status' => $result->MIS_Status,
+                'LabReportsStatus' => $result->LabReportsStatus,
+                'LabTestReqStatus' => $result->LabTestReqStatus,
+
             ];
 
             $Status = $result->Status;

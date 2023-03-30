@@ -132,11 +132,20 @@
             <!-- the #js-page-content id is needed for some plugins to initialize -->
             <main id="js-page-content" role="main" class="page-content">
 
+            <ol class="breadcrumb page-breadcrumb">
+                        <li class="breadcrumb-item"><a href="<?php echo base_url(
+                                                                    'index.php/DashboardController'
+                                                                ); ?>">Dashboard</a></li>
+                                                                <li class="breadcrumb-item">TM Carcas Issuance</li>
+
+
+                        <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                    </ol>
 
 
                 <div class="subheader">
                     <h1 class="subheader-title">
-                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>TM Carcas</span>
+                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>TM Carcas Issuance</span>
                     </h1>
 
 
@@ -267,7 +276,7 @@
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                             <!-- <h2 class="">Target <br> 74%</h2> -->
                                             <small class="m-0 l-h-n">Target</small>
-                                            <span >74%</span>
+                                            <span >75%</span>
                                         </h3>
 
                                     </div>
@@ -1270,15 +1279,15 @@ else{
     // }
     if(dayId == 5){
  
- EfficiencyFinal = (((counterValue*5.87)/((minutes*15)-(60*15)) )*100).toFixed(2)
+ EfficiencyFinal = (((counterValue*5.87)/((minutes*22)-(60*22)) )*100).toFixed(2)
 
- $("#realTimeId").text((minutes*15)-(60*15))
+ $("#realTimeId").text((minutes*22)-(60*22))
 }
 else{
-    EfficiencyFinal = (((counterValue*5.87)/((minutes*15)-(45*15)) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*5.87)/((minutes*22)-(45*22)) )*100).toFixed(2)
 
 
-$("#realTimeId").text((minutes*15)-(45*15))
+$("#realTimeId").text((minutes*22)-(45*22))
 }
 EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     $("#employeeId").text(17)
@@ -1372,11 +1381,11 @@ EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     else{
         dateDifference = date2 - date1;
     minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*5.87)/(minutes*15) )*100).toFixed(2)
+    EfficiencyFinal = (((counterValue*5.87)/(minutes*22) )*100).toFixed(2)
     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
     console.log(EfficiencyFinalArray)
-    $("#realTimeId").text(minutes*15)
-    $("#employeeId").text(15)
+    $("#realTimeId").text(minutes*22)
+    $("#employeeId").text(22)
     $("#efficiencyValueId").text(EfficiencyFinal + "%")
     var gaugeOptions = {
             chart: {

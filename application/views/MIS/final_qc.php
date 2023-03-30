@@ -4,10 +4,19 @@
         text-align: center;
     }
 </style>
-<h2 class="bg-primary text-white p-2 text-center">LFB Final QC ( <?php format($start_date1); echo " To "; format($end_date1) ?> )</h2>
-<table class="table table-hover table-bordered table-responsive" id="forming-table" >
-    <thead>
-    <tr class="bg-dark text-white">
+<?php 
+
+// print_r($data1);
+
+?>
+
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-sm-12 col-xs-12">
+    
+  <h2 class="bg-primary text-white p-2 text-center">LFB Final QC ( <?php format($start_date1); echo " To "; format($end_date1) ?> )</h2>
+<table class="table table-hover table-bordered table-responsive w-100" id="forming-table" >
+    <thead class="bg-primary-200 text-light">
+    <tr>
     <th>Date</th>
     <th>Station Name</th>
       <th>MP No</th>
@@ -164,7 +173,7 @@ $DShape1=$d['DShape']+$DShape1;
 $MissGlue1=$d['MissGlue']+$MissGlue1;
  }
 ?>
-<tr style="background-color:#202020; color:White;"> 
+<tr class="bg-primary text-white"> 
      <td></td>
          <td></td>
      <td></td>
@@ -213,19 +222,22 @@ $MissGlue1=$d['MissGlue']+$MissGlue1;
 
 </tbody>
 </table>
-<h2 class="bg-primary text-white p-2 text-center">LFB Final Article wise Details between  ( <?php format($start_date1); echo " To "; format($end_date1) ?> )</h2>
-<table class="table table-hover table-bordered table-responsive" id="forming-table1" >
-    <thead>
-    <tr class="bg-dark text-white">
-    <th>Date</th>
-           <th>Article</th>
-          <th>Size</th>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-sm-12 col-xs-12">
+
+  <h2 class="bg-primary text-white p-2 text-center">LFB Final Line wise Details between  ( <?php format($start_date1); echo " To "; format($end_date1) ?> )</h2>
+<table class="table table-hover table-bordered table-responsive w-100" id="forming-table1"  >
+    <thead class="bg-primary-200 text-light">
+    <tr>
+          <th>Date</th>
+          <th>Line Name</th>
           <th>Check</th>
           <th>Pass</th>
-          <th>Fail</th>
- 
-        
-        
+          <th>Fail</th>    
     </tr>
     </thead>
 
@@ -240,22 +252,21 @@ if($data1) {
 foreach($data1 as $d) {
     $Datee=$d['Datee'];
     //$Stationname=$d['Stationname'];
-      $ArtCode=$d['ArtCode'];
-    $ArtSIze=$d['ArtSIze'];
+    // $ArtCode=$d['ArtCode'];
+    // $ArtSIze=$d['ArtSIze'];
+
+    $Stationname=$d['Stationname'];
     $TotalChecked=$d['TotalChecked'];
     $TotalPass=$d['TotalPass'];
     $Fail=$d['Fail'];
    
-    $ArtCode=$d['ArtCode'];
-    $ArtSIze=$d['ArtSIze'];
+    // $ArtSIze=$d['ArtSIze'];
     
    
     ?>
      <tr>
      <td><?php Echo $Datee; ?></td>
-     
-     <td><?php Echo $ArtCode; ?></td>
-     <td><?php Echo $ArtSIze; ?></td>
+     <td><?php Echo $Stationname; ?></td>
      <td><?php r($TotalChecked); ?></td>
      <td><?php r($TotalPass); ?></td>
      <td><?php r($Fail); ?></td>
@@ -269,11 +280,9 @@ $Fail1=$d['Fail']+$Fail1;
 
  }
 ?>
-<tr style="background-color:#202020; color:White;"> 
+<tr class="bg-primary text-white"> 
      <td></td>
-         <td></td>
-  
-     <td>Total :</td>
+     <td>Total : </td>
      <td><?php r($TotalChecked1); ?></td>
      <td><?php r($TotalPass1); ?></td>
      <td><?php r($Fail1); ?></td>
@@ -296,10 +305,17 @@ $Fail1=$d['Fail']+$Fail1;
 
 </tbody>
 </table>
+
+  </div>
+</div>
+
+<div class="row">
+<div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-sm-12 col-xs-12">
+
 <h2 class="bg-primary text-white p-2 text-center">LFB Final Article wise Details between  ( <?php format($start_date1); echo " To "; format($end_date1) ?> )</h2>
-<table class="table table-hover table-bordered table-responsive" id="forming-table2" >
-    <thead>
-    <tr class="bg-dark text-white">
+<table class="table table-hover table-bordered table-responsive w-100" id="forming-table2" >
+    <thead class="bg-primary-200 text-light">
+    <tr>
     <th>Date</th>
      <th>MPNo.</th>
            <th>Article</th>
@@ -358,7 +374,7 @@ $TotalQty1=$d['TotalQty']+$TotalQty;
 $Balance1=$TotalQty1-$TotalPass1;
  }
 ?>
-<tr style="background-color:#202020; color:White;"> 
+<tr class="bg-primary text-white"> 
      <td></td>
          <td></td>
   <td></td>
@@ -388,10 +404,19 @@ $Balance1=$TotalQty1-$TotalPass1;
 
 </tbody>
 </table>
+
+</div>
+
+</div>
+
+<div class="row">
+<div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-sm-12 col-xs-12">
+
+
 <h2 class="bg-primary text-white p-2 text-center">LFB Final PO Wise Detail</h2>
-<table class="table table-hover table-bordered table-responsive" id="Po-table" >
-    <thead>
-    <tr class="bg-dark text-white">
+<table class="table table-hover table-bordered table-responsive w-100" id="Po-table" >
+    <thead class="bg-primary-200 text-white">
+    <tr>
       <th>PO.</th>
     <th>MP No</th>
      <th>TIcket No.</th>
@@ -468,3 +493,9 @@ foreach($data2 as $d) {
 
 </tbody>
 </table>
+
+
+</div>
+</div>
+
+

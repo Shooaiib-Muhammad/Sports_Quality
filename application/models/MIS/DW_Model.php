@@ -44,14 +44,14 @@ GROUP BY FactoryCode");
                } elseif ($FC == 3) {
 
                     # code...
-                    $query = $this->db->query("SELECT        TOP (100) PERCENT dbo.tbl_PC_AMB_Line.LineName, SUM(dbo.tbl_PC_MS.TotalChecked) AS TotalChecked, SUM(dbo.tbl_PC_MS.Pass) AS Pass, 
-                         SUM(dbo.tbl_PC_MS.Fail) AS Fail, MAX(dbo.tbl_PC_MS.PresentWorkers) AS PresentWorkers
-FROM            dbo.tbl_PC_MS INNER JOIN
-                         dbo.tbl_Inv_Tran_Date ON dbo.tbl_PC_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
-                         dbo.tbl_PC_AMB_Line ON dbo.tbl_PC_MS.Line = dbo.tbl_PC_AMB_Line.LineID
+                    $query = $this->db->query("SELECT        TOP (100) PERCENT dbo.tbl_PC_AMB_Line.LineName, SUM(dbo.View_Union_MS.TotalChecked) AS TotalChecked, SUM(dbo.View_Union_MS.Pass) AS Pass, 
+                         SUM(dbo.View_Union_MS.Fail) AS Fail, MAX(dbo.View_Union_MS.PresentWorkers) AS PresentWorkers
+FROM            dbo.View_Union_MS INNER JOIN
+                         dbo.tbl_Inv_Tran_Date ON dbo.View_Union_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
+                         dbo.tbl_PC_AMB_Line ON dbo.View_Union_MS.Line = dbo.tbl_PC_AMB_Line.LineID
 WHERE        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$Startdate 00:00:00', 102) AND CONVERT(DATETIME, '$Enddate 00:00:00', 102))
-GROUP BY dbo.tbl_PC_AMB_Line.LineName, dbo.tbl_PC_MS.Line
-ORDER BY dbo.tbl_PC_MS.Line");
+GROUP BY dbo.tbl_PC_AMB_Line.LineName, dbo.View_Union_MS.Line
+ORDER BY dbo.View_Union_MS.Line");
                     return $query->result_array();
                } elseif ($FC == 4) {
 
@@ -78,10 +78,10 @@ ORDER BY Date");
                     return $result = $query->result_array();
                } elseif ($FC == 3) {
 
-                    $query = $this->db->query("SELECT        TOP (100) PERCENT SUM(dbo.tbl_PC_MS.TotalChecked) AS Inspected, SUM(dbo.tbl_PC_MS.Pass) AS PassQty, CONVERT(varchar, dbo.tbl_Inv_Tran_Date.DateName,
-                          103) AS Date, SUM(dbo.tbl_PC_MS.Fail) AS FailQty
-FROM            dbo.tbl_PC_MS INNER JOIN
-                         dbo.tbl_Inv_Tran_Date ON dbo.tbl_PC_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo
+                    $query = $this->db->query("SELECT        TOP (100) PERCENT SUM(dbo.View_Union_MS.TotalChecked) AS Inspected, SUM(dbo.View_Union_MS.Pass) AS PassQty, CONVERT(varchar, dbo.tbl_Inv_Tran_Date.DateName,
+                          103) AS Date, SUM(dbo.View_Union_MS.Fail) AS FailQty
+FROM            dbo.View_Union_MS INNER JOIN
+                         dbo.tbl_Inv_Tran_Date ON dbo.View_Union_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo
 WHERE        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$Startdate 00:00:00', 102) AND CONVERT(DATETIME, '$Enddate 00:00:00', 102))
 GROUP BY CONVERT(varchar, dbo.tbl_Inv_Tran_Date.DateName, 103)
 ");
@@ -128,10 +128,10 @@ WHERE        (DateName BETWEEN CONVERT(DATETIME, '$Startdate 00:00:00', 102) AND
                     return $result = $query->result_array();
                } elseif ($FC == 3) { //MS
 
-                    $query = $this->db->query("SELECT        TOP (100) PERCENT SUM(dbo.tbl_PC_MS.TotalChecked) AS TotalChecked, SUM(dbo.tbl_PC_MS.Pass) AS Pass, SUM(dbo.tbl_PC_MS.Fail) AS Fail
-FROM            dbo.tbl_PC_MS INNER JOIN
-                         dbo.tbl_Inv_Tran_Date ON dbo.tbl_PC_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
-                         dbo.tbl_PC_AMB_Line ON dbo.tbl_PC_MS.Line = dbo.tbl_PC_AMB_Line.LineID
+                    $query = $this->db->query("SELECT        TOP (100) PERCENT SUM(dbo.View_Union_MS.TotalChecked) AS TotalChecked, SUM(dbo.View_Union_MS.Pass) AS Pass, SUM(dbo.View_Union_MS.Fail) AS Fail
+FROM            dbo.View_Union_MS INNER JOIN
+                         dbo.tbl_Inv_Tran_Date ON dbo.View_Union_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
+                         dbo.tbl_PC_AMB_Line ON dbo.View_Union_MS.Line = dbo.tbl_PC_AMB_Line.LineID
 WHERE        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$Startdate 00:00:00', 102) AND CONVERT(DATETIME, '$Enddate 00:00:00', 102))");
                     return $result = $query->result_array();
                } elseif ($FC == 4) { // AMb
@@ -157,10 +157,10 @@ WHERE        (DateName BETWEEN CONVERT(DATETIME, '$Startdate 00:00:00', 102) AND
                     return $result = $query->result_array();
                } elseif ($FC == 3) {
 
-                    $query = $this->db->query("SELECT        TOP (100) PERCENT SUM(dbo.tbl_PC_MS.TotalChecked) AS Inspected, SUM(dbo.tbl_PC_MS.Pass) AS PassQty, SUM(dbo.tbl_PC_MS.Fail) AS FailQty
-FROM            dbo.tbl_PC_MS INNER JOIN
-                         dbo.tbl_Inv_Tran_Date ON dbo.tbl_PC_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
-                         dbo.tbl_PC_AMB_Line ON dbo.tbl_PC_MS.Line = dbo.tbl_PC_AMB_Line.LineID
+                    $query = $this->db->query("SELECT        TOP (100) PERCENT SUM(dbo.View_Union_MS.TotalChecked) AS Inspected, SUM(dbo.View_Union_MS.Pass) AS PassQty, SUM(dbo.View_Union_MS.Fail) AS FailQty
+FROM            dbo.View_Union_MS INNER JOIN
+                         dbo.tbl_Inv_Tran_Date ON dbo.View_Union_MS.DayNo = dbo.tbl_Inv_Tran_Date.DayNo INNER JOIN
+                         dbo.tbl_PC_AMB_Line ON dbo.View_Union_MS.Line = dbo.tbl_PC_AMB_Line.LineID
 WHERE        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$Startdate 00:00:00', 102) AND CONVERT(DATETIME, '$Enddate 00:00:00', 102))");
                     return $result = $query->result_array();
                } elseif ($FC == 4) {

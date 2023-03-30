@@ -50,7 +50,7 @@ if (!$this->session->has_userdata('user_id')) {
                                 <div class="modal-body">
                                     <form name="formDepartment" id="myformDepartment" method="POST" action="<?php echo base_url(
                                                                                                                 ''
-                                                                                                            ); ?>LabController/EditRequest">
+                                                                                                            ); ?>LabController/EditTestRequest">
                                         <input type="hidden" name="Id" id="IdValue" value="">
 
                                         <div class="row" style="display:flex">
@@ -66,7 +66,7 @@ if (!$this->session->has_userdata('user_id')) {
                                             <div class="col-md-6">
 
                                                 <label class="form-contol" for="customFile">CSS #</label>
-                                                <input type="text" class="form-control" id="cssNo" name="cssNo">
+                                                <input type="text" class="form-control" required id="cssNo" name="cssNo">
 
                                             </div>
 
@@ -154,7 +154,7 @@ if (!$this->session->has_userdata('user_id')) {
                                 <div class="modal-body">
                                     <form name="formDepartment" id="myformDepartment" method="POST" action="<?php echo base_url(
                                                                                                                 ''
-                                                                                                            ); ?>LabController/EditRequest">
+                                                                                                            ); ?>LabController/EditTestRequest">
                                         <input type="hidden" name="Id" id="IdValueBackToSender" value="">
 
                                         <div class="row" style="display:flex">
@@ -187,9 +187,81 @@ if (!$this->session->has_userdata('user_id')) {
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->
                     </div>
+                    <!--Start ADD FGT CSS REQUEST MODAL -->
+                    <div id="addCssModal" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: rgb(83,78,130);color:white;font-weight:bolder">
+                                    <h1 class="modal-title" id="changeTitle">FGT Request Css No</h1>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" style="color: white;">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form name="formDepartment" id="" method="POST">
+
+                                        <div class="row" style="display:flex">
+                                            <input type="hidden" id="FGTId">
 
 
+                                            <!-- <div class="col-md-6">
+                                                <label for="">Add CSS No</label>
+                                                <input type="text" class="form-control" required name="cssNo" id="cssNo">
 
+                                            </div> -->
+                                            <div class="col-md-6">
+
+                                                <label for="customFile">CSS #</label>
+                                                <input type="text" class="form-control" id="css_no" name="css_no">
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-md-6 mt-4">
+
+                                            <button class="btn btn-primary" id="saveBtnCssNo">Save</button>
+
+                                        </div>
+
+
+                                    </form>
+
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
+                    <!--End ADD FGT CSS REQUEST MODAL -->
+
+                     <!--Start QR Code For FGT REQUEST MODAL -->
+                     <div id="qrCodeModel" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: rgb(83,78,130);color:white;font-weight:bolder">
+                                    <h1 class="modal-title" id="changeTitle">FGT Request QR Code</h1>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" style="color: white;">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12" id="qrCodeToPrint">
+                                                    <img src="" alt="" id="qrCodeImage" width="150px" height="150px">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                        <button type="button" class="btn btn-primary" onclick="printDiv('qrCodeToPrint')" data-dismiss="modal">Print QrCode</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
+                    <!--End Qr Code For Fgt REQUEST MODAL -->
 
                     <br><br>
                     <div class="row">
@@ -221,287 +293,667 @@ if (!$this->session->has_userdata('user_id')) {
                                         <div class="panel-content">
 
                                             <ul class="nav nav-pills" role="tablist">
-                                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Pending</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Send to Lab</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3">Send back to Requester</a></li>
+                                                <li class="nav-item"><a class="nav-link active" onclick="Pending()" data-toggle="tab" href="#tab_direction-1">Material Pending</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" onclick="SendToLab()" href="#tab_direction-2">Material Send to Lab</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" onclick="SendBackToRequester()" href="#tab_direction-3">Material Send back to Requester</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" onclick="SendBackToRequester()" href="#tab_direction-4">Material Test Requests</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-5">FGT Pending</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-6">FGT Send</a></li>
 
                                             </ul>
 
+
+
+
+
                                             <div class="tab-content py-3">
 
+
                                                 <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
-                                                    <table class="table table-striped table-hover table-sm" id="ActivityData">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Request Date</th>
-                                                                <th>Type</th>
-                                                                <th>Material</th>
-                                                                <th>Factory Code</th>
-                                                                <th>Article / Material Name</th>
-                                                                <th>Test Requested</th>
-                                                                <th>Due Date</th>
-                                                                <th>Complete Date</th>
-                                                                <th>Quantity Issed</th>
 
-                                                                <th>Sender Reference</th>
-                                                                <th>Receiver Signature</th>
-                                                                <th>Status</th>
-                                                                <th>ACTIONS</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <?php //print_r($loadFGT_H);
-                                                            $this->load->model('LabModel', 'l');
-                                                            foreach ($getTestRequests as $keys) {
-                                                                $Requestid = $keys['TID'];
-                                                                $gettests = $this->l->getrequesttest($Requestid);
-                                                                //   print_r($gettests);
-                                                                if ($gettests) {
-                                                                    // $name = implode(",", $gettests['Name']);
-                                                                    // echo $name;
-                                                                    //echo 'The values are: ';
-                                                                    $result = '';
-                                                                    foreach ($gettests as $key) {
-                                                                        $result .= $key['Name'] . ',';
-                                                                    }
-                                                                    $result = rtrim($result, ',');
-                                                                } else {
-                                                                    $result = '';
-                                                                }
 
-                                                            ?>
 
+                                                    <?php
+                                                    $Month = date('m');
+                                                    $Year = date('Y');
+                                                    $Day = date('d');
+                                                    $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+                                                    ?>
+
+                                                    <div class="row mb-3 mt-4">
+
+
+                                                        <div class="col-md-2">
+                                                            <label>Start Date :</label>
+                                                            <div class="form-group-inline">
+
+                                                                <input name="date" id="date1" class="form-control" type="date" value="<?php echo $CurrentDate; ?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label>End Date</label>
+                                                            <div class="form-group-inline">
+
+                                                                <input name="date" id="date2" class="form-control" type="date" value="<?php echo $CurrentDate; ?>">
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+
+
+                                                    <div id="table2">
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+
+
+
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div id="table1">
+
+                                                        <table class="table table-bordered  table-striped table-hover table-sm w-100" style="width: 100%;" id="ActivityData">
+                                                            <thead class="bg-primary-200 text-light p-2">
                                                                 <tr>
-                                                                    <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
-                                                                    <td><?php echo $keys['Type']; ?></td>
-                                                                    <td><?php echo $keys['MaterialType']; ?></td>
-                                                                    <td><?php echo $keys['Factory_Code']; ?></td>
-                                                                    <td><?php echo $keys['Article']; ?></td>
-                                                                    <td> <?php echo $result; ?></td>
-                                                                    <td><?php echo date('d-m-Y', strtotime($keys['Due_Date'])); ?></td>
-                                                                    <td><?php echo date('d-m-Y', strtotime($keys['CompletationDate'])); ?></td>
-                                                                    <td><?php echo $keys['Quantity_Issued']; ?></td>
+                                                                    <th class="h5">Request Date</th>
+                                                                    <th class="h5">Type</th>
+                                                                    <th class="h5">Material</th>
+                                                                    <th class="h5">Factory Code</th>
+                                                                    <th class="h5">Article / Material Name</th>
+                                                                    <th class="h5">Test Requested</th>
+                                                                    <th style="display:none" class="h5">Due Date</th>
+                                                                    <th style="display:none" class="h5">Complete Date</th>
+                                                                    <th class="h5">Quantity Issed</th>
 
-                                                                    <td> <span class="badge badge-danger p-1"><?php echo $keys['SRSenderID']; ?></span></td>
-                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
-                                                                    <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
-
-                                                                    <td>
-                                                                        <div class="col-md-2">
-                                                                            <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo $keys['TID']; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
-                                                                            <!-- <button type="button" style="display: inline-block;" id="undo.<?php echo $keys['TID']; ?>" value="<?php echo $keys['TID']; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> -->
-
-                                                                        </div>
-                                                                    </td>
-
-
+                                                                    <th class="h5">Sender Reference</th>
+                                                                    <th class="h5">Receiver Signature</th>
+                                                                    <th class="h5">Status</th>
+                                                                    <th class="h5">ACTIONS</th>
                                                                 </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php //print_r($loadFGT_H);
+                                                                $this->load->model('LabModel', 'l');
+                                                                foreach ($getTestRequests as $keys) {
+                                                                    $Requestid = $keys['TID'];
+                                                                    $gettests = $this->l->getrequesttest($Requestid);
+                                                                    //   print_r($gettests);
+                                                                    if ($gettests) {
+                                                                        // $name = implode(",", $gettests['Name']);
+                                                                        // echo $name;
+                                                                        //echo 'The values are: ';
+                                                                        $result = '';
+                                                                        foreach ($gettests as $key) {
+                                                                            $result .= $key['Name'] . ',';
+                                                                        }
+                                                                        $result = rtrim($result, ',');
+                                                                    } else {
+                                                                        $result = '';
+                                                                    }
+
+                                                                ?>
+
+                                                                    <tr>
+                                                                        <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
+                                                                        <td><?php echo $keys['Type']; ?></td>
+                                                                        <td><?php echo $keys['MaterialType']; ?></td>
+                                                                        <td><?php echo $keys['Factory_Code']; ?></td>
+                                                                        <td><?php echo $keys['Article']; ?></td>
+                                                                        <td> <?php echo $result; ?></td>
+                                                                        <td style="display:none"><?php echo date('d-m-Y', strtotime($keys['Due_Date'])); ?></td>
+                                                                        <td style="display:none"><?php echo date('d-m-Y', strtotime($keys['CompletationDate'])); ?></td>
+                                                                        <td><?php echo $keys['Quantity_Issued']; ?></td>
+
+                                                                        <td> <span class="badge badge-danger p-1"><?php echo $keys['SRSenderID']; ?></span></td>
+                                                                        <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
+                                                                        <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
+
+                                                                        <td>
+                                                                            <div class="col-md-2">
+                                                                                <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo $keys['TID']; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
+                                                                                <!-- <button type="button" style="display: inline-block;" id="undo.<?php echo $keys['TID']; ?>" value="<?php echo $keys['TID']; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> -->
+
+                                                                            </div>
+                                                                        </td>
 
 
-                                                            <?php
-                                                            } ?>
+                                                                    </tr>
 
-                                                        </tbody>
-                                                    </table>
+
+                                                                <?php
+                                                                } ?>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
                                                 </div>
+
                                                 <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
 
-                                                    <table class="table table-striped table-hover table-sm" id="ActivityData2">
-                                                        <thead>
+                                                    <?php
+                                                    $Month = date('m');
+                                                    $Year = date('Y');
+                                                    $Day = date('d');
+                                                    $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+                                                    ?>
 
-                                                            <tr>
-                                                                <th>Request Date</th>
-                                                                <th>Type</th>
-                                                                <th>Material</th>
-                                                                <th>CSS Code</th>
-                                                                <th>Factory Code</th>
-                                                                <th>Article / Material Name</th>
-                                                                <th>Test Requested</th>
-                                                                <th>Due Date</th>
-                                                                <th>Complete Date</th>
-                                                                <th>Quantity Issed</th>
-                                                                <th>Quantity Received</th>
-                                                                <th>Quantity Retained</th>
-                                                                <th>Quantity Returned</th>
-                                                                <th>Lab Result</th>
-                                                                <th>Lab Status</th>
-                                                                <th>Sender Reference</th>
-                                                                <th>Receiver Signature</th>
-                                                                <th>Sender Signature</th>
-                                                                <th>Status</th>
-                                                                <th>ACTIONS</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <?php //print_r($loadFGT_H);
-                                                            foreach ($getTestRequestsSendToLab as $keys) {
-                                                                $Requestid = $keys['TID'];
-                                                                $gettests = $this->l->getrequesttest($Requestid);
-                                                                //   print_r($gettests);
-                                                                if ($gettests) {
-                                                                    // $name = implode(",", $gettests['Name']);
-                                                                    // echo $name;
-                                                                    //echo 'The values are: ';
-                                                                    $result = '';
-                                                                    foreach ($gettests as $key) {
-                                                                        $result .= $key['Name'] . ',';
-                                                                    }
-                                                                    $result = rtrim($result, ',');
-                                                                } else {
-                                                                    $result = '';
-                                                                }
-                                                            ?>
+                                                    <div class="row mb-3 mt-4">
+
+
+                                                        <div class="col-md-2">
+                                                            <label>Start Date :</label>
+                                                            <div class="form-group-inline">
+
+                                                                <input name="date" id="date3" class="form-control" type="date" value="<?php echo $CurrentDate; ?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label>End Date</label>
+                                                            <div class="form-group-inline">
+
+                                                                <input name="date" id="date4" class="form-control" type="date" value="<?php echo $CurrentDate; ?>">
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+
+
+                                                    <div id="table3">
+
+
+
+                                                        <div class="row">
+                                                            <div style="display:none" id="btnShow" class="col-md-2">
+                                                                <div class="btn btn-warning  mb-2" id="submit-button"><span style="font-weight:bolder">Send Back Requester to </span></div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+
+                                                                <table class="table table-striped table-hover table-sm" style="width:100%;">
+
+
+                                                                </table>
+
+
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+
+
+                                                    <div id="sendToLab">
+
+
+
+                                                        <table class="table table-bordered table-striped table-hover table-sm" id="ActivityData2">
+                                                            <thead class="bg-primary-200 text-light p-2">
 
                                                                 <tr>
-                                                                    <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
-                                                                    <td><?php echo $keys['Type']; ?></td>
-                                                                    <td><?php echo $keys['MaterialType']; ?></td>
-                                                                    <td><?php echo $keys['CSSNo']; ?></td>
-                                                                    <td><?php echo $keys['Factory_Code']; ?></td>
-                                                                    <td><?php echo $keys['Article']; ?></td>
-                                                                    <td> <?php echo $result; ?></td>
-                                                                    <td><?php echo date('d-m-Y', strtotime($keys['Due_Date'])); ?></td>
-                                                                    <td><?php echo date('d-m-Y', strtotime($keys['CompletationDate'])); ?></td>
-                                                                    <td><?php echo $keys['Quantity_Issued']; ?></td>
-                                                                    <td><?php echo $keys['Quantity_Received']; ?></td>
-                                                                    <td><?php echo $keys['Quantity_Retained']; ?></td>
-                                                                    <td><?php echo $keys['Quantity_Returned']; ?></td>
-                                                                    <td><?php echo $keys['Result']; ?></td>
-                                                                    <td><span class="badge badge-secondary p-1"><?php echo $keys['LabAcknowledgementStatus']; ?></span></td>
-                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderID']; ?></span></td>
-                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
-                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['senderSignatureRec']; ?></span></td>
-                                                                    <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
-
-                                                                    <td>
-
-                                                                        <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtnBacktoSender" id="btn.<?php echo $keys['TID']; ?>">Back to Sender</button>
-                                                                        <!-- <button type="button" style="display: inline-block;" id="undo.<?php echo $keys['TID']; ?>" value="<?php echo $keys['TID']; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> -->
-
-
-                                                                    </td>
-
-
+                                                                    <th>
+                                                                        <div class=" custom-control custom-checkbox no-sort">
+                                                                            <input class="custom-control-input" type="checkbox" id="select-all">
+                                                                            <label for="select-all" class="custom-control-label"></label>
+                                                                        </div>
+                                                                    </th>
+                                                                    <th class="h5">Request Date</th>
+                                                                    <th class="h5">Type</th>
+                                                                    <th class="h5">Material</th>
+                                                                    <th class="h5">CSS Code</th>
+                                                                    <th class="h5">Factory Code</th>
+                                                                    <th class="h5">Article / Material Name</th>
+                                                                    <th class="h5">Test Requested</th>
+                                                                    <th class="h5">Due Date</th>
+                                                                    <th class="h5">Complete Date</th>
+                                                                    <th class="h5">Quantity Issed</th>
+                                                                    <th class="h5">Quantity Received</th>
+                                                                    <th class="h5">Quantity Retained</th>
+                                                                    <th class="h5">Quantity Returned</th>
+                                                                    <th class="h5">Lab Result</th>
+                                                                    <th class="h5">Lab Status</th>
+                                                                    <th class="h5">Sender Reference</th>
+                                                                    <th class="h5">Receiver Signature</th>
+                                                                    <th class="h5">Sender Signature</th>
+                                                                    <th class="h5">Status</th>
+                                                                    <th class="h5">ACTIONS</th>
                                                                 </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php //print_r($loadFGT_H);
+                                                                foreach ($getTestRequestsSendToLab as $keys) {
+                                                                    $Requestid = $keys['TID'];
+                                                                    $gettests = $this->l->getrequesttest($Requestid);
+                                                                    //   print_r($gettests);
+                                                                    if ($gettests) {
+                                                                        // $name = implode(",", $gettests['Name']);
+                                                                        // echo $name;
+                                                                        //echo 'The values are: ';
+                                                                        $result = '';
+                                                                        foreach ($gettests as $key) {
+                                                                            $result .= $key['Name'] . ',';
+                                                                        }
+                                                                        $result = rtrim($result, ',');
+                                                                    } else {
+                                                                        $result = '';
+                                                                    }
+                                                                ?>
+
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class="custom-control custom-checkbox">
+                                                                                <input class="custom-control-input leave-id" type="checkbox" id="select-<?= $keys['TID']; ?>" value="<?= $keys['TID']; ?>">
+                                                                                <label for="select-<?= $keys['TID']; ?>" class="custom-control-label"></label>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
+                                                                        <td><?php echo $keys['Type']; ?></td>
+                                                                        <td><?php echo $keys['MaterialType']; ?></td>
+                                                                        <td><?php echo $keys['CSSNo']; ?></td>
+                                                                        <td><?php echo $keys['Factory_Code']; ?></td>
+                                                                        <td><?php echo $keys['Article']; ?></td>
+                                                                        <td> <?php echo $result; ?></td>
+                                                                        <td><?php echo date('d-m-Y', strtotime($keys['Due_Date'])); ?></td>
+                                                                        <td><?php echo date('d-m-Y', strtotime($keys['CompletationDate'])); ?></td>
+                                                                        <td><?php echo $keys['Quantity_Issued']; ?></td>
+                                                                        <td><?php echo $keys['Quantity_Received']; ?></td>
+                                                                        <td><?php echo $keys['Quantity_Retained']; ?></td>
+                                                                        <td><?php echo $keys['Quantity_Returned']; ?></td>
+                                                                        <td><?php echo $keys['Result']; ?></td>
+                                                                        <td><span class="badge badge-secondary p-1"><?php echo $keys['LabAcknowledgementStatus']; ?></span></td>
+                                                                        <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderID']; ?></span></td>
+                                                                        <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
+                                                                        <td> <span class="badge badge-primary p-1"><?php echo $keys['senderSignatureRec']; ?></span></td>
+                                                                        <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
+
+                                                                        <td>
+
+                                                                            <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtnBacktoSender" id="btn.<?php echo $keys['TID']; ?>">Back to Sender</button>
+                                                                            <!-- <button type="button" style="display: inline-block;" id="undo.<?php echo $keys['TID']; ?>" value="<?php echo $keys['TID']; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> -->
 
 
-                                                            <?php
-                                                            } ?>
+                                                                        </td>
 
-                                                        </tbody>
-                                                    </table>
+
+                                                                    </tr>
+
+
+                                                                <?php
+                                                                } ?>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+
+
+
+
+
+
+
+
 
                                                 </div>
 
                                                 <div class="tab-pane fade" id="tab_direction-3" role="tabpanel">
 
-                                                    <table class="table table-striped table-hover table-sm" id="ActivityData3">
-                                                        <thead>
+                                                    <?php
+                                                    $Month = date('m');
+                                                    $Year = date('Y');
+                                                    $Day = date('d');
+                                                    $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+                                                    ?>
 
-                                                            <tr>
-                                                                <th>Request Date</th>
-                                                                <th>Type</th>
-                                                                <th>Material</th>
-                                                                <th>CSS Code</th>
-                                                                <th>Factory Code</th>
-                                                                <th>Article / Material Name</th>
-                                                                <th>Test Requested</th>
-                                                                <th>Due Date</th>
-                                                                <th>Complete Date</th>
-                                                                <th>Qty. Issed</th>
-                                                                <th>Qty. Received</th>
-                                                                <th>Qty. Retained</th>
-                                                                <th>Qty. Returned</th>
-                                                                <th>Balance</th>
-                                                                <!-- <th>Sender Reference</th> -->
-                                                                <th>Receiver Signature Receiving</th>
-                                                                <th>Sender Signature Receiving</th>
-                                                                <th>Receiver Signature Returned</th>
-                                                                <th>Sender Signature Returned</th>
-                                                                <th>Status</th>
-                                                                <th>Requester Acknowlegement</th>
-                                                                <th>ACTIONS</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <?php //print_r($loadFGT_H);
-                                                            foreach ($getTestRequestsSendToRequester as $keys) {
-                                                                $Requestid = $keys['TID'];
-                                                                $gettests = $this->l->getrequesttest($Requestid);
-                                                                //   print_r($gettests);
-                                                                if ($gettests) {
-                                                                    // $name = implode(",", $gettests['Name']);
-                                                                    // echo $name;
-                                                                    //echo 'The values are: ';
-                                                                    $result = '';
-                                                                    foreach ($gettests as $key) {
-                                                                        $result .= $key['Name'] . ',';
-                                                                    }
-                                                                    $result = rtrim($result, ',');
-                                                                } else {
-                                                                    $result = '';
-                                                                }
-                                                            ?>
+                                                    <div class="row mb-3 mt-4">
+
+
+                                                        <div class="col-md-2">
+                                                            <label>Start Date :</label>
+                                                            <div class="form-group-inline">
+
+                                                                <input name="date" id="date5" class="form-control" type="date" value="<?php echo $CurrentDate; ?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label>End Date</label>
+                                                            <div class="form-group-inline">
+
+                                                                <input name="date" id="date6" class="form-control" type="date" value="<?php echo $CurrentDate; ?>">
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+
+
+                                                    <div id="table4">
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+
+                                                                <table class="table table-striped table-hover table-sm" style="width:100%;">
+
+
+                                                                </table>
+
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div id="sendBackToRequester">
+                                                        <table class="table table-bordered table-striped table-hover table-sm" id="ActivityData3">
+                                                            <thead class="bg-primary-200 text-light p-2">
 
                                                                 <tr>
-                                                                    <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
-                                                                    <td><?php echo $keys['Type']; ?></td>
-                                                                    <td><?php echo $keys['MaterialType']; ?></td>
-                                                                    <td><?php echo $keys['CSSNo']; ?></td>
-                                                                    <td><?php echo $keys['Factory_Code']; ?></td>
-                                                                    <td><?php echo $keys['Article']; ?></td>
-                                                                    <td> <?php echo $result; ?></td>
-                                                                    <td><?php echo date('d-m-Y', strtotime($keys['Due_Date'])); ?></td>
-                                                                    <td><?php echo date('d-m-Y', strtotime($keys['CompletationDate'])); ?></td>
-                                                                    <td><?php echo $keys['Quantity_Issued']; ?></td>
-                                                                    <td><?php echo $keys['Quantity_Received']; ?></td>
-                                                                    <td><?php echo $keys['Quantity_Retained']; ?></td>
-                                                                    <td><?php echo $keys['Quantity_Returned']; ?></td>
-                                                                    <td><?php echo ($keys['Quantity_Received'] - $keys['Quantity_Returned']) ?></td>
-                                                                    <!-- <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderID']; ?></span></td> -->
-                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
-                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['senderSignatureRec']; ?></span></td>
-                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['SRETReceiverID']; ?></span></td>
-                                                                    <td> <span class="badge badge-primary p-1"><?php echo $keys['SRETSenderID']; ?></span></td>
-                                                                    <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
-                                                                    <td> <span class="badge badge-warning p-1"><?php echo $keys['finalStatus']; ?></span></td>
-                                                                    <td>
-
-                                                                        <button type="button" style="display: inline-block;" class="btn btn-danger btn-xs" disabled id="btn.<?php echo $keys['TID']; ?>">Locked</button>
-                                                                        <!-- <button type="button" style="display: inline-block;" id="undo.<?php echo $keys['TID']; ?>" value="<?php echo $keys['TID']; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> -->
-
-
-                                                                    </td>
-
-
+                                                                    <th class="h5">Request Date</th>
+                                                                    <th class="h5">Type</th>
+                                                                    <th class="h5">Material</th>
+                                                                    <th class="h5">CSS Code</th>
+                                                                    <th class="h5">Factory Code</th>
+                                                                    <th class="h5">Article / Material Name</th>
+                                                                    <th class="h5">Test Requested</th>
+                                                                    <th class="h5">Due Date</th>
+                                                                    <th class="h5">Complete Date</th>
+                                                                    <th class="h5">Qty. Issed</th>
+                                                                    <th class="h5">Qty. Received</th>
+                                                                    <th class="h5">Qty. Retained</th>
+                                                                    <th class="h5">Qty. Returned</th>
+                                                                    <th class="h5">Balance</th>
+                                                                    <!-- <th>Sender Reference</th> -->
+                                                                    <th class="h5">Receiver Signature Receiving</th>
+                                                                    <th class="h5">Sender Signature Receiving</th>
+                                                                    <th class="h5">Receiver Signature Returned</th>
+                                                                    <th class="h5">Sender Signature Returned</th>
+                                                                    <th class="h5">Status</th>
+                                                                    <th class="h5">Requester Acknowlegement</th>
+                                                                    <th class="h5">ACTIONS</th>
                                                                 </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php //print_r($loadFGT_H);
+                                                                foreach ($getTestRequestsSendToRequester as $keys) {
+                                                                    $Requestid = $keys['TID'];
+                                                                    $gettests = $this->l->getrequesttest($Requestid);
+                                                                    //   print_r($gettests);
+                                                                    if ($gettests) {
+                                                                        // $name = implode(",", $gettests['Name']);
+                                                                        // echo $name;
+                                                                        //echo 'The values are: ';
+                                                                        $result = '';
+                                                                        foreach ($gettests as $key) {
+                                                                            $result .= $key['Name'] . ',';
+                                                                        }
+                                                                        $result = rtrim($result, ',');
+                                                                    } else {
+                                                                        $result = '';
+                                                                    }
+                                                                ?>
+
+                                                                    <tr>
+                                                                        <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
+                                                                        <td><?php echo $keys['Type']; ?></td>
+                                                                        <td><?php echo $keys['MaterialType']; ?></td>
+                                                                        <td><?php echo $keys['CSSNo']; ?></td>
+                                                                        <td><?php echo $keys['Factory_Code']; ?></td>
+                                                                        <td><?php echo $keys['Article']; ?></td>
+                                                                        <td> <?php echo $keys['MaterialType']; ?></td>
+                                                                        <td><?php echo date('d-m-Y', strtotime($keys['Due_Date'])); ?></td>
+                                                                        <td><?php echo date('d-m-Y', strtotime($keys['CompletationDate'])); ?></td>
+                                                                        <td><?php echo $keys['Quantity_Issued']; ?></td>
+                                                                        <td><?php echo $keys['Quantity_Received']; ?></td>
+                                                                        <td><?php echo $keys['Quantity_Retained']; ?></td>
+                                                                        <td><?php echo $keys['Quantity_Returned']; ?></td>
+                                                                        <td><?php echo ($keys['Quantity_Received'] - $keys['Quantity_Returned']) ?></td>
+                                                                        <!-- <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderID']; ?></span></td> -->
+                                                                        <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
+                                                                        <td> <span class="badge badge-primary p-1"><?php echo $keys['senderSignatureRec']; ?></span></td>
+                                                                        <td> <span class="badge badge-primary p-1"><?php echo $keys['SRETReceiverID']; ?></span></td>
+                                                                        <td> <span class="badge badge-primary p-1"><?php echo $keys['SRETSenderID']; ?></span></td>
+                                                                        <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
+                                                                        <td> <span class="badge badge-warning p-1"><?php echo $keys['finalStatus']; ?></span></td>
+                                                                        <td>
+
+                                                                            <button type="button" style="display: inline-block;" class="btn btn-danger btn-xs" disabled id="btn.<?php echo $keys['TID']; ?>">Locked</button>
+                                                                            <!-- <button type="button" style="display: inline-block;" id="undo.<?php echo $keys['TID']; ?>" value="<?php echo $keys['TID']; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> -->
+
+
+                                                                        </td>
+
+
+                                                                    </tr>
+
+
+                                                                <?php
+                                                                } ?>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+
+
+
+
+                                                </div>
+
+                                                <div class="tab-pane fade" id="tab_direction-4" role="tabpanel">
+
+                                                    <?php
+                                                    $Month = date('m');
+                                                    $Year = date('Y');
+                                                    $Day = date('d');
+                                                    $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+                                                    ?>
+
+                                                    <div class="row mb-3 mt-4">
+
+
+                                                        <div class="col-md-2">
+                                                            <label>Start Date :</label>
+                                                            <div class="form-group-inline">
+
+                                                                <input name="date" id="date7" class="form-control" type="date" value="<?php echo $CurrentDate; ?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label>End Date</label>
+                                                            <div class="form-group-inline">
+
+                                                                <input name="date" id="date8" class="form-control" type="date" value="<?php echo $CurrentDate; ?>">
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                    <div id="table5">
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+
+                                                                <table class="table table-striped table-hover table-sm" style="width:100%;">
+
+
+                                                                </table>
+
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div id="testReqOverall">
+                                                        <table class="table table-bordered table-striped table-hover table-sm" id="ActivityData4">
+                                                            <thead class="bg-primary-200 text-light p-2">
+
+                                                                <tr>
+                                                                    <th class="h5">Request Date</th>
+                                                                    <th class="h5">Type</th>
+                                                                    <th class="h5">Material</th>
+                                                                    <th class="h5">CSS Code</th>
+                                                                    <th class="h5">Factory Code</th>
+                                                                    <th class="h5">Article / Material Name</th>
+                                                                    <th class="h5">Due Date</th>
+                                                                    <th class="h5">Complete Date</th>
+                                                                    <th class="h5">Qty. Issed</th>
+                                                                    <th class="h5">Qty. Received</th>
+                                                                    <th class="h5">Qty. Retained</th>
+                                                                    <th class="h5">Qty. Returned</th>
+                                                                    <th class="h5">Balance</th>
+                                                                    <!-- <th>Sender Reference</th> -->
+                                                                    <th class="h5">Receiver Signature Receiving</th>
+                                                                    <th class="h5">Sender Signature Receiving</th>
+                                                                    <th class="h5">Receiver Signature Returned</th>
+                                                                    <th class="h5">Sender Signature Returned</th>
+                                                                    <th class="h5">Status</th>
+                                                                    <th class="h5">Requester Acknowlegement</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+
+                                                                <?php foreach ($GETTestRequestsOverAll as $keys) { ?>
+                                                                    <tr>
+                                                                        <td><?php echo $keys['Sample_RequestDate']; ?></td>
+                                                                        <td><?php echo $keys['Type']; ?></td>
+                                                                        <td><?php echo $keys['MaterialType']; ?></td>
+                                                                        <td><?php echo $keys['CSSNo']; ?></td>
+                                                                        <td><?php echo $keys['Factory_Code']; ?></td>
+                                                                        <td><?php echo $keys['Article']; ?></td>
+                                                                        <td><?php echo date('d-m-Y', strtotime($keys['Due_Date'])); ?></td>
+                                                                        <td><?php echo date('d-m-Y', strtotime($keys['CompletationDate'])); ?></td>
+                                                                        <td><?php echo $keys['Quantity_Issued']; ?></td>
+                                                                        <td><?php echo $keys['Quantity_Received']; ?></td>
+                                                                        <td><?php echo $keys['Quantity_Retained']; ?></td>
+                                                                        <td><?php echo $keys['Quantity_Returned']; ?></td>
+                                                                        <td><?php echo ($keys['Quantity_Received'] - $keys['Quantity_Returned']) ?></td>
+                                                                        <!-- <td> <span class="badge badge-primary p-1"><?php echo $keys['SRSenderID']; ?></span></td> -->
+                                                                        <td> <span class="badge badge-primary p-1"><?php echo $keys['SRReceiverID']; ?></span></td>
+                                                                        <td> <span class="badge badge-primary p-1"><?php echo $keys['senderSignatureRec']; ?></span></td>
+                                                                        <td> <span class="badge badge-primary p-1"><?php echo $keys['SRETReceiverID']; ?></span></td>
+                                                                        <td> <span class="badge badge-primary p-1"><?php echo $keys['SRETSenderID']; ?></span></td>
+                                                                        <td> <span class="badge badge-warning p-1"><?php echo $keys['Status']; ?></span></td>
+                                                                        <td> <span class="badge badge-warning p-1"><?php echo $keys['finalStatus']; ?></span></td>
+
+
+                                                                    </tr>
 
 
                                                             <?php
+
+                                                                }
                                                             } ?>
 
-                                                        </tbody>
-                                                    </table>
+                                                            </tbody>
+                                                        </table>
+
+
+
+
+
+
+
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="tab-pane fade" id="tab_direction-5" role="tabpanel">
+                                                    <?php
+                                                    $Month = date('m');
+                                                    $Year = date('Y');
+                                                    $Day = date('d');
+                                                    $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+                                                    ?>
+                                                    <div class="row mb-3 mt-4">
+                                                        <!-- <div class="col-md-2">
+                                                            <label>Start Date :</label>
+                                                            <div class="form-group-inline">
+
+                                                                <input name="date" id="date1" class="form-control" type="date" value="<?php echo $CurrentDate; ?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label>End Date</label>
+                                                            <div class="form-group-inline">
+
+                                                                <input name="date" id="date2" class="form-control" type="date" value="<?php echo $CurrentDate; ?>">
+                                                            </div>
+                                                        </div> -->
+                                                    </div>
+                                                    <div id="fgtRequestData1">
+
+                                                    </div>
 
                                                 </div>
+
+                                                <div class="tab-pane fade" id="tab_direction-6" role="tabpanel">
+
+
+
+                                                    <?php
+                                                    $Month = date('m');
+                                                    $Year = date('Y');
+                                                    $Day = date('d');
+                                                    $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+                                                    ?>
+
+                                                    <div class="row mb-3 mt-4">
+
+
+                                                        <!-- <div class="col-md-2">
+                                                            <label>Start Date :</label>
+                                                            <div class="form-group-inline">
+
+                                                                <input name="date" id="date1" class="form-control" type="date" value="<?php echo $CurrentDate; ?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label>End Date</label>
+                                                            <div class="form-group-inline">
+
+                                                                <input name="date" id="date2" class="form-control" type="date" value="<?php echo $CurrentDate; ?>">
+                                                            </div>
+                                                        </div> -->
+
+
+
+                                                    </div>
+                                                    <div id="fgtRequestData2">
+
+                                                    </div>
+
+                                                </div>
+
                                             </div>
 
                                         </div>
 
                                     </div>
-
                                 </div>
+
+
+
+
                             </div>
-
-
-
-
                         </div>
+                        <div class="col-md-4"></div>
                     </div>
-                    <div class="col-md-4"></div>
             </div>
         </div>
-    </div>
     </div>
     <script src="<?php echo base_url(); ?>/assets/js//jquery.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
@@ -580,26 +1032,32 @@ if (!$this->session->has_userdata('user_id')) {
             let CompletationDate = $('#compDate').val();
             let Remarks = $('#Remarks').val();
 
+            if (CSSNo.length <= 0) {
+                alert("Kindly add CSS Number")
+            } else {
+                let url = "<?php echo base_url(''); ?>LabController/EditTestRequest"
 
-            let url = "<?php echo base_url(''); ?>LabController/EditTestRequest"
+                $.post(url, {
+                        'TID': TID,
+                        'CSSNo': CSSNo,
+                        'Sample_Receiving_Date': Sample_Receiving_Date,
+                        'Quantity_Received': Quantity_Received,
+                        'Quantity_Retained': Quantity_Retained,
+                        'Due_Date': Due_Date,
+                        'CompletationDate': CompletationDate,
+                        'Remarks': Remarks,
+                        'senderSignature': senderSignature
+                    },
+                    function(data, status) {
+                        alert("Data Updated Successfully! Click on Ok to Reload the Page")
+                        window.location.reload();
 
-            $.post(url, {
-                    'TID': TID,
-                    'CSSNo': CSSNo,
-                    'Sample_Receiving_Date': Sample_Receiving_Date,
-                    'Quantity_Received': Quantity_Received,
-                    'Quantity_Retained': Quantity_Retained,
-                    'Due_Date': Due_Date,
-                    'CompletationDate': CompletationDate,
-                    'Remarks': Remarks,
-                    'senderSignature': senderSignature
-                },
-                function(data, status) {
-                    alert("Data Updated Successfully! Click on Ok to Reload the Page")
-                    window.location.reload();
+                    });
+            }
 
-                });
         });
+
+
         $(document).ready(function() {
             let currentDate = new Date().toJSON().substr(0, 10);
             $('#recDate').val(currentDate);
@@ -675,7 +1133,11 @@ if (!$this->session->has_userdata('user_id')) {
             });
             $('#ActivityData2').dataTable({
                 responsive: false,
-                lengthChange: false,
+                lengthChange: true,
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"],
+                ],
                 dom:
                     /*	--- Layout Structure 
                     	--- Options
@@ -810,6 +1272,79 @@ if (!$this->session->has_userdata('user_id')) {
                     }
                 ]
             });
+
+            $('#ActivityData4').dataTable({
+                responsive: false,
+                lengthChange: false,
+                dom:
+                    /*	--- Layout Structure 
+                    	--- Options
+                    	l	-	length changing input control
+                    	f	-	filtering input
+                    	t	-	The table!
+                    	i	-	Table information summary
+                    	p	-	pagination control
+                    	r	-	processing display element
+                    	B	-	buttons
+                    	R	-	ColReorder
+                    	S	-	Select
+
+                    	--- Markup
+                    	< and >				- div element
+                    	<"class" and >		- div with a class
+                    	<"#id" and >		- div with an ID
+                    	<"#id.class" and >	- div with an ID and a class
+
+                    	--- Further reading
+                    	https://datatables.net/reference/option/dom
+                    	--------------------------------------
+                     */
+                    "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                buttons: [
+                    /*{
+                    	extend:    'colvis',
+                    	text:      'Column Visibility',
+                    	titleAttr: 'Col visibility',
+                    	className: 'mr-sm-3'
+                    },*/
+                    {
+                        extend: 'pdfHtml5',
+                        text: 'PDF',
+                        titleAttr: 'Generate PDF',
+                        className: 'btn-outline-danger btn-sm mr-1'
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Excel',
+                        titleAttr: 'Generate Excel',
+                        className: 'btn-outline-success btn-sm mr-1'
+                    },
+                    {
+                        extend: 'csvHtml5',
+                        text: 'CSV',
+                        titleAttr: 'Generate CSV',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'copyHtml5',
+                        text: 'Copy',
+                        titleAttr: 'Copy to clipboard',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Print',
+                        titleAttr: 'Print Table',
+                        className: 'btn-outline-primary btn-sm'
+                    }
+                ]
+            });
+
+
+
+
 
         });
     </script>
@@ -2050,13 +2585,1652 @@ if (!$this->session->has_userdata('user_id')) {
 
         });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js" integrity="sha512-gtII6Z4fZyONX9GBrF28JMpodY4vIOI0lBjAtN/mcK7Pz19Mu1HHIRvXH6bmdChteGpEccxZxI0qxXl9anY60w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+    <script>
+        $(document).ready(function() {
+
+
+
+            $("#date1").val();
+            $("#date2").val();
+
+
+
+            $("#date1").change(function(e) {
+                //alert('Heloo');
+                // $("#tableExport").css('display:none')
+                loadData()
+            });
+            $("#date2").change(function(e) {
+                //alert('Heloo');
+                // $("#tableExport").css('display:none')
+                loadData()
+            });
+
+        })
+
+
+        function loadData() {
+            //alert('Heloo');
+
+
+            var date1 = $("#date1").val()
+            var date2 = $("#date2").val();
+
+
+            url = "<?php echo base_url("index.php/LabController/TestReceiveByDate/") ?>" + date1 + "/" + date2
+
+
+            $.get(url, function(data) {
+
+                $("#table1").css("display", "none");
+
+                $('#tablePen').css("display", "none");
+
+
+
+                let i = 1;
+
+                let appendtable = '';
+
+                appendtable += `
+
+
+    <table class="table table-bordered table-striped table-hover table-sm" id="tableExport1">
+        <thead class="bg-primary-200 text-light p-2">
+            <tr>
+                <th class="h5">Request Date</th>
+                <th class="h5">Type</th>
+                <th class="h5">Material</th>
+                <th class="h5">Factory Code</th>
+                <th class="h5">Article / Material Name</th>
+                <th class="h5">Test Requested</th>
+               
+                <th class="h5">Quantity Issed</th>
+
+                <th class="h5">Sender Reference</th>
+                <th class="h5">Receiver Signature</th>
+                <th class="h5">Status</th>
+                <th class="h5">ACTIONS</th>
+
+            </tr>
+        </thead>
+        <tbody>
+`
+
+                data.getTestRequestByDate.forEach(element => {
+
+
+
+                    // // url = "<?php echo base_url("index.php/LabController/getRequestTestById/") ?>" + element.TID;
+
+                    // $.get(url, function(data) {
+                    //     if(data) {
+                    //         name = data['Name'];
+                    //         console.log(data);
+                    //     }
+
+                    // })
+
+                    appendtable += `
+
+                <tr>
+                    <td>${element.Sample_RequestDate}</td>
+                    <td>${element.Type}</td>
+                    <td>${element.MaterialType}</td>
+                    <td>${element.Factory_Code}</td>
+                    <td>${element.Article}</td>
+                    <td>${element.Name}</td>
+                   
+                    <td>${element.Quantity_Issued}</td>
+                    <td><span class="badge badge-danger p-1">${element.SRSenderID}</span></td>
+
+                    <td><span class="badge badge-primary p-1">${element.SRReceiverID}</span></td>
+                    <td><span class="badge badge-warning p-1"> ${element.Status} </span></td>
+                    <td>
+                     <div class="col-md-2">
+                        <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn2" id="btn.${element.TID}"><i class="fal fa-edit" aria-hidden="true"></i></button>
+
+                    </div>
+                    </td>
+
+                </tr>
+`
+
+                })
+
+                appendtable += `
+
+           
+
+        </tbody>
+    </table>
+
+
+
+
+`
+
+
+
+
+                $("#table2").html(appendtable);
+
+                $(".updatebtn2").click(function(e) {
+                    $('#Modaldepartment').modal('toggle');
+                    let id = this.id;
+                    let split_value = id.split(".");
+                    var TID = split_value[1];
+                    $('#IdValue').val(TID);
+
+                });
+
+
+                $('#tableExport1').dataTable({
+                    responsive: false,
+                    lengthChange: false,
+                    dom:
+                        /*	--- Layout Structure 
+                        	--- Options
+                        	l	-	length changing input control
+                        	f	-	filtering input
+                        	t	-	The table!
+                        	i	-	Table information summary
+                        	p	-	pagination control
+                        	r	-	processing display element
+                        	B	-	buttons
+                        	R	-	ColReorder
+                        	S	-	Select
+
+                        	--- Markup
+                        	< and >				- div element
+                        	<"class" and >		- div with a class
+                        	<"#id" and >		- div with an ID
+                        	<"#id.class" and >	- div with an ID and a class
+
+                        	--- Further reading
+                        	https://datatables.net/reference/option/dom
+                        	--------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                        	extend:    'colvis',
+                        	text:      'Column Visibility',
+                        	titleAttr: 'Col visibility',
+                        	className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+
+
+            })
+
+        }
+
+        $(document).ready(function() {
+
+            $("#date3").val();
+            $("#date4").val();
+
+
+
+
+
+            $("#date3").change(function(e) {
+                //alert('Heloo');
+                // $("#tableExport").css('display:none')
+                loadData2()
+            });
+            $("#date4").change(function(e) {
+                //alert('Heloo');
+                // $("#tableExport").css('display:none')
+                loadData2()
+            });
+
+        })
+
+
+
+
+
+
+        function loadData2() {
+
+
+            var date3 = $("#date3").val();
+            var date4 = $("#date4").val();
+
+            url = "<?php echo base_url("index.php/LabController/TestReceiveByDateSendToLab/") ?>" + date3 + "/" + date4
+
+
+            $.get(url, function(data) {
+
+                console.log(data);
+
+                $("#sendToLab").css("display", "none");
+
+                let i = 1;
+
+                let appendtable = ``;
+
+
+                appendtable += `
+
+<div class="row">
+                                                        <div  class="col-md-2">
+                                                        <div style="display:none" class="btn btn-warning mb-2" id="submit-button2" ><span style="font-weight:bolder">Send Back Requester to All</span></div>
+                                                        </div>
+                                                    </div>
+
+
+<table class="table table-bordered table-striped table-hover table-sm" id="tableExport2">
+        <thead class="bg-primary-200 text-light p-2">
+
+            <tr>
+               <th>
+                <div class=" custom-control custom-checkbox no-sort">
+          <input class="custom-control-input" type="checkbox" id="select-all">
+          <label for="select-all" class="custom-control-label"></label>
+      </div>
+      </th>
+
+                <th class="h5">Request Date</th>
+                <th class="h5">Type</th>
+                <th class="h5">Material</th>
+                <th class="h5">CSS Code</th>
+                <th class="h5">Factory Code</th>
+                <th class="h5">Article / Material Name</th>
+                <th class="h5">Test Requested</th>
+                <th class="h5">Due Date</th>
+                <th class="h5">Complete Date</th>
+                <th class="h5">Quantity Issed</th>
+                <th class="h5">Quantity Received</th>
+                <th class="h5">Quantity Retained</th>
+                <th class="h5">Quantity Returned</th>
+                <th class="h5">Lab Result</th>
+                <th class="h5">Lab Status</th>
+                <th class="h5">Sender Reference</th>
+                <th class="h5">Receiver Signature</th>
+                <th class="h5">Sender Signature</th>
+                <th class="h5">Status</th>
+                <th class="h5">ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+          `
+                data.getTestRequestsSendToLabByDate.forEach(element => {
+
+                    appendtable += `
+
+                <tr>
+                
+  <td>
+              <div class="custom-control custom-checkbox">
+                <input class="custom-control-input leave-id" type="checkbox"  id="select-${element.TID}" value="${element.TID}">
+                <label for="select-${element.TID}" class="custom-control-label"></label>
+              </div>
+            </td>
+                    <td id="recDate">${element.Sample_RequestDate}</td>
+                    <td id="type">${element.Type}</td>
+                    <td id="materialType">${element.MaterialType}</td>
+                    <td id="cssNo">${element.CSSNo}</td>
+                    <td id="factoryCode">${element.Factory_Code}</td>
+                    <td id="article">${element.Article}</td>
+                    <td id="name">${element.Name}</td>
+                    <td id="dueDate">${element.Due_Date}</td>
+                    <td id="compDate">${element.CompletationDate}</td>
+                    <td id="quantityIssued">${element.Quantity_Issued}</td>
+                    <td id="quantityRece">${element.Quantity_Received}</td>
+                    <td id="quantity_Retain">${element.Quantity_Retained}</td>
+                    <td id="qReturned">${element.Quantity_Returned}</td>
+                    <td id="result">${element.Result}</td>
+                    <td><span class="badge badge-secondary p-1">${element.LabAcknowledgementStatus}</span></td>
+                    <td> <span class="badge badge-primary p-1">${element.SRSenderID}</span></td>
+                    <td> <span class="badge badge-primary p-1">${element.SRReceiverID}</span></td>
+                    <td id="sSignature"> <spanclass="badge badge-primary p-1">${element.senderSignatureRec}</span></td>
+                    <td> <span class="badge badge-warning p-1">${element.Status}</span></td>
+
+                    <td>
+
+                        <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtnBacktoSender1" id="btn.${element.TID}">Back to Sender</button>
+                        <!-- <button type="button" style="display: inline-block;" id="undo." value="" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> -->
+
+
+                    </td>
+
+
+                </tr>
+
+`
+
+
+                })
+
+
+
+                appendtable += `
+          
+
+        </tbody>
+    </table>
+
+
+    
+
+`
+
+
+                $(document).ready(function() {
+
+
+                    leaves = []
+
+
+                    $('#table3').on('click', '#select-all', function() {
+
+                        checked = $('#select-all:checked').val()
+                        if (checked) {
+                            $('.leave-id').prop('checked', true)
+                            leaves = $('.leave-id').map((_, el) => el.value).get()
+                            $('.buttons').removeClass('d-none');
+                            $("#btnShow1").css("display", "block")
+                            $('#submit-button2').css("display", "block");
+                        } else {
+                            $('.leave-id').prop('checked', false)
+                            leaves = []
+                            $('.buttons').addClass('d-none');
+                            $('#submit-button2').css("display", "none");
+                            $("#btnShow1").css("display", "none")
+
+                        }
+
+
+                        console.log(leaves)
+
+                    })
+
+
+
+                    $('#table3').on('click', '.leave-id', function() {
+
+                        leave = $(this)[0]
+                        console.log(leave.value)
+                        if (leave.checked) {
+                            leaves.indexOf(leave.value) === -1 ? leaves.push(leave.value) : null;
+                            console.log(leaves)
+                        } else {
+                            leaves.indexOf(leave.value) !== -1 ? leaves.splice(leaves.indexOf(leave.value), 1) : null;
+                            console.log(leaves)
+                        }
+
+                        if (leaves.length > 0) {
+
+                            $('.buttons').removeClass('d-none');
+                            $("#btnShow1").css("display", "block")
+                        } else {
+                            $('#select-all').prop('checked', false)
+                            $("#btnShow1").css("display", "none")
+                            $('.buttons').addClass('d-none');
+                        }
+
+                    })
+
+
+
+                    $('#table3').on('click', '#submit-button2', function() {
+
+
+
+                        if (data) {
+                            data = {
+                                leaves
+                            }
+
+                        }
+
+
+                        url = "<?php echo base_url(''); ?>LabController/TestRequestByIdByAll";
+
+                        url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestBackToSenderByAll";
+
+
+                        $.post(url2, {
+                            data
+                        }, function(data) {
+                            if (data == true) {
+                                alert("Send Back to Requester all requests successfully!")
+                                window.location.reload()
+                            }
+                        });
+
+                    })
+
+
+
+
+
+
+
+                    $('.undobtn').click(function() {
+                        let id = this.id;
+                        let split_value = id.split(".");
+                        var TID = split_value[1];
+                        var proceed = confirm("Are you sure you want to Delete?");
+                        if (proceed) {
+                            url = "<?php echo base_url(''); ?>LabController/undoTestType/" + TID
+                            $.get(url, function(data) {
+                                alert("Data Deleted Successfully");
+                                location.reload();
+                            });
+                        } else {
+                            alert("Undo Cancel");
+                        }
+
+                    });
+
+
+
+
+                    $(".updatebtnBacktoSender").click(function(e) {
+
+                        let id = this.id;
+                        let split_value = id.split(".");
+                        var TID = split_value[1];
+
+                        let proceed = confirm("Are you sure you want send Results back to Requester?");
+                        if (proceed) {
+                            let quantity = prompt("Enter Quantity Returned");
+                            url = "<?php echo base_url(''); ?>LabController/TestRequestByIdByAll";
+                            url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestBackToSenderByAll";
+                            $.post(url, {
+                                'Id': TID
+                            }, function(data, status) {
+                                $.post(url2, {
+                                    'Id': TID,
+                                    'Quantity': quantity,
+                                    'receiverId': data[0].SRSenderID,
+                                    'senderId': data[0].SRReceiverID
+                                }, function(data, status) {
+                                    alert("Data Updated Successfully! Click on Ok to Reload the Page")
+                                    window.location.reload();
+                                });
+                            });
+
+                        } else {
+                            alert("Sending Cancel");
+                        }
+                    });
+
+                    $('#save').click(function(e) {
+                        e.preventDefault();
+                        let TID = $('#IdValue').val();
+                        let Sample_Receiving_Date = $('#recDate').val();
+                        let CSSNo = $('#cssNo').val();
+                        let Quantity_Received = $('#qReceived').val();
+                        let Quantity_Retained = $('#qRetained').val();
+                        let Quantity_Returned = $('#qReturned').val();
+                        let senderSignature = $('#sSignature').val();
+                        let Due_Date = $('#dueDate').val();
+                        let CompletationDate = $('#compDate').val();
+                        let Remarks = $('#Remarks').val();
+
+
+                        let url = "<?php echo base_url(''); ?>LabController/EditTestRequestByAll"
+
+
+                        $.post(url, {
+                                'TID': TID,
+                                'CSSNo': CSSNo,
+                                'Sample_Receiving_Date': Sample_Receiving_Date,
+                                'Quantity_Received': Quantity_Received,
+                                'Quantity_Retained': Quantity_Retained,
+                                'Due_Date': Due_Date,
+                                'CompletationDate': CompletationDate,
+                                'Remarks': Remarks,
+                                'senderSignature': senderSignature
+                            },
+                            function(data, status) {
+                                alert("Data Updated Successfully! Click on Ok to Reload the Page")
+                                window.location.reload();
+
+                            });
+                    });
+
+
+                    $('#table3').on('click', '.updatebtnBacktoSender1', function() {
+
+                        let id = this.id;
+                        let split_value = id.split(".");
+                        var TID = split_value[1];
+
+                        let proceed = confirm("Are you sure you want send Results back to Requester?");
+                        if (proceed) {
+                            let quantity = prompt("Enter Quantity Returned");
+                            url = "<?php echo base_url(''); ?>LabController/TestRequestById";
+                            url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestBackToSender";
+                            $.post(url, {
+                                'Id': TID
+                            }, function(data, status) {
+                                $.post(url2, {
+                                    'Id': TID,
+                                    'Quantity': quantity,
+                                    'receiverId': data[0].SRSenderID,
+                                    'senderId': data[0].SRReceiverID
+                                }, function(data, status) {
+                                    alert("Data Updated Successfully! Click on Ok to Reload the Page")
+                                    window.location.reload();
+                                });
+                            });
+
+                        } else {
+                            alert("Sending Cancel");
+                        }
+                    });
+
+                    $('#save').click(function(e) {
+                        e.preventDefault();
+                        let TID = $('#IdValue').val();
+                        let Sample_Receiving_Date = $('#recDate').val();
+                        let CSSNo = $('#cssNo').val();
+                        let Quantity_Received = $('#qReceived').val();
+                        let Quantity_Retained = $('#qRetained').val();
+                        let Quantity_Returned = $('#qReturned').val();
+                        let senderSignature = $('#sSignature').val();
+                        let Due_Date = $('#dueDate').val();
+                        let CompletationDate = $('#compDate').val();
+                        let Remarks = $('#Remarks').val();
+
+
+                        let url = "<?php echo base_url(''); ?>LabController/EditTestRequest"
+
+
+                        $.post(url, {
+                                'TID': TID,
+                                'CSSNo': CSSNo,
+                                'Sample_Receiving_Date': Sample_Receiving_Date,
+                                'Quantity_Received': Quantity_Received,
+                                'Quantity_Retained': Quantity_Retained,
+                                'Due_Date': Due_Date,
+                                'CompletationDate': CompletationDate,
+                                'Remarks': Remarks,
+                                'senderSignature': senderSignature
+                            },
+                            function(data, status) {
+                                alert("Data Updated Successfully! Click on Ok to Reload the Page")
+                                window.location.reload();
+
+                            });
+                    });
+
+                })
+
+
+
+
+
+
+                $("#table3").html(appendtable)
+
+
+                $('#tableExport2').dataTable({
+                    responsive: false,
+                    lengthChange: true,
+                    lengthMenu: [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, "All"],
+                    ],
+                    dom:
+                        /*	--- Layout Structure 
+                        	--- Options
+                        	l	-	length changing input control
+                        	f	-	filtering input
+                        	t	-	The table!
+                        	i	-	Table information summary
+                        	p	-	pagination control
+                        	r	-	processing display element
+                        	B	-	buttons
+                        	R	-	ColReorder
+                        	S	-	Select
+
+                        	--- Markup
+                        	< and >				- div element
+                        	<"class" and >		- div with a class
+                        	<"#id" and >		- div with an ID
+                        	<"#id.class" and >	- div with an ID and a class
+
+                        	--- Further reading
+                        	https://datatables.net/reference/option/dom
+                        	--------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                        	extend:    'colvis',
+                        	text:      'Column Visibility',
+                        	titleAttr: 'Col visibility',
+                        	className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ],
+
+
+
+                });
+
+
+
+
+
+            })
+
+
+        }
+
+
+        $(document).ready(function() {
+
+
+            var date5 = $("#date5").val();
+            var date6 = $("#date6").val();
+
+
+            $("#date5").change(function(e) {
+                //alert('Heloo');
+                // $("#tableExport").css('display:none')
+                loadData3()
+            });
+            $("#date6").change(function(e) {
+                //alert('Heloo');
+                // $("#tableExport").css('display:none')
+                loadData3()
+            });
+
+        })
+
+
+        function loadData3() {
+
+            var date5 = $("#date5").val();
+            var date6 = $("#date6").val();
+
+
+
+            url = "<?php echo base_url("index.php/LabController/TestReceiveBySendBackToRequester/") ?>" + date5 + "/" + date6;
+
+
+
+            $.get(url, function(data) {
+
+                $("#sendBackToRequester").css("display", "none");
+
+                console.log(data);
+
+                let i = 1;
+
+                let appendtable = ``;
+
+                appendtable += `
+<table class="table table-bordered table-striped table-hover table-sm" id="tableExport3">
+	<thead class="bg-primary-200 text-light p-2">
+
+		<tr>
+			<th class="h5">Request Date</th>
+			<th class="h5">Type</th>
+			<th class="h5">Material</th>
+			<th class="h5">CSS Code</th>
+			<th class="h5">Factory Code</th>
+			<th class="h5">Article / Material Name</th>
+			<th class="h5">Test Requested</th>
+			<th class="h5">Due Date</th>
+			<th class="h5">Complete Date</th>
+			<th class="h5">Qty. Issed</th>
+			<th class="h5">Qty. Received</th>
+			<th class="h5">Qty. Retained</th>
+			<th class="h5">Qty. Returned</th>
+			<th class="h5">Balance</th>
+			<!-- <th>Sender Reference</th> -->
+			<th class="h5">Receiver Signature Receiving</th>
+			<th class="h5">Sender Signature Receiving</th>
+			<th class="h5">Receiver Signature Returned</th>
+			<th class="h5">Sender Signature Returned</th>
+			<th class="h5">Status</th>
+			<th class="h5">Requester Acknowlegement</th>
+			<th class="h5">ACTIONS</th>
+		</tr>
+	</thead>
+	<tbody>
+`
+
+                data.getTestRequestSendBackToRequesterByDate.forEach(element => {
+
+                    appendtable += `
+
+			<tr>
+				<td>${element.Sample_RequestDate}</td>
+				<td>${element.Type}</td>
+				<td>${element.MaterialType}</td>
+				<td>${element.CSSNo}</td>
+				<td>${element.Factory_Code}</td>
+				<td>${element.Article}</td>
+				<td>${element.Name}</td>
+				<td>${element.Due_Date}</td>
+				<td>${element.CompletationDate}</td>
+				<td>${element.Quantity_Issued}</td>
+				<td>${element.Quantity_Received}</td>
+				<td>${element.Quantity_Retained}</td>
+				<td>${element.Quantity_Returned}</td>
+				<td>${element.Quantity_Received}</td>
+				<!-- <td> <span class="badge badge-primary p-1">${element.SRSenderID}</span></td> -->
+				<td> <span class="badge badge-primary p-1">${element.SRReceiverID}</span></td>
+				<td> <span class="badge badge-primary p-1">${element.senderSignatureRec}</span></td>
+				<td> <span class="badge badge-primary p-1">${element.SRETReceiverID}</span></td>
+				<td> <span class="badge badge-primary p-1">${element.SRETSenderID}</span></td>
+				<td> <span class="badge badge-warning p-1">${element.Status}</span></td>
+				<td> <span class="badge badge-warning p-1">${element.finalStatus}</span></td>
+				<td>
+
+					<button type="button" style="display: inline-block;" class="btn btn-danger btn-xs" disabled id="btn.${element.TID}">Locked</button>
+					<!-- <button type="button" style="display: inline-block;" id="undo." value="" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> -->
+
+
+				</td>
+
+
+			</tr>
+
+`
+
+
+                })
+
+                appendtable += `
+
+
+	</tbody>
+</table>
+
+`
+
+
+
+                $("#table4").html(appendtable)
+
+
+                $('#tableExport3').dataTable({
+                    responsive: false,
+                    lengthChange: false,
+                    dom:
+                        /*	--- Layout Structure 
+                        	--- Options
+                        	l	-	length changing input control
+                        	f	-	filtering input
+                        	t	-	The table!
+                        	i	-	Table information summary
+                        	p	-	pagination control
+                        	r	-	processing display element
+                        	B	-	buttons
+                        	R	-	ColReorder
+                        	S	-	Select
+
+                        	--- Markup
+                        	< and >				- div element
+                        	<"class" and >		- div with a class
+                        	<"#id" and >		- div with an ID
+                        	<"#id.class" and >	- div with an ID and a class
+
+                        	--- Further reading
+                        	https://datatables.net/reference/option/dom
+                        	--------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                        	extend:    'colvis',
+                        	text:      'Column Visibility',
+                        	titleAttr: 'Col visibility',
+                        	className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+
+
+
+            })
+
+
+
+
+        }
+
+
+
+
+        $(document).ready(function() {
+            loadFGTRequestwithoutCssNo();
+            loadFGTRequestwithCssNo();
+
+            var date7 = $("#date7").val();
+            var date8 = $("#date8").val();
+
+
+            $("#date7").change(function(e) {
+                //alert('Heloo');
+                // $("#tableExport").css('display:none')
+                loadData4()
+            });
+            $("#date8").change(function(e) {
+                //alert('Heloo');
+                // $("#tableExport").css('display:none')
+                loadData4()
+            });
+
+        })
+
+        function loadData4() {
+
+            var date7 = $("#date7").val();
+            var date8 = $("#date8").val();
+            // alert(date7)
+            // alert(date8)
+            url = "<?php echo base_url("index.php/LabController/TestRequestsOverAll/") ?>" + date7 + "/" + date8;
+
+
+            $.get(url, function(data) {
+
+                $("#testReqOverall").css("display", "none");
+
+                console.log(data);
+
+                let i = 1;
+
+                let appendtable = ``;
+
+                appendtable += `
+<table class="table table-bordered table-striped table-hover table-sm" id="tableExport4">
+	<thead class="bg-primary-200 text-light p-2">
+
+		<tr>
+			<th class="h5">Request Date</th>
+			<th class="h5">Type</th>
+			<th class="h5">Material</th>
+			<th class="h5">CSS Code</th>
+			<th class="h5">Factory Code</th>
+			<th class="h5">Article / Material Name</th>
+			<th class="h5">Test Requested</th>
+			<th class="h5">Due Date</th>
+			<th class="h5">Complete Date</th>
+			<th class="h5">Qty. Issed</th>
+			<th class="h5">Qty. Received</th>
+			<th class="h5">Qty. Retained</th>
+			<th class="h5">Qty. Returned</th>
+			<th class="h5">Balance</th>
+			<th class="h5">Receiver Signature Receiving</th>
+			<th class="h5">Sender Signature Receiving</th>
+			<th class="h5">Receiver Signature Returned</th>
+			<th class="h5">Sender Signature Returned</th>
+			<th class="h5">Status</th>
+			<th class="h5">Requester Acknowlegement</th>
+		</tr>
+	</thead>
+	<tbody>
+`
+
+
+                data.TestRequestsOverAll.forEach(element => {
+
+                    appendtable += `
+
+			<tr>
+				<td>${element.Sample_RequestDate}</td>
+				<td>${element.Type}</td>
+				<td>${element.MaterialType}</td>
+				<td>${element.CSSNo}</td>
+				<td>${element.Factory_Code}</td>
+				<td>${element.Article}</td>
+				<td>${element.Name}</td>
+				<td>${element.Due_Date}</td>
+				<td>${element.CompletationDate}</td>
+				<td>${element.Quantity_Issued}</td>
+				<td>${element.Quantity_Received}</td>
+				<td>${element.Quantity_Retained}</td>
+				<td>${element.Quantity_Returned}</td>
+				<td>${element.Quantity_Received}</td>
+				<!-- <td> <span class="badge badge-primary p-1">${element.SRSenderID}</span></td> -->
+				<td> <span class="badge badge-primary p-1">${element.SRReceiverID}</span></td>
+				<td> <span class="badge badge-primary p-1">${element.senderSignatureRec}</span></td>
+				<td> <span class="badge badge-primary p-1">${element.SRETReceiverID}</span></td>
+				<td> <span class="badge badge-primary p-1">${element.SRETSenderID}</span></td>
+				<td> <span class="badge badge-warning p-1">${element.Status}</span></td>
+				<td> <span class="badge badge-warning p-1">${element.finalStatus}</span></td>
+			
+
+
+			</tr>
+
+`
+
+
+                })
+
+                appendtable += `
+
+
+	</tbody>
+</table>
+
+`
+
+
+                leaves = []
+                $('#select-all').click(function(e) {
+                    checked = $('#select-all:checked').val()
+                    if (checked) {
+                        $('.leave-id').prop('checked', true)
+                        leaves = $('.leave-id').map((_, el) => el.value).get()
+                        $('.buttons').removeClass('d-none');
+                        $(".submit-button").css("display", "block")
+                    } else {
+                        $('.leave-id').prop('checked', false)
+                        leaves = []
+                        $('.buttons').addClass('d-none');
+
+                        $(".submit-button").css("display", "none")
+                    }
+                    console.log(leaves)
+                })
+
+                $('.leave-id').click(function(e) {
+                    leave = $(this)[0]
+                    console.log(leave.value)
+                    if (leave.checked) {
+                        leaves.indexOf(leave.value) === -1 ? leaves.push(leave.value) : null;
+                        console.log(leaves)
+                    } else {
+                        leaves.indexOf(leave.value) !== -1 ? leaves.splice(leaves.indexOf(leave.value), 1) : null;
+                        console.log(leaves)
+                    }
+
+                    if (leaves.length > 0) {
+
+                        $('.buttons').removeClass('d-none');
+                        $(".submit-button").css("display", "block")
+                    } else {
+                        $('#select-all').prop('checked', false)
+                        $(".submit-button").css("display", "none")
+                        $('.buttons').addClass('d-none');
+                    }
+
+                })
+
+
+                $('.submit-button').click(function(data) {
+                    let result = confirm("Are you sure to send back requests all?")
+
+
+                    if (result == true) {
+                        if (data) {
+                            data = [
+                                leaves
+                            ]
+
+
+
+
+                            let TID = data;
+
+
+                            let Sample_Receiving_Date = $('#recDate').val();
+                            let CSSNo = $('#cssNo').val();
+                            let Quantity_Received = $('#qReceived').val();
+                            let Quantity_Retained = $('#qRetained').val();
+                            let Quantity_Returned = $('#qReturned').val();
+                            let senderSignature = $('#sSignature').val();
+                            let Due_Date = $('#dueDate').val();
+                            let CompletationDate = $('#compDate').val();
+                            let Remarks = $('#Remarks').val();
+
+
+                            let url = "<?php echo base_url(''); ?>LabController/EditTestRequest"
+
+                            $.post(url, {
+                                    'TID': TID,
+                                    'CSSNo': CSSNo,
+                                    'Sample_Receiving_Date': Sample_Receiving_Date,
+                                    'Quantity_Received': Quantity_Received,
+                                    'Quantity_Retained': Quantity_Retained,
+                                    'Due_Date': Due_Date,
+                                    'CompletationDate': CompletationDate,
+                                    'Remarks': Remarks,
+                                    'senderSignature': senderSignature
+                                },
+                                function(data, status) {
+                                    alert("Data Updated Successfully! Click on Ok to Reload the Page")
+                                    window.location.reload();
+
+                                });
+
+
+                        }
+                    } else {
+                        alert("Request Cancelled successfully!")
+                    }
+
+                })
+
+
+
+
+                $("#table5").html(appendtable)
+
+
+                $('#tableExport4').dataTable({
+                    responsive: false,
+                    lengthChange: false,
+                    dom:
+                        /*	--- Layout Structure 
+                        	--- Options
+                        	l	-	length changing input control
+                        	f	-	filtering input
+                        	t	-	The table!
+                        	i	-	Table information summary
+                        	p	-	pagination control
+                        	r	-	processing display element
+                        	B	-	buttons
+                        	R	-	ColReorder
+                        	S	-	Select
+
+                        	--- Markup
+                        	< and >				- div element
+                        	<"class" and >		- div with a class
+                        	<"#id" and >		- div with an ID
+                        	<"#id.class" and >	- div with an ID and a class
+
+                        	--- Further reading
+                        	https://datatables.net/reference/option/dom
+                        	--------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                        	extend:    'colvis',
+                        	text:      'Column Visibility',
+                        	titleAttr: 'Col visibility',
+                        	className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+
+
+
+            })
+
+
+
+
+
+
+        }
+
+
+
+
+
+        leaves = []
+        $('#select-all').click(function(e) {
+            checked = $('#select-all:checked').val()
+            if (checked) {
+                $('.leave-id').prop('checked', true)
+                leaves = $('.leave-id').map((_, el) => el.value).get()
+                $('.buttons').removeClass('d-none');
+                $("#btnShow").css("display", "block")
+            } else {
+                $('.leave-id').prop('checked', false)
+                leaves = []
+                $('.buttons').addClass('d-none');
+
+                $("#btnShow").css("display", "none")
+            }
+
+
+        })
+
+
+
+
+
+        $('.leave-id').click(function(e) {
+            leave = $(this)[0]
+            console.log(leave.value)
+            if (leave.checked) {
+                leaves.indexOf(leave.value) === -1 ? leaves.push(leave.value) : null;
+                console.log(leaves)
+            } else {
+                leaves.indexOf(leave.value) !== -1 ? leaves.splice(leaves.indexOf(leave.value), 1) : null;
+                console.log(leaves)
+            }
+
+            if (leaves.length > 0) {
+
+                $('.buttons').removeClass('d-none');
+                $("#btnShow").css("display", "block")
+            } else {
+                $('#select-all').prop('checked', false)
+                $("#btnShow").css("display", "none")
+                $('.buttons').addClass('d-none');
+            }
+
+
+        })
+
+
+
+        $('#submit-button').click(function(data) {
+
+
+            if (data) {
+                data = {
+                    leaves
+                }
+
+            }
+
+
+            url = "<?php echo base_url(''); ?>LabController/TestRequestByIdByAll";
+
+            url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestBackToSenderByAll";
+
+
+            $.post(url2, {
+                data
+            }, function(data) {
+                if (data == true) {
+                    alert("Send Back to Requester all requests successfully!")
+                    window.location.reload()
+                }
+            });
+        })
+
+        function loadFGTRequestwithoutCssNo() {
+
+            url = "<?php echo base_url("LabController/FGTRequestwithoutCssNo") ?>";
+            $.get(url, function(data) {
+                if (data) {
+                    let html = `<table class="table table-bordered table-hover table-responsive table-striped table-sm" style="width:100%" id="fgtTableExport1">
+                        <thead class="bg-primary-200 text-light p-2">
+                            <tr>
+                                <!-- <th class="h5">Date</th> -->
+                                <th class="h5">Css No</th>
+                                <th class="h5">Factory Code</th>
+                                <th class="h5">Working No</th>
+                                <th class="h5">Article No</th>
+                                <th class="h5">Modal Name</th>
+                                <th class="h5">Size</th>
+                                <th class="h5">Ball Type</th>                  
+                                <th class="h5">Main Material Color</th>
+                                <th class="h5">Convert Mat</th>
+                                <th class="h5">Backing</th>
+                                <th class="h5">Bladder Details</th>
+                                <th class="h5">Production Month</th>
+                                <th class="h5">Printing Color</th>
+                                <th class="h5">Panel Shape</th>
+                                <th class="h5">Test Type</th>
+                                <th class="h5">Deliever Qty</th>
+                                <th class="h5">Any Info</th>
+                                <th class="h5">Lab Status</th>
+                                <!--<th class="h5">Receiver Signature</th>
+                                <th class="h5">Sender Signature</th>-->
+                                <th class="h5">Request Status</th>
+                                <th class="h5">Generated By</th>
+                                <th class="h5">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>`
+                    data.forEach(element => {
+                        html += `
+                    <tr>
+                        
+                        <!-- <td>${element.Date.split("00:00:00")[0]}</td> -->
+                        <td><span class="badge badge-warning p-1">${element.CssNO == null ? '' : element.CssNo}</span></td>
+                        <td>${element.factoryCode}</td>
+                        <td>${element.WorkingNo}</td>
+                        <td>${element.Articleno}</td>
+                        <td>${element.ModelName}</td>
+                        <td>${element.Size}</td>
+                        <td>${element.BallType}</td>               
+                        <td>${element.mainmaterialColor}</td>
+                        <td><span>${element.Covermat}</span></td>
+                        <td><span>${element.backing}</span></td>
+                        <td><span> ${element.Bladderdetail} </span></td>
+                        <td><span> ${element.ProductionMonth} </span></td>
+                        <td><span> ${element.Printingcolor} </span></td>
+                        <td><span> ${element.panelShape} </span></td>
+                        <td><span> ${element.testype} </span></td>
+                        <td><span> ${element.deliverqty} </span></td>
+                        <td><span> ${element.additionalinfo} </span></td>
+                        <td><span class="badge badge-secondary p-1">${element.LabStatus == null ? `Pending` : `Aknowledged`} </span></td>
+
+                        <!--<td> <span class="badge badge-primary p-1">Receiver Signature</span></td>
+
+                        <td> <span class="badge badge-primary p-1">Sender Signature</span></td> -->
+
+                        <td><span class="badge badge-warning p-1">${element.RequestStatus}</span></td>
+                        <td><span class="badge badge-danger p-1">${element.LoginName}</span></td>
+
+                        <td>
+                        <div class="col-md-2 d-flex ">
+                            <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn2" id="" onclick="addCssModel(${element.TID})"><i class="fal fa-edit" aria-hidden="true" ></i></button>
+
+                            <!--<button type="button" style="display: inline-block;" class="btn btn-primary btn-xs updatebtn2" id="" onclick="editFGT(${element.TID})"><i class="fal fa-edit" aria-hidden="true"></i></button>  &nbsp;
+
+                            <button type="button" style="display: inline-block;" class="btn btn-danger btn-xs updatebtn2" id="" onclick="deleteFGT(${element.TID})"><i class="fal fa-trash" aria-hidden="true" ></i></button> -->
+                        </div>
+                        </td>
+                    </tr>`
+                    })
+
+                    html += `</tbody>
+                    </table>`;
+
+                    $("#fgtRequestData1").html(html);
+                }
+
+                $('#fgtTableExport1').dataTable({
+                    responsive: false,
+                    lengthChange: false,
+                    dom:
+                        /*	--- Layout Structure 
+                            --- Options
+                            l	-	length changing input control
+                            f	-	filtering input
+                            t	-	The table!
+                            i	-	Table information summary
+                            p	-	pagination control
+                            r	-	processing display element
+                            B	-	buttons
+                            R	-	ColReorder
+                            S	-	Select
+
+                            --- Markup
+                            < and >				- div element
+                            <"class" and >		- div with a class
+                            <"#id" and >		- div with an ID
+                            <"#id.class" and >	- div with an ID and a class
+
+                            --- Further reading
+                            https://datatables.net/reference/option/dom
+                            --------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                            extend:    'colvis',
+                            text:      'Column Visibility',
+                            titleAttr: 'Col visibility',
+                            className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+            });
+
+        }
+
+        function loadFGTRequestwithCssNo() {
+
+            url = "<?php echo base_url("LabController/FGTRequestwithCssNo") ?>";
+            $.get(url, function(data) {
+                if (data) {
+                    let html = `<table class="table table-bordered table-hover table-responsive table-striped table-sm" style="width:100%" id="fgtTableExport2">
+            <thead class="bg-primary-200 text-light p-2">
+                <tr>
+                    <th class="h5">CSS NO</th>
+                    <th class="h5">CSS Date</th>
+                    <th class="h5">Factory Code</th>
+                    <th class="h5">Working No</th>
+                    <th class="h5">Article No</th>
+                    <th class="h5">Modal Name</th>
+                    <th class="h5">Size</th>
+                    <th class="h5">Ball Type</th>                  
+                    <th class="h5">Main Material Color</th>
+                    <th class="h5">Convert Mat</th>
+                    <th class="h5">Backing</th>
+                    <th class="h5">Bladder Details</th>
+                    <th class="h5">Production Month</th>
+                    <th class="h5">Printing Color</th>
+                    <th class="h5">Panel Shape</th>
+                    <th class="h5">Test Type</th>
+                    <th class="h5">Deliever Qty</th>
+                    <th class="h5">Any Info</th>
+                    <th class="h5">Lab Status</th>
+                    <!--<th class="h5">Receiver Signature</th>
+                    <th class="h5">Sender Signature</th>-->
+                    <th class="h5">Request Status</th>
+                    <th class="h5">Generated By</th>
+                    <th class="h5">Action</th>
+                </tr>
+            </thead>
+            <tbody>`
+                    data.forEach(element => {
+                        html += `
+            <tr>
+            
+            <td><span class="badge badge-warning p-1">${element.CssNO}</span></td>
+            <td>${element.CssDate.split("00:00:00")[0]}</td>
+            <td>${element.factoryCode}</td>
+            <td>${element.WorkingNo}</td>
+            <td>${element.Articleno}</td>
+            <td>${element.ModelName}</td>
+            <td>${element.Size}</td>
+            <td>${element.BallType}</td>               
+            <td>${element.mainmaterialColor}</td>
+            <td><span>${element.Covermat}</span></td>
+            <td><span>${element.backing}</span></td>
+            <td><span> ${element.Bladderdetail} </span></td>
+            <td><span> ${element.ProductionMonth} </span></td>
+            <td><span> ${element.Printingcolor} </span></td>
+            <td><span> ${element.panelShape} </span></td>
+            <td><span> ${element.testype} </span></td>
+            <td><span> ${element.deliverqty} </span></td>
+            <td><span> ${element.additionalinfo} </span></td>
+            <td><span class="badge badge-secondary p-1">${element.LabStatus == null ? `Pending` : `Aknowledged`} </span></td>
+
+            <!--<td> <span class="badge badge-primary p-1">Receiver Signature</span></td>
+
+            <td> <span class="badge badge-primary p-1">Sender Signature</span></td> -->
+
+            <td><span class="badge badge-warning p-1">${element.RequestStatus}</span></td>
+            <td><span class="badge badge-danger p-1">${element.LoginName}</span></td>
+            <td style="cursor:pointer;font-size:20px"><span class="badge badge-primary" onclick="generateQrCode('${element.CssNoQrCode}')">Get QrCode</span></td>
+                        
+            </tr>`
+                    })
+
+                    html += `</tbody>
+            </table>`;
+
+                    $("#fgtRequestData2").html(html);
+                }
+
+                $('#fgtTableExport2').dataTable({
+                    responsive: false,
+                    lengthChange: false,
+                    dom:
+                        /*	--- Layout Structure 
+                            --- Options
+                            l	-	length changing input control
+                            f	-	filtering input
+                            t	-	The table!
+                            i	-	Table information summary
+                            p	-	pagination control
+                            r	-	processing display element
+                            B	-	buttons
+                            R	-	ColReorder
+                            S	-	Select
+
+                            --- Markup
+                            < and >				- div element
+                            <"class" and >		- div with a class
+                            <"#id" and >		- div with an ID
+                            <"#id.class" and >	- div with an ID and a class
+
+                            --- Further reading
+                            https://datatables.net/reference/option/dom
+                            --------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                            extend:    'colvis',
+                            text:      'Column Visibility',
+                            titleAttr: 'Col visibility',
+                            className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+            });
+
+        }
+
+        function addCssModel(TID) {
+            $('#FGTId').val(TID);
+            console.log(TID);
+            $('#addCssModal').modal('toggle');
+        }
+        $('#saveBtnCssNo').on('click', function(e) {
+            e.preventDefault();
+
+            let TID = $('#FGTId').val();
+            let cssNo = $('#css_no').val();
+            if(cssNo){
+                url = "<?php echo base_url(''); ?>LabController/addCssNoToFGTRequest";
+                $.post(url, {
+                    TID: TID,
+                    cssNo: cssNo,
+                }, function(data) {
+                    if (data == true) {
+                        $('#addCssModal').modal('toggle');
+                        alert("CssNo applied successfully");
+                        loadFGTRequestwithoutCssNo();
+                        loadFGTRequestwithCssNo();
+                    }
+                });
+            }else{
+                alert('You must have to provide CSS No!');
+            }
+        });
+        function generateQrCode(CssNoQrCode){
+
+            $("#qrCodeImage").attr('src', '<?php echo base_url(); ?>assets/img/qrcode/' +CssNoQrCode);
+            $('#qrCodeModel').modal('toggle');
+        }
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+
+            window.print();
+
+            document.body.innerHTML = originalContents;
+            window.location.reload();
+        }
+    </script>
 
 
     </body>
 
     </html>
-
-
-<?php
-} ?>}

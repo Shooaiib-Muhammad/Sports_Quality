@@ -21,14 +21,17 @@ if (!$this->session->has_userdata('user_id')) {
         <main id="js-page-content" role="main" class="page-content">
 
           <div class="col-lg-12" style="margin-bottom:20px">
+          
           <ol class="breadcrumb page-breadcrumb">
                         <li class="breadcrumb-item"><a href="<?php echo base_url(
-                                                                    'index.php/main/dmms_dashboard'
-                                                                ); ?>">AMB Reports</a></li>
+                                                                    'index.php/DashboardController'
+                                                                ); ?>">Dashboard</a></li>
+                                                                <li class="breadcrumb-item"> AMB Reports</li>
 
 
                         <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
                     </ol>
+                    
                     <div class="subheader">
                         <h1 class="subheader-title">
                             <i class='subheader-icon fal fa-chart-area'></i> AMB Reports</span>

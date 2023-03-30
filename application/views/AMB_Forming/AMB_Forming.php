@@ -286,7 +286,7 @@ foreach ($Stationwise as $key) {
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                       
                                             <small class="m-0 l-h-n">Target</small>
-                                            <span >64%</span>
+                                            <span >66%</span>
                                         </h3>
 
                                     </div>
@@ -449,7 +449,7 @@ foreach ($Stationwise as $key) {
             <!-- BEGIN Page Footer -->
             <footer class="page-footer" role="contentinfo">
                 <div class="d-flex align-items-center flex-1 text-muted">
-                    <span class="hidden-md-down fw-700">2021 © DMMS by&nbsp;IT Dept Forward Sports</span>
+                    <span class="hidden-md-down fw-700">2021 © DMMS by&nbsp;IT Dept </span>
                 </div>
                 <div>
 
@@ -1354,7 +1354,7 @@ else{
       $("#realTimeId").text((minutes*208)-(60*208))
    }
    else{
-    EfficiencyFinal = (((counterValue*0.32)/((minutes*208)-(45*208)) )*100).toFixed(2)   
+    EfficiencyFinal = (((counterValue*10.03)/((minutes*208)-(45*208)) )*100).toFixed(2)   
     $("#realTimeId").text((minutes*208)-(45*208))
    }
    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))

@@ -6,16 +6,16 @@ if (!$this->session->has_userdata('user_id')) {
 
 
 
-                
-                    <div class="subheader">
-                        <h1 class="subheader-title">
-                            <i class='subheader-icon fal fa-chart-area'></i>MS</span>
 
-                        </h1>
-                    </div>
+<div class="subheader">
+    <h1 class="subheader-title">
+        <i class='subheader-icon fal fa-chart-area'></i>MS</span>
 
-                      <!-- Start here with columns -->
-                      <!doctype html>
+    </h1>
+</div>
+
+<!-- Start here with columns -->
+<!doctype html>
 <?php
 if ($this->session->userdata('userStus')==1) {
 ?>
@@ -25,7 +25,7 @@ if ($this->session->userdata('userStus')==1) {
 
 <body>
 
-  <?php
+    <?php
 
 
        
@@ -105,112 +105,115 @@ $EDay=substr($Date2,-2,2);
 $StartDateeee=$SYear.'-'.$SMonth.'-'.$SDay;
 $EndDateeee=$EYear.'-'.$EMonth.'-'.$EDay;
 ?>
-<form action="<?php echo base_url('MIS/MS/getAllData'); ?>" method="POST">
-<div class="row">
-<div class="col-md-3">
-<div class="form-group">
-<label class="form-control-label">From Date:</label>
-<div class="input-group">
-<input class="form-control" type="Date" name="Date1" value="<?php echo $StartDateeee;?>" >
-</div>
-</div>
-</div>
-<div class="col-md-3">
-<div class="form-group">
-<label class="form-control-label">To Date:</label>
-<div class="input-group">
-<input class="form-control" type="Date" name="Date2" value="<?php echo $EndDateeee;?>" >
-</div>
-</div>
-</div>
-<div class="col-md-3">
-<div class="form-group">
-<label class=" form-control-label">Line Name:</label>
-<div class="input-group">
-<select  class="form-control" name="LineNo" style="width: 80%;border-radius: 5px;" >
-  <option value="<?php Echo $LineNo;?>"><?php Echo $LineName;?></option>
-<option value="1">All</option>
-<?php
+    <form action="<?php echo base_url('MIS/MS/getAllData'); ?>" method="POST">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="form-control-label">From Date:</label>
+                    <div class="input-group">
+                        <input class="form-control" type="Date" name="Date1" value="<?php echo $StartDateeee;?>">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="form-control-label">To Date:</label>
+                    <div class="input-group">
+                        <input class="form-control" type="Date" name="Date2" value="<?php echo $EndDateeee;?>">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class=" form-control-label">Line Name:</label>
+                    <div class="input-group">
+                        <select class="form-control" name="LineNo" style="width: 80%;border-radius: 5px;">
+                            <option value="<?php Echo $LineNo;?>"><?php Echo $LineName;?></option>
+                            <option value="1">All</option>
+                            <?php
 foreach($MSLinesinfo As $Key){
 ?>
-<option value="<?php Echo $Key['LineID'];?>"><?php Echo $Key['LineName'];?></option>
-<?php
+                            <option value="<?php Echo $Key['LineID'];?>"><?php Echo $Key['LineName'];?></option>
+                            <?php
 }
 ?>
-</select>
-</div>
-</div>
-</div>
-<div class="col-md-3">
-<div class="form-group">
-<label class="form-control-label"></label>
-<div style="margin-top:18px" class="input-group">
-<button type="submit" id="submit" name="submit" class="btn btn-primary " ><i class=" fa fa-search"></i> Search</button>
-</div>                    
-</div>
-</div>
-</div>
-<span><a href="<?php Echo base_url('MIS/DW/MSArticle')?>" style="color: #202020;">MS Daily Article Wise </a></span>
-</form>
-<?php
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="form-control-label"></label>
+                    <div style="margin-top:18px" class="input-group">
+                        <button type="submit" id="submit" name="submit" class="btn btn-primary "><i
+                                class=" fa fa-search"></i> Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <span><a href="<?php Echo base_url('MIS/DW/MSArticle')?>" style="color: #202020;">MS Daily Article Wise
+            </a></span>
+    </form>
+    <?php
 }else{
 $Month=date('m');
 $Year=date('Y');
 $Day=date('d');
 $CurrentDate=$Year.'-'.$Month.'-'.$Day;
 ?>
-<form action="<?php echo base_url('MIS/MS/getAllData'); ?>" method="POST">
-<div class="row">
-<div class="col-md-3">
-<div class="form-group">
-<label class="form-control-label">From Date:</label>
-<div class="input-group">
-<input class="form-control" type="Date" name="Date1" value="<?php echo $CurrentDate;?>" >
-</div>
-</div>
-</div>
-<div class="col-md-3">
-<div class="form-group">
-<label class="form-control-label">To Date:</label>
-<div class="input-group">
-<input class="form-control" type="Date" name="Date2" value="<?php echo $CurrentDate;?>" >
-</div>
-</div>
-</div>
-<div class="col-md-3">
-<div class="form-group">
-<label class=" form-control-label">Line Name:</label>
-<div class="input-group">
-<select  class="form-control" name="LineNo" style="width: 80%;border-radius: 5px;" >
-<option value="1">All</option>
-<?php
+    <form action="<?php echo base_url('MIS/MS/getAllData'); ?>" method="POST">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="form-control-label">From Date:</label>
+                    <div class="input-group">
+                        <input class="form-control" type="Date" name="Date1" value="<?php echo $CurrentDate;?>">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="form-control-label">To Date:</label>
+                    <div class="input-group">
+                        <input class="form-control" type="Date" name="Date2" value="<?php echo $CurrentDate;?>">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class=" form-control-label">Line Name:</label>
+                    <div class="input-group">
+                        <select class="form-control" name="LineNo" style="width: 80%;border-radius: 5px;">
+                            <option value="1">All</option>
+                            <?php
 foreach($MSLinesinfo As $Key){
 ?>
-<option value="<?php Echo $Key['LineID'];?>"><?php Echo $Key['LineName'];?></option>
-<?php
+                            <option value="<?php Echo $Key['LineID'];?>"><?php Echo $Key['LineName'];?></option>
+                            <?php
 }
 ?>
-</select>
-</div>
-</div>
-</div>
-<div class="col-md-3">
-<div class="form-group">
-<label class="form-control-label"></label>
-<div style="margin-top:18px" class="input-group">
-<button type="submit" id="submit" name="submit" class="btn btn-primary " ><i class=" fa fa-search"></i> Search</button>
-<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="<?php Echo base_url('MIS/DW/MSArticle')?>" style="color: #202020;">Summary Reports</a></span> -->
-</div> 
-                   
-</div>
-</div>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="form-control-label"></label>
+                    <div style="margin-top:18px" class="input-group">
+                        <button type="submit" id="submit" name="submit" class="btn btn-primary "><i
+                                class=" fa fa-search"></i> Search</button>
+                        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="<?php Echo base_url('MIS/DW/MSArticle')?>" style="color: #202020;">Summary Reports</a></span> -->
+                    </div>
 
-</div>
-</form>
-<?php
+                </div>
+            </div>
+
+        </div>
+    </form>
+    <?php
 }
 ?>
-<?php
+    <?php
 if ($Line_Wise_record) {
  $LineNo;
  if ($LineNo==1) {
@@ -301,247 +304,248 @@ $point = array("label" => $key12['LineName'] , "y" =>  $RFT);
 }
 ?>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
-
-
-<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-<script type="text/javascript">
-window.onload = function() {
-
-  Highcharts.chart('chartContainer1', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: ''
-    },
-    subtitle: {
-        
-    },
-    xAxis: {
-        categories: <?php echo json_encode($lineNames, JSON_NUMERIC_CHECK); ?>,
-        crosshair: true
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: ''
-        }
-    },
-    tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0">{point.y:.1f}</td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true
-    },
-    plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0,
-            "turboThreshold": 3000,
-        }
-    },
-    series: [{
-            color:"#33cccc", 
-            name: 'Check',
-            data: <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>
-        }, {
-            color:"#1a8cff",
-            name: 'Pass',
-            data:  <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
-        }]
-    // series: [
-    //     { 
-    //         name: "",
-    //         data: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
-    //     }
-    // ]
-});
-// var chart = new CanvasJS.Chart("chartContainer1", {
-//   animationEnabled: true,
-//    axisX:{
-    
-//     gridThickness: 0,
-//     tickLength: 0,
-//     lineThickness: 0,
-//      labelFormatter: function(){
-//         return " ";
-//       }
-//   },
-//   legend:{
-//     cursor: "pointer",
-//     fontSize: 18,
-//     itemclick: toggleDataSeries
-//   },
-//   toolTip:{
-//     shared: true
-//   },
-//   data: [{
-//    type: "column",
-//         yValueFormatString: "#",
-//        // indexLabel: "{y} ",
-//  indexLabelFontSize: 18, 
-//   name: "Check",
-
-//         indexLabelPlacement: "top",
-//        color:"#33cccc", 
-//     dataPoints: <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>
-//   },{
-//    type: "column",
-//         yValueFormatString: "#",
-//       //  indexLabel: "{y} ",
-//  indexLabelFontSize: 18, 
-//   name: "Pass",
-// indexLabelPlacement: "top",
-//        color:"#1a8cff", 
-//     dataPoints: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
-//   }]
-// });
-
-// chart.render();
-// function toggleDataSeries(e){
-//   if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-//     e.dataSeries.visible = false;
-//   }
-//   else{
-//     e.dataSeries.visible = true;
-//   }
-//   chart.render();
-// }
-
-Highcharts.chart('chartContainer5', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: ''
-    },
-    subtitle: {
-        
-    },
-    xAxis: {
-        categories: <?php echo json_encode($lineNames, JSON_NUMERIC_CHECK); ?>,
-        crosshair: true
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: ''
-        }
-    },
-    tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0">{point.y:.1f}</td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true
-    },
-    plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0,
-            "turboThreshold": 3000,
-        }
-    },
-
-    series: [{
-            color:"#33cccc", 
-            name: 'Check',
-            data: <?php echo json_encode($data_points5, JSON_NUMERIC_CHECK); ?>
-        },
-    ]
-
-    // series: [
-    //     { 
-    //         name: "",
-    //         data: <?php echo json_encode($data_points5, JSON_NUMERIC_CHECK); ?>
-    //     }
-    // ]
-});
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
 
 
-// var chart = new CanvasJS.Chart("chartContainer5", {
-//    // colorSet: "greenShades",
-//     animationEnabled: true,
-//     //exportEnabled: true,
-//     theme: "light1", // "light1", "light2", "dark1", "dark2"
-//     axisX:{
-    
-//     gridThickness: 0,
-//     tickLength: 0,
-//     lineThickness: 0,
-//      labelFormatter: function(){
-//         return " ";
-//       }
-//   },
-//     data: [{
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script type="text/javascript">
+    window.onload = function() {
 
-//          type: "column",
-//         yValueFormatString: "#",
-//         //indexLabel: "{y} %", 
-//         color:"#00e6b8",  
-//         dataPoints: <?php echo json_encode($data_points5, JSON_NUMERIC_CHECK); ?>
-//     }]
-// });
-// chart.render();
-}
-</script>
-<div class="row">
-<div class="col-lg-6">
-<div class="card">
-<div class="card-body">
-<h3 class="mb-3">Production </h3>
-<div id="chartContainer1" style="height: 370px; width: 100%;"></div>
-</div>
-</div>
-</div>
-<div class="col-lg-6" >
-<div class="card" >
-<div class="card-body">
-<h3 class="mb-3">RFT</h3>
-<div id="chartContainer2" style="height: 370px; width: 100%;"></div>
-</div>
-</div>
-</div>
-</div>
+        Highcharts.chart('chartContainer1', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
 
-<div class="col-lg-12">
-<div class="card">
+            },
+            xAxis: {
+                categories: <?php echo json_encode($lineNames, JSON_NUMERIC_CHECK); ?>,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0">{point.y:.1f}</td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0,
+                    "turboThreshold": 3000,
+                }
+            },
+            series: [{
+                color: "#33cccc",
+                name: 'Check',
+                data: <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>
+            }, {
+                color: "#1a8cff",
+                name: 'Pass',
+                data: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
+            }]
+            // series: [
+            //     { 
+            //         name: "",
+            //         data: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
+            //     }
+            // ]
+        });
+        // var chart = new CanvasJS.Chart("chartContainer1", {
+        //   animationEnabled: true,
+        //    axisX:{
+
+        //     gridThickness: 0,
+        //     tickLength: 0,
+        //     lineThickness: 0,
+        //      labelFormatter: function(){
+        //         return " ";
+        //       }
+        //   },
+        //   legend:{
+        //     cursor: "pointer",
+        //     fontSize: 18,
+        //     itemclick: toggleDataSeries
+        //   },
+        //   toolTip:{
+        //     shared: true
+        //   },
+        //   data: [{
+        //    type: "column",
+        //         yValueFormatString: "#",
+        //        // indexLabel: "{y} ",
+        //  indexLabelFontSize: 18, 
+        //   name: "Check",
+
+        //         indexLabelPlacement: "top",
+        //        color:"#33cccc", 
+        //     dataPoints: <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>
+        //   },{
+        //    type: "column",
+        //         yValueFormatString: "#",
+        //       //  indexLabel: "{y} ",
+        //  indexLabelFontSize: 18, 
+        //   name: "Pass",
+        // indexLabelPlacement: "top",
+        //        color:"#1a8cff", 
+        //     dataPoints: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
+        //   }]
+        // });
+
+        // chart.render();
+        // function toggleDataSeries(e){
+        //   if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+        //     e.dataSeries.visible = false;
+        //   }
+        //   else{
+        //     e.dataSeries.visible = true;
+        //   }
+        //   chart.render();
+        // }
+
+        Highcharts.chart('chartContainer5', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+
+            },
+            xAxis: {
+                categories: <?php echo json_encode($lineNames, JSON_NUMERIC_CHECK); ?>,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0">{point.y:.1f}</td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0,
+                    "turboThreshold": 3000,
+                }
+            },
+
+            series: [{
+                color: "#33cccc",
+                name: 'Check',
+                data: <?php echo json_encode($data_points5, JSON_NUMERIC_CHECK); ?>
+            }, ]
+
+            // series: [
+            //     { 
+            //         name: "",
+            //         data: <?php echo json_encode($data_points5, JSON_NUMERIC_CHECK); ?>
+            //     }
+            // ]
+        });
 
 
-<h2>
-<strong class="card-title">Machine Stitch Ball Production </strong>
-</h2>
+        // var chart = new CanvasJS.Chart("chartContainer5", {
+        //    // colorSet: "greenShades",
+        //     animationEnabled: true,
+        //     //exportEnabled: true,
+        //     theme: "light1", // "light1", "light2", "dark1", "dark2"
+        //     axisX:{
 
-<div class="card-body table-responsive"> 
-<table  id="table" class="table table-bordered table-hover table-responsive table-striped w-100" style="width: 100%;">
-<thead class="bg-primary-200 text-light">
-                <style type="text/css">
-                  td{
-                    text-align: center;
-                  }
-                  .Froming{
-                    
-                  }
-                  .packing{
-                   
-                  }
-                </style>                      
-<tr class="bg-primary-200 text-light" style="font-weight: bold; color: #fff;"><td style="text-align: left;">Line Name</td> 
-<td  style="width:10%; " >Check</td>
-<td  style="width:10%;">Pass</td>
-<td  style="width:10%;">RFT</td>
-<td  style="width:10%;">Strength</td>
-</tr>
-</thead>
-<tbody style="border:1px black solid; ">
-<?php 
+        //     gridThickness: 0,
+        //     tickLength: 0,
+        //     lineThickness: 0,
+        //      labelFormatter: function(){
+        //         return " ";
+        //       }
+        //   },
+        //     data: [{
+
+        //          type: "column",
+        //         yValueFormatString: "#",
+        //         //indexLabel: "{y} %", 
+        //         color:"#00e6b8",  
+        //         dataPoints: <?php echo json_encode($data_points5, JSON_NUMERIC_CHECK); ?>
+        //     }]
+        // });
+        // chart.render();
+    }
+    </script>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="mb-3">Production </h3>
+                    <div id="chartContainer1" style="height: 370px; width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="mb-3">RFT</h3>
+                    <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="card">
+
+
+            <h2>
+                <strong class="card-title">Machine Stitch Ball Production </strong>
+            </h2>
+
+            <div class="card-body table-responsive">
+                <table id="table" class="table table-bordered table-hover table-responsive table-striped w-100"
+                    style="width: 100%;">
+                    <thead class="bg-primary-200 text-light">
+                        <style type="text/css">
+                        td {
+                            text-align: center;
+                        }
+
+                        .Froming {}
+
+                        .packing {}
+                        </style>
+                        <tr class="bg-primary-200 text-light" style="font-weight: bold; color: #fff;">
+                            <td style="text-align: left;">Line Name</td>
+                            <td style="width:10%; ">Check</td>
+                            <td style="width:10%;">Pass</td>
+                            <td style="width:10%;">RFT</td>
+                            <td style="width:10%;">Strength</td>
+                        </tr>
+                    </thead>
+                    <tbody style="border:1px black solid; ">
+                        <?php 
 if($Line_Wise_record) {
 foreach($Line_Wise_record as $key) {
 $line = $key['LineName'];
@@ -553,15 +557,16 @@ $RFT=0;
 }else{
 $RFT=$Pass/$Checked*100;
 }
-?> 
-<tr >
-<td style="width:10%; text-align: left;"><?php echo $line;?></td>
-<td  style="width:10%; text-align: center;" class="Froming"><?php echo Round($Checked);?></td>
-<td  style="width:10%; text-align: center;" class="packing"><?php echo Round($Pass);?></td>
-<td  style="width:10%; text-align: center;" ><?php echo Round($RFT);?>%</td>
-<td  style="width:10%; text-align: center;" ><?php echo Round($PresentWorkers);?></td>
-</tr>
-<?php
+?>
+                        <tr>
+                            <td style="width:10%; text-align: left;"><?php echo $line;?></td>
+                            <td style="width:10%; text-align: center;" class="Froming"><?php echo Round($Checked);?>
+                            </td>
+                            <td style="width:10%; text-align: center;" class="packing"><?php echo Round($Pass);?></td>
+                            <td style="width:10%; text-align: center;"><?php echo Round($RFT);?>%</td>
+                            <td style="width:10%; text-align: center;"><?php echo Round($PresentWorkers);?></td>
+                        </tr>
+                        <?php
  }
 if ($Sum) {
 foreach ($Sum as $key) {
@@ -569,28 +574,30 @@ $SumQty=$key['Pass'];
 $SumFail=$key['Fail'];
 $SumCheck=$key['TotalChecked'];
 ?>
-<tr style="color: black;">
-<td style="width:10%; text-align: right; color: #202020;">Total</td>
-<td  style="width:10%; text-align: center;" ><?php echo Round($SumCheck);?></td>
-<td  style="width:10%; text-align: center;" ><?php echo Round($SumQty);?></td>
-<td  style="width:10%; text-align: center;"><?php echo Round($RFT);?>%</td>
-<td  style="width:10%; text-align: center;" ></td>
-</tr>
-<?php }
+                        <tr style="color: black;">
+                            <td style="width:10%; text-align: right; color: #202020;">Total</td>
+                            <td style="width:10%; text-align: center;"><?php echo Round($SumCheck);?></td>
+                            <td style="width:10%; text-align: center;"><?php echo Round($SumQty);?></td>
+                            <td style="width:10%; text-align: center;"><?php echo Round($RFT);?>%</td>
+                            <td style="width:10%; text-align: center;"></td>
+                        </tr>
+                        <?php }
 }
 } else{ ?>
-<tr>
-<th colspan="5"> <center>No Record Available Yet!</center> </th>
-</tr>
-<?php }
+                        <tr>
+                            <th colspan="5">
+                                <center>No Record Available Yet!</center>
+                            </th>
+                        </tr>
+                        <?php }
 ?>
-</tbody>
-</table> 
-</div>
+                    </tbody>
+                </table>
+            </div>
 
-</div>
-</div>
-<?php
+        </div>
+    </div>
+    <?php
 }else{
 $data_points1 = array();
 $hours = array();
@@ -619,269 +626,270 @@ $Checked=$key12['TotalChecked'];
 }
 
 ?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
-
-
-<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-<script type="text/javascript">
-window.onload = function() {
-  Highcharts.chart('chartContainer1', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: ''
-    },
-    subtitle: {
-        
-    },
-    xAxis: {
-        categories: <?php echo json_encode($hours, JSON_NUMERIC_CHECK); ?>,
-        crosshair: true
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: ''
-        }
-    },
-    tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0">{point.y:.1f}</td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true
-    },
-    plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0,
-            "turboThreshold": 3000,
-        }
-    },
-    series: [{
-            color:"#33cccc", 
-            name: 'Check',
-            data: <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>
-        }, {
-            color:"#1a8cff",
-            name: 'Pass',
-            data: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
-        }]
-
-    // series: [
-    //     { 
-    //         name: "",
-    //         data: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
-    //     }
-    // ]
-});
-// var chart = new CanvasJS.Chart("chartContainer1", {
-//   animationEnabled: true,
-//    axisX:{
-    
-//     gridThickness: 0,
-//     tickLength: 0,
-//     lineThickness: 0,
-//      labelFormatter: function(){
-//         return " ";
-//       }
-//   },
-//   legend:{
-//     cursor: "pointer",
-//     fontSize: 18,
-//     itemclick: toggleDataSeries
-//   },
-//   toolTip:{
-//     shared: true
-//   },
-//   data: [{
-//    type: "column",
-//         yValueFormatString: "#",
-//        // indexLabel: "{y} ",
-//  indexLabelFontSize: 18, 
-//   name: "Check",
-
-//         indexLabelPlacement: "top",
-//        color:"#33cccc", 
-//     dataPoints: <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>
-//   },{
-//    type: "column",
-//         yValueFormatString: "#",
-//        // indexLabel: "{y} ",
-//  indexLabelFontSize: 18, 
-//   name: "Pass",
-// indexLabelPlacement: "top",
-//        color:"#1a8cff", 
-//     dataPoints: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
-//   }]
-// });
-
-// chart.render();
-// function toggleDataSeries(e){
-//   if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-//     e.dataSeries.visible = false;
-//   }
-//   else{
-//     e.dataSeries.visible = true;
-//   }
-//   chart.render();
-// }
-Highcharts.chart('chartContainer2', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: ''
-    },
-    subtitle: {
-        
-    },
-    xAxis: {
-        categories: <?php echo json_encode($hours, JSON_NUMERIC_CHECK); ?>,
-        crosshair: true
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: ''
-        }
-    },
-    tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0">{point.y:.1f}</td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true
-    },
-    plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0,
-            "turboThreshold": 3000,
-        }
-    },
-    series: [{
-            color:"#33cccc", 
-            name: 'RFT',
-            data: <?php echo json_encode($data_points3, JSON_NUMERIC_CHECK); ?>
-        },
-    ]
-    // series: [
-    //     { 
-    //         name: "",
-    //         data: <?php echo json_encode($data_points3, JSON_NUMERIC_CHECK); ?>
-    //     }
-    // ]
-});
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
 
 
-// var chart = new CanvasJS.Chart("chartContainer2", {
-//   animationEnabled: true,
-//   axisX:{
-    
-//     gridThickness: 0,
-//     tickLength: 0,
-//     lineThickness: 0,
-//      labelFormatter: function(){
-//         return " ";
-//       }
-//   },
-//   legend:{
-//     cursor: "pointer",
-//     fontSize: 18,
-//     itemclick: toggleDataSeries
-//   },
-//   toolTip:{
-//     shared: true
-//   },
-//   data: [{
-//    type: "column",
-//         yValueFormatString: "#",
-//        // indexLabel: "{y} ",
-//  indexLabelFontSize: 18, 
-//   name: "RFT",
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script type="text/javascript">
+    window.onload = function() {
+        Highcharts.chart('chartContainer1', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
 
-//         indexLabelPlacement: "top",
-//        color:"#00e6b8", 
-//     dataPoints: <?php echo json_encode($data_points3, JSON_NUMERIC_CHECK); ?>
-//   }]
-// });
+            },
+            xAxis: {
+                categories: <?php echo json_encode($hours, JSON_NUMERIC_CHECK); ?>,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0">{point.y:.1f}</td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0,
+                    "turboThreshold": 3000,
+                }
+            },
+            series: [{
+                color: "#33cccc",
+                name: 'Check',
+                data: <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>
+            }, {
+                color: "#1a8cff",
+                name: 'Pass',
+                data: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
+            }]
 
-// chart.render();
-// function toggleDataSeries(e){
-//   if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-//     e.dataSeries.visible = false;
-//   }
-//   else{
-//     e.dataSeries.visible = true;
-//   }
-//   chart.render();
-// }
-}
-</script>
-<style type="text/css">
-                  td{
-                    text-align: center;
-                  }
-                  .Froming{
-                    
-                  }
-                  .packing{
-                    
-                  }
-                </style> 
+            // series: [
+            //     { 
+            //         name: "",
+            //         data: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
+            //     }
+            // ]
+        });
+        // var chart = new CanvasJS.Chart("chartContainer1", {
+        //   animationEnabled: true,
+        //    axisX:{
 
-<div class="row">
-<div class="col-lg-6">
-<div class="card">
-<div class="card-body table-responsive" >
-<h3 class="mb-3"> <?php Echo $LineName;?> Production </h3>
-<div id="chartContainer1" style="height: 370px; width: 100%;"></div>
-</div>
-</div>
-</div>
-<div class="col-lg-6" >
-<div class="card" >
-<div class="card-body table-responsive">
-<h3 class="mb-3">RFT</h3>
-<div id="chartContainer2" style="height: 370px; width: 100%;"></div>
-</div>
-</div>
-</div>
-</div>
+        //     gridThickness: 0,
+        //     tickLength: 0,
+        //     lineThickness: 0,
+        //      labelFormatter: function(){
+        //         return " ";
+        //       }
+        //   },
+        //   legend:{
+        //     cursor: "pointer",
+        //     fontSize: 18,
+        //     itemclick: toggleDataSeries
+        //   },
+        //   toolTip:{
+        //     shared: true
+        //   },
+        //   data: [{
+        //    type: "column",
+        //         yValueFormatString: "#",
+        //        // indexLabel: "{y} ",
+        //  indexLabelFontSize: 18, 
+        //   name: "Check",
+
+        //         indexLabelPlacement: "top",
+        //        color:"#33cccc", 
+        //     dataPoints: <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>
+        //   },{
+        //    type: "column",
+        //         yValueFormatString: "#",
+        //        // indexLabel: "{y} ",
+        //  indexLabelFontSize: 18, 
+        //   name: "Pass",
+        // indexLabelPlacement: "top",
+        //        color:"#1a8cff", 
+        //     dataPoints: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
+        //   }]
+        // });
+
+        // chart.render();
+        // function toggleDataSeries(e){
+        //   if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+        //     e.dataSeries.visible = false;
+        //   }
+        //   else{
+        //     e.dataSeries.visible = true;
+        //   }
+        //   chart.render();
+        // }
+        Highcharts.chart('chartContainer2', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
+
+            },
+            xAxis: {
+                categories: <?php echo json_encode($hours, JSON_NUMERIC_CHECK); ?>,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0">{point.y:.1f}</td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0,
+                    "turboThreshold": 3000,
+                }
+            },
+            series: [{
+                color: "#33cccc",
+                name: 'RFT',
+                data: <?php echo json_encode($data_points3, JSON_NUMERIC_CHECK); ?>
+            }, ]
+            // series: [
+            //     { 
+            //         name: "",
+            //         data: <?php echo json_encode($data_points3, JSON_NUMERIC_CHECK); ?>
+            //     }
+            // ]
+        });
 
 
-<div class="col-lg-12">
-    
-<div class="card">
-    
-  
+        // var chart = new CanvasJS.Chart("chartContainer2", {
+        //   animationEnabled: true,
+        //   axisX:{
 
-                                
-<div class="card-header">
-<strong class="card-title">Forming  Production </strong>
-</div>
+        //     gridThickness: 0,
+        //     tickLength: 0,
+        //     lineThickness: 0,
+        //      labelFormatter: function(){
+        //         return " ";
+        //       }
+        //   },
+        //   legend:{
+        //     cursor: "pointer",
+        //     fontSize: 18,
+        //     itemclick: toggleDataSeries
+        //   },
+        //   toolTip:{
+        //     shared: true
+        //   },
+        //   data: [{
+        //    type: "column",
+        //         yValueFormatString: "#",
+        //        // indexLabel: "{y} ",
+        //  indexLabelFontSize: 18, 
+        //   name: "RFT",
 
-<div class="card-body table-responsive"> 
-<table  id="table" class="table table-bordered table-hover table-responsive table-striped w-100" style="width: 100%;">
-<thead class="bg-primary-200 text-light" style="color: #fff; font-size: 15px; border:2px black solid;">
-<td style="text-align: left;">Hours Name</td>
-<td style="text-align: left;">Article No</td>
-<td style="text-align: center;">Size</td>         
-<td style="text-align: center;">Checked</td>
-<td style="text-align: center;">Pass</td>
-<td style="text-align: center;">RFT</td>
-<td style="text-align: center;">Total Worker</td>
-<td style="text-align: center;">Efficiency</td>
-</thead>
-<tbody style="border:1px black solid; ">
-<?php 
+        //         indexLabelPlacement: "top",
+        //        color:"#00e6b8", 
+        //     dataPoints: <?php echo json_encode($data_points3, JSON_NUMERIC_CHECK); ?>
+        //   }]
+        // });
+
+        // chart.render();
+        // function toggleDataSeries(e){
+        //   if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+        //     e.dataSeries.visible = false;
+        //   }
+        //   else{
+        //     e.dataSeries.visible = true;
+        //   }
+        //   chart.render();
+        // }
+    }
+    </script>
+    <style type="text/css">
+    td {
+        text-align: center;
+    }
+
+    .Froming {}
+
+    .packing {}
+    </style>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body table-responsive">
+                    <h3 class="mb-3"> <?php Echo $LineName;?> Production </h3>
+                    <div id="chartContainer1" style="height: 370px; width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body table-responsive">
+                    <h3 class="mb-3">RFT</h3>
+                    <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-12">
+
+        <div class="card">
+
+
+
+
+            <div class="card-header">
+                <strong class="card-title">Forming Production </strong>
+            </div>
+
+            <div class="card-body table-responsive">
+                <table id="table" class="table table-bordered table-hover table-responsive table-striped w-100"
+                    style="width: 100%;">
+                    <thead class="bg-primary-200 text-light"
+                        style="color: #fff; font-size: 15px; border:2px black solid;">
+                        <td style="text-align: left;">Hours Name</td>
+                        <td style="text-align: left;">Article No</td>
+                        <td style="text-align: center;">Size</td>
+                        <td style="text-align: center;">Checked</td>
+                        <td style="text-align: center;">Pass</td>
+                        <td style="text-align: center;">RFT</td>
+                        <td style="text-align: center;">Total Worker</td>
+                        <td style="text-align: center;">Efficiency</td>
+                    </thead>
+                    <tbody style="border:1px black solid; ">
+                        <?php 
 if($Line_Wise_record) {
 foreach($Line_Wise_record as $key) {
    $HourName = $key['HourName'];
@@ -912,61 +920,64 @@ else{
   $Efficiency=($Pass*$SAMValue)/($PresentWorkers*$Mints)*100;
 }
 
-?> 
-<tr >
-<td style="width:10%; text-align: left;"><?php echo $HourName;?></td>
-<td style="width:10%; text-align: left;"><?php echo $ArtCode;?></td>
-<td style="width:10%; text-align: center;"><?php echo $ArtSize;?></td>
+?>
+                        <tr>
+                            <td style="width:10%; text-align: left;"><?php echo $HourName;?></td>
+                            <td style="width:10%; text-align: left;"><?php echo $ArtCode;?></td>
+                            <td style="width:10%; text-align: center;"><?php echo $ArtSize;?></td>
 
 
-<td style="width:10%; text-align: center;" class="Froming"><?php echo Round($Checked);?></td>
-<td style="width:10%; text-align: center;" class="packing"><?php echo Round($Pass);?></td>
+                            <td style="width:10%; text-align: center;" class="Froming"><?php echo Round($Checked);?>
+                            </td>
+                            <td style="width:10%; text-align: center;" class="packing"><?php echo Round($Pass);?></td>
 
-<td style="width:10%; text-align: center;"><?php echo Round($RFT);?>%</td>
+                            <td style="width:10%; text-align: center;"><?php echo Round($RFT);?>%</td>
 
-<td  style="width:10%; text-align: center;" ><?php echo Round($PresentWorkers);?></td>
-<td  style="width:10%; text-align: center;" ><?php echo Round($Efficiency);?>%</td>
-</tr>
-<?php } 
+                            <td style="width:10%; text-align: center;"><?php echo Round($PresentWorkers);?></td>
+                            <td style="width:10%; text-align: center;"><?php echo Round($Efficiency);?>%</td>
+                        </tr>
+                        <?php } 
 if ($Sum) {
 foreach ($Sum as $key) {
 $SumQty=$key['Pass'];
 $SumFail=$key['Fail'];
 $SumCheck=$key['TotalChecked'];
 ?>
-<tr style="color: black;">
+                        <tr style="color: black;">
 
-<td  style="width:10%; text-align: center;" ></td>
-<td  style="width:10%; text-align: center;" ></td>
-<td style="width:10%; text-align: center; color: black;">Total</td>
-<td  style="width:10%; text-align: center;" ><?php echo Round($SumCheck);?></td>
-<td  style="width:10%; text-align: center;" ><?php echo Round($SumQty);?></td>
-<td  style="width:10%; text-align: center;"><?php echo Round($RFT);?>%</td>
-<td  style="width:10%; text-align: center;" ></td>
-<td  style="width:10%; text-align: center;" ></td>
-</tr>
-<?php }
+                            <td style="width:10%; text-align: center;"></td>
+                            <td style="width:10%; text-align: center;"></td>
+                            <td style="width:10%; text-align: center; color: black;">Total</td>
+                            <td style="width:10%; text-align: center;"><?php echo Round($SumCheck);?></td>
+                            <td style="width:10%; text-align: center;"><?php echo Round($SumQty);?></td>
+                            <td style="width:10%; text-align: center;"><?php echo Round($RFT);?>%</td>
+                            <td style="width:10%; text-align: center;"></td>
+                            <td style="width:10%; text-align: center;"></td>
+                        </tr>
+                        <?php }
 
 }
 } else{ ?>
-<tr>
-<td colspan="5"> <center>No Record Available Yet!</center> </td>
-</tr>
-<?php }
+                        <tr>
+                            <td colspan="5">
+                                <center>No Record Available Yet!</center>
+                            </td>
+                        </tr>
+                        <?php }
 ?>
-</tbody>
-</table> 
-</div>
+                    </tbody>
+                </table>
+            </div>
 
-</div>
-</div>
+        </div>
+    </div>
 
-  <?php
+    <?php
 }
 
 }else{
  ?>
-<?php
+    <?php
 $data_points1 = array();
 $lineNames = array();
 foreach($record as $key) {
@@ -994,241 +1005,241 @@ $Pass= $key12['Pass'];
 }
 ?>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
 
 
-<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-<script type="text/javascript">
-window.onload = function() {
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script type="text/javascript">
+    window.onload = function() {
 
-  Highcharts.chart('chartContainer1', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: ''
-    },
-    subtitle: {
-        
-    },
-    xAxis: {
-        categories: <?php echo json_encode($lineNames, JSON_NUMERIC_CHECK); ?>,
-        crosshair: true
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: ''
-        }
-    },
-    tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0">{point.y:.1f}</td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true
-    },
-    plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0,
-            "turboThreshold": 3000,
-        }
-    },
-    series: [{
-            color:"#33cccc", 
-            name: 'Check',
-            data:  <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>
-        }, {
-            color:"#1a8cff",
-            name: 'Pass',
-            data: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
-        }]
-    // series: [
-    //     { 
-    //         name: "",
-    //         data: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
-    //     }
-    // ]
-});
-// var chart = new CanvasJS.Chart("chartContainer1", {
-//   animationEnabled: true,
-//    axisX:{
-    
-//     gridThickness: 0,
-//     tickLength: 0,
-//     lineThickness: 0,
-//      labelFormatter: function(){
-//         return " ";
-//       }
-//   },
-//   legend:{
-//     cursor: "pointer",
-//     fontSize: 18,
-//     itemclick: toggleDataSeries
-//   },
-//   toolTip:{
-//     shared: true
-//   },
-//   data: [{
-//    type: "column",
-//         yValueFormatString: "#",
-//        // indexLabel: "{y} ",
-//  indexLabelFontSize: 18, 
-//   name: "Check",
+        Highcharts.chart('chartContainer1', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
 
-//         indexLabelPlacement: "top",
-//        color:"#33cccc", 
-//     dataPoints: <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>
-//   },{
-//    type: "column",
-//         yValueFormatString: "#",
-//        // indexLabel: "{y} ",
-//  indexLabelFontSize: 18, 
-//   name: "Pass",
-// indexLabelPlacement: "top",
-//        color:"#1a8cff", 
-//     dataPoints: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
-//   }]
-// });
+            },
+            xAxis: {
+                categories: <?php echo json_encode($lineNames, JSON_NUMERIC_CHECK); ?>,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0">{point.y:.1f}</td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0,
+                    "turboThreshold": 3000,
+                }
+            },
+            series: [{
+                color: "#33cccc",
+                name: 'Check',
+                data: <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>
+            }, {
+                color: "#1a8cff",
+                name: 'Pass',
+                data: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
+            }]
+            // series: [
+            //     { 
+            //         name: "",
+            //         data: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
+            //     }
+            // ]
+        });
+        // var chart = new CanvasJS.Chart("chartContainer1", {
+        //   animationEnabled: true,
+        //    axisX:{
 
-// chart.render();
-// function toggleDataSeries(e){
-//   if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-//     e.dataSeries.visible = false;
-//   }
-//   else{
-//     e.dataSeries.visible = true;
-//   }
-//   chart.render();
-// }
+        //     gridThickness: 0,
+        //     tickLength: 0,
+        //     lineThickness: 0,
+        //      labelFormatter: function(){
+        //         return " ";
+        //       }
+        //   },
+        //   legend:{
+        //     cursor: "pointer",
+        //     fontSize: 18,
+        //     itemclick: toggleDataSeries
+        //   },
+        //   toolTip:{
+        //     shared: true
+        //   },
+        //   data: [{
+        //    type: "column",
+        //         yValueFormatString: "#",
+        //        // indexLabel: "{y} ",
+        //  indexLabelFontSize: 18, 
+        //   name: "Check",
 
-Highcharts.chart('chartContainer5', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: ''
-    },
-    subtitle: {
-        
-    },
-    xAxis: {
-        categories: <?php echo json_encode($lineNames, JSON_NUMERIC_CHECK); ?>,
-        crosshair: true
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: ''
-        }
-    },
-    tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0">{point.y:.1f}</td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true
-    },
-    plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0,
-            "turboThreshold": 3000,
-        }
-    },
-    series: [
-        { 
-            color:"#00e6b8",  
-            name: "Check",
-            data: <?php echo json_encode($data_points5, JSON_NUMERIC_CHECK); ?>
-        }
-    ]
-});
+        //         indexLabelPlacement: "top",
+        //        color:"#33cccc", 
+        //     dataPoints: <?php echo json_encode($data_points1, JSON_NUMERIC_CHECK); ?>
+        //   },{
+        //    type: "column",
+        //         yValueFormatString: "#",
+        //        // indexLabel: "{y} ",
+        //  indexLabelFontSize: 18, 
+        //   name: "Pass",
+        // indexLabelPlacement: "top",
+        //        color:"#1a8cff", 
+        //     dataPoints: <?php echo json_encode($data_points2, JSON_NUMERIC_CHECK); ?>
+        //   }]
+        // });
 
-// var chart = new CanvasJS.Chart("chartContainer5", {
-//    // colorSet: "greenShades",
-//     animationEnabled: true,
-//     //exportEnabled: true,
-//     theme: "light1", // "light1", "light2", "dark1", "dark2"
-//    axisX:{
-    
-//     gridThickness: 0,
-//     tickLength: 0,
-//     lineThickness: 0,
-//      labelFormatter: function(){
-//         return " ";
-//       }
-//   },
-//     data: [{
+        // chart.render();
+        // function toggleDataSeries(e){
+        //   if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+        //     e.dataSeries.visible = false;
+        //   }
+        //   else{
+        //     e.dataSeries.visible = true;
+        //   }
+        //   chart.render();
+        // }
 
-//          type: "column",
-//         yValueFormatString: "#",
-//       //  indexLabel: "{y} %", 
-//         color:"#00e6b8",  
-//         dataPoints: <?php echo json_encode($data_points5, JSON_NUMERIC_CHECK); ?>
-//     }]
-// });
-// chart.render();
-}
- </script>
- <div class="row">
- <div class="col-lg-6">
-<div class="card">
-<div class="card-body">
-<h3 class="mb-3">Production</h3>
-<div id="chartContainer1" style="height: 370px; width: 100%;"></div>
-</div>
-</div>
-</div>
-<div class="col-lg-6" >
-<div class="card" >
-<div class="card-body">
-<h3 class="mb-3">RFT</h3>
-<div id="chartContainer5" style="height: 370px; width: 100%;"></div>
-</div>
-</div>
-</div>
- </div>
+        Highcharts.chart('chartContainer5', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            subtitle: {
 
-<div class="col-lg-12">
-<div class="card">
-<div id="panel-1" class="panel">
-<div class="panel-hdr">
-<h2 class="card-header">
-<strong class="card-title">Machine Stitch Ball Production </strong>
-</h2>
-</div>
-<div class="card-body table-responsive"> 
-<table  id="table" class="table table-bordered table-hover table-responsive table-striped w-100" style="width: 100%;">
-<thead class="bg-primary-200 text-light">
-                <style type="text/css">
-                  td{
-                    text-align: center;
-                  }
-                  .Froming{
-                   
-                  }
-                  .packing{
-                    
-                  }
-                </style>                      
-                                       
+            },
+            xAxis: {
+                categories: <?php echo json_encode($lineNames, JSON_NUMERIC_CHECK); ?>,
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0">{point.y:.1f}</td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0,
+                    "turboThreshold": 3000,
+                }
+            },
+            series: [{
+                color: "#00e6b8",
+                name: "Check",
+                data: <?php echo json_encode($data_points5, JSON_NUMERIC_CHECK); ?>
+            }]
+        });
 
-<tr style="font-weight: bold; color: #fff;"><td style="text-align: left;">Line Name</td> 
-<td  style="width:10%; " >Check</td>
-<td  style="width:10%;">Pass</td>
-<td  style="width:10%;">RFT</td>
-<td  style="width:10%;">Strength</td>
-</tr>
-</thead>
-<tbody style="border:1px black solid; ">
-<?php 
+        // var chart = new CanvasJS.Chart("chartContainer5", {
+        //    // colorSet: "greenShades",
+        //     animationEnabled: true,
+        //     //exportEnabled: true,
+        //     theme: "light1", // "light1", "light2", "dark1", "dark2"
+        //    axisX:{
+
+        //     gridThickness: 0,
+        //     tickLength: 0,
+        //     lineThickness: 0,
+        //      labelFormatter: function(){
+        //         return " ";
+        //       }
+        //   },
+        //     data: [{
+
+        //          type: "column",
+        //         yValueFormatString: "#",
+        //       //  indexLabel: "{y} %", 
+        //         color:"#00e6b8",  
+        //         dataPoints: <?php echo json_encode($data_points5, JSON_NUMERIC_CHECK); ?>
+        //     }]
+        // });
+        // chart.render();
+    }
+    </script>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="mb-3">Production</h3>
+                    <div id="chartContainer1" style="height: 370px; width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="mb-3">RFT</h3>
+                    <div id="chartContainer5" style="height: 370px; width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2 class="card-header">
+                        <strong class="card-title">Machine Stitch Ball Production </strong>
+                    </h2>
+                </div>
+                <div class="card-body table-responsive">
+                    <table id="table" class="table table-bordered table-hover table-responsive table-striped w-100"
+                        style="width: 100%;">
+                        <thead class="bg-primary-200 text-light">
+                            <style type="text/css">
+                            td {
+                                text-align: center;
+                            }
+
+                            .Froming {}
+
+                            .packing {}
+                            </style>
+
+
+                            <tr style="font-weight: bold; color: #fff;">
+                                <td style="text-align: left;">Line Name</td>
+                                <td style="width:10%; ">Check</td>
+                                <td style="width:10%;">Pass</td>
+                                <td style="width:10%;">RFT</td>
+                                <td style="width:10%;">Strength</td>
+                            </tr>
+                        </thead>
+                        <tbody style="border:1px black solid; ">
+                            <?php 
 if($record) {
  foreach($record as $key) {
 $line = $key['LineName'];
@@ -1241,143 +1252,149 @@ $RFT=0;
 $RFT=$Pass/$Checked*100;
 }
 
-?> 
-<tr >
-<td style="width:10%; text-align: left;"><?php echo $line;?></td>
-<td  style="width:10%; text-align: center;" class="Froming"><?php echo Round($Checked);?></td>
-<td  style="width:10%; text-align: center;" class="packing"><?php echo Round($Pass);?></td>
-<td  style="width:10%; text-align: center;" ><?php echo Round($RFT);?>%</td>
-<td  style="width:10%; text-align: center;" ><?php echo Round($PresentWorkers);?></td>
+?>
+                            <tr>
+                                <td style="width:10%; text-align: left;"><?php echo $line;?></td>
+                                <td style="width:10%; text-align: center;" class="Froming"><?php echo Round($Checked);?>
+                                </td>
+                                <td style="width:10%; text-align: center;" class="packing"><?php echo Round($Pass);?>
+                                </td>
+                                <td style="width:10%; text-align: center;"><?php echo Round($RFT);?>%</td>
+                                <td style="width:10%; text-align: center;"><?php echo Round($PresentWorkers);?></td>
 
-</tr>
-<?php }
+                            </tr>
+                            <?php }
 if ($Sum) {
 foreach ($Sum as $key) {
 $SumQty=$key['Pass'];
 $SumFail=$key['Fail'];
 $SumCheck=$key['TotalChecked'];
 ?>
-<tr style="color: black;">
-<td style="width:10%; text-align: right; color: #202020;">Total</td>
-<td  style="width:10%; text-align: center;" ><?php echo Round($SumCheck);?></td>
-<td  style="width:10%; text-align: center;" ><?php echo Round($SumQty);?></td>
-<td  style="width:10%; text-align: center;"><?php echo Round($RFT);?>%</td>
-<td  style="width:10%; text-align: center;" ></td>
-</tr>
-<?php }
+                            <tr style="color: black;">
+                                <td style="width:10%; text-align: right; color: #202020;">Total</td>
+                                <td style="width:10%; text-align: center;"><?php echo Round($SumCheck);?></td>
+                                <td style="width:10%; text-align: center;"><?php echo Round($SumQty);?></td>
+                                <td style="width:10%; text-align: center;"><?php echo Round($RFT);?>%</td>
+                                <td style="width:10%; text-align: center;"></td>
+                            </tr>
+                            <?php }
 }
  } else{ ?>
-<tr>
-<th colspan="5"> <center>No Record Available Yet!</center> </th>
-</tr>
-<?php }
+                            <tr>
+                                <th colspan="5">
+                                    <center>No Record Available Yet!</center>
+                                </th>
+                            </tr>
+                            <?php }
 ?>
-</tbody>
-</table> 
-</div>
-</div>
-</div>
-</div>
-<?php
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php
 }
  ?>
 
-<script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
     <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
     <script type="text/javascript">
-        /* Activate smart panels */
-        $('#js-page-content').smartPanel();
+    /* Activate smart panels */
+    $('#js-page-content').smartPanel();
     </script>
 
 
-     
- <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
-      <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
-      <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
-      <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
- <script>
-         $(document).ready(function() {
-            // LoadData(stDate, enDate);
 
-            $('#table').dataTable({
-                responsive: false,
-                lengthChange: false,
-                dom:
-                    /*	--- Layout Structure 
-                    	--- Options
-                    	l	-	length changing input control
-                    	f	-	filtering input
-                    	t	-	The table!
-                    	i	-	Table information summary
-                    	p	-	pagination control
-                    	r	-	processing display element
-                    	B	-	buttons
-                    	R	-	ColReorder
-                    	S	-	Select
+    <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+    <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+    <script>
+    $(document).ready(function() {
+        // LoadData(stDate, enDate);
 
-                    	--- Markup
-                    	< and >				- div element
-                    	<"class" and >		- div with a class
-                    	<"#id" and >		- div with an ID
-                    	<"#id.class" and >	- div with an ID and a class
+        $('#table').dataTable({
+            responsive: false,
+            lengthChange: false,
+            dom:
+                /*	--- Layout Structure 
+                	--- Options
+                	l	-	length changing input control
+                	f	-	filtering input
+                	t	-	The table!
+                	i	-	Table information summary
+                	p	-	pagination control
+                	r	-	processing display element
+                	B	-	buttons
+                	R	-	ColReorder
+                	S	-	Select
 
-                    	--- Further reading
-                    	https://datatables.net/reference/option/dom
-                    	--------------------------------------
-                     */
-                    "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-                    "<'row'<'col-sm-12'tr>>" +
-                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                buttons: [
-                    /*{
-                    	extend:    'colvis',
-                    	text:      'Column Visibility',
-                    	titleAttr: 'Col visibility',
-                    	className: 'mr-sm-3'
-                    },*/
-                    {
-                        extend: 'pdfHtml5',
-                        text: 'PDF',
-                        titleAttr: 'Generate PDF',
-                        className: 'btn-outline-danger btn-sm mr-1'
-                    },
-                    {
-                        extend: 'excelHtml5',
-                        text: 'Excel',
-                        titleAttr: 'Generate Excel',
-                        className: 'btn-outline-success btn-sm mr-1'
-                    },
-                    {
-                        extend: 'csvHtml5',
-                        text: 'CSV',
-                        titleAttr: 'Generate CSV',
-                        className: 'btn-outline-primary btn-sm mr-1'
-                    },
-                    {
-                        extend: 'copyHtml5',
-                        text: 'Copy',
-                        titleAttr: 'Copy to clipboard',
-                        className: 'btn-outline-primary btn-sm mr-1'
-                    },
-                    {
-                        extend: 'print',
-                        text: 'Print',
-                        titleAttr: 'Print Table',
-                        className: 'btn-outline-primary btn-sm'
-                    }
-                ]
-            });
+                	--- Markup
+                	< and >				- div element
+                	<"class" and >		- div with a class
+                	<"#id" and >		- div with an ID
+                	<"#id.class" and >	- div with an ID and a class
 
-
+                	--- Further reading
+                	https://datatables.net/reference/option/dom
+                	--------------------------------------
+                 */
+                "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            buttons: [
+                /*{
+                	extend:    'colvis',
+                	text:      'Column Visibility',
+                	titleAttr: 'Col visibility',
+                	className: 'mr-sm-3'
+                },*/
+                {
+                    extend: 'pdfHtml5',
+                    text: 'PDF',
+                    titleAttr: 'Generate PDF',
+                    className: 'btn-outline-danger btn-sm mr-1'
+                },
+                {
+                    extend: 'excelHtml5',
+                    text: 'Excel',
+                    titleAttr: 'Generate Excel',
+                    className: 'btn-outline-success btn-sm mr-1'
+                },
+                {
+                    extend: 'csvHtml5',
+                    text: 'CSV',
+                    titleAttr: 'Generate CSV',
+                    className: 'btn-outline-primary btn-sm mr-1'
+                },
+                {
+                    extend: 'copyHtml5',
+                    text: 'Copy',
+                    titleAttr: 'Copy to clipboard',
+                    className: 'btn-outline-primary btn-sm mr-1'
+                },
+                {
+                    extend: 'print',
+                    text: 'Print',
+                    titleAttr: 'Print Table',
+                    className: 'btn-outline-primary btn-sm'
+                }
+            ]
         });
-        </script>
-<?php
+
+
+    });
+    </script>
+    <?php
 }else{
     redirect('Welcome/index');
 }
 ?>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js" integrity="sha512-gtII6Z4fZyONX9GBrF28JMpodY4vIOI0lBjAtN/mcK7Pz19Mu1HHIRvXH6bmdChteGpEccxZxI0qxXl9anY60w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"
+        integrity="sha512-gtII6Z4fZyONX9GBrF28JMpodY4vIOI0lBjAtN/mcK7Pz19Mu1HHIRvXH6bmdChteGpEccxZxI0qxXl9anY60w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 
 

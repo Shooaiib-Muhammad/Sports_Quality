@@ -6,7 +6,7 @@ class Energy extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-	$this->load->model('energyModel/EnergyModel', 'Energy');
+		$this->load->model('energyModel/EnergyModel', 'Energy');
 		// $this->load->library('session');
 	}
 
@@ -15,11 +15,38 @@ class Energy extends CI_Controller
 
 		$data['energyinfo'] = $this->Energy->energyinfo();
 		
+		$data['energy_C'] = $this->Energy->energy_C();
+		$data['energy_C_By_Hourly'] = $this->Energy->energy_C_By_Hourly();
+		$data['energy_C_Drill'] = $this->Energy->energy_C_Drill();
+
+
+		// print_r($data['energy_C']);die;
+		// echo "</br>";
+		// echo "</br>";
+		// echo "</br>";
+		// echo "</br>";
+
+		// print_r($data['energy_C_By_Hourly']);
         // $this->load->view('energy/energyView');
 		$this->load->view('energy/Energy',$data);
 
 		
     }
+
+	public function energy_C(){
+
+
+		
+		$data['energy_C'] = $this->Energy->energy_C();
+		$this->load->view('energy/Energy',$data);
+
+
+	}
+
+	
+
+
+
 
 	public function getData(){
 		
@@ -60,5 +87,8 @@ public function getEnergyDt($date1 ,$date2){
         ->set_status_header(200)
         ->set_output(json_encode($data));
 	}
+
+
+
 
 }

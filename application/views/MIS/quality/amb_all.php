@@ -744,7 +744,8 @@
             <th>%</th>
             <th> Air Bubble</th>
             <th>%</th>
-
+            <th> Dirty</th>
+            <th>%</th>
 
         </tr>
     </thead>
@@ -771,6 +772,7 @@
            $missingglue=0;
            $pressoremark=0;
            $airbubble=0;
+           $dirty=0;
           $FailQty=0;
            ?>
         <?php foreach($data2 as $d){; ?>
@@ -797,6 +799,7 @@
             $missingglue=($d->missingglue)+ $missingglue;
             $pressoremark=($d->pressoremark)+ $pressoremark;
             $airbubble=($d->airbubble)+ $airbubble;
+            $dirty=($d->Dirty)+ $dirty;
             ?>
             <td><?php format($d->DateName); ?></td>
             <td><?php echo $d->LineName; ?></td>
@@ -865,7 +868,8 @@
             <td class="text-danger"><?php percent($d->pressoremark, $d->TotalChecked); ?></td>
             <td class="center"><?php r($d->airbubble); ?></td>
             <td class="text-danger"><?php percent($d->airbubble, $d->TotalChecked); ?></td>
-
+            <td class="center"><?php r($d->Dirty); ?></td>
+            <td class="text-danger"><?php percent($d->Dirty, $d->TotalChecked); ?></td>
 
         </tr>
         <?php }; ?>
@@ -937,6 +941,8 @@
             <td class="text-danger"><?php percent($pressoremark, $Checked); ?></td>
             <td class="center"><?php r($airbubble); ?></td>
             <td class="text-danger"><?php percent($airbubble, $Checked); ?></td>
+            <td class="center"><?php r($dirty); ?></td>
+            <td class="text-danger"><?php percent($dirty, $Checked); ?></td>
 
 
         </tr>
@@ -991,7 +997,8 @@
             <th class="center">%</th>
             <th class="center"> Air Bubble</th>
             <th class="center">%</th>
-
+            <th class="center"> Dirty</th>
+            <th class="center">%</th>
 
         </tr>
     </thead>
@@ -1018,6 +1025,7 @@
            $missingglue=0;
            $pressoremark=0;
            $airbubble=0;
+           $dirty=0;
           $FailQty=0;
            ?>
         <?php foreach($data_packing_RP as $d){; ?>
@@ -1044,6 +1052,7 @@
             $missingglue=($d->missingglue)+ $missingglue;
             $pressoremark=($d->pressoremark)+ $pressoremark;
             $airbubble=($d->airbubble)+ $airbubble;
+            $dirty=($d->Dirty)+ $dirty;
             ?>
             <td><?php format($d->DateName); ?></td>
             <td><?php echo $d->LineName; ?></td>
@@ -1112,7 +1121,8 @@
             <td class="text-danger"><?php percent($d->pressoremark, $d->TotalChecked); ?></td>
             <td class="center"><?php r($d->airbubble); ?></td>
             <td class="text-danger"><?php percent($d->airbubble, $d->TotalChecked); ?></td>
-
+            <td class="center"><?php r($d->Dirty); ?></td>
+            <td class="text-danger"><?php percent($d->Dirty, $d->TotalChecked); ?></td>
         </tr>
         <?php }; ?>
         <tr style="color:black">
@@ -1184,7 +1194,8 @@
             <td class="text-danger"><?php percent($pressoremark, $Checked); ?></td>
             <td class="center"><?php r($airbubble); ?></td>
             <td class="text-danger"><?php percent($airbubble, $Checked); ?></td>
-
+            <td class="center"><?php r($dirty); ?></td>
+            <td class="text-danger"><?php percent($dirty, $Checked); ?></td>
         </tr>
     </tbody>
 </table>
@@ -1239,6 +1250,8 @@
             <th>%</th>
             <th> Air Bubble</th>
             <th>%</th>
+            <th> Dirty</th>
+            <th>%</th>
         </tr>
     </thead>
     <tbody>
@@ -1264,6 +1277,7 @@
            $missingglue=0;
            $pressoremark=0;
            $airbubble=0;
+           $dirty=0;
           $FailQty=0;
            ?>
         <?php foreach($StationwiseOutput as $d){; ?>
@@ -1290,6 +1304,7 @@
             $missingglue=($d->missingglue)+ $missingglue;
             $pressoremark=($d->pressoremark)+ $pressoremark;
             $airbubble=($d->airbubble)+ $airbubble;
+            $dirty=($d->Dirty)+ $dirty;
             ?>
             <td><?php format($d->DateName); ?></td>
             <td><?php Echo $d->StationName; ?></td>
@@ -1361,7 +1376,8 @@
             <td class="text-danger"><?php percent($d->pressoremark, $d->TotalChecked); ?></td>
             <td class="center"><?php r($d->airbubble); ?></td>
             <td class="text-danger"><?php percent($d->airbubble, $d->TotalChecked); ?></td>
-
+            <td class="center"><?php r($d->Dirty); ?></td>
+            <td class="text-danger"><?php percent($d->Dirty, $d->TotalChecked); ?></td>
         </tr>
         <?php }; ?>
         <tr style="color:black;">
@@ -1434,7 +1450,8 @@
             <td class="text-danger"><?php percent($pressoremark, $Checked); ?></td>
             <td class="center"><?php r($airbubble); ?></td>
             <td class="text-danger"><?php percent($airbubble, $Checked); ?></td>
-
+            <td class="center"><?php r($dirty); ?></td>
+            <td class="text-danger"><?php percent($dirty, $Checked); ?></td>
         </tr>
     </tbody>
 </table>

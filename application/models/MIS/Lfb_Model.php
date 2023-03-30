@@ -54,13 +54,25 @@ WHERE        (DateName >= '$start_date') AND (DateName <= '$end_date')");
 				return $query->result_array();
 		
 	}
-		public function get_Lfb_final_qc_articles( $start_date, $end_date)
+		public function get_Lfb_final_qc_articles( $sDate, $eDate)
 	{
-		  $query = $this->db->query("SELECT        TOP (100) PERCENT ArtSIze, ArtCode, SUM(TotalChecked) AS TotalChecked, SUM(TotalPass) AS TotalPass, SUM(Fail) AS Fail, CONVERT(Varchar, DateName, 103) AS Datee, DateName
+		$SYear = substr($sDate, 0, 4);
+        $SMonth = substr($sDate, 5, 2);
+        $SDay = substr($sDate, -2, 2);
+        $StartDate = $SDay . '/' . $SMonth . '/' . $SYear;
+        $EYear = substr($eDate, 0, 4);
+        $EMonth = substr($eDate, 5, 2);
+        $EDay = substr($eDate, -2, 2);
+        $EndDate = $EDay . '/' . $EMonth . '/' . $EYear;
+// 		  $query = $this->db->query("SELECT        TOP (100) PERCENT ArtSIze, ArtCode, SUM(TotalChecked) AS TotalChecked, SUM(TotalPass) AS TotalPass, SUM(Fail) AS Fail, CONVERT(Varchar, DateName, 103) AS Datee, DateName
+// FROM            dbo.View_TM_LFB_FInalQC_Final
+// GROUP BY ArtSIze, ArtCode, CONVERT(Varchar, DateName, 103), DateName, DayNo
+// HAVING        (DateName BETWEEN '$start_date' AND '$end_date')
+// ORDER BY DayNo");
+$query = $this->db->query("SELECT        TOP (100) PERCENT Stationname, SUM(TotalChecked) AS TotalChecked, SUM(TotalPass) AS TotalPass, SUM(Fail) AS Fail, CONVERT(Varchar, DateName, 103) AS Datee
 FROM            dbo.View_TM_LFB_FInalQC_Final
-GROUP BY ArtSIze, ArtCode, CONVERT(Varchar, DateName, 103), DateName, DayNo
-HAVING        (DateName BETWEEN '$start_date' AND '$end_date')
-ORDER BY DayNo");
+GROUP BY Stationname, CONVERT(Varchar, DateName, 103)
+HAVING        (CONVERT(Varchar, DateName, 103) BETWEEN '$StartDate' AND '$EndDate')");
 				return $query->result_array();
 		
 	}

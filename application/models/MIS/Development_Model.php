@@ -145,8 +145,8 @@ HAVING        (Result = 'Fail')");
         $EYear = substr($e_date, 0, 4);
         $EMonth = substr($e_date, 5, 2);
         $EDay = substr($e_date, -2, 2);
-        $StartDateeee = $SDay . '/' . $SMonth . '/' . $SYear;
-        $EndDateeee = $EDay . '/' . $EMonth . '/' . $EYear;
+        $StartDateeee = $SYear. '/' . $SMonth . '/' . $SDay;
+        $EndDateeee = $EYear . '/' . $EMonth . '/' . $EDay;
 
         $query = $this->db->query("SELECT        dbo.view_lab_test.*
 FROM            dbo.view_lab_test
@@ -163,8 +163,8 @@ WHERE        (Entrydate BETWEEN '$StartDateeee' AND '$EndDateeee') AND ItemType=
         $EMonth = substr($e_date, 5, 2);
         //echo "<br>";
         $EDay = substr($e_date, -2, 2);
-        $StartDateeee = $SDay . '/' . $SMonth . '/' . $SYear;
-        $EndDateeee = $EDay . '/' . $EMonth . '/' . $EYear;
+        $StartDateeee = $SYear . '/' . $SMonth . '/' . $SDay;
+        $EndDateeee = $EYear. '/' . $EMonth . '/' . $EDay;
 
         $query = $this->db->query("SELECT        dbo.view_lab_test.*
 FROM            dbo.view_lab_test
@@ -181,8 +181,8 @@ WHERE        (Entrydate BETWEEN '$StartDateeee' AND '$EndDateeee')");
         $EMonth = substr($e_date, 5, 2);
         //echo "<br>";
         $EDay = substr($e_date, -2, 2);
-        $StartDateeee = $SDay . '/' . $SMonth . '/' . $SYear;
-        $EndDateeee = $EDay . '/' . $EMonth . '/' . $EYear;
+        $StartDateeee = $SYear . '/' . $SMonth . '/' . $SDay;
+        $EndDateeee = $EYear . '/' . $EMonth . '/' . $EDay;
 
         $query = $this->db->query("SELECT        dbo.view_lab_test.*
 FROM            dbo.view_lab_test
@@ -199,12 +199,12 @@ WHERE        (Entrydate BETWEEN '$StartDateeee' AND '$EndDateeee') AND Size='$Si
         $EMonth = substr($e_date, 5, 2);
         //echo "<br>";
         $EDay = substr($e_date, -2, 2);
-        $StartDateeee = $SDay . '/' . $SMonth . '/' . $SYear;
-        $EndDateeee = $EDay . '/' . $EMonth . '/' . $EYear;
+        $StartDateeee = $SYear . '/' . $SMonth . '/' . $SDay;
+        $EndDateeee = $EYear . '/' . $EMonth . '/' . $EDay;
 
         $query = $this->db->query("SELECT        dbo.view_lab_test.*
 FROM            dbo.view_lab_test
-WHERE        (Entrydate BETWEEN '$StartDateeee' AND '$EndDateeee') AND Supplier_Name='$Supplier_Name'");
+WHERE        (Entrydate BETWEEN '$StartDateeee' AND '$EndDateeee')");
         return $query->result_array();
     }
     public function customtableArticleCode($c_date, $e_date, $artCode)
@@ -783,4 +783,12 @@ HAVING        (PSDate >= '$startDate') AND (PEDate <= '$endDate') And Type='$typ
     HAVING        (Size IS NOT NULL)");
         return $query->result_array();
     }
+
+
+    public function getTestType(){
+        $query = $this->db->query("SELECT * FROM tbl_test_types");
+        return $query->result_array();
+    }
+
+
 }

@@ -298,7 +298,7 @@ if(date('H') >= 14){
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                         <small class="m-0 l-h-n">Target</small>
-                                            <span >67%</span>
+                                            <span >69%</span>
 
                                         </h3>
 
@@ -1254,6 +1254,9 @@ if(date('H') >= 14){
       var EfficiencyFinal;
         var EfficiencyFinalArray = [];
         let counterValue = $("#counterValueId").text()
+
+// alert(counterValue);
+
         let currentDate = new Date().toJSON().substr(0,10);
         let dateGet = new Date()
         let dayId = dateGet.getDay()

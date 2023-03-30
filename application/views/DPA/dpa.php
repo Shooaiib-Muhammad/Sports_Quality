@@ -446,18 +446,18 @@ if (!$this->session->has_userdata('user_id')) {
                   <div class="col-md-4 mt-4">
 
                     <div class="form-group-inline">
-<?php
-  if ($DPA =='1'){
+                    <?php
+                      if ($DPA =='1'){
 
-    ?>
-    <button type="button" class="btn-info btn btn-md" disabled onclick="submit()">Add</button>
-       <?php
-  }else{
-    ?>
- <button type="button" class="btn-info btn btn-md" onclick="submit()">Add</button>
-    <?php
-  }
-?>
+                        ?>
+                        <button type="button" class="btn-info btn btn-md" disabled onclick="submit()">Add</button>
+                          <?php
+                      }else{
+                        ?>
+                    <button type="button" class="btn-info btn btn-md" onclick="submit()">Add</button>
+                        <?php
+                      }
+                    ?>
                      
 
                     </div>
@@ -679,6 +679,7 @@ if (!$this->session->has_userdata('user_id')) {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
   <script>
     window.onload = function() {
+    //  alert("Called")
       $("#ArtCode").select2();
       $("#fC").select2();
       $("#season").select2();
@@ -1142,6 +1143,9 @@ final_FIFA_authorization_validity_Date=yy_FIFA_authorization_validity_Date+'-'+m
   <script>
     $(document).ready(function() {
 
+      $("#ArtCode").select2();
+      $("#fC").select2();
+      $("#season").select2();
       var contentEdits = document.querySelectorAll("[contenteditable]");
       for (let index = 0; index < contentEdits.length; index++) {
         contentEdits[index].style.border = 'red 2px solid';

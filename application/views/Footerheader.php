@@ -14,7 +14,7 @@
 <!-- BEGIN Page Footer -->
 <footer class="page-footer" role="contentinfo">
  <div class="d-flex align-items-center flex-1 text-muted">
-  <span class="hidden-md-down fw-700">2021 © Forward Sports by&nbsp;IT Dept Forward Sports</span>
+  <span class="hidden-md-down fw-700 text-center">2022 © Forward Sports by&nbsp;IT Dept Forward Sports</span>
  </div>
  <div>
 

@@ -784,7 +784,7 @@ function(data, status){
 });
 
 $('.btn-edit-section').click(function(e){
-    alert("Called");
+    // alert("Called");
     $("#saveButtonSection").css("display", "none");
     $("#updateButtonSection").css("display", "inline-block");
     $('form[name=formSection]').attr('action','<?php echo base_url('assetlocation/EditSection') ?>');

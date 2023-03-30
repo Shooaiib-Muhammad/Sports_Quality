@@ -79,14 +79,29 @@ if (!$this->session->has_userdata('user_id')) {
 
 
 
-                                            <div class="col-md-12 mt-4">
+                                            <div class="row">
 
-                                                <div class="custom-control custom-switch">
-                                                    <input type="checkbox" class="custom-control-input" id="status" name="Status">
+                                                <div class="col-md-6 mt-4">
 
-                                                    <label class="custom-control-label" for="status">Status</label>
+                                                    <div class="custom-control custom-switch">
+                                                        <input type="checkbox" class="custom-control-input" id="status" name="Status">
+
+                                                        <label class="custom-control-label" for="status">Status</label>
+                                                    </div>
                                                 </div>
+
+                                                <div class="col-md-6 mt-4">
+
+                                                    <div class="custom-control custom-switch">
+                                                        <input type="checkbox" class="custom-control-input" id="miscellaneous" name="Miscellaneous">
+
+                                                        <label class="custom-control-label" for="miscellaneous">miscellaneous</label>
+                                                    </div>
+                                                </div>
+
+
                                             </div>
+
 
 
                                         </div>
@@ -152,10 +167,10 @@ if (!$this->session->has_userdata('user_id')) {
                                         <div class="panel-content">
 
                                             <table class="table table-striped table-hover table-sm" id="ActivityData">
-                                                <thead>
+                                                <thead class="bg-primary-200" style="color: white">
                                                     <tr>
                                                         <th>Test Type</th>
-                                                        <th></th>
+                                                        <th>Category</th>
                                                         <th>Status</th>
                                                         <th>ACTIONS</th>
                                                     </tr>
@@ -174,7 +189,6 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <td>
 
                                                                 <?php if ($keys['Status'] == '1') { ?>
-
                                                                     <span class="badge badge-success p-1"> Active</span>
                                                                 <?php } else { ?>
                                                                     <span class="badge badge-warning p-1">In-Active</span>
@@ -182,8 +196,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                             </td>
 
                                                             <td>
-                                                                <div class="col-md-2">
-                                                                    <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo $keys['TestID']; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
+                                                                <div class="col-md-2 d-inline">
+                                                                    <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo $keys['TestID']; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button> &nbsp;
                                                                     <button type="button" style="display: inline-block;" id="undo.<?php echo $keys['TestID']; ?>" value="<?php echo $keys['TestID']; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button>
 
                                                                 </div>
@@ -293,11 +307,18 @@ if (!$this->session->has_userdata('user_id')) {
                 status = false // unchecked
             let url = "<?php echo base_url(''); ?>LabController/EditTestType"
 
+            let miscellaneous;
+            if ($("#miscellaneous").is(':checked'))
+                miscellaneous = true // checked
+            else
+                miscellaneous = false // unchecked
+
             $.post(url, {
                     'Id': id,
                     'Name': name,
                     'Status': status,
-                    'testCatagoty': testtype
+                    'testCatagoty': testtype,
+                    'mislaneous_status': miscellaneous
                 },
                 function(data, status) {
                     alert("Data Updated Successfully! Wait for page to be Reloaded")
@@ -320,11 +341,21 @@ if (!$this->session->has_userdata('user_id')) {
                 status = true // checked
             else
                 status = false // unchecked
+
+
+            let miscellaneous;
+            if ($("#miscellaneous").is(':checked'))
+                miscellaneous = true // checked
+            else
+                miscellaneous = false // unchecked
+
+
             let url = "<?php echo base_url(''); ?>LabController/AddTestType"
             $.post(url, {
                     'Name': name,
                     'Status': status,
-                    'testCatagoty': testtype
+                    'testCatagoty': testtype,
+                    'mislaneous_status': miscellaneous
                 },
                 function(data, status) {
                     alert("Data Inserted Successfully! Wait for page to be Reloaded")

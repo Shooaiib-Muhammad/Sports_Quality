@@ -120,4 +120,33 @@ FROM            dbo.tbl_Prod_Energy_Info
 where       (EntryDate BETWEEN CONVERT(DATETIME, '$date1 00:00:00', 102) AND CONVERT(DATETIME, '$date2 00:00:00', 102)) AND (Energy > 1)");
 		return  $query->result_array();
 	}
+
+
+	public function energy_C(){
+		$currentDate= date('d/m/Y');
+		$query = $this->db->query("SELECT        AVG(Energy) AS Energy, HallName
+		FROM            dbo.view_Energy
+		WHERE        (CONVERT(Varchar, EntryDate, 103) = '$currentDate')
+		GROUP BY HallName"); 
+		return  $query->result_array();
+}
+public function energy_C_Drill(){
+	$currentDate= date('d/m/Y');
+	$query = $this->db->query("SELECT        TOP (100) PERCENT HallName, HourName, Energy, HourID
+	FROM            dbo.View_Energy_Hourlly_Data
+	WHERE        (EntryDate = '$currentDate') 
+	ORDER BY HourID"); 
+	return  $query->result_array();
+}
+
+
+public function energy_C_By_Hourly(){
+	$currentDate = date('d/m/Y');
+	$query = $this->db->query("SELECT        HallName, EntryDate, HourName, Energy
+	FROM            dbo.View_Energy_Hourlly_Data
+	WHERE        (EntryDate = '$currentDate')"); 
+	return  $query->result_array();
+}
+
+
 }

@@ -6,6 +6,7 @@
     <?php
 
     $this->load->view('includes/new_aside.php');
+    
     ?>
     <!-- END Left Aside -->
     <div class="page-content-wrapper">
@@ -216,7 +217,7 @@
       <!-- BEGIN Page Footer -->
       <footer class="page-footer" role="contentinfo">
         <div class="d-flex align-items-center flex-1 text-muted">
-          <span class="hidden-md-down fw-700">2021 © DMMS by&nbsp;IT Dept Forward Sports</span>
+          <span class="hidden-md-down fw-700">2021 © DMMS by&nbsp;IT Dept</span>
         </div>
         <div>
 
@@ -1406,7 +1407,7 @@ $newpo = implode(",", $po);
       name: "Article Code",
       colorByPoint: true,
       data: [
-        <?php foreach ($articleCounter as $count) { ?>
+        <?php foreach ($articleCounter as $count) { ?>,
 
           {
             name: "<?php echo $count['ArtCode']; ?>",

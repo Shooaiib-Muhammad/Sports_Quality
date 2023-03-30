@@ -16,7 +16,7 @@ GROUP BY machineName");
  {
   $query = $this->db->query("SELECT        POCode, SUM(BallCounter) AS BallCounter
         FROM            dbo.view_RWPD_Line_Output_PO_Wise
-        WHERE        (DateName BETWEEN CONVERT(DATETIME, '$s_date 00:00:00', 102) AND CONVERT(DATETIME, '$e_date 00:00:00', 102))
+        WHERE        (DateName BETWEEN CONVERT(DATETIME, '$s_date 00:00:00', 103) AND CONVERT(DATETIME, '$e_date 00:00:00', 103))
         GROUP BY POCode
         
         ");
@@ -26,20 +26,61 @@ GROUP BY machineName");
  {
   $query = $this->db->query("SELECT        SUM(BallCounter) AS BallCounter, ArtCode
        FROM            dbo.view_RWPD_Line_Output_PO_Wise
-       WHERE        (DateName BETWEEN CONVERT(DATETIME, '$s_date 00:00:00', 102) AND CONVERT(DATETIME, '$e_date 00:00:00', 102))
+       WHERE        (DateName BETWEEN CONVERT(DATETIME, '$s_date 00:00:00', 103) AND CONVERT(DATETIME, '$e_date 00:00:00', 103))
        GROUP BY ArtCode
        
        ");
   return  $query->result_array();
  }
+
+ public function realTimeAtten($depart, $sect)
+ {
+
+         $Month = date('m');
+         $Year = date('Y');
+         $Day = date('d');
+         $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+         $HRDB = $this->load->database('HRMS', TRUE);
+         $query = $HRDB->query("SELECT        AttDate, RealTime, EmpCount, EmployeeType, SectionName, DeptName
+         FROM            dbo.View_Emp_ATT_REALTIME_CALC_Final
+ WHERE        (AttDate = CONVERT(DATETIME, '$CurrentDate 00:00:00', 102)) AND (DeptID = $depart) AND (SectionID = $sect) AND (EmployeeType = 'Direct')
+ 
+ ");
+         return  $query->result_array();
+ }
+
+ public function HourllyReading()
+ {
+         $Month = date('m');
+         $Year = date('Y');
+         $Day = date('d');
+         $query = $this->db->query("SELECT        balls, HourName,HID
+         FROM            dbo.view_RWPD_Hourlly
+WHERE        (EntryDate BETWEEN '$Day/$Month/$Year' AND '$Day/$Month/$Year') 
+GROUP BY balls, HourName,HID
+ORDER BY HID");
+         return  $query->result_array();
+ }
+
  Public function Cutting(){
             $Month = date('m');
             $Year = date('Y');
             $Day = date('d');
-            $query = $this->db->query("SELECT      MAX(Counter) AS Counter
-            FROM            dbo.view_PC_Cutting_Process
+            
+            $query = $this->db->query("SELECT        SUM(Counter) AS Counter, SUM(TotalBalls) AS TotalBalls, SUM(TotalSheets) AS TotalSheets
+            FROM            dbo.view_PC_SheetSizing_Final
             WHERE        (Date = '$Day/$Month/$Year')");
             return  $query->result_array();
+ }
+ public function MSEfficiency(){
+  $Month = date('m');
+            $Year = date('Y');
+            $Day = date('d');
+  $query = $this->db->query("SELECT        Date, Name, Counter, Process
+  FROM            dbo.view_Eff_All
+  WHERE        (Date = '$Day/$Month/$Year')
+  ORDER BY Name");
+  return  $query->result_array();
  }
  Public function panelCutting(){
   $Month = date('m');
@@ -47,7 +88,7 @@ GROUP BY machineName");
   $Day = date('d');
   $query = $this->db->query("SELECT        count(Counter) AS Counter
 FROM            dbo.view_PC_panel_Sizing
-WHERE        (Date = '$Day/$Month/$Year')");
+WHERE        (Date = '$Day/$Month/$Year') And (Hours>7)");
   return  $query->result_array();
 }
 
@@ -62,16 +103,20 @@ Public function IndividualReading($startDate,$endDate){
   FROM            dbo.view_RWPD_DT          
   WHERE        (Date BETWEEN '$startDay/$startMonth/$startYear' AND '$endDay/$endMonth/$endYear') 
   GROUP BY Date, Name 
-  ORDER BY Date");
+  ORDER BY Name");
   return  $query->result_array();
 }
 
 public function HfCutting($currentDate)
 {
- $query = $this->db->query("SELECT  Name, Count(Counter) AS Counter
- FROM            dbo.view_HF_Cutting
- WHERE        (EntryDate = '$currentDate')
- GROUP BY Name");
+  $Month = date('m');
+  $Year = date('Y');
+  $Day = date('d');
+  $Date=$Year.'-'.$Month.'-'.$Day;
+  $query = $this->db->query("SELECT        Name, COUNT(Counter) AS Counter
+  FROM            dbo.view_HF_Cutting
+  WHERE        (Date = CONVERT(DATETIME, '$Date 00:00:00', 102))
+  GROUP BY Name");
  
 return  $query->result_array();
 }

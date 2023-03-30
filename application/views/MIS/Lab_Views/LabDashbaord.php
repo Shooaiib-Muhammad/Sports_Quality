@@ -25,8 +25,9 @@ if (!$this->session->has_userdata('user_id')) {
           <div class="col-lg-12" style="margin-bottom:20px">
           <ol class="breadcrumb page-breadcrumb">
                         <li class="breadcrumb-item"><a href="<?php echo base_url(
-                                                                    'index.php/main/dmms_dashboard'
-                                                                ); ?>">Lab</a></li>
+                                                                    'index.php/DashboardController'
+                                                                ); ?>">Dashboard</a></li>
+                                                                <li class="breadcrumb-item">Lab</li>
 
 
                         <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
@@ -188,7 +189,7 @@ if ($this->session->userdata('userStus') == 1) { ?>
         $Day = date('d');
         $CDate = $Day . '/' . $Month . '/' . $Year;
         ?>
-        <div id="appenTitle" class="card-header mt-2 mb-2" style="background-color:black; color:white">
+        <div id="appenTitle" class="card-header mt-2 mb-2 bg-primary-200 text-light" >
           <h4>Data From <?php echo $CDate; ?> to <?php echo $CDate; ?></h4>
         </div>
         <div class="card" id="defaultLoad">
@@ -217,19 +218,6 @@ if ($this->session->userdata('userStus') == 1) { ?>
         </div>
       </div>
 
-
-
-
-
-
-
-
-
-
-
-
-    
-
       <script src="<?php echo base_url(); ?>assets/js/jquery.min.js" type="text/javascript"></script>
       <?php $this->load->View('AdminFooter'); ?>
       <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
@@ -239,7 +227,7 @@ if ($this->session->userdata('userStus') == 1) { ?>
           $('#js-page-content').smartPanel();
       </script>
           
-<script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
+      <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
       <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
       <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
       <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
@@ -396,6 +384,8 @@ if ($this->session->userdata('userStus') == 1) { ?>
           //alert('I am here');
           c_date = $('#SDate').val();
           e_date = $('#EDate').val();
+
+
            appendTitledat=`<h4>Data From ${c_date} To ${e_date} </h4>`
           let datesplit = c_date.split("-");
           let cur_date = datesplit[2] + "/" + datesplit[1] + "/" + datesplit[0];
@@ -417,8 +407,8 @@ if ($this->session->userdata('userStus') == 1) { ?>
                 $("#defaultLoad").css("display","none");
                 $("#customLoad").css("display","block");
                 $("#customLoad").html("");
-                var appenTable = `   <table id="nowayCustom" class="table table-striped table-bordered" style="width:100%">
-            <thead>
+                var appenTable = `   <table id="nowayCustom" class="table table-bordered table-hover table-responsive table-striped w-100" style="width:100%">
+            <thead class="bg-primary-200 text-light">
               <tr>
                 <th>Test No</th>
                 <th>Date</th>

@@ -52,7 +52,7 @@ class Lfb extends CI_Controller
 		//$data['datasum'] = $this->Quality_Modal->get_hs_summary_sum( $start_date, $end_date);
 		$data['start_date1'] = $start_date;
 		$data['end_date1'] = $end_date;
-		return $this->load->view('MIS/tm_analysis/final_qc', $data, false);
+		return $this->load->view('MIS/final_qc', $data, false);
 	}
 	public function get_Lfb_Carcas($start_date, $end_date)
 	{

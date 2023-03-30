@@ -92,6 +92,17 @@ class Cutting extends CI_Controller
         $d=$d+$t;
     }
     $data['totalHF']=$d;
+
+    $data['dieTestingSheetSizing']=$this->E->dieTestingHfCutting();
+    $data['dieTestingSheetSizingGraph']=$this->E->dieTestingHfCuttingGraph();
+    $data['ONASheetSizing']=$this->E->ONAHfCutting();
+    $data['ONASheetSizingGraph']=$this->E->ONAHfCuttingGraph();
+    // print_r( $data['ONASheetSizingGraph']);
+    // die;
+    $data['machineTestingSheetSizing']=$this->E->machineTestingHfCutting();
+    $data['machineTestingSheetSizingGraph']=$this->E->machineTestingHfCuttingGraph();
+
+    
     $this->load->view("Cutting/HfCutting", $data);
 
  }

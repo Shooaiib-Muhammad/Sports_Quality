@@ -118,7 +118,7 @@ if (!$this->session->has_userdata('user_id')) {
                                 <body>
                                     <div id="right-panel" class="right-panel">
 
-                                        <div class="container-fluid" >
+                                        <div class="container-fluid">
                                             <div class="card mb-3">
                                                 <div class="card-body" hidden>
                                                     <div class="form-row">
@@ -186,11 +186,31 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <!-- <?php $factoryCode = array("B34001", "B34002", "B34003", "B34004", "B34005", "B34006", "B34007") ?> -->
+
+
+
+                                            <!-- To Select Year Code -->
+                                            <?php $years = range(2005, 2050); ?>
                                             <div class="card mb-3 ">
                                                 <div class="row ml-2 mt-2 mr-2">
-                                                    <div class="col-md-2">
+                                                    <div class="col-md-2 p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:#32a8a2">
+                                                        <div class="position-relative form-group">
+                                                            <select id="year">
+                                                                <option>Select Year</option>
+                                                                <?php foreach ($years as $year) : ?>
+                                                                    <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+                                                                <?php endforeach; ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-
+                                            <div class="card mb-3 ">
+                                                <div class="row ml-2 mt-2 mr-2">
+                                                    <div class="col-md-2" hidden>
                                                         <a href="javascript:void(0)" onclick="showForm('<?php echo "B34001" ?>')">
                                                             <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:#997300">
                                                                 <div class="">
@@ -227,7 +247,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </div>
                                                     <div class="col-md-2">
                                                         <a href="javascript:void(0)" onclick="showForm('<?php echo "B34003" ?>')">
-                                                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:purple">
+                                                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:orange">
                                                                 <div class="">
                                                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
@@ -244,7 +264,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </div>
                                                     <div class="col-md-2">
                                                         <a href="javascript:void(0)" onclick="showForm('<?php echo "B34004" ?>')">
-                                                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:purple">
+                                                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:blue">
                                                                 <div class="">
                                                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
@@ -310,24 +330,43 @@ if (!$this->session->has_userdata('user_id')) {
                                                             </div>
                                                         </a>
                                                     </div>
-                                                </div>
-                                                
-                                                <div class="form-row mb-2 ml-2" id="showForm" style="overflow-x:auto;">
+                                                    <!-- Show Miss SAM Values T -->
+                                                    <div class="col-md-2">
+                                                        <a href="javascript:void(0)" onclick="showMissValues()">
+                                                            <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color:green">
+                                                                <div class="">
+                                                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
 
 
-                                                    <!-- <div class="col-md-2">
-                                                    <div class="position-relative form-group">
-                                                        <label class="">SAM Forming </label>
-                                                        <input name="forming" id="forming" type="number" class="form-control" value="">
+                                                                        <small class="m-0 l-h-n" style="font-weight:bold;">Missing Values</small>
+
+
+                                                                    </h3>
+                                                                </div>
+                                                                <i class="fal fa-clock position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                                            </div>
+                                                        </a>
+
                                                     </div>
-                                                </div>
-                                               -->
 
 
                                                 </div>
+                                                <!-- Show factory Code Tables here  -->
+                                                <div>
+                                                    <div class="form-row mb-2 ml-2" id="showForm" style="overflow-x:auto;"></div>
+                                                </div>
+
+                                                <!-- Show Miss SAM Values Tables here  -->
+                                                <div>
+                                                    <div class="form-row mb-2 ml-2" id="showMissValues" style="overflow-x:auto;"></div>
+                                                </div>
+
 
                                             </div>
+
+
+
 
 
                                         </div>
@@ -347,23 +386,156 @@ if (!$this->session->has_userdata('user_id')) {
 
                                         <script src="<?php echo base_url(); ?>Assets/select/select2.min.js"></script>
                                         <script>
-                                            function showForm(factorCode) {
+                                            function showMissValues() {
+                                                $("#ActivityData").hide();
+                                                $("#showMissValues").html(' ');
+                                                url = "<?php echo base_url('MIS/Efficiency/missingValues') ?>"
+                                                $.post(url, function(data) {
+                                                    console.log(data)
+                                                    var table = '';
+                                                    table += ` <table class="table table-responsive" id="showMissTable">
+                        <thead>
+                          <tr>
+                            <th>Factory Code</th>
+                            <th>Year</th>
+                            <th>Carcas</th>
+                            <th>Lamination</th>
+                            <th>Sheet Sizing</th>
+                            <th>Panel Cutting</th>
+                            <th>Panel_Preparation</th>
+                            <th>Assembly</th>
+                            <th>Labelling_packaging</th>
+                            <th>Bladder Winding</th>
+                          </tr>
+                        </thead>
+                        <tbody>`
+
+
+
+
+                                                    data.forEach(e => {
+                                                        table += `<tr>
+                              <td> ${e.FactoryCode}</td>
+                              <td contentEditable="true"> ${e.SesonalRange}</td>
+                              <td contentEditable="true"> ${e.Carcase}</td>
+                              <td contentEditable="true">  ${e.Lamination}</td>
+                              <td contentEditable="true">${e.SheetSizing} </td>
+                              <td contentEditable="true">  ${e.Panel_Cutting}</td>
+                              <td contentEditable="true"> ${e.panel_preperation}</td>
+                              <td contentEditable="true"> ${e.Assembling}</td>
+                              <td contentEditable="true"> ${e.labelingandPacking}</td>
+                              <td contentEditable="true"> ${e.bladder_Winding}</td>
+                            </tr>`
+                                                    });
+
+
+
+
+
+                                                    table += `</tbody>
+                      </table>`
+
+                                                    $("#showMissValues").append(table)
+                                                    $(document).ready(function() {
+                                                        // LoadData(stDate, enDate);
+
+                                                        $('#showMissTable').dataTable({
+                                                            responsive: false,
+                                                            lengthChange: false,
+                                                            dom:
+                                                                /*	--- Layout Structure 
+                                                                	--- Options
+                                                                	l	-	length changing input control
+                                                                	f	-	filtering input
+                                                                	t	-	The table!
+                                                                	i	-	Table information summary
+                                                                	p	-	pagination control
+                                                                	r	-	processing display element
+                                                                	B	-	buttons
+                                                                	R	-	ColReorder
+                                                                	S	-	Select
+
+                                                                	--- Markup
+                                                                	< and >				- div element
+                                                                	<"class" and >		- div with a class
+                                                                	<"#id" and >		- div with an ID
+                                                                	<"#id.class" and >	- div with an ID and a class
+
+                                                                	--- Further reading
+                                                                	https://datatables.net/reference/option/dom
+                                                                	--------------------------------------
+                                                                 */
+                                                                "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                                                                "<'row'<'col-sm-12'tr>>" +
+                                                                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                                                            buttons: [
+                                                                /*{
+                                                                	extend:    'colvis',
+                                                                	text:      'Column Visibility',
+                                                                	titleAttr: 'Col visibility',
+                                                                	className: 'mr-sm-3'
+                                                                },*/
+                                                                {
+                                                                    extend: 'pdfHtml5',
+                                                                    text: 'PDF',
+                                                                    titleAttr: 'Generate PDF',
+                                                                    className: 'btn-outline-danger btn-sm mr-1'
+                                                                },
+                                                                {
+                                                                    extend: 'excelHtml5',
+                                                                    text: 'Excel',
+                                                                    titleAttr: 'Generate Excel',
+                                                                    className: 'btn-outline-success btn-sm mr-1'
+                                                                },
+                                                                {
+                                                                    extend: 'csvHtml5',
+                                                                    text: 'CSV',
+                                                                    titleAttr: 'Generate CSV',
+                                                                    className: 'btn-outline-primary btn-sm mr-1'
+                                                                },
+                                                                {
+                                                                    extend: 'copyHtml5',
+                                                                    text: 'Copy',
+                                                                    titleAttr: 'Copy to clipboard',
+                                                                    className: 'btn-outline-primary btn-sm mr-1'
+                                                                },
+                                                                {
+                                                                    extend: 'print',
+                                                                    text: 'Print',
+                                                                    titleAttr: 'Print Table',
+                                                                    className: 'btn-outline-primary btn-sm'
+                                                                }
+                                                            ]
+                                                        });
+
+
+                                                    });
+
+                                                })
+                                            }
+
+                                            
+
+                                            function showForm(factorCode, years) {
+                                                $("#showMissTable").hide();
+                                                var year = $("#year").val();
                                                 $("#showForm").html(' ');
-                                                value = document.getElementById("showValue" + factorCode).innerText;
-                                                url = "<?php echo base_url('MIS/Efficiency/getFactoryCode') ?>"
-
+                                                url = "<?php echo base_url('MIS/Efficiency/getFactoryCode_with_year') ?>"
                                                 $.post(url, {
-                                                    "factory_code": value
+                                                    "factory_code": factorCode,
+                                                    "year": year
                                                 }, function(data) {
-                                                    console.log("pakistan ", data[0]['FactoryCode'])
+                                                    console.log(data)
 
-                                                    if (data[0]['FactoryCode'] == 'B34001') {
+                                                    if (data[0]['FactoryCode'] == 'B34001' && data['year'] == year) {
 
                                                         var table = '';
                                                         table += ` <table class="table table-responsive" id="ActivityData">
                         <thead>
                           <tr>
                             <th>Article Code</th>
+                            <th>Panel Shape</th>
+                            <th>Complexity Level</th>
                             <th>Carcas</th>
                             <th>Lamination</th>
                             <th>Sheet Sizing</th>
@@ -383,6 +555,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                         data.forEach(e => {
                                                             table += `<tr>
                               <td> ${e.ArtCode}</td>
+                              <td> ${e.PanelShape}</td>
+                              <td id="Carcase01" contentEditable="true"> ${e.Clevel}</td>
                               <td id="Carcase01" contentEditable="true"> ${e.Carcase}</td>
                               <td id="Lamination01" contentEditable="true">  ${e.Lamination}</td>
                               <td id="SheetSizing01" contentEditable="true">${e.SheetSizing} </td>
@@ -411,6 +585,8 @@ if (!$this->session->has_userdata('user_id')) {
                         <thead>
                           <tr>
                             <th>Article Code</th>
+                            <th>Panel Shape</th>
+                            <th>Complexity Level</th>
                             <th>Bladder Winding</th>
                             <th>Sheet Sizing</th>
                             <th>Panel Cutting</th>
@@ -429,6 +605,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                         data.forEach(e => {
                                                             table += `<tr>
                               <td> ${e.ArtCode}</td>
+                              <td> ${e.PanelShape}</td>
+                              <td id="Carcase01" contentEditable="true"> ${e.Clevel}</td>
                               <td id="bladder_Winding05" contentEditable="true"> ${e.bladder_Winding}</td>
                               <td id="SheetSizing05" contentEditable="true">${e.SheetSizing} </td>
                               <td id="Panel_Cutting05" contentEditable="true">  ${e.Panel_Cutting}</td>
@@ -455,6 +633,8 @@ if (!$this->session->has_userdata('user_id')) {
                         <thead>
                           <tr>
                             <th>Article Code</th>
+                            <th>Panel Shape</th>
+                            <th>Complexity Level</th>
                             <th>Sheet Sizing</th>
                             <th>Hf Cutting</th>
                             <th>Assembly</th>
@@ -471,7 +651,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                         data.forEach(e => {
                                                             table += `<tr>
                               <td > ${e.ArtCode}</td>
-                              
+                              <td> ${e.PanelShape}</td>
+                              <td id="Carcase01" contentEditable="true"> ${e.Clevel}</td>
                               <td id="SheetSizing06" contentEditable="true">${e.SheetSizing} </td>
                               <td id="HFCutting06" contentEditable="true">  ${e.HFCutting}</td>
                            
@@ -497,6 +678,8 @@ if (!$this->session->has_userdata('user_id')) {
                         <thead>
                           <tr>
                           <th>Article Code</th>
+                          <th>Panel Shape</th>
+                            <th>Complexity Level</th>
                             <th>Carcas</th>
                             <th>Fabric Lamination</th>
                             <th>Hf Cutting</th>
@@ -516,7 +699,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                         data.forEach(e => {
                                                             table += `<tr>
                               <td> ${e.ArtCode}</td>
-                              
+                              <td> ${e.PanelShape}</td>
+                              <td id="Carcase01" contentEditable="true"> ${e.Clevel}</td>
                               <td id="Carcase07" contentEditable="true">${e.Carcase} </td>
                               <td id="Lamination07" contentEditable="true">  ${e.Lamination}</td>
                               <td id="HFCutting07" contentEditable="true">  ${e.HFCutting}</td>
@@ -544,6 +728,8 @@ if (!$this->session->has_userdata('user_id')) {
                         <thead>
                           <tr>
                           <th>Article Code</th>
+                          <th>Panel Shape</th>
+                            <th>Complexity Level</th>
                             <th>Carcas</th>
                             <th>Lamination</th>
                             <th>Panel Cutting</th>
@@ -562,7 +748,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                         data.forEach(e => {
                                                             table += `<tr>
                               <td> ${e.ArtCode}</td>
-                              
+                              <td> ${e.PanelShape}</td>
+                              <td id="Carcase01" contentEditable="true"> ${e.Clevel}</td>
                               <td id="Carcase" contentEditable="true">${e.Carcase} </td>
                               <td id="Lamination" contentEditable="true">  ${e.Lamination}</td>
                               <td id="Panel_Cutting" contentEditable="true">  ${e.Panel_Cutting}</td>
@@ -683,7 +870,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                         appendArticle += `
                  
-                  <option value='${element.ArtCode}'>${element.ArtCode}</option>`
+                                       <option value='${element.ArtCode}'>${element.ArtCode}</option>`
                                                     })
                                                     $("#factory").append(appendArticle)
                                                 });
@@ -776,29 +963,20 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                     console.log(data);
                                                     alert("Data Updated Successfully!")
-                                                      location.reload();
+                                                    location.reload();
                                                 })
                                             } else if (factory == 'B34005') {
-
                                                 bladder_Winding = $("#bladder_Winding05").text()
-
                                                 SheetSizing = $("#SheetSizing05").text()
-
                                                 Panel_Cutting = $("#Panel_Cutting05").text()
                                                 Panel_Preparation = $("#panel_preperation05").text()
-                                             
                                                 Assembling = $("#Assembling05").text()
                                                 labelingandPacking = $("#labelingandPacking05").text()
-
 
                                                 // if (Panel_Preparation = '') {
                                                 //     Panel_Preparation = null
                                                 // }
-
-
-                                                 alert(Panel_Preparation)
-
-
+                                                alert(Panel_Preparation)
 
                                                 url = "<?php echo base_url('MIS/Efficiency/updateArt05') ?>"
 
@@ -816,21 +994,14 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                     console.log(data);
                                                     alert("Data Inserted Successfully!")
-                                                     location.reload();
+                                                    location.reload();
                                                 })
                                             } else if (factory == 'B34006') {
 
-
                                                 SheetSizing = $("#SheetSizing06").text()
-
                                                 HF_Cutting = $("#HFCutting06").text()
-
                                                 Assembling = $("#Assembling06").text()
                                                 labelingandPacking = $("#labelingandPacking06").text()
-
-
-
-
 
                                                 url = "<?php echo base_url('MIS/Efficiency/updateArt06') ?>"
 
@@ -846,23 +1017,15 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                     console.log(data);
                                                     alert("Data Inserted Successfully!")
-                                                     location.reload();
+                                                    location.reload();
                                                 })
                                             } else if (factory == 'B34007') {
                                                 Carcase = $("#Carcase07").text()
                                                 Lamination = $("#Lamination07").text()
-
-
-
                                                 HF_Cutting = $("#HFCutting07").text()
                                                 Panel_Cutting = $("#Panel_Cutting07").text()
-
                                                 Assembling = $("#Assembling07").text()
                                                 labelingandPacking = $("#labelingandPacking07").text()
-
-
-
-
 
                                                 url = "<?php echo base_url('MIS/Efficiency/updateArt07') ?>"
 
@@ -880,20 +1043,14 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                     console.log(data);
                                                     alert("Data Inserted Successfully!")
-                                                     location.reload();
+                                                    location.reload();
                                                 })
                                             } else {
                                                 Carcase = $("#Carcase").text()
                                                 Lamination = $("#Lamination").text()
-
                                                 Panel_Cutting = $("#Panel_Cutting").text()
-
                                                 Assembling = $("#Assembling").text()
                                                 labelingandPacking = $("#labelingandPacking").text()
-
-
-
-
 
                                                 url = "<?php echo base_url('MIS/Efficiency/updateArt') ?>"
 

@@ -1,289 +1,353 @@
-<?php $this->load->view('includes/new_header'); ?>
+<?php
+$this->load->view('includes/new_header'); ?>
 <!-- BEGIN Page Wrapper -->
 <div class="page-wrapper">
-  <div class="page-inner">
-    <!-- BEGIN Left Aside -->
-    <?php
+    <div class="page-inner">
+        <!-- BEGIN Left Aside -->
+        <?php
 
-    $this->load->view('includes/new_aside.php');
-    ?>
-    <!-- END Left Aside -->
-    <div class="page-content-wrapper">
-      <!-- BEGIN Page Header -->
-      <?php
+        $this->load->view('includes/new_aside.php');
+        ?>
+        <!-- END Left Aside -->
+        <div class="page-content-wrapper">
+            <!-- BEGIN Page Header -->
+            <?php
 
-      $this->load->view('includes/top_header.php');
-      ?>
-      <!-- END Page Header -->
-      <!-- BEGIN Page Content -->
-      <!-- the #js-page-content id is needed for some plugins to initialize -->
+            $this->load->view('includes/top_header.php');
+            ?>
+            <!-- END Page Header -->
+            <!-- BEGIN Page Content -->
+            <!-- the #js-page-content id is needed for some plugins to initialize -->
 
-      <style>
-              .highcharts-figure,
-              .highcharts-data-table table {
-                min-width: 310px;
-                max-width: 800px;
-                margin: 1em auto;
-              }
+            <style>
+                .highcharts-figure,
+                .highcharts-data-table table {
+                    min-width: 310px;
+                    max-width: 800px;
+                    margin: 1em auto;
+                }
 
-              #container {
-                height: 400px;
-              }
+                #container {
+                    height: 400px;
+                }
 
-              .highcharts-data-table table {
-                font-family: Verdana, sans-serif;
-                border-collapse: collapse;
-                border: 1px solid #ebebeb;
-                margin: 10px auto;
-                text-align: center;
-                width: 100%;
-                max-width: 500px;
-              }
+                .highcharts-data-table table {
+                    font-family: Verdana, sans-serif;
+                    border-collapse: collapse;
+                    border: 1px solid #ebebeb;
+                    margin: 10px auto;
+                    text-align: center;
+                    width: 100%;
+                    max-width: 500px;
+                }
 
-              .highcharts-data-table caption {
-                padding: 1em 0;
-                font-size: 1.2em;
-                color: #555;
-              }
+                .highcharts-data-table caption {
+                    padding: 1em 0;
+                    font-size: 1.2em;
+                    color: #555;
+                }
 
-              .highcharts-data-table th {
-                font-weight: 600;
-                padding: 0.5em;
-              }
+                .highcharts-data-table th {
+                    font-weight: 600;
+                    padding: 0.5em;
+                }
 
-              .highcharts-data-table td,
-              .highcharts-data-table th,
-              .highcharts-data-table caption {
-                padding: 0.5em;
-              }
+                .highcharts-data-table td,
+                .highcharts-data-table th,
+                .highcharts-data-table caption {
+                    padding: 0.5em;
+                }
 
-              .highcharts-data-table thead tr,
-              .highcharts-data-table tr:nth-child(even) {
-                background: #f8f8f8;
-              }
+                .highcharts-data-table thead tr,
+                .highcharts-data-table tr:nth-child(even) {
+                    background: #f8f8f8;
+                }
 
-              .highcharts-data-table tr:hover {
-                background: #f1f7ff;
-              }
+                .highcharts-data-table tr:hover {
+                    background: #f1f7ff;
+                }
             </style>
 
-      <main id="js-page-content" role="main" class="page-content">
-      <?php
+            <main id="js-page-content" role="main" class="page-content">
+                <?php
 
-$GetHours = array();
-$GetReading = array();
-$target = array();
-//print_r($HourllyReading);
-foreach ($HourllyReading as $key) {
-    //array(Round((Round($key['Reading'],0) + (Round($key['Reading']+10.25,0)) + (Round($key['Reading']-7.55,0)) )* 0.05, 3),);
-  $point1 = array(Round((Round($key['Reading'],0) + (Round($key['Reading']+10.25,0)) + (Round($key['Reading']-7.55,0)) )* 0.05, 3),);
-  $point2 = array($key['HourName'],);
-  $dailytarget = 600*3;
-  $point3 = $dailytarget / 8;
+                $GetHours = array();
+                $GetReading = array();
+                $target = array();
+                foreach ($HourllyReading as $key) {
+                    //array(Round((Round($key['Reading'],0) + (Round($key['Reading']+10.25,0)) + (Round($key['Reading']-7.55,0)) )* 0.05, 3),);
+                    $point1 = array(Round((Round($key['Reading'], 0) + (Round($key['Reading'] + 10.25, 0)) + (Round($key['Reading'] - 7.55, 0))) * 0.05, 3),);
+                    $point2 = array($key['HourName'],);
+                    $dailytarget = 600 * 3;
+                    $point3 = $dailytarget / 8;
 
-  array_push($GetReading, $point1);
-  array_push($GetHours, $point2);
-  array_push($target, $point3);
-  //array_push($lineNames, $key['LineName']);
+                    array_push($GetReading, $point1);
+                    array_push($GetHours, $point2);
+                    array_push($target, $point3);
+                    //array_push($lineNames, $key['LineName']);
 
-} ?>
-  
+                } ?>
 
-        <div class="subheader">
-          <h1 class="subheader-title">
-            <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Lamination</span>
-          </h1>
+                <?php
+                $ms_lamination_machine_energy = 0;
+                foreach ($energy_C as $key) {
+                    if ($key['HallName'] == 'MS Lamination Machine 2') {
+                        $ms_lamination_machine_energy = $key['Energy'];
+                    }
+                    break;
+                }
+
+                $ms_lamination_machine = [];
+                foreach ($energy_C_Drill as $key) {
+                    if ($key['HallName'] == 'MS Lamination Machine 2') {
+                        $energy_points11 = [
+                            'name' => $key['HourName'],
+                            'y' => round($key['Energy'], 2),
+                            // 'drilldown' => $key['HallName'],
+                            'new_name' => $key['HallName']
+                        ];
+                        array_push($ms_lamination_machine, $energy_points11);
+                    }
+                }
+
+                ?>
+                <div class="subheader">
+                    <h1 class="subheader-title">
+                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Lamination</span>
+                    </h1>
 
 
-        </div>
+                </div>
 
-        <ul class="nav nav-pills" role="tablist">
-                                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Historical Analysis</a></li>
+                <ul class="nav nav-pills" role="tablist">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Historical Analysis</a></li>
 
                 </ul>
-    
+
+
+                <?php
+                $Month = date('m');
+                $Year = date('Y');
+                $Day = date('d');
+                $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+                ?>
+
                 <div class="tab-content py-3">
 
-<div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel" style="background-color: white;">
+                    <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel" style="background-color: white;">
 
-<div id="currentDateData">
-<div class="row">
-                    <div class="col-md-12">
+                        <div id="currentDateData">
+                            <div class="row">
+                                <div class="col-md-12">
 
-                        <div id="panel-1" class="panel">
-                            <div class="panel-hdr">
-                                <h2>
-                                    Lamination Count
-                                 
-                                </h2>
-                            </div>
-                            <div class="panel-container show">
-                <div class="row pt-2">
+                                    <div id="panel-1" class="panel">
+                                        <div class="panel-hdr">
+                                            <h2>
+                                                Lamination Count
 
-                    <div class="col-md-12 d-flex flex-row">
-
-                        <div class="col-md-1">
-
-                        </div>
-
-               
-                                <div class="col-md-2" id="direct">
-                                    <a href="javascript:void(0)">
-                                        <div style="background-color:maroon" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
-                                            <div class="">
-                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
-
-
-                                                    <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
-
-                                                    <small class="m-0 l-h-n">Number of Employees</small>
-                                                    <!-- <?php echo $d['EmpCount']; ?> -->
-                                                    <span id="employeeId"> </span>
-                                                    <!-- <small class="m-0 l-h-n">Real Time</small>
-                                            <?php echo $d['RealTime']; ?> -->
-
-                                                </h3>
-                                            </div>
-                                            <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                            </h2>
                                         </div>
-                                    </a>
-                                </div>
-
-                                <div class="col-md-2" id="direct">
-                                    <a href="javascript:void(0)">
-                                        <div style="background-color:grey" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
-                                            <div class="">
-                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                        <div class="panel-container show">
 
 
-                                                    <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
+                                            <div style="display:none" class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">From Date:</label>
+                                                        <div class="input-group">
+                                                            <input class="form-control" type="date" id="Date1" name="Date1" value="<?php echo $CurrentDate; ?>">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">End Date:</label>
+                                                        <div class="input-group">
+                                                            <input class="form-control" type="date" id="Date2" name="Date2" value="<?php echo $CurrentDate; ?>">
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                                                    <!-- <small class="m-0 l-h-n">Number of Employees</small>
-                                            <?php echo $d['EmpCount']; ?> -->
-                                                    <small class="m-0 l-h-n">Real Time (Minutes)</small>
-                                                    <span id="realTimeId"> </span>
+                                                <div class="col-md-4">
+                                                    <div class="form-group mt-2">
+                                                        <label class="form-control-label"></label>
+                                                        <div class="input-group">
+                                                            <button type="submit" id="getEnergyData" name="submit" class="btn btn-primary "><i class=" fa fa-search"></i> Search</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                                                </h3>
+
                                             </div>
-                                            <i class="fal fa-clock position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                        </div>
-                                    </a>
-                                </div>
-               
-                        <?php
 
-                        //print_r($Counter);
-                        ?>
-                        <div class="col-md-2" id="direct">
-                            <a href="javascript:void(0)">
-                                <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <small class="m-0 l-h-n">Total No of Balls</small>
-                                           
-                                            <span id="counterValueId"><?php echo $total*0.05*3; ?></span>
-                                   
-                                            <small class="m-0 l-h-n"></small>
+                                            <div class="row pt-2">
+
+                                                <div class="col-md-12 d-flex flex-row ml-4" style="justify-content: left;">
+
+                                                    <div class="col-md-2" id="direct">
+                                                        <a href="javascript:void(0)">
+                                                            <div style="background-color:maroon" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                                                <div class="">
+                                                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
 
+                                                                        <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
+
+                                                                        <small class="m-0 l-h-n">Number of Employees</small>
+                                                                        <!-- <?php echo $d['EmpCount']; ?> -->
+                                                                        <span id="employeeId"> </span>
+                                                                        <!-- <small class="m-0 l-h-n">Real Time</small>
+                                                                        <?php echo $d['RealTime']; ?> -->
+
+                                                                    </h3>
+                                                                </div>
+                                                                <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="col-md-2" id="direct">
+                                                        <a href="javascript:void(0)">
+                                                            <div style="background-color:grey" class=" p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                                                <div class="">
+                                                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
 
+                                                                        <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
 
-                                        </h3>
-                                    </div>
-                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
-                                </div>
-                            </a>
-                        </div>
-           
+                                                                        <!-- <small class="m-0 l-h-n">Number of Employees</small>
+                                                                        <?php echo $d['EmpCount']; ?> -->
+                                                                        <small class="m-0 l-h-n">Real Time (Minutes)</small>
+                                                                        <span id="realTimeId"> </span>
 
-                        <div class="col-md-2" id="direct">
-                            <a href="javascript:void(0)">
-                                <div class="p-2 bg-info rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                            <small class="m-0 l-h-n">Efficiency</small>
-                                            <span id="efficiencyValueId"></span>
-                                            <small class="m-0 l-h-n"></small>
-                                        </h3>
-                                    </div>
-                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
-                                </div>
-                            </a>
-                        </div>
+                                                                    </h3>
+                                                                </div>
+                                                                <i class="fal fa-clock position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-2" id="direct">
+                                                        <a href="javascript:void(0)">
+                                                            <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
+                                                                <div class="">
+                                                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                                        <small class="m-0 l-h-n">Meters</small>
 
-                        <div class=" col-md-2 align-self-center" id="direct">
-                            <a href="javascript:void(0)">
-                                <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
-                                    <div class="">
-                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                        <small class="m-0 l-h-n">Target</small>
-                                            <span >67%</span>
+                                                                        <span id="counterValueId"></span>
 
-                                        </h3>
-
-                                    </div>
-                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-1">
-                            <!-- <?php
-                            echo $total;
-                            ?>
-                            <br>
-                            <?php
-                            echo $Output;
-                            ?>
-                            <br>
-                            <?php
-                            echo $Mints;
-                            ?> -->
-                        </div>
-
-                    </div>
- 
-
-                    <div class="col-md-6">
-
-  <div class="row mt-4 pl-5">
+                                                                        <small class="m-0 l-h-n"></small>
+                                                                    </h3>
+                                                                </div>
+                                                                <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
 
 
+                                                    <div class="col-md-2" id="direct">
+                                                        <a href="javascript:void(0)">
+                                                            <div class="p-2 bg-info rounded overflow-hidden position-relative text-white mb-g">
+                                                                <div class="">
+                                                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                                        <small class="m-0 l-h-n">Efficiency</small>
+                                                                        <span id="efficiencyValueId"></span>
+                                                                        <small class="m-0 l-h-n"></small>
+                                                                    </h3>
+                                                                </div>
+                                                                <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
 
-    <?php foreach ($IndividualReading as $Inmachine) {
-     
+                                                    <div class=" col-md-2 align-self-center" id="direct">
+                                                        <a href="javascript:void(0)">
+                                                            <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
+                                                                <div class="">
+                                                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                                        <small class="m-0 l-h-n">Target</small>
+                                                                        <span>60 %</span>
 
-    ?>
-      <div class="col-md-3">
+                                                                    </h3>
 
-        <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: maroon;">
-          <div class="">
-            <h3 class="display-4 d-block l-h-n m-0 fw-500">
-
-              <small class="m-0 l-h-n"><?php echo $Inmachine['Name']; ?></small>
-            </h3>
-            <h6 class="display-4 d-block l-h-n m-0 fw-400" id="machine1Reading">
-
-              <?php echo $Inmachine['Reading'] * 0.05 ; ?>
-            </h6>
-            <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
-          </div>
-          <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
-        </div>
-
-      </div>
+                                                                </div>
+                                                                <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
 
 
 
 
-    <?php
-    }
-    ?>
+                                                    <!-- <div class="col-md-1"> -->
+                                                    <!-- <?php
+                                                            echo $total;
+                                                            ?>
+                                                            <br>
+                                                            <?php
+                                                            echo $Output;
+                                                            ?>
+                                                            <br>
+                                                            <?php
+                                                            echo $Mints;
+                                                            ?> -->
+                                                    <!-- </div> -->
 
-    </a>
+                                                </div>
 
-    <div class="col-md-3">
+
+                                                <div class="col-md-6" >
+                                                    <div class="col-md-4 ml-4" id="direct">
+                                                        <a href="javascript:void(0)">
+                                                            <div class="p-2 bg-danger rounded overflow-hidden position-relative text-white mb-g">
+                                                                <div class="">
+                                                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                                        <small class="m-0 l-h-n"> MS Lamination Total</small>
+                                                                        <span><?php echo round($ms_lamination_machine_energy, 2) ?><small style="display: inline;">KW</small></span>
+
+                                                                    </h3>
+
+                                                                </div>
+                                                                <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="row mt-4 pl-5">
+                                                        <?php $totalReading = 0;
+                                                        //print_r($IndividualReading);
+                                                        foreach ($IndividualReading as $Inmachine) {
+
+                                                            $totalReading += ($Inmachine['Reading']);
+                                                        ?>
+                                                            <div class="col-md-3">
+
+                                                                <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: maroon;">
+                                                                    <div class="">
+                                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                                                                            <small class="m-0 l-h-n"><?php echo $Inmachine['Name']; ?></small>
+                                                                        </h3>
+                                                                        <h6 class="display-4 d-block l-h-n m-0 fw-400" id="machine1Reading">
+
+                                                                            <?php echo $Inmachine['Reading'] ?>
+                                                                        </h6>
+                                                                        <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
+                                                                    </div>
+                                                                    <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
+                                                                </div>
+
+                                                            </div>
+
+
+
+
+                                                        <?php
+                                                        }
+                                                        ?>
+
+                                                        </a>
+
+                                                        <!-- <div class="col-md-3">
 
 <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: maroon;">
   <div class="">
@@ -297,12 +361,11 @@ foreach ($HourllyReading as $key) {
     </h6>
     <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
   </div>
-  <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
 </div>
 
-</div>
+</div> -->
 
-<div class="col-md-3">
+                                                        <!-- <div class="col-md-3">
 
 <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: maroon;">
   <div class="">
@@ -316,41 +379,40 @@ foreach ($HourllyReading as $key) {
     </h6>
     <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
   </div>
-  <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
 </div>
 
-</div>
+</div> -->
 
 
 
 
 
-</div>
-</div>
+                                                    </div>
+                                                </div>
 
-<div class="col-md-6">
-<div class="guage">
-<script src="<?php echo base_url(); ?>/assets/js/highcharts.js"></script>
-<script src="<?php echo base_url(); ?>/assets/js/data.js"></script>
-<script src="<?php echo base_url(); ?>/assets/js/drilldown.js"></script>
-<script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>
-<script src="<?php echo base_url(); ?>/assets/js/export-data.js"></script>
-<script src="<?php echo base_url(); ?>/assets/js/accessibility.js"></script>
-                    <script src="<?php echo base_url(); ?>/assets/js/highcharts-more.js"></script>
-                    <script src="<?php echo base_url(); ?>/assets/js/solidGuage.js"></script>
-            
-                        <div id="container-speed" class="chart-container"></div>
-                        <!-- <div id="container-rpm" class="chart-container"></div>   -->
-                </div>
-</div>
+                                                <div class="col-md-6">
+                                                    <div class="guage">
+                                                        <script src="<?php echo base_url(); ?>/assets/js/highcharts.js"></script>
+                                                        <script src="<?php echo base_url(); ?>/assets/js/data.js"></script>
+                                                        <script src="<?php echo base_url(); ?>/assets/js/drilldown.js"></script>
+                                                        <script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>
+                                                        <script src="<?php echo base_url(); ?>/assets/js/export-data.js"></script>
+                                                        <script src="<?php echo base_url(); ?>/assets/js/accessibility.js"></script>
+                                                        <script src="<?php echo base_url(); ?>/assets/js/highcharts-more.js"></script>
+                                                        <script src="<?php echo base_url(); ?>/assets/js/solidGuage.js"></script>
 
-                </div> <!-- row ends here -->
+                                                        <div id="container-speed" class="chart-container"></div>
+                                                        <!-- <div id="container-rpm" class="chart-container"></div>   -->
+                                                    </div>
+                                                </div>
 
-
+                                            </div> <!-- row ends here -->
 
 
 
-                <!-- <div id="tableHere" class="p-2">
+
+
+                                            <!-- <div id="tableHere" class="p-2">
 
 
 
@@ -358,396 +420,419 @@ foreach ($HourllyReading as $key) {
 
                 </div> -->
 
-                </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div id="panel-1" class="panel">
+                                        <div class="panel-hdr">
+                                            <h2>
+                                                Lamination Output
+
+                                            </h2>
+                                        </div>
+                                        <div class="panel-container show">
+                                            <div id="container">
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div id="panel-1" class="panel">
+                                        <div class="panel-hdr">
+                                            <h2>
+                                                MS Lamination Machine 2 Energy Output
+
+                                            </h2>
+                                        </div>
+                                        <div class="panel-container show">
+                                            <div id="energyOutput">
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="sundayStatus" style="display: none;">
+                            <div class="card">
+
+                                <div class="card-body">
+                                    <h1 style="font-family:cursive;margin-left: 40%;padding: 50px;">Hello <?php echo $_SESSION['Username']; ?>!<br>It's Sunday so current date data isn't available.<br> Have a happy Sunday!</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="overStatus" style="display: none;">
+                            <div class="card">
+
+                                <div class="card-body">
+                                    <h1 style="font-family:cursive;margin-left: 40%;padding: 50px;">Hello <?php echo $_SESSION['Username']; ?>!<br>The Production is stopped now so current date data isn't available.<br> Have a happy Day!</h1>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
-  
+
+                    <div class="tab-pane fade" id="tab_direction-2" role="tabpanel" style="background-color: white;">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <?php
+                                $Month = date('m');
+                                $Year = date('Y');
+                                $Day = date('d');
+                                $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+                                ?>
 
 
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
+                                <!-- <div class="row clearfix"> -->
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><b>Date Filteration</b></h5>
+                                        <form>
+                                            <div class="row clearfix">
+                                                <div class="col-md-2" style="margin-right:20px;">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">From Date:</label>
+                                                        <div class="input-group">
+                                                            <input class="form-control" type="Date" id="startDate" name="startDate" value="<?php echo $CurrentDate; ?>" style="width: 100%">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label">To Date:</label>
+                                                        <div class="input-group">
+                                                            <input class="form-control" type="Date" id="endDate" name="endDate" value="<?php echo $CurrentDate; ?>" style="width: 100%">
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                        <div id="panel-1" class="panel">
-                            <div class="panel-hdr">
-                                <h2>
-                                    Lamination Output
-                                  
-                                </h2>
+
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label class=" form-control-label"></label>
+                                                        <div class="input-group">
+                                                            <button type="submit" id="searchRange" class="btn btn-primary " style="border-radius: 15px;"><i class="fa fa-search"></i> Search</button>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <br>
+
+
                             </div>
-                            <div class="panel-container show">
-                                <div id="container">
 
+
+
+
+
+                        </div>
+
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div id="panel-1" class="panel">
+                                    <div class="panel-hdr">
+                                        <h2>
+                                            Lamination OutPut
+
+                                        </h2>
+                                    </div>
+                                    <div class="panel-container show">
+                                        <div class="row" id="dateRangeResult" style="display: none;">
+                                            <div class="col-md-12">
+
+                                                <div id="containerDateRangeBar"></div>
+
+                                            </div>
+                                            <div class="col-md-12 mt-2">
+
+                                                <div id="containerDateRangeLine"></div>
+
+                                            </div>
+                                            <div class="col-md-12 mt-2">
+
+                                                <div id="containerDateRangeLineMachineWise"></div>
+
+                                            </div>
+
+                                        </div>
+                                        <div id="loadingShow" style="display: none;">
+
+                                            <img src="<?php echo base_url('/') ?>Assets/img/loader4.gif" alt="Loading..." style="margin-left: 100%">
+
+
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
                         </div>
 
                     </div>
+
+
                 </div>
-   </div>
-   <div id="sundayStatus" style="display: none;">
-   <div class="card">
-
-<div class="card-body">
-   <h1 style="font-family:cursive;margin-left: 40%;padding: 50px;">Hello <?php echo $_SESSION['Username']; ?>!<br>It's Sunday so current date data isn't available.<br> Have a happy Sunday!</h1>  
-</div>
-   </div>
-</div>
-<div id="overStatus" style="display: none;">
-   <div class="card">
-
-<div class="card-body">
-   <h1 style="font-family:cursive;margin-left: 40%;padding: 50px;">Hello <?php echo $_SESSION['Username']; ?>!<br>The Production is stopped now so current date data isn't available.<br> Have a happy Day!</h1>  
-</div>
-   </div>
-</div>
-
-</div>
-
-<div class="tab-pane fade" id="tab_direction-2" role="tabpanel" style="background-color: white;">
-<div class="row">
-<div class="col-md-12">
-
-<?php
-$Month = date('m');
-$Year = date('Y');
-$Day = date('d');
-$CurrentDate = $Year . '-' . $Month . '-' . $Day;
-?>
-
-
-<!-- <div class="row clearfix"> -->
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title"><b>Date Filteration</b></h5>
-    <form>
-      <div class="row clearfix">
-        <div class="col-md-2" style="margin-right:20px;">
-          <div class="form-group">
-            <label class="form-control-label">From Date:</label>
-            <div class="input-group">
-              <input class="form-control" type="Date" id="startDate" name="startDate" value="<?php echo $CurrentDate; ?>" style="width: 100%">
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="form-group">
-            <label class="form-control-label">To Date:</label>
-            <div class="input-group">
-              <input class="form-control" type="Date" id="endDate" name="endDate" value="<?php echo $CurrentDate; ?>" style="width: 100%">
-            </div>
-          </div>
         </div>
 
-
-        <div class="col-md-2">
-          <div class="form-group">
-            <label class=" form-control-label"></label>
-            <div class="input-group">
-              <button type="submit" id="searchRange" class="btn btn-primary " style="border-radius: 15px;"><i class="fa fa-search"></i> Search</button>
-
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </form>
-  </div>
-</div>
-
-<br>
-
-
-</div>
+        </main>
 
 
 
-
-
-</div>
-
-<br>
-<div class="row" >
-                    <div class="col-md-12">
-
-                        <div id="panel-1" class="panel">
-                            <div class="panel-hdr">
-                                <h2>
-                                    Lamination OutPut
-                                  
-                                </h2>
-                            </div>
-                            <div class="panel-container show" >
-                                <div class="row" id="dateRangeResult" style="display: none;">
-                                    <div class="col-md-12">
-                                 
-    <div id="containerDateRangeBar"></div>
-
-                                    </div>
-                                    <div class="col-md-12 mt-2">
-                          
-    <div id="containerDateRangeLine"></div>
-
-                                    </div>
-                                    <div class="col-md-12 mt-2">
-                          
-                          <div id="containerDateRangeLineMachineWise"></div>
-                      
-                                                          </div>
-                           
-                                </div>
-                                <div id="loadingShow" style="display: none;">
-                          
-                                <img src="<?php echo base_url('/')?>Assets/img/loader4.gif" alt="Loading..." style="margin-left: 100%" >
-                             
-               
-                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-</div>
-
-
-</div>
-</div>
-
-      </main>
-
-
-
-</div>
-</div>
-
-</div>
-
-            <script>
-              Highcharts.chart('container', {
-                chart: {
-                  zoomType: 'xy'
-                },
-                title: {
-                  text: 'Target vs Achieved'
-                },
-                subtitle: {
-                  // text: 'Source: WorldClimate.com'
-                },
-                xAxis: [{
-                  categories: <?php echo json_encode($GetHours, JSON_NUMERIC_CHECK); ?>,
-                  crosshair: true
-                }],
-                yAxis: [{ // Primary yAxis
-                  labels: {
-                    format: '{value} mtr',
-                    style: {
-                      color: Highcharts.getOptions().colors[1]
-                    }
-                  },
-                  title: {
-                    text: 'Target',
-                    style: {
-                      color: Highcharts.getOptions().colors[1]
-                    }
-                  }
-                }, { // Secondary yAxis
-                  title: {
-                    text: 'Achived',
-                    style: {
-                      color: Highcharts.getOptions().colors[0]
-                    }
-                  },
-                  labels: {
-                    format: '{value} mtr',
-                    style: {
-                      color: Highcharts.getOptions().colors[0]
-                    }
-                  },
-                  opposite: true
-                }],
-                tooltip: {
-                  shared: true
-                },
-                legend: {
-                  layout: 'vertical',
-                  align: 'left',
-                  x: 120,
-                  verticalAlign: 'top',
-                  y: 100,
-                  floating: true,
-                  backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
-                    'rgba(255,255,255,0.25)'
-                },
-                series: [{
-                    name: 'Achieved',
-                    type: 'column',
-                    yAxis: 1,
-                    data: <?php echo json_encode($GetReading, JSON_NUMERIC_CHECK); ?>,
-                    tooltip: {
-                      valueSuffix: ' mtr'
-                    }
-
-                  }, {
-
-                    name: 'Target',
-                    type: 'spline',
-                    color: 'red',
-                    data: <?php echo json_encode($target, JSON_NUMERIC_CHECK); ?>,
-                    tooltip: {
-                      valueSuffix: ' mtr'
-                    }
-                  }
-
-                ]
-
-
-              });
-              // Highcharts.chart('container', {
-
-              //   title: {
-              //     text: ''
-              //   },
-
-              //   subtitle: {
-              //     text: ''
-              //   },
-
-              //   yAxis: {
-              //     title: {
-              //       text: <?php echo json_encode($point2, JSON_NUMERIC_CHECK); ?>,
-              //     }
-              //   },
-
-              //   xAxis: {
-              //     accessibility: {
-              //       rangeDescription: 'Range: 2010 to 2017'
-              //     }
-              //   },
-
-              //   legend: {
-              //     layout: 'vertical',
-              //     align: 'right',
-              //     verticalAlign: 'middle'
-              //   },
-
-              //   plotOptions: {
-              //     series: {
-              //       label: {
-              //         connectorAllowed: false
-              //       },
-              //       pointStart: 1
-              //     }
-              //   },
-
-              //   series: [{
-              //     name: 'Lamination',
-              //     data: <?php echo json_encode($point1, JSON_NUMERIC_CHECK); ?>,
-              //   }],
-
-              //   responsive: {
-              //     rules: [{
-              //       condition: {
-              //         maxWidth: 500
-              //       },
-              //       chartOptions: {
-              //         legend: {
-              //           layout: 'horizontal',
-              //           align: 'center',
-              //           verticalAlign: 'bottom'
-              //         }
-              //       }
-              //     }]
-              //   }
-
-              // });
-            </script>
-
-  <!-- this overlay is activated only when mobile menu is triggered -->
-  <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
-                <!-- BEGIN Page Footer -->
-                <footer class="page-footer" role="contentinfo">
-                    <div class="d-flex align-items-center flex-1 text-muted">
-                        <span class="hidden-md-down fw-700">2021 © DMMS by&nbsp;IT Dept Forward Sports</span>
-                    </div>
-                    <div>
-
-                    </div>
-                </footer>
-                <!-- END Page Footer -->
-                <!-- BEGIN Shortcuts -->
-
-                <!-- END Shortcuts -->
-                <!-- BEGIN Color profile -->
-                <!-- this area is hidden and will not be seen on screens or screen readers -->
-                <!-- we use this only for CSS color refernce for JS stuff -->
-                <p id="js-color-profile" class="d-none">
-                    <span class="color-primary-50"></span>
-                    <span class="color-primary-100"></span>
-                    <span class="color-primary-200"></span>
-                    <span class="color-primary-300"></span>
-                    <span class="color-primary-400"></span>
-                    <span class="color-primary-500"></span>
-                    <span class="color-primary-600"></span>
-                    <span class="color-primary-700"></span>
-                    <span class="color-primary-800"></span>
-                    <span class="color-primary-900"></span>
-                    <span class="color-info-50"></span>
-                    <span class="color-info-100"></span>
-                    <span class="color-info-200"></span>
-                    <span class="color-info-300"></span>
-                    <span class="color-info-400"></span>
-                    <span class="color-info-500"></span>
-                    <span class="color-info-600"></span>
-                    <span class="color-info-700"></span>
-                    <span class="color-info-800"></span>
-                    <span class="color-info-900"></span>
-                    <span class="color-danger-50"></span>
-                    <span class="color-danger-100"></span>
-                    <span class="color-danger-200"></span>
-                    <span class="color-danger-300"></span>
-                    <span class="color-danger-400"></span>
-                    <span class="color-danger-500"></span>
-                    <span class="color-danger-600"></span>
-                    <span class="color-danger-700"></span>
-                    <span class="color-danger-800"></span>
-                    <span class="color-danger-900"></span>
-                    <span class="color-warning-50"></span>
-                    <span class="color-warning-100"></span>
-                    <span class="color-warning-200"></span>
-                    <span class="color-warning-300"></span>
-                    <span class="color-warning-400"></span>
-                    <span class="color-warning-500"></span>
-                    <span class="color-warning-600"></span>
-                    <span class="color-warning-700"></span>
-                    <span class="color-warning-800"></span>
-                    <span class="color-warning-900"></span>
-                    <span class="color-success-50"></span>
-                    <span class="color-success-100"></span>
-                    <span class="color-success-200"></span>
-                    <span class="color-success-300"></span>
-                    <span class="color-success-400"></span>
-                    <span class="color-success-500"></span>
-                    <span class="color-success-600"></span>
-                    <span class="color-success-700"></span>
-                    <span class="color-success-800"></span>
-                    <span class="color-success-900"></span>
-                    <span class="color-fusion-50"></span>
-                    <span class="color-fusion-100"></span>
-                    <span class="color-fusion-200"></span>
-                    <span class="color-fusion-300"></span>
-                    <span class="color-fusion-400"></span>
-                    <span class="color-fusion-500"></span>
-                    <span class="color-fusion-600"></span>
-                    <span class="color-fusion-700"></span>
-                    <span class="color-fusion-800"></span>
-                    <span class="color-fusion-900"></span>
-                </p>
-                <!-- END Color profile -->
-        </div>
     </div>
+</div>
+
+</div>
+
+<script>
+    Highcharts.chart('container', {
+        chart: {
+            zoomType: 'xy'
+        },
+        title: {
+            text: 'Target vs Achieved'
+        },
+        subtitle: {
+            // text: 'Source: WorldClimate.com'
+        },
+        xAxis: [{
+            categories: <?php echo json_encode($GetHours, JSON_NUMERIC_CHECK); ?>,
+            crosshair: true
+        }],
+        yAxis: [{ // Primary yAxis
+            labels: {
+                format: '{value} mtr',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            },
+            title: {
+                text: 'Target',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            }
+        }, { // Secondary yAxis
+            title: {
+                text: 'Achived',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
+            },
+            labels: {
+                format: '{value} mtr',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
+            },
+            opposite: true
+        }],
+        tooltip: {
+            shared: true
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            x: 120,
+            verticalAlign: 'top',
+            y: 100,
+            floating: true,
+            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                'rgba(255,255,255,0.25)'
+        },
+        series: [{
+                name: 'Achieved',
+                type: 'column',
+                yAxis: 1,
+                data: <?php echo json_encode($GetReading, JSON_NUMERIC_CHECK); ?>,
+                tooltip: {
+                    valueSuffix: ' mtr'
+                }
+
+            }, {
+
+                name: 'Target',
+                type: 'spline',
+                color: 'red',
+                data: <?php echo json_encode($target, JSON_NUMERIC_CHECK); ?>,
+                tooltip: {
+                    valueSuffix: ' mtr'
+                }
+            }
+
+        ]
+
+
+    });
+    // Highcharts.chart('container', {
+
+    //   title: {
+    //     text: ''
+    //   },
+
+    //   subtitle: {
+    //     text: ''
+    //   },
+
+    //   yAxis: {
+    //     title: {
+    //       text: <?php echo json_encode($point2, JSON_NUMERIC_CHECK); ?>,
+    //     }
+    //   },
+
+    //   xAxis: {
+    //     accessibility: {
+    //       rangeDescription: 'Range: 2010 to 2017'
+    //     }
+    //   },
+
+    //   legend: {
+    //     layout: 'vertical',
+    //     align: 'right',
+    //     verticalAlign: 'middle'
+    //   },
+
+    //   plotOptions: {
+    //     series: {
+    //       label: {
+    //         connectorAllowed: false
+    //       },
+    //       pointStart: 1
+    //     }
+    //   },
+
+    //   series: [{
+    //     name: 'Lamination',
+    //     data: <?php echo json_encode($point1, JSON_NUMERIC_CHECK); ?>,
+    //   }],
+
+    //   responsive: {
+    //     rules: [{
+    //       condition: {
+    //         maxWidth: 500
+    //       },
+    //       chartOptions: {
+    //         legend: {
+    //           layout: 'horizontal',
+    //           align: 'center',
+    //           verticalAlign: 'bottom'
+    //         }
+    //       }
+    //     }]
+    //   }
+
+    // });
+</script>
+
+<!-- this overlay is activated only when mobile menu is triggered -->
+<div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
+<!-- BEGIN Page Footer -->
+<footer class="page-footer" role="contentinfo">
+    <div class="d-flex align-items-center flex-1 text-muted">
+        <span class="hidden-md-down fw-700">2021 © DMMS by&nbsp;IT Dept Forward Sports</span>
+    </div>
+    <div>
+
+    </div>
+</footer>
+<!-- END Page Footer -->
+<!-- BEGIN Shortcuts -->
+
+<!-- END Shortcuts -->
+<!-- BEGIN Color profile -->
+<!-- this area is hidden and will not be seen on screens or screen readers -->
+<!-- we use this only for CSS color refernce for JS stuff -->
+<p id="js-color-profile" class="d-none">
+    <span class="color-primary-50"></span>
+    <span class="color-primary-100"></span>
+    <span class="color-primary-200"></span>
+    <span class="color-primary-300"></span>
+    <span class="color-primary-400"></span>
+    <span class="color-primary-500"></span>
+    <span class="color-primary-600"></span>
+    <span class="color-primary-700"></span>
+    <span class="color-primary-800"></span>
+    <span class="color-primary-900"></span>
+    <span class="color-info-50"></span>
+    <span class="color-info-100"></span>
+    <span class="color-info-200"></span>
+    <span class="color-info-300"></span>
+    <span class="color-info-400"></span>
+    <span class="color-info-500"></span>
+    <span class="color-info-600"></span>
+    <span class="color-info-700"></span>
+    <span class="color-info-800"></span>
+    <span class="color-info-900"></span>
+    <span class="color-danger-50"></span>
+    <span class="color-danger-100"></span>
+    <span class="color-danger-200"></span>
+    <span class="color-danger-300"></span>
+    <span class="color-danger-400"></span>
+    <span class="color-danger-500"></span>
+    <span class="color-danger-600"></span>
+    <span class="color-danger-700"></span>
+    <span class="color-danger-800"></span>
+    <span class="color-danger-900"></span>
+    <span class="color-warning-50"></span>
+    <span class="color-warning-100"></span>
+    <span class="color-warning-200"></span>
+    <span class="color-warning-300"></span>
+    <span class="color-warning-400"></span>
+    <span class="color-warning-500"></span>
+    <span class="color-warning-600"></span>
+    <span class="color-warning-700"></span>
+    <span class="color-warning-800"></span>
+    <span class="color-warning-900"></span>
+    <span class="color-success-50"></span>
+    <span class="color-success-100"></span>
+    <span class="color-success-200"></span>
+    <span class="color-success-300"></span>
+    <span class="color-success-400"></span>
+    <span class="color-success-500"></span>
+    <span class="color-success-600"></span>
+    <span class="color-success-700"></span>
+    <span class="color-success-800"></span>
+    <span class="color-success-900"></span>
+    <span class="color-fusion-50"></span>
+    <span class="color-fusion-100"></span>
+    <span class="color-fusion-200"></span>
+    <span class="color-fusion-300"></span>
+    <span class="color-fusion-400"></span>
+    <span class="color-fusion-500"></span>
+    <span class="color-fusion-600"></span>
+    <span class="color-fusion-700"></span>
+    <span class="color-fusion-800"></span>
+    <span class="color-fusion-900"></span>
+</p>
+<!-- END Color profile -->
+</div>
+</div>
 </div>
 <!-- END Page Wrapper -->
 <!-- BEGIN Quick Menu -->
@@ -1364,12 +1449,12 @@ $CurrentDate = $Year . '-' . $Month . '-' . $Day;
     $('#js-page-content').smartPanel();
 </script>
 <!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
-<script src="<?php echo base_url(); ?>assets/js/statistics/peity/peity.bundle.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/statistics/flot/flot.bundle.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/datagrid/datatables/datatables.bundle.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
 <script>
-           Highcharts.setOptions({
+    Highcharts.setOptions({
         colors: Highcharts.map(Highcharts.getOptions().colors, function(color) {
             return {
                 radialGradient: {
@@ -1452,256 +1537,261 @@ $CurrentDate = $Year . '-' . $Month . '-' . $Day;
         var EfficiencyFinal;
         var EfficiencyFinalArray = [];
         let counterValueOld = $("#counterValueId").text()
-        let machine1Counter = $("#machine1Reading").text()
-        let machine2Counter = parseFloat(machine1Counter)+10.25
-        let machine3Counter = parseFloat(machine1Counter)-7.55
-        let totalCounter = (machine2Counter*3) + (machine3Counter*3) + parseFloat(counterValueOld);
+
+
+        // let machine1Counter = $("#machine1Reading").text()
+        // let machine2Counter = parseFloat(machine1Counter)+10.25
+        // let machine3Counter = parseFloat(machine1Counter)-7.55
+        // let totalCounter = (machine2Counter*3) + (machine3Counter*3) + parseFloat(counterValueOld);
+
+
+        let totalCounter = <?php echo $totalReading; ?>;
+
         // console.log("Total Counter",machine2Counter*0.05*3)
         $("#counterValueId").text(totalCounter.toFixed(2))
-        $("#machine2Reading").text(machine2Counter.toFixed(2))
-        $("#machine3Reading").text(machine3Counter.toFixed(2))
+        // $("#machine2Reading").text(machine2Counter.toFixed(2))
+        // $("#machine3Reading").text(machine3Counter.toFixed(2))
         let counterValue = $("#counterValueId").text()
-        console.log((counterValue/2920)*100)
-        let currentDate = new Date().toJSON().substr(0,10);
+        console.log((counterValue / 2920) * 100)
+
+        // alert(counterValue)
+
+        let currentDate = new Date().toJSON().substr(0, 10);
         let dateGet = new Date()
         let dayId = dateGet.getDay()
         let today = new Date()
-let yesterday = new Date(today)
-yesterday.setDate(yesterday.getDate() - 1)
-        $("#startDate").val(yesterday.toJSON().substr(0,10));
-        $("#endDate").val(yesterday.toJSON().substr(0,10));
-        $("#startDate").attr('max',yesterday.toJSON().substr(0,10));
-        $("#endDate").attr('max',yesterday.toJSON().substr(0,10));
-        var date1 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),7,45,0); // Thu Sep 16 2010 13:30:58
-var date2 = new Date(dateGet.getFullYear(),dateGet.getMonth(),dateGet.getDay(),dateGet.getHours(),dateGet.getMinutes(),dateGet.getSeconds()); // Tue Aug 18 2015 14:20:48
+        let yesterday = new Date(today)
+        yesterday.setDate(yesterday.getDate() - 1)
+        $("#startDate").val(yesterday.toJSON().substr(0, 10));
+        $("#endDate").val(yesterday.toJSON().substr(0, 10));
+        $("#startDate").attr('max', yesterday.toJSON().substr(0, 10));
+        $("#endDate").attr('max', yesterday.toJSON().substr(0, 10));
+        var date1 = new Date(dateGet.getFullYear(), dateGet.getMonth(), dateGet.getDay(), 7, 45, 0); // Thu Sep 16 2010 13:30:58
+        var date2 = new Date(dateGet.getFullYear(), dateGet.getMonth(), dateGet.getDay(), dateGet.getHours(), dateGet.getMinutes(), dateGet.getSeconds()); // Tue Aug 18 2015 14:20:48
 
-let dateDifference;
-let minutes;
-if(dayId == 0){
-$("#currentDateData").css('display','none');
-$("#sundayStatus").css('display',"inline-block");
-}
-else{
-    if(dateGet.getHours() >= 7 && dateGet.getHours() <= 16){
-    
-    if(dateGet.getHours() >= 14){
-        dateDifference = date2 - date1;
-    minutes = Math.floor(dateDifference / 60000);
-  
-    // EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
-    // if(dayId == 5){
-    //     $("#realTimeId").text((minutes*6)-(60*6))
-    // }
-    // else{
-    //     $("#realTimeId").text((minutes*6)-(45*6))
-    // }
+        let dateDifference;
+        let minutes;
+        if (dayId == 0) {
+            $("#currentDateData").css('display', 'none');
+            $("#sundayStatus").css('display', "inline-block");
+        } else {
+            if (dateGet.getHours() >= 7 && dateGet.getHours() <= 16) {
+
+                if (dateGet.getHours() >= 14) {
+                    dateDifference = date2 - date1;
+                    minutes = Math.floor(dateDifference / 60000);
+
+                    // EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+                    // if(dayId == 5){
+                    //     $("#realTimeId").text((minutes*6)-(60*6))
+                    // }
+                    // else{
+                    //     $("#realTimeId").text((minutes*6)-(45*6))
+                    // }
 
 
-    if(dayId == 5){
-        EfficiencyFinal = (((counterValue*0.32)/((minutes*6)-(60*6)) )*100).toFixed(2)
-      //EfficiencyFinal = (((counterValue*2.87)/((minutes*32*1.5)-(45*32*1.5)) )*100).toFixed(2)
-      
-      $("#realTimeId").text((minutes*6)-(60*6))
-   }
-   else{
-    EfficiencyFinal = (((counterValue*0.32)/((minutes*6)-(45*6)) )*100).toFixed(2)
-    //EfficiencyFinal = (((counterValue*2.87)/((minutes*32*1.5)-(45*32*1.5)) )*100).toFixed(2)
-      
-    $("#realTimeId").text((minutes*6)-(45*6))
-   }
-   EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
-    
-    $("#employeeId").text(6)
-    $("#efficiencyValueId").text(EfficiencyFinal + "%")
-    console.log(EfficiencyFinalArray)
-    var gaugeOptions = {
-            chart: {
-                type: 'solidgauge'
-            },
+                    if (dayId == 5) {
+                        EfficiencyFinal = (((counterValue * 0.32) / ((minutes * 6) - (60 * 6))) * 100).toFixed(2)
+                        //EfficiencyFinal = (((counterValue*2.87)/((minutes*32*1.5)-(45*32*1.5)) )*100).toFixed(2)
 
-            title: null,
+                        $("#realTimeId").text((minutes * 6) - (60 * 6))
+                    } else {
+                        EfficiencyFinal = (((counterValue * 0.32) / ((minutes * 6) - (45 * 6))) * 100).toFixed(2)
+                        //EfficiencyFinal = (((counterValue*2.87)/((minutes*32*1.5)-(45*32*1.5)) )*100).toFixed(2)
 
-            pane: {
-                center: ['50%', '85%'],
-                size: '140%',
-                startAngle: -90,
-                endAngle: 90,
-                background: {
-                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
-                    innerRadius: '60%',
-                    outerRadius: '100%',
-                    shape: 'arc'
-                }
-            },
-
-            exporting: {
-                enabled: false
-            },
-
-            tooltip: {
-                enabled: false
-            },
-
-            // the value axis
-            yAxis: {
-                stops: [
-                    [0.3, '#DF5353'], // red
-                    [0.8, '#DDDF0D'], // yellow
-                    [0.9, '#55BF3B'] // green
-                ],
-                lineWidth: 0,
-                tickWidth: 0,
-                minorTickInterval: null,
-                tickAmount: 2,
-                title: {
-                    y: -70
-                },
-                labels: {
-                    y: 16
-                }
-            },
-
-            plotOptions: {
-                solidgauge: {
-                    dataLabels: {
-                        y: 5,
-                        borderWidth: 0,
-                        useHTML: true
+                        $("#realTimeId").text((minutes * 6) - (45 * 6))
                     }
+                    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+
+                    $("#employeeId").text(6)
+                    $("#efficiencyValueId").text(EfficiencyFinal + "%")
+                    console.log(EfficiencyFinalArray)
+                    var gaugeOptions = {
+                        chart: {
+                            type: 'solidgauge'
+                        },
+
+                        title: null,
+
+                        pane: {
+                            center: ['50%', '85%'],
+                            size: '140%',
+                            startAngle: -90,
+                            endAngle: 90,
+                            background: {
+                                backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                                innerRadius: '60%',
+                                outerRadius: '100%',
+                                shape: 'arc'
+                            }
+                        },
+
+                        exporting: {
+                            enabled: false
+                        },
+
+                        tooltip: {
+                            enabled: false
+                        },
+
+                        // the value axis
+                        yAxis: {
+                            stops: [
+                                [0.3, '#DF5353'], // red
+                                [0.8, '#DDDF0D'], // yellow
+                                [0.9, '#55BF3B'] // green
+                            ],
+                            lineWidth: 0,
+                            tickWidth: 0,
+                            minorTickInterval: null,
+                            tickAmount: 2,
+                            title: {
+                                y: -70
+                            },
+                            labels: {
+                                y: 16
+                            }
+                        },
+
+                        plotOptions: {
+                            solidgauge: {
+                                dataLabels: {
+                                    y: 5,
+                                    borderWidth: 0,
+                                    useHTML: true
+                                }
+                            }
+                        }
+                    };
+
+                    // The speed gauge
+                    var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+                        yAxis: {
+                            min: 0,
+                            max: 100,
+                            title: {
+                                text: 'Achieved'
+                            }
+                        },
+
+                        credits: {
+                            enabled: false
+                        },
+
+                        series: [{
+                            name: 'Achieved',
+                            data: EfficiencyFinalArray,
+                            dataLabels: {
+                                format: '<div style="text-align:center">' +
+                                    '<span style="font-size:30px"> {y} %</span><br/>' +
+                                    '</div>'
+                            },
+
+                        }]
+
+                    }));
+                } else {
+                    dateDifference = date2 - date1;
+                    minutes = Math.floor(dateDifference / 60000);
+                    EfficiencyFinal = (((counterValue * 0.32) / (minutes * 6)) * 100).toFixed(2)
+                    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+                    console.log(EfficiencyFinalArray)
+                    $("#realTimeId").text(minutes * 6)
+                    $("#employeeId").text(6)
+                    $("#efficiencyValueId").text(EfficiencyFinal + "%")
+                    var gaugeOptions = {
+                        chart: {
+                            type: 'solidgauge'
+                        },
+
+                        title: null,
+
+                        pane: {
+                            center: ['50%', '85%'],
+                            size: '140%',
+                            startAngle: -90,
+                            endAngle: 90,
+                            background: {
+                                backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+                                innerRadius: '60%',
+                                outerRadius: '100%',
+                                shape: 'arc'
+                            }
+                        },
+
+                        exporting: {
+                            enabled: false
+                        },
+
+                        tooltip: {
+                            enabled: false
+                        },
+
+                        // the value axis
+                        yAxis: {
+                            stops: [
+                                [0.3, '#DF5353'], // red
+                                [0.8, '#DDDF0D'], // yellow
+                                [0.9, '#55BF3B'] // green
+                            ],
+                            lineWidth: 0,
+                            tickWidth: 0,
+                            minorTickInterval: null,
+                            tickAmount: 2,
+                            title: {
+                                y: -70
+                            },
+                            labels: {
+                                y: 16
+                            }
+                        },
+
+                        plotOptions: {
+                            solidgauge: {
+                                dataLabels: {
+                                    y: 5,
+                                    borderWidth: 0,
+                                    useHTML: true
+                                }
+                            }
+                        }
+                    };
+
+                    // The speed gauge
+                    var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+                        yAxis: {
+                            min: 0,
+                            max: 100,
+                            title: {
+                                text: 'Achieved'
+                            }
+                        },
+
+                        credits: {
+                            enabled: false
+                        },
+
+                        series: [{
+                            name: 'Achieved',
+                            data: EfficiencyFinalArray,
+                            dataLabels: {
+                                format: '<div style="text-align:center">' +
+                                    '<span style="font-size:30px"> {y} %</span><br/>' +
+                                    '</div>'
+                            },
+
+                        }]
+
+                    }));
                 }
+            } else {
+                $("#realTimeId").text(0)
+                $("#employeeId").text(0)
+                $("#efficiencyValueId").text("0 %")
+                $("#currentDateData").css('display', 'none');
+                $("#overStatus").css('display', "inline-block");
             }
-        };
-
-        // The speed gauge
-        var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
-            yAxis: {
-                min: 0,
-                max: 100,
-                title: {
-                    text: 'Achieved'
-                }
-            },
-
-            credits: {
-                enabled: false
-            },
-
-            series: [{
-                name: 'Achieved',
-                data: EfficiencyFinalArray,
-                dataLabels: {
-                    format: '<div style="text-align:center">' +
-                        '<span style="font-size:30px"> {y} %</span><br/>' +
-                        '</div>'
-                },
-
-            }]
-
-        }));
-    }  
-    else{
-        dateDifference = date2 - date1;
-    minutes = Math.floor(dateDifference / 60000);
-    EfficiencyFinal = (((counterValue*0.32)/(minutes*6) )*100).toFixed(2)
-    EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
-    console.log(EfficiencyFinalArray)
-    $("#realTimeId").text(minutes*6)
-    $("#employeeId").text(6)
-    $("#efficiencyValueId").text(EfficiencyFinal + "%")
-    var gaugeOptions = {
-            chart: {
-                type: 'solidgauge'
-            },
-
-            title: null,
-
-            pane: {
-                center: ['50%', '85%'],
-                size: '140%',
-                startAngle: -90,
-                endAngle: 90,
-                background: {
-                    backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
-                    innerRadius: '60%',
-                    outerRadius: '100%',
-                    shape: 'arc'
-                }
-            },
-
-            exporting: {
-                enabled: false
-            },
-
-            tooltip: {
-                enabled: false
-            },
-
-            // the value axis
-            yAxis: {
-                stops: [
-                    [0.3, '#DF5353'], // red
-                    [0.8, '#DDDF0D'], // yellow
-                    [0.9, '#55BF3B'] // green
-                ],
-                lineWidth: 0,
-                tickWidth: 0,
-                minorTickInterval: null,
-                tickAmount: 2,
-                title: {
-                    y: -70
-                },
-                labels: {
-                    y: 16
-                }
-            },
-
-            plotOptions: {
-                solidgauge: {
-                    dataLabels: {
-                        y: 5,
-                        borderWidth: 0,
-                        useHTML: true
-                    }
-                }
-            }
-        };
-
-        // The speed gauge
-        var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
-            yAxis: {
-                min: 0,
-                max: 100,
-                title: {
-                    text: 'Achieved'
-                }
-            },
-
-            credits: {
-                enabled: false
-            },
-
-            series: [{
-                name: 'Achieved',
-                data: EfficiencyFinalArray,
-                dataLabels: {
-                    format: '<div style="text-align:center">' +
-                        '<span style="font-size:30px"> {y} %</span><br/>' +
-                        '</div>'
-                },
-
-            }]
-
-        }));
-    } 
-}
-else{
-    $("#realTimeId").text(0)
-    $("#employeeId").text(0)
-    $("#efficiencyValueId").text("0 %")
-    $("#currentDateData").css('display','none');
-    $("#overStatus").css('display',"inline-block");
-}
-}
+        }
         /* init datatables */
         $('#dt-basic-example').dataTable({
             responsive: true,
@@ -1768,7 +1858,7 @@ else{
 
         });
 
-      
+
         /* flot toggle example */
         var flot_toggle = function() {
 
@@ -2040,88 +2130,89 @@ else{
 
 
     });
+
     function generateDataTop(data1) {
- 
- var ret = {},
-     ps = [],
-     series = [],
-     len = data1.BarData.length;
 
- //concat to get points
- for (var i = 0; i < len; i++) {
-     ps[i] = {
-         name: data1.BarData[i].Date,
-         y: Math.round(data1.BarData[i].Reading * 0.05 *3),
-         drilldown: data1.BarData[i].Date
-     };
- }
- names = [];
- //generate series and split points
- for (i = 0; i < len; i++) {
-     var p = ps[i];
-   
-     series.push(p);
- }
- return series;
-}
-    function generateDataBottom(data1) {
- 
- var ret = {},
-     ps = [],
-     series = [],
-     len = data1.MachineData.length;
-   let datesArray = []
-   let dataArray = []
+        var ret = {},
+            ps = [],
+            series = [],
+            len = data1.BarData.length;
 
- //concat to get points
- for (var i = 0; i < len; i++) {
-    let dataNew = Math.round(parseFloat((data1.MachineData[i].Reading* 0.05 *3)))
-    if(datesArray.indexOf(data1.MachineData[i].Date) === -1){
-        datesArray.push(data1.MachineData[i].Date)
-        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,dataNew])
-    }
-    else{
-        dataArray.push([data1.MachineData[i].Date,data1.MachineData[i].Name,dataNew])
-    }
-
-
-  
- }
-
- //generate series and split points
- for (i = 0; i < datesArray.length; i++) {
-    let OriginaldataArray = []
-    let OriginaldataArrayDateRemove = []
-    dataArray.filter(function(e) { 
-        if(e[0] === datesArray[i]){
-            OriginaldataArray.push(e)
+        //concat to get points
+        for (var i = 0; i < len; i++) {
+            ps[i] = {
+                name: data1.BarData[i].Date,
+                y: Math.round(data1.BarData[i].Reading),
+                drilldown: data1.BarData[i].Date
+            };
         }
-    });
-    OriginaldataArray.forEach(element => {
-        // console.log("Element", element)
-        element.shift()
-        OriginaldataArrayDateRemove.push(element)
-    });
-    // console.log("data Get", OriginaldataArray)
-     var p = {
-        name: datesArray[i],
-        id: datesArray[i],
-        data: OriginaldataArrayDateRemove
-     }
-    //  console.log("Series", p)
-     series.push(p);
- }
- return series;
-}
+        names = [];
+        //generate series and split points
+        for (i = 0; i < len; i++) {
+            var p = ps[i];
 
-$("#searchRange").on('click',function(e){
+            series.push(p);
+        }
+        return series;
+    }
+
+    function generateDataBottom(data1) {
+
+        var ret = {},
+            ps = [],
+            series = [],
+            len = data1.MachineData.length;
+        let datesArray = []
+        let dataArray = []
+
+        //concat to get points
+        for (var i = 0; i < len; i++) {
+            let dataNew = Math.round(parseFloat((data1.MachineData[i].Reading)))
+            if (datesArray.indexOf(data1.MachineData[i].Date) === -1) {
+                datesArray.push(data1.MachineData[i].Date)
+                dataArray.push([data1.MachineData[i].Date, data1.MachineData[i].Name, dataNew])
+            } else {
+                dataArray.push([data1.MachineData[i].Date, data1.MachineData[i].Name, dataNew])
+            }
+
+
+
+        }
+
+        //generate series and split points
+        for (i = 0; i < datesArray.length; i++) {
+            let OriginaldataArray = []
+            let OriginaldataArrayDateRemove = []
+            dataArray.filter(function(e) {
+                if (e[0] === datesArray[i]) {
+                    OriginaldataArray.push(e)
+                }
+            });
+            OriginaldataArray.forEach(element => {
+                // console.log("Element", element)
+                element.shift()
+                OriginaldataArrayDateRemove.push(element)
+            });
+            // console.log("data Get", OriginaldataArray)
+            var p = {
+                name: datesArray[i],
+                id: datesArray[i],
+                data: OriginaldataArrayDateRemove
+            }
+            //  console.log("Series", p)
+            series.push(p);
+        }
+        return series;
+    }
+
+    $("#searchRange").on('click', function(e) {
         e.preventDefault()
-        $("#dateRangeResult").css('display','none')
-        $("#loadingShow").css('display','inline-block')
+        $("#dateRangeResult").css('display', 'none')
+        $("#loadingShow").css('display', 'inline-block')
         let startDate = $("#startDate").val()
         let endDate = $("#endDate").val()
-        let startDateNewFormat = startDate.split("-")[2]+"-"+startDate.split("-")[1]+"-"+startDate.split("-")[0]
-        let endDateNewFormat = endDate.split("-")[2]+"-"+endDate.split("-")[1]+"-"+endDate.split("-")[0]
+        let startDateNewFormat = startDate.split("-")[2] + "-" + startDate.split("-")[1] + "-" + startDate.split("-")[0]
+        let endDateNewFormat = endDate.split("-")[2] + "-" + endDate.split("-")[1] + "-" + endDate.split("-")[0]
         const params = new Proxy(new URLSearchParams(window.location.search), {
             get: (searchParams, prop) => searchParams.get(prop),
         });
@@ -2133,283 +2224,358 @@ $("#searchRange").on('click',function(e){
         let seriesDataMachine2 = [];
         let seriesDataMachine3 = [];
         let seriesDataMachine4 = [];
-        let output= 0;
-    let Minutes = 0;
-    let efficiency = 0;
+        let seriesDataMachine5 = [];
+        let output = 0;
+        let Minutes = 0;
+        let efficiency = 0;
         let originalDataMachineWise = [];
         let targetDataMachineWise = [];
         let url = "<?php echo base_url('Efficiency/getLaminationDateRangeData') ?>";
         let url2 = "<?php echo base_url('Efficiency/getRealTimeDateRange') ?>";
-        $.post(url,{"startDate":startDate, "endDate":endDate},function(data, status){
+        $.post(url, {
+            "startDate": startDate,
+            "endDate": endDate
+        }, function(data, status) {
             console.log("Data Outer", data)
-        let seriesDataTop;
-        let seriesDataBottom;
-        let dataArrayOuter = data.BarData
-        if(data){
-        seriesDataTop = generateDataTop(data)
-        seriesDataBottom = generateDataBottom(data)
-  
+            let seriesDataTop;
+            let seriesDataBottom;
+            let dataArrayOuter = data.BarData
+            if (data) {
+                seriesDataTop = generateDataTop(data)
+                seriesDataBottom = generateDataBottom(data)
 
 
-        for(let k = 0; k<data.MachineData.length; k++){
-            // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
-        if(datesArrayMachineWise.indexOf(data.MachineData[k].Date) === -1){
-            datesArrayMachineWise.push(data.MachineData[k].Date)
-        targetDataMachineWise.push(parseFloat(67))
-        if(data.MachineData[k].Name == "Lamination Machine 1"){
-                output = data.MachineData[k].Reading * 0.32 * 0.05 *3
-            Minutes = (6*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine1.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine3.push(0)
+
+                for (let k = 0; k < data.MachineData.length; k++) {
+                    // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
+                    if (datesArrayMachineWise.indexOf(data.MachineData[k].Date) === -1) {
+                        datesArrayMachineWise.push(data.MachineData[k].Date)
+                        targetDataMachineWise.push(parseFloat(60))
+                        if (data.MachineData[k].Name == "Lamination 1") {
+                            output = data.MachineData[k].Reading * 0.32 
+                            Minutes = (10 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine1.push(parseFloat(efficiency))
+                            seriesDataMachine2.push(0)
+                            seriesDataMachine3.push(0)
+                            seriesDataMachine5.push(0)
+                            seriesDataMachine4.push(0)
+                        } else if (data.MachineData[k].Name == "Lamination 2") {
+                            output = data.MachineData[k].Reading * 0.32 
+                            Minutes = (10 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine2.push(parseFloat(efficiency))
+                            seriesDataMachine1.push(0)
+                            seriesDataMachine3.push(0)
+                            seriesDataMachine5.push(0)
+                            seriesDataMachine4.push(0)
+                        } else if (data.MachineData[k].Name == "Lamination 3") {
+                            output = data.MachineData[k].Reading * 0.32 
+                            Minutes = (10 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine3.push(parseFloat(efficiency))
+                            seriesDataMachine5.push(0)
+                            seriesDataMachine4.push(0)
+                            seriesDataMachine2.push(0)
+                            seriesDataMachine1.push(0)
+                        }
+
+                        else if (data.MachineData[k].Name == "Lamination 4") {
+                            output = data.MachineData[k].Reading * 0.32 
+                            Minutes = (10 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine5.push(0)
+                            seriesDataMachine4.push(parseFloat(efficiency))
+                            seriesDataMachine3.push(0)
+                            seriesDataMachine2.push(0)
+                            seriesDataMachine1.push(0)
+                        }
+
+                        else if (data.MachineData[k].Name == "Lamination 5") {
+                            output = data.MachineData[k].Reading * 0.32 
+                            Minutes = (10 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine5.push(parseFloat(efficiency))
+                            seriesDataMachine4.push(0)
+                            seriesDataMachine3.push(0)
+                            seriesDataMachine2.push(0)
+                            seriesDataMachine1.push(0)
+                        }
+
+                    } else {
+                        if (data.MachineData[k].Name == "Lamination 1") {
+                            output = data.MachineData[k].Reading * 0.32 
+                            Minutes = (10 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+
+                            alert(efficiency)
+
+                            seriesDataMachine1.pop()
+                            seriesDataMachine1.push(parseFloat(efficiency))
+
+
+
+                        } else if (data.MachineData[k].Name == "Lamination 2") {
+                            output = data.MachineData[k].Reading * 0.32 
+                            Minutes = (10 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine2.pop()
+                            seriesDataMachine2.push(parseFloat(efficiency))
+
+                        } else if (data.MachineData[k].Name == "Lamination 3") {
+                            output = data.MachineData[k].Reading * 0.32
+                            Minutes = (10 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine3.pop()
+                            seriesDataMachine3.push(parseFloat(efficiency))
+
+                        }
+
+                        else if (data.MachineData[k].Name == "Lamination 4") {
+                            output = data.MachineData[k].Reading * 0.32
+                            Minutes = (10 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine4.pop()
+                            seriesDataMachine4.push(parseFloat(efficiency))
+
+                        }
+
+                        else if (data.MachineData[k].Name == "Lamination 5") {
+                            output = data.MachineData[k].Reading * 0.32
+                            Minutes = (10 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine5.pop()
+                            seriesDataMachine5.push(parseFloat(efficiency))
+
+                        }
+
+                    }
+
+
+
+                }
+                originalDataMachineWise.push({
+                    name: "Lamination Machine 1",
+                    data: seriesDataMachine1
+                }, {
+                    name: "Lamination Machine 2",
+                    data: seriesDataMachine2
+                }, {
+                    name: "Lamination Machine 3",
+                    data: seriesDataMachine3
+                },
+                {
+                    name: "Lamination Machine 4",
+                    data: seriesDataMachine4
+                },
+                {
+                    name: "Lamination Machine 5",
+                    data: seriesDataMachine5
+                },
+                {
+                    name: "Target Efficiency",
+                    data: targetDataMachineWise
+                })
             }
-            else if(data.MachineData[k].Name == "Lamination Machine 2"){
-                output = data.MachineData[k].Reading * 0.32 * 3* 0.05
-            Minutes = (6*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine2.push(parseFloat(efficiency))
-            seriesDataMachine1.push(0)
-            seriesDataMachine3.push(0)
+            console.log("Target", datesArrayMachineWise)
+            for (var i = 0; i < data.BarData.length; i++) {
+                if (datesArray.indexOf(data.BarData[i].Date) === -1) {
+                    datesArray.push(data.BarData[i].Date)
+                    // targetDataMachineWise.push(parseFloat(67))
+                }
             }
-            else if(data.MachineData[k].Name == "Lamination Machine 3"){
-                output = data.MachineData[k].Reading * 0.32 * 3 * 0.05
-            Minutes = (6*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine3.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine1.push(0)
+
+            Highcharts.chart('containerDateRangeLineMachineWise', {
+
+                title: {
+                    text: `Machine-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
+                },
+
+                yAxis: {
+                    title: {
+                        text: 'Efficiency'
+                    }
+                },
+
+                xAxis: {
+                    categories: datesArrayMachineWise,
+                },
+
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
+
+                plotOptions: {
+                    series: {
+                        label: {
+                            connectorAllowed: false
+                        }
+                    }
+                },
+
+                series: originalDataMachineWise,
+
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+
+            });
+
+
+            Highcharts.chart('containerDateRangeBar', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    align: 'left',
+                    text: `Balls Count From ${startDateNewFormat} To ${endDateNewFormat}`
+                },
+                accessibility: {
+                    announceNewData: {
+                        enabled: true
+                    }
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Balls Count'
+                    }
+
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                        }
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+                },
+
+                series: [{
+                    name: "Lamination",
+                    colorByPoint: true,
+                    data: seriesDataTop
+                }],
+                drilldown: {
+                    breadcrumbs: {
+                        position: {
+                            align: 'right'
+                        }
+                    },
+                    series: seriesDataBottom
+                }
+            });
+
+
+            let seriesData = []
+            let targetData = []
+            let originalData = []
+            let lenOuter = dataArrayOuter.length;
+            let outputInner = 0;
+            let MinutesInner = 0;
+            let efficiencyInner = 0;
+            // for(let i = 0; i<len; i++){ 
+            for (let j = 0; j < lenOuter; j++) {
+                // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
+
+                outputInner = dataArrayOuter[j].Reading * 0.32
+                MinutesInner = (10 * 480);
+                efficiencyInner = ((outputInner / MinutesInner) * 100).toFixed(2)
+
+                seriesData.push(parseFloat(efficiencyInner))
+                targetData.push(parseFloat(60))
+                // }
             }
-          
-    }
-    else{
-        if(data.MachineData[k].Name == "Lamination Machine 1"){
-                output = data.MachineData[k].Reading * 0.32 * 3 * 0.05
-            Minutes = (6*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine1.pop()
-            seriesDataMachine1.push(parseFloat(efficiency))
-  
-            }
-            else if(data.MachineData[k].Name == "Lamination Machine 2"){
-                output = data.MachineData[k].Reading * 0.32 * 3 * 0.05
-            Minutes = (6*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine2.pop()
-            seriesDataMachine2.push(parseFloat(efficiency))
-     
-            }
-            else if(data.MachineData[k].Name == "Lamination Machine 3"){
-                output = data.MachineData[k].Reading * 0.32 * 3 * 0.05
-            Minutes = (6*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine3.pop()
-            seriesDataMachine3.push(parseFloat(efficiency))
-      
-            }
-     
-    }
-         
-        
 
-        }
-        originalDataMachineWise.push({name:"Lamination Machine 1",data:seriesDataMachine1},{name:"Lamination Machine 2",data:seriesDataMachine2},{name:"Lamination Machine 3",data:seriesDataMachine3},{name:"Target Efficiency",data:targetDataMachineWise})
-        }
-         console.log("Target", datesArrayMachineWise)
-        for (var i = 0; i < data.BarData.length; i++) {
-    if(datesArray.indexOf(data.BarData[i].Date) === -1){
-        datesArray.push(data.BarData[i].Date)
-        // targetDataMachineWise.push(parseFloat(67))
-    }
-        }
+            // if(i == len-1){
+            originalData.push({
+                name: "Efficiency",
+                data: seriesData
+            }, {
+                name: "Target Efficiency",
+                data: targetData
+            })
 
-        Highcharts.chart('containerDateRangeLineMachineWise', {
+            // }
+            // }
+            //  console.log(datesArray)
+            Highcharts.chart('containerDateRangeLine', {
 
-title: {
-    text: `Machine-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
-},
+                title: {
+                    text: `Process-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
+                },
 
-yAxis: {
-    title: {
-        text: 'Efficiency'
-    }
-},
+                yAxis: {
+                    title: {
+                        text: 'Efficiency'
+                    }
+                },
 
-xAxis: {
-    categories: datesArrayMachineWise,
-},
+                xAxis: {
+                    categories: datesArray,
+                },
 
-legend: {
-    layout: 'vertical',
-    align: 'right',
-    verticalAlign: 'middle'
-},
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
 
-plotOptions: {
-    series: {
-        label: {
-            connectorAllowed: false
-        }
-    }
-},
+                plotOptions: {
+                    series: {
+                        label: {
+                            connectorAllowed: false
+                        }
+                    }
+                },
 
-series: originalDataMachineWise,
+                series: originalData,
 
-responsive: {
-    rules: [{
-        condition: {
-            maxWidth: 500
-        },
-        chartOptions: {
-            legend: {
-                layout: 'horizontal',
-                align: 'center',
-                verticalAlign: 'bottom'
-            }
-        }
-    }]
-}
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
 
-});
-
-
-Highcharts.chart('containerDateRangeBar', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        align: 'left',
-        text: `Balls Count From ${startDateNewFormat} To ${endDateNewFormat}`
-    },
-    accessibility: {
-        announceNewData: {
-            enabled: true
-        }
-    },
-    xAxis: {
-        type: 'category'
-    },
-    yAxis: {
-        title: {
-            text: 'Balls Count'
-        }
-
-    },
-    legend: {
-        enabled: false
-    },
-    plotOptions: {
-        series: {
-            borderWidth: 0,
-            dataLabels: {
-                enabled: true,
-            }
-        }
-    },
-
-    tooltip: {
-        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
-    },
-
-    series: [
-        {
-            name: "Lamination",
-            colorByPoint: true,
-            data: seriesDataTop
-        }
-    ],
-    drilldown: {
-        breadcrumbs: {
-            position: {
-                align: 'right'
-            }
-        },
-        series: seriesDataBottom
-    }
-});
-
-
-    let seriesData = []
-    let targetData = []
-    let originalData = []
-    let lenOuter = dataArrayOuter.length;
-    let outputInner= 0;
-    let MinutesInner = 0;
-    let efficiencyInner = 0;
-    // for(let i = 0; i<len; i++){ 
-        for(let j = 0; j<lenOuter; j++){
-            // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
-
-            outputInner = dataArrayOuter[j].Reading * 0.32 * 0.05 * 3
-            MinutesInner = (6*480);
-            efficiencyInner = ((outputInner / MinutesInner) * 100).toFixed(2)
-
-            seriesData.push(parseFloat(efficiencyInner))
-            targetData.push(parseFloat(67))
-// }
-        }
-       
-        // if(i == len-1){
-            originalData.push({name:"Efficiency",data:seriesData},{name:"Target Efficiency",data:targetData})
-        
-        // }
-    // }
-//  console.log(datesArray)
- Highcharts.chart('containerDateRangeLine', {
-
-title: {
-    text: `Process-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
-},
-
-yAxis: {
-    title: {
-        text: 'Efficiency'
-    }
-},
-
-xAxis: {
-    categories: datesArray,
-},
-
-legend: {
-    layout: 'vertical',
-    align: 'right',
-    verticalAlign: 'middle'
-},
-
-plotOptions: {
-    series: {
-        label: {
-            connectorAllowed: false
-        }
-    }
-},
-
-series: originalData,
-
-responsive: {
-    rules: [{
-        condition: {
-            maxWidth: 500
-        },
-        chartOptions: {
-            legend: {
-                layout: 'horizontal',
-                align: 'center',
-                verticalAlign: 'bottom'
-            }
-        }
-    }]
-}
-
-});
-$("#loadingShow").css('display','none')
-$("#dateRangeResult").css('display','inline-block')
+            });
+            $("#loadingShow").css('display', 'none')
+            $("#dateRangeResult").css('display', 'inline-block')
 
 
 
- });
+        });
     })
 </script>
 <script>
@@ -2426,7 +2592,7 @@ $("#dateRangeResult").css('display','inline-block')
             "dept_id": dept_id,
             "direct": "Direct"
         }, function(data) {
-      
+
 
             var table = '';
             table += `<table id="tableFormat" class="table table-bordered table-hover  table-striped w-100">
@@ -2440,7 +2606,7 @@ $("#dateRangeResult").css('display','inline-block')
   </thead>
   <tbody>`
             data.forEach(element => {
-            
+
                 table += `<tr>
       <th scope="row">${element.CardNo}</th>
       <td>${element.Name}</td>
@@ -2542,7 +2708,7 @@ $("#dateRangeResult").css('display','inline-block')
             "dept_id": dept_id,
             "direct": "In-Direct"
         }, function(data) {
-       
+
             var table = '';
             table += `<table id="tableFormat" class="table table-bordered table-hover  table-striped w-100">
             <thead class="bg-primary-200 text-light">
@@ -2757,6 +2923,338 @@ $("#dateRangeResult").css('display','inline-block')
 
             });
         })
+
+    })
+
+
+    $(document).ready(function() {
+
+
+        var startDate = $("#Date1").val();
+        var endDate = $("#Date2").val();
+
+        //   alert(startDate);
+        // alert(endDate);
+
+        var HourName = [];
+        var EnergyHour = [];
+        var HallNameH = [];
+        var HallNameHH = [];
+        var EnergyHH = [];
+
+        var CompressorHallNameHH = [];
+        var CompressorEnergyHH = [];
+
+        var CompressorPanelHallNameHH = [];
+        var CompressorPanelEnergyHH = [];
+
+        var AMBHallNameHH = [];
+        var AMBEnergyHH = [];
+
+        var TMHallNameHH = [];
+        var TMEnergyHH = [];
+
+        var MSHallNameHH = [];
+        var MSEnergyHH = [];
+
+        var WorkShopHallNameHH = [];
+        var WorkShopEnergyHH = [];
+
+        let url2 = "<?php echo base_url('/Lamination/getEnergy'); ?>";
+        let url3 = "<?php echo base_url('/Lamination/getEnergyByHourly'); ?>";
+
+
+
+        $.post(url3, {
+            'startDate': startDate,
+            'endDate': endDate
+        }, function(data, status) {
+
+
+
+            data['datesByHourly'].forEach(element => {
+                HourName.push(element.HourName);
+                HallNameH.push(element.HallName);
+                EnergyHour.push(Number(element.Energy));
+
+                // console.log(HallNameH[11] === "MS Lamination Machine 2");
+
+
+                if (element.HallName === "MS Lamination Machine 2") {
+                    HallNameHH.push(element.HallName);
+                    EnergyHH.push(Number(element.Energy));
+
+                } else if (element.HallName === "Compressor") {
+                    CompressorHallNameHH.push(element.HallName);
+                    CompressorEnergyHH.push(Number(element.Energy));
+
+
+                } else if (element.HallName === "Compressor Panel") {
+                    CompressorPanelHallNameHH.push(element.HallName);
+                    CompressorPanelEnergyHH.push(Number(element.Energy));
+
+
+                } else if (element.HallName === "AMB") {
+                    AMBHallNameHH.push(element.HallName);
+                    AMBEnergyHH.push(Number(element.Energy));
+
+                } else if (element.HallName === "TM") {
+                    TMHallNameHH.push(element.HallName);
+                    TMEnergyHH.push(Number(element.Energy));
+
+                } else if (element.HallName === "MS") {
+                    MSHallNameHH.push(element.HallName);
+                    MSEnergyHH.push(Number(element.Energy));
+
+                } else if (element.HallName === "WorkShop") {
+                    WorkShopHallNameHH.push(element.HallName);
+                    WorkShopEnergyHH.push(Number(element.Energy));
+
+                }
+
+
+
+            });
+            // console.log(EnergyHH);
+
+
+
+
+        })
+
+
+        $.post(url2, {
+            'startDate': startDate,
+            'endDate': endDate
+        }, function(data, status) {
+
+
+            $("#energyDataGet").text(data['dates'][0].Energy)
+            $("#energyCompressor").text(data['dates'][1].Energy)
+            $("#energyMS").text(data['dates'][5].Energy)
+
+
+
+            EHallName = [];
+            EEnergy = [];
+
+            var MSLaminationMachine2HallNameHA = [];
+            var MSLaminationMachine2EnergyHA = [];
+
+            var CompressorHallNameHA = [];
+            var CompressorEnergyHA = [];
+
+            var CompressorPanelHallNameHA = [];
+            var CompressorPanelEnergyHA = [];
+
+            var AMBHallNameHA = [];
+            var AMBEnergyHA = [];
+
+            var TMHallNameHA = [];
+            var TMEnergyHA = [];
+
+            var MSHallNameHA = [];
+            var MSEnergyHA = [];
+
+            var WorkShopHallNameHA = [];
+            var WorkShopEnergyHA = [];
+
+            data['dates'].forEach(element => {
+
+
+
+
+                // console.log(element);
+                EHallName.push(element.HallName)
+                EEnergy.push(Number(element.Energy));
+
+
+                if (element.HallName === "MS Lamination Machine 2") {
+
+                    MSLaminationMachine2HallNameHA.push(element.HallName);
+                    MSLaminationMachine2EnergyHA.push(Number(element.Energy));
+
+                } else if (element.HallName === "Compressor") {
+                    CompressorHallNameHA.push(element.HallName);
+                    CompressorEnergyHA.push(Number(element.Energy));
+
+                } else if (element.HallName === "Compressor Panel") {
+                    CompressorPanelHallNameHA.push(element.HallName);
+                    CompressorPanelEnergyHA.push(Number(element.Energy));
+
+                } else if (element.HallName === "AMB") {
+                    AMBHallNameHA.push(element.HallName);
+                    AMBEnergyHA.push(Number(element.Energy));
+
+                } else if (element.HallName === "TM") {
+                    TMHallNameHA.push(element.HallName);
+                    TMEnergyHA.push(Number(element.Energy));
+
+                } else if (element.HallName === "MS") {
+                    MSHallNameHA.push(element.HallName);
+                    MSEnergyHA.push(Number(element.Energy));
+
+                } else if (element.HallName === "WorkShop") {
+                    WorkShopHallNameHA.push(element.HallName);
+                    WorkShopEnergyHA.push(Number(element.Energy));
+
+                }
+
+
+
+
+
+
+
+            })
+
+
+            Highcharts.chart('energyOutput', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Today Energy Consumption'
+                },
+
+                accessibility: {
+                    announceNewData: {
+                        enabled: true
+                    }
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Current Energy (KW)'
+                    }
+
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: ''
+                        }
+                    }
+                },
+
+                tooltip: {
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span><br/>',
+                    headerFormat: '<span style="font-size:13px">{point.y} KW</span><br>',
+                    // headerFormat: '<span style="font-size:13px">{point.y:f}</span>:%<br>',
+                },
+
+                series: [{
+                    name: "Energy",
+                    colorByPoint: true,
+
+                    data: <?php echo json_encode($ms_lamination_machine, JSON_NUMERIC_CHECK); ?>,
+                    // data: [
+                    // {
+                    //     name: "Compressor",
+                    //     y: CompressorEnergyHA[0],
+                    //     drilldown: "Chrome"
+                    // },
+                    // {
+                    //     name: "Compressor Panel",
+                    //     y: CompressorPanelEnergyHA[0],
+                    //     drilldown: "Chrome"
+                    // },
+                    // {
+                    //     name: "AMB",
+                    //     y: AMBEnergyHA[0],
+                    //     drilldown: "Chrome"
+                    // },
+                    // {
+                    //     name: "TM",
+                    //     y: TMEnergyHA[0],
+                    //     drilldown: "Chrome"
+                    // },
+                    // {
+                    //     name: "MS",
+                    //     y: MSEnergyHA[0],
+                    //     drilldown: "Chrome"
+                    // },
+                    // {
+                    //     name: "WorkShop",
+                    //     y: WorkShopEnergyHA[0],
+                    //     drilldown: "Chrome"
+                    // },
+
+
+
+
+                    //     ]
+                }],
+                // drilldown: {
+                //     breadcrumbs: {
+                //         position: {
+                //             align: 'right'
+                //         }
+                //     },
+                //     series: [
+
+
+                //         {
+                //             name: HallNameHH,
+                //             id: "Chrome",
+                //             data: EnergyHH
+                //         },
+
+
+                //         {
+                //             name: CompressorHallNameHH,
+                //             id: "Chrome",
+                //             data: CompressorEnergyHH
+                //         },
+                //         {
+                //             name: CompressorPanelHallNameHH,
+                //             id: "Chrome",
+                //             data: CompressorPanelEnergyHH
+                //         },
+
+                //         {
+                //             name: AMBHallNameHH,
+                //             id: "Chrome",
+                //             data: AMBEnergyHH
+                //         },
+                //         {
+                //             name: TMHallNameHH,
+                //             id: "Chrome",
+                //             data: TMEnergyHH
+                //         },
+                //         {
+                //             name: MSHallNameHH,
+                //             id: "Chrome",
+                //             data: MSEnergyHH
+                //         },
+                //         {
+                //             name: WorkShopHallNameHH,
+                //             id: "Chrome",
+                //             data: WorkShopEnergyHH
+                //         },
+
+
+
+                //     ]
+                // }
+
+
+
+            });
+
+
+
+
+        })
+
+
 
     })
 </script>

@@ -5,10 +5,12 @@ class Lamination_Model extends CI_Model
 {
  public function TotalReading($s_date, $e_date)
  {
-  $query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.view_lamination_Process.Date
+  $query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, 
+  dbo.view_lamination_Process.Date
   FROM            dbo.view_lamination_Process INNER JOIN
                            dbo.tbl_PC_AMB_Hours ON dbo.view_lamination_Process.HID = dbo.tbl_PC_AMB_Hours.Hour
-  WHERE        (dbo.view_lamination_Process.EntryDate BETWEEN CONVERT(DATETIME, '$s_date 00:00:00', 102) AND CONVERT(DATETIME, '$e_date 00:00:00', 102))
+  WHERE       (dbo.view_lamination_Process.Hours > 7) AND 
+ (dbo.view_lamination_Process.Date BETWEEN '$s_date' AND '$e_date')
   GROUP BY dbo.view_lamination_Process.Date
   
         ");
@@ -16,11 +18,12 @@ class Lamination_Model extends CI_Model
  }
 
 public function IndividualReading($s_date, $e_date){
- $query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.view_lamination_Process.Date, dbo.view_lamination_Process.Name
+ $query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.view_lamination_Process.Name
  FROM            dbo.view_lamination_Process INNER JOIN
                           dbo.tbl_PC_AMB_Hours ON dbo.view_lamination_Process.HID = dbo.tbl_PC_AMB_Hours.Hour
- WHERE        (dbo.view_lamination_Process.EntryDate BETWEEN CONVERT(DATETIME, '$s_date 00:00:00', 102) AND CONVERT(DATETIME, '$e_date 00:00:00', 102))
- GROUP BY dbo.view_lamination_Process.Date, dbo.view_lamination_Process.Name
+ WHERE        (dbo.view_lamination_Process.Hours > 7) AND 
+ (dbo.view_lamination_Process.Date BETWEEN '$s_date' AND '$e_date')
+ GROUP BY dbo.view_lamination_Process.Name
  
         ");
   return  $query->result_array();
@@ -31,7 +34,8 @@ public function TotalReadingDateRange($s_date, $e_date)
  $query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.view_lamination_Process.Date
  FROM            dbo.view_lamination_Process INNER JOIN
                           dbo.tbl_PC_AMB_Hours ON dbo.view_lamination_Process.HID = dbo.tbl_PC_AMB_Hours.Hour
- WHERE        (dbo.view_lamination_Process.EntryDate BETWEEN CONVERT(DATETIME, '$s_date 00:00:00', 102) AND CONVERT(DATETIME, '$e_date 00:00:00', 102))
+ WHERE        (Hours>8) And   (dbo.view_lamination_Process.EntryDate BETWEEN CONVERT(DATETIME, '$s_date 00:00:00', 102) 
+ AND CONVERT(DATETIME, '$e_date 00:00:00', 102))
  GROUP BY dbo.view_lamination_Process.Date
  
        ");
@@ -39,11 +43,12 @@ public function TotalReadingDateRange($s_date, $e_date)
 }
 
 public function IndividualReadingDateRange($s_date, $e_date){
-$query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.view_lamination_Process.Date, dbo.view_lamination_Process.Name
+$query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.view_lamination_Process.Name
 FROM            dbo.view_lamination_Process INNER JOIN
                          dbo.tbl_PC_AMB_Hours ON dbo.view_lamination_Process.HID = dbo.tbl_PC_AMB_Hours.Hour
-WHERE        (dbo.view_lamination_Process.EntryDate BETWEEN CONVERT(DATETIME, '$s_date 00:00:00', 102) AND CONVERT(DATETIME, '$e_date 00:00:00', 102))
-GROUP BY dbo.view_lamination_Process.Date, dbo.view_lamination_Process.Name
+WHERE        (dbo.view_lamination_Process.Hours > 7) AND 
+(dbo.view_lamination_Process.Date BETWEEN '$s_date' AND '$e_date')
+GROUP BY dbo.view_lamination_Process.Name
 
        ");
  return  $query->result_array();

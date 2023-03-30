@@ -490,6 +490,87 @@
             <td class="center"><?php r(($airbubble)*-1); ?></td>
             <td class="text-danger"><?php percent($airbubble, $RPass); ?></td>
 
+        </tr>
+    </tbody>
+</table>
+
+
+<h2 class="bg-primary-200 text-light text-white p-2 text-center">Airless Mini Ball OverAll Forming QC ( <?php format($start_date); echo " To "; format($end_date) ?> )</h2>
+<table class="table table-hover table-bordered table-responsive" id="forming_overall-table" >
+    <thead>
+        <tr class="bg-primary-200 text-light">
+            <th>Date</th>
+            <th >Lines</th>
+            <th >Article #</th>
+            <th >Size</th>
+            <th class="center" >Checked</th>
+            <th class="center">Pass</th>
+            <th class="center">RFT</th>
+            <th class="center">Fail Qty</th>
+          
+           
+           
+        </tr>
+    </thead>
+    <tbody>
+    <?php
+           $Checked=0;
+           $passsss=0;
+        
+          $FailQty=0;
+           ?>
+        <?php foreach($data_overall as $d){; ?>
+        <tr>
+            <?php
+            $passsss=($d->Pass)+ $passsss;
+            $Checked=($d->TotalChecked)+ $Checked;
+            
+            ?>
+            <td><?php format($d->DateName); ?></td>
+            <td><?php echo $d->LineName; ?></td>
+            <td><?php echo $d->ArtCode; ?></td>
+            <td><?php echo $d->ArtSize; ?></td>
+            <td class="center"><?php r($d->TotalChecked); ?></td>
+           
+            <td class="center"><?php r($d->pass); ?></td>
+            <?php
+            $RFT=(($d->pass)/($d->TotalChecked))*100;
+            ?>
+            <td class="center"><?php r($RFT); ?>%</td>
+            <?php
+           $pass=$d->pass;
+           $Fail=($d->TotalChecked)-$pass;
+           $FailQty=$Fail+$FailQty;
+           ?>
+        
+            <td class="center"><?php Echo $Fail;
+            ?></td>
+            
+            
+            
+
+         
+        
+
+        </tr>
+        <?php }; ?>
+        <tr style="color:black;">
+        <td></td>
+        <td></td>
+        <td></td>
+            <td > Total</td>
+            <td class="center"><?php r($Checked); ?></td>
+            
+            <td class="center"><?php r($passsss); ?></td>
+            <?php
+            $RFT=($passsss/($Checked))*100;
+            ?>
+            <td class="center"><?php Echo  r($RFT);?> %</td>
+        
+        
+            <td class="center"><?php r($FailQty); ?></td>
+
+
 
           
           
@@ -501,6 +582,8 @@
         </tr>
     </tbody>
 </table>
+
+
 <h2 class="bg-primary-200 text-light text-white p-2 text-center">Airless Mini  Repair Fail Ball Forming QC ( <?php format($start_date); echo " To "; format($end_date) ?> )</h2>
 <table class="table table-hover table-bordered table-responsive" id="forming-RFtable" >
     <thead>
@@ -787,7 +870,8 @@
             <th>%</th>
             <th> Air Bubble</th>
             <th>%</th>
-         
+            <th> Dirty</th>
+            <th>%</th>
           
         </tr>
     </thead>
@@ -814,6 +898,7 @@
            $missingglue=0;
            $pressoremark=0;
            $airbubble=0;
+           $dirty=0;
           $FailQty=0;
            ?>
         <?php foreach($data2 as $d){; ?>
@@ -840,6 +925,7 @@
             $missingglue=($d->missingglue)+ $missingglue;
             $pressoremark=($d->pressoremark)+ $pressoremark;
             $airbubble=($d->airbubble)+ $airbubble;
+            $dirty=($d->Dirty)+ $dirty;
             ?>
             <td><?php format($d->DateName); ?></td>
             <td><?php echo $d->LineName; ?></td>
@@ -909,7 +995,8 @@
             <td class="text-danger"><?php percent($d->pressoremark, $d->TotalChecked); ?></td>
             <td class="center"><?php r($d->airbubble); ?></td>
             <td class="text-danger"><?php percent($d->airbubble, $d->TotalChecked); ?></td>
-
+            <td class="center"><?php r($d->Dirty); ?></td>
+            <td class="text-danger"><?php percent($d->Dirty, $d->TotalChecked); ?></td>
            
         
         
@@ -985,7 +1072,8 @@
             <td class="text-danger"><?php percent($pressoremark, $Checked); ?></td>
             <td class="center"><?php r($airbubble); ?></td>
             <td class="text-danger"><?php percent($airbubble, $Checked); ?></td>
-
+            <td class="center"><?php r($dirty); ?></td>
+            <td class="text-danger"><?php percent($dirty, $Checked); ?></td>
 
           
           
@@ -1047,7 +1135,8 @@
             <th class="center">%</th>
             <th class="center"> Air Bubble</th>
             <th class="center">%</th>
-         
+            <th class="center"> Dirty</th>
+            <th class="center">%</th>
            
         </tr>
     </thead>
@@ -1074,6 +1163,7 @@
            $missingglue=0;
            $pressoremark=0;
            $airbubble=0;
+           $dirty=0;
           $FailQty=0;
            ?>
         <?php foreach($data_packing_RP as $d){; ?>
@@ -1100,6 +1190,7 @@
             $missingglue=($d->missingglue)+ $missingglue;
             $pressoremark=($d->pressoremark)+ $pressoremark;
             $airbubble=($d->airbubble)+ $airbubble;
+            $dirty=($d->Dirty)+ $dirty;
             ?>
             <td><?php format($d->DateName); ?></td>
             <td><?php echo $d->LineName; ?></td>
@@ -1169,7 +1260,8 @@
             <td class="text-danger"><?php percent($d->pressoremark, $d->TotalChecked); ?></td>
             <td class="center"><?php r($d->airbubble); ?></td>
             <td class="text-danger"><?php percent($d->airbubble, $d->TotalChecked); ?></td>
-
+            <td class="center"><?php r($d->Dirty); ?></td>
+            <td class="text-danger"><?php percent($d->Dirty, $d->TotalChecked); ?></td>
            
            
         
@@ -1247,7 +1339,8 @@
             <td class="text-danger"><?php percent($pressoremark, $Checked); ?></td>
             <td class="center"><?php r($airbubble); ?></td>
             <td class="text-danger"><?php percent($airbubble, $Checked); ?></td>
-
+            <td class="center"><?php r($dirty); ?></td>
+            <td class="text-danger"><?php percent($dirty, $Checked); ?></td>
         </tr>
     </tbody>
 </table>

@@ -13,7 +13,7 @@ class Efficiency extends CI_Controller
 
     $this->load->model('Lamination_Model/Lamination_Model', 'Lamination');
 
-    $this->load->model('Bladder_model','Bladder');
+    $this->load->model('Bladder_model', 'Bladder');
 
 
     $this->load->model('Throster_Model', 'T');
@@ -25,9 +25,15 @@ class Efficiency extends CI_Controller
     $this->load->model('LFB_Packing/LFB_Packing_Model', 'LFB_Packing_Model');
 
     $this->load->model('AMB_Packing/AMB_Packing_Model', 'AMB_Packing_Model1');
-    
-    $this->load->model('carcas_model','carcas');
-    
+
+    $this->load->model('carcas_model', 'carcas');
+
+    $this->load->model('Ball_Shaping', 'Shaping');
+
+    $this->load->model('Ball_Forming', 'BladderF');
+
+    $this->load->model('Laser_cutting','LSC');
+    $this->load->model('Lfb_Carcas1','lfb');
   }
 
   public function index()
@@ -40,214 +46,616 @@ class Efficiency extends CI_Controller
     $data['total'] = count($count);
 
 
-     // RWPD
 
 
-     $data['count'] = $this->E->departments();
+    // RWPD
 
-     $Month = date('m');
-     $Year = date('Y');
-     $Day = date('d');
-     $CurrentDate = $Day . '/' . $Month . '/' . $Year;
-     $currentDateNew = $Year . '-' . $Month . '-' . $Day;
- 
-     $data['IndividualReading'] = $this->RWPD->IndividualReading($currentDateNew, $currentDateNew);
-     $data['machineCounter'] = $this->RWPD->machineCounter($CurrentDate, $CurrentDate);
- 
-     $totalRWPD = 0;
-     foreach ($data['machineCounter'] as $count) {
- 
-       $totalRWPD = $totalRWPD + $count['BallCounter'];
-     }
- 
-     $data['totalRWPD'] = $totalRWPD;
- 
- 
- 
-     $data['HourllyReading'] = $this->E->HourllyReading($CurrentDate, $CurrentDate);
- 
- 
- 
-      // Cutting
-      $Month = date('m');
-      $Year = date('Y');
-      $Day = date('d');
-      $CurrentDate = $Year . '-' . $Month . '-' . $Day;
-      $data['HourllyReading'] = $this->E->HourllyReadingCutting($CurrentDate, $CurrentDate);
-      $data['CounterSheetSizing'] = $this->RWPD->Cutting();
-      
- 
- 
- 
- 
-     // Panel Cutting
-     $Month = date('m');
-     $Year = date('Y');
-     $Day = date('d');
-     $CurrentDate = $Year . '-' . $Month . '-' . $Day;
-     $data['HourllyReading'] = $this->E->HourllyReadingCutting($CurrentDate, $CurrentDate);
-     
-     $data['Cutting'] = $this->RWPD->panelCutting();
 
-     
- 
- 
- 
- 
+    $data['count'] = $this->E->departments();
+
+    $Month = date('m');
+    $Year = date('Y');
+    $Day = date('d');
+    $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+    $currentDateNew = $Year . '-' . $Month . '-' . $Day;
+
+    $data['IndividualReading'] = $this->RWPD->IndividualReading($currentDateNew, $currentDateNew);
+    $data['machineCounter'] = $this->RWPD->machineCounter($CurrentDate, $CurrentDate);
+
+    $totalRWPD = 0;
+    foreach ($data['machineCounter'] as $count) {
+
+      $totalRWPD = $totalRWPD + $count['BallCounter'];
+    }
+
+    $data['totalRWPD'] = $totalRWPD;
+
+
+
+    $data['HourllyReading'] = $this->E->HourllyReading($CurrentDate, $CurrentDate);
+
+
+    // Downtime Sheet Sizing
+
+
+    // $data['downTimeSheetSizing']=$this->E->downTimeSheetSizing();
+
+    // Cutting
+    $Month = date('m');
+    $Year = date('Y');
+    $Day = date('d');
+    $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+    $data['HourllyReading'] = $this->E->HourllyReadingCutting($CurrentDate, $CurrentDate);
+    $data['CounterSheetSizing'] = $this->RWPD->Cutting();
+
+
+
+    // Printing
+
+    $Month = date('m');
+    $Year = date('Y');
+    $Day = date('d');
+    $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+    $data['HourllyReadingP'] = $this->E->HourllyReadingCutting($CurrentDate, $CurrentDate);
+    $data['CounterP'] = $this->RWPD->Cutting();
+    // // $total = 0;
+    // // foreach ($data['machineCounter'] as $count) {
+
+    // //  $total = $total + $count['BallCounter'];
+    // // }
+
+    // // $data['total'] = $total;
+    // // echo "<pre>";
+    // $data['realtimeP'] = $this->E->realTimeAtten($_GET['dept_id'], $_GET['section_id']);
+    $data['dieTestingSheetSizingP'] = $this->E->dieTestingSheetSizing();
+    $data['dieTestingSheetSizingGraphP'] = $this->E->dieTestingSheetSizingGraph();
+    $data['ONASheetSizingP'] = $this->E->ONASheetSizing();
+    $data['ONASheetSizingGraphP'] = $this->E->ONASheetSizingGraph();
+    $data['machineTestingSheetSizingP'] = $this->E->machineTestingSheetSizing();
+    $data['machineTestingSheetSizingGraphP'] = $this->E->machineTestingSheetSizingGraph();
+
+
+
+    // Panel Cutting
+    $Month = date('m');
+    $Year = date('Y');
+    $Day = date('d');
+    $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+    $data['HourllyReading'] = $this->E->HourllyReadingCutting($CurrentDate, $CurrentDate);
+
+    $data['Cutting'] = $this->RWPD->panelCutting();
+
+
+
+
+
+
     // HF Cutting
-    $Month = date('m'); 
+    $Month = date('m');
     $Year = date('Y');
     $Day = date('d');
     $CurrentDate = $Day . '/' . $Month . '/' . $Year;
     $data['HourllyReading'] = $this->E->HourllyReadingHFCutting($CurrentDate, $CurrentDate);
     $data['hfcutting'] = $this->RWPD->HfCutting($CurrentDate);
-    $total=[];
-    foreach($data['hfcutting'] as $hf){
-        array_push($total,$hf['Counter']);
+    $total = [];
+    foreach ($data['hfcutting'] as $hf) {
+      array_push($total, $hf['Counter']);
     }
- 
-   $d=0;
-    foreach($total as $t){
-        $d=$d+$t;
+
+    $d = 0;
+    foreach ($total as $t) {
+      $d = $d + $t;
     }
-    $data['totalHF']=$d;
+    $data['totalHF'] = $d;
 
 
 
-     
- 
- 
- 
- 
-     // Lamination
-     $Month = date('m');
-     $Year = date('Y');
-     $Day = date('d');
-     $CurrentDate = $Year . '-' . $Month . '-' . $Day;
- 
- 
-     $data['TotalReading'] = $this->Lamination->TotalReading($CurrentDate, $CurrentDate);
-     $data['IndividualReading'] = $this->Lamination->IndividualReading($CurrentDate, $CurrentDate);
-     
-     $data['HourllyReading'] = $this->Lamination->HourllyReading($CurrentDate, $CurrentDate);
-     // $data['Lamination'] = $this->Lamination->getData($CurrentDate);
-     // $data['getData'] = $this->Lamination->getData($CurrentDate);
- 
-     $totalLamination = 0;
- 
- 
-     foreach ($data['TotalReading'] as $totalreading) {
- 
-         $totalLamination = $totalLamination + $totalreading['Reading'];
-     }
- 
- 
-     
- 
-     $data['totalLamination']=$totalLamination;
-     
- 
- 
-     // Bladder
-     $Month = date('m'); 
-     $Year = date('Y');
-     $Day = date('d');
-     $CurrentDate = $Year . '-' . $Month . '-' . $Day;
-     $data['getDataBladder'] = $this->Bladder->getData();
-     $data['Stationwise'] = $this->Bladder->Stationwise($CurrentDate, $CurrentDate);
- 
- 
- 
- 
-     // MS Lines
-     $Month = date('m');
-     $Year = date('Y');
-     $Day = date('d');
-     $CurrentDate = $Day . '/' . $Month . '/' . $Year;
-   
-     $data['DataMSLines'] = $this->T->TotalCounter($CurrentDate, $CurrentDate);
-     
-     $data['StationwiseMSLines'] = $this->T->Stationwise($CurrentDate, $CurrentDate);
 
- 
-     // TM Packing
-     $Month = date('m');
-     $Year = date('Y');
-     $Day = date('d');
-     $CurrentDate = $Day . '/' . $Month . '/' . $Year;
-   
-     $data['DataTMPacking'] = $this->TM_Packing_Model->TotalCounter($CurrentDate, $CurrentDate);
-     
-     $data['Stationwise'] = $this->TM_Packing_Model->Stationwise($CurrentDate, $CurrentDate);
- 
-   
-     
- 
- 
-     // AMB Forming
-     $Month = date('m');
-     $Year = date('Y');
-     $Day = date('d');
-     $CurrentDate = $Day . '/' . $Month . '/' . $Year;
-   
-     $data['DataAMBForming'] = $this->AMB_Packing_Model->TotalCounter($CurrentDate, $CurrentDate);
-     
-     $data['Stationwise'] = $this->AMB_Packing_Model->StationWise($CurrentDate, $CurrentDate);
- 
- 
- 
-     // AMB Packing
-     $Month = date('m');
-     $Year = date('Y');
-     $Day = date('d');
-     $CurrentDate = $Day . '/' . $Month . '/' . $Year;
-     $CurrentDateNew = $Year . '-' . $Month . '-' . $Day;
-     
-     
-     $data['DataAMBPacking'] = $this->AMB_Packing_Model1->TotalCounter($CurrentDateNew, $CurrentDateNew);
-     
+
+
+
+
+    // Lamination
+    $Month = date('m');
+    $Year = date('Y');
+    $Day = date('d');
+    $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+    $CurrentDate1 = $Day . '/' . $Month . '/' . $Year;
+
+    $data['TotalReading'] = $this->Lamination->TotalReading($CurrentDate, $CurrentDate);
+    $data['IndividualReadingLamination'] = $this->Lamination->IndividualReading($CurrentDate1, $CurrentDate1);
+
+    $data['HourllyReading'] = $this->Lamination->HourllyReading($CurrentDate, $CurrentDate);
+    // $data['Lamination'] = $this->Lamination->getData($CurrentDate);
+    // $data['getData'] = $this->Lamination->getData($CurrentDate);
+
+    $totalLamination = 0;
+
+
+    foreach ($data['TotalReading'] as $totalreading) {
+
+      $totalLamination = $totalLamination + $totalreading['Reading'];
+    }
+
+
+
+
+    $data['totalLamination'] = $totalLamination;
+
+
+
+    // Bladder
+    $Month = date('m');
+    $Year = date('Y');
+    $Day = date('d');
+    $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+    $data['getDataBladder'] = $this->Bladder->getData();
+    $data['Stationwise'] = $this->Bladder->Stationwise($CurrentDate, $CurrentDate);
+
+
+
+
+    // MS Lines
+    $Month = date('m');
+    $Year = date('Y');
+    $Day = date('d');
+    $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+
+    $data['DataMSLines'] = $this->T->TotalCounter($CurrentDate, $CurrentDate);
+
+    $data['StationwiseMSLines'] = $this->T->Stationwise($CurrentDate, $CurrentDate);
+
+
+    // TM Packing
+    $Month = date('m');
+    $Year = date('Y');
+    $Day = date('d');
+    $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+
+    $data['DataTMPacking'] = $this->TM_Packing_Model->TotalCounter($CurrentDate, $CurrentDate);
+
+    $data['Stationwise'] = $this->TM_Packing_Model->Stationwise($CurrentDate, $CurrentDate);
+
+
+
+
+
+    // AMB Forming
+    $Month = date('m');
+    $Year = date('Y');
+    $Day = date('d');
+    $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+
+    $data['DataAMBForming'] = $this->AMB_Packing_Model->TotalCounter($CurrentDate, $CurrentDate);
+
+    $data['Stationwise'] = $this->AMB_Packing_Model->StationWise($CurrentDate, $CurrentDate);
+
+
+
+    // AMB Packing
+    $Month = date('m');
+    $Year = date('Y');
+    $Day = date('d');
+    $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+    $CurrentDateNew = $Year . '-' . $Month . '-' . $Day;
+
+
+    $data['DataAMBPacking'] = $this->AMB_Packing_Model1->TotalCounter($CurrentDateNew, $CurrentDateNew);
+
+
+
+
+
+
+    // LFB Packing
+    $Month = date('m');
+    $Year = date('Y');
+    $Day = date('d');
+    $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+
+    $data['DataLFBPacking'] = $this->LFB_Packing_Model->TotalCounter($CurrentDate, $CurrentDate);
+
+    $data['Stationwise'] = $this->LFB_Packing_Model->Stationwise($CurrentDate, $CurrentDate);
+
+
+
+    // Carcas
+    $data['getDataTMCarcas'] = $this->carcas->getDatacarcas();
+    //$data['realtime'] = $this->E->realTimeAtten(3, 1165);
+
+    $data['HourllyCore'] = $this->carcas->HourllyCarcas();
+
+
+
+    // LFB Carcas
+    $data['getDataLFBCarcas'] = $this->carcas->getlfbDatacarcas();
+    //$data['realtime'] = $this->E->realTimeAtten(3, 1165);
+
+    $data['HourllyCore'] = $this->carcas->HourllylfbCarcas();
+
+
+    // Core
+    $data['getDataCore'] = $this->carcas->getDatacore();
+    //$data['realtime'] = $this->E->realTimeAtten(3, 1165);
+
+    $data['HourllyCore'] = $this->carcas->HourllyCore();
+
+
+    // Ball Forming
+
+    $Month = date('m');
+    $Year = date('Y');
+    $Day = date('d');
+    $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+    $data['getDataBallForming'] = $this->BladderF->getData();
+    $data['StationwiseBallForming'] = $this->BladderF->Stationwise($CurrentDate, $CurrentDate);
+    $data['RowCounterBallForming'] = $this->BladderF->RowCounter();
+
+    // Ball Shaping
+
+
+    $Month = date('m');
+    $Year = date('Y');
+    $Day = date('d');
+    $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+    $data['getDataBallShaping'] = $this->Shaping->getData();
+    $data['StationwiseBallShaping'] = $this->Shaping->Stationwise($CurrentDate, $CurrentDate);
+    $data['RowCounterBallShaping'] = $this->Shaping->RowCounter();
+
+    // TM Assembling
+
+    $Month = date('m');
+    $Year = date('Y');
+    $Day = date('d');
+    $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+    $data['getDataTMAssembling'] = $this->BladderF->getDataTM();
+    $data['StationwiseTMAssembling'] = $this->BladderF->StationwiseTM($CurrentDate, $CurrentDate);
+    $data['RowCounterTMAssembling'] = $this->BladderF->RowCounterTM();
+
+
+    // Laser Cutting
+
+    $Month = date('m'); 
+    $Year = date('Y');
+    $Day = date('d');
+    $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+    $data['getDataLaserCutting'] = $this->LSC->getData();
+    $data['StationwiseLaserCutting'] = $this->LSC->Stationwise($CurrentDate, $CurrentDate);
+    $data['RowCounterLaserCutting'] = $this->LSC->RowCounter();
+    // print_r($data['getData']);
+    // die;
+    $total = 0;
+    foreach ($data['getDataLaserCutting'] as $count) {
   
+     $total = $total + $count['OutPut'];
+    }
+  
+    $data['total'] = $total;
 
 
- 
- 
-     // LFB Packing
-   $Month = date('m');
-   $Year = date('Y');
-   $Day = date('d');
-   $CurrentDate = $Day . '/' . $Month . '/' . $Year;
- 
-   $data['DataLFBPacking'] = $this->LFB_Packing_Model->TotalCounter($CurrentDate, $CurrentDate);
-   
-   $data['Stationwise'] = $this->LFB_Packing_Model->Stationwise($CurrentDate, $CurrentDate);
- 
- 
- 
-   // Carcas
-   $data['getDataTMCarcas']= $this->carcas->getDatacarcas();
-   //$data['realtime'] = $this->E->realTimeAtten(3, 1165);
- 
-   $data['HourllyCore']= $this->carcas->HourllyCarcas();
- 
- 
- 
-   // LFB Carcas
-   $data['getDataLFBCarcas']= $this->carcas->getlfbDatacarcas();
-   //$data['realtime'] = $this->E->realTimeAtten(3, 1165);
- 
-   $data['HourllyCore']= $this->carcas->HourllylfbCarcas();
- 
- 
-   // Core
-   $data['getDataCore']= $this->carcas->getDatacore();
-   //$data['realtime'] = $this->E->realTimeAtten(3, 1165);
- 
-   $data['HourllyCore']= $this->carcas->HourllyCore();
+    // Inflation
 
-    
+    $Month = date('m'); 
+    $Year = date('Y');
+    $Day = date('d');
+    $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+    $data['getDataInfilation'] = $this->lfb->getData();
+    // $data['Stationwise'] = $this->lfb->Stationwise($CurrentDate, $CurrentDate);
+    $data['RowCounter'] = $this->lfb->RowCounter();
+
+
     $this->load->view('Efficiency/efficiency', $data);
   }
+public function EffDashboard(){
 
+
+  // $data['count'] = $this->E->departments();
+  // $count = [];
+  // foreach ($data['count'] as $c) {
+  //   array_push($count, $c['DeptName']);
+  // }
+  // $data['total'] = count($count);
+
+
+
+
+  // // RWPD
+
+
+  // $data['count'] = $this->E->departments();
+
+  // $Month = date('m');
+  // $Year = date('Y');
+  // $Day = date('d');
+  // $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+  // $currentDateNew = $Year . '-' . $Month . '-' . $Day;
+  $data['MSEfficiency'] = $this->RWPD->MSEfficiency();
+  // $data['IndividualReading'] = $this->RWPD->IndividualReading($currentDateNew, $currentDateNew);
+  // $data['machineCounter'] = $this->RWPD->machineCounter($CurrentDate, $CurrentDate);
+
+  // $totalRWPD = 0;
+  // foreach ($data['machineCounter'] as $count) {
+
+  //   $totalRWPD = $totalRWPD + $count['BallCounter'];
+  // }
+
+  // $data['totalRWPD'] = $totalRWPD;
+
+
+
+  // $data['HourllyReading'] = $this->E->HourllyReading($CurrentDate, $CurrentDate);
+
+
+  // // Downtime Sheet Sizing
+
+
+  // // $data['downTimeSheetSizing']=$this->E->downTimeSheetSizing();
+
+  // // Cutting
+  // $Month = date('m');
+  // $Year = date('Y');
+  // $Day = date('d');
+  // $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+  // $data['HourllyReading'] = $this->E->HourllyReadingCutting($CurrentDate, $CurrentDate);
+  // $data['CounterSheetSizing'] = $this->RWPD->Cutting();
+
+
+
+  // // Printing
+
+  // $Month = date('m');
+  // $Year = date('Y');
+  // $Day = date('d');
+  // $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+  // $data['HourllyReadingP'] = $this->E->HourllyReadingCutting($CurrentDate, $CurrentDate);
+  // $data['CounterP'] = $this->RWPD->Cutting();
+  // // // $total = 0;
+  // // // foreach ($data['machineCounter'] as $count) {
+
+  // // //  $total = $total + $count['BallCounter'];
+  // // // }
+
+  // // // $data['total'] = $total;
+  // // // echo "<pre>";
+  // // $data['realtimeP'] = $this->E->realTimeAtten($_GET['dept_id'], $_GET['section_id']);
+  // $data['dieTestingSheetSizingP'] = $this->E->dieTestingSheetSizing();
+  // $data['dieTestingSheetSizingGraphP'] = $this->E->dieTestingSheetSizingGraph();
+  // $data['ONASheetSizingP'] = $this->E->ONASheetSizing();
+  // $data['ONASheetSizingGraphP'] = $this->E->ONASheetSizingGraph();
+  // $data['machineTestingSheetSizingP'] = $this->E->machineTestingSheetSizing();
+  // $data['machineTestingSheetSizingGraphP'] = $this->E->machineTestingSheetSizingGraph();
+
+
+
+  // // Panel Cutting
+  // $Month = date('m');
+  // $Year = date('Y');
+  // $Day = date('d');
+  // $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+  // $data['HourllyReading'] = $this->E->HourllyReadingCutting($CurrentDate, $CurrentDate);
+
+  // $data['Cutting'] = $this->RWPD->panelCutting();
+
+
+
+
+
+
+  // // HF Cutting
+  // $Month = date('m');
+  // $Year = date('Y');
+  // $Day = date('d');
+  // $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+  // $data['HourllyReading'] = $this->E->HourllyReadingHFCutting($CurrentDate, $CurrentDate);
+  // $data['hfcutting'] = $this->RWPD->HfCutting($CurrentDate);
+  // $total = [];
+  // foreach ($data['hfcutting'] as $hf) {
+  //   array_push($total, $hf['Counter']);
+  // }
+
+  // $d = 0;
+  // foreach ($total as $t) {
+  //   $d = $d + $t;
+  // }
+  // $data['totalHF'] = $d;
+
+
+
+
+
+
+
+
+  // // Lamination
+  // $Month = date('m');
+  // $Year = date('Y');
+  // $Day = date('d');
+  // $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+  // $CurrentDate1 = $Day . '/' . $Month . '/' . $Year;
+
+  // $data['TotalReading'] = $this->Lamination->TotalReading($CurrentDate, $CurrentDate);
+  // $data['IndividualReadingLamination'] = $this->Lamination->IndividualReading($CurrentDate1, $CurrentDate1);
+
+  // $data['HourllyReading'] = $this->Lamination->HourllyReading($CurrentDate, $CurrentDate);
+  // // $data['Lamination'] = $this->Lamination->getData($CurrentDate);
+  // // $data['getData'] = $this->Lamination->getData($CurrentDate);
+
+  // $totalLamination = 0;
+
+
+  // foreach ($data['TotalReading'] as $totalreading) {
+
+  //   $totalLamination = $totalLamination + $totalreading['Reading'];
+  // }
+
+
+
+
+  // $data['totalLamination'] = $totalLamination;
+
+
+
+  // // Bladder
+  // $Month = date('m');
+  // $Year = date('Y');
+  // $Day = date('d');
+  // $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+  // $data['getDataBladder'] = $this->Bladder->getData();
+  // $data['Stationwise'] = $this->Bladder->Stationwise($CurrentDate, $CurrentDate);
+
+
+
+
+  // // MS Lines
+  // $Month = date('m');
+  // $Year = date('Y');
+  // $Day = date('d');
+  // $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+
+  // $data['DataMSLines'] = $this->T->TotalCounter($CurrentDate, $CurrentDate);
+
+  // $data['StationwiseMSLines'] = $this->T->Stationwise($CurrentDate, $CurrentDate);
+
+
+  // // TM Packing
+  // $Month = date('m');
+  // $Year = date('Y');
+  // $Day = date('d');
+  // $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+
+  // $data['DataTMPacking'] = $this->TM_Packing_Model->TotalCounter($CurrentDate, $CurrentDate);
+
+  // $data['Stationwise'] = $this->TM_Packing_Model->Stationwise($CurrentDate, $CurrentDate);
+
+
+
+
+
+  // // AMB Forming
+  // $Month = date('m');
+  // $Year = date('Y');
+  // $Day = date('d');
+  // $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+
+  // $data['DataAMBForming'] = $this->AMB_Packing_Model->TotalCounter($CurrentDate, $CurrentDate);
+
+  // $data['Stationwise'] = $this->AMB_Packing_Model->StationWise($CurrentDate, $CurrentDate);
+
+
+
+  // // AMB Packing
+  // $Month = date('m');
+  // $Year = date('Y');
+  // $Day = date('d');
+  // $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+  // $CurrentDateNew = $Year . '-' . $Month . '-' . $Day;
+
+
+  // $data['DataAMBPacking'] = $this->AMB_Packing_Model1->TotalCounter($CurrentDateNew, $CurrentDateNew);
+
+
+
+
+
+
+  // // LFB Packing
+  // $Month = date('m');
+  // $Year = date('Y');
+  // $Day = date('d');
+  // $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+
+  // $data['DataLFBPacking'] = $this->LFB_Packing_Model->TotalCounter($CurrentDate, $CurrentDate);
+
+  // $data['Stationwise'] = $this->LFB_Packing_Model->Stationwise($CurrentDate, $CurrentDate);
+
+
+
+  // // Carcas
+  // $data['getDataTMCarcas'] = $this->carcas->getDatacarcas();
+  // //$data['realtime'] = $this->E->realTimeAtten(3, 1165);
+
+  // $data['HourllyCore'] = $this->carcas->HourllyCarcas();
+
+
+
+  // // LFB Carcas
+  // $data['getDataLFBCarcas'] = $this->carcas->getlfbDatacarcas();
+  // //$data['realtime'] = $this->E->realTimeAtten(3, 1165);
+
+  // $data['HourllyCore'] = $this->carcas->HourllylfbCarcas();
+
+
+  // // Core
+  // $data['getDataCore'] = $this->carcas->getDatacore();
+  // //$data['realtime'] = $this->E->realTimeAtten(3, 1165);
+
+  // $data['HourllyCore'] = $this->carcas->HourllyCore();
+
+
+  // // Ball Forming
+
+  // $Month = date('m');
+  // $Year = date('Y');
+  // $Day = date('d');
+  // $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+  // $data['getDataBallForming'] = $this->BladderF->getData();
+  // $data['StationwiseBallForming'] = $this->BladderF->Stationwise($CurrentDate, $CurrentDate);
+  // $data['RowCounterBallForming'] = $this->BladderF->RowCounter();
+
+  // // Ball Shaping
+
+
+  // $Month = date('m');
+  // $Year = date('Y');
+  // $Day = date('d');
+  // $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+  // $data['getDataBallShaping'] = $this->Shaping->getData();
+  // $data['StationwiseBallShaping'] = $this->Shaping->Stationwise($CurrentDate, $CurrentDate);
+  // $data['RowCounterBallShaping'] = $this->Shaping->RowCounter();
+
+  // // TM Assembling
+
+  // $Month = date('m');
+  // $Year = date('Y');
+  // $Day = date('d');
+  // $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+  // $data['getDataTMAssembling'] = $this->BladderF->getDataTM();
+  // $data['StationwiseTMAssembling'] = $this->BladderF->StationwiseTM($CurrentDate, $CurrentDate);
+  // $data['RowCounterTMAssembling'] = $this->BladderF->RowCounterTM();
+
+
+  // // Laser Cutting
+
+  // $Month = date('m'); 
+  // $Year = date('Y');
+  // $Day = date('d');
+  // $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+  // $data['getDataLaserCutting'] = $this->LSC->getData();
+  // $data['StationwiseLaserCutting'] = $this->LSC->Stationwise($CurrentDate, $CurrentDate);
+  // $data['RowCounterLaserCutting'] = $this->LSC->RowCounter();
+  // // print_r($data['getData']);
+  // // die;
+  // $total = 0;
+  // foreach ($data['getDataLaserCutting'] as $count) {
+
+  //  $total = $total + $count['OutPut'];
+  // }
+
+  // $data['total'] = $total;
+
+
+  // // Inflation
+
+  // $Month = date('m'); 
+  // $Year = date('Y');
+  // $Day = date('d');
+  // $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+  // $data['getDataInfilation'] = $this->lfb->getData();
+  // // $data['Stationwise'] = $this->lfb->Stationwise($CurrentDate, $CurrentDate);
+  // $data['RowCounter'] = $this->lfb->RowCounter();
+
+  $this->load->view('NewEfficiency', $data);
+}
   public function departments()
   {
 
@@ -456,13 +864,64 @@ class Efficiency extends CI_Controller
 
     // // $data['total'] = $total;
     // // echo "<pre>";
+    $CurrentDate = $Day . '/' . $Month . '/' . $Year;
+  
+    $data['PressWiseData'] = $this->E->PressWiseData($CurrentDate, $CurrentDate);
     $data['realtime'] = $this->E->realTimeAtten($_GET['dept_id'], $_GET['section_id']);
+    $data['dieTestingSheetSizing'] = $this->E->dieTestingSheetSizing();
+    $data['dieTestingSheetSizingGraph'] = $this->E->dieTestingSheetSizingGraph();
+    $data['ONASheetSizing'] = $this->E->ONASheetSizing();
+    $data['ONASheetSizingGraph'] = $this->E->ONASheetSizingGraph();
+    $data['machineTestingSheetSizing'] = $this->E->machineTestingSheetSizing();
+    $data['machineTestingSheetSizingGraph'] = $this->E->machineTestingSheetSizingGraph();
 
+    // print_r($data['downTimeSheetSizing']);
+    // die;
 
     // print_r($data['realtime']);
     // die;
+
+    $data['energy_C'] = $this->E->energy_C(); 
+		$data['energy_C_Drill'] = $this->E->energy_C_Drill(); 
+    
     $this->load->view('Efficiency/Cutting', $data);
   }
+
+
+
+  public function Printing()
+  {
+
+
+
+    $Month = date('m');
+    $Year = date('Y');
+    $Day = date('d');
+    $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+    $data['HourllyReading'] = $this->E->HourllyReadingCutting($CurrentDate, $CurrentDate);
+    $data['Counter'] = $this->RWPD->Cutting();
+    // // $total = 0;
+    // // foreach ($data['machineCounter'] as $count) {
+
+    // //  $total = $total + $count['BallCounter'];
+    // // }
+
+    // // $data['total'] = $total;
+    // // echo "<pre>";
+    $data['realtime'] = $this->E->realTimeAtten($_GET['dept_id'], $_GET['section_id']);
+    $data['dieTestingSheetSizing'] = $this->E->dieTestingSheetSizing();
+    $data['dieTestingSheetSizingGraph'] = $this->E->dieTestingSheetSizingGraph();
+    $data['ONASheetSizing'] = $this->E->ONASheetSizing();
+    $data['ONASheetSizingGraph'] = $this->E->ONASheetSizingGraph();
+    $data['machineTestingSheetSizing'] = $this->E->machineTestingSheetSizing();
+    $data['machineTestingSheetSizingGraph'] = $this->E->machineTestingSheetSizingGraph();
+    
+    $data['energy_C'] = $this->E->energy_C(); 
+		$data['energy_C_Drill'] = $this->E->energy_C_Drill();
+
+    $this->load->view('Efficiency/Printing', $data);
+  }
+
   public function panelCutting()
   {
     $Month = date('m');
@@ -472,15 +931,22 @@ class Efficiency extends CI_Controller
     $data['HourllyReading'] = $this->E->HourllyReadingPanelCutting($CurrentDate, $CurrentDate);
     $data['Counter'] = $this->RWPD->panelCutting();
 
-    
+
     $data['realtime'] = $this->E->realTimeAtten($_GET['dept_id'], $_GET['section_id']);
+
+    $data['dieTestingSheetSizing'] = $this->E->panelCutting();
+    $data['dieTestingSheetSizingGraph'] = $this->E->panelCuttingGraph();
+    $data['ONASheetSizing'] = $this->E->ONAPanel();
+    $data['ONASheetSizingGraph'] = $this->E->ONAPanelGraph();
+    $data['machineTestingSheetSizing'] = $this->E->machineTestingPanel();
+    $data['machineTestingSheetSizingGraph'] = $this->E->machineTestingPanelGraph();
 
 
     // print_r($data['realtime']);
     // die;
     $this->load->view('Efficiency/panelCutting', $data);
   }
-  
+
 
   public function CuttingBladderWinding()
   {
@@ -554,16 +1020,19 @@ class Efficiency extends CI_Controller
     // die;
     $this->load->view('Efficiency/MS/CuttingPanelCutting', $data);
   }
-  public function HSB34001(){
+  public function HSB34001()
+  {
 
     $this->load->view('Efficiency/HSB34001');
   }
 
-  public function TMB(){
+  public function TMB()
+  {
 
     $this->load->view('Efficiency/TMB');
   }
-  public function LFB(){
+  public function LFB()
+  {
 
     $this->load->view('Efficiency/LFB');
   }
@@ -849,7 +1318,8 @@ class Efficiency extends CI_Controller
       ->set_output(json_encode($data));
   }
 
-  public function getRWPDDateRangeData(){
+  public function getRWPDDateRangeData()
+  {
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
 
@@ -857,25 +1327,27 @@ class Efficiency extends CI_Controller
     $data['MachineData'] = $this->E->getRWPDDateRangeDataMachine($startDate, $endDate);
 
     return $this->output
-    ->set_content_type('application/json')
-    ->set_status_header(200)
-    ->set_output(json_encode($data));
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode($data));
   }
 
-  public function getCuttingSheetSizingDateRangeData(){
+  public function getCuttingSheetSizingDateRangeData()
+  {
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
-
-    $data['BarData'] = $this->E->getCuttingSheetSizingDateRangeData($startDate, $endDate);
-    $data['MachineData'] = $this->E->getCuttingSheetSizingDateRangeDataMachineWise($startDate, $endDate);
+    $shift = $_POST['shift'];
+    $data['BarData'] = $this->E->getCuttingSheetSizingDateRangeData($startDate, $endDate,$shift);
+    $data['MachineData'] = $this->E->getCuttingSheetSizingDateRangeDataMachineWise($startDate, $endDate,$shift);
 
     return $this->output
-    ->set_content_type('application/json')
-    ->set_status_header(200)
-    ->set_output(json_encode($data));
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode($data));
   }
 
-  public function getCuttingPanelDateRangeData(){
+  public function getCuttingPanelDateRangeData()
+  {
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
 
@@ -883,12 +1355,13 @@ class Efficiency extends CI_Controller
     $data['MachineData'] = $this->E->getCuttingPanelDateRangeDataMachineWise($startDate, $endDate);
 
     return $this->output
-    ->set_content_type('application/json')
-    ->set_status_header(200)
-    ->set_output(json_encode($data));
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode($data));
   }
 
-  public function getCuttingHFDateRangeData(){
+  public function getCuttingHFDateRangeData()
+  {
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
 
@@ -896,151 +1369,220 @@ class Efficiency extends CI_Controller
     $data['MachineData'] = $this->E->getCuttingHFDateRangeDataMachineWise($startDate, $endDate);
 
     return $this->output
-    ->set_content_type('application/json')
-    ->set_status_header(200)
-    ->set_output(json_encode($data));
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode($data));
   }
 
-  public function getLaminationDateRangeData(){
-    
+  public function getLaminationDateRangeData()
+  {
+
     $startDate = date("Y-m-d", strtotime($_POST['startDate']));
     $endDate = date("Y-m-d", strtotime($_POST['endDate']));
 
-   //  $data['getData'] = $this->Lamination->getData($startDate, $endDate);
+    //  $data['getData'] = $this->Lamination->getData($startDate, $endDate);
     $data['BarData'] = $this->E->getLaminationDateRangeData($startDate, $endDate);
     $data['MachineData'] = $this->E->getLaminationDateRangeDataMachineWise($startDate, $endDate);
 
     return $this->output
-    ->set_content_type('application/json')
-    ->set_status_header(200)
-    ->set_output(json_encode($data));
-  }
-
-  public function getRealTimeDateRange(){
-    $startDate = $_POST['startDate'];
-    $endDate = $_POST['endDate'];
-
-    $data['realtime'] = $this->E->realTimeAttenDateRange($_POST['dept_id'], $_POST['section_id'],$startDate,$endDate);
-
-    return $this->output
-    ->set_content_type('application/json')
-    ->set_status_header(200)
-    ->set_output(json_encode($data));
-  }
-  public function gettingambcoreData(){
-    $startDate = $_POST['startDate'];
-    $endDate = $_POST['endDate'];
-    
-    $data['BarData'] = $this->E->gettingambcoreData($startDate, $endDate);
-    //$data['MachineData'] = $this->E->getCuttingSheetSizingDateRangeDataMachineWise($startDate, $endDate);
-    
-    return $this->output
-    ->set_content_type('application/json')
-    ->set_status_header(200)
-    ->set_output(json_encode($data));
-    }
-
-    public function gettingCarcasData(){
-      $startDate = $_POST['startDate'];
-      $endDate = $_POST['endDate'];
-      
-      $data['BarData'] = $this->E->gettingCarcasData($startDate, $endDate);
-      //$data['MachineData'] = $this->E->getCuttingSheetSizingDateRangeDataMachineWise($startDate, $endDate);
-      
-      return $this->output
       ->set_content_type('application/json')
       ->set_status_header(200)
       ->set_output(json_encode($data));
-      }
-      public function gettinglfbCarcasData(){
-        $startDate = $_POST['startDate'];
-        $endDate = $_POST['endDate'];
-        
-        $data['BarData'] = $this->E->gettinglfbCarcasData($startDate, $endDate);
-        //$data['MachineData'] = $this->E->getCuttingSheetSizingDateRangeDataMachineWise($startDate, $endDate);
-        
-        return $this->output
-        ->set_content_type('application/json')
-        ->set_status_header(200)
-        ->set_output(json_encode($data));
-        }
-  
-      public function getMSLinesDateRangeData(){
-        $startDate = $_POST['startDate'];
-        $endDate = $_POST['endDate'];
-    
-        $data['BarData'] = $this->E->getMSLinesDateRangeData($startDate, $endDate);
-        $data['MachineData'] = $this->E->getMSLinesDateRangeDataMachineWise($startDate, $endDate);
-    
-        return $this->output
-        ->set_content_type('application/json')
-        ->set_status_header(200)
-        ->set_output(json_encode($data));
-      }
+  }
 
-      public function getBladderWindingDateRangeData(){
-        $startDate = $_POST['startDate'];
-        $endDate = $_POST['endDate'];
-    
-        $data['BarData'] = $this->E->getBladderWindingDateRangeData($startDate, $endDate);
-        $data['MachineData'] = $this->E->getBladderWindingDateRangeDataMachineWise($startDate, $endDate);
-    
-        return $this->output
-        ->set_content_type('application/json')
-        ->set_status_header(200)
-        ->set_output(json_encode($data));
-      }
+  public function getInflationDateRangeData()
+  {
 
-      public function getTMDateRangeData(){
-        $startDate = $_POST['startDate'];
-        $endDate = $_POST['endDate'];
-    
-        $data['BarData'] = $this->E->getTMDateRangeData($startDate, $endDate);
-        $data['MachineData'] = $this->E->getTMDateRangeDataMachineWise($startDate, $endDate);
-    
-        return $this->output
-        ->set_content_type('application/json')
-        ->set_status_header(200)
-        ->set_output(json_encode($data));
-      }
+    $startDate = date("Y-m-d", strtotime($_POST['startDate']));
+    $endDate = date("Y-m-d", strtotime($_POST['endDate']));
 
-      public function getAMBAssemblingDateRangeData(){
-        $startDate = $_POST['startDate'];
-        $endDate = $_POST['endDate'];
-    
-        $data['BarData'] = $this->E->getAMBAssemblingDateRangeData($startDate, $endDate);
-        $data['MachineData'] = $this->E->getAMBAssemblingDateRangeDataMachineWise($startDate, $endDate);
-    
-        return $this->output
-        ->set_content_type('application/json')
-        ->set_status_header(200)
-        ->set_output(json_encode($data));
-      }
+    //  $data['getData'] = $this->Lamination->getData($startDate, $endDate);
+    $data['BarData'] = $this->E->getInflationDateRangeData($startDate, $endDate);
+    $data['MachineData'] = $this->E->getInflationDateRangeDataMachineWise($startDate, $endDate);
 
-      public function getAMBPackingDateRangeData(){
-        $startDate = $_POST['startDate'];
-        $endDate = $_POST['endDate'];
-    
-        $data['BarData'] = $this->E->getAMBPackingDateRangeData($startDate, $endDate);
-        $data['MachineData'] = $this->E->getAMBPackingDateRangeDataMachineWise($startDate, $endDate);
-    
-        return $this->output
-        ->set_content_type('application/json')
-        ->set_status_header(200)
-        ->set_output(json_encode($data));
-      }
+    return $this->output
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode($data));
+  }
 
-      public function getLFBDateRangeData(){
-        $startDate = $_POST['startDate'];
-        $endDate = $_POST['endDate'];
-    
-        $data['BarData'] = $this->E->getLFBDateRangeData($startDate, $endDate);
-        $data['MachineData'] = $this->E->getLFBDateRangeDataMachineWise($startDate, $endDate);
-    
-        return $this->output
-        ->set_content_type('application/json')
-        ->set_status_header(200)
-        ->set_output(json_encode($data));
-      }
+  public function getRealTimeDateRange()
+  {
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
 
+    $data['realtime'] = $this->E->realTimeAttenDateRange($_POST['dept_id'], $_POST['section_id'], $startDate, $endDate);
+
+    return $this->output
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode($data));
+  }
+  public function gettingambcoreData()
+  {
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+
+    $data['BarData'] = $this->E->gettingambcoreData($startDate, $endDate);
+    //$data['MachineData'] = $this->E->getCuttingSheetSizingDateRangeDataMachineWise($startDate, $endDate);
+
+    return $this->output
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode($data));
+  }
+
+  public function gettingCarcasData()
+  {
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+
+    $data['BarData'] = $this->E->gettingCarcasData($startDate, $endDate);
+    //$data['MachineData'] = $this->E->getCuttingSheetSizingDateRangeDataMachineWise($startDate, $endDate);
+
+    return $this->output
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode($data));
+  }
+  public function gettinglfbCarcasData()
+  {
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+
+    $data['BarData'] = $this->E->gettinglfbCarcasData($startDate, $endDate);
+    //$data['MachineData'] = $this->E->getCuttingSheetSizingDateRangeDataMachineWise($startDate, $endDate);
+
+    return $this->output
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode($data));
+  }
+
+  public function getMSLinesDateRangeData()
+  {
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+
+    $data['BarData'] = $this->E->getMSLinesDateRangeData($startDate, $endDate);
+    $data['MachineData'] = $this->E->getMSLinesDateRangeDataMachineWise($startDate, $endDate);
+
+    return $this->output
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode($data));
+  }
+
+  public function getBladderWindingDateRangeData()
+  {
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+
+    $data['BarData'] = $this->E->getBladderWindingDateRangeData($startDate, $endDate);
+    $data['MachineData'] = $this->E->getBladderWindingDateRangeDataMachineWise($startDate, $endDate);
+
+    return $this->output
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode($data));
+  }
+
+  public function getBallFormingDateRangeData()
+  {
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+
+    $data['BarData'] = $this->E->getBallFormingDateRangeData($startDate, $endDate);
+    $data['MachineData'] = $this->E->getBallFormingDateRangeDataMachineWise($startDate, $endDate);
+
+    return $this->output
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode($data));
+  }
+
+  public function getBallShapingDateRangeData()
+  {
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+
+    $data['BarData'] = $this->E->getBallShapingDateRangeData($startDate, $endDate);
+    $data['MachineData'] = $this->E->getBallShapingDateRangeDataMachineWise($startDate, $endDate);
+
+    return $this->output
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode($data));
+  }
+
+  public function getLaserCuttingDateRangeData()
+  {
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+
+    $data['BarData'] = $this->E->getLaserCuttingDateRangeData($startDate, $endDate);
+    $data['MachineData'] = $this->E->getLaserCuttingDateRangeDataMachineWise($startDate, $endDate);
+
+    return $this->output
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode($data));
+  }
+
+
+  public function getTMDateRangeData()
+  {
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+
+    $data['BarData'] = $this->E->getTMDateRangeData($startDate, $endDate);
+    $data['MachineData'] = $this->E->getTMDateRangeDataMachineWise($startDate, $endDate);
+
+    return $this->output
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode($data));
+  }
+
+  public function getAMBAssemblingDateRangeData()
+  {
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+
+    $data['BarData'] = $this->E->getAMBAssemblingDateRangeData($startDate, $endDate);
+    $data['MachineData'] = $this->E->getAMBAssemblingDateRangeDataMachineWise($startDate, $endDate);
+
+    return $this->output
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode($data));
+  }
+
+  public function getAMBPackingDateRangeData()
+  {
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+
+    $data['BarData'] = $this->E->getAMBPackingDateRangeData($startDate, $endDate);
+    $data['MachineData'] = $this->E->getAMBPackingDateRangeDataMachineWise($startDate, $endDate);
+
+    return $this->output
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode($data));
+  }
+
+  public function getLFBDateRangeData()
+  {
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+
+    $data['BarData'] = $this->E->getLFBDateRangeData($startDate, $endDate);
+    $data['MachineData'] = $this->E->getLFBDateRangeDataMachineWise($startDate, $endDate);
+
+    return $this->output
+      ->set_content_type('application/json')
+      ->set_status_header(200)
+      ->set_output(json_encode($data));
+  }
 }

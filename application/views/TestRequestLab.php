@@ -52,6 +52,13 @@ if (!$this->session->has_userdata('user_id')) {
 
                                     </div>
 
+                                    <?php
+                                    $TIDS = null;
+                                    foreach ($TID as $T) {
+                                        $TIDS = $T['TID'];
+                                    }
+                                    ?>
+
 
                                     <div class="panel-container show">
 
@@ -59,16 +66,31 @@ if (!$this->session->has_userdata('user_id')) {
                                             <ul class="nav nav-pills" role="tablist">
                                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Pending Requests</a></li>
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Acknowledged Requests</a></li>
-
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3">Pending FGT Requests</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-4">Acknowledged FGT Requests </a></li>
                                             </ul>
 
                                             <div class="tab-content py-3">
 
                                                 <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
-                                                    <table class="table table-striped table-hover table-sm" id="ActivityData2">
-                                                        <thead>
+
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <div style="display:none" class="btn btn-warning  submit-button mb-2"><span style="font-weight:bolder">Acknowledge All</span></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <table class="table table-bordered table-striped table-hover table-sm" id="ActivityData2">
+                                                        <thead class="bg-primary-200 text-light p-2">
 
                                                             <tr>
+
+                                                                <th>
+                                                                    <div class="custom-control custom-checkbox no-sort">
+                                                                        <input class="custom-control-input" type="checkbox" id="select-all">
+                                                                        <label for="select-all" class="custom-control-label"></label>
+                                                                    </div>
+                                                                </th>
                                                                 <th>Request Date</th>
                                                                 <th>Type</th>
                                                                 <th>Material</th>
@@ -113,6 +135,14 @@ if (!$this->session->has_userdata('user_id')) {
                                                             ?>
 
                                                                 <tr>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input class="custom-control-input leave-id" type="checkbox" id="select-<?= $keys['TID']; ?>" value="<?= $keys['TID']; ?>">
+                                                                            <label for="select-<?= $keys['TID']; ?>" class="custom-control-label"></label>
+                                                                        </div>
+                                                                    </td>
+
+
                                                                     <td><?php echo date('d-m-Y', strtotime($keys['Sample_RequestDate'])); ?></td>
                                                                     <td><?php echo $keys['Type']; ?></td>
                                                                     <td><?php echo $keys['MaterialType']; ?></td>
@@ -136,7 +166,6 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <td>
 
                                                                         <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtnBacktoSender" id="btn.<?php echo $keys['TID']; ?>">Acknowledge</button>
-                                                                        <!-- <button type="button" style="display: inline-block;" id="undo.<?php echo $keys['TID']; ?>" value="<?php echo $keys['TID']; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button> -->
 
 
                                                                     </td>
@@ -153,8 +182,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                 </div>
 
                                                 <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
-                                                    <table class="table table-striped table-hover table-sm" id="ActivityData3">
-                                                        <thead>
+                                                    <table class="table table-bordered table-striped table-hover table-sm" id="ActivityData3">
+                                                        <thead class="bg-primary-200 text-light p-2">
 
                                                             <tr>
                                                                 <th>Request Date</th>
@@ -242,6 +271,17 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </table>
                                                 </div>
 
+                                                <div class="tab-pane fade" id="tab_direction-3" role="tabpanel">
+                                                    <div id="loadFGTRequestStatusSendToLab">
+
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="tab_direction-4" role="tabpanel">
+                                                    <div id="loadFGTRequestAknowloedgedByLab">
+
+                                                    </div>
+                                                </div>
+
                                             </div>
 
                                         </div>
@@ -257,6 +297,8 @@ if (!$this->session->has_userdata('user_id')) {
                         </div>
                     </div>
                     <div class="col-md-4"></div>
+
+                </main>
             </div>
         </div>
     </div>
@@ -364,10 +406,15 @@ if (!$this->session->has_userdata('user_id')) {
             }
         });
         $(document).ready(function() {
+
+            loadFGTRequestStatusSendToLab();
+            loadFGTRequestAknowloedgedByLab();
+
             $("#ArtCodeAuto").select2();
             let currentDate = new Date().toJSON().substr(0, 10);
             $('#rDate').val(currentDate);
             $("#tType").select2();
+
             $('#ActivityData').dataTable({
                 responsive: false,
                 lengthChange: false,
@@ -577,6 +624,326 @@ if (!$this->session->has_userdata('user_id')) {
 
 
         });
+
+        function loadFGTRequestStatusSendToLab() {
+            url = "<?php echo base_url("LabController/FGTRequestSendToLab") ?>";
+            $.get(url, function(data) {
+                if (data) {
+                    console.log("data is ",data);
+                    let html = `<table class="table table-bordered table-striped table-hover table-responsive table-sm" id="fgtTableExport2">
+                    <thead class="bg-primary-200 text-light p-2">
+                    <tr>
+                        <th class="h5">Request Date</th>
+                        <th class="h5">CSS NO</th>
+                        <th class="h5">Factory Code</th>
+                        <th class="h5">Working No</th>
+                        <th class="h5">Article No</th>
+                        <th class="h5">Modal Name</th>
+                        <th class="h5">Size</th>
+                        <th class="h5">Ball Type</th>                  
+                        <th class="h5">Main Material Color</th>
+                        <th class="h5">Convert Mat</th>
+                        <th class="h5">Backing</th>
+                        <th class="h5">Bladder Details</th>
+                        <th class="h5">Production Month</th>
+                        <th class="h5">Printing Color</th>
+                        <th class="h5">Panel Shape</th>
+                        <th class="h5">Test Type</th>
+                        <th class="h5">Deliever Qty</th>
+                        <th class="h5">Any Info</th>
+                        <th class="h5">Lab Status</th>
+                        <!--<th class="h5">Receiver Signature</th>
+                        <th class="h5">Sender Signature</th> -->
+                        <th class="h5">Request Status</th>
+                        <th class="h5">Generated By</th>
+                        <th class="h5">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>`;
+                    data.forEach(element => {
+                        html += `
+                        <tr>
+                            <td><span class="badge badge-info p-1">${element.Date.split("00:00:00")[0]}</span></td>
+                            <td><span class="badge badge-warning p-1">${element.CssNO}</span></td>
+                            <td>${element.factoryCode}</td>
+                            <td>${element.WorkingNo}</td>
+                            <td>${element.Articleno}</td>
+                            <td>${element.ModelName}</td>
+                            <td>${element.Size}</td>
+                            <td>${element.BallType}</td>               
+                            <td>${element.mainmaterialColor}</td>
+                            <td><span>${element.Covermat}</span></td>
+                            <td><span>${element.backing}</span></td>
+                            <td><span> ${element.Bladderdetail} </span></td>
+                            <td><span> ${element.ProductionMonth} </span></td>
+                            <td><span> ${element.Printingcolor} </span></td>
+                            <td><span> ${element.panelShape} </span></td>
+                            <td><span> ${element.testype} </span></td>
+                            <td><span> ${element.deliverqty} </span></td>
+                            <td><span> ${element.additionalinfo} </span></td>
+                            <td><span class="badge badge-secondary p-1">${element.LabStatus == null ? `Pending` : `Aknowledged`} </span></td>
+
+                            <!-- <td> <span class="badge badge-primary p-1">Receiver Signature</span></td>
+
+                            <td> <span class="badge badge-primary p-1">Sender Signature</span></td> -->
+
+                            <td><span class="badge badge-warning p-1">${element.RequestStatus}</span></td>
+                            <td><span class="badge badge-danger p-1">${element.LoginName}</span></td>
+
+                            <td><button type="button" style="display: inline-block;" class="btn btn-info btn-xs waves-effect waves-themed" id="btn.3845" onclick="addAknowledgeCssNo(${element.TID})">Acknowledge</button></td>
+
+                        </tr>`
+                    })
+
+                    html += `</tbody>
+                            </table>`;
+
+                    $("#loadFGTRequestStatusSendToLab").html(html);
+
+                    $('#fgtTableExport2').dataTable({
+                        responsive: false,
+                        lengthChange: false,
+                        dom:
+                            /*	--- Layout Structure 
+                                --- Options
+                                l	-	length changing input control
+                                f	-	filtering input
+                                t	-	The table!
+                                i	-	Table information summary
+                                p	-	pagination control
+                                r	-	processing display element
+                                B	-	buttons
+                                R	-	ColReorder
+                                S	-	Select
+    
+                                --- Markup
+                                < and >				- div element
+                                <"class" and >		- div with a class
+                                <"#id" and >		- div with an ID
+                                <"#id.class" and >	- div with an ID and a class
+    
+                                --- Further reading
+                                https://datatables.net/reference/option/dom
+                                --------------------------------------
+                            */
+                            "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                            "<'row'<'col-sm-12'tr>>" +
+                            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                        buttons: [
+                            /*{
+                                extend:    'colvis',
+                                text:      'Column Visibility',
+                                titleAttr: 'Col visibility',
+                                className: 'mr-sm-3'
+                            },*/
+                            {
+                                extend: 'pdfHtml5',
+                                text: 'PDF',
+                                titleAttr: 'Generate PDF',
+                                className: 'btn-outline-danger btn-sm mr-1'
+                            },
+                            {
+                                extend: 'excelHtml5',
+                                text: 'Excel',
+                                titleAttr: 'Generate Excel',
+                                className: 'btn-outline-success btn-sm mr-1'
+                            },
+                            {
+                                extend: 'csvHtml5',
+                                text: 'CSV',
+                                titleAttr: 'Generate CSV',
+                                className: 'btn-outline-primary btn-sm mr-1'
+                            },
+                            {
+                                extend: 'copyHtml5',
+                                text: 'Copy',
+                                titleAttr: 'Copy to clipboard',
+                                className: 'btn-outline-primary btn-sm mr-1'
+                            },
+                            {
+                                extend: 'print',
+                                text: 'Print',
+                                titleAttr: 'Print Table',
+                                className: 'btn-outline-primary btn-sm'
+                            }
+                        ]
+                    });
+                }
+
+            });
+
+        }
+
+        function loadFGTRequestAknowloedgedByLab() {
+            url = "<?php echo base_url("LabController/FGTRequestAknowledgedByLab") ?>";
+            $.get(url, function(data) {
+                if (data) {
+                    let html = `<table class="table table-bordered table-striped table-hover table-responsive table-sm" id="fgtTableExport3">
+                    <thead class="bg-primary-200 text-light p-2">
+                    <tr>
+                        <th class="h5">Lab Aknowledged Date</th>
+                        <th class="h5">CSS NO</th>
+                        <th class="h5">Factory Code</th>
+                        <th class="h5">Working No</th>
+                        <th class="h5">Article No</th>
+                        <th class="h5">Modal Name</th>
+                        <th class="h5">Size</th>
+                        <th class="h5">Ball Type</th>                  
+                        <th class="h5">Main Material Color</th>
+                        <th class="h5">Convert Mat</th>
+                        <th class="h5">Backing</th>
+                        <th class="h5">Bladder Details</th>
+                        <th class="h5">Production Month</th>
+                        <th class="h5">Printing Color</th>
+                        <th class="h5">Panel Shape</th>
+                        <th class="h5">Test Type</th>
+                        <th class="h5">Deliever Qty</th>
+                        <th class="h5">Any Info</th>
+                        <th class="h5">Lab Status</th>
+                        <!-- <th class="h5">Receiver Signature</th>
+                        <th class="h5">Sender Signature</th> -->
+                        <th class="h5">Request Status</th>
+                        <th class="h5">Generated By</th>
+                        <th class="h5">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>`;
+                    data.forEach(element => {
+                        html += `
+                        <tr>                        
+                            <td><span class="badge badge-warning p-1">${element.labAcceptDate.split("00:00:00")[0]}</span></td>
+                            <td><span class="badge badge-warning p-1">${element.CssNO}</span></td>
+                            <td>${element.factoryCode}</td>
+                            <td>${element.WorkingNo}</td>
+                            <td>${element.Articleno}</td>
+                            <td>${element.ModelName}</td>
+                            <td>${element.Size}</td>
+                            <td>${element.BallType}</td>               
+                            <td>${element.mainmaterialColor}</td>
+                            <td><span>${element.Covermat}</span></td>
+                            <td><span>${element.backing}</span></td>
+                            <td><span> ${element.Bladderdetail} </span></td>
+                            <td><span> ${element.ProductionMonth} </span></td>
+                            <td><span> ${element.Printingcolor} </span></td>
+                            <td><span> ${element.panelShape} </span></td>
+                            <td><span> ${element.testype} </span></td>
+                            <td><span> ${element.deliverqty} </span></td>
+                            <td><span> ${element.additionalinfo} </span></td>
+
+                            <td><span class="badge badge-secondary p-1">${element.LabStatus != null ? `Aknowledged` : `Pending`} </span></td>
+
+                            <!-- <td> <span class="badge badge-primary p-1">Receiver Signature</span></td>
+
+                            <td> <span class="badge badge-primary p-1">Sender Signature</span></td> -->
+
+                            <td><span class="badge badge-warning p-1">${element.RequestStatus}</span></td>
+                            <td><span class="badge badge-danger p-1">${element.LoginName}</span></td>
+
+                            <td><button type="button" style="display: inline-block; disabled" class="btn btn-danger btn-xs waves-effect waves-themed" id="btn.3845">Locked</button></td>
+
+                        </tr>`
+                    })
+
+                    html += `</tbody>
+                            </table>`;
+
+                    $("#loadFGTRequestAknowloedgedByLab").html(html);
+
+                    $('#fgtTableExport3').dataTable({
+                        responsive: false,
+                        lengthChange: false,
+                        dom:
+                            /*	--- Layout Structure 
+                                --- Options
+                                l	-	length changing input control
+                                f	-	filtering input
+                                t	-	The table!
+                                i	-	Table information summary
+                                p	-	pagination control
+                                r	-	processing display element
+                                B	-	buttons
+                                R	-	ColReorder
+                                S	-	Select
+    
+                                --- Markup
+                                < and >				- div element
+                                <"class" and >		- div with a class
+                                <"#id" and >		- div with an ID
+                                <"#id.class" and >	- div with an ID and a class
+    
+                                --- Further reading
+                                https://datatables.net/reference/option/dom
+                                --------------------------------------
+                            */
+                            "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                            "<'row'<'col-sm-12'tr>>" +
+                            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                        buttons: [
+                            /*{
+                                extend:    'colvis',
+                                text:      'Column Visibility',
+                                titleAttr: 'Col visibility',
+                                className: 'mr-sm-3'
+                            },*/
+                            {
+                                extend: 'pdfHtml5',
+                                text: 'PDF',
+                                titleAttr: 'Generate PDF',
+                                className: 'btn-outline-danger btn-sm mr-1'
+                            },
+                            {
+                                extend: 'excelHtml5',
+                                text: 'Excel',
+                                titleAttr: 'Generate Excel',
+                                className: 'btn-outline-success btn-sm mr-1'
+                            },
+                            {
+                                extend: 'csvHtml5',
+                                text: 'CSV',
+                                titleAttr: 'Generate CSV',
+                                className: 'btn-outline-primary btn-sm mr-1'
+                            },
+                            {
+                                extend: 'copyHtml5',
+                                text: 'Copy',
+                                titleAttr: 'Copy to clipboard',
+                                className: 'btn-outline-primary btn-sm mr-1'
+                            },
+                            {
+                                extend: 'print',
+                                text: 'Print',
+                                titleAttr: 'Print Table',
+                                className: 'btn-outline-primary btn-sm'
+                            }
+                        ]
+                    });
+                }
+
+            });
+
+        }
+
+        function addAknowledgeCssNo(TID){
+            let confirmm = confirm("Are you sure you want to Aknowledge?");
+            if(confirmm){
+                url = "<?php echo base_url(''); ?>LabController/fgtRequestaddAknowledgeCssNo";
+                $.post(url, {
+                    TID: TID
+                }, function(data) {
+                    if (data) {
+                        alert('Request Acknowledge Successfully');
+                        loadFGTRequestStatusSendToLab();
+                        loadFGTRequestAknowloedgedByLab();
+                    } else {
+                        alert('Something went wrong!')
+                    }
+
+                });
+            }else{
+                alert('Acknowledge request cencelled.');
+            }
+        }
+        
     </script>
 
     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
@@ -1814,6 +2181,149 @@ if (!$this->session->has_userdata('user_id')) {
 
 
         });
+
+        var element;
+        $('#select-all').click(function(event) {
+            ackall = $("#checkbox-1").prop('checked');
+
+            var ele = document.getElementsByName('checkbox-1');
+            for (var i = 0; i < ele.length; i++) {
+                if (ele[i].type == 'checkbox')
+                    ele[i].checked = true;
+
+                if (ele[i] === true) {
+
+
+
+
+                }
+
+
+            }
+
+
+
+
+        });
+
+        $('#deselect-all').click(function(event) {
+            var ele = document.getElementsByName('checkbox-1');
+
+            for (var i = 0; i < ele.length; i++) {
+                if (ele[i].type == 'checkbox')
+                    ele[i].checked = false;
+
+            }
+        })
+
+
+
+
+
+        leaves = []
+        $('#select-all').click(function(e) {
+            checked = $('#select-all:checked').val()
+            if (checked) {
+                $('.leave-id').prop('checked', true)
+                leaves = $('.leave-id').map((_, el) => el.value).get()
+                $('.buttons').removeClass('d-none');
+                $(".submit-button").css("display", "block")
+            } else {
+                $('.leave-id').prop('checked', false)
+                leaves = []
+                $('.buttons').addClass('d-none');
+
+                $(".submit-button").css("display", "none")
+            }
+            console.log(leaves)
+        })
+
+        $('.leave-id').click(function(e) {
+            leave = $(this)[0]
+            console.log(leave.value)
+            if (leave.checked) {
+                leaves.indexOf(leave.value) === -1 ? leaves.push(leave.value) : null;
+                console.log(leaves)
+            } else {
+                leaves.indexOf(leave.value) !== -1 ? leaves.splice(leaves.indexOf(leave.value), 1) : null;
+                console.log(leaves)
+            }
+
+            if (leaves.length > 0) {
+
+                $('.buttons').removeClass('d-none');
+                $(".submit-button").css("display", "block")
+            } else {
+                $('#select-all').prop('checked', false)
+                $(".submit-button").css("display", "none")
+                $('.buttons').addClass('d-none');
+            }
+
+        })
+
+
+
+        $('.submit-button').click(function(data) {
+            let result = confirm("Are you sure to acknowledge all requests?")
+
+
+            if (result == true) {
+                if (data) {
+                    data = {
+                        leaves
+                    }
+
+
+                    url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestLabAcknowledgeBulk";
+
+
+
+                    $.post(url2, {
+                        data
+                    }, function(data) {
+                        if (data == true) {
+                            alert("Requests Acknowledged Successfully!")
+                            window.location.reload()
+                        }
+                    });
+
+
+                }
+            } else {
+                alert("Request Cancelled successfully!")
+            }
+
+        })
+
+
+
+
+
+
+        function acknowall(e) {
+            let id = this.id;
+
+            let split_value = id.split(".");
+            var TID = split_value[1];
+            let proceed = confirm("Are you sure you want to acknowledge Receipt?");
+            if (proceed) {
+
+                url = "<?php echo base_url(''); ?>LabController/TestRequestById";
+                url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestLabAcknowledge";
+                $.post(url, {
+                    'Id': TID
+                }, function(data, status) {
+                    $.post(url2, {
+                        'Id': TID
+                    }, function(data, status) {
+                        alert("Data Updated Successfully! Click on Ok to Reload the Page")
+                        window.location.reload();
+                    });
+                });
+            } else {
+                alert("Sending Cancel");
+            }
+        }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js" integrity="sha512-gtII6Z4fZyONX9GBrF28JMpodY4vIOI0lBjAtN/mcK7Pz19Mu1HHIRvXH6bmdChteGpEccxZxI0qxXl9anY60w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 

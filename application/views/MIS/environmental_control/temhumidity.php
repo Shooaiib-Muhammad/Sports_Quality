@@ -25,8 +25,9 @@ if (!$this->session->has_userdata('user_id')) {
           
           <ol class="breadcrumb page-breadcrumb">
                         <li class="breadcrumb-item"><a href="<?php echo base_url(
-                                                                    'index.php/main/dmms_dashboard'
-                                                                ); ?>">Tem Humidity</a></li>
+                                                                    'index.php/DashboardController'
+                                                                ); ?>">Dashboard</a></li>
+                                                                <li class="breadcrumb-item">Tem Humidity</li>
 
 
                         <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
@@ -3333,6 +3334,13 @@ Highcharts.chart('lineChartHum', {
     </script>
 
 </div>
+
+<script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
+      <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
+      <script type="text/javascript">
+          /* Activate smart panels */
+          $('#js-page-content').smartPanel();
+      </script>
 
 </body>
 

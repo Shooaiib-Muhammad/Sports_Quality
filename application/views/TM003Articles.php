@@ -220,7 +220,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                             $pointB43003 = [
                                 $key['ArtCode'],
-                                Round($key['Pass']),
+                                Round($key['pass']),
                             ];
                             array_push($B34003data_points2, $pointB43003);
                         }

@@ -1,4 +1,25 @@
 <?php $this->load->view('includes/new_header'); ?>
+
+
+<?php 
+// Value of Die Testing
+$dieCount=0;
+foreach ($dieTestingSheetSizing as $key) {
+    $dieCount=$key['Duration'];   
+}
+$onaCount=0;
+foreach ($ONASheetSizing as $key) {
+    $onaCount=$key['Duration'];   
+}
+$machineCount=0;
+foreach ($machineTestingSheetSizing as $key) {
+    $machineCount=$key['Duration'];   
+}
+// print_r($ONASheetSizing);
+// print_r($machineTestingSheetSizingGraph);
+
+
+?>
 <!-- BEGIN Page Wrapper -->
 <div class="page-wrapper">
   <div class="page-inner">
@@ -36,7 +57,56 @@ foreach ($HourllyReading as $key) {
     // array_push($target, $point3);
     //array_push($lineNames, $key['LineName']);
 
-} ?>
+} 
+
+// For DieTesting Graph
+
+$GetNameDie = array();
+$GetDurationDie = array();
+//$target = array();
+//print_r($HourllyReading);
+foreach ($dieTestingSheetSizingGraph as $key) {
+    $point1 = $key['MachineName'] ;
+    $point2 = $key['Duration'];
+    array_push($GetNameDie, $point1);
+    array_push($GetDurationDie, $point2);
+}
+
+
+// For Ona Graph
+
+
+
+
+$GetNameOna = array();
+$GetDurationOna = array();
+//$target = array();
+//print_r($HourllyReading);
+foreach ($ONASheetSizingGraph as $key) {
+    $point1 = $key['MachineName'] ;
+    $point2 = $key['Duration'];
+    array_push($GetNameOna, $point1);
+    array_push($GetDurationOna, $point2);
+}
+
+// for Machine Testing graph
+
+$GetNameMachine = array();
+$GetDurationMachine = array();
+//$target = array();
+//print_r($HourllyReading);
+foreach ($machineTestingSheetSizingGraph as $key) {
+    $point1 = $key['MachineName'] ;
+    $point2 = $key['Duration'];
+    array_push($GetNameMachine, $point1);
+    array_push($GetDurationMachine, $point2);
+}
+
+
+
+
+
+?>
       
 
         <div class="subheader">
@@ -50,6 +120,8 @@ foreach ($HourllyReading as $key) {
         <ul class="nav nav-pills" role="tablist">
                                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Date Filteration</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3">Down Time</a></li>
+
 
                 </ul>
                 <div class="tab-content py-3">
@@ -188,7 +260,7 @@ foreach ($HourllyReading as $key) {
                                     <div class="">
                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                         <small class="m-0 l-h-n">Target</small>
-                                            <span >67%</span>
+                                            <span >69 %</span>
 
                                         </h3>
 
@@ -447,9 +519,157 @@ foreach ($HourllyReading as $key) {
 
    
 </div>
+
+<!-- tabdirection 3 -->
+
+<div class="tab-pane fade" id="tab_direction-3" role="tabpanel">
+<div class="card">
+<div class="card-body">
+    <h5 class="card-title" style="color:black;font-weight:bolder">Date Filteration</h5>
+    <div class="row">
+        <div class="col-md-2"><input class="form-control" type="date" id="startDate" /></div>
+        <div class="col-md-2"><input class="form-control" type="date" id="endDate" /></div>
+        <div class="col-md-4"><button class="btn btn-primary" id="searchRange">Search</button></div>
+    </div>
+    </div>
+
+    </div>
+<br>
+            <div class="row" >
+                    <div class="col-md-12">
+
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Down Time of Machines
+                                  
+                                </h2>
+                            </div>
+                            <div class="panel-container show" >
+                               
+                            <div class="row">
+                            <div class="col-md-2 p-5 m-5" id="direct">
+                                    <a href="javascript:void(0)">
+                                        <div style="background-color:brown" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                            <div class="">
+                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                                                    <small class="m-0 l-h-n">Die Testing</small>
+                                                    <span> <?php echo $dieCount; ?> </span>
+                                                    
+                                                </h3>
+                                            </div>
+                                            <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-2 p-5 m-5" id="direct">
+                                    <a href="javascript:void(0)">
+                                        <div style="background-color:gray" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                            <div class="">
+                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                                                    <small class="m-0 l-h-n">ONA</small>
+                                                    <span> <?php echo $onaCount; ?> </span>
+                                                    
+                                                </h3>
+                                            </div>
+                                            <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-2 p-5 m-5" id="direct">
+                                    <a href="javascript:void(0)">
+                                        <div style="background-color:purple" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                            <div class="">
+                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                                                    <small class="m-0 l-h-n">Machine Testing</small>
+                                                    <span> <?php echo $machineCount; ?> </span>
+                                                    
+                                                </h3>
+                                            </div>
+                                            <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-2 p-5 m-5" id="direct">
+                                    <a href="javascript:void(0)">
+                                        <div style="background-color:green" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                            <div class="">
+                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                                                    <small class="m-0 l-h-n">Down Time</small>
+                                                    <span> <?php echo $dieCount+$onaCount+$machineCount; ?> </span>
+                                                    
+                                                </h3>
+                                            </div>
+                                            <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                </div>
+                
+
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Graphs
+                                  
+                                </h2>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="row ">
+                                    <div class="col-md-12">
+                                        <div id="containerDie">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="row ">
+                                    <div class="col-md-12">
+                                        <div id="containerOna">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="row ">
+                                    <div class="col-md-12">
+                                        <div id="containerMachine">
+
+                                        </div>
+                                    </div>
+                                </div>
+                       
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
+
    
+</div>
+
+
+
+
+                </div>
       </main>
       <!-- this overlay is activated only when mobile menu is triggered -->
       <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
@@ -1952,7 +2172,7 @@ $("#searchRange").on('click',function(e){
             // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
         if(datesArrayMachineWise.indexOf(data.MachineData[k].Date) === -1){
             datesArrayMachineWise.push(data.MachineData[k].Date)
-        targetDataMachineWise.push(parseFloat(64))
+        targetDataMachineWise.push(parseFloat(69))
         if(data.MachineData[k].Name == "HF-01"){
                 output = data.MachineData[k].Counter * 0.2 * 2.87
             Minutes = (1.5*480);
@@ -3593,7 +3813,7 @@ Highcharts.chart('containerDateRangeBar', {
             efficiencyInner = ((outputInner / MinutesInner) * 100).toFixed(2)
 
             seriesData.push(parseFloat(efficiencyInner))
-            targetData.push(parseFloat(64))
+            targetData.push(parseFloat(69))
 // }
         }
        
@@ -3738,6 +3958,234 @@ $("#dateRangeResult").css('display','inline-block')
 
 
                     });
+
+
+                    Highcharts.chart('containerDie', {
+                        chart: {
+                            zoomType: 'xy'
+                        },
+                        title: {
+                            text: 'Die Testing '
+                        },
+                        subtitle: {
+                            // text: 'Source: WorldClimate.com'
+                        },
+                        xAxis: [{
+                            categories: <?php echo json_encode($GetNameDie, JSON_NUMERIC_CHECK); ?>,
+                            crosshair: true
+                        }],
+                        yAxis: [{ // Primary yAxis
+                                labels: {
+                                    format: '{value} balls',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                },
+                                title: {
+                                    
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                }
+                            },
+                            { // Secondary yAxis
+                                title: {
+                                    text: 'Target',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[0]
+                                    }
+                                },
+
+                                opposite: true
+                            }
+                        ],
+                        tooltip: {
+                            shared: true
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'left',
+                            x: 120,
+                            verticalAlign: 'top',
+                            y: 100,
+                            floating: true,
+                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                                'rgba(255,255,255,0.25)',
+                            enabled: false
+                        },
+
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.0f}'
+                                }
+                            }
+                        },
+                        series: [{
+                                type: 'column',
+                                yAxis: 1,
+
+                                data: <?php echo json_encode($GetDurationDie, JSON_NUMERIC_CHECK); ?>,
+                            }
+
+                        ]
+
+
+                    });
+
+                    Highcharts.chart('containerOna', {
+                        chart: {
+                            zoomType: 'xy'
+                        },
+                        title: {
+                            text: 'ONA Testing '
+                        },
+                        subtitle: {
+                            // text: 'Source: WorldClimate.com'
+                        },
+                        xAxis: [{
+                            categories: <?php echo json_encode($GetNameOna, JSON_NUMERIC_CHECK); ?>,
+                            crosshair: true
+                        }],
+                        yAxis: [{ // Primary yAxis
+                                labels: {
+                                    format: '{value} balls',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                },
+                                title: {
+                                    
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                }
+                            },
+                            { // Secondary yAxis
+                                title: {
+                                    text: 'Target',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[0]
+                                    }
+                                },
+
+                                opposite: true
+                            }
+                        ],
+                        tooltip: {
+                            shared: true
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'left',
+                            x: 120,
+                            verticalAlign: 'top',
+                            y: 100,
+                            floating: true,
+                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                                'rgba(255,255,255,0.25)',
+                            enabled: false
+                        },
+
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.0f}'
+                                }
+                            }
+                        },
+                        series: [{
+                                type: 'column',
+                                yAxis: 1,
+
+                                data: <?php echo json_encode($GetDurationOna, JSON_NUMERIC_CHECK); ?>,
+                            }
+
+                        ]
+
+
+                    });
+
+                    Highcharts.chart('containerMachine', {
+                        chart: {
+                            zoomType: 'xy'
+                        },
+                        title: {
+                            text: 'Machine Testing '
+                        },
+                        subtitle: {
+                            // text: 'Source: WorldClimate.com'
+                        },
+                        xAxis: [{
+                            categories: <?php echo json_encode($GetNameMachine, JSON_NUMERIC_CHECK); ?>,
+                            crosshair: true
+                        }],
+                        yAxis: [{ // Primary yAxis
+                                labels: {
+                                    format: '{value} balls',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                },
+                                title: {
+                                    
+                                    style: {
+                                        color: Highcharts.getOptions().colors[1]
+                                    }
+                                }
+                            },
+                            { // Secondary yAxis
+                                title: {
+                                    text: 'Target',
+                                    style: {
+                                        color: Highcharts.getOptions().colors[0]
+                                    }
+                                },
+
+                                opposite: true
+                            }
+                        ],
+                        tooltip: {
+                            shared: true
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'left',
+                            x: 120,
+                            verticalAlign: 'top',
+                            y: 100,
+                            floating: true,
+                            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                                'rgba(255,255,255,0.25)',
+                            enabled: false
+                        },
+
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.0f}'
+                                }
+                            }
+                        },
+                        series: [{
+                                type: 'column',
+                                yAxis: 1,
+
+                                data: <?php echo json_encode($GetDurationMachine, JSON_NUMERIC_CHECK); ?>,
+                            }
+
+                        ]
+
+
+                    });
+
+
 </script>
 
 
