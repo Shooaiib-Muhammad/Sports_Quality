@@ -4859,160 +4859,78 @@ if (!$this->session->has_userdata('user_id')) {
                             });
 
                             function getFGTTestHeadDetails(TID, CssNo) {
+
+
+
                                 url1 = '<?php echo base_url('LabController/getFGTTestHead'); ?>'
                                 url2 = '<?php echo base_url('LabController/getFGTTestDetails'); ?>'
-                                url3 = '<?php echo base_url('LabController/getFGTTestDetailsAlongCssNo'); ?>'
                                 $.post(url1, {
                                     TID: TID
                                 }, function(data, status) {
                                     if (data) {
-                                        let cssNo = data[0]['CssNo'];
-                                        $.post(url3, {
-                                            cssNo: cssNo
-                                        }, function(data3) {
-                                            if (!!data3 && data3.length > 0 && data3[0]['factoryCode'] == 'B34006') {
 
-                                                $('#labNoFGTAirlessMini').html(data[0]['LabNo']);
-                                                $('#cssNoFGTAirlessMini').html(data[0]['CssNo']);
-                                                $('#receiveDateFGTAirlessMini').html(data[0]['Receiving_Date']);
-                                                $('#testingDataFGTAirlessMini').html(data[0]['Testing_Date']);
-                                                $('#issueDateFGTAirlessMini').html(data[0]['Issue_Date']);
-                                                $('#environmentalCondFGTAirlessMini').html(data[0]['EnvironmentalC']);
-                                                $('#testAccToCatFGTAirlessMini').html(data[0]['TestAccToCat']);
-                                                $('#coverMatFGTAirlessMini').html(data[0]['CoverMat']);
-                                                $('#backingFGTAirlessMini').html(data[0]['Backing']);
-                                                $('#bladderFGTAirlessMini').html(data[0]['Bladder']);
-                                                $('#ballTypeFGTAirlessMini').html(data[0]['BallType']);
-                                                $('#fifaStumpFGTAirlessMini').html(data[0]['Fifa_stump']);
-                                                $('#prodMonthFGTAirlessMini').html(data[0]['ProductionMon']);
-                                                $('#testTypeFGTAirlessMini').html(data[0]['TestType']);
-                                                $('#mainMatColorFGTAirlessMini').html(data[0]['MainMatColor']);
-                                                $('#printingColorFGTAirlessMini').html(data[0]['PrintingColor']);
-                                                $('#acticleNoFGTAirlessMini').html(data[0]['Article']);
-                                                $('#workingNoFGTAirlessMini').html(data[0]['Working']);
-                                                $('#resultFGTAirlessMini').html(data[0]['Result']);
-                                                $('#testedbyFGtAirlessMini').html(data[0]['TestedBy']);
+                                        $('#labNoFGT').html(data[0]['LabNo']);
+                                        $('#cssNoFGT').html(data[0]['CssNo']);
+                                        $('#receiveDateFGT').html(data[0]['Receiving_Date']);
+                                        $('#testingDataFGTS').html(data[0]['Testing_DateS']);
+                                        $('#testingDataFGTE').html(data[0]['Testing_DateE']);
+                                        $('#issueDateFGT').html(data[0]['Issue_Date']);
+                                        $('#environmentalCondFGT').html(data[0]['EnvironmentalC']);
+                                        $('#testAccToCatFGT').html(data[0]['TestAccToCat']);
+                                        $('#coverMatFGT').html(data[0]['CoverMat']);
+                                        $('#backingFGT').html(data[0]['Backing']);
+                                        $('#bladderFGT').html(data[0]['Bladder']);
+                                        $('#ballTypeFGT').html(data[0]['BallType']);
+                                        $('#fifaStumpFGT').html(data[0]['Fifa_stump']);
+                                        $('#prodMonthFGT').html(data[0]['ProductionMon']);
+                                        $('#testTypeFGT').html(data[0]['TestType']);
+                                        $('#mainMatColorFGT').html(data[0]['MainMatColor']);
+                                        $('#printingColorFGT').html(data[0]['PrintingColor']);
+                                        $('#acticleNoFGT').html(data[0]['Article']);
+                                        $('#workingNoFGT').html(data[0]['Working']);
+                                        $('#resultFGT').html(data[0]['Result']);
+                                        $('#testedbyFGt').html(data[0]['TestedBy']);
 
-                                                if (data[0]['LabNo'].includes('MS')) {
-                                                    $("#testRequestAirlessMini").html("By Mr.Zeeshan Ikram - MS2@Forward.pk")
-                                                } else {
-                                                    $("#testRequestAirlessMini").html("By Oman Sb - oman@forward.pk")
-                                                }
-                                                if (data[0]['freshImage']) {
-                                                    $("#freshImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].freshImage);
-                                                } else {
-                                                    $("#freshImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                                }
+                                        if (data[0]['LabNo'].includes('MS')) {
+                                            $("#testRequest").html("By Mr.Zeeshan Ikram - MS2@Forward.pk")
+                                        } else {
+                                            $("#testRequest").html("By Oman Sb - oman@forward.pk")
+                                        }
+                                        if (data[0]['freshImage']) {
+                                            $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].freshImage);
+                                        } else {
+                                            $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                        }
 
-                                                if (data[0]['afterShooterImage']) {
-                                                    $("#afterShooterImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].afterShooterImage);
-                                                } else {
-                                                    $("#afterShooterImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                                }
+                                        if (data[0]['afterShooterImage']) {
+                                            $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].afterShooterImage);
+                                        } else {
+                                            $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                        }
 
-                                                if (data[0]['hydrolysisImage']) {
-                                                    $("#hydrolysisImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].hydrolysisImage);
-                                                } else {
-                                                    $("#hydrolysisImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                                }
+                                        if (data[0]['hydrolysisImage']) {
+                                            $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].hydrolysisImage);
+                                        } else {
+                                            $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                        }
 
-                                                if (data[0]['drumImage']) {
-                                                    $("#drumImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].drumImage);
-                                                } else {
-                                                    $("#drumImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                                }
-                                                $.post(url2, {
-                                                    TID: TID
-                                                }, function(data, status) {
-                                                    // console.log("details data",data);
-                                                    let html;
-                                                    if (data) {
-                                                        data.forEach((element, index) => {
+                                        if (data[0]['drumImage']) {
+                                            $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].drumImage);
+                                        } else {
+                                            $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                        }
 
-                                                            html += `<tr>
-                                                                            <td style="padding:left: 2px">${element.Test}</td>
-                                                                            <th style="text-align:center">${element.Method }</th>
-                                                                            <th style="text-align:center">${element.Condition}</th>
-                                                                            <th style="text-align:center">${element.Unit}</th>
-                                                                            <th style="text-align:center">${element.AirlessMiniSoccerball}</th>
-                                                                            <th style="text-align:center">${element.Ball1}</th>
-                                                                            <th style="text-align:center">${element.Ball2}</th>
-                                                                            <th style="text-align:center">${element.Ball3}</th>
-                                                                            <th style="text-align:center">${element.Ball4}</th>
-                                                                            <th style="text-align:center">${element.Ball5}</th>
-                                                                        </tr>`
-
-                                                        })
-                                                        $('#fgtTestDetailsAirlessMini').html(html);
-                                                    }
-                                                });
-                                                $('#exampleModalFGTAirlessMiniTesting').modal('toggle');
-
-
-                                            } else {
-
-                                                $('#labNoFGT').html(data[0]['LabNo']);
-                                                $('#cssNoFGT').html(data[0]['CssNo']);
-                                                $('#receiveDateFGT').html(data[0]['Receiving_Date']);
-                                                $('#testingDataFGTS').html(data[0]['Testing_DateS']);
-                                                $('#testingDataFGTE').html(data[0]['Testing_DateE']);
-                                                $('#issueDateFGT').html(data[0]['Issue_Date']);
-                                                $('#environmentalCondFGT').html(data[0]['EnvironmentalC']);
-                                                $('#testAccToCatFGT').html(data[0]['TestAccToCat']);
-                                                $('#coverMatFGT').html(data[0]['CoverMat']);
-                                                $('#backingFGT').html(data[0]['Backing']);
-                                                $('#bladderFGT').html(data[0]['Bladder']);
-                                                $('#ballTypeFGT').html(data[0]['BallType']);
-                                                $('#fifaStumpFGT').html(data[0]['Fifa_stump']);
-                                                $('#prodMonthFGT').html(data[0]['ProductionMon']);
-                                                $('#testTypeFGT').html(data[0]['TestType']);
-                                                $('#mainMatColorFGT').html(data[0]['MainMatColor']);
-                                                $('#printingColorFGT').html(data[0]['PrintingColor']);
-                                                $('#acticleNoFGT').html(data[0]['Article']);
-                                                $('#workingNoFGT').html(data[0]['Working']);
-                                                $('#resultFGT').html(data[0]['Result']);
-                                                $('#testedbyFGt').html(data[0]['TestedBy']);
-
-                                                if (data[0]['LabNo'].includes('MS')) {
-                                                    $("#testRequest").html("By Mr.Zeeshan Ikram - MS2@Forward.pk")
-                                                } else {
-                                                    $("#testRequest").html("By Oman Sb - oman@forward.pk")
-                                                }
-                                                if (data[0]['freshImage']) {
-                                                    $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].freshImage);
-                                                } else {
-                                                    $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                                }
-
-                                                if (data[0]['afterShooterImage']) {
-                                                    $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].afterShooterImage);
-                                                } else {
-                                                    $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                                }
-
-                                                if (data[0]['hydrolysisImage']) {
-                                                    $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].hydrolysisImage);
-                                                } else {
-                                                    $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                                }
-
-                                                if (data[0]['drumImage']) {
-                                                    $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].drumImage);
-                                                } else {
-                                                    $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                                }
-
-                                                $.post(url2, {
-                                                    TID: TID
-                                                }, function(data, status) {
-                                                    // console.log("details data",data);
-                                                    let html;
-                                                    if (data) {
-                                                        data.forEach((element, index) => {
-                                                            if (index == 12) {
-                                                                let mergedRow = '';
-                                                                mergedRow += element.Method + "," + element.Condition;
-                                                                html += `<tr>
+                                        $.post(url2, {
+                                            TID: TID
+                                        }, function(data, status) {
+                                            // console.log("details data",data);
+                                            let html;
+                                            if (data) {
+                                                data.forEach((element, index) => {
+                                                    if (index == 12) {
+                                                        let mergedRow = '';
+                                                        mergedRow += element.Method + "," + element.Condition;
+                                                        html += `<tr>
                                                         <td style="padding:left: 2px">${element.Test}</td>
                                                         <th style="text-align:center">` + mergedRow + `</th>
                                                         <th style="text-align:center"></th>
@@ -5024,9 +4942,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <th style="text-align:center">${element.Max}</th>
                                                         <th style="text-align:center">${element.Remarks}</th>
                                                     </tr>`
-                                                                // console.log("merged data", mergedRow);
-                                                            } else {
-                                                                html += `<tr>
+                                                        // console.log("merged data", mergedRow);
+                                                    } else {
+                                                        html += `<tr>
                                                             <td style="padding:left: 2px">${element.Test}</td>
                                                             <th style="text-align:center">${element.Method }</th>
                                                             <th style="text-align:center">${element.Condition}</th>
@@ -5038,15 +4956,15 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <th style="text-align:center">${element.Max}</th>
                                                             <th style="text-align:center">${element.Remarks}</th>
                                                         </tr>`
-                                                            }
-                                                        })
-                                                        $('#fgtTestDetails').html(html);
                                                     }
-                                                });
-                                                $('#exampleModalFGTTesting').modal('toggle');
+                                                })
+                                                $('#fgtTestDetails').html(html);
                                             }
-
                                         });
+                                        $('#exampleModalFGTTesting').modal('toggle');
+
+
+
                                     }
 
 
@@ -10610,10 +10528,12 @@ if (!$this->session->has_userdata('user_id')) {
                     let testNo;
                     let cssNo;
                     filelist.forEach(element => {
-                        if (element.LABNO != "" && element.CSSNO != "" && element.TestingDate != "") {
+                        if (element.LABNO != "" && element.CSSNO != "") {
                             $("#submitData").css("display", "none");
                             $("#sendHeaderValues").css("display", "block");
-                            c
+                            let arrayHead = [element.LABNO, element.CSSNO, element.ReceivingDate, element.TestingDateS, element.TestingDateE, element.IssueDate, element.EnvironmentalCond, element.TestAccToCat, element.COVERMAT, element.BACKING, element.BLADDER, element.BALLTYPE, element.FIFAStamp, element.Productionmonth, element.TESTTYPE, element.MAINMATCOLOR, element.PRINTINGCOLORS, element.Article, element.Working, element.RESULT, element.TESTEDBY];
+
+                            let arrayBody = [element.TEST, element.METHOD, element.CONDITION, element.UNIT, element.CAT1, element.CAT2, element.CAT2, element.MIN, element.MAX, element.REMARKS, ']'];
 
                             HeaderArray.push(arrayHead);
                             ChildArray.push(arrayBody);
@@ -10626,8 +10546,7 @@ if (!$this->session->has_userdata('user_id')) {
                             // ChildArray.push(arrayBody)
                         }
                     });
-                    // console.log("header data", HeaderArray);
-                    // console.log("child data", ChildArray);
+                    
                     $("#headerData").val(HeaderArray);
                     $("#childData").val(ChildArray);
                 };
@@ -11303,6 +11222,7 @@ if (!$this->session->has_userdata('user_id')) {
                             $("#alertShown").hide();
                         },
                         success: function(data, status) {
+                            console.log(data)
                             if (data == true) {
                                 alert("File Upload Successfully");
                                 setInterval(function() {

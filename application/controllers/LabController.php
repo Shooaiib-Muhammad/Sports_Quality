@@ -197,33 +197,30 @@ class LabController extends CI_Controller
     }
 
 
+   
     public function AddRaw_MatHead()
     {
     
-        $DateP = $_POST['DateP'];
+        $DateP = $_POST['Date'];
 
         $Type = $_POST['Type'];
         $testCategory = $_POST['testCategory'];
         $factoryCode = $_POST['factoryCode'];
         $quantityIssued = $_POST['quantityIssued'];
-        $supplierN = $_POST['supplierN'];
+        $supplierN = $_POST['supplier'];
         $testType = $_POST['testType'];
         // $tTypeP = $_POST['tTypeP'];
-        $ItemNameP = $_POST['ItemNameP'];
-        $tTypeP = $_POST['tTypeP'];
+        $ItemName = $_POST['ItemName'];
 
-    
-        
+        // $tTypeP,
 
-       
-        $data = $this->l->AddRaw_MatHead($DateP, $Type, $factoryCode, $quantityIssued, $supplierN, $testType, $tTypeP, $ItemNameP);
+        $data = $this->l->AddRaw_MatHead($DateP, $Type, $factoryCode, $quantityIssued, $supplierN, $testType, $ItemName);
 
         return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
-
 
 
 
@@ -792,6 +789,20 @@ class LabController extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
+
+    
+    public function getRawMatReqTests()
+    {
+        
+
+        $data = $this->l->getRawMatReqT();
+
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+
 
     public function main_form()
     {
@@ -2724,7 +2735,7 @@ class LabController extends CI_Controller
     }
     public function FGTRequestDateRange()
     {
-        $data = $this->l->FGTRequestDateRange($_POST['date1'], $_POST['date2']);
+        $data = $this->l->FGTRequestDateRange($_POST['date1'], $_POST['date2'], $_POST['factoryCode']);
         return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)

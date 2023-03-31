@@ -291,6 +291,17 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </div>
                                                                     <div class="col-md-3"><input class="form-control" type="date" id="date2" />
                                                                     </div>
+                                                                    <div class="col-md-3">
+                                                <select name="factoryCode" id="factoryCode" class="form-control">
+                                                    <option value="">Select Factory Code</option>
+                                                    <option value="B34002">B34002</option>
+                                                    <option value="B34003">B34003</option>
+                                                    <option value="B34004">B34004</option>
+                                                    <option value="B34005">B34005</option>
+                                                    <option value="B34006">B34006</option>
+                                                    <option value="B34007">B34007</option>
+                                                </select>
+                                            </div>
                                                                     <div class="col-md-3"><button class="btn btn-primary" id="searchFGTtest">Search</button></div>
                                                                 </div>
                                                                 <div class="panel-container show m-2">
@@ -1477,6 +1488,8 @@ if (!$this->session->has_userdata('user_id')) {
     <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
     <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
     <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/notifications/toastr/toastr.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $('#schedule').dataTable({
             responsive: true,
@@ -2637,9 +2650,13 @@ if (!$this->session->has_userdata('user_id')) {
 
             var date1 = $("#date1").val();
             var date2 = $("#date2").val();
+
+            var factoryCode = $("#factoryCode").val();
+
             $.post(url, {
                 date1: date1,
-            date2: date2
+            date2: date2,
+            factoryCode: factoryCode
         },function(data) {
                 let html = `<table class="table table-bordered table-hover table-responsive table-striped table-sm w-100" style="width:100%" id="fgtReqDateRange">
                     <thead class="bg-primary-200 text-light p-2">
@@ -2791,7 +2808,21 @@ if (!$this->session->has_userdata('user_id')) {
                     });
 
                 }else{
-                    alert("No data found.")
+                   
+                    toastr["info"]("No data found!")
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": true,
+                        "progressBar": true,
+                        "positionClass": "toast-top-center",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "timeOut": 0,
+                    }
+                
+                    $("#tableData").html(html);
                 }
 
             });

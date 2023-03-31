@@ -10520,7 +10520,7 @@ if (!$this->session->has_userdata('user_id')) {
                                 let testNo;
                                 let cssNo;
                                 filelist.forEach(element => {
-                                    if (element.LABNO != "" && element.CSSNO != "" && element.TestingDate != "") {
+                                    if (element.LABNO != "" && element.CSSNO != "") {
                                         $("#submitData").css("display", "none");
                                         $("#sendHeaderValues").css("display", "block");
                                         let arrayHead = [element.LABNO, element.CSSNO, element.ReceivingDate, element.TestingDateS, element.TestingDateE, element.IssueDate, element.EnvironmentalCond, element.TestAccToCat, element.COVERMAT, element.BACKING, element.BLADDER, element.BALLTYPE, element.FIFAStamp, element.Productionmonth, element.TESTTYPE, element.MAINMATCOLOR, element.PRINTINGCOLORS, element.ModelName, element.Article, element.Working, element.RESULT, element.TESTEDBY];

@@ -233,8 +233,8 @@ if (!$this->session->has_userdata('user_id')) {
                     </div>
                     <!--End ADD FGT CSS REQUEST MODAL -->
 
-                     <!--Start QR Code For FGT REQUEST MODAL -->
-                     <div id="qrCodeModel" class="modal fade">
+                    <!--Start QR Code For FGT REQUEST MODAL -->
+                    <div id="qrCodeModel" class="modal fade">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header" style="background-color: rgb(83,78,130);color:white;font-weight:bolder">
@@ -245,15 +245,11 @@ if (!$this->session->has_userdata('user_id')) {
                                 </div>
                                 <div class="modal-body">
                                     <div class="card">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-12" id="qrCodeToPrint">
-                                                    <img src="" alt="" id="qrCodeImage" width="150px" height="150px">
-                                                </div>
-                                            </div>
+                                        <div class="card-body" id="qrCodeToPrint">
+
                                         </div>
                                         <div class="card-footer">
-                                        <button type="button" class="btn btn-primary" onclick="printDiv('qrCodeToPrint')" data-dismiss="modal">Print QrCode</button>
+                                            <button type="button" class="btn btn-primary" onclick="printDiv('qrCodeToPrint')" data-dismiss="modal">Print QrCode</button>
                                         </div>
                                     </div>
 
@@ -928,6 +924,12 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <input name="date" id="date2" class="form-control" type="date" value="<?php echo $CurrentDate; ?>">
                                                             </div>
                                                         </div> -->
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+
+                                                                <button id="show-selected" class="btn btn-primary" style="display:none"></button>
+                                                            </div>
+                                                        </div>
 
 
 
@@ -964,6 +966,8 @@ if (!$this->session->has_userdata('user_id')) {
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $('.undobtn').click(function() {
             let id = this.id;
@@ -4045,6 +4049,7 @@ if (!$this->session->has_userdata('user_id')) {
                     let html = `<table class="table table-bordered table-hover table-responsive table-striped table-sm" style="width:100%" id="fgtTableExport2">
             <thead class="bg-primary-200 text-light p-2">
                 <tr>
+                    <th><input type="checkbox" id="check-all"></th>
                     <th class="h5">CSS NO</th>
                     <th class="h5">CSS Date</th>
                     <th class="h5">Factory Code</th>
@@ -4074,37 +4079,38 @@ if (!$this->session->has_userdata('user_id')) {
             <tbody>`
                     data.forEach(element => {
                         html += `
-            <tr>
-            
-            <td><span class="badge badge-warning p-1">${element.CssNO}</span></td>
-            <td>${element.CssDate.split("00:00:00")[0]}</td>
-            <td>${element.factoryCode}</td>
-            <td>${element.WorkingNo}</td>
-            <td>${element.Articleno}</td>
-            <td>${element.ModelName}</td>
-            <td>${element.Size}</td>
-            <td>${element.BallType}</td>               
-            <td>${element.mainmaterialColor}</td>
-            <td><span>${element.Covermat}</span></td>
-            <td><span>${element.backing}</span></td>
-            <td><span> ${element.Bladderdetail} </span></td>
-            <td><span> ${element.ProductionMonth} </span></td>
-            <td><span> ${element.Printingcolor} </span></td>
-            <td><span> ${element.panelShape} </span></td>
-            <td><span> ${element.testype} </span></td>
-            <td><span> ${element.deliverqty} </span></td>
-            <td><span> ${element.additionalinfo} </span></td>
-            <td><span class="badge badge-secondary p-1">${element.LabStatus == null ? `Pending` : `Aknowledged`} </span></td>
-
-            <!--<td> <span class="badge badge-primary p-1">Receiver Signature</span></td>
-
-            <td> <span class="badge badge-primary p-1">Sender Signature</span></td> -->
-
-            <td><span class="badge badge-warning p-1">${element.RequestStatus}</span></td>
-            <td><span class="badge badge-danger p-1">${element.LoginName}</span></td>
-            <td style="cursor:pointer;font-size:20px"><span class="badge badge-primary" onclick="generateQrCode('${element.CssNoQrCode}')">Get QrCode</span></td>
+                        <tr>
                         
-            </tr>`
+                        <td><input type='checkbox' class='row-select' data-css-no='${element.CssNO}' data-qr-code='${element.CssNoQrCode}'></td>
+                        <td><span class="badge badge-warning p-1">${element.CssNO}</span></td>
+                        <td>${element.CssDate.split("00:00:00")[0]}</td>
+                        <td>${element.factoryCode}</td>
+                        <td>${element.WorkingNo}</td>
+                        <td>${element.Articleno}</td>
+                        <td>${element.ModelName}</td>
+                        <td>${element.Size}</td>
+                        <td>${element.BallType}</td>               
+                        <td>${element.mainmaterialColor}</td>
+                        <td><span>${element.Covermat}</span></td>
+                        <td><span>${element.backing}</span></td>
+                        <td><span> ${element.Bladderdetail} </span></td>
+                        <td><span> ${element.ProductionMonth} </span></td>
+                        <td><span> ${element.Printingcolor} </span></td>
+                        <td><span> ${element.panelShape} </span></td>
+                        <td><span> ${element.testype} </span></td>
+                        <td><span> ${element.deliverqty} </span></td>
+                        <td><span> ${element.additionalinfo} </span></td>
+                        <td><span class="badge badge-secondary p-1">${element.LabStatus == null ? `Pending` : `Aknowledged`} </span></td>
+
+                        <!--<td> <span class="badge badge-primary p-1">Receiver Signature</span></td>
+
+                        <td> <span class="badge badge-primary p-1">Sender Signature</span></td> -->
+
+                        <td><span class="badge badge-warning p-1">${element.RequestStatus}</span></td>
+                        <td><span class="badge badge-danger p-1">${element.LoginName}</span></td>
+                        <td style="cursor:pointer;font-size:20px"><span class="badge badge-primary" onclick="generateQrCode('${element.CssNoQrCode}')">Get QrCode</span></td>
+                                    
+                        </tr>`
                     })
 
                     html += `</tbody>
@@ -4195,7 +4201,7 @@ if (!$this->session->has_userdata('user_id')) {
 
             let TID = $('#FGTId').val();
             let cssNo = $('#css_no').val();
-            if(cssNo){
+            if (cssNo) {
                 url = "<?php echo base_url(''); ?>LabController/addCssNoToFGTRequest";
                 $.post(url, {
                     TID: TID,
@@ -4208,15 +4214,17 @@ if (!$this->session->has_userdata('user_id')) {
                         loadFGTRequestwithCssNo();
                     }
                 });
-            }else{
+            } else {
                 alert('You must have to provide CSS No!');
             }
         });
-        function generateQrCode(CssNoQrCode){
 
-            $("#qrCodeImage").attr('src', '<?php echo base_url(); ?>assets/img/qrcode/' +CssNoQrCode);
+        function generateQrCode(CssNoQrCode) {
+
+            $("#qrCodeImage").attr('src', '<?php echo base_url(); ?>assets/img/qrcode/' + CssNoQrCode);
             $('#qrCodeModel').modal('toggle');
         }
+
         function printDiv(divName) {
             var printContents = document.getElementById(divName).innerHTML;
             var originalContents = document.body.innerHTML;
@@ -4228,6 +4236,72 @@ if (!$this->session->has_userdata('user_id')) {
             document.body.innerHTML = originalContents;
             window.location.reload();
         }
+        $(document).ready(function() {
+
+            // Add click event to "Check All" checkbox
+            $("#fgtRequestData2").on("click", '#check-all', function() {
+                // Check or uncheck all checkboxes based on the state of the "Check All" checkbox
+                $('.row-select').prop('checked', $(this).prop('checked'));
+
+                // Show or hide the "Show Selected" button based on the number of checked checkboxes
+                if ($('.row-select:checked').length > 0) {
+                    $('#show-selected').show();
+                } else {
+                    $('#show-selected').hide();
+                }
+            })
+
+
+            // Add click event to checkboxes
+            $("#fgtRequestData2").on("click", '.row-select', function() {
+                // Show or hide the "Show Selected" button based on the number of checked checkboxes
+                if ($('.row-select:checked').length > 0) {
+                    $('#show-selected').show();
+                } else {
+                    $('#show-selected').hide();
+                }
+            });
+
+            // // Add click event to "Show Selected" button
+            $('#show-selected').on('click', function() {
+                // Create an array to store selected IDs and names
+                var selectedRows = [];
+
+                // Loop through checked checkboxes and get the corresponding ID and name
+                $('.row-select:checked').each(function() {
+
+
+                    var cssno = $(this).data('css-no');
+                    var qrcode = $(this).data('qr-code');
+
+                    selectedRows.push({
+                        cssno: cssno,
+                        qrcode: qrcode
+                    });
+
+                });
+                if (selectedRows.length > 0) {
+                    var html = '';
+                    for (var i = 0; i < selectedRows.length; i++) {
+
+                        html += `<div style="display: grid;">
+
+                                    <div style="display: flex;
+                                    align-items: center;
+                                    justify-content: center;">
+                                        <img src="<?php echo base_url(); ?>assets/img/qrcode/` + selectedRows[i].qrcode + `" alt="no qrcode" width="150px" height="150px"> 
+                                        
+                                        <p>` + selectedRows[i].cssno + `</p>
+                                    </div>
+                                </div>`;
+                    }
+                    $('#qrCodeToPrint').html(html);
+                    $('#qrCodeModel').modal('toggle');
+
+                }
+
+            });
+        })
     </script>
 
 

@@ -3984,7 +3984,7 @@ WHERE        (userid = $user_id) AND (CssNO <> '') AND (RequestStatus = 'Acknowl
             return $query->result_array();
         }
     }
-    public function FGTRequestDateRange($date1, $date2)
+    public function FGTRequestDateRange($date1, $date2, $factoryCode)
     {
         date_default_timezone_set('Asia/Karachi');
         $Date = date('d/m/Y');
@@ -3993,14 +3993,14 @@ WHERE        (userid = $user_id) AND (CssNO <> '') AND (RequestStatus = 'Acknowl
         if ($username == 'Wajid Ali') {
             $query = $this->db->query("SELECT *
             FROM            dbo.View_FGT_Request
-            WHERE        (Date BETWEEN CONVERT(DATETIME, '$date1 00:00:00', 102) AND CONVERT(DATETIME, '$date2 00:00:00', 102)) ");
+            WHERE        (Date BETWEEN CONVERT(DATETIME, '$date1 00:00:00', 102) AND CONVERT(DATETIME, '$date2 00:00:00', 102)) AND FactoryCode='$factoryCode'");
             if ($query) {
                 return $query->result_array();
             }
         } else {
             $query = $this->db->query("SELECT *
             FROM            dbo.View_FGT_Request
-            WHERE        (Date BETWEEN CONVERT(DATETIME, '$date1 00:00:00', 102) AND CONVERT(DATETIME, '$date2 00:00:00', 102)) AND (userid = $user_id)");
+            WHERE        (Date BETWEEN CONVERT(DATETIME, '$date1 00:00:00', 102) AND CONVERT(DATETIME, '$date2 00:00:00', 102)) AND FactoryCode='$factoryCode' AND (userid = $user_id)");
             if ($query) {
                 return $query->result_array();
             }
@@ -4340,9 +4340,23 @@ WHERE        (CssNo = '$CssNo')");
         return $query->result_array();
     }
 
+    public function getRawMatReqT()
+    {
+
+        $Month = date('m');
+        $Year = date('Y');
+        $Day = date('d');
+        $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+
+        $query = $this->db->query("SELECT   *     
+        FROM   dbo.View_RawMatReqT
+        ");
+
+        return $query->result_array();
+    }
 
 
-    public function AddRaw_MatHead($DateP, $Type, $factoryCode, $quantityIssued, $supplierN, $testType, $testName, $ItemNameP)
+    public function AddRaw_MatHead($DateP, $Type, $factoryCode, $quantityIssued, $supplierN, $testType, $ItemNameD)
     {
 
 
@@ -4353,7 +4367,8 @@ WHERE        (CssNo = '$CssNo')");
 
         $date = date('Y-m-d');
 
-        $this->db->query("INSERT INTO tbl_Raw_material_H (Date, Type, FactoryCode, Quantity, SupplierNam ,TestType, SRSenderID, userid, EntryDate, testName, itemName)
-               VALUES ('$DateP', '$Type', '$factoryCode', $quantityIssued, '$supplierN', '$testType', '$user', '$user', '$date', '$testName', '$ItemNameP');");
+        $this->db->query("INSERT INTO tbl_Raw_material_H (Date, Type, FactoryCode, Quantity, SupplierNam ,TestType, SRSenderID, userid, EntryDate, itemName, receSign, status)
+               VALUES ('$DateP', '$Type', '$factoryCode', $quantityIssued, '$supplierN', '$testType', '$user', '$user', '$date', '$ItemNameD', 'Ahmed', 'Pending');");
     }
+
 }
