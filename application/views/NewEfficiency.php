@@ -176,7 +176,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                    <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-211" role="tab">Lamination  <i class="fal fa-percent mr-1"></i> </a>
                                                </li>
                                                <li class="nav-item">
-                                                   <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-311" role="tab">HF Cutting  <i class="fal fa-percent mr-1"></i> </a>
+                                                   <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-311" role="tab">Panel Cutting  <i class="fal fa-percent mr-1"></i> </a>
                                                </li>
                                                <li class="nav-item">
                                                    <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-411" role="tab"> Assembling  <i class="fal fa-percent mr-1"></i> </a>
@@ -204,7 +204,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 
                                                 <div class="tab-pane fade" id="tab_borders_icons-311" role="tabpanel">
                                               
-                                                <div id="HFEfficiency"></div>
+                                                
 
                                                 </div>
                                               
@@ -228,8 +228,153 @@ if (!$this->session->has_userdata('user_id')) {
                                                               
                         </div>
                         
-                                
                         
+                        <div class="row">
+                            <div class="col-xl-6">
+                            <div id="panel-11" class="panel">
+                                    <div class="panel-hdr">
+                                        <h2>
+                                        Airless Mini Ball Efficiency</span>
+                                        </h2>
+                                       
+                                    </div>
+                                    <div class="panel-container show">
+                                        <div class="panel-content">
+                                            <div class="border px-3 pt-3 pb-0 rounded">
+                                            <ul class="nav nav-pills" role="tablist">
+                                               
+                                               <li class="nav-item">
+                                                   <a class="nav-link active" data-toggle="tab" href="#tab_borders_icons-122" role="tab"> <i class="fal fa-home mr-1"></i> AMB Product Efficiency    </a>
+                                               </li>
+                                               <li class="nav-item">
+                                                   <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-222" role="tab">Lamniaition  <i class="fal fa-percent mr-1"></i>  </a>
+                                               </li>
+                                               <li class="nav-item">
+                                                   <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-322" role="tab"> HF Cutting  <i class="fal fa-percent mr-1"></i>  </a>
+                                               </li>
+                                               <li class="nav-item">
+                                                   <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-422" role="tab"> Assembling  <i class="fal fa-percent mr-1"></i> </a>
+                                               </li>
+                                               <li class="nav-item">
+                                                   <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-522" role="tab">Packing  <i class="fal fa-percent mr-1"></i> </a>
+                                               </li>
+                                           </ul>
+                                                <div class="tab-content py-3">
+                                                <div class="tab-pane fade show active" id="tab_borders_icons-122" role="tabpanel">
+                                                <div id="AMBEfficiency"></div> 
+                                              
+                                              
+                                                <!-- <div id="flot-toggles" class="w-100 mt-4" style="height: 300px"></div> -->
+                                            </div>
+                                               
+                                                <div class="tab-pane fade" id="tab_borders_icons-222" role="tabpanel">
+                                                
+
+                                               
+                                                </div>
+                                                
+                                                <div class="tab-pane fade" id="tab_borders_icons-322" role="tabpanel">
+                                              
+                                               
+
+                                                </div>
+                                                <div class="tab-pane fade" id="tab_borders_icons-422" role="tabpanel">
+                                                
+                                                <div id="AMBEfficiencyForm"></div>
+                                                32323 
+                                                </div>
+
+                                                <div class="tab-pane fade" id="tab_borders_icons-522" role="tabpanel">
+                                                
+                                                <div id="AMBEfficiencypak"></div> 
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                  
+                        </div>
+                        <div class="col-xl-6">
+                            <div id="panel-11" class="panel">
+                                    <div class="panel-hdr">
+                                        <h2>
+                                        Laminated Bonded Ball Efficiency </span>
+                                        </h2>
+                                       
+                                    </div>
+                                    <div class="panel-container show">
+                                        <div class="panel-content">
+                                            <div class="border px-3 pt-3 pb-0 rounded">
+                                            <ul class="nav nav-pills" role="tablist">
+                                               
+                                                <li class="nav-item">
+                                              
+                                                    <a class="nav-link active" data-toggle="tab" href="#tab_borders_icons-1111" role="tab"><i class="fal fa-home mr-1"></i> LFB Product Efficiency   </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-6111" role="tab"> Carcas <i class="fal fa-percent mr-1"></i>  </a>
+                                                </li> 
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-2111" role="tab">Lamination <i class="fal fa-percent mr-1"></i>  </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-3111" role="tab">Panel Cutting <i class="fal fa-percent mr-1"></i>  </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-45011" role="tab">HF Cutting <i class="fal fa-percent mr-1"></i>  </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-4111" role="tab">Assembling <i class="fal fa-percent mr-1"></i>  </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-5111" role="tab"> Packing <i class="fal fa-percent mr-1"></i>  </a>
+                                                </li>
+                                            </ul> 
+                                                <div class="tab-content py-3">
+                                                <div class="tab-pane fade show active" id="tab_borders_icons-1111" role="tabpanel">
+                                                <div id="lfbEfficiency"></div> 
+                                                <!-- <div id="flot-toggles" class="w-100 mt-4" style="height: 300px"></div> -->
+                                            </div>
+                                               
+                                                <div class="tab-pane fade" id="tab_borders_icons-6111" role="tabpanel">
+                                                
+
+                                                
+
+                                                </div>
+                                                
+                                                <div class="tab-pane fade" id="tab_borders_icons-2111" role="tabpanel">
+                                              
+                                             
+
+                                                </div>
+                                              
+
+                                                <div class="tab-pane fade" id="tab_borders_icons-3111" role="tabpanel">
+
+                                                
+                                                </div>
+                                                
+                                                <div class="tab-pane fade" id="tab_borders_icons-45011" role="tabpanel">
+                                                <div id="HFEfficiency"></div>
+                                                
+                                                </div>
+                                                
+                                                <div class="tab-pane fade" id="tab_borders_icons-4111" role="tabpanel">
+                                              
+                                                </div>
+                                                <div class="tab-pane fade" id="tab_borders_icons-5111" role="tabpanel">
+                                               
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                               
+                                                              
+                        </div>
                                 
                                 
                     </main>
@@ -315,6 +460,17 @@ $GetTMpackReading = array();
 $GetTMpackName = array();
 $TMpackTarget = array();
 
+$AmbFoming=0;
+$AmbPacking=0;
+
+$GetAMBAssemReading = array();
+$GetAMBAssemName = array();
+$AMBAssemTarget = array();
+
+$GetAMBpackReading = array();
+$GetAMBpackName = array();
+$AMBpackTarget = array();
+
 foreach($MSEfficiency as $key){
 $Process=$key['Process'];
 $target=71;
@@ -364,7 +520,6 @@ if($Process=='Sheet Sizing'){
     
     $Sheetsizing += $SheetSizingCount;
 }
-
 if($Process=='TM Assembling'){
     $TMAssebmlnigCount=$key['Counter'];
     $tmassebmlingName=$key['Name'];
@@ -382,6 +537,8 @@ if($Process=='TM Carcas'){
     array_push($TMCTarget, $target);
     
     $tmcarcas += $tmcarcasCount;
+}else{
+  $tmcarcas=0;
 }
 if($Process=='TM Packing'){
     $TMPackingCount=$key['Counter'];
@@ -410,9 +567,40 @@ if($Process=='HF Cutting'){
     
     $TMHFCutting += $HFCuttingCount;
 }
+if($Process=='HF Cutting'){
+  $HFCuttingCount=$key['Counter'];
+  $HFCuttName=$key['Name'];
+  array_push($GetHFCutReading, $HFCuttingCount);
+  array_push($GetHFCutName, $HFCuttName);
+  array_push($HFCutTarget, $target);
+  
+  $TMHFCutting += $HFCuttingCount;
+}
+
+if($Process=='AMB Packing'){
+  $Packing=$key['Counter'];
+  $PackName=$key['Name'];
+  array_push($GetAMBpackReading, $Packing);
+  array_push($GetAMBpackName, $PackName);
+  array_push($AMBAssemTarget, $target);
+  
+  $AmbPacking += $Packing;
+}
+
+if($Process=='AMB Assembling'){
+  $Forrming=$key['Counter'];
+  $FormingName=$key['Name'];
+  array_push($GetAMBAssemReading, $Forrming);
+  array_push($GetAMBAssemName, $FormingName);
+  array_push($AMBAssemTarget, $target);
+  
+  $AmbFoming += $Forrming;
+}
 
 
 }
+
+//Print_r($GetAMBAssemReading);
 ?>
     <script>
    $(document).ready(function() {
@@ -821,8 +1009,8 @@ Highcharts.chart('TMEfficiency', {
   series: [{
     type: 'column',
     name: 'Efficiency',
-    data: [<?php Echo $tmcarcas; ?>, <?php Echo $TMLamination; ?>, <?php Echo $TMHFCutting; ?>
-    , <?php Echo $TMAssembling; ?>, <?php Echo $TMpacking ; ?>]
+    data: [<?php Echo $tmcarcas; ?>, <?php Echo $TMLamination; ?>, 0
+    , <?php Echo $TMpacking; ?>, <?php Echo $TMpacking ; ?>]
     
   }, {
     type: 'spline',
@@ -995,7 +1183,7 @@ Highcharts.chart('LamEfficiency', {
 });
 Highcharts.chart('HFEfficiency', {
   title: {
-    text: 'HF Cutting Efficiency',
+    text: 'Panel Cutting Efficiency',
     align: 'left'
   },
   xAxis: {
@@ -1062,7 +1250,7 @@ Highcharts.chart('TMAMBEfficiency', {
     align: 'left'
   },
   xAxis: {
-    categories: <?php echo json_encode($GetTMAssemName, JSON_NUMERIC_CHECK); ?>
+    categories: <?php echo json_encode($GetTMpackName, JSON_NUMERIC_CHECK); ?>
   },
   yAxis: {
     title: {
@@ -1075,12 +1263,12 @@ Highcharts.chart('TMAMBEfficiency', {
   series: [{
     type: 'column',
     name: 'Efficiency',
-    data:<?php echo json_encode($GetTMAssemReading, JSON_NUMERIC_CHECK); ?>
+    data:<?php echo json_encode($GetTMpackReading, JSON_NUMERIC_CHECK); ?>
     
   }, {
     type: 'spline',
     name: 'Target',
-    data: <?php echo json_encode($TMAssemTarget, JSON_NUMERIC_CHECK); ?>,
+    data: <?php echo json_encode($TMpackTarget, JSON_NUMERIC_CHECK); ?>,
     marker: {
       lineWidth: 2,
       lineColor: Highcharts.getOptions().colors[3],
@@ -1186,8 +1374,269 @@ Highcharts.chart('tmpacking', {
 
 
 
+Highcharts.chart('AMBEfficiency', {
+  title: {
+    text: 'Airless Mini Product Efficiency',
+    align: 'left'
+  },
+  xAxis: {
+    categories: ['Lamination','HF Cutting', 'Assembling', 'Packing']
+  },
+  yAxis: {
+    title: {
+      text: 'Efficiency'
+    }
+  },
+  tooltip: {
+    valueSuffix: ''
+  },
+  series: [{
+    type: 'column',
+    name: 'Efficiency',
+    data: [0,0, <?php Echo $AmbFoming; ?>, <?php Echo $AmbPacking ; ?>]
+    
+  }, {
+    type: 'spline',
+    name: 'Target',
+    data: [69,69,69,69],
+    marker: {
+      lineWidth: 2,
+      lineColor: Highcharts.getOptions().colors[3],
+      fillColor: 'white'
+    }
+  }, {
+    type: 'pie',
+    name: 'Total',
+    data: [{
+      name: 'Efficiency',
+      y: 619,
+      color: Highcharts.getOptions().colors[0], // 2020 color
+      dataLabels: {
+        enabled: true,
+        distance: -50,
+        format: '{point.total}',
+        style: {
+          fontSize: '15px'
+        }
+      }
+    }, {
+      name: '2021',
+      y: 586,
+      color: Highcharts.getOptions().colors[1] // 2021 color
+    }, {
+      name: '2022',
+      y: 647,
+      color: Highcharts.getOptions().colors[2] // 2022 color
+    }],
+    center: [75, 65],
+    size: 100,
+    innerSize: '70%',
+    showInLegend: false,
+    dataLabels: {
+      enabled: false
+    }
+  }]
+});
 
 
+
+
+Highcharts.chart('AMBEfficiencyform', {
+  title: {
+    text: 'Airless Mini Forming Efficiency',
+    align: 'left'
+  },
+  xAxis: {
+    categories: <?php echo json_encode($GetAMBAssemName, JSON_NUMERIC_CHECK); ?>
+  },
+  yAxis: {
+    title: {
+      text: 'Efficiency'
+    }
+  },
+  tooltip: {
+    valueSuffix: ''
+  },
+  series: [{
+    type: 'column',
+    name: 'Efficiency',
+    data: <?php echo json_encode($GetAMBAssemReading, JSON_NUMERIC_CHECK); ?>
+    
+  }, {
+    type: 'spline',
+    name: 'Target',
+    data: <?php echo json_encode($AMBAssemTarget, JSON_NUMERIC_CHECK); ?>,
+    marker: {
+      lineWidth: 2,
+      lineColor: Highcharts.getOptions().colors[3],
+      fillColor: 'white'
+    }
+  }, {
+    type: 'pie',
+    name: 'Total',
+    data: [{
+      name: 'Efficiency',
+      y: 619,
+      color: Highcharts.getOptions().colors[0], // 2020 color
+      dataLabels: {
+        enabled: true,
+        distance: -50,
+        format: '{point.total}',
+        style: {
+          fontSize: '15px'
+        }
+      }
+    }, {
+      name: '2021',
+      y: 586,
+      color: Highcharts.getOptions().colors[1] // 2021 color
+    }, {
+      name: '2022',
+      y: 647,
+      color: Highcharts.getOptions().colors[2] // 2022 color
+    }],
+    center: [75, 65],
+    size: 100,
+    innerSize: '70%',
+    showInLegend: false,
+    dataLabels: {
+      enabled: false
+    }
+  }]
+});
+
+
+
+
+alert("I am happy");
+Highcharts.chart('lfbEfficiency', {
+  title: {
+    text: 'Laminated Footbal Product Efficiency',
+    align: 'left'
+  },
+  xAxis: {
+    categories: ['Carcas','Lamination', 'Panel Cutting', 'HF Cutting', 'Assembling', 'Packing']
+  },
+  yAxis: {
+    title: {
+      text: 'Efficiency'
+    }
+  },
+  tooltip: {
+    valueSuffix: ''
+  },
+  series: [{
+    type: 'column',
+    name: 'Efficiency',
+    data: [10,20,30,40,50,60]
+    
+  }, {
+    type: 'spline',
+    name: 'Target',
+    data: [69,69,69,69,69,69],
+    marker: {
+      lineWidth: 2,
+      lineColor: Highcharts.getOptions().colors[3],
+      fillColor: 'white'
+    }
+  }, {
+    type: 'pie',
+    name: 'Total',
+    data: [{
+      name: 'Efficiency',
+      y: 619,
+      color: Highcharts.getOptions().colors[0], // 2020 color
+      dataLabels: {
+        enabled: true,
+        distance: -50,
+        format: '{point.total}',
+        style: {
+          fontSize: '15px'
+        }
+      }
+    }, {
+      name: '2021',
+      y: 586,
+      color: Highcharts.getOptions().colors[1] // 2021 color
+    }, {
+      name: '2022',
+      y: 647,
+      color: Highcharts.getOptions().colors[2] // 2022 color
+    }],
+    center: [75, 65],
+    size: 100,
+    innerSize: '70%',
+    showInLegend: false,
+    dataLabels: {
+      enabled: false
+    }
+  }]
+});
+
+
+Highcharts.chart('AMBEfficiencypak', {
+  title: {
+    text: 'Airless Mini Packing Efficiency',
+    align: 'left'
+  },
+  xAxis: {
+    categories: <?php echo json_encode($GetAMBpackName, JSON_NUMERIC_CHECK); ?>
+  },
+  yAxis: {
+    title: {
+      text: 'Efficiency'
+    }
+  },
+  tooltip: {
+    valueSuffix: ''
+  },
+  series: [{
+    type: 'column',
+    name: 'Efficiency',
+    data: <?php echo json_encode($GetAMBpackReading, JSON_NUMERIC_CHECK); ?>
+    
+  }, {
+    type: 'spline',
+    name: 'Target',
+    data: <?php echo json_encode($AMBpackTarget, JSON_NUMERIC_CHECK); ?>,
+    marker: {
+      lineWidth: 2,
+      lineColor: Highcharts.getOptions().colors[3],
+      fillColor: 'white'
+    }
+  }, {
+    type: 'pie',
+    name: 'Total',
+    data: [{
+      name: 'Efficiency',
+      y: 619,
+      color: Highcharts.getOptions().colors[0], // 2020 color
+      dataLabels: {
+        enabled: true,
+        distance: -50,
+        format: '{point.total}',
+        style: {
+          fontSize: '15px'
+        }
+      }
+    }, {
+      name: '2021',
+      y: 586,
+      color: Highcharts.getOptions().colors[1] // 2021 color
+    }, {
+      name: '2022',
+      y: 647,
+      color: Highcharts.getOptions().colors[2] // 2022 color
+    }],
+    center: [75, 65],
+    size: 100,
+    innerSize: '70%',
+    showInLegend: false,
+    dataLabels: {
+      enabled: false
+    }
+  }]
+});
 
 
 
