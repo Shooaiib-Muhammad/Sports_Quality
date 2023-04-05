@@ -117,7 +117,7 @@ class LabModel extends CI_Model
     <tr><th>Material Name:</th><td>' . $ItemName . '</td></tr>
     <tr><th>Supplier Name.</th><td>' . $SupplierName . '</td></tr>
     <tr><th>Test Performed By.</th><td>' . trim($testPerformer, " ") . '</td></tr>
-    <tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetails?id=' . $Id . '</td></tr>
+    <tr><th>Click on the Link to see Details</th><td>http://192.168.10.4:2000/sports/LabController/ShowDetails?id=' . $Id . '</td></tr>
     <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
     </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
 
@@ -392,7 +392,7 @@ Fabric Test Report Result Alert</th></tr>
 <tr><th>Material Name:</th><td>' . $ItemName . '</td></tr>
 <tr><th>Supplier Name.</th><td>' . $SupplierName . '</td></tr>
 <tr><th>Test Performed By.</th><td>' . trim($testPerformer, " ") . '</td></tr>
-<tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetails?id=' . $Id . '</td></tr>
+<tr><th>Click on the Link to see Details</th><td>http://192.168.10.4:2000/sports/LabController/ShowDetails?id=' . $Id . '</td></tr>
 <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
 </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
 
@@ -567,7 +567,7 @@ Material Test Report Result Alert</th></tr>
 <tr><th>Material Name:</th><td>' . $ItemName . '</td></tr>
 <tr><th>Supplier Name.</th><td>' . $SupplierName . '</td></tr>
 <tr><th>Test Performed By.</th><td>' . trim($testPerformer, " ") . '</td></tr>
-<tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetails?id=' . $Id . '</td></tr>
+<tr><th>Click on the Link to see Details</th><td>http://192.168.10.4:2000/sports/LabController/ShowDetails?id=' . $Id . '</td></tr>
 <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
 </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
 
@@ -742,7 +742,7 @@ Thread Test Report Result Alert</th></tr>
 <tr><th>Material Name:</th><td>' . $SupplierRef . '</td></tr>
 <tr><th>Supplier Name.</th><td>' . $SupplierName . '</td></tr>
 <tr><th>Test Performed By.</th><td>' . trim($testPerformer, " ") . '</td></tr>
-<tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetails?id=' . $Id . '</td></tr>
+<tr><th>Click on the Link to see Details</th><td>http://192.168.10.4:2000/sports/LabController/ShowDetails?id=' . $Id . '</td></tr>
 <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
 </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
 
@@ -916,7 +916,7 @@ MS Thread Test Report Result Alert</th></tr>
 <tr><th>Material Name:</th><td>' . $SupplierRef . '</td></tr>
 <tr><th>Supplier Name.</th><td>' . $SupplierName . '</td></tr>
 <tr><th>Test Performed By.</th><td>' . trim($testPerformer, " ") . '</td></tr>
-<tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetails?id=' . $Id . '</td></tr>
+<tr><th>Click on the Link to see Details</th><td>http://192.168.10.4:2000/sports/LabController/ShowDetails?id=' . $Id . '</td></tr>
 <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
 </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
 
@@ -2229,11 +2229,11 @@ WHERE   (view_Lab_All_Request.Sample_RequestDate BETWEEN '$CurrentDate' AND '$Cu
     }
 
 
-    public function EditTestRequestLabAcknowledgeBulk($leaveArray)
+    public function EditTestRequestLabAcknowledgeBulk($leaveArray, $testTypeID)
     {
         foreach ($leaveArray as $key => $value) {
             $query = $this->db->query("UPDATE dbo.tbl_lab_test_request 
-            SET LabAcknowledgementStatus = 'Acknowledged'
+            SET LabAcknowledgementStatus = 'Acknowledged' AND TestTYpeID = $testTypeID
            
             WHERE TID='$value'
             ");
@@ -2466,7 +2466,7 @@ WHERE        (Status = 1)");
     {
 
         $query = $this->db->query("SELECT        TID, Type, TestType, CONVERT(Varchar, Sample_RequestDate, 103) AS Sample_RequestDate, Factory_Code, PONo, SupplierName, Quantity_Issued,MaterialType
-FROM            dbo.tbl_lab_test_request
+FROM            dbo.tbl_lab_test_request ORDER BY TID DESC
 ");
 
         return $query->result_array();
@@ -2664,10 +2664,10 @@ WHERE        (TID = $ID)");
     // }
 
 
-    public function EditTestRequestLabAcknowledge($TID)
+    public function EditTestRequestLabAcknowledge($TID, $testTypeID)
     {
         $query = $this->db->query("UPDATE dbo.tbl_lab_test_request 
-        SET LabAcknowledgementStatus = 'Acknowledged'
+        SET LabAcknowledgementStatus = 'Acknowledged' AND TestTypeID = $testTypeID
        
         WHERE TID='$TID'
         ");
@@ -2858,7 +2858,7 @@ WHERE        (TID = $ID)");
     <tr><th>Article.</th><td>' . $article . '</td></tr>
     <tr><th>Size.</th><td>' . $size . '</td></tr>
     <tr><th>Test Performed By.</th><td>' . trim($testperformedby, " ") . '</td></tr>
-    <tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetailsFGT?id=' . $Id . '</td></tr>
+    <tr><th>Click on the Link to see Details</th><td>http://192.168.10.4:2000/sports/LabController/ShowDetailsFGT?id=' . $Id . '</td></tr>
     <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This FGT has Been Failed</th></tr>
     </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
 
@@ -3230,7 +3230,7 @@ WHERE      (LotNo = '$lotNo') AND (Date = CONVERT(DATETIME, '$StartDate 00:00:00
     <tr><th>Test No.</th><td>' . $TestNo . '</td></tr>
     <tr><th>PO.</th><td>' . $PO . '</td></tr>
     <tr><th>Test Performed By.</th><td>' . trim($testPerformer, " ") . '</td></tr>
-    <tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetailsPolyBag?id=' . $Id . '</td></tr>
+    <tr><th>Click on the Link to see Details</th><td>http://192.168.10.4:2000/sports/LabController/ShowDetailsPolyBag?id=' . $Id . '</td></tr>
     <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This PolyBag Material has Been Failed</th></tr>
     </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
 
@@ -3407,7 +3407,7 @@ WHERE      (LotNo = '$lotNo') AND (Date = CONVERT(DATETIME, '$StartDate 00:00:00
                 <tr><th>Test No.</th><td>' . $TestNo . '</td></tr>
                 <tr><th>PO.</th><td>' . $PONo . '</td></tr>
                 <tr><th>Test Performed By.</th><td>' . trim($testPerformer, " ") . '</td></tr>
-                <tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetailsPolyBag?id=' . $Id . '</td></tr>
+                <tr><th>Click on the Link to see Details</th><td>http://192.168.10.4:2000/sports/LabController/ShowDetailsPolyBag?id=' . $Id . '</td></tr>
                 <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This PolyBag Material has Been Failed</th></tr>
                 </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
 
@@ -3602,7 +3602,7 @@ VALUES
 <tr><th>Test No.</th><td>' . $TestNo . '</td></tr>
 <tr><th>PO.</th><td>' . $PO . '</td></tr>
 <tr><th>Test Performed By.</th><td>' . trim($testPerformer, " ") . '</td></tr>
-<tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetailsPolyBag?id=' . $Id . '</td></tr>
+<tr><th>Click on the Link to see Details</th><td>http://192.168.10.4:2000/sports/LabController/ShowDetailsPolyBag?id=' . $Id . '</td></tr>
 <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This PolyBag Material has Been Failed</th></tr>
 </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
 
@@ -4355,8 +4355,60 @@ WHERE        (CssNo = '$CssNo')");
         return $query->result_array();
     }
 
+    public function getRawMatReqByCss(){
 
-    public function AddRaw_MatHead($DateP, $Type, $factoryCode, $quantityIssued, $supplierN, $testType, $ItemNameD)
+
+
+        $query = $this->db->query("SELECT   *  
+        FROM   dbo.View_RawMatReqT 
+        ");
+
+        return $query->result_array();
+
+    }
+
+    public function getDataAfterRequest($TID){
+
+
+
+        $query = $this->db->query("SELECT   *  
+        FROM   dbo.tbl_lab_test_request WHERE TID=$TID
+        ");
+
+        return $query->result_array();
+
+    }
+    
+
+
+    public function getRawMatReqTByPending()
+    {
+
+        $Month = date('m');
+        $Year = date('Y');
+        $Day = date('d');
+        $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+
+        $query = $this->db->query("SELECT   *     
+        FROM   dbo.View_RawMatReqT WHERE status='Pending'
+        ");
+
+        return $query->result_array();
+    }
+
+    public function getRawMatReqByCss1($cssNo){
+
+
+        $query = $this->db->query("SELECT   *  
+        FROM   dbo.View_RawMatReqT  WHERE CSSNo='$cssNo'
+        ");
+
+        return $query->result_array();
+
+    }
+   
+
+    public function AddRaw_MatHead($DateP, $Type, $factoryCode, $quantityIssued, $supplierN, $testType, $ItemNameD, $testCategory)
     {
 
 
@@ -4367,8 +4419,9 @@ WHERE        (CssNo = '$CssNo')");
 
         $date = date('Y-m-d');
 
-        $this->db->query("INSERT INTO tbl_Raw_material_H (Date, Type, FactoryCode, Quantity, SupplierNam ,TestType, SRSenderID, userid, EntryDate, itemName, receSign, status)
-               VALUES ('$DateP', '$Type', '$factoryCode', $quantityIssued, '$supplierN', '$testType', '$user', '$user', '$date', '$ItemNameD', 'Ahmed', 'Pending');");
+        $this->db->query("INSERT INTO tbl_Raw_material_H (Date, Type, FactoryCode, Quantity, SupplierNam ,TestType, SRSenderID, userid, EntryDate, itemName, receSign, status, testCateogry)
+               VALUES ('$DateP', '$Type', '$factoryCode', $quantityIssued, '$supplierN', '$testType', '$user', '$user', '$date', '$ItemNameD', 'Ahmed', 'Pending', '$testCategory');");
     }
+
 
 }

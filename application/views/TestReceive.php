@@ -142,6 +142,129 @@ if (!$this->session->has_userdata('user_id')) {
                     </div>
 
 
+
+
+                    <div id="Modaldepartment1" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: rgb(83,78,130);color:white;font-weight:bolder">
+                                    <h1 class="modal-title" id="changeTitle">Test Request Receiving Form</h1>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" style="color: white;">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form name="formDepartment" id="myformDepartment" method="POST" action="<?php echo base_url(
+                                                                                                                ''
+                                                                                                            ); ?>LabController/EditTestRequest">
+                                        <input type="hidden" name="Id" id="IdValue1" value="">
+
+                                        <div class="row" style="display:flex">
+
+
+                                            <div class="col-md-6">
+
+                                                <label class="form-contol" for="customFile">Receiving Date</label>
+                                                <input type="date" class="form-control" id="recDate1" name="recDate1">
+
+                                            </div>
+
+                                            <div class="col-md-6">
+
+                                                <label class="form-contol" for="customFile">CSS #</label>
+                                                <input type="text" class="form-control" required id="cssNo1" name="cssNo1">
+
+                                            </div>
+
+                                            <div class="col-md-6 mt-2">
+
+                                                <label class="form-contol" for="customFile">Quantity Received</label>
+                                                <input type="number" class="form-control" id="qReceived1" name="qReceived1">
+
+                                            </div>
+
+                                            <div class="col-md-6 mt-2">
+
+                                                <label class="form-contol" for="customFile">Quantity Retained</label>
+                                                <input type="number" class="form-control" id="qRetained1" name="qRetained1">
+
+                                            </div>
+
+                                            <!-- <div class="col-md-6 mt-2">
+
+                                                <label class="form-contol" for="customFile">Quantity Returned</label>
+                                                <input type="number" class="form-control" id="qReturned" name="qReturned">
+
+                                            </div> -->
+
+                                            <div class="col-md-6">
+
+                                                <label class="form-contol" for="customFile">Due Date</label>
+                                                <input type="date" class="form-control" id="dueDate1" name="dueDate1">
+
+                                            </div>
+
+                                            <div class="col-md-6">
+
+                                                <label class="form-contol" for="customFile">Completation Date</label>
+                                                <input type="date" class="form-control" id="compDate1" name="dueDate1">
+
+                                            </div>
+
+                                            <div class="col-md-6">
+
+                                                <label class="form-contol" for="customFile">Sender Signature</label>
+                                                <input type="text" class="form-control" id="sSignature1" name="sSignature1">
+
+                                            </div>
+
+                                            <div class="col-md-6">
+
+                                                <label class="form-contol" for="customFile">Remarks</label>
+                                                <input type="text" class="form-control" id="Remarks1" name="Remarks1">
+
+                                            </div>
+
+
+                                            <div class="col-md-6" id="testTypeeD">
+
+
+                                                <label for="sel1">Test Type</label><br>
+                                                <select id="testTType" class="form-control js-example-basic-single" id="tTypeD" name="tTypeD" style="width: 100%">
+
+
+
+                                                </select>
+
+
+
+                                                <!-- <button type="button" onclick="addTestTypeD()" class="btn btn-success mt-2">Add Test Type</button> -->
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div>
+                                                    <button type="button" class="btn btn-primary m-3" id="save1">Save</button>
+
+                                                    <!-- <input type = "reset" class="bg-secondary text-white btn-sm" id="btnClear" /> -->
+
+                                                    <!-- <button class="btn btn-danger" data-dismiss="modal" style="display:inline-block;">Close</button> -->
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
+
+
                     <div id="ModalBackToSender" class="modal fade">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -233,31 +356,33 @@ if (!$this->session->has_userdata('user_id')) {
                     </div>
                     <!--End ADD FGT CSS REQUEST MODAL -->
 
-                    <!--Start QR Code For FGT REQUEST MODAL -->
-                    <div id="qrCodeModel" class="modal fade">
-                        <div class="modal-dialog">
+
+                    <!--Start Print Qrcode MODAL -->
+                    <div id="printQrcodeModal" class="modal fade">
+                        <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header" style="background-color: rgb(83,78,130);color:white;font-weight:bolder">
-                                    <h1 class="modal-title" id="changeTitle">FGT Request QR Code</h1>
+                                    <h1 class="modal-title" id="changeTitle">Print Qrcodes</h1>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true" style="color: white;">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
-                                    <div class="card">
-                                        <div class="card-body" id="qrCodeToPrint">
+                                <div class="modal-body" id="qrcodePrint">
+                                    <div style="display: flex;flex-wrap: wrap; justify-content:center" id="qrcodeData">
 
-                                        </div>
-                                        <div class="card-footer">
-                                            <button type="button" class="btn btn-primary" onclick="printDiv('qrCodeToPrint')" data-dismiss="modal">Print QrCode</button>
-                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 m-2">
+                                        <button class="btn btn-primary" onclick="printDiv('qrcodePrint')">Print</button>
                                     </div>
 
                                 </div>
                             </div><!-- /.modal-content -->
                         </div><!-- /.modal-dialog -->
                     </div>
-                    <!--End Qr Code For Fgt REQUEST MODAL -->
+                    <!--End ADD FGT CSS REQUEST MODAL -->
 
                     <br><br>
                     <div class="row">
@@ -295,6 +420,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" onclick="SendBackToRequester()" href="#tab_direction-4">Material Test Requests</a></li>
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-5">FGT Pending</a></li>
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-6">FGT Send</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-7">New Raw Material Test Request</a></li>
 
                                             </ul>
 
@@ -924,19 +1050,56 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <input name="date" id="date2" class="form-control" type="date" value="<?php echo $CurrentDate; ?>">
                                                             </div>
                                                         </div> -->
-                                                        <div class="row">
-                                                            <div class="col-md-3">
-
-                                                                <button id="show-selected" class="btn btn-primary" style="display:none"></button>
-                                                            </div>
-                                                        </div>
 
 
 
                                                     </div>
+                                                    <button id="show-selected" class="btn btn-primary mb-2" style="display:none;">Print QrCode</button>
                                                     <div id="fgtRequestData2">
 
                                                     </div>
+
+                                                </div>
+
+
+                                                <div class="tab-pane fade" id="tab_direction-7" role="tabpanel">
+
+                                                    <?php
+                                                    $Month = date('m');
+                                                    $Year = date('Y');
+                                                    $Day = date('d');
+                                                    $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+                                                    ?>
+
+
+                                                    <div class="row mb-3 mt-4">
+
+
+                                                        <div class="col-md-2">
+                                                            <label>Start Date :</label>
+                                                            <div class="form-group-inline">
+
+                                                                <input name="date" id="date9" class="form-control" type="date" value="<?php echo $CurrentDate; ?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label>End Date</label>
+                                                            <div class="form-group-inline">
+
+                                                                <input name="date" id="date7" class="form-control" type="date" value="<?php echo $CurrentDate; ?>">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3 mt-3">
+                                                            <button class="btn btn-primary">Search</button>
+                                                        </div>
+
+                                                    </div>
+
+
+
+                                                    <div id="matTestHtml"></div>
+
 
                                                 </div>
 
@@ -966,8 +1129,6 @@ if (!$this->session->has_userdata('user_id')) {
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $('.undobtn').click(function() {
             let id = this.id;
@@ -2596,6 +2757,10 @@ if (!$this->session->has_userdata('user_id')) {
     <script>
         $(document).ready(function() {
 
+            htmlTestType = ``;
+
+
+            $("#testType").html('')
 
 
             $("#date1").val();
@@ -3890,7 +4055,7 @@ if (!$this->session->has_userdata('user_id')) {
             url = "<?php echo base_url("LabController/FGTRequestwithoutCssNo") ?>";
             $.get(url, function(data) {
                 if (data) {
-                    let html = `<table class="table table-bordered table-hover table-responsive table-striped table-sm" style="width:100%" id="fgtTableExport1">
+                    let html = `<table class="table table-bordered table-striped table-hover table-sm" id="fgtTableExport1">
                         <thead class="bg-primary-200 text-light p-2">
                             <tr>
                                 <!-- <th class="h5">Date</th> -->
@@ -4046,7 +4211,7 @@ if (!$this->session->has_userdata('user_id')) {
             url = "<?php echo base_url("LabController/FGTRequestwithCssNo") ?>";
             $.get(url, function(data) {
                 if (data) {
-                    let html = `<table class="table table-bordered table-hover table-responsive table-striped table-sm" style="width:100%" id="fgtTableExport2">
+                    let html = `<table class="table table-bordered table-striped table-hover table-sm" id="fgtTableExport2">
             <thead class="bg-primary-200 text-light p-2">
                 <tr>
                     <th><input type="checkbox" id="check-all"></th>
@@ -4073,44 +4238,44 @@ if (!$this->session->has_userdata('user_id')) {
                     <th class="h5">Sender Signature</th>-->
                     <th class="h5">Request Status</th>
                     <th class="h5">Generated By</th>
-                    <th class="h5">Action</th>
+                    <th class="h5">Qr Code</th>
                 </tr>
             </thead>
             <tbody>`
                     data.forEach(element => {
                         html += `
-                        <tr>
-                        
-                        <td><input type='checkbox' class='row-select' data-css-no='${element.CssNO}' data-qr-code='${element.CssNoQrCode}'></td>
-                        <td><span class="badge badge-warning p-1">${element.CssNO}</span></td>
-                        <td>${element.CssDate.split("00:00:00")[0]}</td>
-                        <td>${element.factoryCode}</td>
-                        <td>${element.WorkingNo}</td>
-                        <td>${element.Articleno}</td>
-                        <td>${element.ModelName}</td>
-                        <td>${element.Size}</td>
-                        <td>${element.BallType}</td>               
-                        <td>${element.mainmaterialColor}</td>
-                        <td><span>${element.Covermat}</span></td>
-                        <td><span>${element.backing}</span></td>
-                        <td><span> ${element.Bladderdetail} </span></td>
-                        <td><span> ${element.ProductionMonth} </span></td>
-                        <td><span> ${element.Printingcolor} </span></td>
-                        <td><span> ${element.panelShape} </span></td>
-                        <td><span> ${element.testype} </span></td>
-                        <td><span> ${element.deliverqty} </span></td>
-                        <td><span> ${element.additionalinfo} </span></td>
-                        <td><span class="badge badge-secondary p-1">${element.LabStatus == null ? `Pending` : `Aknowledged`} </span></td>
+            <tr>
+            <td><input type='checkbox' class='row-select' data-css-no='${element.CssNO}' data-qr-code='${element.CssNoQrCode}'></td>
+            <td><span class="badge badge-warning p-1">${element.CssNO}</span></td>
+            <td>${element.CssDate.split("00:00:00")[0]}</td>
+            <td>${element.factoryCode}</td>
+            <td>${element.WorkingNo}</td>
+            <td>${element.Articleno}</td>
+            <td>${element.ModelName}</td>
+            <td>${element.Size}</td>
+            <td>${element.BallType}</td>               
+            <td>${element.mainmaterialColor}</td>
+            <td><span>${element.Covermat}</span></td>
+            <td><span>${element.backing}</span></td>
+            <td><span> ${element.Bladderdetail} </span></td>
+            <td><span> ${element.ProductionMonth} </span></td>
+            <td><span> ${element.Printingcolor} </span></td>
+            <td><span> ${element.panelShape} </span></td>
+            <td><span> ${element.testype} </span></td>
+            <td><span> ${element.deliverqty} </span></td>
+            <td><span> ${element.additionalinfo} </span></td>
+            <td><span class="badge badge-secondary p-1">${element.LabStatus == null ? `Pending` : `Aknowledged`} </span></td>
 
-                        <!--<td> <span class="badge badge-primary p-1">Receiver Signature</span></td>
+            <!--<td> <span class="badge badge-primary p-1">Receiver Signature</span></td>
 
-                        <td> <span class="badge badge-primary p-1">Sender Signature</span></td> -->
+            <td> <span class="badge badge-primary p-1">Sender Signature</span></td> -->
 
-                        <td><span class="badge badge-warning p-1">${element.RequestStatus}</span></td>
-                        <td><span class="badge badge-danger p-1">${element.LoginName}</span></td>
-                        <td style="cursor:pointer;font-size:20px"><span class="badge badge-primary" onclick="generateQrCode('${element.CssNoQrCode}')">Get QrCode</span></td>
-                                    
-                        </tr>`
+            <td><span class="badge badge-warning p-1">${element.RequestStatus}</span></td>
+            <td><span class="badge badge-danger p-1">${element.LoginName}</span></td>
+            <td><img src="<?php echo base_url('assets/img/qrcode/') ?>${element.CssNoQrCode}" width="150px" height="150px"></td>
+
+            
+            </tr>`
                     })
 
                     html += `</tbody>
@@ -4219,11 +4384,64 @@ if (!$this->session->has_userdata('user_id')) {
             }
         });
 
-        function generateQrCode(CssNoQrCode) {
+        // Add click event to "Check All" checkbox
+        $("#fgtRequestData2").on('click', '#check-all', function() {
 
-            $("#qrCodeImage").attr('src', '<?php echo base_url(); ?>assets/img/qrcode/' + CssNoQrCode);
-            $('#qrCodeModel').modal('toggle');
-        }
+
+            // Check or uncheck all checkboxes based on the state of the "Check All" checkbox
+            $('.row-select').prop('checked', $(this).prop('checked'));
+
+            // Show or hide the "Show Selected" button based on the number of checked checkboxes
+            if ($('.row-select:checked').length > 0) {
+                $('#show-selected').show();
+            } else {
+                $('#show-selected').hide();
+            }
+        });
+
+        // Add click event to checkboxes
+        $("#fgtRequestData2").on('click', '.row-select', function() {
+            // Show or hide the "Show Selected" button based on the number of checked checkboxes
+            if ($('.row-select:checked').length > 0) {
+                $('#show-selected').show();
+            } else {
+                $('#show-selected').hide();
+            }
+        });
+        $('#show-selected').click(function() {
+            // Create an array to store selected cssno and cssnoqrcode
+            var selectedRows = [];
+
+            // Loop through checked checkboxes and get the corresponding cssno and cssnoqrcode
+            $('.row-select:checked').each(function() {
+                var cssno = $(this).data('css-no');
+                var qrcode = $(this).data('qr-code');
+                selectedRows.push({
+                    cssno: cssno,
+                    qrcode: qrcode
+                });
+            });
+            // Display the selected cssno and cssnoqrcode in the modal
+            if (selectedRows.length > 0) {
+                var selectedText = '';
+                for (var i = 0; i < selectedRows.length; i++) {
+                    selectedText += `
+                    
+                        <div style="flex: 2 1 160px;">
+                            <img width=150 height="150px" src="<?php echo base_url('') ?>/assets/img/qrcode/` + selectedRows[i].qrcode + `" alt="no qrcode">
+                            <br>                       
+                            <span style=margin-left:20px> <b>Css No: ` + selectedRows[i].cssno + `</b></span>
+                        </div>
+                                        
+                   
+                    `;
+                }
+                $('#qrcodeData').html(selectedText);
+
+                // Show the modal
+                $('#printQrcodeModal').modal('toggle');
+            }
+        });
 
         function printDiv(divName) {
             var printContents = document.getElementById(divName).innerHTML;
@@ -4236,71 +4454,220 @@ if (!$this->session->has_userdata('user_id')) {
             document.body.innerHTML = originalContents;
             window.location.reload();
         }
+    </script>
+
+
+
+    <script>
         $(document).ready(function() {
 
-            // Add click event to "Check All" checkbox
-            $("#fgtRequestData2").on("click", '#check-all', function() {
-                // Check or uncheck all checkboxes based on the state of the "Check All" checkbox
-                $('.row-select').prop('checked', $(this).prop('checked'));
 
-                // Show or hide the "Show Selected" button based on the number of checked checkboxes
-                if ($('.row-select:checked').length > 0) {
-                    $('#show-selected').show();
-                } else {
-                    $('#show-selected').hide();
-                }
+            htmlappendTesType = ``;
+
+
+            urlgetTestTypes = "<?php echo base_url(''); ?>LabController/getTestTypes";
+
+            $.get(urlgetTestTypes, function(data) {
+
+                htmlappendTesType += `
+        
+        <option value="">Select Test Type</option>
+
+        `;
+
+                data.forEach(element => {
+
+                    console.log(element)
+
+                    htmlappendTesType += `
+      
+        <option value="${element.Name}">${element.Name}</option>
+        
+        
+        `
+                    $("#testTType").html(htmlappendTesType);
+
+
+                })
+
+
+
             })
 
 
-            // Add click event to checkboxes
-            $("#fgtRequestData2").on("click", '.row-select', function() {
-                // Show or hide the "Show Selected" button based on the number of checked checkboxes
-                if ($('.row-select:checked').length > 0) {
-                    $('#show-selected').show();
-                } else {
-                    $('#show-selected').hide();
-                }
-            });
 
-            // // Add click event to "Show Selected" button
-            $('#show-selected').on('click', function() {
-                // Create an array to store selected IDs and names
-                var selectedRows = [];
+            urlgetRawMat = "<?php echo base_url(''); ?>LabController/getRawMatReqTByPending";
 
-                // Loop through checked checkboxes and get the corresponding ID and name
-                $('.row-select:checked').each(function() {
+            htmlRawMat = ``;
 
+            $.get(urlgetRawMat, function(data) {
 
-                    var cssno = $(this).data('css-no');
-                    var qrcode = $(this).data('qr-code');
+                htmlRawMat += `
+            
+    
 
-                    selectedRows.push({
-                        cssno: cssno,
-                        qrcode: qrcode
-                    });
+            <table class="table table-bordered  table-striped table-hover table-sm w-100" style="width: 100%;" id="ActivityData">
+                                                            <thead class="bg-primary-200 text-light p-2">
+                                                                <tr>
+                                                                    <th class="h5">Request Date</th>
+                                                                    <th class="h5">Type</th>
+                                                                    <th class="h5">Material</th>
+                                                                    <th class="h5">Factory Code</th>
+                                                                    <th class="h5">Article/Material Name</th>
+                                                                    <th class="h5">Test Requested</th>
+                                                                    <th class="h5">Qunatity Isssued</th>
+                                                                    <th class="h5">Sender Reference</th>
+                                                                    <th class="h5">Receiver Signature</th>
+                                                                    <th class="h5">Status</th>
+                                                                    <th class="h5">Actions</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+
+              `
+                data.forEach(element => {
+
+                    console.log(element);
+
+                    htmlRawMat += `
+                                                               <tr>
+                                                                    <td>${element.Date}</td>
+                                                                    <td>${element.Type}</td>
+                                                                    <td>${element.TestType}</td>
+                                                                    <td>${element.FactoryCode}</td>
+                                                                    <td>${element.itemName}</td>
+                                                                    <td>${element.testName}</td>
+                                                                    <td>${element.Quantity}</td>
+                                                                    <td><span class="badge badge-danger p-1">${element.LoginName}</span></td>
+                                                                    <td><span class="badge badge-primary p-1">${element.receSign}</span></td>
+                                                                    <td><span class="badge badge-warning p-1">${element.status}</span></td>
+                                                                   
+                                                                    <td>
+                                                                            <div class="col-md-2">
+                                                                                <button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtn1" id="btn.${element.Requestid}"><i class="fal fa-edit" aria-hidden="true"></i></button>
+                                                                            </div>
+                                                                        </td>
+                                                               </tr>
+                                                           
+
+            `
+
 
                 });
-                if (selectedRows.length > 0) {
-                    var html = '';
-                    for (var i = 0; i < selectedRows.length; i++) {
 
-                        html += `<div style="display: grid;">
+                htmlRawMat += `
+            
+            </tbody>
+            </table>
 
-                                    <div style="display: flex;
-                                    align-items: center;
-                                    justify-content: center;">
-                                        <img src="<?php echo base_url(); ?>assets/img/qrcode/` + selectedRows[i].qrcode + `" alt="no qrcode" width="150px" height="150px"> 
-                                        
-                                        <p>` + selectedRows[i].cssno + `</p>
-                                    </div>
-                                </div>`;
-                    }
-                    $('#qrCodeToPrint').html(html);
-                    $('#qrCodeModel').modal('toggle');
+            `
 
-                }
+                $("#matTestHtml").html(htmlRawMat);
 
-            });
+                $(".updatebtn1").click(function(e) {
+                    $('#Modaldepartment1').modal('toggle');
+
+
+                    let id = this.id;
+                    let split_value = id.split(".");
+                    var TID = split_value[1];
+
+                    $('#IdValue1').val(TID);
+
+
+                });
+
+
+
+            })
+
+
+
+
+        })
+
+
+        $("#save1").click(function() {
+
+            let IdValue1 = $("#IdValue1").val();
+
+            let recDate1 = $("#recDate1").val();
+
+            let cssNo1 = $("#cssNo1").val();
+
+            let qReceived1 = $("#qReceived1").val();
+
+            let qRetained1 = $("#qRetained1").val();
+
+            let dueDate1 = $("#dueDate1").val();
+
+            let compDate1 = $("#compDate1").val();
+
+            let sSignature1 = $("#sSignature1").val();
+
+            let Remarks1 = $("#Remarks1").val();
+
+            let testTType = $("#testTType").val();
+
+
+
+            if (recDate1 <= 0 || cssNo1 <= 0 || qReceived1 <= 0 || qRetained1 <= 0 || dueDate1 <= 0 || compDate1 <= 0 || sSignature1 <= 0 || Remarks1 <= 0 || testTType <= 0) {
+                alert("All Fields are mandatory!");
+            } else {
+
+                urlEditRawMat = "<?php echo base_url(''); ?>LabController/EditRaw_MatHead";
+
+                $.post(urlEditRawMat, {
+                    'IdValue1': IdValue1,
+                    'recDate1': recDate1,
+                    'cssNo1': cssNo1,
+                    'qReceived1': qReceived1,
+                    'qRetained1': qRetained1,
+                    'dueDate1': dueDate1,
+                    'compDate1': compDate1,
+                    'sSignature1': sSignature1,
+                    'Remarks1': Remarks1,
+                    'testTType': testTType
+                }, function(data, status) {
+
+                    console.log(data);
+
+                    alert("Add Succesfully!");
+
+
+
+                    $("#recDate1").val('');
+
+                    $("#cssNo1").val('');
+
+                    $("#qReceived1").val('');
+
+                    $("#qRetained1").val('');
+
+                    $("#dueDate1").val('');
+
+                    $("#compDate1").val('');
+
+                    $("#sSignature1").val('');
+
+                    $("#Remarks1").val('');
+
+
+
+                    setTimeout(function() {
+                        $('#Modaldepartment1').modal('hide')
+                    }, 3000);
+
+
+                    // myModal.hide()
+
+
+                })
+
+            }
+
+
+
         })
     </script>
 

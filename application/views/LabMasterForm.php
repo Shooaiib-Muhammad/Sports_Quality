@@ -4381,22 +4381,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <div class="form-group">
 
 
-                                                                <label for="sel1">Select CSS # :</label><br>
-                                                                <div id="checkCSSNo1" style="display:block">
-                                                                    <select class="form-control" id="cssCode" name="cssCode" onchange="getData()">
-                                                                        <option value="">Select one of the following</option>
-                                                                        <?php foreach ($getCssNo as $Key) {
-
-                                                                            // if($Key['mislaneous_status']){
-                                                                        ?>
-
-                                                                            <option value="<?php echo $Key['CSSNo']; ?>"><?php echo $Key['CSSNo']; ?></option>
-                                                                        <?php } ?>
-                                                                        <?php
-                                                                        // }
-                                                                        ?>
-                                                                    </select>
-                                                                </div>
+                                                            <div id="cssNoHtml"></div>
+                                                                
 
                                                                 <div id="checkCSSNo2" style="display:none">
                                                                     <select class="form-control" id="cssCode2" name="cssCode2" onchange="getData2()">
@@ -4445,7 +4431,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label>Enter Sheet No. *</label>
-                                                                <input type="number" class="form-control" id="sheetNo" required readonly="readonly">
+                                                                <input type="number" class="form-control" onchange="getSheetNo()" id="sheetNo" required readonly="readonly">
                                                             </div>
                                                         </div>
 
@@ -9893,7 +9879,174 @@ ${reviewStatus == '1' ?
             //     return (Math.random() * (max - min) + min).toFixed(1);
             // }
 
+
+            function getSheetNo(e){
+
+
+
+let testType = e;
+                
+
+                if (testType == 'SR Blader') {
+
+
+                    if (fileSelectStore) {
+
+                        this.filetoupload = fileSelectStore;
+                        //show image review
+                        var reader = new FileReader();
+                        reader.readAsDataURL(this.filetoupload);
+                        this.fileNameStore = this.filetoupload.name;
+                        this.file = fileSelectStore;
+                        let fileReader = new FileReader();
+                        fileReader.readAsArrayBuffer(this.file);
+                       
+                        fileReader.onload = (e) => {
+                            this.arrayBuffer = fileReader.result;
+                            var data = new Uint8Array(this.arrayBuffer);
+                            var arr = new Array();
+                            for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+                            var bstr = arr.join("");
+                            var workbook = XLSX.read(bstr, {
+                                type: "binary"
+                            });
+                            let sheetNo = $("#sheetNo").val();
+                            alert('sheet No');
+                            var first_sheet_name = workbook.SheetNames[sheetNo - 1];
+                            var worksheet = workbook.Sheets[first_sheet_name];
+                            //  console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));    
+                            let arraylist = XLSX.utils.sheet_to_json(worksheet, {
+                                raw: false
+                            });
+                            this.filelist = arraylist;
+                            let testNumber;
+                            let PONumber
+                            this.filelist.forEach(element => {
+                                if (element.TestNo != undefined || element.PONo != undefined) {
+                                    testNumber = element.TestNo;
+                                    PONumber = element.PONo;
+                                    let arrayHead = [element.TestDate, element.PONo, element.Quantity, element.ReceivingDate, element.ItemName, element.SupplierName, element.TestNo, element.SupplierRef, element.Result, element.ItemType];
+                                    let arrayBody = [element.TestNo, element.PONo, element.Requirement, element.Test, element.Results, element.Value, ']'];
+                                    HeaderArray.push(arrayHead);
+                                    ChildArray.push(arrayBody)
+                                } else {
+
+                                    let arrayBody = [testNumber, PONumber, element.Requirement, element.Test, element.Results, element.Value, ']'];
+
+                                    ChildArray.push(arrayBody)
+                                }
+                            });
+                            $("#headerData").val(HeaderArray);
+                            $("#childData").val(ChildArray);
+
+
+                        }
+                    }
+                }
+
+
+            }
+
+
+            function getDataByCss(e){
+
+                let cssNo1 = e.value
+
+                url1CSS = "<?php echo base_url(''); ?>LabController/getRawMatReqByCss1";
+
+                $.post(url1CSS,
+{
+
+    'cssNo1':cssNo1
+
+},
+function(data){
+
+    console.log(data)
+
+    data.forEach(element => {
+
+        $("#materialType").val(element['TestType'])
+        $("#testGroup").val(element['Type'])
+        
+        getSheetNo(element['TestType'])
+
+    })
+    
+
+         })
+
+         
+
+         
+         
+
+
+}
+
+
+
             $(document).ready(function() {
+
+
+                htmlAppend = ``;
+
+                let CssNo = $("#cssCode").val();
+
+                url4CSS = "<?php echo base_url(''); ?>LabController/getRawMatReqByCss";
+
+$.post(url4CSS,
+
+function(data){
+
+ 
+
+    htmlAppend += `
+
+    <label for="sel1">Select CSS # :</label><br>
+
+    <div id="checkCSSNo1" style="display:block">
+                                                                    <select class="form-control" id="cssCode1" name="cssCode1" onchange="getDataByCss(cssCode1)">
+                                                                        <option value="">Select one of the following</option>
+
+                                                                        `
+                                                           data.forEach(element => {
+
+                                                        if(element.CSSNo === null){
+
+                                                        }
+                                                        else{
+
+                                                            htmlAppend += `
+                                                            
+                                            
+
+                                                            <option value="${element.CSSNo}">${element.CSSNo}</option>
+
+
+                                                            `
+                                                        }
+
+                                                           })             
+                                                           htmlAppend +=`
+                                                                      
+                                                                    </select>
+                                                                </div>
+
+    `
+
+
+    $("#cssNoHtml").html(htmlAppend)
+
+
+    
+
+})
+
+
+
+
+
 
 
                 // temperature = getRandomArbitrary(10,30);
@@ -10257,7 +10410,7 @@ ${reviewStatus == '1' ?
                 $("#sendHeaderValues").css("display", "block");
                 let CssCodeValue = $("#cssCode").val();
                 let testType = $("#testType").val();
-
+                
                 if (testType == 1) {
 
                     if (fileSelectStore) {
@@ -11459,6 +11612,10 @@ ${reviewStatus == '1' ?
             //     $("#checkCSSNo1").css("display", "none");
             //     $("#checkCSSNo2").css("display", "block");
             // }
+
+       
+
+
         </script>
         </body>
 

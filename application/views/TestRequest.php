@@ -4184,7 +4184,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <h1 style="width: 100%;background-color: rgb(83,78,130);color:white;font-weight:bolder;padding:10px;text-align:center">Test Request Generation Form</h1>
                                                             <div class="modal-body" style="border: 2px solid black;padding:10px">
 
-                                                                <div class="row">
+                                                                <div style="display:none" class="row">
                                                                     <div class="col-md-12">
                                                                         <span style="font-size:20px" class="text-danger text-center"><b>Note:</b>
                                                                             (Attention here! Please Fill All Fields Before Generating Test Request
@@ -4943,7 +4943,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                 <div class="modal-body" style="border: 2px solid black;padding:10px">
 
-                                                <div class="row">
+                                                <div style="display:none" class="row">
                                                                     <div class="col-md-12">
                                                                         <span style="font-size:20px" class="text-danger text-center"><b>Note:</b>
                                                                             (Attention here! Please Fill All Fields Before Generating Test Request
@@ -5035,7 +5035,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                     
                                                     <label class="form-contol" for="customFile">Test Catagory</label>
-                                                    <input disabled type="text" class="form-control" id="TestP" name="TestP" value="Material Test"/>
+                                                    <input disabled type="text" class="form-control" id="TestCP" name="TestCP" value="Material Test"/>
 
                                                         
                                                     </div>
@@ -5218,6 +5218,7 @@ if (!$this->session->has_userdata('user_id')) {
 <th><span>Request ID</span></th>
 <th><span>Date</span></th>
 <th><span>Type</span></th>
+<th><span>Test Category</span></th>
 <th><span>FactoryCode</span></th>
 <th><span>Quantity Issued</span></th>
 <th><span>TestType</span></th>
@@ -5235,6 +5236,7 @@ if (!$this->session->has_userdata('user_id')) {
 <td><span id="RIDPP"></span></td>
 <td><span id="DatePP"></span></td>
 <td><span id="TypePP"></span></td>
+<td><span id="TestCategoryPP"></span></td>
 <td><span id="FactoryCodePP"></span></td>
 <td><span id="QuantityPP"></span></td>
 <td><span id="TestTypePP"></span></td>
@@ -5300,7 +5302,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                 <div class="modal-body" style="border: 2px solid black;padding:10px">
 
-                                                <div class="row">
+                                                <div style="display:none" class="row">
                                                                     <div class="col-md-12">
                                                                         <span style="font-size:20px" class="text-danger text-center"><b>Note:</b>
                                                                             (Attention here! Please Fill All Fields Before Generating Test Request
@@ -5355,7 +5357,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                     
                                                     <label class="form-contol" for="customFile">Test Catagory</label>
-                                                    <input disabled type="text" class="form-control" id="TestD" name="TestD" value="Material Test"/>
+                                                    <input disabled type="text" class="form-control" id="TestCD" name="TestCD" value="Material Test"/>
 
                                                         
                                                     </div>
@@ -5465,12 +5467,6 @@ if (!$this->session->has_userdata('user_id')) {
                                                 
 
 
-
-
-
-                                                </div>
-
-
                                                 <div  class="row mt-3 d-flex justify-content-center">
                                                     <div  class="col-md-4">
 
@@ -5480,6 +5476,13 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                     </div>
                                                 </div>
+
+
+
+                                                </div>
+
+
+               
 
 
                                                 <div class="row mt-3">
@@ -5528,7 +5531,7 @@ if (!$this->session->has_userdata('user_id')) {
 
 <div class="col-md-12">
 
-<table id="tableD" class="table table-bordered table-hover table-responsive table-striped w-100">
+<table style="display:none" id="tableD" class="table table-bordered table-hover table-responsive table-striped w-100">
 
 <thead class="bg-primary-200 text-light">
 
@@ -5537,6 +5540,7 @@ if (!$this->session->has_userdata('user_id')) {
 <th><span>Request ID</span></th>
 <th><span>Date</span></th>
 <th><span>Type</span></th>
+<th><span>Test Category</span></th>
 <th><span>FactoryCode</span></th>
 <th><span>Quantity Issued</span></th>
 <th><span>TestType</span></th>
@@ -5551,14 +5555,15 @@ if (!$this->session->has_userdata('user_id')) {
 
 <tr>
 
-<td><span id="RIDDD"></span></td>
-<td><span id="DateDDD"></span></td>
-<td><span id="TypeDDD"></span></td>
-<td><span id="FactoryCodeDDD"></span></td>
-<td><span id="QuantityDDD"></span></td>
-<td><span id="TestTypeDDD"></span></td>
+<td><span id="RIDDDD"></span></td>
+<td><span id="DateDDDD"></span></td>
+<td><span id="TypeDDDD"></span></td>
+<td><span id="TestCategoryDDD"></span></td>
+<td><span id="FactoryCodeDDDD"></span></td>
+<td><span id="QuantityDDDD"></span></td>
+<td><span id="TestTypeDDDD"></span></td>
 <!-- <td><span id="testNameeDD"></span></td> -->
-<td><span id="itemNameeeDD"></span></td>
+<td><span id="itemNameeeDDDD"></span></td>
 
 </tr>            
 
@@ -5610,7 +5615,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                 <div class="modal-body" style="border: 2px solid black;padding:10px">
 
-                                                <div class="row">
+                                                <div style="display:none" class="row">
                                                                     <div class="col-md-12">
                                                                         <span style="font-size:20px" class="text-danger text-center"><b>Note:</b>
                                                                             (Attention here! Please Fill All Fields Before Generating Test Request
@@ -5671,6 +5676,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </div>
                                                 </div>
 
+
+                                                <div id="testReqM">
+
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                     
@@ -5698,6 +5706,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </div>
                                                 </div>
 
+
+
                                                 <div class="row">
                                                     <div class="col-md-6">
 
@@ -5724,6 +5734,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                         <option value="Poly Bag">Poly Bag</option>
                                                                                         <option value="Adhesion">Adhesion</option>
                                                                                         <option value="CSM">CSM</option>
+                                                                                        <option value="TPU Film">TPU Film</option>
+                                                                                        <option value="Winding Thread">Winding Thread</option>
 
                                                                                     </select>
                                                                                 </div>
@@ -5732,9 +5744,44 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                     </div>
 
+
+
+
+
                                                     <div class="col-md-6">
 
+                                                    <div style="display:none" class="row">
+            <div class="col-md-6">
+            
+            <div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" onchange="ItemOption()"  checked>
+  <label class="form-check-label" for="flexRadioDefault3">
+Item Option
+  </label>
+</div>
+
+            </div>
+            <div class="col-md-6">
+
+            
+            <div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" onchange="ItemManual()" id="flexRadioDefault4">
+  <label class="form-check-label" for="flexRadioDefault4">
+   Manual Item
+  </label>
+</div>
+            </div>
+            </div>
+
 <label class="form-contol" for="customFile">Item Name :</label>
+
+
+<div style="display:none" id="itemNameOption">
+<input type="text" id="ItemNameM1"  name="ItemNameM1" class="form-control" />
+
+</div>
+
+<div id="ItemNameMM">
 
 <select class="form-control js-example-basic-single" id="ItemNameM" name="ItemNameM">
 <option value="" disabled>Select one of the following</option>
@@ -5745,6 +5792,9 @@ if (!$this->session->has_userdata('user_id')) {
 
 </select>
 
+</div>
+
+
 <!-- <button onclick="addItemNameM()" type="button" class="btn btn-success mt-2">Add Item Name</button> -->
 
 
@@ -5752,6 +5802,13 @@ if (!$this->session->has_userdata('user_id')) {
 </div>
                                                     
                                                 </div>
+
+
+                                            </div>
+
+                                               
+
+                                        
 
 
                                                 
@@ -5849,7 +5906,7 @@ if (!$this->session->has_userdata('user_id')) {
 <td><span id="QuantityMM"></span></td>
 <td><span id="TestTypeMM"></span></td>
 <!-- <td><span id="testNameeM"></span></td> -->
-<td><span id="itemNameeeM"></span></td>
+<td><span id="itemNameeeMM"></span></td>
 
 </tr>            
 
@@ -5902,7 +5959,7 @@ if (!$this->session->has_userdata('user_id')) {
 
     <div class="modal-body" style="border: 2px solid black;padding:10px">
 
-    <div class="row">
+    <div style="display:none" class="row">
                         <div class="col-md-12">
                             <span style="font-size:20px" class="text-danger text-center"><b>Note:</b>
                                 (Attention here! Please Fill All Fields Before Generating Test Request
@@ -5917,7 +5974,7 @@ if (!$this->session->has_userdata('user_id')) {
     <div class="row mt-2">
         <div class="col-md-12">
 
-        <button type="button" style="border-radius:25px" onclick="AddNewRequestT()" class="btn btn-info">Add New Request</button>
+        <button type="button" id="addNewRequestTT" style="border-radius:25px" onclick="AddNewRequestT()" class="btn btn-info">Add New Request</button>
 
         </div>
     </div>
@@ -6032,7 +6089,7 @@ if (!$this->session->has_userdata('user_id')) {
 <label class="form-contol" for="customFile">Item Name :</label>
 
 <select class="form-control js-example-basic-single" id="ItemNameT" name="ItemNameT">
-<option value="" disabled>Select one of the following</option>
+<option value="" >Select one of the following</option>
 <?php foreach ($GetItems as $items) { ?>
 <option value="<?php echo $items['L4Name']; ?>"><?php echo $items['L4Name']; ?></option>
 <?php } ?>
@@ -6116,7 +6173,7 @@ if (!$this->session->has_userdata('user_id')) {
 
 <div class="col-md-12">
 
-<table id="tableT" class="table table-bordered table-hover table-responsive table-striped w-100">
+<table style="display:none" id="tableT" class="table table-bordered table-hover table-responsive table-striped w-100">
 
 <thead class="bg-primary-200 text-light">
 
@@ -6125,6 +6182,7 @@ if (!$this->session->has_userdata('user_id')) {
 <th><span>Request ID</span></th>
 <th><span>Date</span></th>
 <th><span>Type</span></th>
+<th><span>Test Category</span></th>
 <th><span>FactoryCode</span></th>
 <th><span>Quantity Issued</span></th>
 <th><span>TestType</span></th>
@@ -6142,6 +6200,7 @@ if (!$this->session->has_userdata('user_id')) {
 <td><span id="RIDTTTT"></span></td>
 <td><span id="DateTTTT"></span></td>
 <td><span id="TypeTTTT"></span></td>
+<td><span id="TestCategorTTTT"></span></td>
 <td><span id="FactoryCodeTTTT"></span></td>
 <td><span id="QuantityTTTT"></span></td>
 <td><span id="TestTypeTTTT"></span></td>
@@ -7221,6 +7280,32 @@ if (!$this->session->has_userdata('user_id')) {
                 alert("All fields are mandatory");
             }
         });
+
+
+        function getDataAfterRequest(){
+
+            let RID = $("#RID").val();
+
+            urlAddAfReq = "<?php echo base_url(''); ?>LabController/getDataAfterRequest";
+            
+
+            $.post(urlAddAfReq, 
+{
+    'TID':RID,
+
+}
+            ,function(data, status) {
+
+
+console.log(data)
+
+            })
+
+
+        }
+
+
+        
 
         $(".undobtn").click(function(e) {
             //alert("undobtn");
@@ -10174,7 +10259,7 @@ appendtable +=  `
                 // $("#testTypeShow").css("display", "none");
                 document.getElementById("savePPP").disabled = false;
                 document.getElementById("addNewReqP").disabled = true;
-
+                $("#tableP").css("display", "none");
 
             }
             else{
@@ -10183,7 +10268,7 @@ appendtable +=  `
                 // $("#testTypeShow").css("display", "block");
                 document.getElementById("savePPP").disabled = true;
                 document.getElementById("addNewReqP").disabled = false;
-
+                $("#tableP").css("display", "block");
             }
 
           
@@ -10198,17 +10283,20 @@ $("#qIssuedP").val(sessionStorage.getItem('qIssuedP'));
 $("#testTypeP").val(sessionStorage.getItem('testTypeP'));
 $("#tTypeP").val(sessionStorage.getItem('tTypeP'));
 $("#ItemNameP").val(sessionStorage.getItem('ItemNameP'));
+$("#TestP").val(sessionStorage.getItem('testCateogryP'));
+
 
 $("#testNameeP").text(sessionStorage.getItem('testNameeP'));
-$("#itemNameeeP").text(sessionStorage.getItem('ItemNameP'));
+$("#itemNameeePPPP").text(sessionStorage.getItem('ItemNameP'));
 
 
-$("#RequestidDD").text(sessionStorage.getItem('Requestid'));
-$("#DateDD").text(sessionStorage.getItem('DateP'));
+$("#RIDPP").text(sessionStorage.getItem('Requestid'));
+$("#DatePP").text(sessionStorage.getItem('DateP'));
 $("#TypePP").text(sessionStorage.getItem('Type'));
 $("#FactoryCodePP").text(sessionStorage.getItem('FCP'));
 $("#QuantityPP").text(sessionStorage.getItem('qIssuedP'));
 $("#TestTypePP").text(sessionStorage.getItem('testTypeP'));
+$("#TestCategoryPP").text(sessionStorage.getItem('testCategoryP'));
 
 
 // $("#tTypeP1").text(sessionStorage.getItem('testNameeP'));
@@ -10217,46 +10305,132 @@ $("#TestTypePP").text(sessionStorage.getItem('testTypeP'));
 
 if(sessionStorage.length <= 2){
 
-$("#testReqP").css("display", "block");
+$("#testReqD").css("display", "block");
 // $("#testTypee1").css("display", "none");
 // $("#testTypeShow").css("display", "none");
-document.getElementById("savePPP").disabled = false;
+document.getElementById("saveDD").disabled = false;
 document.getElementById("addNewRequestD").disabled = true;
+$("#tableD").css("display", "none");
+document.getElementById("DateD").disabled = false;
+
+
 
 }
 else{
-$("#testReqP").css("display", "none");
+$("#testReqD").css("display", "none");
 // $("#testTypee1").css("display", "block");
 // $("#testTypeShow").css("display", "block");
-document.getElementById("savePPP").disabled = true;
+document.getElementById("saveDD").disabled = true;
 document.getElementById("addNewRequestD").disabled = false;
+$("#tableD").css("display", "block");
+document.getElementById("DateD").disabled = true;
 
 }
 
 
-$("#RIDD").val(sessionStorage.getItem('Requestid'));
+$("#RIDD").val(sessionStorage.getItem('RequestidD'));
 
-$("#DateD").val(sessionStorage.getItem('DateP'));
+$("#DateD").val(sessionStorage.getItem('DateD'));
 
 
 // $("#typeP").val(sessionStorage.getItem('typeP'));
-$("#FCD").val(sessionStorage.getItem('FCP'));
-$("#qIssuedD").val(sessionStorage.getItem('qIssuedP'));
-$("#testTypeD").val(sessionStorage.getItem('testTypeP'));
-$("#tTypeD").val(sessionStorage.getItem('tTypeP'));
-$("#ItemNameD").val(sessionStorage.getItem('ItemNameP'));
+$("#FCD").val(sessionStorage.getItem('FCD'));
+$("#qIssuedD").val(sessionStorage.getItem('qIssuedD'));
+$("#testTypeD").val(sessionStorage.getItem('testTypeD'));
+$("#tTypeD").val(sessionStorage.getItem('tTypeD'));
+$("#ItemNameD").val(sessionStorage.getItem('ItemNameD'));
 
-$("#testNameeDD").text(sessionStorage.getItem('testNameeP'));
-$("#itemNameeeDD").text(sessionStorage.getItem('ItemNameP'));
+$("#testNameeDD").text(sessionStorage.getItem('testNameeD'));
+$("#itemNameeeDDDD").text(sessionStorage.getItem('ItemNameD'));
 
 
-$("#RIDDD").text(sessionStorage.getItem('Requestid'));
-$("#DateDDD").text(sessionStorage.getItem('DateP'));
-$("#TypeDDD").text(sessionStorage.getItem('Type'));
-$("#FactoryCodeDDD").text(sessionStorage.getItem('FCP'));
-$("#QuantityDDD").text(sessionStorage.getItem('qIssuedP'));
-$("#TestTypeDDD").text(sessionStorage.getItem('testTypeP'));
+$("#RIDDDD").text(sessionStorage.getItem('RequestidD'));
+$("#DateDDDD").text(sessionStorage.getItem('DateD'));
+$("#TypeDDDD").text(sessionStorage.getItem('TypeD'));
+$("#FactoryCodeDDDD").text(sessionStorage.getItem('FCD'));
+$("#QuantityDDDD").text(sessionStorage.getItem('qIssuedD'));
+$("#TestTypeDDDD").text(sessionStorage.getItem('testTypeD'));
+$("#TestCategoryDDD").text(sessionStorage.getItem('TestCategoryD'));
 
+
+if(sessionStorage.length <= 2){
+
+$("#addTestReqT").css("display", "block");
+// $("#testTypee1").css("display", "none");
+// $("#testTypeShow").css("display", "none");
+document.getElementById("saveBtnT").disabled = false;
+document.getElementById("addNewRequestTT").disabled = true;
+document.getElementById("DateT").disabled = false;
+document.getElementById("tableT").disabled = true;
+
+$("#tableT").css("display","none");
+
+
+
+}
+else{
+
+    $("#addTestReqT").css("display", "none");
+// $("#testTypee1").css("display", "block");
+// $("#testTypeShow").css("display", "block");
+document.getElementById("addNewRequestTT").disabled = false;
+document.getElementById("DateT").disabled = true;
+$("#tableT").css("display","block");
+
+document.getElementById("saveBtnT").disabled = true;
+
+
+}
+
+
+
+
+// $("#typeP").val(sessionStorage.getItem('typeP'));
+$("#FCT").val(sessionStorage.getItem('FCPT'));
+$("#qIssuedT").val(sessionStorage.getItem('qIssuedT'));
+$("#testTypeT").val(sessionStorage.getItem('testTypeT'));
+$("#tTypeT").val(sessionStorage.getItem('tTypeT'));
+$("#ItemNameT").val(sessionStorage.getItem('ItemNameT'));
+
+$("#RIDT").val(sessionStorage.getItem('RequestidT'));
+$("#DateT").val(sessionStorage.getItem('DateT'));
+
+$("#supplierT").val(sessionStorage.getItem('SupplierT'));
+
+
+$("#testNameeTT").text(sessionStorage.getItem('testNameeT'));
+$("#itemNameeeTTTT").text(sessionStorage.getItem('ItemNameT'));
+
+
+$("#RIDTTTT").text(sessionStorage.getItem('RequestidT'));
+$("#DateTTTT").text(sessionStorage.getItem('DateT'));
+$("#TypeTTTT").text(sessionStorage.getItem('TypeT'));
+$("#FactoryCodeTTTT").text(sessionStorage.getItem('FCPT'));
+$("#QuantityTTTT").text(sessionStorage.getItem('qIssuedT'));
+$("#TestTypeTTTT").text(sessionStorage.getItem('testTypeT'));
+$("#TestCategorTTTT").text(sessionStorage.getItem('TestCategorT'));
+
+
+
+$("#RIDM").val(sessionStorage.getItem('RequestidM'));
+$("#DateM").val(sessionStorage.getItem('DateM'));
+$("#typeM").val(sessionStorage.getItem('TypeM'));
+$("#TestM").val(sessionStorage.getItem('testTypeM'));
+$("#FCM").val(sessionStorage.getItem('FCM'));
+$("#qIssuedM").val(sessionStorage.getItem('qIssuedM'));
+$("#testTypeM").val(sessionStorage.getItem('testTypeM'));
+$("#ItemNameM").val(sessionStorage.getItem('ItemNameM'));
+
+
+
+
+$("#RIDMM").text(sessionStorage.getItem('RequestidM'));
+$("#DateMM").text(sessionStorage.getItem('DateM'));
+$("#TypeMM").text(sessionStorage.getItem('TypeM'));
+$("#FactoryCodeMM").text(sessionStorage.getItem('FCM'));
+$("#QuantityMM").text(sessionStorage.getItem('qIssuedM'));
+$("#TestTypeMM").text(sessionStorage.getItem('testTypeM'));
+$("#TestCategorTTTT").text(sessionStorage.getItem('TestCategoryM'));
 
 
 // addNewReqP
@@ -10339,10 +10513,10 @@ $.post(urlD,
 
 
 <select class="form-control" value="" id="supplierD" name="supplierD">
-            
+
+<option vlaue="">Select Supplier Name</option>
+
             `
-
-
             data.forEach(element => {
 
 
@@ -10382,10 +10556,47 @@ $.post(urlM,
         function(data, status) {
 
             htmlappendM += `
+
+            <div style="display:none" class="row">
+            <div class="col-md-6">
             
+            <div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"  onchange='Option()' checked>
+  <label class="form-check-label" for="flexRadioDefault1">
+Supplier Option
+  </label>
+</div>
+
+            </div>
+            <div class="col-md-6">
+
+            
+            <div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onchange='Manual()'>
+  <label class="form-check-label" for="flexRadioDefault2">
+   Manual Supplier
+  </label>
+</div>
+            </div>
+            </div>
+
+    
+
+
+
+
             
             <label class="form-contol" for="customFile">Supplier Name :</label>
 
+            <div style="display:none" id="supplerManual">
+
+            <input type="text" class="form-control" value="" >    
+
+
+            </div>
+
+
+<div id="supplierMM">
 
 <select class="form-control" value="" id="supplierM" name="supplierM">
             
@@ -10412,15 +10623,22 @@ htmlappendM += `
 </select>
 
 
-
+</div>
 `
 
             $("#suppliersM").html(htmlappendM);
 
-            
+
+        
         })
 
 
+
+        
+       
+
+
+    
 
         
         urlT = "<?php echo base_url(''); ?>LabController/getSuppliers";
@@ -10438,7 +10656,7 @@ $.post(urlT,
 
 
 <select class="form-control" value="" id="supplierT" name="supplierT">
-            
+            <option value="">Select Supplier Name</option>
             `
 
 
@@ -10518,7 +10736,8 @@ $.post(urlP, {
             document.getElementById('FCT').value = '';
             document.getElementById('qIssuedT').value = '';
             document.getElementById('testTypeT').value = '';
-
+            document.getElementById('ItemNameT').value = '';
+            document.getElementById('supplierT').value = '';
 
             document.getElementById('RIDTTTT').value = '';
             document.getElementById('DateTTTT').value = '';
@@ -10529,12 +10748,17 @@ $.post(urlP, {
             document.getElementById('itemNameeeTTTT').value = '';
 
 
-
             $("#ItemNameeT").css("display", "none");
             // $("#testTypeeT").css("display", "none");
+            $("#tableT").css("display", "none");
+
+            sessionStorage.clear();
             
             document.getElementById("saveBtnT").disabled = false;
             document.getElementById("DateT").disabled = false;
+
+            document.getElementById("addNewRequestTT").disabled = true;
+
 
             $("#addTestReqT").css("display", "block");
 
@@ -10546,6 +10770,46 @@ $.post(urlP, {
 
 
         }
+
+        function ItemOption(){
+
+            
+
+
+$("#ItemNameMM").css("display","block");
+
+$("#itemNameOption").css("display","none");
+
+        }
+
+
+        function ItemManual(){
+            
+            $("#ItemNameMM").css("display","none");
+
+$("#itemNameOption").css("display","block");
+
+        }
+
+
+        function Option(){
+
+
+$("#supplierMM").css("display","block");
+$("#supplerManual").css("display","none");
+
+
+}
+
+function Manual(){
+
+
+$("#supplierMM").css("display","none");
+$("#supplerManual").css("display","block");
+
+}
+
+
 
         function AddNewRequestP(){
             
@@ -10616,22 +10880,22 @@ document.getElementById('RIDD').value = '';
 document.getElementById('DateD').value = '';
 document.getElementById('typeD').value = '';
 document.getElementById('FCD').value = '';
-document.getElementById('TestD').value = '';
+document.getElementById('TestCD').value = '';
 document.getElementById('qIssuedD').value = '';
 document.getElementById('supplierD').value = '';
 document.getElementById('testTypeD').value = '';
 document.getElementById('ItemNameDDDD').value = '';
 
 
-document.getElementById('RIDDD').value = '';
-document.getElementById('DateDDD').value = '';
-document.getElementById('TypeDDD').value = '';
-document.getElementById('FactoryCodeDDD').value = '';
-document.getElementById('QuantityDDD').value = '';
-document.getElementById('TestTypeDDD').value = '';
-document.getElementById('itemNameeeDD').value = '';
 
 
+$("#RIDDDD").text('');
+$("#DateDDDD").text('');
+$("#TypeDDDD").text('');
+$("#FactoryCodeDDDD").text('');
+$("#QuantityDDDD").text('');
+$("#TestTypeDDDD").text('');
+$("#itemNameeeDDDD").text('');
 
 $("#testReqD").css("display","block");
  document.getElementById("saveDD").disabled = false;
@@ -10649,7 +10913,7 @@ for(let i=0; i<=arrayListD.length+1; i++){
     arrayListD.pop();
 }
 
-
+sessionStorage.clear()
 
 
 
@@ -10666,10 +10930,24 @@ document.getElementById('qIssuedM').value = '';
 document.getElementById('supplierM').value = '';
 document.getElementById('testTypeM').value = '';
 
+
+$("#RIDMM").text('');
+$("#DateMM").text('');
+$("#TypeMM").text('');
+$("#FactoryCodeMM").text('');
+$("#QuantityMM").text('');
+$("#TestTypeMM").text('');
+$("#itemNameeeMM").text('');
+
+
 $("#ItemNameeM").css("display", "none");
             $("#testTypeeM").css("display", "none");
 
+            
+            $("#testReqM").css("display", "block");
 
+
+            sessionStorage.clear()
             $("#saveBtnM").css("display","block");
 
 for(let i=0; i<=arrayListM.length+1; i++){
@@ -11610,13 +11888,14 @@ $.post(urlTestT,
                       
 let RNO = $("#RIDD").val();
 let DateD = $("#DateD").val();
-let Type = $("#typeD").val();
-let testCategory = $("#TestD").val();
+let TypeD = 'Development';
+let testCategoryD = 'Material Test';
 let factoryCode = $("#FCD").val();
 let quantityIssued = $("#qIssuedD").val();
 let supplierN = $("#supplierD").val();
 let testTypeDD = $("#testTypeD").val();
 let ItemNameD = $("#ItemNameDDDD").val();
+
 
 
 // Type.length <=0 || factoryCode <= 0 || quantityIssued <= 0 || DateP <= 0 || supplierN <= 0 || testType <= 0 || ItemNameP <= 0
@@ -11639,8 +11918,8 @@ else{
 $.post(urlAddD, 
 {
     'Date':DateD,
-    'Type': Type,
-    'testCategory': testCategory,
+    'Type': TypeD,
+    'testCategory': testCategoryD,
     'factoryCode': factoryCode,
     'quantityIssued': quantityIssued,
     'supplier': supplierN,
@@ -11655,6 +11934,8 @@ $.post(urlAddD,
                 alert("Added Request Successfully!")
 
                $("#testReqD").css("display","none");
+               $("#tableD").css("display","block");
+
                document.getElementById("saveDD").disabled = true;
                document.getElementById("addNewRequestD").disabled = false;
 
@@ -11669,6 +11950,10 @@ url4 = "<?php echo base_url(''); ?>LabController/getLabRawMatHead";
 let TID = [];
 
 $.post(url4,
+{
+
+    'RNO':RNO
+},
             function(data, status) {
 
 
@@ -11677,17 +11962,17 @@ $.post(url4,
                 $("#RIDD").val(element['Requestid']);
 
                 
-            sessionStorage.setItem('Requestid',element['Requestid']);
-                sessionStorage.setItem('DateP', element['Date']);
-                sessionStorage.setItem('FCP',element['FactoryCode']);
-                sessionStorage.setItem('qIssuedP',element['Quantity']);
-                sessionStorage.setItem('testTypeP',element['TestType']);
-                sessionStorage.setItem('tTypeP',element['testName']);
-                sessionStorage.setItem('ItemNameP',element['itemName']);
-                sessionStorage.setItem('Type',element['Type']);
-
+            sessionStorage.setItem('RequestidD',element['Requestid']);
+                sessionStorage.setItem('DateD', element['Date']);
+                sessionStorage.setItem('FCD',element['FactoryCode']);
+                sessionStorage.setItem('qIssuedD',element['Quantity']);
+                sessionStorage.setItem('testTypeD',element['TestType']);
+                sessionStorage.setItem('tTypeD',element['testName']);
+                sessionStorage.setItem('ItemNameD',element['itemName']);
+                sessionStorage.setItem('TypeD',element['Type']);
+                sessionStorage.setItem('TestCategoryD',element['testCateogry']);
                 
-                document.getElementById("DateP").disabled = true;
+                document.getElementById("DateD").disabled = true;
 
                 // $("#DateP").disabled = true;
 
@@ -11699,11 +11984,8 @@ $.post(url4,
 
             })
 
-    
 
-}
-
-document.getElementById("testReqD").disabled = true;
+            document.getElementById("testReqD").disabled = true;
 
 
 // $("#saveBtnD").css("display","none");
@@ -11711,13 +11993,14 @@ $("#testTypeeD").css("display","block");
 
 
 
-RIDD = "#RIDDD";
-DateD = "#DateDDD";
-TypeD = "#TypeDDD";
-FactoryCodeD = "#FactoryCodeDDD";
-QuantityD = "#QuantityDDD";
-TestTypeD = "#TestTypeDDD";
-ItemNameeD = "#itemNameeeDD";
+RIDD = "#RIDDDD";
+DateD = "#DateDDDD";
+TypeD = "#TypeDDDD";
+TestCategor = "#TestCategor"
+FactoryCodeD = "#FactoryCodeDDDD";
+QuantityD = "#QuantityDDDD";
+TestTypeD = "#TestTypeDDDD";
+ItemNameeD = "#itemNameeeDDDD";
 
 
 // userIdP = "#userIdPP";
@@ -11726,7 +12009,11 @@ ItemNameeD = "#itemNameeeDD";
   
 
 
-            getAllDataP(RNO, RIDD, DateD, TypeD, FactoryCodeD, QuantityD, TestTypeD, ItemNameeD);
+            getAllDataP(RNO, RIDD, DateD, TypeD, FactoryCodeD, QuantityD, TestTypeD, ItemNameeD, TestCategor);
+
+    
+
+}
 
 
         }
@@ -11741,32 +12028,30 @@ ItemNameeD = "#itemNameeeDD";
                       
 let RNO = $("#RIDM").val();
 let DateM = $("#DateM").val();
-let TypeM = $("#typeM").val();
-let testCategory = $("#TestM").val();
+let TypeM = 'Material';
+let testCategoryM = 'Material Test';
 let factoryCodeM = $("#FCM").val();
 let quantityIssuedM = $("#qIssuedM").val();
 let supplierM = $("#supplierM").val();
 let testTypeM = $("#testTypeM").val();
-let ItemNameM = $("#ItemNameM").val();
+let ItemNameM = $("#ItemNameM").val() 
 
+$("#ItemNameM1").val();
 
-if(TypeM.length <=0 || factoryCodeM <= 0 || quantityIssuedM <= 0 || DateM <= 0 || supplierM <= 0 || testTypeM <= 0 || ItemNameM <= 0){
+if(factoryCodeM <= 0 || quantityIssuedM <= 0 || DateM <= 0 || supplierM <= 0 || testTypeM <= 0 || ItemNameM <= 0){
 
     alert("All Fields are mandatory");
-   
 
 }
 else{
-
-
-                urlAddM = "<?php echo base_url(''); ?>LabController/AddRaw_MatHead";
-
+    
+    urlAddM = "<?php echo base_url(''); ?>LabController/AddRaw_MatHead";
 
 $.post(urlAddM, 
 {
     'Date':DateM,
-    'Type': typeM,
-    'testCategory': testCategory,
+    'Type': TypeM,
+    'testCategory': testCategoryM,
     'factoryCode': factoryCodeM,
     'quantityIssued': quantityIssuedM,
     'supplier': supplierM,
@@ -11776,8 +12061,11 @@ $.post(urlAddM,
 }
             ,function(data, status) {
 
-              
+        
+     
                 alert("Added Request Successfully!");
+                $("#testReqM").css("display","none");
+               $("#tableM").css("display","block");
 
                
 
@@ -11790,7 +12078,6 @@ url4M = "<?php echo base_url(''); ?>LabController/getLabRawMatHead";
 
 $.post(url4M,
 
-
                 function(data, status) {
 
 
@@ -11798,6 +12085,17 @@ $.post(url4M,
 
 
                     $("#RIDM").val(element['Requestid']);
+            
+                    sessionStorage.setItem('RequestidM',element['Requestid']);
+                sessionStorage.setItem('DateM', element['Date']);
+                sessionStorage.setItem('FCM',element['FactoryCode']);
+                sessionStorage.setItem('qIssuedM',element['Quantity']);
+                sessionStorage.setItem('testTypeM',element['TestType']);
+                sessionStorage.setItem('tTypeM',element['testName']);
+                sessionStorage.setItem('ItemNameM',element['itemName']);
+                sessionStorage.setItem('TypeM',element['Type']);
+                sessionStorage.setItem('TestCategoryM',element['testCateogry']);
+
 
                    })
 
@@ -11823,7 +12121,7 @@ TypeM = "#TypeMM";
 FactoryCodeM = "#FactoryCodeMM";
 QuantityM = "#QuantityMM";
 TestTypeM = "#TestTypeMM";
-itemNameeeM = "#itemNameeeM";
+itemNameeeM = "#itemNameeeMM";
 
 
 // userIdP = "#userIdPP";
@@ -11847,7 +12145,7 @@ itemNameeeM = "#itemNameeeM";
 
 
 
-function getAllDataP(RNO, RIDP, DATE, Type, FactoryCode, Quantity, TestType, ItemName){
+function getAllDataP(RNO, RIDP, DATE, Type, FactoryCode, Quantity, TestType, ItemName, testCategore){
 
 
     
@@ -11868,8 +12166,9 @@ data['Raw_MatHead'].forEach(element => {
     $(Quantity).text(element.Quantity);
     $(TestType).text(element.TestType);
     $(ItemName).text(element.itemName);
+    $(testCategore).text(element.testCateogry);
 
-
+    
     
 })
 
@@ -11890,8 +12189,8 @@ data['Raw_MatHead'].forEach(element => {
                       
 let RNO = $("#RIDP").val();
 let DateP = $("#DateP").val();
-let Type = $("#typeP").val();
-let testCategory = $("#TestP").val();
+let TypeP = 'Production';
+let testCategoryP = 'Material Test';
 let factoryCode = $("#FCP").val();
 let quantityIssued = $("#qIssuedP").val();
 let supplierN = $("#supplierP").val();
@@ -11899,11 +12198,13 @@ let testType = $("#testTypeP").val();
 
 let ItemNameP = $("#ItemNameP").val();
 
+
+
 // || tTypeP <= 0 
 
 reqDateP = [];
 
-if(Type.length <=0 || factoryCode <= 0 || quantityIssued <= 0 || DateP <= 0 || supplierN <= 0 || testType <= 0 || ItemNameP <= 0){
+if(factoryCode <= 0 || quantityIssued <= 0 || DateP <= 0 || supplierN <= 0 || testType <= 0 || ItemNameP <= 0){
 
     alert("All Fields are mandatory");
    
@@ -11912,17 +12213,14 @@ if(Type.length <=0 || factoryCode <= 0 || quantityIssued <= 0 || DateP <= 0 || s
 else{
 
 
-
-       
-
                 urlAdd = "<?php echo base_url(''); ?>LabController/AddRaw_MatHead";
 
 
 $.post(urlAdd, 
 {
     'Date':DateP,
-    'Type': Type,
-    'testCategory': testCategory,
+    'Type': TypeP,
+    'testCategory': testCategoryP,
     'factoryCode': factoryCode,
     'quantityIssued': quantityIssued,
     'supplier': supplierN,
@@ -11963,44 +12261,44 @@ url4 = "<?php echo base_url(''); ?>LabController/getLabRawMatHead";
 let TID = [];
 
 $.post(url4,
-            function(data, status) {
+    function(data, status) {
 
 
-               data['Raw_MatHead'].forEach(element => {
+        data['Raw_MatHead'].forEach(element => {
 
-                $("#RIDP").val(element['Requestid']);
-
-                
-            sessionStorage.setItem('Requestid',element['Requestid']);
-                sessionStorage.setItem('DateP', element['Date']);
-                sessionStorage.setItem('FCP',element['FactoryCode']);
-                sessionStorage.setItem('qIssuedP',element['Quantity']);
-                sessionStorage.setItem('testTypeP',element['TestType']);
-                sessionStorage.setItem('tTypeP',element['testName']);
-                sessionStorage.setItem('ItemNameP',element['itemName']);
-                sessionStorage.setItem('Type',element['Type']);
-
-                
-                document.getElementById("DateP").disabled = true;
-
-                // $("#DateP").disabled = true;
+            $("#RIDP").val(element['Requestid']);
 
 
+            sessionStorage.setItem('Requestid', element['Requestid']);
+            sessionStorage.setItem('DateP', element['Date']);
+            sessionStorage.setItem('FCP', element['FactoryCode']);
+            sessionStorage.setItem('qIssuedP', element['Quantity']);
+            sessionStorage.setItem('testTypeP', element['TestType']);
+            sessionStorage.setItem('tTypeP', element['testName']);
+            sessionStorage.setItem('ItemNameP', element['itemName']);
+            sessionStorage.setItem('Type', element['Type']);
+            sessionStorage.setItem('testCategoryP', element['testCateogry']);
 
-               })
+            document.getElementById("DateP").disabled = true;
+
+            // $("#DateP").disabled = true;
 
 
 
-            })
+        })
+
+
+
+    })
 
 
 // $("#testTypee1").css("display","block");
-            $("#testReqP").css("display","none");
-            // $("#testTypeShow").css("display","block");
+$("#testReqP").css("display", "none");
+// $("#testTypeShow").css("display","block");
 
-            
-            // $("#saveBtn").css("display","none");
-$("#testTypee").css("display","block");
+
+// $("#saveBtn").css("display","none");
+$("#testTypee").css("display", "block");
 
 
 
@@ -12012,7 +12310,7 @@ FactoryCodeP = "#FactoryCodePP";
 QuantityP = "#QuantityPP";
 TestTypeP = "#TestTypePP";
 ItemName = "#itemNameeePPPP";
-
+testCatgeor = "#TestCategoryPP"
 
 // userIdP = "#userIdPP";
 // EntryDateP = "#EntryDatePP";
@@ -12020,7 +12318,7 @@ ItemName = "#itemNameeePPPP";
   
 
 
-            getAllDataP(RNO, RIDP, DateP, TypeP, FactoryCodeP, QuantityP, TestTypeP, ItemName);
+            getAllDataP(RNO, RIDP, DateP, TypeP, FactoryCodeP, QuantityP, TestTypeP, ItemName, testCatgeor);
 
 }
 
@@ -12040,8 +12338,8 @@ ItemName = "#itemNameeePPPP";
                       
 let RNOT = $("#RIDT").val();
 let DateT = $("#DateT").val();
-let TypeT = $("#typeT").val();
-let testCategoryT = $("#TestT").val();
+let TypeT = 'Trial';
+let testCategoryT = 'Material Test';
 let factoryCodeT = $("#FCT").val();
 let quantityIssuedT = $("#qIssuedT").val();
 let supplierT = $("#supplierT").val();
@@ -12056,7 +12354,6 @@ if(factoryCodeT <= 0 || quantityIssuedT <= 0 || DateT <= 0 || supplierT <= 0 || 
 
 }
 else{
-
 
                 urlAddT = "<?php echo base_url(''); ?>LabController/AddRaw_MatHead";
 
@@ -12080,8 +12377,9 @@ $.post(urlAddT,
                 
 
                 $("#addTestReqT").css("display","none");
+                $("#tableT").css("display","block");
 
-
+                document.getElementById("addNewRequestTT").disabled = false;
 
 })
 
@@ -12102,6 +12400,23 @@ $.post(url4T,
 
 
                 $("#RIDT").val(element['Requestid']);
+
+
+                
+                
+            sessionStorage.setItem('RequestidT',element['Requestid']);
+                sessionStorage.setItem('DateT', element['Date']);
+                sessionStorage.setItem('FCPT',element['FactoryCode']);
+                sessionStorage.setItem('qIssuedT',element['Quantity']);
+                sessionStorage.setItem('testTypeT',element['TestType']);
+                sessionStorage.setItem('tTypeT',element['testName']);
+                sessionStorage.setItem('ItemNameT',element['itemName']);
+                sessionStorage.setItem('SupplierT',element['SupplierNam']);
+                sessionStorage.setItem('TypeT',element['Type']);
+                sessionStorage.setItem('TestCategorT',element['testCateogry']);
+
+
+
 
                })
 

@@ -8885,8 +8885,6 @@ ${reviewStatus == '1' ?
 
             let type = $("#fgtype" + TID).text();
 
-            alert(TID)
-
 
             url = "<?php echo base_url(''); ?>FGT/FGT_PRINT"
             $.post(url, {

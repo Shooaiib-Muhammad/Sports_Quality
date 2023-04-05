@@ -196,6 +196,63 @@ class LabController extends CI_Controller
 
     }
 
+    
+
+
+    public function getRawMatReqTByPending()
+    {
+        
+
+        $data = $this->l->getRawMatReqTByPending();
+
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+
+
+    public function getDataAfterRequest(){
+
+        $TID = $_POST['TID'];
+
+        
+
+        $data = $this->l->getDataAfterRequest($TID);
+
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+
+    }
+
+    public function getRawMatReqByCss()
+    {
+
+
+        $data = $this->l->getRawMatReqByCss();
+
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+
+
+    public function getRawMatReqByCss1()
+    {
+
+        $cssNo = $_POST['cssNo1'];
+
+        $data = $this->l->getRawMatReqByCss1($cssNo);
+
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+
 
    
     public function AddRaw_MatHead()
@@ -214,7 +271,7 @@ class LabController extends CI_Controller
 
         // $tTypeP,
 
-        $data = $this->l->AddRaw_MatHead($DateP, $Type, $factoryCode, $quantityIssued, $supplierN, $testType, $ItemName);
+        $data = $this->l->AddRaw_MatHead($DateP, $Type, $factoryCode, $quantityIssued, $supplierN, $testType, $ItemName, $testCategory);
 
         return $this->output
             ->set_content_type('application/json')
@@ -266,6 +323,9 @@ class LabController extends CI_Controller
         $data['getTestByLabAcknowledge'] = $this->l->getTestByLabAcknowledge();
 
         $data['TID'] = $this->l->getTestByLabPendingByTID();
+
+        $data['getTestTypes'] = $this->l->getTestTypematerial();
+        // print_r($data['getTestTypes']);
 
         $this->load->view('TestRequestLab', $data);
     }
@@ -706,8 +766,10 @@ class LabController extends CI_Controller
     {
 
         $TID = $_POST['Id'];
+        $testTypeID = $_POST['testTypeID'];
+        // print_r($testTypeID);
 
-        $data = $this->l->EditTestRequestLabAcknowledge($TID);
+        $data = $this->l->EditTestRequestLabAcknowledge($TID, $testTypeID);
 
         return $this->output
             ->set_content_type('application/json')
@@ -734,7 +796,7 @@ class LabController extends CI_Controller
     {
         $leavesArray = $_POST['data']['leaves'];
 
-        $data = $this->l->EditTestRequestLabAcknowledgeBulk($leavesArray);
+        $data = $this->l->EditTestRequestLabAcknowledgeBulk($leavesArray, $_POST['testTypeID']);
 
 
         return $this->output
@@ -778,6 +840,10 @@ class LabController extends CI_Controller
 
         $this->load->view('LabMasterForm', $data);
     }
+
+
+    
+
     public function getCssRaw()
     {
         //$data['getCssNo'] =

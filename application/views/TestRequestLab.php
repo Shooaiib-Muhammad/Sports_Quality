@@ -4,7 +4,8 @@ if (!$this->session->has_userdata('user_id')) {
 } else {
 ?>
 
-    <?php $this->load->view('includes/new_header'); ?>
+    <?php $this->load->view('includes/new_header');
+    ?>
 
     <!-- BEGIN Page Wrapper -->
     <div class="page-wrapper">
@@ -116,6 +117,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <tbody>
                                                             <?php //print_r($loadFGT_H);
                                                             $this->load->model('LabModel', 'l');
+                                                            // print_r($getTestByLabPending);
                                                             foreach ($getTestByLabPending as $keys) {
                                                                 $Requestid = $keys['TID'];
                                                                 $gettests = $this->l->getrequesttest($Requestid);
@@ -284,6 +286,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                             </div>
 
+
                                         </div>
 
                                     </div>
@@ -298,9 +301,52 @@ if (!$this->session->has_userdata('user_id')) {
                     </div>
                     <div class="col-md-4"></div>
 
-                </main>
+                    <!-- Pop Model for slecting testType of material testing -->
+
+                    <div id="testTypeModel" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: rgb(83,78,130);color:white;font-weight:bolder">
+                                    <h1 class="modal-title" id="changeTitle">FGT Request Acknowledge Modal</h1>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" style="color: white;">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form name="formDepartment" id="fgtRequestForm" method="POST">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+
+                                                <label for="customFile">Select test type of Material testing</label>
+                                                <select name="testType" id="testType" class="form-control" style="width: 100%;">
+                                                    <?php
+                                                    if (isset($getTestTypes)) {
+                                                        foreach ($getTestTypes as $key) {
+                                                    ?>
+                                                            <option value="<?php echo $key['TestID']; ?>"><?php echo $key['Name']; ?></option>
+                                                    <?php
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+
+                                            </div>
+                                            <div class="col-md-4 mt-2">
+                                                <div class="btn btn-primary" onclick="acknowledgeSingleMaterialReq()" id="ackSingle">Acknowledge</div>
+                                                <div class="btn btn-primary" onclick="acknowledgeAllMaterialReq()" id="ackAll">Acknowledge All</div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
             </div>
+            </main>
         </div>
+    </div>
     </div>
     </div>
     <script src="<?php echo base_url(); ?>/assets/js//jquery.min.js" type="text/javascript"></script>
@@ -312,12 +358,23 @@ if (!$this->session->has_userdata('user_id')) {
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
+        let TID;
         $(".updatebtnBacktoSender").click(function(e) {
             let id = this.id;
             let split_value = id.split(".");
-            var TID = split_value[1];
-            let proceed = confirm("Are you sure you want to acknowledge Receipt?");
-            if (proceed) {
+            TID = split_value[1];
+            $("#ackSingle").css("display", "block");
+            $("#ackAll").css("display", "none");
+            $("#testTypeModel").modal("toggle");
+
+        });
+
+        function acknowledgeSingleMaterialReq() {
+            let testTypeID = $("#testType").val();
+            // alert(testType);
+            // alert(TID);
+            let proceed = confirm("Are you sure you want to acknowledge Receipt with testType also?");
+            if (proceed && testTypeID) {
 
                 url = "<?php echo base_url(''); ?>LabController/TestRequestById";
                 url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestLabAcknowledge";
@@ -325,16 +382,19 @@ if (!$this->session->has_userdata('user_id')) {
                     'Id': TID
                 }, function(data, status) {
                     $.post(url2, {
-                        'Id': TID
+                        'Id': TID,
+                        'testTypeID': testTypeID
                     }, function(data, status) {
                         alert("Data Updated Successfully! Click on Ok to Reload the Page")
                         window.location.reload();
                     });
                 });
             } else {
-                alert("Sending Cancel");
+                alert("Operation Cancelled!.");
+                $("#testTypeModel").modal("toggle");
+
             }
-        });
+        }
 
         function toggleArticle() {
             let selectionValue = $('#selection').val();
@@ -629,7 +689,7 @@ if (!$this->session->has_userdata('user_id')) {
             url = "<?php echo base_url("LabController/FGTRequestSendToLab") ?>";
             $.get(url, function(data) {
                 if (data) {
-                    console.log("data is ",data);
+                    console.log("data is ", data);
                     let html = `<table class="table table-bordered table-striped table-hover table-responsive table-sm" id="fgtTableExport2">
                     <thead class="bg-primary-200 text-light p-2">
                     <tr>
@@ -923,9 +983,9 @@ if (!$this->session->has_userdata('user_id')) {
 
         }
 
-        function addAknowledgeCssNo(TID){
+        function addAknowledgeCssNo(TID) {
             let confirmm = confirm("Are you sure you want to Aknowledge?");
-            if(confirmm){
+            if (confirmm) {
                 url = "<?php echo base_url(''); ?>LabController/fgtRequestaddAknowledgeCssNo";
                 $.post(url, {
                     TID: TID
@@ -939,11 +999,10 @@ if (!$this->session->has_userdata('user_id')) {
                     }
 
                 });
-            }else{
+            } else {
                 alert('Acknowledge request cencelled.');
             }
         }
-        
     </script>
 
     <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
@@ -2191,19 +2250,8 @@ if (!$this->session->has_userdata('user_id')) {
                 if (ele[i].type == 'checkbox')
                     ele[i].checked = true;
 
-                if (ele[i] === true) {
-
-
-
-
-                }
-
-
+                if (ele[i] === true) {}
             }
-
-
-
-
         });
 
         $('#deselect-all').click(function(event) {
@@ -2215,10 +2263,6 @@ if (!$this->session->has_userdata('user_id')) {
 
             }
         })
-
-
-
-
 
         leaves = []
         $('#select-all').click(function(e) {
@@ -2262,41 +2306,44 @@ if (!$this->session->has_userdata('user_id')) {
         })
 
 
-
         $('.submit-button').click(function(data) {
+
+            $("#ackSingle").css("display", "none");
+            $("#ackAll").css("display", "block");
+            $("#testTypeModel").modal("toggle");
+
+
+        })
+
+
+        function acknowledgeAllMaterialReq(data) {
+            let testTypeID = $("#testType").val();
+            data = {
+                leaves
+            }
+
             let result = confirm("Are you sure to acknowledge all requests?")
-
-
             if (result == true) {
                 if (data) {
                     data = {
                         leaves
                     }
-
-
                     url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestLabAcknowledgeBulk";
-
-
-
                     $.post(url2, {
-                        data
+                        data,
+                        testTypeID: testTypeID
                     }, function(data) {
                         if (data == true) {
                             alert("Requests Acknowledged Successfully!")
                             window.location.reload()
                         }
                     });
-
-
                 }
             } else {
                 alert("Request Cancelled successfully!")
+                $("#testTypeModel").modal("toggle");
             }
-
-        })
-
-
-
+        }
 
 
 
@@ -2305,7 +2352,7 @@ if (!$this->session->has_userdata('user_id')) {
 
             let split_value = id.split(".");
             var TID = split_value[1];
-            let proceed = confirm("Are you sure you want to acknowledge Receipt?");
+            let proceed = confirm("Are you sure you want to acknowledge here?");
             if (proceed) {
 
                 url = "<?php echo base_url(''); ?>LabController/TestRequestById";

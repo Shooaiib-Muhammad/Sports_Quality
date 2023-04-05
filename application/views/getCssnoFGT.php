@@ -243,13 +243,6 @@
 
                                         <?php endif; ?>
 
-                                        <?php if (isset($cssNo)) : ?>
-                                            <p class="text-center m-2">Test data uploaded by lab.</p>
-                                            <div class="btn btn-primary" onclick="printFgt(<?php echo $cssNo; ?>)">
-                                                Print
-                                            </div>
-                                        <?php endif; ?>
-                                            
                                         <?php if (isset($fgtReqData)) : ?>
                                             <p class="text-center m-2">Test data not uploaded yet by lab.</p>
                                             <table class="table table-bordered table-hover table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl  table-striped w-100" id="defaultTable">
@@ -325,6 +318,14 @@
                                                 </tbody>
                                             </table>
                                         <?php endif; ?>
+
+                                        <?php if (isset($cssNo)) : ?>
+                                            <p class="text-center m-2">Test data uploaded by lab.</p>
+                                            <div class="btn btn-primary" onclick="printFgt('<?php echo $cssNo; ?>')">
+                                                Print
+                                            </div>
+                                        <?php endif; ?>
+                                            
 
 
                                     </div>
@@ -3804,6 +3805,7 @@
     }
 
     function printFgt(CssNo) {
+       
         url1 = '<?php echo base_url('LabController/getFGTTestReqHead'); ?>'
         url2 = '<?php echo base_url('LabController/getFGTTestReqDetails'); ?>'
         let returnedTID;
