@@ -4954,6 +4954,12 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </a>
                                                     </div>
 
+                                                    <div class="p-1">
+                                                        <a href="<?php echo base_url('LabController/master_form') ?>">
+                                                            <button class="btn btn-dark">Raw Material</button>
+                                                        </a>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>

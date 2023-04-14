@@ -1,4 +1,7 @@
 <?php
+
+$LabTestReqStatus =  $this->session->userdata('LabTestReqStatus');
+
 if (!$this->session->has_userdata('user_id')) {
     redirect('');
 } else {
@@ -57,17 +60,28 @@ if (!$this->session->has_userdata('user_id')) {
                                     <?php echo validation_errors(); ?>
                                 </div>
                             <?php endif; ?>
+                            
                             <div id="panel-1" class="panel">
+
+                            
+                            <?php if ($LabTestReqStatus !== 1) { ?>
+
                                 <div class="panel-hdr">
-                                    <h2>
-                                        Upload <span class="fw-300">Excel Data </span>
-                                    </h2>
+
+
+                                        <h2>
+                                            Upload <span class="fw-300">Excel Data </span>
+                                        </h2>
+                                    
+
                                     <!-- <div class="panel-toolbar">
                                             <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
                                             <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
                                             <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
                                         </div> -->
                                 </div>
+
+                                <?php } ?>
 
                                 <!-- Model Carton HTML -->
 
@@ -126,8 +140,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </tr>
                                                             </table> -->
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-                                                            <div class="col-md-3"></div>
-                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
                                                             <table class="table">
                                                                 <tr>
                                                                     <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNo"> </span></label></th>
@@ -139,11 +153,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </tr>
                                                             </table>
                                                             <!-- <div class="col-md-6">
-                                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-                                                            </div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
                                                             <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDate"> </span></label></div>
                                                             <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierName"> </span></label></div>
                                                             <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRef"> </span></label></div>
@@ -160,14 +174,14 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                 Result
                                                                             </th>
                                                                             <!-- <table style="width: 100%;">
-                                                                                <thead >
-                                                                                    <tr >
-                                                                                        <th>1</th>
-                                                                                        <th>2</th>
-                                                                                        <th>3</th>
-                                                                                    </tr>
-                                                                                </thead> 
-                                                                            </table> -->
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
 
 
                                                                         </tr>
@@ -180,28 +194,28 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                             <div class="col-md-2"></div>
                                                             <!-- <div class="col-md-4">
-                                                                <table class="table table-bordered" style="border:2px solid black"> 
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th style="border:2px solid black">Lab Reading</th>
-                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr >
-                                                                            <td rowspan="2"></td>
-                                                                            <td style="border:2px solid black">Max</td>
-                                                                            <td style="border:2px solid black">Min</td>
-                                                                        </tr>
-                                                                        <tr >
-                                                                            
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                                                                            
-                                                                        </tr>
-                                                                    </tbody>         
-                                                                </table>
-                                                            </div> -->
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
                                                             <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="Conclusion"> </span></label></div>
                                                             <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
 
@@ -259,17 +273,17 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </tr>
                                                             </table>
                                                             <!-- <div class="col-md-4 mt-2">
-                                                                <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                                            Habib Ur Rehman
-                                                                </div>
-                                                                <div class="col-md-4 mt-2">
-                                                                <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-                                                                Sohail Ghouri
-                                                                </div>
-                                                                <div class="col-md-4 mt-2">
-                                                                <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                                                                Sohail Ghouri
-                                                            </div> -->
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
                                                         </div>
                                                         <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
                                                     </div>
@@ -373,8 +387,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </tr>
                                                             </table> -->
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-                                                            <div class="col-md-3"></div>
-                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
                                                             <table class="table">
                                                                 <tr>
                                                                     <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testDateAdhesion"> </span></label></th>
@@ -476,45 +490,45 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                             <div class="col-md-2"></div>
                                                             <!-- <div class="col-md-4">
-                                                                <table class="table table-bordered" style="border:2px solid black"> 
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th style="border:2px solid black">Lab Reading</th>
-                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr >
-                                                                            <td rowspan="2"></td>
-                                                                            <td style="border:2px solid black">Max</td>
-                                                                            <td style="border:2px solid black">Min</td>
-                                                                        </tr>
-                                                                        <tr >
-                                                                            
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                                                                            
-                                                                        </tr>
-                                                                    </tbody>         
-                                                                </table>
-                                                            </div> -->
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
                                                             <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
 
 
 
 
                                                             <!-- <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                                        Habib Ur Rehman
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div> -->
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -565,11 +579,14 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <div class="row">
                                                             <div class="col-sm-12 d-flex flex-row">
                                                                 <div class="col-sm-4" id="cortonLogoHide">
-                                                                    <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" />
+
+                                                                    <img src="<?php echo base_url() ?>assets/img/frwd.jpg" class="ml-5" alt="report_logo" width="250px" height="100px" />
+
+
+
                                                                 </div>
                                                                 <div class="col-sm-4">
-                                                                    <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="300px" height="180px" />
-
+                                                                    <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" />
                                                                 </div>
                                                                 <div class="col-sm-4">
                                                                     <table class="table border">
@@ -619,25 +636,25 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </tr>
                                                             </table> -->
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-                                                            <div class="col-md-3"></div>
-                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
                                                             <table class="table">
                                                                 <tr>
-                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="TestNoCSM"> </span></label></th>
+                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold; width:50%"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="TestNoCSM"> </span></label></th>
                                                                     <th><label class="form-control" for="date"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateCSM"> </span></label></th>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th><label class="form-control" for="modelName"><span style="font-size: medium;font-weight:bold"> Model Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="modelNameCSM"> </span> </label></th>
+                                                                    <th><label class="form-control" for="modelName"><span style="font-size: medium;font-weight:bold; width:50%"> Model Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="modelNameCSM"> </span> </label></th>
                                                                     <th><label class="form-control" for="cssCode"><span style="font-size: medium;font-weight:bold"> CSS Code:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="cssCodeCSM"> </span></label></th>
                                                                 </tr>
 
                                                                 <tr>
-                                                                    <th><label class="form-control" for="pressure"><span style="font-size: medium;font-weight:bold"> Pressure:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="pressureCSM"> </span> </label></th>
+                                                                    <th><label class="form-control" for="pressure"><span style="font-size: medium;font-weight:bold; width:50%"> Pressure:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="pressureCSM"> </span> </label></th>
                                                                     <th><label class="form-control" for="tempHumidity"><span style="font-size: medium;font-weight:bold"> Temp Humidity:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="tempHumidityCSM"> </span></label></th>
                                                                 </tr>
 
                                                                 <tr>
-                                                                    <th><label class="form-control" for="article"><span style="font-size: medium;font-weight:bold"> Article:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="articleCSM"> </span> </label></th>
+                                                                    <th><label class="form-control" for="article"><span style="font-size: medium;font-weight:bold; width:50%"> Article:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="articleCSM"> </span> </label></th>
                                                                     <th><label class="form-control" for="category"><span style="font-size: medium;font-weight:bold"> Category:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="categoryCSM"> </span> </label></th>
 
                                                                 </tr>
@@ -647,11 +664,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                                 </tr>
                                                                 <tr>
-                                                                    <!-- id="noteCSM" -->
-                                                                    <th><label class="form-control" for="note"><span style="font-size: medium;font-weight:bold"> Note:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium">
-
-                                                                                The above reported result is applicable to the sample as recived at customer service section.
-                                                                            </span> </label></th>
+                                                                    <th><label class="form-control" for="note"><span style="font-size: medium;font-weight:bold"> Note:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="noteCSM"> </span> </label></th>
                                                                     <th></th>
 
                                                                 </tr>
@@ -663,18 +676,22 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <thead>
                                                                         <tr style="border:2px solid black">
 
-                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Weight (gm)</th>
-                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Circumference Min(cm)</th>
-                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Circumference Max(cm)</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Weight (gm)</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">CircumferenceMin</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">CircumferenceMax</th>
                                                                             <th style="text-align: center;font-size:large;border:2px solid black">Deviation</th>
-                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Rebound Test</th>
+
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Rebount Test</th>
                                                                             <th style="text-align: center;font-size:large;border:2px solid black">Remarks</th>
                                                                             <th style="text-align: center;font-size:large;border:2px solid black">Result</th>
+
 
                                                                         </tr>
                                                                     </thead>
 
                                                                     <tbody id="DetailsCSM">
+
+
 
                                                                     </tbody>
                                                                 </table>
@@ -798,47 +815,47 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                             <div class="col-md-2"></div>
                                                             <!-- <div class="col-md-4">
-                                                                <table class="table table-bordered" style="border:2px solid black"> 
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th style="border:2px solid black">Lab Reading</th>
-                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr >
-                                                                            <td rowspan="2"></td>
-                                                                            <td style="border:2px solid black">Max</td>
-                                                                            <td style="border:2px solid black">Min</td>
-                                                                        </tr>
-                                                                        <tr >
-                                                                            
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                                                                            
-                                                                        </tr>
-                                                                    </tbody>         
-                                                                </table>
-                                                            </div> -->
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
                                                             <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
 
 
 
 
                                                             <!-- <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                                        Habib Ur Rehman
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                                                            Sohail 
-                                                            
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail 
+            
 
-                                                            </div> -->
+            </div> -->
 
 
                                                         </div>
@@ -967,8 +984,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </tr>
                                                             </table> -->
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-                                                            <div class="col-md-3"></div>
-                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
                                                             <table class="table">
                                                                 <tr>
                                                                     <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoPolyBag"> </span></label></th>
@@ -1013,28 +1030,28 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                             <div class="col-md-2"></div>
                                                             <!-- <div class="col-md-4">
-                                                                <table class="table table-bordered" style="border:2px solid black"> 
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th style="border:2px solid black">Lab Reading</th>
-                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr >
-                                                                            <td rowspan="2"></td>
-                                                                            <td style="border:2px solid black">Max</td>
-                                                                            <td style="border:2px solid black">Min</td>
-                                                                        </tr>
-                                                                        <tr >
-                                                                            
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                                                                            
-                                                                        </tr>
-                                                                    </tbody>         
-                                                                </table>
-                                                            </div> --> <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> --> <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
 
                                                             <table class="table">
                                                                 <tr>
@@ -1084,17 +1101,17 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                             </table>
                                                             <!-- <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                                        Habib Ur Rehman
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div> -->
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
                                                         </div>
                                                         <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
                                                     </div>
@@ -1292,20 +1309,20 @@ if (!$this->session->has_userdata('user_id')) {
                                                             </table> -->
                                                             <div class="col-sm-12 d-flex flex-row">
                                                                 <div class="col-sm-4" id="FoamLogoHide">
+
+                                                                </div>
+                                                                <div class="col-sm-4">
                                                                     <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" />
                                                                 </div>
                                                                 <div class="col-sm-4">
                                                                     <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" />
                                                                 </div>
-                                                                <div class="col-sm-4">
-                                                                    <img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" />
-                                                                </div>
                                                             </div>
 
                                                             <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Foam </h3>
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-                                                            <div class="col-md-3"></div>
-                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
                                                             <table class="table">
                                                                 <tr>
                                                                     <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFoam"> </span></label></th>
@@ -1317,11 +1334,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </tr>
                                                             </table>
                                                             <!-- <div class="col-md-6">
-                                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-                                                            </div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
                                                             <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
                                                             <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFoam"> </span></label></div>
                                                             <div class="col-md-2"></div>
@@ -1330,22 +1347,20 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <thead>
                                                                         <tr style="border:2px solid black">
                                                                             <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
-
-                                                                            <th style="text-align: center;font-size:large;border:2px solid black">
-                                                                                Standard
-                                                                            </th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Standard</th>
                                                                             <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
-                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
-
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">
+                                                                                Result
+                                                                            </th>
                                                                             <!-- <table style="width: 100%;">
-                                                                            <thead >
-                                                                                <tr >
-                                                                                    <th>1</th>
-                                                                                    <th>2</th>
-                                                                                    <th>3</th>
-                                                                                </tr>
-                                                                            </thead> 
-                                                                            </table> -->
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
 
 
                                                                         </tr>
@@ -1358,28 +1373,28 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                             <div class="col-md-2"></div>
                                                             <!-- <div class="col-md-4">
-                                                                <table class="table table-bordered" style="border:2px solid black"> 
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th style="border:2px solid black">Lab Reading</th>
-                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr >
-                                                                            <td rowspan="2"></td>
-                                                                            <td style="border:2px solid black">Max</td>
-                                                                            <td style="border:2px solid black">Min</td>
-                                                                        </tr>
-                                                                        <tr >
-                                                                            
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                                                                            
-                                                                        </tr>
-                                                                    </tbody>         
-                                                                </table>
-                                                            </div> -->
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
                                                             <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionFoam"> </span></label></div>
                                                             <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
 
@@ -1432,17 +1447,17 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </tr>
                                                             </table>
                                                             <!-- <div class="col-md-4 mt-2">
-                                    <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                    Habib Ur Rehman
-                                    </div>
-                                    <div class="col-md-4 mt-2">
-                                    <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-                                    Sohail Ghouri
-                                    </div>
-                                    <div class="col-md-4 mt-2">
-                                    <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                                    Sohail Ghouri
-                                    </div> -->
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
                                                         </div>
                                                         <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
                                                     </div>
@@ -1617,101 +1632,103 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div class="card-body">
 
                                                         <div class="row">
-                                                            <table class="table">
-                                                                <tr>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
+                                                        <div class="table" style="display: flex; justify-content:space-between">
+                                                                <div style="margin-left:10px;">
+                                                                    <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="Forward_logo" width="250px" height="170px" />
+                                                                </div>
+                                                                <!-- <div>
+                                                                    <img style="margin-right:20px;" src="<?php echo base_url() ?>assets/img/adidasLogo.png" alt="Lab_logo" width="100px" height="100px" />
+                                                                </div> -->
 
-                                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
-                                                                    <th></th>
-                                                                    <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Fabric</th> -->
-                                                                    <td style="font-size: small;padding:0%">
-                                                                        <table class="table table-bordered" style="font-size: small;padding:0%">
-                                                                            <tr style="font-size: small;padding:0%">
-                                                                                <th style="font-size: small;padding:1%">Document</th>
-                                                                                <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
-                                                                            </tr>
-                                                                            <tr style="font-size: small;padding:0%">
-                                                                                <th style="font-size: small;padding:1%">Revision</th>
-                                                                                <td style="font-size: small;padding:1%">0</td>
-                                                                            </tr>
-                                                                            <tr style="font-size: small;padding:0%">
-                                                                                <th style="font-size: small;padding:1%">Copy</th>
-                                                                                <td style="font-size: small;padding:1%">03</td>
-                                                                            </tr>
-                                                                            <tr style="font-size: small;padding:0%">
-                                                                                <th style="font-size: small;padding:1%">Holder</th>
-                                                                                <td style="font-size: small;padding:1%">Lab</td>
-                                                                            </tr>
-                                                                            <tr style="font-size: small;padding:0%">
-                                                                                <th style="font-size: small;padding:1%">Status</th>
-                                                                                <td style="font-size: small;padding:1%">Controlled</td>
-                                                                            </tr>
-                                                                            <tr style="font-size: small;padding:0%">
-                                                                                <th style="font-size: small;padding:1%">Date</th>
-                                                                                <td style="font-size: small;padding:1%">1/Jul/21</td>
-                                                                            </tr>
-                                                                        </table>
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
-                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Fabric </h3>
-                                                            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-                                        <div class="col-md-3"></div>
-                                        <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
-                                                            <table class="table">
-                                                                <tr>
-                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFabric"> </span></label></th>
-                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSNoFabric"> </span></label></th>
+                                                                <div style="font-size: medium; font-weight:bold; padding-top:40px; text-align:center;">
+                                                                    <p style="padding-right: 20px;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Wazirabad Road, Sahowala Stop Sialkot </p>
+                                                                </div>
 
-                                                                </tr>
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFabric"> </span></label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFabric"> </span></label></th>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialNameFabric"> </span></label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="ResultFabric"> </span></label></th>
+                                                                <div>
+                                                                    <div>
+                                                                        <img style="padding-right:10px;" src="<?php echo base_url() ?>assets/img/newLabLogo.jpg" alt="Lab_logo" width="100%" height="90px" />
+                                                                    </div>
+                                                                    <table border="1" style="margin-top: 5px; width:96%;">
+                                                                        <tr>
+                                                                            <td style="padding: 0px; text-align:left;">Document</td>
+                                                                            <td style="padding: 0px; text-align:left;">QSD-12/RTR/TRF</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="padding: 0px; text-align:left;">Revision</td>
+                                                                            <td style="padding: 0px; text-align:left;">0</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="padding: 0px; text-align:left;">Date of Issuance</td>
+                                                                            <td style="padding: 0px; text-align:left;">25-Jan-2023</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                            <h3 style="font-size: Medium;font-weight:bold;margin-left:35%;"> Test Report of Fabric</h3>
+                                                            <div style="padding-left:30px; width:100%">
+                                                                <table border="1" >
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>Lab No</td>
+                                                                            <th colspan="2" style="font-size: medium" id="labNoFab"> </th>
+                                                                            <td> Css No</td>
+                                                                            <th style="font-size: medium" id="cssNoFab"> </th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td> Receiving Date</td>
+                                                                            <th colspan="2" style="font-size: medium" id="receiveDateFab"> </th>
 
-                                                                </tr>
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoFabric"> </span></label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></th>
+                                                                            <td>Issue Date</td>
+                                                                            <th style="font-size: medium" id="issueDateFab"> </th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Testing Date</td>
+                                                                            <th style="font-size: medium" id="testingDateSFab"> </th>
+                                                                            <th style="font-size: medium" id="testingDateEFab"> </th>
+                                                                            <td>Lot Reference</td>
+                                                                            <th id="lofRefFab"> </th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Enviromental Cond.</td>
+                                                                            <th colspan="4" id="environmentalCondFab"></th>
 
-                                                                </tr>
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Temperature:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="temperatureF"> </span></label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Humidity:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="humidityF"> </span></label></th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Supplier Name</td>
+                                                                            <th colspan="2" id="supplierNameFab"></th>
 
-                                                                </tr>
-                                                            </table>
-                                                            <!-- <div class="col-md-6">
-                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-                                            </div>
-                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
-                                                            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
-                                                            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
-                                                            <div class="col-md-2"></div>
-                                                            <div class="col-md-10 mt-3">
+                                                                            <td>Result</td>
+                                                                            <th id="resultFab"> </th>
+    
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Sender</td>
+                                                                            <th colspan="2" id="senderFab"></th>
+                                                                            <td>Tested By</td>
+                                                                            <th id="testedByFab"></th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Material Name</td>
+                                                                            <th colspan="4" id="matNameFab"></th>
+                                                                            
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                            <div class="col-md-10 mt-3" style="line-height: 0.5">
                                                                 <table class="table table-bordered" style="border:2px solid black">
                                                                     <thead>
                                                                         <tr style="border:2px solid black">
                                                                             <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Method</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Requirement</th>
                                                                             <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
-                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Uncertainty</th>
                                                                             <th style="text-align: center;font-size:large;border:2px solid black">
                                                                                 Remark
                                                                             </th>
-                                                                            <!-- <table style="width: 100%;">
-                                        <thead >
-                                            <tr >
-                                                <th>1</th>
-                                                <th>2</th>
-                                                <th>3</th>
-                                            </tr>
-                                        </thead> 
-                                            </table> -->
+                                                                           
+                                
 
 
                                                                         </tr>
@@ -1723,29 +1740,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                             </div>
 
                                                             <div class="col-md-2"></div>
-                                                            <!-- <div class="col-md-4">
-                                        <table class="table table-bordered" style="border:2px solid black"> 
-                                            <thead>
-                                                <tr>
-                                                    <th style="border:2px solid black">Lab Reading</th>
-                                                    <th colspan="2" style="border:2px solid black">Humidity</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr >
-                                                    <td rowspan="2"></td>
-                                                    <td style="border:2px solid black">Max</td>
-                                                    <td style="border:2px solid black">Min</td>
-                                                </tr>
-                                                <tr >
-                                                    
-                                                    <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                                                    <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                                                    
-                                                </tr>
-                                            </tbody>         
-                                        </table>
-                                        </div> -->
+                                                           
                                                             <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionFabric"> </span></label></div>
                                                             <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
 
@@ -1797,17 +1792,17 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </tr>
                                                             </table>
                                                             <!-- <div class="col-md-4 mt-2">
-                                        <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                    Habib Ur Rehman
-                                        </div>
-                                        <div class="col-md-4 mt-2">
-                                        <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-                                        Sohail Ghouri
-                                        </div>
-                                        <div class="col-md-4 mt-2">
-                                        <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                                        Sohail Ghouri
-                                        </div> -->
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
                                                         </div>
                                                         <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
                                                     </div>
@@ -2259,105 +2254,103 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div class="card-body">
 
                                                         <div class="row">
-                                                            <table class="table">
-                                                                <tr>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
+                                                            <div class="table" style="display: flex; justify-content:space-between">
+                                                                <div style="margin-left:10px;">
+                                                                    <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="Forward_logo" width="250px" height="170px" />
+                                                                </div>
+                                                                <!-- <div>
+                                                                    <img style="margin-right:20px;" src="<?php echo base_url() ?>assets/img/adidasLogo.png" alt="Lab_logo" width="100px" height="100px" />
+                                                                </div> -->
 
-                                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
-                                                                    <th></th>
-                                                                    <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Material</th> -->
-                                                                    <td style="font-size: small;padding:0%">
-                                                                        <table class="table table-bordered" style="font-size: small;padding:0%">
-                                                                            <tr style="font-size: small;padding:0%">
-                                                                                <th style="font-size: small;padding:1%">Document</th>
-                                                                                <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
-                                                                            </tr>
-                                                                            <tr style="font-size: small;padding:0%">
-                                                                                <th style="font-size: small;padding:1%">Revision</th>
-                                                                                <td style="font-size: small;padding:1%">0</td>
-                                                                            </tr>
-                                                                            <tr style="font-size: small;padding:0%">
-                                                                                <th style="font-size: small;padding:1%">Copy</th>
-                                                                                <td style="font-size: small;padding:1%">03</td>
-                                                                            </tr>
-                                                                            <tr style="font-size: small;padding:0%">
-                                                                                <th style="font-size: small;padding:1%">Holder</th>
-                                                                                <td style="font-size: small;padding:1%">Lab</td>
-                                                                            </tr>
-                                                                            <tr style="font-size: small;padding:0%">
-                                                                                <th style="font-size: small;padding:1%">Status</th>
-                                                                                <td style="font-size: small;padding:1%">Controlled</td>
-                                                                            </tr>
-                                                                            <tr style="font-size: small;padding:0%">
-                                                                                <th style="font-size: small;padding:1%">Date</th>
-                                                                                <td style="font-size: small;padding:1%">1/Jul/21</td>
-                                                                            </tr>
-                                                                        </table>
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
-                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Material </h3>
-                                                            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-                                                            <div class="col-md-3"></div>
-                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
-                                                                                    <table class="table">
-                                                                <tr>
-                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoMaterial"> </span></label></th>
-                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSNoMaterial"> </span></label></th>
+                                                                <div style="font-size: medium; font-weight:bold; padding-top:40px; text-align:center;">
+                                                                    <p style="padding-right: 20px;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Wazirabad Road, Sahowala Stop Sialkot </p>
+                                                                </div>
 
-                                                                </tr>
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMaterial"> </span></label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateMaterial"> </span></label></th>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialNameMaterial"> </span></label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="ResultMaterial"> </span></label></th>
-
-                                                                </tr>
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoMaterial"> </span></label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefMaterial"> </span></label></th>
-
-                                                                </tr>
-                                                                <tr>
-                                                                    <!-- <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameFabric"> </span></label></th> -->
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold">Temperature:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="temperatureM"> </span></label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold">Humidity:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="humidityM"> </span></label></th>
-
-                                                                </tr>
-
-
-                                                            </table>
-                                                            <!-- <div class="col-md-6">
-                                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+                                                                <div>
+                                                                    <div>
+                                                                        <img style="padding-right:10px;" src="<?php echo base_url() ?>assets/img/newLabLogo.jpg" alt="Lab_logo" width="100%" height="90px" />
+                                                                    </div>
+                                                                    <table border="1" style="margin-top: 5px; width:96%;">
+                                                                        <tr>
+                                                                            <td style="padding: 0px; text-align:left;">Document</td>
+                                                                            <td style="padding: 0px; text-align:left;">QSD-12/RTR/TRMP</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="padding: 0px; text-align:left;">Revision</td>
+                                                                            <td style="padding: 0px; text-align:left;">1</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="padding: 0px; text-align:left;">Date of Issuance</td>
+                                                                            <td style="padding: 0px; text-align:left;">25-Jan-2023</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
                                                             </div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
-                                                            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
-                                                            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
-                                                            <div class="col-md-2"></div>
-                                                            <div class="col-md-10 mt-3">
+                                                            <h3 style="font-size: Medium;font-weight:bold;margin-left:35%;">Test Report Of Material </h3>
+
+                                                            <div style="padding-left:30px; width:100%">
+                                                                <table border="1" >
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>Lab No</td>
+                                                                            <th colspan="2" style="font-size: medium" id="labNoMat"> </th>
+                                                                            <td> Css No</td>
+                                                                            <th style="font-size: medium" id="cssNoMat"> </th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td> Receiving Date</td>
+                                                                            <th colspan="2" style="font-size: medium" id="receiveDateMat"> </th>
+
+                                                                            <td>Issue Date</td>
+                                                                            <th style="font-size: medium" id="issueDateMat"> </th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Testing Date</td>
+                                                                            <th style="font-size: medium" id="testingDateSMat"> </th>
+                                                                            <th style="font-size: medium" id="testingDateEMat"> </th>
+                                                                            <td>Lot Reference</td>
+                                                                            <th id="lofRefMat"> </th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Enviromental Cond.</td>
+                                                                            <th colspan="4" id="environmentalCondMat"></th>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Supplier Name</td>
+                                                                            <th colspan="2" id="supplierNameMat"></th>
+
+                                                                            <td>Result</td>
+                                                                            <th id="resultMat"> </th>
+    
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Sender</td>
+                                                                            <th colspan="2" id="senderMat"></th>
+                                                                            <td>Tested By</td>
+                                                                            <th id="testedByMat"></th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Material Name</td>
+                                                                            <th colspan="4" id="matNameMat"></th>
+                                                                            
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                            <div class="col-md-10 mt-3" style="line-height: 0.5;">
                                                                 <table class="table table-bordered" style="border:2px solid black">
                                                                     <thead>
                                                                         <tr style="border:2px solid black">
-                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
-                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Requirenmt</th>
-                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
-                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Uncertainty</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Requirements</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Result</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Uncertainty</th>
                                                                             <th style="text-align: center;font-size:large;border:2px solid black">
                                                                                 Remark
                                                                             </th>
-                                                                            <!-- <table style="width: 100%;">
-                                                                            <thead >
-                                                                                <tr >
-                                                                                    <th>1</th>
-                                                                                    <th>2</th>
-                                                                                    <th>3</th>
-                                                                                </tr>
-                                                                            </thead> 
-                                                                                </table> -->
+
 
 
                                                                         </tr>
@@ -2369,31 +2362,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                             </div>
 
                                                             <div class="col-md-2"></div>
-                                                            <!-- <div class="col-md-4">
-                                                                <table class="table table-bordered" style="border:2px solid black"> 
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th style="border:2px solid black">Lab Reading</th>
-                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr >
-                                                                            <td rowspan="2"></td>
-                                                                            <td style="border:2px solid black">Max</td>
-                                                                            <td style="border:2px solid black">Min</td>
-                                                                        </tr>
-                                                                        <tr >
-                                                                            
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                                                                            
-                                                                        </tr>
-                                                                    </tbody>         
-                                                                </table>
-                                                                </div> -->
+
                                                             <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionMaterial"> </span></label></div>
-                                                            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
 
                                                             <table class="table">
                                                                 <tr>
@@ -2443,17 +2414,17 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </tr>
                                                             </table>
                                                             <!-- <div class="col-md-4 mt-2">
-                                                        <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                                    Habib Ur Rehman
-                                                        </div>
-                                                        <div class="col-md-4 mt-2">
-                                                        <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-                                                        Sohail Ghouri
-                                                        </div>
-                                                        <div class="col-md-4 mt-2">
-                                                        <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                                                        Sohail Ghouri
-                                                        </div> -->
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
                                                         </div>
 
                                                         <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
@@ -2707,42 +2678,54 @@ if (!$this->session->has_userdata('user_id')) {
                                                             </table>
                                                             <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Thread </h3>
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-                                                <div class="col-md-3"></div>
-                                                <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
                                                             <table class="table">
                                                                 <tr>
-                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoThread"> </span></label></th>
-
-                                                                </tr>
-                                                                <tr>
+                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:&nbsp;&nbsp;&nbsp;</span><span style="font-size: medium" id="testNoThread"> </span></label></th>
                                                                     <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestThread"> </span></label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateThread"> </span></label></th>
-                                                                </tr>
 
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameThread"> </span></label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefThread"> </span></label></th>
                                                                 </tr>
-
                                                                 <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoThread"> </span></label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Thickness:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="thicknessThread"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:&nbsp;&nbsp;&nbsp;</span><span style="font-size: medium" id="supplierRefThread"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:&nbsp;&nbsp;&nbsp;</span><span style="font-size: medium" id="receiveDateThread"> </span></label></th>
 
                                                                 </tr>
 
                                                                 <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Linear Density:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="linearDensityThread"> </span></label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Twist Per Inch:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="twistThread"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:&nbsp;&nbsp;&nbsp;</span><span style="font-size: medium" id="supplierNameThread"> </span></label></th>
+
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:&nbsp;&nbsp;&nbsp;</span><span style="font-size: medium" id="ponoThread"> </span></label></th>
+
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th><label class="form-control" for="Result"><span style="font-size: medium;font-weight:bold"> Status:&nbsp;&nbsp;&nbsp;</span><span style="font-size: medium" id="ResultThread"> </span></label></th>
+
+                                                                    <th style="display:none"><label class="form-control" for="reult"><span style="font-size: medium;font-weight:bold"> PO#:&nbsp;&nbsp;&nbsp;</span><span style="font-size: medium" id="ponoThread"> </span></label></th>
+
+                                                                </tr>
+
+
+
+                                                                <tr style="display:none">
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Thickness:&nbsp;&nbsp;&nbsp;</span><span style="font-size: medium" id="thicknessThread"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Linear Density:&nbsp;&nbsp;&nbsp;</span><span style="font-size: medium" id="linearDensityThread"> </span></label></th>
+
+                                                                </tr>
+
+                                                                <tr style="display:none">
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Twist Per Inch:&nbsp;&nbsp;&nbsp;</span><span style="font-size: medium" id="twistThread"> </span></label></th>
                                                                 </tr>
 
 
                                                             </table>
                                                             <!-- <div class="col-md-6">
-                                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-                                                            </div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
                                                             <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
                                                             <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
                                                             <div class="col-md-2"></div>
@@ -2757,14 +2740,46 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                 Ext. at 350.0 N (mm)
                                                                             </th>
                                                                             <!-- <table style="width: 100%;">
-                                                                            <thead >
-                                                                                <tr >
-                                                                                    <th>1</th>
-                                                                                    <th>2</th>
-                                                                                    <th>3</th>
-                                                                                </tr>
-                                                                            </thead> 
-                                                                            </table> -->
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
+
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="DetailsTestThread">
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                            <div class="col-md-10 mt-3">
+                                                                <table style="display:none" class="table table-bordered" style="border:2px solid black">
+                                                                    <thead>
+                                                                        <tr style="border:2px solid black">
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Method</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">
+                                                                                Requirement
+                                                                            </th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">
+                                                                                Result
+                                                                            </th>
+                                                                            <!-- <table style="width: 100%;">
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
 
 
                                                                         </tr>
@@ -2777,28 +2792,28 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                             <div class="col-md-2"></div>
                                                             <!-- <div class="col-md-4">
-                                                                <table class="table table-bordered" style="border:2px solid black"> 
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th style="border:2px solid black">Lab Reading</th>
-                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr >
-                                                                            <td rowspan="2"></td>
-                                                                            <td style="border:2px solid black">Max</td>
-                                                                            <td style="border:2px solid black">Min</td>
-                                                                        </tr>
-                                                                        <tr >
-                                                                            
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                                                                            
-                                                                        </tr>
-                                                                    </tbody>         
-                                                                </table>
-                                                            </div> -->
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
                                                             <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionThread"> </span></label></div>
                                                             <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
 
@@ -2850,17 +2865,17 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </tr>
                                                             </table>
                                                             <!-- <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                                        Habib Ur Rehman
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div> -->
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
                                                         </div>
                                                         <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
                                                     </div>
@@ -3120,8 +3135,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                             </table>
                                                             <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of MS Thread </h3>
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-                                                            <div class="col-md-3"></div>
-                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
                                                             <table class="table">
                                                                 <tr>
                                                                     <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoMSThread"> </span></label></th>
@@ -3144,11 +3159,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </tr>
                                                             </table>
                                                             <!-- <div class="col-md-6">
-                                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-                                                            </div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
                                                             <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
                                                             <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
                                                             <div class="col-md-2"></div>
@@ -3166,14 +3181,14 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                 Result
                                                                             </th>
                                                                             <!-- <table style="width: 100%;">
-                                                                            <thead >
-                                                                                <tr >
-                                                                                    <th>1</th>
-                                                                                    <th>2</th>
-                                                                                    <th>3</th>
-                                                                                </tr>
-                                                                            </thead> 
-                                                                            </table> -->
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
 
 
                                                                         </tr>
@@ -3186,28 +3201,28 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                             <div class="col-md-2"></div>
                                                             <!-- <div class="col-md-4">
-                                                                <table class="table table-bordered" style="border:2px solid black"> 
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th style="border:2px solid black">Lab Reading</th>
-                                                                                <th colspan="2" style="border:2px solid black">Humidity</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr >
-                                                                                <td rowspan="2"></td>
-                                                                                <td style="border:2px solid black">Max</td>
-                                                                                <td style="border:2px solid black">Min</td>
-                                                                            </tr>
-                                                                            <tr >
-                                                                                
-                                                                                <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                                                                                <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                                                                                
-                                                                            </tr>
-                                                                        </tbody>         
-                                                                </table>
-                                                            </div> -->
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
                                                             <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionMSThread"> </span></label></div>
                                                             <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
 
@@ -3259,17 +3274,17 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </tr>
                                                             </table>
                                                             <!-- <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                                        Habib Ur Rehman
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div> -->
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
                                                         </div>
                                                         <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
                                                     </div>
@@ -3923,7 +3938,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="card" id="printCSM">
+                                                <div class="card" id="printCardFGT">
                                                     <div class="card-body">
 
                                                         <div class="row">
@@ -3932,7 +3947,6 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th><img src="<?php echo base_url() ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
 
                                                                     <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
-
                                                                     <th></th>
                                                                     <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>CSM Test Report of Football</th> -->
                                                                     <td style="font-size: small;padding:0%">
@@ -3966,10 +3980,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </tr>
                                                             </table>
                                                             <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> CSM Test Report of Football </h3>
-
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-                                                            <div class="col-md-3"></div>
-                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+           <div class="col-md-3"></div>
+           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
                                                             <table class="table">
                                                                 <tr>
                                                                     <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFGT"> </span></label></th>
@@ -3999,11 +4012,11 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                             </table>
                                                             <!-- <div class="col-md-6">
-                                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-                                                            </div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+            </div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
                                                             <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
                                                             <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
                                                             <div class="col-md-2"></div>
@@ -4018,14 +4031,14 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Rebound Test</th>
                                                                             <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Remarks</th>
                                                                             <!-- <table style="width: 100%;">
-                                                                            <thead >
-                                                                                <tr >
-                                                                                    <th>1</th>
-                                                                                    <th>2</th>
-                                                                                    <th>3</th>
-                                                                                </tr>
-                                                                            </thead> 
-                                                                            </table> -->
+                                   <thead >
+                                       <tr >
+                                        <th>1</th>
+                                        <th>2</th>
+                                        <th>3</th>
+                                       </tr>
+                                   </thead> 
+                                </table> -->
 
 
                                                                         </tr>
@@ -4042,28 +4055,28 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                             <div class="col-md-2"></div>
                                                             <!-- <div class="col-md-4">
-                                                                <table class="table table-bordered" style="border:2px solid black"> 
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th style="border:2px solid black">Lab Reading</th>
-                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr >
-                                                                            <td rowspan="2"></td>
-                                                                            <td style="border:2px solid black">Max</td>
-                                                                            <td style="border:2px solid black">Min</td>
-                                                                        </tr>
-                                                                        <tr >
-                                                                            
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                                                                            
-                                                                        </tr>
-                                                                    </tbody>         
-                                                                </table>
-                                                            </div> -->
+                <table class="table table-bordered" style="border:2px solid black"> 
+                       <thead>
+                           <tr>
+                               <th style="border:2px solid black">Lab Reading</th>
+                               <th colspan="2" style="border:2px solid black">Humidity</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr >
+                               <td rowspan="2"></td>
+                               <td style="border:2px solid black">Max</td>
+                               <td style="border:2px solid black">Min</td>
+                           </tr>
+                           <tr >
+                             
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                               <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                               
+                           </tr>
+                       </tbody>         
+                </table>
+            </div> -->
                                                             <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Note:</span> <span style="font-size: medium;font-weight:bold" id="noteFGT"> </span></label></div>
                                                             <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
 
@@ -4115,17 +4128,17 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </tr>
                                                             </table>
                                                             <!-- <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                                        Habib Ur Rehman
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div> -->
+            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+          Habib Ur Rehman
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+            Sohail Ghouri
+            </div>
+            <div class="col-md-4 mt-2">
+            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+            Sohail Ghouri
+            </div> -->
                                                         </div>
                                                         <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
                                                     </div>
@@ -4133,7 +4146,7 @@ if (!$this->session->has_userdata('user_id')) {
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCSM')" data-dismiss="modal">Print Report</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardFGT')" data-dismiss="modal">Print Report</button>
                                             </div>
                                             <div class="card-footer text-muted">
                                                 Forward Sports Pvt. Ltd.
@@ -4336,78 +4349,118 @@ if (!$this->session->has_userdata('user_id')) {
 
                                 ?>
                                 <div class="panel-container show">
-                                    <div class="panel-content">
-                                        <div class="demo-v-spacing">
-                                            <form method="post" enctype="multipart/form-data" action='<?php echo base_url('LabController/addHeadData'); ?>'>
-                                                <div class="card-body">
-                                                    <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alertShown" style="display: none;">
-                                                        <strong>Congratulations!</strong> Record Added Successfully. Kindly wait for page to be reloaded!
-                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="row">
+                                    <?php if ($LabTestReqStatus !== 1) { ?>
 
-                                                        <div class="col-md-12">
-                                                            <div class="form-group mt-4">
-                                                                <div class="custom-file">
-                                                                    <?php
-                                                                    if ($Uploading == 1) {
-
-
-                                                                    ?>
-                                                                        <input type="file" class="custom-file-input" id="customFile" onchange="fileSelect(this.files);" name="CottonData" accept=".xlsx, .xls, .csv">
-
-                                                                        <label class="custom-file-label" for="customFile">Choose file</label>
-                                                                    <?php
-
-                                                                    } else {
-                                                                    ?>
-                                                                        <input type="file" disabled="disabled" lass="custom-file-input" id="customFile" onchange="fileSelect(this.files);" name="CottonData" accept=".xlsx, .xls, .csv">
-
-                                                                        <label class="custom-file-label" for="customFile">Choose file</label>
-                                                                    <?PHP
-                                                                    }
-                                                                    ?>
-                                                                </div>
-                                                            </div>
+                                        <div class="panel-content">
+                                            <div class="demo-v-spacing">
+                                                <form method="post" enctype="multipart/form-data" action='<?php echo base_url('LabController/addHeadData'); ?>'>
+                                                    <div class="card-body">
+                                                        <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alertShown" style="display: none;">
+                                                            <strong>Congratulations!</strong> Record Added Successfully. Kindly wait for page to be reloaded!
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
                                                         </div>
+                                                        <div class="row">
 
-
-                                                        <div class="col-md-4">
-
-                                                            <input type="checkbox" id="checkMisTest" name="checkMisTest" class="form-check-input w-5 h-5" onchange="CheckMisTest()">
-
-                                                            <div class="form-group">
-
-
-                                                            <div id="cssNoHtml"></div>
-                                                                
-
-                                                                <div id="checkCSSNo2" style="display:none">
-                                                                    <select class="form-control" id="cssCode2" name="cssCode2" onchange="getData2()">
-                                                                        <option value="">Select one of the following</option>
-                                                                        <?php foreach ($getmateialCssNoMisTests as $Key) {
-                                                                            if ($Key['mislaneous_status']) {
-                                                                        ?>
-
-                                                                                <option value="<?php echo $Key['CSSNos']; ?>"><?php echo $Key['CSSNos']; ?></option>
-                                                                            <?php } ?>
+                                                            <div class="col-md-12">
+                                                                <div class="form-group mt-4">
+                                                                    <div class="custom-file">
                                                                         <?php
+                                                                        if ($Uploading == 1) {
+
+
+                                                                        ?>
+                                                                            <input type="file" class="custom-file-input" id="customFile" onchange="fileSelect(this.files);" name="CottonData" accept=".xlsx, .xls, .csv">
+
+                                                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                                                        <?php
+
+                                                                        } else {
+                                                                        ?>
+                                                                            <input type="file" disabled="disabled" lass="custom-file-input" id="customFile" onchange="fileSelect(this.files);" name="CottonData" accept=".xlsx, .xls, .csv">
+
+                                                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                                                        <?PHP
                                                                         }
                                                                         ?>
-                                                                    </select>
+                                                                    </div>
                                                                 </div>
-
-
-
-
-
                                                             </div>
-                                                        </div>
 
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
+
+                                                            <div class="col-md-4">
+
+
+                                                                <input type="checkbox" id="checkMisTestN" name="checkMisTestN" class="form-check-input w-5 h-5" onchange="CheckMisTestN()">
+
+                                                                <input style="display:none" type="checkbox" id="checkMisTest" name="checkMisTest" class="form-check-input w-5 h-5" onchange="CheckMisTest()">
+
+                                                                <div id="checkCSSNo2" style="display:block" class="form-group">
+
+
+                                                                    <label for="sel1">Select CSS # :</label><br>
+                                                                    <div>
+                                                                        <select class="form-control" id="cssCode" name="cssCode" onchange="getData()">
+                                                                            <option value="">Select one of the following</option>
+                                                                            <?php foreach ($getCssNo as $Key) {
+
+                                                                                // if($Key['mislaneous_status']){
+                                                                            ?>
+
+                                                                                <option value="<?php echo $Key['CSSNo']; ?>"><?php echo $Key['CSSNo']; ?></option>
+                                                                            <?php } ?>
+                                                                            <?php
+                                                                            // }
+                                                                            ?>
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <!-- <div id="checkCSSNo2" style="display:none">
+                                                                <select class="form-control"  id="cssCode2" name="cssCode2" onchange="getData2()">
+                                                                    <option  value="">Select one of the following</option>
+                                                                    <?php foreach ($getmateialCssNoMisTests as $Key) {
+                                                                        if ($Key['mislaneous_status']) {
+                                                                    ?>
+
+                                                                        <option  value="<?php echo $Key['CSSNos']; ?>"><?php echo $Key['CSSNos']; ?></option>
+                                                                    <?php } ?> 
+<?php
+                                                                    }
+?>
+                                                                </select>
+                                                                </div> -->
+
+
+                                                                    <div id="CSSNewHTML"></div>
+
+
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-4">
+                                                                <!-- <div class="form-group">
+                                                            
+                                                                                    <label>Select Material Type</label>
+                                                                                    <select class="form-control" id="testType">
+                                                                                        <option value="" selected="">Select Material Type</option>
+                                                                                        <option value="Carton Test">Carton Test</option>
+                                                                                        <option value="Foam">Foam</option>
+                                                                                        <option value="Fabric">Fabric</option>
+                                                                                        <option value="Thread">Thread</option>
+                                                                                        <option value="SR Blader">SR Blader</option>
+                                                                                        <option value="Material">Material</option>
+                                                                                        <option value="FGT Report">FGT Report</option>
+                                                                                        <option value="MS Thread">MS Thread</option>
+                                                                                        <option value="MS Material">MS Material</option>
+                                                                                        <option value="Poly Bag">Poly Bag</option>
+                                                                                        <option value="Adhesion">Adhesion</option>
+                                                                                        <option value="CSM">CSM</option>
+
+                                                                                    </select>
+                                                                                </div> -->
+
                                                                 <label>Select Test Type</label>
                                                                 <input type="number" class="form-control" id="testType" required readonly="readonly" hidden>
                                                                 <input type="text" class="form-control" id="materialType" required readonly="readonly">
@@ -4425,43 +4478,43 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <option value="9">MS Material</option>
                                                                     <option value="10">Poly Bag</option>
                                                                 </select> -->
-                                                            </div>
-                                                        </div>
 
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Enter Sheet No. *</label>
-                                                                <input type="number" class="form-control" onchange="getSheetNo()" id="sheetNo" required readonly="readonly">
                                                             </div>
-                                                        </div>
 
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Test Group</label>
-                                                                <input type="text" class="form-control" id="testGroup" required readonly="readonly">
-                                                                <!-- <select class="form-control" id="testGroup">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>Enter Sheet No. *</label>
+                                                                    <input type="number" class="form-control" id="sheetNo" required readonly="readonly">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>Test Group</label>
+                                                                    <input type="text" class="form-control" id="testGroup" required readonly="readonly">
+                                                                    <!-- <select class="form-control" id="testGroup">
                                                                     <option value="" selected>Select Test Group</option>
                                                                     <option value="Development">Development</option>
                                                                     <option value="Production">Production</option>
                                                                 </select> -->
+                                                                </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Test Performed By</label>
-                                                                <select class="form-control" id="testPerformer">
-                                                                    <option value="" selected>Select Test Performed By</option>
-                                                                    <option value="Imran">Imran</option>
-                                                                    <option value="Pervaiz">Pervaiz</option>
-                                                                    <option value="Tanveer">Tanveer</option>
-                                                                    <option value="Umer">Umer</option>
-                                                                    <option value="Bilal">Bilal</option>
-                                                                </select>
+                                                            <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>Test Performed By</label>
+                                                                    <select class="form-control" id="testPerformer">
+                                                                        <option value="" selected>Select Test Performed By</option>
+                                                                        <option value="Imran">Imran</option>
+                                                                        <option value="Pervaiz">Pervaiz</option>
+                                                                        <option value="Tanveer">Tanveer</option>
+                                                                        <option value="Umer">Umer</option>
+                                                                        <option value="Bilal">Bilal</option>
+                                                                    </select>
+                                                                </div>
                                                             </div>
-                                                        </div>
 
-                                                        <!-- <div class="form-group col-md-3">
+                                                            <!-- <div class="form-group col-md-3">
                                                             <div>
                                                                 <label for="img">Upload Image:</label>
                                                                 <input type="file" id="img" name="img" accept="image/*">
@@ -4469,57 +4522,59 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </div> -->
 
 
-                                                        <div class="col-md-8">
-                                                            <div class="form-group mt-4">
-                                                                <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input" id="img" name="img" accept="image/*">
+                                                            <div class="col-md-8">
+                                                                <div class="form-group mt-4">
+                                                                    <div class="custom-file">
+                                                                        <input type="file" class="custom-file-input" id="img" name="img" accept="image/*">
 
-                                                                    <label class="custom-file-label" for="customFile">Upload Spectrum Image</label>
+                                                                        <label class="custom-file-label" for="customFile">Upload Spectrum Image</label>
 
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div class="col-md-4">
-                                                            <div class="form-group mt-4" style="display: none;">
+                                                            <div class="col-md-4">
+                                                                <div class="form-group mt-4" style="display: none;">
 
-                                                                <input type="text" class="form-control" id="headerData" name="HeaderData[]">
-                                                                <input type="text" class="form-control" id="childData" name="ChildData[][]">
+                                                                    <input type="text" class="form-control" id="headerData" name="HeaderData[]">
+                                                                    <input type="text" class="form-control" id="childData" name="ChildData[][]">
+                                                                </div>
                                                             </div>
+
                                                         </div>
 
+
+
                                                     </div>
 
 
+                                            </div>
+                                            <!-- /.card-body -->
+                                            <?php
+                                            if ($Uploading == 1) {
 
+
+                                            ?>
+                                                <div class="card-footer text-right">
+                                                    <button class="btn btn-primary" id="submitData">Load</button>
+                                                    <button class="btn btn-primary" id="sendHeaderValues" style="display: none;">Save Data</button>
+                                                    <!-- <button class="btn btn-primary" id="sendDetailsValues" style="display: none;" >Save Test Details</button> -->
                                                 </div>
+                                            <?php
 
-
+                                            } else {
+                                            ?>
+                                                <div class="card-footer text-right">
+                                                    <button class="btn btn-primary" disabled="disabled" id="submitData">Load</button>
+                                                    <button class="btn btn-primary" disabled="disabled" id="sendHeaderValues" style="display: none;">Save Data</button>
+                                                    <!-- <button class="btn btn-primary" id="sendDetailsValues" style="display: none;" >Save Test Details</button> -->
                                                 </div>
-                                                <!-- /.card-body -->
-                                                <?php
-                                                if ($Uploading == 1) {
+                                            <?php
+                                            } ?>
+                                            </form>
+                                        </div>
 
-
-                                                ?>
-                                                    <div class="card-footer text-right">
-                                                        <button class="btn btn-primary" id="submitData">Load</button>
-                                                        <button class="btn btn-primary" id="sendHeaderValues" style="display: none;">Save Data</button>
-                                                        <!-- <button class="btn btn-primary" id="sendDetailsValues" style="display: none;" >Save Test Details</button> -->
-                                                    </div>
-                                                <?php
-
-                                                } else {
-                                                ?>
-                                                    <div class="card-footer text-right">
-                                                        <button class="btn btn-primary" disabled="disabled" id="submitData">Load</button>
-                                                        <button class="btn btn-primary" disabled="disabled" id="sendHeaderValues" style="display: none;">Save Data</button>
-                                                        <!-- <button class="btn btn-primary" id="sendDetailsValues" style="display: none;" >Save Test Details</button> -->
-                                                    </div>
-                                                <?php
-                                                } ?>
-                                        </form>
-                                    </div>
+                                    <?php } ?>
                                 </div>
                                 <?php
 
@@ -4553,7 +4608,6 @@ if (!$this->session->has_userdata('user_id')) {
                                 </div>
                                 <div class="panel-container show">
                                     <div class="panel-content">
-
                                         <div class="demo-v-spacing" id="defaultTable">
                                             <table id="table" class="table table-bordered table-hover table-responsive table-striped w-100">
                                                 <thead class="bg-primary-200">
@@ -4586,7 +4640,219 @@ if (!$this->session->has_userdata('user_id')) {
                                                 </thead>
                                                 <tbody>
 
-                                                    
+                                                    <?php
+                                                    //$this->load->model('LabModel', 'l');
+                                                    //print_r($Labtest);
+
+
+                                                    foreach ($Labtest as $Key) {
+
+                                                        $Approvalname = $Key['Approvalname'];
+                                                        $ReviewName = $Key['reviewName'];
+                                                        $ReviewStatus = $Key['ReviewStatus'];
+                                                        $ApprovedStatus = $Key['ApprovedStatus'];
+                                                    ?>
+                                                        <tr>
+                                                            <td><?php echo $Key['ItemType']; ?></td>
+                                                            <td><?php echo $Key['TestNO']; ?></td>
+                                                            <td><?php echo $Key['CSSNO']; ?></td>
+                                                            <td><?php echo $Key['Date']; ?></td>
+                                                            <td><?php echo $Key['Size']; ?></td>
+                                                            <td><?php echo $Key['PO']; ?></td>
+                                                            <td><?php echo $Key['Receiving_Date']; ?></td>
+                                                            <td><?php echo $Key['Supplier_Name']; ?></td>
+                                                            <!-- <td><?php echo $Key['Supplier_Ref']; ?></td> -->
+                                                            <td><?php echo $Key['Quantity_Carton']; ?></td>
+
+                                                            <td><?php echo $Key['Result']; ?></td>
+                                                            <td><?php echo $Key['LoginName']; ?></td>
+
+                                                            <td>
+                                                                <?php
+
+
+
+
+                                                                if ($ReviewStatus == '1') {
+                                                                ?>
+                                                                    <div class="custom-control custom-switch">
+
+                                                                        <?php
+                                                                        if ($RS == 1) {
+                                                                        ?>
+                                                                            <input type="checkbox" class="custom-control-input" id="review<?php echo $Key['TID']; ?>" checked="">
+                                                                        <?php
+
+                                                                        } else {
+                                                                        ?>
+                                                                            <input type="checkbox" disabled="disabled" class="custom-control-input" id="review<?php echo $Key['TID']; ?>" checked="">
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                        <label class="custom-control-label" for="review<?php echo $Key['TID']; ?>"></label>
+                                                                    </div>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <div class="custom-control custom-switch">
+                                                                        <?php
+                                                                        if ($RS == 1) {
+                                                                        ?>
+                                                                            <input type="checkbox" class="custom-control-input" id="review<?php echo $Key['TID']; ?>" checked="">
+                                                                        <?php
+
+                                                                        } else {
+                                                                        ?>
+                                                                            <input type="checkbox" disabled="disabled" class="custom-control-input" id="review<?php echo $Key['TID']; ?>" checked="">
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                        <label class="custom-control-label" for="review<?php echo $Key['TID']; ?>"></label>
+                                                                    </div>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                            </td>
+                                                            <td>
+
+                                                                <?php
+                                                                if ($ReviewStatus == '1') {
+                                                                ?>
+                                                                    <?php echo $ReviewName; ?>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <span class="badge badge-warning p-1">Fatima Rasheed</span>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php
+                                                                if ($ApprovedStatus == '1') {
+                                                                ?>
+                                                                    <div class="custom-control custom-switch">
+                                                                        <?php
+                                                                        if ($AS == 1) {
+                                                                        ?>
+                                                                            <input type="checkbox" class="custom-control-input" id="approved<?php echo $Key['TID']; ?>" checked="">
+                                                                        <?php
+                                                                        } else {
+                                                                        ?>
+                                                                            <input type="checkbox" disabled="disabled" class="custom-control-input" id="approved<?php echo $Key['TID']; ?>" checked="">
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                        <label class="custom-control-label" for="approved<?php echo $Key['TID']; ?>"></label>
+                                                                    </div>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <div class="custom-control custom-switch">
+                                                                        <?php
+                                                                        if ($AS == 1) {
+                                                                        ?>
+                                                                            <input type="checkbox" class="custom-control-input" id="approved<?php echo $Key['TID']; ?>" checked="">
+                                                                        <?php
+                                                                        } else {
+                                                                        ?>
+                                                                            <input type="checkbox" disabled="disabled" class="custom-control-input" checked="" id="approved<?php echo $Key['TID']; ?>">
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                        <label class="custom-control-label" for="approved<?php echo $Key['TID']; ?>"></label>
+                                                                    </div>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                            </td>
+                                                            <td> <?php
+                                                                    if ($ApprovedStatus == '1') {
+                                                                    ?>
+                                                                    Zain Abbas
+                                                                <?php
+                                                                    } else {
+                                                                ?>
+                                                                    <span class="badge badge-warning p-1">Zain Abbas</span>
+                                                                <?php
+                                                                    }
+                                                                ?>
+                                                            </td>
+                                                            <td>
+                                                                <div class="row">
+                                                                    <div class="col-md-5">
+                                                                        <button type="button" class="btn btn-info btn-xs updatebtn" id="btn.<?php echo $Key['TID']; ?>"><i class="fal fa-edit" aria-hidden="true"></i></button>
+                                                                    </div>
+
+
+
+                                                                    <div class="col-md-2">
+                                                                        <button type="button" class="btn btn-warning btn-xs printButton" id="btnPrint.<?php echo $Key['TID']; ?>"><i class="fal fa-print" aria-hidden="true"></i></button>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+
+                                                            <!-- <?php
+                                                                    if ($Key['ItemType'] == 'Fabric') {
+                                                                    ?>
+                                                                <td>
+                                                                    <div class="col-md-2">
+
+                                                                        <button type="button" class="btn btn-warning btn-xs comparisonButton waves-effect waves-themed" id="btnPrint.${element.TID}">standard</button>
+
+
+                                                                    </div>
+                                                                </td>
+                                                            <?php
+                                                                    } else {
+                                                            ?>
+                                                            
+
+                                                                    </div>
+                                                                </td>
+
+                                                            <?php
+                                                                    }
+                                                            ?> -->
+
+
+
+                                                            <?php
+                                                            if (trim($Key['Size'], "") == 'Azuga W-V85B Hi White Star' || trim($Key['Size'], "") == 'B3766 181MP' || trim($Key['Size'], '') == 'FB107' || trim($Key['Size'], '') == 'FB122' || trim($Key['Size'], '') == 'PU 357 Signal Green' || trim($Key['Size'], '') == 'TPU Film 0.15mm White') {
+                                                            ?>
+                                                                <td>
+                                                                    <div class="col-md-2">
+
+                                                                        <button type="button" class="btn btn-warning btn-xs standardButton waves-effect waves-themed" id="btnPrint.${element.TID}">Development Reports</button>
+
+
+                                                                    </div>
+                                                                </td>
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <td>
+                                                                    <div class="col-md-2">
+
+
+                                                                    </div>
+                                                                </td>
+
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                            <td>
+                                                                <div class="col-md-2">
+
+                                                                    <button type="button" id="undo.<?php echo $Key['TID']; ?>" value="<?php echo $Key['TID']; ?>" class="btn btn-danger btn-xs undobtn"><i class="fal fa-trash" aria-hidden="true"></i></button>
+
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    <?php
+
+                                                    }
+                                                    ?>
                                                 </tbody>
 
                                             </table>
@@ -4662,8 +4928,6 @@ if (!$this->session->has_userdata('user_id')) {
                             })
 
                             function loadData(stDate, enDate) {
-
-
                                 $("#customData").html("");
                                 url = '<?php echo base_url('LabController/getTableDatalab'); ?>'
 
@@ -4921,8 +5185,6 @@ ${reviewStatus == '1' ?
                                 e.preventDefault();
                                 sDate = $("#startDate").val();
                                 eDate = $("#endDate").val();
-
-
                                 $("#customData").html("");
                                 $("#defaultTable").css("display", "none");
 
@@ -4967,8 +5229,6 @@ ${reviewStatus == '1' ?
                                                     </tr>
                                                 </thead>
                                                 <tbody>`;
-
-
                                         data.forEach(element => {
 
                                             html += `
@@ -5385,13 +5645,11 @@ ${reviewStatus == '1' ?
                                                     data.forEach(element => {
                                                         html += `<tr>
                             <td style="border:2px solid black">${element.Test}</td>
-                            
-                            <td style="border:2px solid black">
-                           ${element.Standard}
-                            </td>
+                            <td style="border:2px solid black">${element.Standard}</td>
                             <td style="border:2px solid black">${element.Unit}</td>
-                            <td style="border:2px solid black">${element.result}</td>
-
+                            <td style="border:2px solid black">
+                            ${element.result}
+                            </td>
                         </tr>`
                                                     });
 
@@ -5412,10 +5670,6 @@ ${reviewStatus == '1' ?
                                             $("#ResultFabric").text(data[0].Result);
                                             $("#CSSNoFabric").text(data[0].CSSNO);
                                             $("#materialNameFabric").text(data[0].Size);
-
-                                            $("#temperatureF").text(data[0].Temperature);
-                                            $("#humidityF").text(data[0].Humidity);
-
 
                                             data[0].Approvalname ? $("#testApprovedFabric").text(data[0].Approvalname) : $("#testApprovedFabric").text("Pending");
                                             //  $("#Incharge").text(data[0].Approvalname);
@@ -5458,11 +5712,7 @@ ${reviewStatus == '1' ?
                                             $("#testPerformedMaterial").text(data[0].performedBy);
                                             $("#ResultMaterial").text(data[0].Result);
                                             $("#CSSNoMaterial").text(data[0].CSSNO);
-                                            $("#materialNameMaterial").text(data[0].MaterialName);
-
-                                            $("#temperatureM").text(data[0].Temperature);
-                                            $("#humidityM").text(data[0].Humidity);
-
+                                            $("#materialNameMaterial").text(data[0].Size);
                                             if (data[0].image != null && data[0].image != "") {
                                                 $("#materialImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
                                             } else {
@@ -5485,18 +5735,13 @@ ${reviewStatus == '1' ?
                                                     data.forEach(element => {
                                                         html += `<tr>
                             <td style="border:2px solid black">${element.Test=="Tensile Strength Warp" || element.Test=="Tensile Strength Weft" || element.Test=="Breaking Elongation Warp" || element.Test=="Breaking Elongation Weft" || element.Test=="Breaking Elongation Weft" || element.Test=="Tear Strength Warp" || element.Test=="Tear Strength Weft"?`${element.Test}     -->(This test is include in Scope of ISO/IEC 17025:2017)`:`${element.Test}`}</td>
-                            <td style="border:2px solid black">${element.Requirments}</td>
                             <td style="border:2px solid black">${element.result}</td>
                             <td style="border:2px solid black">${element.Uncertainty}</td>
                             <td style="border:2px solid black">
                            ${element.ReMarks}
                             </td>
                         </tr>`
-
-
                                                     });
-
-
 
                                                     $("#DetailsTestMaterial").html(html);
 
@@ -5510,6 +5755,7 @@ ${reviewStatus == '1' ?
                                             $("#receiveDateThread").text(data[0].Receiving_Date);
                                             $("#thicknessThread").text(data[0].Thickness);
                                             $("#supplierNameThread").text(data[0].Supplier_Name);
+                                            $("#ResultThread").text(data[0].Result);
                                             $("#supplierRefThread").text(data[0].Supplier_Ref);
                                             $("#linearDensityThread").text(data[0].LinearDensity);
                                             $("#twistThread").text(data[0].TwistPerInch);
@@ -5718,7 +5964,7 @@ ${reviewStatus == '1' ?
                                             $("#testAdhesion").text(data[0].TestNO);
                                             $("#resultAdhesion").text(data[0].Result);
 
-                                            $("#testNoAdhesion").text(data[0].Test);
+                                            $("#testNoAdhesion").text(data[0].TestNO);
                                             $("#testPerformedAdhesion").text(data[0].performedBy);
 
                                             $.post(url2, {
@@ -5765,9 +6011,7 @@ ${reviewStatus == '1' ?
 
                                             $("#sizeCSM").text(data[0].Size);
                                             $("#testedForCSM").text(data[0].Testedfor);
-                                            $("#noteCSM").text(data[0].Testedfor);
-                                            $("#temperature").text(data[0].Temperature);
-                                            $("#humidity").text(data[0].Humidity);
+                                            $("#noteCSM").text(data[0].Note);
 
 
                                             // $("#testPerformedAdhesion").text(data[0].performedBy);
@@ -5777,11 +6021,13 @@ ${reviewStatus == '1' ?
                                                 },
                                                 function(data, status) {
 
+                                                    console.log("Working Data", data)
+
                                                     html = ''
                                                     data.forEach(element => {
-                                                        html += `
-            <tr>
-<td style="border:2px solid black">${element.Weight}</td>
+                                                        html += `<tr>
+
+            <td style="border:2px solid black">${element.Weight}</td>
 <td style="border:2px solid black">${element.CircumferenceMin}</td>
 <td style="border:2px solid black">${element.CircumferenceMax}</td>
 <td style="border:2px solid black">${element.Deviation}</td>
@@ -5789,9 +6035,10 @@ ${reviewStatus == '1' ?
 <td style="border:2px solid black">${element.ReMarks}</td>
 <td style="border:2px solid black">${element.result}</td>
 
-</tr>
 
-`
+
+
+</tr>`
                                                     });
 
                                                     $("#DetailsCSM").html(html);
@@ -5964,12 +6211,11 @@ ${reviewStatus == '1' ?
                                                     data.forEach(element => {
                                                         html += `<tr>
                    <td style="border:2px solid black">${element.Test}</td>
-                   <td style="border:2px solid black">
-                  ${element.Standard}
-                   </td>
+                   <td style="border:2px solid black">${element.Standard}</td>
                    <td style="border:2px solid black">${element.Unit}</td>
-                   <td style="border:2px solid black">${element.result}</td>
-
+                   <td style="border:2px solid black">
+                   ${element.result}
+                   </td>
                </tr>`
                                                     });
 
@@ -6041,17 +6287,12 @@ ${reviewStatus == '1' ?
                                             $("#ponoMaterialStandard").text(data[0].PO);
                                             $("#receiveDateMaterialStandard").text(data[0].Receiving_Date);
 
-
-                                            $("#supplierRefMaterial").text(data[0].Supplier_Ref);
+                                            $("#supplierRefMaterialStandard").text(data[0].Supplier_Ref);
 
                                             $("#testPerformedMaterialStandard").text(data[0].performedBy);
                                             $("#ResultMaterialStandard").text(data[0].Result);
                                             $("#CSSNoMaterialStandard").text(data[0].CSSNO);
                                             $("#materialNameMaterialStandard").text(data[0].Size);
-
-                                            $("#temperatureM").text(data[0].Temperature);
-                                            $("#humidityM").text(data[0].Humidity);
-
                                             let sizeTrim = data[0].Size ? data[0].Size.trim() : data[0].Size;
                                             //console.log("Size", data[0].Size.trim() == "FB 122")
                                             if (sizeTrim == "FB 122") {
@@ -6111,6 +6352,8 @@ ${reviewStatus == '1' ?
                                             $("#receiveDateThreadStandard").text(data[0].Receiving_Date);
                                             $("#thicknessThreadStandard").text(data[0].Thickness);
                                             $("#supplierNameThreadStandard").text(data[0].Supplier_Name);
+                                            $("#ResultThread").text(data[0].Result);
+
                                             $("#supplierRefThreadStandard").text(data[0].Supplier_Ref);
                                             $("#linearDensityThreadStandard").text(data[0].LinearDensity);
                                             $("#twistThreadStandard").text(data[0].TwistPerInch);
@@ -6369,7 +6612,7 @@ ${reviewStatus == '1' ?
                                             $("#resultAdhesion").text(data[0].Result);
 
                                             $("#articleNameAdhesion").text(data[0].Article);
-                                            $("#testNoAdhesion").text(data[0].Test);
+                                            $("#testNoAdhesion").text(data[0].TestNO);
                                             $("#testPerformedAdhesion").text(data[0].performedBy);
 
 
@@ -6416,9 +6659,8 @@ ${reviewStatus == '1' ?
 
                                             $("#sizeCSM").text(data[0].Size);
                                             $("#testedForCSM").text(data[0].Testedfor);
-                                            $("#noteCSM").text(data[0].Testedfor);
-                                            $("#temperature").text(data[0].Temperature);
-                                            $("#humidity").text(data[0].Humidity);
+                                            $("#noteCSM").text(data[0].Note);
+
 
                                             // $("#testPerformedAdhesion").text(data[0].performedBy);
 
@@ -6428,11 +6670,12 @@ ${reviewStatus == '1' ?
                                                 },
                                                 function(data, status) {
 
+                                                    console.log("1", data)
+
                                                     html = ''
                                                     data.forEach(element => {
-                                                        html += `
-            <tr>
-<td style="border:2px solid black">${element.Weight}</td>
+                                                        html += `<tr>
+            <td style="border:2px solid black">${element.Weight}</td>
 <td style="border:2px solid black">${element.CircumferenceMin}</td>
 <td style="border:2px solid black">${element.CircumferenceMax}</td>
 <td style="border:2px solid black">${element.Deviation}</td>
@@ -6440,10 +6683,9 @@ ${reviewStatus == '1' ?
 <td style="border:2px solid black">${element.ReMarks}</td>
 <td style="border:2px solid black">${element.result}</td>
 
-</tr>
-
-`
+</tr>`
                                                     });
+
 
                                                     $("#DetailsCSM").html(html);
 
@@ -6613,13 +6855,11 @@ ${reviewStatus == '1' ?
                                                     data.forEach(element => {
                                                         html += `<tr>
                    <td style="border:2px solid black">${element.Test}</td>
-                  
-                   
-                   <td style="border:2px solid black">
-                  ${element.Standard}
-                   </td>
+                   <td style="border:2px solid black">${element.Standard}</td>
                    <td style="border:2px solid black">${element.Unit}</td>
-                   <td style="border:2px solid black">${element.result}</td>
+                   <td style="border:2px solid black">
+                   ${element.result}
+                   </td>
                </tr>`
                                                     });
 
@@ -6691,7 +6931,7 @@ ${reviewStatus == '1' ?
                                             $("#ponoMaterialStandard").text(data[0].PO);
                                             $("#receiveDateMaterialStandard").text(data[0].Receiving_Date);
 
-                                            $("#supplierRefMaterial").text(data[0].Supplier_Ref);
+                                            $("#supplierRefMaterialStandard").text(data[0].Supplier_Ref);
 
                                             $("#testPerformedMaterialStandard").text(data[0].performedBy);
                                             $("#ResultMaterialStandard").text(data[0].Result);
@@ -6752,6 +6992,8 @@ ${reviewStatus == '1' ?
                                             $("#receiveDateThreadStandard").text(data[0].Receiving_Date);
                                             $("#thicknessThreadStandard").text(data[0].Thickness);
                                             $("#supplierNameThreadStandard").text(data[0].Supplier_Name);
+                                            $("#ResultThread").text(data[0].Result);
+
                                             $("#supplierRefThreadStandard").text(data[0].Supplier_Ref);
                                             $("#linearDensityThreadStandard").text(data[0].LinearDensity);
                                             $("#twistThreadStandard").text(data[0].TwistPerInch);
@@ -7011,7 +7253,7 @@ ${reviewStatus == '1' ?
                                             $("#resultAdhesion").text(data[0].Result);
 
 
-                                            $("#testNoAdhesion").text(data[0].Test);
+                                            $("#testNoAdhesion").text(data[0].TestNO);
                                             $("#testPerformedAdhesion").text(data[0].performedBy);
                                             $.post(url2, {
                                                     'TID': TID
@@ -7059,9 +7301,8 @@ ${reviewStatus == '1' ?
 
                                             $("#sizeCSM").text(data[0].Size);
                                             $("#testedForCSM").text(data[0].Testedfor);
-                                            $("#noteCSM").text(data[0].Testedfor);
-                                            $("#temperature").text(data[0].Temperature);
-                                            $("#humidity").text(data[0].Humidity);
+                                            $("#noteCSM").text(data[0].Note);
+
 
                                             // $("#testPerformedAdhesion").text(data[0].performedBy);
 
@@ -7071,12 +7312,13 @@ ${reviewStatus == '1' ?
                                                 },
                                                 function(data, status) {
 
+
+                                                    console.log("2", data)
+
                                                     html = ''
                                                     data.forEach(element => {
-                                                        html += `
-
-            <tr>
-<td style="border:2px solid black">${element.Weight}</td>
+                                                        html += `<tr>
+            <td style="border:2px solid black">${element.Weight}</td>
 <td style="border:2px solid black">${element.CircumferenceMin}</td>
 <td style="border:2px solid black">${element.CircumferenceMax}</td>
 <td style="border:2px solid black">${element.Deviation}</td>
@@ -7084,11 +7326,8 @@ ${reviewStatus == '1' ?
 <td style="border:2px solid black">${element.ReMarks}</td>
 <td style="border:2px solid black">${element.result}</td>
 
-</tr>
-
-`
+</tr>`
                                                     });
-
                                                     $("#DetailsCSM").html(html);
 
                                                 });
@@ -7289,12 +7528,11 @@ ${reviewStatus == '1' ?
                                                     data.forEach(element => {
                                                         html += `<tr>
                     <td style="border:2px solid black">${element.Test}</td>
-                    
-                    <td style="border:2px solid black">
-                   ${element.Standard}
-                    </td>
+                    <td style="border:2px solid black">${element.Standard}</td>
                     <td style="border:2px solid black">${element.Unit}</td>
-                    <td style="border:2px solid black">${element.result}</td>
+                    <td style="border:2px solid black">
+                    ${element.result}
+                    </td>
                 </tr>`
                                                     });
 
@@ -7414,16 +7652,12 @@ ${reviewStatus == '1' ?
                                             $("#ponoMaterial").text(data[0].PO);
                                             $("#receiveDateMaterial").text(data[0].Receiving_Date);
 
-                                            $("#supplierRefMaterial").text(data[0].Supplier_Ref);
+                                            $("#supplierRefMaterial").text(data[0].IssueDate);
 
                                             $("#testPerformedMaterial").text(data[0].performedBy);
                                             $("#ResultMaterial").text(data[0].Result);
                                             $("#CSSNoMaterial").text(data[0].CSSNO);
-                                            $("#materialNameMaterial").text(data[0].MaterialName);
-
-                                            $("#temperatureM").text(data[0].Temperature);
-                                            $("#humidityM").text(data[0].Humidity);
-
+                                            $("#materialNameMaterial").text(data[0].Size);
                                             if (data[0].image != null && data[0].image != "") {
                                                 $("#materialImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
                                             } else {
@@ -7446,9 +7680,7 @@ ${reviewStatus == '1' ?
                                                     data.forEach(element => {
                                                         html += `<tr>
                             <td style="border:2px solid black">${element.Test=="Tensile Strength Warp" || element.Test=="Tensile Strength Weft" || element.Test=="Breaking Elongation Warp" || element.Test=="Breaking Elongation Weft" || element.Test=="Breaking Elongation Weft" || element.Test=="Tear Strength Warp" || element.Test=="Tear Strength Weft"?`${element.Test}     -->(This test is include in Scope of ISO/IEC 17025:2017)`:`${element.Test}`}</td>
-                            <td style="border:2px solid black">${element.Requirments}</td>
-
-                            <td style="border:2px solid black">${element.result}</td>
+                    <td style="border:2px solid black">${element.result}</td>
                     <td style="border:2px solid black">${element.Uncertainty}</td>
                     <td style="border:2px solid black">
                    ${element.ReMarks}
@@ -7468,6 +7700,8 @@ ${reviewStatus == '1' ?
                                             $("#receiveDateThread").text(data[0].Receiving_Date);
                                             $("#thicknessThread").text(data[0].Thickness);
                                             $("#supplierNameThread").text(data[0].Supplier_Name);
+                                            $("#ResultThread").text(data[0].Result);
+
                                             $("#supplierRefThread").text(data[0].Supplier_Ref);
                                             $("#linearDensityThread").text(data[0].LinearDensity);
                                             $("#twistThread").text(data[0].TwistPerInch);
@@ -7668,7 +7902,7 @@ ${reviewStatus == '1' ?
                                             $("#testAdhesion").text(data[0].TestNO);
                                             $("#resultAdhesion").text(data[0].Result);
 
-                                            $("#testNoAdhesion").text(data[0].Test);
+                                            $("#testNoAdhesion").text(data[0].TestNO);
                                             $("#testPerformedAdhesion").text(data[0].performedBy);
                                             $.post(url2, {
                                                     'TID': TID
@@ -7714,9 +7948,8 @@ ${reviewStatus == '1' ?
 
                                             $("#sizeCSM").text(data[0].Size);
                                             $("#testedForCSM").text(data[0].Testedfor);
-                                            $("#noteCSM").text(data[0].Testedfor);
-                                            $("#temperature").text(data[0].Temperature);
-                                            $("#humidity").text(data[0].Humidity);
+                                            $("#noteCSM").text(data[0].Note);
+
 
                                             // $("#testPerformedAdhesion").text(data[0].performedBy);
 
@@ -7726,11 +7959,12 @@ ${reviewStatus == '1' ?
                                                 },
                                                 function(data, status) {
 
+
+                                                    console.log("3", data)
                                                     html = ''
                                                     data.forEach(element => {
-                                                        html += `
-            <tr>
-<td style="border:2px solid black">${element.Weight}</td>
+                                                        html += `<tr>
+            <td style="border:2px solid black">${element.Weight}</td>
 <td style="border:2px solid black">${element.CircumferenceMin}</td>
 <td style="border:2px solid black">${element.CircumferenceMax}</td>
 <td style="border:2px solid black">${element.Deviation}</td>
@@ -7738,10 +7972,7 @@ ${reviewStatus == '1' ?
 <td style="border:2px solid black">${element.ReMarks}</td>
 <td style="border:2px solid black">${element.result}</td>
 
-</tr>
-
-
-`
+</tr>`
                                                     });
 
                                                     $("#DetailsCSM").html(html);
@@ -7946,12 +8177,11 @@ ${reviewStatus == '1' ?
                                                     data.forEach(element => {
                                                         html += `<tr>
                    <td style="border:2px solid black">${element.Test}</td>
-                
-                   <td style="border:2px solid black">
-                  ${element.Standard}
-                   </td>
+                   <td style="border:2px solid black">${element.Standard}</td>
                    <td style="border:2px solid black">${element.Unit}</td>
-                   <td style="border:2px solid black">${element.result}</td>
+                   <td style="border:2px solid black">
+                   ${element.result} 
+                   </td>
                </tr>`
                                                     });
 
@@ -8065,154 +8295,104 @@ ${reviewStatus == '1' ?
 
                                                 });
                                             $('#exampleModalFabricComparison').modal('toggle');
-                                        } else if (data[0].ItemType.trim() == 'Material') {
-                                            $("#testNoMaterial").text(data[0].TestNO);
-                                            $("#dateTestMaterial").text(data[0].Date);
-                                            $("#ponoMaterial").text(data[0].PO);
-                                            $("#receiveDateMaterial").text(data[0].Receiving_Date);
-
-                                            $("#supplierRefMaterial").text(data[0].Supplier_Ref);
-
-                                            $("#testPerformedMaterial").text(data[0].performedBy);
-                                            $("#ResultMaterial").text(data[0].Result);
-                                            $("#CSSNoMaterial").text(data[0].CSSNO);
-                                            $("#materialNameMaterial").text(data[0].MaterialName);
-
-                                            $("#temperatureM").text(data[0].Temperature);
-                                            $("#humidityM").text(data[0].Humidity);
-
-                                            if (data[0].image != null && data[0].image != "") {
-                                                $("#materialImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
-                                            } else {
-                                                $("#materialImage").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                            }
-                                            data[0].Approvalname ? $("#testApprovedMaterial").text(data[0].Approvalname) : $("#testApprovedMaterial").text("Pending");
-                                            //  $("#Incharge").text(data[0].Approvalname);
-
-                                            data[0].reviewName ? $("#testReviewedMaterial").text(data[0].reviewName) : $("#testReviewedMaterial").text("Pending");
-                                            $("#ConclusionMaterial").text(data[0].Result);
-                                            $.post(url2, {
-                                                    'TID': TID
-                                                },
-                                                function(data, status) {
-
-                                                    html = ''
-                                                    TensileWarp = "Tensile Strength Warp"
-                                                    TensileWeft = "Tensile Strength Weft"
-
-                                                    data.forEach(element => {
-                                                        html += `<tr>
-                            <td style="border:2px solid black">${element.Test=="Tensile Strength Warp" || element.Test=="Tensile Strength Weft" || element.Test=="Breaking Elongation Warp" || element.Test=="Breaking Elongation Weft" || element.Test=="Breaking Elongation Weft" || element.Test=="Tear Strength Warp" || element.Test=="Tear Strength Weft"?`${element.Test}     -->(This test is include in Scope of ISO/IEC 17025:2017)`:`${element.Test}`}</td>
-                            <td style="border:2px solid black">${element.Requirments}</td>
-
-                            <td style="border:2px solid black">${element.result}</td>
-                   <td style="border:2px solid black">${element.Uncertainty}</td>
-                   <td style="border:2px solid black">
-                  ${element.ReMarks}
-                   </td>
-               </tr>`
-                                                    });
-
-                                                    $("#DetailsTestMaterial").html(html);
-
-                                                });
-                                            $('#exampleModalMaterial').modal('toggle');
                                         } else if (data[0].ItemType.trim() == 'Thread') {
 
-                                            $("#testNoThread").text(data[0].TestNO);
-                                            $("#dateTestThread").text(data[0].Date);
-                                            $("#ponoThread").text(data[0].PO);
-                                            $("#receiveDateThread").text(data[0].Receiving_Date);
-                                            $("#thicknessThread").text(data[0].Thickness);
-                                            $("#supplierNameThread").text(data[0].Supplier_Name);
-                                            $("#supplierRefThread").text(data[0].Supplier_Ref);
-                                            $("#linearDensityThread").text(data[0].LinearDensity);
-                                            $("#twistThread").text(data[0].TwistPerInch);
-                                            $("#testPerformedThread").text(data[0].performedBy);
-                                            data[0].Approvalname ? $("#testApprovedThread").text(data[0].Approvalname) : $("#testApprovedThread").text("Pending");
-                                            //  $("#Incharge").text(data[0].Approvalname);
-                                            if (data[0].image != null && data[0].image != "") {
-                                                $("#threadImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
-                                            } else {
-                                                $("#threadImage").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                            }
-                                            data[0].reviewName ? $("#testReviewedThread").text(data[0].reviewName) : $("#testReviewedThread").text("Pending");
-                                            $("#ConclusionThread").text(data[0].Result);
-                                            $.post(url2, {
-                                                    'TID': TID
-                                                },
-                                                function(data, status) {
+                                                $("#testNoThread").text(data[0].TestNO);
+                                                $("#dateTestThread").text(data[0].Date);
+                                                $("#ponoThread").text(data[0].PO);
+                                                $("#receiveDateThread").text(data[0].Receiving_Date);
+                                                $("#thicknessThread").text(data[0].Thickness);
+                                                $("#supplierNameThread").text(data[0].Supplier_Name);
+                                                $("#ResultThread").text(data[0].Result);
 
-                                                    html = ''
-                                                    let i = 0;
-                                                    let extMax = 0;
-                                                    let Max = 0;
-                                                    let ext = 0;
-                                                    data.forEach(element => {
+                                                $("#supplierRefThread").text(data[0].Supplier_Ref);
+                                                $("#linearDensityThread").text(data[0].LinearDensity);
+                                                $("#twistThread").text(data[0].TwistPerInch);
+                                                $("#testPerformedThread").text(data[0].performedBy);
+                                                data[0].Approvalname ? $("#testApprovedThread").text(data[0].Approvalname) : $("#testApprovedThread").text("Pending");
+                                                //  $("#Incharge").text(data[0].Approvalname);
+                                                if (data[0].image != null && data[0].image != "") {
+                                                    $("#threadImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
+                                                } else {
+                                                    $("#threadImage").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                                }
+                                                data[0].reviewName ? $("#testReviewedThread").text(data[0].reviewName) : $("#testReviewedThread").text("Pending");
+                                                $("#ConclusionThread").text(data[0].Result);
+                                                $.post(url2, {
+                                                        'TID': TID
+                                                    },
+                                                    function(data, status) {
 
-                                                        extMax += parseInt(element.ExtatMax);
-                                                        Max += parseInt(element.MaxLoad);
-                                                        ext += parseInt(element.Ext);
-                                                        html += `<tr>
-                   <td style="border:2px solid black">${element.TDate}</td>
-                   <td style="border:2px solid black">${element.ExtatMax}</td>
-                   <td style="border:2px solid black">${element.MaxLoad}</td>
-                   <td style="border:2px solid black">
-                  ${element.Ext}
-                   </td>
-               </tr>`
-                                                    });
-                                                    let sizeOfThread = data.length;
-                                                    html += `<tr>
-<td style="border:2px solid black">Average</td>
-                   <td style="border:2px solid black">${extMax/sizeOfThread}</td>
-                   <td style="border:2px solid black">${Max/sizeOfThread}</td>
-                   <td style="border:2px solid black">
-                  ${ext/sizeOfThread}
-                   </td>
-</tr>`
+                                                        html = ''
+                                                        let i = 0;
+                                                        let extMax = 0;
+                                                        let Max = 0;
+                                                        let ext = 0;
+                                                        data.forEach(element => {
+
+                                                            extMax += parseInt(element.ExtatMax);
+                                                            Max += parseInt(element.MaxLoad);
+                                                            ext += parseInt(element.Ext);
+                                                            html += `<tr>
+                                                            <td style="border:2px solid black">${element.TDate}</td>
+                                                            <td style="border:2px solid black">${element.ExtatMax}</td>
+                                                            <td style="border:2px solid black">${element.MaxLoad}</td>
+                                                            <td style="border:2px solid black">
+                                                            ${element.Ext}
+                                                            </td>
+                                                        </tr>`
+                                                                                                });
+                                                                                                let sizeOfThread = data.length;
+                                                                                                html += `<tr>
+                                            <td style="border:2px solid black">Average</td>
+                                                            <td style="border:2px solid black">${extMax/sizeOfThread}</td>
+                                                            <td style="border:2px solid black">${Max/sizeOfThread}</td>
+                                                            <td style="border:2px solid black">
+                                                            ${ext/sizeOfThread}
+                                                            </td>
+                                            </tr>`
 
                                                     $("#DetailsTestThread").html(html);
 
                                                 });
                                             $('#exampleModalThread').modal('toggle');
-                                        } else if (data[0].ItemType.trim() == 'Blader') {
-                                            $("#testNoBlader").text(data[0].TestNO);
-                                            $("#dateTestBlader").text(data[0].Date);
-                                            $("#ponoBlader").text(data[0].PO);
-                                            $("#receiveDateBlader").text(data[0].Receiving_Date);
+                                            } else if (data[0].ItemType.trim() == 'Blader') {
+                                                $("#testNoBlader").text(data[0].TestNO);
+                                                $("#dateTestBlader").text(data[0].Date);
+                                                $("#ponoBlader").text(data[0].PO);
+                                                $("#receiveDateBlader").text(data[0].Receiving_Date);
 
-                                            $("#supplierNameBlader").text(data[0].Supplier_Name);
-                                            $("#supplierRefBlader").text(data[0].Supplier_Ref);
-                                            $("#hardnessBlader").text(data[0].Hardness);
-                                            $("#sizeBlader").text(data[0].Size);
-                                            $("#materialBlader").text(data[0].material);
-                                            $("#testPerformedBlader").text(data[0].performedBy);
-                                            data[0].Approvalname ? $("#testApprovedBlader").text(data[0].Approvalname) : $("#testApprovedBlader").text("Pending");
-                                            //  $("#Incharge").text(data[0].Approvalname);
-                                            if (data[0].image != null && data[0].image != "") {
-                                                $("#bladerImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
-                                            } else {
-                                                $("#bladerImage").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                            }
-                                            data[0].reviewName ? $("#testReviewedBlader").text(data[0].reviewName) : $("#testReviewedBlader").text("Pending");
-                                            $("#Conclusion").text(data[0].Result);
-                                            $.post(url2, {
-                                                    'TID': TID
-                                                },
-                                                function(data, status) {
+                                                $("#supplierNameBlader").text(data[0].Supplier_Name);
+                                                $("#supplierRefBlader").text(data[0].Supplier_Ref);
+                                                $("#hardnessBlader").text(data[0].Hardness);
+                                                $("#sizeBlader").text(data[0].Size);
+                                                $("#materialBlader").text(data[0].material);
+                                                $("#testPerformedBlader").text(data[0].performedBy);
+                                                data[0].Approvalname ? $("#testApprovedBlader").text(data[0].Approvalname) : $("#testApprovedBlader").text("Pending");
+                                                //  $("#Incharge").text(data[0].Approvalname);
+                                                if (data[0].image != null && data[0].image != "") {
+                                                    $("#bladerImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
+                                                } else {
+                                                    $("#bladerImage").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                                }
+                                                data[0].reviewName ? $("#testReviewedBlader").text(data[0].reviewName) : $("#testReviewedBlader").text("Pending");
+                                                $("#Conclusion").text(data[0].Result);
+                                                $.post(url2, {
+                                                        'TID': TID
+                                                    },
+                                                    function(data, status) {
 
-                                                    html = ''
-                                                    data.forEach(element => {
-                                                        html += `<tr>
-                   <td style="border:2px solid black">${element.Test}</td>
-                   <td style="border:2px solid black">${element.Unit}</td>
-                   <td style="border:2px solid black">${element.result1}</td>
-                   <td style="border:2px solid black">${element.result2}</td>
-                   <td style="border:2px solid black">${element.result3}</td>
-                   <td style="border:2px solid black">${element.result4}</td>
-          
-               </tr>`
+                                                        html = ''
+                                                        data.forEach(element => {
+                                                            html += `<tr>
+                                                <td style="border:2px solid black">${element.Test}</td>
+                                                <td style="border:2px solid black">${element.Unit}</td>
+                                                <td style="border:2px solid black">${element.result1}</td>
+                                                <td style="border:2px solid black">${element.result2}</td>
+                                                <td style="border:2px solid black">${element.result3}</td>
+                                                <td style="border:2px solid black">${element.result4}</td>
+                                        
+                                            </tr>`
                                                     });
 
                                                     $("#DetailsTestBlader").html(html);
@@ -8322,7 +8502,7 @@ ${reviewStatus == '1' ?
                                             $("#articleNameAdhesion").text(data[0].Article);
                                             $("#resultAdhesion").text(data[0].Result);
 
-                                            $("#testNoAdhesion").text(data[0].Test);
+                                            $("#testNoAdhesion").text(data[0].TestNO);
                                             $("#testPerformedAdhesion").text(data[0].performedBy);
                                             $.post(url2, {
                                                     'TID': TID
@@ -8376,7 +8556,7 @@ ${reviewStatus == '1' ?
                                     },
                                     function(data, status) {
                                         testTypeGet = data[0].ItemType;
-
+                                        console.log("over all header ", data)
                                         if (data[0].ItemType.trim() == 'Carton') {
                                             $("#cortonLogoHide").css("display", "none");
                                             $("#testNo").text(data[0].TestNO);
@@ -8448,12 +8628,11 @@ ${reviewStatus == '1' ?
                                                     data.forEach(element => {
                                                         html += `<tr>
                             <td style="border:2px solid black">${element.Test}</td>
-                            
-                            <td style="border:2px solid black">
-                           ${element.Standard}
-                            </td>
+                            <td style="border:2px solid black">${element.Standard}</td>
                             <td style="border:2px solid black">${element.Unit}</td>
-                            <td style="border:2px solid black">${element.result}</td>
+                            <td style="border:2px solid black">
+                            ${element.result}
+                            </td>
                         </tr>`
                                                     });
 
@@ -8463,31 +8642,27 @@ ${reviewStatus == '1' ?
                                             $('#exampleModalFoam').modal('toggle');
                                         } else if (data[0].ItemType.trim() == 'Fabric') {
 
-                                            $("#testNoFabric").text(data[0].TestNO);
-                                            $("#dateTestFabric").text(data[0].Date);
-                                            $("#ponoFabric").text(data[0].PO);
-                                            $("#receiveDateFabric").text(data[0].Receiving_Date);
+                                            $("#labNoFab").text(data[0].LabNo);
+                                            $("#cssNoFab").text(data[0].CSSNO);
+                                            $("#receiveDateFab").text(data[0].Receiving_Date);
+                                            $("#issueDateFab").text(data[0].IssueDate);
+                                            $("#testingDateSFab").text(data[0].TestingDate);
+                                            $("#testingDateEFab").text(data[0].TestingDateE);
+                                            $("#lofRefFab").text(data[0].LotReference);
+                                            $("#environmentalCondFab").text(data[0].EnvironmentalC);
+                                            $("#supplierNameFab").text(data[0].Supplier_Name);
+                                            $("#resultFab").text(data[0].Result);
+                                            $("#senderFab").text(data[0].Sender);
+                                            $("#testedByFab").text(data[0].performedBy);
+                                            $("#matNameFab").text(data[0].MaterialName);
 
-                                            $("#supplierRefFabric").text(data[0].Supplier_Ref);
-
-                                            $("#testPerformedFabric").text(data[0].performedBy);
-                                            $("#ResultFabric").text(data[0].Result);
-                                            $("#CSSNoFabric").text(data[0].CSSNO);
-                                            $("#materialNameFabric").text(data[0].Size);
-
-                                            $("#temperatureF").text(data[0].Temperature);
-                                            $("#humidityF").text(data[0].Humidity);
 
                                             if (data[0].image != null && data[0].image != "") {
                                                 $("#fabricImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
                                             } else {
                                                 $("#fabricImage").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
                                             }
-                                            data[0].Approvalname ? $("#testApprovedFabric").text(data[0].Approvalname) : $("#testApprovedFabric").text("Pending");
-                                            //  $("#Incharge").text(data[0].Approvalname);
 
-                                            data[0].reviewName ? $("#testReviewedFabric").text(data[0].reviewName) : $("#testReviewedFabric").text("Pending");
-                                            $("#Conclusion").text(data[0].Result);
                                             $.post(url2, {
                                                     'TID': TID
                                                 },
@@ -8497,13 +8672,12 @@ ${reviewStatus == '1' ?
                                                     data.forEach(element => {
                                                         console.log("element.Test", element.Test.trim())
                                                         html += `<tr>
-                            <td style="border:2px solid black">${element.Test=="TEAR STRENGTH      A" || element.Test=="TEAR STRENGTH      B" || element.Test=="TENSILE STRENGTH      A" || element.Test=="TENSILE STRENGTH      B" || element.Test=="BREAKING ELONGATION      A" || element.Test=="BREAKING ELONGATION      B"?`${element.Test}     -->(This test is include in Scope of ISO/IEC 17025:2017)`:`${element.Test}`}</td>
-                            <td style="border:2px solid black">${element.result}</td>
-                            <td style="border:2px solid black">${element.Uncertainty}</td>
-                            <td style="border:2px solid black">
-                           ${element.ReMarks}
-                            </td>
-                        </tr>`
+                                                        <td style="border:2px solid black">${element.Test}</td>
+                                                        <td style="border:2px solid black">${element.Method}</td>
+                                                        <td style="border:2px solid black">${element.Requirments}</td>
+                                                        <td style="border:2px solid black">${element.result}</td>
+                                                        <td style="border:2px solid black">${element.ReMarks}</td>
+                                                    </tr>`
                                                     });
 
                                                     $("#DetailsTestFabric").html(html);
@@ -8512,49 +8686,43 @@ ${reviewStatus == '1' ?
                                             $('#exampleModalFabric').modal('toggle');
                                         } else if (data[0].ItemType.trim() == 'Material') {
                                             // alert("Called")
-                                            $("#testNoMaterial").text(data[0].TestNO);
-                                            $("#dateTestMaterial").text(data[0].Date);
-                                            $("#ponoMaterial").text(data[0].PO);
-                                            $("#receiveDateMaterial").text(data[0].Receiving_Date);
 
-                                            $("#supplierRefMaterial").text(data[0].Supplier_Ref);
+                                            $("#labNoMat").text(data[0].LabNo);
+                                            $("#cssNoMat").text(data[0].CSSNO);
+                                            $("#receiveDateMat").text(data[0].Receiving_Date);
+                                            $("#issueDateMat").text(data[0].IssueDate);
+                                            $("#testingDateSMat").text(data[0].TestingDate);
+                                            $("#testingDateEMat").text(data[0].TestingDateE);
+                                            $("#lofRefMat").text(data[0].LotReference);
+                                            $("#environmentalCondMat").text(data[0].EnvironmentalC);
+                                            $("#supplierNameMat").text(data[0].Supplier_Name);
+                                            $("#resultMat").text(data[0].Result);
+                                            $("#senderMat").text(data[0].Sender);
+                                            $("#testedByMat").text(data[0].performedBy);
+                                            $("#matNameMat").text(data[0].MaterialName);
 
-                                            $("#testPerformedMaterial").text(data[0].performedBy);
-                                            $("#ResultMaterial").text(data[0].Result);
-                                            $("#CSSNoMaterial").text(data[0].CSSNO);
-                                            $("#materialNameMaterial").text(data[0].MaterialName);
-
-                                            $("#temperatureM").text(data[0].Temperature);
-                                            $("#humidityM").text(data[0].Humidity);
-
-                                            data[0].Approvalname ? $("#testApprovedMaterial").text(data[0].Approvalname) : $("#testApprovedMaterial").text("Pending");
-                                            //  $("#Incharge").text(data[0].Approvalname);
                                             if (data[0].image != null && data[0].image != "") {
                                                 $("#materialImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
                                             } else {
                                                 $("#materialImage").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
                                             }
-                                            data[0].reviewName ? $("#testReviewedMaterial").text(data[0].reviewName) : $("#testReviewedMaterial").text("Pending");
-                                            $("#ConclusionMaterial").text(data[0].Result);
+                                            
                                             $.post(url2, {
                                                     'TID': TID
                                                 },
                                                 function(data, status) {
-
+                                                    console.log("material detail data", data)
                                                     html = ''
 
 
                                                     data.forEach(element => {
                                                         html += `<tr>
-                            <td style="border:2px solid black">${element.Test=="Tensile Strength Warp" || element.Test=="Tensile Strength Weft" || element.Test=="Breaking Elongation Warp" || element.Test=="Breaking Elongation Weft" || element.Test=="Breaking Elongation Weft" || element.Test=="Tear Strength Warp" || element.Test=="Tear Strength Weft"?`${element.Test}     -->(This test is include in Scope of ISO/IEC 17025:2017)`:`${element.Test}`}</td>
-                            <td style="border:2px solid black">${element.Requirments}</td>
-
-                            <td style="border:2px solid black">${element.result}</td>
-                            <td style="border:2px solid black">${element.Uncertainty}</td>
-                            <td style="border:2px solid black">
-                           ${element.ReMarks}
-                            </td>
-                        </tr>`
+                                                            <td style="border:2px solid black">${element.Test}</td>
+                                                            <td style="border:2px solid black">${element.Requirments}</td>
+                                                            <td style="border:2px solid black">${element.result}</td>
+                                                            <td style="border:2px solid black">${element.Uncertainty}</td>
+                                                            <td style="border:2px solid black">${element.ReMarks}</td>
+                                                        </tr>`
                                                     });
 
                                                     $("#DetailsTestMaterial").html(html);
@@ -8569,6 +8737,8 @@ ${reviewStatus == '1' ?
                                             $("#receiveDateThread").text(data[0].Receiving_Date);
                                             $("#thicknessThread").text(data[0].Thickness);
                                             $("#supplierNameThread").text(data[0].Supplier_Name);
+                                            $("#ResultThread").text(data[0].Result);
+
                                             $("#supplierRefThread").text(data[0].Supplier_Ref);
                                             $("#linearDensityThread").text(data[0].LinearDensity);
                                             $("#twistThread").text(data[0].TwistPerInch);
@@ -8799,7 +8969,7 @@ ${reviewStatus == '1' ?
                                             $("#articleNameAdhesion").text(data[0].Article);
                                             $("#resultAdhesion").text(data[0].Result);
 
-                                            $("#testNoAdhesion").text(data[0].Test);
+                                            $("#testNoAdhesion").text(data[0].TestNO);
                                             $("#testPerformedAdhesion").text(data[0].performedBy);
 
                                             $.post(url2, {
@@ -8845,9 +9015,8 @@ ${reviewStatus == '1' ?
 
                                             $("#sizeCSM").text(data[0].Size);
                                             $("#testedForCSM").text(data[0].Testedfor);
-                                            $("#noteCSM").text(data[0].Testedfor);
-                                            $("#temperature").text(data[0].Temperature);
-                                            $("#humidity").text(data[0].Humidity);
+                                            $("#noteCSM").text(data[0].Note);
+
 
                                             // $("#testPerformedAdhesion").text(data[0].performedBy);
 
@@ -8857,12 +9026,12 @@ ${reviewStatus == '1' ?
                                                 },
                                                 function(data, status) {
 
+                                                    console.log("4", data)
+
                                                     html = ''
                                                     data.forEach(element => {
-                                                        html += `
-
-            <tr>
-<td style="border:2px solid black">${element.Weight}</td>
+                                                        html += `<tr>
+            <td style="border:2px solid black">${element.Weight}</td>
 <td style="border:2px solid black">${element.CircumferenceMin}</td>
 <td style="border:2px solid black">${element.CircumferenceMax}</td>
 <td style="border:2px solid black">${element.Deviation}</td>
@@ -8870,9 +9039,7 @@ ${reviewStatus == '1' ?
 <td style="border:2px solid black">${element.ReMarks}</td>
 <td style="border:2px solid black">${element.result}</td>
 
-</tr>
-           
-`
+</tr>`
                                                     });
 
                                                     $("#DetailsCSM").html(html);
@@ -8927,9 +9094,95 @@ ${reviewStatus == '1' ?
                             });
 
 
+                            function getDataByCSSNEW(cssCode1) {
+
+
+                                urlCssNew1 = '<?php echo base_url('LabController/getRawMatReqByCss1'); ?>'
+
+
+
+
+                                $.post(urlCssNew1, {
+                                        'cssNo1': cssCode1
+                                    },
+
+                                    function(data) {
+
+                                        data.forEach(element => {
+
+                                            console.log(element)
+
+                                            // $("#testType").val(element['TestType']);
+                                            $("#materialType").val(element['TestType']);
+                                            // $("#materialType").val(element['TestType']);
+                                            $("#testGroup").val(element['Type']);
+
+                                            $("#sheetNo").val(2);
+
+
+                                        })
+
+                                    });
+
+
+
+                            }
+
 
 
                             $(document).ready(function() {
+
+
+
+                                htmlCssNewApppend = ``;
+
+
+                                urlCssNew1 = '<?php echo base_url('LabController/getRawMatReqByCss'); ?>'
+
+
+                                $.get(urlCssNew1, function(data) {
+
+
+                                    htmlCssNewApppend += `
+
+    <label>Select from New Css Form</label>
+    <select class="form-control" id="cssCode1" name="cssCode1" onchange="getDataByCSSNEW(cssCode1.value)">
+                                                                    <option  value="">Select one of the following</option>
+                                                                
+                                    
+    `
+
+                                    data.forEach(element => {
+
+
+                                        htmlCssNewApppend += `
+    
+    <option  value="${element.CSSNo}">${element.CSSNo}</option>
+    
+    `
+                                    })
+
+
+                                    htmlCssNewApppend += `
+
+</select>
+
+
+
+`
+
+
+
+                                    $("#CSSNewHTML").html(htmlCssNewApppend);
+
+
+                                    // getDataByCSSNEW(cssCode1);
+
+
+
+                                })
+
+                                $("#cssCode1").select2();
 
 
                                 $('#table').dataTable({
@@ -9875,184 +10128,7 @@ ${reviewStatus == '1' ?
                 [700, 1]
             ];
 
-            //             function getRandomArbitrary(min, max) {
-            //     return (Math.random() * (max - min) + min).toFixed(1);
-            // }
-
-
-            function getSheetNo(e){
-
-
-
-let testType = e;
-                
-
-                if (testType == 'SR Blader') {
-
-
-                    if (fileSelectStore) {
-
-                        this.filetoupload = fileSelectStore;
-                        //show image review
-                        var reader = new FileReader();
-                        reader.readAsDataURL(this.filetoupload);
-                        this.fileNameStore = this.filetoupload.name;
-                        this.file = fileSelectStore;
-                        let fileReader = new FileReader();
-                        fileReader.readAsArrayBuffer(this.file);
-                       
-                        fileReader.onload = (e) => {
-                            this.arrayBuffer = fileReader.result;
-                            var data = new Uint8Array(this.arrayBuffer);
-                            var arr = new Array();
-                            for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
-                            var bstr = arr.join("");
-                            var workbook = XLSX.read(bstr, {
-                                type: "binary"
-                            });
-                            let sheetNo = $("#sheetNo").val();
-                            alert('sheet No');
-                            var first_sheet_name = workbook.SheetNames[sheetNo - 1];
-                            var worksheet = workbook.Sheets[first_sheet_name];
-                            //  console.log(XLSX.utils.sheet_to_json(worksheet,{raw:true}));    
-                            let arraylist = XLSX.utils.sheet_to_json(worksheet, {
-                                raw: false
-                            });
-                            this.filelist = arraylist;
-                            let testNumber;
-                            let PONumber
-                            this.filelist.forEach(element => {
-                                if (element.TestNo != undefined || element.PONo != undefined) {
-                                    testNumber = element.TestNo;
-                                    PONumber = element.PONo;
-                                    let arrayHead = [element.TestDate, element.PONo, element.Quantity, element.ReceivingDate, element.ItemName, element.SupplierName, element.TestNo, element.SupplierRef, element.Result, element.ItemType];
-                                    let arrayBody = [element.TestNo, element.PONo, element.Requirement, element.Test, element.Results, element.Value, ']'];
-                                    HeaderArray.push(arrayHead);
-                                    ChildArray.push(arrayBody)
-                                } else {
-
-                                    let arrayBody = [testNumber, PONumber, element.Requirement, element.Test, element.Results, element.Value, ']'];
-
-                                    ChildArray.push(arrayBody)
-                                }
-                            });
-                            $("#headerData").val(HeaderArray);
-                            $("#childData").val(ChildArray);
-
-
-                        }
-                    }
-                }
-
-
-            }
-
-
-            function getDataByCss(e){
-
-                let cssNo1 = e.value
-
-                url1CSS = "<?php echo base_url(''); ?>LabController/getRawMatReqByCss1";
-
-                $.post(url1CSS,
-{
-
-    'cssNo1':cssNo1
-
-},
-function(data){
-
-    console.log(data)
-
-    data.forEach(element => {
-
-        $("#materialType").val(element['TestType'])
-        $("#testGroup").val(element['Type'])
-        
-        getSheetNo(element['TestType'])
-
-    })
-    
-
-         })
-
-         
-
-         
-         
-
-
-}
-
-
-
             $(document).ready(function() {
-
-
-                htmlAppend = ``;
-
-                let CssNo = $("#cssCode").val();
-
-                url4CSS = "<?php echo base_url(''); ?>LabController/getRawMatReqByCss";
-
-$.post(url4CSS,
-
-function(data){
-
- 
-
-    htmlAppend += `
-
-    <label for="sel1">Select CSS # :</label><br>
-
-    <div id="checkCSSNo1" style="display:block">
-                                                                    <select class="form-control" id="cssCode1" name="cssCode1" onchange="getDataByCss(cssCode1)">
-                                                                        <option value="">Select one of the following</option>
-
-                                                                        `
-                                                           data.forEach(element => {
-
-                                                        if(element.CSSNo === null){
-
-                                                        }
-                                                        else{
-
-                                                            htmlAppend += `
-                                                            
-                                            
-
-                                                            <option value="${element.CSSNo}">${element.CSSNo}</option>
-
-
-                                                            `
-                                                        }
-
-                                                           })             
-                                                           htmlAppend +=`
-                                                                      
-                                                                    </select>
-                                                                </div>
-
-    `
-
-
-    $("#cssNoHtml").html(htmlAppend)
-
-
-    
-
-})
-
-
-
-
-
-
-
-                // temperature = getRandomArbitrary(10,30);
-
-                // $("#temperature").text(temperature);
-
                 $("#cssCode").select2();
                 /* init datatables */
                 $('#dt-basic-example').dataTable({
@@ -10410,7 +10486,7 @@ function(data){
                 $("#sendHeaderValues").css("display", "block");
                 let CssCodeValue = $("#cssCode").val();
                 let testType = $("#testType").val();
-                
+
                 if (testType == 1) {
 
                     if (fileSelectStore) {
@@ -10511,8 +10587,8 @@ function(data){
                                     ChildArray.push(arrayBody)
                                 }
                             });
-                            $("#headerData").val(HeaderArray);
-                            $("#childData").val(ChildArray);
+                            console.log($("#headerData").val(HeaderArray));
+                            console.log($("#childData").val(ChildArray));
 
 
                         }
@@ -10547,19 +10623,19 @@ function(data){
                                 raw: false
                             });
                             this.filelist = arraylist;
-                            let testNumber;
-                            let PONumber
+                            // let testNumber;
+                            // let PONumber
                             this.filelist.forEach(element => {
-                                if (element.TestNo != undefined || element.PONo != undefined) {
-                                    testNumber = element.TestNo;
-                                    PONumber = element.PONo;
-                                    let arrayHead = [element.TestNo, CssCodeValue, element.TestDate, element.ItemName, element.PONo, element.ReceivingDate, element.SupplierName, element.SupplierRef, element.Quantity, element.Result, element.ItemType];
-                                    let arrayBody = [element.Test, element.Requirement, element.Result, element.Uncertainty, element.Remark, ']'];
+                                if (element.LabNo != undefined || element.ReceivingDate != undefined) {
+                                    // testNumber = element.TestNo;
+                                    // PONumber = element.PONo;
+                                    let arrayHead = [element.LabNo, element.ReceivingDate, element.TestingDateS, element.TestingDateE, element.EnviromentalCond, element.SupplierName, element.Sender, element.MaterialName, element.CssCode, element.IssueDate, element.LotReference, element.Result, element.TestedBy, element.ItemType, ']'];
+                                    let arrayBody = [element.Test,element.Method, element.Requirement, element.Results, element.Remark, ']'];
                                     HeaderArray.push(arrayHead);
                                     ChildArray.push(arrayBody)
                                 } else {
 
-                                    let arrayBody = [element.Test, element.Requirement, element.Result_1, element.Uncertainty, element.Remark, ']'];
+                                    let arrayBody = [element.Test,element.Method, element.Requirement, element.Results, element.Remark, ']'];
 
                                     ChildArray.push(arrayBody)
                                 }
@@ -10705,19 +10781,19 @@ function(data){
                                 raw: false
                             });
                             this.filelist = arraylist;
-                            let testNumber;
-                            let PONumber
+                            // let testNumber;
+                            // let PONumber
                             this.filelist.forEach(element => {
-                                if (element.TestNo != undefined || element.PONo != undefined) {
-                                    testNumber = element.TestNo;
-                                    PONumber = element.PONo;
-                                    let arrayHead = [element.TestNo, CssCodeValue, element.TestDate, element.ItemName, element.PONo, element.ReceivingDate, element.SupplierName, element.SupplierRef, element.Quantity, element.Result, element.ItemType];
-                                    let arrayBody = [element.Test, element.Requirement, element.Result1, element.Uncertainty, element.Remark, ']'];
+                                if (element.LabNo != undefined || element.ReceivingDate != undefined) {
+                                    // testNumber = element.TestNo;
+                                    // PONumber = element.PONo;
+                                    let arrayHead = [element.LabNo, element.ReceivingDate, element.TestingDateS, element.TestingDateE, element.EnviromentalCond, element.SupplierName, element.Sender, element.MaterialName, element.CssCode, element.IssueDate, element.LotReference, element.Result, element.TestedBy, element.ItemType, ']'];
+                                    let arrayBody = [element.Test, element.Requirement, element.Results, element.Uncertainty, element.Remark, ']'];
                                     HeaderArray.push(arrayHead);
                                     ChildArray.push(arrayBody)
                                 } else {
 
-                                    let arrayBody = [element.Test, element.Requirement, element.Result1, element.Uncertainty, element.Remark, ']'];
+                                    let arrayBody = [element.Test, element.Requirement, element.Results, element.Uncertainty, element.Remark, ']'];
 
                                     ChildArray.push(arrayBody)
                                 }
@@ -10810,16 +10886,16 @@ function(data){
                             let testNumber;
                             let PONumber
                             this.filelist.forEach(element => {
-
+                               
                                 if (element.TestNo != undefined || element.PONo != undefined) {
                                     testNumber = element.TestNo;
                                     PONumber = element.PONo;
-                                    let arrayHead = [element.TestNo, element.Date, element.Receiving, element.PONo, element.Ref, element.Supplier, element.Result, element.MaterialName, ']'];
-                                    let arrayBody = [element.TestNo, element.PONo, element.Test, element.Method, element.Unit, element.Requirement, element.Result, ']'];
+                                    let arrayHead = [element.TestNo, element.Date, element.Receiving,element.PONo,element.Ref, element.Supplier, element.Result,element.MaterialName, ']'];
+                                    let arrayBody = [element.TestNo, element.PONo, element.Test, element.Method, element.Unit, element.Requirement, element.Result_1, ']'];
                                     HeaderArray.push(arrayHead);
                                     ChildArray.push(arrayBody)
                                 } else {
-                                    let arrayBody = [testNumber, PONumber, element.Test, element.Method, element.Unit, element.Requirement, element.Result_1, ']'];
+                                    let arrayBody = [testNumber, element.Test, element.Method, element.Unit, element.Requirement, element.Result_1, ']'];
                                     ChildArray.push(arrayBody)
                                 }
                             });
@@ -10879,7 +10955,6 @@ function(data){
                             $("#childData").val(ChildArray);
 
 
-
                         }
                     }
                 } else if (testType == 10) {
@@ -10920,11 +10995,11 @@ function(data){
                                     testNumber = element.TestNO;
                                     PONumber = element.PO;
                                     let arrayHead = [element.TestNO, element.PO, element.Receiveddate, element.Date, element.PolyBag, element.VenderName, element.result, ']'];
-                                    let arrayBody = ["", element.Srno, element.Test, element.Unit, element.Standard, element.Result, element.Remarks, ']'];
+                                    let arrayBody = [element.TestNO, element.PO, element.Srno, element.Test, element.Unit, element.Standard, element.Result, element.Remarks, ']'];
                                     HeaderArray.push(arrayHead);
                                     ChildArray.push(arrayBody)
                                 } else {
-                                    let arrayBody = [element.Srno, element.Test, element.Unit, element.Standard, element.Result, element.Remarks, ']'];
+                                    let arrayBody = [PONumber, element.Srno, element.Test, element.Unit, element.Standard, element.Result, element.Remarks, ']'];
                                     ChildArray.push(arrayBody)
                                 }
                             });
@@ -10932,14 +11007,12 @@ function(data){
                             $("#childData").val(ChildArray);
 
 
-                            console.log("Header Array", HeaderArray);
-                            console.log("Child Array", ChildArray);
                         }
                     }
                 } else if (testType == 11) {
-                    let iterFile = 0;
+
                     if (fileSelectStore) {
-                       
+
                         this.filetoupload = fileSelectStore;
                         //show image review
                         var reader = new FileReader();
@@ -10968,20 +11041,22 @@ function(data){
                             this.filelist = arraylist;
                             let testNumber;
                             let PONumber
-                     
+                            let iter = 1;
                             this.filelist.forEach(element => {
-                                if (iterFile==0) {
+                                console.log("File Values", element)
+
+                                if (iter == 1) {
                                     testNumber = element.TestNO;
                                     PONumber = element.PONo;
                                     let arrayHead = [element.TestNo, element.TestDate, element.ReceivingDate, element.RecevingCode, element.PONo, element.ArticleNo, element.ArticleName, element.Result, ']'];
-                                    let arrayBody = ["", "", element.Date, element.BatchReference, element.Articleno, element.Standard, element.MaximumForce, element.AverageForce, element.Comments, ']'];
+                                    let arrayBody = ["", "", element.Date, element.BatchReference, element.Articleno, element.Standard, element.MaximumForce, element.AverageForce, element.Comments, element.MaximumForceInch, ']'];
                                     HeaderArray.push(arrayHead);
                                     ChildArray.push(arrayBody)
-                                    iterFile +=1;
+                                    iter += 1;
                                 } else {
-                                    let arrayBody = [testNumber, PONumber, element.Date, element.BatchReference, element.Articleno, element.Standard, element.MaximumForce, element.AverageForce, element.Comments, ']'];
+                                    let arrayBody = [testNumber, PONumber, element.Date, element.BatchReference, element.Articleno, element.Standard, element.MaximumForce, element.AverageForce, element.Comments, element.MaximumForceInch, ']'];
                                     ChildArray.push(arrayBody)
-                                    iterFile +=1;
+                                    iter += 1;
                                 }
                             });
                             $("#headerData").val(HeaderArray);
@@ -10994,6 +11069,7 @@ function(data){
                     }
                 } else if (testType == 12) {
 
+
                     if (fileSelectStore) {
 
                         this.filetoupload = fileSelectStore;
@@ -11023,19 +11099,22 @@ function(data){
                             });
                             this.filelist = arraylist;
                             let testNumber;
-                            let PONumber
+                            let PONumber;
+                            let iter = 1;
                             this.filelist.forEach(element => {
                                 console.log("File Values", element)
-                                if (element.TestNo != undefined || element.CSSCode != undefined) {
+                                if (iter == 1) {
                                     testNumber = element.TestNo;
                                     PONumber = element.CSSCode;
-                                    let arrayHead = [element.TestNo, element.Date, element.ModelName, element.CSSCode, element.Pressure, element.TempHumidity, element.Article, element.Category, element.size, element.Testedfor, element.Note, ']'];
-                                    let arrayBody = ["", "", element.Weight, element.CircumferenceMin, element.CircumferenceMax, element.Deviation, element.ReboundTest, element.Remarks, element.Result, ']'];
+                                    let arrayHead = [element.TestNo, element.Date, element.ModelName, element.CSSCode, element.Pressure, element.TempHumidity, element.Article, element.Category, element.size, element.Testedfor, element.Note, element.Result, ']'];
+                                    let arrayBody = ["", "", element.Weight, element.CircumferenceMin, element.CircumferenceMax, element.Deviation, element.ReboundTest, element.Remarks, element.Result];
                                     HeaderArray.push(arrayHead);
                                     ChildArray.push(arrayBody)
+                                    iter += 1;
                                 } else {
-                                    let arrayBody = [testNumber, PONumber, element.Weight, element.CircumferenceMin, element.CircumferenceMax, element.Deviation, element.ReboundTest, element.Remarks, element.Result, ']'];
+                                    let arrayBody = ["", "", element.Weight, element.CircumferenceMin, element.CircumferenceMax, element.Deviation, element.ReboundTest, element.Remarks, element.Result];
                                     ChildArray.push(arrayBody)
+                                    iter += 1;
                                 }
                             });
 
@@ -11052,6 +11131,7 @@ function(data){
             });
 
             $("#sendHeaderValues").click(function(e) {
+
                 e.preventDefault()
                 //  let file_data =  
                 var fd = new FormData();
@@ -11067,7 +11147,7 @@ function(data){
                 fd.append('testPerformer', testPerformer);
                 fd.append('CSSCodeValue', CssCodeValue);
                 let testType = $("#testType").val();
-                console.log("Test type", testType)
+                console.log("Test type", fd)
                 if (testType == 1) {
                     url = '<?php echo base_url('LabController/addHeadData'); ?>'
 
@@ -11313,9 +11393,14 @@ function(data){
 
                 $.post(url, postData,
                     function(data, status) {
+
+
+
+
+
+
                     });
             });
-            
             //  <select class="form-control" id="testType" onchange="SetSheetNo()">
             //                                                          <option value="" selected>Select Test </option>
             //                                                         <option value="1" >Cotton Test</option>
@@ -11582,6 +11667,24 @@ function(data){
             });
 
 
+            function CheckMisTestN() {
+
+                let checkNewCss = $("#checkMisTestN").val();
+
+                alert(checkNewCss);
+
+                if (checkNewCss === 'on') {
+                    $("#checkCSSNo1").css("display", "block");
+                    $("#cssCode1").css("display", "none");
+                } else {
+                    $("#checkCSSNo1").css("display", "none");
+                    $("#cssCode1").css("display", "block");
+                }
+
+            }
+
+
+
 
             function CheckMisTest() {
 
@@ -11612,10 +11715,6 @@ function(data){
             //     $("#checkCSSNo1").css("display", "none");
             //     $("#checkCSSNo2").css("display", "block");
             // }
-
-       
-
-
         </script>
         </body>
 

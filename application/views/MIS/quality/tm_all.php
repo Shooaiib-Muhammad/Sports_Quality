@@ -261,7 +261,7 @@
 
         <?php foreach ($data2sum as $d) {; ?>
         <tr>
-            <td>Total</td>
+            <td>Total is</td>
             <td><?php r($d->Checked); ?></td>
             <td><?php r($d->Pass); ?></td>
             <td><?php r($d->FailQty); ?></td>

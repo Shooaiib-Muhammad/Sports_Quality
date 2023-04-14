@@ -287,22 +287,27 @@ class LabModel extends CI_Model
     }
 
     public function AddHeaderFabric(
-        $TestDate,
+        $LabNo,
+        $RecevingDate,
+        $TestingDateS,
+        $TestingDateE,
+        $EnvironmentalC,
+        $Supplier_Name,
+        $Sender,
+        $MaterialName,
         $CSSNO,
-        $PONo,
-        $Quantity,
-        $ReceivingDate,
-        $ItemName,
-        $SupplierName,
-        $testNo,
-        $SupplierRef,
+        $IssueDate,
+        $LotReference,
         $Result,
+        $performedBy,
         $ItemType,
-        $picture,
+
+        $childArray,
+
+        $CSSValueAdd,
         $testGroup,
         $testPerformer,
-        $child,
-        $CSSValueAdd
+        $picture
     ) {
 
 
@@ -312,42 +317,50 @@ class LabModel extends CI_Model
 
         $user_id;
         $query = $this->db->query("INSERT INTO Tbl_Lab_Test_H
-              (TestNO
+              (LabNo
               ,Date
-              ,Size
-              ,PO
               ,Receiving_Date
+              ,TestingDate
+              ,TestingDateE
+              ,EnvironmentalC
               ,Supplier_Name
-              ,Supplier_Ref
-              ,Quantity_Carton
-              ,Entrydate
+              ,Sender
+              ,MaterialName
+              ,CSSNO
+              ,IssueDate
+              ,LotReference
               ,UserID
               ,Result
-              ,ItemType
-              ,image
-              ,CSSNO
-              ,TestType
-              ,testGroup
               ,performedBy
+              ,ItemType
+              ,TestType
+
+              ,testGroup
+              ,image,
+              EntryDate
               )
         VALUES
-              ('$testNo'
-              ,'$TestDate'
-              ,'$ItemName'
-              ,'$PONo'
-              ,'$ReceivingDate'
-              ,'$SupplierName'
-              ,'$SupplierRef'
-              ,'$Quantity'
+              ('$LabNo'
               ,'$Date'
+              ,'$RecevingDate'
+              ,'$TestingDateS'
+              ,'$TestingDateE'
+              ,'$EnvironmentalC'
+              ,'$Supplier_Name'
+              ,'$Sender'
+              ,'$MaterialName'
+              ,'$CSSNO'
+              ,'$IssueDate'
+              ,'$LotReference'
               ,'$user_id'
               ,'$Result'
-              ,'$ItemType'
-              ,'$picture'
-              , '$CSSValueAdd'
+              ,'$performedBy'
               ,'Fabric'
+              ,'Fabric'
+
               ,'$testGroup'
-              ,'$testPerformer'
+              ,'$picture'
+              ,'$Date'
               )");
         $Id = $this->db->insert_id();
 
@@ -385,16 +398,16 @@ class LabModel extends CI_Model
                 $mail->AddCC('zainabbas@forward.pk');
                 $mail->Subject = "Raw Material Failure";
                 $mail->Body = '<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
-<div style="margin-left:40%;">
-<table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
-Fabric Test Report Result Alert</th></tr>
-<tr><th>PO NO.</th><td>' . $PONo . '</td></tr>
-<tr><th>Material Name:</th><td>' . $ItemName . '</td></tr>
-<tr><th>Supplier Name.</th><td>' . $SupplierName . '</td></tr>
-<tr><th>Test Performed By.</th><td>' . trim($testPerformer, " ") . '</td></tr>
-<tr><th>Click on the Link to see Details</th><td>http://192.168.10.4:2000/sports/LabController/ShowDetails?id=' . $Id . '</td></tr>
-<tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
-</table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
+            <div style="margin-left:40%;">
+            <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
+            Material Test Report Result Alert</th></tr>
+            <tr><th>CSS NO.</th><td>' . $CSSNO . '</td></tr>
+            <tr><th>Material Name:</th><td>' . $MaterialName . '</td></tr>
+            <tr><th>Supplier Name.</th><td>' . $Supplier_Name . '</td></tr>
+            <tr><th>Test Performed By.</th><td>' . trim($testPerformer, " ") . '</td></tr>
+            <tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetails?id=' . $Id . '</td></tr>
+            <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
+            </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
 
 
                 //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
@@ -405,79 +418,99 @@ Fabric Test Report Result Alert</th></tr>
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }
         }
-        echo $Id;
+
+        // echo $Id;
         $i = 0;
-        foreach ($child as $key => $value) {
+        foreach ($childArray as $key => $value) {
             if ($i == 0) {
-                $Requirement = $value[1];
+                print_r($value[0]);
+                print_r($value[1]);
+                print_r($value[2]);
+                print_r($value[3]);
+                print_r($value[4]);
                 $Test = $value[0];
-                $Results = $value[2];
-                $Uncertainity = $value[3];
+                $Method = $value[1];
+                $Requirement = $value[2];
+                $Results = $value[3];
                 $Remarks = $value[4];
 
                 $query = $this->db->query("INSERT INTO Tbl_Lab_Test_D
-           (TID
-           ,Test
-           ,Requirments
-           ,result,Uncertainty,ReMarks
-           ,EntryDate
-           ,user_ID)
-     VALUES
-           ('$Id'
-           ,'$Test'
-           ,'$Requirement'
-           ,'$Results'
-           ,'$Uncertainity',
-           '$Remarks'
-           ,'$Date'
-           ,'$user_id')");
+                    (TID
+                    ,Test
+                    ,Method
+                    ,Requirments
+                    ,result
+                    ,ReMarks
+                    ,EntryDate
+                    ,user_ID)
+                VALUES
+                    ('$Id'
+                    ,'$Test'
+                    ,'$Method'
+                    ,'$Requirement'
+                    ,'$Results'
+                    ,'$Remarks'
+                    ,'$Date'
+                    ,'$user_id')");
                 $i += 1;
             } else {
+                print_r($value[1]);
+                print_r($value[2]);
+                print_r($value[3]);
+                print_r($value[4]);
+                print_r($value[5]);
+                
+                    $Test = $value[1];
+                    $Method = $value[2];
+                    $Requirement = $value[3];
+                    $Results = $value[4];
+                    $Remarks = $value[5];
 
-                $Requirement = $value[2];
-                $Test = $value[1];
-                $Results = $value[3];
-                $Uncertainity = $value[4];
-                $Remarks = $value[5];
-
-                $query = $this->db->query("INSERT INTO Tbl_Lab_Test_D
-           (TID
-           ,Test
-           ,Requirments
-           ,result,Uncertainty,ReMarks
-           ,EntryDate
-           ,user_ID)
-     VALUES
-           ('$Id'
-           ,'$Test'
-           ,'$Requirement'
-           ,'$Results'
-           ,'$Uncertainity',
-           '$Remarks'
-           ,'$Date'
-           ,'$user_id')");
-                $i += 1;
+                    $query = $this->db->query("INSERT INTO Tbl_Lab_Test_D
+                    (TID
+                    ,Test
+                    ,Method
+                    ,Requirments
+                    ,result
+                    ,ReMarks
+                    ,EntryDate
+                    ,user_ID)
+                VALUES
+                    ('$Id'
+                    ,'$Test'
+                    ,'$Method'
+                    ,'$Requirement'
+                    ,'$Results'
+                    ,'$Remarks'
+                    ,'$Date'
+                    ,'$user_id')");
+                            $i += 1;
             }
         }
     }
 
     public function AddHeaderMaterial(
-        $TestDate,
+        $LabNo,
+        $RecevingDate,
+        $TestingDateS,
+        $TestingDateE,
+        $EnvironmentalC,
+        $Supplier_Name,
+        $Sender,
+        $MaterialName,
         $CSSNO,
-        $PONo,
-        $Quantity,
-        $ReceivingDate,
-        $ItemName,
-        $SupplierName,
-        $testNo,
-        $SupplierRef,
+        $IssueDate,
+        $LotReference,
         $Result,
+        $performedBy,
         $ItemType,
-        $picture,
+
+        $childArray,
+
+        $CSSValueAdd,
         $testGroup,
         $testPerformer,
-        $child,
-        $CSSValueAdd
+        $picture
     ) {
 
 
@@ -487,42 +520,50 @@ Fabric Test Report Result Alert</th></tr>
 
         $user_id;
         $query = $this->db->query("INSERT INTO Tbl_Lab_Test_H
-              (TestNO
+              (LabNo
               ,Date
-              ,Size
-              ,PO
               ,Receiving_Date
+              ,TestingDate
+              ,TestingDateE
+              ,EnvironmentalC
               ,Supplier_Name
-              ,Supplier_Ref
-              ,Quantity_Carton
-              ,Entrydate
+              ,Sender
+              ,MaterialName
+              ,CSSNO
+              ,IssueDate
+              ,LotReference
               ,UserID
               ,Result
-              ,ItemType
-              ,image
-              ,CSSNO
-              ,TestType
-              ,testGroup
               ,performedBy
+              ,ItemType
+              ,TestType
+
+              ,testGroup
+              ,image,
+              EntryDate
               )
         VALUES
-              ('$testNo'
-              ,'$TestDate'
-              ,'$ItemName'
-              ,'$PONo'
-              ,'$ReceivingDate'
-              ,'$SupplierName'
-              ,'$SupplierRef'
-              ,'$Quantity'
+              ('$LabNo'
               ,'$Date'
+              ,'$RecevingDate'
+              ,'$TestingDateS'
+              ,'$TestingDateE'
+              ,'$EnvironmentalC'
+              ,'$Supplier_Name'
+              ,'$Sender'
+              ,'$MaterialName'
+              ,'$CSSNO'
+              ,'$IssueDate'
+              ,'$LotReference'
               ,'$user_id'
               ,'$Result'
-              ,'$ItemType'
-              ,'$picture'
-              , '$CSSValueAdd'
+              ,'$performedBy'
               ,'Material'
+              ,'Material'
+
               ,'$testGroup'
-              ,'$testPerformer'
+              ,'$picture'
+              ,'$Date'
               )");
         $Id = $this->db->insert_id();
 
@@ -560,16 +601,16 @@ Fabric Test Report Result Alert</th></tr>
                 $mail->AddCC('zainabbas@forward.pk');
                 $mail->Subject = "Raw Material Failure";
                 $mail->Body = '<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
-<div style="margin-left:40%;">
-<table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
-Material Test Report Result Alert</th></tr>
-<tr><th>PO NO.</th><td>' . $PONo . '</td></tr>
-<tr><th>Material Name:</th><td>' . $ItemName . '</td></tr>
-<tr><th>Supplier Name.</th><td>' . $SupplierName . '</td></tr>
-<tr><th>Test Performed By.</th><td>' . trim($testPerformer, " ") . '</td></tr>
-<tr><th>Click on the Link to see Details</th><td>http://192.168.10.4:2000/sports/LabController/ShowDetails?id=' . $Id . '</td></tr>
-<tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
-</table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
+            <div style="margin-left:40%;">
+            <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
+            Material Test Report Result Alert</th></tr>
+            <tr><th>CSS NO.</th><td>' . $CSSNO . '</td></tr>
+            <tr><th>Material Name:</th><td>' . $MaterialName . '</td></tr>
+            <tr><th>Supplier Name.</th><td>' . $Supplier_Name . '</td></tr>
+            <tr><th>Test Performed By.</th><td>' . trim($testPerformer, " ") . '</td></tr>
+            <tr><th>Click on the Link to see Details</th><td>http://192.168.10.3:2000/sports/LabController/ShowDetails?id=' . $Id . '</td></tr>
+            <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
+            </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
 
 
                 //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
@@ -581,10 +622,11 @@ Material Test Report Result Alert</th></tr>
             }
         }
 
-        echo $Id;
+        // echo $Id;
         $i = 0;
-        foreach ($child as $key => $value) {
+        foreach ($childArray as $key => $value) {
             if ($i == 0) {
+                
                 $Requirement = $value[1];
                 $Test = $value[0];
                 $Results = $value[2];
@@ -592,47 +634,47 @@ Material Test Report Result Alert</th></tr>
                 $Remarks = $value[4];
 
                 $query = $this->db->query("INSERT INTO Tbl_Lab_Test_D
-           (TID
-           ,Test
-           ,Requirments
-           ,result,Uncertainty,ReMarks
-           ,EntryDate
-           ,user_ID)
-     VALUES
-           ('$Id'
-           ,'$Test'
-           ,'$Requirement'
-           ,'$Results'
-           ,'$Uncertainity',
-           '$Remarks'
-           ,'$Date'
-           ,'$user_id')");
-                $i += 1;
-            } else {
+                    (TID
+                    ,Test
+                    ,Requirments
+                    ,result,Uncertainty,ReMarks
+                    ,EntryDate
+                    ,user_ID)
+                VALUES
+                    ('$Id'
+                    ,'$Test'
+                    ,'$Requirement'
+                    ,'$Results'
+                    ,'$Uncertainity'
+                    ,'$Remarks'
+                    ,'$Date'
+                    ,'$user_id')");
+                            $i += 1;
+                        } else {
 
-                $Requirement = $value[2];
-                $Test = $value[1];
-                $Results = $value[3];
-                $Uncertainity = $value[4];
-                $Remarks = $value[5];
+                            $Requirement = $value[2];
+                            $Test = $value[1];
+                            $Results = $value[3];
+                            $Uncertainity = $value[4];
+                            $Remarks = $value[5];
 
-                $query = $this->db->query("INSERT INTO Tbl_Lab_Test_D
-           (TID
-           ,Test
-           ,Requirments
-           ,result,Uncertainty,ReMarks
-           ,EntryDate
-           ,user_ID)
-     VALUES
-           ('$Id'
-           ,'$Test'
-           ,'$Requirement'
-           ,'$Results'
-           ,'$Uncertainity',
-           '$Remarks'
-           ,'$Date'
-           ,'$user_id')");
-                $i += 1;
+                            $query = $this->db->query("INSERT INTO Tbl_Lab_Test_D
+                    (TID
+                    ,Test
+                    ,Requirments
+                    ,result,Uncertainty,ReMarks
+                    ,EntryDate
+                    ,user_ID)
+                VALUES
+                    ('$Id'
+                    ,'$Test'
+                    ,'$Requirement'
+                    ,'$Results'
+                    ,'$Uncertainity'
+                    ,'$Remarks'
+                    ,'$Date'
+                    ,'$user_id')");
+                            $i += 1;
             }
         }
     }
@@ -963,13 +1005,13 @@ MS Thread Test Report Result Alert</th></tr>
                ,'$user_id')");
                 $iter += 1;
             } else {
-                $testNo = $value[1];
-                $PONo = $value[2];
-                $Test = $value[3];
-                $Method = $value[4];
-                $Unit = $value[5];
-                $Requirement = $value[6];
-                $Result = $value[7];
+                $testNo = $value[0];
+                $PONo = $value[1];
+                $Test = $value[2];
+                $Method = $value[3];
+                $Unit = $value[4];
+                $Requirement = $value[5];
+                $Result = $value[6];
                 $query = $this->db->query("INSERT INTO Tbl_Lab_Test_D
            (TID
            ,Test
@@ -1979,6 +2021,7 @@ WHERE        (Testing_DateS BETWEEN CONVERT(DATETIME, '$newSDateObj 00:00:00', 1
         $newEDateObj = date('Y-m-d', $newEDate);
 
         $query = $this->db->query("SELECT       *
+FROM            dbo.View_Lab_FGT_TestType
 WHERE        (Testing_DateS BETWEEN CONVERT(DATETIME, '$newSDateObj 00:00:00', 102) AND CONVERT(DATETIME, '$newEDateObj 00:00:00', 102)) AND (factoryCode = '$factoryCode') AND (TestType = 'After Hydrolysis Drum test') OR (TestType = 'After Hyd Drum test')");
 
         return $query->result_array();
@@ -2229,11 +2272,11 @@ WHERE   (view_Lab_All_Request.Sample_RequestDate BETWEEN '$CurrentDate' AND '$Cu
     }
 
 
-    public function EditTestRequestLabAcknowledgeBulk($leaveArray, $testTypeID)
+    public function EditTestRequestLabAcknowledgeBulk($leaveArray)
     {
         foreach ($leaveArray as $key => $value) {
             $query = $this->db->query("UPDATE dbo.tbl_lab_test_request 
-            SET LabAcknowledgementStatus = 'Acknowledged' AND TestTYpeID = $testTypeID
+            SET LabAcknowledgementStatus = 'Acknowledged'
            
             WHERE TID='$value'
             ");
@@ -2664,10 +2707,10 @@ WHERE        (TID = $ID)");
     // }
 
 
-    public function EditTestRequestLabAcknowledge($TID, $testTypeID)
+    public function EditTestRequestLabAcknowledge($TID)
     {
         $query = $this->db->query("UPDATE dbo.tbl_lab_test_request 
-        SET LabAcknowledgementStatus = 'Acknowledged' AND TestTypeID = $testTypeID
+        SET LabAcknowledgementStatus = 'Acknowledged'
        
         WHERE TID='$TID'
         ");
@@ -3990,6 +4033,7 @@ WHERE        (userid = $user_id) AND (CssNO <> '') AND (RequestStatus = 'Acknowl
         $Date = date('d/m/Y');
         $user_id = $this->session->userdata('user_id');
         $username = $this->session->userdata('Username');
+        
         if ($username == 'Wajid Ali') {
             $query = $this->db->query("SELECT *
             FROM            dbo.View_FGT_Request
@@ -4129,7 +4173,7 @@ WHERE        (userid = $user_id) AND (CssNO <> '') AND (RequestStatus = 'Acknowl
 
         $query = $this->db->query("SELECT  *
     FROM            dbo.View_Lab_FGT_Test_H
-    WHERE        (Testing_DateS BETWEEN CONVERT(DATETIME, '$date1', 102) AND CONVERT(DATETIME, '$date2', 102))");
+    WHERE        (Testing_DateS BETWEEN CONVERT(DATETIME, '$date1', 102) AND CONVERT(DATETIME, '$date2', 102)) AND (FC IS NULL)");
         if ($query) {
             return $query->result_array();
         }
@@ -4143,7 +4187,7 @@ WHERE        (userid = $user_id) AND (CssNO <> '') AND (RequestStatus = 'Acknowl
 
         $query = $this->db->query("SELECT  *
     FROM            dbo.View_Lab_FGT_Test_H
-    WHERE        (Testing_DateS BETWEEN CONVERT(DATETIME, '$date1', 102) AND CONVERT(DATETIME, '$date2', 102)) AND (factoryCode = 'B34006')");
+    WHERE        (Testing_DateS BETWEEN CONVERT(DATETIME, '$date1', 102) AND CONVERT(DATETIME, '$date2', 102)) AND (FC = 'B34006')");
         if ($query) {
             return $query->result_array();
         }
@@ -4168,6 +4212,36 @@ WHERE        (TID = $TID)");
 
 
     public function getFGTTestDetails($TID)
+    {
+        date_default_timezone_set('Asia/Karachi');
+        $Date = date('d/m/Y');
+        $user_id = $this->session->userdata('user_id');
+
+
+        $query = $this->db->query("SELECT   *
+        FROM            dbo.View_Lab_FGT_Test_D
+        WHERE        (TID = $TID)");
+        if ($query) {
+            return $query->result_array();
+        }
+    }
+    public function getFGTTestHeadAirlessMini($TID)
+    {
+        date_default_timezone_set('Asia/Karachi');
+        $Date = date('d/m/Y');
+        $user_id = $this->session->userdata('user_id');
+
+
+        $query = $this->db->query("SELECT *
+FROM            dbo.View_Lab_FGT_Test_H
+WHERE        (TID = $TID) AND (FC = 'B34006')");
+        if ($query) {
+            return $query->result_array();
+        }
+    }
+
+
+    public function getFGTTestDetailsAirlessMini($TID)
     {
         date_default_timezone_set('Asia/Karachi');
         $Date = date('d/m/Y');
@@ -4360,7 +4434,7 @@ WHERE        (CssNo = '$CssNo')");
 
 
         $query = $this->db->query("SELECT   *  
-        FROM   dbo.View_RawMatReqT 
+        FROM   dbo.View_RawMatReqT  WHERE  status='Locked'
         ");
 
         return $query->result_array();
@@ -4408,7 +4482,7 @@ WHERE        (CssNo = '$CssNo')");
     }
    
 
-    public function AddRaw_MatHead($DateP, $Type, $factoryCode, $quantityIssued, $supplierN, $testType, $ItemNameD, $testCategory)
+    public function AddRaw_MatHead($DateP, $Type, $factoryCode, $quantityIssued, $supplierN, $testType, $ItemNameD, $testCategory, $po1)
     {
 
 
@@ -4419,9 +4493,69 @@ WHERE        (CssNo = '$CssNo')");
 
         $date = date('Y-m-d');
 
-        $this->db->query("INSERT INTO tbl_Raw_material_H (Date, Type, FactoryCode, Quantity, SupplierNam ,TestType, SRSenderID, userid, EntryDate, itemName, receSign, status, testCateogry)
-               VALUES ('$DateP', '$Type', '$factoryCode', $quantityIssued, '$supplierN', '$testType', '$user', '$user', '$date', '$ItemNameD', 'Ahmed', 'Pending', '$testCategory');");
+        $this->db->query("INSERT INTO tbl_Raw_material_H (Date, Type, FactoryCode, Quantity, SupplierNam ,TestType, SRSenderID, userid, EntryDate, itemName, receSign, status, testCateogry, Po)
+               VALUES ('$DateP', '$Type', '$factoryCode', $quantityIssued, '$supplierN', '$testType', '$user', '$user', '$date', '$ItemNameD', 'Ahmed', 'Pending', '$testCategory', '$po1');");
     }
+
+
+    public function EditRaw_MatHead($IdValue1,$cssNo1,$qReceived1,$qRetained1,$dueDate1,$compDate1,$sSignature1,$Remarks1)
+    {
+
+
+        $this->db->query("UPDATE dbo.tbl_Raw_material_H SET remarks = '$Remarks1', CSSNo='$cssNo1', qtyRece='$qReceived1',
+        qtyRetain=$qRetained1, dueDate='$dueDate1', comDate='$compDate1', senderSign='$sSignature1', status='Send to Lab', LabStatus=1
+         WHERE Requestid = $IdValue1");
+    }
+
+    
+    public function RawMatRequestAknowledgedByLab()
+    {
+      
+        $query = $this->db->query("SELECT   *     
+        FROM   dbo.View_RawMatReqT WHERE status='Send to Lab'");
+        if ($query) {
+            return $query->result_array();
+        }
+    }
+
+
+    public function TestRequestRawMatById($id)
+    {
+
+        $query = $this->db->query("SELECT * 
+    FROM           dbo.tbl_Raw_material_H
+    WHERE Requestid='$id'
+    ");
+
+        return $query->result_array();
+    }
+
+
+    
+    public function EditTestRequestRawMatLabAcknowledge($TID)
+    {
+        $query = $this->db->query("UPDATE dbo.tbl_Raw_material_H 
+        SET LabAcknowledge = 'Acknowledged', status='Locked'
+       
+        WHERE Requestid='$TID'
+        ");
+
+        if ($query) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+        public function getOldCssNo()
+    {
+
+        $query = $this->db->query("SELECT        CSSNo
+        FROM            dbo.tbl_lab_test_request
+        WHERE        (Status = 'Send to Lab') OR (Status = 'Send Back to Requester') AND (LabAcknowledgementStatus = 'Acknowledged')");
+        return $query->result_array();
+    }
+    
 
 
 }

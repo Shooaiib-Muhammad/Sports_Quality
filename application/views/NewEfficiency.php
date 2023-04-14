@@ -280,13 +280,14 @@ if (!$this->session->has_userdata('user_id')) {
                                                 </div>
                                                 <div class="tab-pane fade" id="tab_borders_icons-422" role="tabpanel">
                                                 
-                                                <div id="AMBEfficiencyForm"></div>
-                                                32323 
+                                                <div id="AMBEfficiencyform2222"></div>
+                                                 
                                                 </div>
 
                                                 <div class="tab-pane fade" id="tab_borders_icons-522" role="tabpanel">
                                                 
-                                                <div id="AMBEfficiencypak"></div> 
+                                                <div id="AMbpacking"></div> 
+                                                
                                                 </div>
                                                 </div>
                                             </div>
@@ -332,14 +333,14 @@ if (!$this->session->has_userdata('user_id')) {
                                             </ul> 
                                                 <div class="tab-content py-3">
                                                 <div class="tab-pane fade show active" id="tab_borders_icons-1111" role="tabpanel">
-                                                <div id="lfbEfficiency"></div> 
+                                                <div id="LfbEff"></div> 
                                                 <!-- <div id="flot-toggles" class="w-100 mt-4" style="height: 300px"></div> -->
                                             </div>
                                                
                                                 <div class="tab-pane fade" id="tab_borders_icons-6111" role="tabpanel">
                                                 
 
-                                                
+                                                <div id="lfbcarcas"></div> 
 
                                                 </div>
                                                 
@@ -361,10 +362,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                 </div>
                                                 
                                                 <div class="tab-pane fade" id="tab_borders_icons-4111" role="tabpanel">
-                                              
+                                                <div id="lfbass"></div> 
                                                 </div>
                                                 <div class="tab-pane fade" id="tab_borders_icons-5111" role="tabpanel">
-                                               
+                                                <div id="lfbpackingStation"></div> 
                                                 </div>
                                                 </div>
                                             </div>
@@ -435,7 +436,7 @@ $GetRWPDReading = array();
 $GetRWPDName = array();
 $RWPDTarget = array();
 
-$TMCarcas=0;
+$tmcarcasCount=0;
 $TMLamination=0;
 $TMHFCutting=0;
 $TMAssembling=0;
@@ -465,12 +466,28 @@ $AmbPacking=0;
 
 $GetAMBAssemReading = array();
 $GetAMBAssemName = array();
-$AMBAssemTarget = array();
-
+$AMBAssemTarget1 = array();
+$AMBAssemTarget11 = array();
 $GetAMBpackReading = array();
 $GetAMBpackName = array();
 $AMBpackTarget = array();
 
+
+$LFBCarcas=0;
+$LFBAssembling=0;
+$LFBPacking=0;
+$GetLFBCarcasReading = array();
+$GetLFBCarcasName = array();
+$GetLFBtargetonly = array();
+$getLfbAsssReading = array();
+$getLFBAssName = array();
+$GetASstarget = array();
+$GetLFBpackingReading = array();
+$GetLfbpackingName = array();
+$GetLfbpackingTarget = array();
+
+
+//print_r($MSEfficiency);
 foreach($MSEfficiency as $key){
 $Process=$key['Process'];
 $target=71;
@@ -536,9 +553,7 @@ if($Process=='TM Carcas'){
     array_push($GetTMCName, $tmcarcasname);
     array_push($TMCTarget, $target);
     
-    $tmcarcas += $tmcarcasCount;
-}else{
-  $tmcarcas=0;
+    $tmcarcasCount += $tmcarcasCount;
 }
 if($Process=='TM Packing'){
     $TMPackingCount=$key['Counter'];
@@ -582,7 +597,7 @@ if($Process=='AMB Packing'){
   $PackName=$key['Name'];
   array_push($GetAMBpackReading, $Packing);
   array_push($GetAMBpackName, $PackName);
-  array_push($AMBAssemTarget, $target);
+  array_push($AMBAssemTarget11, $target);
   
   $AmbPacking += $Packing;
 }
@@ -591,14 +606,49 @@ if($Process=='AMB Assembling'){
   $Forrming=$key['Counter'];
   $FormingName=$key['Name'];
   array_push($GetAMBAssemReading, $Forrming);
-  array_push($GetAMBAssemName, $FormingName);
-  array_push($AMBAssemTarget, $target);
+  array_push($GetAMBAssemName, "$FormingName");
+  array_push($AMBAssemTarget1, $target);
   
   $AmbFoming += $Forrming;
 }
 
 
+if($Process=='LFB Carcas'){
+  $Carcas=$key['Counter'];
+  $CarcasName=$key['Name'];
+  array_push($GetLFBCarcasReading, $Carcas);
+  array_push($GetLFBCarcasName, "$CarcasName");
+  array_push($GetLFBtargetonly, $target);
+  
+  $LFBCarcas += $Carcas;
 }
+
+if($Process=='LFB Assembling'){
+  $Assembling=$key['Counter'];
+  $Assemblingname=$key['Name'];
+  array_push($getLfbAsssReading, $Assembling);
+  array_push($getLFBAssName, "$Assemblingname");
+  array_push($GetASstarget,$target);
+  
+  $LFBAssembling += $Assembling;
+}
+
+
+if($Process=='LFB Packing'){
+  $Packing=$key['Counter'];
+  $PackingName=$key['Name'];
+  array_push($GetLFBpackingReading, $Packing);
+  array_push($GetLfbpackingName, "$PackingName");
+  array_push($GetLfbpackingTarget, $target);
+  
+  $LFBPacking += $Packing;
+}
+
+
+
+
+}
+//print_r($GetAMBAssemReading);
 
 //Print_r($GetAMBAssemReading);
 ?>
@@ -734,6 +784,7 @@ Highcharts.chart('BWEfficiency', {
     }
   }]
 });
+
 Highcharts.chart('SSEfficiency', {
   title: {
     text: 'Sheet Sizing Efficiency',
@@ -1009,7 +1060,7 @@ Highcharts.chart('TMEfficiency', {
   series: [{
     type: 'column',
     name: 'Efficiency',
-    data: [<?php Echo $tmcarcas; ?>, <?php Echo $TMLamination; ?>, 0
+    data: [<?php Echo $tmcarcasCount; ?>, <?php Echo $TMLamination; ?>, 0
     , <?php Echo $TMpacking; ?>, <?php Echo $TMpacking ; ?>]
     
   }, {
@@ -1438,10 +1489,73 @@ Highcharts.chart('AMBEfficiency', {
   }]
 });
 
+// Highcharts.chart('AMBEfficiencyform2222', {
+//   title: {
+//     text: 'Airless Mini Product Efficiency',
+//     align: 'left'
+//   },
+//   xAxis: {
+//     categories: ['Lamination','HF Cutting', 'Assembling', 'Packing']
+//   },
+//   yAxis: {
+//     title: {
+//       text: 'Efficiency'
+//     }
+//   },
+//   tooltip: {
+//     valueSuffix: ''
+//   },
+//   series: [{
+//     type: 'column',
+//     name: 'Efficiency',
+//     data: [0,0, <?php Echo $AmbFoming; ?>, <?php Echo $AmbPacking ; ?>]
+    
+//   }, {
+//     type: 'spline',
+//     name: 'Target',
+//     data: [69,69,69,69],
+//     marker: {
+//       lineWidth: 2,
+//       lineColor: Highcharts.getOptions().colors[3],
+//       fillColor: 'white'
+//     }
+//   }, {
+//     type: 'pie',
+//     name: 'Total',
+//     data: [{
+//       name: 'Efficiency',
+//       y: 619,
+//       color: Highcharts.getOptions().colors[0], // 2020 color
+//       dataLabels: {
+//         enabled: true,
+//         distance: -50,
+//         format: '{point.total}',
+//         style: {
+//           fontSize: '15px'
+//         }
+//       }
+//     }, {
+//       name: '2021',
+//       y: 586,
+//       color: Highcharts.getOptions().colors[1] // 2021 color
+//     }, {
+//       name: '2022',
+//       y: 647,
+//       color: Highcharts.getOptions().colors[2] // 2022 color
+//     }],
+//     center: [75, 65],
+//     size: 100,
+//     innerSize: '70%',
+//     showInLegend: false,
+//     dataLabels: {
+//       enabled: false
+//     }
+//   }]
+// });
 
 
 
-Highcharts.chart('AMBEfficiencyform', {
+Highcharts.chart('AMBEfficiencyform2222', {
   title: {
     text: 'Airless Mini Forming Efficiency',
     align: 'left'
@@ -1465,7 +1579,7 @@ Highcharts.chart('AMBEfficiencyform', {
   }, {
     type: 'spline',
     name: 'Target',
-    data: <?php echo json_encode($AMBAssemTarget, JSON_NUMERIC_CHECK); ?>,
+    data: <?php echo json_encode($AMBAssemTarget1, JSON_NUMERIC_CHECK); ?>,
     marker: {
       lineWidth: 2,
       lineColor: Highcharts.getOptions().colors[3],
@@ -1507,9 +1621,136 @@ Highcharts.chart('AMBEfficiencyform', {
 
 
 
+Highcharts.chart('AMbpacking', {
+  title: {
+    text: 'Airless Mini Packing Efficiency',
+    align: 'left'
+  },
+  xAxis: {
+    categories: <?php echo json_encode($GetAMBpackName, JSON_NUMERIC_CHECK); ?>
+  },
+  yAxis: {
+    title: {
+      text: 'Efficiency'
+    }
+  },
+  tooltip: {
+    valueSuffix: ''
+  },
+  series: [{
+    type: 'column',
+    name: 'Efficiency',
+    data: <?php echo json_encode($GetAMBpackReading, JSON_NUMERIC_CHECK); ?>
+    
+  }, {
+    type: 'spline',
+    name: 'Target',
+    data: <?php echo json_encode($AMBAssemTarget11, JSON_NUMERIC_CHECK); ?>,
+    marker: {
+      lineWidth: 2,
+      lineColor: Highcharts.getOptions().colors[3],
+      fillColor: 'white'
+    }
+  }, {
+    type: 'pie',
+    name: 'Total',
+    data: [{
+      name: 'Efficiency',
+      y: 619,
+      color: Highcharts.getOptions().colors[0], // 2020 color
+      dataLabels: {
+        enabled: true,
+        distance: -50,
+        format: '{point.total}',
+        style: {
+          fontSize: '15px'
+        }
+      }
+    }, {
+      name: '2021',
+      y: 586,
+      color: Highcharts.getOptions().colors[1] // 2021 color
+    }, {
+      name: '2022',
+      y: 647,
+      color: Highcharts.getOptions().colors[2] // 2022 color
+    }],
+    center: [75, 65],
+    size: 100,
+    innerSize: '70%',
+    showInLegend: false,
+    dataLabels: {
+      enabled: false
+    }
+  }]
+});
 
-alert("I am happy");
-Highcharts.chart('lfbEfficiency', {
+
+// Highcharts.chart('LfbEff', {
+//   title: {
+//     text: 'Airless Mini Packing Efficiency',
+//     align: 'left'
+//   },
+//   xAxis: {
+//     categories: <?php echo json_encode($GetAMBpackName, JSON_NUMERIC_CHECK); ?>
+//   },
+//   yAxis: {
+//     title: {
+//       text: 'Efficiency'
+//     }
+//   },
+//   tooltip: {
+//     valueSuffix: ''
+//   },
+//   series: [{
+//     type: 'column',
+//     name: 'Efficiency',
+//     data: <?php echo json_encode($GetAMBpackReading, JSON_NUMERIC_CHECK); ?>
+    
+//   }, {
+//     type: 'spline',
+//     name: 'Target',
+//     data: <?php echo json_encode($AMBAssemTarget11, JSON_NUMERIC_CHECK); ?>,
+//     marker: {
+//       lineWidth: 2,
+//       lineColor: Highcharts.getOptions().colors[3],
+//       fillColor: 'white'
+//     }
+//   }, {
+//     type: 'pie',
+//     name: 'Total',
+//     data: [{
+//       name: 'Efficiency',
+//       y: 619,
+//       color: Highcharts.getOptions().colors[0], // 2020 color
+//       dataLabels: {
+//         enabled: true,
+//         distance: -50,
+//         format: '{point.total}',
+//         style: {
+//           fontSize: '15px'
+//         }
+//       }
+//     }, {
+//       name: '2021',
+//       y: 586,
+//       color: Highcharts.getOptions().colors[1] // 2021 color
+//     }, {
+//       name: '2022',
+//       y: 647,
+//       color: Highcharts.getOptions().colors[2] // 2022 color
+//     }],
+//     center: [75, 65],
+//     size: 100,
+//     innerSize: '70%',
+//     showInLegend: false,
+//     dataLabels: {
+//       enabled: false
+//     }
+//   }]
+// });
+// //alert("I am happy");
+Highcharts.chart('LfbEff', {
   title: {
     text: 'Laminated Footbal Product Efficiency',
     align: 'left'
@@ -1528,7 +1769,7 @@ Highcharts.chart('lfbEfficiency', {
   series: [{
     type: 'column',
     name: 'Efficiency',
-    data: [10,20,30,40,50,60]
+    data: [<?php Echo $LFBCarcas; ?>,0,0,<?php Echo $TMHFCutting; ?>,<?php Echo $LFBAssembling; ?>,<?php Echo $LFBPacking; ?>]
     
   }, {
     type: 'spline',
@@ -1573,14 +1814,13 @@ Highcharts.chart('lfbEfficiency', {
   }]
 });
 
-
-Highcharts.chart('AMBEfficiencypak', {
+Highcharts.chart('lfbcarcas', {
   title: {
-    text: 'Airless Mini Packing Efficiency',
+    text: 'Laminated Carcas  Efficiency',
     align: 'left'
   },
   xAxis: {
-    categories: <?php echo json_encode($GetAMBpackName, JSON_NUMERIC_CHECK); ?>
+    categories: <?php echo json_encode($GetLFBCarcasName, JSON_NUMERIC_CHECK); ?>
   },
   yAxis: {
     title: {
@@ -1593,12 +1833,12 @@ Highcharts.chart('AMBEfficiencypak', {
   series: [{
     type: 'column',
     name: 'Efficiency',
-    data: <?php echo json_encode($GetAMBpackReading, JSON_NUMERIC_CHECK); ?>
+    data: <?php echo json_encode($GetLFBCarcasReading, JSON_NUMERIC_CHECK); ?>
     
   }, {
     type: 'spline',
     name: 'Target',
-    data: <?php echo json_encode($AMBpackTarget, JSON_NUMERIC_CHECK); ?>,
+    data: <?php echo json_encode($GetLFBtargetonly, JSON_NUMERIC_CHECK); ?>,
     marker: {
       lineWidth: 2,
       lineColor: Highcharts.getOptions().colors[3],
@@ -1637,6 +1877,205 @@ Highcharts.chart('AMBEfficiencypak', {
     }
   }]
 });
+
+
+
+Highcharts.chart('lfbass', {
+  title: {
+    text: 'Laminated Footbal Assembling Efficiency',
+    align: 'left'
+  },
+  xAxis: {
+    categories: <?php echo json_encode($getLFBAssName, JSON_NUMERIC_CHECK); ?>
+  },
+  yAxis: {
+    title: {
+      text: 'Efficiency'
+    }
+  },
+  tooltip: {
+    valueSuffix: ''
+  },
+  series: [{
+    type: 'column',
+    name: 'Efficiency',
+    data: <?php echo json_encode($getLfbAsssReading, JSON_NUMERIC_CHECK); ?>
+    
+  }, {
+    type: 'spline',
+    name: 'Target',
+    data: <?php echo json_encode($GetASstarget, JSON_NUMERIC_CHECK); ?>,
+    marker: {
+      lineWidth: 2,
+      lineColor: Highcharts.getOptions().colors[3],
+      fillColor: 'white'
+    }
+  }, {
+    type: 'pie',
+    name: 'Total',
+    data: [{
+      name: 'Efficiency',
+      y: 619,
+      color: Highcharts.getOptions().colors[0], // 2020 color
+      dataLabels: {
+        enabled: true,
+        distance: -50,
+        format: '{point.total}',
+        style: {
+          fontSize: '15px'
+        }
+      }
+    }, {
+      name: '2021',
+      y: 586,
+      color: Highcharts.getOptions().colors[1] // 2021 color
+    }, {
+      name: '2022',
+      y: 647,
+      color: Highcharts.getOptions().colors[2] // 2022 color
+    }],
+    center: [75, 65],
+    size: 100,
+    innerSize: '70%',
+    showInLegend: false,
+    dataLabels: {
+      enabled: false
+    }
+  }]
+});
+
+
+
+Highcharts.chart('lfbpackingStation', {
+  title: {
+    text: 'Laminated Footbal Packing Efficiency',
+    align: 'left'
+  },
+  xAxis: {
+    categories: <?php echo json_encode($GetLfbpackingName, JSON_NUMERIC_CHECK); ?>
+  },
+  yAxis: {
+    title: {
+      text: 'Efficiency'
+    }
+  },
+  tooltip: {
+    valueSuffix: ''
+  },
+  series: [{
+    type: 'column',
+    name: 'Efficiency',
+    data: <?php echo json_encode($GetLFBpackingReading, JSON_NUMERIC_CHECK); ?>
+    
+  }, {
+    type: 'spline',
+    name: 'Target',
+    data: <?php echo json_encode($GetLfbpackingTarget, JSON_NUMERIC_CHECK); ?>,
+    marker: {
+      lineWidth: 2,
+      lineColor: Highcharts.getOptions().colors[3],
+      fillColor: 'white'
+    }
+  }, {
+    type: 'pie',
+    name: 'Total',
+    data: [{
+      name: 'Efficiency',
+      y: 619,
+      color: Highcharts.getOptions().colors[0], // 2020 color
+      dataLabels: {
+        enabled: true,
+        distance: -50,
+        format: '{point.total}',
+        style: {
+          fontSize: '15px'
+        }
+      }
+    }, {
+      name: '2021',
+      y: 586,
+      color: Highcharts.getOptions().colors[1] // 2021 color
+    }, {
+      name: '2022',
+      y: 647,
+      color: Highcharts.getOptions().colors[2] // 2022 color
+    }],
+    center: [75, 65],
+    size: 100,
+    innerSize: '70%',
+    showInLegend: false,
+    dataLabels: {
+      enabled: false
+    }
+  }]
+});
+
+
+
+
+// Highcharts.chart('AMBEfficiencypak', {
+//   title: {
+//     text: 'Airless Mini Packing Efficiency',
+//     align: 'left'
+//   },
+//   xAxis: {
+//     categories: <?php echo json_encode($GetAMBpackName, JSON_NUMERIC_CHECK); ?>
+//   },
+//   yAxis: {
+//     title: {
+//       text: 'Efficiency'
+//     }
+//   },
+//   tooltip: {
+//     valueSuffix: ''
+//   },
+//   series: [{
+//     type: 'column',
+//     name: 'Efficiency',
+//     data: <?php echo json_encode($GetAMBpackReading, JSON_NUMERIC_CHECK); ?>
+    
+//   }, {
+//     type: 'spline',
+//     name: 'Target',
+//     data: <?php echo json_encode($AMBpackTarget, JSON_NUMERIC_CHECK); ?>,
+//     marker: {
+//       lineWidth: 2,
+//       lineColor: Highcharts.getOptions().colors[3],
+//       fillColor: 'white'
+//     }
+//   }, {
+//     type: 'pie',
+//     name: 'Total',
+//     data: [{
+//       name: 'Efficiency',
+//       y: 619,
+//       color: Highcharts.getOptions().colors[0], // 2020 color
+//       dataLabels: {
+//         enabled: true,
+//         distance: -50,
+//         format: '{point.total}',
+//         style: {
+//           fontSize: '15px'
+//         }
+//       }
+//     }, {
+//       name: '2021',
+//       y: 586,
+//       color: Highcharts.getOptions().colors[1] // 2021 color
+//     }, {
+//       name: '2022',
+//       y: 647,
+//       color: Highcharts.getOptions().colors[2] // 2022 color
+//     }],
+//     center: [75, 65],
+//     size: 100,
+//     innerSize: '70%',
+//     showInLegend: false,
+//     dataLabels: {
+//       enabled: false
+//     }
+//   }]
+// });
 
 
 

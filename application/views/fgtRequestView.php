@@ -2689,12 +2689,12 @@ if (!$this->session->has_userdata('user_id')) {
                         </tr>
                         </thead>
                         <tbody>`;
-                if (data != '') {
-
+                if (data && data.length > 0) {
+                    console.log("data", data);
                     data.forEach(element => {
                         html += `
                             <tr>        
-                            <td><span class="badge badge-warning p-1">${element.CssDate.split("00:00:00")[0]}</span></td>
+                            <td><span class="badge badge-warning p-1">${element.CssDate ? element.CssDate.split("00:00:00")[0] : 'null'}</span></td>
                             <td><span class="badge badge-warning p-1">${element.CssNO}</span></td>
                             <td>${element.factoryCode}</td>
                             <td>${element.WorkingNo}</td>

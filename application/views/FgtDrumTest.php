@@ -4558,7 +4558,10 @@ if (!$this->session->has_userdata('user_id')) {
                         <!-- Model FGT TESTING HTML -->
                         <?php include('FGT_Models/fgtTestingModel.php') ?>
                         <!-- End Model FGT TESTING  HTML -->
-
+                        
+                        <!-- Model FGT Airless Mini TESTING HTML -->
+                        <?php include('FGT_Models/fgtTestingAirlessMiniModel.php') ?>
+                        <!-- End Model FGT Airless Mini TESTING  HTML -->
 
 
                         <!-- START FGT TESTING DATE RANGE -->
@@ -4913,90 +4916,144 @@ if (!$this->session->has_userdata('user_id')) {
                                     },
                                     function(data, status) {
                                         if (data) {
-                                            if (data[0]['TestType'].trim() == 'adhesion material' || data[0]['TestType'].trim() == 'Adhesion Material') {
+                                            if (data[0].FC == 'B34006') {
+                                                $('#labNoFGTAirlessMini').html(data[0]['LabNo']);
+                                                $('#cssNoFGTAirlessMini').html(data[0]['CssNo']);
+                                                $('#receiveDateFGTAirlessMini').html(data[0]['Receiving_Date']);
+                                                $('#testingDataFGTSAirlessMini').html(data[0]['Testing_DateS']);
+                                                $('#testingDataFGTEAirlessMini').html(data[0]['Testing_DateE']);
+                                                $('#issueDateFGTAirlessMini').html(data[0]['Issue_Date']);
+                                                $('#environmentalCondFGTAirlessMini').html(data[0]['EnvironmentalC']);
+                                                $('#testAccToCatFGTAirlessMini').html(data[0]['TestAccToCat']);
+                                                $('#coverMatFGTAirlessMini').html(data[0]['CoverMat']);
+                                                $('#backingFGTAirlessMini').html(data[0]['Backing']);
+                                                $('#bladderFGTAirlessMini').html(data[0]['Bladder']);
+                                                $('#ballTypeFGTAirlessMini').html(data[0]['BallType']);
+                                                $('#fifaStumpFGTAirlessMini').html(data[0]['Fifa_stump']);
+                                                $('#prodMonthFGTAirlessMini').html(data[0]['ProductionMon']);
+                                                $('#testTypeFGTAirlessMini').html(data[0]['TestType']);
+                                                $('#mainMatColorFGTAirlessMini').html(data[0]['MainMatColor']);
+                                                $('#printingColorFGTAirlessMini').html(data[0]['PrintingColor']);
+                                                $('#modelNameFGTAirlessMini').html(data[0]['ModelName']);
+                                                $('#acticleNoFGTAirlessMini').html(data[0]['Article']);
+                                                $('#workingNoFGTAirlessMini').html(data[0]['Working']);
+                                                $('#resultFGTAirlessMini').html(data[0]['Result']);
+                                                $('#testedbyFGtAirlessMini').html(data[0]['TestedBy']);
+                                                if (data[0]['freshImage']) {
+                                                    $("#freshImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].freshImage);
+                                                } else {
+                                                    $("#freshImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                                }
 
-                                            }
-                                            $('#labNoFGT').html(data[0]['LabNo']);
-                                            $('#cssNoFGT').html(data[0]['CssNo']);
-                                            $('#receiveDateFGT').html(data[0]['Receiving_Date']);
-                                            $('#testingDataFGTS').html(data[0]['Testing_DateS']);
-                                            $('#testingDataFGTE').html(data[0]['Testing_DateE']);
-                                            $('#issueDateFGT').html(data[0]['Issue_Date']);
-                                            $('#environmentalCondFGT').html(data[0]['EnvironmentalC']);
-                                            $('#testAccToCatFGT').html(data[0]['TestAccToCat']);
-                                            $('#coverMatFGT').html(data[0]['CoverMat']);
-                                            $('#backingFGT').html(data[0]['Backing']);
-                                            $('#bladderFGT').html(data[0]['Bladder']);
-                                            $('#ballTypeFGT').html(data[0]['BallType']);
-                                            $('#fifaStumpFGT').html(data[0]['Fifa_stump']);
-                                            $('#prodMonthFGT').html(data[0]['ProductionMon']);
-                                            $('#testTypeFGT').html(data[0]['TestType']);
-                                            $('#mainMatColorFGT').html(data[0]['MainMatColor']);
-                                            $('#printingColorFGT').html(data[0]['PrintingColor']);
-                                            $('#acticleNoFGT').html(data[0]['Article']);
-                                            $('#workingNoFGT').html(data[0]['Working']);
-                                            $('#resultFGT').html(data[0]['Result']);
-                                            $('#testedbyFGt').html(data[0]['TestedBy']);
+                                                if (data[0]['afterShooterImage']) {
+                                                    $("#afterShooterImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].afterShooterImage);
+                                                } else {
+                                                    $("#afterShooterImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                                }
 
-                                            if (data[0]['LabNo'].includes('MS')) {
-                                                $("#testRequest").html("By Mr.Zeeshan Ikram - MS2@Forward.pk")
-                                            } else {
-                                                $("#testRequest").html("By Oman Sb - oman@forward.pk")
-                                            }
+                                                if (data[0]['hydrolysisImage']) {
+                                                    $("#hydrolysisImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].hydrolysisImage);
+                                                } else {
+                                                    $("#hydrolysisImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                                }
 
-                                            if (data[0]['freshImage']) {
-                                                $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].freshImage);
-                                            } else {
-                                                $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                            }
+                                                if (data[0]['drumImage']) {
+                                                    $("#drumImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].drumImage);
+                                                } else {
+                                                    $("#drumImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                                }
+                                                $.post(url2, {
+                                                    TID: TID
+                                                }, function(data, status) {
+                                                    // console.log("details data",data);
+                                                    let html;
+                                                    if (data) {
+                                                        data.forEach((element, index) => {
 
-                                            if (data[0]['afterShooterImage']) {
-                                                $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].afterShooterImage);
-                                            } else {
-                                                $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                            }
+                                                            html += `<tr>
+                                                                                    <td style="padding:left: 2px">${element.Test}</td>
+                                                                                    <th style="text-align:center">${element.Method }</th>
+                                                                                    <th style="text-align:center">${element.Condition}</th>
+                                                                                    <th style="text-align:center">${element.Unit}</th>
+                                                                                    <th style="text-align:center">${element.AirlessMiniSoccerball}</th>
+                                                                                    <th style="text-align:center">${element.Ball1}</th>
+                                                                                    <th style="text-align:center">${element.Ball2}</th>
+                                                                                    <th style="text-align:center">${element.Ball3}</th>
+                                                                                    <th style="text-align:center">${element.Ball4}</th>
+                                                                                    <th style="text-align:center">${element.Ball5}</th>
+                                                                                </tr>`
 
-                                            if (data[0]['hydrolysisImage']) {
-                                                $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].hydrolysisImage);
-                                            } else {
-                                                $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                            }
+                                                        })
+                                                        $('#fgtTestDetailsAirlessMini').html(html);
+                                                    }
+                                                });
+                                                $('#exampleModalFGTAirlessMiniTesting').modal('toggle');
+                                            } else { //else if this is other test than fgt airless mini then show that modal
+                                                console.log("else");
+                                                $('#labNoFGT').html(data[0]['LabNo']);
+                                                $('#cssNoFGT').html(data[0]['CssNo']);
+                                                $('#receiveDateFGT').html(data[0]['Receiving_Date']);
+                                                $('#testingDataFGTS').html(data[0]['Testing_DateS']);
+                                                $('#testingDataFGTE').html(data[0]['Testing_DateE']);
+                                                $('#issueDateFGT').html(data[0]['Issue_Date']);
+                                                $('#environmentalCondFGT').html(data[0]['EnvironmentalC']);
+                                                $('#testAccToCatFGT').html(data[0]['TestAccToCat']);
+                                                $('#coverMatFGT').html(data[0]['CoverMat']);
+                                                $('#backingFGT').html(data[0]['Backing']);
+                                                $('#bladderFGT').html(data[0]['Bladder']);
+                                                $('#ballTypeFGT').html(data[0]['BallType']);
+                                                $('#fifaStumpFGT').html(data[0]['Fifa_stump']);
+                                                $('#prodMonthFGT').html(data[0]['ProductionMon']);
+                                                $('#testTypeFGT').html(data[0]['TestType']);
+                                                $('#mainMatColorFGT').html(data[0]['MainMatColor']);
+                                                $('#printingColorFGT').html(data[0]['PrintingColor']);
+                                                $('#acticleNoFGT').html(data[0]['Article']);
+                                                $('#workingNoFGT').html(data[0]['Working']);
+                                                $('#resultFGT').html(data[0]['Result']);
+                                                $('#testedbyFGt').html(data[0]['TestedBy']);
+                                                if (data[0]['LabNo'].includes('MS')) {
+                                                    $("#testRequest").html("By Mr.Zeeshan Ikram - MS2@Forward.pk")
+                                                } else {
+                                                    $("#testRequest").html("By Oman Sb - oman@forward.pk")
+                                                }
 
-                                            if (data[0]['drumImage']) {
-                                                $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].drumImage);
-                                            } else {
-                                                $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                            }
-                                        }
+                                                if (data[0]['freshImage']) {
+                                                    $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].freshImage);
+                                                } else {
+                                                    $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                                }
 
-                                        $.post(url2, {
-                                            TID: TID
-                                        }, function(data, status) {
-                                            // console.log("details data",data);
-                                            let html;
-                                            if (data) {
-                                                data.forEach((element, index) => {
-                                                    if (index == 12) {
-                                                        let mergedRow = '';
-                                                        mergedRow += element.Method + "," + element.Condition;
-                                                        html += `<tr>
-                                                        <td style="padding:left: 2px">${element.Test}</td>
-                                                        <th style="text-align:center">` + mergedRow + `</th>
-                                                        <th style="text-align:center"></th>
-                                                        <th style="text-align:center">${element.Unit}</th>
-                                                        <th style="text-align:center">${element.Cat1}</th>
-                                                        <th style="text-align:center">${element.Cat2}</th>
-                                                        <th style="text-align:center">${element.Cat3}</th>
-                                                        <th style="text-align:center">${element.Min}</th>
-                                                        <th style="text-align:center">${element.Max}</th>
-                                                        <th style="text-align:center">${element.Remarks}</th>
-                                                    </tr>`
-                                                        // console.log("merged data", mergedRow);
-                                                    } else {
-                                                        html += `<tr>
+                                                if (data[0]['afterShooterImage']) {
+                                                    $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].afterShooterImage);
+                                                } else {
+                                                    $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                                }
+
+                                                if (data[0]['hydrolysisImage']) {
+                                                    $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].hydrolysisImage);
+                                                } else {
+                                                    $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                                }
+
+                                                if (data[0]['drumImage']) {
+                                                    $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].drumImage);
+                                                } else {
+                                                    $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                                }
+                                                $.post(url2, {
+                                                    TID: TID
+                                                }, function(data, status) {
+                                                    console.log("details", data);
+                                                    let html;
+                                                    if (data) {
+                                                        data.forEach((element, index) => {
+                                                            if (index == 12) {
+                                                                let mergedRow = '';
+                                                                mergedRow += element.Method + "," + element.Condition;
+                                                                html += `<tr>
                                                             <td style="padding:left: 2px">${element.Test}</td>
-                                                            <th style="text-align:center">${element.Method }</th>
-                                                            <th style="text-align:center">${element.Condition}</th>
+                                                            <th style="text-align:center">` + mergedRow + `</th>
+                                                            <th style="text-align:center"></th>
                                                             <th style="text-align:center">${element.Unit}</th>
                                                             <th style="text-align:center">${element.Cat1}</th>
                                                             <th style="text-align:center">${element.Cat2}</th>
@@ -5005,12 +5062,28 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <th style="text-align:center">${element.Max}</th>
                                                             <th style="text-align:center">${element.Remarks}</th>
                                                         </tr>`
+                                                            } else {
+                                                                html += `<tr>
+                                                                <td style="padding:left: 2px">${element.Test}</td>
+                                                                <th style="text-align:center">${element.Method }</th>
+                                                                <th style="text-align:center">${element.Condition}</th>
+                                                                <th style="text-align:center">${element.Unit}</th>
+                                                                <th style="text-align:center">${element.Cat1}</th>
+                                                                <th style="text-align:center">${element.Cat2}</th>
+                                                                <th style="text-align:center">${element.Cat3}</th>
+                                                                <th style="text-align:center">${element.Min}</th>
+                                                                <th style="text-align:center">${element.Max}</th>
+                                                                <th style="text-align:center">${element.Remarks}</th>
+                                                            </tr>`
+                                                            }
+                                                        })
+                                                        $('#fgtTestDetails').html(html);
                                                     }
-                                                })
-                                                $('#fgtTestDetails').html(html);
+                                                });
+                                                $('#exampleModalFGTTesting').modal('toggle');
                                             }
-                                        });
-                                        $('#exampleModalFGTTesting').modal('toggle');
+
+                                        }
                                     })
                             }
 

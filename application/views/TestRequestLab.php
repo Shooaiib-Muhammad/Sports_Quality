@@ -69,6 +69,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Acknowledged Requests</a></li>
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3">Pending FGT Requests</a></li>
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-4">Acknowledged FGT Requests </a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-5">Acknowledged Raw Material Requests </a></li>
+
                                             </ul>
 
                                             <div class="tab-content py-3">
@@ -284,6 +286,12 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </div>
                                                 </div>
 
+                                                <div class="tab-pane fade" id="tab_direction-5" role="tabpanel">
+                                                <div id="loadRawMatRequestAknowloedgedByLab">
+
+                                                </div>
+                                                </div>
+
                                             </div>
 
 
@@ -363,38 +371,235 @@ if (!$this->session->has_userdata('user_id')) {
             let id = this.id;
             let split_value = id.split(".");
             TID = split_value[1];
-            $("#ackSingle").css("display", "block");
-            $("#ackAll").css("display", "none");
-            $("#testTypeModel").modal("toggle");
+            // $("#ackSingle").css("display", "block");
+            // $("#ackAll").css("display", "none");
+            // $("#testTypeModel").modal("toggle");
+
+            let proceed = confirm("Are you sure you want to acknowledge Receipt?");
+            if (proceed) {
+
+                url = "<?php echo base_url(''); ?>LabController/EditTestRequestLabAcknowledge";
+                $.post(url, {
+                    'Id': TID
+                }, function(data, status) {
+                    
+                        alert("Data Updated Successfully! Click on Ok to Reload the Page")
+                        window.location.reload();
+                    
+                });
+            } else {
+                alert("Acknowledge Cancel");
+            }
 
         });
 
-        function acknowledgeSingleMaterialReq() {
-            let testTypeID = $("#testType").val();
-            // alert(testType);
-            // alert(TID);
-            let proceed = confirm("Are you sure you want to acknowledge Receipt with testType also?");
-            if (proceed && testTypeID) {
 
-                url = "<?php echo base_url(''); ?>LabController/TestRequestById";
-                url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestLabAcknowledge";
+
+        function loadRawMatRequestAknowloedgedByLab() {
+            url = "<?php echo base_url("LabController/RawMatRequestAknowledgedByLab") ?>";
+            $.get(url, function(data) {
+
+                console.log(data)
+
+                if (data) {
+                    let html = `<table class="table table-bordered table-striped table-hover table-sm" id="fgtTableExport3">
+                    <thead class="bg-primary-200 text-light p-2">
+                    <tr>
+
+<th>
+    <div class="custom-control custom-checkbox no-sort">
+        <input class="custom-control-input" type="checkbox" id="select-all">
+        <label for="select-all" class="custom-control-label"></label>
+    </div>
+</th>
+<th>Request Date</th>
+<th>Type</th>
+<th>Material</th>
+<th>CSS Code</th>
+<th>Factory Code</th>
+<th>Article / Material Name</th>
+<th>Test Requested</th>
+<th>Due Date</th>
+<th>Complete Date</th>
+<th>Quantity Issed</th>
+<th>Quantity Received</th>
+<th>Quantity Retained</th>
+<th>Quantity Returned</th>
+<th>Lab Status</th>
+<th>Receiver Signature</th>
+<th>Sender Signature</th>
+<th>Status</th>
+<th>ACTIONS</th>
+</tr>
+                    </thead>
+                    <tbody>`;
+                    data.forEach(element => {
+                        html += `
+                        <tr>                        
+                            <td></td>
+                            <td><span>${element.Date}</span></td>
+                            <td><span>${element.Type}</span></td>
+                            <td><span>${element.TestType}</span></td>
+                            <td><span>${element.CSSNo}</span></td>
+                            <td><span>${element.FactoryCode}</span></td>
+                            <td><span>${element.itemName}</span></td>
+                            <td><span>${element.Type}</span></td>
+                            <td><span>${element.dueDate}</span></td>
+                            <td><span>${element.comDate}</span></td>
+                            <td><span>${element.Quantity}</span></td>
+                            <td><span>${element.qtyRece}</span></td>
+                            <td><span>${element.qtyRetain}</span></td>
+                            <td><span>${element.LabStatus}</span></td>
+                            <td><span>${element.receSign}</span></td>
+                            <td><span>${element.senderSign}</span></td>
+                            <td><span class="badge badge-warning p-1">${element.status}</span></td>
+                            <td><span class="badge badge-warning p-1">${element.status}</span></td>
+                            <td><button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtnBacktoSender1" id="btn.${element.Requestid}">Acknowledge</button></td>
+                        </tr>
+                        
+                        `
+                    })
+
+                    html += `</tbody>
+                            </table>`;
+
+                    $("#loadRawMatRequestAknowloedgedByLab").html(html);
+
+
+                    $(".updatebtnBacktoSender1").click(function(e) {
+            let id = this.id;
+            let split_value = id.split(".");
+            var TID = split_value[1];
+
+            let proceed = confirm("Are you sure you want to acknowledge Receipt?");
+            if (proceed) {
+
+                url = "<?php echo base_url(''); ?>LabController/TestRequestRawMatById";
+                url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestRawMatLabAcknowledge";
                 $.post(url, {
                     'Id': TID
                 }, function(data, status) {
                     $.post(url2, {
-                        'Id': TID,
-                        'testTypeID': testTypeID
+                        'Id': TID
                     }, function(data, status) {
+
+
+
                         alert("Data Updated Successfully! Click on Ok to Reload the Page")
                         window.location.reload();
                     });
                 });
             } else {
-                alert("Operation Cancelled!.");
-                $("#testTypeModel").modal("toggle");
-
+                alert("Sending Cancel");
             }
+        });
+
+                    $('#fgtTableExport3').dataTable({
+                        responsive: false,
+                        lengthChange: false,
+                        dom:
+                            /*	--- Layout Structure 
+                                --- Options
+                                l	-	length changing input control
+                                f	-	filtering input
+                                t	-	The table!
+                                i	-	Table information summary
+                                p	-	pagination control
+                                r	-	processing display element
+                                B	-	buttons
+                                R	-	ColReorder
+                                S	-	Select
+    
+                                --- Markup
+                                < and >				- div element
+                                <"class" and >		- div with a class
+                                <"#id" and >		- div with an ID
+                                <"#id.class" and >	- div with an ID and a class
+    
+                                --- Further reading
+                                https://datatables.net/reference/option/dom
+                                --------------------------------------
+                            */
+                            "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                            "<'row'<'col-sm-12'tr>>" +
+                            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                        buttons: [
+                            /*{
+                                extend:    'colvis',
+                                text:      'Column Visibility',
+                                titleAttr: 'Col visibility',
+                                className: 'mr-sm-3'
+                            },*/
+                            {
+                                extend: 'pdfHtml5',
+                                text: 'PDF',
+                                titleAttr: 'Generate PDF',
+                                className: 'btn-outline-danger btn-sm mr-1'
+                            },
+                            {
+                                extend: 'excelHtml5',
+                                text: 'Excel',
+                                titleAttr: 'Generate Excel',
+                                className: 'btn-outline-success btn-sm mr-1'
+                            },
+                            {
+                                extend: 'csvHtml5',
+                                text: 'CSV',
+                                titleAttr: 'Generate CSV',
+                                className: 'btn-outline-primary btn-sm mr-1'
+                            },
+                            {
+                                extend: 'copyHtml5',
+                                text: 'Copy',
+                                titleAttr: 'Copy to clipboard',
+                                className: 'btn-outline-primary btn-sm mr-1'
+                            },
+                            {
+                                extend: 'print',
+                                text: 'Print',
+                                titleAttr: 'Print Table',
+                                className: 'btn-outline-primary btn-sm'
+                            }
+                        ]
+                    });
+                }
+
+
+            });
+
+
+            
+
         }
+
+
+
+        // function acknowledgeSingleMaterialReq() {
+        //     // let testTypeID = $("#testType").val();
+        //     // alert(testType);
+        //     // alert(TID);
+        //     let proceed = confirm("Are you sure you want to acknowledge Receipt with testType also?");
+        //     if (proceed) {
+
+        //         url = "<?php echo base_url(''); ?>LabController/TestRequestById";
+        //         url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestLabAcknowledge";
+        //         $.post(url, {
+        //             'Id': TID
+        //         }, function(data, status) {
+        //             $.post(url2, {
+        //                 'Id': TID,
+        //                 // 'testTypeID': testTypeID
+        //             }, function(data, status) {
+        //                 alert("Data Updated Successfully! Click on Ok to Reload the Page")
+        //                 window.location.reload();
+        //             });
+        //         });
+        //     } else {
+        //         alert("Operation Cancelled!.");
+        //         // $("#testTypeModel").modal("toggle");
+
+        //     }
+        // }
 
         function toggleArticle() {
             let selectionValue = $('#selection').val();
@@ -469,6 +674,9 @@ if (!$this->session->has_userdata('user_id')) {
 
             loadFGTRequestStatusSendToLab();
             loadFGTRequestAknowloedgedByLab();
+
+            loadRawMatRequestAknowloedgedByLab();
+
 
             $("#ArtCodeAuto").select2();
             let currentDate = new Date().toJSON().substr(0, 10);
@@ -2308,20 +2516,8 @@ if (!$this->session->has_userdata('user_id')) {
 
         $('.submit-button').click(function(data) {
 
-            $("#ackSingle").css("display", "none");
-            $("#ackAll").css("display", "block");
-            $("#testTypeModel").modal("toggle");
-
-
-        })
-
-
-        function acknowledgeAllMaterialReq(data) {
-            let testTypeID = $("#testType").val();
-            data = {
-                leaves
-            }
-
+            // $("#ackSingle").css("display", "none");
+            // $("#ackAll").css("display", "block");
             let result = confirm("Are you sure to acknowledge all requests?")
             if (result == true) {
                 if (data) {
@@ -2331,7 +2527,7 @@ if (!$this->session->has_userdata('user_id')) {
                     url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestLabAcknowledgeBulk";
                     $.post(url2, {
                         data,
-                        testTypeID: testTypeID
+                        // testTypeID: testTypeID
                     }, function(data) {
                         if (data == true) {
                             alert("Requests Acknowledged Successfully!")
@@ -2341,9 +2537,41 @@ if (!$this->session->has_userdata('user_id')) {
                 }
             } else {
                 alert("Request Cancelled successfully!")
-                $("#testTypeModel").modal("toggle");
+                // $("#testTypeModel").modal("toggle");
             }
-        }
+
+
+        })
+
+
+        // function acknowledgeAllMaterialReq(data) {
+        //     let testTypeID = $("#testType").val();
+        //     data = {
+        //         leaves
+        //     }
+
+        //     let result = confirm("Are you sure to acknowledge all requests?")
+        //     if (result == true) {
+        //         if (data) {
+        //             data = {
+        //                 leaves
+        //             }
+        //             url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestLabAcknowledgeBulk";
+        //             $.post(url2, {
+        //                 data,
+        //                 testTypeID: testTypeID
+        //             }, function(data) {
+        //                 if (data == true) {
+        //                     alert("Requests Acknowledged Successfully!")
+        //                     window.location.reload()
+        //                 }
+        //             });
+        //         }
+        //     } else {
+        //         alert("Request Cancelled successfully!")
+        //         $("#testTypeModel").modal("toggle");
+        //     }
+        // }
 
 
 

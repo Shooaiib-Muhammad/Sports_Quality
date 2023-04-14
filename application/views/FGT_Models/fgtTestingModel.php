@@ -194,6 +194,7 @@
                                                                             <td>Max</td>
                                                                             <td>Remarks</td>
                                                                         </tr>
+                                                                       
                                                                     <tbody id="fgtTestDetails">
 
                                                                     </tbody>

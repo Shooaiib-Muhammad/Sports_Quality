@@ -664,65 +664,11 @@
                             </a>
                             <ul>
                                 <li>
-                                    <a href="javascript:void(0)" title="How it works" data-filter-tags="theme settings how it works">
+                                    <a href="<?php echo base_url(
+                                                    'MIS/FactoryCodes'
+                                                ); ?>" title="How it works" data-filter-tags="">
                                         <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Factory Codes</span>
                                     </a>
-                                    <ul>
-                                        <li>
-                                            <a href="<?php echo base_url(
-                                                            'MIS/B34002'
-                                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">B34002</span>
-                                            </a>
-
-
-                                        </li>
-                                        <li>
-                                            <a href="<?php echo base_url(
-                                                            'MIS/B34003'
-                                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">B34003</span>
-                                            </a>
-
-
-                                        </li>
-                                        <li>
-                                            <a href="<?php echo base_url(
-                                                            'MIS/B34004'
-                                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">B34004</span>
-                                            </a>
-
-
-                                        </li>
-                                        <li>
-                                            <a href="<?php echo base_url(
-                                                            'MIS/B34005'
-                                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">B34005</span>
-                                            </a>
-
-
-                                        </li>
-                                        <li>
-                                            <a href="<?php echo base_url(
-                                                            'MIS/B34006'
-                                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">B34006</span>
-                                            </a>
-
-
-                                        </li>
-                                        <li>
-                                            <a href="<?php echo base_url(
-                                                            'MIS/B34007'
-                                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">B34007</span>
-                                            </a>
-
-
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url(
@@ -2492,6 +2438,13 @@
                         <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Time Analysis</span>
                     </a>
                     <ul>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/FactoryCodes'
+                                        ); ?>" title="How it works" data-filter-tags="">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Factory Codes</span>
+                            </a>
+                        </li>
                         <li>
                             <a href="<?php echo base_url(
                                             'MIS/Cutting'

@@ -148,22 +148,22 @@ ORDER BY HID");
 
         Public function getCuttingSheetSizingDateRangeData($startDate,$endDate,$shift){
             if($shift=='All'){
-                $query = $this->db->query(" SELECT        Date, SUM(Balls * Counter) AS Counter
-                FROM            dbo.View_Sheet_Sizing_All
+                $query = $this->db->query(" SELECT        Date, SUM(TotalBalls) AS Counter
+                FROM            dbo.view_PC_SheetSizing_Final
                   WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
                 GROUP BY Date  ");
             }
             else if($shift == 'Day'){
-                $query = $this->db->query(" SELECT        Date, SUM(Balls * Counter) AS Counter, Shift
-                FROM            dbo.View_Sheet_Sizing_All
+                $query = $this->db->query(" SELECT        Date, SUM(TotalBalls) AS Counter, Shift
+                FROM            dbo.view_PC_SheetSizing_Final
                   WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
                 GROUP BY Date , Shift
                 HAVING        (Shift = 'Day Shift')
                  ");
         }
         else{
-                $query = $this->db->query(" SELECT        Date, SUM(Balls * Counter) AS Counter, Shift
-                FROM            dbo.View_Sheet_Sizing_All
+                $query = $this->db->query(" SELECT        Date, SUM(TotalBalls) AS Counter, Shift
+                FROM            dbo.view_PC_SheetSizing_Final
                   WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
                 GROUP BY Date, Shift
                 HAVING        (Shift = 'Night Shift')
@@ -172,10 +172,13 @@ ORDER BY HID");
                 return  $query->result_array();
      }
      Public function PressWiseData($startDate,$endDate){
-            
+        $Month = date('m');
+        $Year = date('Y');
+        $Day = date('d');
+        $CurrentDate = $Year . '-' . $Month . '-' . $Day;
         $query = $this->db->query("SELECT        SUM(Counter) AS Counter, SUM(TotalBalls) AS Totalballs, SUM(TotalSheets) AS TotalSheets, MachineName
         FROM            dbo.view_PC_SheetSizing_Final
-        WHERE        (Date = '$startDate')
+        WHERE        (Date = CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
         GROUP BY MachineName");
 
 
@@ -185,32 +188,31 @@ ORDER BY HID");
 
      Public function getCuttingSheetSizingDateRangeDataMachineWise($startDate,$endDate,$shift){
         if($shift=='All'){
-                $query = $this->db->query("SELECT       Date, MachineName,   Balls * Counter AS Counter
-                FROM            dbo.View_Sheet_Sizing_All
-                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
-                GROUP BY Date, MachineName,Balls * Counter
-                ORDER BY Date
+                
+                $query = $this->db->query("SELECT        SUM(Counter) AS Counter, SUM(TotalBalls) AS Counter, SUM(TotalSheets) AS TotalSheets, MachineName, Shift
+                FROM            dbo.view_PC_SheetSizing_Final
+                WHERE        (Date BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY MachineName, Shift, Date
+ORDER BY Date
         ");
             }
             else if($shift == 'Day'){
-                $query = $this->db->query("SELECT       Date, MachineName,   Balls * Counter AS Counter, Shift
-                FROM            dbo.View_Sheet_Sizing_All
-                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
-                GROUP BY Date, MachineName,Balls * Counter, Shift
+                $query = $this->db->query("SELECT        SUM(Counter) AS Counter, SUM(TotalBalls) AS Counter, SUM(TotalSheets) AS TotalSheets, MachineName, Shift
+                FROM            dbo.view_PC_SheetSizing_Final
+                WHERE        (Date BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY MachineName, Shift, Date
                 HAVING        (Shift = 'Day Shift')
-                ORDER BY Date
+ORDER BY Date
                
         ");
         }
         else{
-                $query = $this->db->query("SELECT       Date, MachineName,   Balls * Counter AS Counter, Shift
-                FROM            dbo.View_Sheet_Sizing_All
-                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
-                GROUP BY Date, MachineName,Balls * Counter, Shift
+                $query = $this->db->query("SELECT        SUM(Counter) AS Counter, SUM(TotalBalls) AS Counter, SUM(TotalSheets) AS TotalSheets, MachineName, Shift
+                FROM            dbo.view_PC_SheetSizing_Final
+                WHERE        (Date BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY MachineName, Shift, Date
                 HAVING        (Shift = 'Night Shift')
-                ORDER BY Date
-             
-        ");
+ORDER BY Date");
         }
 
         return  $query->result_array();

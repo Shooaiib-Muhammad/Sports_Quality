@@ -17,30 +17,29 @@ foreach ($data_points as $key) {
     body, html {
     height: 100%;
 }
-</style><title>Sheets</title>
+</style><title>Balls</title>
 <head>
 <script>
 window.onload = function() {
 
-    // setTimeout(function(){window.location = 'Cutting_Slide/SheetSizing/BallsSlide';}, 10000)
-    setTimeout(function(){window.location = '<?php echo base_url('Cutting_Slide/SheetSizing/BallsSlide'); ?>';}, 10000)
+    setTimeout(function(){window.location = '<?php echo base_url('Cutting_Slide/SheetSizing/SheetsHourly'); ?>';}, 10000)
     var chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
         theme: "light4",
       //  exportEnabled: true,
         title:{
             // text: "<?php Echo $LineName;?> OutPut"
-            text: "Sheets"
+            text: "Balls "
 
         },
         axisY: {
-            title: "Sheets"
+            title: "Balls"
         },
         data: [{
             type: "column",
             indexLabel: "{y}",
             yValueFormatString: "",
-            color: "#ffd633",
+            color: "#00f633",
             dataPoints: <?php echo json_encode($data_point, JSON_NUMERIC_CHECK); ?>
         }]
     });

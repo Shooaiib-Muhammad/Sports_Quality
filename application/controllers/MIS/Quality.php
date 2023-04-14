@@ -280,7 +280,7 @@ class Quality extends CI_Controller
         $sum = $this->Quality_Modal->get_tm_ball_forming_sum($start_date, $end_date, $fc);
         $sum2 = $this->Quality_Modal->get_tm_final_qc_sum($start_date, $end_date, $fc);
 
-$data['POSum'] = $this->Quality_Modal->get_TM_Po_Sum($start_date, $end_date, $fc);
+        $data['POSum'] = $this->Quality_Modal->get_TM_Po_Sum($start_date, $end_date, $fc);
         $data['data'] = $this->Quality_Modal->get_tm_ball_forming($start_date, $end_date, $fc);
         $data['datasum'] = $sum;
         $data['data2'] = $this->Quality_Modal->get_tm_final_qc($start_date, $end_date, $fc);

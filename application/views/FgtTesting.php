@@ -4330,9 +4330,7 @@ if (!$this->session->has_userdata('user_id')) {
                                 <?php include('FGT_Models/fgtTestingModel.php') ?>
                                 <!-- End Model FGT TESTING  HTML -->
 
-                                <!-- Model FGT Airless Mini TESTING HTML -->
-                                <?php include('FGT_Models/fgtTestingAirlessMiniModel.php') ?>
-                                <!-- End Model FGT Airless Mini TESTING  HTML -->
+                              
 
 
                                 <?php
@@ -4776,7 +4774,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <td class="d-flex">
                                                 <button type="button" class="btn btn-warning btn-xs waves-effect waves-themed" onclick="getFGTTestHeadDetails(${element.TID},'${element.CssNo}')" id=""><i class="fal fa-print" aria-hidden="true"></i></button> &nbsp;
 
-                                                <button type="button" class="btn btn-danger btn-xs waves-effect waves-themed" onclick="deleteFGTTestHeadDetails(${element.TID},'${element.CssNo}')" id=""><i class="fal fa-trash" aria-hidden="true"></i></button>
+                                                <?php if($Uploading): ?><button type="button" class="btn btn-danger btn-xs waves-effect waves-themed" onclick="deleteFGTTestHeadDetails(${element.TID},'${element.CssNo}')" id=""><i class="fal fa-trash" aria-hidden="true"></i></button> <?php endif; ?>
                                                 </td>
                                             </tr>`
 

@@ -4885,72 +4885,76 @@ if (!$this->session->has_userdata('user_id')) {
 
                                         <div class="card">
                                             <div class="card-body">
-                                                <div class="d-flex">
-                                                    <div class="p-1">
-                                                        <a href="<?php echo base_url('LabController/FGTCircumference') ?>">
-                                                            <button class="btn btn-primary">Circumference</button>
-                                                        </a>
-                                                    </div>
-                                                    <div class="p-1">
-                                                        <a href="<?php echo base_url('LabController/FGTReboundAt') ?>">
-                                                            <button class="btn btn-primary">Rebound at 5°C</button>
-                                                        </a>
-                                                    </div>
-                                                    <div class="p-1">
-                                                        <a href="<?php echo base_url('LabController/FGTDrum') ?>">
-                                                            <button class="btn btn-primary">Drum Test</button>
-                                                        </a>
-                                                    </div>
-                                                    <div class="p-1">
-                                                        <a href="<?php echo base_url('LabController/FGTAdhesion') ?>">
-                                                            <button class="btn btn-primary">Adhesion Test</button>
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="p-1">
-                                                        <a href="<?php echo base_url('LabController/FGTHydrolysisShooter') ?>">
-                                                            <button class="btn btn-primary">After Hydrolysis Shooter</button>
-                                                        </a>
-                                                    </div>
-                                                    <div class="p-1">
-                                                        <a href="<?php echo base_url('LabController/FGTCSMRebound') ?>">
-                                                            <button class="btn btn-primary">CSM Rebound</button>
-                                                        </a>
-                                                    </div>
-                                                    <div class="p-1">
-                                                        <a href="<?php echo base_url('LabController/FGTFGTTest') ?>">
-                                                            <button class="btn btn-primary">FGT</button>
-                                                        </a>
-                                                    </div>
-                                                    <div class="p-1">
-                                                        <a href="<?php echo base_url('LabController/FGTAfterHydroDrum') ?>">
-                                                            <button class="btn btn-primary">After Hydrolysis Drum</button>
-                                                        </a>
-                                                    </div>
-                                                    <div class="p-1">
-                                                        <a href="<?php echo base_url('LabController/FGTShooter') ?>">
-                                                            <button class="btn btn-primary">Shooter Test</button>
-                                                        </a>
-                                                    </div>
-                                                    <div class="p-1">
-                                                        <a href="<?php echo base_url('LabController/FgtAfterHydrolysisCSMRebound') ?>">
-                                                            <button class="btn btn-primary">After Hydrolysis CSM Rebound Test</button>
-                                                        </a>
-                                                    </div>
-                                                    <div class="p-1">
-                                                        <a href="<?php echo base_url('LabController/FgtHydrolysis') ?>">
-                                                            <button class="btn btn-primary">Hydrolysis Test</button>
-                                                        </a>
-                                                    </div>
-                                                    <div class="p-1">
-                                                        <a href="<?php echo base_url('LabController/FGTReboundAtRoomTemp') ?>">
-                                                            <button class="btn btn-primary">Rebound at Room Temperature Test</button>
-                                                        </a>
-                                                    </div>
-                                                    <div class="p-1">
-                                                        <a href="<?php echo base_url('FGT') ?>">
-                                                            <button class="btn btn-warning">OLD FGT</button>
-                                                        </a>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                                        <div class="d-flex flex-wrap">
+                                                            <div class="p-1">
+                                                                <a href="<?php echo base_url('LabController/FGTCircumference') ?>">
+                                                                    <button class="btn btn-primary">Circumference</button>
+                                                                </a>
+                                                            </div>
+                                                            <div class="p-1">
+                                                                <a href="<?php echo base_url('LabController/FGTReboundAt') ?>">
+                                                                    <button class="btn btn-primary">Rebound at 5°C</button>
+                                                                </a>
+                                                            </div>
+                                                            <div class="p-1">
+                                                                <a href="<?php echo base_url('LabController/FGTDrum') ?>">
+                                                                    <button class="btn btn-primary">Drum Test</button>
+                                                                </a>
+                                                            </div>
+                                                            <div class="p-1">
+                                                                <a href="<?php echo base_url('LabController/FGTAdhesion') ?>">
+                                                                    <button class="btn btn-primary">Adhesion Test</button>
+                                                                </a>
+                                                            </div>
+        
+                                                            <div class="p-1">
+                                                                <a href="<?php echo base_url('LabController/FGTHydrolysisShooter') ?>">
+                                                                    <button class="btn btn-primary">After Hydrolysis Shooter</button>
+                                                                </a>
+                                                            </div>
+                                                            <div class="p-1">
+                                                                <a href="<?php echo base_url('LabController/FGTCSMRebound') ?>">
+                                                                    <button class="btn btn-primary">CSM Rebound</button>
+                                                                </a>
+                                                            </div>
+                                                            <div class="p-1">
+                                                                <a href="<?php echo base_url('LabController/FGTFGTTest') ?>">
+                                                                    <button class="btn btn-primary">FGT</button>
+                                                                </a>
+                                                            </div>
+                                                            <div class="p-1">
+                                                                <a href="<?php echo base_url('LabController/FGTAfterHydroDrum') ?>">
+                                                                    <button class="btn btn-primary">After Hydrolysis Drum</button>
+                                                                </a>
+                                                            </div>
+                                                            <div class="p-1">
+                                                                <a href="<?php echo base_url('LabController/FGTShooter') ?>">
+                                                                    <button class="btn btn-primary">Shooter Test</button>
+                                                                </a>
+                                                            </div>
+                                                            <div class="p-1">
+                                                                <a href="<?php echo base_url('LabController/FgtAfterHydrolysisCSMRebound') ?>">
+                                                                    <button class="btn btn-primary">After Hydrolysis CSM Rebound Test</button>
+                                                                </a>
+                                                            </div>
+                                                            <div class="p-1">
+                                                                <a href="<?php echo base_url('LabController/FgtHydrolysis') ?>">
+                                                                    <button class="btn btn-primary">Hydrolysis Test</button>
+                                                                </a>
+                                                            </div>
+                                                            <div class="p-1">
+                                                                <a href="<?php echo base_url('LabController/FGTReboundAtRoomTemp') ?>">
+                                                                    <button class="btn btn-primary">Rebound at Room Temperature Test</button>
+                                                                </a>
+                                                            </div>
+                                                            <div class="p-1">
+                                                                <a href="<?php echo base_url('FGT') ?>">
+                                                                    <button class="btn btn-warning">OLD FGT</button>
+                                                                </a>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

@@ -4535,7 +4535,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                     <label class="form-contol" for="customFile">Item Name :</label>
 
                                                                                     <select class="form-control js-example-basic-single" id="name" name="name">
-                                                                                        <option value="" disabled>Select one of the following</option>
+                                                                                        <option value="" >Select one of the following</option>
                                                                                         <?php foreach ($GetItems as $items) { ?>
                                                                                             <option value="<?php echo $items['Code']; ?>"><?php echo $items['L4Name']; ?></option>
                                                                                         <?php } ?>
@@ -4782,7 +4782,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <div id="tableData">
 
                                                     <table class="table table-striped table-hover table-sm" id="ActivityData5">
-                                                        <thead>
+                                                        <thead class="bg-primary-200 text-white">
 
                                                             <tr>
                                                                 <th>Request Date</th>
@@ -5043,11 +5043,12 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                 <div id="testReqP">
 
-                                                <div class="row">
+                                                <div class="row mt-3">
                                                     <div class="col-md-6">
                                                     
-                                                       <label for="sel1">Select Factory Code :</label>
+                                                       <label  for="sel1">Select Factory Code :</label>
 
+                                                       <br>
                                                                                     <select class="form-control" id="FCP" name="FCP">
 
                                                                                     <option value="">Select one of the following</option>
@@ -5073,7 +5074,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                 
 
-                                                <div class="row">
+                                                <div class="row mt-3">
                                                     <div class="col-md-6">
 
                                                     <div id="suppliersP">
@@ -5084,12 +5085,13 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                     <div class="col-md-6">
 
-                                                    <div class="form-group">
+                                                 
 
 
                                                     
-                                                                                    <label>Select Material Type</label>
-                                                                                    <select class="form-control" id="testTypeP">
+                                                                                    <label   for="customFile">Select Material Type</label>
+                                                                                    <br>
+                                                                                    <select class="form-control" id="testTypeP" name="testTypeP">
                                                                                         <option value="" selected>Select Material Type</option>
                                                                                         <option value="Carton Test">Carton Test</option>
                                                                                         <option value="Foam">Foam</option>
@@ -5105,7 +5107,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                         <option value="CSM">CSM</option>
 
                                                                                     </select>
-                                                                                </div>
+                                                                           
 
                                                     
 
@@ -5115,7 +5117,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <!-- id="testTypee" -->
 
                                                 <div class="row mt-3">
-                                                    <div style="display:none"  class="col-md-6" >
+                                                    <!-- <div style="display:none"  class="col-md-6" >
                                                     <?php
                                                                                     if ($getTestTypes) {
 
@@ -5136,7 +5138,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <?php } ?>
 
 
-                                                    </div>
+                                                    </div> -->
 
                                                     <div id="ItemNameeP"  class="col-md-6">
 
@@ -5222,6 +5224,7 @@ if (!$this->session->has_userdata('user_id')) {
 <th><span>FactoryCode</span></th>
 <th><span>Quantity Issued</span></th>
 <th><span>TestType</span></th>
+<th><span>Status</span></th>
 <!-- <th><span>Test Name</span></th> -->
 <th><span>Item Name</span></th>
 </tr>
@@ -5240,6 +5243,7 @@ if (!$this->session->has_userdata('user_id')) {
 <td><span id="FactoryCodePP"></span></td>
 <td><span id="QuantityPP"></span></td>
 <td><span id="TestTypePP"></span></td>
+<td><span id="StatusPP"></span></td>
 <!-- <td><span id="testNameeP"></span></td> -->
 <td><span id="itemNameeePPPP"></span></td>
 
@@ -5366,7 +5370,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 
                                                 <div id="testReqD">
 
-                                                <div  class="row">
+                                                <div  class="row mt-3">
                                                     <div class="col-md-6">
                                                     
                                                        <label for="sel1">Select Factory Code :</label>
@@ -5394,7 +5398,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 </div>
 
                                                 
-                                                <div class="row">
+                                                <div class="row mt-3">
                                                     <div class="col-md-6">
 
 
@@ -5435,7 +5439,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </div>
 
 
-                                                    <div  class="col-md-6">
+                                                    <div  class="col-md-6 mt-3">
 
 <label class="form-contol" for="customFile">Item Name :</label>
 
@@ -5630,7 +5634,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <div class="row mt-2">
                                                     <div class="col-md-12">
 
-                                                    <button type="button" style="border-radius:25px" onclick="AddNewRequestM()" class="btn btn-info">Add New Request</button>
+                                                    <button type="button" id="addNewRequestMM" style="border-radius:25px" onclick="AddNewRequestM()" class="btn btn-info">Add New Request</button>
 
                                                     </div>
                                                 </div>
@@ -5679,14 +5683,14 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                 <div id="testReqM">
 
-                                                <div class="row">
+                                                <div class="row mt-2">
                                                     <div class="col-md-6">
                                                     
                                                        <label for="sel1">Select Factory Code :</label>
 
                                                                                     <select class="form-control" id="FCM" name="FCM">
 
-                                                                                    <option value="">Select one of the following</option>
+                                                                                    <option value="" selected>Select one of the following</option>
                                                                                     <option value="B34001">B34001</option>
                                                                                     <option value="B34002">B34002</option>
                                                                                     <option value="B34003">B34003</option>
@@ -5716,11 +5720,11 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                     </div>
 
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-6 mt-2">
 
                                                     <div class="form-group">
-                                                                                    <label>Select Material Type</label>
-                                                                                    <select class="form-control" id="testTypeM">
+                                                                                    <label class="form-contol">Select Material Type</label>
+                                                                                    <select class="form-control js-example-basic-single" id="testTypeM" name="testTypeM">
                                                                                         <option value="" selected>Select Material Type</option>
                                                                                         <option value="Carton Test">Carton Test</option>
                                                                                         <option value="Foam">Foam</option>
@@ -5750,7 +5754,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                     <div class="col-md-6">
 
-                                                    <div style="display:none" class="row">
+                                                    <div class="row">
             <div class="col-md-6">
             
             <div class="form-check">
@@ -5773,26 +5777,7 @@ Item Option
             </div>
             </div>
 
-<label class="form-contol" for="customFile">Item Name :</label>
-
-
-<div style="display:none" id="itemNameOption">
-<input type="text" id="ItemNameM1"  name="ItemNameM1" class="form-control" />
-
-</div>
-
-<div id="ItemNameMM">
-
-<select class="form-control js-example-basic-single" id="ItemNameM" name="ItemNameM">
-<option value="" disabled>Select one of the following</option>
-<?php foreach ($GetItems as $items) { ?>
-<option value="<?php echo $items['L4Name']; ?>"><?php echo $items['L4Name']; ?></option>
-<?php } ?>
-
-
-</select>
-
-</div>
+     
 
 
 <!-- <button onclick="addItemNameM()" type="button" class="btn btn-success mt-2">Add Item Name</button> -->
@@ -5802,6 +5787,47 @@ Item Option
 </div>
                                                     
                                                 </div>
+
+                                           
+
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                    <label class="form-contol" for="customFile">Item Name :</label>
+
+
+<div style="display:none" id="itemNameOption">
+<input type="text" id="ItemNameM1"  name="ItemNameM1" class="form-control" />
+
+</div>
+
+<div id="ItemNameMM">
+
+<select class="form-control js-example-basic-single" id="ItemNameM" name="ItemNameM" >
+<option value="" selected>Select one of the following</option>
+<?php foreach ($GetItems as $items) { ?>
+<option value="<?php echo $items['L4Name']; ?>"><?php echo $items['L4Name']; ?></option>
+<?php } ?>
+
+
+</select>
+
+
+</div>
+
+
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                    
+
+<label class="form-contol" for="customFile">PO # :</label>
+            <input type="number" class="form-control" id="po1" name="po1">
+
+                                                    </div>
+                                                </div>
+
 
 
                                             </div>
@@ -5814,9 +5840,9 @@ Item Option
                                                 
 
                                                 <div  class="row mt-3 d-flex justify-content-center">
-                                                    <div id="saveBtnM" class="col-md-4">
+                                                    <div  class="col-md-4">
 
-                                                    <button type="button" style="font-size:15px; border-radius:10px" class="btn btn-primary w-100 font-weight-bold"
+                                                    <button id="saveBtnM" type="button" style="font-size:15px; border-radius:10px" class="btn btn-primary w-100 font-weight-bold"
                                                      onclick="saveM()"
                                                     >Save</button>
 
@@ -5885,9 +5911,11 @@ Item Option
 <th><span>Request ID</span></th>
 <th><span>Date</span></th>
 <th><span>Type</span></th>
+<th><span>Test Category</span></th>
 <th><span>FactoryCode</span></th>
 <th><span>Quantity Issued</span></th>
 <th><span>TestType</span></th>
+<th><span>PO</span></th>
 <!-- <th><span>Test Name</span></th> -->
 <th><span>Item Name</span></th>
 </tr>
@@ -5902,9 +5930,11 @@ Item Option
 <td><span id="RIDMM"></span></td>
 <td><span id="DateMM"></span></td>
 <td><span id="TypeMM"></span></td>
+<td><span id="TestCategoryMM"></span></td>
 <td><span id="FactoryCodeMM"></span></td>
 <td><span id="QuantityMM"></span></td>
 <td><span id="TestTypeMM"></span></td>
+<td><span id="POMM"></span></td>
 <!-- <td><span id="testNameeM"></span></td> -->
 <td><span id="itemNameeeMM"></span></td>
 
@@ -7761,7 +7791,7 @@ console.log(data)
                     <div id="tableData">
 
 <table class="table table-striped table-hover table-sm" id="ActivityData6">
-    <thead>
+    <thead class="bg-primary-200 text-white">
 
         <tr>
             <th>Request Date</th>
@@ -10251,6 +10281,36 @@ appendtable +=  `
         $(document).ready(function(){
 
 
+            $('#ItemNameM').select2();
+
+            $('#testTypeM').select2();
+            $('#FCM').select2();
+
+            
+            $('#tTypeP1').select2();
+            $('#FCP').select2();
+            $('#testTypeP').select2();
+            $('#ItemNameP').select2();
+
+
+            $('#FCD').select2();
+            $('#testTypeD').select2();
+            $('#ItemNameDDDD').select2();
+            $('#supplierD').select2();
+
+            
+            $('#FCT').select2();
+            $('#testTypeT').select2();
+            $('#ItemNameT').select2();
+
+
+            
+
+
+
+
+
+
 
             if(sessionStorage.length <= 2){
 
@@ -10259,7 +10319,12 @@ appendtable +=  `
                 // $("#testTypeShow").css("display", "none");
                 document.getElementById("savePPP").disabled = false;
                 document.getElementById("addNewReqP").disabled = true;
+                document.getElementById("saveBtnM").disabled = false;
+                document.getElementById("addNewRequestMM").disabled = true;
                 $("#tableP").css("display", "none");
+                $("#tableM").css("display", "none");
+                document.getElementById("DateP").disabled = false;
+                document.getElementById("DateM").disabled = false;
 
             }
             else{
@@ -10268,7 +10333,14 @@ appendtable +=  `
                 // $("#testTypeShow").css("display", "block");
                 document.getElementById("savePPP").disabled = true;
                 document.getElementById("addNewReqP").disabled = false;
+                document.getElementById("saveBtnM").disabled = true;
+                document.getElementById("addNewRequestMM").disabled = false;
                 $("#tableP").css("display", "block");
+                $("#tableM").css("display", "block");
+                document.getElementById("DateP").disabled = true;
+                document.getElementById("DateM").disabled = true;
+
+
             }
 
           
@@ -10297,6 +10369,7 @@ $("#FactoryCodePP").text(sessionStorage.getItem('FCP'));
 $("#QuantityPP").text(sessionStorage.getItem('qIssuedP'));
 $("#TestTypePP").text(sessionStorage.getItem('testTypeP'));
 $("#TestCategoryPP").text(sessionStorage.getItem('testCategoryP'));
+$("#StatusPP").text(sessionStorage.getItem('statusP'));
 
 
 // $("#tTypeP1").text(sessionStorage.getItem('testNameeP'));
@@ -10306,6 +10379,8 @@ $("#TestCategoryPP").text(sessionStorage.getItem('testCategoryP'));
 if(sessionStorage.length <= 2){
 
 $("#testReqD").css("display", "block");
+$("#testReqM").css("display", "block");
+
 // $("#testTypee1").css("display", "none");
 // $("#testTypeShow").css("display", "none");
 document.getElementById("saveDD").disabled = false;
@@ -10318,6 +10393,8 @@ document.getElementById("DateD").disabled = false;
 }
 else{
 $("#testReqD").css("display", "none");
+$("#testReqM").css("display", "none");
+
 // $("#testTypee1").css("display", "block");
 // $("#testTypeShow").css("display", "block");
 document.getElementById("saveDD").disabled = true;
@@ -10420,6 +10497,7 @@ $("#FCM").val(sessionStorage.getItem('FCM'));
 $("#qIssuedM").val(sessionStorage.getItem('qIssuedM'));
 $("#testTypeM").val(sessionStorage.getItem('testTypeM'));
 $("#ItemNameM").val(sessionStorage.getItem('ItemNameM'));
+$("#po1").val(sessionStorage.getItem('POM'));
 
 
 
@@ -10430,7 +10508,9 @@ $("#TypeMM").text(sessionStorage.getItem('TypeM'));
 $("#FactoryCodeMM").text(sessionStorage.getItem('FCM'));
 $("#QuantityMM").text(sessionStorage.getItem('qIssuedM'));
 $("#TestTypeMM").text(sessionStorage.getItem('testTypeM'));
-$("#TestCategorTTTT").text(sessionStorage.getItem('TestCategoryM'));
+$("#TestCategoryMM").text(sessionStorage.getItem('TestCategoryM'));
+$("#itemNameeeMM").text(sessionStorage.getItem('ItemNameM'));
+$("#POMM").text(sessionStorage.getItem('POM'));
 
 
 // addNewReqP
@@ -10491,6 +10571,8 @@ htmlappend += `
 
             $("#suppliersP").html(htmlappend);
 
+            $('#supplierP').select2();
+
             
         })
 
@@ -10543,6 +10625,8 @@ htmlappendD += `
             $("#suppliersD").html(htmlappendD);
 
             
+            $('#supplierD').select2();
+            
         })
 
 
@@ -10557,7 +10641,7 @@ $.post(urlM,
 
             htmlappendM += `
 
-            <div style="display:none" class="row">
+            <div  class="row">
             <div class="col-md-6">
             
             <div class="form-check">
@@ -10588,9 +10672,9 @@ Supplier Option
             
             <label class="form-contol" for="customFile">Supplier Name :</label>
 
-            <div style="display:none" id="supplerManual">
+            <div style="display:none"  id="supplerManual">
 
-            <input type="text" class="form-control" value="" >    
+            <input type="text" id="supplierM1" name="supplierM1" class="form-control" value="" >    
 
 
             </div>
@@ -10599,7 +10683,8 @@ Supplier Option
 <div id="supplierMM">
 
 <select class="form-control" value="" id="supplierM" name="supplierM">
-            
+<option value="" selected>Select one of the following</option>
+
             `
 
 
@@ -10628,6 +10713,9 @@ htmlappendM += `
 
             $("#suppliersM").html(htmlappendM);
 
+
+
+            $('#supplierM').select2();
 
         
         })
@@ -10686,6 +10774,7 @@ htmlappendT += `
 
             $("#suppliersT").html(htmlappendT);
 
+            $("#supplierT").select2();
             
         })
 
@@ -10773,7 +10862,8 @@ $.post(urlP, {
 
         function ItemOption(){
 
-            
+            $("#ItemNameM1").val('');
+
 
 
 $("#ItemNameMM").css("display","block");
@@ -10784,7 +10874,9 @@ $("#itemNameOption").css("display","none");
 
 
         function ItemManual(){
-            
+
+            $("#ItemNameM").val('');
+
             $("#ItemNameMM").css("display","none");
 
 $("#itemNameOption").css("display","block");
@@ -10794,6 +10886,7 @@ $("#itemNameOption").css("display","block");
 
         function Option(){
 
+            $("#supplierM1").val('');
 
 $("#supplierMM").css("display","block");
 $("#supplerManual").css("display","none");
@@ -10803,6 +10896,8 @@ $("#supplerManual").css("display","none");
 
 function Manual(){
 
+
+    $("#supplierM").val('');
 
 $("#supplierMM").css("display","none");
 $("#supplerManual").css("display","block");
@@ -10820,7 +10915,6 @@ $("#supplerManual").css("display","block");
             document.getElementById('qIssuedP').value = '';
             document.getElementById('supplierP').value = '';
             document.getElementById('testTypeP').value = '';
-            document.getElementById('tTypeP').value = '';
             document.getElementById("DateP").disabled = false;
             document.getElementById("savePPP").disabled = true;
             document.getElementById("addNewReqP").disabled = true;
@@ -10927,9 +11021,24 @@ document.getElementById('RIDM').value = '';
 document.getElementById('DateM').value = '';
 document.getElementById('FCM').value = '';
 document.getElementById('qIssuedM').value = '';
-document.getElementById('supplierM').value = '';
 document.getElementById('testTypeM').value = '';
+document.getElementById('po1').value = '';
+document.getElementById('typeM').value = '';
+document.getElementById('TestM').value = '';
+document.getElementById('ItemNameM1').value = '';
+document.getElementById('ItemNameM').value = '';
+document.getElementById('supplierM').value = '';
+document.getElementById('supplierM1').value = '';
 
+
+
+
+$("#tableM").css("display", "none");
+
+document.getElementById("DateM").disabled = false;
+
+
+document.getElementById("saveBtnM").disabled = false;
 
 $("#RIDMM").text('');
 $("#DateMM").text('');
@@ -10939,6 +11048,13 @@ $("#QuantityMM").text('');
 $("#TestTypeMM").text('');
 $("#itemNameeeMM").text('');
 
+$("#ItemNameM1").val('');
+$("#ItemNameM").val('');
+
+
+
+
+document.getElementById("addNewRequestMM").disabled = true;
 
 $("#ItemNameeM").css("display", "none");
             $("#testTypeeM").css("display", "none");
@@ -12024,7 +12140,8 @@ ItemNameeD = "#itemNameeeDDDD";
         
         function saveM(){
 
-
+ItemNameList = [];
+SupplierNameList = [];
                       
 let RNO = $("#RIDM").val();
 let DateM = $("#DateM").val();
@@ -12033,17 +12150,77 @@ let testCategoryM = 'Material Test';
 let factoryCodeM = $("#FCM").val();
 let quantityIssuedM = $("#qIssuedM").val();
 let supplierM = $("#supplierM").val();
+let supplierM1 = $("#supplierM1").val();
+
 let testTypeM = $("#testTypeM").val();
-let ItemNameM = $("#ItemNameM").val() 
+let ItemNameM = $("#ItemNameM").val();
+let ItemNameM1 = $("#ItemNameM1").val();
 
-$("#ItemNameM1").val();
+let po1 = $("#po1").val();
 
-if(factoryCodeM <= 0 || quantityIssuedM <= 0 || DateM <= 0 || supplierM <= 0 || testTypeM <= 0 || ItemNameM <= 0){
 
-    alert("All Fields are mandatory");
+if(ItemNameM){
+
+
+    ItemNameList.push(ItemNameM);
 
 }
 else{
+   
+    ItemNameList.push(ItemNameM1);
+}
+
+if(supplierM){
+
+
+SupplierNameList.push(supplierM);
+
+}
+else{
+
+    SupplierNameList.push(supplierM1);
+}
+
+
+if(DateM <= 0){
+    
+    alert("Please Select Test Date");
+
+}
+else if(factoryCodeM <= 0 ){
+
+    alert("Please Select Factory Code");
+
+}
+else if(quantityIssuedM <= 0){
+
+    alert("Please Enter Issued Quantity");
+
+}
+else if(SupplierNameList <= 0){
+
+alert("Please Select/Enter Supplier Name");
+
+}
+else if(testTypeM <= 0 ){
+
+    alert("Please Material Type");
+
+}
+else if(ItemNameList <= 0 ){
+
+    alert("Please Select/Enter Item Name");
+
+}
+else if(po1 <= 0){
+
+    alert("Please Enter PO number");
+
+}
+else{
+
+    
+
     
     urlAddM = "<?php echo base_url(''); ?>LabController/AddRaw_MatHead";
 
@@ -12054,9 +12231,10 @@ $.post(urlAddM,
     'testCategory': testCategoryM,
     'factoryCode': factoryCodeM,
     'quantityIssued': quantityIssuedM,
-    'supplier': supplierM,
+    'supplier': SupplierNameList[0],
     'testType': testTypeM,
-    'ItemName': ItemNameM
+    'ItemName': ItemNameList[0],
+    'po1':po1
 
 }
             ,function(data, status) {
@@ -12066,45 +12244,72 @@ $.post(urlAddM,
                 alert("Added Request Successfully!");
                 $("#testReqM").css("display","none");
                $("#tableM").css("display","block");
+               document.getElementById("saveBtnM").disabled = true;
+               document.getElementById("addNewRequestMM").disabled = false;
+               $("#tableM").css("display", "block");
+
 
                
 
-})
-
-
 url4M = "<?php echo base_url(''); ?>LabController/getLabRawMatHead";
 
-    let TID = [];
+let TID = [];
 
 $.post(url4M,
 
-                function(data, status) {
+            function(data, status) {
 
 
-                   data['Raw_MatHead'].forEach(element => {
+               data['Raw_MatHead'].forEach(element => {
+
+                console.log(element)
+
+                $("#RIDM").val(element['Requestid']);
+        
+                sessionStorage.setItem('RequestidM',element['Requestid']);
+            sessionStorage.setItem('DateM', element['Date']);
+            sessionStorage.setItem('FCM',element['FactoryCode']);
+            sessionStorage.setItem('qIssuedM',element['Quantity']);
+            sessionStorage.setItem('testTypeM',element['TestType']);
+            sessionStorage.setItem('tTypeM',element['testName']);
+            sessionStorage.setItem('ItemNameM',element['itemName']);
+            sessionStorage.setItem('TypeM',element['Type']);
+            sessionStorage.setItem('TestCategoryM',element['testCateogry']);
+            sessionStorage.setItem('POM',element['Po']);
 
 
-                    $("#RIDM").val(element['Requestid']);
-            
-                    sessionStorage.setItem('RequestidM',element['Requestid']);
-                sessionStorage.setItem('DateM', element['Date']);
-                sessionStorage.setItem('FCM',element['FactoryCode']);
-                sessionStorage.setItem('qIssuedM',element['Quantity']);
-                sessionStorage.setItem('testTypeM',element['TestType']);
-                sessionStorage.setItem('tTypeM',element['testName']);
-                sessionStorage.setItem('ItemNameM',element['itemName']);
-                sessionStorage.setItem('TypeM',element['Type']);
-                sessionStorage.setItem('TestCategoryM',element['testCateogry']);
-
-
-                   })
+               })
 
 
 
-                   document.getElementById("DateM").disabled = true;
+               document.getElementById("DateM").disabled = true;
 
 
-                })
+            })
+
+
+               
+RIDM = "#RIDMM";
+DateM = "#DateMM";
+TypeM = "#TypeMM";
+TestCategoryM = "#TestCategoryMM";
+FactoryCodeM = "#FactoryCodeMM";
+QuantityM = "#QuantityMM";
+TestTypeM = "#TestTypeMM";
+itemNameeeM = "#itemNameeeMM";
+POM = "#POMM";
+
+// userIdP = "#userIdPP";
+// EntryDateP = "#EntryDatePP";
+// SupplierNamDateP = "#SupplierNamDatePP";
+  
+
+
+            getAllDataP(RNO, RIDM, DateM, TypeM, FactoryCodeM, QuantityM, TestTypeM, itemNameeeM, TestCategoryM, POM);
+
+
+})
+
 
 
                 $("#testReq").css("display","none");
@@ -12114,23 +12319,6 @@ $("#testTypeeM").css("display","block");
 
 
 
-
-RIDM = "#RIDMM";
-DateM = "#DateMM";
-TypeM = "#TypeMM";
-FactoryCodeM = "#FactoryCodeMM";
-QuantityM = "#QuantityMM";
-TestTypeM = "#TestTypeMM";
-itemNameeeM = "#itemNameeeMM";
-
-
-// userIdP = "#userIdPP";
-// EntryDateP = "#EntryDatePP";
-// SupplierNamDateP = "#SupplierNamDatePP";
-  
-
-
-            getAllDataP(RNO, RIDM, DateM, TypeM, FactoryCodeM, QuantityM, TestTypeM, itemNameeeM);
 
     
 
@@ -12145,7 +12333,7 @@ itemNameeeM = "#itemNameeeMM";
 
 
 
-function getAllDataP(RNO, RIDP, DATE, Type, FactoryCode, Quantity, TestType, ItemName, testCategore){
+function getAllDataP(RNO, RIDP, DATE, Type, FactoryCode, Quantity, TestType, ItemName, testCategore, POM){
 
 
     
@@ -12167,6 +12355,7 @@ data['Raw_MatHead'].forEach(element => {
     $(TestType).text(element.TestType);
     $(ItemName).text(element.itemName);
     $(testCategore).text(element.testCateogry);
+    $(POM).text(element.Po);
 
     
     
@@ -12278,10 +12467,11 @@ $.post(url4,
             sessionStorage.setItem('ItemNameP', element['itemName']);
             sessionStorage.setItem('Type', element['Type']);
             sessionStorage.setItem('testCategoryP', element['testCateogry']);
+            sessionStorage.setItem('statusP', element['status']);
 
             document.getElementById("DateP").disabled = true;
 
-            // $("#DateP").disabled = true;
+            // $("#DateP").disabled = true;$(doc)
 
 
 
@@ -12311,6 +12501,7 @@ QuantityP = "#QuantityPP";
 TestTypeP = "#TestTypePP";
 ItemName = "#itemNameeePPPP";
 testCatgeor = "#TestCategoryPP"
+
 
 // userIdP = "#userIdPP";
 // EntryDateP = "#EntryDatePP";

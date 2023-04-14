@@ -33,6 +33,63 @@ class LabController extends CI_Controller
     }
 
 
+    public function EditRaw_MatHead()
+    {
+    
+        $IdValue1 = $_POST['IdValue1'];
+        $cssNo1 = $_POST['cssNo1'];
+        $qReceived1 = $_POST['qReceived1'];
+        $qRetained1 = $_POST['qRetained1'];
+        $dueDate1 = $_POST['dueDate1'];
+        $compDate1 = $_POST['compDate1'];
+        $sSignature1 = $_POST['sSignature1'];
+        $Remarks1 = $_POST['Remarks1'];
+
+
+
+        $data = $this->l->EditRaw_MatHead($IdValue1,$cssNo1,$qReceived1,$qRetained1,$dueDate1,$compDate1,$sSignature1,$Remarks1);
+
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+
+
+    public function RawMatRequestAknowledgedByLab()
+    {
+        $data = $this->l->RawMatRequestAknowledgedByLab();
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+
+       
+    public function TestRequestRawMatById()
+    {
+        $idGet = $_POST['Id'];
+        $data = $this->l->TestRequestRawMatById($idGet);
+
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+    public function EditTestRequestRawMatLabAcknowledge()
+    {
+
+        $TID = $_POST['Id'];
+
+        $data = $this->l->EditTestRequestRawMatLabAcknowledge($TID);
+
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+
+
 
     public function TestRequest()
     {
@@ -268,10 +325,11 @@ class LabController extends CI_Controller
         $testType = $_POST['testType'];
         // $tTypeP = $_POST['tTypeP'];
         $ItemName = $_POST['ItemName'];
+        $po1 = $_POST['po1'];
 
         // $tTypeP,
 
-        $data = $this->l->AddRaw_MatHead($DateP, $Type, $factoryCode, $quantityIssued, $supplierN, $testType, $ItemName, $testCategory);
+        $data = $this->l->AddRaw_MatHead($DateP, $Type, $factoryCode, $quantityIssued, $supplierN, $testType, $ItemName, $testCategory, $po1);
 
         return $this->output
             ->set_content_type('application/json')
@@ -766,10 +824,10 @@ class LabController extends CI_Controller
     {
 
         $TID = $_POST['Id'];
-        $testTypeID = $_POST['testTypeID'];
+        // $testTypeID = $_POST['testTypeID'];
         // print_r($testTypeID);
 
-        $data = $this->l->EditTestRequestLabAcknowledge($TID, $testTypeID);
+        $data = $this->l->EditTestRequestLabAcknowledge($TID);
 
         return $this->output
             ->set_content_type('application/json')
@@ -796,7 +854,7 @@ class LabController extends CI_Controller
     {
         $leavesArray = $_POST['data']['leaves'];
 
-        $data = $this->l->EditTestRequestLabAcknowledgeBulk($leavesArray, $_POST['testTypeID']);
+        $data = $this->l->EditTestRequestLabAcknowledgeBulk($leavesArray);
 
 
         return $this->output
@@ -1340,6 +1398,9 @@ class LabController extends CI_Controller
 
         $headerValue = $_POST['HeaderArray'];
         $CSSValueAdd = $_POST['CSSCodeValue'];
+        $testGroup = $_POST['testGroup'];
+        $testPerformer = $_POST['testPerformer'];
+
         $header = explode(",", $headerValue);
 
         $childValue = $_POST['ChildArray'];
@@ -1350,104 +1411,54 @@ class LabController extends CI_Controller
             array_push($childArray, $arraySplit);
         }
         array_pop($childArray);
+        
 
-        $testNo = $header[0];
-        $CSSNO = $header[1];
-        $TestDate = $header[2];
-        $ItemName = $header[3];
-        $PONo = $header[4];
-        $ReceivingDate = $header[5];
-        $SupplierName = $header[6];
-
-        $SupplierRef = $header[7];
-        $Quantity = $header[8];
-
-
-
-        $Result = $header[9];
-        $ItemType = $header[10];
-        $testGroup = $_POST['testGroup'];
-        $testPerformer = $_POST['testPerformer'];
-
-        //     if($Result=='Fail' || $Result=='fail'){
-        //         $mail = new PHPMailer(true);
-        // try{
-
-
-        //   //Server settings
-        // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-        // $mail->isSMTP();                                            //Send using SMTP
-        // $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-        // $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        // $mail->Username   = 'forwardsportssialkot@gmail.com';                     //SMTP username
-        // $mail->Password   = 'Forward123';                               //SMTP password
-        // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-        // $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-        // $mail->IsHTML(true);
-        // //Recipients
-        // $mail->setFrom('from@example.com', "Lab Test Failure Alert ");
-        // $mail->addAddress("hufsa@forward.pk"); 
-        // $mail->addAddress("sohail@forward.pk"); 
-        // $mail->addAddress("store@forward.pk"); 
-        // $mail->AddCC('abaid@forward.pk');
-        // $mail->AddCC('imran@forward.pk');
-
-        //  $mail->AddCC('waseembutt@forward.pk');
-        //  $mail->AddCC('tafseer@forward.pk');
-        //     $mail->AddCC('shoaib@forward.pk');
-        //     $mail->AddCC('fsqa@forward.pk');
-        //           $mail->AddCC('oman@forward.pk');
-        //              $mail->AddCC('abdulhaseeb@forward.pk');
-        // $mail->AddCC('zainabbas@forward.pk');
-
-        // $mail->AddCC('yaseen@forward.pk');
-        // $mail->Subject = "Raw Material Failure";
-        // $mail->Body ='<div><p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward Sports Pvt. Ltd</p></div>
-        // <div style="margin-left:40%;">
-        // <table style="border:1px solid black;margin-left:40%;padding:5px"><tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:green;padding:10px">
-        // Fabric Test Report Result Alert</th></tr>
-        // <tr><th>PO NO.</th><td>'.$PONo .'</td></tr>
-        // <tr><th>Material Name:</th><td>'.$ItemName .'</td></tr>
-        // <tr><th>Supplier Name.</th><td>'.$SupplierName .'</td></tr>
-        // <tr><th>Test Performed By.</th><td>'. trim($testPerformer," ") .'</td></tr>
-
-        // <tr><th colspan="2" style="font-size:large;color:white;text-align:center;background-color:red;padding:10px">This Material has Been Failed</th></tr>
-        // </table></div><div style="back"><p style="text-align:left;background-color:black;color:white;font-size:small;width:100%;padding:20px;">if you have any Problem Contact to Lab Manager At sohail@forward.pk</p></div>';
-
-
-        // //  $mail->Body = "PO No ".$PONo .",<br />Test Performed Against ". $ItemName ." Supplier Name: ". $SupplierName ."  has Been Failed <br /> This Test is Performed By  ". $testPerformer ."<br /> if you have any Problem Contact to Lab Manager At sohail@forward.pk This is an test Email";
-        // //$mail->AltBody = 'if you have any Problem Contact to IT Team At Shoaib@Forward.pk';
-        // $mail->send();
-        // echo 'Message has been sent';
-        // } catch (Exception $e) {
-        // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-        // }
-        // }
+        $LabNo = $header[0];
+        $RecevingDate = $header[1];
+        $TestingDateS = $header[2];
+        $TestingDateE = $header[3];
+        $EnvironmentalC = $header[4];
+        $Supplier_Name = $header[5];
+        $Sender = $header[6];
+        $MaterialName = $header[7];
+        $CSSNO = $header[8];
+        $IssueDate = $header[9];
+        $LotReference = $header[10];
+        $Result = $header[11];
+        $performedBy = $header[12];
+        $ItemType = $header[13];
+       
         $this->l->AddHeaderFabric(
-            $TestDate,
+            $LabNo,
+            $RecevingDate,
+            $TestingDateS,
+            $TestingDateE,
+            $EnvironmentalC,
+            $Supplier_Name,
+            $Sender,
+            $MaterialName,
             $CSSNO,
-            $PONo,
-            $Quantity,
-            $ReceivingDate,
-            $ItemName,
-            $SupplierName,
-            $testNo,
-            $SupplierRef,
+            $IssueDate,
+            $LotReference,
             $Result,
+            $performedBy,
             $ItemType,
-            $picture,
+
+            $childArray,
+
+            $CSSValueAdd,
             $testGroup,
             $testPerformer,
-            $childArray,
-            $CSSValueAdd
+            $picture
         );
     }
 
     public function addHeadDataMaterial()
     {
+        
 
         ////////////////////////////////////// Ajax Call ///////////////////////////////
-
+        $picture = '';
         if (!empty($_FILES['file']['name'])) {
 
             $config['upload_path'] = 'assets\img\img';
@@ -1484,6 +1495,9 @@ class LabController extends CI_Controller
 
         $headerValue = $_POST['HeaderArray'];
         $CSSValueAdd = $_POST['CSSCodeValue'];
+        $testGroup = $_POST['testGroup'];
+        $testPerformer = $_POST['testPerformer'];
+
         $header = explode(",", $headerValue);
 
         $childValue = $_POST['ChildArray'];
@@ -1495,41 +1509,43 @@ class LabController extends CI_Controller
         }
         array_pop($childArray);
 
-        $testNo = $header[0];
-        $CSSNO = $header[1];
-        $TestDate = $header[2];
-        $ItemName = $header[3];
-        $PONo = $header[4];
-        $ReceivingDate = $header[5];
-        $SupplierName = $header[6];
-
-        $SupplierRef = $header[7];
-        $Quantity = $header[8];
-
-
-
-        $Result = $header[9];
-        $ItemType = $header[10];
-        $testGroup = $_POST['testGroup'];
-        $testPerformer = $_POST['testPerformer'];
+        $LabNo = $header[0];
+        $RecevingDate = $header[1];
+        $TestingDateS = $header[2];
+        $TestingDateE = $header[3];
+        $EnvironmentalC = $header[4];
+        $Supplier_Name = $header[5];
+        $Sender = $header[6];
+        $MaterialName = $header[7];
+        $CSSNO = $header[8];
+        $IssueDate = $header[9];
+        $LotReference = $header[10];
+        $Result = $header[11];
+        $performedBy = $header[12];
+        $ItemType = $header[13];
 
         $this->l->AddHeaderMaterial(
-            $TestDate,
+            $LabNo,
+            $RecevingDate,
+            $TestingDateS,
+            $TestingDateE,
+            $EnvironmentalC,
+            $Supplier_Name,
+            $Sender,
+            $MaterialName,
             $CSSNO,
-            $PONo,
-            $Quantity,
-            $ReceivingDate,
-            $ItemName,
-            $SupplierName,
-            $testNo,
-            $SupplierRef,
+            $IssueDate,
+            $LotReference,
             $Result,
+            $performedBy,
             $ItemType,
-            $picture,
+
+            $childArray,
+
+            $CSSValueAdd,
             $testGroup,
             $testPerformer,
-            $childArray,
-            $CSSValueAdd
+            $picture
         );
     }
 
@@ -2837,6 +2853,20 @@ class LabController extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($result));
     }
+    public function getFGTTestHeadAirlessMini(){
+        $result = $this->l->getFGTTestHeadAirlessMini($_POST['TID']);      
+            return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($result));
+    }
+    public function getFGTTestDetailsAirlessMini(){
+        $result = $this->l->getFGTTestDetailsAirlessMini($_POST['TID']);      
+            return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($result));
+    }
 
     public function getFGTTestReqHead(){
         $result = $this->l->getFGTTestReqHead($_POST['CssNo']);      
@@ -3216,7 +3246,7 @@ class LabController extends CI_Controller
             'drumImage' => $picture4,
             'UserID' => $this->session->userdata('user_id'),
             
-            'factoryCode' => 'B34006'
+            'FC' => 'B34006'
         ];
 
 
@@ -3228,5 +3258,15 @@ class LabController extends CI_Controller
         
     }   
     
+
+    public function getOldCssNo(){
+        
+        $data = $this->l->getOldCssNo();      
+            return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+
 }
 

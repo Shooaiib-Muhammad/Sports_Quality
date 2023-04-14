@@ -4,6 +4,7 @@
 
     <?php $this->load->view('includes/new_header'); ?>
 
+
     <!-- BEGIN Page Wrapper -->
     <div class="page-wrapper">
         <div class="page-inner">
@@ -36,7 +37,7 @@
 
                         <!-- Start here with columns -->
                         <!doctype html>
-                        <?php
+                        <?php 
                         if ($this->session->userdata('userStus') == 1) {
                         ?>
                             <html class="no-js" lang="en">
@@ -231,17 +232,17 @@
 
                                     <script>
                                         $(document).ready(function() {
-
-                                            $('#report').change(function() {
-                                                showLines();
-                                                showArticles()
-                                            })
-
+                                            
                                             $('#factory').change(function() {
                                                 showLines()
                                                 updateArticles($(this).val())
                                                 showArticles()
                                                 showLFB()
+                                            })
+                                            
+                                            $('#report').change(function() {
+                                                showLines();
+                                                showArticles()
                                             })
 
                                             function showLines() {
@@ -475,6 +476,7 @@
                                                     case 'B34002':
                                                     case 'B34003':
                                                     case 'B34004':
+                                                        console.log("report is",report);
                                                         switch (report) {
                                                             case 'summary':
                                                                 getTMSummary();
@@ -670,6 +672,7 @@
                                                     //alert(url);
                                                 }
                                                 $.get(url, function(data) {
+                                                    console.log("get amb summary",data)
                                                     fillReport(data, true, true, true, true, true, true)
                                                 })
 
@@ -774,7 +777,7 @@
                                                 $('#forming-table2').dataTable(getOptions(group1))
                                                 $('#forming-RPtable').dataTable(getOptions(group1))
                                                 $('#forming-RFtable').dataTable(getOptions(group1))
-
+                                                // $('#forming_overall-table').dataTable(getOptions(group5))
                                                 $('#packing-table').dataTable(getOptions(group2))
                                                 $('#packing-RPtable').dataTable(getOptions(group3))
 
