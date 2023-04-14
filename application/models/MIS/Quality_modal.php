@@ -1726,8 +1726,8 @@ HAVING        (DateName BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AN
     public function compBallInspectionCurrentDate()
     {
 
-        $start_date = date('d/m/Y');
-        $end_date = date('d/m/Y');
+        $start_date = date('Y/m/d');
+        $end_date = date('Y/m/d');
         $fc = 'B34002';
         return $this->db->select("SUM(PassQty + FailQty) AS Checked, SUM(PassQty) AS Pass, SUM(FailQty) AS FailQty, SUM(BGrade) AS BGrade, SUM(Printing) AS Printing, SUM(PanelDefect) AS PanelDefect, SUM(Cavity) AS Cavity, SUM(DShape) 
      AS DShape, SUM(Touching) AS Touching, SUM(ArtWork) AS ArtWork, SUM(Puncture) AS Puncture, SUM(Dirty) AS Dirty, SUM(SeamAlligment) AS SeamAlligment, SUM(LeakPuncture) AS LeakPuncture, SUM(Wrinkle) AS Wrinkle, 
@@ -1739,6 +1739,44 @@ HAVING        (DateName BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AN
             ->where('FactoryCode', $fc)
             ->group_by("EntryDate , CASE WHEN View_FinalQC_Rebotics.FactoryCode = '' THEN 'B34002' ELSE FactoryCode END")
             ->get()
-            ->result();
+            ->result_array();
     }
+
+    public function finaleBallInspectionCurrentDate()
+    {
+
+        $start_date = date('Y/m/d');
+        $end_date = date('Y/m/d');
+        $fc = 'B34003';
+        return $this->db->select("SUM(PassQty + FailQty) AS Checked, SUM(PassQty) AS Pass, SUM(FailQty) AS FailQty, SUM(BGrade) AS BGrade, SUM(Printing) AS Printing, SUM(PanelDefect) AS PanelDefect, SUM(Cavity) AS Cavity, SUM(DShape) 
+     AS DShape, SUM(Touching) AS Touching, SUM(ArtWork) AS ArtWork, SUM(Puncture) AS Puncture, SUM(Dirty) AS Dirty, SUM(SeamAlligment) AS SeamAlligment, SUM(LeakPuncture) AS LeakPuncture, SUM(Wrinkle) AS Wrinkle, 
+     SUM(Moldmark) AS Moldmark, SUM(PrintingAlligment) AS PrintingAlligment, SUM(Dull) AS Dull, SUM(Indent) AS Indent, SUM(Overlaping) AS Overlaping, SUM(UnderSize) AS UnderSize, SUM(UnderWeight) AS UnderWeight, 
+     SUM(OverWeight) AS OverWeight, SUM(OverSize) AS OverSize, EntryDate As DailyDate,SUM(AirBubble) AS AirBubble")
+            ->from('dbo.View_FinalQC_Rebotics')
+            ->where('EntryDate  >=', $start_date)
+            ->where('EntryDate  <=', $end_date)
+            ->where('FactoryCode', $fc)
+            ->group_by("EntryDate , CASE WHEN View_FinalQC_Rebotics.FactoryCode = '' THEN 'B34002' ELSE FactoryCode END")
+            ->get()
+            ->result_array();
+    }
+    public function urbanBallInspectionCurrentDate()
+    {
+
+        $start_date = date('Y/m/d');
+        $end_date = date('Y/m/d');
+        $fc = 'B34004';
+        return $this->db->select("SUM(PassQty + FailQty) AS Checked, SUM(PassQty) AS Pass, SUM(FailQty) AS FailQty, SUM(BGrade) AS BGrade, SUM(Printing) AS Printing, SUM(PanelDefect) AS PanelDefect, SUM(Cavity) AS Cavity, SUM(DShape) 
+     AS DShape, SUM(Touching) AS Touching, SUM(ArtWork) AS ArtWork, SUM(Puncture) AS Puncture, SUM(Dirty) AS Dirty, SUM(SeamAlligment) AS SeamAlligment, SUM(LeakPuncture) AS LeakPuncture, SUM(Wrinkle) AS Wrinkle, 
+     SUM(Moldmark) AS Moldmark, SUM(PrintingAlligment) AS PrintingAlligment, SUM(Dull) AS Dull, SUM(Indent) AS Indent, SUM(Overlaping) AS Overlaping, SUM(UnderSize) AS UnderSize, SUM(UnderWeight) AS UnderWeight, 
+     SUM(OverWeight) AS OverWeight, SUM(OverSize) AS OverSize, EntryDate As DailyDate,SUM(AirBubble) AS AirBubble")
+            ->from('dbo.View_FinalQC_Rebotics')
+            ->where('EntryDate  >=', $start_date)
+            ->where('EntryDate  <=', $end_date)
+            ->where('FactoryCode', $fc)
+            ->group_by("EntryDate , CASE WHEN View_FinalQC_Rebotics.FactoryCode = '' THEN 'B34002' ELSE FactoryCode END")
+            ->get()
+            ->result_array();
+    }
+    
 }

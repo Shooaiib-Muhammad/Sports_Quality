@@ -145,7 +145,7 @@
 <div id="container"></div>
 
 
-<h2 class="bg-primary-200 text-light p-2 text-center"><?php echo $title; ?> Final QC <?php echo "( $start_date to $end_date )"; ?></h2>
+<h2 class="bg-primary-200 text-light p-2 text-center"><?php echo $title; ?> Final QC  <?php echo "( $start_date to $end_date )"; ?></h2>
 <table class="table table-bordered table-hover table-responsive table-striped w-100" id="packing-table">
     <thead>
         <tr class="bg-primary-200 text-light">
@@ -384,7 +384,11 @@
             <td><?php r($Fail1); ?></td>
             <?php
             $balance=($OrderQty1)-($Pass1);
-            $RFT=($Inspected1/$Pass1)*100;
+            if($Pass1 != null){
+                $RFT=($Inspected1/$Pass1)*100;
+            }else{
+                $RFT = null;
+            }
             ?>
             <td><?php r($RFT); ?></td>
             <td style="color:red;"><?php r($balance); ?></td>

@@ -11,7 +11,9 @@ class FactoryCodes extends CI_Controller
  
     public function index()
     {
-        $data['compInspection']  = $this->Quality_Modal->compBallInspectionCurrentDate();
+        $data['compBallInspection']  = $this->Quality_Modal->compBallInspectionCurrentDate();
+        $data['finaleBallInspection']  = $this->Quality_Modal->finaleBallInspectionCurrentDate();
+        $data['urbanBallInspection']  = $this->Quality_Modal->urbanBallInspectionCurrentDate();
         $this->load->view('MIS/factory_codes/factoryCodes', $data);
     }
 

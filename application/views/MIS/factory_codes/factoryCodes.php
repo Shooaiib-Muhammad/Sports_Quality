@@ -16,102 +16,42 @@ if (!$this->session->has_userdata('user_id')) {
         <!-- BEGIN Page Header -->
         <?php $this->load->view('includes/top_header.php'); ?>
         <main id="js-page-content" role="main" class="page-content">
-
-
-          <style>
-            video {
-              min-width: 100%;
-              min-height: 100vh;
-              z-index: 1;
-            }
-
-            h1 {
-              text-align: center;
-              color: #fff;
-              position: absolute;
-              top: 0;
-              bottom: 20px;
-              left: 0;
-              right: 0;
-              margin: auto;
-              z-index: 1;
-              width: 100%;
-              height: 50px;
-              font-size: 40px;
-            }
-
-            .desc {
-              text-align: center;
-              color: #fff;
-              position: absolute;
-              top: 90px;
-              bottom: 0;
-              left: 0;
-              right: 0;
-              margin: auto;
-              z-index: 2;
-              max-width: 200px;
-              width: 100%;
-              height: 50px;
-              border-radius: 5px;
-              background-color: #ddd;
-            }
-
-            .desc p {
-              padding-top: 10px;
-              color: black;
-              font-weight: bold;
-              font-size: 20px;
-              font-family: 'Arial';
-            }
-          </style>
           <?php
-          $GetHoursMSLines = array();
-          $GetReadingMSLines = array();
-          //$target = array();
-          //print_r($HourllyReading);
-          if (isset($StationwiseMSLines)) {
-            foreach ($StationwiseMSLines as $key) {
-              date_default_timezone_set('Asia/Karachi');
-              $dateTimeObject1 = date_create(date('Y') . '-' . date('m') . '-' . date('d') . ' ' . date('H') . ':' . date('i') . '');
-              $dateTimeObject2 = date_create(date('Y') . '-' . date('m') . '-' . date('d') . ' 07:45');
+          // print_r($compBallInspection[0]);
+          $compBallInspectionArray = array();          
+          if (isset($compBallInspection) && !!$compBallInspection && $compBallInspection[0]) {
+            foreach ($compBallInspection[0] as $key => $value) {
+              $point1 = [
+                'name' => $key,
+                'y' => $value,
+              ];
+              array_push($compBallInspectionArray, $point1);
+            }
+          }
+          
+          
+          $finaleBallInspectionArray = array();
+          if (isset($finaleBallInspection) && !!$finaleBallInspection && $finaleBallInspection[0]) {
+            foreach ($finaleBallInspection[0] as $key => $value) {
+              $point1 = [
+                'name' => $key,
+                'y' => $value,
+              ];
+              array_push($finaleBallInspectionArray, $point1);
+            }
+          }
 
-              $difference = date_diff($dateTimeObject1, $dateTimeObject2);
-              $minutes = $difference->days * 24 * 60;
-              $minutes += $difference->h * 60;
-              $minutes += $difference->i;
-              if (date('H') >= 14) {
-                if (date('w') == 4) {
-                  $minutes = $minutes - 60;
-                } else {
-                  $minutes = $minutes - 45;
-                }
-              }
-
-              $point1 = array(round(((($key['PassQty'] * 7.74) / ($minutes * 20)) * 100), 2),);
-              $point2 = array($key['StationName'],);
-              $dailytarget = 3000 / 6;
-              $point3 = $dailytarget / 8;
-
-              array_push($GetReadingMSLines, $point1);
-              array_push($GetHoursMSLines, $point2);
-              // array_push($target, $point3);
-              //array_push($lineNames, $key['LineName']);
-
+          $urbanBallInspectionArray = array(); 
+          if (isset($urbanBallInspection) && !!$urbanBallInspection && $urbanBallInspection[0]) {
+            foreach ($urbanBallInspection[0] as $key => $value) {
+              $point1 = [
+                'name' => $key,
+                'y' => $value,
+              ];
+              array_push($urbanBallInspectionArray, $point1);
             }
           }
           ?>
-          <div class="bg-video-wrap">
-            <!-- test -->
-            <!-- <video src="<?php echo base_url('assets/pexels-cottonbro-10349005.mp4') ?>" controls loop muted autoplay>
-                        </video> -->
-            <!--                        
-                        <h1 class="w-100">Welcome to Forward Sports MIS System</h1>
-                        <div class="desc">
-                            <p class="p">The Soccer Expert</p>
-
-                        </div> -->
-          </div>
 
 
           <div class="row">
@@ -152,55 +92,39 @@ if (!$this->session->has_userdata('user_id')) {
                       </ul>
                       <div class="tab-content py-3">
                         <div class="tab-pane fade show active" id="tab_borders_icons-1" role="tabpanel">
-                          <div id="MSEfficiency"></div>
-                          <!-- <div id="flot-toggles" class="w-100 mt-4" style="height: 300px"></div> -->
+                          
+                        
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-2" role="tabpanel">
-                          <span id="efficiencyValueIdBladder"></span>
-
-                          <span id="counterValueIdBladder"><span style="display:none"></span></span>
-
-                          <span id="counterValueIdBladder">0</span>
-
-                          <div id="BWEfficiency"></div>
-
+                          
+                        
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-3" role="tabpanel">
-                          <span id="counterValueIdSheetSizing"><span style='display:none'></span></span>
-
-
-                          <div id="SSEfficiency"></div>
+                          
+                        
 
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-4" role="tabpanel">
-                          <span id="counterValueIdPanelCutting"><span style="display:none"></span>
-
-                            <div id="PCEfficiency"></div>
-
+                          
+                        
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-5" role="tabpanel">
-                          <span id="counterValueIdMSLines"></span>
-                          <div id="MSSEfficiency"></div>
+                          
+                        
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-6" role="tabpanel">
 
-                          <span id="counterValueIdHFCutting"><span style='display:none'></span></span>
+                          
+                        
 
                         </div>
 
 
                         <div class="tab-pane fade" id="tab_borders_icons-7" role="tabpanel">
                           <div class="row">
-                            <div class="col-md-3">
-                                <input type="date" name="date1" id="date1">
-                            </div>
-                            <div class="col-md-3">
-                                <input type="date" name="date2" id="date2">
-                            </div>
-                            <div class="col-md-3">
-                                <button class="btn btn-primary" id="compInspectionSeacrh">Search</button>
+                            <div class="col-md-12" id="compBallInspection">
                             </div>
                           </div>
                         </div>
@@ -251,49 +175,39 @@ if (!$this->session->has_userdata('user_id')) {
                       </ul>
                       <div class="tab-content py-3">
                         <div class="tab-pane fade show active" id="tab_borders_icons-8" role="tabpanel">
-                          <div id="MSEfficiency"></div>
-                          <!-- <div id="flot-toggles" class="w-100 mt-4" style="height: 300px"></div> -->
+                          
+                        
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-9" role="tabpanel">
-                          <span id="efficiencyValueIdBladder"></span>
-
-                          <span id="counterValueIdBladder"><span style="display:none"></span></span>
-
-                          <span id="counterValueIdBladder">0</span>
-
-                          <div id="BWEfficiency"></div>
+                          
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-10" role="tabpanel">
-                          <span id="counterValueIdSheetSizing"><span style='display:none'></span></span>
-
-
-                          <div id="SSEfficiency"></div>
+                         
 
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-11" role="tabpanel">
-                          <span id="counterValueIdPanelCutting"><span style="display:none"></span>
-
-                            <div id="PCEfficiency"></div>
+                          
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-12" role="tabpanel">
-                          <span id="counterValueIdMSLines"></span>
-                          <div id="MSSEfficiency"></div>
+                          
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-13" role="tabpanel">
 
-                          <span id="counterValueIdHFCutting"><span style='display:none'></span></span>
+                          
 
                         </div>
 
 
                         <div class="tab-pane fade" id="tab_borders_icons-14" role="tabpanel">
-                          <span id="counterValueIdRWPD"><span style='display:none'></span></span>
+                          <div class="row">
+                            <div class="col-md-12" id="finaleBallInspection"> 
 
-                          <div id="RWPDEfficiency"></div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -344,49 +258,38 @@ if (!$this->session->has_userdata('user_id')) {
                       </ul>
                       <div class="tab-content py-3">
                         <div class="tab-pane fade show active" id="tab_borders_icons-15" role="tabpanel">
-                          <div id="MSEfficiency"></div>
-                          <!-- <div id="flot-toggles" class="w-100 mt-4" style="height: 300px"></div> -->
+                          
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-16" role="tabpanel">
-                          <span id="efficiencyValueIdBladder"></span>
-
-                          <span id="counterValueIdBladder"><span style="display:none"></span></span>
-
-                          <span id="counterValueIdBladder">0</span>
-
-                          <div id="BWEfficiency"></div>
+                          
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-17" role="tabpanel">
-                          <span id="counterValueIdSheetSizing"><span style='display:none'></span></span>
-
-
-                          <div id="SSEfficiency"></div>
+                          
 
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-18" role="tabpanel">
-                          <span id="counterValueIdPanelCutting"><span style="display:none"></span>
-
-                            <div id="PCEfficiency"></div>
+                         
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-19" role="tabpanel">
-                          <span id="counterValueIdMSLines"></span>
-                          <div id="MSSEfficiency"></div>
+                          
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-20" role="tabpanel">
 
-                          <span id="counterValueIdHFCutting"><span style='display:none'></span></span>
+                          
 
                         </div>
 
 
                         <div class="tab-pane fade" id="tab_borders_icons-21" role="tabpanel">
-                          <span id="counterValueIdRWPD"><span style='display:none'></span></span>
+                         <div class="row">
+                          <div class="col-md-12" id="urbanBallInspection">
 
-                          <div id="RWPDEfficiency"></div>
+                          </div>
+                         </div>
                         </div>
                       </div>
                     </div>
@@ -431,41 +334,27 @@ if (!$this->session->has_userdata('user_id')) {
                       </ul>
                       <div class="tab-content py-3">
                         <div class="tab-pane fade show active" id="tab_borders_icons-22" role="tabpanel">
-                          <div id="MSEfficiency"></div>
-                          <!-- <div id="flot-toggles" class="w-100 mt-4" style="height: 300px"></div> -->
+                          
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-23" role="tabpanel">
-                          <span id="efficiencyValueIdBladder"></span>
-
-                          <span id="counterValueIdBladder"><span style="display:none"></span></span>
-
-                          <span id="counterValueIdBladder">0</span>
-
-                          <div id="BWEfficiency"></div>
+                          
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-24" role="tabpanel">
-                          <span id="counterValueIdSheetSizing"><span style='display:none'></span></span>
-
-
-                          <div id="SSEfficiency"></div>
+                          
 
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-25" role="tabpanel">
-                          <span id="counterValueIdPanelCutting"><span style="display:none"></span>
-
-                            <div id="PCEfficiency"></div>
-
+                          
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-26" role="tabpanel">
-                          <span id="counterValueIdMSLines"></span>
-                          <div id="MSSEfficiency"></div>
+                          
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-27" role="tabpanel">
 
-                          <span id="counterValueIdHFCutting"><span style='display:none'></span></span>
+                         
 
                         </div>
                       </div>
@@ -511,7 +400,7 @@ if (!$this->session->has_userdata('user_id')) {
                       <div class="tab-content py-3">
                         <div class="tab-pane fade show active" id="tab_borders_icons-28" role="tabpanel">
                           <div class="row">
-                            <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <!-- <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
                               <input type="date" name="start_date" id="start_date" value="<?php current_date(); ?>" class="form-control">
                             </div>
                             <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
@@ -556,7 +445,7 @@ if (!$this->session->has_userdata('user_id')) {
                             </div>
                             <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
                               <button name="searchAmbPrint" id="searchAmbPrint" class="btn btn-primary">Search</button>
-                            </div>
+                            </div> -->
                           </div>
                           <div id="chartContent">
                             <div class="row">
@@ -568,32 +457,20 @@ if (!$this->session->has_userdata('user_id')) {
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-29" role="tabpanel">
-                          <span id="efficiencyValueIdBladder"></span>
-
-                          <span id="counterValueIdBladder"><span style="display:none"></span></span>
-
-                          <span id="counterValueIdBladder">0</span>
-
-                          <div id="BWEfficiency"></div>
+                          
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-30" role="tabpanel">
-                          <span id="counterValueIdSheetSizing"><span style='display:none'></span></span>
-
-
-                          <div id="SSEfficiency"></div>
+                          
 
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-31" role="tabpanel">
-                          <span id="counterValueIdPanelCutting"><span style="display:none"></span>
-
-                            <div id="PCEfficiency"></div>
+                         
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-32" role="tabpanel">
-                          <span id="counterValueIdMSLines"></span>
-                          <div id="MSSEfficiency"></div>
+                          
                         </div>
 
 
@@ -643,49 +520,39 @@ if (!$this->session->has_userdata('user_id')) {
                       </ul>
                       <div class="tab-content py-3">
                         <div class="tab-pane fade show active" id="tab_borders_icons-33" role="tabpanel">
-                          <div id="MSEfficiency"></div>
-                          <!-- <div id="flot-toggles" class="w-100 mt-4" style="height: 300px"></div> -->
+                          
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-34" role="tabpanel">
-                          <span id="efficiencyValueIdBladder"></span>
-
-                          <span id="counterValueIdBladder"><span style="display:none"></span></span>
-
-                          <span id="counterValueIdBladder">0</span>
-
-                          <div id="BWEfficiency"></div>
+                          
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-35" role="tabpanel">
-                          <span id="counterValueIdSheetSizing"><span style='display:none'></span></span>
-
-
-                          <div id="SSEfficiency"></div>
+                         
+                        
 
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-36" role="tabpanel">
-                          <span id="counterValueIdPanelCutting"><span style="display:none"></span>
-
-                            <div id="PCEfficiency"></div>
+                          
+                        
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-37" role="tabpanel">
-                          <span id="counterValueIdMSLines"></span>
-                          <div id="MSSEfficiency"></div>
+                          
+                        
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-38" role="tabpanel">
 
-                          <span id="counterValueIdHFCutting"><span style='display:none'></span></span>
+                          
+                        
 
                         </div>
 
 
                         <div class="tab-pane fade" id="tab_borders_icons-39" role="tabpanel">
-                          <span id="counterValueIdRWPD"><span style='display:none'></span></span>
-
-                          <div id="RWPDEfficiency"></div>
+                          
+                        
                         </div>
                       </div>
                     </div>
@@ -1466,16 +1333,11 @@ if (!$this->session->has_userdata('user_id')) {
   <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
   <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
 
-  <script src="https://code.highcharts.com/highcharts.js"></script>
-  <script src="https://code.highcharts.com/modules/exporting.js"></script>
-  <script src="https://code.highcharts.com/modules/export-data.js"></script>
-  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
 
   <script>
-    $(document).ready(function(){
-     
-      
+    $(document).ready(function() {
+
+
     })
 
     function showLines() {
@@ -1575,49 +1437,7 @@ if (!$this->session->has_userdata('user_id')) {
       }
       $.get(url, function(data) {
         console.log("get amb summary", data)
-        Highcharts.chart('graphContent', {
-          chart: {
-            type: 'column'
-          },
-          title: {
-            text: 'Airless Mini Ball Fresh Ball Forming QC ()'
-          },
 
-          accessibility: {
-            announceNewData: {
-              enabled: true
-            }
-          },
-          xAxis: {
-            type: 'category'
-          },
-          yAxis: {
-            title: {
-              text: 'Airless Mini Ball Fresh Ball Forming QC ()'
-            }
-
-          },
-          legend: {
-            enabled: false
-          },
-          plotOptions: {
-            series: {
-              borderWidth: 1,
-              dataLabels: {
-                enabled: true,
-                format: '{point.y:.1f}'
-              }
-            }
-          },
-
-          tooltip: {
-            headerFormat: '<span style="font-size:13px">{point.name}</span><br>',
-            // headerFormat: '<span style="font-size:13px">{point.y:f}</span>:%<br>',
-            pointFormat: '<span style="color:{point.color}">{point.y}</span><br/>'
-          },
-
-          series: []
-        });
         // fillReport(data, true, true, true, true, true, true)
       })
 
@@ -1642,6 +1462,162 @@ if (!$this->session->has_userdata('user_id')) {
         // fillReport(data, true, true, true, true, true)
       })
     }
+
+    Highcharts.chart('compBallInspection', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Today Final Inspection',
+      },
+
+      accessibility: {
+        announceNewData: {
+          enabled: true
+        }
+      },
+      xAxis: {
+        type: 'category'
+      },
+      yAxis: {
+        title: {
+          text: 'Today Final Inspection'
+        }
+
+      },
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+
+      tooltip: {
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      },
+
+      series: [{
+        name: "Inspection",
+        colorByPoint: true,
+        data: <?php echo json_encode(
+                $compBallInspectionArray,
+                JSON_NUMERIC_CHECK
+              ); ?>,
+
+      }],
+
+    });
+
+    Highcharts.chart('finaleBallInspection', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Today Final Inspection',
+      },
+
+      accessibility: {
+        announceNewData: {
+          enabled: true
+        }
+      },
+      xAxis: {
+        type: 'category'
+      },
+      yAxis: {
+        title: {
+          text: 'Today Final Inspection'
+        }
+
+      },
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+
+      tooltip: {
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      },
+
+      series: [{
+        name: "Inspection",
+        colorByPoint: true,
+        data: <?php echo json_encode(
+                $finaleBallInspectionArray,
+                JSON_NUMERIC_CHECK
+              ); ?>,
+
+      }],
+
+    });
+
+    Highcharts.chart('urbanBallInspection', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Today Final Inspection',
+      },
+
+      accessibility: {
+        announceNewData: {
+          enabled: true
+        }
+      },
+      xAxis: {
+        type: 'category'
+      },
+      yAxis: {
+        title: {
+          text: 'Today Final Inspection'
+        }
+
+      },
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+
+      tooltip: {
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      },
+
+      series: [{
+        name: "Inspection",
+        colorByPoint: true,
+        data: <?php echo json_encode(
+                $urbanBallInspectionArray,
+                JSON_NUMERIC_CHECK
+              ); ?>,
+
+      }],
+
+    });
   </script>
 
   </body>
