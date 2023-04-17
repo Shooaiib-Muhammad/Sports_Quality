@@ -2345,7 +2345,7 @@ if (!$this->session->has_userdata('user_id')) {
             let testType = $('#testType').val();
             let dQuantity = $('#dQuantity').val();
             let anyInfo = $('#anyInfo').val();
-            if (workingNo && articleNo && modelName && size && ballType && mainMatCol && coverMat && backing && bladderDetails && prodMonth && printColor && panelShape && testType && dQuantity && anyInfo) {
+            if (workingNo && articleNo && modelName && size && ballType && mainMatCol && coverMat && backing && bladderDetails && prodMonth && printColor && panelShape && testType && dQuantity) {
                 $.post(url, {
                     workingNo: workingNo,
                     articleNo: articleNo,

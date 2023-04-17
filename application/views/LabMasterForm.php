@@ -1311,10 +1311,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 <div class="col-sm-4" id="FoamLogoHide">
 
                                                                 </div>
-                                                                <div class="col-sm-4">
+                                                                <!-- <div class="col-sm-4">
                                                                     <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" />
-                                                                </div>
-                                                                <div class="col-sm-4">
+                                                                </div> -->
+                                                                <div class="col-sm-4" style="margin-left: 33%;">
                                                                     <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" />
                                                                 </div>
                                                             </div>

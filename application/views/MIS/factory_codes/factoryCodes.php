@@ -21,6 +21,9 @@ if (!$this->session->has_userdata('user_id')) {
           $compBallInspectionArray = array();          
           if (isset($compBallInspection) && !!$compBallInspection && $compBallInspection[0]) {
             foreach ($compBallInspection[0] as $key => $value) {
+              if($key == 'DailyDate'){
+                continue;
+              }
               $point1 = [
                 'name' => $key,
                 'y' => $value,
@@ -33,6 +36,9 @@ if (!$this->session->has_userdata('user_id')) {
           $finaleBallInspectionArray = array();
           if (isset($finaleBallInspection) && !!$finaleBallInspection && $finaleBallInspection[0]) {
             foreach ($finaleBallInspection[0] as $key => $value) {
+              if($key == 'DailyDate'){
+                continue;
+              }
               $point1 = [
                 'name' => $key,
                 'y' => $value,
@@ -1465,7 +1471,7 @@ if (!$this->session->has_userdata('user_id')) {
 
     Highcharts.chart('compBallInspection', {
       chart: {
-        type: 'column'
+        type: 'spline'
       },
       title: {
         text: 'Today Final Inspection',
@@ -1517,7 +1523,7 @@ if (!$this->session->has_userdata('user_id')) {
 
     Highcharts.chart('finaleBallInspection', {
       chart: {
-        type: 'column'
+        type: 'spline'
       },
       title: {
         text: 'Today Final Inspection',
@@ -1569,7 +1575,7 @@ if (!$this->session->has_userdata('user_id')) {
 
     Highcharts.chart('urbanBallInspection', {
       chart: {
-        type: 'column'
+        type: 'spline'
       },
       title: {
         text: 'Today Final Inspection',
