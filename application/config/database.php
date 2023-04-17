@@ -74,7 +74,7 @@ $active_group = 'default';
 $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'server',
+	'hostname' => '192.168.10.4',
 	'username' => 'ajax',
 	'password' => 'Forward@123',
 	'database' => 'MIS',
@@ -95,7 +95,7 @@ $db['default'] = array(
 );
 $db['HRMS'] = array(
 	'dsn'	=> '',
-	'hostname' => 'server',
+	'hostname' => '192.168.10.4',
 	'username' => 'ajax',
 	'password' => 'Forward@123',
 	'database' => 'HRMS',
