@@ -67,9 +67,10 @@ ORDER BY HID");
             $Year = date('Y');
             $Day = date('d');
             
-            $query = $this->db->query("SELECT        SUM(Counter) AS Counter, SUM(TotalBalls) AS TotalBalls, SUM(TotalSheets) AS TotalSheets
+            $query = $this->db->query("SELECT        SUM(Counter) AS Counter, SUM(TotalBalls) AS TotalBalls, SUM(TotalSheets) AS TotalSheets, Date
             FROM            dbo.view_PC_SheetSizing_Final
-            WHERE        (Date = '$Day/$Month/$Year')");
+            GROUP BY Date
+            HAVING        (Date = CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))");
             return  $query->result_array();
  }
  public function MSEfficiency(){

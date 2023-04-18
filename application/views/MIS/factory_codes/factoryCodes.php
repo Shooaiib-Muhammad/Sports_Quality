@@ -4,7 +4,7 @@ if (!$this->session->has_userdata('user_id')) {
 } else {
 ?>
 
-  <?php $this->load->view('includes/new_header'); ?>
+  <?php $this->load->view('includes/new_header'); print_r($ambCoreBGrade); ?>
 
   <!-- BEGIN Page Wrapper -->
   <div class="page-wrapper">
@@ -55,6 +55,69 @@ if (!$this->session->has_userdata('user_id')) {
                 'y' => $value,
               ];
               array_push($urbanBallInspectionArray, $point1);
+            }
+          }
+
+
+          $ambSheetSizingArray = array(); 
+          if (isset($ambSheetSizing) && !!$ambSheetSizing && $ambSheetSizing[0]) {
+            foreach ($ambSheetSizing[0] as $key => $value) {
+              $point1 = [
+                'name' => $key,
+                'y' => $value,
+              ];
+              array_push($ambSheetSizingArray, $point1);
+            }
+          }
+
+          $ambPanelDefectsArray = array(); 
+          if (isset($ambPanelDefects) && !!$ambPanelDefects && $ambPanelDefects[0]) {
+            foreach ($ambPanelDefects as $key => $value) {
+              $point1 = [
+                'name' => $value['LineName'],
+                'y' => $value['Totalproducd'],
+              ];
+              array_push($ambPanelDefectsArray, $point1);
+            }
+          }
+
+          $ambHFCuttingArray1 = array();  
+          if (isset($ambHFCutting) && !!$ambHFCutting && $ambHFCutting[0]) {
+            foreach ($ambHFCutting as $key => $value) {
+              $point1 = [
+                'name' => $value['EntryDate'],
+                'y' => $value['TotalChecked'],
+              ];
+              array_push($ambHFCuttingArray1, $point1);
+            }
+          }
+
+          
+          $ambBGradeBallArray = array();  
+          if (isset($ambBGradeBall) && !!$ambBGradeBall && $ambBGradeBall[0]) {
+            foreach ($ambBGradeBall[0] as $key => $value) {
+              if($key == 'EntryDate'){
+                continue;
+              }
+              $point1 = [
+                'name' => $key,
+                'y' => $value,
+              ];
+              array_push($ambBGradeBallArray, $point1);
+            }
+          }
+
+          $ambCoreBGradeArray = array();  
+          if (isset($ambCoreBGrade) && !!$ambCoreBGrade && $ambCoreBGrade[0]) {
+            foreach ($ambCoreBGrade[0] as $key => $value) {
+              if($key == 'EntryDate'){
+                continue;
+              }
+              $point1 = [
+                'name' => $key,
+                'y' => $value,
+              ];
+              array_push($ambCoreBGradeArray, $point1);
             }
           }
           ?>
@@ -388,19 +451,22 @@ if (!$this->session->has_userdata('user_id')) {
                       <ul class="nav nav-pills" role="tablist">
 
                         <li class="nav-item">
-                          <a class="nav-link active" data-toggle="tab" href="#tab_borders_icons-28" role="tab"><i class="fal fa-home mr-1"></i> Printing </a>
+                          <a class="nav-link active" data-toggle="tab" href="#tab_borders_icons-28" role="tab"><i class="fal fa-home mr-1"></i> Sheet Sizing </a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-29" role="tab">Core Manufacturing <i class="fal fa-percent mr-1"></i> </a>
+                          <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-29" role="tab">Panel Defects <i class="fal fa-percent mr-1"></i> </a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-30" role="tab">HF Cutting <i class="fal fa-percent mr-1"></i> </a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-31" role="tab">Forming <i class="fal fa-percent mr-1"></i> </a>
+                          <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-31" role="tab">Finished B Grade Ball <i class="fal fa-percent mr-1"></i> </a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-32" role="tab">Packing <i class="fal fa-percent mr-1"></i> </a>
+                          <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-32" role="tab">Core B Grade <i class="fal fa-percent mr-1"></i> </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-322" role="tab">Core Defective <i class="fal fa-percent mr-1"></i> </a>
                         </li>
                       </ul>
                       <div class="tab-content py-3">
@@ -452,32 +518,47 @@ if (!$this->session->has_userdata('user_id')) {
                             <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
                               <button name="searchAmbPrint" id="searchAmbPrint" class="btn btn-primary">Search</button>
                             </div> -->
-                          </div>
-                          <div id="chartContent">
-                            <div class="row">
-                              <div class="col-md-12">
+                            <div class="col-md-12" id="ambSheetSizingContent">
 
-                              </div>
                             </div>
                           </div>
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-29" role="tabpanel">
-                          
+                          <div class="row">
+                            <div class="col-md-12" id="ambPanelDefectsContent">
+
+                            </div>
+                          </div>
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-30" role="tabpanel">
-                          
+                        <div class="row">
+                            <div class="col-md-12" id="ambHFCuttingContent">
+
+                            </div>
+                          </div>
 
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-31" role="tabpanel">
-                         
+                        <div class="row">
+                            <div class="col-md-12" id="ambBGradeBallContent">
+
+                            </div>
+                          </div>
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-32" role="tabpanel">
-                          
+                        <div class="row">
+                            <div class="col-md-12" id="ambCoreBGradeContent">
+
+                            </div>
+                          </div>
                         </div>
+                        <div class="tab-pane fade" id="tab_borders_icons-322" role="tabpanel">
+                          
+                          </div>
 
 
                       </div>
@@ -565,9 +646,6 @@ if (!$this->session->has_userdata('user_id')) {
                   </div>
                 </div>
               </div>
-
-
-
             </div>
           </div>
 
@@ -1622,6 +1700,273 @@ if (!$this->session->has_userdata('user_id')) {
               ); ?>,
 
       }],
+
+    });
+
+
+    Highcharts.chart('ambSheetSizingContent', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Today Sheet Sizing Sum',
+      },
+
+      accessibility: {
+        announceNewData: {
+          enabled: true
+        }
+      },
+      xAxis: {
+        type: 'category'
+      },
+      yAxis: {
+        title: {
+          text: 'Today Sheet Sizing Sum'
+        }
+
+      },
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+
+      tooltip: {
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      },
+
+      series: [{
+        name: "Inspection",
+        colorByPoint: true,
+        data: <?php echo json_encode(
+                $ambSheetSizingArray,
+                JSON_NUMERIC_CHECK
+              ); ?>,
+
+      }],
+
+    });
+
+    Highcharts.chart('ambPanelDefectsContent', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Today Panel Defects',
+      },
+
+      accessibility: {
+        announceNewData: {
+          enabled: true
+        }
+      },
+      xAxis: {
+        type: 'category'
+      },
+      yAxis: {
+        title: {
+          text: 'Today Panel Defects'
+        }
+
+      },
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+
+      tooltip: {
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      },
+
+      series: [{
+        name: "Inspection",
+        colorByPoint: true,
+        data: <?php echo json_encode(
+                $ambPanelDefectsArray,
+                JSON_NUMERIC_CHECK
+              ); ?>,
+
+      }],
+
+    });
+
+    Highcharts.chart('ambHFCuttingContent', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Today HF Cutting',
+      },
+
+      accessibility: {
+        announceNewData: {
+          enabled: true
+        }
+      },
+      xAxis: {
+        type: 'category'
+      },
+      yAxis: {
+        title: {
+          text: 'Today HF Cutting'
+        }
+
+      },
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+
+      tooltip: {
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      },
+
+      series: [{
+        name: "Total Checked",
+        colorByPoint: true,
+        data: <?php echo json_encode(
+                $ambHFCuttingArray1,
+                JSON_NUMERIC_CHECK
+              ); ?>,
+
+      }
+      
+    ],
+
+    });
+
+    Highcharts.chart('ambBGradeBallContent', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Today B Grade Ball',
+      },
+
+      accessibility: {
+        announceNewData: {
+          enabled: true
+        }
+      },
+      xAxis: {
+        type: 'category'
+      },
+      yAxis: {
+        title: {
+          text: 'Today B Grade Ball'
+        }
+
+      },
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+
+      tooltip: {
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      },
+
+      series: [{
+        name: "Total Checked",
+        colorByPoint: true,
+        data: <?php echo json_encode(
+                $ambBGradeBallArray,
+                JSON_NUMERIC_CHECK
+              ); ?>,
+
+      }
+      
+    ],
+
+    });
+
+    Highcharts.chart('ambCoreBGradeContent', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Today Core B Grade',
+      },
+
+      accessibility: {
+        announceNewData: {
+          enabled: true
+        }
+      },
+      xAxis: {
+        type: 'category'
+      },
+      yAxis: {
+        title: {
+          text: 'Today Core B Grade'
+        }
+
+      },
+      legend: {
+        enabled: false
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+ 
+      tooltip: {
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      },
+
+      series: [{
+        name: "Total Checked",
+        colorByPoint: true,
+        data: <?php echo json_encode(
+                $ambCoreBGradeArray,
+                JSON_NUMERIC_CHECK
+              ); ?>,
+
+      }
+      
+    ],
 
     });
   </script>

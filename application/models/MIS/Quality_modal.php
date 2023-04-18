@@ -1778,5 +1778,56 @@ HAVING        (DateName BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AN
             ->get()
             ->result_array();
     }
+
+    public function ambSheetSizing(){
+        $start_date = date('Y/m/d');
+        $end_date = date('Y/m/d');
+      
+        $query =  $this->db->query("SELECT        *
+        FROM            dbo.View_Amb_Wastage_Sheet_Sizing_Graph
+        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$start_date 00:00:00', 102) AND CONVERT(DATETIME, '$end_date 23:59:59', 102))");
+        return $query->result_array();
+    }
+
+    public function ambPanelDefects(){
+        $start_date = date('Y/m/d');
+        $end_date = date('Y/m/d');
+      
+        $query =  $this->db->query("SELECT       *
+        FROM            dbo.View_Amb_Wastage_Panel_Defects_Graph
+        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$start_date 00:00:00', 102) AND CONVERT(DATETIME, '$end_date 23:59:59', 102))");
+        return $query->result_array();
+    }
+    public function ambHFCutting(){
+        $start_date = date('Y/m/d');
+        $end_date = date('Y/m/d');
+      
+        $query =  $this->db->query("SELECT       *
+        FROM            dbo.View_Amb_Wastage_HF_Cutting_Graph
+        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$start_date 00:00:00', 102) AND CONVERT(DATETIME, '$end_date 23:59:59', 102))");
+        return $query->result_array();
+    }
+
+    public function ambBGradeBall(){
+        $start_date = date('Y/m/d');
+        $end_date = date('Y/m/d');
+      
+        $query =  $this->db->query("SELECT        *
+        FROM            dbo.View_Amb_Wastage_B_Grade_Ball_Graph
+        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$start_date 00:00:00', 102) AND CONVERT(DATETIME, '$end_date 23:59:59', 102))");
+        return $query->result_array();
+    }
+
+    public function ambCoreBGrade(){
+        $start_date = date('Y/m/d');
+        $end_date = date('Y/m/d');
+      
+        $query =  $this->db->query("SELECT        SUM(DShape) AS DShape, SUM(LooseCore) AS LooseCore, SUM(CutMark) AS CutMark, SUM(HardCore) AS HardCore, SUM(UnderWeight) AS UnderWeight, SUM(OverWeight) AS OverWeight, SUM(Cavity) AS Cavity, 
+        SUM(Rejection) AS Rejection, SUM(DirtMark) AS DirtMark, SUM(TotalProduction) AS TotalProduction, EntryDate
+FROM            dbo.View_Amb_Wastage_Plan_Graph
+GROUP BY EntryDate
+HAVING        (EntryDate BETWEEN CONVERT(DATETIME, '$start_date 00:00:00', 102) AND CONVERT(DATETIME, '$end_date 23:59:59', 102))");
+        return $query->result_array();
+    }
     
 }

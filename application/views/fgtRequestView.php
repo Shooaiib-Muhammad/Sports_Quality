@@ -1997,6 +1997,9 @@ if (!$this->session->has_userdata('user_id')) {
                     console.log(data);
                     $('#workingNo').val(data[0].WorkNo);
                     $('#modelName').val(data[0].ModelName);
+
+                    $('#size').val(data[0].ArtSize);
+                    
                     $('#ballType').val(data[0].BallType);
                     $('#mainMatCol').val(data[0].MainMaterialColour);
                     $('#coverMat').val(data[0].COvMatMaterial);

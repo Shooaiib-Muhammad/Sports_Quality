@@ -4430,7 +4430,7 @@ if (!$this->session->has_userdata('user_id')) {
                 for (var i = 0; i < selectedRows.length; i++) {
                     selectedText += `
                     
-                        <div style="flex: 2 1 160px;">
+                        <div style="flex: 1 1 160px;">
                             <img width=150 height="150px" src="<?php echo base_url('') ?>/assets/img/qrcode/` + selectedRows[i].qrcode + `" alt="no qrcode">
                             <br>                       
                             <span style=margin-left:20px;margin-top:0px;> <b>Css No: ` + selectedRows[i].cssno + `</b></span>

@@ -448,7 +448,7 @@ foreach ($machineTestingSheetSizing as $key) {
 
                                                         foreach ($PressWiseData as $Inmachine) {
                                                             $Balls += ($Inmachine['Totalballs']);
-                                                         $totalsheets += ($Inmachine['Counter']);
+                                                         $totalsheets += ($Inmachine['TotalSheets']);
                                                         ?>
                                                             <div class="col-md-3">
 
