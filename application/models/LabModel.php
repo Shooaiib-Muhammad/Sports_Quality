@@ -3987,6 +3987,18 @@ WHERE        (userid = $user_id) AND (CssNO <> '') AND (RequestStatus = 'Acknowl
             return $query;
         }
     }
+    public function updateCssNoFGTRequest($TID, $cssno){
+        date_default_timezone_set('Asia/Karachi');
+        $Date = date('Y/m/d');
+        $user_id = $this->session->userdata('user_id');
+
+
+        $query = $this->db->query("UPDATE   dbo.tbl_FGT_Request 
+        SET   CssNO = '$cssno' WHERE  TID=$TID");
+        if ($query) {
+            return $query;
+        }
+    }
     public function FGTRequestSendToLab()
     {
         date_default_timezone_set('Asia/Karachi');

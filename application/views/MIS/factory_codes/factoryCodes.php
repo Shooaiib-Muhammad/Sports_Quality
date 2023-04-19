@@ -4,7 +4,9 @@ if (!$this->session->has_userdata('user_id')) {
 } else {
 ?>
 
-  <?php $this->load->view('includes/new_header'); print_r($ambCoreBGrade); ?>
+  <?php $this->load->view('includes/new_header'); 
+  // print_r($ambCoreBGrade); 
+  ?>
 
   <!-- BEGIN Page Wrapper -->
   <div class="page-wrapper">
@@ -17,7 +19,7 @@ if (!$this->session->has_userdata('user_id')) {
         <?php $this->load->view('includes/top_header.php'); ?>
         <main id="js-page-content" role="main" class="page-content">
           <?php
-          // print_r($compBallInspection[0]);
+         
           $compBallInspectionArray = array();          
           if (isset($compBallInspection) && !!$compBallInspection && $compBallInspection[0]) {
             foreach ($compBallInspection[0] as $key => $value) {

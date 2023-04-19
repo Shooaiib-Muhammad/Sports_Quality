@@ -1,24 +1,4 @@
 <?php $this->load->view('includes/new_header'); ?>
-
-<?php
-// Value of Die Testing
-$dieCount = 0;
-foreach ($dieTestingSheetSizing as $key) {
-    $dieCount = $key['Duration'];
-}
-$onaCount = 0;
-foreach ($ONASheetSizing as $key) {
-    $onaCount = $key['Duration'];
-}
-$machineCount = 0;
-foreach ($machineTestingSheetSizing as $key) {
-    $machineCount = $key['Duration'];
-}
-// print_r($ONASheetSizing);
-// print_r($machineTestingSheetSizingGraph);
-
-
-?>
 <!--  -->
 <style>
     .highcharts-figure .chart-container {
@@ -147,114 +127,50 @@ foreach ($machineTestingSheetSizing as $key) {
 
             $this->load->view('includes/top_header.php');
             ?>
-
-            <?php
-
-            $GetHours = array();
-            $GetReading = array();
-            //$target = array();
-            //print_r($HourllyReading);
-            foreach ($HourllyReading as $key) {
-                $point1 = array($key['Counter'] * 5,);
-                $point2 = array($key['HourName'],);
-                $dailytarget = 3000 / 6;
-                $point3 = $dailytarget / 8;
-
-                array_push($GetReading, $point1);
-                array_push($GetHours, $point2);
-                // array_push($target, $point3);
-                //array_push($lineNames, $key['LineName']);
-
-            }
-
-            // For DieTesting Graph
-
-            $GetNameDie = array();
-            $GetDurationDie = array();
-            //$target = array();
-            //print_r($HourllyReading);
-            foreach ($dieTestingSheetSizingGraph as $key) {
-                $point1 = $key['MachineName'];
-                $point2 = $key['Duration'];
-                array_push($GetNameDie, $point1);
-                array_push($GetDurationDie, $point2);
-            }
-
-
-            // For Ona Graph
-
-
-
-
-            $GetNameOna = array();
-            $GetDurationOna = array();
-            //$target = array();
-            //print_r($HourllyReading);
-            foreach ($ONASheetSizingGraph as $key) {
-                $point1 = $key['MachineName'];
-                $point2 = $key['Duration'];
-                array_push($GetNameOna, $point1);
-                array_push($GetDurationOna, $point2);
-            }
-
-            // for Machine Testing graph
-
-            $GetNameMachine = array();
-            $GetDurationMachine = array();
-            //$target = array();
-            //print_r($HourllyReading);
-            foreach ($machineTestingSheetSizingGraph as $key) {
-                $point1 = $key['MachineName'];
-                $point2 = $key['Duration'];
-                array_push($GetNameMachine, $point1);
-                array_push($GetDurationMachine, $point2);
-            }
-
-            // new box added
-            $ms_lamination_machine_energy = 0;
-            foreach ($energy_C as $key) {
-                if ($key['HallName'] == 'MS Lamination Machine 2') {
-                    $ms_lamination_machine_energy = $key['Energy'];
-                }
-                break;
-            }
-
-            $ms_lamination_machine = [];
-            foreach ($energy_C_Drill as $key) {
-                if ($key['HallName'] == 'MS Lamination Machine 2') {
-                    $energy_points11 = [
-                        'name' => $key['HourName'],
-                        'y' => round($key['Energy'], 2),
-                        // 'drilldown' => $key['HallName'],
-                        'new_name' => $key['HallName']
-                    ];
-                    array_push($ms_lamination_machine, $energy_points11);
-                }
-            }
-            //end new box added
-
-            ?>
-
             <!-- END Page Header -->
             <!-- BEGIN Page Content -->
             <!-- the #js-page-content id is needed for some plugins to initialize -->
             <main id="js-page-content" role="main" class="page-content">
-                <?php $id = $_GET['dept_id']; ?>
 
 
+                <?php
+
+                $GetHours = array();
+                $GetReading = array();
+                //$target = array();
+                //print_r($HourllyReading);
+                foreach ($Stationwise as $key) {
+                    $point1 = array($key['Counter'] * 6,);
+                    $point2 = array($key['Name'],);
+                    $dailytarget = 3000 / 6;
+                    $point3 = $dailytarget / 8;
+
+                    array_push($GetReading, $point1);
+                    array_push($GetHours, $point2);
+                    // array_push($target, $point3);
+                    //array_push($lineNames, $key['LineName']);
+
+                }
+                ?>
 
                 <div class="subheader">
                     <h1 class="subheader-title">
-                        <i class='subheader-icon fal fa-chart-area'></i> <span>Sheet Sizing</span>
+                        <i class='subheader-icon fal fa-chart-area'></i> <span class='fw-300'>Bladder Winding </span>
                     </h1>
+
+
+
+
+
                 </div>
 
                 <ul class="nav nav-pills" role="tablist">
                     <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Historical Analysis</a></li>
-                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3">Down Time</a></li>
+
                 </ul>
                 <div class="tab-content py-3">
+
                     <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel" style="background-color: white;">
                         <div id="currentDateData">
                             <div class="row">
@@ -263,21 +179,23 @@ foreach ($machineTestingSheetSizing as $key) {
                                     <div id="panel-1" class="panel">
                                         <div class="panel-hdr">
                                             <h2>
-                                                Sheet Sizing Count
+                                                Bladder Winding Count
 
                                             </h2>
                                         </div>
                                         <div class="panel-container show">
                                             <div class="row pt-2">
 
-                                                <div class="col-md-12 d-flex">
+                                                <div class="col-md-12 d-flex flex-row">
 
+                                                    <div class="col-md-1">
 
+                                                    </div>
 
 
                                                     <div class="col-md-2" id="direct">
                                                         <a href="javascript:void(0)">
-                                                            <div style="background-color:purple" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
+                                                            <div style="background-color:maroon" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
                                                                 <div class="">
                                                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
 
@@ -285,10 +203,10 @@ foreach ($machineTestingSheetSizing as $key) {
                                                                         <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
 
                                                                         <small class="m-0 l-h-n">Number of Employees</small>
-
-                                                                        <span id="employeeId"> <?php echo $realtime; ?></span>
+                                                                        <!-- <?php echo $d['EmpCount']; ?> -->
+                                                                        <span id="employeeId"> </span>
                                                                         <!-- <small class="m-0 l-h-n">Real Time</small>
-                                                                        <?php echo $d['RealTime']; ?> -->
+                                            <?php echo $d['RealTime']; ?> -->
 
                                                                     </h3>
                                                                 </div>
@@ -307,7 +225,7 @@ foreach ($machineTestingSheetSizing as $key) {
                                                                         <!-- <small  class="m-0 l-h-n"><?php echo $d['EmployeeType'] ?></small> -->
 
                                                                         <!-- <small class="m-0 l-h-n">Number of Employees</small>
-                                                                        <?php echo $d['EmpCount']; ?> -->
+                                            <?php echo $d['EmpCount']; ?> -->
                                                                         <small class="m-0 l-h-n">Real Time (Minutes)</small>
                                                                         <span id="realTimeId"> </span>
 
@@ -328,7 +246,11 @@ foreach ($machineTestingSheetSizing as $key) {
                                                                 <div class="">
                                                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
                                                                         <small class="m-0 l-h-n">Total No of Balls</small>
-                                                                        <span id="counterValueId"></span>
+                                                                        <?php if (array_key_exists(0, $getData)) { ?>
+                                                                            <span id="counterValueId"><?php echo Round($getData[0]['Counter'], 0) * 6; ?></span>
+                                                                        <?php } else { ?>
+                                                                            <span id="counterValueId">0</span>
+                                                                        <?php }  ?>
                                                                         <small class="m-0 l-h-n"></small>
 
 
@@ -341,45 +263,6 @@ foreach ($machineTestingSheetSizing as $key) {
                                                             </div>
                                                         </a>
                                                     </div>
-                                                    <div class="col-md-2" id="direct">
-                                                        <a href="javascript:void(0)">
-                                                            <div class="p-2 bg-dark rounded overflow-hidden position-relative text-white mb-g">
-                                                                <div class="">
-                                                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                                                        <small class="m-0 l-h-n">Total No of Sheets</small>
-                                                                        <span id="counterValueId1"></span>
-                                                                        <small class="m-0 l-h-n"></small>
-
-
-
-
-
-                                                                    </h3>
-                                                                </div>
-                                                                <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                    <?php
-                                                    $total = $Counter[0]['Counter'];
-                                                    $Output = $total * 5 * 0.10;
-
-
-
-                                                    $Mints = 0;
-                                                    if (isset($d['EmployeeType']) == "Direct") {
-
-
-                                                        $Mints = isset($d['RealTime']);
-                                                    }
-                                                    if ($Mints != 0) {
-                                                        $Efficiecny = ($Output / $Mints);
-                                                    } else {
-                                                        $Efficiecny = ($Output / 1);
-                                                    }
-
-
-                                                    ?>
 
                                                     <div class="col-md-2" id="direct">
                                                         <a href="javascript:void(0)">
@@ -398,12 +281,12 @@ foreach ($machineTestingSheetSizing as $key) {
 
                                                     <div class=" col-md-2 align-self-center" id="direct">
                                                         <a href="javascript:void(0)">
-                                                            <div style="background-color:maroon" class="p-2 rounded overflow-hidden position-relative text-white mb-g">
+                                                            <div class="p-2 bg-warning rounded overflow-hidden position-relative text-white mb-g">
                                                                 <div class="">
                                                                     <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                                        <!-- <h2 class="">Target <br> </h2> -->
                                                                         <small class="m-0 l-h-n">Target</small>
                                                                         <span>69%</span>
-
                                                                     </h3>
 
                                                                 </div>
@@ -411,88 +294,25 @@ foreach ($machineTestingSheetSizing as $key) {
                                                             </div>
                                                         </a>
                                                     </div>
-
-
                                                     <div class="col-md-1">
                                                         <!-- <?php
                                                                 echo $total;
                                                                 ?>
-                                                        <br>
-                                                        <?php
-                                                        echo $Output;
-                                                        ?>
-                                                        <br>
-                                                        <?php
-                                                        echo $Mints;
-                                                        ?> -->
+                            <br>
+                            <?php
+                            echo $Output;
+                            ?>
+                            <br>
+                            <?php
+                            echo $Mints;
+                            ?> -->
                                                     </div>
 
                                                 </div>
                                             </div> <!-- row ends here -->
-                                            <!-- new box added -->
-
-                                            <div class="row mt-4 pl-5">
-                                                <?php
-                                                $totalsheets = 0;
-                                                $Balls = 0;
-                                                $totalemployee = 0;
-                                                //print_r($PressWiseData);
-                                                // $totalempoyees=0;
-                                                if ($realtime > 0) {
-                                                    $totalempoyees = $realtime;
-                                                } else {
-                                                    $totalempoyees = 0;
-                                                }
-                                                //$totalempoyees;
-
-
-                                                foreach ($PressWiseData as $Inmachine) {
-                                                    $Balls += ($Inmachine['Totalballs']);
-                                                    $totalsheets += ($Inmachine['Counter']);
-                                                ?>
-                                                    <div class="col-md-3">
-
-                                                        <div class="p-3 rounded overflow-hidden position-relative text-white mb-g" style="background-color: maroon;">
-                                                            <div class="">
-                                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
-
-                                                                    <small class="m-0 l-h-n"><?php echo $Inmachine['MachineName']; ?></small>
-                                                                </h3>
-                                                                <h6 class="display-4 d-block l-h-n m-0 fw-400" id="machine1Reading">
-
-                                                                    Sheets <?php echo Round($Inmachine['Counter'], 0) ?><br> Balls(<span> <?php echo Round($Inmachine['Totalballs'], 0) ?></span>)
-                                                                </h6>
-                                                                <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
-                                                            </div>
-                                                            <!-- <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i> -->
-                                                        </div>
-
-                                                    </div>
 
 
 
-
-                                                <?php
-                                                }
-                                                ?>
-
-                                                </a>
-                                            </div>
-                                            <div class="col-md-2 align-self-center" style="margin-left: 12rem;" id="direct">
-                                                <a href="javascript:void(0)">
-                                                    <div style="background-color:tomato" class="p-2 bg-danger rounded overflow-hidden position-relative text-white mb-g">
-                                                        <div class="">
-                                                            <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                                                <small class="m-0 l-h-n">MS Press Machine 2</small>
-                                                                <span><?php echo round($ms_lamination_machine_energy, 2) ?> <small style="display: inline;">KW</small></span>
-
-                                                            </h3>
-
-                                                        </div>
-                                                        <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size:6rem"></i>
-                                                    </div>
-                                                </a>
-                                            </div>
 
                                             <div class="guage text-center ">
                                                 <script src="<?php echo base_url(); ?>/assets/js/highcharts.js"></script>
@@ -508,13 +328,13 @@ foreach ($machineTestingSheetSizing as $key) {
                                                     <!-- <div id="container-rpm" class="chart-container"></div>   -->
                                                 </figure>
                                             </div>
-                                            <div id="tableHere" class="p-2">
+                                            <!-- <div id="tableHere" class="p-2">
 
 
 
 
 
-                                            </div>
+                </div> -->
 
                                         </div>
                                     </div>
@@ -527,26 +347,12 @@ foreach ($machineTestingSheetSizing as $key) {
                                     <div id="panel-1" class="panel">
                                         <div class="panel-hdr">
                                             <h2>
-                                                Sheet Sizing OutPut
+                                                Bladder Winding Machine wise Output
 
                                             </h2>
                                         </div>
                                         <div class="panel-container show">
                                             <div id="container">
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div id="panel-1" class="panel">
-                                        <div class="panel-hdr">
-                                            <h2>
-                                                Sheet Sizing Energy OutPut
-
-                                            </h2>
-                                        </div>
-                                        <div class="panel-container show">
-                                            <div id="energyOutput">
 
                                             </div>
 
@@ -582,26 +388,18 @@ foreach ($machineTestingSheetSizing as $key) {
                                 <div class="row">
                                     <div class="col-md-2"><input class="form-control" type="date" id="startDate" /></div>
                                     <div class="col-md-2"><input class="form-control" type="date" id="endDate" /></div>
-                                    <div class="col-md-2">
-
-                                        <select class='form-control' id='shift'>
-                                            <option value="All">All</option>
-                                            <option value="Day">Day</option>
-                                            <option value="Night">Night</option>
-                                        </select>
-                                    </div>
                                     <div class="col-md-4"><button class="btn btn-primary" id="searchRange">Search</button></div>
                                 </div>
                             </div>
                         </div>
                         <br>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
 
                                 <div id="panel-1" class="panel">
                                     <div class="panel-hdr">
                                         <h2>
-                                        Sheet Sizing OutPut
+                                            Bladder Winding Output
 
                                         </h2>
                                     </div>
@@ -624,185 +422,23 @@ foreach ($machineTestingSheetSizing as $key) {
                                             </div>
 
                                         </div>
-
                                         <div id="loadingShow" style="display: none;">
+
                                             <img src="<?php echo base_url('/') ?>Assets/img/loader4.gif" alt="Loading..." style="margin-left: 100%">
+
+
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
-                            <div class="col-md-6">
-                                <div id="panel-1" class="panel">
-                                    <div class="panel-hdr">
-                                        <h2>
-                                            Sheet Sizing OutPut
-
-                                        </h2>
-                                    </div>
-                                    <div class="panel-container show">
-                                        <div class="row">
-                                            <div class="col-md-12">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
                         </div>
 
 
-                        <!-- tabdirection 3 -->
 
-                        <div class="tab-pane fade" id="tab_direction-3" role="tabpanel">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title" style="color:black;font-weight:bolder">Date Filteration</h5>
-                                    <div class="row">
-                                        <div class="col-md-2"><input class="form-control" type="date" id="startDate" /></div>
-                                        <div class="col-md-2"><input class="form-control" type="date" id="endDate" /></div>
-                                        <div class="col-md-4"><button class="btn btn-primary" id="searchRange">Search</button></div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-md-12">
-
-                                    <div id="panel-1" class="panel">
-                                        <div class="panel-hdr">
-                                            <h2>
-                                                Down Time of Machines
-
-                                            </h2>
-                                        </div>
-                                        <div class="panel-container show">
-
-                                            <div class="row d-flex justify-content-center">
-                                                <div class="col-md-2 p-5 m-5" id="direct">
-                                                    <a href="javascript:void(0)">
-                                                        <div style="background-color:brown" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
-                                                            <div class="">
-                                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
-
-                                                                    <small class="m-0 l-h-n">Die Testing</small>
-                                                                    <span> <?php echo $dieCount; ?> </span>
-
-                                                                </h3>
-                                                            </div>
-                                                            <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                                        </div>
-                                                    </a>
-                                                </div>
-
-                                                <div class="col-md-2 p-5 m-5" id="direct">
-                                                    <a href="javascript:void(0)">
-                                                        <div style="background-color:gray" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
-                                                            <div class="">
-                                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
-
-                                                                    <small class="m-0 l-h-n">ONA</small>
-                                                                    <span> <?php echo $onaCount; ?> </span>
-
-                                                                </h3>
-                                                            </div>
-                                                            <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-2 p-5 m-5" id="direct">
-                                                    <a href="javascript:void(0)">
-                                                        <div style="background-color:purple" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
-                                                            <div class="">
-                                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
-
-                                                                    <small class="m-0 l-h-n">Machine Testing</small>
-                                                                    <span> <?php echo $machineCount; ?> </span>
-
-                                                                </h3>
-                                                            </div>
-                                                            <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-2 p-5 m-5" id="direct">
-                                                    <a href="javascript:void(0)">
-                                                        <div style="background-color:green" class="p-2  rounded overflow-hidden position-relative text-white mb-g">
-                                                            <div class="">
-                                                                <h3 class="display-4 d-block l-h-n m-0 fw-500">
-
-                                                                    <small class="m-0 l-h-n">Down Time</small>
-                                                                    <span> <?php echo $dieCount + $onaCount + $machineCount; ?> </span>
-
-                                                                </h3>
-                                                            </div>
-                                                            <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-md-12">
-
-                                    <div id="panel-1" class="panel">
-                                        <div class="panel-hdr">
-                                            <h2>
-                                                Graphs
-
-                                            </h2>
-                                        </div>
-                                        <div class="panel-container show">
-                                            <div class="row ">
-                                                <div class="col-md-12">
-                                                    <div id="containerDie">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <br>
-                                            <div class="row ">
-                                                <div class="col-md-12">
-                                                    <div id="containerOna">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <br>
-                                            <div class="row ">
-                                                <div class="col-md-12">
-                                                    <div id="containerMachine">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-
-                        </div>
                     </div>
+                </div>
             </main>
-
 
 
 
@@ -1487,8 +1123,8 @@ foreach ($machineTestingSheetSizing as $key) {
     </div>
 </div>
 <!-- END Page Settings -->
-<!-- base vendor bundle:
-			 DOC: if you remove pace.js from core please note on Internet Explorer some CSS animations may execute before a page is fully loaded, resulting 'jump' animations
+<!-- base vendor bundle: 
+			 DOC: if you remove pace.js from core please note on Internet Explorer some CSS animations may execute before a page is fully loaded, resulting 'jump' animations 
 						+ pace.js (recommended)
 						+ jquery.js (core)
 						+ jquery-ui-cust.js (core)
@@ -1511,14 +1147,6 @@ foreach ($machineTestingSheetSizing as $key) {
 <script src="<?php echo base_url(); ?>assets/js/statistics/flot/flot.bundle.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/datagrid/datatables/datatables.bundle.js"></script>
-<script src="<?php echo base_url(); ?>/assets/js/highcharts.js"></script>
-<script src="<?php echo base_url(); ?>/assets/js/data.js"></script>
-<script src="<?php echo base_url(); ?>/assets/js/drilldown.js"></script>
-<script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>
-<script src="<?php echo base_url(); ?>/assets/js/export-data.js"></script>
-<script src="<?php echo base_url(); ?>/assets/js/accessibility.js"></script>
-<script src="<?php echo base_url(); ?>/assets/js/highcharts-more.js"></script>
-<script src="<?php echo base_url(); ?>/assets/js/solidGuage.js"></script>
 
 <script>
     Highcharts.setOptions({
@@ -1535,6 +1163,86 @@ foreach ($machineTestingSheetSizing as $key) {
                 ]
             };
         })
+    });
+
+    Highcharts.chart('container', {
+        chart: {
+            zoomType: 'xy'
+        },
+        title: {
+            text: 'Bladder Winding Machine Wise Output'
+        },
+        subtitle: {
+            // text: 'Source: WorldClimate.com'
+        },
+        xAxis: [{
+            categories: <?php echo json_encode($GetHours, JSON_NUMERIC_CHECK); ?>,
+            crosshair: true
+        }],
+        yAxis: [{ // Primary yAxis
+                labels: {
+                    format: '{value} balls',
+                    style: {
+                        color: Highcharts.getOptions().colors[1]
+                    }
+                },
+                title: {
+                    text: 'Achieved',
+                    style: {
+                        color: Highcharts.getOptions().colors[1]
+                    }
+                }
+            },
+            { // Secondary yAxis
+                title: {
+                    text: 'Target',
+                    style: {
+                        color: Highcharts.getOptions().colors[0]
+                    }
+                },
+
+                opposite: true
+            }
+        ],
+        tooltip: {
+            shared: true
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            x: 120,
+            verticalAlign: 'top',
+            y: 100,
+            floating: true,
+            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
+                'rgba(255,255,255,0.25)',
+            enabled: false
+        },
+
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y:.0f}'
+                }
+            }
+        },
+        series: [{
+                name: 'Achieved',
+                type: 'column',
+                yAxis: 1,
+
+                data: <?php echo json_encode($GetReading, JSON_NUMERIC_CHECK); ?>,
+                tooltip: {
+                    valueSuffix: ' balls'
+                }
+
+            }
+
+        ]
+
+
     });
     /* defined datas */
     var dataTargetProfit = [
@@ -1601,16 +1309,10 @@ foreach ($machineTestingSheetSizing as $key) {
     ];
 
     $(document).ready(function() {
-        let totalCounter = <?php echo $totalsheets; ?>;
-        let balls = <?php echo $Balls; ?>;
-        let emp = <?php echo $totalempoyees; ?>;
-        // //alert(empcount);
-        //console.log("Total Counter",<?php echo $totalempoyees; ?>)
-        $("#counterValueId1").text(totalCounter.toFixed(2))
-        $("#counterValueId").text(balls.toFixed(2))
         var EfficiencyFinal;
         var EfficiencyFinalArray = [];
         let counterValue = $("#counterValueId").text()
+        console.log((counterValue / 2920) * 100)
         let currentDate = new Date().toJSON().substr(0, 10);
         let dateGet = new Date()
         let dayId = dateGet.getDay()
@@ -1630,22 +1332,31 @@ foreach ($machineTestingSheetSizing as $key) {
             $("#currentDateData").css('display', 'none');
             $("#sundayStatus").css('display', "inline-block");
         } else {
-            if (dateGet.getHours() >= 6 && dateGet.getHours() <= 16) {
+            if (dateGet.getHours() >= 7 && dateGet.getHours() <= 16) {
 
                 if (dateGet.getHours() >= 14) {
                     dateDifference = date2 - date1;
                     minutes = Math.floor(dateDifference / 60000);
 
+                    // EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
+                    // if(dayId == 5){
+                    //     $("#realTimeId").text((minutes*0.5*16)-(60*0.5*16))
+                    // }
+                    // else{
+
+                    // }
+
 
                     if (dayId == 5) {
-                        EfficiencyFinal = (((counterValue * 0.10) / ((minutes * emp) - (60 * emp))) * 100).toFixed(2)
-                        $("#realTimeId").text((minutes * emp) - (60 * emp))
+                        EfficiencyFinal = (((counterValue * 0.22) / ((minutes * 0.5 * 16) - (60 * 0.5 * 16))) * 100).toFixed(2)
+                        $("#realTimeId").text((minutes * 0.5 * 16) - (60 * 0.5 * 16))
                     } else {
-                        EfficiencyFinal = (((counterValue * 0.10) / ((minutes * emp) - (45 * emp))) * 100).toFixed(2)
-                        $("#realTimeId").text((minutes * emp) - (45 * emp))
+                        EfficiencyFinal = (((counterValue * 0.22) / ((minutes * 0.5 * 16) - (45 * 0.5 * 16))) * 100).toFixed(2)
+                        $("#realTimeId").text((minutes * 0.5 * 16) - (45 * 0.5 * 16))
                     }
                     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
-                    $("#employeeId").text()
+
+                    $("#employeeId").text(0.5 * 16)
                     $("#efficiencyValueId").text(EfficiencyFinal + "%")
                     console.log(EfficiencyFinalArray)
                     var gaugeOptions = {
@@ -1733,14 +1444,13 @@ foreach ($machineTestingSheetSizing as $key) {
 
                     }));
                 } else {
-
                     dateDifference = date2 - date1;
                     minutes = Math.floor(dateDifference / 60000);
-                    EfficiencyFinal = (((counterValue * 0.10) / (minutes * emp)) * 100).toFixed(2)
+                    EfficiencyFinal = (((counterValue * 0.22) / (minutes * 0.5 * 16)) * 100).toFixed(2)
                     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
-
-                    $("#realTimeId").text(minutes * emp)
-                    $("#employeeId").text()
+                    console.log(EfficiencyFinalArray)
+                    $("#realTimeId").text(minutes * 0.5 * 16)
+                    $("#employeeId").text(0.5 * 16)
                     $("#efficiencyValueId").text(EfficiencyFinal + "%")
                     var gaugeOptions = {
                         chart: {
@@ -1835,10 +1545,6 @@ foreach ($machineTestingSheetSizing as $key) {
                 $("#overStatus").css('display', "inline-block");
             }
         }
-
-
-        // checking with date is more recent to get the other out of it and store the result in dateDifference variable
-
         /* init datatables */
         $('#dt-basic-example').dataTable({
             responsive: true,
@@ -1893,8 +1599,8 @@ foreach ($machineTestingSheetSizing as $key) {
                         		<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>
                         	</div>
                         </div>`;
-
-                        ES5 example below:
+                        	
+                        ES5 example below:	
 
                         */
                         return "\n\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-icon btn-outline-danger rounded-circle mr-1' title='Delete Record'>\n\t\t\t\t\t\t\t<i class=\"fal fa-times\"></i>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t<div class='dropdown d-inline-block dropleft'>\n\t\t\t\t\t\t\t<a href='#'' class='btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0' data-toggle='dropdown' aria-expanded='true' title='More options'>\n\t\t\t\t\t\t\t\t<i class=\"fal fa-ellipsis-v\"></i>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t<div class='dropdown-menu'>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>\n\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>";
@@ -2183,12 +1889,12 @@ foreach ($machineTestingSheetSizing as $key) {
             ps = [],
             series = [],
             len = data1.BarData.length;
-        console.log("Outer", data1);
+
         //concat to get points
         for (var i = 0; i < len; i++) {
             ps[i] = {
                 name: data1.BarData[i].Date,
-                y: parseInt(data1.BarData[i].Counter),
+                y: parseFloat(data1.BarData[i].Counter * 6),
                 drilldown: data1.BarData[i].Date
             };
         }
@@ -2210,23 +1916,14 @@ foreach ($machineTestingSheetSizing as $key) {
             len = data1.MachineData.length;
         let datesArray = []
         let dataArray = []
-        console.log(data1.MachineData);
+
         //concat to get points
         for (var i = 0; i < len; i++) {
             if (datesArray.indexOf(data1.MachineData[i].Date) === -1) {
                 datesArray.push(data1.MachineData[i].Date)
-                if (data1.MachineData[i].MachineName == "Sheet Sizing Press 1" || data1.MachineData[i].MachineName == "Sheet Sizing Press 2") {
-                    dataArray.push([data1.MachineData[i].Date, data1.MachineData[i].MachineName, parseInt(data1.MachineData[i].Counter)])
-                } else {
-                    dataArray.push([data1.MachineData[i].Date, data1.MachineData[i].MachineName, parseInt(data1.MachineData[i].Counter)])
-                }
-
+                dataArray.push([data1.MachineData[i].Date, data1.MachineData[i].Name, parseFloat(data1.MachineData[i].Counter * 6)])
             } else {
-                if (data1.MachineData[i].MachineName == "Sheet Sizing Press 1" || data1.MachineData[i].MachineName == "Sheet Sizing Press 2") {
-                    dataArray.push([data1.MachineData[i].Date, data1.MachineData[i].MachineName, parseInt(data1.MachineData[i].Counter)])
-                } else {
-                    dataArray.push([data1.MachineData[i].Date, data1.MachineData[i].MachineName, parseInt(data1.MachineData[i].Counter)])
-                }
+                dataArray.push([data1.MachineData[i].Date, data1.MachineData[i].Name, parseFloat(data1.MachineData[i].Counter * 6)])
             }
 
 
@@ -2265,8 +1962,6 @@ foreach ($machineTestingSheetSizing as $key) {
         $("#loadingShow").css('display', 'inline-block')
         let startDate = $("#startDate").val()
         let endDate = $("#endDate").val()
-        let shift = $("#shift").val()
-
         let startDateNewFormat = startDate.split("-")[2] + "-" + startDate.split("-")[1] + "-" + startDate.split("-")[0]
         let endDateNewFormat = endDate.split("-")[2] + "-" + endDate.split("-")[1] + "-" + endDate.split("-")[0]
         const params = new Proxy(new URLSearchParams(window.location.search), {
@@ -2280,17 +1975,28 @@ foreach ($machineTestingSheetSizing as $key) {
         let seriesDataMachine2 = [];
         let seriesDataMachine3 = [];
         let seriesDataMachine4 = [];
+        let seriesDataMachine5 = [];
+        let seriesDataMachine6 = [];
+        let seriesDataMachine7 = [];
+        let seriesDataMachine8 = [];
+        let seriesDataMachine9 = [];
+        let seriesDataMachine10 = [];
+        let seriesDataMachine11 = [];
+        let seriesDataMachine12 = [];
+        let seriesDataMachine13 = [];
+        let seriesDataMachine14 = [];
+        let seriesDataMachine15 = [];
+        let seriesDataMachine16 = [];
         let originalDataMachineWise = [];
         let targetDataMachineWise = [];
         let output = 0;
         let Minutes = 0;
         let efficiency = 0;
-        let url = "<?php echo base_url('Efficiency/getCuttingSheetSizingDateRangeData') ?>";
+        let url = "<?php echo base_url('Efficiency/getBladderWindingDateRangeDatanew') ?>";
         let url2 = "<?php echo base_url('Efficiency/getRealTimeDateRange') ?>";
         $.post(url, {
             "startDate": startDate,
-            "endDate": endDate,
-            "shift": shift
+            "endDate": endDate
         }, function(data, status) {
             console.log("Data Outer", data)
             let seriesDataTop;
@@ -2306,69 +2012,480 @@ foreach ($machineTestingSheetSizing as $key) {
                     // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
                     if (datesArrayMachineWise.indexOf(data.MachineData[k].Date) === -1) {
                         datesArrayMachineWise.push(data.MachineData[k].Date)
-                        targetDataMachineWise.push(parseFloat(69))
-                        if (data.MachineData[k].MachineName == "Sheet Sizing Press 1") {
-                            output = data.MachineData[k].Counter * 0.10
-                            Minutes = (480);
+                        targetDataMachineWise.push(parseFloat(67))
+                        if (data.MachineData[k].Name == "Bladder Winding 1") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
                             efficiency = ((output / Minutes) * 100).toFixed(2)
                             seriesDataMachine1.push(parseFloat(efficiency))
                             seriesDataMachine2.push(0)
                             seriesDataMachine3.push(0)
                             seriesDataMachine4.push(0)
-                        } else if (data.MachineData[k].MachineName == "Sheet Sizing Press 2") {
-                            output = data.MachineData[k].Counter * 0.10
-                            Minutes = (480);
+                            seriesDataMachine5.push(0)
+                            seriesDataMachine6.push(0)
+                            seriesDataMachine7.push(0)
+                            seriesDataMachine8.push(0)
+                            seriesDataMachine9.push(0)
+                            seriesDataMachine10.push(0)
+                            seriesDataMachine11.push(0)
+                            seriesDataMachine12.push(0)
+                            seriesDataMachine13.push(0)
+                            seriesDataMachine14.push(0)
+                            seriesDataMachine15.push(0)
+                            seriesDataMachine16.push(0)
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 2") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
                             efficiency = ((output / Minutes) * 100).toFixed(2)
                             seriesDataMachine2.push(parseFloat(efficiency))
                             seriesDataMachine1.push(0)
                             seriesDataMachine3.push(0)
                             seriesDataMachine4.push(0)
-                        } else if (data.MachineData[k].MachineName == "Sheet Sizing Press 3") {
-                            output = data.MachineData[k].Counter * 0.10
-                            Minutes = (480);
+                            seriesDataMachine5.push(0)
+                            seriesDataMachine6.push(0)
+                            seriesDataMachine7.push(0)
+                            seriesDataMachine8.push(0)
+                            seriesDataMachine9.push(0)
+                            seriesDataMachine10.push(0)
+                            seriesDataMachine11.push(0)
+                            seriesDataMachine12.push(0)
+                            seriesDataMachine13.push(0)
+                            seriesDataMachine14.push(0)
+                            seriesDataMachine15.push(0)
+                            seriesDataMachine16.push(0)
+
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 3") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
                             efficiency = ((output / Minutes) * 100).toFixed(2)
                             seriesDataMachine3.push(parseFloat(efficiency))
                             seriesDataMachine2.push(0)
                             seriesDataMachine1.push(0)
                             seriesDataMachine4.push(0)
-                        } else if (data.MachineData[k].MachineName == "Sheet Sizing Press 4") {
-                            output = data.MachineData[k].Counter * 0.10
-                            Minutes = (480);
+                            seriesDataMachine5.push(0)
+                            seriesDataMachine6.push(0)
+                            seriesDataMachine7.push(0)
+                            seriesDataMachine8.push(0)
+                            seriesDataMachine9.push(0)
+                            seriesDataMachine10.push(0)
+                            seriesDataMachine11.push(0)
+                            seriesDataMachine12.push(0)
+                            seriesDataMachine13.push(0)
+                            seriesDataMachine14.push(0)
+                            seriesDataMachine15.push(0)
+                            seriesDataMachine16.push(0)
+
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 4") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
                             efficiency = ((output / Minutes) * 100).toFixed(2)
                             seriesDataMachine4.push(parseFloat(efficiency))
                             seriesDataMachine2.push(0)
-                            seriesDataMachine1.push(0)
                             seriesDataMachine3.push(0)
+                            seriesDataMachine1.push(0)
+                            seriesDataMachine5.push(0)
+                            seriesDataMachine6.push(0)
+                            seriesDataMachine7.push(0)
+                            seriesDataMachine8.push(0)
+                            seriesDataMachine9.push(0)
+                            seriesDataMachine10.push(0)
+                            seriesDataMachine11.push(0)
+                            seriesDataMachine12.push(0)
+                            seriesDataMachine13.push(0)
+                            seriesDataMachine14.push(0)
+                            seriesDataMachine15.push(0)
+                            seriesDataMachine16.push(0)
+
+
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 5") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine5.push(parseFloat(efficiency))
+                            seriesDataMachine2.push(0)
+                            seriesDataMachine3.push(0)
+                            seriesDataMachine4.push(0)
+                            seriesDataMachine1.push(0)
+                            seriesDataMachine6.push(0)
+                            seriesDataMachine7.push(0)
+                            seriesDataMachine8.push(0)
+                            seriesDataMachine9.push(0)
+                            seriesDataMachine10.push(0)
+                            seriesDataMachine11.push(0)
+                            seriesDataMachine12.push(0)
+                            seriesDataMachine13.push(0)
+                            seriesDataMachine14.push(0)
+                            seriesDataMachine15.push(0)
+                            seriesDataMachine16.push(0)
+
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 6") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine6.push(parseFloat(efficiency))
+                            seriesDataMachine2.push(0)
+                            seriesDataMachine3.push(0)
+                            seriesDataMachine4.push(0)
+                            seriesDataMachine5.push(0)
+                            seriesDataMachine1.push(0)
+                            seriesDataMachine7.push(0)
+                            seriesDataMachine8.push(0)
+                            seriesDataMachine9.push(0)
+                            seriesDataMachine10.push(0)
+                            seriesDataMachine11.push(0)
+                            seriesDataMachine12.push(0)
+                            seriesDataMachine13.push(0)
+                            seriesDataMachine14.push(0)
+                            seriesDataMachine15.push(0)
+                            seriesDataMachine16.push(0)
+
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 7") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine7.push(parseFloat(efficiency))
+                            seriesDataMachine2.push(0)
+                            seriesDataMachine3.push(0)
+                            seriesDataMachine4.push(0)
+                            seriesDataMachine5.push(0)
+                            seriesDataMachine6.push(0)
+                            seriesDataMachine1.push(0)
+                            seriesDataMachine8.push(0)
+                            seriesDataMachine9.push(0)
+                            seriesDataMachine10.push(0)
+                            seriesDataMachine11.push(0)
+                            seriesDataMachine12.push(0)
+                            seriesDataMachine13.push(0)
+                            seriesDataMachine14.push(0)
+                            seriesDataMachine15.push(0)
+                            seriesDataMachine16.push(0)
+
+
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 8") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine8.push(parseFloat(efficiency))
+                            seriesDataMachine2.push(0)
+                            seriesDataMachine3.push(0)
+                            seriesDataMachine4.push(0)
+                            seriesDataMachine5.push(0)
+                            seriesDataMachine6.push(0)
+                            seriesDataMachine7.push(0)
+                            seriesDataMachine1.push(0)
+                            seriesDataMachine9.push(0)
+                            seriesDataMachine10.push(0)
+                            seriesDataMachine11.push(0)
+                            seriesDataMachine12.push(0)
+                            seriesDataMachine13.push(0)
+                            seriesDataMachine14.push(0)
+                            seriesDataMachine15.push(0)
+                            seriesDataMachine16.push(0)
+
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 9") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine9.push(parseFloat(efficiency))
+                            seriesDataMachine2.push(0)
+                            seriesDataMachine3.push(0)
+                            seriesDataMachine4.push(0)
+                            seriesDataMachine5.push(0)
+                            seriesDataMachine6.push(0)
+                            seriesDataMachine7.push(0)
+                            seriesDataMachine8.push(0)
+                            seriesDataMachine1.push(0)
+                            seriesDataMachine10.push(0)
+                            seriesDataMachine11.push(0)
+                            seriesDataMachine12.push(0)
+                            seriesDataMachine13.push(0)
+                            seriesDataMachine14.push(0)
+                            seriesDataMachine15.push(0)
+                            seriesDataMachine16.push(0)
+
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 10") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine10.push(parseFloat(efficiency))
+                            seriesDataMachine2.push(0)
+                            seriesDataMachine3.push(0)
+                            seriesDataMachine4.push(0)
+                            seriesDataMachine5.push(0)
+                            seriesDataMachine6.push(0)
+                            seriesDataMachine7.push(0)
+                            seriesDataMachine8.push(0)
+                            seriesDataMachine9.push(0)
+                            seriesDataMachine1.push(0)
+                            seriesDataMachine11.push(0)
+                            seriesDataMachine12.push(0)
+                            seriesDataMachine13.push(0)
+                            seriesDataMachine14.push(0)
+                            seriesDataMachine15.push(0)
+                            seriesDataMachine16.push(0)
+
+
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 11") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine11.push(parseFloat(efficiency))
+                            seriesDataMachine2.push(0)
+                            seriesDataMachine3.push(0)
+                            seriesDataMachine4.push(0)
+                            seriesDataMachine5.push(0)
+                            seriesDataMachine6.push(0)
+                            seriesDataMachine7.push(0)
+                            seriesDataMachine8.push(0)
+                            seriesDataMachine9.push(0)
+                            seriesDataMachine10.push(0)
+                            seriesDataMachine1.push(0)
+                            seriesDataMachine12.push(0)
+                            seriesDataMachine13.push(0)
+                            seriesDataMachine14.push(0)
+                            seriesDataMachine15.push(0)
+                            seriesDataMachine16.push(0)
+
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 12") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine12.push(parseFloat(efficiency))
+                            seriesDataMachine2.push(0)
+                            seriesDataMachine3.push(0)
+                            seriesDataMachine4.push(0)
+                            seriesDataMachine5.push(0)
+                            seriesDataMachine6.push(0)
+                            seriesDataMachine7.push(0)
+                            seriesDataMachine8.push(0)
+                            seriesDataMachine9.push(0)
+                            seriesDataMachine10.push(0)
+                            seriesDataMachine11.push(0)
+                            seriesDataMachine1.push(0)
+                            seriesDataMachine13.push(0)
+                            seriesDataMachine14.push(0)
+                            seriesDataMachine15.push(0)
+                            seriesDataMachine16.push(0)
+
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 13") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine13.push(parseFloat(efficiency))
+                            seriesDataMachine2.push(0)
+                            seriesDataMachine3.push(0)
+                            seriesDataMachine4.push(0)
+                            seriesDataMachine5.push(0)
+                            seriesDataMachine6.push(0)
+                            seriesDataMachine7.push(0)
+                            seriesDataMachine8.push(0)
+                            seriesDataMachine9.push(0)
+                            seriesDataMachine10.push(0)
+                            seriesDataMachine11.push(0)
+                            seriesDataMachine12.push(0)
+                            seriesDataMachine1.push(0)
+                            seriesDataMachine14.push(0)
+                            seriesDataMachine15.push(0)
+                            seriesDataMachine16.push(0)
+
+
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 14") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine14.push(parseFloat(efficiency))
+                            seriesDataMachine2.push(0)
+                            seriesDataMachine3.push(0)
+                            seriesDataMachine4.push(0)
+                            seriesDataMachine5.push(0)
+                            seriesDataMachine6.push(0)
+                            seriesDataMachine7.push(0)
+                            seriesDataMachine8.push(0)
+                            seriesDataMachine9.push(0)
+                            seriesDataMachine10.push(0)
+                            seriesDataMachine11.push(0)
+                            seriesDataMachine12.push(0)
+                            seriesDataMachine13.push(0)
+                            seriesDataMachine1.push(0)
+                            seriesDataMachine15.push(0)
+                            seriesDataMachine16.push(0)
+
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 15") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine15.push(parseFloat(efficiency))
+                            seriesDataMachine2.push(0)
+                            seriesDataMachine3.push(0)
+                            seriesDataMachine4.push(0)
+                            seriesDataMachine5.push(0)
+                            seriesDataMachine6.push(0)
+                            seriesDataMachine7.push(0)
+                            seriesDataMachine8.push(0)
+                            seriesDataMachine9.push(0)
+                            seriesDataMachine10.push(0)
+                            seriesDataMachine11.push(0)
+                            seriesDataMachine12.push(0)
+                            seriesDataMachine13.push(0)
+                            seriesDataMachine14.push(0)
+                            seriesDataMachine1.push(0)
+                            seriesDataMachine16.push(0)
+
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 16") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine16.push(parseFloat(efficiency))
+                            seriesDataMachine2.push(0)
+                            seriesDataMachine3.push(0)
+                            seriesDataMachine4.push(0)
+                            seriesDataMachine5.push(0)
+                            seriesDataMachine6.push(0)
+                            seriesDataMachine7.push(0)
+                            seriesDataMachine8.push(0)
+                            seriesDataMachine9.push(0)
+                            seriesDataMachine10.push(0)
+                            seriesDataMachine11.push(0)
+                            seriesDataMachine12.push(0)
+                            seriesDataMachine13.push(0)
+                            seriesDataMachine14.push(0)
+                            seriesDataMachine15.push(0)
+                            seriesDataMachine1.push(0)
+
+
 
                         }
                     } else {
-                        if (data.MachineData[k].MachineName == "Sheet Sizing Press 1") {
-                            output = data.MachineData[k].Counter * 0.10
-                            Minutes = (480);
+                        if (data.MachineData[k].Name == "Bladder Winding 1") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
                             efficiency = ((output / Minutes) * 100).toFixed(2)
                             seriesDataMachine1.pop()
                             seriesDataMachine1.push(parseFloat(efficiency))
 
-                        } else if (data.MachineData[k].MachineName == "Sheet Sizing Press 2") {
-                            output = data.MachineData[k].Counter * 0.10
-                            Minutes = (480);
+                        } else if (data.MachineData[k].Name == "Bladder Winding 2") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
                             efficiency = ((output / Minutes) * 100).toFixed(2)
                             seriesDataMachine2.pop()
                             seriesDataMachine2.push(parseFloat(efficiency))
 
-                        } else if (data.MachineData[k].MachineName == "Sheet Sizing Press 3") {
-                            output = data.MachineData[k].Counter * 0.10
-                            Minutes = (480);
+                        } else if (data.MachineData[k].Name == "Bladder Winding 3") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
                             efficiency = ((output / Minutes) * 100).toFixed(2)
                             seriesDataMachine3.pop()
                             seriesDataMachine3.push(parseFloat(efficiency))
 
-                        } else if (data.MachineData[k].MachineName == "Sheet Sizing Press 4") {
-                            output = data.MachineData[k].Counter * 0.10
-                            Minutes = (480);
+                        } else if (data.MachineData[k].Name == "Bladder Winding 4") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
                             efficiency = ((output / Minutes) * 100).toFixed(2)
                             seriesDataMachine4.pop()
                             seriesDataMachine4.push(parseFloat(efficiency))
+
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 5") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine5.pop()
+                            seriesDataMachine5.push(parseFloat(efficiency))
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 6") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine6.pop()
+                            seriesDataMachine6.push(parseFloat(efficiency))
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 7") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine7.pop()
+                            seriesDataMachine7.push(parseFloat(efficiency))
+
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 8") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine8.pop()
+                            seriesDataMachine8.push(parseFloat(efficiency))
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 9") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine9.pop()
+                            seriesDataMachine9.push(parseFloat(efficiency))
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 10") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine10.pop()
+                            seriesDataMachine10.push(parseFloat(efficiency))
+
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 11") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine11.pop()
+                            seriesDataMachine11.push(parseFloat(efficiency))
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 12") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine12.pop()
+                            seriesDataMachine12.push(parseFloat(efficiency))
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 13") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine13.pop()
+                            seriesDataMachine13.push(parseFloat(efficiency))
+
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 14") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine14.pop()
+                            seriesDataMachine14.push(parseFloat(efficiency))
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 15") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine15.pop()
+                            seriesDataMachine15.push(parseFloat(efficiency))
+
+                        } else if (data.MachineData[k].Name == "Bladder Winding 16") {
+                            output = data.MachineData[k].Counter * 0.83 * 6
+                            Minutes = (0.5 * 480);
+                            efficiency = ((output / Minutes) * 100).toFixed(2)
+                            seriesDataMachine16.pop()
+                            seriesDataMachine16.push(parseFloat(efficiency))
 
 
                         }
@@ -2378,21 +2495,66 @@ foreach ($machineTestingSheetSizing as $key) {
 
                 }
                 originalDataMachineWise.push({
-                    name: "Sheet Sizing Press 1",
-                    data: seriesDataMachine1
-                }, {
-                    name: "Sheet Sizing Press 2",
-                    data: seriesDataMachine2
-                }, {
-                    name: "Sheet Sizing Press 3",
-                    data: seriesDataMachine3
-                }, {
-                    name: "Sheet Sizing Press 4",
-                    data: seriesDataMachine4
-                }, {
-                    name: "Target Efficiency",
-                    data: targetDataMachineWise
-                })
+                        name: "Bladder Winding 1",
+                        data: seriesDataMachine1
+                    }, {
+                        name: "Bladder Winding 2",
+                        data: seriesDataMachine2
+                    }, {
+                        name: "Bladder Winding 3",
+                        data: seriesDataMachine3
+                    }, {
+                        name: "Bladder Winding 4",
+                        data: seriesDataMachine4
+                    },
+
+                    {
+                        name: "Bladder Winding 5",
+                        data: seriesDataMachine5
+                    }, {
+                        name: "Bladder Winding 6",
+                        data: seriesDataMachine6
+                    }, {
+                        name: "Bladder Winding 7",
+                        data: seriesDataMachine7
+                    }, {
+                        name: "Bladder Winding 8",
+                        data: seriesDataMachine8
+                    },
+
+                    {
+                        name: "Bladder Winding 9",
+                        data: seriesDataMachine9
+                    }, {
+                        name: "Bladder Winding 10",
+                        data: seriesDataMachine10
+                    }, {
+                        name: "Bladder Winding 11",
+                        data: seriesDataMachine11
+                    }, {
+                        name: "Bladder Winding 12",
+                        data: seriesDataMachine12
+                    },
+
+                    {
+                        name: "Bladder Winding 13",
+                        data: seriesDataMachine13
+                    }, {
+                        name: "Bladder Winding 14",
+                        data: seriesDataMachine14
+                    }, {
+                        name: "Bladder Winding 15",
+                        data: seriesDataMachine15
+                    }, {
+                        name: "Bladder Winding 16",
+                        data: seriesDataMachine16
+                    },
+
+                    {
+                        name: "Target Efficiency",
+                        data: targetDataMachineWise
+                    }
+                )
             }
             console.log("Target", datesArrayMachineWise)
             for (var i = 0; i < data.BarData.length; i++) {
@@ -2410,7 +2572,7 @@ foreach ($machineTestingSheetSizing as $key) {
 
                 yAxis: {
                     title: {
-                        text: 'Efficiency ( % )'
+                        text: 'Efficiency'
                     }
                 },
 
@@ -2492,7 +2654,7 @@ foreach ($machineTestingSheetSizing as $key) {
                 },
 
                 series: [{
-                    name: "Sheet Sizing",
+                    name: "Bladder Winding",
                     colorByPoint: true,
                     data: seriesDataTop
                 }],
@@ -2514,16 +2676,16 @@ foreach ($machineTestingSheetSizing as $key) {
             let outputInner = 0;
             let MinutesInner = 0;
             let efficiencyInner = 0;
-            // for(let i = 0; i<len; i++){
+            // for(let i = 0; i<len; i++){ 
             for (let j = 0; j < lenOuter; j++) {
                 // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
 
-                outputInner = dataArrayOuter[j].Counter * 0.10
-                MinutesInner = (4 * 480);
+                outputInner = dataArrayOuter[j].Counter * 0.83 * 6
+                MinutesInner = (0.5 * 16 * 480);
                 efficiencyInner = ((outputInner / MinutesInner) * 100).toFixed(2)
 
                 seriesData.push(parseFloat(efficiencyInner))
-                targetData.push(parseFloat(69))
+                targetData.push(parseFloat(67))
                 // }
             }
 
@@ -2539,7 +2701,6 @@ foreach ($machineTestingSheetSizing as $key) {
             // }
             // }
 
-
             //  console.log(datesArray)
             Highcharts.chart('containerDateRangeLine', {
 
@@ -2549,7 +2710,7 @@ foreach ($machineTestingSheetSizing as $key) {
 
                 yAxis: {
                     title: {
-                        text: 'Efficiency ( % )'
+                        text: 'Efficiency'
                     }
                 },
 
@@ -2594,462 +2755,10 @@ foreach ($machineTestingSheetSizing as $key) {
 
 
 
-
         });
     })
 </script>
 <script>
-    Highcharts.chart('container', {
-        chart: {
-            zoomType: 'xy'
-        },
-        title: {
-            text: 'Sheet Sizing Output'
-        },
-        subtitle: {
-            // text: 'Source: WorldClimate.com'
-        },
-        xAxis: [{
-            categories: <?php echo json_encode($GetHours, JSON_NUMERIC_CHECK); ?>,
-            crosshair: true
-        }],
-        yAxis: [{ // Primary yAxis
-                labels: {
-                    format: '{value} balls',
-                    style: {
-                        color: Highcharts.getOptions().colors[1]
-                    }
-                },
-                title: {
-                    text: 'Achieved',
-                    style: {
-                        color: Highcharts.getOptions().colors[1]
-                    }
-                }
-            },
-            { // Secondary yAxis
-                title: {
-                    text: 'Target',
-                    style: {
-                        color: Highcharts.getOptions().colors[0]
-                    }
-                },
-
-                opposite: true
-            }
-        ],
-        tooltip: {
-            shared: true
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'left',
-            x: 120,
-            verticalAlign: 'top',
-            y: 100,
-            floating: true,
-            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
-                'rgba(255,255,255,0.25)',
-            enabled: false
-        },
-
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true,
-                    format: '{point.y:.0f}'
-                }
-            }
-        },
-        series: [{
-                name: 'Achieved',
-                type: 'column',
-                yAxis: 1,
-
-                data: <?php echo json_encode($GetReading, JSON_NUMERIC_CHECK); ?>,
-                tooltip: {
-                    valueSuffix: ' balls'
-                }
-
-            }
-
-        ]
-
-
-    });
-
-
-    Highcharts.chart('energyOutput', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Today Energy Consumption'
-        },
-
-        accessibility: {
-            announceNewData: {
-                enabled: true
-            }
-        },
-        xAxis: {
-            type: 'category'
-        },
-        yAxis: {
-            title: {
-                text: 'Current Energy (KW)'
-            }
-
-        },
-        legend: {
-            enabled: false
-        },
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true,
-                    format: ''
-                }
-            }
-        },
-
-        tooltip: {
-            pointFormat: '<span style="color:{point.color}">{point.name}</span><br/>',
-            headerFormat: '<span style="font-size:13px">{point.y} KW</span><br>',
-            // headerFormat: '<span style="font-size:13px">{point.y:f}</span>:%<br>',
-        },
-
-        series: [{
-            name: "Energy",
-            colorByPoint: true,
-
-            data: <?php echo json_encode($ms_lamination_machine, JSON_NUMERIC_CHECK); ?>,
-            // data: [
-            // {
-            //     name: "Compressor",
-            //     y: CompressorEnergyHA[0],
-            //     drilldown: "Chrome"
-            // },
-            // {
-            //     name: "Compressor Panel",
-            //     y: CompressorPanelEnergyHA[0],
-            //     drilldown: "Chrome"
-            // },
-            // {
-            //     name: "AMB",
-            //     y: AMBEnergyHA[0],
-            //     drilldown: "Chrome"
-            // },
-            // {
-            //     name: "TM",
-            //     y: TMEnergyHA[0],
-            //     drilldown: "Chrome"
-            // },
-            // {
-            //     name: "MS",
-            //     y: MSEnergyHA[0],
-            //     drilldown: "Chrome"
-            // },
-            // {
-            //     name: "WorkShop",
-            //     y: WorkShopEnergyHA[0],
-            //     drilldown: "Chrome"
-            // },
-
-
-
-
-            //     ]
-        }],
-        // drilldown: {
-        //     breadcrumbs: {
-        //         position: {
-        //             align: 'right'
-        //         }
-        //     },
-        //     series: [
-
-
-        //         {
-        //             name: HallNameHH,
-        //             id: "Chrome",
-        //             data: EnergyHH
-        //         },
-
-
-        //         {
-        //             name: CompressorHallNameHH,
-        //             id: "Chrome",
-        //             data: CompressorEnergyHH
-        //         },
-        //         {
-        //             name: CompressorPanelHallNameHH,
-        //             id: "Chrome",
-        //             data: CompressorPanelEnergyHH
-        //         },
-
-        //         {
-        //             name: AMBHallNameHH,
-        //             id: "Chrome",
-        //             data: AMBEnergyHH
-        //         },
-        //         {
-        //             name: TMHallNameHH,
-        //             id: "Chrome",
-        //             data: TMEnergyHH
-        //         },
-        //         {
-        //             name: MSHallNameHH,
-        //             id: "Chrome",
-        //             data: MSEnergyHH
-        //         },
-        //         {
-        //             name: WorkShopHallNameHH,
-        //             id: "Chrome",
-        //             data: WorkShopEnergyHH
-        //         },
-
-
-
-        //     ]
-        // }
-
-
-
-    });
-
-
-
-    Highcharts.chart('containerDie', {
-        chart: {
-            zoomType: 'xy'
-        },
-        title: {
-            text: 'Die Testing '
-        },
-        subtitle: {
-            // text: 'Source: WorldClimate.com'
-        },
-        xAxis: [{
-            categories: <?php echo json_encode($GetNameDie, JSON_NUMERIC_CHECK); ?>,
-            crosshair: true
-        }],
-        yAxis: [{ // Primary yAxis
-                labels: {
-                    format: '{value} balls',
-                    style: {
-                        color: Highcharts.getOptions().colors[1]
-                    }
-                },
-                title: {
-
-                    style: {
-                        color: Highcharts.getOptions().colors[1]
-                    }
-                }
-            },
-            { // Secondary yAxis
-                title: {
-                    text: 'Target',
-                    style: {
-                        color: Highcharts.getOptions().colors[0]
-                    }
-                },
-
-                opposite: true
-            }
-        ],
-        tooltip: {
-            shared: true
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'left',
-            x: 120,
-            verticalAlign: 'top',
-            y: 100,
-            floating: true,
-            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
-                'rgba(255,255,255,0.25)',
-            enabled: false
-        },
-
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true,
-                    format: '{point.y:.0f}'
-                }
-            }
-        },
-        series: [{
-                type: 'column',
-                yAxis: 1,
-
-                data: <?php echo json_encode($GetDurationDie, JSON_NUMERIC_CHECK); ?>,
-            }
-
-        ]
-
-
-    });
-
-    Highcharts.chart('containerOna', {
-        chart: {
-            zoomType: 'xy'
-        },
-        title: {
-            text: 'ONA Testing '
-        },
-        subtitle: {
-            // text: 'Source: WorldClimate.com'
-        },
-        xAxis: [{
-            categories: <?php echo json_encode($GetNameOna, JSON_NUMERIC_CHECK); ?>,
-            crosshair: true
-        }],
-        yAxis: [{ // Primary yAxis
-                labels: {
-                    format: '{value} balls',
-                    style: {
-                        color: Highcharts.getOptions().colors[1]
-                    }
-                },
-                title: {
-
-                    style: {
-                        color: Highcharts.getOptions().colors[1]
-                    }
-                }
-            },
-            { // Secondary yAxis
-                title: {
-                    text: 'Target',
-                    style: {
-                        color: Highcharts.getOptions().colors[0]
-                    }
-                },
-
-                opposite: true
-            }
-        ],
-        tooltip: {
-            shared: true
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'left',
-            x: 120,
-            verticalAlign: 'top',
-            y: 100,
-            floating: true,
-            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
-                'rgba(255,255,255,0.25)',
-            enabled: false
-        },
-
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true,
-                    format: '{point.y:.0f}'
-                }
-            }
-        },
-        series: [{
-                type: 'column',
-                yAxis: 1,
-
-                data: <?php echo json_encode($GetDurationOna, JSON_NUMERIC_CHECK); ?>,
-            }
-
-        ]
-
-
-    });
-
-    Highcharts.chart('containerMachine', {
-        chart: {
-            zoomType: 'xy'
-        },
-        title: {
-            text: 'Machine Testing '
-        },
-        subtitle: {
-            // text: 'Source: WorldClimate.com'
-        },
-        xAxis: [{
-            categories: <?php echo json_encode($GetNameMachine, JSON_NUMERIC_CHECK); ?>,
-            crosshair: true
-        }],
-        yAxis: [{ // Primary yAxis
-                labels: {
-                    format: '{value} balls',
-                    style: {
-                        color: Highcharts.getOptions().colors[1]
-                    }
-                },
-                title: {
-
-                    style: {
-                        color: Highcharts.getOptions().colors[1]
-                    }
-                }
-            },
-            { // Secondary yAxis
-                title: {
-                    text: 'Target',
-                    style: {
-                        color: Highcharts.getOptions().colors[0]
-                    }
-                },
-
-                opposite: true
-            }
-        ],
-        tooltip: {
-            shared: true
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'left',
-            x: 120,
-            verticalAlign: 'top',
-            y: 100,
-            floating: true,
-            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || // theme
-                'rgba(255,255,255,0.25)',
-            enabled: false
-        },
-
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true,
-                    format: '{point.y:.0f}'
-                }
-            }
-        },
-        series: [{
-                type: 'column',
-                yAxis: 1,
-
-                data: <?php echo json_encode($GetDurationMachine, JSON_NUMERIC_CHECK); ?>,
-            }
-
-        ]
-
-
-    });
-
-
-
-
     $('#direct').click(function() {
         $("#tableHere").html(' ');
         const params = new Proxy(new URLSearchParams(window.location.search), {
@@ -3097,7 +2806,7 @@ foreach ($machineTestingSheetSizing as $key) {
                     responsive: false,
                     lengthChange: false,
                     dom:
-                        /*	--- Layout Structure
+                        /*	--- Layout Structure 
                         	--- Options
                         	l	-	length changing input control
                         	f	-	filtering input
@@ -3213,7 +2922,7 @@ foreach ($machineTestingSheetSizing as $key) {
                     responsive: false,
                     lengthChange: false,
                     dom:
-                        /*	--- Layout Structure
+                        /*	--- Layout Structure 
                         	--- Options
                         	l	-	length changing input control
                         	f	-	filtering input
@@ -3328,7 +3037,7 @@ foreach ($machineTestingSheetSizing as $key) {
                     responsive: true,
                     lengthChange: false,
                     dom:
-                        /*	--- Layout Structure
+                        /*	--- Layout Structure 
                         	--- Options
                         	l	-	length changing input control
                         	f	-	filtering input
@@ -3398,16 +3107,7 @@ foreach ($machineTestingSheetSizing as $key) {
         })
 
     })
-
-
-    //     window.onload = function() {
-    // setTimeout(function(){window.location = 'http://192.168.10.3:2000/sports/Carcas_Slide/TMCarcas';}, 20000) <?php //20000
-                                                                                                                    ?>
-    //                  }
 </script>
-
-
-
 
 </body>
 

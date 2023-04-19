@@ -2791,6 +2791,14 @@ class LabController extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
+    public function updateCssNoFGTRequest()
+    {
+        $data = $this->l->updateCssNoFGTRequest($_POST['TID'], $_POST['cssNo']);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
     public function FGTRequestSendToLab()
     {
         $data = $this->l->FGTRequestSendToLab();

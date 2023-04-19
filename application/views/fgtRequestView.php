@@ -1999,6 +1999,7 @@ if (!$this->session->has_userdata('user_id')) {
                     $('#modelName').val(data[0].ModelName);
 
                     $('#size').val(data[0].ArtSize);
+                    $('#backing').val(data[0].backing);
                     
                     $('#ballType').val(data[0].BallType);
                     $('#mainMatCol').val(data[0].MainMaterialColour);

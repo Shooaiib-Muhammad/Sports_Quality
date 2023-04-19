@@ -1283,6 +1283,13 @@
 
                         </li>
                         <li>
+                            <a href="<?php echo base_url('bladernew') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="" data-i18n="nav.theme_settings_how_it_works">Bladder Winding New </span>
+                            </a>
+
+
+                        </li>
+                        <li>
                             <a href="<?php echo base_url('Throster') ?>" title="How it works" data-filter-tags="theme settings how it works">
                                 <span class="" data-i18n="nav.theme_settings_how_it_works">MS Lines</span>
                             </a>

@@ -148,13 +148,13 @@ ORDER BY HID");
 
         Public function getCuttingSheetSizingDateRangeData($startDate,$endDate,$shift){
             if($shift=='All'){
-                $query = $this->db->query(" SELECT       CONVERT(varchar, Date, 103) AS Date, SUM(TotalBalls) AS Counter
+                $query = $this->db->query(" SELECT       CONVERT(varchar, Date, 103) AS Date, SUM(TotalBalls) AS Counter,SUM(TotalSheets) AS TotalSheets
                 FROM            dbo.view_PC_SheetSizing_Final
                   WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
                 GROUP BY Date, CONVERT(varchar, Date, 103)");
             }
             else if($shift == 'Day'){
-                $query = $this->db->query(" SELECT         CONVERT(varchar, Date, 103) AS Date, SUM(TotalBalls) AS Counter, Shift
+                $query = $this->db->query(" SELECT         CONVERT(varchar, Date, 103) AS Date, SUM(TotalBalls) AS Counter, Shift,SUM(TotalSheets) AS TotalSheets
                 FROM            dbo.view_PC_SheetSizing_Final
                   WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
                 GROUP BY Date , Shift, CONVERT(varchar, Date, 103)
@@ -162,7 +162,7 @@ ORDER BY HID");
                  ");
         }
         else{
-                $query = $this->db->query(" SELECT         CONVERT(varchar, Date, 103) AS Date, SUM(TotalBalls) AS Counter, Shift
+                $query = $this->db->query(" SELECT         CONVERT(varchar, Date, 103) AS Date, SUM(TotalBalls) AS Counter, Shift,SUM(TotalSheets) AS TotalSheets
                 FROM            dbo.view_PC_SheetSizing_Final
                   WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
                 GROUP BY Date, Shift, CONVERT(varchar, Date, 103)
@@ -171,20 +171,6 @@ ORDER BY HID");
         }
                 return  $query->result_array();
      }
-     Public function PressWiseData($startDate,$endDate){
-        $Month = date('m');
-        $Year = date('Y');
-        $Day = date('d');
-        $CurrentDate = $Year . '-' . $Month . '-' . $Day;
-        $query = $this->db->query("SELECT        SUM(Counter) AS Counter, SUM(TotalBalls) AS Totalballs, SUM(TotalSheets) AS TotalSheets, MachineName
-        FROM            dbo.view_PC_SheetSizing_Final
-        WHERE        (Date = CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
-        GROUP BY MachineName");
-
-
-        return  $query->result_array();
-}
-
 
      Public function getCuttingSheetSizingDateRangeDataMachineWise($startDate,$endDate,$shift){
         if($shift=='All'){
@@ -217,6 +203,22 @@ ORDER BY Date");
 
         return  $query->result_array();
 }
+     Public function PressWiseData($startDate,$endDate){
+        $Month = date('m');
+        $Year = date('Y');
+        $Day = date('d');
+        $CurrentDate = $Year . '-' . $Month . '-' . $Day;
+        $query = $this->db->query("SELECT        SUM(Counter) AS Counter, SUM(TotalBalls) AS Totalballs, SUM(TotalSheets) AS TotalSheets, MachineName
+        FROM            dbo.view_PC_SheetSizing_Final
+        WHERE        (Date = CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
+        GROUP BY MachineName");
+
+
+        return  $query->result_array();
+}
+
+
+   
 
 Public function getCuttingPanelDateRangeData($startDate,$endDate){
             
@@ -344,6 +346,9 @@ return  $query->result_array();
                 $endMonth = explode("-",$endDate)[1];
                 $endYear = explode("-",$endDate)[0];
                 $endDay = explode("-",$endDate)[2];
+                
+
+                
                 $query = $this->db->query("SELECT        SUM(Counter) AS Counter, CONVERT(varchar, Date, 103) AS Date, Name
                 FROM            dbo.Table_15         
                 WHERE        (Date BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
@@ -512,7 +517,43 @@ return  $query->result_array();
                 ");
                 return  $query->result_array();
         }
+        public function getBladderWindingDateRangeDatanew($startDate,$endDate){
+            
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date
+                FROM            dbo.view_Bladder_Winding_New_F
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY Date
+                
+                ORDER BY Date
+                
+                
+    ");
+                return  $query->result_array();
 
+        }
+
+        public function getBladderWindingDateRangeDataMachineWisenew($startDate,$endDate)
+        {
+                $startMonth = explode("-",$startDate)[1];
+                $startYear = explode("-",$startDate)[0];
+                $startDay = explode("-",$startDate)[2];
+                $endMonth = explode("-",$endDate)[1];
+                $endYear = explode("-",$endDate)[0];
+                $endDay = explode("-",$endDate)[2];
+                $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date, Name
+                FROM            dbo.view_Bladder_Winding_New_F
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                GROUP BY Date, Name
+                ORDER BY Name
+                ");
+                return  $query->result_array();
+        }
         public function getBallFormingDateRangeData($startDate,$endDate){
             
                 $startMonth = explode("-",$startDate)[1];
