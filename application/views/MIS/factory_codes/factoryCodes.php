@@ -4,8 +4,8 @@ if (!$this->session->has_userdata('user_id')) {
 } else {
 ?>
 
-  <?php $this->load->view('includes/new_header'); 
-  // print_r($ambCoreBGrade); 
+  <?php $this->load->view('includes/new_header');
+  // print_r($getDataCurrentDate);
   ?>
 
   <!-- BEGIN Page Wrapper -->
@@ -19,110 +19,323 @@ if (!$this->session->has_userdata('user_id')) {
         <?php $this->load->view('includes/top_header.php'); ?>
         <main id="js-page-content" role="main" class="page-content">
           <?php
-         
-          $compBallInspectionArray = array();          
-          if (isset($compBallInspection) && !!$compBallInspection && $compBallInspection[0]) {
-            foreach ($compBallInspection[0] as $key => $value) {
-              if($key == 'DailyDate'){
-                continue;
+
+          // $compBallInspectionArray = array();          
+          // if (isset($compBallInspection) && !!$compBallInspection && $compBallInspection[0]) {
+          //   foreach ($compBallInspection[0] as $key => $value) {
+          //     if($key == 'DailyDate'){
+          //       continue;
+          //     }
+          //     $point1 = [
+          //       'name' => $key,
+          //       'y' => $value,
+          //     ];
+          //     array_push($compBallInspectionArray, $point1);
+          //   }
+          // }
+
+
+          // $finaleBallInspectionArray = array();
+          // if (isset($finaleBallInspection) && !!$finaleBallInspection && $finaleBallInspection[0]) {
+          //   foreach ($finaleBallInspection[0] as $key => $value) {
+          //     if($key == 'DailyDate'){
+          //       continue;
+          //     }
+          //     $point1 = [
+          //       'name' => $key,
+          //       'y' => $value,
+          //     ];
+          //     array_push($finaleBallInspectionArray, $point1);
+          //   }
+          // }
+
+          // $urbanBallInspectionArray = array(); 
+          // if (isset($urbanBallInspection) && !!$urbanBallInspection && $urbanBallInspection[0]) {
+          //   foreach ($urbanBallInspection[0] as $key => $value) {
+          //     $point1 = [
+          //       'name' => $key,
+          //       'y' => $value,
+          //     ];
+          //     array_push($urbanBallInspectionArray, $point1);
+          //   }
+          // }
+
+
+          // $ambSheetSizingArray = array(); 
+          // if (isset($ambSheetSizing) && !!$ambSheetSizing && $ambSheetSizing[0]) {
+          //   foreach ($ambSheetSizing[0] as $key => $value) {
+          //     $point1 = [
+          //       'name' => $key,
+          //       'y' => $value,
+          //     ];
+          //     array_push($ambSheetSizingArray, $point1);
+          //   }
+          // }
+
+          // $ambPanelDefectsArray = array(); 
+          // if (isset($ambPanelDefects) && !!$ambPanelDefects && $ambPanelDefects[0]) {
+          //   foreach ($ambPanelDefects as $key => $value) {
+          //     $point1 = [
+          //       'name' => $value['LineName'],
+          //       'y' => $value['Totalproducd'],
+          //     ];
+          //     array_push($ambPanelDefectsArray, $point1);
+          //   }
+          // }
+
+          // $ambHFCuttingArray1 = array();  
+          // if (isset($ambHFCutting) && !!$ambHFCutting && $ambHFCutting[0]) {
+          //   foreach ($ambHFCutting as $key => $value) {
+          //     $point1 = [
+          //       'name' => $value['EntryDate'],
+          //       'y' => $value['TotalChecked'],
+          //     ];
+          //     array_push($ambHFCuttingArray1, $point1);
+          //   }
+          // }
+
+
+          // $ambBGradeBallArray = array();  
+          // if (isset($ambBGradeBall) && !!$ambBGradeBall && $ambBGradeBall[0]) {
+          //   foreach ($ambBGradeBall[0] as $key => $value) {
+          //     if($key == 'EntryDate'){
+          //       continue;
+          //     }
+          //     $point1 = [
+          //       'name' => $key,
+          //       'y' => $value,
+          //     ];
+          //     array_push($ambBGradeBallArray, $point1);
+          //   }
+          // }
+
+          // $ambCoreBGradeArray = array();  
+          // if (isset($ambCoreBGrade) && !!$ambCoreBGrade && $ambCoreBGrade[0]) {
+          //   foreach ($ambCoreBGrade[0] as $key => $value) {
+          //     if($key == 'EntryDate'){
+          //       continue;
+          //     }
+          //     $point1 = [
+          //       'name' => $key,
+          //       'y' => $value,
+          //     ];
+          //     array_push($ambCoreBGradeArray, $point1);
+          //   }
+          // }
+
+          $bladder002 = array();
+          $panalShapping002 = array();
+          $cutting002 = array();
+          $cuttingFabric002 = array();
+          $cuttingFoam002 = array();
+          $cuttingPU002 = array();
+          $dShapeCarcass002 = array();
+          $finalQC002 = array();
+          $labTest002 = array();
+          $laminationCutting002 = array();
+          $patch002 = array();
+          $printing002 = array();
+
+
+          foreach ($getDataCurrentDate as $key => $value) {
+            $process = $value['CarcusType'];
+            $factoryCode = $value['FactoryCode'];
+            // print_r($key);echo "<br>";
+            // print_r($value);
+            if ($factoryCode == 'B34002') {
+              if ($process == 'Bladder') {
+
+                foreach ($value as $k => $v) {
+                  if ($k == 'CarcusType' && $v == 'Bladder') {
+                    continue;
+                  }
+                  $point1 = [
+                    'name' => $k,
+                    'y' => $v,
+                  ];
+                  array_push($bladder002, $point1);
+                }
+              } else if ($process == 'Panel Shaping') {
+
+                foreach ($value as $k => $v) {
+                  if ($k == 'CarcusType' && $v == 'Panel Shaping') {
+                    continue;
+                  }
+                  $point1 = [
+                    'name' => $k,
+                    'y' => $v,
+                  ];
+                  array_push($panalShapping002, $point1);
+                }
+              } else if ($process == 'Cutting') {
+
+                foreach ($value as $k => $v) {
+                  if ($k == 'CarcusType' && $v == 'Cutting') {
+                    continue;
+                  }
+                  $point1 = [
+                    'name' => $k,
+                    'y' => $v,
+                  ];
+                  array_push($cutting002, $point1);
+                }
+              } else if ($process == 'Cutting Fabric') {
+
+                foreach ($value as $k => $v) {
+                  if ($k == 'CarcusType' && $v == 'Cutting Fabric') {
+                    continue;
+                  }
+                  $point1 = [
+                    'name' => $k,
+                    'y' => $v,
+                  ];
+                  array_push($cuttingFabric002, $point1);
+                }
+              } else if ($process == 'Cutting Foam') {
+
+                foreach ($value as $k => $v) {
+                  if ($k == 'CarcusType' && $v == 'Cutting Foam') {
+                    continue;
+                  }
+                  $point1 = [
+                    'name' => $k,
+                    'y' => $v,
+                  ];
+                  array_push($cuttingFoam002, $point1);
+                }
+              } else if ($process == 'Cutting PU') {
+
+                foreach ($value as $k => $v) {
+                  if ($k == 'CarcusType' && $v == 'Cutting PU') {
+                    continue;
+                  }
+                  $point1 = [
+                    'name' => $k,
+                    'y' => $v,
+                  ];
+                  array_push($cuttingPU002, $point1);
+                }
+              } else if ($process == 'D-Shape Carcass') {
+
+                foreach ($value as $k => $v) {
+                  if ($k == 'CarcusType' && $v == 'D-Shape Carcass') {
+                    continue;
+                  }
+                  $point1 = [
+                    'name' => $k,
+                    'y' => $v,
+                  ];
+                  array_push($dShapeCarcass002, $point1);
+                }
+              } else if ($process == 'Final QC') {
+
+                foreach ($value as $k => $v) {
+                  if ($k == 'CarcusType' && $v == 'Final QC') {
+                    continue;
+                  }
+                  $point1 = [
+                    'name' => $k,
+                    'y' => $v,
+                  ];
+                  array_push($finalQC002, $point1);
+                }
+              } else if ($process == 'Lab Test') {
+
+                foreach ($value as $k => $v) {
+                  if ($k == 'CarcusType' && $v == 'Lab Test') {
+                    continue;
+                  }
+                  $point1 = [
+                    'name' => $k,
+                    'y' => $v,
+                  ];
+                  array_push($labTest002, $point1);
+                }
+              } else if ($process == 'Lamination & Cutting' || $process == 'Lamination and Cutting') {
+
+                foreach ($value as $k => $v) {
+                  if ($k == 'CarcusType' && $v == 'Lamination & Cutting' || 'Lamination and Cutting') {
+                    continue;
+                  }
+                  $point1 = [
+                    'name' => $k,
+                    'y' => $v,
+                  ];
+                  array_push($laminationCutting002, $point1);
+                }
+              } else if ($process == 'Patch') {
+
+                foreach ($value as $k => $v) {
+                  if ($k == 'CarcusType' && $v == 'Patch') {
+                    continue;
+                  }
+                  $point1 = [
+                    'name' => $k,
+                    'y' => $v,
+                  ];
+                  array_push($patch002, $point1);
+                }
+              } else if ($process == 'Printing') {
+
+                foreach ($value as $k => $v) {
+                  if ($k == 'CarcusType' && $v == 'Printing') {
+                    continue;
+                  }
+                  $point1 = [
+                    'name' => $k,
+                    'y' => $v,
+                  ];
+                  array_push($printing002, $point1);
+                }
               }
-              $point1 = [
-                'name' => $key,
-                'y' => $value,
-              ];
-              array_push($compBallInspectionArray, $point1);
-            }
-          }
-          
-          
-          $finaleBallInspectionArray = array();
-          if (isset($finaleBallInspection) && !!$finaleBallInspection && $finaleBallInspection[0]) {
-            foreach ($finaleBallInspection[0] as $key => $value) {
-              if($key == 'DailyDate'){
-                continue;
-              }
-              $point1 = [
-                'name' => $key,
-                'y' => $value,
-              ];
-              array_push($finaleBallInspectionArray, $point1);
             }
           }
 
-          $urbanBallInspectionArray = array(); 
-          if (isset($urbanBallInspection) && !!$urbanBallInspection && $urbanBallInspection[0]) {
-            foreach ($urbanBallInspection[0] as $key => $value) {
-              $point1 = [
-                'name' => $key,
-                'y' => $value,
-              ];
-              array_push($urbanBallInspectionArray, $point1);
-            }
-          }
+          // print_r($bladderArray002);
 
 
-          $ambSheetSizingArray = array(); 
-          if (isset($ambSheetSizing) && !!$ambSheetSizing && $ambSheetSizing[0]) {
-            foreach ($ambSheetSizing[0] as $key => $value) {
-              $point1 = [
-                'name' => $key,
-                'y' => $value,
-              ];
-              array_push($ambSheetSizingArray, $point1);
-            }
-          }
 
-          $ambPanelDefectsArray = array(); 
-          if (isset($ambPanelDefects) && !!$ambPanelDefects && $ambPanelDefects[0]) {
-            foreach ($ambPanelDefects as $key => $value) {
-              $point1 = [
-                'name' => $value['LineName'],
-                'y' => $value['Totalproducd'],
-              ];
-              array_push($ambPanelDefectsArray, $point1);
-            }
-          }
 
-          $ambHFCuttingArray1 = array();  
-          if (isset($ambHFCutting) && !!$ambHFCutting && $ambHFCutting[0]) {
-            foreach ($ambHFCutting as $key => $value) {
-              $point1 = [
-                'name' => $value['EntryDate'],
-                'y' => $value['TotalChecked'],
-              ];
-              array_push($ambHFCuttingArray1, $point1);
-            }
-          }
 
-          
-          $ambBGradeBallArray = array();  
-          if (isset($ambBGradeBall) && !!$ambBGradeBall && $ambBGradeBall[0]) {
-            foreach ($ambBGradeBall[0] as $key => $value) {
-              if($key == 'EntryDate'){
-                continue;
-              }
-              $point1 = [
-                'name' => $key,
-                'y' => $value,
-              ];
-              array_push($ambBGradeBallArray, $point1);
-            }
-          }
 
-          $ambCoreBGradeArray = array();  
-          if (isset($ambCoreBGrade) && !!$ambCoreBGrade && $ambCoreBGrade[0]) {
-            foreach ($ambCoreBGrade[0] as $key => $value) {
-              if($key == 'EntryDate'){
-                continue;
-              }
-              $point1 = [
-                'name' => $key,
-                'y' => $value,
-              ];
-              array_push($ambCoreBGradeArray, $point1);
-            }
-          }
+
+
+
+
+
+
+
           ?>
+
+          <div class="row mb-2">
+            <div class="col-md-12">
+              <div id="panel-11" class="panel">
+                <div class="panel-hdr">
+                  <h2>
+                    Date Filteration</span>
+                  </h2>
+
+                </div>
+                <div class="panel-container show">
+                  <div class="panel-content">
+                    <div class="row">
+
+                      <div class="col-md-3">
+                        <input type="date" name="start_date" id="start_date" class="form-control">
+                      </div>
+                      <div class="col-md-3">
+                        <input type="date" name="end_date" id="end_date" class="form-control">
+                      </div>
+
+                      <div class="col-md-3">
+                        <button class="btn btn-primary" name="search" id="search">Search</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
 
           <div class="row">
@@ -140,7 +353,7 @@ if (!$this->session->has_userdata('user_id')) {
                       <ul class="nav nav-pills" role="tablist">
 
                         <li class="nav-item">
-                          <a class="nav-link active" data-toggle="tab" href="#tab_borders_icons-1" role="tab"><i class="fal fa-home mr-1"></i> Printing </a>
+                          <a class="nav-link active" data-toggle="tab" href="#tab_borders_icons-1" role="tab"><i class="fal fa-home mr-1"></i> Bladder </a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-2" role="tab">Panel Shapping <i class="fal fa-percent mr-1"></i> </a>
@@ -149,66 +362,105 @@ if (!$this->session->has_userdata('user_id')) {
                           <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-3" role="tab">Cutting <i class="fal fa-percent mr-1"></i> </a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-4" role="tab">Carcass <i class="fal fa-percent mr-1"></i> </a>
+                          <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-4" role="tab">Cutting Fabric <i class="fal fa-percent mr-1"></i> </a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-5" role="tab">Dipping <i class="fal fa-percent mr-1"></i> </a>
+                          <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-5" role="tab">Cutting Foam <i class="fal fa-percent mr-1"></i> </a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-6" role="tab"> Assembling <i class="fal fa-percent mr-1"></i> </a>
+                          <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-6" role="tab"> Cutting PU <i class="fal fa-percent mr-1"></i> </a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-7" role="tab"> End Line Inspection <i class="fal fa-percent mr-1"></i> </a>
+                          <a class="nav-link" data-toggle="tab" href="#tab_borders_icons-7" role="tab"> D-Shape Carcass <i class="fal fa-percent mr-1"></i> </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#tabFinalQC" role="tab">Final QC <i class="fal fa-percent mr-1"></i> </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#tabLabTest" role="tab">Lab Test <i class="fal fa-percent mr-1"></i> </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#tabLaminationCutting" role="tab">Lamination & Cutting <i class="fal fa-percent mr-1"></i> </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#tabPatch" role="tab">Patch<i class="fal fa-percent mr-1"></i> </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-toggle="tab" href="#tabPrinting" role="tab">Printing <i class="fal fa-percent mr-1"></i> </a>
                         </li>
                       </ul>
                       <div class="tab-content py-3">
                         <div class="tab-pane fade show active" id="tab_borders_icons-1" role="tabpanel">
-                          
-                        
+
+                          <div id="bladder002">
+
+                          </div>
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-2" role="tabpanel">
-                          
-                        
+                          <div id="panelShapping002">
+
+                          </div>
+
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-3" role="tabpanel">
-                          
-                        
+
+                          <div id="cutting002"></div>
 
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-4" role="tabpanel">
-                          
-                        
+                          <div id="cuttingFabric002"></div>
+
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-5" role="tabpanel">
-                          
-                        
+                          <div id="cuttingFoam002"></div>
+
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-6" role="tabpanel">
+                          <div id="cuttingPU002"></div>
 
-                          
-                        
+
 
                         </div>
 
 
                         <div class="tab-pane fade" id="tab_borders_icons-7" role="tabpanel">
-                          <div class="row">
-                            <div class="col-md-12" id="compBallInspection">
-                            </div>
-                          </div>
+
+                          <!-- <div id="compBallInspection"> -->
+                          <div id="dShapeCarcass002"></div>
+                        </div>
+
+                        <div class="tab-pane fade" id="tabFinalQC" role="tabpanel">
+                          <div id="finalQC002"></div>
+                        </div>
+
+                        <div class="tab-pane fade" id="tabLabTest" role="tabpanel">
+                          <div id="labTest002"></div>
+                        </div>
+
+                        <div class="tab-pane fade" id="tabLaminationCutting" role="tabpanel">
+                          <div id="laminationCutting002"></div>
+                        </div>
+
+                        <div class="tab-pane fade" id="tabPatch" role="tabpanel">
+                          <div id="patch002"></div>
+                        </div>
+                        <div class="tab-pane fade" id="tabPrinting" role="tabpanel">
+                          <div id="printing002"></div>
                         </div>
                       </div>
+
+
                     </div>
+
                   </div>
+
                 </div>
+
               </div>
 
-
-
             </div>
-
             <div class="col-xl-6">
               <div id="panel-11" class="panel">
                 <div class="panel-hdr">
@@ -246,36 +498,36 @@ if (!$this->session->has_userdata('user_id')) {
                       </ul>
                       <div class="tab-content py-3">
                         <div class="tab-pane fade show active" id="tab_borders_icons-8" role="tabpanel">
-                          
-                        
+
+
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-9" role="tabpanel">
-                          
+
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-10" role="tabpanel">
-                         
+
 
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-11" role="tabpanel">
-                          
+
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-12" role="tabpanel">
-                          
+
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-13" role="tabpanel">
 
-                          
+
 
                         </div>
 
 
                         <div class="tab-pane fade" id="tab_borders_icons-14" role="tabpanel">
                           <div class="row">
-                            <div class="col-md-12" id="finaleBallInspection"> 
+                            <div class="col-md-12" id="finaleBallInspection">
 
                             </div>
                           </div>
@@ -285,9 +537,6 @@ if (!$this->session->has_userdata('user_id')) {
                   </div>
                 </div>
               </div>
-
-
-
             </div>
           </div>
 
@@ -329,38 +578,38 @@ if (!$this->session->has_userdata('user_id')) {
                       </ul>
                       <div class="tab-content py-3">
                         <div class="tab-pane fade show active" id="tab_borders_icons-15" role="tabpanel">
-                          
+
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-16" role="tabpanel">
-                          
+
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-17" role="tabpanel">
-                          
+
 
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-18" role="tabpanel">
-                         
+
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-19" role="tabpanel">
-                          
+
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-20" role="tabpanel">
 
-                          
+
 
                         </div>
 
 
                         <div class="tab-pane fade" id="tab_borders_icons-21" role="tabpanel">
-                         <div class="row">
-                          <div class="col-md-12" id="urbanBallInspection">
+                          <div class="row">
+                            <div class="col-md-12" id="urbanBallInspection">
 
+                            </div>
                           </div>
-                         </div>
                         </div>
                       </div>
                     </div>
@@ -405,27 +654,27 @@ if (!$this->session->has_userdata('user_id')) {
                       </ul>
                       <div class="tab-content py-3">
                         <div class="tab-pane fade show active" id="tab_borders_icons-22" role="tabpanel">
-                          
+
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-23" role="tabpanel">
-                          
+
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-24" role="tabpanel">
-                          
+
 
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-25" role="tabpanel">
-                          
+
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-26" role="tabpanel">
-                          
+
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-27" role="tabpanel">
 
-                         
+
 
                         </div>
                       </div>
@@ -438,6 +687,7 @@ if (!$this->session->has_userdata('user_id')) {
 
             </div>
           </div>
+
           <div class="row">
             <div class="col-xl-6">
               <div id="panel-11" class="panel">
@@ -535,7 +785,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-30" role="tabpanel">
-                        <div class="row">
+                          <div class="row">
                             <div class="col-md-12" id="ambHFCuttingContent">
 
                             </div>
@@ -544,7 +794,7 @@ if (!$this->session->has_userdata('user_id')) {
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-31" role="tabpanel">
-                        <div class="row">
+                          <div class="row">
                             <div class="col-md-12" id="ambBGradeBallContent">
 
                             </div>
@@ -552,15 +802,15 @@ if (!$this->session->has_userdata('user_id')) {
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-32" role="tabpanel">
-                        <div class="row">
+                          <div class="row">
                             <div class="col-md-12" id="ambCoreBGradeContent">
 
                             </div>
                           </div>
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-322" role="tabpanel">
-                          
-                          </div>
+
+                        </div>
 
 
                       </div>
@@ -609,39 +859,39 @@ if (!$this->session->has_userdata('user_id')) {
                       </ul>
                       <div class="tab-content py-3">
                         <div class="tab-pane fade show active" id="tab_borders_icons-33" role="tabpanel">
-                          
+
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-34" role="tabpanel">
-                          
+
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-35" role="tabpanel">
-                         
-                        
+
+
 
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-36" role="tabpanel">
-                          
-                        
+
+
 
                         </div>
                         <div class="tab-pane fade" id="tab_borders_icons-37" role="tabpanel">
-                          
-                        
+
+
                         </div>
 
                         <div class="tab-pane fade" id="tab_borders_icons-38" role="tabpanel">
 
-                          
-                        
+
+
 
                         </div>
 
 
                         <div class="tab-pane fade" id="tab_borders_icons-39" role="tabpanel">
-                          
-                        
+
+
                         </div>
                       </div>
                     </div>
@@ -650,154 +900,156 @@ if (!$this->session->has_userdata('user_id')) {
               </div>
             </div>
           </div>
-
-
-        </main>
-        <!-- this overlay is activated only when mobile menu is triggered -->
-        <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
-        <!-- BEGIN Page Footer -->
-
-
-        <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
-        <!-- BEGIN Page Footer -->
-        <footer class="page-footer" role="contentinfo" style="position: absolute; bottom: 0px">
-          <div class="d-flex align-items-center flex-1 text-muted">
-            <span class="hidden-md-down fw-700">2023 © Forward Sports by &nbsp; <b> IT Dept Forward Sports</b></span>
-          </div>
-          <div>
-
-          </div>
-        </footer>
-        <script src="<?php echo base_url(); ?>/assets/js/jquery.min.js" type="text/javascript"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js" integrity="sha512-d5Jr3NflEZmFDdFHZtxeJtBzk0eB+kkRXWFQqEc1EKmolXjHm2IKCA7kTvXBNjIYzjXfD5XzIjaaErpkZHCkBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
-        <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
-        <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
-        <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
-
-        <script src="<?php echo base_url(); ?>/assets/js/highcharts.js"></script>
-        <!-- <script src="<?php echo base_url(); ?>/assets/js/data.js"></script> -->
-        <script src="<?php echo base_url(); ?>/assets/js/series-label.js"></script>
-        <script src="<?php echo base_url(); ?>/assets/js/drilldown.js"></script>
-        <script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>
-        <script src="<?php echo base_url(); ?>/assets/js/export-data.js"></script>
-        <script src="<?php echo base_url(); ?>/assets/js/accessibility.js"></script>
-
-        <div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog" aria-labelledby="modal-shortcut" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-top modal-transparent" role="document">
-            <div class="modal-content">
-              <div class="modal-body">
-                <ul class="app-list w-auto h-auto p-0 text-left">
-                  <li>
-                    <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
-                      <div class="icon-stack">
-                        <i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
-                        <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
-                        <i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
-                      </div>
-                      <span class="app-list-name">
-                        Home
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
-                      <div class="icon-stack">
-                        <i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
-                        <i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
-                        <i class="ni ni-envelope icon-stack-1x text-white"></i>
-                      </div>
-                      <span class="app-list-name">
-                        Inbox
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
-                      <div class="icon-stack">
-                        <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
-                        <i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
-                      </div>
-                      <span class="app-list-name">
-                        Add More
-                      </span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- END Shortcuts -->
-        <!-- BEGIN Color profile -->
-        <!-- this area is hidden and will not be seen on screens or screen readers -->
-        <!-- we use this only for CSS color refernce for JS stuff -->
-        <p id="js-color-profile" class="d-none">
-          <span class="color-primary-50"></span>
-          <span class="color-primary-100"></span>
-          <span class="color-primary-200"></span>
-          <span class="color-primary-300"></span>
-          <span class="color-primary-400"></span>
-          <span class="color-primary-500"></span>
-          <span class="color-primary-600"></span>
-          <span class="color-primary-700"></span>
-          <span class="color-primary-800"></span>
-          <span class="color-primary-900"></span>
-          <span class="color-info-50"></span>
-          <span class="color-info-100"></span>
-          <span class="color-info-200"></span>
-          <span class="color-info-300"></span>
-          <span class="color-info-400"></span>
-          <span class="color-info-500"></span>
-          <span class="color-info-600"></span>
-          <span class="color-info-700"></span>
-          <span class="color-info-800"></span>
-          <span class="color-info-900"></span>
-          <span class="color-danger-50"></span>
-          <span class="color-danger-100"></span>
-          <span class="color-danger-200"></span>
-          <span class="color-danger-300"></span>
-          <span class="color-danger-400"></span>
-          <span class="color-danger-500"></span>
-          <span class="color-danger-600"></span>
-          <span class="color-danger-700"></span>
-          <span class="color-danger-800"></span>
-          <span class="color-danger-900"></span>
-          <span class="color-warning-50"></span>
-          <span class="color-warning-100"></span>
-          <span class="color-warning-200"></span>
-          <span class="color-warning-300"></span>
-          <span class="color-warning-400"></span>
-          <span class="color-warning-500"></span>
-          <span class="color-warning-600"></span>
-          <span class="color-warning-700"></span>
-          <span class="color-warning-800"></span>
-          <span class="color-warning-900"></span>
-          <span class="color-success-50"></span>
-          <span class="color-success-100"></span>
-          <span class="color-success-200"></span>
-          <span class="color-success-300"></span>
-          <span class="color-success-400"></span>
-          <span class="color-success-500"></span>
-          <span class="color-success-600"></span>
-          <span class="color-success-700"></span>
-          <span class="color-success-800"></span>
-          <span class="color-success-900"></span>
-          <span class="color-fusion-50"></span>
-          <span class="color-fusion-100"></span>
-          <span class="color-fusion-200"></span>
-          <span class="color-fusion-300"></span>
-          <span class="color-fusion-400"></span>
-          <span class="color-fusion-500"></span>
-          <span class="color-fusion-600"></span>
-          <span class="color-fusion-700"></span>
-          <span class="color-fusion-800"></span>
-          <span class="color-fusion-900"></span>
-        </p>
-        <!-- END Color profile -->
         </main>
       </div>
     </div>
+  </div>
+
+  <!-- this overlay is activated only when mobile menu is triggered -->
+  <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
+  <!-- BEGIN Page Footer -->
+
+
+  <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div> <!-- END Page Content -->
+  <!-- BEGIN Page Footer -->
+  <!-- <footer class="page-footer" role="contentinfo" style="position: absolute; bottom: 0px">
+    <div class="d-flex align-items-center flex-1 text-muted">
+      <span class="hidden-md-down fw-700">2023 © Forward Sports by &nbsp; <b> IT Dept Forward Sports</b></span>
+    </div>
+    <div>
+
+    </div>
+  </footer> -->
+  <script src="<?php echo base_url(); ?>/assets/js/jquery.min.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js" integrity="sha512-d5Jr3NflEZmFDdFHZtxeJtBzk0eB+kkRXWFQqEc1EKmolXjHm2IKCA7kTvXBNjIYzjXfD5XzIjaaErpkZHCkBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+
+  <script src="<?php echo base_url(); ?>/assets/js/highcharts.js"></script>
+  <!-- <script src="<?php echo base_url(); ?>/assets/js/data.js"></script> -->
+  <script src="<?php echo base_url(); ?>/assets/js/series-label.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/js/drilldown.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/js/export-data.js"></script>
+  <script src="<?php echo base_url(); ?>/assets/js/accessibility.js"></script>
+
+  <div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog" aria-labelledby="modal-shortcut" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-top modal-transparent" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <ul class="app-list w-auto h-auto p-0 text-left">
+            <li>
+              <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+                <div class="icon-stack">
+                  <i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
+                  <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+                  <i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
+                </div>
+                <span class="app-list-name">
+                  Home
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
+                <div class="icon-stack">
+                  <i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
+                  <i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
+                  <i class="ni ni-envelope icon-stack-1x text-white"></i>
+                </div>
+                <span class="app-list-name">
+                  Inbox
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+                <div class="icon-stack">
+                  <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+                  <i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
+                </div>
+                <span class="app-list-name">
+                  Add More
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END Shortcuts -->
+  <!-- BEGIN Color profile -->
+  <!-- this area is hidden and will not be seen on screens or screen readers -->
+  <!-- we use this only for CSS color refernce for JS stuff -->
+  <p id="js-color-profile" class="d-none">
+    <span class="color-primary-50"></span>
+    <span class="color-primary-100"></span>
+    <span class="color-primary-200"></span>
+    <span class="color-primary-300"></span>
+    <span class="color-primary-400"></span>
+    <span class="color-primary-500"></span>
+    <span class="color-primary-600"></span>
+    <span class="color-primary-700"></span>
+    <span class="color-primary-800"></span>
+    <span class="color-primary-900"></span>
+    <span class="color-info-50"></span>
+    <span class="color-info-100"></span>
+    <span class="color-info-200"></span>
+    <span class="color-info-300"></span>
+    <span class="color-info-400"></span>
+    <span class="color-info-500"></span>
+    <span class="color-info-600"></span>
+    <span class="color-info-700"></span>
+    <span class="color-info-800"></span>
+    <span class="color-info-900"></span>
+    <span class="color-danger-50"></span>
+    <span class="color-danger-100"></span>
+    <span class="color-danger-200"></span>
+    <span class="color-danger-300"></span>
+    <span class="color-danger-400"></span>
+    <span class="color-danger-500"></span>
+    <span class="color-danger-600"></span>
+    <span class="color-danger-700"></span>
+    <span class="color-danger-800"></span>
+    <span class="color-danger-900"></span>
+    <span class="color-warning-50"></span>
+    <span class="color-warning-100"></span>
+    <span class="color-warning-200"></span>
+    <span class="color-warning-300"></span>
+    <span class="color-warning-400"></span>
+    <span class="color-warning-500"></span>
+    <span class="color-warning-600"></span>
+    <span class="color-warning-700"></span>
+    <span class="color-warning-800"></span>
+    <span class="color-warning-900"></span>
+    <span class="color-success-50"></span>
+    <span class="color-success-100"></span>
+    <span class="color-success-200"></span>
+    <span class="color-success-300"></span>
+    <span class="color-success-400"></span>
+    <span class="color-success-500"></span>
+    <span class="color-success-600"></span>
+    <span class="color-success-700"></span>
+    <span class="color-success-800"></span>
+    <span class="color-success-900"></span>
+    <span class="color-fusion-50"></span>
+    <span class="color-fusion-100"></span>
+    <span class="color-fusion-200"></span>
+    <span class="color-fusion-300"></span>
+    <span class="color-fusion-400"></span>
+    <span class="color-fusion-500"></span>
+    <span class="color-fusion-600"></span>
+    <span class="color-fusion-700"></span>
+    <span class="color-fusion-800"></span>
+    <span class="color-fusion-900"></span>
+  </p>
+  <!-- END Color profile -->
+  </main>
+  </div>
+  </div>
   </div>
   <!-- END Page Wrapper -->
   <!-- BEGIN Quick Menu -->
@@ -1418,213 +1670,578 @@ if (!$this->session->has_userdata('user_id')) {
   <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
   <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
   <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
-
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
   <script>
     $(document).ready(function() {
-
-
+      let date = new Date().toJSON().substr(0, 10);
+      $("#start_date").val(date);
+      $("#end_date").val(date);
     })
 
-    function showLines() {
-      // fc = $('#factory').val();
-      fc = 'B34006';
-      rpt = $('#report').val();
+    $("#search").on("click", function() {
+      let start_date = $("#start_date").val();
+      let end_date = $("#end_date").val();
+      url = '<?php echo base_url('MIS/FactoryCodes/getDateRangeData'); ?>'
 
-      // $('#line').val('all')
-      url = "<?php echo base_url('MIS/Quality/getLines/') ?>" + fc
-      if ((fc == 'B34006') && rpt == 'Summary') {
-        lines = '<option value="all">All</option>'
-        $.get(url, function(res) {
-          data = res.data
-          for (i = 0; i < data.length; i++) {
-            lines += '<option value="' + data[i].LineID + '">' + data[i].LineName +
-              '</option>'
+      $.post(url, {
+          'start_date': start_date,
+          'end_date': end_date
+        },
+        function(data) {
+          if (data) {
+            console.log("date range data is ", data);
           }
-          $('#line').html(lines);
-          $('#line-option').removeClass('d-none');
-        })
-
-      } else {
-        $('#line-option').addClass('d-none');
-      }
-    }
-
-    function showArticles() {
-      fc = $('#factory').val();
-      rpt = $('#report').val();
-      console.log(rpt)
-      if (rpt == 'Art_Date_wise') {
-        $('#article-option').removeClass('d-none');
-
-      } else {
-        $('#article-option').addClass('d-none');
-      }
-    }
-
-    function updateArticles() {
-      // fc = $("#factory").val();
-      fc = 'B34006';
-      url = "<?php echo base_url('MIS/Quality/Articles/') ?>" + fc
-      $.get(url, function(res) {
-        data = res.data
-        options = "<option value='all'>All</option>"
-        for (i = 0; i < data.length; i++) {
-          options += "<option>" + data[i].ArtCode + "</option>"
-        }
-
-        $("#article").html(options)
-
-      })
-    }
-    $('#report').on('change', function() {
-      updateArticles()
-      showLines()
-      showArticles()
-    })
-
-
-
-
-
-
-    $('#searchAmbPrint').on('click', function() {
-      report = $('#report').val();
-
-      switch (report) {
-        case 'Summary':
-          getAmbSummary();
-          break;
-
-        case 'Art_Date_wise':
-          getAmbArticleDateWise();
-
-          break;
-
-
-        default:
-          break;
-      }
-    })
-
-
-
-    function getAmbSummary() {
-      start_date = $('#start_date').val();
-      end_date = $('#end_date').val();
-      line = $('#line').val();
-      if (line == 'all') {
-        url = "<?php echo base_url('MIS/FactoryCodes/AmbReportAll/') ?>" + start_date + '/' + end_date
-        //alert(url);
-      } else {
-        url = "<?php echo base_url('MIS/FactoryCodes/AmbReportLineWise/') ?>" + start_date + '/' + end_date +
-          "/" + line
-        //alert(url);
-      }
-      $.get(url, function(data) {
-        console.log("get amb summary", data)
-
-        // fillReport(data, true, true, true, true, true, true)
-      })
-
-    }
-
-    function getAmbArticleDateWise() {
-      start_date = $('#start_date').val();
-      end_date = $('#end_date').val();
-      art = $('#article').val();
-      if (art == 'all') {
-        url = "<?php echo base_url('MIS/FactoryCodes/AmbArticleWiseDateWiseAll/') ?>" + start_date + '/' +
-          end_date
-        //alert(url);
-      } else {
-        url = "<?php echo base_url('MIS/FactoryCodes/AmbArticleWiseDateWise/') ?>" + start_date + '/' +
-          end_date + "/" + art
-        //alert(url);
-      }
-
-      $.get(url, function(data) {
-        console.log("articel date wise", data);
-        // fillReport(data, true, true, true, true, true)
-      })
-    }
-
-    Highcharts.chart('compBallInspection', {
-      chart: {
-        type: 'spline'
-      },
-      title: {
-        text: 'Today Final Inspection',
-      },
-
-      accessibility: {
-        announceNewData: {
-          enabled: true
-        }
-      },
-      xAxis: {
-        type: 'category'
-      },
-      yAxis: {
-        title: {
-          text: 'Today Final Inspection'
-        }
-
-      },
-      legend: {
-        enabled: false
-      },
-      plotOptions: {
-        series: {
-          borderWidth: 0,
-          dataLabels: {
-            enabled: true,
-            format: '{point.y:.1f}'
-          }
-        }
-      },
-
-      tooltip: {
-        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
-      },
-
-      series: [{
-        name: "Inspection",
-        colorByPoint: true,
-        data: <?php echo json_encode(
-                $compBallInspectionArray,
-                JSON_NUMERIC_CHECK
-              ); ?>,
-
-      }],
-
+        });
     });
+    // function showLines() {
+    //   // fc = $('#factory').val();
+    //   fc = 'B34006';
+    //   rpt = $('#report').val();
 
-    Highcharts.chart('finaleBallInspection', {
-      chart: {
-        type: 'spline'
-      },
+    //   // $('#line').val('all')
+    //   url = "<?php echo base_url('MIS/Quality/getLines/') ?>" + fc
+    //   if ((fc == 'B34006') && rpt == 'Summary') {
+    //     lines = '<option value="all">All</option>'
+    //     $.get(url, function(res) {
+    //       data = res.data
+    //       for (i = 0; i < data.length; i++) {
+    //         lines += '<option value="' + data[i].LineID + '">' + data[i].LineName +
+    //           '</option>'
+    //       }
+    //       $('#line').html(lines);
+    //       $('#line-option').removeClass('d-none');
+    //     })
+
+    //   } else {
+    //     $('#line-option').addClass('d-none');
+    //   }
+    // }
+
+    // function showArticles() {
+    //   fc = $('#factory').val();
+    //   rpt = $('#report').val();
+    //   console.log(rpt)
+    //   if (rpt == 'Art_Date_wise') {
+    //     $('#article-option').removeClass('d-none');
+
+    //   } else {
+    //     $('#article-option').addClass('d-none');
+    //   }
+    // }
+
+    // function updateArticles() {
+    //   // fc = $("#factory").val();
+    //   fc = 'B34006';
+    //   url = "<?php echo base_url('MIS/Quality/Articles/') ?>" + fc
+    //   $.get(url, function(res) {
+    //     data = res.data
+    //     options = "<option value='all'>All</option>"
+    //     for (i = 0; i < data.length; i++) {
+    //       options += "<option>" + data[i].ArtCode + "</option>"
+    //     }
+
+    //     $("#article").html(options)
+
+    //   })
+    // }
+    // $('#report').on('change', function() {
+    //   updateArticles()
+    //   showLines()
+    //   showArticles()
+    // })
+
+
+
+
+
+
+    // $('#searchAmbPrint').on('click', function() {
+    //   report = $('#report').val();
+
+    //   switch (report) {
+    //     case 'Summary':
+    //       getAmbSummary();
+    //       break;
+
+    //     case 'Art_Date_wise':
+    //       getAmbArticleDateWise();
+
+    //       break;
+
+
+    //     default:
+    //       break;
+    //   }
+    // })
+
+
+
+    // function getAmbSummary() {
+    //   start_date = $('#start_date').val();
+    //   end_date = $('#end_date').val();
+    //   line = $('#line').val();
+    //   if (line == 'all') {
+    //     url = "<?php echo base_url('MIS/FactoryCodes/AmbReportAll/') ?>" + start_date + '/' + end_date
+    //     //alert(url);
+    //   } else {
+    //     url = "<?php echo base_url('MIS/FactoryCodes/AmbReportLineWise/') ?>" + start_date + '/' + end_date +
+    //       "/" + line
+    //     //alert(url);
+    //   }
+    //   $.get(url, function(data) {
+    //     console.log("get amb summary", data)
+
+    //     // fillReport(data, true, true, true, true, true, true)
+    //   })
+
+    // }
+
+    // function getAmbArticleDateWise() {
+    //   start_date = $('#start_date').val();
+    //   end_date = $('#end_date').val();
+    //   art = $('#article').val();
+    //   if (art == 'all') {
+    //     url = "<?php echo base_url('MIS/FactoryCodes/AmbArticleWiseDateWiseAll/') ?>" + start_date + '/' +
+    //       end_date
+    //     //alert(url);
+    //   } else {
+    //     url = "<?php echo base_url('MIS/FactoryCodes/AmbArticleWiseDateWise/') ?>" + start_date + '/' +
+    //       end_date + "/" + art
+    //     //alert(url);
+    //   }
+
+    //   $.get(url, function(data) {
+    //     console.log("articel date wise", data);
+    //     // fillReport(data, true, true, true, true, true)
+    //   })
+    // }
+
+    // Highcharts.chart('compBallInspection', {
+    //   chart: {
+    //     type: 'spline'
+    //   },
+    //   title: {
+    //     text: 'Today Final Inspection',
+    //   },
+
+    //   accessibility: {
+    //     announceNewData: {
+    //       enabled: true
+    //     }
+    //   },
+    //   xAxis: {
+    //     type: 'category'
+    //   },
+    //   yAxis: {
+    //     title: {
+    //       text: 'Today Final Inspection'
+    //     }
+
+    //   },
+    //   legend: {
+    //     enabled: false
+    //   },
+    //   plotOptions: {
+    //     series: {
+    //       borderWidth: 0,
+    //       dataLabels: {
+    //         enabled: true,
+    //         format: '{point.y:.1f}'
+    //       }
+    //     }
+    //   },
+
+    //   tooltip: {
+    //     headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+    //     pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+    //   },
+
+    //   series: [{
+    //     name: "Inspection",
+    //     colorByPoint: true,
+    //     data: '',
+
+    //   }],
+
+    // });
+
+    // Highcharts.chart('finaleBallInspection', {
+    //   chart: {
+    //     type: 'spline'
+    //   },
+    //   title: {
+    //     text: 'Today Final Inspection',
+    //   },
+
+    //   accessibility: {
+    //     announceNewData: {
+    //       enabled: true
+    //     }
+    //   },
+    //   xAxis: {
+    //     type: 'category'
+    //   },
+    //   yAxis: {
+    //     title: {
+    //       text: 'Today Final Inspection'
+    //     }
+
+    //   },
+    //   legend: {
+    //     enabled: false
+    //   },
+    //   plotOptions: {
+    //     series: {
+    //       borderWidth: 0,
+    //       dataLabels: {
+    //         enabled: true,
+    //         format: '{point.y:.1f}'
+    //       }
+    //     }
+    //   },
+
+    //   tooltip: {
+    //     headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+    //     pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+    //   },
+
+    //   series: [{
+    //     name: "Inspection",
+    //     colorByPoint: true,
+    //     data: '',
+
+    //   }],
+
+    // });
+
+    // Highcharts.chart('urbanBallInspection', {
+    //   chart: {
+    //     type: 'spline'
+    //   },
+    //   title: {
+    //     text: 'Today Final Inspection',
+    //   },
+
+    //   accessibility: {
+    //     announceNewData: {
+    //       enabled: true
+    //     }
+    //   },
+    //   xAxis: {
+    //     type: 'category'
+    //   },
+    //   yAxis: {
+    //     title: {
+    //       text: 'Today Final Inspection'
+    //     }
+
+    //   },
+    //   legend: {
+    //     enabled: false
+    //   },
+    //   plotOptions: {
+    //     series: {
+    //       borderWidth: 0,
+    //       dataLabels: {
+    //         enabled: true,
+    //         format: '{point.y:.1f}'
+    //       }
+    //     }
+    //   },
+
+    //   tooltip: {
+    //     headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+    //     pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+    //   },
+
+    //   series: [{
+    //     name: "Inspection",
+    //     colorByPoint: true,
+    //     data: '',
+
+    //   }],
+
+    // });
+
+
+    // Highcharts.chart('ambSheetSizingContent', {
+    //   chart: {
+    //     type: 'column'
+    //   },
+    //   title: {
+    //     text: 'Today Sheet Sizing Sum',
+    //   },
+
+    //   accessibility: {
+    //     announceNewData: {
+    //       enabled: true
+    //     }
+    //   },
+    //   xAxis: {
+    //     type: 'category'
+    //   },
+    //   yAxis: {
+    //     title: {
+    //       text: 'Today Sheet Sizing Sum'
+    //     }
+
+    //   },
+    //   legend: {
+    //     enabled: false
+    //   },
+    //   plotOptions: {
+    //     series: {
+    //       borderWidth: 0,
+    //       dataLabels: {
+    //         enabled: true,
+    //         format: '{point.y:.1f}'
+    //       }
+    //     }
+    //   },
+
+    //   tooltip: {
+    //     headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+    //     pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+    //   },
+
+    //   series: [{
+    //     name: "Inspection",
+    //     colorByPoint: true,
+    //     data: '',
+
+    //   }],
+
+    // });
+
+    // Highcharts.chart('ambPanelDefectsContent', {
+    //   chart: {
+    //     type: 'column'
+    //   },
+    //   title: {
+    //     text: 'Today Panel Defects',
+    //   },
+
+    //   accessibility: {
+    //     announceNewData: {
+    //       enabled: true
+    //     }
+    //   },
+    //   xAxis: {
+    //     type: 'category'
+    //   },
+    //   yAxis: {
+    //     title: {
+    //       text: 'Today Panel Defects'
+    //     }
+
+    //   },
+    //   legend: {
+    //     enabled: false
+    //   },
+    //   plotOptions: {
+    //     series: {
+    //       borderWidth: 0,
+    //       dataLabels: {
+    //         enabled: true,
+    //         format: '{point.y:.1f}'
+    //       }
+    //     }
+    //   },
+
+    //   tooltip: {
+    //     headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+    //     pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+    //   },
+
+    //   series: [{
+    //     name: "Inspection",
+    //     colorByPoint: true,
+    //     data: '',
+
+    //   }],
+
+    // });
+
+    // Highcharts.chart('ambHFCuttingContent', {
+    //   chart: {
+    //     type: 'column'
+    //   },
+    //   title: {
+    //     text: 'Today HF Cutting',
+    //   },
+
+    //   accessibility: {
+    //     announceNewData: {
+    //       enabled: true
+    //     }
+    //   },
+    //   xAxis: {
+    //     type: 'category'
+    //   },
+    //   yAxis: {
+    //     title: {
+    //       text: 'Today HF Cutting'
+    //     }
+
+    //   },
+    //   legend: {
+    //     enabled: false
+    //   },
+    //   plotOptions: {
+    //     series: {
+    //       borderWidth: 0,
+    //       dataLabels: {
+    //         enabled: true,
+    //         format: '{point.y:.1f}'
+    //       }
+    //     }
+    //   },
+
+    //   tooltip: {
+    //     headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+    //     pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+    //   },
+
+    //   series: [{
+    //     name: "Total Checked",
+    //     colorByPoint: true,
+    //     data: '',
+
+    //   }
+
+    // ],
+
+    // });
+
+    // Highcharts.chart('ambBGradeBallContent', {
+    //   chart: {
+    //     type: 'column'
+    //   },
+    //   title: {
+    //     text: 'Today B Grade Ball',
+    //   },
+
+    //   accessibility: {
+    //     announceNewData: {
+    //       enabled: true
+    //     }
+    //   },
+    //   xAxis: {
+    //     type: 'category'
+    //   },
+    //   yAxis: {
+    //     title: {
+    //       text: 'Today B Grade Ball'
+    //     }
+
+    //   },
+    //   legend: {
+    //     enabled: false
+    //   },
+    //   plotOptions: {
+    //     series: {
+    //       borderWidth: 0,
+    //       dataLabels: {
+    //         enabled: true,
+    //         format: '{point.y:.1f}'
+    //       }
+    //     }
+    //   },
+
+    //   tooltip: {
+    //     headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+    //     pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+    //   },
+
+    //   series: [{
+    //     name: "Total Checked",
+    //     colorByPoint: true,
+    //     data: '',
+
+    //   }
+
+    // ],
+
+    // });
+
+    // Highcharts.chart('ambCoreBGradeContent', {
+    //   chart: {
+    //     type: 'column'
+    //   },
+    //   title: {
+    //     text: 'Today Core B Grade',
+    //   },
+
+    //   accessibility: {
+    //     announceNewData: {
+    //       enabled: true
+    //     }
+    //   },
+    //   xAxis: {
+    //     type: 'category'
+    //   },
+    //   yAxis: {
+    //     title: {
+    //       text: 'Today Core B Grade'
+    //     }
+
+    //   },
+    //   legend: {
+    //     enabled: false
+    //   },
+    //   plotOptions: {
+    //     series: {
+    //       borderWidth: 0,
+    //       dataLabels: {
+    //         enabled: true,
+    //         format: '{point.y:.1f}'
+    //       }
+    //     }
+    //   },
+
+    //   tooltip: {
+    //     headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+    //     pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+    //   },
+
+    //   series: [{
+    //     name: "Total Checked",
+    //     colorByPoint: true,
+    //     data: '',
+
+    //   }
+
+    // ],
+
+    // });
+
+
+
+
+
+
+
+    Highcharts.chart('bladder002', {
       title: {
-        text: 'Today Final Inspection',
-      },
-
-      accessibility: {
-        announceNewData: {
-          enabled: true
-        }
+        text: 'B34002',
+        align: 'left'
       },
       xAxis: {
-        type: 'category'
+        categories: ''
       },
       yAxis: {
         title: {
-          text: 'Today Final Inspection'
+          text: 'Bladder'
         }
-
       },
-      legend: {
-        enabled: false
+      tooltip: {
+        valueSuffix: '',
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
       },
       plotOptions: {
         series: {
@@ -1635,48 +2252,76 @@ if (!$this->session->has_userdata('user_id')) {
           }
         }
       },
-
-      tooltip: {
-        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      legend: {
+        enabled: true
       },
-
       series: [{
-        name: "Inspection",
-        colorByPoint: true,
-        data: <?php echo json_encode(
-                $finaleBallInspectionArray,
-                JSON_NUMERIC_CHECK
-              ); ?>,
+          type: 'column',
+          name: 'Bladder',
+          colorByPoint: true,
+          data: <?php echo json_encode($bladder002, JSON_NUMERIC_CHECK); ?>
 
-      }],
-
+        }
+        // , {
+        //   type: 'spline',
+        //   name: 'Target',
+        //   data: '',
+        //   marker: {
+        //     lineWidth: 2,
+        //     lineColor: Highcharts.getOptions().colors[3],
+        //     fillColor: 'white'
+        //   }
+        // }, {
+        //   type: 'pie',
+        //   name: 'Total',
+        //   data: [{
+        //     name: 'Efficiency',
+        //     y: 619,
+        //     color: Highcharts.getOptions().colors[0], // 2020 color
+        //     dataLabels: {
+        //       enabled: true,
+        //       distance: -50,
+        //       format: '{point.total}',
+        //       style: {
+        //         fontSize: '15px'
+        //       }
+        //     }
+        //   }, {
+        //     name: '2021',
+        //     y: 586,
+        //     color: Highcharts.getOptions().colors[1] // 2021 color
+        //   }, {
+        //     name: '2022',
+        //     y: 647,
+        //     color: Highcharts.getOptions().colors[2] // 2022 color
+        //   }],
+        //   center: [75, 65],
+        //   size: 100,
+        //   innerSize: '70%',
+        //   showInLegend: false,
+        //   dataLabels: {
+        //     enabled: false
+        //   }
+        // }
+      ]
     });
-
-    Highcharts.chart('urbanBallInspection', {
-      chart: {
-        type: 'spline'
-      },
+    Highcharts.chart('panelShapping002', {
       title: {
-        text: 'Today Final Inspection',
-      },
-
-      accessibility: {
-        announceNewData: {
-          enabled: true
-        }
+        text: 'B34002',
+        align: 'left'
       },
       xAxis: {
-        type: 'category'
+        categories: ''
       },
       yAxis: {
         title: {
-          text: 'Today Final Inspection'
+          text: 'Panel Shapping'
         }
-
       },
-      legend: {
-        enabled: false
+      tooltip: {
+        valueSuffix: '',
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
       },
       plotOptions: {
         series: {
@@ -1687,49 +2332,76 @@ if (!$this->session->has_userdata('user_id')) {
           }
         }
       },
-
-      tooltip: {
-        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      legend: {
+        enabled: true
       },
-
       series: [{
-        name: "Inspection",
-        colorByPoint: true,
-        data: <?php echo json_encode(
-                $urbanBallInspectionArray,
-                JSON_NUMERIC_CHECK
-              ); ?>,
+          type: 'spline',
+          name: 'Panel Shapping',
+          colorByPoint: true,
+          data: <?php echo json_encode($panalShapping002, JSON_NUMERIC_CHECK); ?>
 
-      }],
-
+        }
+        // , {
+        //   type: 'spline',
+        //   name: 'Target',
+        //   data: '',
+        //   marker: {
+        //     lineWidth: 2,
+        //     lineColor: Highcharts.getOptions().colors[3],
+        //     fillColor: 'white'
+        //   }
+        // }, {
+        //   type: 'pie',
+        //   name: 'Total',
+        //   data: [{
+        //     name: 'Efficiency',
+        //     y: 619,
+        //     color: Highcharts.getOptions().colors[0], // 2020 color
+        //     dataLabels: {
+        //       enabled: true,
+        //       distance: -50,
+        //       format: '{point.total}',
+        //       style: {
+        //         fontSize: '15px'
+        //       }
+        //     }
+        //   }, {
+        //     name: '2021',
+        //     y: 586,
+        //     color: Highcharts.getOptions().colors[1] // 2021 color
+        //   }, {
+        //     name: '2022',
+        //     y: 647,
+        //     color: Highcharts.getOptions().colors[2] // 2022 color
+        //   }],
+        //   center: [75, 65],
+        //   size: 100,
+        //   innerSize: '70%',
+        //   showInLegend: false,
+        //   dataLabels: {
+        //     enabled: false
+        //   }
+        // }
+      ]
     });
-
-
-    Highcharts.chart('ambSheetSizingContent', {
-      chart: {
-        type: 'column'
-      },
+    Highcharts.chart('cutting002', {
       title: {
-        text: 'Today Sheet Sizing Sum',
-      },
-
-      accessibility: {
-        announceNewData: {
-          enabled: true
-        }
+        text: 'B34002',
+        align: 'left'
       },
       xAxis: {
-        type: 'category'
+        categories: ''
       },
       yAxis: {
         title: {
-          text: 'Today Sheet Sizing Sum'
+          text: 'Cutting'
         }
-
       },
-      legend: {
-        enabled: false
+      tooltip: {
+        valueSuffix: '',
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
       },
       plotOptions: {
         series: {
@@ -1740,48 +2412,76 @@ if (!$this->session->has_userdata('user_id')) {
           }
         }
       },
-
-      tooltip: {
-        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      legend: {
+        enabled: true
       },
-
       series: [{
-        name: "Inspection",
-        colorByPoint: true,
-        data: <?php echo json_encode(
-                $ambSheetSizingArray,
-                JSON_NUMERIC_CHECK
-              ); ?>,
+          type: 'column',
+          name: 'Cutting',
+          colorByPoint: true,
+          data: <?php echo json_encode($cutting002, JSON_NUMERIC_CHECK); ?>
 
-      }],
-
+        }
+        // , {
+        //   type: 'spline',
+        //   name: 'Target',
+        //   data: '',
+        //   marker: {
+        //     lineWidth: 2,
+        //     lineColor: Highcharts.getOptions().colors[3],
+        //     fillColor: 'white'
+        //   }
+        // }, {
+        //   type: 'pie',
+        //   name: 'Total',
+        //   data: [{
+        //     name: 'Efficiency',
+        //     y: 619,
+        //     color: Highcharts.getOptions().colors[0], // 2020 color
+        //     dataLabels: {
+        //       enabled: true,
+        //       distance: -50,
+        //       format: '{point.total}',
+        //       style: {
+        //         fontSize: '15px'
+        //       }
+        //     }
+        //   }, {
+        //     name: '2021',
+        //     y: 586,
+        //     color: Highcharts.getOptions().colors[1] // 2021 color
+        //   }, {
+        //     name: '2022',
+        //     y: 647,
+        //     color: Highcharts.getOptions().colors[2] // 2022 color
+        //   }],
+        //   center: [75, 65],
+        //   size: 100,
+        //   innerSize: '70%',
+        //   showInLegend: false,
+        //   dataLabels: {
+        //     enabled: false
+        //   }
+        // }
+      ]
     });
-
-    Highcharts.chart('ambPanelDefectsContent', {
-      chart: {
-        type: 'column'
-      },
+    Highcharts.chart('cuttingFabric002', {
       title: {
-        text: 'Today Panel Defects',
-      },
-
-      accessibility: {
-        announceNewData: {
-          enabled: true
-        }
+        text: 'B34002',
+        align: 'left'
       },
       xAxis: {
-        type: 'category'
+        categories: ''
       },
       yAxis: {
         title: {
-          text: 'Today Panel Defects'
+          text: 'Cutting Fabric'
         }
-
       },
-      legend: {
-        enabled: false
+      tooltip: {
+        valueSuffix: '',
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
       },
       plotOptions: {
         series: {
@@ -1792,48 +2492,76 @@ if (!$this->session->has_userdata('user_id')) {
           }
         }
       },
-
-      tooltip: {
-        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      legend: {
+        enabled: true
       },
-
       series: [{
-        name: "Inspection",
-        colorByPoint: true,
-        data: <?php echo json_encode(
-                $ambPanelDefectsArray,
-                JSON_NUMERIC_CHECK
-              ); ?>,
+          type: 'column',
+          name: 'Cutting Fabric',
+          colorByPoint: true,
+          data: <?php echo json_encode($cuttingFabric002, JSON_NUMERIC_CHECK); ?>
 
-      }],
-
+        }
+        // , {
+        //   type: 'spline',
+        //   name: 'Target',
+        //   data: '',
+        //   marker: {
+        //     lineWidth: 2,
+        //     lineColor: Highcharts.getOptions().colors[3],
+        //     fillColor: 'white'
+        //   }
+        // }, {
+        //   type: 'pie',
+        //   name: 'Total',
+        //   data: [{
+        //     name: 'Efficiency',
+        //     y: 619,
+        //     color: Highcharts.getOptions().colors[0], // 2020 color
+        //     dataLabels: {
+        //       enabled: true,
+        //       distance: -50,
+        //       format: '{point.total}',
+        //       style: {
+        //         fontSize: '15px'
+        //       }
+        //     }
+        //   }, {
+        //     name: '2021',
+        //     y: 586,
+        //     color: Highcharts.getOptions().colors[1] // 2021 color
+        //   }, {
+        //     name: '2022',
+        //     y: 647,
+        //     color: Highcharts.getOptions().colors[2] // 2022 color
+        //   }],
+        //   center: [75, 65],
+        //   size: 100,
+        //   innerSize: '70%',
+        //   showInLegend: false,
+        //   dataLabels: {
+        //     enabled: false
+        //   }
+        // }
+      ]
     });
-
-    Highcharts.chart('ambHFCuttingContent', {
-      chart: {
-        type: 'column'
-      },
+    Highcharts.chart('cuttingFoam002', {
       title: {
-        text: 'Today HF Cutting',
-      },
-
-      accessibility: {
-        announceNewData: {
-          enabled: true
-        }
+        text: 'B34002',
+        align: 'left'
       },
       xAxis: {
-        type: 'category'
+        categories: ''
       },
       yAxis: {
         title: {
-          text: 'Today HF Cutting'
+          text: 'Cutting Foam'
         }
-
       },
-      legend: {
-        enabled: false
+      tooltip: {
+        valueSuffix: '',
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
       },
       plotOptions: {
         series: {
@@ -1844,50 +2572,76 @@ if (!$this->session->has_userdata('user_id')) {
           }
         }
       },
-
-      tooltip: {
-        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      legend: {
+        enabled: true
       },
-
       series: [{
-        name: "Total Checked",
-        colorByPoint: true,
-        data: <?php echo json_encode(
-                $ambHFCuttingArray1,
-                JSON_NUMERIC_CHECK
-              ); ?>,
+          type: 'column',
+          name: 'Cutting Foam',
+          colorByPoint: true,
+          data: <?php echo json_encode($cuttingFoam002, JSON_NUMERIC_CHECK); ?>
 
-      }
-      
-    ],
-
+        }
+        // , {
+        //   type: 'spline',
+        //   name: 'Target',
+        //   data: '',
+        //   marker: {
+        //     lineWidth: 2,
+        //     lineColor: Highcharts.getOptions().colors[3],
+        //     fillColor: 'white'
+        //   }
+        // }, {
+        //   type: 'pie',
+        //   name: 'Total',
+        //   data: [{
+        //     name: 'Efficiency',
+        //     y: 619,
+        //     color: Highcharts.getOptions().colors[0], // 2020 color
+        //     dataLabels: {
+        //       enabled: true,
+        //       distance: -50,
+        //       format: '{point.total}',
+        //       style: {
+        //         fontSize: '15px'
+        //       }
+        //     }
+        //   }, {
+        //     name: '2021',
+        //     y: 586,
+        //     color: Highcharts.getOptions().colors[1] // 2021 color
+        //   }, {
+        //     name: '2022',
+        //     y: 647,
+        //     color: Highcharts.getOptions().colors[2] // 2022 color
+        //   }],
+        //   center: [75, 65],
+        //   size: 100,
+        //   innerSize: '70%',
+        //   showInLegend: false,
+        //   dataLabels: {
+        //     enabled: false
+        //   }
+        // }
+      ]
     });
-
-    Highcharts.chart('ambBGradeBallContent', {
-      chart: {
-        type: 'column'
-      },
+    Highcharts.chart('cuttingPU002', {
       title: {
-        text: 'Today B Grade Ball',
-      },
-
-      accessibility: {
-        announceNewData: {
-          enabled: true
-        }
+        text: 'B34002',
+        align: 'left'
       },
       xAxis: {
-        type: 'category'
+        categories: ''
       },
       yAxis: {
         title: {
-          text: 'Today B Grade Ball'
+          text: 'Cutting PU'
         }
-
       },
-      legend: {
-        enabled: false
+      tooltip: {
+        valueSuffix: '',
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
       },
       plotOptions: {
         series: {
@@ -1898,50 +2652,76 @@ if (!$this->session->has_userdata('user_id')) {
           }
         }
       },
-
-      tooltip: {
-        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      legend: {
+        enabled: true
       },
-
       series: [{
-        name: "Total Checked",
-        colorByPoint: true,
-        data: <?php echo json_encode(
-                $ambBGradeBallArray,
-                JSON_NUMERIC_CHECK
-              ); ?>,
+          type: 'column',
+          name: 'Cutting PU',
+          colorByPoint: true,
+          data: <?php echo json_encode($cuttingPU002, JSON_NUMERIC_CHECK); ?>
 
-      }
-      
-    ],
-
+        }
+        // , {
+        //   type: 'spline',
+        //   name: 'Target',
+        //   data: '',
+        //   marker: {
+        //     lineWidth: 2,
+        //     lineColor: Highcharts.getOptions().colors[3],
+        //     fillColor: 'white'
+        //   }
+        // }, {
+        //   type: 'pie',
+        //   name: 'Total',
+        //   data: [{
+        //     name: 'Efficiency',
+        //     y: 619,
+        //     color: Highcharts.getOptions().colors[0], // 2020 color
+        //     dataLabels: {
+        //       enabled: true,
+        //       distance: -50,
+        //       format: '{point.total}',
+        //       style: {
+        //         fontSize: '15px'
+        //       }
+        //     }
+        //   }, {
+        //     name: '2021',
+        //     y: 586,
+        //     color: Highcharts.getOptions().colors[1] // 2021 color
+        //   }, {
+        //     name: '2022',
+        //     y: 647,
+        //     color: Highcharts.getOptions().colors[2] // 2022 color
+        //   }],
+        //   center: [75, 65],
+        //   size: 100,
+        //   innerSize: '70%',
+        //   showInLegend: false,
+        //   dataLabels: {
+        //     enabled: false
+        //   }
+        // }
+      ]
     });
-
-    Highcharts.chart('ambCoreBGradeContent', {
-      chart: {
-        type: 'column'
-      },
+    Highcharts.chart('dShapeCarcass002', {
       title: {
-        text: 'Today Core B Grade',
-      },
-
-      accessibility: {
-        announceNewData: {
-          enabled: true
-        }
+        text: 'B34002',
+        align: 'left'
       },
       xAxis: {
-        type: 'category'
+        categories: ''
       },
       yAxis: {
         title: {
-          text: 'Today Core B Grade'
+          text: 'D-Shape Carcass'
         }
-
       },
-      legend: {
-        enabled: false
+      tooltip: {
+        valueSuffix: '',
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
       },
       plotOptions: {
         series: {
@@ -1952,24 +2732,458 @@ if (!$this->session->has_userdata('user_id')) {
           }
         }
       },
- 
+      legend: {
+        enabled: true
+      },
+      series: [{
+          type: 'column',
+          name: 'D-Shape Carcass',
+          colorByPoint: true,
+          data: <?php echo json_encode($dShapeCarcass002, JSON_NUMERIC_CHECK); ?>
+
+        }
+        // , {
+        //   type: 'spline',
+        //   name: 'Target',
+        //   data: '',
+        //   marker: {
+        //     lineWidth: 2,
+        //     lineColor: Highcharts.getOptions().colors[3],
+        //     fillColor: 'white'
+        //   }
+        // }, {
+        //   type: 'pie',
+        //   name: 'Total',
+        //   data: [{
+        //     name: 'Efficiency',
+        //     y: 619,
+        //     color: Highcharts.getOptions().colors[0], // 2020 color
+        //     dataLabels: {
+        //       enabled: true,
+        //       distance: -50,
+        //       format: '{point.total}',
+        //       style: {
+        //         fontSize: '15px'
+        //       }
+        //     }
+        //   }, {
+        //     name: '2021',
+        //     y: 586,
+        //     color: Highcharts.getOptions().colors[1] // 2021 color
+        //   }, {
+        //     name: '2022',
+        //     y: 647,
+        //     color: Highcharts.getOptions().colors[2] // 2022 color
+        //   }],
+        //   center: [75, 65],
+        //   size: 100,
+        //   innerSize: '70%',
+        //   showInLegend: false,
+        //   dataLabels: {
+        //     enabled: false
+        //   }
+        // }
+      ]
+    });
+    Highcharts.chart('finalQC002', {
+      title: {
+        text: 'B34002',
+        align: 'left'
+      },
+      xAxis: {
+        categories: ''
+      },
+      yAxis: {
+        title: {
+          text: 'Final QC'
+        }
+      },
       tooltip: {
+        valueSuffix: '',
         headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
         pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
       },
-
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+      legend: {
+        enabled: true
+      },
       series: [{
-        name: "Total Checked",
-        colorByPoint: true,
-        data: <?php echo json_encode(
-                $ambCoreBGradeArray,
-                JSON_NUMERIC_CHECK
-              ); ?>,
+          type: 'column',
+          name: 'Final QC',
+          colorByPoint: true,
+          data: <?php echo json_encode($finalQC002, JSON_NUMERIC_CHECK); ?>
 
-      }
-      
-    ],
+        }
+        // , {
+        //   type: 'spline',
+        //   name: 'Target',
+        //   data: '',
+        //   marker: {
+        //     lineWidth: 2,
+        //     lineColor: Highcharts.getOptions().colors[3],
+        //     fillColor: 'white'
+        //   }
+        // }, {
+        //   type: 'pie',
+        //   name: 'Total',
+        //   data: [{
+        //     name: 'Efficiency',
+        //     y: 619,
+        //     color: Highcharts.getOptions().colors[0], // 2020 color
+        //     dataLabels: {
+        //       enabled: true,
+        //       distance: -50,
+        //       format: '{point.total}',
+        //       style: {
+        //         fontSize: '15px'
+        //       }
+        //     }
+        //   }, {
+        //     name: '2021',
+        //     y: 586,
+        //     color: Highcharts.getOptions().colors[1] // 2021 color
+        //   }, {
+        //     name: '2022',
+        //     y: 647,
+        //     color: Highcharts.getOptions().colors[2] // 2022 color
+        //   }],
+        //   center: [75, 65],
+        //   size: 100,
+        //   innerSize: '70%',
+        //   showInLegend: false,
+        //   dataLabels: {
+        //     enabled: false
+        //   }
+        // }
+      ]
+    });
+    Highcharts.chart('labTest002', {
+      title: {
+        text: 'B34002',
+        align: 'left'
+      },
+      xAxis: {
+        categories: ''
+      },
+      yAxis: {
+        title: {
+          text: 'Lab Test'
+        }
+      },
+      tooltip: {
+        valueSuffix: '',
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+      legend: {
+        enabled: true
+      },
+      series: [{
+          type: 'column',
+          name: 'Lab Test',
+          colorByPoint: true,
+          data: <?php echo json_encode($labTest002, JSON_NUMERIC_CHECK); ?>
 
+        }
+        // , {
+        //   type: 'spline',
+        //   name: 'Target',
+        //   data: '',
+        //   marker: {
+        //     lineWidth: 2,
+        //     lineColor: Highcharts.getOptions().colors[3],
+        //     fillColor: 'white'
+        //   }
+        // }, {
+        //   type: 'pie',
+        //   name: 'Total',
+        //   data: [{
+        //     name: 'Efficiency',
+        //     y: 619,
+        //     color: Highcharts.getOptions().colors[0], // 2020 color
+        //     dataLabels: {
+        //       enabled: true,
+        //       distance: -50,
+        //       format: '{point.total}',
+        //       style: {
+        //         fontSize: '15px'
+        //       }
+        //     }
+        //   }, {
+        //     name: '2021',
+        //     y: 586,
+        //     color: Highcharts.getOptions().colors[1] // 2021 color
+        //   }, {
+        //     name: '2022',
+        //     y: 647,
+        //     color: Highcharts.getOptions().colors[2] // 2022 color
+        //   }],
+        //   center: [75, 65],
+        //   size: 100,
+        //   innerSize: '70%',
+        //   showInLegend: false,
+        //   dataLabels: {
+        //     enabled: false
+        //   }
+        // }
+      ]
+    });
+    Highcharts.chart('laminationCutting002', {
+      title: {
+        text: 'B34002',
+        align: 'left'
+      },
+      xAxis: {
+        categories: ''
+      },
+      yAxis: {
+        title: {
+          text: 'Lamination & Cutting'
+        }
+      },
+      tooltip: {
+        valueSuffix: '',
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+      legend: {
+        enabled: true
+      },
+      series: [{
+          type: 'column',
+          name: 'Lamination & Cutting',
+          colorByPoint: true,
+          data: <?php echo json_encode($laminationCutting002, JSON_NUMERIC_CHECK); ?>
+
+        }
+        // , {
+        //   type: 'spline',
+        //   name: 'Target',
+        //   data: '',
+        //   marker: {
+        //     lineWidth: 2,
+        //     lineColor: Highcharts.getOptions().colors[3],
+        //     fillColor: 'white'
+        //   }
+        // }, {
+        //   type: 'pie',
+        //   name: 'Total',
+        //   data: [{
+        //     name: 'Efficiency',
+        //     y: 619,
+        //     color: Highcharts.getOptions().colors[0], // 2020 color
+        //     dataLabels: {
+        //       enabled: true,
+        //       distance: -50,
+        //       format: '{point.total}',
+        //       style: {
+        //         fontSize: '15px'
+        //       }
+        //     }
+        //   }, {
+        //     name: '2021',
+        //     y: 586,
+        //     color: Highcharts.getOptions().colors[1] // 2021 color
+        //   }, {
+        //     name: '2022',
+        //     y: 647,
+        //     color: Highcharts.getOptions().colors[2] // 2022 color
+        //   }],
+        //   center: [75, 65],
+        //   size: 100,
+        //   innerSize: '70%',
+        //   showInLegend: false,
+        //   dataLabels: {
+        //     enabled: false
+        //   }
+        // }
+      ]
+    });
+    Highcharts.chart('patch002', {
+      title: {
+        text: 'B34002',
+        align: 'left'
+      },
+      xAxis: {
+        categories: ''
+      },
+      yAxis: {
+        title: {
+          text: 'Patch'
+        }
+      },
+      tooltip: {
+        valueSuffix: '',
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+      legend: {
+        enabled: true
+      },
+      series: [{
+          type: 'column',
+          name: 'Patch',
+          colorByPoint: true,
+          data: <?php echo json_encode($patch002, JSON_NUMERIC_CHECK); ?>
+
+        }
+        // , {
+        //   type: 'spline',
+        //   name: 'Target',
+        //   data: '',
+        //   marker: {
+        //     lineWidth: 2,
+        //     lineColor: Highcharts.getOptions().colors[3],
+        //     fillColor: 'white'
+        //   }
+        // }, {
+        //   type: 'pie',
+        //   name: 'Total',
+        //   data: [{
+        //     name: 'Efficiency',
+        //     y: 619,
+        //     color: Highcharts.getOptions().colors[0], // 2020 color
+        //     dataLabels: {
+        //       enabled: true,
+        //       distance: -50,
+        //       format: '{point.total}',
+        //       style: {
+        //         fontSize: '15px'
+        //       }
+        //     }
+        //   }, {
+        //     name: '2021',
+        //     y: 586,
+        //     color: Highcharts.getOptions().colors[1] // 2021 color
+        //   }, {
+        //     name: '2022',
+        //     y: 647,
+        //     color: Highcharts.getOptions().colors[2] // 2022 color
+        //   }],
+        //   center: [75, 65],
+        //   size: 100,
+        //   innerSize: '70%',
+        //   showInLegend: false,
+        //   dataLabels: {
+        //     enabled: false
+        //   }
+        // }
+      ]
+    });
+    Highcharts.chart('printing002', {
+      title: {
+        text: 'B34002',
+        align: 'left'
+      },
+      xAxis: {
+        categories: ''
+      },
+      yAxis: {
+        title: {
+          text: 'Printing'
+        }
+      },
+      tooltip: {
+        valueSuffix: '',
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+      legend: {
+        enabled: true
+      },
+      series: [{
+          type: 'column',
+          name: 'Printing',
+          colorByPoint: true,
+          data: <?php echo json_encode($printing002, JSON_NUMERIC_CHECK); ?>
+
+        }
+        // , {
+        //   type: 'spline',
+        //   name: 'Target',
+        //   data: '',
+        //   marker: {
+        //     lineWidth: 2,
+        //     lineColor: Highcharts.getOptions().colors[3],
+        //     fillColor: 'white'
+        //   }
+        // }, {
+        //   type: 'pie',
+        //   name: 'Total',
+        //   data: [{
+        //     name: 'Efficiency',
+        //     y: 619,
+        //     color: Highcharts.getOptions().colors[0], // 2020 color
+        //     dataLabels: {
+        //       enabled: true,
+        //       distance: -50,
+        //       format: '{point.total}',
+        //       style: {
+        //         fontSize: '15px'
+        //       }
+        //     }
+        //   }, {
+        //     name: '2021',
+        //     y: 586,
+        //     color: Highcharts.getOptions().colors[1] // 2021 color
+        //   }, {
+        //     name: '2022',
+        //     y: 647,
+        //     color: Highcharts.getOptions().colors[2] // 2022 color
+        //   }],
+        //   center: [75, 65],
+        //   size: 100,
+        //   innerSize: '70%',
+        //   showInLegend: false,
+        //   dataLabels: {
+        //     enabled: false
+        //   }
+        // }
+      ]
     });
   </script>
 

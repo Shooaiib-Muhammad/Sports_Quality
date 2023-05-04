@@ -333,7 +333,7 @@ if (!$this->session->has_userdata('user_id')) {
                                             </div> -->
                                             <div class="col-md-6">
 
-                                                <label for="customFile">CSS #</label>
+                                                <label for="customFile">CSS No</label>
                                                 <input type="text" class="form-control" id="css_no" name="css_no">
 
                                             </div>
@@ -342,7 +342,7 @@ if (!$this->session->has_userdata('user_id')) {
                                         </div>
                                         <div class="col-md-6 mt-4">
 
-                                            <button class="btn btn-primary" id="saveBtnCssNo">Save</button>
+                                            <button class="btn btn-primary" id="saveBtnCssNo">Add</button>
 
                                         </div>
 

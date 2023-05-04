@@ -25,8 +25,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 */
 //$config['base_url'] = 'http://192.168.10.3:2000/dmms';
 // $config['base_url'] = 'http://192.168.10.3:2000/sports';
- $config['base_url'] = 'http://localhost/sports';
-//$config['base_url'] = 'http://' . $_SERVER['HTTP_HOST'] . '/sports';
+// $config['base_url'] = 'http://localhost/sports';
+$config['base_url'] = 'http://' . $_SERVER['HTTP_HOST'] . '/sports';
 /*
 |--------------------------------------------------------------------------
 | Index File

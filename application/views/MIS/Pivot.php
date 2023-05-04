@@ -6690,7 +6690,7 @@ if (!$this->session->has_userdata('user_id')) {
                         <!-- <script src="<?php echo base_url(); ?>/assets/js/data.js"></script> -->
                         <script src="<?php echo base_url(); ?>/assets/js/series-label.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/drilldown.js"></script>
-                        <script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>
+                        <script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>date
                         <script src="<?php echo base_url(); ?>/assets/js/export-data.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/accessibility.js"></script>
                         <script>

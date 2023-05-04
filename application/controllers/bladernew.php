@@ -16,6 +16,7 @@ class bladernew extends CI_Controller {
         $CurrentDate = $Year . '-' . $Month . '-' . $Day;
         $data['getData'] = $this->Bladder->getData();
         $data['Stationwise'] = $this->Bladder->Stationwise($CurrentDate, $CurrentDate);
+        $data['getScannerCount'] = $this->Bladder->getScannerCount();
         $this->load->view("Bladder/BladderCount", $data);
     }
     public function data(){

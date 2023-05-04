@@ -596,28 +596,40 @@ foreach ($machineTestingSheetSizing as $key) {
                         </div>
                         <br>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
 
                                 <div id="panel-1" class="panel">
                                     <div class="panel-hdr">
                                         <h2>
-                                        Sheet Sizing OutPut
+                                        Balls and Sheet Count Output
 
                                         </h2>
                                     </div>
                                     <div class="panel-container show">
                                         <div class="row" id="dateRangeResult" style="display: none;">
                                             <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        
+                                                        <div id="containerDateRangeBar"></div>
 
-                                                <div id="containerDateRangeBar"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        
+                                                        <div id="containerDateRangeBar2"></div>
+
+                                                    </div>
+                                                </div>
+
 
                                             </div>
-                                            <div class="col-md-12 mt-2">
+
+                                            <div class="col-md-12 mt-4">
 
                                                 <div id="containerDateRangeLine"></div>
 
                                             </div>
-                                            <div class="col-md-12 mt-2">
+                                            <div class="col-md-12 mt-4">
 
                                                 <div id="containerDateRangeLineMachineWise"></div>
 
@@ -632,26 +644,7 @@ foreach ($machineTestingSheetSizing as $key) {
                                 </div>
 
                             </div>
-                            <div class="col-md-6">
-                                <div id="panel-1" class="panel">
-                                    <div class="panel-hdr">
-                                        <h2>
-                                            Sheet Sizing OutPut
-
-                                        </h2>
-                                    </div>
-                                    <div class="panel-container show">
-                                        <div class="row">
-                                            <div class="col-md-12">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
+                            
                         </div>
 
 
@@ -1647,7 +1640,7 @@ foreach ($machineTestingSheetSizing as $key) {
                     EfficiencyFinalArray.push(parseFloat(EfficiencyFinal))
                     $("#employeeId").text()
                     $("#efficiencyValueId").text(EfficiencyFinal + "%")
-                    console.log(EfficiencyFinalArray)
+                    // console.log(EfficiencyFinalArray)
                     var gaugeOptions = {
                         chart: {
                             type: 'solidgauge'
@@ -2183,7 +2176,10 @@ foreach ($machineTestingSheetSizing as $key) {
             ps = [],
             series = [],
             len = data1.BarData.length;
-        console.log("Outer", data1);
+
+            ps2 = []
+            series2 = []
+        // console.log("Outer", data1);
         //concat to get points
         for (var i = 0; i < len; i++) {
             ps[i] = {
@@ -2191,15 +2187,22 @@ foreach ($machineTestingSheetSizing as $key) {
                 y: parseInt(data1.BarData[i].Counter),
                 drilldown: data1.BarData[i].Date
             };
+            ps2[i] = {
+                name: data1.BarData[i].Date,
+                y: parseInt(data1.BarData[i].TotalSheets),
+                drilldown: data1.BarData[i].Date
+            };
         }
         names = [];
         //generate series and split points
         for (i = 0; i < len; i++) {
             var p = ps[i];
+            var p2 = ps2[i];
 
             series.push(p);
+            series2.push(p2);
         }
-        return series;
+        return [series, series2];
     }
 
     function generateDataBottom(data1) {
@@ -2207,56 +2210,95 @@ foreach ($machineTestingSheetSizing as $key) {
         var ret = {},
             ps = [],
             series = [],
+            series2 = [],
             len = data1.MachineData.length;
+            
         let datesArray = []
         let dataArray = []
-        console.log(data1.MachineData);
+
+        let datesArray2 = [];
+        let dataArray2 = [];
+
+        // console.log(data1.MachineData);
         //concat to get points
         for (var i = 0; i < len; i++) {
             if (datesArray.indexOf(data1.MachineData[i].Date) === -1) {
                 datesArray.push(data1.MachineData[i].Date)
+                datesArray2.push(data1.MachineData[i].Date)
                 if (data1.MachineData[i].MachineName == "Sheet Sizing Press 1" || data1.MachineData[i].MachineName == "Sheet Sizing Press 2") {
                     dataArray.push([data1.MachineData[i].Date, data1.MachineData[i].MachineName, parseInt(data1.MachineData[i].Counter)])
+
+                    dataArray2.push([data1.MachineData[i].Date, data1.MachineData[i].MachineName, parseInt(data1.MachineData[i].TotalSheets)]) //for sheet sizing
                 } else {
                     dataArray.push([data1.MachineData[i].Date, data1.MachineData[i].MachineName, parseInt(data1.MachineData[i].Counter)])
+
+                    dataArray2.push([data1.MachineData[i].Date, data1.MachineData[i].MachineName, parseInt(data1.MachineData[i].TotalSheets)]) //for sheet sizing
                 }
 
             } else {
                 if (data1.MachineData[i].MachineName == "Sheet Sizing Press 1" || data1.MachineData[i].MachineName == "Sheet Sizing Press 2") {
                     dataArray.push([data1.MachineData[i].Date, data1.MachineData[i].MachineName, parseInt(data1.MachineData[i].Counter)])
+
+                    dataArray2.push([data1.MachineData[i].Date, data1.MachineData[i].MachineName, parseInt(data1.MachineData[i].TotalSheets)]) //for sheet sizing
                 } else {
                     dataArray.push([data1.MachineData[i].Date, data1.MachineData[i].MachineName, parseInt(data1.MachineData[i].Counter)])
+
+                    dataArray2.push([data1.MachineData[i].Date, data1.MachineData[i].MachineName, parseInt(data1.MachineData[i].TotalSheets)]) //for sheet sizing
                 }
             }
 
-
-
         }
-
         //generate series and split points
         for (i = 0; i < datesArray.length; i++) {
             let OriginaldataArray = []
             let OriginaldataArrayDateRemove = []
+
+            let OriginaldataArray2 = []
+            let OriginaldataArrayDateRemove2 = []
+            
             dataArray.filter(function(e) {
                 if (e[0] === datesArray[i]) {
                     OriginaldataArray.push(e)
                 }
             });
+            dataArray2.filter(function(e) {
+                if (e[0] === datesArray2[i]) {
+                    OriginaldataArray2.push(e)
+                }
+            });
+
             OriginaldataArray.forEach(element => {
                 // console.log("Element", element)
                 element.shift()
                 OriginaldataArrayDateRemove.push(element)
             });
+            OriginaldataArray2.forEach(element => {
+                // console.log("Element", element)
+                element.shift()
+                OriginaldataArrayDateRemove2.push(element)
+            });
+
             // console.log("data Get", OriginaldataArray)
             var p = {
                 name: datesArray[i],
                 id: datesArray[i],
                 data: OriginaldataArrayDateRemove
             }
+            // console.log("data Get", OriginaldataArray)
+            var p2 = {
+                name: datesArray2[i],
+                id: datesArray2[i],
+                data: OriginaldataArrayDateRemove2
+            }
+
             //  console.log("Series", p)
             series.push(p);
+            //  console.log("Series", p2)
+            series2.push(p2);
+
         }
-        return series;
+
+        return [series, series2];
     }
 
     $("#searchRange").on('click', function(e) {
@@ -2272,6 +2314,7 @@ foreach ($machineTestingSheetSizing as $key) {
         const params = new Proxy(new URLSearchParams(window.location.search), {
             get: (searchParams, prop) => searchParams.get(prop),
         });
+        
         let section_id = params.section_id;
         let dept_id = params.dept_id;
         let datesArray = []
@@ -2292,13 +2335,14 @@ foreach ($machineTestingSheetSizing as $key) {
             "endDate": endDate,
             "shift": shift
         }, function(data, status) {
-            console.log("Data Outer", data)
+            console.log("All Data", data)
             let seriesDataTop;
             let seriesDataBottom;
             let dataArrayOuter = data.BarData
             if (data) {
                 seriesDataTop = generateDataTop(data)
                 seriesDataBottom = generateDataBottom(data)
+                console.log("seriesDataBottom", seriesDataBottom);
 
 
 
@@ -2394,7 +2438,7 @@ foreach ($machineTestingSheetSizing as $key) {
                     data: targetDataMachineWise
                 })
             }
-            console.log("Target", datesArrayMachineWise)
+            // console.log("Target", datesArrayMachineWise)
             for (var i = 0; i < data.BarData.length; i++) {
                 if (datesArray.indexOf(data.BarData[i].Date) === -1) {
                     datesArray.push(data.BarData[i].Date)
@@ -2402,10 +2446,131 @@ foreach ($machineTestingSheetSizing as $key) {
                 }
             }
 
+            Highcharts.chart('containerDateRangeBar', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    align: 'left',
+                    text: `Balls Count From ${startDateNewFormat} To ${endDateNewFormat}`
+                },
+                subtitle: {
+                    align: 'center',
+                    text: `Shift: ${shift}`
+                },
+                accessibility: {
+                    announceNewData: {
+                        enabled: true
+                    }
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Balls Count'
+                    }
+
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                        }
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+                },
+
+                series: [{
+                    name: "Balls Output",
+                    colorByPoint: true,
+                    data: seriesDataTop[0]
+                }],
+                drilldown: {
+                    breadcrumbs: {
+                        position: {
+                            align: 'right'
+                        }
+                    },
+                    series: seriesDataBottom[0]
+                }
+            });
+
+            Highcharts.chart('containerDateRangeBar2', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    align: 'left',
+                    text: `Sheets Count From ${startDateNewFormat} To ${endDateNewFormat}`
+                },
+                subtitle: {
+                    align: 'center',
+                    text: `Shift: ${shift}`
+                },
+                accessibility: {
+                    announceNewData: {
+                        enabled: true
+                    }
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Sheets Count'
+                    }
+
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                        }
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+                },
+
+                series: [{
+                    name: "Sheet Sizing",
+                    colorByPoint: true,
+                    data: seriesDataTop[1]
+                }],
+                drilldown: {
+                    breadcrumbs: {
+                        position: {
+                            align: 'right'
+                        }
+                    },
+                    series: seriesDataBottom[1]
+                }
+                
+            });
+
             Highcharts.chart('containerDateRangeLineMachineWise', {
 
                 title: {
                     text: `Machine-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
+                },
+                subtitle: {
+                    align: 'center',
+                    text: `Shift: ${shift}`
                 },
 
                 yAxis: {
@@ -2449,63 +2614,7 @@ foreach ($machineTestingSheetSizing as $key) {
                     }]
                 }
 
-            });
-
-
-            Highcharts.chart('containerDateRangeBar', {
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    align: 'left',
-                    text: `Balls Count From ${startDateNewFormat} To ${endDateNewFormat}`
-                },
-                accessibility: {
-                    announceNewData: {
-                        enabled: true
-                    }
-                },
-                xAxis: {
-                    type: 'category'
-                },
-                yAxis: {
-                    title: {
-                        text: 'Balls Count'
-                    }
-
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    series: {
-                        borderWidth: 0,
-                        dataLabels: {
-                            enabled: true,
-                        }
-                    }
-                },
-
-                tooltip: {
-                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
-                },
-
-                series: [{
-                    name: "Sheet Sizing",
-                    colorByPoint: true,
-                    data: seriesDataTop
-                }],
-                drilldown: {
-                    breadcrumbs: {
-                        position: {
-                            align: 'right'
-                        }
-                    },
-                    series: seriesDataBottom
-                }
-            });
-
+            });           
 
             let seriesData = []
             let targetData = []
@@ -2545,6 +2654,10 @@ foreach ($machineTestingSheetSizing as $key) {
 
                 title: {
                     text: `Process-Wise Efficiency Between ${startDateNewFormat} To ${endDateNewFormat}`
+                },
+                subtitle: {
+                    align: 'center',
+                    text: `Shift: ${shift}`
                 },
 
                 yAxis: {
@@ -3063,7 +3176,7 @@ foreach ($machineTestingSheetSizing as $key) {
             "dept_id": dept_id,
             "direct": "Direct"
         }, function(data) {
-            console.log("data", data)
+            // console.log("data", data)
 
             var table = '';
             table += `<table id="tableFormat" class="table table-bordered table-hover  table-striped w-100">

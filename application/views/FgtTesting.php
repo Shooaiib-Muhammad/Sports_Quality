@@ -4891,6 +4891,8 @@ if (!$this->session->has_userdata('user_id')) {
 
                                         if (data[0]['LabNo'].includes('MS')) {
                                             $("#testRequest").html("By Mr.Zeeshan Ikram - MS2@Forward.pk")
+                                        }else if(data[0]['LabNo'].includes('LFB') || data[0]['LabNo'].includes('lfb')){
+                                            $("#testRequest").html("By Ahmed Sb - Qc@forward.pk")
                                         } else {
                                             $("#testRequest").html("By Oman Sb - oman@forward.pk")
                                         }

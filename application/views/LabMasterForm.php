@@ -1655,7 +1655,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         </tr>
                                                                         <tr>
                                                                             <td style="padding: 0px; text-align:left;">Revision</td>
-                                                                            <td style="padding: 0px; text-align:left;">0</td>
+                                                                            <td style="padding: 0px; text-align:left;">2</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td style="padding: 0px; text-align:left;">Date of Issuance</td>
@@ -1666,7 +1666,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                             </div>
                                                             <h3 style="font-size: Medium;font-weight:bold;margin-left:35%;"> Test Report of Fabric</h3>
                                                             <div style="padding-left:30px; width:100%">
-                                                                <table border="1" >
+                                                                <table border="2" style="width:90%">
                                                                     <tbody>
                                                                         <tr>
                                                                             <td>Lab No</td>
@@ -1739,10 +1739,36 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </table>
                                                             </div>
 
-                                                            <div class="col-md-2"></div>
-                                                           
+                                                            <div class="">
+														
+                                                            </div>
+															
                                                             <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionFabric"> </span></label></div>
                                                             <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+															
+															
+															<div class="col-md-12 d-flex mt-3  " >
+																<div style="margin-right:200px"> 
+																	<span> <b>Note:</b>  </span>
+																</div>
+												
+																 <div>
+																 <u><p>The above reported result is applicable to the sample as received at customer service section</p> </u>	
+																<u><h4> Uncertainity will be given on the demand of customer.</h4></u>	
+																 <u><h3>*: These Tests are out of scope of ISO/IEC 17025:2017</h3> </u>	
+
+														
+																 </div>
+															</div>
+															<div class="col-md-12 d-flex">
+															  <div style="margin-right:180px;margin-bottom: 10px;"
+													> 
+																	<span> <b>Remarks:</b>  </span>
+																</div>
+																<div>
+																	<u>________________________________________________________________________________________________________</u>
+																</div>
+															</div>
 
                                                             <table class="table">
                                                                 <tr>
@@ -2060,6 +2086,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                                             <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
                                                                                 <span>Sohail Ghouri </span>
+																				
                                                                             </th>
                                                                             <th></th>
 
@@ -11723,3 +11750,4 @@ ${reviewStatus == '1' ?
 
     <?php
 } ?>
+

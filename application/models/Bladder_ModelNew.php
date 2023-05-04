@@ -8,10 +8,22 @@ class Bladder_ModelNew extends CI_Model
       $Month = date('m');
       $Year = date('Y');
       $Day = date('d');
-        $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date
-        FROM            dbo.view_Bladder_Winding_New_F
-        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102) AND CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
-        GROUP BY Date
+        $query = $this->db->query("SELECT        TOP (100) PERCENT MAX(counter) AS counter, Name
+        FROM            dbo.view_Bladder_Winding_New
+        WHERE        (EntryDate = CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
+        GROUP BY Name, EntryDate
+        ");
+      return  $query->result_array();
+    }
+		public function getScannerCount()
+    {
+      $Month = date('m');
+      $Year = date('Y');
+      $Day = date('d');
+        $query = $this->db->query("SELECT        TOP (100) PERCENT MAX(counter) AS counter, Name
+        FROM            dbo.view_Bladder_Winding_New
+        WHERE        (EntryDate = CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
+        GROUP BY Name, EntryDate
         ");
       return  $query->result_array();
     }
@@ -20,11 +32,11 @@ class Bladder_ModelNew extends CI_Model
       $Month = date('m');
       $Year = date('Y');
       $Day = date('d');
-        $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date, Name,TID
+      
+        $query = $this->db->query("SELECT        Name, MAX(counter) AS Counter, EntryDate
         FROM            dbo.view_Bladder_Winding_New_F
-        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102) AND CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
-        GROUP BY Date, Name,TID
-        ORDER BY TID
+        GROUP BY Name, EntryDate
+        HAVING        (EntryDate = CONVERT(DATETIME, '$Year-$Month-$Day 00:00:00', 102))
         ");
       return  $query->result_array();
     }
