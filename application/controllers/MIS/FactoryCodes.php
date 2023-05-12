@@ -6,96 +6,112 @@ class FactoryCodes extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('MIS/Quality_Modal');
+        $this->load->model('MIS/factoryCode_Model', 'FCM');
     }
- 
+
     public function index()
     {
-        // $data['compBallInspection']  = $this->Quality_Modal->compBallInspectionCurrentDate();
-        // $data['finaleBallInspection']  = $this->Quality_Modal->finaleBallInspectionCurrentDate();
-        // $data['urbanBallInspection']  = $this->Quality_Modal->urbanBallInspectionCurrentDate();
+        $start_date = date('Y/m/d');
+        $end_date = date('Y/m/d');
+        $line = 'all';
+        $fc2 = 'B34002';
+        $fc3 = 'B34003';
+        $fc4 = 'B34004';
+        $fc7 = 'B34007';
 
-        // $data['ambSheetSizing']  = $this->Quality_Modal->ambSheetSizing();
-        // $data['ambPanelDefects']  = $this->Quality_Modal->ambPanelDefects();
-        // $data['ambHFCutting']  = $this->Quality_Modal->ambHFCutting();
-        // $data['ambBGradeBall']  = $this->Quality_Modal->ambBGradeBall();
-        // $data['ambCoreBGrade']  = $this->Quality_Modal->ambCoreBGrade();
-        $data['getDataCurrentDate'] = $this->Quality_Modal->getDataCurrentDate();
+        $data['printingData002'] = $this->FCM->printing002($start_date, $end_date); //printing B34002
+        $data['panelShappingData002'] = $this->FCM->panelShapping002($start_date, $end_date); //Panel Shapping B34002
+        $data['datasum002'] = $this->FCM->get_tm_ball_forming_sum002($start_date, $end_date, $fc2); // forming B34002
+        $data['data2sum002'] = $this->FCM->get_tm_final_qc_sum002($start_date, $end_date, $fc2); // End Line QC B34002
+
+        $data['printingData003'] = $this->FCM->printing003($start_date, $end_date); //printing B34003
+        $data['panelShappingData003'] = $this->FCM->panelShapping003($start_date, $end_date); //Panel Shapping B34003
+        $data['datasum003'] = $this->FCM->get_tm_ball_forming_sum003($start_date, $end_date, $fc3); // forming B34003
+        $data['data2sum003'] = $this->FCM->get_tm_final_qc_sum003($start_date, $end_date, $fc3); // End Line QC B34003
+
+
+        $data['printingData004'] = $this->FCM->printing004($start_date, $end_date); //printing B34004
+        $data['panelShappingData004'] = $this->FCM->panelShapping004($start_date, $end_date); //Panel Shapping B34004
+        $data['datasum004'] = $this->FCM->get_tm_ball_forming_sum004($start_date, $end_date, $fc4); // forming B34004
+        $data['data2sum004'] = $this->FCM->get_tm_final_qc_sum004($start_date, $end_date, $fc4); // End Line QC B34004
+
+
+
+
+
+        // B34005
+        $data['bladderWinding'] = $this->FCM->bladderWinding($start_date, $end_date);
+        $data['bladderUnWinding'] = $this->FCM->bladderUnWinding($start_date, $end_date);
+        $data['pivot005'] = $this->FCM->pivot005($start_date, $end_date);
+        $data['data'] = $this->FCM->get_ms_summary2($line, $start_date, $end_date);
+
+        // B34006
+        $data['forming006'] = $this->FCM->rpt_amb_detail006($start_date, $end_date, 1); //Forming B34006
+        $data['data2'] = $this->FCM->rpt_amb_detail_Packing006($start_date, $end_date); //end Line QC b34006
+
+        // B34007
+        $data['carcass007'] = $this->FCM->carcass007($start_date, $end_date); //Carcass B34007
+        $data['datasum007'] = $this->FCM->get_tm_final_qc_sum007($start_date, $end_date, $fc7); // Forming B34007
+        $data['endLineQC007'] = $this->FCM->get_Lfb_final_qc($start_date, $end_date); //End Line QC B34007
+
+
+
+        $data['start_date'] = date('Y/m/d');
+        $data['end_date'] = date('Y/m/d');
         $this->load->view('MIS/factory_codes/factoryCodes', $data);
     }
 
 
-    // public function AmbReportAll($start_date, $end_date)
-    // {
-    //     $data['data'] = $this->Quality_Modal->rpt_amb_detail($start_date, $end_date, 1);
-    //     $data['data_RP'] = $this->Quality_Modal->rpt_amb_detail_RP($start_date, $end_date);
-    //     $data['data_RF'] = $this->Quality_Modal->rpt_amb_datewise_RF($start_date, $end_date);
-    //     //print_r($data['data']);
-    //     $data['data2'] = $this->Quality_Modal->rpt_amb_detail_Packing($start_date, $end_date);
-        
-    //     $data['data_packing_RP'] = $this->Quality_Modal->rpt_amb_datewise_all_Packing_RP($start_date, $end_date);
-   
-    //     $data['StationwiseOutput'] = $this->Quality_Modal->rpt_amb_detail_Packing_Station($start_date, $end_date);
-    //     return $this->output
-    //     ->set_content_type('application/json')
-    //     ->set_status_header(200)
-    //     ->set_output(json_encode($data));
-    // }
+    public function getDateRangeData()
+    {
 
-    // public function AmbReportLineWise($start_date, $end_date, $lineID)
-    // {
 
-    //     $data['data'] = $this->Quality_Modal->rpt_amb_line_data($start_date, $end_date, $lineID, 1);
-    //     $data['data_RP'] = $this->Quality_Modal->rpt_amb_detail_LineWise_RP($start_date, $end_date,$lineID);
-    //     $data['data_RF'] = $this->Quality_Modal->rpt_amb_datewise_LineWise_RF($start_date, $end_date,$lineID);
-    //     //print_r($data['data']);
-    //     $data['data2'] = $this->Quality_Modal->rpt_amb_detail_Packing_LineWise($start_date, $end_date,$lineID);
-    //     $data['data_packing_RP'] = $this->Quality_Modal->rpt_amb_datewise_all_Packing_RP_lineWise($start_date, $end_date,$lineID);
-    //     $data['StationwiseOutput'] = $this->Quality_Modal->rpt_amb_detail_Packing_Station_LineWise($start_date, $end_date,$lineID);
-        
-       
-        
-      
-    //     return $this->output
-    //     ->set_content_type('application/json')
-    //     ->set_status_header(200)
-    //     ->set_output(json_encode($data));
-    // }
+        $start_date = $_POST['start_date'];
+        $end_date = $_POST['end_date'];
+        $line = 'all';
+        $fc2 = 'B34002';
+        $fc3 = 'B34003';
+        $fc4 = 'B34004';
+        $fc7 = 'B34007';
 
-    // public function AmbArticleWiseDateWise($start_date, $end_date, $code)
-    // {
-    //     $data['data'] = $this->Quality_Modal->rpt_amb_datewise_article($start_date, $end_date, 1, $code);
-    //     $data['data_RP'] = $this->Quality_Modal->rpt_amb_datewise_article_Art_RP($start_date, $end_date, $code);
-    //     $data['data_RF'] = $this->Quality_Modal->rpt_amb_datewise_article_Art_RF($start_date, $end_date, $code);
-    //     $data['data2'] = $this->Quality_Modal->rpt_amb_datewise_article($start_date, $end_date, 2, $code);
-        
-    //     $data['data_packing_RP'] = $this->Quality_Modal->rpt_amb_datewise_all_articles_Art_Packing_RP($start_date, $end_date, $code);
-    //     return $this->output
-    //     ->set_content_type('application/json')
-    //     ->set_status_header(200)
-    //     ->set_output(json_encode($data));
-    // }
+        $data['printingData002'] = $this->FCM->printing002($start_date, $end_date); //printing B34002
+        $data['panelShappingData002'] = $this->FCM->panelShapping002($start_date, $end_date); //Panel Shapping B34002
+        $data['datasum002'] = $this->FCM->get_tm_ball_forming_sum002($start_date, $end_date, $fc2); // forming B34002
+        $data['data2sum002'] = $this->FCM->get_tm_final_qc_sum002($start_date, $end_date, $fc2); // End Line QC B34002
 
-    // public function AmbArticleWiseDateWiseAll($start_date, $end_date)
-    // {
-    //     $data['data'] = $this->Quality_Modal->rpt_amb_datewise_all_articles($start_date, $end_date, 1);
-    //     $data['data_overall'] = $this->Quality_Modal->rpt_amb_datewise_all_articles_OverAll($start_date, $end_date, 1);
-    //     $data['data_RP'] = $this->Quality_Modal->rpt_amb_datewise_all_articles_RP($start_date, $end_date);
-    //     $data['data_RF'] = $this->Quality_Modal->rpt_amb_datewise_all_articles_RF($start_date, $end_date);
-    //     $data['data_packing_RP'] = $this->Quality_Modal->rpt_amb_datewise_all_articles_Packing_RP($start_date, $end_date);
-        
-    //     $data['data2'] = $this->Quality_Modal->rpt_amb_datewise_all_articles($start_date, $end_date, 2);
-        
-    //     return $this->output
-    //     ->set_content_type('application/json')
-    //     ->set_status_header(200)
-    //     ->set_output(json_encode($data));
-    // }
-    public function getDateRangeData(){
-        $data = $this->Quality_Modal->getDateRangeData($_POST['start_date'], $_POST['end_date']);
-        return $this->output
-            ->set_content_type('application/json')
-            ->set_status_header(200)
-            ->set_output(json_encode($data));
+        $data['printingData003'] = $this->FCM->printing003($start_date, $end_date); //printing B34003
+        $data['panelShappingData003'] = $this->FCM->panelShapping003($start_date, $end_date); //Panel Shapping B34003
+        $data['datasum003'] = $this->FCM->get_tm_ball_forming_sum003($start_date, $end_date, $fc3); // forming B34003
+        $data['data2sum003'] = $this->FCM->get_tm_final_qc_sum003($start_date, $end_date, $fc3); // End Line QC B34003
+
+
+        $data['printingData004'] = $this->FCM->printing004($start_date, $end_date); //printing B34004
+        $data['panelShappingData004'] = $this->FCM->panelShapping004($start_date, $end_date); //Panel Shapping B34004
+        $data['datasum004'] = $this->FCM->get_tm_ball_forming_sum004($start_date, $end_date, $fc4); // forming B34004
+        $data['data2sum004'] = $this->FCM->get_tm_final_qc_sum004($start_date, $end_date, $fc4); // End Line QC B34004
+
+
+
+
+
+        // B34005
+        $data['bladderWinding'] = $this->FCM->bladderWinding($start_date, $end_date);
+        $data['bladderUnWinding'] = $this->FCM->bladderUnWinding($start_date, $end_date);
+        $data['pivot005'] = $this->FCM->pivot005($start_date, $end_date);
+        $data['data'] = $this->FCM->get_ms_summary2($line, $start_date, $end_date);
+
+        // B34006
+        $data['forming006'] = $this->FCM->rpt_amb_detail006($start_date, $end_date, 1); //Forming B34006
+        $data['data2'] = $this->FCM->rpt_amb_detail_Packing006($start_date, $end_date); //end Line QC b34006
+
+        // B34007
+        $data['carcass007'] = $this->FCM->carcass007($start_date, $end_date); //Carcass B34007
+        $data['datasum007'] = $this->FCM->get_tm_final_qc_sum007($start_date, $end_date, $fc7); // Forming B34007
+        $data['endLineQC007'] = $this->FCM->get_Lfb_final_qc($start_date, $end_date); //End Line QC B34007
+
+
+        $data['start_date'] = $_POST['start_date'];
+        $data['end_date'] = $_POST['end_date'];
+        return $this->load->view('MIS/factory_codes/factoryCodeDateRange', $data);
     }
 }

@@ -2316,7 +2316,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <h3 style="font-size: Medium;font-weight:bold;margin-left:35%;">Test Report Of Material </h3>
 
                                                             <div style="padding-left:30px; width:100%">
-                                                                <table border="1" >
+                                                                <table border="1" style="width:90%">
                                                                     <tbody>
                                                                         <tr>
                                                                             <td>Lab No</td>
@@ -2367,7 +2367,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                             </div>
 
                                                             <div class="col-md-10 mt-3" style="line-height: 0.5;">
-                                                                <table class="table table-bordered" style="border:2px solid black">
+                                                                <table class="table table-bordered" style="border:2px solid black;">
                                                                     <thead>
                                                                         <tr style="border:2px solid black">
                                                                             <th style="text-align: center;font-size:large;border:2px solid black">Test</th>
@@ -11698,7 +11698,7 @@ ${reviewStatus == '1' ?
 
                 let checkNewCss = $("#checkMisTestN").val();
 
-                alert(checkNewCss);
+                // alert(checkNewCss);
 
                 if (checkNewCss === 'on') {
                     $("#checkCSSNo1").css("display", "block");

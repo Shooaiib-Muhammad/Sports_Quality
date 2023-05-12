@@ -2311,7 +2311,7 @@ WHERE   (view_Lab_All_Request.Sample_RequestDate BETWEEN '$CurrentDate' AND '$Cu
 
         $query = $this->db->query("SELECT        CSSNo
 FROM            dbo.tbl_lab_test_request
-WHERE        (Status = 'Send to Lab') OR (Status = 'Send Back to Requester') AND (LabAcknowledgementStatus = 'Acknowledged')");
+WHERE        (Status = 'Send to Lab') OR (Status = 'Result Uploaded') AND (LabAcknowledgementStatus = 'Acknowledged')");
 
 
         return $query->result_array();
@@ -2324,7 +2324,7 @@ WHERE        (Status = 'Send to Lab') OR (Status = 'Send Back to Requester') AND
 
         $query = $this->db->query("SELECT        CSSNos,mislaneous_status
 FROM            View_get_css_data_test_type
-WHERE        (Status = 'Send to Lab') OR (Status = 'Send Back to Requester') AND (LabAcknowledgementStatus = 'Acknowledged')");
+WHERE        (Status = 'Send to Lab') OR (Status = 'Result Uploaded') AND (LabAcknowledgementStatus = 'Acknowledged')");
 
 
         return $query->result_array();
@@ -2632,7 +2632,7 @@ WHERE        (TID = $ID)");
         foreach ($leavesArray as $key => $value) {
             $user = $this->session->userdata('user_id');
             $query = $this->db->query("UPDATE dbo.tbl_lab_test_request 
-        SET Sample_Receiving_Date = '$Sample_Receiving_Date',CSSNo = '$CSSNo',Quantity_Received = '$Quantity_Received',Quantity_Retained = '$Quantity_Retained',Due_Date = '$Due_Date',CompletationDate = '$CompletationDate',Remarks = '$Remarks',Status='Send Back to Requester',LabAcknowledgementStatus='Pending',senderSignatureRec = '$senderSignature'
+        SET Sample_Receiving_Date = '$Sample_Receiving_Date',CSSNo = '$CSSNo',Quantity_Received = '$Quantity_Received',Quantity_Retained = '$Quantity_Retained',Due_Date = '$Due_Date',CompletationDate = '$CompletationDate',Remarks = '$Remarks',Status='Result Uploaded',LabAcknowledgementStatus='Pending',senderSignatureRec = '$senderSignature'
         
         WHERE TID=$value
         ");
@@ -2651,7 +2651,7 @@ WHERE        (TID = $ID)");
 
 
         $query = $this->db->query("UPDATE dbo.tbl_lab_test_request 
-        SET SRETSenderID = '$senderId',SRETReceiverID = '$ReceiverId',Quantity_Returned = $Quantity,Status='Send Back to Requester'
+        SET SRETSenderID = '$senderId',SRETReceiverID = '$ReceiverId',Quantity_Returned = $Quantity,Status='Result Uploaded'
        
         WHERE TID='$TID'
         ");
@@ -2670,7 +2670,7 @@ WHERE        (TID = $ID)");
         foreach ($leavesArray as $value) {
 
             $query = $this->db->query("UPDATE dbo.tbl_lab_test_request 
-        SET Status='Send Back to Requester'
+        SET Status='Result Uploaded'
        
         WHERE TID= '$value'
         ");
@@ -4026,6 +4026,24 @@ WHERE        (userid = $user_id) AND (CssNO <> '') AND (RequestStatus = 'Acknowl
             return $query;
         }
     }
+    public function fgtRequestaddAknowledgeCssNoBulk($selectedRows)
+    {
+        date_default_timezone_set('Asia/Karachi');
+        $Date = date('Y/m/d');
+        $user_id = $this->session->userdata('user_id');
+        $query = false;
+        foreach ($selectedRows as $key => $value) {
+            // print_r($value['tid']);die;
+
+            $query = $this->db->query("UPDATE   dbo.tbl_FGT_Request 
+            SET   LabStatus = 1, labAcceptDate = '$Date', RequestStatus = 'Acknowledge By Lab'
+            WHERE  TID={$value['tid']}");
+            
+        }
+        if ($query) {
+            return $query;
+        }
+    }
     public function FGTRequestAknowledgedByLab()
     {
         date_default_timezone_set('Asia/Karachi');
@@ -4062,6 +4080,7 @@ WHERE        (userid = $user_id) AND (CssNO <> '') AND (RequestStatus = 'Acknowl
             }
         }
     }
+
 
     // FGT LAB FILE
     public function uploadFgtFileData($fgtH, $fgtD)
@@ -4564,7 +4583,21 @@ WHERE        (CssNo = '$CssNo')");
 
         $query = $this->db->query("SELECT        CSSNo
         FROM            dbo.tbl_lab_test_request
-        WHERE        (Status = 'Send to Lab') OR (Status = 'Send Back to Requester') AND (LabAcknowledgementStatus = 'Acknowledged')");
+        WHERE        (Status = 'Send to Lab') OR (Status = 'Result Uploaded') AND (LabAcknowledgementStatus = 'Acknowledged')");
+        return $query->result_array();
+    }
+
+    
+    public function allFGTRequests(){
+        
+        $query = $this->db->query("SELECT       *
+        FROM            dbo.View_FGT_Request");
+        return $query->result_array();
+    }
+
+    public function allRawMaterialRequests(){
+        
+        $query = $this->db->query("SELECT * FROM dbo.tbl_lab_test_request");
         return $query->result_array();
     }
     

@@ -556,6 +556,14 @@ $CurrentDate = $Year . '-' . $Month . '-' . $Day;
     <div class="row">
         <div class="col-md-2"><input class="form-control" type="date" id="startDate" /></div>
         <div class="col-md-2"><input class="form-control" type="date" id="endDate" /></div>
+        <div class="col-md-2">
+
+             <select class='form-control' id='shift'>
+               <option value="All">All</option>
+                 <option value="Day">Day</option>
+                  <option value="Night">Night</option>
+           </select>
+        </div>
         <div class="col-md-4"><button class="btn btn-primary" id="searchRange">Search</button></div>
     </div>
     </div>
@@ -2364,6 +2372,7 @@ function generateDataBottom(data1) {
         $("#loadingShow").css('display','inline-block')
         let startDate = $("#startDate").val()
         let endDate = $("#endDate").val()
+        let shift = $("#shift").val()
         let startDateNewFormat = startDate.split("-")[2]+"-"+startDate.split("-")[1]+"-"+startDate.split("-")[0]
         let endDateNewFormat = endDate.split("-")[2]+"-"+endDate.split("-")[1]+"-"+endDate.split("-")[0]
         const params = new Proxy(new URLSearchParams(window.location.search), {
@@ -2387,7 +2396,7 @@ function generateDataBottom(data1) {
         let targetDataMachineWise = [];
         let url = "<?php echo base_url('Efficiency/getCuttingPanelDateRangeData') ?>";
         let url2 = "<?php echo base_url('Efficiency/getRealTimeDateRange') ?>";
-        $.post(url,{"startDate":startDate, "endDate":endDate},function(data, status){
+        $.post(url,{"startDate":startDate, "endDate":endDate,"shift": shift},function(data, status){
             console.log("Data Outer", data)
         let seriesDataTop;
         let seriesDataBottom;
@@ -2398,158 +2407,158 @@ function generateDataBottom(data1) {
   
 
 
-        for(let k = 0; k<data.MachineData.length; k++){
-            // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
-        if(datesArrayMachineWise.indexOf(data.MachineData[k].Date) === -1){
-            datesArrayMachineWise.push(data.MachineData[k].Date)
-        targetDataMachineWise.push(parseFloat(69))
-        if(data.MachineData[k].MachineName == "Panel Sizing Press 1"){
-                output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (1*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine1.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine7.push(0)
-            }
-            else if(data.MachineData[k].MachineName == "Panel Sizing Press 2"){
-                output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (1*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine2.push(parseFloat(efficiency))
-            seriesDataMachine4.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine7.push(0)
-            }
-            else if(data.MachineData[k].MachineName == "Panel Sizing Press 3"){
-                output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (1*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine3.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine7.push(0)
-            }
-            else if(data.MachineData[k].MachineName == "Panel Sizing Press 4"){
-                output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (1*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine4.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine7.push(0)
+    //     for(let k = 0; k<data.MachineData.length; k++){
+    //         // if((dataArrayOuter[j].Date == dataInner.realtime[i].AttDate1)){
+    //     if(datesArrayMachineWise.indexOf(data.MachineData[k].Date) === -1){
+    //         datesArrayMachineWise.push(data.MachineData[k].Date)
+    //     targetDataMachineWise.push(parseFloat(69))
+    //     if(data.MachineData[k].MachineName == "Panel Sizing Press 1"){
+    //             output = data.MachineData[k].Counter * 0.28 * 3.5
+    //         Minutes = (1*480);
+    //         efficiency = ((output / Minutes) * 100).toFixed(2)
+    //         seriesDataMachine1.push(parseFloat(efficiency))
+    //         seriesDataMachine2.push(0)
+    //         seriesDataMachine4.push(0)
+    //         seriesDataMachine3.push(0)
+    //         seriesDataMachine6.push(0)
+    //         seriesDataMachine5.push(0)
+    //         seriesDataMachine7.push(0)
+    //         }
+    //         else if(data.MachineData[k].MachineName == "Panel Sizing Press 2"){
+    //             output = data.MachineData[k].Counter * 0.28 * 3.5
+    //         Minutes = (1*480);
+    //         efficiency = ((output / Minutes) * 100).toFixed(2)
+    //         seriesDataMachine2.push(parseFloat(efficiency))
+    //         seriesDataMachine4.push(0)
+    //         seriesDataMachine1.push(0)
+    //         seriesDataMachine3.push(0)
+    //         seriesDataMachine6.push(0)
+    //         seriesDataMachine5.push(0)
+    //         seriesDataMachine7.push(0)
+    //         }
+    //         else if(data.MachineData[k].MachineName == "Panel Sizing Press 3"){
+    //             output = data.MachineData[k].Counter * 0.28 * 3.5
+    //         Minutes = (1*480);
+    //         efficiency = ((output / Minutes) * 100).toFixed(2)
+    //         seriesDataMachine3.push(parseFloat(efficiency))
+    //         seriesDataMachine2.push(0)
+    //         seriesDataMachine1.push(0)
+    //         seriesDataMachine4.push(0)
+    //         seriesDataMachine6.push(0)
+    //         seriesDataMachine5.push(0)
+    //         seriesDataMachine7.push(0)
+    //         }
+    //         else if(data.MachineData[k].MachineName == "Panel Sizing Press 4"){
+    //             output = data.MachineData[k].Counter * 0.28 * 3.5
+    //         Minutes = (1*480);
+    //         efficiency = ((output / Minutes) * 100).toFixed(2)
+    //         seriesDataMachine4.push(parseFloat(efficiency))
+    //         seriesDataMachine2.push(0)
+    //         seriesDataMachine1.push(0)
+    //         seriesDataMachine3.push(0)
+    //         seriesDataMachine6.push(0)
+    //         seriesDataMachine5.push(0)
+    //         seriesDataMachine7.push(0)
 
-            }
-            else if(data.MachineData[k].MachineName == "Panel Sizing Press 5"){
-                output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (1*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine5.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine6.push(0)
-            seriesDataMachine7.push(0)
+    //         }
+    //         else if(data.MachineData[k].MachineName == "Panel Sizing Press 5"){
+    //             output = data.MachineData[k].Counter * 0.28 * 3.5
+    //         Minutes = (1*480);
+    //         efficiency = ((output / Minutes) * 100).toFixed(2)
+    //         seriesDataMachine5.push(parseFloat(efficiency))
+    //         seriesDataMachine2.push(0)
+    //         seriesDataMachine1.push(0)
+    //         seriesDataMachine3.push(0)
+    //         seriesDataMachine4.push(0)
+    //         seriesDataMachine6.push(0)
+    //         seriesDataMachine7.push(0)
 
-            }
-            else if(data.MachineData[k].MachineName == "Panel Sizing Press 6"){
-                output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (1*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine6.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine7.push(0)
+    //         }
+    //         else if(data.MachineData[k].MachineName == "Panel Sizing Press 6"){
+    //             output = data.MachineData[k].Counter * 0.28 * 3.5
+    //         Minutes = (1*480);
+    //         efficiency = ((output / Minutes) * 100).toFixed(2)
+    //         seriesDataMachine6.push(parseFloat(efficiency))
+    //         seriesDataMachine2.push(0)
+    //         seriesDataMachine1.push(0)
+    //         seriesDataMachine3.push(0)
+    //         seriesDataMachine4.push(0)
+    //         seriesDataMachine5.push(0)
+    //         seriesDataMachine7.push(0)
 
-            }
-            else if(data.MachineData[k].MachineName == "Panel Sizing Press 7"){
-                output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (1*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine7.push(parseFloat(efficiency))
-            seriesDataMachine2.push(0)
-            seriesDataMachine1.push(0)
-            seriesDataMachine3.push(0)
-            seriesDataMachine4.push(0)
-            seriesDataMachine5.push(0)
-            seriesDataMachine6.push(0)
+    //         }
+    //         else if(data.MachineData[k].MachineName == "Panel Sizing Press 7"){
+    //             output = data.MachineData[k].Counter * 0.28 * 3.5
+    //         Minutes = (1*480);
+    //         efficiency = ((output / Minutes) * 100).toFixed(2)
+    //         seriesDataMachine7.push(parseFloat(efficiency))
+    //         seriesDataMachine2.push(0)
+    //         seriesDataMachine1.push(0)
+    //         seriesDataMachine3.push(0)
+    //         seriesDataMachine4.push(0)
+    //         seriesDataMachine5.push(0)
+    //         seriesDataMachine6.push(0)
 
-            }
-    }
-    else{
-        if(data.MachineData[k].MachineName == "Panel Sizing Press 1"){
-                output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (1*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine1.pop()
-            seriesDataMachine1.push(parseFloat(efficiency))
+    //         }
+    // }
+    // else{
+    //     if(data.MachineData[k].MachineName == "Panel Sizing Press 1"){
+    //             output = data.MachineData[k].Counter * 0.28 * 3.5
+    //         Minutes = (1*480);
+    //         efficiency = ((output / Minutes) * 100).toFixed(2)
+    //         seriesDataMachine1.pop()
+    //         seriesDataMachine1.push(parseFloat(efficiency))
   
-            }
-            else if(data.MachineData[k].MachineName == "Panel Sizing Press 2"){
-                output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (1*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine2.pop()
-            seriesDataMachine2.push(parseFloat(efficiency))
+    //         }
+    //         else if(data.MachineData[k].MachineName == "Panel Sizing Press 2"){
+    //             output = data.MachineData[k].Counter * 0.28 * 3.5
+    //         Minutes = (1*480);
+    //         efficiency = ((output / Minutes) * 100).toFixed(2)
+    //         seriesDataMachine2.pop()
+    //         seriesDataMachine2.push(parseFloat(efficiency))
      
-            }
-            else if(data.MachineData[k].MachineName == "Panel Sizing Press 3"){
-                output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (1*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine3.pop()
-            seriesDataMachine3.push(parseFloat(efficiency))
+    //         }
+    //         else if(data.MachineData[k].MachineName == "Panel Sizing Press 3"){
+    //             output = data.MachineData[k].Counter * 0.28 * 3.5
+    //         Minutes = (1*480);
+    //         efficiency = ((output / Minutes) * 100).toFixed(2)
+    //         seriesDataMachine3.pop()
+    //         seriesDataMachine3.push(parseFloat(efficiency))
       
-            }
-            else if(data.MachineData[k].MachineName == "Panel Sizing Press 4"){
-                output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (1*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine4.pop()
-            seriesDataMachine4.push(parseFloat(efficiency))
-            }
-            else if(data.MachineData[k].MachineName == "Panel Sizing Press 5"){
-                output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (1*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine5.pop()
-            seriesDataMachine5.push(parseFloat(efficiency))
-            }
-            else if(data.MachineData[k].MachineName == "Panel Sizing Press 6"){
-                output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (1*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine6.pop()
-            seriesDataMachine6.push(parseFloat(efficiency))
-            }
-            else if(data.MachineData[k].MachineName == "Panel Sizing Press 7"){
-                output = data.MachineData[k].Counter * 0.28 * 3.5
-            Minutes = (1*480);
-            efficiency = ((output / Minutes) * 100).toFixed(2)
-            seriesDataMachine7.pop()
-            seriesDataMachine7.push(parseFloat(efficiency))
-            }
-    }
+    //         }
+    //         else if(data.MachineData[k].MachineName == "Panel Sizing Press 4"){
+    //             output = data.MachineData[k].Counter * 0.28 * 3.5
+    //         Minutes = (1*480);
+    //         efficiency = ((output / Minutes) * 100).toFixed(2)
+    //         seriesDataMachine4.pop()
+    //         seriesDataMachine4.push(parseFloat(efficiency))
+    //         }
+    //         else if(data.MachineData[k].MachineName == "Panel Sizing Press 5"){
+    //             output = data.MachineData[k].Counter * 0.28 * 3.5
+    //         Minutes = (1*480);
+    //         efficiency = ((output / Minutes) * 100).toFixed(2)
+    //         seriesDataMachine5.pop()
+    //         seriesDataMachine5.push(parseFloat(efficiency))
+    //         }
+    //         else if(data.MachineData[k].MachineName == "Panel Sizing Press 6"){
+    //             output = data.MachineData[k].Counter * 0.28 * 3.5
+    //         Minutes = (1*480);
+    //         efficiency = ((output / Minutes) * 100).toFixed(2)
+    //         seriesDataMachine6.pop()
+    //         seriesDataMachine6.push(parseFloat(efficiency))
+    //         }
+    //         else if(data.MachineData[k].MachineName == "Panel Sizing Press 7"){
+    //             output = data.MachineData[k].Counter * 0.28 * 3.5
+    //         Minutes = (1*480);
+    //         efficiency = ((output / Minutes) * 100).toFixed(2)
+    //         seriesDataMachine7.pop()
+    //         seriesDataMachine7.push(parseFloat(efficiency))
+    //         }
+    // }
          
         
 
-        }
+    //     }
         originalDataMachineWise.push({name:"Panel Sizing Press 1",data:seriesDataMachine1},{name:"Panel Sizing Press 2",data:seriesDataMachine2},{name:"Panel Sizing Press 3",data:seriesDataMachine3},{name:"Panel Sizing Press 4",data:seriesDataMachine4},{name:"Panel Sizing Press 5",data:seriesDataMachine5},{name:"Panel Sizing Press 6",data:seriesDataMachine6},{name:"Panel Sizing Press 7",data:seriesDataMachine7},{name:"Target Efficiency",data:targetDataMachineWise})
         }
          console.log("Target", datesArrayMachineWise)

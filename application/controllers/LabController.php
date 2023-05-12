@@ -2815,6 +2815,14 @@ class LabController extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
+    public function fgtRequestaddAknowledgeCssNoBulk()
+    {
+        $data = $this->l->fgtRequestaddAknowledgeCssNoBulk($_POST['selectedRows']);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
     public function FGTRequestAknowledgedByLab()
     {
         $data = $this->l->FGTRequestAknowledgedByLab();
@@ -3271,6 +3279,20 @@ class LabController extends CI_Controller
         
         $data = $this->l->getOldCssNo();      
             return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+
+    public function dashboardMini(){
+        return $this->load->view('dashboardMini');
+    }
+
+    public function allFGTRequests()
+    {
+        $data['allFGTRequests'] = $this->l->allFGTRequests();
+        $data['allRawMaterialRequests'] = $this->l->allRawMaterialRequests();
+        return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)
             ->set_output(json_encode($data));

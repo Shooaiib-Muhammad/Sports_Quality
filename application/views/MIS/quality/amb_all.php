@@ -201,7 +201,7 @@
             ?>
             <td></td>
 
-            <td> Total</td>
+            <td> Totals</td>
             <td class="center"><?php r($Checked); ?></td>
 
             <td class="center"><?php r($passsss); ?></td>

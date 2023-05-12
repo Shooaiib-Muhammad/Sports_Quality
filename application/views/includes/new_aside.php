@@ -83,15 +83,21 @@
                             <a href="<?php echo base_url(
                                             'MIS/Lab'
                                         ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashoard</span>
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
                             </a>
                         </li>
                         <li>
                             <a href="<?php echo base_url(
                                             'MIS/Lab/Dashboard'
                                         ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashoard
-                                    Filteration</span>
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard Filteration</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'LabController/dashboardMini'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard Mini</span>
                             </a>
                         </li>
                         <li>
@@ -373,7 +379,7 @@
                             <a href="<?php echo base_url(
                                             'MIS/Developement'
                                         ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashoard</span>
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
                             </a>
                         </li>
                         <li>
@@ -410,7 +416,7 @@
                             <a href="<?php echo base_url(
                                             'LabController/RDashbaord'
                                         ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashoard</span>
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
                             </a>
                         </li>
 
@@ -538,6 +544,12 @@
                         <li>
                             <a href="<?php echo base_url('MIS/Pivot'); ?>" title="How it works" data-filter-tags="theme settings how it works">
                                 <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Pivot</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="<?php echo base_url('MIS/Dashboard'); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
                             </a>
                         </li>
 
@@ -750,17 +762,17 @@
                                     <a href="<?php echo base_url(
                                                     'MIS/Lab'
                                                 ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashoard</span>
+                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url(
                                                     'MIS/Lab/Dashboard'
                                                 ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashoard
-                                            Filteration</span>
+                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard Filteration</span>
                                     </a>
                                 </li>
+
 
                             </ul>
 
@@ -775,7 +787,7 @@
                                     <a href="<?php echo base_url(
                                                     'MIS/Developement'
                                                 ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashoard</span>
+                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
                                     </a>
                                 </li>
 
@@ -825,7 +837,7 @@
                                     <a href="<?php echo base_url(
                                                     'MIS/MetalDetectorController'
                                                 ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashoard</span>
+                                        <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
                                     </a>
                                 </li>
 
@@ -1136,7 +1148,7 @@
                             <a href="<?php echo base_url(
                                             'FIT'
                                         ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashoard</span>
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
                             </a>
                         </li> -->
                         <li>
@@ -1573,6 +1585,13 @@
                                     </li> -->
                             <li>
                                 <a href="<?php echo base_url(
+                                                'LabController/dashboardMini'
+                                            ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                    <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashoard Mini</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url(
                                                 ''
                                             ); ?>LabController/master_form" title="Introduction" data-filter-tags="application intel introduction">
                                     <span class="nav-link-text" data-i18n="nav.application_intel_introduction">Raw Material
@@ -1957,7 +1976,7 @@
                             <a href="<?php echo base_url(
                                             'FIT'
                                         ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashoard</span>
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
                             </a>
                         </li> -->
                         <a href="<?php echo base_url(
@@ -2531,15 +2550,14 @@
                             <a href="<?php echo base_url(
                                             'MIS/Lab'
                                         ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashoard</span>
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
                             </a>
                         </li>
                         <li>
                             <a href="<?php echo base_url(
                                             'MIS/Lab/Dashboard'
                                         ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashoard
-                                    Filteration</span>
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard Filteration</span>
                             </a>
                         </li>
 
@@ -2556,7 +2574,7 @@
                             <a href="<?php echo base_url(
                                             'MIS/Developement'
                                         ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashoard</span>
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
                             </a>
                         </li>
 
@@ -2605,7 +2623,7 @@
                             <a href="<?php echo base_url(
                                             'MIS/MetalDetectorController'
                                         ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashoard</span>
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
                             </a>
                         </li>
 

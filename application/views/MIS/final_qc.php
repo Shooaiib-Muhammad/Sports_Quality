@@ -5,7 +5,7 @@
     }
 </style>
 <?php 
-
+echo "here";
 // print_r($data1);
 
 ?>
@@ -13,7 +13,7 @@
 <div class="row">
   <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12 col-sm-12 col-xs-12">
     
-  <h2 class="bg-primary text-white p-2 text-center">LFB Final QC ( <?php format($start_date1); echo " To "; format($end_date1) ?> )</h2>
+  <h2 class="bg-primary text-white p-2 text-center">LFB Final QCc ( <?php format($start_date1); echo " To "; format($end_date1) ?> )</h2>
 <table class="table table-hover table-bordered table-responsive w-100" id="forming-table" >
     <thead class="bg-primary-200 text-light">
     <tr>

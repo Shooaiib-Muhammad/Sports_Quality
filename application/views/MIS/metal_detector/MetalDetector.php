@@ -120,16 +120,19 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-6">
-            <div id="DetectionBarChart"></div>
-          </div>
-          <div class="col-md-6">
-          <div class="card" style="height: 100%;border-radius:10%">
-      <div class="card-body">
-      <div class="col-lg-12 stats" style="margin-top: 10%;">
+          <div class="col-lg-12 stats" style="margin-top: 10%;">
 
 				<i style="font-weight: bolder;color:black" class="fa fa-life-ring"" aria-hidden="true"></i>
 				<div class="counting" data-count="75" style="color:black">0</div>
 				<h5 style="font-weight: bolder;color:black">Metals Detected</h5>
+			</div> 
+          </div>
+          <div class="col-md-6">
+          <div class="card" style="height: 100%;border-radius:10%">
+      <div class="card-body">
+      <div class="col-lg-12" style="margin-top: 10%;">
+      <h3 style="text-align: center;margin-top:10px;font-weight:bolder" id="titleTable"></h3>
+      <div class="card-body" id="customTableDateRange">
 			</div>  
     </div>
           </div>
@@ -138,11 +141,6 @@
       </div>
     </div>
 
-    <div class="card">
-        <h3 style="text-align: center;margin-top:10px;font-weight:bolder" id="titleTable"></h3>
-      <div class="card-body" id="customTableDateRange">
-         
-      </div>
     </div>
 
     <script src="<?php echo base_url(); ?>assets/js/chart.js"></script>
@@ -196,21 +194,11 @@ $.post(url3,{"c_date": c_date,"e_date":e_date},function(data){
    <th>
    Date
    </th>
-   <th>
-   Article Code
-   </th>
-   <th>
-   PO Code
-   </th>
-   <th>
-   Factory Code
-   </th>
+  
    <th>
    Machine Name
    </th>
-   <th>
-   Order Type
-   </th>
+ 
  <th>
  Deduction Count
    </th>
@@ -219,12 +207,12 @@ $.post(url3,{"c_date": c_date,"e_date":e_date},function(data){
 data.forEach(element => {
     tableData += `
     <tr>
-    <td>${element.Date}</td>
-    <td>${element.ArtCode}</td>
-    <td>${element.POCode}</td>
-    <td>${element.FactoryCode}</td>
+    <td>${element.Datee11}</td>
+    
+   
+  
     <td>${element.MachineName}</td>
-    <td>${element.OrderType}</td>
+   
     <td>${element.DedCount}</td>
     </tr>` 
 });
@@ -354,23 +342,23 @@ $.post(
       });
 
       let seriesData = [{
-          name: 'Metal Ded 1',
+          name: 'Metal Detector 1',
           data: m1
         },
         {
-          name: 'Metal Ded 2',
+          name: 'Metal Detector 2',
           data: m2
         },
         {
-          name: 'Metal Ded 3',
+          name: 'Metal Detector 3',
           data: m3
         },
         {
-          name: 'Metal Ded 4',
+          name: 'Metal Detector 4',
           data: m4
         },
         {
-          name: 'Metal Ded 5',
+          name: 'Metal Detector 5',
           data: m5
         }
       ]
@@ -431,21 +419,11 @@ $.post(
    <th>
    Date
    </th>
-   <th>
-   Article Code
-   </th>
-   <th>
-   PO Code
-   </th>
-   <th>
-   Factory Code
-   </th>
+   
    <th>
    Machine Name
    </th>
-   <th>
-   Order Type
-   </th>
+ 
  <th>
  Deduction Count
    </th>
@@ -454,12 +432,10 @@ $.post(
         data.forEach(element => {
             tableData += `
             <tr>
-            <td>${element.Date}</td>
-            <td>${element.ArtCode}</td>
-            <td>${element.POCode}</td>
-            <td>${element.FactoryCode}</td>
+            <td>${element.Datee11}</td>
+          
             <td>${element.MachineName}</td>
-            <td>${element.OrderType}</td>
+       
             <td>${element.DedCount}</td>
             </tr>` 
         });
@@ -636,19 +612,19 @@ $.post(
                 if (datesArray.indexOf(value.Date) === -1) {
                   datesArray.push(value.Date);
                 }
-                if(value.MachineName == 'Metal Ded 1'){
+                if(value.MachineName == 'Metal Detector 1'){
                     m1.push(parseInt(value.DedCount));
                 }
-                else if (value.MachineName == 'Metal Ded 2'){
+                else if (value.MachineName == 'Metal Detector 2'){
                     m2.push(parseInt(value.DedCount));
                 }
-                else if (value.MachineName == 'Metal Ded 3'){
+                else if (value.MachineName == 'Metal Detector 3'){
                     m3.push(parseInt(value.DedCount));
                 }
-                else if (value.MachineName == 'Metal Ded 4'){
+                else if (value.MachineName == 'Metal Detector 4'){
                     m4.push(parseInt(value.DedCount));
                 }
-                else if (value.MachineName == 'Metal Ded 5'){
+                else if (value.MachineName == 'Metal Detector 5'){
                     m5.push(parseInt(value.DedCount));
                 }
               });

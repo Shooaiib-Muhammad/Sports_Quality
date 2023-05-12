@@ -252,7 +252,7 @@ foreach ($machineTestingSheetSizing as $key) {
                 <ul class="nav nav-pills" role="tablist">
                     <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Current Date</a></li>
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Historical Analysis</a></li>
-                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3">Down Time</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3 ">Down Time</a></li> -->
                 </ul>
                 <div class="tab-content py-3">
                     <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel" style="background-color: white;">

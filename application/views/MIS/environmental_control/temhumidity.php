@@ -271,33 +271,33 @@ tempMs2 = []
 
 
 $.each(data['amb'], function(index, value) {
-
+  console.log(value);
   humidityAmb.push(parseFloat(value.Humdity));
-  dateHumAmb.push(value.EntryDate);
+  dateHumAmb.push(value.Date);
 
 });
 $.each(data['tm'], function(index, value) {
 
   humidityTm.push(parseFloat(value.Humdity));
-  dateHumTm.push(value.EntryDate);
+  dateHumTm.push(value.Date);
 
 });
 $.each(data['ms1'], function(index, value) {
 
   humidityMs1.push(parseFloat(value.Humdity));
-  dateHumMs1.push(value.EntryDate);
+  dateHumMs1.push(value.Date);
 
 });
 $.each(data['ms2'], function(index, value) {
 
   humidityMs2.push(parseFloat(value.Humdity));
-  dateHumMs2.push(value.EntryDate);
+  dateHumMs2.push(value.Date);
 
 });
  $.each(data['ambtemp'], function(index, value) {
 
   tempAmb.push(parseFloat(value.Temperature));
-  datetempAmb.push(value.EntryDate);
+  datetempAmb.push(value.Date);
 
 });
 $.each(data['tmtemp'], function(index, value) {
@@ -354,6 +354,7 @@ let seriestemp = [{
   }
 
 ]
+console.log("Calling New", dateHumAmb);
 Highcharts.chart('lineChartHum', {
 
   title: {
@@ -536,7 +537,7 @@ $.each(data['max'], function(index, value) {
   }
 });
 console.log("from table and latest", data)
-console.log("Dates Array", datesArray)
+
 data['max'].forEach(element => {
   hummax.push(element['HallName']);
 
@@ -556,27 +557,29 @@ dateHumMs2 = [];
 $.each(data['amb'], function(index, value) {
 
   humidityAmb.push(parseFloat(value.Humdity));
-  dateHumAmb.push(value.EntryDate);
+  dateHumAmb.push(value.Date);
 
 });
 $.each(data['tm'], function(index, value) {
 
   humidityTm.push(parseFloat(value.Humdity));
-  dateHumTm.push(value.EntryDate);
+  dateHumTm.push(value.Date);
 
 });
 $.each(data['ms1'], function(index, value) {
 
   humidityMs1.push(parseFloat(value.Humdity));
-  dateHumMs1.push(value.EntryDate);
+  dateHumMs1.push(value.Date);
 
 });
 $.each(data['ms1'], function(index, value) {
 
   humidityMs2.push(parseFloat(value.Humdity));
-  dateHumMs2.push(value.EntryDate);
+  dateHumMs2.push(value.Date);
 
 });
+console.log("Date Hum MS 1",dateHumMs1);
+console.log("Date Hum MS 2",dateHumMs2);
 let serieshumidityAmb = [{
     name: 'AMB Hall',
     data: humidityAmb
@@ -814,9 +817,13 @@ Highcharts.chart('lineChartHum', {
 
   xAxis: {
     categories: dateHumAmb,
-    crosshair: true
-  },
-
+    visible:false
+},
+    tooltip: {
+        formatter: function() {
+            return `Value:${this.y} , Date"${this.x}`;
+        }
+    },
   legend: {
     layout: 'vertical',
     align: 'right',
@@ -894,14 +901,14 @@ tempMs2 = []
 $.each(data['ms1'], function(index, value) {
 
   humidityMs1.push(parseFloat(value.Humdity));
-  dateHumMs1.push(value.EntryDate);
+  dateHumMs1.push(value.Date);
 
 });
 
 $.each(data['ms1temp'], function(index, value) {
 
   tempMs1.push(parseFloat(value.Temperature));
-  tempMs1Date.push(value.EntryDate);
+  tempMs1Date.push(value.Date);
 
 });
 let serieshumidityAmb = [
@@ -1066,7 +1073,7 @@ $.each(data['max'], function(index, value) {
 
 });
 console.log("from table and latest", data)
-console.log("Dates Array", datesArray)
+
 data['max'].forEach(element => {
   hummax.push(element['HallName']);
 
@@ -1084,7 +1091,7 @@ dateHumMs1 = [];
 $.each(data['ms1'], function(index, value) {
 
   humidityMs1.push(parseFloat(value.Humdity));
-  dateHumMs1.push(value.EntryDate);
+  dateHumMs1.push(value.Date);
 
 });
 
@@ -1272,9 +1279,13 @@ Highcharts.chart('lineChartHum', {
 
   xAxis: {
     categories: dateHumAmb,
-    crosshair: true
+      visible:false
   },
-
+  tooltip: {
+        formatter: function() {
+            return `Value:${this.y} , Date"${this.x}`;
+        }
+    },
   legend: {
     layout: 'vertical',
     align: 'right',
@@ -1354,14 +1365,14 @@ tempMs2 = []
 $.each(data['ms2'], function(index, value) {
 
 humidityMs1.push(parseFloat(value.Humdity));
-dateHumMs1.push(value.EntryDate);
+dateHumMs1.push(value.Date);
 
 });
 
 $.each(data['ms2temp'], function(index, value) {
 
 tempMs1.push(parseFloat(value.Temperature));
-tempMs1Date.push(value.EntryDate);
+tempMs1Date.push(value.Date);
 
 });
 let serieshumidityAmb = [
@@ -1526,7 +1537,7 @@ $.each(data['max'], function(index, value) {
 
 });
 console.log("from table and latest", data)
-console.log("Dates Array", datesArray)
+
 data['max'].forEach(element => {
 hummax.push(element['HallName']);
 
@@ -1544,7 +1555,7 @@ dateHumMs1 = [];
 $.each(data['ms2'], function(index, value) {
 
 humidityMs1.push(parseFloat(value.Humdity));
-dateHumMs1.push(value.EntryDate);
+dateHumMs1.push(value.Date);
 
 });
 
@@ -1732,8 +1743,13 @@ yAxis: {
 
 xAxis: {
   categories: dateHumAmb,
-  crosshair: true
+  visible:false
 },
+    tooltip: {
+        formatter: function() {
+            return `Value:${this.y} , Date"${this.x}`;
+        }
+    },
 
 legend: {
   layout: 'vertical',
@@ -1812,14 +1828,14 @@ tempMs2 = []
 $.each(data['tm'], function(index, value) {
 
 humidityMs1.push(parseFloat(value.Humdity));
-dateHumMs1.push(value.EntryDate);
+dateHumMs1.push(value.Date);
 
 });
 
 $.each(data['tmtemp'], function(index, value) {
 
 tempMs1.push(parseFloat(value.Temperature));
-tempMs1Date.push(value.EntryDate);
+tempMs1Date.push(value.Date);
 
 });
 let serieshumidityAmb = [
@@ -1984,7 +2000,7 @@ $.each(data['max'], function(index, value) {
 
 });
 console.log("from table and latest", data)
-console.log("Dates Array", datesArray)
+
 data['max'].forEach(element => {
 hummax.push(element['HallName']);
 
@@ -2002,7 +2018,7 @@ dateHumMs1 = [];
 $.each(data['tm'], function(index, value) {
 
 humidityMs1.push(parseFloat(value.Humdity));
-dateHumMs1.push(value.EntryDate);
+dateHumMs1.push(value.Date);
 
 });
 
@@ -2190,9 +2206,13 @@ yAxis: {
 
 xAxis: {
   categories: dateHumAmb,
-  crosshair: true
+  visible:false
 },
-
+    tooltip: {
+        formatter: function() {
+            return `Value:${this.y} , Date"${this.x}`;
+        }
+    },
 legend: {
   layout: 'vertical',
   align: 'right',
@@ -2269,14 +2289,14 @@ tempMs2 = []
 $.each(data['amb'], function(index, value) {
 
 humidityMs1.push(parseFloat(value.Humdity));
-dateHumMs1.push(value.EntryDate);
+dateHumMs1.push(value.Date);
 
 });
 
 $.each(data['ambtemp'], function(index, value) {
 
 tempMs1.push(parseFloat(value.Temperature));
-tempMs1Date.push(value.EntryDate);
+tempMs1Date.push(value.Date);
 
 });
 let serieshumidityAmb = [
@@ -2441,7 +2461,7 @@ $.each(data['max'], function(index, value) {
 
 });
 console.log("from table and latest", data)
-console.log("Dates Array", datesArray)
+
 data['max'].forEach(element => {
 hummax.push(element['HallName']);
 
@@ -2459,7 +2479,7 @@ dateHumMs1 = [];
 $.each(data['amb'], function(index, value) {
 
 humidityMs1.push(parseFloat(value.Humdity));
-dateHumMs1.push(value.EntryDate);
+dateHumMs1.push(value.Date);
 
 });
 
@@ -2647,9 +2667,13 @@ yAxis: {
 
 xAxis: {
   categories: dateHumAmb,
-  crosshair: true
+  visible:false
 },
-
+    tooltip: {
+        formatter: function() {
+            return `Value:${this.y} , Date"${this.x}`;
+        }
+    },
 legend: {
   layout: 'vertical',
   align: 'right',
@@ -2724,31 +2748,31 @@ tempMs2 = []
 $.each(data['amb'], function(index, value) {
 
   humidityAmb.push(parseFloat(value.Humdity));
-  dateHumAmb.push(value.EntryDate);
+  dateHumAmb.push(value.Date);
 
 });
 $.each(data['tm'], function(index, value) {
 
   humidityTm.push(parseFloat(value.Humdity));
-  dateHumTm.push(value.EntryDate);
+  dateHumTm.push(value.Date);
 
 });
 $.each(data['ms1'], function(index, value) {
 
   humidityMs1.push(parseFloat(value.Humdity));
-  dateHumMs1.push(value.EntryDate);
+  dateHumMs1.push(value.Date);
 
 });
 $.each(data['ms2'], function(index, value) {
 
   humidityMs2.push(parseFloat(value.Humdity));
-  dateHumMs2.push(value.EntryDate);
+  dateHumMs2.push(value.Date);
 
 });
  $.each(data['ambtemp'], function(index, value) {
 
   tempAmb.push(parseFloat(value.Temperature));
-  datetempAmb.push(value.EntryDate);
+  datetempAmb.push(value.Date);
 
 });
 $.each(data['tmtemp'], function(index, value) {
@@ -2818,7 +2842,7 @@ Highcharts.chart('lineChartHum', {
   },
 
   xAxis: {
-    categories: dateHumAmb,
+    categories: dateHumTm,
     visible:false
 
   },
@@ -2998,7 +3022,7 @@ Highcharts.chart('lineChartHum', {
               }
             });
             console.log("from table and latest", data)
-            console.log("Dates Array", datesArray)
+            
             data['max'].forEach(element => {
               hummax.push(element['HallName']);
 

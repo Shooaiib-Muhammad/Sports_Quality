@@ -276,6 +276,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 </div>
 
                                                 <div class="tab-pane fade" id="tab_direction-3" role="tabpanel">
+                                                    <button id="show-selected" class="btn btn-primary mb-2" style="display:none;">Acknowledge FGT Requests</button>
                                                     <div id="loadFGTRequestStatusSendToLab">
 
                                                     </div>
@@ -287,9 +288,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                 </div>
 
                                                 <div class="tab-pane fade" id="tab_direction-5" role="tabpanel">
-                                                <div id="loadRawMatRequestAknowloedgedByLab">
+                                                    <div id="loadRawMatRequestAknowloedgedByLab">
 
-                                                </div>
+                                                    </div>
                                                 </div>
 
                                             </div>
@@ -382,10 +383,10 @@ if (!$this->session->has_userdata('user_id')) {
                 $.post(url, {
                     'Id': TID
                 }, function(data, status) {
-                    
-                        alert("Data Updated Successfully! Click on Ok to Reload the Page")
-                        window.location.reload();
-                    
+
+                    alert("Data Updated Successfully! Click on Ok to Reload the Page")
+                    window.location.reload();
+
                 });
             } else {
                 alert("Acknowledge Cancel");
@@ -399,7 +400,7 @@ if (!$this->session->has_userdata('user_id')) {
             url = "<?php echo base_url("LabController/RawMatRequestAknowledgedByLab") ?>";
             $.get(url, function(data) {
 
-                console.log(data)
+                // console.log(data)
 
                 if (data) {
                     let html = `<table class="table table-bordered table-striped table-hover table-sm" id="fgtTableExport3">
@@ -467,32 +468,32 @@ if (!$this->session->has_userdata('user_id')) {
 
 
                     $(".updatebtnBacktoSender1").click(function(e) {
-            let id = this.id;
-            let split_value = id.split(".");
-            var TID = split_value[1];
+                        let id = this.id;
+                        let split_value = id.split(".");
+                        var TID = split_value[1];
 
-            let proceed = confirm("Are you sure you want to acknowledge Receipt?");
-            if (proceed) {
+                        let proceed = confirm("Are you sure you want to acknowledge Receipt?");
+                        if (proceed) {
 
-                url = "<?php echo base_url(''); ?>LabController/TestRequestRawMatById";
-                url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestRawMatLabAcknowledge";
-                $.post(url, {
-                    'Id': TID
-                }, function(data, status) {
-                    $.post(url2, {
-                        'Id': TID
-                    }, function(data, status) {
+                            url = "<?php echo base_url(''); ?>LabController/TestRequestRawMatById";
+                            url2 = "<?php echo base_url(''); ?>LabController/EditTestRequestRawMatLabAcknowledge";
+                            $.post(url, {
+                                'Id': TID
+                            }, function(data, status) {
+                                $.post(url2, {
+                                    'Id': TID
+                                }, function(data, status) {
 
 
 
-                        alert("Data Updated Successfully! Click on Ok to Reload the Page")
-                        window.location.reload();
+                                    alert("Data Updated Successfully! Click on Ok to Reload the Page")
+                                    window.location.reload();
+                                });
+                            });
+                        } else {
+                            alert("Sending Cancel");
+                        }
                     });
-                });
-            } else {
-                alert("Sending Cancel");
-            }
-        });
 
                     $('#fgtTableExport3').dataTable({
                         responsive: false,
@@ -568,7 +569,7 @@ if (!$this->session->has_userdata('user_id')) {
             });
 
 
-            
+
 
         }
 
@@ -639,7 +640,7 @@ if (!$this->session->has_userdata('user_id')) {
                     'Status': Status
                 },
                 function(data, status) {
-                    console.log('data', data)
+                    // console.log('data', data)
                     if (data == true) {
                         alert("Data Inserted Successfully! Click on Ok to Reload the Page")
                         window.location.reload();
@@ -897,10 +898,11 @@ if (!$this->session->has_userdata('user_id')) {
             url = "<?php echo base_url("LabController/FGTRequestSendToLab") ?>";
             $.get(url, function(data) {
                 if (data) {
-                    console.log("data is ", data);
+                    // console.log("data is ", data);
                     let html = `<table class="table table-bordered table-striped table-hover table-responsive table-sm" id="fgtTableExport2">
                     <thead class="bg-primary-200 text-light p-2">
                     <tr>
+                        <th><input type="checkbox" id="check-all"></th>
                         <th class="h5">Request Date</th>
                         <th class="h5">CSS NO</th>
                         <th class="h5">Factory Code</th>
@@ -931,6 +933,7 @@ if (!$this->session->has_userdata('user_id')) {
                     data.forEach(element => {
                         html += `
                         <tr>
+                            <td><input type='checkbox' class='row-select' data-tid='${element.TID}'></td>
                             <td><span class="badge badge-info p-1">${element.Date.split("00:00:00")[0]}</span></td>
                             <td><span class="badge badge-warning p-1">${element.CssNO}</span></td>
                             <td>${element.factoryCode}</td>
@@ -968,9 +971,10 @@ if (!$this->session->has_userdata('user_id')) {
 
                     $("#loadFGTRequestStatusSendToLab").html(html);
 
-                    $('#fgtTableExport2').dataTable({
+                    dataTable = $('#fgtTableExport2').dataTable({
                         responsive: false,
                         lengthChange: false,
+                        stateSave: true,
                         dom:
                             /*	--- Layout Structure 
                                 --- Options
@@ -2487,18 +2491,18 @@ if (!$this->session->has_userdata('user_id')) {
 
                 $(".submit-button").css("display", "none")
             }
-            console.log(leaves)
+            // console.log(leaves)
         })
 
         $('.leave-id').click(function(e) {
             leave = $(this)[0]
-            console.log(leave.value)
+            // console.log(leave.value)
             if (leave.checked) {
                 leaves.indexOf(leave.value) === -1 ? leaves.push(leave.value) : null;
-                console.log(leaves)
+                // console.log(leaves)
             } else {
                 leaves.indexOf(leave.value) !== -1 ? leaves.splice(leaves.indexOf(leave.value), 1) : null;
-                console.log(leaves)
+                // console.log(leaves)
             }
 
             if (leaves.length > 0) {
@@ -2599,6 +2603,74 @@ if (!$this->session->has_userdata('user_id')) {
                 alert("Sending Cancel");
             }
         }
+
+
+        // Add click event to "Check All" checkbox
+        $("#loadFGTRequestStatusSendToLab").on('click', '#check-all', function() {
+            // Check or uncheck all checkboxes based on the state of the "Check All" checkbox
+            dataTable.api().column(0).nodes().to$().find('input[type="checkbox"]').prop('checked', $(this).prop('checked'));
+
+            // Check or uncheck all checkboxes based on the state of the "Check All" checkbox
+            $('.row-select').prop('checked', $(this).prop('checked'));
+
+            // Show or hide the "Show Selected" button based on the number of checked checkboxes
+            if ($('.row-select:checked').length > 0) {
+                $('#show-selected').show();
+            } else {
+                $('#show-selected').hide();
+            }
+        });
+
+        // Add click event to checkboxes
+        $("#loadFGTRequestStatusSendToLab").on('click', '.row-select', function() {
+            // Show or hide the "Show Selected" button based on the number of checked checkboxes
+            if ($('.row-select:checked').length > 0) {
+                $('#show-selected').show();
+            } else {
+                $('#show-selected').hide();
+            }
+        });
+        $('#show-selected').click(function() {
+            // Create an array to store selected cssno and cssnoqrcode
+            var selectedRows = [];
+
+            // Loop through checked checkboxes and get the corresponding cssno and cssnoqrcode
+            dataTable.api().column(0).nodes().to$().find('input[type="checkbox"]:checked').each(function() {
+                var tid = $(this).data('tid');
+
+                if ($(this).is(':checked')) {
+                    selectedRows.push({
+                        tid: tid
+                    });
+
+                }
+            });
+            console.log(selectedRows);
+            // Display the selected cssno and cssnoqrcode in the modal
+            if (selectedRows.length > 0) {
+                let confirmm = confirm("Are you sure you want to Aknowledge FGT request?");
+                if (confirmm) {
+                    url = "<?php echo base_url(''); ?>LabController/fgtRequestaddAknowledgeCssNoBulk";
+                    $.post(url, {
+                        selectedRows: selectedRows
+                    }, function(data) {
+                        if (data) {
+                            alert('Request Acknowledge Successfully');
+                            loadFGTRequestStatusSendToLab();
+                            loadFGTRequestAknowloedgedByLab();
+                        } else {
+                            alert('Something went wrong!')
+                        }
+
+                    });
+                } else {
+                    alert('Acknowledge request cencelled.');
+                }
+
+
+
+            }
+        });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js" integrity="sha512-gtII6Z4fZyONX9GBrF28JMpodY4vIOI0lBjAtN/mcK7Pz19Mu1HHIRvXH6bmdChteGpEccxZxI0qxXl9anY60w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 

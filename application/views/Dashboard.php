@@ -516,7 +516,7 @@ if (!$this->session->has_userdata('user_id')) {
                         $lineNamesorderqty = array();
                         $Monthsorderqty = array();
                         $Monthsplanqty = array();
-
+// print_r($OrdersandPlanning);
                         foreach ($OrdersandPlanning as $key) {
                             $point1 = array("label" => $key['OrderQty'], "x" => Round($key['OrderQty'], 0), "y" => $key['Month'], "z" => Round($key['PlanQty'], 0));
                             array_push($data_pointsorderqty, $point1);

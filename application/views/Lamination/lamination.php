@@ -525,6 +525,15 @@ $this->load->view('includes/new_header'); ?>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-2">
+                                                <label class="form-control-label">Shift:</label>
+
+                                                    <select class='form-control' id='shift'>
+                                                    <option value="All">All</option>
+                                                        <option value="Day">Day</option>
+                                                        <option value="Night">Night</option>
+                                                     </select>
+                                                </div>
 
 
                                                 <div class="col-md-2">
@@ -2211,6 +2220,9 @@ $this->load->view('includes/new_header'); ?>
         $("#loadingShow").css('display', 'inline-block')
         let startDate = $("#startDate").val()
         let endDate = $("#endDate").val()
+        let shift = $("#shift").val()
+        // alert(shift)
+        // return;
         let startDateNewFormat = startDate.split("-")[2] + "-" + startDate.split("-")[1] + "-" + startDate.split("-")[0]
         let endDateNewFormat = endDate.split("-")[2] + "-" + endDate.split("-")[1] + "-" + endDate.split("-")[0]
         const params = new Proxy(new URLSearchParams(window.location.search), {
@@ -2234,7 +2246,8 @@ $this->load->view('includes/new_header'); ?>
         let url2 = "<?php echo base_url('Efficiency/getRealTimeDateRange') ?>";
         $.post(url, {
             "startDate": startDate,
-            "endDate": endDate
+            "endDate": endDate,
+            "shift": shift
         }, function(data, status) {
             console.log("Data Outer", data)
             let seriesDataTop;

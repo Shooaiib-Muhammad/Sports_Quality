@@ -32,12 +32,14 @@ class MetalDetectorModel extends CI_Model
     {
         $time = strtotime($sdate);
         $time1 = strtotime($edate);
-        $newformat = date('d/m/Y', $time);
-        $newformat1 = date('d/m/Y', $time1);
+        $newformat = date('Y-m-d', $time);
+        $newformat1 = date('Y-m-d', $time1);
+      
+        
         $query = $this->db
             ->query("SELECT        dbo.view_Metal_Ded.*
             FROM            dbo.view_Metal_Ded
-            WHERE        (Date BETWEEN '$newformat' AND '$newformat1')");
+            WHERE        (Date BETWEEN CONVERT(DATETIME, '$newformat 00:00:00', 102) AND CONVERT(DATETIME, '$newformat1 00:00:00', 102))");
         return $query->result();
     }
 

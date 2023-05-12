@@ -6865,6 +6865,7 @@ if (!$this->session->has_userdata('user_id')) {
                                 function(data, status) {
                                     $("#exampleModalLabel").html("Machine IP = " + systemip + "</br> Station= " +
                                         data[0].SystemName);
+                                        
                                     if (data) {
                                         seriesDataTop = generateDataTop(data)
                                         // console.log("data", seriesDataTop);

@@ -428,6 +428,14 @@
 								<div class="row">
 									<div class="col-md-2"><input class="form-control" type="date" id="startDate" /></div>
 									<div class="col-md-2"><input class="form-control" type="date" id="endDate" /></div>
+									<div class="col-md-2">
+
+										<select class='form-control' id='shift'>
+											<option value="All">All</option>
+											<option value="Day">Day</option>
+											<option value="Night">Night</option>
+										</select>
+									</div>
 									<div class="col-md-4"><button class="btn btn-primary" id="searchRange">Search</button></div>
 								</div>
 							</div>
@@ -2002,6 +2010,7 @@
 		$("#loadingShow").css('display', 'inline-block')
 		let startDate = $("#startDate").val()
 		let endDate = $("#endDate").val()
+		let shift = $("#shift").val()
 		let startDateNewFormat = startDate.split("-")[2] + "-" + startDate.split("-")[1] + "-" + startDate.split("-")[0]
 		let endDateNewFormat = endDate.split("-")[2] + "-" + endDate.split("-")[1] + "-" + endDate.split("-")[0]
 		const params = new Proxy(new URLSearchParams(window.location.search), {
@@ -2036,7 +2045,8 @@
 		let url2 = "<?php echo base_url('Efficiency/getRealTimeDateRange') ?>";
 		$.post(url, {
 			"startDate": startDate,
-			"endDate": endDate
+			"endDate": endDate,
+			"shift": shift
 		}, function(data, status) {
 			console.log("Data Outer", data)
 			let seriesDataTop;

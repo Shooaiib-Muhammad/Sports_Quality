@@ -50,8 +50,8 @@ class Efficiency_model extends CI_Model
                 $CurrentDate = $Year . '-' . $Month . '-' . $Day;
                 $HRDB = $this->load->database('HRMS', TRUE);
 
-                $query = $HRDB->query("SELECT       AttDate
-FROM            dbo.view_Att_Sheet_Sizing
+                $query = $HRDB->query("SELECT   AttDate
+FROM            dbo.view_Att_Sheet_Sizing 
 WHERE        (AttDate = CONVERT(DATETIME, '$CurrentDate 00:00:00', 102))");
                 return  $query->num_rows();
         }
@@ -220,13 +220,32 @@ ORDER BY Date");
 
    
 
-Public function getCuttingPanelDateRangeData($startDate,$endDate){
-            
-        $query = $this->db->query("SELECT        Date, COUNT(Counter) AS Counter
+Public function getCuttingPanelDateRangeData($startDate,$endDate,$shift){
+
+        if($shift=='All'){
+                $query = $this->db->query("SELECT        Date, COUNT(Counter) AS Counter
         FROM            dbo.view_PC_Panel_Sizing
         WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
         GROUP BY Date        
 ");
+
+        }
+        else if($shift == 'Day'){
+                $query = $this->db->query("SELECT        Date, COUNT(Counter) AS Counter
+        FROM            dbo.view_PC_Panel_Sizing
+        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102) AND (Shift = 'Day Shift'))
+        GROUP BY Date        
+");
+        }
+        else{
+                $query = $this->db->query("SELECT        Date, COUNT(Counter) AS Counter
+        FROM            dbo.view_PC_Panel_Sizing
+        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102) AND (Shift = 'Night Shift'))
+        GROUP BY Date        
+");
+        }
+            
+        
         return  $query->result_array();
 }
 
@@ -242,15 +261,38 @@ ORDER BY Date
 return  $query->result_array();
 }
 
-Public function getCuttingHFDateRangeData($startDate,$endDate){
-            
-        $query = $this->db->query("SELECT        TOP (100) PERCENT COUNT(Counter) AS Counter, Date
+Public function getCuttingHFDateRangeData($startDate,$endDate,$shift){
+        if ($shift == 'All'){
+                $query = $this->db->query("SELECT        TOP (100) PERCENT COUNT(Counter) AS Counter, Date
         FROM            dbo.view_PC_HF_Cutting
         WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
         GROUP BY Date
         ORDER BY Date
         
 ");
+
+         }
+         elseif($shift == 'Day'){
+                $query = $this->db->query("SELECT        TOP (100) PERCENT COUNT(Counter) AS Counter, Date
+        FROM            dbo.view_PC_HF_Cutting
+        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102)AND (Shift = 'Day Shift'))
+        GROUP BY Date
+        ORDER BY Date
+        
+");
+         }
+         else{
+                $query = $this->db->query("SELECT        TOP (100) PERCENT COUNT(Counter) AS Counter, Date
+        FROM            dbo.view_PC_HF_Cutting
+        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102)AND (Shift = 'Night Shift'))
+        GROUP BY Date
+        ORDER BY Date
+        
+");
+         }
+
+            
+        
         return  $query->result_array();
 }
 
@@ -266,14 +308,10 @@ return  $query->result_array();
 }
 
 
-Public function getLaminationDateRangeData($startDate,$endDate){
+Public function getLaminationDateRangeData($startDate,$endDate,$shift){
             
-        // $query = $this->db->query("SELECT        SUM(Counter) AS Reading, CONVERT(varchar, Date, 103) AS Date
-        // FROM            dbo.Table_16         
-        // WHERE        (Date BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
-        // GROUP BY CONVERT(varchar, Date, 103)
-        // ORDER BY Date");
-$query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.view_lamination_Process.Date
+        if($shift == 'All'){
+                $query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.view_lamination_Process.Date
 FROM            dbo.view_lamination_Process INNER JOIN
                          dbo.tbl_PC_AMB_Hours ON dbo.view_lamination_Process.HID = dbo.tbl_PC_AMB_Hours.Hour
 WHERE        (dbo.view_lamination_Process.EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
@@ -281,6 +319,29 @@ GROUP BY dbo.view_lamination_Process.Date
 ORDER BY Date
 
 ");
+
+        }
+        elseif($shift == 'Day'){
+                $query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.view_lamination_Process.Date
+FROM            dbo.view_lamination_Process INNER JOIN
+                         dbo.tbl_PC_AMB_Hours ON dbo.view_lamination_Process.HID = dbo.tbl_PC_AMB_Hours.Hour
+WHERE        (dbo.view_lamination_Process.EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102)AND (dbo.view_lamination_Process.Shift = 'Day Shift'))
+GROUP BY dbo.view_lamination_Process.Date
+ORDER BY Date
+
+");
+        }
+        else{
+                $query = $this->db->query("SELECT        COUNT(dbo.view_lamination_Process.TID) AS Reading, dbo.view_lamination_Process.Date
+FROM            dbo.view_lamination_Process INNER JOIN
+                         dbo.tbl_PC_AMB_Hours ON dbo.view_lamination_Process.HID = dbo.tbl_PC_AMB_Hours.Hour
+WHERE        (dbo.view_lamination_Process.EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102)AND (dbo.view_lamination_Process.Shift = 'Night Shift'))
+GROUP BY dbo.view_lamination_Process.Date
+ORDER BY Date
+
+");
+        }
+
         return  $query->result_array();
 }
 
@@ -443,7 +504,7 @@ return  $query->result_array();
 
         }
 
-        public function getMSLinesDateRangeData($startDate,$endDate){
+        public function getMSLinesDateRangeData($startDate,$endDate,$shift){
             
                 $startMonth = explode("-",$startDate)[1];
                 $startYear = explode("-",$startDate)[0];
@@ -480,7 +541,7 @@ return  $query->result_array();
                 return  $query->result_array();
         }
 
-        public function getBladderWindingDateRangeData($startDate,$endDate){
+        public function getBladderWindingDateRangeData($startDate,$endDate,$shift){
             
                 $startMonth = explode("-",$startDate)[1];
                 $startYear = explode("-",$startDate)[0];
@@ -488,7 +549,8 @@ return  $query->result_array();
                 $endMonth = explode("-",$endDate)[1];
                 $endYear = explode("-",$endDate)[0];
                 $endDay = explode("-",$endDate)[2];
-                $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date
+                if($shift == 'All'){
+                        $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date
                 FROM            dbo.view_Bladder_Winding_FInal
                 WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
                 GROUP BY Date
@@ -497,6 +559,31 @@ return  $query->result_array();
                 
                 
     ");
+                }
+                elseif($shift == 'Day'){
+                        $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date
+                FROM            dbo.view_Bladder_Winding_FInal
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102)AND (Shift = 'Day Shift'))
+                GROUP BY Date
+                
+                ORDER BY Date
+                
+                
+    ");
+                        
+                }
+                else{
+                        $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date
+                FROM            dbo.view_Bladder_Winding_FInal
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102)AND (Shift = 'Night Shift'))
+                GROUP BY Date
+                
+                ORDER BY Date
+                
+                
+    ");
+                        
+                }
                 return  $query->result_array();
 
         }
@@ -517,7 +604,7 @@ return  $query->result_array();
                 ");
                 return  $query->result_array();
         }
-        public function getBladderWindingDateRangeDatanew($startDate,$endDate){
+        public function getBladderWindingDateRangeDatanew($startDate,$endDate,$shift){
             
                 $startMonth = explode("-",$startDate)[1];
                 $startYear = explode("-",$startDate)[0];
@@ -525,15 +612,41 @@ return  $query->result_array();
                 $endMonth = explode("-",$endDate)[1];
                 $endYear = explode("-",$endDate)[0];
                 $endDay = explode("-",$endDate)[2];
-                $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date
+                if($shift == 'All'){
+                        $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date
+                        FROM            dbo.view_Bladder_Winding_New_F
+                        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                        GROUP BY Date
+                        
+                        ORDER BY Date
+                        
+                        
+            ");     
+                }
+                elseif($shift == 'Day'){
+                        $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date
                 FROM            dbo.view_Bladder_Winding_New_F
-                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102)AND (Shift = 'Day Shift'))
                 GROUP BY Date
                 
                 ORDER BY Date
                 
                 
     ");
+                }
+                else{
+                        $query = $this->db->query("SELECT        COUNT(Counter) AS Counter, Date
+                FROM            dbo.view_Bladder_Winding_New_F
+                WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102)AND (Shift = 'Night Shift'))
+                GROUP BY Date
+                
+                ORDER BY Date
+                
+                
+    ");
+
+                }
+                
                 return  $query->result_array();
 
         }
@@ -667,7 +780,7 @@ return  $query->result_array();
                 return  $query->result_array();
         }
 
-        public function getTMDateRangeData($startDate,$endDate){
+        public function getTMDateRangeData($startDate,$endDate,$shift){
             
                 $startMonth = explode("-",$startDate)[1];
                 $startYear = explode("-",$startDate)[0];
@@ -675,13 +788,33 @@ return  $query->result_array();
                 $endMonth = explode("-",$endDate)[1];
                 $endYear = explode("-",$endDate)[0];
                 $endDay = explode("-",$endDate)[2];
-                $query = $this->db->query("SELECT        CONVERT(Varchar, dbo.tbl_Inv_Tran_Date.DateName, 103) AS DateName, SUM(dbo.tbl_TM_Final_QC.Inspected) AS Pass
-                FROM            dbo.tbl_TM_Final_QC INNER JOIN
-                                         dbo.tbl_Inv_Tran_Date ON dbo.tbl_TM_Final_QC.DayNo = dbo.tbl_Inv_Tran_Date.DayNo
-                WHERE        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
-                GROUP BY CONVERT(Varchar, dbo.tbl_Inv_Tran_Date.DateName, 103)
-                ORDER BY DateName                 
+                if($shift == 'All'){
+                        $query = $this->db->query("SELECT        DateName, Pass
+                        FROM            View_TM_Final
+                        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+                        Order by EntryDate               
     ");
+                
+                }
+                
+                elseif($shift == 'Day'){
+                        $query = $this->db->query("SELECT        DateName, Pass
+                        FROM            View_TM_Final
+                        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102)AND (Shift = 'Day Shift'))
+                        Order by EntryDate               
+    ");
+                }
+                else{
+                        $query = $this->db->query("SELECT        DateName, Pass
+                        FROM            View_TM_Final
+                        WHERE        (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102)AND (Shift = 'Night Shift'))
+                        Order by EntryDate               
+    ");  
+                }
+
+
+                
+                
                 return  $query->result_array();
 
         }

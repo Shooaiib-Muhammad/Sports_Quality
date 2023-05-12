@@ -1351,8 +1351,9 @@ class Efficiency extends CI_Controller
   {
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
+    $shift = $_POST['shift'];
 
-    $data['BarData'] = $this->E->getCuttingPanelDateRangeData($startDate, $endDate);
+    $data['BarData'] = $this->E->getCuttingPanelDateRangeData($startDate, $endDate, $shift);
     $data['MachineData'] = $this->E->getCuttingPanelDateRangeDataMachineWise($startDate, $endDate);
 
     return $this->output
@@ -1365,8 +1366,9 @@ class Efficiency extends CI_Controller
   {
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
+    $shift = $_POST['shift'];
 
-    $data['BarData'] = $this->E->getCuttingHFDateRangeData($startDate, $endDate);
+    $data['BarData'] = $this->E->getCuttingHFDateRangeData($startDate, $endDate,$shift);
     $data['MachineData'] = $this->E->getCuttingHFDateRangeDataMachineWise($startDate, $endDate);
 
     return $this->output
@@ -1380,9 +1382,12 @@ class Efficiency extends CI_Controller
 
     $startDate = date("Y-m-d", strtotime($_POST['startDate']));
     $endDate = date("Y-m-d", strtotime($_POST['endDate']));
+    $shift = $_POST['shift'];
+
+    $data['BarData'] = $this->E->getLaminationDateRangeData($startDate, $endDate, $shift);
 
     //  $data['getData'] = $this->Lamination->getData($startDate, $endDate);
-    $data['BarData'] = $this->E->getLaminationDateRangeData($startDate, $endDate);
+    
     $data['MachineData'] = $this->E->getLaminationDateRangeDataMachineWise($startDate, $endDate);
 
     return $this->output
@@ -1464,8 +1469,9 @@ class Efficiency extends CI_Controller
   {
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
+    $shift = $_POST['shift'];
 
-    $data['BarData'] = $this->E->getMSLinesDateRangeData($startDate, $endDate);
+    $data['BarData'] = $this->E->getMSLinesDateRangeData($startDate, $endDate,$shift);
     $data['MachineData'] = $this->E->getMSLinesDateRangeDataMachineWise($startDate, $endDate);
 
     return $this->output
@@ -1478,8 +1484,9 @@ class Efficiency extends CI_Controller
   {
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
+    $shift = $_POST['shift'];
 
-    $data['BarData'] = $this->E->getBladderWindingDateRangeData($startDate, $endDate);
+    $data['BarData'] = $this->E->getBladderWindingDateRangeData($startDate, $endDate,$shift);
     $data['MachineData'] = $this->E->getBladderWindingDateRangeDataMachineWise($startDate, $endDate);
 
     return $this->output
@@ -1491,8 +1498,9 @@ class Efficiency extends CI_Controller
   {
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
+    $shift = $_POST['shift'];
 
-    $data['BarData'] = $this->E->getBladderWindingDateRangeDatanew($startDate, $endDate);
+    $data['BarData'] = $this->E->getBladderWindingDateRangeDatanew($startDate, $endDate,$shift);
     $data['MachineData'] = $this->E->getBladderWindingDateRangeDataMachineWisenew($startDate, $endDate);
 
     return $this->output
@@ -1547,8 +1555,9 @@ class Efficiency extends CI_Controller
   {
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
+    $shift = $_POST['shift'];
 
-    $data['BarData'] = $this->E->getTMDateRangeData($startDate, $endDate);
+    $data['BarData'] = $this->E->getTMDateRangeData($startDate, $endDate,$shift);
     $data['MachineData'] = $this->E->getTMDateRangeDataMachineWise($startDate, $endDate);
 
     return $this->output

@@ -276,7 +276,7 @@ foreach($getCarsasData as $Key){
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
 
 <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
  <div class="col-md-12">
@@ -301,7 +301,11 @@ foreach($getCarsasData as $Key){
       
 
   <script>
-    
+    $(document).ready(function(){
+      $("#Select").select2({
+            width:'100%'
+          })
+    })
     
 
 function CallCombox(){

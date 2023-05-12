@@ -7,27 +7,29 @@ class TemHumidityModel extends CI_Model
     {
         $time = strtotime($sdate);
         $time1 = strtotime($edate);
-        $newformat = date('d/m/Y', $time);
-        $newformat1 = date('d/m/Y', $time1);
+        $newformat = date('Y-m-d', $time);
+        $newformat1 = date('Y-m-d', $time1);
         $query = $this->db
-            ->query("SELECT        TOP (10) PERCENT HallName, MAX(Humdity) AS Humdity, CONVERT(Varchar, EntryDate, 103) AS Date
-FROM            dbo.tbl_Humidity
-WHERE        (CONVERT(Varchar, EntryDate, 103) BETWEEN '$newformat' AND '$newformat1')
-GROUP BY HallName, CONVERT(Varchar, EntryDate, 103)");
+            ->query("SELECT        HallName, MAX(Humdity) AS Humdity, CONVERT(Varchar, EntryDate, 103) AS Date
+            FROM            dbo.tbl_Humidity
+            WHERE        (DATEADD(dd, 0, DATEDIFF(dd, 0, EntryDate)) BETWEEN CONVERT(DATETIME, '$newformat 00:00:00', 102) AND CONVERT(DATETIME, '$newformat1 00:00:00', 102))
+            GROUP BY HallName, CONVERT(Varchar, EntryDate, 103)");
         return $query->result();
+        
     }
+
 
     public function gethumMaxHall($sdate, $edate,$hall)
     {
         $time = strtotime($sdate);
         $time1 = strtotime($edate);
-        $newformat = date('d/m/Y', $time);
-        $newformat1 = date('d/m/Y', $time1);
+        $newformat = date('Y-m-d', $time);
+        $newformat1 = date('Y-m-d', $time1);
         $query = $this->db
-            ->query("SELECT        MAX(Humdity) AS Humdity, CONVERT(Varchar, EntryDate, 103) AS Date, HallName
+            ->query("SELECT        HallName, MAX(Humdity) AS Humdity, CONVERT(Varchar, EntryDate, 103) AS Date
             FROM            dbo.tbl_Humidity
-            WHERE        (CONVERT(Varchar, EntryDate, 103) BETWEEN '$newformat' AND '$newformat1') AND (HallName = '$hall')
-            GROUP BY CONVERT(Varchar, EntryDate, 103), HallName");
+            WHERE        (DATEADD(dd, 0, DATEDIFF(dd, 0, EntryDate)) BETWEEN CONVERT(DATETIME, '$newformat 00:00:00', 102) AND CONVERT(DATETIME, '$newformat1 00:00:00', 102))
+            GROUP BY HallName, CONVERT(Varchar, EntryDate, 103)");
         return $query->result();
     }
 
@@ -35,12 +37,12 @@ GROUP BY HallName, CONVERT(Varchar, EntryDate, 103)");
     {
         $time = strtotime($sdate);
         $time1 = strtotime($edate);
-        $newformat = date('d/m/Y', $time);
-        $newformat1 = date('d/m/Y', $time1);
+        $newformat = date('Y-m-d', $time);
+        $newformat1 = date('Y-m-d', $time1);
         $query = $this->db
-            ->query("SELECT        TOP (100) PERCENT HallName, MIN(Humdity) AS Humdity, CONVERT(Varchar, EntryDate, 103) AS Date
+            ->query("SELECT       HallName, MIN(Humdity) AS Humdity, CONVERT(Varchar, EntryDate, 103) AS Date
 FROM            dbo.tbl_Humidity
-WHERE        (CONVERT(Varchar, EntryDate, 103) BETWEEN '$newformat' AND '$newformat1')
+WHERE        (DATEADD(dd, 0, DATEDIFF(dd, 0, EntryDate)) BETWEEN CONVERT(DATETIME, '$newformat 00:00:00', 102) AND CONVERT(DATETIME, '$newformat1 00:00:00', 102))
 GROUP BY HallName, CONVERT(Varchar, EntryDate, 103)");
         return $query->result();
     }
@@ -49,8 +51,8 @@ GROUP BY HallName, CONVERT(Varchar, EntryDate, 103)");
     {
         $time = strtotime($sdate);
         $time1 = strtotime($edate);
-        $newformat = date('d/m/Y', $time);
-        $newformat1 = date('d/m/Y', $time1);
+        $newformat = date('Y-m-d', $time);
+        $newformat1 = date('Y-m-d', $time1);
         $query = $this->db
             ->query("SELECT        MIN(Humdity) AS Humdity, CONVERT(Varchar, EntryDate, 103) AS Date, HallName
             FROM            dbo.tbl_Humidity
@@ -130,7 +132,7 @@ HAVING        (Name IN ('AMB Hall', 'MS Hall-1', 'MS Hall-2', 'TM Hall') AND (MI
         $newformat = date('d/m/Y', $time);
         $newformat1 = date('d/m/Y', $time1);
         $query = $this->db
-            ->query("SELECT   Humdity, HallName,EntryDate
+            ->query("SELECT   Humdity, HallName,EntryDate As Date
 FROM            dbo.tbl_Humidity
 
 
@@ -147,7 +149,7 @@ ORDER BY EntryDate DESC
         $newformat = date('d/m/Y', $time);
         $newformat1 = date('d/m/Y', $time1);
         $query = $this->db
-            ->query("SELECT   Humdity, HallName,EntryDate
+            ->query("SELECT   Humdity, HallName,EntryDate As Date
 FROM            dbo.tbl_Humidity
 
 
@@ -181,7 +183,7 @@ ORDER BY EntryDate DESC
         $newformat = date('d/m/Y', $time);
         $newformat1 = date('d/m/Y', $time1);
         $query = $this->db
-            ->query("SELECT    Humdity, HallName,EntryDate
+            ->query("SELECT    Humdity, HallName,EntryDate As Date
 FROM            dbo.tbl_Humidity
 
 
@@ -200,7 +202,7 @@ ORDER BY EntryDate DESC
         $newformat = date('d/m/Y', $time);
         $newformat1 = date('d/m/Y', $time1);
         $query = $this->db
-            ->query("SELECT  Temperature, Name,EntryDate
+            ->query("SELECT  Temperature, Name,EntryDate As Date
 FROM            dbo.tbl_Temperature
 
 
@@ -217,7 +219,7 @@ ORDER BY EntryDate DESC
         $newformat = date('d/m/Y', $time);
         $newformat1 = date('d/m/Y', $time1);
         $query = $this->db
-            ->query("SELECT   Temperature, Name,EntryDate
+            ->query("SELECT   Temperature, Name,EntryDate As Date
 FROM            dbo.tbl_Temperature
 
 
@@ -234,7 +236,7 @@ ORDER BY EntryDate DESC
         $newformat = date('d/m/Y', $time);
         $newformat1 = date('d/m/Y', $time1);
         $query = $this->db
-            ->query("SELECT Temperature, Name,EntryDate
+            ->query("SELECT Temperature, Name,EntryDate As Date
 FROM            dbo.tbl_Temperature
 
 
@@ -251,7 +253,7 @@ ORDER BY EntryDate DESC
         $newformat = date('d/m/Y', $time);
         $newformat1 = date('d/m/Y', $time1);
         $query = $this->db
-            ->query("SELECT  Temperature, Name,EntryDate
+            ->query("SELECT  Temperature, Name,EntryDate As Date
 FROM            dbo.tbl_Temperature
 
 

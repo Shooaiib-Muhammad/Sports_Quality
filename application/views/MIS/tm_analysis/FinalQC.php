@@ -194,18 +194,25 @@ foreach($getCarsasData as $Key){
 <script src="<?php echo base_url(); ?>/assets/js/statistics/peity/peity.bundle.js"></script>
       <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
       <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
-      <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
+      <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js" ></script>
+      
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
 
  
 <script src="<?php echo base_url(); ?>/assets/js/vendors.bundle.js"></script>
       <script src="<?php echo base_url(); ?>/assets/js/app.bundle.js"></script>
       <script type="text/javascript">
+        $(document).ready(function(){
+          $("#Select").select2({
+            width:'100%'
+          })
+        })
           /* Activate smart panels */
           $('#js-page-content').smartPanel();
       </script>
@@ -255,74 +262,7 @@ function FianlQc_func(){
                   $('#content').html("");
                 $('#content').append(data);
               // $('#forming-table').dataTable(getOptions(group))
-              $('#forming-table').dataTable({
-                responsive: false,
-                lengthChange: false,
-                dom:
-                    /*	--- Layout Structure 
-                    	--- Options
-                    	l	-	length changing input control
-                    	f	-	filtering input
-                    	t	-	The table!
-                    	i	-	Table information summary
-                    	p	-	pagination control
-                    	r	-	processing display element
-                    	B	-	buttons
-                    	R	-	ColReorder
-                    	S	-	Select
-
-                    	--- Markup
-                    	< and >				- div element
-                    	<"class" and >		- div with a class
-                    	<"#id" and >		- div with an ID
-                    	<"#id.class" and >	- div with an ID and a class
-
-                    	--- Further reading
-                    	https://datatables.net/reference/option/dom
-                    	--------------------------------------
-                     */
-                    "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-                    "<'row'<'col-sm-12'tr>>" +
-                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                buttons: [
-                    /*{
-                    	extend:    'colvis',
-                    	text:      'Column Visibility',
-                    	titleAttr: 'Col visibility',
-                    	className: 'mr-sm-3'
-                    },*/
-                    {
-                        extend: 'pdfHtml5',
-                        text: 'PDF',
-                        titleAttr: 'Generate PDF',
-                        className: 'btn-outline-danger btn-sm mr-1'
-                    },
-                    {
-                        extend: 'excelHtml5',
-                        text: 'Excel',
-                        titleAttr: 'Generate Excel',
-                        className: 'btn-outline-success btn-sm mr-1'
-                    },
-                    {
-                        extend: 'csvHtml5',
-                        text: 'CSV',
-                        titleAttr: 'Generate CSV',
-                        className: 'btn-outline-primary btn-sm mr-1'
-                    },
-                    {
-                        extend: 'copyHtml5',
-                        text: 'Copy',
-                        titleAttr: 'Copy to clipboard',
-                        className: 'btn-outline-primary btn-sm mr-1'
-                    },
-                    {
-                        extend: 'print',
-                        text: 'Print',
-                        titleAttr: 'Print Table',
-                        className: 'btn-outline-primary btn-sm'
-                    }
-                ]
-            });
+             
 
             }
 
