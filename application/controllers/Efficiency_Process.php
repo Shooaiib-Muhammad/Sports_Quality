@@ -27,7 +27,7 @@ class Efficiency_Process extends CI_Controller
     }
 
     public function insertProcess(){
-        $data= $this->EPM->insertProcess($_POST['processSelect'],$_POST['etarget'],$_POST['samval']);
+        $data= $this->EPM->insertProcess($_POST['processSelect'],$_POST['etarget'],$_POST['fc'],$_POST['samval']);
         return $this->output
          ->set_content_type('application/json')
          ->set_status_header(200)
@@ -51,7 +51,7 @@ class Efficiency_Process extends CI_Controller
     }
 
     public function updateEfficiencyData(){
-        $data = $this->EPM->updateEfficiencyData($_POST['PID'],$_POST['emptarget'],$_POST['sam']);
+        $data = $this->EPM->updateEfficiencyData($_POST['PID'],$_POST['emptarget'],$_POST['fc'],$_POST['sam']);
 		return $this->output
 		->set_content_type('application/json')
 		->set_status_header(200)

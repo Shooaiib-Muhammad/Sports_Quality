@@ -10969,7 +10969,7 @@ ${reviewStatus == '1' ?
                                 if (element.TestNumber != undefined || element.PONo != undefined) {
                                     testNumber = element.TestNumber;
                                     PONumber = element.PONo;
-                                    let arrayHead = [element.TestNumber, element.Date, element.MaterialReference, element.PONo, element.Status, element.Remarks, ']'];
+                                    let arrayHead = [element.TestNumber, element.Date, element.MaterialReference, element.PONo, element.Result, element.Remarks, ']'];
                                     let arrayBody = [element.TestNumber, element.PONo, element.TEST, element.METHOD, element.UNIT, element.Requirement, element.RESULTS, ']'];
                                     HeaderArray.push(arrayHead);
                                     ChildArray.push(arrayBody)

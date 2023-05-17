@@ -4721,6 +4721,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                             $("#searchRange").click(function(e) {
                                 e.preventDefault();
+                                console.log("search");
                                 sDate = $("#startDate").val();
                                 eDate = $("#endDate").val();
 
@@ -4781,7 +4782,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <td>${element.Date}</td>
                                                 <td>${element.Size}</td>
                                                 <td>${element.PO}</td>
-                                                <td>${element.Receiving_Date}</td>
+                                                <td>${element.Sample_Receiving_Date}</td>
                                                 <td>${element.Supplier_Name}</td>
                                             
                                                 <td>${element.Quantity_Carton}</td>

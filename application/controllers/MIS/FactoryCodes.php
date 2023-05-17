@@ -40,10 +40,10 @@ class FactoryCodes extends CI_Controller
 
 
         // B34005
-        $data['bladderWinding'] = $this->FCM->bladderWinding($start_date, $end_date);
-        $data['bladderUnWinding'] = $this->FCM->bladderUnWinding($start_date, $end_date);
-        $data['pivot005'] = $this->FCM->pivot005($start_date, $end_date);
-        $data['data'] = $this->FCM->get_ms_summary2($line, $start_date, $end_date);
+        $data['bladderWinding'] = $this->FCM->bladderWinding($start_date, $end_date); //bladderWinding B34005
+        $data['bladderUnWinding'] = $this->FCM->bladderUnWinding($start_date, $end_date); //bladderUnWinding B34005
+        $data['pivot005'] = $this->FCM->pivot005($start_date, $end_date); //pivot005 B34005
+        $data['dataEndLineQC'] = $this->FCM->get_ms_summary2($line, $start_date, $end_date); //end line QC B34005
 
         // B34006
         $data['forming006'] = $this->FCM->rpt_amb_detail006($start_date, $end_date, 1); //Forming B34006
@@ -95,10 +95,10 @@ class FactoryCodes extends CI_Controller
 
 
         // B34005
-        $data['bladderWinding'] = $this->FCM->bladderWinding($start_date, $end_date);
-        $data['bladderUnWinding'] = $this->FCM->bladderUnWinding($start_date, $end_date);
-        $data['pivot005'] = $this->FCM->pivot005($start_date, $end_date);
-        $data['data'] = $this->FCM->get_ms_summary2($line, $start_date, $end_date);
+        $data['bladderWinding'] = $this->FCM->bladderWinding($start_date, $end_date); //bladderWinding B34005
+        $data['bladderUnWinding'] = $this->FCM->bladderUnWinding($start_date, $end_date); //bladderUnWinding B34005
+        $data['pivot005'] = $this->FCM->pivot005($start_date, $end_date); //pivot005 B34005
+        $data['dataEndLineQC'] = $this->FCM->get_ms_summary2($line, $start_date, $end_date); //end line QC B34005
 
         // B34006
         $data['forming006'] = $this->FCM->rpt_amb_detail006($start_date, $end_date, 1); //Forming B34006

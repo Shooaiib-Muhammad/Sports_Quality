@@ -75,7 +75,7 @@ if (!$this->session->has_userdata('user_id')) {
                     <div class="form-group">
 
                       <label for="sel1">Select Article :</label>
-                      <select class="form-control" id="ArtCode" name="FC" onchange="CallData()">
+                      <select class="form-control" id="ArtCode" name="FC" onchange="getarticlesvalues()">
                         <option value="">Select one of the following</option>
                         <?php foreach ($Articles as $Key) { ?>
 
@@ -689,41 +689,7 @@ if (!$this->session->has_userdata('user_id')) {
       dropdownParent: $('#exampleModalEditDep')
     });
 
-    function CallData() {
-      $("#working").val(' ');
-      $("#pname").val(' ');
-      $("#fcode").val(' ');
-      $("#colorway").val(' ');
-      $("#pshape").val(' ');
-      $("#client").val(' ');
-      $("#model").val(' ');
-      $("#art").val(' ');
-      let ArtCode = $("#ArtCode").val();
-
-      url = "<?php echo base_url(''); ?>DPA/CallData/"
-      $.post(url, {
-        "article": ArtCode,
-
-      }, function(articles) {
-        console.log(articles)
-        $("#working").val(articles[0]['WorkNo']);
-        $("#pname").val(articles[0]['ModelName']);
-        $("#fcode").val(articles[0]['FactoryCode']);
-        $("#colorway").val(articles[0]['PrintingColors']);
-        $("#pshape").val(articles[0]['PanelShape']);
-        // $("#yield").val(articles[0]['Yield']);
-        $("#client").val(articles[0]['ClientID']);
-        $("#model").val(articles[0]['ModelID']);
-        $("#art").val(articles[0]['ArtID']);
-
-
-
-      });
-
-
-
-
-    }
+   
 
     function submit() {
 
@@ -770,8 +736,11 @@ if (!$this->session->has_userdata('user_id')) {
       let mcs = $("#mcs").prop('checked');
       let season = $("#season").val();
       let finalSeason = season + twoDigitYear;
-
-      data = {
+      //alert(revdate);
+if (revdate === ''){
+alert("REV BR Date must be Selected")
+}else{
+  data = {
         "article": article,
         "working": working,
         "pname": pname,
@@ -825,6 +794,8 @@ if (!$this->session->has_userdata('user_id')) {
 
 
       });
+}
+      
     }
 
     function onSearch() {
@@ -956,6 +927,15 @@ mm_Rev_BR_Date =Rev_BR_Date.substring(3, 5);
 yy_Rev_BR_Date=Rev_BR_Date.substring(6, 10);
 final_Rev_BR_Date=yy_Rev_BR_Date+'-'+mm_Rev_BR_Date+'-'+dd_Rev_BR_Date
 
+
+
+Post_CR2_Ex_fty=element.Post_CR2_Ex_fty
+dd_Post_CR2_Ex_fty =Post_CR2_Ex_fty.substring(0, 2);
+mm_Post_CR2_Ex_fty =Post_CR2_Ex_fty.substring(3, 5);
+yy_Post_CR2_Ex_fty=Post_CR2_Ex_fty.substring(6, 10);
+final_Post_CR2_Ex_fty=yy_Post_CR2_Ex_fty+'-'+mm_Post_CR2_Ex_fty+'-'+dd_Post_CR2_Ex_fty
+
+
 FIFA_authorization_validity_Date=element.FIFA_authorization_validity_Date
 dd_FIFA_authorization_validity_Date =FIFA_authorization_validity_Date.substring(0, 2);
 mm_FIFA_authorization_validity_Date =FIFA_authorization_validity_Date.substring(3, 5);
@@ -972,24 +952,25 @@ final_FIFA_authorization_validity_Date=yy_FIFA_authorization_validity_Date+'-'+m
                                          <td >${element.PanelShape}</td>
                                          <td contenteditable="true" id="Yield">0${element.Yield}</td>
                                           <td contenteditable="true" id="Article_Count"> ${element.Article_Count}</td>
-                                          <td contenteditable="true" id="BF_Date" > <input type="date" value="${final_BF_Datee}"/><i style="color:white;">${final_BF_Datee}</i></td>
-                                          <td contenteditable="true" id="CR1_In_House_Date"><input type="date" value="${final_CR1_In_House_Datee}"/> <i style="color:white;">${final_CR1_In_House_Datee}</i></td>
-                                          <td contenteditable="true" id="CR1_Subbmition_Date"> <input type="date" value="${final_CR1_Subbmition_Datee}"/> <i style="color:white;">${final_CR1_Subbmition_Datee}</i></td>
+                                          <td contenteditable="true" id="BF_Date" > ${final_BF_Datee=='g-di-Pe'?`Pending <input type="date" value="${final_BF_Datee}"/><i style="color:white;">${final_BF_Datee}</i>`:`<input type="date" value="${final_BF_Datee}"/><i style="color:white;">${final_BF_Datee}</i>`}</td>
+                                          <td contenteditable="true" id="CR1_In_House_Date" > ${final_BF_Datee=='g-di-Pe'?`Pending <input type="date" value="${final_CR1_In_House_Datee}"/><i style="color:white;">${final_CR1_In_House_Datee}</i>`:`<input type="date" value="${final_CR1_In_House_Datee}"/><i style="color:white;">${final_CR1_In_House_Datee}</i>`}</td>
+                                          <td contenteditable="true" id="CR1_Subbmition_Date" > ${final_CR1_Subbmition_Datee=='g-di-Pe'?`Pending <input type="date" value="${final_CR1_Subbmition_Datee}"/><i style="color:white;">${final_CR1_Subbmition_Datee}</i>`:`<input type="date" value="${final_CR1_Subbmition_Datee}"/><i style="color:white;">${final_CR1_Subbmition_Datee}</i>`}</td>
                                           <td contenteditable="true" id="CR1_Comments">${element.CR1_Comments}</td>
-                                          <td contenteditable="true" id="CR2_In_House_Date"> <input type="date" value="${final_CR2_In_House_Datee}"/><i style="color:white;">${final_CR2_In_House_Datee}</i></td>
-                                          <td contenteditable="true" id="CR2_Subbmition_Date"><input type="date" value="${final_CR2_Subbmition_Date}"/><i style="color:white;">${final_CR2_Subbmition_Date}</i></td>
+                                          <td contenteditable="true" id="CR2_In_House_Date" > ${final_CR2_In_House_Datee=='g-di-Pe'?`Pending <input type="date" value="${final_CR2_In_House_Datee}"/><i style="color:white;">${final_CR2_In_House_Datee}</i>`:`<input type="date" value="${final_CR2_In_House_Datee}"/><i style="color:white;">${final_CR2_In_House_Datee}</i>`}</td>
+                                          <td contenteditable="true" id="CR2_Subbmition_Date" > ${final_CR2_Subbmition_Date=='g-di-Pe'?`Pending <input type="date" value="${final_CR2_Subbmition_Date}"/><i style="color:white;">${final_CR2_Subbmition_Date}</i>`:`<input type="date" value="${final_CR2_Subbmition_Date}"/><i style="color:white;">${final_CR2_Subbmition_Date}</i>`}</td>
                                           <td contenteditable="true" id="CR2_Comments">${element.CR2_Comments}</td>
-                                          <td contenteditable="true" id="Post_CR2_Ex_fty"><input type="date" value="${element.Post_CR2_Ex_fty}"/></td>
+                                          <td contenteditable="true" id="Post_CR2_Ex_fty" > ${final_Post_CR2_Ex_fty=='g-di-Pe'?`Pending <input type="date" value="${final_Post_CR2_Ex_fty}"/><i style="color:white;">${final_Post_CR2_Ex_fty}</i>`:`<input type="date" value="${final_Post_CR2_Ex_fty}"/><i style="color:white;">${final_Post_CR2_Ex_fty}</i>`}</td>
+                                         
                                           <td contenteditable="true" id="Comments_Remarks">${element.Comments_Remarks}</td>
-                                          <td contenteditable="true" id="EBR_Model_Date"><input type="date" value="${final_EBR_Model_Date}"/><i style="color:white;">${final_EBR_Model_Date}</i></td>
-                                          <td contenteditable="true" id="EBR_Article_Date"><input type="date" value="${final_EBR_Article_Date}"/><i style="color:white;">${final_EBR_Article_Date}</i></td>
-                                          <td contenteditable="true" id="Rev_BR_Date"><input type="date" value="${final_Rev_BR_Date}"/><i style="color:white;">${final_Rev_BR_Date}</i></td>
-                                          <td contenteditable="true" id="Retail_Intro"><input type="date" value="${element.Retail_Intro}"/></td>
+                                          <td contenteditable="true" id="EBR_Model_Date" > ${final_EBR_Model_Date=='g-di-Pe'?`Pending <input type="date" value="${final_EBR_Model_Date}"/><i style="color:white;">${final_EBR_Model_Date}</i>`:`<input type="date" value="${final_EBR_Model_Date}"/><i style="color:white;">${final_EBR_Model_Date}</i>`}</td>                                                                              
+                                          <td contenteditable="true" id="EBR_Article_Date" > ${final_EBR_Article_Date=='g-di-Pe'?`Pending <input type="date" value="${final_EBR_Article_Date}"/><i style="color:white;">${final_EBR_Article_Date}</i>`:`<input type="date" value="${final_EBR_Article_Date}"/><i style="color:white;">${final_EBR_Article_Date}</i>`}</td>                                                                                   
+                                          <td contenteditable="true" id="Rev_BR_Date" > ${final_Rev_BR_Date=='g-di-Pe'?`Pending <input type="date" value="${final_Rev_BR_Date}"/><i style="color:white;">${final_Rev_BR_Date}</i>`:`<input type="date" value="${final_Rev_BR_Date}"/><i style="color:white;">${final_Rev_BR_Date}</i>`}</td>
+<td contenteditable="true" id="Retail_Intro"><input type="date" value="${element.Retail_Intro}"/></td>
                                           <td contenteditable="true" id="Fty_Priority">${element.Fty_Priority}</td>
                                           <td contenteditable="true" id="Remarks">${element.Remarks}</td>
                                           <td contenteditable="true" id="Mktg_FC">${element.Mktg_FC}</td>
-                                          <td contenteditable="true" id="FIFA_authorization_validity_Date"><input type="date" value="${final_FIFA_authorization_validity_Date}"/><i style="color:white;">${final_FIFA_authorization_validity_Date}</i></td>
-                                          <td contenteditable="true" id="CR1_In_House_Status">${element.CR1_In_House_Status}</td>
+                                          <td contenteditable="true" id="FIFA_authorization_validity_Date" > ${final_FIFA_authorization_validity_Date=='g-di-Pe'?`Pending <input type="date" value="${final_FIFA_authorization_validity_Date}"/><i style="color:white;">${final_FIFA_authorization_validity_Date}</i>`:`<input type="date" value="${final_FIFA_authorization_validity_Date}"/><i style="color:white;">${final_FIFA_authorization_validity_Date}</i>`}</td>
+ <td contenteditable="true" id="CR1_In_House_Status">${element.CR1_In_House_Status}</td>
                                           <td contenteditable="true" id="CR1_Subbmition_Status">${element.CR1_Subbmition_Status}</td>
                                           <td contenteditable="true" id="CR2_In_House_Status">${element.CR2_In_House_Status}</td>
                                           <td contenteditable="true" id="CR2_Subbmition_Status">${element.CR2_Subbmition_Status}</td>
@@ -1102,7 +1083,42 @@ final_FIFA_authorization_validity_Date=yy_FIFA_authorization_validity_Date+'-'+m
       });
     }
 
+    function getarticlesvalues(){
+      //alert("i am here");
+      $("#working").val(' ');
+      $("#pname").val(' ');
+      $("#fcode").val(' ');
+      $("#colorway").val(' ');
+      $("#pshape").val(' ');
+      $("#client").val(' ');
+      $("#model").val(' ');
+      $("#art").val(' ');
+      let ArtCode = $("#ArtCode").val();
 
+      url = "<?php echo base_url(''); ?>DPA/CallData/"
+      $.post(url, {
+        "article": ArtCode,
+
+      }, function(articles) {
+        console.log(articles)
+        $("#working").val(articles[0]['WorkNo']);
+        $("#pname").val(articles[0]['ModelName']);
+        $("#fcode").val(articles[0]['FactoryCode']);
+        $("#colorway").val(articles[0]['PrintingColors']);
+        $("#pshape").val(articles[0]['PanelShape']);
+        // $("#yield").val(articles[0]['Yield']);
+        $("#client").val(articles[0]['ClientID']);
+        $("#model").val(articles[0]['ModelID']);
+        $("#art").val(articles[0]['ArtID']);
+
+
+
+      });
+
+
+
+
+    }
     function onClear(){
       
       location.reload();
@@ -2763,14 +2779,23 @@ mm_Rev_BR_Date =Rev_BR_Date.substring(3, 5);
 yy_Rev_BR_Date=Rev_BR_Date.substring(6, 10);
 final_Rev_BR_Date=yy_Rev_BR_Date+'-'+mm_Rev_BR_Date+'-'+dd_Rev_BR_Date
 
+
+
+Post_CR2_Ex_fty=element.Post_CR2_Ex_fty
+dd_Post_CR2_Ex_fty =Post_CR2_Ex_fty.substring(0, 2);
+mm_Post_CR2_Ex_fty =Post_CR2_Ex_fty.substring(3, 5);
+yy_Post_CR2_Ex_fty=Post_CR2_Ex_fty.substring(6, 10);
+final_Post_CR2_Ex_fty=yy_Post_CR2_Ex_fty+'-'+mm_Post_CR2_Ex_fty+'-'+dd_Post_CR2_Ex_fty
+
+
 FIFA_authorization_validity_Date=element.FIFA_authorization_validity_Date
 dd_FIFA_authorization_validity_Date =FIFA_authorization_validity_Date.substring(0, 2);
 mm_FIFA_authorization_validity_Date =FIFA_authorization_validity_Date.substring(3, 5);
 yy_FIFA_authorization_validity_Date=FIFA_authorization_validity_Date.substring(6, 10);
 final_FIFA_authorization_validity_Date=yy_FIFA_authorization_validity_Date+'-'+mm_FIFA_authorization_validity_Date+'-'+dd_FIFA_authorization_validity_Date
-
+//console.log(final_BF_Datee);
           appendtable += `<tr id="2tr">
-                                <td>#${i++} </td>
+                                <td>#${element.TID} </td>
                                 <td> ${element.ArtCode} </td>
                                        <td>${element.WorkNo} </td>
                                         <td >${element.ModelName}</td>
@@ -2779,23 +2804,27 @@ final_FIFA_authorization_validity_Date=yy_FIFA_authorization_validity_Date+'-'+m
                                          <td >${element.PanelShape}</td>
                                           <td contenteditable="true" id="Yield">0.${element.Yield}</td>
                                           <td contenteditable="true" id="Article_Count"> ${element.Article_Count}</td>
-                                          <td contenteditable="true" id="BF_Date" > <input type="date" value="${final_BF_Datee}"/><i style="color:white;">${final_BF_Datee}</i></td>
-                                          <td contenteditable="true" id="CR1_In_House_Date"><input type="date" value="${final_CR1_In_House_Datee}"/> <i style="color:white;">${final_CR1_In_House_Datee}</i></td>
-                                          <td contenteditable="true" id="CR1_Subbmition_Date"> <input type="date" value="${final_CR1_Subbmition_Datee}"/> <i style="color:white;">${final_CR1_Subbmition_Datee}</i></td>
+                                          <td contenteditable="true" id="BF_Date" > ${final_BF_Datee=='g-di-Pe'?`Pending <input type="date" value="${final_BF_Datee}"/><i style="color:white;">${final_BF_Datee}</i>`:`<input type="date" value="${final_BF_Datee}"/><i style="color:white;">${final_BF_Datee}</i>`}</td>
+                                          <td contenteditable="true" id="CR1_In_House_Date" > ${final_BF_Datee=='g-di-Pe'?`Pending <input type="date" value="${final_CR1_In_House_Datee}"/><i style="color:white;">${final_CR1_In_House_Datee}</i>`:`<input type="date" value="${final_CR1_In_House_Datee}"/><i style="color:white;">${final_CR1_In_House_Datee}</i>`}</td>
+                                          <td contenteditable="true" id="CR1_Subbmition_Date" > ${final_CR1_Subbmition_Datee=='g-di-Pe'?`Pending <input type="date" value="${final_CR1_Subbmition_Datee}"/><i style="color:white;">${final_CR1_Subbmition_Datee}</i>`:`<input type="date" value="${final_CR1_Subbmition_Datee}"/><i style="color:white;">${final_CR1_Subbmition_Datee}</i>`}</td>
                                           <td contenteditable="true" id="CR1_Comments">${element.CR1_Comments}</td>
-                                          <td contenteditable="true" id="CR2_In_House_Date"> <input type="date" value="${final_CR2_In_House_Datee}"/><i style="color:white;">${final_CR2_In_House_Datee}</i></td>
-                                          <td contenteditable="true" id="CR2_Subbmition_Date"><input type="date" value="${final_CR2_Subbmition_Date}"/><i style="color:white;">${final_CR2_Subbmition_Date}</i></td>
+                                          <td contenteditable="true" id="CR2_In_House_Date" > ${final_CR2_In_House_Datee=='g-di-Pe'?`Pending <input type="date" value="${final_CR2_In_House_Datee}"/><i style="color:white;">${final_CR2_In_House_Datee}</i>`:`<input type="date" value="${final_CR2_In_House_Datee}"/><i style="color:white;">${final_CR2_In_House_Datee}</i>`}</td>
+                                          <td contenteditable="true" id="CR2_Subbmition_Date" > ${final_CR2_Subbmition_Date=='g-di-Pe'?`Pending <input type="date" value="${final_CR2_Subbmition_Date}"/><i style="color:white;">${final_CR2_Subbmition_Date}</i>`:`<input type="date" value="${final_CR2_Subbmition_Date}"/><i style="color:white;">${final_CR2_Subbmition_Date}</i>`}</td>
                                           <td contenteditable="true" id="CR2_Comments">${element.CR2_Comments}</td>
-                                          <td contenteditable="true" id="Post_CR2_Ex_fty"><input type="date" value="${element.Post_CR2_Ex_fty}"/></td>
+                                          
+                                          <td contenteditable="true" id="Post_CR2_Ex_fty" > ${final_Post_CR2_Ex_fty=='g-di-Pe'?`Pending <input type="date" value="${final_Post_CR2_Ex_fty}"/><i style="color:white;">${final_Post_CR2_Ex_fty}</i>`:`<input type="date" value="${final_Post_CR2_Ex_fty}"/><i style="color:white;">${final_Post_CR2_Ex_fty}</i>`}</td>
+                                         
+                                      
                                           <td contenteditable="true" id="Comments_Remarks">${element.Comments_Remarks}</td>
-                                          <td contenteditable="true" id="EBR_Model_Date"><input type="date" value="${final_EBR_Model_Date}"/><i style="color:white;">${final_EBR_Model_Date}</i></td>
-                                          <td contenteditable="true" id="EBR_Article_Date"><input type="date" value="${final_EBR_Article_Date}"/><i style="color:white;">${final_EBR_Article_Date}</i></td>
-                                          <td contenteditable="true" id="Rev_BR_Date"><input type="date" value="${final_Rev_BR_Date}"/><i style="color:white;">${final_Rev_BR_Date}</i></td>
-                                          <td contenteditable="true" id="Retail_Intro"><input type="date" value="${element.Retail_Intro}"/></td>
+                                          <td contenteditable="true" id="EBR_Model_Date" > ${final_EBR_Model_Date=='g-di-Pe'?`Pending <input type="date" value="${final_EBR_Model_Date}"/><i style="color:white;">${final_EBR_Model_Date}</i>`:`<input type="date" value="${final_EBR_Model_Date}"/><i style="color:white;">${final_EBR_Model_Date}</i>`}</td>                                                                              
+                                          <td contenteditable="true" id="EBR_Article_Date" > ${final_EBR_Article_Date=='g-di-Pe'?`Pending <input type="date" value="${final_EBR_Article_Date}"/><i style="color:white;">${final_EBR_Article_Date}</i>`:`<input type="date" value="${final_EBR_Article_Date}"/><i style="color:white;">${final_EBR_Article_Date}</i>`}</td>                                                                                   
+                                          <td contenteditable="true" id="Rev_BR_Date" > ${final_Rev_BR_Date=='g-di-Pe'?`Pending <input type="date" value="${final_Rev_BR_Date}"/><i style="color:white;">${final_Rev_BR_Date}</i>`:`<input type="date" value="${final_Rev_BR_Date}"/><i style="color:white;">${final_Rev_BR_Date}</i>`}</td>
+                                        <td contenteditable="true" id="Retail_Intro"><input type="date" value="${element.Retail_Intro}"/></td>
                                           <td contenteditable="true" id="Fty_Priority">${element.Fty_Priority}</td>
                                           <td contenteditable="true" id="Remarks">${element.Remarks}</td>
                                           <td contenteditable="true" id="Mktg_FC">${element.Mktg_FC}</td>
-                                          <td contenteditable="true" id="FIFA_authorization_validity_Date"><input type="date" value="${final_FIFA_authorization_validity_Date}"/><i style="color:white;">${final_FIFA_authorization_validity_Date}</i></td>
+                                          <td contenteditable="true" id="FIFA_authorization_validity_Date" > ${final_FIFA_authorization_validity_Date=='g-di-Pe'?`Pending <input type="date" value="${final_FIFA_authorization_validity_Date}"/><i style="color:white;">${final_FIFA_authorization_validity_Date}</i>`:`<input type="date" value="${final_FIFA_authorization_validity_Date}"/><i style="color:white;">${final_FIFA_authorization_validity_Date}</i>`}</td>
+ 
                                           <td contenteditable="true" id="CR1_In_House_Status">${element.CR1_In_House_Status}</td>
                                           <td contenteditable="true" id="CR1_Subbmition_Status">${element.CR1_Subbmition_Status}</td>
                                           <td contenteditable="true" id="CR2_In_House_Status">${element.CR2_In_House_Status}</td>
@@ -2837,6 +2866,7 @@ final_FIFA_authorization_validity_Date=yy_FIFA_authorization_validity_Date+'-'+m
         $('#ActivityData').dataTable({
           responsive: false,
           lengthChange: false,
+          "ordering": false,
           dom:
             /*	--- Layout Structure 
             	--- Options

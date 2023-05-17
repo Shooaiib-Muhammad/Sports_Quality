@@ -1115,7 +1115,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     ?>
 
 
-                                                    <div class="row mb-3 mt-4">
+                                                    <!-- <div class="row mb-3 mt-4">
 
 
                                                         <div class="col-md-2">
@@ -1137,7 +1137,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <button class="btn btn-primary">Search</button>
                                                         </div>
 
-                                                    </div>
+                                                    </div> -->
 
 
 
@@ -4649,74 +4649,74 @@ let dataTable;
             `
 
                 $("#matTestHtml").html(htmlRawMat);
-                $('#myDataTable').dataTable({
-                    responsive: false,
-                    lengthChange: false,
-                    dom:
-                        /*	--- Layout Structure 
-                        	--- Options
-                        	l	-	length changing input control
-                        	f	-	filtering input
-                        	t	-	The table!
-                        	i	-	Table information summary
-                        	p	-	pagination control
-                        	r	-	processing display element
-                        	B	-	buttons
-                        	R	-	ColReorder
-                        	S	-	Select
+                // $('#myDataTable').dataTable({
+                //     responsive: false,
+                //     lengthChange: false,
+                //     dom:
+                //         /*	--- Layout Structure 
+                //         	--- Options
+                //         	l	-	length changing input control
+                //         	f	-	filtering input
+                //         	t	-	The table!
+                //         	i	-	Table information summary
+                //         	p	-	pagination control
+                //         	r	-	processing display element
+                //         	B	-	buttons
+                //         	R	-	ColReorder
+                //         	S	-	Select
 
-                        	--- Markup
-                        	< and >				- div element
-                        	<"class" and >		- div with a class
-                        	<"#id" and >		- div with an ID
-                        	<"#id.class" and >	- div with an ID and a class
+                //         	--- Markup
+                //         	< and >				- div element
+                //         	<"class" and >		- div with a class
+                //         	<"#id" and >		- div with an ID
+                //         	<"#id.class" and >	- div with an ID and a class
 
-                        	--- Further reading
-                        	https://datatables.net/reference/option/dom
-                        	--------------------------------------
-                         */
-                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-                        "<'row'<'col-sm-12'tr>>" +
-                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                    buttons: [
-                        /*{
-                        	extend:    'colvis',
-                        	text:      'Column Visibility',
-                        	titleAttr: 'Col visibility',
-                        	className: 'mr-sm-3'
-                        },*/
-                        {
-                            extend: 'pdfHtml5',
-                            text: 'PDF',
-                            titleAttr: 'Generate PDF',
-                            className: 'btn-outline-danger btn-sm mr-1'
-                        },
-                        {
-                            extend: 'excelHtml5',
-                            text: 'Excel',
-                            titleAttr: 'Generate Excel',
-                            className: 'btn-outline-success btn-sm mr-1'
-                        },
-                        {
-                            extend: 'csvHtml5',
-                            text: 'CSV',
-                            titleAttr: 'Generate CSV',
-                            className: 'btn-outline-primary btn-sm mr-1'
-                        },
-                        {
-                            extend: 'copyHtml5',
-                            text: 'Copy',
-                            titleAttr: 'Copy to clipboard',
-                            className: 'btn-outline-primary btn-sm mr-1'
-                        },
-                        {
-                            extend: 'print',
-                            text: 'Print',
-                            titleAttr: 'Print Table',
-                            className: 'btn-outline-primary btn-sm'
-                        }
-                    ]
-                });
+                //         	--- Further reading
+                //         	https://datatables.net/reference/option/dom
+                //         	--------------------------------------
+                //          */
+                //         "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                //         "<'row'<'col-sm-12'tr>>" +
+                //         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                //     buttons: [
+                //         /*{
+                //         	extend:    'colvis',
+                //         	text:      'Column Visibility',
+                //         	titleAttr: 'Col visibility',
+                //         	className: 'mr-sm-3'
+                //         },*/
+                //         {
+                //             extend: 'pdfHtml5',
+                //             text: 'PDF',
+                //             titleAttr: 'Generate PDF',
+                //             className: 'btn-outline-danger btn-sm mr-1'
+                //         },
+                //         {
+                //             extend: 'excelHtml5',
+                //             text: 'Excel',
+                //             titleAttr: 'Generate Excel',
+                //             className: 'btn-outline-success btn-sm mr-1'
+                //         },
+                //         {
+                //             extend: 'csvHtml5',
+                //             text: 'CSV',
+                //             titleAttr: 'Generate CSV',
+                //             className: 'btn-outline-primary btn-sm mr-1'
+                //         },
+                //         {
+                //             extend: 'copyHtml5',
+                //             text: 'Copy',
+                //             titleAttr: 'Copy to clipboard',
+                //             className: 'btn-outline-primary btn-sm mr-1'
+                //         },
+                //         {
+                //             extend: 'print',
+                //             text: 'Print',
+                //             titleAttr: 'Print Table',
+                //             className: 'btn-outline-primary btn-sm'
+                //         }
+                //     ]
+                // });
 
                 $(".updatebtn1").click(function(e) {
                     $('#Modaldepartment1').modal('toggle');
@@ -4762,7 +4762,7 @@ let dataTable;
 
 
 
-            if (recDate1.lenght <= 0 || cssNo1.lenght <= 0 || qReceived1.lenght <= 0 || qRetained1.lenght <= 0 || dueDate1.lenght <= 0 || compDate1.lenght <= 0 || sSignature1.lenght <= 0) {
+            if (recDate1.length <= 0 || cssNo1.length <= 0 || qReceived1.length <= 0 || qRetained1.length <= 0 || dueDate1.length <= 0 || compDate1.length <= 0 || sSignature1.length <= 0) {
                 alert("All Fields are mandatory except remark!");
             } else {
 
@@ -4810,7 +4810,7 @@ let dataTable;
                     }, 3000);
 
 
-                    // myModal.hide()
+                    window.location.reload();
 
 
                 })

@@ -35,93 +35,8 @@ if (!$this->session->has_userdata('user_id')) {
                     </div>
                 </div>
                 <?php } ?>
-                <ul class="nav nav-pills" role="tablist">
-                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1"><i
-                                class="fal fa-home mr-1"></i>Current
-                            Date</a></li>
-                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Historical
-                            Analysis</a></li>
-                </ul>
-
-                <div class="tab-content mt-2">
-
-                    <div class="tab-content mt-2">
-
-                        <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div id="panel-1" class="panel">
-                                        <div class="panel-hdr">
-                                            <h2 class="">Current Date</h2>
-                                        </div>
-
-                                        <div class="panel-container show">
-                                            <ul class="nav nav-pills mt-2 mb-4 d-flex justify-content-center flex-wrap"
-                                                id="childTab">
-                                                <li class="nav-item">
-                                                    <a class="nav-link active" style="font-size:20px; font-weight:bold"
-                                                        data-toggle="tab" href="#childTab1">Cell
-                                                        1</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" style="font-size:20px; font-weight:bold"
-                                                        data-toggle="tab" href="#childTab2">Cell
-                                                        2</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" style="font-size:20px; font-weight:bold"
-                                                        data-toggle="tab" href="#childTab3">Cell 3</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" style="font-size:20px; font-weight:bold"
-                                                        data-toggle="tab" href="#childTab4">Cell
-                                                        4</a>
-                                                </li>
-                                            </ul>
-                                            <div class="tab-content mt-2">
-
-                                                <div class="tab-pane fade show active" id="childTab1" role="tabpanel">
-                                                    <div class="row">
-                                                        <div  class="col-md-12 mt-2 d-flex justify-content-center flex-wrap" id="childTab1Content">
-                                                            <?php $icon_classes = array("fal fa-envelope", "fal fa-futbol", "fal fa-heart", "fal fa-thumbs-up"); ?>
-                                                            <?php if (isset($pivotSingleDate) && $pivotSingleDate != null) {
-                                                            foreach ($pivotSingleDate as $key => $pivotDate) {
-                                                                $random_key = array_rand($icon_classes);
-                                                            ?>
-                                                            <div class="col-md-2" id="direct">
-                                                                <div style="cursor:pointer"
-                                                                    onclick="pivotData('<?php echo $pivotDate['SystemIP'] ?>')"
-                                                                    class="p-2  rounded overflow-hidden position-relative text-white mb-g bgColor">
-                                                                    <div class="">
-                                                                        <h3 class="display-3 d-block l-h-n m-0 fw-500">
-                                                                            <small
-                                                                                class="m-0 l-h-n"><?php echo $pivotDate['SystemName']. '(Pass balls)'; ?></small>
-                                                                            <span
-                                                                                class="d-inline"><?php echo $pivotDate['Pass']; ?>
-                                                                            </span>
-                                                                        </h3>
-                                                                    </div>
-                                                                    <i class="<?php echo $icon_classes[$random_key]; ?> position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1"
-                                                                        style="font-size:6rem"></i>
-                                                                </div>
-
-                                                            </div>
-
-                                                            <?php }
-                                                        } else {
-
-                                                            ?>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
-                                                                        <small class="m-0 l-h-n"></small>
-                                                                        <span>No Data Found Today</span>
-                                                                    </h3>
-                                                                </div>
-                                                            </div>
-                                                            <?php } ?>
-                                                        </div>
-                                                        <div class="modal fade bd-example-modal-xl" id="exampleModal06"
+                <!-- Models -->
+                <div class="modal fade bd-example-modal-xl" id="exampleModal06"
                                                             tabindex="-1" role="dialog"
                                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog modal-xl" role="document">
@@ -289,10 +204,146 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </div>
                                                             </div>
                                                         </div>
+                <ul class="nav nav-pills" role="tablist">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1"><i
+                                class="fal fa-home mr-1"></i>Current
+                            Date</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Historical
+                            Analysis</a></li>
+                </ul>
+
+                <div class="tab-content mt-2">
+
+                    <div class="tab-content mt-2">
+
+                        <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="panel-1" class="panel">
+                                        <div class="panel-hdr">
+                                            <h2 class="">Current Date</h2>
+                                        </div>
+
+                                        <div class="panel-container show">
+                                            <ul class="nav nav-pills mt-2 mb-4 d-flex justify-content-center flex-wrap"
+                                                id="childTab">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" style="font-size:20px; font-weight:bold"
+                                                        data-toggle="tab" href="#childTab1">Cell
+                                                        1</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" style="font-size:20px; font-weight:bold"
+                                                        data-toggle="tab" href="#childTab2">Cell
+                                                        2</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" style="font-size:20px; font-weight:bold"
+                                                        data-toggle="tab" href="#childTab3">Cell 3</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" style="font-size:20px; font-weight:bold"
+                                                        data-toggle="tab" href="#childTab4">Cell
+                                                        4</a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content mt-2">
+
+                                                <div class="tab-pane fade show active" id="childTab1" role="tabpanel">
+                                                    <div class="row">
+                                                        <div  class="col-md-12 mt-2 d-flex justify-content-center flex-wrap" id="childTab1Content">
+                                                            <?php $icon_classes = array("fal fa-envelope", "fal fa-futbol", "fal fa-heart", "fal fa-thumbs-up"); ?>
+                                                            
+                                                            <?php if (isset($pivotSingleDate) && $pivotSingleDate != null) {
+                                                            foreach ($pivotSingleDate as $key => $pivotDate) {
+                                                                if($key == 4 || $key == 5){
+                                                                    continue;
+                                                                }
+                                                                $random_key = array_rand($icon_classes);
+                                                            ?>
+                                                            <div class="col-md-2" id="direct">
+                                                                <div style="cursor:pointer"
+                                                                    onclick="pivotData('<?php echo $pivotDate['SystemIP'] ?>')"
+                                                                    class="p-2  rounded overflow-hidden position-relative text-white mb-g bgColor">
+                                                                    <div class="">
+                                                                        <h3 class="display-3 d-block l-h-n m-0 fw-500">
+                                                                            <small
+                                                                                class="m-0 l-h-n"><?php echo $pivotDate['SystemName']. '(Pass balls)'; ?></small>
+                                                                            <span
+                                                                                class="d-inline"><?php echo $pivotDate['Pass']; ?>
+                                                                            </span>
+                                                                        </h3>
+                                                                    </div>
+                                                                    <i class="<?php echo $icon_classes[$random_key]; ?> position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1"
+                                                                        style="font-size:6rem"></i>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <?php }
+                                                        } else {
+
+                                                            ?>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                                        <small class="m-0 l-h-n"></small>
+                                                                        <span>No Data Found Today</span>
+                                                                    </h3>
+                                                                </div>
+                                                            </div>
+                                                            <?php } ?>
+                                                        </div>
+                                                       
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="childTab2" role="tabpanel">
-                                                    <h3>2 </h3>
+                                                <div class="row">
+                                                        <div  class="col-md-12 mt-2 d-flex justify-content-center flex-wrap" id="childTab1Content">
+                                                            <?php $icon_classes = array("fal fa-envelope", "fal fa-futbol", "fal fa-heart", "fal fa-thumbs-up"); ?>
+                                                            <!-- <?php print_r($pivotSingleDate); ?> -->
+                                                            <?php if (isset($pivotSingleDate) && $pivotSingleDate != null) {
+                                                            foreach ($pivotSingleDate as $key => $pivotDate) {
+                                                                if($key == 0 || $key == 1 || $key == 2 || $key == 3){
+                                                                    continue;
+                                                                }
+                                                                $random_key = array_rand($icon_classes);
+                                                            ?>
+                                                            <div class="col-md-2" id="direct">
+                                                                <div style="cursor:pointer"
+                                                                    onclick="pivotData('<?php echo $pivotDate['SystemIP'] ?>')"
+                                                                    class="p-2  rounded overflow-hidden position-relative text-white mb-g bgColor">
+                                                                    <div class="">
+                                                                        <h3 class="display-3 d-block l-h-n m-0 fw-500">
+                                                                            <small
+                                                                                class="m-0 l-h-n"><?php echo $pivotDate['SystemName']. '(Pass balls)'; ?></small>
+                                                                            <span
+                                                                                class="d-inline"><?php echo $pivotDate['Pass']; ?>
+                                                                            </span>
+                                                                        </h3>
+                                                                    </div>
+                                                                    <i class="<?php echo $icon_classes[$random_key]; ?> position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1"
+                                                                        style="font-size:6rem"></i>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <?php }
+                                                        } else {
+
+                                                            ?>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                                        <small class="m-0 l-h-n"></small>
+                                                                        <span>No Data Found Today</span>
+                                                                    </h3>
+                                                                </div>
+                                                            </div>
+                                                            <?php } ?>
+                                                        </div>
+                                                       
+                                                    </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="childTab3" role="tabpanel">
                                                     <h3>3</h3>

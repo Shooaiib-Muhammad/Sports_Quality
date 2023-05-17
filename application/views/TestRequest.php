@@ -6,8 +6,8 @@ if (!$this->session->has_userdata('user_id')) {
 
     <?php $this->load->view('includes/new_header'); ?>
     <?php
-    // $date=Date('d-m-Y');
-    // print_r($date);
+     $user_id = $this->session->userdata('user_id');
+     
     ?>
 
     <!-- BEGIN Page Wrapper -->
@@ -4167,9 +4167,9 @@ if (!$this->session->has_userdata('user_id')) {
                                             <ul class="nav nav-pills" role="tablist">
                                                 <li class="nav-item"><a class="nav-link d-none" data-toggle="tab" href="#tab_direction-1">Request Form</a></li>
 
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Generated Requests</a></li>
+                                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-2">Generated Requests</a></li>
 
-                                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-3">Requests Status</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3">Requests Status</a></li>
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-4">Production</a></li>
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-5">Development</a></li>
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-6">Material</a></li>
@@ -4412,7 +4412,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <div class="tab-pane fade d-none" id="tab_direction-1" role="tabpanel">
                                                     <div class="row">
                                                         <div class="col-md-3"></div>
-                                                        <div class="col-md-6"> 
+                                                        <div class="col-md-6">
 
                                                             <div class="modal-body" style="padding:10px">
                                                                 <form name="formDepartment" id="myformDepartment" method="POST" action="<?php echo base_url(); ?>LabController/AddRequest">
@@ -4887,14 +4887,56 @@ if (!$this->session->has_userdata('user_id')) {
 
                                             </div>
 
-
-
                                             <div class="tab-pane fade" id="tab_direction-3" role="tabpanel">
+
+                                                <ul class="nav nav-pills p-2" role="tablist">
+                                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-old-raw">Old Raw Material Requests</a></li>
+                                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-new-raw">New Raw Material Requests</a></li>
+                                                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-fgt">FGT Requests</a></li>
+
+                                                </ul>
+                                                <div class="tab-content p-2">
+                                                    <div class="tab-pane fade show active" id="tab_direction-fgt" role="tabpanel">
+                                                        <div class="row" id="counterShow">
+
+                                                        </div>
+                                                        <div class="row p-2 mt-4">
+                                                            <div class="col-md-12" id="reportData">
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tab-pane fade" id="tab_direction-old-raw" role="tabpanel">
+                                                        <div class="row" id="counterShow2">
+
+                                                        </div>
+                                                        <div class="row p-2 mt-4">
+                                                            <div class="col-md-12" id="reportData2">
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="tab_direction-new-raw" role="tabpanel">
+                                                        <div class="row" id="counterShow3">
+
+                                                        </div>
+                                                        <div class="row p-2 mt-4">
+                                                            <div class="col-md-12" id="reportData3">
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
 
 
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <span style="font-size:14px" class="text-danger text-center"><span style="font-size:19px"><strong>Note:</strong></span>
+                                                        <!-- <span style="font-size:14px" class="text-danger text-center"><span style="font-size:19px"><strong>Note:</strong></span>
 
                                                             Until Lab does not Approve Requests then in Generated Test Request Form you can't see your Requests. In this situation, you must contact with Lab.
                                                             After 3 statuses you can see requests in Generated Request Form.
@@ -4904,7 +4946,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <span style="font-size:16px"><strong>2.</strong></span> Send to Lab<br>
                                                             <span style="font-size:16px"><strong>3.</strong></span> Send Back to Requester ( Final Status after this you can see your Requests)
 
-                                                        </span>
+                                                        </span> -->
                                                     </div>
                                                 </div>
 
@@ -4921,16 +4963,10 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                 </div>
 
-                                                <div id="Rstatus">
+                                                <div id="Rstatus" style="display:none">
 
                                                 </div>
-
-
-
-
                                             </div>
-
-
 
                                             <div class="tab-pane fade" id="tab_direction-4" role="tabpanel">
 
@@ -5007,11 +5043,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         ?>
 
                                                                             <label for="sel1">Test Type</label><br>
-                                                                            <select class="form-control js-example-basic-single" id="tTypeP1" name="tTypeP1" style="width: 100%">
+                                                                            <select class="form-control js-example-basic-single" style="width: 100%">
                                                                                 <option value="">Select one of the following</option>
                                                                                 <?php foreach ($getTestTypes as $Key) { ?>
 
-                                                                                    <option value="<?php echo $Key['Name']; ?>"><?php echo $Key['Name']; ?></option>
+                                                                                    <option  id="tTypeP1"  name="tTypeP1" value="<?php echo $Key['Name']; ?>"><?php echo $Key['Name']; ?></option>
                                                                                 <?php } ?>
                                                                             </select>
 
@@ -5282,13 +5318,6 @@ if (!$this->session->has_userdata('user_id')) {
                                                 </div>
 
                                             </div>
-
-
-
-
-
-
-
 
                                             <div class="tab-pane fade" id="tab_direction-5" role="tabpanel">
 
@@ -5596,9 +5625,6 @@ if (!$this->session->has_userdata('user_id')) {
 
                                             </div>
 
-
-
-
                                             <div class="tab-pane fade" id="tab_direction-6" role="tabpanel">
 
 
@@ -5787,10 +5813,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </div>
 
 
+                                                                    
 
 
                                                                     <div class="row">
-                                                                        <div class="col-md-6">
+                                                                        <div class="col-md-4">
 
                                                                             <label class="form-contol" for="customFile">Item Name :</label>
 
@@ -5816,7 +5843,7 @@ if (!$this->session->has_userdata('user_id')) {
 
 
                                                                         </div>
-                                                                        <div class="col-md-6">
+                                                                        <div class="col-md-4">
 
 
 
@@ -5824,7 +5851,37 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             <input type="number" class="form-control" id="po1" name="po1">
 
                                                                         </div>
+
+                                                                        <div class="col-md-4">
+
+                                                                        <div  class="col-md-12">
+
+
+<?php
+if ($getTestTypes) {
+
+
+?>
+
+    <label for="sel1">Test Type</label><br>
+    <select class="form-control js-example-basic-single" id="tTypeP1" name="tTypeP1" style="width: 100%">
+        <option value="">Select one of the following</option>
+        <?php foreach ($getTestTypes as $Key) { ?>
+
+            <option value="<?php echo $Key['Name']; ?>"><?php echo $Key['Name']; ?></option>
+        <?php } ?>
+    </select>
+
+<?php } ?>
+
+
+
+
+</div>
+
+                                                                        </div>
                                                                     </div>
+
 
 
 
@@ -5845,10 +5902,12 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     </div>
                                                                 </div>
 
+                                                                
 
 
                                                             </div>
 
+                                                        
 
 
 
@@ -5962,10 +6021,6 @@ if (!$this->session->has_userdata('user_id')) {
 
 
                                             </div>
-
-
-
-
 
                                             <div class="tab-pane fade" id="tab_direction-7" role="tabpanel">
 
@@ -6259,8 +6314,6 @@ if (!$this->session->has_userdata('user_id')) {
 
 
                                             </div>
-
-
 
 
                                         </div>
@@ -7004,7 +7057,7 @@ if (!$this->session->has_userdata('user_id')) {
                     CssNo
                 }, function(data) {
                     if (data['head'][0]) {
-                        console.log("Data Get", data['head'][0].FGTType)
+                        // console.log("Data Get", data['head'][0].FGTType)
                         if (data['head'][0].FGTType == "SOCCER BALLS" || data['head'][0].FGTType == "SOCCERBALLS") {
 
                             $("#titleBalls").text(data['head'][0].FGTType);
@@ -7067,7 +7120,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                             $('#FGTReportModal').modal('toggle');
                         } else if (data['head'][0].FGTType == "SOCCER BALL SIZE 5") {
-                            console.log("from aSIZE 5", data);
+                            // console.log("from aSIZE 5", data);
                             $("#content66").text(data['head'][0].labno);
                             $("#workingNoSize5").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
                             $("#articleNoSize5").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
@@ -7156,7 +7209,7 @@ if (!$this->session->has_userdata('user_id')) {
                             $('#soccerBallsSize5').modal('toggle');
 
                         } else {
-                            console.log("from soccerBallsIndoor", data);
+                            // console.log("from soccerBallsIndoor", data);
                             $("#content32").text(data['head'][0].labno);
                             $("#workingNoIndoor").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
                             $("#articleNoIndoor").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
@@ -7289,7 +7342,7 @@ if (!$this->session->has_userdata('user_id')) {
                         'MaterialType': MaterialType
                     },
                     function(data, status) {
-                        console.log('data', data)
+                        // console.log('data', data)
                         if (data == true) {
                             // alert("Data Inserted Successfully! Click on Ok to Reload the Page")
                             window.location.reload();
@@ -7319,7 +7372,7 @@ if (!$this->session->has_userdata('user_id')) {
             }, function(data, status) {
 
 
-                console.log(data)
+                // console.log(data)
 
             })
 
@@ -7409,7 +7462,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                     },
                     function(data, status) {
-                        console.log('data', data)
+                        // console.log('data', data)
                         if (data == true) {
                             alert("Data Inserted Successfully! Click on Ok to Reload the Page")
                             window.location.reload();
@@ -7454,7 +7507,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                 },
                 function(data, status) {
-                    console.log('data', data)
+                    // console.log('data', data)
                     if (data == true) {
                         // alert("Test Inserted Successfully! Click on Ok to Reload the Page")
                         window.location.reload();
@@ -7772,7 +7825,7 @@ if (!$this->session->has_userdata('user_id')) {
 
             $.post(url7, function(data, status) {
 
-                console.log(data);
+                // console.log(data);
 
                 let appendtable = ``;
 
@@ -8764,7 +8817,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <tbody>                                      
             `
                 data.getTestByRequesterDate.forEach(element => {
-                    console.log(element);
+                    // console.log(element);
                     html += `
                 <tr>
                                                                     <td>${element.Sample_RequestDate}</td>
@@ -9401,7 +9454,7 @@ if (!$this->session->has_userdata('user_id')) {
                                             },
                                             function(data, status) {
 
-                                                console.log("4", data)
+                                                // console.log("4", data)
 
                                                 html = ''
                                                 data.forEach(element => {
@@ -9480,7 +9533,7 @@ if (!$this->session->has_userdata('user_id')) {
                             CssNo
                         }, function(data) {
                             if (data['head'][0]) {
-                                console.log("Data Get", data['head'][0].FGTType)
+                                // console.log("Data Get", data['head'][0].FGTType)
                                 if (data['head'][0].FGTType == "SOCCER BALLS" || data['head'][0].FGTType == "SOCCERBALLS") {
 
                                     $("#titleBalls").text(data['head'][0].FGTType);
@@ -9543,7 +9596,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                     $('#FGTReportModal').modal('toggle');
                                 } else if (data['head'][0].FGTType == "SOCCER BALL SIZE 5") {
-                                    console.log("from aSIZE 5", data);
+                                    // console.log("from aSIZE 5", data);
                                     $("#content66").text(data['head'][0].labno);
                                     $("#workingNoSize5").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
                                     $("#articleNoSize5").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
@@ -9632,7 +9685,7 @@ if (!$this->session->has_userdata('user_id')) {
                                     $('#soccerBallsSize5').modal('toggle');
 
                                 } else {
-                                    console.log("from soccerBallsIndoor", data);
+                                    // console.log("from soccerBallsIndoor", data);
                                     $("#content32").text(data['head'][0].labno);
                                     $("#workingNoIndoor").text(data['head'][0].WorkNo ? data['head'][0].WorkNo : 'WORKING #: Nil');
                                     $("#articleNoIndoor").text(data['head'][0].ArtCode ? data['head'][0].ArtCode : 'Article Code: Nil');
@@ -10739,7 +10792,7 @@ Supplier Option
 
                     data.forEach(element => {
 
-                        console.log(element['SupplierName']);
+                        // console.log(element['SupplierName']);
 
                         htmlappendT += `
             
@@ -12118,6 +12171,9 @@ Supplier Option
 
             let po1 = $("#po1").val();
 
+            let tTypeP1 = $("#tTypeP1").val();
+        
+
 
             if (ItemNameM) {
 
@@ -12168,7 +12224,11 @@ Supplier Option
 
                 alert("Please Enter PO number");
 
-            } else {
+            }
+            else if(tTypeP1 <= 0){
+                alert("Please Select Test Type");
+            }
+            else {
 
 
 
@@ -12184,7 +12244,8 @@ Supplier Option
                     'supplier': SupplierNameList[0],
                     'testType': testTypeM,
                     'ItemName': ItemNameList[0],
-                    'po1': po1
+                    'po1': po1,
+                    'tTypeP1':tTypeP1
 
                 }, function(data, status) {
 
@@ -12211,7 +12272,7 @@ Supplier Option
 
                             data['Raw_MatHead'].forEach(element => {
 
-                                console.log(element)
+                                // console.log(element)
 
                                 $("#RIDM").val(element['Requestid']);
 
@@ -12225,6 +12286,7 @@ Supplier Option
                                 sessionStorage.setItem('TypeM', element['Type']);
                                 sessionStorage.setItem('TestCategoryM', element['testCateogry']);
                                 sessionStorage.setItem('POM', element['Po']);
+                                sessionStorage.setItem('POM', element['comptest']);
 
 
                             })
@@ -12606,6 +12668,773 @@ Supplier Option
             document.body.innerHTML = originalContents;
             window.location.reload();
         }
+
+
+
+        // Dashboard Mini data user wise request handling
+            var TotalReq = [];
+            var pendingOrNoCssNoFGT = [];
+            var sendToLabOrAppliedCssNoFGT = [];
+            var acknowledgedByLabFGT = [];
+
+            var TotalReq2 = [];
+            var pendingOrNoCssNoFGT2 = [];
+            var sendToLabOrAppliedCssNoFGT2 = [];
+            var acknowledgedByLabFGT2 = [];
+
+            var TotalReq3 = [];
+            var pendingOrNoCssNoFGT3 = [];
+            var sendToLabOrAppliedCssNoFGT3 = [];
+            var acknowledgedByLabFGT3 = [];
+
+            var user_id = <?php echo $user_id; ?>;
+            console.log("user id is ", user_id);
+            
+            $(document).ready(function() {
+                let date = new Date().toJSON().substr(0, 10);
+                $("#start_date").val(date);
+                $("#end_date").val(date);
+
+                
+                url = "<?php echo base_url('LabController/allFGTRequests'); ?>"
+                $.post(url, {
+                    "search": false
+                }, function(data) {
+
+                    // FGT Requests
+                    // TotalReq = data.allFGTRequests;
+                    data.allFGTRequests.filter(item => {
+                        if(item.userid == user_id){
+                            TotalReq.push(item);
+                        }
+                        if (item.RequestStatus == null && item.userid == user_id) {
+                            pendingOrNoCssNoFGT.push(item)
+                        }
+                        if (item.RequestStatus == "Send to Lab" && item.userid == user_id) {
+                            sendToLabOrAppliedCssNoFGT.push(item)
+                        }
+                        if ((item.RequestStatus == "Acknowledge By Lab" && item.userid == user_id)) {
+                            acknowledgedByLabFGT.push(item)
+                        }
+                    })
+                    let html = `<div class="col-md-4">
+                                        </div>
+                                        <div class="col-md-4 detailsClick " id="allFGTRequests">
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 bg-primary rounded overflow-hidden position-relative text-white mb-g">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                            ${TotalReq.length}
+                                                            <small class="m-0 l-h-n "> <strong>Total FGT Requests </strong> </small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                        </div>
+
+                                        <div class="col-md-4 detailsClick " id="pendingOrNoCssNoFGT">
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 bg-warning rounded overflow-hidden position-relative text-white mb-g">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                            ${pendingOrNoCssNoFGT.length}
+                                                            <small class="m-0 l-h-n "> <strong>(No CSS No.) Requests </strong> </small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        
+
+                                        <div class="col-md-4 detailsClick" id="sendToLabOrAppliedCssNoFGT" >
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 bg-danger rounded overflow-hidden position-relative text-white mb-g" >
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                                                        ${sendToLabOrAppliedCssNoFGT.length}
+                                                            <small class="m-0 l-h-n"> <strong>(Applied CSS No./Send To Lab/Lab Pending) Requests</strong></small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-md-4 detailsClick" id="acknowledgedByLabFGT">
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3  rounded overflow-hidden position-relative text-white mb-g"
+                                                style="background-color:green">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                        ${acknowledgedByLabFGT.length}
+                                                            <small class="m-0 l-h-n"> <strong>(Aknowledged By Lab) Requests</strong></small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>`
+                    $("#counterShow").html("");
+                    $("#counterShow").html(html);
+                    
+
+
+
+                    // Old Raw Material Requests
+                    // TotalReq2 = data.allRawMaterialRequests;
+                    data.allRawMaterialRequests.filter(item => {
+                        if(item.SRSenderID == user_id){
+                            TotalReq2.push(item);
+                        }
+                        if (item.Status == 'Pending' && item.SRSenderID == user_id) {
+                            pendingOrNoCssNoFGT2.push(item)
+                        }
+                        if (item.Status == "Send to Lab" && item.SRSenderID == user_id) {
+                            sendToLabOrAppliedCssNoFGT2.push(item)
+                        }
+                        if ((item.Status == "Result Uploaded") && item.SRSenderID == user_id) {
+                            acknowledgedByLabFGT2.push(item)
+                        }
+                    })
+                    let html2 = `        <div class="col-md-4">
+                                        </div>
+                                        <div class="col-md-4 detailsClick2 " id="allRawMaterialRequests">
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 bg-primary rounded overflow-hidden position-relative text-white mb-g">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                            ${TotalReq2.length}
+                                                            <small class="m-0 l-h-n "> <strong>Total Raw Material Requests </strong> </small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        
+                                        <div class="col-md-4">
+                                        </div>
+
+                                        <div class="col-md-4 detailsClick2 " id="pendingOrNoCssNoFGT2">
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 bg-warning rounded overflow-hidden position-relative text-white mb-g">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                            ${pendingOrNoCssNoFGT2.length}
+                                                            <small class="m-0 l-h-n "> <strong>(No CSS No.) Requests </strong> </small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        
+
+                                        <div class="col-md-4 detailsClick2" id="sendToLabOrAppliedCssNoFGT2" >
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 bg-danger rounded overflow-hidden position-relative text-white mb-g">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                                                        ${sendToLabOrAppliedCssNoFGT2.length}
+                                                            <small class="m-0 l-h-n"> <strong>(Applied CSS No./Send To Lab/Lab Pending) Requests</strong></small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-md-4 detailsClick2" id="acknowledgedByLabFGT2">
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 rounded overflow-hidden position-relative text-white mb-g"
+                                                style="background-color:green">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                        ${acknowledgedByLabFGT2.length}
+                                                            <small class="m-0 l-h-n"> <strong>(Aknowledged By Lab) Requests</strong></small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>`
+                    $("#counterShow2").html("");
+                    $("#counterShow2").html(html2);
+
+
+                    // New Raw Material Requests
+                    // TotalReq3 = data.allNewRawMaterialRequests;
+                    data.allNewRawMaterialRequests.filter(item => {
+                        if(item.userid == user_id){
+                            TotalReq3.push(item);
+                        }
+                        if (item.status == 'Pending' && item.userid == user_id) {
+                            pendingOrNoCssNoFGT3.push(item)
+                        }
+                        if (item.status == "Send to Lab" && item.userid == user_id) {
+                            sendToLabOrAppliedCssNoFGT3.push(item)
+                        }
+                        if (item.LabAcknowledge == "Acknowledged" && item.userid == user_id) {
+                            acknowledgedByLabFGT3.push(item)
+                        }
+                    })
+                    let html3 = `        <div class="col-md-4">
+                                        </div>
+                                        <div class="col-md-4 detailsClick3 " id="allNewRawMaterialRequests">
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 bg-primary rounded overflow-hidden position-relative text-white mb-g">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                            ${TotalReq3.length}
+                                                            <small class="m-0 l-h-n "> <strong>Total Raw Material Requests </strong> </small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        
+                                        <div class="col-md-4">
+                                        </div>
+
+                                        <div class="col-md-4 detailsClick3 " id="pendingOrNoCssNoFGT3">
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 bg-warning rounded overflow-hidden position-relative text-white mb-g">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                            ${pendingOrNoCssNoFGT3.length}
+                                                            <small class="m-0 l-h-n "> <strong>(No CSS No.) Requests </strong> </small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        
+
+                                        <div class="col-md-4 detailsClick3" id="sendToLabOrAppliedCssNoFGT3" >
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 bg-danger rounded overflow-hidden position-relative text-white mb-g">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                                                        ${sendToLabOrAppliedCssNoFGT3.length}
+                                                            <small class="m-0 l-h-n"> <strong>(Applied CSS No./Send To Lab/Lab Pending) Requests</strong></small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-md-4 detailsClick3" id="acknowledgedByLabFGT3">
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 rounded overflow-hidden position-relative text-white mb-g"
+                                                style="background-color:green">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                        ${acknowledgedByLabFGT3.length}
+                                                            <small class="m-0 l-h-n"> <strong>(Aknowledged By Lab) Requests</strong></small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>`
+                    $("#counterShow3").html("");
+                    $("#counterShow3").html(html3);
+
+                })
+
+
+            });
+
+            $("#counterShow").on('click', '.detailsClick', function(e) {
+                let id = $(this).attr('id');
+                // console.log(id)
+                let data;
+                let Title;
+                if (id == "allFGTRequests") {
+                    data = TotalReq
+                    title = "Total FGT Requests"
+                } else if (id == "pendingOrNoCssNoFGT") {
+                    data = pendingOrNoCssNoFGT
+                    title = "Pending/No CSS No. FGT Requests"
+                } else if (id == "sendToLabOrAppliedCssNoFGT") {
+                    data = sendToLabOrAppliedCssNoFGT
+                    title = "Applied CSS NO/Send To Lab/Lab Pending Requests"
+                } else if (id == "acknowledgedByLabFGT") {
+                    data = acknowledgedByLabFGT
+                    title = "Aknowledged By Lab Requests"
+                }
+
+                $("#reportData").html('')
+                // console.log(data);return;
+
+
+
+
+                let appendtable = '';
+                appendtable += `<h1 style="text-align:center;font-weight:bolder;border:1px solid black;padding:20px">${title}</h3>
+                                <table class="table table-bordered table-striped table-hover table-sm" id="OtReport">
+                                <thead class="bg-primary-200 text-light p-2">
+                                <tr>
+                                    <th class="h5">Request Date</th>
+                                    <th class="h5">Lab Aknowledged Date</th>
+                                    <th class="h5">CSS NO</th>
+                                    <th class="h5">Factory Code</th>
+                                    <th class="h5">Working No</th>
+                                    <th class="h5">Article No</th>
+                                    <th class="h5">Modal Name</th>
+                                    <th class="h5">Size</th>
+                                    <th class="h5">Ball Type</th>                  
+                                    <th class="h5">Main Material Color</th>
+                                    <th class="h5">Convert Mat</th>
+                                    <th class="h5">Backing</th>
+                                    <th class="h5">Bladder Details</th>
+                                    <th class="h5">Production Month</th>
+                                    <th class="h5">Printing Color</th>
+                                    <th class="h5">Panel Shape</th>
+                                    <th class="h5">Test Type</th>
+                                    <th class="h5">Deliever Qty</th>
+                                    <th class="h5">Any Info</th>
+                                    <th class="h5">Lab Status</th>
+                                    <th class="h5">CSS Status</th>
+                                    <th class="h5">Request Status</th>
+                                    <th class="h5">Generated By</th>
+                                </tr>
+                                </thead>
+                                <tbody>`
+                data.forEach((element) => {
+                    appendtable += `<tr>
+                            <td><span class="badge badge-info p-1">${element.Date != null ? element.Date.split("00:00:00")[0]: ''}</span></td>
+                            <td><span class="badge badge-info p-1">${element.labAcceptDate != null ? element.labAcceptDate.split("00:00:00")[0]: ''}</span></td>
+                            <td><span class="badge badge-warning p-1">${element.CssNO}</span></td>
+                            <td>${element.factoryCode}</td>
+                            <td>${element.WorkingNo}</td>
+                            <td>${element.Articleno}</td>
+                            <td>${element.ModelName}</td>
+                            <td>${element.Size}</td>
+                            <td>${element.BallType}</td>               
+                            <td>${element.mainmaterialColor}</td>
+                            <td><span>${element.Covermat}</span></td>
+                            <td><span>${element.backing}</span></td>
+                            <td><span> ${element.Bladderdetail} </span></td>
+                            <td><span> ${element.ProductionMonth} </span></td>
+                            <td><span> ${element.Printingcolor} </span></td>
+                            <td><span> ${element.panelShape} </span></td>
+                            <td><span> ${element.testype} </span></td>
+                            <td><span> ${element.deliverqty} </span></td>
+                            <td><span> ${element.additionalinfo} </span></td>
+                            <td><span class="badge badge-secondary p-1">${element.LabStatus == null ? `Pending` : `Aknowledged`} </span></td>
+                            <td><span class="badge badge-secondary p-1">${element.CsStatus == 1 ? `Applied Css` : `null`} </span></td>
+
+                            <td><span class="badge badge-warning p-1">${element.RequestStatus}</span></td>
+                            <td><span class="badge badge-danger p-1">${element.LoginName}</span></td>
+
+                        </tr>`
+                })
+
+                appendtable += `</tbody>
+
+                                </table>`
+
+                $("#reportData").html(appendtable)
+                $('#OtReport').dataTable({
+                    responsive: false,
+                    lengthChange: false,
+                    dom:
+                        /*	--- Layout Structure 
+                            --- Options
+                            l	-	length changing input control
+                            f	-	filtering input
+                            t	-	The table!
+                            i	-	Table information summary
+                            p	-	pagination control
+                            r	-	processing display element
+                            B	-	buttons
+                            R	-	ColReorder
+                            S	-	Select
+
+                            --- Markup
+                            < and >				- div element
+                            <"class" and >		- div with a class
+                            <"#id" and >		- div with an ID
+                            <"#id.class" and >	- div with an ID and a class
+
+                            --- Further reading
+                            https://datatables.net/reference/option/dom
+                            --------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                            extend:    'colvis',
+                            text:      'Column Visibility',
+                            titleAttr: 'Col visibility',
+                            className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+            })
+
+            $("#counterShow2").on('click', '.detailsClick2', function(e) {
+                let id = $(this).attr('id');
+                // console.log(id)
+                let data;
+                let Title;
+                if (id == "allRawMaterialRequests") {
+                    data = TotalReq2
+                    title = "Total Raw Material Requests"
+                } else if (id == "pendingOrNoCssNoFGT2") {
+                    data = pendingOrNoCssNoFGT2
+                    title = "Pending/No CSS No. Raw Material Requests"
+                } else if (id == "sendToLabOrAppliedCssNoFGT2") {
+                    data = sendToLabOrAppliedCssNoFGT2
+                    title = "Applied CSS NO/Send To Lab/Lab Pending Requests"
+                } else if (id == "acknowledgedByLabFGT2") {
+                    data = acknowledgedByLabFGT2
+                    title = "Aknowledged By Lab Requests"
+                }
+
+                $("#reportData2").html('')
+                // console.log(data);return;
+
+
+
+
+                let appendtable = '';
+                appendtable += `<h1 style="text-align:center;font-weight:bolder;border:1px solid black;padding:20px">${title}</h3>
+                                <table class="table table-bordered table-striped table-hover table-sm" id="OtReport2">
+                                <thead class="bg-primary-200 text-light p-2">
+                                <tr>
+                                    <th class="h5">Article</th>
+                                    <th class="h5">CSS No</th>
+                                    <th class="h5">Completion Date</th>
+                                    <th class="h5">Due Date</th>
+                                    <th class="h5">Factory Code</th>
+                                    <th class="h5">Item Name</th>
+                                    <th class="h5">Lab Status</th>
+                                    <th class="h5">Material Type</th>
+                                    <th class="h5">PO No</th>
+                                    <th class="h5">Quantity Issued</th>
+                                    <th class="h5">Quantity Recieved</th>
+                                    <th class="h5">Quantity Retained</th>
+                                    <th class="h5">Quantity Returned</th>
+                                    <th class="h5">Remarks</th>
+                                    <th class="h5">Sample Receiving Date</th>                  
+                                    <th class="h5">Sample Request Date</th>
+                                    <th class="h5">Status</th>
+                                    <th class="h5">Supplier Name</th>
+                                    <th class="h5">Test Type</th>
+                                    <th class="h5">Type</th>
+                                    <th class="h5">Final Status</th>
+                                    <th class="h5">Sender Signature Received</th>
+                                    <th class="h5">Sender Signature Returned</th>
+
+                                   
+                                </tr>
+                                </thead>
+                                <tbody>`
+                data.forEach((element) => {
+                    appendtable += `<tr>
+                            <td><span class="badge badge-info p-1">${element.Article != null ? element.Article : ''}</span></td>
+                            <td><span class="badge badge-info p-1">${element.CSSNo != null ? element.CSSNo : ''}</span></td>
+                            <td><span class="badge badge-warning p-1">${element.CompletationDate != null ? element.CompletationDate.split("00:00:00")[0] : ''}</span></td>
+                            <td><span class="badge badge-warning p-1">${element.Due_Date != null ? element.Due_Date.split("00:00:00")[0] : ''}</span></td>
+                            <td>${element.Factory_Code}</td>
+                            <td>${element.ItemName}</td>
+                            <td><span class="badge badge-warning p-1">${element.LabAcknowledgementStatus}</span></td>
+                            <td>${element.MaterialType}</td>
+                            <td>${element.PONo}</td>
+                            <td>${element.Quantity_Issued}</td>
+                            <td>${element.Quantity_Received}</td>               
+                            <td>${element.Quantity_Retained}</td>
+                            <td><span>${element.Quantity_Returned}</span></td>
+                            <td><span>${element.Remarks}</span></td>
+                            <td><span> ${element.Sample_Receiving_Date != null ? element.Sample_Receiving_Date.split("00:00:00")[0] : '' } </span></td>
+                            <td><span> ${element.Sample_RequestDate} </span></td>
+                            <td><span> ${element.Status} </span></td>
+                            <td><span> ${element.SupplierName} </span></td>
+                            <td><span> ${element.TestType} </span></td>
+                            <td><span> ${element.Type} </span></td>
+                            <td><span> ${element.finalStatus} </span></td>
+                            <td><span class="badge badge-secondary p-1">${element.senderSignatureRec} </span></td>
+                            <td><span class="badge badge-secondary p-1">${element.senderSignatureReturn} </span></td>
+
+                        </tr>`
+                })
+
+                appendtable += `</tbody>
+
+                                </table>`
+
+                $("#reportData2").html(appendtable)
+                $('#OtReport2').dataTable({
+                    responsive: false,
+                    lengthChange: false,
+                    dom:
+                        /*	--- Layout Structure 
+                            --- Options
+                            l	-	length changing input control
+                            f	-	filtering input
+                            t	-	The table!
+                            i	-	Table information summary
+                            p	-	pagination control
+                            r	-	processing display element
+                            B	-	buttons
+                            R	-	ColReorder
+                            S	-	Select
+
+                            --- Markup
+                            < and >				- div element
+                            <"class" and >		- div with a class
+                            <"#id" and >		- div with an ID
+                            <"#id.class" and >	- div with an ID and a class
+
+                            --- Further reading
+                            https://datatables.net/reference/option/dom
+                            --------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                            extend:    'colvis',
+                            text:      'Column Visibility',
+                            titleAttr: 'Col visibility',
+                            className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+            })
+
+            $("#counterShow3").on('click', '.detailsClick3', function(e) {
+                let id = $(this).attr('id');
+                // console.log(id)
+                let data;
+                let Title;
+                if (id == "allNewRawMaterialRequests") {
+                    data = TotalReq3
+                    title = "Total New Raw Material Requests"
+                } else if (id == "pendingOrNoCssNoFGT3") {
+                    data = pendingOrNoCssNoFGT3
+                    title = "Pending/No CSS No. Raw Material Requests"
+                } else if (id == "sendToLabOrAppliedCssNoFGT3") {
+                    data = sendToLabOrAppliedCssNoFGT3
+                    title = "Applied CSS NO/Send To Lab/Lab Pending Requests"
+                } else if (id == "acknowledgedByLabFGT3") {
+                    data = acknowledgedByLabFGT3
+                    title = "Aknowledged By Lab Requests"
+                }
+
+                $("#reportData3").html('')
+                console.log(data);
+
+
+
+
+                let appendtable = '';
+                appendtable += `<h1 style="text-align:center;font-weight:bolder;border:1px solid black;padding:20px">${title}</h3>
+                                <table class="table table-bordered table-striped table-hover table-sm" id="OtReport3">
+                                <thead class="bg-primary-200 text-light p-2">
+                                <tr>
+                                    <th class="h5">CSS No</th>
+                                    <th class="h5">Completion Date</th>
+                                    <th class="h5">Due Date</th>
+                                    <th class="h5">Factory Code</th>
+                                    <th class="h5">Item Name</th>
+                                    <th class="h5">Lab Status</th>
+                                    <th class="h5">Material Type</th>
+                                    <th class="h5">PO No</th>
+                                    <th class="h5">Quantity Issued</th>
+                                    <th class="h5">Quantity Recieved</th>
+                                    <th class="h5">Quantity Retained</th>
+                                    <th class="h5">Remarks</th>
+                                    <th class="h5">Status</th>
+                                    <th class="h5">Supplier Name</th>
+                                    <th class="h5">Test Type</th>
+                                    <th class="h5">Type</th>
+                                    <th class="h5">Test Name</th>
+                                    <th class="h5">Lab Acknowledge</th>
+                                    <th class="h5">Generated By</th>
+                                    <th class="h5">Receiver Signature</th>
+                                    <th class="h5">Sender Signature</th>
+
+                                   
+                                </tr>
+                                </thead>
+                                <tbody>`
+                data.forEach((element) => {
+                    appendtable += `<tr>
+                            <td><span class="badge badge-info p-1">${element.CSSNo != null ? element.CSSNo : ''}</span></td>
+                            <td><span class="badge badge-warning p-1">${element.comDate != null ? element.comDate.split("00:00:00")[0] : ''}</span></td>
+                            <td><span class="badge badge-warning p-1">${element.dueDate != null ? element.dueDate.split("00:00:00")[0] : ''}</span></td>
+                            <td>${element.FactoryCode}</td>
+                            <td>${element.itemName}</td>
+                            <td><span class="badge badge-warning p-1">${element.LabStatus == 1 ? `Send To Lab` : ''}</span></td>
+                            <td>${element.Type}</td>
+                            <td>${element.Po}</td>
+                            <td>${element.Quantity}</td>
+                            <td>${element.qtyRece}</td>               
+                            <td>${element.qtyRetain}</td>
+                            <td><span>${element.remarks}</span></td>
+                            <td><span class="badge badge-danger p-1"> ${element.status == "Pending" ? `Pending` : element.status == "Send to Lab" ? `Send to Lab` : `Locked`} </span></td>
+                            <td><span> ${element.SupplierNam} </span></td>
+                            <td><span> ${element.TestType} </span></td>
+                            <td><span> ${element.Type} </span></td>
+                            <td><span> ${element.testName} </span></td>
+                            <td><span class="badge badge-info p-1"> ${element.LabAcknowledge == "Acknowledged" ? `Acknowledged`: ``} </span></td>
+                            <td><span> ${element.LoginName} </span></td>
+                            <td><span> ${element.receSign} </span></td>
+                            <td><span> ${element.senderSign} </span></td>
+
+                        </tr>`
+                })
+
+                appendtable += `</tbody>
+
+                                </table>`
+
+                $("#reportData3").html(appendtable)
+                $('#OtReport3').dataTable({
+                    responsive: false,
+                    lengthChange: false,
+                    dom:
+                        /*	--- Layout Structure 
+                            --- Options
+                            l	-	length changing input control
+                            f	-	filtering input
+                            t	-	The table!
+                            i	-	Table information summary
+                            p	-	pagination control
+                            r	-	processing display element
+                            B	-	buttons
+                            R	-	ColReorder
+                            S	-	Select
+
+                            --- Markup
+                            < and >				- div element
+                            <"class" and >		- div with a class
+                            <"#id" and >		- div with an ID
+                            <"#id.class" and >	- div with an ID and a class
+
+                            --- Further reading
+                            https://datatables.net/reference/option/dom
+                            --------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                            extend:    'colvis',
+                            text:      'Column Visibility',
+                            titleAttr: 'Col visibility',
+                            className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+            })
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js" integrity="sha512-gtII6Z4fZyONX9GBrF28JMpodY4vIOI0lBjAtN/mcK7Pz19Mu1HHIRvXH6bmdChteGpEccxZxI0qxXl9anY60w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 

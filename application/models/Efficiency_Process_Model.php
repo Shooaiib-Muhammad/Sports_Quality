@@ -9,17 +9,18 @@ class Efficiency_Process_Model extends CI_Model
         ");
           return  $query->result_array();
     }
-    public function insertProcess($processSelect,$etarget,$samval){
+    public function insertProcess($processSelect,$etarget,$fc,$samval){
 
         $query = $this->db->query(" INSERT INTO dbo.tbl_Efficiency_process
         (Name
         
-        ,Efftarget
-        
+        ,Efftarget,
+        FactoryCode
         ,SMV)
   VALUES
         ('$processSelect'
         ,$etarget
+        ,'$fc'
         ,$samval)
         ");
           return true;   
@@ -41,10 +42,10 @@ class Efficiency_Process_Model extends CI_Model
   }
   
 
-  public function updateEfficiencyData($PID,$emptarget,$sam){
+  public function updateEfficiencyData($PID,$emptarget,$fc,$sam){
     $query =  $this->db->query("UPDATE  tbl_Efficiency_process SET
-    
     Efftarget = $emptarget,
+    FactoryCode = '$fc',
     SMV = $sam
     WHERE PID = $PID 
 

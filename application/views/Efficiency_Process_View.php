@@ -204,6 +204,17 @@
                                     <div class="modal-body">
                                         
                                         <div class="row">
+                                        
+                                        <div class="form-group col-md-2">
+                                                    <label for=""><b>Select factory Codet</b></label>
+                                                    <select class="form-control form-select" id="fc" name="fc">
+                                                        <option value="TM"">TM</option>
+                                                        <option value="MS"">MS</option>
+                                                        <option value="AMB"">AMB</option>
+                                                        <option value="LFB"">LFB</option>
+                       
+                       </select>
+                                                </div>
                                             <input type="hidden" name="PID" id="PID" >
                                                 <div class="form-group col-md-4">
                                                     <label for=""><b>Select Process</b></label>
@@ -225,7 +236,7 @@
 
 
                                                 <div class="form-group col-md-2">
-                                                    <label for=""><b>SAM Value</b></label>
+                                                    <label for=""><b>SMV</b></label>
                                                     <div class="input-group ">
                                                         <input type="number" class="form-control" name="samval" id="samval" placeholder="Sam value">
                                                     </div>
@@ -974,13 +985,13 @@
         function submitData(){ 
              
           processSelect = $('#processSelect').val(); 
-         
+          fc = $('#fc').val(); 
           etarget = $('#etarget').val(); 
          
           samval = $('#samval').val(); 
           let url = "<?php echo base_url('Efficiency_Process/insertProcess') ?>";
         $.post(url,
-        {'processSelect':processSelect,'etarget':etarget,'samval':samval},
+        {'processSelect':processSelect,'etarget':etarget,'fc':fc,'samval':samval},
         function(data){
             console.log("data get is ",data);
             if(data){
@@ -1014,8 +1025,8 @@
                                     <th>Name</th>
                                    
                                     <th>Efficiency Target</th>
-                                    
-                                    <th>SAM Value</th>
+                                    <th>Factory Code</th>
+                                    <th>SMV</th>
                                     <th>Action</th>
                                     </tr>
                                 </thead>
@@ -1026,7 +1037,7 @@
                             <td>${element.Name}</td>
                             
                             <td>${element.Efftarget}</td>
-                            
+                            <td>${element.FactoryCode}</td>
                             <td>${element.SMV}</td>
                             <td>
                             <button class="btn btn-primary btn-sm" onclick="editData(${element.PID})">Edit</button>
@@ -1157,7 +1168,7 @@
             $('#updatebtn').click(function(){
                 PID = $('#PID').val();
                 name = $('#processSelect').val();
-               
+                fc = $('#fc').val();
                 emptarget = $('#etarget').val();
                 
                 sam=$('#samval').val();
@@ -1172,6 +1183,7 @@
          {
             "PID":PID ,
             "emptarget":emptarget,
+            "fc":fc,
             "sam":sam
          },function(data){
              console.log(data);

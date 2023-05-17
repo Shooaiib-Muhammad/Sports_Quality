@@ -56,6 +56,15 @@ class LabController extends CI_Controller
     }
 
 
+    public function RawMatRequestNotAknowledgedByLab()
+    {
+        $data = $this->l->RawMatRequestNotAknowledgedByLab();
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+
     public function RawMatRequestAknowledgedByLab()
     {
         $data = $this->l->RawMatRequestAknowledgedByLab();
@@ -326,10 +335,10 @@ class LabController extends CI_Controller
         // $tTypeP = $_POST['tTypeP'];
         $ItemName = $_POST['ItemName'];
         $po1 = $_POST['po1'];
-
+        $tTypeP1 = $_POST['tTypeP1'];
         // $tTypeP,
 
-        $data = $this->l->AddRaw_MatHead($DateP, $Type, $factoryCode, $quantityIssued, $supplierN, $testType, $ItemName, $testCategory, $po1);
+        $data = $this->l->AddRaw_MatHead($DateP, $Type, $factoryCode, $quantityIssued, $supplierN, $testType, $ItemName, $testCategory, $po1, $tTypeP1);
 
         return $this->output
             ->set_content_type('application/json')
@@ -3292,6 +3301,7 @@ class LabController extends CI_Controller
     {
         $data['allFGTRequests'] = $this->l->allFGTRequests();
         $data['allRawMaterialRequests'] = $this->l->allRawMaterialRequests();
+        $data['allNewRawMaterialRequests'] = $this->l->allNewRawMaterialRequests();
         return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)

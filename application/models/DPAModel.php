@@ -175,7 +175,8 @@ WHERE  (TID = '$id')");
 
         public function allDPA(){
             $query=$this->db->query(" SELECT dbo.view_Dev_DPA_Article.*
-            FROM dbo.view_Dev_DPA_Article");
+            FROM dbo.view_Dev_DPA_Article
+            ORDER BY dbo.view_Dev_DPA_Article.TID DESC");
                   return $query->result_array();   
         }
 }

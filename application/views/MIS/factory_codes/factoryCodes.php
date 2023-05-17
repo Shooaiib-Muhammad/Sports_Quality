@@ -67,7 +67,7 @@ if (!$this->session->has_userdata('user_id')) {
 
             $drilldownPoints = array();
             foreach ($value as $k => $v) {
-              if ($k  == 'DailyDate' || $k == 'FactoryCode' || $k == 'PassQty' || $k == 'Pass' || $k == 'TotalChecked' || $k == 'Fail') {
+              if ($k  == 'DailyDate' || $k == 'FactoryCode' || $k == 'PassQty' || $k == 'Pass' || $k == 'TotalCheck' || $k == 'Fail') {
                 continue;
               }
               $drilldownPoint = [
@@ -257,7 +257,7 @@ if (!$this->session->has_userdata('user_id')) {
 
             $drilldownPoints = array();
             foreach ($value as $k => $v) {
-              if ($k  == 'DailyDate' || $k == 'FactoryCode' || $k == 'PassQty' || $k == 'Pass' || $k == 'TotalChecked' || $k == 'Fail') {
+              if ($k  == 'DailyDate' || $k == 'FactoryCode' || $k == 'PassQty' || $k == 'Pass' || $k == 'TotalCheck' || $k == 'Fail') {
                 continue;
               }
               $drilldownPoint = [
@@ -402,7 +402,7 @@ if (!$this->session->has_userdata('user_id')) {
           //End Line B34005
           $endLineDateName005 = array();
           $drilldownDataEL005 = array();
-          foreach ($data as $value) {
+          foreach ($dataEndLineQC as $value) {
             $points1 = [
               'name' => $value['LineName'],
               'y' => $value['Fail'],
@@ -2478,6 +2478,52 @@ if (!$this->session->has_userdata('user_id')) {
         series: <?php echo json_encode($drilldownDataBUW005, JSON_NUMERIC_CHECK); ?>
       }
     });
+    Highcharts.chart('pivot005', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: <?php if (isset($start_date) && isset($end_date)) {
+                echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              } ?>,
+        align: 'center'
+      },
+      subtitle: {
+        text: ''
+      },
+      xAxis: {
+        type: 'category'
+
+      },
+      yAxis: {
+        title: {
+          text: 'Pivot'
+        }
+      },
+      tooltip: {
+
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+      legend: {
+        enabled: true
+      },
+      series: [{
+        name: 'Pivot',
+        colorByPoints: true,
+        data: <?php echo json_encode($pivotDateName005, JSON_NUMERIC_CHECK); ?>
+
+      }]
+    });
     Highcharts.chart('endLineQC005', {
       chart: {
         type: 'column'
@@ -2527,52 +2573,7 @@ if (!$this->session->has_userdata('user_id')) {
         series: <?php echo json_encode($drilldownDataEL005, JSON_NUMERIC_CHECK); ?>
       }
     });
-    Highcharts.chart('pivot005', {
-      chart: {
-        type: 'column'
-      },
-      title: {
-        text: <?php if (isset($start_date) && isset($end_date)) {
-                echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
-              } ?>,
-        align: 'center'
-      },
-      subtitle: {
-        text: ''
-      },
-      xAxis: {
-        type: 'category'
-
-      },
-      yAxis: {
-        title: {
-          text: 'Pivot'
-        }
-      },
-      tooltip: {
-
-        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
-      },
-      plotOptions: {
-        series: {
-          borderWidth: 0,
-          dataLabels: {
-            enabled: true,
-            format: '{point.y:.1f}'
-          }
-        }
-      },
-      legend: {
-        enabled: true
-      },
-      series: [{
-        name: 'Pivot',
-        colorByPoints: true,
-        data: <?php echo json_encode($pivotDateName005, JSON_NUMERIC_CHECK); ?>
-
-      }]
-    });
+    
 
     // END GRAPH B34005
 

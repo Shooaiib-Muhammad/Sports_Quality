@@ -21,14 +21,15 @@ if (!$this->session->has_userdata('user_id')) {
                             <div id="panel-11" class="panel">
                                 <div class="panel-hdr">
                                     <h2>
-                                        Lab All Requests</span>
+                                        Lab All Test Requests</span>
                                     </h2>
 
                                 </div>
                                 <div class="panel-container show">
                                     <ul class="nav nav-pills p-2" role="tablist">
+                                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Old Raw Material Requests</a></li>
+                                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3">New Raw Material Requests</a></li>
                                         <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">FGT Requests</a></li>
-                                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Raw Material Requests</a></li>
 
                                     </ul>
                                     <div class="tab-content p-2">
@@ -50,6 +51,17 @@ if (!$this->session->has_userdata('user_id')) {
                                             </div>
                                             <div class="row p-2 mt-4">
                                                 <div class="col-md-12" id="reportData2">
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab_direction-3" role="tabpanel">
+                                            <div class="row" id="counterShow3">
+
+                                            </div>
+                                            <div class="row p-2 mt-4">
+                                                <div class="col-md-12" id="reportData3">
 
                                                 </div>
 
@@ -1187,17 +1199,22 @@ if (!$this->session->has_userdata('user_id')) {
             var sendToLabOrAppliedCssNoFGT2 = [];
             var acknowledgedByLabFGT2 = [];
 
+            var TotalReq3 = [];
+            var pendingOrNoCssNoFGT3 = [];
+            var sendToLabOrAppliedCssNoFGT3 = [];
+            var acknowledgedByLabFGT3 = [];
+
             $(document).ready(function() {
                 let date = new Date().toJSON().substr(0, 10);
                 $("#start_date").val(date);
                 $("#end_date").val(date);
 
-                // FGT Requests
+                
                 url = "<?php echo base_url('LabController/allFGTRequests'); ?>"
-                url2 = "<?php echo base_url('LabController/allFGTRequests'); ?>"
                 $.post(url, {
                     "search": false
                 }, function(data) {
+                    // FGT Requests
                     TotalReq = data.allFGTRequests;
                     data.allFGTRequests.filter(item => {
                         if (item.RequestStatus == null) {
@@ -1211,7 +1228,7 @@ if (!$this->session->has_userdata('user_id')) {
                         }
                     })
 
-                    let html = `        <div class="col-md-4">
+                    let html = `<div class="col-md-4">
                                         </div>
                                         <div class="col-md-4 detailsClick " id="allFGTRequests">
                                             <a href="javascript:void(0)">
@@ -1275,17 +1292,10 @@ if (!$this->session->has_userdata('user_id')) {
                                         </div>`
                     $("#counterShow").html("");
                     $("#counterShow").html(html);
+                    
 
-
-                })
-
-
-                // Raw Material Requests
-                $.post(url2, {
-                    "search": false
-                }, function(data) {
+                    // Old Raw Material Requests
                     TotalReq2 = data.allRawMaterialRequests;
-                    console.log(data.allRawMaterialRequests);
                     data.allRawMaterialRequests.filter(item => {
                         if (item.Status == 'Pending') {
                             pendingOrNoCssNoFGT2.push(item)
@@ -1297,8 +1307,7 @@ if (!$this->session->has_userdata('user_id')) {
                             acknowledgedByLabFGT2.push(item)
                         }
                     })
-
-                    let html = `        <div class="col-md-4">
+                    let html2 = `        <div class="col-md-4">
                                         </div>
                                         <div class="col-md-4 detailsClick2 " id="allRawMaterialRequests">
                                             <a href="javascript:void(0)">
@@ -1362,8 +1371,86 @@ if (!$this->session->has_userdata('user_id')) {
                                             </a>
                                         </div>`
                     $("#counterShow2").html("");
-                    $("#counterShow2").html(html);
+                    $("#counterShow2").html(html2);
 
+                    // New Raw Material Requests
+                    TotalReq3 = data.allNewRawMaterialRequests;
+                    data.allNewRawMaterialRequests.filter(item => {
+                        if (item.status == 'Pending') {
+                            pendingOrNoCssNoFGT3.push(item)
+                        }
+                        if (item.status == "Send to Lab") {
+                            sendToLabOrAppliedCssNoFGT3.push(item)
+                        }
+                        if ((item.LabAcknowledge == "Acknowledged" || item.LabAcknowledge == "Result Uploaded")) {
+                            acknowledgedByLabFGT3.push(item)
+                        }
+                    })
+                    let html3 = `        <div class="col-md-4">
+                                        </div>
+                                        <div class="col-md-4 detailsClick3 " id="allNewRawMaterialRequests">
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 bg-primary rounded overflow-hidden position-relative text-white mb-g">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                            ${data.allNewRawMaterialRequests.length}
+                                                            <small class="m-0 l-h-n "> <strong>Total Raw Material Requests </strong> </small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        
+                                        <div class="col-md-4">
+                                        </div>
+
+                                        <div class="col-md-4 detailsClick3 " id="pendingOrNoCssNoFGT3">
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 bg-warning rounded overflow-hidden position-relative text-white mb-g">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                            ${pendingOrNoCssNoFGT3.length}
+                                                            <small class="m-0 l-h-n "> <strong>(No CSS No.) Requests </strong> </small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        
+
+                                        <div class="col-md-4 detailsClick3" id="sendToLabOrAppliedCssNoFGT3" >
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 bg-danger rounded overflow-hidden position-relative text-white mb-g">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                                                        ${sendToLabOrAppliedCssNoFGT3.length}
+                                                            <small class="m-0 l-h-n"> <strong>(Applied CSS No./Send To Lab/Lab Pending) Requests</strong></small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-md-4 detailsClick3" id="acknowledgedByLabFGT3">
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 rounded overflow-hidden position-relative text-white mb-g"
+                                                style="background-color:green">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                        ${acknowledgedByLabFGT3.length}
+                                                            <small class="m-0 l-h-n"> <strong>(Aknowledged By Lab) Requests</strong></small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>`
+                    $("#counterShow3").html("");
+                    $("#counterShow3").html(html3);
 
                 })
 
@@ -1625,6 +1712,164 @@ if (!$this->session->has_userdata('user_id')) {
 
                 $("#reportData2").html(appendtable)
                 $('#OtReport2').dataTable({
+                    responsive: false,
+                    lengthChange: false,
+                    dom:
+                        /*	--- Layout Structure 
+                            --- Options
+                            l	-	length changing input control
+                            f	-	filtering input
+                            t	-	The table!
+                            i	-	Table information summary
+                            p	-	pagination control
+                            r	-	processing display element
+                            B	-	buttons
+                            R	-	ColReorder
+                            S	-	Select
+
+                            --- Markup
+                            < and >				- div element
+                            <"class" and >		- div with a class
+                            <"#id" and >		- div with an ID
+                            <"#id.class" and >	- div with an ID and a class
+
+                            --- Further reading
+                            https://datatables.net/reference/option/dom
+                            --------------------------------------
+                         */
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        /*{
+                            extend:    'colvis',
+                            text:      'Column Visibility',
+                            titleAttr: 'Col visibility',
+                            className: 'mr-sm-3'
+                        },*/
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+            })
+
+            $("#counterShow3").on('click', '.detailsClick3', function(e) {
+                let id = $(this).attr('id');
+                console.log(id)
+                let data;
+                let Title;
+                if (id == "allNewRawMaterialRequests") {
+                    data = TotalReq3
+                    title = "Total New Raw Material Requests"
+                } else if (id == "pendingOrNoCssNoFGT3") {
+                    data = pendingOrNoCssNoFGT3
+                    title = "Pending/No CSS No. Raw Material Requests"
+                } else if (id == "sendToLabOrAppliedCssNoFGT3") {
+                    data = sendToLabOrAppliedCssNoFGT3
+                    title = "Applied CSS NO/Send To Lab/Lab Pending Requests"
+                } else if (id == "acknowledgedByLabFGT3") {
+                    data = acknowledgedByLabFGT3
+                    title = "Aknowledged By Lab Requests"
+                }
+
+                $("#reportData3").html('')
+                console.log(data);
+
+
+
+
+                let appendtable = '';
+                appendtable += `<h1 style="text-align:center;font-weight:bolder;border:1px solid black;padding:20px">${title}</h3>
+                                <table class="table table-bordered table-striped table-hover table-sm" id="OtReport3">
+                                <thead class="bg-primary-200 text-light p-2">
+                                <tr>
+                                    <th class="h5">CSS No</th>
+                                    <th class="h5">Completion Date</th>
+                                    <th class="h5">Due Date</th>
+                                    <th class="h5">Factory Code</th>
+                                    <th class="h5">Item Name</th>
+                                    <th class="h5">Lab Status</th>
+                                    <th class="h5">Material Type</th>
+                                    <th class="h5">PO No</th>
+                                    <th class="h5">Quantity Issued</th>
+                                    <th class="h5">Quantity Recieved</th>
+                                    <th class="h5">Quantity Retained</th>
+                                    <th class="h5">Remarks</th>
+                                    <th class="h5">Status</th>
+                                    <th class="h5">Supplier Name</th>
+                                    <th class="h5">Test Type</th>
+                                    <th class="h5">Type</th>
+                                    <th class="h5">Test Name</th>
+                                    <th class="h5">Lab Acknowledge</th>
+                                    <th class="h5">Generated By</th>
+                                    <th class="h5">Receiver Signature</th>
+                                    <th class="h5">Sender Signature</th>
+
+                                   
+                                </tr>
+                                </thead>
+                                <tbody>`
+                data.forEach((element) => {
+                    appendtable += `<tr>
+                            <td><span class="badge badge-info p-1">${element.CSSNo != null ? element.CSSNo : ''}</span></td>
+                            <td><span class="badge badge-warning p-1">${element.comDate != null ? element.comDate.split("00:00:00")[0] : ''}</span></td>
+                            <td><span class="badge badge-warning p-1">${element.dueDate != null ? element.dueDate.split("00:00:00")[0] : ''}</span></td>
+                            <td>${element.FactoryCode}</td>
+                            <td>${element.itemName}</td>
+                            <td><span class="badge badge-warning p-1">${element.LabStatus == 1 ? `Send To Lab` : ''}</span></td>
+                            <td>${element.Type}</td>
+                            <td>${element.Po}</td>
+                            <td>${element.Quantity}</td>
+                            <td>${element.qtyRece}</td>               
+                            <td>${element.qtyRetain}</td>
+                            <td><span>${element.remarks}</span></td>
+                            <td><span class="badge badge-danger p-1"> ${element.status == "Pending" ? `Pending` : element.status == "Send to Lab" ? `Send to Lab` : `Locked`} </span></td>
+                            <td><span> ${element.SupplierNam} </span></td>
+                            <td><span> ${element.TestType} </span></td>
+                            <td><span> ${element.Type} </span></td>
+                            <td><span> ${element.testName} </span></td>
+                            <td><span class="badge badge-info p-1"> ${element.LabAcknowledge == "Acknowledged" ? `Acknowledged`: ``} </span></td>
+                            <td><span> ${element.LoginName} </span></td>
+                            <td><span> ${element.receSign} </span></td>
+                            <td><span> ${element.senderSign} </span></td>
+
+                        </tr>`
+                })
+
+                appendtable += `</tbody>
+
+                                </table>`
+
+                $("#reportData3").html(appendtable)
+                $('#OtReport3').dataTable({
                     responsive: false,
                     lengthChange: false,
                     dom:

@@ -92,8 +92,7 @@ HAVING        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$start_
     }
     public function panelShapping003($start_date, $end_date)
     {
-        $start_date = date('Y/m/d');
-        $end_date = date('Y/m/d');
+        
         $query =  $this->db->query("SELECT        TOP (100) PERCENT dbo.tbl_Inv_Tran_Date.DateName AS DailyDate, SUM(dbo.tbl_TM_Panel_Forming_Inspection.TotalCheck) AS PassQty, SUM(dbo.tbl_TM_Panel_Forming_Inspection.FailQty) AS Fail, 
         SUM(dbo.tbl_TM_Panel_Forming_Inspection.PassQty) AS Pass, dbo.tbl_Pro_PO_H.FactoryCode, SUM(dbo.tbl_TM_Panel_Forming_Inspection.TotalCheck) AS TotalCheck, SUM(dbo.tbl_TM_Panel_Forming_Inspection.PanelDMG) 
         AS PanelDMG, SUM(dbo.tbl_TM_Panel_Forming_Inspection.Misprint) AS Misprint, SUM(dbo.tbl_TM_Panel_Forming_Inspection.DisColour) AS DisColour, SUM(dbo.tbl_TM_Panel_Forming_Inspection.Pasting) AS Pasting, 
@@ -105,6 +104,7 @@ FROM            dbo.tbl_Inv_Tran_Date INNER JOIN
         dbo.tbl_Pro_PO_H ON dbo.tbl_TM_Panel_Forming_Inspection.PO = dbo.tbl_Pro_PO_H.PO
 GROUP BY dbo.tbl_Inv_Tran_Date.DateName, dbo.tbl_Pro_PO_H.FactoryCode
 HAVING        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$start_date 00:00:00', 102) AND CONVERT(DATETIME, '$end_date 00:00:00', 102)) AND (dbo.tbl_Pro_PO_H.FactoryCode = 'B34003')");
+
         return $query->result_array();
     }
     // Forming B34003
@@ -154,8 +154,7 @@ HAVING        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$start_
     // B34004
     public function printing004($start_date, $end_date)
     {
-        $start_date = date('Y/m/d');
-        $end_date = date('Y/m/d');
+        
         $query =  $this->db->query("SELECT        TOP (100) PERCENT dbo.tbl_Inv_Tran_Date.DateName AS DailyDate, SUM(dbo.tbl_TM_Print_Inspection.PassQty) AS PassQty, SUM(dbo.tbl_TM_Print_Inspection.FailQty) AS FailQty, dbo.tbl_Pro_PO_H.FactoryCode, 
         SUM(dbo.tbl_TM_Print_Inspection.Misprint) AS Misprint, SUM(dbo.tbl_TM_Print_Inspection.Smearing) AS Smearing, SUM(dbo.tbl_TM_Print_Inspection.Setting) AS Setting, SUM(dbo.tbl_TM_Print_Inspection.MaterialDFC) 
         AS MaterialDFC, SUM(dbo.tbl_TM_Print_Inspection.DisColour) AS DisColour, SUM(dbo.tbl_TM_Print_Inspection.DMG) AS DMG, SUM(dbo.tbl_TM_Print_Inspection.Touching) AS Touching, 
@@ -169,8 +168,7 @@ HAVING        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$start_
     }
     public function panelShapping004($start_date, $end_date)
     {
-        $start_date = date('Y/m/d');
-        $end_date = date('Y/m/d');
+        
         $query =  $this->db->query("SELECT        TOP (100) PERCENT dbo.tbl_Inv_Tran_Date.DateName AS DailyDate, SUM(dbo.tbl_TM_Panel_Forming_Inspection.TotalCheck) AS PassQty, SUM(dbo.tbl_TM_Panel_Forming_Inspection.FailQty) AS Fail, 
         SUM(dbo.tbl_TM_Panel_Forming_Inspection.PassQty) AS Pass, dbo.tbl_Pro_PO_H.FactoryCode, SUM(dbo.tbl_TM_Panel_Forming_Inspection.TotalCheck) AS TotalCheck, SUM(dbo.tbl_TM_Panel_Forming_Inspection.PanelDMG) 
         AS PanelDMG, SUM(dbo.tbl_TM_Panel_Forming_Inspection.Misprint) AS Misprint, SUM(dbo.tbl_TM_Panel_Forming_Inspection.DisColour) AS DisColour, SUM(dbo.tbl_TM_Panel_Forming_Inspection.Pasting) AS Pasting, 
