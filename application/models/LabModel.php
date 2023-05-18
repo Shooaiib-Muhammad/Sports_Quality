@@ -4105,117 +4105,117 @@ WHERE        (userid = $user_id) AND (CssNO <> '') AND (RequestStatus = 'Acknowl
             // $fgtData = $this->db->query("SELECT       *
             // FROM            dbo.View_FGT_Request
             // WHERE        (TID = $TID)")->result_array();
-            // $userEmail = $this->db->query()
+
             // if ($fgtData) {
-                // $mail = new PHPMailer(true);
-                // try {
+            //     $mail = new PHPMailer(true);
+            //     try {
 
-                //     //Server settings
-                //     // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-                //     $mail->isSMTP();                                            //Send using SMTP
-                //     $mail->Host       = 'smtp.office365.com';                     //Set the SMTP server to send through
-                //     $mail->Port       = 587;
-                //     $mail->SMTPSecure = 'tls';                                 //Enable SMTP authentication 
-                //     $mail->SMTPDebug = 1;                      //Enable verbose debug output
-                //     $mail->SMTPAuth   = true;
-                //     $mail->Username   = 'itdev@forward.pk';                     //SMTP username
-                //     $mail->Password   = 'F0rward@345';                               //SMTP password
-                //     $mail->SMTPSecure = 'STARTTLS';            //Enable implicit TLS encryption                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-                //     $mail->IsHTML(true);
-                //     //Recipients
+            //         //Server settings
+            //         // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+            //         $mail->isSMTP();                                            //Send using SMTP
+            //         $mail->Host       = 'smtp.office365.com';                     //Set the SMTP server to send through
+            //         $mail->Port       = 587;
+            //         $mail->SMTPSecure = 'tls';                                 //Enable SMTP authentication 
+            //         $mail->SMTPDebug = 1;                      //Enable verbose debug output
+            //         $mail->SMTPAuth   = true;
+            //         $mail->Username   = 'itdev@forward.pk';                     //SMTP username
+            //         $mail->Password   = 'F0rward@345';                               //SMTP password
+            //         $mail->SMTPSecure = 'STARTTLS';            //Enable implicit TLS encryption                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            //         $mail->IsHTML(true);
+            //         //Recipients
 
-                //     $mail->setFrom("csslab@forward.pk", "FGT Test Request Generated");
-                //     $mail->addAddress("lab@forward.pk");
-                //     // $mail->AddCC();
-                //     $mail->Subject = "FGT Test Request Generated";
-                //     $message = '<div>
-                //                         <p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward
-                //                             Sports Pvt. Ltd
-                //                         </p>
-                //                     </div>
-                //                 <div style="margin-left:40%;">
-                //                     <p style="font-size: large; text-align: center;">' . $fgtData[0]['LoginName'] . ' created FGT Test Request</p>
-                //                     <p style="font-size: meduim; text-align: left;">Assigned CSS No: ' . $fgtData[0]['CssNO'] . '</p>
-                //                     <p style="font-size: meduim; text-align: center;">Test Details are as below: </p>
-                //                     <table style="border:1px solid black;margin-left:40%;padding:5px">
-                //                         <tr>
-                //                             <th>Factory Code:</th>
-                //                             <td>' . $fgtData[0]['factoryCode'] . '</td>
-                //                         </tr>
-                //                         <tr>
-                //                             <th>Article No:</th>
-                //                             <td>' . $fgtData[0]['Articleno'] . '</td>
-                //                         </tr>
-                //                         <tr>
-                //                             <th>Working No:</th>
-                //                             <td>' . $fgtData[0]['WorkingNo'] . '</td>
-                //                         </tr>
-                //                         <tr>
-                //                             <th>Model Name:</th>
-                //                             <td>' . $fgtData[0]['ModelName'] . '</td>
-                //                         </tr>
-                //                         <tr>
-                //                             <th>Size:</th>
-                //                             <td>' . $fgtData[0]['Size'] . '</td>
-                //                         </tr>
-                //                         <tr>
-                //                             <th>Ball Type:</th>
-                //                             <td>' . $fgtData[0]['BallType'] . '</td>
-                //                         </tr>
-                //                         <tr>
-                //                             <th>Main Mat Color:</th>
-                //                             <td>' . $fgtData[0]['mainmaterialColor'] . '</td>
-                //                         </tr>
-                //                         <tr>
-                //                             <th>cover material:</th>
-                //                             <td>' . $fgtData[0]['Covermat'] . '</td>
-                //                         </tr>
-                //                         <tr>
-                //                             <th>Backing:</th>
-                //                             <td>' . $fgtData[0]['backing'] . '</td>
-                //                         </tr>
-                //                         <tr>
-                //                             <th>Bladder Details:</th>
-                //                             <td>' . $fgtData[0]['Bladderdetail'] . '</td>
-                //                         </tr>
-                //                         <tr>
-                //                             <th>Production Month:</th>
-                //                             <td>' . $fgtData[0]['ProductionMonth'] . '</td>
-                //                         </tr>
-                //                         <tr>
-                //                             <th>Printing Color:</th>
-                //                             <td>' . $fgtData[0]['Printingcolor'] . '</td>
-                //                         </tr>
-                //                         <tr>
-                //                             <th>Panel Shape:</th>
-                //                             <td>' . $fgtData[0]['panelShape'] . '</td>
-                //                         </tr>
-                //                         <tr>
-                //                             <th>Test Type:</th>
-                //                             <td>' . $fgtData[0]['testype'] . '</td>
-                //                         </tr>
-                //                         <tr>
-                //                             <th>Delivering Quantity:</th>
-                //                             <td>' . $fgtData[0]['deliverqty'] . '</td>
-                //                         </tr>
-                //                         <tr>
-                //                             <th>Any Information:</th>
-                //                             <td>' . $fgtData[0]['additionalinfo'] . '</td>
-                //                         </tr>
-                //                     </table>
-                //                     <p style="margin: 10px;background-color:green;color:white;font-size:small;">Aknowledge the request and then upload result for this FGT test request </p>
-                //                 </div>
-                //                 ';
+            //         $mail->setFrom("csslab@forward.pk", "FGT Test Request Generated");
+            //         $mail->addAddress("lab@forward.pk");
+            //         // $mail->AddCC();
+            //         $mail->Subject = "FGT Test Request Generated";
+            //         $message = '<div>
+            //                             <p style="text-align:center;background-color:black;color:white;font-size:large;width:100%;padding:20px;">Forward
+            //                                 Sports Pvt. Ltd
+            //                             </p>
+            //                         </div>
+            //                     <div style="margin-left:40%;">
+            //                         <p style="font-size: large; text-align: center;">' . $fgtData[0]['LoginName'] . ' created FGT Test Request</p>
+            //                         <p style="font-size: meduim; text-align: left;">Assigned CSS No: ' . $fgtData[0]['CssNO'] . '</p>
+            //                         <p style="font-size: meduim; text-align: center;">Test Details are as below: </p>
+            //                         <table style="border:1px solid black;margin-left:40%;padding:5px">
+            //                             <tr>
+            //                                 <th>Factory Code:</th>
+            //                                 <td>' . $fgtData[0]['factoryCode'] . '</td>
+            //                             </tr>
+            //                             <tr>
+            //                                 <th>Article No:</th>
+            //                                 <td>' . $fgtData[0]['Articleno'] . '</td>
+            //                             </tr>
+            //                             <tr>
+            //                                 <th>Working No:</th>
+            //                                 <td>' . $fgtData[0]['WorkingNo'] . '</td>
+            //                             </tr>
+            //                             <tr>
+            //                                 <th>Model Name:</th>
+            //                                 <td>' . $fgtData[0]['ModelName'] . '</td>
+            //                             </tr>
+            //                             <tr>
+            //                                 <th>Size:</th>
+            //                                 <td>' . $fgtData[0]['Size'] . '</td>
+            //                             </tr>
+            //                             <tr>
+            //                                 <th>Ball Type:</th>
+            //                                 <td>' . $fgtData[0]['BallType'] . '</td>
+            //                             </tr>
+            //                             <tr>
+            //                                 <th>Main Mat Color:</th>
+            //                                 <td>' . $fgtData[0]['mainmaterialColor'] . '</td>
+            //                             </tr>
+            //                             <tr>
+            //                                 <th>cover material:</th>
+            //                                 <td>' . $fgtData[0]['Covermat'] . '</td>
+            //                             </tr>
+            //                             <tr>
+            //                                 <th>Backing:</th>
+            //                                 <td>' . $fgtData[0]['backing'] . '</td>
+            //                             </tr>
+            //                             <tr>
+            //                                 <th>Bladder Details:</th>
+            //                                 <td>' . $fgtData[0]['Bladderdetail'] . '</td>
+            //                             </tr>
+            //                             <tr>
+            //                                 <th>Production Month:</th>
+            //                                 <td>' . $fgtData[0]['ProductionMonth'] . '</td>
+            //                             </tr>
+            //                             <tr>
+            //                                 <th>Printing Color:</th>
+            //                                 <td>' . $fgtData[0]['Printingcolor'] . '</td>
+            //                             </tr>
+            //                             <tr>
+            //                                 <th>Panel Shape:</th>
+            //                                 <td>' . $fgtData[0]['panelShape'] . '</td>
+            //                             </tr>
+            //                             <tr>
+            //                                 <th>Test Type:</th>
+            //                                 <td>' . $fgtData[0]['testype'] . '</td>
+            //                             </tr>
+            //                             <tr>
+            //                                 <th>Delivering Quantity:</th>
+            //                                 <td>' . $fgtData[0]['deliverqty'] . '</td>
+            //                             </tr>
+            //                             <tr>
+            //                                 <th>Any Information:</th>
+            //                                 <td>' . $fgtData[0]['additionalinfo'] . '</td>
+            //                             </tr>
+            //                         </table>
+            //                         <p style="margin: 10px;background-color:green;color:white;font-size:small;">Aknowledge the request and then upload result for this FGT test request </p>
+            //                     </div>
+            //                     ';
 
-                //     $mail->MsgHTML($message);
-                //     ob_start();
-                //     $ok = $mail->Send();
-                //     $ob = ob_get_contents();
-                //     ob_end_clean();
-                // } catch (Exception $e) {
-                //     return $query;
-                //     // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-                // }
+            //         $mail->MsgHTML($message);
+            //         ob_start();
+            //         $ok = $mail->Send();
+            //         $ob = ob_get_contents();
+            //         ob_end_clean();
+            //     } catch (Exception $e) {
+            //         return $query;
+            //         // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            //     }
             // }
             return $query;
         }
@@ -4601,6 +4601,11 @@ WHERE        (userid = $user_id) AND (CssNO <> '') AND (RequestStatus = 'Acknowl
                 $i += 1;
             }
         };
+        // For Sending Email
+        if ($fgtH['Result'] == 'Pass' || $fgtH['Result'] == 'Fail') {
+           
+        }
+
 
 
         if ($query1 && $query2) {
@@ -5069,6 +5074,7 @@ WHERE        (CssNo = '$CssNo')");
         //     $ob = ob_get_contents();
         //     ob_end_clean();
         // } catch (Exception $e) {
+        // return $query;
         //     // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         // }
         return $query;
@@ -5174,6 +5180,7 @@ WHERE        (CssNo = '$CssNo')");
         //         $ob = ob_get_contents();
         //         ob_end_clean();
         //     } catch (Exception $e) {
+        // return $query;
         //         // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         //     }
         // }
@@ -5314,6 +5321,7 @@ WHERE        (CssNo = '$CssNo')");
         //         $ob = ob_get_contents();
         //         ob_end_clean();
         //     } catch (Exception $e) {
+        // return $query;
         //         // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         //     }
         // }
@@ -5354,6 +5362,30 @@ WHERE        (CssNo = '$CssNo')");
 
         $query = $this->db->query("SELECT   *     
         FROM   dbo.View_RawMatReqT
+        ");
+
+        return $query->result_array();
+    }
+
+
+    //For R&D
+    public function developmentTestsReport($startDate, $endDate)
+    {
+
+        $query = $this->db->query("SELECT       *
+FROM            dbo.View_Development_Tests
+WHERE   (Type = 'Production') AND (EntryDate BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
+        ");
+
+        return $query->result_array();
+    }
+    //For R&D
+    public function FGTTestsReport($startDate, $endDate)
+    {
+
+        $query = $this->db->query("SELECT       *
+FROM            dbo.View_FGT_Tests
+WHERE   (userid = 446) AND (Date BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))
         ");
 
         return $query->result_array();

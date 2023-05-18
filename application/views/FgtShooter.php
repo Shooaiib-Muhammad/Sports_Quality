@@ -4659,6 +4659,14 @@ if (!$this->session->has_userdata('user_id')) {
                         <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
                         <script src="<?php echo base_url() ?>assets/js/notifications/toastr/toastr.js"></script>
 
+                        <script src="<?php echo base_url(); ?>/assets/js/highcharts.js"></script>
+                        <!-- <script src="<?php echo base_url(); ?>/assets/js/data.js"></script> -->
+                        <script src="<?php echo base_url(); ?>/assets/js/series-label.js"></script>
+                        <script src="<?php echo base_url(); ?>/assets/js/drilldown.js"></script>
+                        <script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>
+                        <script src="<?php echo base_url(); ?>/assets/js/export-data.js"></script>
+                        <script src="<?php echo base_url(); ?>/assets/js/accessibility.js"></script>
+
                         <script>
                             var sDate;
                             var edate;
@@ -4698,6 +4706,49 @@ if (!$this->session->has_userdata('user_id')) {
                                 $("#date2").val(date);
                             });
 
+                            function generateDataTop(data1) {
+
+                                var ret = {},
+                                    ps = [],
+                                    pass = [],
+                                    len = data1.length;
+
+                                ps1 = [],
+                                    total = []
+
+                                ps2 = [],
+                                    fail = []
+
+                                //concat to get points
+                                for (var i = 0; i < len; i++) {
+                                    ps[i] = {
+                                        name: data1[i].HourName,
+                                        y: parseInt(data1[i].pass),
+                                    };
+                                    ps1[i] = {
+                                        name: data1[i].HourName,
+                                        y: parseInt(data1[i].Qty)
+                                    };
+                                    ps2[i] = {
+                                        name: data1[i].HourName,
+                                        y: parseInt(data1[i].fail)
+                                    };
+
+                                }
+                                names = [];
+                                //generate series and split points
+                                for (i = 0; i < len; i++) {
+                                    var p = ps[i];
+                                    var p1 = ps1[i]
+                                    var p2 = ps2[i]
+
+                                    pass.push(p);
+                                    total.push(p1)
+                                    fail.push(p2)
+                                }
+
+                                return [total, pass, fail];
+                            }
 
                             $('#searchFGTtest').on('click', function() {
                                 var date1 = $("#date1").val();
@@ -4714,7 +4765,116 @@ if (!$this->session->has_userdata('user_id')) {
                                     'factoryCode': factoryCode
                                 }, function(data) {
                                     if (data != '') {
-                                        let fgtHtml = `<table id="fgtTestTableData" class="table table-bordered table-hover table-responsive table-striped w-100">
+                                        let fgtHtml = ``;
+
+                                        var articleCounts = {};
+                                        $.each(data, function(index, item) {
+                                            var article = item.Article;
+                                            if (article) { // Skip undefined or null values
+                                                if (article in articleCounts) {
+                                                    articleCounts[article]++;
+                                                } else {
+                                                    articleCounts[article] = 1;
+                                                }
+                                            }
+                                        });
+                                        var resultArray = [];
+                                        var highData = [];
+                                        $.each(articleCounts, function(article, count) {
+                                            resultArray.push({
+                                                article: article,
+                                                count: count
+                                            });
+                                            points = {
+                                                'y': count,
+                                                'name': article
+                                            }
+                                            highData.push(points)
+                                        });
+                                        console.log(highData);
+                                        // seriesDataTop = generateDataTop(data)
+
+                                        // Highcharts.chart('container', {
+                                        //     chart: {
+                                        //         type: 'column'
+                                        //     },
+                                        //     title: {
+                                        //         align: 'center',
+                                        //         text: 'From Date to Date'
+                                        //     },
+                                        //     accessibility: {
+                                        //         announceNewData: {
+                                        //             enabled: true
+                                        //         }
+                                        //     },
+                                        //     xAxis: {
+                                        //         type: 'category',
+
+
+                                        //     },
+                                        //     yAxis: {
+                                        //         title: {
+                                        //             text: 'Article Quantity'
+                                        //         }
+
+                                        //     },
+                                        //     legend: {
+                                        //         enabled: true
+                                        //     },
+                                        //     plotOptions: {
+                                        //         series: {
+                                        //             borderWidth: 0,
+                                        //             dataLabels: {
+                                        //                 allowOverlap: true,
+                                        //                 enabled: true,
+                                        //                 format: '{point.y:.1f}'
+                                        //             }
+                                        //         }
+                                        //     },
+
+                                        //     tooltip: {
+                                        //         headerFormat: '<span style="font-size:11px">{point.key}</span><br>',
+                                        //         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                        //             ' <td style="padding:0">{point.y:.1f}</td></tr>',
+                                        //         footerFormat: '</table>',
+                                        //         shared: true,
+                                        //         useHTML: true
+                                        //     },
+
+                                        //     series: [{
+                                        //         name: "Article Quantity",
+                                        //         colorByPoints: true,
+                                        //         data: highData
+                                        //     }]
+                                        // });
+
+
+                                        fgtHtml += `<div class="row">
+                                            <div class="col-md-6 d-flex justify-content-center flex-wrap">`;
+                                        resultArray.forEach(element => {
+                                            fgtHtml += `
+                                                    <div class="col-md-2" id="direct">
+                                                        <div class="p-2 rounded overflow-hidden position-relative mb-g text-white bg-danger">
+                                                            <div class="">
+                                                                <h3 class="display-3 d-block l-h-n m-0 fw-500">
+                                                                    <small class="m-0 l-h-n">${element.article}</small>
+                                                                    <span class="d-inline">${element.count}
+                                                                    </span>
+                                                                </h3>
+                                                            </div>
+                                                            <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                                        </div>
+
+                                                    </div>`
+                                        });
+
+                                        fgtHtml += `</div>
+                                                <div class="col-md-6 d-flex justify-content-center flex-wrap">
+                                                    <div id="container"></div>
+                                                </div>
+                                            </div>`;
+
+                                        fgtHtml += `<table id="fgtTestTableData" class="table table-bordered table-hover table-responsive table-striped w-100">
                                                 <thead class="bg-primary-200">
                                                     <tr style="color:white;">
                                                         <th>Lab No</th>

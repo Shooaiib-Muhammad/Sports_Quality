@@ -298,7 +298,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="childTab2" role="tabpanel">
-                                                <div class="row">
+                                                    <div class="row">
                                                         <div  class="col-md-12 mt-2 d-flex justify-content-center flex-wrap" id="childTab1Content">
                                                             <?php $icon_classes = array("fal fa-envelope", "fal fa-futbol", "fal fa-heart", "fal fa-thumbs-up"); ?>
                                                             <!-- <?php print_r($pivotSingleDate); ?> -->
@@ -329,7 +329,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                             </div>
 
                                                             <?php }
-                                                        } else {
+                                                            } else {
 
                                                             ?>
                                                             <div class="row">
@@ -6741,7 +6741,7 @@ if (!$this->session->has_userdata('user_id')) {
                         <!-- <script src="<?php echo base_url(); ?>/assets/js/data.js"></script> -->
                         <script src="<?php echo base_url(); ?>/assets/js/series-label.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/drilldown.js"></script>
-                        <script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>date
+                        <script src="<?php echo base_url(); ?>/assets/js/exporting.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/export-data.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/accessibility.js"></script>
                         <script>

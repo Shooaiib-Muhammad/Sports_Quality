@@ -2367,7 +2367,7 @@ if (!$this->session->has_userdata('user_id')) {
                     dQuantity: dQuantity,
                     anyInfo: anyInfo,
                 }, function(data) {
-                    if (data) {
+                    if (data == true) {
                         $('#addFGTRequest').modal('toggle');
                         alert("Data added successfully");
                         $('#workingNo').val('');

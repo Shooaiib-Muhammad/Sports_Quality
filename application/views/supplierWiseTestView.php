@@ -102,15 +102,28 @@
 													<form method="POST" action="<?php echo base_url('supplierWiseTestController/submitSupplierTest') ?>" enctype="multipart/form-data">
 														<div class="row">
 															<div class="col-md-3">
-																<select class="browser-default custom-select" id="customFileType" name="customFileType">
-																	<option selected>Select Test Type</option>
+																<select class="form-control"id="customFileType" name="customFileType">
+																          <option value="" selected>Select Material Type</option>
+                                                                                        <option value="Carton Test">Carton Test</option>
+                                                                                        <option value="Foam">Foam</option>
+                                                                                        <option value="Fabric">Fabric</option>
+                                                                                        <option value="Thread">Thread</option>
+                                                                                        <option value="SR Blader">SR Blader</option>
+                                                                                        <option value="Material">Material</option>
+                                                                                        <option value="FGT Report">FGT Report</option>
+                                                                                        <option value="MS Thread">MS Thread</option>
+                                                                                        <option value="MS Material">MS Material</option>
+                                                                                        <option value="Poly Bag">Poly Bag</option>
+                                                                                        <option value="Adhesion">Adhesion</option>
+                                                                                        <option value="CSM">CSM</option>
+																	<!-- <option selected>Select Test Type</option>
 																	<?php
 																	foreach ($MaterialTestTypes as $key) {
 
 																	?>
 																		<option value="<?php echo $key['Name'] ?>"><?php echo $key['Name'] ?></option>
 
-																	<?php } ?>
+																	<?php } ?> -->
 																</select>
 															</div>
 															<div class="col-md-3">
@@ -170,7 +183,7 @@
 
 											<div class="card">
 												<div class="card-body">
-													<h5 class="card-title"><b>Supplier Test Data </b></h5>
+													<!-- <h5 class="card-title"><b>Supplier Test List </b></h5> -->
 													<div class="row">
 														<div class="col-md-12">
 															<div id="supplierData">

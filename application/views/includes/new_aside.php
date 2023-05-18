@@ -162,7 +162,7 @@
                         <li>
                             <a href="#" title="Theme Settings" data-filter-tags="theme settings">
                                 <i class="fal fa-vial"></i>
-                                <span class="nav-link-text" style="color:white;" data-i18n="nav.theme_settings">Outward Request</span>
+                                <span class="nav-link-text" data-i18n="nav.theme_settings">Outward Request</span>
                             </a>
                             <ul>
                                 <!-- <li>
@@ -277,6 +277,16 @@
                                         ''
                                     ); ?>DPA" title="How it works" data-filter-tags="theme settings how it works">
                             <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">DPA</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url('DevelopmentController/developmentTests') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Raw Material (Development Tests) </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url('DevelopmentController/FGTTests') ?>" title="How it works" data-filter-tags="theme settings how it works">
+                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">FGT Tests</span>
                         </a>
                     </li>
                 </ul>
@@ -682,6 +692,13 @@
                                             ); ?>" title="How it works" data-filter-tags="theme settings how it works">
                                     <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Temp and
                                         Humdity</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url(
+                                                'MIS/TemperatureController'
+                                            ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                    <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Temperature</span>
                                 </a>
                             </li>
                             <li>
@@ -1444,7 +1461,7 @@
                             <li>
                                 <a href="#" title="Theme Settings" data-filter-tags="theme settings">
                                     <i class="fal fa-vial"></i>
-                                    <span class="nav-link-text" style="color:white;" data-i18n="nav.theme_settings">Outward Request</span>
+                                    <span class="nav-link-text" data-i18n="nav.theme_settings">Outward Request</span>
                                 </a>
                                 <ul>
                                     <!-- <li>

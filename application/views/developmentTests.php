@@ -22,14 +22,14 @@ if (!$this->session->has_userdata('user_id')) {
                     <ol class="breadcrumb page-breadcrumb">
                         <li class="breadcrumb-item"><a href="<?php echo base_url(
                                                                     'index.php/main/dmms_dashboard'
-                                                                ); ?>">Raw Material Testing</a></li>
+                                                                ); ?>">Lab Development Tests</a></li>
 
 
                         <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
                     </ol>
                     <div class="subheader">
                         <h1 class="subheader-title">
-                            <i class='subheader-icon fal fa-chart-area'></i> Raw Material Testing</span>
+                            <i class='subheader-icon fal fa-chart-area'></i> Lab Development Tests</span>
 
                         </h1>
                     </div>
@@ -54,37 +54,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                         <!-- Start here with columns -->
 
-                        <div class="col-md-6 offset-md-3 offset-0 table-responsive">
-                            <?php if (validation_errors()) : ?>
-                                <div class="alert alert-danger">
-                                    <?php echo validation_errors(); ?>
-                                </div>
-                            <?php endif; ?>
-                            
-                            <div id="panel-1" class="panel">
-
-                            
-                            <?php if ($LabTestReqStatus !== 1) { ?>
-
-                                <div class="panel-hdr">
-
-
-                                        <h2>
-                                            Upload <span class="fw-300">Excel Data </span>
-                                        </h2>
-                                    
-
-                                    <!-- <div class="panel-toolbar">
-                                            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
-                                            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
-                                            <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
-                                        </div> -->
-                                </div>
-
-                                <?php } ?>
-
-                                <!-- Model Carton HTML -->
-
+                        <!-- Model Carton HTML -->
                                 <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-xl" role="document">
                                         <div class="modal-content">
@@ -140,8 +110,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </tr>
                                                             </table> -->
                                                             <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-           <div class="col-md-3"></div>
-           <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
                                                             <table class="table">
                                                                 <tr>
                                                                     <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNo"> </span></label></th>
@@ -153,11 +123,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                                 </tr>
                                                             </table>
                                                             <!-- <div class="col-md-6">
-            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-            </div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+                                    <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+                                    </div>
+                                    <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+                                    <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+                                    <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
                                                             <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDate"> </span></label></div>
                                                             <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierName"> </span></label></div>
                                                             <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRef"> </span></label></div>
@@ -1632,7 +1602,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div class="card-body">
 
                                                         <div class="row">
-                                                        <div class="table" style="display: flex; justify-content:space-between">
+                                                            <div class="table" style="display: flex; justify-content:space-between">
                                                                 <div style="margin-left:10px;">
                                                                     <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="Forward_logo" width="250px" height="170px" />
                                                                 </div>
@@ -1699,7 +1669,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                                             <td>Result</td>
                                                                             <th id="resultFab"> </th>
-    
+
                                                                         </tr>
                                                                         <tr>
                                                                             <td>Sender</td>
@@ -1710,7 +1680,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <tr>
                                                                             <td>Material Name</td>
                                                                             <th colspan="4" id="matNameFab"></th>
-                                                                            
+
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
@@ -1727,8 +1697,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             <th style="text-align: center;font-size:large;border:2px solid black">
                                                                                 Remark
                                                                             </th>
-                                                                           
-                                
+
+
 
 
                                                                         </tr>
@@ -1740,35 +1710,40 @@ if (!$this->session->has_userdata('user_id')) {
                                                             </div>
 
                                                             <div class="">
-														
+
                                                             </div>
-															
+
                                                             <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionFabric"> </span></label></div>
                                                             <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
-															
-															
-															<div class="col-md-12 d-flex mt-3  " >
-																<div style="margin-right:200px"> 
-																	<span> <b>Note:</b>  </span>
-																</div>
-												
-																 <div>
-																 <u><p>The above reported result is applicable to the sample as received at customer service section</p> </u>	
-																<u><h4> Uncertainity will be given on the demand of customer.</h4></u>	
-																 <u><h3>*: These Tests are out of scope of ISO/IEC 17025:2017</h3> </u>	
 
-														
-																 </div>
-															</div>
-															<div class="col-md-12 d-flex">
-															  <div style="margin-right:180px;margin-bottom: 10px;"
-													> 
-																	<span> <b>Remarks:</b>  </span>
-																</div>
-																<div>
-																	<u>________________________________________________________________________________________________________</u>
-																</div>
-															</div>
+
+                                                            <div class="col-md-12 d-flex mt-3  ">
+                                                                <div style="margin-right:200px">
+                                                                    <span> <b>Note:</b> </span>
+                                                                </div>
+
+                                                                <div>
+                                                                    <u>
+                                                                        <p>The above reported result is applicable to the sample as received at customer service section</p>
+                                                                    </u>
+                                                                    <u>
+                                                                        <h4> Uncertainity will be given on the demand of customer.</h4>
+                                                                    </u>
+                                                                    <u>
+                                                                        <h3>*: These Tests are out of scope of ISO/IEC 17025:2017</h3>
+                                                                    </u>
+
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 d-flex">
+                                                                <div style="margin-right:180px;margin-bottom: 10px;">
+                                                                    <span> <b>Remarks:</b> </span>
+                                                                </div>
+                                                                <div>
+                                                                    <u>________________________________________________________________________________________________________</u>
+                                                                </div>
+                                                            </div>
 
                                                             <table class="table">
                                                                 <tr>
@@ -2086,7 +2061,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                                             <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
                                                                                 <span>Sohail Ghouri </span>
-																				
+
                                                                             </th>
                                                                             <th></th>
 
@@ -2349,7 +2324,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                                             <td>Result</td>
                                                                             <th id="resultMat"> </th>
-    
+
                                                                         </tr>
                                                                         <tr>
                                                                             <td>Sender</td>
@@ -2360,7 +2335,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <tr>
                                                                             <td>Material Name</td>
                                                                             <th colspan="4" id="matNameMat"></th>
-                                                                            
+
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
@@ -2392,29 +2367,6 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                             <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionMaterial"> </span></label></div>
 
-                                                            <div class="col-md-12 d-flex mt-3  " >
-																<div style="margin-right:200px"> 
-																	<span> <b>Note:</b>  </span>
-																</div>
-												
-																 <div>
-																 <u><p>The above reported result is applicable to the sample as received at customer service section</p> </u>	
-																<u><h4> Uncertainity will be given on the demand of customer.</h4></u>	
-																 <u><h3>*: These Tests are out of scope of ISO/IEC 17025:2017</h3> </u>	
-
-														
-																 </div>
-															</div>
-															<div class="col-md-12 d-flex">
-															  <div style="margin-right:180px;margin-bottom: 10px;"
-													> 
-																	<span> <b>Remarks:</b>  </span>
-																</div>
-																<div>
-																	<u>________________________________________________________________________________________________________</u>
-																</div>
-															</div>
-
 
                                                             <table class="table">
                                                                 <tr>
@@ -2427,7 +2379,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <th></th>
                                                                     <th></th>
                                                                     <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
-                                                                        <span id="testPerformedMaterialTest"> </span>
+                                                                        <span id="testPerformedMaterial"> </span>
                                                                     </th>
                                                                     <th></th>
                                                                     <th></th>
@@ -4395,249 +4347,19 @@ if (!$this->session->has_userdata('user_id')) {
                                 $AS = $this->session->userdata('ApprovalStatus');
 
 
-                                // if($Uploading==1){
+                                
 
                                 ?>
-                                <div class="panel-container show">
-                                    <?php if ($LabTestReqStatus !== 1) { ?>
-
-                                        <div class="panel-content">
-                                            <div class="demo-v-spacing">
-                                                <form method="post" enctype="multipart/form-data" action='<?php echo base_url('LabController/addHeadData'); ?>'>
-                                                    <div class="card-body">
-                                                        <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alertShown" style="display: none;">
-                                                            <strong>Congratulations!</strong> Record Added Successfully. Kindly wait for page to be reloaded!
-                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="row">
-
-                                                            <div class="col-md-12">
-                                                                <div class="form-group mt-4">
-                                                                    <div class="custom-file">
-                                                                        <?php
-                                                                        if ($Uploading == 1) {
-
-
-                                                                        ?>
-                                                                            <input type="file" class="custom-file-input" id="customFile" onchange="fileSelect(this.files);" name="CottonData" accept=".xlsx, .xls, .csv">
-
-                                                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                                                        <?php
-
-                                                                        } else {
-                                                                        ?>
-                                                                            <input type="file" disabled="disabled" lass="custom-file-input" id="customFile" onchange="fileSelect(this.files);" name="CottonData" accept=".xlsx, .xls, .csv">
-
-                                                                            <label class="custom-file-label" for="customFile">Choose file</label>
-                                                                        <?PHP
-                                                                        }
-                                                                        ?>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-
-                                                            <div class="col-md-4">
-
-
-                                                                <input type="checkbox" id="checkMisTestN" name="checkMisTestN" class="form-check-input w-5 h-5" onchange="CheckMisTestN()">
-
-                                                                <input style="display:none" type="checkbox" id="checkMisTest" name="checkMisTest" class="form-check-input w-5 h-5" onchange="CheckMisTest()">
-
-                                                                <div id="checkCSSNo2" style="display:block" class="form-group">
-
-
-                                                                    <label for="sel1">Select CSS # :</label><br>
-                                                                    <div>
-                                                                        <select class="form-control" id="cssCode" name="cssCode" onchange="getData()">
-                                                                            <option value="">Select one of the following</option>
-                                                                            <?php foreach ($getCssNo as $Key) {
-
-                                                                                // if($Key['mislaneous_status']){
-                                                                            ?>
-
-                                                                                <option value="<?php echo $Key['CSSNo']; ?>"><?php echo $Key['CSSNo']; ?></option>
-                                                                            <?php } ?>
-                                                                            <?php
-                                                                            // }
-                                                                            ?>
-                                                                        </select>
-                                                                    </div>
-
-                                                                    <!-- <div id="checkCSSNo2" style="display:none">
-                                                                <select class="form-control"  id="cssCode2" name="cssCode2" onchange="getData2()">
-                                                                    <option  value="">Select one of the following</option>
-                                                                    <?php foreach ($getmateialCssNoMisTests as $Key) {
-                                                                        if ($Key['mislaneous_status']) {
-                                                                    ?>
-
-                                                                        <option  value="<?php echo $Key['CSSNos']; ?>"><?php echo $Key['CSSNos']; ?></option>
-                                                                    <?php } ?> 
-<?php
-                                                                    }
-?>
-                                                                </select>
-                                                                </div> -->
-
-
-                                                                    <div id="CSSNewHTML"></div>
-
-
-
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-4">
-                                                                <!-- <div class="form-group">
-                                                            
-                                                                                    <label>Select Material Type</label>
-                                                                                    <select class="form-control" id="testType">
-                                                                                        <option value="" selected="">Select Material Type</option>
-                                                                                        <option value="Carton Test">Carton Test</option>
-                                                                                        <option value="Foam">Foam</option>
-                                                                                        <option value="Fabric">Fabric</option>
-                                                                                        <option value="Thread">Thread</option>
-                                                                                        <option value="SR Blader">SR Blader</option>
-                                                                                        <option value="Material">Material</option>
-                                                                                        <option value="FGT Report">FGT Report</option>
-                                                                                        <option value="MS Thread">MS Thread</option>
-                                                                                        <option value="MS Material">MS Material</option>
-                                                                                        <option value="Poly Bag">Poly Bag</option>
-                                                                                        <option value="Adhesion">Adhesion</option>
-                                                                                        <option value="CSM">CSM</option>
-
-                                                                                    </select>
-                                                                                </div> -->
-
-                                                                <label>Select Test Type</label>
-                                                                <input type="number" class="form-control" id="testType" required readonly="readonly" hidden>
-                                                                <input type="text" class="form-control" id="materialType" required readonly="readonly">
-                                                                <!-- <select class="form-control" id="testType" onchange="SetSheetNo()">
-
-                                                                    <option value="" selected>Select Test Type</option>
-                                                                    <option value="1">Carton Test</option>
-                                                                    <option value="2">Foam</option>
-                                                                    <option value="3">Fabric</option>
-                                                                    <option value="4">Thread</option>
-                                                                    <option value="5">SR Blader</option>
-                                                                    <option value="6">Material</option>
-                                                                    <option value="7">FGT Report</option>
-                                                                    <option value="8">MS Thread</option>
-                                                                    <option value="9">MS Material</option>
-                                                                    <option value="10">Poly Bag</option>
-                                                                </select> -->
-
-                                                            </div>
-
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label>Enter Sheet No. *</label>
-                                                                    <input type="number" class="form-control" id="sheetNo" required readonly="readonly">
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label>Test Group</label>
-                                                                    <input type="text" class="form-control" id="testGroup" required readonly="readonly">
-                                                                    <!-- <select class="form-control" id="testGroup">
-                                                                    <option value="" selected>Select Test Group</option>
-                                                                    <option value="Development">Development</option>
-                                                                    <option value="Production">Production</option>
-                                                                </select> -->
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label>Test Performed By</label>
-                                                                    <select class="form-control" id="testPerformer">
-                                                                        <option value="" selected>Select Test Performed By</option>
-                                                                        <option value="Imran">Imran</option>
-                                                                        <option value="Pervaiz">Pervaiz</option>
-                                                                        <option value="Tanveer">Tanveer</option>
-                                                                        <option value="Umer">Umer</option>
-                                                                        <option value="Bilal">Bilal</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-
-                                                            <!-- <div class="form-group col-md-3">
-                                                            <div>
-                                                                <label for="img">Upload Image:</label>
-                                                                <input type="file" id="img" name="img" accept="image/*">
-                                                            </div>
-                                                        </div> -->
-
-
-                                                            <div class="col-md-8">
-                                                                <div class="form-group mt-4">
-                                                                    <div class="custom-file">
-                                                                        <input type="file" class="custom-file-input" id="img" name="img" accept="image/*">
-
-                                                                        <label class="custom-file-label" for="customFile">Upload Spectrum Image</label>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-4">
-                                                                <div class="form-group mt-4" style="display: none;">
-
-                                                                    <input type="text" class="form-control" id="headerData" name="HeaderData[]">
-                                                                    <input type="text" class="form-control" id="childData" name="ChildData[][]">
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-
-
-
-                                                    </div>
-
-
-                                            </div>
-                                            <!-- /.card-body -->
-                                            <?php
-                                            if ($Uploading == 1) {
-
-
-                                            ?>
-                                                <div class="card-footer text-right">
-                                                    <button class="btn btn-primary" id="submitData">Load</button>
-                                                    <button class="btn btn-primary" id="sendHeaderValues" style="display: none;">Save Data</button>
-                                                    <!-- <button class="btn btn-primary" id="sendDetailsValues" style="display: none;" >Save Test Details</button> -->
-                                                </div>
-                                            <?php
-
-                                            } else {
-                                            ?>
-                                                <div class="card-footer text-right">
-                                                    <button class="btn btn-primary" disabled="disabled" id="submitData">Load</button>
-                                                    <button class="btn btn-primary" disabled="disabled" id="sendHeaderValues" style="display: none;">Save Data</button>
-                                                    <!-- <button class="btn btn-primary" id="sendDetailsValues" style="display: none;" >Save Test Details</button> -->
-                                                </div>
-                                            <?php
-                                            } ?>
-                                            </form>
-                                        </div>
-
-                                    <?php } ?>
-                                </div>
                                 <?php
 
-                                //}
+                                
                                 ?>
-                            </div>
-                        </div>
                         <div class="col-md-12  table-responsive">
 
                             <div id="panel-1" class="panel">
                                 <div class="panel-hdr">
                                     <h2>
-                                        Lab Test Report</span>
+                                        Lab Development Tests Reports</span>
                                     </h2>
                                     <!-- <div class="panel-toolbar">
                                             <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
@@ -4694,7 +4416,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                     //$this->load->model('LabModel', 'l');
                                                     //print_r($Labtest);
 
-
+                                                    if(isset($Labtest)){
                                                     foreach ($Labtest as $Key) {
 
                                                         $Approvalname = $Key['Approvalname'];
@@ -4901,6 +4623,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </tr>
                                                     <?php
 
+                                                    }
                                                     }
                                                     ?>
                                                 </tbody>
@@ -5238,7 +4961,7 @@ ${reviewStatus == '1' ?
                                 $("#customData").html("");
                                 $("#defaultTable").css("display", "none");
 
-                                url = '<?php echo base_url('LabController/getTableDatalab'); ?>'
+                                url = '<?php echo base_url('DevelopmentController/developmentTestsReport'); ?>'
 
                                 $.post(url, {
                                         'startDate': sDate,
@@ -5249,246 +4972,234 @@ ${reviewStatus == '1' ?
                                         let reviewStatus = '<?php echo $RS; ?>';
                                         let approvalStatus = '<?php echo $AS; ?>';
 
-
-                                        html = `    <table id="table1" class="table table-bordered table-hover table-responsive table-striped w-100">
-                                                <thead class="bg-primary-200">
-                                                    <tr style="color:white;">
-                                                      <th>Item Type</th>
-                                                        <th>Test No </th>
-                                                        <th>CSS No </th>
-                                                        <th> Date </th>
-                                                        <th>Item Name </th>
-                                                        <th>PO # </th>
-                                                           <th>Receiving Date  </th>
-                                                        <th>Supplier</th>
-                                                          <!-- <th>Supplier Refrence</th> -->
+                                        if(data != ''){
+                                            html = `    <table id="table1" class="table table-bordered table-hover table-responsive table-striped w-100">
+                                                    <thead class="bg-primary-200">
+                                                        <tr style="color:white;">
+                                                            <th>Type</th>
+                                                            <th>Factory Code </th>
                                                             <th>Quantity </th>
-                                                             
-                                                                 <th>Result </th>
-                                                                   <th>Generated By </th>
-                                                                   <th>Review Status </th>
-                                                                    <th>Review By </th>
-                                                                     <th>Approved Status </th>
-                                                                    <th>Approved By </th>
-                                                                  
-                                                                   <th>Actions </th>
-                                                                   <th>Development Report</th>
-                                                                      <th>Undo </th>
-                                                            
-                                                                  
-                                                    </tr>
-                                                </thead>
-                                                <tbody>`;
-                                        data.forEach(element => {
-
-                                            html += `
-        <tr>
-    <td>${element.ItemType}</td>
-    <td>${element.TestNO}</td>
-    <td>${element.CSSNO}</td>
-    <td>${element.Date}</td>
-    <td>${element.Size}</td>
-    <td>${element.PO}</td>
-    <td>${element.Receiving_Date}</td>
-    <td>${element.Supplier_Name}</td>
- 
-    <td>${element.Quantity_Carton}</td>
-
-    <td>${element.Result}</td>
-    <td><span class="badge badge-primary p-1">${element.LoginName}</span></td>
-
-    <td>
-      
-      ${element.ReviewStatus == '1' ?
+                                                            <th>Supplier Name </th>
+                                                            <th>Item Name </th>
+                                                            <th>Qty Received </th>
+                                                            <th>Qty Retained  </th>
+                                                            <th>Due Date</th>
+                                                            <th>Completion Date</th>
+                                                            <th>Test Category </th>
+                                                            <th>Comp Test </th>
+                                                            <th>Test Type</th>
+                                                            <th>PO </th>
+                                                            <th>CSS No </th>
+                                                            <th>Generated By </th>
+                                                            <th>Actions </th>
+                                                                
+                                                                      
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>`;
+                                            data.forEach(element => {
     
-          `<div class="custom-control custom-switch">
-         
-${reviewStatus == '1' ?
-           
-          ` <input type="checkbox" class="custom-control-input" id="customreview${element.TID}" checked="">
-          <label class="custom-control-label" for="customreview${element.TID}"></label>
-          `
-          : `<input type="checkbox" class="custom-control-input" id="customreview${element.TID}"  checked="" disabled>
-          <label class="custom-control-label" for="customreview${element.TID}"></label>
-          `
-}
-         
-          </div>`
+                                                html += `
+                                                <tr>
+                                                <td>${element.Type}</td>
+                                                <td>${element.FactoryCode}</td>
+                                                <td>${element.Quantity}</td>
+                                                <td>${element.SupplierNam}</td>
+                                                <td>${element.itemName}</td>
+                                                <td>${element.qtyRece}</td>
+                                                <td>${element.qtyRetain}</td>
+                                                <td>${element.dueDate}</td>
+                                            
+                                                <td>${element.comDate}</td>
+    
+                                                <td>${element.testCateogry}</td>
+                                                <td><span>${element.comptest}</span></td>
+    
+                                                <td>${element.TestType}</td>
+                                                <td>${element.Po}</td>
+                                                <td>${element.CSSNo}</td>
+                                                <td>${element.LoginName}</td>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <button type="button" class="btn btn-warning btn-xs customprintButton waves-effect waves-themed" id="btnPrint.${element.TID}"><i class="fal fa-print" aria-hidden="true"></i></button>
+                                                        </div>
+                                                    </div>
+    
+                                                </td>`
+                                            });
+                                            html += `</tbody></table>`;
+    
+                                            $("#customData").append(html);
+    
+                                            $('#table1').dataTable({
+                                                responsive: false,
+                                                lengthChange: false,
+                                                dom:
+                                                    /*	--- Layout Structure 
+                                                        --- Options
+                                                        l	-	length changing input control
+                                                        f	-	filtering input
+                                                        t	-	The table!
+                                                        i	-	Table information summary
+                                                        p	-	pagination control
+                                                        r	-	processing display element
+                                                        B	-	buttons
+                                                        R	-	ColReorder
+                                                        S	-	Select
+    
+                                                        --- Markup
+                                                        < and >				- div element
+                                                        <"class" and >		- div with a class
+                                                        <"#id" and >		- div with an ID
+                                                        <"#id.class" and >	- div with an ID and a class
+    
+                                                        --- Further reading
+                                                        https://datatables.net/reference/option/dom
+                                                        --------------------------------------
+                                                     */
+                                                    "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                                                    "<'row'<'col-sm-12'tr>>" +
+                                                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                                                buttons: [
+                                                    /*{
+                                                        extend:    'colvis',
+                                                        text:      'Column Visibility',
+                                                        titleAttr: 'Col visibility',
+                                                        className: 'mr-sm-3'
+                                                    },*/
+                                                    {
+                                                        extend: 'pdfHtml5',
+                                                        text: 'PDF',
+                                                        titleAttr: 'Generate PDF',
+                                                        className: 'btn-outline-danger btn-sm mr-1'
+                                                    },
+                                                    {
+                                                        extend: 'excelHtml5',
+                                                        text: 'Excel',
+                                                        titleAttr: 'Generate Excel',
+                                                        className: 'btn-outline-success btn-sm mr-1'
+                                                    },
+                                                    {
+                                                        extend: 'csvHtml5',
+                                                        text: 'CSV',
+                                                        titleAttr: 'Generate CSV',
+                                                        className: 'btn-outline-primary btn-sm mr-1'
+                                                    },
+                                                    {
+                                                        extend: 'copyHtml5',
+                                                        text: 'Copy',
+                                                        titleAttr: 'Copy to clipboard',
+                                                        className: 'btn-outline-primary btn-sm mr-1'
+                                                    },
+                                                    {
+                                                        extend: 'print',
+                                                        text: 'Print',
+                                                        titleAttr: 'Print Table',
+                                                        className: 'btn-outline-primary btn-sm'
+                                                    }
+                                                ]
+                                            });
 
-      :
-
-      `${reviewStatus == '1' ?
-
-          `<div class="custom-control custom-switch">
-              <input type="checkbox" class="custom-control-input" id="customreview${element.TID}" checked="">
-              <label class="custom-control-label" for="customreview${element.TID}" disabled></label>
-          </div>`
-          :
-          `<div class="custom-control custom-switch">
-              <input type="checkbox" class="custom-control-input" id="customreview${element.TID}" checked="" disabled>
-              <label class="custom-control-label" for="customreview${element.TID}" disabled></label>
-          </div>`
-      }
- `   }
-  </td>
-    <td>
-
-    ${element.ReviewStatus == '1'?
-            `<span class="badge badge-primary p-1">${element.reviewName}</span>`:
-            `<span class="badge badge-warning p-1">Fatima Rasheed</span>`
-        }
-    </td>
-    <td>
-        ${element.ApprovedStatus == '1'?
-            `<div class="custom-control custom-switch">
-            ${approvalStatus == '1'?
-                `<input type="checkbox" class="custom-control-input" id="customapproved${element.TID}" checked="">
-                <label class="custom-control-label" for="customapproved${element.TID}"></label>`
-             :           
-             `<input type="checkbox" class="custom-control-input" id="customapproved${element.TID}" checked="" disabled>
-                <label class="custom-control-label" for="customapproved${element.TID}"></label>`
-       
-    }
-    </div>`
-       :
-       `${approvalStatus == '1' ?
-            `<div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="customapproved${element.TID}" checked="">
-                <label class="custom-control-label" for="customapproved${element.TID}"></label>
-            </div>`
-            :
-            `<div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="customapproved${element.TID}" checked="" disabled>
-                <label class="custom-control-label" for="customapproved${element.TID}"></label>
-            </div>`
-       }
-      `  }
-    </td>
-    <td>
-            ${element.ApprovedStatus == '1'?
-          `<span class="badge badge-primary p-1">${element.Approvalname}</span>`:
-          
-            `<span class="badge badge-warning p-1">Zain Abbas</span>`
-            }
-    </td>
-    <td>
-        <div class="row">
-            <div class="col-md-2">
-                <button type="button" class="btn btn-info btn-xs customupdatebtn1 waves-effect waves-themed" id="custombtn.${element.TID}"><i class="fal fa-edit" aria-hidden="true"></i></button>
-            </div>
-            <div class="col-md-2">
-           </div>
-          
-            <div class="col-md-2">
-
-            </div>
-            <div class="col-md-2">
-                <button type="button" class="btn btn-warning btn-xs customprintButton waves-effect waves-themed" id="btnPrint.${element.TID}"><i class="fal fa-print" aria-hidden="true"></i></button>
-            </div>
-        </div>
-
-
-
-
-    </td>
-
-    ${(element.Size != null ?element.Size.trim()=='Azuga W-V85B Hi White Star':element.Size=='Azuga W-V85B Hi White Star') || (element.Size != null ?element.Size.trim()=='B3766 181MP':element.Size=='B3766 181MP') || (element.Size != null ?element.Size.trim()=='FB107':element.Size=='FB107') || (element.Size != null ?element.Size.trim()=='FB 122':element.Size=='FB 122') || (element.Size != null ?element.Size.trim()=='PU 357 Signal Green':element.Size=='PU 357 Signal Green') || (element.Size != null ?element.Size.trim()=='TPU Film 0.15mm White':element.Size=='TPU Film 0.15mm White')? 
-  ` <td>
-             <div class="col-md-2">
-               
-             <button type="button" class="btn btn-warning btn-xs customstandardButton waves-effect waves-themed" id="btnPrint.${element.TID}">Development Reports</button>
-           
-      
-                </div>
-    </td>`:`<td>
-             <div class="col-md-2">
-               
-          
-      
-                </div>
-    </td>`}
-   <td>
-             <div class="col-md-2">
-               
-           <button type="button" id="customundo.${element.TID}" value="${element.TID}" class="btn btn-danger btn-xs customundobtn">
-            <i class="fal fa-trash" aria-hidden="true"></i></button> 
-      
-                </div>
-    </td>
-</tr>`
-                                        });
-                                        html += `</tbody></table>`;
-
-                                        $("#customData").append(html);
-
-                                        $('#table1').dataTable({
-                                            responsive: false,
-                                            lengthChange: false,
-                                            dom:
-                                                /*	--- Layout Structure 
-                                                	--- Options
-                                                	l	-	length changing input control
-                                                	f	-	filtering input
-                                                	t	-	The table!
-                                                	i	-	Table information summary
-                                                	p	-	pagination control
-                                                	r	-	processing display element
-                                                	B	-	buttons
-                                                	R	-	ColReorder
-                                                	S	-	Select
-
-                                                	--- Markup
-                                                	< and >				- div element
-                                                	<"class" and >		- div with a class
-                                                	<"#id" and >		- div with an ID
-                                                	<"#id.class" and >	- div with an ID and a class
-
-                                                	--- Further reading
-                                                	https://datatables.net/reference/option/dom
-                                                	--------------------------------------
-                                                 */
-                                                "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
-                                                "<'row'<'col-sm-12'tr>>" +
-                                                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                                            buttons: [
-                                                /*{
-                                                	extend:    'colvis',
-                                                	text:      'Column Visibility',
-                                                	titleAttr: 'Col visibility',
-                                                	className: 'mr-sm-3'
-                                                },*/
-                                                {
-                                                    extend: 'pdfHtml5',
-                                                    text: 'PDF',
-                                                    titleAttr: 'Generate PDF',
-                                                    className: 'btn-outline-danger btn-sm mr-1'
-                                                },
-                                                {
-                                                    extend: 'excelHtml5',
-                                                    text: 'Excel',
-                                                    titleAttr: 'Generate Excel',
-                                                    className: 'btn-outline-success btn-sm mr-1'
-                                                },
-                                                {
-                                                    extend: 'csvHtml5',
-                                                    text: 'CSV',
-                                                    titleAttr: 'Generate CSV',
-                                                    className: 'btn-outline-primary btn-sm mr-1'
-                                                },
-                                                {
-                                                    extend: 'copyHtml5',
-                                                    text: 'Copy',
-                                                    titleAttr: 'Copy to clipboard',
-                                                    className: 'btn-outline-primary btn-sm mr-1'
-                                                },
-                                                {
-                                                    extend: 'print',
-                                                    text: 'Print',
-                                                    titleAttr: 'Print Table',
-                                                    className: 'btn-outline-primary btn-sm'
-                                                }
-                                            ]
-                                        });
+                                        }else{
+                                            alert("No data found of Raw Material Production Type!");
+                                            html = `<table id="table2" class="table table-bordered table-hover table-responsive table-striped w-100">
+                                                    <thead class="bg-primary-200">
+                                                        <tr style="color:white;">
+                                                            <th>Type</th>
+                                                            <th>Factory Code </th>
+                                                            <th>Quantity </th>
+                                                            <th>Supplier Name </th>
+                                                            <th>Item Name </th>
+                                                            <th>Qty Received </th>
+                                                            <th>Qty Retained  </th>
+                                                            <th>Due Date</th>
+                                                            <th>Completion Date</th>
+                                                            <th>Test Category </th>
+                                                            <th>Comp Test </th>
+                                                            <th>Test Type</th>
+                                                            <th>PO </th>
+                                                            <th>CSS No </th>
+                                                            <th>Generated By </th>
+                                                            <th>Actions </th>
+                                                                
+                                                                      
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>`;
+                                            
+    
+                                            $("#customData").append(html);
+    
+                                            $('#table2').dataTable({
+                                                responsive: false,
+                                                lengthChange: false,
+                                                dom:
+                                                    /*	--- Layout Structure 
+                                                        --- Options
+                                                        l	-	length changing input control
+                                                        f	-	filtering input
+                                                        t	-	The table!
+                                                        i	-	Table information summary
+                                                        p	-	pagination control
+                                                        r	-	processing display element
+                                                        B	-	buttons
+                                                        R	-	ColReorder
+                                                        S	-	Select
+    
+                                                        --- Markup
+                                                        < and >				- div element
+                                                        <"class" and >		- div with a class
+                                                        <"#id" and >		- div with an ID
+                                                        <"#id.class" and >	- div with an ID and a class
+    
+                                                        --- Further reading
+                                                        https://datatables.net/reference/option/dom
+                                                        --------------------------------------
+                                                     */
+                                                    "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                                                    "<'row'<'col-sm-12'tr>>" +
+                                                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                                                buttons: [
+                                                    /*{
+                                                        extend:    'colvis',
+                                                        text:      'Column Visibility',
+                                                        titleAttr: 'Col visibility',
+                                                        className: 'mr-sm-3'
+                                                    },*/
+                                                    {
+                                                        extend: 'pdfHtml5',
+                                                        text: 'PDF',
+                                                        titleAttr: 'Generate PDF',
+                                                        className: 'btn-outline-danger btn-sm mr-1'
+                                                    },
+                                                    {
+                                                        extend: 'excelHtml5',
+                                                        text: 'Excel',
+                                                        titleAttr: 'Generate Excel',
+                                                        className: 'btn-outline-success btn-sm mr-1'
+                                                    },
+                                                    {
+                                                        extend: 'csvHtml5',
+                                                        text: 'CSV',
+                                                        titleAttr: 'Generate CSV',
+                                                        className: 'btn-outline-primary btn-sm mr-1'
+                                                    },
+                                                    {
+                                                        extend: 'copyHtml5',
+                                                        text: 'Copy',
+                                                        titleAttr: 'Copy to clipboard',
+                                                        className: 'btn-outline-primary btn-sm mr-1'
+                                                    },
+                                                    {
+                                                        extend: 'print',
+                                                        text: 'Print',
+                                                        titleAttr: 'Print Table',
+                                                        className: 'btn-outline-primary btn-sm'
+                                                    }
+                                                ]
+                                            });
+                                        }
 
                                     });
 
@@ -5752,7 +5463,6 @@ ${reviewStatus == '1' ?
                                                 });
                                             $('#exampleModalFabric').modal('toggle');
                                         } else if (data[0].ItemType.trim() == 'Material') {
-                                            
                                             $("#testNoMaterial").text(data[0].TestNO);
                                             $("#dateTestMaterial").text(data[0].Date);
                                             $("#ponoMaterial").text(data[0].PO);
@@ -8348,43 +8058,43 @@ ${reviewStatus == '1' ?
                                             $('#exampleModalFabricComparison').modal('toggle');
                                         } else if (data[0].ItemType.trim() == 'Thread') {
 
-                                                $("#testNoThread").text(data[0].TestNO);
-                                                $("#dateTestThread").text(data[0].Date);
-                                                $("#ponoThread").text(data[0].PO);
-                                                $("#receiveDateThread").text(data[0].Receiving_Date);
-                                                $("#thicknessThread").text(data[0].Thickness);
-                                                $("#supplierNameThread").text(data[0].Supplier_Name);
-                                                $("#ResultThread").text(data[0].Result);
+                                            $("#testNoThread").text(data[0].TestNO);
+                                            $("#dateTestThread").text(data[0].Date);
+                                            $("#ponoThread").text(data[0].PO);
+                                            $("#receiveDateThread").text(data[0].Receiving_Date);
+                                            $("#thicknessThread").text(data[0].Thickness);
+                                            $("#supplierNameThread").text(data[0].Supplier_Name);
+                                            $("#ResultThread").text(data[0].Result);
 
-                                                $("#supplierRefThread").text(data[0].Supplier_Ref);
-                                                $("#linearDensityThread").text(data[0].LinearDensity);
-                                                $("#twistThread").text(data[0].TwistPerInch);
-                                                $("#testPerformedThread").text(data[0].performedBy);
-                                                data[0].Approvalname ? $("#testApprovedThread").text(data[0].Approvalname) : $("#testApprovedThread").text("Pending");
-                                                //  $("#Incharge").text(data[0].Approvalname);
-                                                if (data[0].image != null && data[0].image != "") {
-                                                    $("#threadImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
-                                                } else {
-                                                    $("#threadImage").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                                }
-                                                data[0].reviewName ? $("#testReviewedThread").text(data[0].reviewName) : $("#testReviewedThread").text("Pending");
-                                                $("#ConclusionThread").text(data[0].Result);
-                                                $.post(url2, {
-                                                        'TID': TID
-                                                    },
-                                                    function(data, status) {
+                                            $("#supplierRefThread").text(data[0].Supplier_Ref);
+                                            $("#linearDensityThread").text(data[0].LinearDensity);
+                                            $("#twistThread").text(data[0].TwistPerInch);
+                                            $("#testPerformedThread").text(data[0].performedBy);
+                                            data[0].Approvalname ? $("#testApprovedThread").text(data[0].Approvalname) : $("#testApprovedThread").text("Pending");
+                                            //  $("#Incharge").text(data[0].Approvalname);
+                                            if (data[0].image != null && data[0].image != "") {
+                                                $("#threadImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
+                                            } else {
+                                                $("#threadImage").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                            }
+                                            data[0].reviewName ? $("#testReviewedThread").text(data[0].reviewName) : $("#testReviewedThread").text("Pending");
+                                            $("#ConclusionThread").text(data[0].Result);
+                                            $.post(url2, {
+                                                    'TID': TID
+                                                },
+                                                function(data, status) {
 
-                                                        html = ''
-                                                        let i = 0;
-                                                        let extMax = 0;
-                                                        let Max = 0;
-                                                        let ext = 0;
-                                                        data.forEach(element => {
+                                                    html = ''
+                                                    let i = 0;
+                                                    let extMax = 0;
+                                                    let Max = 0;
+                                                    let ext = 0;
+                                                    data.forEach(element => {
 
-                                                            extMax += parseInt(element.ExtatMax);
-                                                            Max += parseInt(element.MaxLoad);
-                                                            ext += parseInt(element.Ext);
-                                                            html += `<tr>
+                                                        extMax += parseInt(element.ExtatMax);
+                                                        Max += parseInt(element.MaxLoad);
+                                                        ext += parseInt(element.Ext);
+                                                        html += `<tr>
                                                             <td style="border:2px solid black">${element.TDate}</td>
                                                             <td style="border:2px solid black">${element.ExtatMax}</td>
                                                             <td style="border:2px solid black">${element.MaxLoad}</td>
@@ -8392,9 +8102,9 @@ ${reviewStatus == '1' ?
                                                             ${element.Ext}
                                                             </td>
                                                         </tr>`
-                                                                                                });
-                                                                                                let sizeOfThread = data.length;
-                                                                                                html += `<tr>
+                                                    });
+                                                    let sizeOfThread = data.length;
+                                                    html += `<tr>
                                             <td style="border:2px solid black">Average</td>
                                                             <td style="border:2px solid black">${extMax/sizeOfThread}</td>
                                                             <td style="border:2px solid black">${Max/sizeOfThread}</td>
@@ -8407,35 +8117,35 @@ ${reviewStatus == '1' ?
 
                                                 });
                                             $('#exampleModalThread').modal('toggle');
-                                            } else if (data[0].ItemType.trim() == 'Blader') {
-                                                $("#testNoBlader").text(data[0].TestNO);
-                                                $("#dateTestBlader").text(data[0].Date);
-                                                $("#ponoBlader").text(data[0].PO);
-                                                $("#receiveDateBlader").text(data[0].Receiving_Date);
+                                        } else if (data[0].ItemType.trim() == 'Blader') {
+                                            $("#testNoBlader").text(data[0].TestNO);
+                                            $("#dateTestBlader").text(data[0].Date);
+                                            $("#ponoBlader").text(data[0].PO);
+                                            $("#receiveDateBlader").text(data[0].Receiving_Date);
 
-                                                $("#supplierNameBlader").text(data[0].Supplier_Name);
-                                                $("#supplierRefBlader").text(data[0].Supplier_Ref);
-                                                $("#hardnessBlader").text(data[0].Hardness);
-                                                $("#sizeBlader").text(data[0].Size);
-                                                $("#materialBlader").text(data[0].material);
-                                                $("#testPerformedBlader").text(data[0].performedBy);
-                                                data[0].Approvalname ? $("#testApprovedBlader").text(data[0].Approvalname) : $("#testApprovedBlader").text("Pending");
-                                                //  $("#Incharge").text(data[0].Approvalname);
-                                                if (data[0].image != null && data[0].image != "") {
-                                                    $("#bladerImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
-                                                } else {
-                                                    $("#bladerImage").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                                }
-                                                data[0].reviewName ? $("#testReviewedBlader").text(data[0].reviewName) : $("#testReviewedBlader").text("Pending");
-                                                $("#Conclusion").text(data[0].Result);
-                                                $.post(url2, {
-                                                        'TID': TID
-                                                    },
-                                                    function(data, status) {
+                                            $("#supplierNameBlader").text(data[0].Supplier_Name);
+                                            $("#supplierRefBlader").text(data[0].Supplier_Ref);
+                                            $("#hardnessBlader").text(data[0].Hardness);
+                                            $("#sizeBlader").text(data[0].Size);
+                                            $("#materialBlader").text(data[0].material);
+                                            $("#testPerformedBlader").text(data[0].performedBy);
+                                            data[0].Approvalname ? $("#testApprovedBlader").text(data[0].Approvalname) : $("#testApprovedBlader").text("Pending");
+                                            //  $("#Incharge").text(data[0].Approvalname);
+                                            if (data[0].image != null && data[0].image != "") {
+                                                $("#bladerImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
+                                            } else {
+                                                $("#bladerImage").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                            }
+                                            data[0].reviewName ? $("#testReviewedBlader").text(data[0].reviewName) : $("#testReviewedBlader").text("Pending");
+                                            $("#Conclusion").text(data[0].Result);
+                                            $.post(url2, {
+                                                    'TID': TID
+                                                },
+                                                function(data, status) {
 
-                                                        html = ''
-                                                        data.forEach(element => {
-                                                            html += `<tr>
+                                                    html = ''
+                                                    data.forEach(element => {
+                                                        html += `<tr>
                                                 <td style="border:2px solid black">${element.Test}</td>
                                                 <td style="border:2px solid black">${element.Unit}</td>
                                                 <td style="border:2px solid black">${element.result1}</td>
@@ -8706,7 +8416,6 @@ ${reviewStatus == '1' ?
                                             $("#senderFab").text(data[0].Sender);
                                             $("#testedByFab").text(data[0].performedBy);
                                             $("#matNameFab").text(data[0].MaterialName);
-                                            $("#testPerformedFabric").text(data[0].performedBy);
 
 
                                             if (data[0].image != null && data[0].image != "") {
@@ -8752,14 +8461,13 @@ ${reviewStatus == '1' ?
                                             $("#senderMat").text(data[0].Sender);
                                             $("#testedByMat").text(data[0].performedBy);
                                             $("#matNameMat").text(data[0].MaterialName);
-                                            $("#testPerformedMaterialTest").text(data[0].performedBy);
 
                                             if (data[0].image != null && data[0].image != "") {
                                                 $("#materialImage").attr('src', '<?php echo base_url(); ?>assets/img/img/' + data[0].image);
                                             } else {
                                                 $("#materialImage").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
                                             }
-                                            
+
                                             $.post(url2, {
                                                     'TID': TID
                                                 },
@@ -9190,50 +8898,7 @@ ${reviewStatus == '1' ?
                                 htmlCssNewApppend = ``;
 
 
-                                urlCssNew1 = '<?php echo base_url('LabController/getRawMatReqByCss'); ?>'
-
-
-                                $.get(urlCssNew1, function(data) {
-
-
-                                    htmlCssNewApppend += `
-
-    <label>Select from New Css Form</label>
-    <select class="form-control" id="cssCode1" name="cssCode1" onchange="getDataByCSSNEW(cssCode1.value)">
-                                                                    <option  value="">Select one of the following</option>
-                                                                
-                                    
-    `
-
-                                    data.forEach(element => {
-
-
-                                        htmlCssNewApppend += `
-    
-    <option  value="${element.CSSNo}">${element.CSSNo}</option>
-    
-    `
-                                    })
-
-
-                                    htmlCssNewApppend += `
-
-</select>
-
-
-
-`
-
-
-
-                                    $("#CSSNewHTML").html(htmlCssNewApppend);
-
-
-                                    // getDataByCSSNEW(cssCode1);
-
-
-
-                                })
+                                
 
                                 $("#cssCode1").select2();
 
@@ -10683,12 +10348,12 @@ ${reviewStatus == '1' ?
                                     // testNumber = element.TestNo;
                                     // PONumber = element.PONo;
                                     let arrayHead = [element.LabNo, element.ReceivingDate, element.TestingDateS, element.TestingDateE, element.EnviromentalCond, element.SupplierName, element.Sender, element.MaterialName, element.CssCode, element.IssueDate, element.LotReference, element.Result, element.TestedBy, element.ItemType, ']'];
-                                    let arrayBody = [element.Test,element.Method, element.Requirement, element.Results, element.Remark, ']'];
+                                    let arrayBody = [element.Test, element.Method, element.Requirement, element.Results, element.Remark, ']'];
                                     HeaderArray.push(arrayHead);
                                     ChildArray.push(arrayBody)
                                 } else {
 
-                                    let arrayBody = [element.Test,element.Method, element.Requirement, element.Results, element.Remark, ']'];
+                                    let arrayBody = [element.Test, element.Method, element.Requirement, element.Results, element.Remark, ']'];
 
                                     ChildArray.push(arrayBody)
                                 }
@@ -10939,11 +10604,11 @@ ${reviewStatus == '1' ?
                             let testNumber;
                             let PONumber
                             this.filelist.forEach(element => {
-                               
+
                                 if (element.TestNo != undefined || element.PONo != undefined) {
                                     testNumber = element.TestNo;
                                     PONumber = element.PONo;
-                                    let arrayHead = [element.TestNo, element.Date, element.Receiving,element.PONo,element.Ref, element.Supplier, element.Result,element.MaterialName, ']'];
+                                    let arrayHead = [element.TestNo, element.Date, element.Receiving, element.PONo, element.Ref, element.Supplier, element.Result, element.MaterialName, ']'];
                                     let arrayBody = [element.TestNo, element.PONo, element.Test, element.Method, element.Unit, element.Requirement, element.Result_1, ']'];
                                     HeaderArray.push(arrayHead);
                                     ChildArray.push(arrayBody)
@@ -11776,4 +11441,3 @@ ${reviewStatus == '1' ?
 
     <?php
 } ?>
-
