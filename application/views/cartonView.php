@@ -4501,7 +4501,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                   
                                                                    <th>Actions </th>
                                                                    <th>Development Report</th>
-                                                                     <th>Undo </th>
+                                                                    
                                                             
                                                                   
                                                     </tr>
@@ -4512,7 +4512,7 @@ if (!$this->session->has_userdata('user_id')) {
                                             html += `
                                                 <tr>
                                             <td>${element.ItemType}</td>
-                                            <td>${element.TestNO}</td>
+                                            <td>${element.TestNo}</td>
                                             <td>${element.CSSNO}</td>
                                             <td>${element.Date}</td>
                                             <td>${element.Size}</td>
@@ -4632,14 +4632,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </div>
                                             </td>`}
                                                 
-                                                    <td>
-                                                    <div class="col-md-2">
-                                                    
-                                                    <button type="button" id="customundo.${element.TID}" value="${element.TID}" class="btn btn-danger btn-xs customundobtn">
-                                                    <i class="fal fa-trash" aria-hidden="true"></i></button> 
-                                            
-                                                        </div>
-                                            </td>
+                                                 
                                         </tr>`
                                         });
                                         html += `</tbody></table>`;
@@ -4776,7 +4769,7 @@ if (!$this->session->has_userdata('user_id')) {
                                             html += `
                                                     <tr>
                                                 <td>${element.ItemType}</td>
-                                                <td>${element.TestNO}</td>
+                                                <td>${element.TestNo}</td>
                                                 <td>${element.CSSNO}</td>
                                                 <td>${element.Date}</td>
                                                 <td>${element.Size}</td>

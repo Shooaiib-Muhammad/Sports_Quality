@@ -102,9 +102,11 @@ if (!$this->session->has_userdata('user_id')) {
 
                                             </div>
                                         </div>
+                                        <center><h1 style="color:firebrick">Hall Wise Temperature Details</h1></center>
 
 
                                         <div class="card">
+                                        
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-md-6">
@@ -127,7 +129,57 @@ if (!$this->session->has_userdata('user_id')) {
 
                                             </div>
                                         </div>
+                                        <br>
+                                        <center><h1 style="color:firebrick">Hall Wise Humidity Details</h1></center>
 
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div id="humidity1"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div id="Humidity2"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div id="humidity3"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div id="humidity4"></div>
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div id="container7"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div id="container8"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div id="container9"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div id="container10"></div>
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
 
 
 
@@ -234,6 +286,41 @@ if (!$this->session->has_userdata('user_id')) {
                                                 return [date, strttemp, Endtemp, temp];
                                             }
 
+                                            function generateDataHumdity(data1) {
+
+
+                                                var ret = {}
+
+                                                date = []
+                                                strthumidity = []
+                                                Endhumidity = []
+                                                humidity = []
+                                                strtcircum = []
+                                                Endcircum = []
+                                                circum = []
+                                                len = data1.length;
+
+
+                                                for (var i = 0; i < data1.length; i++) {
+                                                    // console.log(data1[i]);
+                                                    date.push(data1[i]['Date'])
+                                                    strthumidity.push(parseInt(data1[i]['HSRange']))
+                                                    Endhumidity.push(parseInt(data1[i]['HERange']))
+                                                    humidity.push(parseInt(data1[i]['Humdity']))
+                                                    // let circumfer = parseInt(data1[i]['Circum1'])
+                                                    // let circumfer1 = parseInt(data1[i]['Circum2'])
+                                                    // let circumfer2 = parseInt(data1[i]['Circum3'])
+                                                    // let circumfer3 = (circumfer + circumfer1 + circumfer2) / 3
+
+                                                    // strtcircum.push(parseInt(data1[i]['StrtRange']))
+                                                    // Endcircum.push(parseInt(data1[i]['EndRange']))
+                                                    // circum.push(parseInt(circumfer3))
+
+                                                }
+
+                                                return [date, strttemp, Endtemp, temp];
+                                            }
+
                                             function MainFunction() {
 
                                                 // alert("heloo");return;
@@ -247,6 +334,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                                                 }
                                                 let url = "<?php echo base_url('MIS/TemperatureController/LFB/') ?>";
+                                                let url1 = "<?php echo base_url('MIS/TemperatureController/Humidity/') ?>";
                                                 // alert(url)
                                                 // return;
                                                 //var section = $("#sectionID").val()
@@ -567,6 +655,327 @@ if (!$this->session->has_userdata('user_id')) {
 
 
                                                 });
+
+
+                                                $.post(url1, data, function(data) {
+                                                    //articles = JSON.parse(data)
+                                                    // console.log(articles);
+                                                    // console.log(data);return;
+
+                                                    //location.reload();
+                                                    //   getemployeedata()
+                                                    var tmData1 = [];
+                                                    var ambData1 = [];
+                                                    var msData11 = [];
+                                                    var msData22 = [];
+                                                    data.filter(item => {
+                                                        if (item['Name'] == 'TM Hall') {
+
+                                                            tmData1.push(item);
+                                                        }
+
+                                                        if (item['Name'] == 'AMB Hall') {
+                                                            ambData1.push(item);
+                                                        }
+                                                        if (item['Name'] == 'MS Hall-1') {
+                                                            msData11.push(item);
+                                                        }
+                                                        if (item['Name'] == 'MS Hall-2') {
+                                                            msData22.push(item);
+                                                        }
+
+                                                    })
+
+
+                                                    var humiditydata1 = generateDataHumdity(tmData1)
+                                                    var humiditydata2 = generateDataHumdity(ambData1)
+                                                    var humiditydata3 = generateDataHumdity(msData11)
+                                                    var humiditydata4 = generateDataHumdity(msData22)
+                                                    // console.log("tm", tmData);
+                                                    // console.log("amb", ambData);return;
+                                                    // console.log(seriesdate[6]);
+                                                    Highcharts.chart('humidity1', {
+
+                                                        title: {
+                                                            text: 'TM Hall Humidity Graph'
+                                                        },
+
+                                                        yAxis: {
+                                                            title: {
+                                                                text: 'Humidity'
+                                                            }
+                                                        },
+
+                                                        xAxis: {
+                                                            title: {
+                                                                text: 'date'
+                                                            },
+                                                            categories: humiditydata1[0]
+                                                        },
+
+                                                        legend: {
+                                                            layout: 'vertical',
+                                                            align: 'right',
+                                                            verticalAlign: 'middle'
+                                                        },
+
+                                                        // plotOptions: {
+                                                        //   series: {
+                                                        //     label: {
+                                                        //       connectorAllowed: false
+                                                        //     },
+                                                        //     pointStart: 2010
+                                                        //   }
+                                                        // },
+
+                                                        series: [
+
+
+                                                            {
+                                                                name: 'Humidity Start',
+                                                                data: humiditydata1[1]
+                                                            }, {
+                                                                name: 'Humidity End',
+                                                                data: humiditydata1[2]
+                                                            },
+                                                            {
+                                                                name: 'Humidity',
+                                                                color: 'red',
+                                                                data: humiditydata1[3]
+                                                            }
+                                                        ],
+
+                                                        responsive: {
+                                                            rules: [{
+                                                                condition: {
+                                                                    maxWidth: 500
+                                                                },
+                                                                chartOptions: {
+                                                                    legend: {
+                                                                        layout: 'horizontal',
+                                                                        align: 'center',
+                                                                        verticalAlign: 'bottom'
+                                                                    }
+                                                                }
+                                                            }]
+                                                        }
+
+                                                    });
+                                                    Highcharts.chart('Humidity2', {
+
+                                                        title: {
+                                                            text: 'AMB Hall Humidity Graph'
+                                                        },
+
+                                                        yAxis: {
+                                                            title: {
+                                                                text: 'Humidity'
+                                                            }
+                                                        },
+
+                                                        xAxis: {
+                                                            title: {
+                                                                text: 'date'
+                                                            },
+                                                            categories: humiditydata2[0]
+                                                        },
+
+                                                        legend: {
+                                                            layout: 'vertical',
+                                                            align: 'right',
+                                                            verticalAlign: 'middle'
+                                                        },
+
+                                                        // plotOptions: {
+                                                        //   series: {
+                                                        //     label: {
+                                                        //       connectorAllowed: false
+                                                        //     },
+                                                        //     pointStart: 2010
+                                                        //   }
+                                                        // },
+
+                                                        series: [
+
+
+                                                            {
+                                                                name: 'Humidity Start',
+                                                                data: humiditydata2[1]
+                                                            }, {
+                                                                name: 'Humidity End',
+                                                                data: humiditydata2[2]
+                                                            },
+                                                            {
+                                                                name: 'Humidity',
+                                                                color: 'red',
+                                                                data: humiditydata2[3]
+                                                            }
+                                                        ],
+
+                                                        responsive: {
+                                                            rules: [{
+                                                                condition: {
+                                                                    maxWidth: 500
+                                                                },
+                                                                chartOptions: {
+                                                                    legend: {
+                                                                        layout: 'horizontal',
+                                                                        align: 'center',
+                                                                        verticalAlign: 'bottom'
+                                                                    }
+                                                                }
+                                                            }]
+                                                        }
+
+                                                    });
+                                                    Highcharts.chart('humidity3', {
+
+                                                        title: {
+                                                            text: 'MS Hall-1 Humidity Graph'
+                                                        },
+
+                                                        yAxis: {
+                                                            title: {
+                                                                text: 'Humidity'
+                                                            }
+                                                        },
+
+                                                        xAxis: {
+                                                            title: {
+                                                                text: 'date'
+                                                            },
+                                                            categories: humiditydata3[0]
+                                                        },
+
+                                                        legend: {
+                                                            layout: 'vertical',
+                                                            align: 'right',
+                                                            verticalAlign: 'middle'
+                                                        },
+
+                                                        // plotOptions: {
+                                                        //   series: {
+                                                        //     label: {
+                                                        //       connectorAllowed: false
+                                                        //     },
+                                                        //     pointStart: 2010
+                                                        //   }
+                                                        // },
+
+                                                        series: [
+
+
+                                                            {
+                                                                name: 'Humidity Start',
+                                                                data: humiditydata3[1]
+                                                            }, {
+                                                                name: 'Humidity End',
+                                                                data: humiditydata3[2]
+                                                            },
+                                                            {
+                                                                name: 'Humidity',
+                                                                color: 'red',
+                                                                data: humiditydata3[3]
+                                                            }
+                                                        ],
+
+                                                        responsive: {
+                                                            rules: [{
+                                                                condition: {
+                                                                    maxWidth: 500
+                                                                },
+                                                                chartOptions: {
+                                                                    legend: {
+                                                                        layout: 'horizontal',
+                                                                        align: 'center',
+                                                                        verticalAlign: 'bottom'
+                                                                    }
+                                                                }
+                                                            }]
+                                                        }
+
+                                                    });
+
+                                                    Highcharts.chart('humidity4', {
+
+                                                        title: {
+                                                            text: 'MS Hall-2 Humidity Graph'
+                                                        },
+
+                                                        yAxis: {
+                                                            title: {
+                                                                text: 'Humidity'
+                                                            }
+                                                        },
+
+                                                        xAxis: {
+                                                            title: {
+                                                                text: 'date'
+                                                            },
+                                                            categories: humiditydata4[0]
+                                                        },
+
+                                                        legend: {
+                                                            layout: 'vertical',
+                                                            align: 'right',
+                                                            verticalAlign: 'middle'
+                                                        },
+
+                                                        // plotOptions: {
+                                                        //   series: {
+                                                        //     label: {
+                                                        //       connectorAllowed: false
+                                                        //     },
+                                                        //     pointStart: 2010
+                                                        //   }
+                                                        // },
+
+                                                        series: [
+
+
+                                                            {
+                                                                name: 'Humidity Start',
+                                                                data: humiditydata4[1]
+                                                            }, {
+                                                                name: 'Humidity End',
+                                                                data: humiditydata4[2]
+                                                            },
+                                                            {
+                                                                name: 'Humidity',
+                                                                color: 'red',
+                                                                data: humiditydata4[3]
+                                                            }
+                                                        ],
+
+                                                        responsive: {
+                                                            rules: [{
+                                                                condition: {
+                                                                    maxWidth: 500
+                                                                },
+                                                                chartOptions: {
+                                                                    legend: {
+                                                                        layout: 'horizontal',
+                                                                        align: 'center',
+                                                                        verticalAlign: 'bottom'
+                                                                    }
+                                                                }
+                                                            }]
+                                                        }
+
+                                                    });
+
+
+
+
+
+
+
+
+                                                });
+
+
+
+
 
                                             }
 

@@ -4912,12 +4912,12 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <button class="btn btn-dark">Fabric</button>
                                                         </a>
                                                     </div>
-
+<!-- 
                                                     <div class="p-1">
                                                         <a href="<?php echo base_url('LabController/fgtView') ?>">
                                                             <button class="btn btn-primary">FGT</button>
                                                         </a>
-                                                    </div>
+                                                    </div> -->
                                                     <div class="p-1">
                                                         <a href="<?php echo base_url('LabController/foamView') ?>">
                                                             <button class="btn btn-info">Foam</button>
@@ -4954,11 +4954,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </a>
                                                     </div>
 
-                                                    <div class="p-1">
+                                                    <!-- <div class="p-1">
                                                         <a href="<?php echo base_url('LabController/master_form') ?>">
                                                             <button class="btn btn-dark">Raw Material</button>
                                                         </a>
-                                                    </div>
+                                                    </div> -->
 
                                                 </div>
                                             </div>

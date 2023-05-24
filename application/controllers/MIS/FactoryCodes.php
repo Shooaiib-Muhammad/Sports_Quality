@@ -46,6 +46,8 @@ class FactoryCodes extends CI_Controller
         $data['dataEndLineQC'] = $this->FCM->get_ms_summary2($line, $start_date, $end_date); //end line QC B34005
 
         // B34006
+        $data['BHFCutting006'] = $this->FCM->BHFCutting006($start_date, $end_date); //BHFCutting006 B34006
+        $data['AHFCutting006'] = $this->FCM->AHFCutting006($start_date, $end_date); //AHFCutting006 B34006
         $data['forming006'] = $this->FCM->rpt_amb_detail006($start_date, $end_date, 1); //Forming B34006
         $data['data2'] = $this->FCM->rpt_amb_detail_Packing006($start_date, $end_date); //end Line QC b34006
 

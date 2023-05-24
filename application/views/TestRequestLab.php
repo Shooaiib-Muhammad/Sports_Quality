@@ -289,6 +289,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 </div>
 
                                                 <div class="tab-pane fade" id="tab_direction-5" role="tabpanel">
+                                                <button id="show-selected1" class="btn btn-primary mb-2" style="display:none;">Acknowledge Raw Material Requests</button>
                                                     <div id="loadRawMatRequestNotAknowloedgedByLab">
 
                                                     </div>
@@ -413,6 +414,7 @@ if (!$this->session->has_userdata('user_id')) {
                     let html = `<table class="table table-bordered table-striped table-hover table-sm" id="fgtTableExport31">
                     <thead class="bg-primary-200 text-light p-2">
                     <tr>
+                    <th><input type="checkbox" id="check-all1"></th>
                     <th>Request Date</th>
                     <th>Type</th>
                     <th>Material</th>
@@ -436,7 +438,8 @@ if (!$this->session->has_userdata('user_id')) {
                     <tbody>`;
                     data.forEach(element => {
                         html += `
-                        <tr>   
+                        <tr>
+                        <td><input type='checkbox' class='row-select1' data-tid='${element.Requestid}'></td>
                             <td><span>${element.Date}</span></td>
                             <td><span>${element.Type}</span></td>
                             <td><span>${element.TestType}</span></td>
@@ -454,7 +457,7 @@ if (!$this->session->has_userdata('user_id')) {
                             <td><span>${element.receSign}</span></td>
                             <td><span>${element.senderSign}</span></td>
                             <td><span class="badge badge-warning p-1">${element.status}</span></td>
-                            <td><button type="button" style="display: inline-block;" class="btn btn-info btn-xs updatebtnBacktoSender1" id="btn.${element.Requestid}">Acknowledge</button></td>
+                            <td><button type="button" style="display: inline-block;" class="btn btn-info btn-xs " onclick="updatebtnBacktoSender1(${element.Requestid})" ">Acknowledge</button></td>
                         </tr>
                         `
                     })
@@ -463,7 +466,7 @@ if (!$this->session->has_userdata('user_id')) {
                             </table>`;
 
                     $("#loadRawMatRequestNotAknowloedgedByLab").html(html);
-                    $('#fgtTableExport31').dataTable({
+                    dataTable1 = $('#fgtTableExport31').dataTable({
                         responsive: false,
                         lengthChange: false,
                         dom:
@@ -662,10 +665,9 @@ if (!$this->session->has_userdata('user_id')) {
                 }
             });
         }
-        $(".updatebtnBacktoSender1").click(function(e) {
-            let id = this.id;
-            let split_value = id.split(".");
-            var TID = split_value[1];
+        
+        function updatebtnBacktoSender1(TID) {
+            // alert(TID);
 
             let proceed = confirm("Are you sure you want to acknowledge Receipt?");
             if (proceed) {
@@ -688,7 +690,7 @@ if (!$this->session->has_userdata('user_id')) {
             } else {
                 alert("Sending Cancel");
             }
-        });
+        };
 
 
 
@@ -2722,7 +2724,7 @@ if (!$this->session->has_userdata('user_id')) {
             }
         }
 
-
+        // FGT ALL AKNOWLEDGED 
         // Add click event to "Check All" checkbox
         $("#loadFGTRequestStatusSendToLab").on('click', '#check-all', function() {
             // Check or uncheck all checkboxes based on the state of the "Check All" checkbox
@@ -2789,6 +2791,77 @@ if (!$this->session->has_userdata('user_id')) {
 
             }
         });
+        //END  FGT ALL AKNOWLEDGED
+
+        // RAW MATERIAL ALL AKNOWLEDGED 
+        // Add click event to "Check All" checkbox
+        $("#loadRawMatRequestNotAknowloedgedByLab").on('click', '#check-all1', function() {
+            // Check or uncheck all checkboxes based on the state of the "Check All" checkbox
+            dataTable1.api().column(0).nodes().to$().find('input[type="checkbox"]').prop('checked', $(this).prop('checked'));
+
+            // Check or uncheck all checkboxes based on the state of the "Check All" checkbox
+            $('.row-select1').prop('checked', $(this).prop('checked'));
+
+            // Show or hide the "Show Selected" button based on the number of checked checkboxes
+            if ($('.row-select1:checked').length > 0) {
+                $('#show-selected1').show();
+            } else {
+                $('#show-selected1').hide();
+            }
+        });
+
+        // Add click event to checkboxes
+        $("#loadRawMatRequestNotAknowloedgedByLab").on('click', '.row-select1', function() {
+            // Show or hide the "Show Selected" button based on the number of checked checkboxes
+            if ($('.row-select1:checked').length > 0) {
+                $('#show-selected1').show();
+            } else {
+                $('#show-selected1').hide();
+            }
+        });
+        $('#show-selected1').click(function() {
+            // Create an array to store selected cssno and cssnoqrcode
+            var selectedRows1 = [];
+
+            // Loop through checked checkboxes and get the corresponding cssno and cssnoqrcode
+            dataTable1.api().column(0).nodes().to$().find('input[type="checkbox"]:checked').each(function() {
+                var tid = $(this).data('tid');
+
+                if ($(this).is(':checked')) {
+                    selectedRows1.push({
+                        tid: tid
+                    });
+
+                }
+            });
+            console.log(selectedRows1);
+            // Display the selected cssno and cssnoqrcode in the modal
+            if (selectedRows1.length > 0) {
+                let confirmm = confirm("Are you sure you want to Aknowledge Raw Material request?");
+                if (confirmm) {
+                    url = "<?php echo base_url(''); ?>LabController/EditTestRequestRawMatLabAcknowledgeBulk";
+                    $.post(url, {
+                        selectedRows1: selectedRows1
+                    }, function(data) {
+                        if (data) {
+                            alert('Raw Material Request Acknowledge Successfully');
+                            loadRawMatRequestNotAknowloedgedByLab();
+                            loadRawMatRequestAknowloedgedByLab();
+                        } else {
+                            alert('Something went wrong!')
+                        }
+
+                    });
+                } else {
+                    alert('Acknowledge request cencelled.');
+                }
+
+
+
+            }
+        });
+        //END  RAW MATERIAL ALL AKNOWLEDGED 
+
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js" integrity="sha512-gtII6Z4fZyONX9GBrF28JMpodY4vIOI0lBjAtN/mcK7Pz19Mu1HHIRvXH6bmdChteGpEccxZxI0qxXl9anY60w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 

@@ -439,7 +439,21 @@ if (!$this->session->has_userdata('user_id')) {
 
 
 
-
+          // BHFCUtting B34006
+          print_r($BHFCutting006);
+          $BHFCuttingData006 = array();
+          foreach ($BHFCutting006 as $key => $value) {
+            foreach ($value as $k => $v) {
+              if ($k == 'TotalChecked' || $k == 'PassQuantity' || $k == 'FailQuantity') {
+                continue;
+              }
+              $points = [
+                'name' => $k,
+                'y' => $v,
+              ];
+              array_push($BHFCuttingData006, $points);
+            }
+          }
           // Forming B34006
           $formingDateName006 = array();
           $drilldownDataForming006 = array();
@@ -903,7 +917,10 @@ if (!$this->session->has_userdata('user_id')) {
                           </li>
 
                           <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tabCutting006" role="tab">BHF & AHF Cutting </a>
+                            <a class="nav-link" data-toggle="tab" href="#tabBHFCutting006" role="tab">BHF Cutting </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabAHFCutting006" role="tab">AHF Cutting </a>
                           </li>
 
                           <li class="nav-item">
@@ -921,8 +938,12 @@ if (!$this->session->has_userdata('user_id')) {
                             <div id="core006"> </div>
                           </div>
 
-                          <div class="tab-pane fade" id="tabCutting006" role="tabpanel">
-                            <div id="cutting006"> </div>
+                          <div class="tab-pane fade" id="tabBHFCutting006" role="tabpanel">
+                            <div id="BHFCutting006"> </div>
+                          </div>
+
+                          <div class="tab-pane fade" id="tabAHFCutting006" role="tabpanel">
+                            <div id="AHFCutting006"> </div>
                           </div>
 
                           <div class="tab-pane fade" id="tabForming006" role="tabpanel">
@@ -2579,6 +2600,47 @@ if (!$this->session->has_userdata('user_id')) {
 
 
     // START GRAPH B34006
+    Highcharts.chart('BHFCutting006', {
+      title: {
+        text: <?php if (isset($start_date) && isset($end_date)) {
+                echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              } ?>,
+        align: 'center'
+      },
+      xAxis: {
+        type: 'category',
+        categories: ''
+      },
+      yAxis: {
+        title: {
+          text: 'BHF Cutting'
+        }
+      },
+      tooltip: {
+        valueSuffix: '',
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+      legend: {
+        enabled: true
+      },
+      series: [{
+        type: 'column',
+        name: 'BHF Cutting',
+        colorByPoint: true,
+        data: <?php echo json_encode($BHFCuttingData006, JSON_NUMERIC_CHECK); ?>
+
+      }]
+    });
     Highcharts.chart('forming006', {
       chart: {
         type: 'column'

@@ -52,7 +52,7 @@ class Efficiency_model extends CI_Model
 
                 $query = $HRDB->query("SELECT   AttDate
 FROM            dbo.view_Att_Sheet_Sizing 
-WHERE        (AttDate = CONVERT(DATETIME, '$CurrentDate 00:00:00', 102))");
+WHERE        (AttDate = '$CurrentDate 00:00:00')");
                 return  $query->num_rows();
         }
         public function getEmployees($section, $depart, $type)

@@ -253,10 +253,10 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div class="row">
                                                         <div  class="col-md-12 mt-2 d-flex justify-content-center flex-wrap" id="childTab1Content">
                                                             <?php $icon_classes = array("fal fa-envelope", "fal fa-futbol", "fal fa-heart", "fal fa-thumbs-up"); ?>
-                                                            
+                                                            <!-- <?php print_r($pivotSingleDate); ?> -->
                                                             <?php if (isset($pivotSingleDate) && $pivotSingleDate != null) {
                                                             foreach ($pivotSingleDate as $key => $pivotDate) {
-                                                                if($key == 4 || $key == 5){
+                                                                if($key == 4 || $key == 5 || $key == 6 || $key == 7 || $key == 8 || $key == 9 || $key == 10 || $key == 11 || $key == 12 || $key == 13 || $key == 14 || $key == 15){
                                                                     continue;
                                                                 }
                                                                 $random_key = array_rand($icon_classes);
@@ -301,10 +301,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                     <div class="row">
                                                         <div  class="col-md-12 mt-2 d-flex justify-content-center flex-wrap" id="childTab1Content">
                                                             <?php $icon_classes = array("fal fa-envelope", "fal fa-futbol", "fal fa-heart", "fal fa-thumbs-up"); ?>
-                                                            <!-- <?php print_r($pivotSingleDate); ?> -->
                                                             <?php if (isset($pivotSingleDate) && $pivotSingleDate != null) {
                                                             foreach ($pivotSingleDate as $key => $pivotDate) {
-                                                                if($key == 0 || $key == 1 || $key == 2 || $key == 3){
+                                                                if($key == 0 || $key == 1 || $key == 2 || $key == 3 || $key == 8 || $key == 9 || $key == 10 || $key == 11 || $key == 12 || $key == 13 || $key == 14 || $key == 15){
                                                                     continue;
                                                                 }
                                                                 $random_key = array_rand($icon_classes);
@@ -346,10 +345,98 @@ if (!$this->session->has_userdata('user_id')) {
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="childTab3" role="tabpanel">
-                                                    <h3>3</h3>
+                                                <div class="row">
+                                                        <div  class="col-md-12 mt-2 d-flex justify-content-center flex-wrap" id="childTab1Content">
+                                                            <?php $icon_classes = array("fal fa-envelope", "fal fa-futbol", "fal fa-heart", "fal fa-thumbs-up"); ?>
+                                                            <?php if (isset($pivotSingleDate) && $pivotSingleDate != null) {
+                                                            foreach ($pivotSingleDate as $key => $pivotDate) {
+                                                                if($key == 0 || $key == 1 || $key == 2 || $key == 3 || $key == 4 || $key == 5 || $key == 6 || $key == 7 ||$key == 12 || $key == 13 || $key == 14 || $key == 15){
+                                                                    continue;
+                                                                }
+                                                                $random_key = array_rand($icon_classes);
+                                                            ?>
+                                                            <div class="col-md-2" id="direct">
+                                                                <div style="cursor:pointer"
+                                                                    onclick="pivotData('<?php echo $pivotDate['SystemIP'] ?>')"
+                                                                    class="p-2  rounded overflow-hidden position-relative text-white mb-g bgColor">
+                                                                    <div class="">
+                                                                        <h3 class="display-3 d-block l-h-n m-0 fw-500">
+                                                                            <small
+                                                                                class="m-0 l-h-n"><?php echo $pivotDate['SystemName']. '(Pass balls)'; ?></small>
+                                                                            <span
+                                                                                class="d-inline"><?php echo $pivotDate['Pass']; ?>
+                                                                            </span>
+                                                                        </h3>
+                                                                    </div>
+                                                                    <i class="<?php echo $icon_classes[$random_key]; ?> position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1"
+                                                                        style="font-size:6rem"></i>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <?php }
+                                                            } else {
+
+                                                            ?>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                                        <small class="m-0 l-h-n"></small>
+                                                                        <span>No Data Found Today</span>
+                                                                    </h3>
+                                                                </div>
+                                                            </div>
+                                                            <?php } ?>
+                                                        </div>
+                                                       
+                                                    </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="childTab4" role="tabpanel">
-                                                    <h3>4</h3>
+                                                <div class="row">
+                                                        <div  class="col-md-12 mt-2 d-flex justify-content-center flex-wrap" id="childTab1Content">
+                                                            <?php $icon_classes = array("fal fa-envelope", "fal fa-futbol", "fal fa-heart", "fal fa-thumbs-up"); ?>
+                                                            <?php if (isset($pivotSingleDate) && $pivotSingleDate != null) {
+                                                            foreach ($pivotSingleDate as $key => $pivotDate) {
+                                                                if($key == 0 || $key == 1 || $key == 2 || $key == 3 || $key == 4 || $key == 5 || $key == 6 || $key == 7 || $key == 8 ||$key == 9 || $key == 10 || $key == 11){
+                                                                    continue;
+                                                                }
+                                                                $random_key = array_rand($icon_classes);
+                                                            ?>
+                                                            <div class="col-md-2" id="direct">
+                                                                <div style="cursor:pointer"
+                                                                    onclick="pivotData('<?php echo $pivotDate['SystemIP'] ?>')"
+                                                                    class="p-2  rounded overflow-hidden position-relative text-white mb-g bgColor">
+                                                                    <div class="">
+                                                                        <h3 class="display-3 d-block l-h-n m-0 fw-500">
+                                                                            <small
+                                                                                class="m-0 l-h-n"><?php echo $pivotDate['SystemName']. '(Pass balls)'; ?></small>
+                                                                            <span
+                                                                                class="d-inline"><?php echo $pivotDate['Pass']; ?>
+                                                                            </span>
+                                                                        </h3>
+                                                                    </div>
+                                                                    <i class="<?php echo $icon_classes[$random_key]; ?> position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1"
+                                                                        style="font-size:6rem"></i>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <?php }
+                                                            } else {
+
+                                                            ?>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                                        <small class="m-0 l-h-n"></small>
+                                                                        <span>No Data Found Today</span>
+                                                                    </h3>
+                                                                </div>
+                                                            </div>
+                                                            <?php } ?>
+                                                        </div>
+                                                       
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -380,9 +467,20 @@ if (!$this->session->has_userdata('user_id')) {
                                             </div>
                                             <div class="col-md-3"><input class="form-control" type="date" id="date2" />
                                             </div>
+                                            <div class="col-md-3 d-none selectPo">
+
+                                            </div>
                                             <div class="col-md-3"><button class="btn btn-primary"
                                                     id="searchFGTtest">Search</button></div>
                                         </div>
+                                        <!-- <div class="row m-2 d-none PO">
+                                            <div class="col-sm-2"><input class="form-control" type="text" name="PO" id="PO"></div>
+                                            <div class="col-sm-2"><button class="btn btn-primary"
+                                                    id="searchPO">Find</button></div>
+                                        </div>
+                                        <div class="row m-2 d-none PODataToShow">
+                                            
+                                        </div> -->
                                         <div class="panel-container show m-2">
                                             <div id="tableData">
                                                 <table id="defualtTable"
@@ -6781,6 +6879,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <th>Article</th>
                                                         <th>ArtSize</th>
                                                         <th>Problem/Label</th>
+                                                        <th>Name</th>
+                                                        <th>Checker Name</th>
                                                         <th>Defect</th>
                                                     </tr>
                                                 </thead>
@@ -6792,6 +6892,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <td>${element.article}</td>
                                                         <td>${element.ArtSize}</td>
                                                         <td>${element.label}</td>
+                                                        <td>${element.Name}</td>
+                                                        <td>${element.CheckerName}</td>
                                                         <td>${element.defects}</td>
                                                         
                                                     </tr>`
@@ -7030,7 +7132,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                             return [total, pass, fail];
                         }
-
+                        let poArray = [];
                         $('#searchFGTtest').on('click', function() {
                                 
                                 var date1 = $("#date1").val();
@@ -7042,6 +7144,7 @@ if (!$this->session->has_userdata('user_id')) {
                                     'date2': date2
                                 }, function(data) {
                                     if (data) {
+                                        $(".PO").removeClass("d-none");
                                         let fgtHtml =`<table id="fgtTestTableData"
                                                     class="table table-bordered table-hover table-responsive-sm table-responsive-md table-responsive-lg table-striped">
                                                     <thead class="bg-primary-600">
@@ -7053,7 +7156,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <th>Quantity</th>
                                                             <th>Pass</th>
                                                             <th>Fail</th>
+                                                            <th>QC Name</th>
+                                                            <th>CardNo</th>
+                                                            <th>Composite Checker</th>
                                                             <th>RFT</th>
+                                                            
                                                         </tr>
                                                     </thead>
                                                     <tbody>`
@@ -7063,6 +7170,7 @@ if (!$this->session->has_userdata('user_id')) {
                                             let totalFail = 0;
                                             let RFT =0;
                                         data.forEach(element => {
+                                            poArray.push(element.PO);
                                             totalQty += parseInt(element.Qty);
                                             totalPass += parseInt(element.Pass);
                                             totalFail += parseInt(element.fail);
@@ -7076,7 +7184,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <td>${element.Qty}</td>
                                                 <td>${element.Pass}</td>
                                                 <td>${element.fail}</td>
+                                                <td>${element.Name}</td>
+                                                <td>${element.CardNo}</td>
+                                                <td>${element.CheckerName}</td>
                                                 <td>`+ parseInt(element.RFT) + `%</td>
+                                                
                                                 </td>
                                             </tr>`
                                             
@@ -7170,7 +7282,49 @@ if (!$this->session->has_userdata('user_id')) {
                                     }
 
                                 });
+                                console.log("All PO",poArray);
+                                let selectOptData = `<label>Choose PO</label>
+                                    <select class="form-control">`;
+                                poArray.forEach(function(item){
+                                    selecOptData += `<option value="${item}">${item}</option>`
+                                })
+                                selectOptData += `</select>`
+                                
                         });
+
+                        // let poData = [];
+                        // $("#searchPO").on('click', function(){
+                        //     let PO = $("#PO").val();
+                        //     let Qty = 0;
+                        //     let Pass = 0;
+                        //     let fail = 0;
+                        //     let RFT = 0;
+                        //     poArray.forEach(element => {
+                                
+                        //         if(element.PO == PO){
+                        //             Qty += parseInt(element.Qty)
+                        //             Pass += parseInt(element.Pass)
+                        //             fail += parseInt(element.fail)
+                        //         }
+                                
+                        //     })
+                        //     poData.push(Qty);
+                        //     poData.push(Pass);
+                        //     poData.push(fail); 
+                        //     console.log(POData);
+                        //     if(poData){
+                        //         let datatoShow = `<div>
+                        //             <p> <b>Total Qty: </b>${poData[0]}</p>
+                        //             <p> <b>Total Pass: </b>${poData[1]}</p>
+                        //             <p> <b>Total Fail: </b>${poData[2]}</p>
+                        //             <p> <b>RFT: </b>${poData[1]/poData[0]*100}%</p>
+                        //         </div>`
+
+                        //         $(".PODataToShow").removeClass("d-none");
+                        //         $(".PODataToShow").html(datatoShow);
+                        //     }
+                        // })
+                        
 
 
                         function loadData(stDate, enDate) {

@@ -17,17 +17,18 @@ if (!$this->session->has_userdata('user_id')) {
                 <?php $this->load->view('includes/top_header.php'); ?>
                 <main id="js-page-content" role="main" class="page-content">
                     <ol class="breadcrumb page-breadcrumb">
-                        <!-- <li class="breadcrumb-item"><a href="<?php echo base_url(
-                                                                        'index.php/main/dmms_dashboard'
-                                                                    ); ?>">FGT Rebound at 5°C Testing</a></li> -->
+                        <li class="breadcrumb-item"><a href="<?php echo base_url(
+                                                                    'index.php/main/dmms_dashboard'
+                                                                ); ?>">FGT CSM</a></li>
 
 
                         <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
                     </ol>
                     <div class="subheader">
-                        <h4 class="subheader-title">
-                            <a href="<?php echo base_url('LabController/labReportFGT') ?>" class="mx-4"> <button class='btn btn-primary'> <i class="fal fa-arrow-left"></i>&nbsp; Lab FGT Reports</button></a>
-                            </h1>
+                        <h1 class="subheader-title">
+                            <i class='subheader-icon fal fa-chart-area'></i> FGT CSM</span>
+
+                        </h1>
                     </div>
                     <?php
                     if ($this->session->flashdata('danger')) {
@@ -50,7 +51,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                         <!-- Start here with columns -->
 
-                        <div class="col-md-6 offset-md-3 offset-0 table-responsive" hidden>
+                        <div class="col-md-6 offset-md-3 offset-0 table-responsive">
                             <?php if (validation_errors()) : ?>
                                 <div class="alert alert-danger">
                                     <?php echo validation_errors(); ?>
@@ -68,6 +69,4268 @@ if (!$this->session->has_userdata('user_id')) {
                                         </div> -->
                                 </div>
 
+                                <!-- Model Carton HTML -->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCard">
+                                                    <div class="card-body">
+
+                                                        <!-- <div class="col-sm-12">
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                            </div> -->
+
+
+                                                        <div class="row">
+                                                            <div class="col-sm-12 d-flex flex-row">
+                                                                <div class="col-sm-4" id="cortonLogoHide">
+                                                                    <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" />
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" />
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <img src="<?php echo base_url() ?>assets/img/adidasLogo.svg" alt="report_logo" width="250px" height="100px" />
+                                                                </div>
+                                                            </div>
+
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Carton </h3>
+
+
+                                                            <!-- <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;">Test Report Of Carton</h3> -->
+
+
+                                                            <!-- <table class="table">
+                                                                <tr>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /></th> <br>
+                                                                    <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Carton</th>
+                                    
+                                                                </tr>
+                                                            </table> -->
+                                                            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+                                                            <div class="col-md-3"></div>
+                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNo"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTest"> </span></label></th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="size"> </span> </label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="pono"> </span></label></th>
+                                                                </tr>
+                                                            </table>
+                                                            <!-- <div class="col-md-6">
+                                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+                                                            </div>
+                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+                                                            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDate"> </span></label></div>
+                                                            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierName"> </span></label></div>
+                                                            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRef"> </span></label></div>
+                                                            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Quantity Carton:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="quantityCarton"> </span></label></div>
+                                                            <div class="col-md-2"></div>
+                                                            <div class="col-md-10 mt-3">
+                                                                <table class="table table-bordered" style="border:2px solid black">
+                                                                    <thead>
+                                                                        <tr style="border:2px solid black">
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Requirement</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Value</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">
+                                                                                Result
+                                                                            </th>
+                                                                            <!-- <table style="width: 100%;">
+                                                                                <thead >
+                                                                                    <tr >
+                                                                                        <th>1</th>
+                                                                                        <th>2</th>
+                                                                                        <th>3</th>
+                                                                                    </tr>
+                                                                                </thead> 
+                                                                            </table> -->
+
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="DetailsTest">
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                            <div class="col-md-2"></div>
+                                                            <!-- <div class="col-md-4">
+                                                                <table class="table table-bordered" style="border:2px solid black"> 
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style="border:2px solid black">Lab Reading</th>
+                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr >
+                                                                            <td rowspan="2"></td>
+                                                                            <td style="border:2px solid black">Max</td>
+                                                                            <td style="border:2px solid black">Min</td>
+                                                                        </tr>
+                                                                        <tr >
+                                                                            
+                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                                                                            
+                                                                        </tr>
+                                                                    </tbody>         
+                                                                </table>
+                                                            </div> -->
+                                                            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="Conclusion"> </span></label></div>
+                                                            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                                        <span>Sohail Ghouri </span>
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                                                                        <span id="testPerformed"> </span>
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewed"> </span> -->
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br>Fatima Rasheed </span>
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+
+
+                                                                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                                        <!-- <span id="testApproved"> </span> -->
+                                                                        <span> Zain Abbas</span>
+                                                                    </th>
+                                                                </tr>
+                                                            </table>
+
+                                                            <table class="table">
+                                                                <tr>
+
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th>
+                                                                        <h5 style="font-weight:bold;color:black">Carton Image</h5>
+                                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="cartonImage" height="250px" width="300px" alt="CartonPhoto" />
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </table>
+                                                            <!-- <div class="col-md-4 mt-2">
+                                                                <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+                                                            Habib Ur Rehman
+                                                                </div>
+                                                                <div class="col-md-4 mt-2">
+                                                                <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+                                                                Sohail Ghouri
+                                                                </div>
+                                                                <div class="col-md-4 mt-2">
+                                                                <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+                                                                Sohail Ghouri
+                                                            </div> -->
+                                                        </div>
+                                                        <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCard')" data-dismiss="modal">Print Report</button>
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- End Model Carton HTML -->
+
+
+                                <!-- Start Model Adhesion HTML-->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalAdhesion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCardAdhesion">
+                                                    <div class="card-body">
+
+                                                        <!-- <div class="col-sm-12">
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                            </div> -->
+
+
+                                                        <div class="row">
+                                                            <div class="col-sm-12 d-flex flex-row">
+                                                                <div class="col-sm-4" id="cortonLogoHide">
+                                                                    <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" />
+                                                                </div>
+                                                                <div class="col-sm-4">
+
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <table class="table border">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <td class="border">Document</td>
+                                                                                <td class="border">QSD-12/RTR/TRM</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="border">Revision</td>
+                                                                                <td class="border">0</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="border">Copy</td>
+                                                                                <td class="border">03</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="border">Holder</td>
+                                                                                <td class="border">Lab</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="border">Status</td>
+                                                                                <td class="border">Controlled</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="border">Date of Issuance</td>
+                                                                                <td class="border">01/07/2021</td>
+                                                                            </tr>
+                                                                        </thead>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+
+                                                            <h3 style="font-size: Medium;font-weight:bold;margin-left:33%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Adhesion Material </h3>
+
+
+                                                            <!-- <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;">Test Report Of Carton</h3> -->
+
+
+                                                            <!-- <table class="table">
+                                                                <tr>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /></th> <br>
+                                                                    <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Carton</th>
+                                    
+                                                                </tr>
+                                                            </table> -->
+                                                            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+                                                            <div class="col-md-3"></div>
+                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testDateAdhesion"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Received Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="receDateTestAdhesion"> </span></label></th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="testNoAdhesion"> </span> </label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Code:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receCodeAdhesion"> </span></label></th>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Article#:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="articleNoAdhesion"> </span> </label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Article Name#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="articleNameAdhesion"> </span></label></th>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="ponoAdhesion"> </span> </label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Result#:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="resultAdhesion"> </span> </label></th>
+
+                                                                </tr>
+                                                            </table>
+
+
+                                                            <div class="col-md-12 mt-3">
+                                                                <table class="table table-bordered" style="border:2px solid black">
+                                                                    <thead>
+                                                                        <tr style="border:2px solid black">
+
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Date</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Test No</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Batch Reference</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Standard</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">MaximumForce</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">AverageForce</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Comments</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">MaximumForceInch</th>
+
+
+                                                                        </tr>
+                                                                    </thead>
+
+                                                                    <tbody id="DetailsAdhesion">
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                            <div class="col-md-10 mt-3">
+                                                                <table class="table ">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th rowspan="2"></th>
+                                                                            <th rowspan="2"></th>
+                                                                            <th rowspan="2"></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th rowspan="2"></th>
+                                                                            <th rowspan="2"></th>
+                                                                            <th rowspan="2"></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>Checked By</td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td>Lab In-Charge</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Pervaiz Bhitti</td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td>Sohail Ghouri</td>
+                                                                        </tr>
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                            <div class="col-md-2"></div>
+                                                            <!-- <div class="col-md-4">
+                                                                <table class="table table-bordered" style="border:2px solid black"> 
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style="border:2px solid black">Lab Reading</th>
+                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr >
+                                                                            <td rowspan="2"></td>
+                                                                            <td style="border:2px solid black">Max</td>
+                                                                            <td style="border:2px solid black">Min</td>
+                                                                        </tr>
+                                                                        <tr >
+                                                                            
+                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                                                                            
+                                                                        </tr>
+                                                                    </tbody>         
+                                                                </table>
+                                                            </div> -->
+                                                            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+
+
+
+                                                            <!-- <div class="col-md-4 mt-2">
+                                                            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+                                                        Habib Ur Rehman
+                                                            </div>
+                                                            <div class="col-md-4 mt-2">
+                                                            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+                                                            Sohail Ghouri
+                                                            </div>
+                                                            <div class="col-md-4 mt-2">
+                                                            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+                                                            Sohail Ghouri
+                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardAdhesion')" data-dismiss="modal">Print Report</button>
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- End Model Adhesion HTML -->
+
+
+                                <!-- Start Model Adhesion HTML-->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalCSM" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCardCSM">
+                                                    <div class="card-body">
+
+                                                        <!-- <div class="col-sm-12">
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                            </div> -->
+
+
+                                                        <div class="row">
+                                                            <div class="col-sm-12 d-flex flex-row">
+                                                                <div class="col-sm-4" id="cortonLogoHide">
+                                                                    <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" />
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="300px" height="180px" />
+
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <table class="table border">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <td class="border">Document</td>
+                                                                                <td class="border">QSD-12/RTR/TRM</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="border">Revision</td>
+                                                                                <td class="border">0</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="border">Copy</td>
+                                                                                <td class="border">03</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="border">Holder</td>
+                                                                                <td class="border">Lab</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="border">Status</td>
+                                                                                <td class="border">Controlled</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="border">Date of Issuance</td>
+                                                                                <td class="border">01/07/2021</td>
+                                                                            </tr>
+                                                                        </thead>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+
+                                                            <h3 style="font-size: Medium;font-weight:bold;margin-left:33%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br>CSM Test Report Of Football </h3>
+
+
+                                                            <!-- <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;">Test Report Of Carton</h3> -->
+
+
+                                                            <!-- <table class="table">
+                                                                <tr>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /></th> <br>
+                                                                    <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Carton</th>
+                                    
+                                                                </tr>
+                                                            </table> -->
+                                                            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+                                                            <div class="col-md-3"></div>
+                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="TestNoCSM"> </span></label></th>
+                                                                    <th><label class="form-control" for="date"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateCSM"> </span></label></th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th><label class="form-control" for="modelName"><span style="font-size: medium;font-weight:bold"> Model Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="modelNameCSM"> </span> </label></th>
+                                                                    <th><label class="form-control" for="cssCode"><span style="font-size: medium;font-weight:bold"> CSS Code:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="cssCodeCSM"> </span></label></th>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th><label class="form-control" for="pressure"><span style="font-size: medium;font-weight:bold"> Pressure:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="pressureCSM"> </span> </label></th>
+                                                                    <th><label class="form-control" for="tempHumidity"><span style="font-size: medium;font-weight:bold"> Temp Humidity:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="tempHumidityCSM"> </span></label></th>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th><label class="form-control" for="article"><span style="font-size: medium;font-weight:bold"> Article:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="articleCSM"> </span> </label></th>
+                                                                    <th><label class="form-control" for="category"><span style="font-size: medium;font-weight:bold"> Category:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="categoryCSM"> </span> </label></th>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <th><label class="form-control" for="size"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="sizeCSM"> </span> </label></th>
+                                                                    <th><label class="form-control" for="testedFor"><span style="font-size: medium;font-weight:bold"> Tested for:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="testedForCSM"> </span> </label></th>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <!-- id="noteCSM" -->
+                                                                    <th><label class="form-control" for="note"><span style="font-size: medium;font-weight:bold"> Note:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium">
+
+                                                                                The above reported result is applicable to the sample as recived at customer service section.
+                                                                            </span> </label></th>
+                                                                    <th></th>
+
+                                                                </tr>
+                                                            </table>
+
+
+                                                            <div class="col-md-12 mt-3">
+                                                                <table class="table table-bordered" style="border:2px solid black">
+                                                                    <thead>
+                                                                        <tr style="border:2px solid black">
+
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Weight (gm)</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Circumference Min(cm)</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Circumference Max(cm)</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Deviation</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Rebound Test</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Remarks</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Result</th>
+
+                                                                        </tr>
+                                                                    </thead>
+
+                                                                    <tbody id="DetailsCSM">
+
+                                                                    </tbody>
+                                                                </table>
+
+                                                                <div class="row">
+                                                                    <div class="col-md-12 col-lg-12">
+
+
+                                                                        <span class="h2"><b>Test Request:<b></span>
+                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                                                        <span class="h4">
+                                                                            <u>
+                                                                                By MR. Oman Sb
+                                                                            </u>
+                                                                        </span>
+
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-md-12 col-lg-12">
+                                                                        <span class="h2"><b>Remarks:<b></span>
+                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                        &nbsp;&nbsp;&nbsp;
+                                                                        <span class="h4">
+                                                                            <u>
+                                                                                Without Conditioning Testing
+                                                                            </u>
+                                                                        </span>
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-md-12 col-lg-12">
+                                                                        <span class="h2"><b>Note:<b></span>
+                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                        &nbsp;&nbsp;
+                                                                        <span class="h4">
+                                                                            <u>
+                                                                                The above reported result is applicable to the sample as received
+                                                                                at customer service section<br>
+                                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                &nbsp;
+
+
+                                                                                Report was Electronically generated,
+                                                                                are not required
+                                                                            </u>
+                                                                        </span>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </div>
+
+
+
+                                                            <!-- <div class="col-md-10 mt-3">
+                                                                <table class="table ">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th rowspan="2"></th>
+                                                                            <th rowspan="2"></th>
+                                                                            <th rowspan="2"></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th rowspan="2"></th>
+                                                                            <th rowspan="2"></th>
+                                                                            <th rowspan="2"></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>Checked By</td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td>Lab In-Charge</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Pervaiz Bhitti</td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td>Sohail Ghouri</td>
+                                                                        </tr>
+                                                                    
+                                                                    </tbody>
+                                                                </table>
+                                                            </div> -->
+
+                                                            <div class="col-md-2"></div>
+                                                            <!-- <div class="col-md-4">
+                                                                <table class="table table-bordered" style="border:2px solid black"> 
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style="border:2px solid black">Lab Reading</th>
+                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr >
+                                                                            <td rowspan="2"></td>
+                                                                            <td style="border:2px solid black">Max</td>
+                                                                            <td style="border:2px solid black">Min</td>
+                                                                        </tr>
+                                                                        <tr >
+                                                                            
+                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                                                                            
+                                                                        </tr>
+                                                                    </tbody>         
+                                                                </table>
+                                                            </div> -->
+                                                            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+
+
+
+                                                            <!-- <div class="col-md-4 mt-2">
+                                                            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+                                                        Habib Ur Rehman
+                                                            </div>
+                                                            <div class="col-md-4 mt-2">
+                                                            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+                                                            Sohail Ghouri
+                                                            </div>
+                                                            <div class="col-md-4 mt-2">
+                                                            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+                                                            Sohail 
+                                                            
+
+                                                            </div> -->
+
+
+                                                        </div>
+
+                                                        <div class="row mt-5">
+                                                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+
+                                                                <div class="row">
+                                                                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                                                                        <h5><u>Prepared By</u></h5>
+                                                                    </div>
+                                                                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 d-flex justify-content-center">
+                                                                        <h5><u>Reviewed By</u></h5>
+
+                                                                    </div>
+                                                                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 d-flex justify-content-end">
+                                                                        <h5><u>Approved By</u></h5>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="row mt-1">
+                                                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+
+                                                                <div class="row">
+                                                                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                                                                        <h5>Sohail Rasheed</h5>
+                                                                    </div>
+                                                                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 d-flex justify-content-center">
+                                                                        <h5>Fatima Rasheed</h5>
+
+                                                                    </div>
+                                                                    <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 d-flex justify-content-end">
+                                                                        <h5>Zain Abbas</h5>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+
+
+                                                </div>
+
+                                            </div>
+
+
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardCSM')" data-dismiss="modal">Print Report</button>
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- End Model Adhesion HTML -->
+
+
+
+                                <!-- Start Model PolyBag HTML-->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalPolyBag" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCardPolyBag">
+                                                    <div class="card-body">
+
+                                                        <!-- <div class="col-sm-12">
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                <img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /> 
+                                                                </div>
+                                                            </div> -->
+
+
+                                                        <div class="row">
+                                                            <div class="col-sm-12 d-flex flex-row">
+                                                                <div class="col-sm-4" id="cortonLogoHide">
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" />
+                                                                </div>
+                                                                <div class="col-sm-4">
+
+                                                                </div>
+                                                            </div>
+
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of PolyBag </h3>
+
+
+                                                            <!-- <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;">Test Report Of Carton</h3> -->
+
+
+                                                            <!-- <table class="table">
+                                                                <tr>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /></th> <br>
+                                                                    <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Carton</th>
+                                    
+                                                                </tr>
+                                                            </table> -->
+                                                            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+                                                            <div class="col-md-3"></div>
+                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoPolyBag"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="POPolyBag"> </span></label></th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Received Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="receivedDatePolyBag"> </span> </label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="datePolyBag"> </span></label></th>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Poly Bag:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="polyBagPolyBag"> </span> </label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Vendor Name:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="vendorNamePolyBag"> </span></label></th>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </table>
+
+
+                                                            <div class="col-md-10 mt-3">
+                                                                <table class="table table-bordered" style="border:2px solid black">
+                                                                    <thead>
+                                                                        <tr style="border:2px solid black">
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Sr no</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Standard</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Result</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">Remarks</th>
+
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="DetailsPolyBag">
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                            <div class="col-md-2"></div>
+                                                            <!-- <div class="col-md-4">
+                                                                <table class="table table-bordered" style="border:2px solid black"> 
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style="border:2px solid black">Lab Reading</th>
+                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr >
+                                                                            <td rowspan="2"></td>
+                                                                            <td style="border:2px solid black">Max</td>
+                                                                            <td style="border:2px solid black">Min</td>
+                                                                        </tr>
+                                                                        <tr >
+                                                                            
+                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                                                                            
+                                                                        </tr>
+                                                                    </tbody>         
+                                                                </table>
+                                                            </div> --> <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th>Checked by</th>
+                                                                    <th></th>
+                                                                    <th>
+
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewed"> </span> -->
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+
+
+                                                                    <th>Lab Manager</th>
+                                                                </tr>
+                                                            </table>
+
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Tanveer Ali</th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th>Sohail Ghouri</th>
+                                                                    </tr>
+                                                                </thead>
+
+                                                            </table>
+                                                            <!-- <div class="col-md-4 mt-2">
+                                                            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+                                                        Habib Ur Rehman
+                                                            </div>
+                                                            <div class="col-md-4 mt-2">
+                                                            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+                                                            Sohail Ghouri
+                                                            </div>
+                                                            <div class="col-md-4 mt-2">
+                                                            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+                                                            Sohail Ghouri
+                                                            </div> -->
+                                                        </div>
+                                                        <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardPolyBag')" data-dismiss="modal">Print Report</button>
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- End Model PolyBag HTML -->
+
+
+
+                                <!-- Model Carton HTML Standard -->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCardStandard">
+                                                    <div class="card-body">
+
+                                                        <div class="row">
+                                                            <!-- <div class="col-md-6">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Carton</th>
+                                                                        <th></th>
+                                                                    </tr>
+                                                                </table>
+                                                               <table class="table">
+                                                                    <tr>
+                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestStandard"> </span></label></th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="sizeStandard"> </span> </label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoStandard"> </span></label></th>
+                                                                    </tr>
+                                                                </table>
+                                                                  <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateStandard"> </span></label></div>
+                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameStandard"> </span></label></div>
+                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefStandard"> </span></label></div>
+                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Quantity Carton:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="quantityCartonStandard"> </span></label></div>
+                                                                <div class="col-md-2"></div>
+                                                                <div class="col-md-10 mt-3">
+                                                                    <table class="table table-bordered" style="border:2px solid black">
+                                                                        <thead>
+                                                                            <tr style="border:2px solid black">
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Requirement</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Value</th>
+                                                                                <th style="text-align: center;font-size:large;border:2px solid black">
+                                                                                    Result
+                                                                                </th>
+                                                                        
+
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="DetailsTestStandard">
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                                <div class="col-md-2"></div>
+                                                                
+                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionStandard"> </span></label></div>
+                                                              
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                                            <span>Sohail Ghouri </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                                                                            <span id="testPerformedStandard"> </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedStandard"> </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+
+
+                                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                                            <span id="testApprovedStandard"> </span>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+
+                                                                <table class="table">
+                                                                    <tr>
+
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th>
+                                                                            <h5 style="font-weight:bold;color:black">Carton Image</h5>
+                                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="cartonImageStandard" height="250px" width="300px" alt="CartonPhoto" />
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                    </tr>
+                                                                </table>
+                                                             
+                                                            </div> -->
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
+                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="cartonImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
+
+                                                            </div>
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardStandard')" data-dismiss="modal">Print Report</button> -->
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- Model Foam HTML -->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalFoam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCardFoam">
+                                                    <div class="card-body">
+
+                                                        <div class="row">
+                                                            <!-- <table class="table">
+                                                                <tr>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
+
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Foam</th>
+                                                                    <th> </th>
+                                                                </tr>
+                                                            </table> -->
+                                                            <div class="col-sm-12 d-flex flex-row">
+                                                                <div class="col-sm-4" id="FoamLogoHide">
+                                                                    <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" />
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" />
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" />
+                                                                </div>
+                                                            </div>
+
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Foam </h3>
+                                                            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+                                                            <div class="col-md-3"></div>
+                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFoam"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFoam"> </span></label></th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoFoam"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></th>
+                                                                </tr>
+                                                            </table>
+                                                            <!-- <div class="col-md-6">
+                                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+                                                            </div>
+                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+                                                            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+                                                            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFoam"> </span></label></div>
+                                                            <div class="col-md-2"></div>
+                                                            <div class="col-md-10 mt-3">
+                                                                <table class="table table-bordered" style="border:2px solid black">
+                                                                    <thead>
+                                                                        <tr style="border:2px solid black">
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">
+                                                                                Standard
+                                                                            </th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
+
+                                                                            <!-- <table style="width: 100%;">
+                                                                            <thead >
+                                                                                <tr >
+                                                                                    <th>1</th>
+                                                                                    <th>2</th>
+                                                                                    <th>3</th>
+                                                                                </tr>
+                                                                            </thead> 
+                                                                            </table> -->
+
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="DetailsTestFoam">
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                            <div class="col-md-2"></div>
+                                                            <!-- <div class="col-md-4">
+                                                                <table class="table table-bordered" style="border:2px solid black"> 
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style="border:2px solid black">Lab Reading</th>
+                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr >
+                                                                            <td rowspan="2"></td>
+                                                                            <td style="border:2px solid black">Max</td>
+                                                                            <td style="border:2px solid black">Min</td>
+                                                                        </tr>
+                                                                        <tr >
+                                                                            
+                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                                                                            
+                                                                        </tr>
+                                                                    </tbody>         
+                                                                </table>
+                                                            </div> -->
+                                                            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionFoam"> </span></label></div>
+                                                            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                                        <span>Sohail Ghouri </span>
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                                                                        <span id="testPerformedFoam"> </span>
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFoam"> </span> -->
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed </span>
+
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+
+
+                                                                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                                        <!-- <span id="testApprovedFoam"> </span> -->
+                                                                        <span> Zain Abbas</span>
+                                                                    </th>
+                                                                </tr>
+                                                            </table>
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th></th>
+
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th>
+                                                                        <h5 style="font-weight:bold;color:black">Foam Image</h5>
+                                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="foamImage" height="250px" width="300px" alt="FoamPhoto" />
+                                                                    </th>
+                                                                </tr>
+                                                            </table>
+                                                            <!-- <div class="col-md-4 mt-2">
+                                    <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+                                    Habib Ur Rehman
+                                    </div>
+                                    <div class="col-md-4 mt-2">
+                                    <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+                                    Sohail Ghouri
+                                    </div>
+                                    <div class="col-md-4 mt-2">
+                                    <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+                                    Sohail Ghouri
+                                    </div> -->
+                                                        </div>
+                                                        <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardFoam')" data-dismiss="modal">Print Report</button>
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- End Model Foam HTML -->
+
+                                <!-- Model Foam HTML Standard -->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalFoamStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCardFoamStandard">
+                                                    <div class="card-body">
+
+                                                        <div class="row">
+                                                            <!-- <div class="col-md-6">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Foam</th>
+                                                                        <th> </th>
+                                                                    </tr>
+                                                                </table>
+                                                              <table class="table">
+                                                                    <tr>
+                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFoamStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFoamStandard"> </span></label></th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoFoamStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoamStandard"> </span></label></th>
+                                                                    </tr>
+                                                                </table>
+                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFoamStandard"> </span></label></div>
+                                                                <div class="col-md-2"></div>
+                                                                <div class="col-md-10 mt-3">
+                                                                    <table class="table table-bordered" style="border:2px solid black">
+                                                                        <thead>
+                                                                            <tr style="border:2px solid black">
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
+                                                                                <th style="text-align: center;font-size:large;border:2px solid black">
+                                                                                    Standard
+                                                                                </th>
+                                                                        
+
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="DetailsTestFoamStandard">
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                                <div class="col-md-2"></div>
+                                                              
+                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionFoamStandard"> </span></label></div>
+                                                            
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                                            <span>Sohail Ghouri </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                                                                            <span id="testPerformedFoamStandard"> </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFoamStandard"> </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+
+
+                                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                                            <span id="testApprovedFoamStandard"> </span>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th></th>
+
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th>
+                                                                            <h5 style="font-weight:bold;color:black">Foam Image</h5>
+                                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="foamImageStandard" height="250px" width="300px" alt="FoamPhoto" />
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                              
+                                                            </div> -->
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
+                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="foamImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
+
+                                                            </div>
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardFoamStandard')" data-dismiss="modal">Print Report</button> -->
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- End Model Foam HTML Standard -->
+
+                                <!-- Model Fabric HTML -->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalFabric" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCardFabric">
+                                                    <div class="card-body">
+
+                                                        <div class="row">
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
+
+                                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                                    <th></th>
+                                                                    <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Fabric</th> -->
+                                                                    <td style="font-size: small;padding:0%">
+                                                                        <table class="table table-bordered" style="font-size: small;padding:0%">
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Document</th>
+                                                                                <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Revision</th>
+                                                                                <td style="font-size: small;padding:1%">0</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Copy</th>
+                                                                                <td style="font-size: small;padding:1%">03</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Holder</th>
+                                                                                <td style="font-size: small;padding:1%">Lab</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Status</th>
+                                                                                <td style="font-size: small;padding:1%">Controlled</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Date</th>
+                                                                                <td style="font-size: small;padding:1%">1/Jul/21</td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Fabric </h3>
+                                                            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFabric"> </span></label></th>
+                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSNoFabric"> </span></label></th>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFabric"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFabric"> </span></label></th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialNameFabric"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="ResultFabric"> </span></label></th>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoFabric"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></th>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Temperature:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="temperatureF"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Humidity:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="humidityF"> </span></label></th>
+
+                                                                </tr>
+                                                            </table>
+                                                            <!-- <div class="col-md-6">
+                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+                                            </div>
+                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+                                                            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+                                                            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
+                                                            <div class="col-md-2"></div>
+                                                            <div class="col-md-10 mt-3">
+                                                                <table class="table table-bordered" style="border:2px solid black">
+                                                                    <thead>
+                                                                        <tr style="border:2px solid black">
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Uncertainty</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">
+                                                                                Remark
+                                                                            </th>
+                                                                            <!-- <table style="width: 100%;">
+                                        <thead >
+                                            <tr >
+                                                <th>1</th>
+                                                <th>2</th>
+                                                <th>3</th>
+                                            </tr>
+                                        </thead> 
+                                            </table> -->
+
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="DetailsTestFabric">
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                            <div class="col-md-2"></div>
+                                                            <!-- <div class="col-md-4">
+                                        <table class="table table-bordered" style="border:2px solid black"> 
+                                            <thead>
+                                                <tr>
+                                                    <th style="border:2px solid black">Lab Reading</th>
+                                                    <th colspan="2" style="border:2px solid black">Humidity</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr >
+                                                    <td rowspan="2"></td>
+                                                    <td style="border:2px solid black">Max</td>
+                                                    <td style="border:2px solid black">Min</td>
+                                                </tr>
+                                                <tr >
+                                                    
+                                                    <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                                                    <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                                                    
+                                                </tr>
+                                            </tbody>         
+                                        </table>
+                                        </div> -->
+                                                            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionFabric"> </span></label></div>
+                                                            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                                        <span>Sohail Ghouri </span>
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                                                                        <span id="testPerformedFabric"> </span>
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFabric"> </span> -->
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed </span>
+
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+
+
+                                                                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                                        <!-- <span id="testApprovedFabric"> </span> -->
+                                                                        <span> Zain Abbas </span>
+                                                                    </th>
+                                                                </tr>
+                                                            </table>
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th>
+                                                                        <h5 style="font-weight:bold;color:black">Fabric Image</h5>
+                                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fabricImage" height="250px" width="300px" alt="FabricPhoto" />
+                                                                    </th>
+                                                                </tr>
+                                                            </table>
+                                                            <!-- <div class="col-md-4 mt-2">
+                                        <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+                                    Habib Ur Rehman
+                                        </div>
+                                        <div class="col-md-4 mt-2">
+                                        <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+                                        Sohail Ghouri
+                                        </div>
+                                        <div class="col-md-4 mt-2">
+                                        <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+                                        Sohail Ghouri
+                                        </div> -->
+                                                        </div>
+                                                        <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardFabric')" data-dismiss="modal">Print Report</button>
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- End Model Fabric HTML -->
+
+                                <!-- Model Fabric HTML Standard -->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalFabricStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCardFabricStandard">
+                                                    <div class="card-body">
+
+                                                        <div class="row">
+                                                            <!-- <div class="col-md-6">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Fabric</th>
+                                                                        <td style="font-size: small;padding:0%">
+                                                                            <table class="table table-bordered" style="font-size: small;padding:0%">
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Document</th>
+                                                                                    <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Revision</th>
+                                                                                    <td style="font-size: small;padding:1%">0</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Copy</th>
+                                                                                    <td style="font-size: small;padding:1%">03</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Holder</th>
+                                                                                    <td style="font-size: small;padding:1%">Lab</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Status</th>
+                                                                                    <td style="font-size: small;padding:1%">Controlled</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Date</th>
+                                                                                    <td style="font-size: small;padding:1%">1/Jul/21</td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFabricStandard"> </span></label></th>
+                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSNoFabricStandard"> </span></label></th>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFabricStandard"> </span></label></th>
+                                                                        <th><span style="font-size: medium;font-weight:bold;background-color:white;"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFabricStandard"> </span></th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialNameFabricStandard"> </span></label></th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="ResultFabricStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoFabricStandard"> </span></label></th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabricStandard"> </span></label></th>
+                                                                    </tr>
+                                                                </table>
+                                                               <div class="col-md-2"></div>
+                                                                <div class="col-md-10 mt-3">
+                                                                    <table class="table table-bordered" style="border:2px solid black">
+                                                                        <thead>
+                                                                            <tr style="border:2px solid black">
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Uncertainty</th>
+                                                                                <th style="text-align: center;font-size:large;border:2px solid black">
+                                                                                    Remark
+                                                                                </th>
+                                                                         
+
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="DetailsTestFabricStandard">
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                                <div class="col-md-2"></div>
+
+                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionFabricStandard"> </span></label></div>
+                                                             
+                                                                <table class="table">
+
+                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                                        <span>Sohail Ghouri </span>
+                                                                    </th>
+
+                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                                                                        <span id="testPerformedFabricStandard"> </span>
+                                                                    </th>
+
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFabricStandard"> </span>
+                                                                    </th>
+
+
+
+                                                                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                                        <span id="testApprovedFabricStandard"> </span>
+                                                                    </th>
+                                                                    </tr>
+                                                                </table>
+                                                                <table class="table">
+                                                                    <tr>
+
+                                                                        <th>
+                                                                            <h5 style="font-weight:bold;color:black">Fabric Image</h5>
+                                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fabricImageStandard" height="250px" width="300px" alt="FabricPhoto" />
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                              
+                                                            </div> -->
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
+                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fabricImageStandardComp" style='margin-top:10px' height="100%" width="100%" alt="StandardReport" />
+                                                            </div>
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardFabricStandard')" data-dismiss="modal">Print Report</button> -->
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- End Model Fabric HTML Standard -->
+
+                                <!-- Model Fabric Comparison HTML -->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalFabricComparison" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCardFabric">
+                                                    <div class="card-body">
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <h3 style="color: black;font-weight:bold;font-size:medium;text-align:center">RM Test Report </h3>
+                                                                <div class="row" style="padding: 10px;border: 2px solid black">
+
+                                                                    <table class="table">
+                                                                        <tr>
+
+                                                                            <th style="font-size: Medium;font-weight:bold;padding:20px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Fabric</th>
+
+                                                                        </tr>
+                                                                    </table>
+                                                                    <table class="table">
+                                                                        <tr>
+                                                                            <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoComp"> </span></label></th>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestComp"> </span></label></th>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="cssNoComp"> </span></label></th>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateComp"> </span></label></th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialNameFabricComp"> </span></label></th>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="ResultFabricComp"> </span></label></th>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoComp"> </span></label></th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefComp"> </span></label></div>
+                                                                        </tr>
+                                                                    </table>
+                                                                    <div class="col-md-2"></div>
+                                                                    <div class="col-md-10 mt-3">
+                                                                        <table class="table table-bordered" style="border:2px solid black">
+                                                                            <thead>
+                                                                                <tr style="border:2px solid black">
+                                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
+                                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Uncertainty</th>
+                                                                                    <th style="text-align: center;font-size:large;border:2px solid black">
+                                                                                        Remark
+                                                                                    </th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody id="DetailsTestComp">
+
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+
+                                                                    <div class="col-md-2"></div>
+
+                                                                    <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionComp"> </span></label></div>
+
+                                                                    <table class="table">
+                                                                        <tr>
+                                                                            <th></th>
+
+                                                                            <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                                                <span>Sohail Ghouri </span>
+                                                                            </th>
+                                                                            <th></th>
+
+                                                                            <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                                                                                <span id="testPerformedComp"> </span>
+                                                                            </th>
+                                                                            <th></th>
+
+                                                                            <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedComp"> </span> -->
+                                                                            <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed</span>
+
+                                                                            </th>
+                                                                            <th></th>
+
+                                                                            <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                                                <!-- <span id="testApprovedComp"> </span> -->
+                                                                                <span> Zain Abbas</span>
+                                                                            </th>
+                                                                        </tr>
+                                                                    </table>
+
+
+                                                                    <table class="table">
+                                                                        <tr>
+
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th>
+                                                                                <h5 style="font-weight:bold;color:black">Fabric Image</h5>
+                                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="cartonImageComp" height="250px" width="300px" alt="FabricPhoto" />
+                                                                            </th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                        </tr>
+                                                                    </table>
+
+                                                                </div>
+                                                                <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <h3 style="color: black;font-weight:bold;font-size:medium;text-align:center">Development test report </h3>
+                                                                <div class="row" style="padding: 10px;border: 2px solid black">
+                                                                    <table class="table">
+                                                                        <tr>
+                                                                            <th style="font-size: Medium;font-weight:bold;padding:20px">Store Department of Forward Sports (Pvt) Ltd<br>4 Point System Inspection Report</th>
+
+                                                                        </tr>
+                                                                    </table>
+                                                                    <table class="table">
+                                                                        <tr>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestCompCartonStore"> </span></label></th>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoCompCartonStore"> </span></label></th>
+
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Color:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="colorCompCartonStore"> </span> </label></th>
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold">Fabric Description:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="descCompCartonStore"> </span> </label></th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Sup.Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supCompCartonStore"> </span> </label></th>
+                                                                        </tr>
+                                                                    </table>
+                                                                    <h1> Length (meter)</h1>
+                                                                    <table class="table">
+                                                                        <tr>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> On Tag:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="len1CompCartonStore"> </span> </label></th>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Actual:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="len2CompCartonStore"> </span> </label></th>
+                                                                        </tr>
+                                                                    </table>
+                                                                    <h1> width (meter)</h1>
+                                                                    <table class="table">
+                                                                        <tr>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> On Tag:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="width1CompCartonStore"> </span> </label></th>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Actual:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="width2CompCartonStore"> </span> </label></th>
+                                                                        </tr>
+
+                                                                    </table>
+
+                                                                    <h1> Defect 1: <span id="defect1"></span> </h1>
+                                                                    <table class="table">
+                                                                        <tr>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 0-3":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect11CompCartonStore"> </span> </label></th>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 3-6":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect12CompCartonStore"> </span> </label></th>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 6-9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect13CompCartonStore"> </span> </label></th>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> >9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect14CompCartonStore"> </span> </label></th>
+
+                                                                        </tr>
+
+                                                                    </table>
+                                                                    <h1> Defect 2: <span id="defect2"></span> </h1>
+                                                                    <table class="table">
+                                                                        <tr>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 0-3":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect21CompCartonStore"> </span> </label></th>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 3-6":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect22CompCartonStore"> </span> </label></th>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 6-9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect23CompCartonStore"> </span> </label></th>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> >9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect24CompCartonStore"> </span> </label></th>
+
+                                                                        </tr>
+
+                                                                    </table>
+                                                                    <h1> Defect 3: <span id="defect3"></span> </h1>
+                                                                    <table class="table">
+                                                                        <tr>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 0-3":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect31CompCartonStore"> </span> </label></th>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 3-6":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect32CompCartonStore"> </span> </label></th>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 6-9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect33CompCartonStore"> </span> </label></th>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> >9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect34CompCartonStore"> </span> </label></th>
+
+                                                                        </tr>
+
+                                                                    </table>
+                                                                    <h1> Defect 4: <span id="defect4"></span> </h1>
+                                                                    <table class="table">
+                                                                        <tr>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 0-3":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect41CompCartonStore"> </span> </label></th>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 3-6":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect42CompCartonStore"> </span> </label></th>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 6-9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect43CompCartonStore"> </span> </label></th>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> >9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect44CompCartonStore"> </span> </label></th>
+
+                                                                        </tr>
+
+                                                                    </table>
+
+                                                                    <h1> Hole <span id="hole"></span> </h1>
+                                                                    <table class="table">
+                                                                        <tr>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 0-1":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="hole1CompCartonStore"> </span> </label></th>
+                                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> >1":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="hole2CompCartonStore"> </span> </label></th>
+                                                                        </tr>
+
+                                                                    </table>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <h1> Total Point Found: <span id="totalCompCartonStore"></span> </h1>
+
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <h1> Points/1000 Squre Meter: <span id="pointsCompCartonStore"></span> </h1>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <h1> Status: <span id="statusCompCartonStore"></span> </h1>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- End Model Fabric Comparison HTML -->
+
+
+                                <!-- Model Material HTML -->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalMaterial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCardMaterial">
+                                                    <div class="card-body">
+
+                                                        <div class="row">
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
+
+                                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                                    <th></th>
+                                                                    <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Material</th> -->
+                                                                    <td style="font-size: small;padding:0%">
+                                                                        <table class="table table-bordered" style="font-size: small;padding:0%">
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Document</th>
+                                                                                <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Revision</th>
+                                                                                <td style="font-size: small;padding:1%">0</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Copy</th>
+                                                                                <td style="font-size: small;padding:1%">03</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Holder</th>
+                                                                                <td style="font-size: small;padding:1%">Lab</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Status</th>
+                                                                                <td style="font-size: small;padding:1%">Controlled</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Date</th>
+                                                                                <td style="font-size: small;padding:1%">1/Jul/21</td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Material </h3>
+                                                            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+                                                            <div class="col-md-3"></div>
+                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoMaterial"> </span></label></th>
+                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSNoMaterial"> </span></label></th>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMaterial"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateMaterial"> </span></label></th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialNameMaterial"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="ResultMaterial"> </span></label></th>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoMaterial"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefMaterial"> </span></label></th>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <!-- <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameFabric"> </span></label></th> -->
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold">Temperature:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="temperatureM"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold">Humidity:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="humidityM"> </span></label></th>
+
+                                                                </tr>
+
+
+                                                            </table>
+                                                            <!-- <div class="col-md-6">
+                                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+                                                            </div>
+                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+                                                            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+                                                            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
+                                                            <div class="col-md-2"></div>
+                                                            <div class="col-md-10 mt-3">
+                                                                <table class="table table-bordered" style="border:2px solid black">
+                                                                    <thead>
+                                                                        <tr style="border:2px solid black">
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Requirenmt</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Uncertainty</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">
+                                                                                Remark
+                                                                            </th>
+                                                                            <!-- <table style="width: 100%;">
+                                                                            <thead >
+                                                                                <tr >
+                                                                                    <th>1</th>
+                                                                                    <th>2</th>
+                                                                                    <th>3</th>
+                                                                                </tr>
+                                                                            </thead> 
+                                                                                </table> -->
+
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="DetailsTestMaterial">
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                            <div class="col-md-2"></div>
+                                                            <!-- <div class="col-md-4">
+                                                                <table class="table table-bordered" style="border:2px solid black"> 
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style="border:2px solid black">Lab Reading</th>
+                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr >
+                                                                            <td rowspan="2"></td>
+                                                                            <td style="border:2px solid black">Max</td>
+                                                                            <td style="border:2px solid black">Min</td>
+                                                                        </tr>
+                                                                        <tr >
+                                                                            
+                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                                                                            
+                                                                        </tr>
+                                                                    </tbody>         
+                                                                </table>
+                                                                </div> -->
+                                                            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionMaterial"> </span></label></div>
+                                                            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                                        <span>Sohail Ghouri </span>
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                                                                        <span id="testPerformedMaterial"> </span>
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedMaterial"> </span> -->
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed</span>
+
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+
+
+                                                                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                                        <!-- <span id="testApprovedMaterial"> </span> -->
+                                                                        <span> Zain Abbas</span>
+                                                                    </th>
+                                                                </tr>
+                                                            </table>
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th>
+                                                                        <h5 style="font-weight:bold;color:black">Material Image</h5>
+                                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="materialImage" height="250px" width="300px" alt="MaterialPhoto" />
+                                                                    </th>
+                                                                </tr>
+                                                            </table>
+                                                            <!-- <div class="col-md-4 mt-2">
+                                                        <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+                                                    Habib Ur Rehman
+                                                        </div>
+                                                        <div class="col-md-4 mt-2">
+                                                        <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+                                                        Sohail Ghouri
+                                                        </div>
+                                                        <div class="col-md-4 mt-2">
+                                                        <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+                                                        Sohail Ghouri
+                                                        </div> -->
+                                                        </div>
+
+                                                        <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardMaterial')" data-dismiss="modal">Print Report</button>
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- End Model Material HTML -->
+
+
+                                <!-- Model Material HTML Standard -->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalMaterialStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCardMaterialStandard">
+                                                    <div class="card-body">
+
+                                                        <div class="row">
+                                                            <!-- <div class="col-md-6">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Material</th>
+                                                                        <td style="font-size: small;padding:0%">
+                                                                            <table class="table table-bordered" style="font-size: small;padding:0%">
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Document</th>
+                                                                                    <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Revision</th>
+                                                                                    <td style="font-size: small;padding:1%">0</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Copy</th>
+                                                                                    <td style="font-size: small;padding:1%">03</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Holder</th>
+                                                                                    <td style="font-size: small;padding:1%">Lab</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Status</th>
+                                                                                    <td style="font-size: small;padding:1%">Controlled</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Date</th>
+                                                                                    <td style="font-size: small;padding:1%">1/Jul/21</td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoMaterialStandard"> </span></label></th>
+                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSNoMaterialStandard"> </span></label></th>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMaterialStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateMaterialStandard"> </span></label></th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialNameMaterialStandard"> </span></label></th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="ResultMaterialStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoMaterialStandard"> </span></label></th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefMaterialStandard"> </span></label></th>
+                                                                    </tr>
+                                                                </table>
+                                                              <div class="col-md-2"></div>
+                                                                <div class="col-md-10 mt-3">
+                                                                    <table class="table table-bordered" style="border:2px solid black">
+                                                                        <thead>
+                                                                            <tr style="border:2px solid black">
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Uncertainty</th>
+                                                                                <th style="text-align: center;font-size:large;border:2px solid black">
+                                                                                    Remark
+                                                                                </th>
+                                                                    
+
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="DetailsTestMaterialStandard">
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                                <div class="col-md-2"></div>
+                                                              
+                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionMaterialStandard"> </span></label></div>
+                                                          
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                                            <span>Sohail Ghouri </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                                                                            <span id="testPerformedMaterialStandard"> </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedMaterialStandard"> </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+
+
+                                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                                            <span id="testApprovedMaterialStandard"> </span>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th>
+                                                                            <h5 style="font-weight:bold;color:black">Material Image</h5>
+                                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="materialImageStandard" height="250px" width="300px" alt="MaterialPhoto" />
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                            
+                                                            </div> -->
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
+                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="materialImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
+
+                                                            </div>
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardMaterialStandard')" data-dismiss="modal">Print Report</button> -->
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- End Model Material HTML Standard -->
+
+                                <!-- Model Thread HTML -->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalThread" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCardThread">
+                                                    <div class="card-body">
+
+                                                        <div class="row">
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
+
+                                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
+                                                                    <th></th>
+                                                                    <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Thread</th> -->
+                                                                    <td style="font-size: small;padding:0%">
+                                                                        <table class="table table-bordered" style="font-size: small;padding:0%">
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Document</th>
+                                                                                <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Revision</th>
+                                                                                <td style="font-size: small;padding:1%">0</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Copy</th>
+                                                                                <td style="font-size: small;padding:1%">03</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Holder</th>
+                                                                                <td style="font-size: small;padding:1%">Lab</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Status</th>
+                                                                                <td style="font-size: small;padding:1%">Controlled</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Date</th>
+                                                                                <td style="font-size: small;padding:1%">1/Jul/21</td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Thread </h3>
+                                                            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+                                                <div class="col-md-3"></div>
+                                                <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoThread"> </span></label></th>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestThread"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateThread"> </span></label></th>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameThread"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefThread"> </span></label></th>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoThread"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Thickness:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="thicknessThread"> </span></label></th>
+
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Linear Density:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="linearDensityThread"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Twist Per Inch:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="twistThread"> </span></label></th>
+                                                                </tr>
+
+
+                                                            </table>
+                                                            <!-- <div class="col-md-6">
+                                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+                                                            </div>
+                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+                                                            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+                                                            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
+                                                            <div class="col-md-2"></div>
+                                                            <div class="col-md-10 mt-3">
+                                                                <table class="table table-bordered" style="border:2px solid black">
+                                                                    <thead>
+                                                                        <tr style="border:2px solid black">
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Date</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Ext. at Max. Load (mm)</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Max. Load (N)</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">
+                                                                                Ext. at 350.0 N (mm)
+                                                                            </th>
+                                                                            <!-- <table style="width: 100%;">
+                                                                            <thead >
+                                                                                <tr >
+                                                                                    <th>1</th>
+                                                                                    <th>2</th>
+                                                                                    <th>3</th>
+                                                                                </tr>
+                                                                            </thead> 
+                                                                            </table> -->
+
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="DetailsTestThread">
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                            <div class="col-md-2"></div>
+                                                            <!-- <div class="col-md-4">
+                                                                <table class="table table-bordered" style="border:2px solid black"> 
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style="border:2px solid black">Lab Reading</th>
+                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr >
+                                                                            <td rowspan="2"></td>
+                                                                            <td style="border:2px solid black">Max</td>
+                                                                            <td style="border:2px solid black">Min</td>
+                                                                        </tr>
+                                                                        <tr >
+                                                                            
+                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                                                                            
+                                                                        </tr>
+                                                                    </tbody>         
+                                                                </table>
+                                                            </div> -->
+                                                            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionThread"> </span></label></div>
+                                                            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                                        <span>Sohail Ghouri </span>
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                                                                        <span id="testPerformedThread"> </span>
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedThread"> </span> -->
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span>Fatima Rasheed </span>
+
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+
+
+                                                                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                                        <!-- <span id="testApprovedThread"> </span> -->
+                                                                        <span> Zain Abbas</span>
+                                                                    </th>
+                                                                </tr>
+                                                            </table>
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th>
+                                                                        <h5 style="font-weight:bold;color:black">Thread Image</h5>
+                                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadImage" height="250px" width="300px" alt="ThreadPhoto" />
+                                                                    </th>
+                                                                </tr>
+                                                            </table>
+                                                            <!-- <div class="col-md-4 mt-2">
+                                                            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+                                                        Habib Ur Rehman
+                                                            </div>
+                                                            <div class="col-md-4 mt-2">
+                                                            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+                                                            Sohail Ghouri
+                                                            </div>
+                                                            <div class="col-md-4 mt-2">
+                                                            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+                                                            Sohail Ghouri
+                                                            </div> -->
+                                                        </div>
+                                                        <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardThread')" data-dismiss="modal">Print Report</button>
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- End Model Thread HTML -->
+
+                                <!-- Model Thread HTML Standard -->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalThreadStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCardThreadStandard">
+                                                    <div class="card-body">
+
+                                                        <div class="row">
+                                                            <!-- <div class="col-md-6">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Thread</th>
+                                                                        <td style="font-size: small;padding:0%">
+                                                                            <table class="table table-bordered" style="font-size: small;padding:0%">
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Document</th>
+                                                                                    <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Revision</th>
+                                                                                    <td style="font-size: small;padding:1%">0</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Copy</th>
+                                                                                    <td style="font-size: small;padding:1%">03</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Holder</th>
+                                                                                    <td style="font-size: small;padding:1%">Lab</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Status</th>
+                                                                                    <td style="font-size: small;padding:1%">Controlled</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Date</th>
+                                                                                    <td style="font-size: small;padding:1%">1/Jul/21</td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                              <table class="table">
+                                                                    <tr>
+                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoThreadStandard"> </span></label></th>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestThreadStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateThreadStandard"> </span></label></th>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameThreadStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefThreadStandard"> </span></label></th>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoThreadStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Thickness:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="thicknessThreadStandard"> </span></label></th>
+
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Linear Density:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="linearDensityThreadStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Twist Per Inch:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="twistThreadStandard"> </span></label></th>
+                                                                    </tr>
+
+
+                                                                </table>
+                                                               <div class="col-md-2"></div>
+                                                                <div class="col-md-10 mt-3">
+                                                                    <table class="table table-bordered" style="border:2px solid black">
+                                                                        <thead>
+                                                                            <tr style="border:2px solid black">
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Date</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Ext. at Max. Load (mm)</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Max. Load (N)</th>
+                                                                                <th style="text-align: center;font-size:large;border:2px solid black">
+                                                                                    Ext. at 350.0 N (mm)
+                                                                                </th>
+                                                                                
+
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="DetailsTestThreadStandard">
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                                <div class="col-md-2"></div>
+                                                            
+                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionThreadStandard"> </span></label></div>
+                                                             
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                                            <span>Sohail Ghouri </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                                                                            <span id="testPerformedThreadStandard"> </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedThreadStandard"> </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+
+
+                                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                                            <span id="testApprovedThreadStandard"> </span>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th>
+                                                                            <h5 style="font-weight:bold;color:black">Thread Image</h5>
+                                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadImageStandard" height="250px" width="300px" alt="ThreadPhoto" />
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                              
+                                                            </div> -->
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
+                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
+
+                                                            </div>
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardThreadStandard')" data-dismiss="modal">Print Report</button> -->
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- End Model Thread HTML Standard -->
+
+
+
+                                <!-- Model MS Thread HTML -->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalMSThread" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCardMSMaterial">
+                                                    <div class="card-body">
+
+                                                        <div class="row">
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" class="ml-5" alt="report_logo" width="250px" height="100px" /></th>
+
+                                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
+                                                                    <th></th>
+                                                                    <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of MS Thread</th> -->
+                                                                    <td style="font-size: small;padding:0%">
+                                                                        <table class="table table-bordered" style="font-size: small;padding:0%">
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Document</th>
+                                                                                <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Revision</th>
+                                                                                <td style="font-size: small;padding:1%">0</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Copy</th>
+                                                                                <td style="font-size: small;padding:1%">03</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Holder</th>
+                                                                                <td style="font-size: small;padding:1%">Lab</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Status</th>
+                                                                                <td style="font-size: small;padding:1%">Controlled</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Date</th>
+                                                                                <td style="font-size: small;padding:1%">1/Jul/21</td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of MS Thread </h3>
+                                                            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+                                                            <div class="col-md-3"></div>
+                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoMSThread"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMSThread"> </span></label></th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="MaterialNameMSThread"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateMSThread"> </span></label></th>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameMSThread"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefMSThread"> </span></label></th>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoMSThread"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="statusMSThread"> </span></label></th>
+
+                                                                </tr>
+                                                            </table>
+                                                            <!-- <div class="col-md-6">
+                                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+                                                            </div>
+                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+                                                            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+                                                            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
+                                                            <div class="col-md-2"></div>
+                                                            <div class="col-md-10 mt-3">
+                                                                <table class="table table-bordered" style="border:2px solid black">
+                                                                    <thead>
+                                                                        <tr style="border:2px solid black">
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Method</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">
+                                                                                Requirement
+                                                                            </th>
+                                                                            <th style="text-align: center;font-size:large;border:2px solid black">
+                                                                                Result
+                                                                            </th>
+                                                                            <!-- <table style="width: 100%;">
+                                                                            <thead >
+                                                                                <tr >
+                                                                                    <th>1</th>
+                                                                                    <th>2</th>
+                                                                                    <th>3</th>
+                                                                                </tr>
+                                                                            </thead> 
+                                                                            </table> -->
+
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="DetailsTestMSThread">
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                            <div class="col-md-2"></div>
+                                                            <!-- <div class="col-md-4">
+                                                                <table class="table table-bordered" style="border:2px solid black"> 
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th style="border:2px solid black">Lab Reading</th>
+                                                                                <th colspan="2" style="border:2px solid black">Humidity</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr >
+                                                                                <td rowspan="2"></td>
+                                                                                <td style="border:2px solid black">Max</td>
+                                                                                <td style="border:2px solid black">Min</td>
+                                                                            </tr>
+                                                                            <tr >
+                                                                                
+                                                                                <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                                                                                <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                                                                                
+                                                                            </tr>
+                                                                        </tbody>         
+                                                                </table>
+                                                            </div> -->
+                                                            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionMSThread"> </span></label></div>
+                                                            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                                        <span>Sohail Ghouri </span>
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                                                                        <span id="testPerformedMSThread"> </span>
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedMSThread"> </span> -->
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed</span>
+
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+
+
+                                                                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                                        <!-- <span id="testApprovedMSThread"> </span> -->
+                                                                        <span>Zain Abbas </span>
+                                                                    </th>
+                                                                </tr>
+                                                            </table>
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th>
+                                                                        <h5 style="font-weight:bold;color:black">MS Thread Image</h5>
+                                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadMSImage" height="250px" width="300px" alt="MSThreadPhoto" />
+                                                                    </th>
+                                                                </tr>
+                                                            </table>
+                                                            <!-- <div class="col-md-4 mt-2">
+                                                            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+                                                        Habib Ur Rehman
+                                                            </div>
+                                                            <div class="col-md-4 mt-2">
+                                                            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+                                                            Sohail Ghouri
+                                                            </div>
+                                                            <div class="col-md-4 mt-2">
+                                                            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+                                                            Sohail Ghouri
+                                                            </div> -->
+                                                        </div>
+                                                        <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardMSMaterial')" data-dismiss="modal">Print Report</button>
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- End Model MS Thread HTML -->
+
+                                <!-- Model MS Thread HTML Standard -->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalMSThreadStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCardMSThreadStandard">
+                                                    <div class="card-body">
+
+                                                        <div class="row">
+                                                            <!-- <div class="col-md-6">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of MS Thread</th>
+                                                                        <td style="font-size: small;padding:0%">
+                                                                            <table class="table table-bordered" style="font-size: small;padding:0%">
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Document</th>
+                                                                                    <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Revision</th>
+                                                                                    <td style="font-size: small;padding:1%">0</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Copy</th>
+                                                                                    <td style="font-size: small;padding:1%">03</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Holder</th>
+                                                                                    <td style="font-size: small;padding:1%">Lab</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Status</th>
+                                                                                    <td style="font-size: small;padding:1%">Controlled</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Date</th>
+                                                                                    <td style="font-size: small;padding:1%">1/Jul/21</td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                                 <table class="table">
+                                                                    <tr>
+                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoMSThreadStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMSThreadStandard"> </span></label></th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="MaterialNameMSThreadStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateMSThreadStandard"> </span></label></th>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameMSThreadStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefMSThreadStandard"> </span></label></th>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoMSThreadStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="statusMSThreadStandard"> </span></label></th>
+
+                                                                    </tr>
+                                                                </table>
+                                                                 <div class="col-md-2"></div>
+                                                                <div class="col-md-10 mt-3">
+                                                                    <table class="table table-bordered" style="border:2px solid black">
+                                                                        <thead>
+                                                                            <tr style="border:2px solid black">
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Method</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
+                                                                                <th style="text-align: center;font-size:large;border:2px solid black">
+                                                                                    Requirement
+                                                                                </th>
+                                                                                <th style="text-align: center;font-size:large;border:2px solid black">
+                                                                                    Result
+                                                                                </th>
+                                                                        
+
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="DetailsTestMSThreadStandard">
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                                <div class="col-md-2"></div>
+                                                               
+                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionMSThreadStandard"> </span></label></div>
+                                                              
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                                            <span>Sohail Ghouri </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                                                                            <span id="testPerformedMSThreadStandard"> </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedMSThreadStandard"> </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+
+
+                                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                                            <span id="testApprovedMSThreadStandard"> </span>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th>
+                                                                            <h5 style="font-weight:bold;color:black">MS Thread Image</h5>
+                                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadMSImageStandard" height="250px" width="300px" alt="MSThreadPhoto" />
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                              
+                                                            </div> -->
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
+                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadMSImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
+
+                                                            </div>
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardMSThreadStandard')" data-dismiss="modal">Print Report</button> -->
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- End Model MS Thread HTML Standard -->
+
+
+                                <!-- Model Blader HTML -->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalBlader" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCardBlader">
+                                                    <div class="card-body">
+
+                                                        <div class="row">
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
+
+                                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
+                                                                    <th></th>
+                                                                    <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Blader</th> -->
+                                                                    <th> </th>
+                                                                </tr>
+                                                            </table>
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Blader </h3>
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoBlader"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestBlader"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateBlader"> </span></label></th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameBlader"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefBlader"> </span></label></th>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialBlader"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="sizeBlader"> </span></label></th>
+
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Hardness:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="hardnessBlader"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoBlader"> </span></label></th>
+
+                                                                </tr>
+
+
+                                                            </table>
+                                                            <div class="col-md-2"></div>
+                                                            <div class="col-md-10 mt-3">
+                                                                <table class="table table-bordered" style="border:2px solid black">
+                                                                    <thead>
+                                                                        <tr style="border:2px solid black">
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 1</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 2</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 3</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 4</th>
+
+
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="DetailsTestBlader">
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                            <div class="col-md-2"></div>
+
+                                                            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Remarks:</span> <span style="font-size: medium;font-weight:bold" id="remarksBlader"> </span></label></div>
+
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                                        <span>Sohail Ghouri </span>
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                                                                        <span id="testPerformedBlader"> </span>
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedBlader"> </span> -->
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed </span>
+
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+
+
+                                                                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                                        <!-- <span id="testApprovedBlader"> </span> -->
+                                                                        <span>Zain Abbas </span>
+                                                                    </th>
+                                                                </tr>
+                                                            </table>
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th>
+                                                                        <h5 style="font-weight:bold;color:black">Blader Image</h5>
+                                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="bladerImage" height="250px" width="300px" alt="BladerPhoto" />
+                                                                    </th>
+                                                                </tr>
+                                                            </table>
+
+                                                        </div>
+                                                        <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardBlader')" data-dismiss="modal">Print Report</button>
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- End Model Blader HTML -->
+
+                                <!-- Model MS Materail HTML -->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalMSMaterial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCardMSMaterialL">
+                                                    <div class="card-body">
+
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <table class="table">
+                                                                    <tr>
+
+
+                                                                        <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" style="visibility:hidden" /></th>
+                                                                        <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
+                                                                        <th></th>
+                                                                        <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Blader</th> -->
+                                                                        <th> </th>
+                                                                    </tr>
+                                                                </table>
+                                                                <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of MS Material </h3>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testMSMaterial"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMSMaterial"> </span></label></th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Po#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="poMSMaterial"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Ref.:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="MaterialRefMSMaterial"> </span></label></th>
+
+                                                                    </tr>
+
+
+                                                                </table>
+                                                                <div class="col-md-2"></div>
+                                                                <div class="col-md-10 mt-3">
+                                                                    <table class="table table-bordered ">
+                                                                        <thead>
+                                                                            <tr class="border">
+                                                                                <th class="border border-dark" style="text-align: center;font-size:large;">Test</th>
+                                                                                <th class="border border-dark" style="text-align: center;font-size:large;">Method</th>
+                                                                                <th class="border border-dark" style="text-align: center;font-size:large;">Unit</th>
+                                                                                <th class="border border-dark" style="text-align: center;font-size:large;">Requirement</th>
+                                                                                <th class="border border-dark" style="text-align: center;font-size:large;">Result</th>
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="DetailsTestMSMaterial">
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                                <div class="col-md-2"></div>
+
+                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="visualResultMSMaterialr"> </span></label></div>
+
+                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="Conclusion"> </span></label></div>
+
+
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th></th>
+
+
+
+                                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Prepared By</u> </span><br>
+                                                                            <span> Sohail Ghouri </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+                                                                            <span id="testPerformedMSMaterial"> </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th><span style="font-size: medium;font-weight:bold"><u>Test Reviewed By</u> </span><br>
+                                                                            <span>Fatima Rasheed </span>
+
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <!-- <th><span style="font-size: medium;font-weight:bold"></span><br><span id="testReviewedMSMaterial"> </span> -->
+                                                                        <th><span style="font-size: medium;font-weight:bold"><u>Test Approved By</u> </span><br>
+                                                                            <span>Zain Abbas </span>
+                                                                        <th>
+
+                                                                        </th>
+
+                                                                    </tr>
+                                                                </table>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+
+                                                                    </tr>
+                                                                </table>
+
+
+
+
+                                                            </div>
+
+
+
+
+
+                                                        </div>
+                                                        <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardMSMaterialL')" data-dismiss="modal">Print Report</button>
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- End Model MS Material HTML -->
+
+                                <!-- Model Blader HTML Standard -->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalBladerStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCardBladerStandard">
+                                                    <div class="card-body">
+
+                                                        <div class="row">
+                                                            <!-- <div class="col-md-6">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
+
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Blader</th>
+                                                                        <th> </th>
+                                                                    </tr>
+                                                                </table>
+                                                               <table class="table">
+                                                                    <tr>
+                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoBladerStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestBladerStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateBladerStandard"> </span></label></th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameBladerStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefBladerStandard"> </span></label></th>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialBladerStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="sizeBladerStandard"> </span></label></th>
+
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Hardness:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="hardnessBladerStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoBladerStandard"> </span></label></th>
+
+                                                                    </tr>
+
+
+                                                                </table>
+                                                                <div class="col-md-2"></div>
+                                                                <div class="col-md-10 mt-3">
+                                                                    <table class="table table-bordered" style="border:2px solid black">
+                                                                        <thead>
+                                                                            <tr style="border:2px solid black">
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 1</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 2</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 3</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 4</th>
+
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="DetailsTestBladerStandard">
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                                <div class="col-md-2"></div>
+                                                           
+                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Remarks:</span> <span style="font-size: medium;font-weight:bold" id="remarksBladerStandard"> </span></label></div>
+                                                             
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                                            <span>Sohail Ghouri </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                                                                            <span id="testPerformedBladerStandard"> </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedBladerStandard"> </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+
+
+                                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                                            <span id="testApprovedBladerStandard"> </span>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th>
+                                                                            <h5 style="font-weight:bold;color:black">Blader Image</h5>
+                                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="bladerImageStandard" height="250px" width="300px" alt="BladerPhoto" />
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                             
+                                                            </div> -->
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
+                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="bladerImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
+
+                                                            </div>
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardBladerStandard')" data-dismiss="modal">Print Report</button> -->
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- End Model Blader HTML Standard -->
+
+
+
+                                <!-- Model FGT HTML -->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalFGT" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCSM">
+                                                    <div class="card-body">
+
+                                                        <div class="row">
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th><img src="<?php echo base_url() ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+
+                                                                    <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
+
+                                                                    <th></th>
+                                                                    <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>CSM Test Report of Football</th> -->
+                                                                    <td style="font-size: small;padding:0%">
+                                                                        <table class="table table-bordered" style="font-size: small;padding:0%">
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Document</th>
+                                                                                <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Revision</th>
+                                                                                <td style="font-size: small;padding:1%">0</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Copy</th>
+                                                                                <td style="font-size: small;padding:1%">03</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Holder</th>
+                                                                                <td style="font-size: small;padding:1%">Lab Manager</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Status</th>
+                                                                                <td style="font-size: small;padding:1%">Controlled</td>
+                                                                            </tr>
+                                                                            <tr style="font-size: small;padding:0%">
+                                                                                <th style="font-size: small;padding:1%">Date</th>
+                                                                                <td style="font-size: small;padding:1%">1/Jul/21</td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                            <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> CSM Test Report of Football </h3>
+
+                                                            <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
+                                                            <div class="col-md-3"></div>
+                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFGT"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFGT"> </span></label></th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Model Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="modelNameFGT"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS Code:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSCodeFGT"> </span></label></th>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Pressure:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="pressureFGT"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Temp/Humidity:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="TempHumFGT"> </span></label></th>
+
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Article:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="articleFGT"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Category:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="categoryFGT"> </span></label></th>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="sizeFGT"> </span></label></th>
+                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Tested For:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testedForFGT"> </span></label></th>
+
+                                                                </tr>
+
+                                                            </table>
+                                                            <!-- <div class="col-md-6">
+                                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
+                                                            </div>
+                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
+                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
+                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
+                                                            <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
+                                                            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
+                                                            <div class="col-md-2"></div>
+                                                            <div class="col-md-10 mt-3">
+                                                                <table class="table table-bordered" style="border:2px solid black">
+                                                                    <thead>
+                                                                        <tr style="border:2px solid black">
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Weight</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Circumference Min</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Circumference Max</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Deviation</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Rebound Test</th>
+                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Remarks</th>
+                                                                            <!-- <table style="width: 100%;">
+                                                                            <thead >
+                                                                                <tr >
+                                                                                    <th>1</th>
+                                                                                    <th>2</th>
+                                                                                    <th>3</th>
+                                                                                </tr>
+                                                                            </thead> 
+                                                                            </table> -->
+
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="DetailsTestFGT">
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+
+
+
+
+                                                            <div class="col-md-2"></div>
+                                                            <!-- <div class="col-md-4">
+                                                                <table class="table table-bordered" style="border:2px solid black"> 
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style="border:2px solid black">Lab Reading</th>
+                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr >
+                                                                            <td rowspan="2"></td>
+                                                                            <td style="border:2px solid black">Max</td>
+                                                                            <td style="border:2px solid black">Min</td>
+                                                                        </tr>
+                                                                        <tr >
+                                                                            
+                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
+                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
+                                                                            
+                                                                        </tr>
+                                                                    </tbody>         
+                                                                </table>
+                                                            </div> -->
+                                                            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Note:</span> <span style="font-size: medium;font-weight:bold" id="noteFGT"> </span></label></div>
+                                                            <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
+
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                                        <span>Sohail Ghouri </span>
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                                                                        <span id="testPerformedFGT"> </span>
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFGT"> </span> -->
+                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed</span>
+
+                                                                    </th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+
+
+                                                                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                                        <!-- <span id="testApprovedFGT"> </span> -->
+                                                                        <span> Zain Abbas</span>
+                                                                    </th>
+                                                                </tr>
+                                                            </table>
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th></th>
+                                                                    <th>
+                                                                        <h5 style="font-weight:bold;color:black">FGT CSM Image</h5>
+                                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fgtImage" height="250px" width="300px" alt="FGTCSMPhoto" />
+                                                                    </th>
+                                                                </tr>
+                                                            </table>
+                                                            <!-- <div class="col-md-4 mt-2">
+                                                            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
+                                                        Habib Ur Rehman
+                                                            </div>
+                                                            <div class="col-md-4 mt-2">
+                                                            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
+                                                            Sohail Ghouri
+                                                            </div>
+                                                            <div class="col-md-4 mt-2">
+                                                            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
+                                                            Sohail Ghouri
+                                                            </div> -->
+                                                        </div>
+                                                        <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCSM')" data-dismiss="modal">Print Report</button>
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- End Model FGT HTML -->
+
+
+                                <!-- Model FGT HTML Standard -->
+
+                                <div class="modal fade bd-example-modal-lg" id="exampleModalFGTStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
+                                                <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="card" id="printCardFGTStandard">
+                                                    <div class="card-body">
+
+                                                        <div class="row">
+                                                            <!-- <div class="col-md-6">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th><img src="<?php echo base_url() ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
+
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>CSM Test Report of Football</th>
+                                                                        <td style="font-size: small;padding:0%">
+                                                                            <table class="table table-bordered" style="font-size: small;padding:0%">
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Document</th>
+                                                                                    <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Revision</th>
+                                                                                    <td style="font-size: small;padding:1%">0</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Copy</th>
+                                                                                    <td style="font-size: small;padding:1%">03</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Holder</th>
+                                                                                    <td style="font-size: small;padding:1%">Lab Manager</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Status</th>
+                                                                                    <td style="font-size: small;padding:1%">Controlled</td>
+                                                                                </tr>
+                                                                                <tr style="font-size: small;padding:0%">
+                                                                                    <th style="font-size: small;padding:1%">Date</th>
+                                                                                    <td style="font-size: small;padding:1%">1/Jul/21</td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                               <table class="table">
+                                                                    <tr>
+                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFGTStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFGTStandard"> </span></label></th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Model Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="modelNameFGTStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS Code:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSCodeFGTStandard"> </span></label></th>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Pressure:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="pressureFGTStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Temp/Humidity:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="TempHumFGTStandard"> </span></label></th>
+
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Article:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="articleFGTStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Category:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="categoryFGTStandard"> </span></label></th>
+
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="sizeFGTStandard"> </span></label></th>
+                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Tested For:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testedForFGTStandard"> </span></label></th>
+
+                                                                    </tr>
+
+                                                                </table>
+                                                                  <div class="col-md-2"></div>
+                                                                <div class="col-md-10 mt-3">
+                                                                    <table class="table table-bordered" style="border:2px solid black">
+                                                                        <thead>
+                                                                            <tr style="border:2px solid black">
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Weight</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Circumference Min</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Circumference Max</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Deviation</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Rebound Test</th>
+                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Remarks</th>
+                                                                   
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="DetailsTestFGTStandard">
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                                <div class="col-md-2"></div>
+                                                             
+                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Note:</span> <span style="font-size: medium;font-weight:bold" id="noteFGTStandard"> </span></label></div>
+                                                               <table class="table">
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
+                                                                            <span>Sohail Ghouri </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
+                                                                            <span id="testPerformedFGTStandard"> </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFGTStandard"> </span>
+                                                                        </th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+
+
+                                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
+                                                                            <span id="testApprovedFGTStandard"> </span>
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                                <table class="table">
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th></th>
+                                                                        <th>
+                                                                            <h5 style="font-weight:bold;color:black">FGT CSM Image</h5>
+                                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fgtImageStandard" height="250px" width="300px" alt="FGTCSMPhoto" />
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>
+                                                              
+                                                            </div> -->
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
+                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fgtImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
+
+                                                            </div>
+                                                            <div class="col-md-2">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardFGTStandard')" data-dismiss="modal">Print Report</button> -->
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                Forward Sports Pvt. Ltd.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- End Model FGT HTML Standard -->
+
+                                <!-- Model FGT TESTING HTML -->
+                                <?php include('FGT_Models/fgtTestingCSMModel.php') ?>
+                                <!-- End Model FGT TESTING  HTML -->
+
+                              
 
 
                                 <?php
@@ -108,21 +4371,37 @@ if (!$this->session->has_userdata('user_id')) {
                                                                         <div class="row mt-2 mb-2">
                                                                             <div class="col-md-3">
                                                                                 <label for="freshImage">Fresh Image</label>
-                                                                                <input type="file" name="freshImage" id="freshImage" class="form-control">
+                                                                                <input type="file" name="freshImage" id="freshImage" class="form-control" onchange="document.getElementById('image1').src = window.URL.createObjectURL(this.files[0])">
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <label for="afterShooterImage">After Shooter Image</label>
-                                                                                <input type="file" name="afterShooterImage" id="afterShooterImage" class="form-control">
+                                                                                <input type="file" name="afterShooterImage" id="afterShooterImage" class="form-control" onchange="document.getElementById('image2').src = window.URL.createObjectURL(this.files[0])">
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <label for="hydrolysisImage">Hydrolysis Image</label>
-                                                                                <input type="file" name="hydrolysisImage" id="hydrolysisImage" class="form-control">
+                                                                                <input type="file" name="hydrolysisImage" id="hydrolysisImage" class="form-control" onchange="document.getElementById('image3').src = window.URL.createObjectURL(this.files[0])">
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <label for="drumImage">Drum Image</label>
-                                                                                <input type="file" name="drumImage" id="drumImage" class="form-control">
+                                                                                <input type="file" name="drumImage" id="drumImage" class="form-control" onchange="document.getElementById('image4').src = window.URL.createObjectURL(this.files[0])">
                                                                             </div>
                                                                         </div>
+
+                                                                        <div class="row justify-content-evenly ">
+                                                                            <div class="col-md-3">
+                                                                                <img src="<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png" alt="" id="image1" width="160px" height="100px" class="rounded">
+                                                                            </div>
+                                                                            <div class="col-md-3 mb-2 ">
+                                                                                <img src="<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png" alt="" id="image2" width="160px" height="100px" class="rounded">
+                                                                            </div>
+                                                                            <div class="col-md-3 mb-2 ">
+                                                                                <img src="<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png" alt="" id="image3" width="160px" height="100px" class="rounded">
+                                                                            </div>
+                                                                            <div class="col-md-3 mb-2 ">
+                                                                                <img src="<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png" alt="" id="image4" width="160px" height="100px" class="rounded">
+                                                                            </div>
+                                                                        </div>
+
 
 
                                                                     <?php
@@ -297,4281 +4576,13 @@ if (!$this->session->has_userdata('user_id')) {
                             </div>
                         </div>
 
-
-                        <!-- Model Carton HTML -->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCard">
-                                            <div class="card-body">
-
-                                                <!-- <div class="col-sm-12">
-                                                                <div class="col-sm-4">
-                                                                <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> 
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> 
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                <img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /> 
-                                                                </div>
-                                                            </div> -->
-
-
-                                                <div class="row">
-                                                    <div class="col-sm-12 d-flex flex-row">
-                                                        <div class="col-sm-4" id="cortonLogoHide">
-                                                            <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" />
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" />
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <img src="<?php echo base_url() ?>assets/img/adidasLogo.svg" alt="report_logo" width="250px" height="100px" />
-                                                        </div>
-                                                    </div>
-
-                                                    <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Carton </h3>
-
-
-                                                    <!-- <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;">Test Report Of Carton</h3> -->
-
-
-                                                    <!-- <table class="table">
-                                                                <tr>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /></th> <br>
-                                                                    <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Carton</th>
-                                    
-                                                                </tr>
-                                                            </table> -->
-                                                    <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-                                                            <div class="col-md-3"></div>
-                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNo"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTest"> </span></label></th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="size"> </span> </label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="pono"> </span></label></th>
-                                                        </tr>
-                                                    </table>
-                                                    <!-- <div class="col-md-6">
-                                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-                                                            </div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
-                                                    <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDate"> </span></label></div>
-                                                    <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierName"> </span></label></div>
-                                                    <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRef"> </span></label></div>
-                                                    <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Quantity Carton:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="quantityCarton"> </span></label></div>
-                                                    <div class="col-md-2"></div>
-                                                    <div class="col-md-10 mt-3">
-                                                        <table class="table table-bordered" style="border:2px solid black">
-                                                            <thead>
-                                                                <tr style="border:2px solid black">
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Requirement</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Value</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">
-                                                                        Result
-                                                                    </th>
-                                                                    <!-- <table style="width: 100%;">
-                                                                                <thead >
-                                                                                    <tr >
-                                                                                        <th>1</th>
-                                                                                        <th>2</th>
-                                                                                        <th>3</th>
-                                                                                    </tr>
-                                                                                </thead> 
-                                                                            </table> -->
-
-
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="DetailsTest">
-
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-
-                                                    <div class="col-md-2"></div>
-                                                    <!-- <div class="col-md-4">
-                                                                <table class="table table-bordered" style="border:2px solid black"> 
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th style="border:2px solid black">Lab Reading</th>
-                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr >
-                                                                            <td rowspan="2"></td>
-                                                                            <td style="border:2px solid black">Max</td>
-                                                                            <td style="border:2px solid black">Min</td>
-                                                                        </tr>
-                                                                        <tr >
-                                                                            
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                                                                            
-                                                                        </tr>
-                                                                    </tbody>         
-                                                                </table>
-                                                            </div> -->
-                                                    <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="Conclusion"> </span></label></div>
-                                                    <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
-
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
-                                                                <span>Sohail Ghouri </span>
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
-                                                                <span id="testPerformed"> </span>
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewed"> </span> -->
-                                                            <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br>Fatima Rasheed </span>
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-
-
-                                                            <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                <!-- <span id="testApproved"> </span> -->
-                                                                <span> Zain Abbas</span>
-                                                            </th>
-                                                        </tr>
-                                                    </table>
-
-                                                    <table class="table">
-                                                        <tr>
-
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th>
-                                                                <h5 style="font-weight:bold;color:black">Carton Image</h5>
-                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="cartonImage" height="250px" width="300px" alt="CartonPhoto" />
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </table>
-                                                    <!-- <div class="col-md-4 mt-2">
-                                                                <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                                            Habib Ur Rehman
-                                                                </div>
-                                                                <div class="col-md-4 mt-2">
-                                                                <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-                                                                Sohail Ghouri
-                                                                </div>
-                                                                <div class="col-md-4 mt-2">
-                                                                <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                                                                Sohail Ghouri
-                                                            </div> -->
-                                                </div>
-                                                <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="printDiv('printCard')" data-dismiss="modal">Print Report</button>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End Model Carton HTML -->
-
-
-                        <!-- Start Model Adhesion HTML-->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModalAdhesion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCardAdhesion">
-                                            <div class="card-body">
-
-                                                <!-- <div class="col-sm-12">
-                                                                <div class="col-sm-4">
-                                                                <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> 
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> 
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                <img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /> 
-                                                                </div>
-                                                            </div> -->
-
-
-                                                <div class="row">
-                                                    <div class="col-sm-12 d-flex flex-row">
-                                                        <div class="col-sm-4" id="cortonLogoHide">
-                                                            <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" />
-                                                        </div>
-                                                        <div class="col-sm-4">
-
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <table class="table border">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <td class="border">Document</td>
-                                                                        <td class="border">QSD-12/RTR/TRM</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="border">Revision</td>
-                                                                        <td class="border">0</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="border">Copy</td>
-                                                                        <td class="border">03</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="border">Holder</td>
-                                                                        <td class="border">Lab</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="border">Status</td>
-                                                                        <td class="border">Controlled</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="border">Date of Issuance</td>
-                                                                        <td class="border">01/07/2021</td>
-                                                                    </tr>
-                                                                </thead>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-
-                                                    <h3 style="font-size: Medium;font-weight:bold;margin-left:33%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Adhesion Material </h3>
-
-
-                                                    <!-- <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;">Test Report Of Carton</h3> -->
-
-
-                                                    <!-- <table class="table">
-                                                                <tr>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /></th> <br>
-                                                                    <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Carton</th>
-                                    
-                                                                </tr>
-                                                            </table> -->
-                                                    <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-                                                            <div class="col-md-3"></div>
-                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testDateAdhesion"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Received Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="receDateTestAdhesion"> </span></label></th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="testNoAdhesion"> </span> </label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Code:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receCodeAdhesion"> </span></label></th>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Article#:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="articleNoAdhesion"> </span> </label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Article Name#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="articleNameAdhesion"> </span></label></th>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="ponoAdhesion"> </span> </label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Result#:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="resultAdhesion"> </span> </label></th>
-
-                                                        </tr>
-                                                    </table>
-
-
-                                                    <div class="col-md-12 mt-3">
-                                                        <table class="table table-bordered" style="border:2px solid black">
-                                                            <thead>
-                                                                <tr style="border:2px solid black">
-
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Date</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">Test No</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">Batch Reference</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">Standard</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">MaximumForce</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">AverageForce</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">Comments</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">MaximumForceInch</th>
-
-
-                                                                </tr>
-                                                            </thead>
-
-                                                            <tbody id="DetailsAdhesion">
-
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-
-                                                    <div class="col-md-10 mt-3">
-                                                        <table class="table ">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th rowspan="2"></th>
-                                                                    <th rowspan="2"></th>
-                                                                    <th rowspan="2"></th>
-                                                                    <th></th>
-                                                                    <th></th>
-                                                                    <th></th>
-                                                                    <th></th>
-
-
-                                                                </tr>
-                                                                <tr>
-                                                                    <th rowspan="2"></th>
-                                                                    <th rowspan="2"></th>
-                                                                    <th rowspan="2"></th>
-                                                                    <th></th>
-                                                                    <th></th>
-                                                                    <th></th>
-                                                                    <th></th>
-
-
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>Checked By</td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td>Lab In-Charge</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Pervaiz Bhitti</td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td>Sohail Ghouri</td>
-                                                                </tr>
-
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-
-                                                    <div class="col-md-2"></div>
-                                                    <!-- <div class="col-md-4">
-                                                                <table class="table table-bordered" style="border:2px solid black"> 
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th style="border:2px solid black">Lab Reading</th>
-                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr >
-                                                                            <td rowspan="2"></td>
-                                                                            <td style="border:2px solid black">Max</td>
-                                                                            <td style="border:2px solid black">Min</td>
-                                                                        </tr>
-                                                                        <tr >
-                                                                            
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                                                                            
-                                                                        </tr>
-                                                                    </tbody>         
-                                                                </table>
-                                                            </div> -->
-                                                    <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
-
-
-
-
-                                                    <!-- <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                                        Habib Ur Rehman
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div> -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="printDiv('printCardAdhesion')" data-dismiss="modal">Print Report</button>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <!-- End Model Adhesion HTML -->
-
-
-                        <!-- Start Model Adhesion HTML-->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModalCSM" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCardCSM">
-                                            <div class="card-body">
-
-                                                <!-- <div class="col-sm-12">
-                                                                <div class="col-sm-4">
-                                                                <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> 
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> 
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                <img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /> 
-                                                                </div>
-                                                            </div> -->
-
-
-                                                <div class="row">
-                                                    <div class="col-sm-12 d-flex flex-row">
-                                                        <div class="col-sm-4" id="cortonLogoHide">
-                                                            <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" />
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="300px" height="180px" />
-
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <table class="table border">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <td class="border">Document</td>
-                                                                        <td class="border">QSD-12/RTR/TRM</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="border">Revision</td>
-                                                                        <td class="border">0</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="border">Copy</td>
-                                                                        <td class="border">03</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="border">Holder</td>
-                                                                        <td class="border">Lab</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="border">Status</td>
-                                                                        <td class="border">Controlled</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="border">Date of Issuance</td>
-                                                                        <td class="border">01/07/2021</td>
-                                                                    </tr>
-                                                                </thead>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-
-                                                    <h3 style="font-size: Medium;font-weight:bold;margin-left:33%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br>CSM Test Report Of Football </h3>
-
-
-                                                    <!-- <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;">Test Report Of Carton</h3> -->
-
-
-                                                    <!-- <table class="table">
-                                                                <tr>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /></th> <br>
-                                                                    <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Carton</th>
-                                    
-                                                                </tr>
-                                                            </table> -->
-                                                    <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-                                                            <div class="col-md-3"></div>
-                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="TestNoCSM"> </span></label></th>
-                                                            <th><label class="form-control" for="date"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateCSM"> </span></label></th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th><label class="form-control" for="modelName"><span style="font-size: medium;font-weight:bold"> Model Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="modelNameCSM"> </span> </label></th>
-                                                            <th><label class="form-control" for="cssCode"><span style="font-size: medium;font-weight:bold"> CSS Code:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="cssCodeCSM"> </span></label></th>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th><label class="form-control" for="pressure"><span style="font-size: medium;font-weight:bold"> Pressure:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="pressureCSM"> </span> </label></th>
-                                                            <th><label class="form-control" for="tempHumidity"><span style="font-size: medium;font-weight:bold"> Temp Humidity:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="tempHumidityCSM"> </span></label></th>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th><label class="form-control" for="article"><span style="font-size: medium;font-weight:bold"> Article:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="articleCSM"> </span> </label></th>
-                                                            <th><label class="form-control" for="category"><span style="font-size: medium;font-weight:bold"> Category:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="categoryCSM"> </span> </label></th>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <th><label class="form-control" for="size"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="sizeCSM"> </span> </label></th>
-                                                            <th><label class="form-control" for="testedFor"><span style="font-size: medium;font-weight:bold"> Tested for:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="testedForCSM"> </span> </label></th>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <!-- id="noteCSM" -->
-                                                            <th><label class="form-control" for="note"><span style="font-size: medium;font-weight:bold"> Note:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium">
-
-                                                                        The above reported result is applicable to the sample as recived at customer service section.
-                                                                    </span> </label></th>
-                                                            <th></th>
-
-                                                        </tr>
-                                                    </table>
-
-
-                                                    <div class="col-md-12 mt-3">
-                                                        <table class="table table-bordered" style="border:2px solid black">
-                                                            <thead>
-                                                                <tr style="border:2px solid black">
-
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Weight (gm)</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">Circumference Min(cm)</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">Circumference Max(cm)</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">Deviation</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">Rebound Test</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">Remarks</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">Result</th>
-
-                                                                </tr>
-                                                            </thead>
-
-                                                            <tbody id="DetailsCSM">
-
-                                                            </tbody>
-                                                        </table>
-
-                                                        <div class="row">
-                                                            <div class="col-md-12 col-lg-12">
-
-
-                                                                <span class="h2"><b>Test Request:<b></span>
-                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                                                                <span class="h4">
-                                                                    <u>
-                                                                        By MR. Oman Sb
-                                                                    </u>
-                                                                </span>
-
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-md-12 col-lg-12">
-                                                                <span class="h2"><b>Remarks:<b></span>
-                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                &nbsp;&nbsp;&nbsp;
-                                                                <span class="h4">
-                                                                    <u>
-                                                                        Without Conditioning Testing
-                                                                    </u>
-                                                                </span>
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="col-md-12 col-lg-12">
-                                                                <span class="h2"><b>Note:<b></span>
-                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                &nbsp;&nbsp;
-                                                                <span class="h4">
-                                                                    <u>
-                                                                        The above reported result is applicable to the sample as received
-                                                                        at customer service section<br>
-                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                        &nbsp;
-
-
-                                                                        Report was Electronically generated,
-                                                                        are not required
-                                                                    </u>
-                                                                </span>
-
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
-
-
-
-                                                    <!-- <div class="col-md-10 mt-3">
-                                                                <table class="table ">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th rowspan="2"></th>
-                                                                            <th rowspan="2"></th>
-                                                                            <th rowspan="2"></th>
-                                                                            <th></th>
-                                                                            <th></th>
-                                                                            <th></th>
-                                                                            <th></th>
-
-
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th rowspan="2"></th>
-                                                                            <th rowspan="2"></th>
-                                                                            <th rowspan="2"></th>
-                                                                            <th></th>
-                                                                            <th></th>
-                                                                            <th></th>
-                                                                            <th></th>
-
-
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td>Checked By</td>
-                                                                            <td></td>
-                                                                            <td></td>
-                                                                            <td></td>
-                                                                            <td></td>
-                                                                            <td></td>
-                                                                            <td></td>
-                                                                            <td>Lab In-Charge</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Pervaiz Bhitti</td>
-                                                                            <td></td>
-                                                                            <td></td>
-                                                                            <td></td>
-                                                                            <td></td>
-                                                                            <td></td>
-                                                                            <td></td>
-                                                                            <td>Sohail Ghouri</td>
-                                                                        </tr>
-                                                                    
-                                                                    </tbody>
-                                                                </table>
-                                                            </div> -->
-
-                                                    <div class="col-md-2"></div>
-                                                    <!-- <div class="col-md-4">
-                                                                <table class="table table-bordered" style="border:2px solid black"> 
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th style="border:2px solid black">Lab Reading</th>
-                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr >
-                                                                            <td rowspan="2"></td>
-                                                                            <td style="border:2px solid black">Max</td>
-                                                                            <td style="border:2px solid black">Min</td>
-                                                                        </tr>
-                                                                        <tr >
-                                                                            
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                                                                            
-                                                                        </tr>
-                                                                    </tbody>         
-                                                                </table>
-                                                            </div> -->
-                                                    <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
-
-
-
-
-                                                    <!-- <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                                        Habib Ur Rehman
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                                                            Sohail 
-                                                            
-
-                                                            </div> -->
-
-
-                                                </div>
-
-                                                <div class="row mt-5">
-                                                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-
-                                                        <div class="row">
-                                                            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-                                                                <h5><u>Prepared By</u></h5>
-                                                            </div>
-                                                            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 d-flex justify-content-center">
-                                                                <h5><u>Reviewed By</u></h5>
-
-                                                            </div>
-                                                            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 d-flex justify-content-end">
-                                                                <h5><u>Approved By</u></h5>
-
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="row mt-1">
-                                                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-
-                                                        <div class="row">
-                                                            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-                                                                <h5>Sohail Rasheed</h5>
-                                                            </div>
-                                                            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 d-flex justify-content-center">
-                                                                <h5>Fatima Rasheed</h5>
-
-                                                            </div>
-                                                            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 d-flex justify-content-end">
-                                                                <h5>Zain Abbas</h5>
-
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-
-
-                                        </div>
-
-                                    </div>
-
-
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="printDiv('printCardCSM')" data-dismiss="modal">Print Report</button>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <!-- End Model Adhesion HTML -->
-
-
-
-                        <!-- Start Model PolyBag HTML-->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModalPolyBag" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCardPolyBag">
-                                            <div class="card-body">
-
-                                                <!-- <div class="col-sm-12">
-                                                                <div class="col-sm-4">
-                                                                <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> 
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /> 
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                <img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /> 
-                                                                </div>
-                                                            </div> -->
-
-
-                                                <div class="row">
-                                                    <div class="col-sm-12 d-flex flex-row">
-                                                        <div class="col-sm-4" id="cortonLogoHide">
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" />
-                                                        </div>
-                                                        <div class="col-sm-4">
-
-                                                        </div>
-                                                    </div>
-
-                                                    <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of PolyBag </h3>
-
-
-                                                    <!-- <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;">Test Report Of Carton</h3> -->
-
-
-                                                    <!-- <table class="table">
-                                                                <tr>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" /></th> <br>
-                                                                    <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Carton</th>
-                                    
-                                                                </tr>
-                                                            </table> -->
-                                                    <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-                                                            <div class="col-md-3"></div>
-                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoPolyBag"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="POPolyBag"> </span></label></th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Received Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="receivedDatePolyBag"> </span> </label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="datePolyBag"> </span></label></th>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Poly Bag:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="polyBagPolyBag"> </span> </label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Vendor Name:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="vendorNamePolyBag"> </span></label></th>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th></th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </table>
-
-
-                                                    <div class="col-md-10 mt-3">
-                                                        <table class="table table-bordered" style="border:2px solid black">
-                                                            <thead>
-                                                                <tr style="border:2px solid black">
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Sr no</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">Standard</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">Result</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">Remarks</th>
-
-
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="DetailsPolyBag">
-
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-
-                                                    <div class="col-md-2"></div>
-                                                    <!-- <div class="col-md-4">
-                                                                <table class="table table-bordered" style="border:2px solid black"> 
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th style="border:2px solid black">Lab Reading</th>
-                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr >
-                                                                            <td rowspan="2"></td>
-                                                                            <td style="border:2px solid black">Max</td>
-                                                                            <td style="border:2px solid black">Min</td>
-                                                                        </tr>
-                                                                        <tr >
-                                                                            
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                                                                            
-                                                                        </tr>
-                                                                    </tbody>         
-                                                                </table>
-                                                            </div> --> <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
-
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th>Checked by</th>
-                                                            <th></th>
-                                                            <th>
-
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewed"> </span> -->
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-
-
-                                                            <th>Lab Manager</th>
-                                                        </tr>
-                                                    </table>
-
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Tanveer Ali</th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th>Sohail Ghouri</th>
-                                                            </tr>
-                                                        </thead>
-
-                                                    </table>
-                                                    <!-- <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                                        Habib Ur Rehman
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div> -->
-                                                </div>
-                                                <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="printDiv('printCardPolyBag')" data-dismiss="modal">Print Report</button>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <!-- End Model PolyBag HTML -->
-
-
-
-                        <!-- Model Carton HTML Standard -->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModalStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCardStandard">
-                                            <div class="card-body">
-
-                                                <div class="row">
-                                                    <!-- <div class="col-md-6">
-                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
-
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Carton</th>
-                                                                        <th></th>
-                                                                    </tr>
-                                                                </table>
-                                                               <table class="table">
-                                                                    <tr>
-                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestStandard"> </span></label></th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="sizeStandard"> </span> </label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoStandard"> </span></label></th>
-                                                                    </tr>
-                                                                </table>
-                                                                  <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateStandard"> </span></label></div>
-                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameStandard"> </span></label></div>
-                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefStandard"> </span></label></div>
-                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Quantity Carton:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="quantityCartonStandard"> </span></label></div>
-                                                                <div class="col-md-2"></div>
-                                                                <div class="col-md-10 mt-3">
-                                                                    <table class="table table-bordered" style="border:2px solid black">
-                                                                        <thead>
-                                                                            <tr style="border:2px solid black">
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Requirement</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Value</th>
-                                                                                <th style="text-align: center;font-size:large;border:2px solid black">
-                                                                                    Result
-                                                                                </th>
-                                                                        
-
-
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody id="DetailsTestStandard">
-
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-
-                                                                <div class="col-md-2"></div>
-                                                                
-                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionStandard"> </span></label></div>
-                                                              
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
-                                                                            <span>Sohail Ghouri </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
-                                                                            <span id="testPerformedStandard"> </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedStandard"> </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-
-
-                                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                            <span id="testApprovedStandard"> </span>
-                                                                        </th>
-                                                                    </tr>
-                                                                </table>
-
-                                                                <table class="table">
-                                                                    <tr>
-
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th>
-                                                                            <h5 style="font-weight:bold;color:black">Carton Image</h5>
-                                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="cartonImageStandard" height="250px" width="300px" alt="CartonPhoto" />
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                    </tr>
-                                                                </table>
-                                                             
-                                                            </div> -->
-                                                    <div class="col-md-2">
-
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
-                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="cartonImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
-
-                                                    </div>
-                                                    <div class="col-md-2">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardStandard')" data-dismiss="modal">Print Report</button> -->
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <!-- Model Foam HTML -->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModalFoam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCardFoam">
-                                            <div class="card-body">
-
-                                                <div class="row">
-                                                    <!-- <table class="table">
-                                                                <tr>
-                                                                    <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
-
-                                                                    <th></th>
-                                                                    <th></th>
-                                                                    <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Foam</th>
-                                                                    <th> </th>
-                                                                </tr>
-                                                            </table> -->
-                                                    <div class="col-sm-12 d-flex flex-row">
-                                                        <div class="col-sm-4" id="FoamLogoHide">
-                                                            <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" />
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" />
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <img src="<?php echo base_url() ?>assets/img/adidas.jpg" alt="report_logo" width="250px" height="100px" />
-                                                        </div>
-                                                    </div>
-
-                                                    <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Foam </h3>
-                                                    <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-                                                            <div class="col-md-3"></div>
-                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFoam"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFoam"> </span></label></th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoFoam"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></th>
-                                                        </tr>
-                                                    </table>
-                                                    <!-- <div class="col-md-6">
-                                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-                                                            </div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
-                                                    <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
-                                                    <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFoam"> </span></label></div>
-                                                    <div class="col-md-2"></div>
-                                                    <div class="col-md-10 mt-3">
-                                                        <table class="table table-bordered" style="border:2px solid black">
-                                                            <thead>
-                                                                <tr style="border:2px solid black">
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
-
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">
-                                                                        Standard
-                                                                    </th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
-
-                                                                    <!-- <table style="width: 100%;">
-                                                                            <thead >
-                                                                                <tr >
-                                                                                    <th>1</th>
-                                                                                    <th>2</th>
-                                                                                    <th>3</th>
-                                                                                </tr>
-                                                                            </thead> 
-                                                                            </table> -->
-
-
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="DetailsTestFoam">
-
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-
-                                                    <div class="col-md-2"></div>
-                                                    <!-- <div class="col-md-4">
-                                                                <table class="table table-bordered" style="border:2px solid black"> 
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th style="border:2px solid black">Lab Reading</th>
-                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr >
-                                                                            <td rowspan="2"></td>
-                                                                            <td style="border:2px solid black">Max</td>
-                                                                            <td style="border:2px solid black">Min</td>
-                                                                        </tr>
-                                                                        <tr >
-                                                                            
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                                                                            
-                                                                        </tr>
-                                                                    </tbody>         
-                                                                </table>
-                                                            </div> -->
-                                                    <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionFoam"> </span></label></div>
-                                                    <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
-
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
-                                                                <span>Sohail Ghouri </span>
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
-                                                                <span id="testPerformedFoam"> </span>
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFoam"> </span> -->
-                                                            <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed </span>
-
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-
-
-                                                            <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                <!-- <span id="testApprovedFoam"> </span> -->
-                                                                <span> Zain Abbas</span>
-                                                            </th>
-                                                        </tr>
-                                                    </table>
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th></th>
-
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th>
-                                                                <h5 style="font-weight:bold;color:black">Foam Image</h5>
-                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="foamImage" height="250px" width="300px" alt="FoamPhoto" />
-                                                            </th>
-                                                        </tr>
-                                                    </table>
-                                                    <!-- <div class="col-md-4 mt-2">
-                                    <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                    Habib Ur Rehman
-                                    </div>
-                                    <div class="col-md-4 mt-2">
-                                    <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-                                    Sohail Ghouri
-                                    </div>
-                                    <div class="col-md-4 mt-2">
-                                    <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                                    Sohail Ghouri
-                                    </div> -->
-                                                </div>
-                                                <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="printDiv('printCardFoam')" data-dismiss="modal">Print Report</button>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End Model Foam HTML -->
-
-                        <!-- Model Foam HTML Standard -->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModalFoamStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCardFoamStandard">
-                                            <div class="card-body">
-
-                                                <div class="row">
-                                                    <!-- <div class="col-md-6">
-                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
-
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Foam</th>
-                                                                        <th> </th>
-                                                                    </tr>
-                                                                </table>
-                                                              <table class="table">
-                                                                    <tr>
-                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFoamStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFoamStandard"> </span></label></th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoFoamStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoamStandard"> </span></label></th>
-                                                                    </tr>
-                                                                </table>
-                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFoamStandard"> </span></label></div>
-                                                                <div class="col-md-2"></div>
-                                                                <div class="col-md-10 mt-3">
-                                                                    <table class="table table-bordered" style="border:2px solid black">
-                                                                        <thead>
-                                                                            <tr style="border:2px solid black">
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
-                                                                                <th style="text-align: center;font-size:large;border:2px solid black">
-                                                                                    Standard
-                                                                                </th>
-                                                                        
-
-
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody id="DetailsTestFoamStandard">
-
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-
-                                                                <div class="col-md-2"></div>
-                                                              
-                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionFoamStandard"> </span></label></div>
-                                                            
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
-                                                                            <span>Sohail Ghouri </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
-                                                                            <span id="testPerformedFoamStandard"> </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFoamStandard"> </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-
-
-                                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                            <span id="testApprovedFoamStandard"> </span>
-                                                                        </th>
-                                                                    </tr>
-                                                                </table>
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th></th>
-
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th>
-                                                                            <h5 style="font-weight:bold;color:black">Foam Image</h5>
-                                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="foamImageStandard" height="250px" width="300px" alt="FoamPhoto" />
-                                                                        </th>
-                                                                    </tr>
-                                                                </table>
-                                                              
-                                                            </div> -->
-                                                    <div class="col-md-2">
-
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
-                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="foamImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
-
-                                                    </div>
-                                                    <div class="col-md-2">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardFoamStandard')" data-dismiss="modal">Print Report</button> -->
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End Model Foam HTML Standard -->
-
-                        <!-- Model Fabric HTML -->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModalFabric" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCardFabric">
-                                            <div class="card-body">
-
-                                                <div class="row">
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
-
-                                                            <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
-                                                            <th></th>
-                                                            <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Fabric</th> -->
-                                                            <td style="font-size: small;padding:0%">
-                                                                <table class="table table-bordered" style="font-size: small;padding:0%">
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Document</th>
-                                                                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Revision</th>
-                                                                        <td style="font-size: small;padding:1%">0</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Copy</th>
-                                                                        <td style="font-size: small;padding:1%">03</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Holder</th>
-                                                                        <td style="font-size: small;padding:1%">Lab</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Status</th>
-                                                                        <td style="font-size: small;padding:1%">Controlled</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Date</th>
-                                                                        <td style="font-size: small;padding:1%">1/Jul/21</td>
-                                                                    </tr>
-                                                                </table>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Fabric </h3>
-                                                    <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-                                        <div class="col-md-3"></div>
-                                        <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFabric"> </span></label></th>
-                                                            <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSNoFabric"> </span></label></th>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFabric"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFabric"> </span></label></th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialNameFabric"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="ResultFabric"> </span></label></th>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoFabric"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></th>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Temperature:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="temperatureF"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Humidity:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="humidityF"> </span></label></th>
-
-                                                        </tr>
-                                                    </table>
-                                                    <!-- <div class="col-md-6">
-                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-                                            </div>
-                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
-                                                    <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
-                                                    <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
-                                                    <div class="col-md-2"></div>
-                                                    <div class="col-md-10 mt-3">
-                                                        <table class="table table-bordered" style="border:2px solid black">
-                                                            <thead>
-                                                                <tr style="border:2px solid black">
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Uncertainty</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">
-                                                                        Remark
-                                                                    </th>
-                                                                    <!-- <table style="width: 100%;">
-                                        <thead >
-                                            <tr >
-                                                <th>1</th>
-                                                <th>2</th>
-                                                <th>3</th>
-                                            </tr>
-                                        </thead> 
-                                            </table> -->
-
-
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="DetailsTestFabric">
-
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-
-                                                    <div class="col-md-2"></div>
-                                                    <!-- <div class="col-md-4">
-                                        <table class="table table-bordered" style="border:2px solid black"> 
-                                            <thead>
-                                                <tr>
-                                                    <th style="border:2px solid black">Lab Reading</th>
-                                                    <th colspan="2" style="border:2px solid black">Humidity</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr >
-                                                    <td rowspan="2"></td>
-                                                    <td style="border:2px solid black">Max</td>
-                                                    <td style="border:2px solid black">Min</td>
-                                                </tr>
-                                                <tr >
-                                                    
-                                                    <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                                                    <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                                                    
-                                                </tr>
-                                            </tbody>         
-                                        </table>
-                                        </div> -->
-                                                    <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionFabric"> </span></label></div>
-                                                    <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
-
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
-                                                                <span>Sohail Ghouri </span>
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
-                                                                <span id="testPerformedFabric"> </span>
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFabric"> </span> -->
-                                                            <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed </span>
-
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-
-
-                                                            <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                <!-- <span id="testApprovedFabric"> </span> -->
-                                                                <span> Zain Abbas </span>
-                                                            </th>
-                                                        </tr>
-                                                    </table>
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th>
-                                                                <h5 style="font-weight:bold;color:black">Fabric Image</h5>
-                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fabricImage" height="250px" width="300px" alt="FabricPhoto" />
-                                                            </th>
-                                                        </tr>
-                                                    </table>
-                                                    <!-- <div class="col-md-4 mt-2">
-                                        <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                    Habib Ur Rehman
-                                        </div>
-                                        <div class="col-md-4 mt-2">
-                                        <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-                                        Sohail Ghouri
-                                        </div>
-                                        <div class="col-md-4 mt-2">
-                                        <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                                        Sohail Ghouri
-                                        </div> -->
-                                                </div>
-                                                <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="printDiv('printCardFabric')" data-dismiss="modal">Print Report</button>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End Model Fabric HTML -->
-
-                        <!-- Model Fabric HTML Standard -->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModalFabricStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCardFabricStandard">
-                                            <div class="card-body">
-
-                                                <div class="row">
-                                                    <!-- <div class="col-md-6">
-                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
-
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Fabric</th>
-                                                                        <td style="font-size: small;padding:0%">
-                                                                            <table class="table table-bordered" style="font-size: small;padding:0%">
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Document</th>
-                                                                                    <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Revision</th>
-                                                                                    <td style="font-size: small;padding:1%">0</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Copy</th>
-                                                                                    <td style="font-size: small;padding:1%">03</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Holder</th>
-                                                                                    <td style="font-size: small;padding:1%">Lab</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Status</th>
-                                                                                    <td style="font-size: small;padding:1%">Controlled</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Date</th>
-                                                                                    <td style="font-size: small;padding:1%">1/Jul/21</td>
-                                                                                </tr>
-                                                                            </table>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFabricStandard"> </span></label></th>
-                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSNoFabricStandard"> </span></label></th>
-
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFabricStandard"> </span></label></th>
-                                                                        <th><span style="font-size: medium;font-weight:bold;background-color:white;"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFabricStandard"> </span></th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialNameFabricStandard"> </span></label></th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="ResultFabricStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoFabricStandard"> </span></label></th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabricStandard"> </span></label></th>
-                                                                    </tr>
-                                                                </table>
-                                                               <div class="col-md-2"></div>
-                                                                <div class="col-md-10 mt-3">
-                                                                    <table class="table table-bordered" style="border:2px solid black">
-                                                                        <thead>
-                                                                            <tr style="border:2px solid black">
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Uncertainty</th>
-                                                                                <th style="text-align: center;font-size:large;border:2px solid black">
-                                                                                    Remark
-                                                                                </th>
-                                                                         
-
-
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody id="DetailsTestFabricStandard">
-
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-
-                                                                <div class="col-md-2"></div>
-
-                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionFabricStandard"> </span></label></div>
-                                                             
-                                                                <table class="table">
-
-                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
-                                                                        <span>Sohail Ghouri </span>
-                                                                    </th>
-
-                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
-                                                                        <span id="testPerformedFabricStandard"> </span>
-                                                                    </th>
-
-                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFabricStandard"> </span>
-                                                                    </th>
-
-
-
-                                                                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                        <span id="testApprovedFabricStandard"> </span>
-                                                                    </th>
-                                                                    </tr>
-                                                                </table>
-                                                                <table class="table">
-                                                                    <tr>
-
-                                                                        <th>
-                                                                            <h5 style="font-weight:bold;color:black">Fabric Image</h5>
-                                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fabricImageStandard" height="250px" width="300px" alt="FabricPhoto" />
-                                                                        </th>
-                                                                    </tr>
-                                                                </table>
-                                                              
-                                                            </div> -->
-                                                    <div class="col-md-2">
-
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
-                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fabricImageStandardComp" style='margin-top:10px' height="100%" width="100%" alt="StandardReport" />
-                                                    </div>
-                                                    <div class="col-md-2">
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardFabricStandard')" data-dismiss="modal">Print Report</button> -->
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End Model Fabric HTML Standard -->
-
-                        <!-- Model Fabric Comparison HTML -->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModalFabricComparison" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCardFabric">
-                                            <div class="card-body">
-
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <h3 style="color: black;font-weight:bold;font-size:medium;text-align:center">RM Test Report </h3>
-                                                        <div class="row" style="padding: 10px;border: 2px solid black">
-
-                                                            <table class="table">
-                                                                <tr>
-
-                                                                    <th style="font-size: Medium;font-weight:bold;padding:20px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Fabric</th>
-
-                                                                </tr>
-                                                            </table>
-                                                            <table class="table">
-                                                                <tr>
-                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoComp"> </span></label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestComp"> </span></label></th>
-
-                                                                </tr>
-                                                                <tr>
-                                                                    <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="cssNoComp"> </span></label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateComp"> </span></label></th>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialNameFabricComp"> </span></label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="ResultFabricComp"> </span></label></th>
-
-                                                                </tr>
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoComp"> </span></label></th>
-                                                                </tr>
-                                                                <tr>
-                                                                    <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefComp"> </span></label></div>
-                                                                </tr>
-                                                            </table>
-                                                            <div class="col-md-2"></div>
-                                                            <div class="col-md-10 mt-3">
-                                                                <table class="table table-bordered" style="border:2px solid black">
-                                                                    <thead>
-                                                                        <tr style="border:2px solid black">
-                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
-                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
-                                                                            <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Uncertainty</th>
-                                                                            <th style="text-align: center;font-size:large;border:2px solid black">
-                                                                                Remark
-                                                                            </th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody id="DetailsTestComp">
-
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-
-                                                            <div class="col-md-2"></div>
-
-                                                            <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionComp"> </span></label></div>
-
-                                                            <table class="table">
-                                                                <tr>
-                                                                    <th></th>
-
-                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
-                                                                        <span>Sohail Ghouri </span>
-                                                                    </th>
-                                                                    <th></th>
-
-                                                                    <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
-                                                                        <span id="testPerformedComp"> </span>
-                                                                    </th>
-                                                                    <th></th>
-
-                                                                    <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedComp"> </span> -->
-                                                                    <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed</span>
-
-                                                                    </th>
-                                                                    <th></th>
-
-                                                                    <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                        <!-- <span id="testApprovedComp"> </span> -->
-                                                                        <span> Zain Abbas</span>
-                                                                    </th>
-                                                                </tr>
-                                                            </table>
-
-
-                                                            <table class="table">
-                                                                <tr>
-
-                                                                    <th></th>
-                                                                    <th></th>
-                                                                    <th></th>
-                                                                    <th></th>
-                                                                    <th></th>
-                                                                    <th></th>
-                                                                    <th></th>
-                                                                    <th></th>
-                                                                    <th>
-                                                                        <h5 style="font-weight:bold;color:black">Fabric Image</h5>
-                                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="cartonImageComp" height="250px" width="300px" alt="FabricPhoto" />
-                                                                    </th>
-                                                                    <th></th>
-                                                                    <th></th>
-                                                                    <th></th>
-                                                                    <th></th>
-                                                                    <th></th>
-                                                                </tr>
-                                                            </table>
-
-                                                        </div>
-                                                        <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <h3 style="color: black;font-weight:bold;font-size:medium;text-align:center">Development test report </h3>
-                                                        <div class="row" style="padding: 10px;border: 2px solid black">
-                                                            <table class="table">
-                                                                <tr>
-                                                                    <th style="font-size: Medium;font-weight:bold;padding:20px">Store Department of Forward Sports (Pvt) Ltd<br>4 Point System Inspection Report</th>
-
-                                                                </tr>
-                                                            </table>
-                                                            <table class="table">
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestCompCartonStore"> </span></label></th>
-
-                                                                </tr>
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoCompCartonStore"> </span></label></th>
-
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Color:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="colorCompCartonStore"> </span> </label></th>
-
-                                                                </tr>
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold">Fabric Description:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="descCompCartonStore"> </span> </label></th>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Sup.Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supCompCartonStore"> </span> </label></th>
-                                                                </tr>
-                                                            </table>
-                                                            <h1> Length (meter)</h1>
-                                                            <table class="table">
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> On Tag:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="len1CompCartonStore"> </span> </label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Actual:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="len2CompCartonStore"> </span> </label></th>
-                                                                </tr>
-                                                            </table>
-                                                            <h1> width (meter)</h1>
-                                                            <table class="table">
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> On Tag:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="width1CompCartonStore"> </span> </label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Actual:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="width2CompCartonStore"> </span> </label></th>
-                                                                </tr>
-
-                                                            </table>
-
-                                                            <h1> Defect 1: <span id="defect1"></span> </h1>
-                                                            <table class="table">
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 0-3":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect11CompCartonStore"> </span> </label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 3-6":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect12CompCartonStore"> </span> </label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 6-9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect13CompCartonStore"> </span> </label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> >9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect14CompCartonStore"> </span> </label></th>
-
-                                                                </tr>
-
-                                                            </table>
-                                                            <h1> Defect 2: <span id="defect2"></span> </h1>
-                                                            <table class="table">
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 0-3":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect21CompCartonStore"> </span> </label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 3-6":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect22CompCartonStore"> </span> </label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 6-9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect23CompCartonStore"> </span> </label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> >9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect24CompCartonStore"> </span> </label></th>
-
-                                                                </tr>
-
-                                                            </table>
-                                                            <h1> Defect 3: <span id="defect3"></span> </h1>
-                                                            <table class="table">
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 0-3":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect31CompCartonStore"> </span> </label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 3-6":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect32CompCartonStore"> </span> </label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 6-9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect33CompCartonStore"> </span> </label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> >9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect34CompCartonStore"> </span> </label></th>
-
-                                                                </tr>
-
-                                                            </table>
-                                                            <h1> Defect 4: <span id="defect4"></span> </h1>
-                                                            <table class="table">
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 0-3":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect41CompCartonStore"> </span> </label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 3-6":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect42CompCartonStore"> </span> </label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 6-9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect43CompCartonStore"> </span> </label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> >9":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="defect44CompCartonStore"> </span> </label></th>
-
-                                                                </tr>
-
-                                                            </table>
-
-                                                            <h1> Hole <span id="hole"></span> </h1>
-                                                            <table class="table">
-                                                                <tr>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> 0-1":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="hole1CompCartonStore"> </span> </label></th>
-                                                                    <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> >1":</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="hole2CompCartonStore"> </span> </label></th>
-                                                                </tr>
-
-                                                            </table>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <h1> Total Point Found: <span id="totalCompCartonStore"></span> </h1>
-
-                                                                </div>
-                                                                <div class="col-md-12">
-                                                                    <h1> Points/1000 Squre Meter: <span id="pointsCompCartonStore"></span> </h1>
-                                                                </div>
-                                                                <div class="col-md-12">
-                                                                    <h1> Status: <span id="statusCompCartonStore"></span> </h1>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End Model Fabric Comparison HTML -->
-
-
-                        <!-- Model Material HTML -->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModalMaterial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCardMaterial">
-                                            <div class="card-body">
-
-                                                <div class="row">
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
-
-                                                            <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
-                                                            <th></th>
-                                                            <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Material</th> -->
-                                                            <td style="font-size: small;padding:0%">
-                                                                <table class="table table-bordered" style="font-size: small;padding:0%">
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Document</th>
-                                                                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Revision</th>
-                                                                        <td style="font-size: small;padding:1%">0</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Copy</th>
-                                                                        <td style="font-size: small;padding:1%">03</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Holder</th>
-                                                                        <td style="font-size: small;padding:1%">Lab</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Status</th>
-                                                                        <td style="font-size: small;padding:1%">Controlled</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Date</th>
-                                                                        <td style="font-size: small;padding:1%">1/Jul/21</td>
-                                                                    </tr>
-                                                                </table>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Material </h3>
-                                                    <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-                                                            <div class="col-md-3"></div>
-                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoMaterial"> </span></label></th>
-                                                            <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSNoMaterial"> </span></label></th>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMaterial"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateMaterial"> </span></label></th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialNameMaterial"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="ResultMaterial"> </span></label></th>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoMaterial"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefMaterial"> </span></label></th>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <!-- <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameFabric"> </span></label></th> -->
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold">Temperature:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="temperatureM"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold">Humidity:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="humidityM"> </span></label></th>
-
-                                                        </tr>
-
-
-                                                    </table>
-                                                    <!-- <div class="col-md-6">
-                                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-                                                            </div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
-                                                    <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
-                                                    <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
-                                                    <div class="col-md-2"></div>
-                                                    <div class="col-md-10 mt-3">
-                                                        <table class="table table-bordered" style="border:2px solid black">
-                                                            <thead>
-                                                                <tr style="border:2px solid black">
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Requirenmt</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Uncertainty</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">
-                                                                        Remark
-                                                                    </th>
-                                                                    <!-- <table style="width: 100%;">
-                                                                            <thead >
-                                                                                <tr >
-                                                                                    <th>1</th>
-                                                                                    <th>2</th>
-                                                                                    <th>3</th>
-                                                                                </tr>
-                                                                            </thead> 
-                                                                                </table> -->
-
-
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="DetailsTestMaterial">
-
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-
-                                                    <div class="col-md-2"></div>
-                                                    <!-- <div class="col-md-4">
-                                                                <table class="table table-bordered" style="border:2px solid black"> 
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th style="border:2px solid black">Lab Reading</th>
-                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr >
-                                                                            <td rowspan="2"></td>
-                                                                            <td style="border:2px solid black">Max</td>
-                                                                            <td style="border:2px solid black">Min</td>
-                                                                        </tr>
-                                                                        <tr >
-                                                                            
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                                                                            
-                                                                        </tr>
-                                                                    </tbody>         
-                                                                </table>
-                                                                </div> -->
-                                                    <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionMaterial"> </span></label></div>
-                                                    <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
-
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
-                                                                <span>Sohail Ghouri </span>
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
-                                                                <span id="testPerformedMaterial"> </span>
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedMaterial"> </span> -->
-                                                            <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed</span>
-
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-
-
-                                                            <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                <!-- <span id="testApprovedMaterial"> </span> -->
-                                                                <span> Zain Abbas</span>
-                                                            </th>
-                                                        </tr>
-                                                    </table>
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th>
-                                                                <h5 style="font-weight:bold;color:black">Material Image</h5>
-                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="materialImage" height="250px" width="300px" alt="MaterialPhoto" />
-                                                            </th>
-                                                        </tr>
-                                                    </table>
-                                                    <!-- <div class="col-md-4 mt-2">
-                                                        <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                                    Habib Ur Rehman
-                                                        </div>
-                                                        <div class="col-md-4 mt-2">
-                                                        <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-                                                        Sohail Ghouri
-                                                        </div>
-                                                        <div class="col-md-4 mt-2">
-                                                        <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                                                        Sohail Ghouri
-                                                        </div> -->
-                                                </div>
-
-                                                <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="printDiv('printCardMaterial')" data-dismiss="modal">Print Report</button>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End Model Material HTML -->
-
-
-                        <!-- Model Material HTML Standard -->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModalMaterialStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCardMaterialStandard">
-                                            <div class="card-body">
-
-                                                <div class="row">
-                                                    <!-- <div class="col-md-6">
-                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
-
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Material</th>
-                                                                        <td style="font-size: small;padding:0%">
-                                                                            <table class="table table-bordered" style="font-size: small;padding:0%">
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Document</th>
-                                                                                    <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Revision</th>
-                                                                                    <td style="font-size: small;padding:1%">0</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Copy</th>
-                                                                                    <td style="font-size: small;padding:1%">03</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Holder</th>
-                                                                                    <td style="font-size: small;padding:1%">Lab</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Status</th>
-                                                                                    <td style="font-size: small;padding:1%">Controlled</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Date</th>
-                                                                                    <td style="font-size: small;padding:1%">1/Jul/21</td>
-                                                                                </tr>
-                                                                            </table>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoMaterialStandard"> </span></label></th>
-                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSNoMaterialStandard"> </span></label></th>
-
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMaterialStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateMaterialStandard"> </span></label></th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialNameMaterialStandard"> </span></label></th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="ResultMaterialStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoMaterialStandard"> </span></label></th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefMaterialStandard"> </span></label></th>
-                                                                    </tr>
-                                                                </table>
-                                                              <div class="col-md-2"></div>
-                                                                <div class="col-md-10 mt-3">
-                                                                    <table class="table table-bordered" style="border:2px solid black">
-                                                                        <thead>
-                                                                            <tr style="border:2px solid black">
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Uncertainty</th>
-                                                                                <th style="text-align: center;font-size:large;border:2px solid black">
-                                                                                    Remark
-                                                                                </th>
-                                                                    
-
-
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody id="DetailsTestMaterialStandard">
-
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-
-                                                                <div class="col-md-2"></div>
-                                                              
-                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionMaterialStandard"> </span></label></div>
-                                                          
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
-                                                                            <span>Sohail Ghouri </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
-                                                                            <span id="testPerformedMaterialStandard"> </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedMaterialStandard"> </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-
-
-                                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                            <span id="testApprovedMaterialStandard"> </span>
-                                                                        </th>
-                                                                    </tr>
-                                                                </table>
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th>
-                                                                            <h5 style="font-weight:bold;color:black">Material Image</h5>
-                                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="materialImageStandard" height="250px" width="300px" alt="MaterialPhoto" />
-                                                                        </th>
-                                                                    </tr>
-                                                                </table>
-                                                            
-                                                            </div> -->
-                                                    <div class="col-md-2">
-
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
-                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="materialImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
-
-                                                    </div>
-                                                    <div class="col-md-2">
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardMaterialStandard')" data-dismiss="modal">Print Report</button> -->
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End Model Material HTML Standard -->
-
-                        <!-- Model Thread HTML -->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModalThread" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCardThread">
-                                            <div class="card-body">
-
-                                                <div class="row">
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
-
-                                                            <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /> </th>
-                                                            <th></th>
-                                                            <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Thread</th> -->
-                                                            <td style="font-size: small;padding:0%">
-                                                                <table class="table table-bordered" style="font-size: small;padding:0%">
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Document</th>
-                                                                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Revision</th>
-                                                                        <td style="font-size: small;padding:1%">0</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Copy</th>
-                                                                        <td style="font-size: small;padding:1%">03</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Holder</th>
-                                                                        <td style="font-size: small;padding:1%">Lab</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Status</th>
-                                                                        <td style="font-size: small;padding:1%">Controlled</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Date</th>
-                                                                        <td style="font-size: small;padding:1%">1/Jul/21</td>
-                                                                    </tr>
-                                                                </table>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Thread </h3>
-                                                    <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-                                                <div class="col-md-3"></div>
-                                                <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoThread"> </span></label></th>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestThread"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateThread"> </span></label></th>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameThread"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefThread"> </span></label></th>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoThread"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Thickness:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="thicknessThread"> </span></label></th>
-
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Linear Density:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="linearDensityThread"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Twist Per Inch:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="twistThread"> </span></label></th>
-                                                        </tr>
-
-
-                                                    </table>
-                                                    <!-- <div class="col-md-6">
-                                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-                                                            </div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
-                                                    <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
-                                                    <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
-                                                    <div class="col-md-2"></div>
-                                                    <div class="col-md-10 mt-3">
-                                                        <table class="table table-bordered" style="border:2px solid black">
-                                                            <thead>
-                                                                <tr style="border:2px solid black">
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Date</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Ext. at Max. Load (mm)</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Max. Load (N)</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">
-                                                                        Ext. at 350.0 N (mm)
-                                                                    </th>
-                                                                    <!-- <table style="width: 100%;">
-                                                                            <thead >
-                                                                                <tr >
-                                                                                    <th>1</th>
-                                                                                    <th>2</th>
-                                                                                    <th>3</th>
-                                                                                </tr>
-                                                                            </thead> 
-                                                                            </table> -->
-
-
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="DetailsTestThread">
-
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-
-                                                    <div class="col-md-2"></div>
-                                                    <!-- <div class="col-md-4">
-                                                                <table class="table table-bordered" style="border:2px solid black"> 
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th style="border:2px solid black">Lab Reading</th>
-                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr >
-                                                                            <td rowspan="2"></td>
-                                                                            <td style="border:2px solid black">Max</td>
-                                                                            <td style="border:2px solid black">Min</td>
-                                                                        </tr>
-                                                                        <tr >
-                                                                            
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                                                                            
-                                                                        </tr>
-                                                                    </tbody>         
-                                                                </table>
-                                                            </div> -->
-                                                    <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionThread"> </span></label></div>
-                                                    <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
-
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
-                                                                <span>Sohail Ghouri </span>
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
-                                                                <span id="testPerformedThread"> </span>
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedThread"> </span> -->
-                                                            <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span>Fatima Rasheed </span>
-
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-
-
-                                                            <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                <!-- <span id="testApprovedThread"> </span> -->
-                                                                <span> Zain Abbas</span>
-                                                            </th>
-                                                        </tr>
-                                                    </table>
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th>
-                                                                <h5 style="font-weight:bold;color:black">Thread Image</h5>
-                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadImage" height="250px" width="300px" alt="ThreadPhoto" />
-                                                            </th>
-                                                        </tr>
-                                                    </table>
-                                                    <!-- <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                                        Habib Ur Rehman
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div> -->
-                                                </div>
-                                                <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="printDiv('printCardThread')" data-dismiss="modal">Print Report</button>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End Model Thread HTML -->
-
-                        <!-- Model Thread HTML Standard -->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModalThreadStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCardThreadStandard">
-                                            <div class="card-body">
-
-                                                <div class="row">
-                                                    <!-- <div class="col-md-6">
-                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
-
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Thread</th>
-                                                                        <td style="font-size: small;padding:0%">
-                                                                            <table class="table table-bordered" style="font-size: small;padding:0%">
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Document</th>
-                                                                                    <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Revision</th>
-                                                                                    <td style="font-size: small;padding:1%">0</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Copy</th>
-                                                                                    <td style="font-size: small;padding:1%">03</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Holder</th>
-                                                                                    <td style="font-size: small;padding:1%">Lab</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Status</th>
-                                                                                    <td style="font-size: small;padding:1%">Controlled</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Date</th>
-                                                                                    <td style="font-size: small;padding:1%">1/Jul/21</td>
-                                                                                </tr>
-                                                                            </table>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                              <table class="table">
-                                                                    <tr>
-                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoThreadStandard"> </span></label></th>
-
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestThreadStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateThreadStandard"> </span></label></th>
-                                                                    </tr>
-
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameThreadStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefThreadStandard"> </span></label></th>
-                                                                    </tr>
-
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoThreadStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Thickness:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="thicknessThreadStandard"> </span></label></th>
-
-                                                                    </tr>
-
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Linear Density:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="linearDensityThreadStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Twist Per Inch:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="twistThreadStandard"> </span></label></th>
-                                                                    </tr>
-
-
-                                                                </table>
-                                                               <div class="col-md-2"></div>
-                                                                <div class="col-md-10 mt-3">
-                                                                    <table class="table table-bordered" style="border:2px solid black">
-                                                                        <thead>
-                                                                            <tr style="border:2px solid black">
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Date</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Ext. at Max. Load (mm)</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Max. Load (N)</th>
-                                                                                <th style="text-align: center;font-size:large;border:2px solid black">
-                                                                                    Ext. at 350.0 N (mm)
-                                                                                </th>
-                                                                                
-
-
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody id="DetailsTestThreadStandard">
-
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-
-                                                                <div class="col-md-2"></div>
-                                                            
-                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionThreadStandard"> </span></label></div>
-                                                             
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
-                                                                            <span>Sohail Ghouri </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
-                                                                            <span id="testPerformedThreadStandard"> </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedThreadStandard"> </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-
-
-                                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                            <span id="testApprovedThreadStandard"> </span>
-                                                                        </th>
-                                                                    </tr>
-                                                                </table>
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th>
-                                                                            <h5 style="font-weight:bold;color:black">Thread Image</h5>
-                                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadImageStandard" height="250px" width="300px" alt="ThreadPhoto" />
-                                                                        </th>
-                                                                    </tr>
-                                                                </table>
-                                                              
-                                                            </div> -->
-                                                    <div class="col-md-2">
-
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
-                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
-
-                                                    </div>
-                                                    <div class="col-md-2">
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardThreadStandard')" data-dismiss="modal">Print Report</button> -->
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End Model Thread HTML Standard -->
-
-
-
-                        <!-- Model MS Thread HTML -->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModalMSThread" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCardMSMaterial">
-                                            <div class="card-body">
-
-                                                <div class="row">
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" class="ml-5" alt="report_logo" width="250px" height="100px" /></th>
-
-                                                            <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
-                                                            <th></th>
-                                                            <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of MS Thread</th> -->
-                                                            <td style="font-size: small;padding:0%">
-                                                                <table class="table table-bordered" style="font-size: small;padding:0%">
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Document</th>
-                                                                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Revision</th>
-                                                                        <td style="font-size: small;padding:1%">0</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Copy</th>
-                                                                        <td style="font-size: small;padding:1%">03</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Holder</th>
-                                                                        <td style="font-size: small;padding:1%">Lab</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Status</th>
-                                                                        <td style="font-size: small;padding:1%">Controlled</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Date</th>
-                                                                        <td style="font-size: small;padding:1%">1/Jul/21</td>
-                                                                    </tr>
-                                                                </table>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of MS Thread </h3>
-                                                    <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-                                                            <div class="col-md-3"></div>
-                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoMSThread"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMSThread"> </span></label></th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="MaterialNameMSThread"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateMSThread"> </span></label></th>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameMSThread"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefMSThread"> </span></label></th>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoMSThread"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="statusMSThread"> </span></label></th>
-
-                                                        </tr>
-                                                    </table>
-                                                    <!-- <div class="col-md-6">
-                                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-                                                            </div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
-                                                    <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
-                                                    <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
-                                                    <div class="col-md-2"></div>
-                                                    <div class="col-md-10 mt-3">
-                                                        <table class="table table-bordered" style="border:2px solid black">
-                                                            <thead>
-                                                                <tr style="border:2px solid black">
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Method</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">
-                                                                        Requirement
-                                                                    </th>
-                                                                    <th style="text-align: center;font-size:large;border:2px solid black">
-                                                                        Result
-                                                                    </th>
-                                                                    <!-- <table style="width: 100%;">
-                                                                            <thead >
-                                                                                <tr >
-                                                                                    <th>1</th>
-                                                                                    <th>2</th>
-                                                                                    <th>3</th>
-                                                                                </tr>
-                                                                            </thead> 
-                                                                            </table> -->
-
-
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="DetailsTestMSThread">
-
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-
-                                                    <div class="col-md-2"></div>
-                                                    <!-- <div class="col-md-4">
-                                                                <table class="table table-bordered" style="border:2px solid black"> 
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th style="border:2px solid black">Lab Reading</th>
-                                                                                <th colspan="2" style="border:2px solid black">Humidity</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr >
-                                                                                <td rowspan="2"></td>
-                                                                                <td style="border:2px solid black">Max</td>
-                                                                                <td style="border:2px solid black">Min</td>
-                                                                            </tr>
-                                                                            <tr >
-                                                                                
-                                                                                <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                                                                                <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                                                                                
-                                                                            </tr>
-                                                                        </tbody>         
-                                                                </table>
-                                                            </div> -->
-                                                    <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionMSThread"> </span></label></div>
-                                                    <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
-
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
-                                                                <span>Sohail Ghouri </span>
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
-                                                                <span id="testPerformedMSThread"> </span>
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedMSThread"> </span> -->
-                                                            <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed</span>
-
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-
-
-                                                            <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                <!-- <span id="testApprovedMSThread"> </span> -->
-                                                                <span>Zain Abbas </span>
-                                                            </th>
-                                                        </tr>
-                                                    </table>
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th>
-                                                                <h5 style="font-weight:bold;color:black">MS Thread Image</h5>
-                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadMSImage" height="250px" width="300px" alt="MSThreadPhoto" />
-                                                            </th>
-                                                        </tr>
-                                                    </table>
-                                                    <!-- <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                                        Habib Ur Rehman
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div> -->
-                                                </div>
-                                                <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="printDiv('printCardMSMaterial')" data-dismiss="modal">Print Report</button>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End Model MS Thread HTML -->
-
-                        <!-- Model MS Thread HTML Standard -->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModalMSThreadStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCardMSThreadStandard">
-                                            <div class="card-body">
-
-                                                <div class="row">
-                                                    <!-- <div class="col-md-6">
-                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
-
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of MS Thread</th>
-                                                                        <td style="font-size: small;padding:0%">
-                                                                            <table class="table table-bordered" style="font-size: small;padding:0%">
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Document</th>
-                                                                                    <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Revision</th>
-                                                                                    <td style="font-size: small;padding:1%">0</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Copy</th>
-                                                                                    <td style="font-size: small;padding:1%">03</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Holder</th>
-                                                                                    <td style="font-size: small;padding:1%">Lab</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Status</th>
-                                                                                    <td style="font-size: small;padding:1%">Controlled</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Date</th>
-                                                                                    <td style="font-size: small;padding:1%">1/Jul/21</td>
-                                                                                </tr>
-                                                                            </table>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                                 <table class="table">
-                                                                    <tr>
-                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoMSThreadStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMSThreadStandard"> </span></label></th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="MaterialNameMSThreadStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateMSThreadStandard"> </span></label></th>
-                                                                    </tr>
-
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameMSThreadStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefMSThreadStandard"> </span></label></th>
-                                                                    </tr>
-
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoMSThreadStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Status:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="statusMSThreadStandard"> </span></label></th>
-
-                                                                    </tr>
-                                                                </table>
-                                                                 <div class="col-md-2"></div>
-                                                                <div class="col-md-10 mt-3">
-                                                                    <table class="table table-bordered" style="border:2px solid black">
-                                                                        <thead>
-                                                                            <tr style="border:2px solid black">
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Method</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
-                                                                                <th style="text-align: center;font-size:large;border:2px solid black">
-                                                                                    Requirement
-                                                                                </th>
-                                                                                <th style="text-align: center;font-size:large;border:2px solid black">
-                                                                                    Result
-                                                                                </th>
-                                                                        
-
-
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody id="DetailsTestMSThreadStandard">
-
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-
-                                                                <div class="col-md-2"></div>
-                                                               
-                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="ConclusionMSThreadStandard"> </span></label></div>
-                                                              
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
-                                                                            <span>Sohail Ghouri </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
-                                                                            <span id="testPerformedMSThreadStandard"> </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedMSThreadStandard"> </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-
-
-                                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                            <span id="testApprovedMSThreadStandard"> </span>
-                                                                        </th>
-                                                                    </tr>
-                                                                </table>
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th>
-                                                                            <h5 style="font-weight:bold;color:black">MS Thread Image</h5>
-                                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadMSImageStandard" height="250px" width="300px" alt="MSThreadPhoto" />
-                                                                        </th>
-                                                                    </tr>
-                                                                </table>
-                                                              
-                                                            </div> -->
-                                                    <div class="col-md-2">
-
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
-                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="threadMSImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
-
-                                                    </div>
-                                                    <div class="col-md-2">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardMSThreadStandard')" data-dismiss="modal">Print Report</button> -->
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End Model MS Thread HTML Standard -->
-
-
-                        <!-- Model Blader HTML -->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModalBlader" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCardBlader">
-                                            <div class="card-body">
-
-                                                <div class="row">
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
-
-                                                            <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
-                                                            <th></th>
-                                                            <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Blader</th> -->
-                                                            <th> </th>
-                                                        </tr>
-                                                    </table>
-                                                    <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of Blader </h3>
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoBlader"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestBlader"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateBlader"> </span></label></th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameBlader"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefBlader"> </span></label></th>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialBlader"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="sizeBlader"> </span></label></th>
-
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Hardness:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="hardnessBlader"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoBlader"> </span></label></th>
-
-                                                        </tr>
-
-
-                                                    </table>
-                                                    <div class="col-md-2"></div>
-                                                    <div class="col-md-10 mt-3">
-                                                        <table class="table table-bordered" style="border:2px solid black">
-                                                            <thead>
-                                                                <tr style="border:2px solid black">
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 1</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 2</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 3</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 4</th>
-
-
-
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="DetailsTestBlader">
-
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-
-                                                    <div class="col-md-2"></div>
-
-                                                    <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Remarks:</span> <span style="font-size: medium;font-weight:bold" id="remarksBlader"> </span></label></div>
-
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
-                                                                <span>Sohail Ghouri </span>
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
-                                                                <span id="testPerformedBlader"> </span>
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedBlader"> </span> -->
-                                                            <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed </span>
-
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-
-
-                                                            <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                <!-- <span id="testApprovedBlader"> </span> -->
-                                                                <span>Zain Abbas </span>
-                                                            </th>
-                                                        </tr>
-                                                    </table>
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th>
-                                                                <h5 style="font-weight:bold;color:black">Blader Image</h5>
-                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="bladerImage" height="250px" width="300px" alt="BladerPhoto" />
-                                                            </th>
-                                                        </tr>
-                                                    </table>
-
-                                                </div>
-                                                <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="printDiv('printCardBlader')" data-dismiss="modal">Print Report</button>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End Model Blader HTML -->
-
-                        <!-- Model MS Materail HTML -->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModalMSMaterial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCardMSMaterialL">
-                                            <div class="card-body">
-
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <table class="table">
-                                                            <tr>
-
-
-                                                                <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" style="visibility:hidden" /></th>
-                                                                <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="250px" height="100px" /></th>
-                                                                <th></th>
-                                                                <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Blader</th> -->
-                                                                <th> </th>
-                                                            </tr>
-                                                        </table>
-                                                        <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> Test Report Of MS Material </h3>
-                                                        <table class="table">
-                                                            <tr>
-                                                                <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testMSMaterial"> </span></label></th>
-                                                                <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestMSMaterial"> </span></label></th>
-                                                            </tr>
-                                                            <tr>
-                                                                <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Po#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="poMSMaterial"> </span></label></th>
-                                                                <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Ref.:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="MaterialRefMSMaterial"> </span></label></th>
-
-                                                            </tr>
-
-
-                                                        </table>
-                                                        <div class="col-md-2"></div>
-                                                        <div class="col-md-10 mt-3">
-                                                            <table class="table table-bordered ">
-                                                                <thead>
-                                                                    <tr class="border">
-                                                                        <th class="border border-dark" style="text-align: center;font-size:large;">Test</th>
-                                                                        <th class="border border-dark" style="text-align: center;font-size:large;">Method</th>
-                                                                        <th class="border border-dark" style="text-align: center;font-size:large;">Unit</th>
-                                                                        <th class="border border-dark" style="text-align: center;font-size:large;">Requirement</th>
-                                                                        <th class="border border-dark" style="text-align: center;font-size:large;">Result</th>
-
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody id="DetailsTestMSMaterial">
-
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-
-                                                        <div class="col-md-2"></div>
-
-                                                        <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Conclusion:</span> <span style="font-size: medium;font-weight:bold" id="visualResultMSMaterialr"> </span></label></div>
-
-                                                        <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="Conclusion"> </span></label></div>
-
-
-                                                        <table class="table">
-                                                            <tr>
-                                                                <th></th>
-                                                                <th></th>
-
-
-
-                                                                <th> <span style="font-size: medium;font-weight:bold"> <u>Prepared By</u> </span><br>
-                                                                    <span> Sohail Ghouri </span>
-                                                                </th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th> <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                                                    <span id="testPerformedMSMaterial"> </span>
-                                                                </th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th><span style="font-size: medium;font-weight:bold"><u>Test Reviewed By</u> </span><br>
-                                                                    <span>Fatima Rasheed </span>
-
-                                                                </th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <!-- <th><span style="font-size: medium;font-weight:bold"></span><br><span id="testReviewedMSMaterial"> </span> -->
-                                                                <th><span style="font-size: medium;font-weight:bold"><u>Test Approved By</u> </span><br>
-                                                                    <span>Zain Abbas </span>
-                                                                <th>
-
-                                                                </th>
-
-                                                            </tr>
-                                                        </table>
-                                                        <table class="table">
-                                                            <tr>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-
-                                                            </tr>
-                                                        </table>
-
-
-
-
-                                                    </div>
-
-
-
-
-
-                                                </div>
-                                                <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="printDiv('printCardMSMaterialL')" data-dismiss="modal">Print Report</button>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End Model MS Material HTML -->
-
-                        <!-- Model Blader HTML Standard -->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModalBladerStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCardBladerStandard">
-                                            <div class="card-body">
-
-                                                <div class="row">
-                                                    <!-- <div class="col-md-6">
-                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th><img src="<?php echo base_url() ?>assets/img/frwd.jpg" alt="report_logo" width="150px" height="100px" /></th>
-
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>Test Report Of Blader</th>
-                                                                        <th> </th>
-                                                                    </tr>
-                                                                </table>
-                                                               <table class="table">
-                                                                    <tr>
-                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoBladerStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestBladerStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateBladerStandard"> </span></label></th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="supplierNameBladerStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefBladerStandard"> </span></label></th>
-                                                                    </tr>
-
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Material Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="materialBladerStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="sizeBladerStandard"> </span></label></th>
-
-                                                                    </tr>
-
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Hardness:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="hardnessBladerStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="ponoBladerStandard"> </span></label></th>
-
-                                                                    </tr>
-
-
-                                                                </table>
-                                                                <div class="col-md-2"></div>
-                                                                <div class="col-md-10 mt-3">
-                                                                    <table class="table table-bordered" style="border:2px solid black">
-                                                                        <thead>
-                                                                            <tr style="border:2px solid black">
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Test</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Unit</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 1</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 2</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 3</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Result 4</th>
-
-
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody id="DetailsTestBladerStandard">
-
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-
-                                                                <div class="col-md-2"></div>
-                                                           
-                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Remarks:</span> <span style="font-size: medium;font-weight:bold" id="remarksBladerStandard"> </span></label></div>
-                                                             
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
-                                                                            <span>Sohail Ghouri </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
-                                                                            <span id="testPerformedBladerStandard"> </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedBladerStandard"> </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-
-
-                                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                            <span id="testApprovedBladerStandard"> </span>
-                                                                        </th>
-                                                                    </tr>
-                                                                </table>
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th>
-                                                                            <h5 style="font-weight:bold;color:black">Blader Image</h5>
-                                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="bladerImageStandard" height="250px" width="300px" alt="BladerPhoto" />
-                                                                        </th>
-                                                                    </tr>
-                                                                </table>
-                                                             
-                                                            </div> -->
-                                                    <div class="col-md-2">
-
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
-                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="bladerImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
-
-                                                    </div>
-                                                    <div class="col-md-2">
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardBladerStandard')" data-dismiss="modal">Print Report</button> -->
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End Model Blader HTML Standard -->
-
-
-
-                        <!-- Model FGT HTML -->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModalFGT" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCSM">
-                                            <div class="card-body">
-
-                                                <div class="row">
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th><img src="<?php echo base_url() ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
-
-                                                            <th> <img src="<?php echo base_url() ?>assets/img/LabLogo.jpg" alt="report_logo" width="250px" height="100px" /></th>
-
-                                                            <th></th>
-                                                            <!-- <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>CSM Test Report of Football</th> -->
-                                                            <td style="font-size: small;padding:0%">
-                                                                <table class="table table-bordered" style="font-size: small;padding:0%">
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Document</th>
-                                                                        <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Revision</th>
-                                                                        <td style="font-size: small;padding:1%">0</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Copy</th>
-                                                                        <td style="font-size: small;padding:1%">03</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Holder</th>
-                                                                        <td style="font-size: small;padding:1%">Lab Manager</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Status</th>
-                                                                        <td style="font-size: small;padding:1%">Controlled</td>
-                                                                    </tr>
-                                                                    <tr style="font-size: small;padding:0%">
-                                                                        <th style="font-size: small;padding:1%">Date</th>
-                                                                        <td style="font-size: small;padding:1%">1/Jul/21</td>
-                                                                    </tr>
-                                                                </table>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    <h3 style="font-size: Medium;font-weight:bold;padding:50px;margin-left:25%;"> Quality Assurance Lab of Forward Sports (Pvt) Ltd <br> CSM Test Report of Football </h3>
-
-                                                    <!-- <div class="col-md-6" style="font-weight: bolder;font-size:x-large;margin-top:25px"></div>
-                                                            <div class="col-md-3"></div>
-                                                            <div class="col-md-3"><img src="https://upload.wikimedia.org/wikipedia/en/0/01/This_is_the_Forward_Sport_brand_logo.jpg" alt="report_logo" width="150px" height="100px" /></div> -->
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFGT"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFGT"> </span></label></th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Model Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="modelNameFGT"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS Code:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSCodeFGT"> </span></label></th>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Pressure:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="pressureFGT"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Temp/Humidity:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="TempHumFGT"> </span></label></th>
-
-                                                        </tr>
-
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Article:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="articleFGT"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Category:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="categoryFGT"> </span></label></th>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="sizeFGT"> </span></label></th>
-                                                            <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Tested For:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testedForFGT"> </span></label></th>
-
-                                                        </tr>
-
-                                                    </table>
-                                                    <!-- <div class="col-md-6">
-                                                            <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span></label>
-                                                            </div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span></label></div>
-                                                            <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> PO#:</span></label></div> -->
-                                                    <!-- <div class="col-md-6"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Receiving Date:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="receiveDateFoam"> </span></label></div> -->
-                                                    <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Supplier Ref.:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="supplierRefFabric"> </span></label></div> -->
-                                                    <div class="col-md-2"></div>
-                                                    <div class="col-md-10 mt-3">
-                                                        <table class="table table-bordered" style="border:2px solid black">
-                                                            <thead>
-                                                                <tr style="border:2px solid black">
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Weight</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Circumference Min</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Circumference Max</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Deviation</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Rebound Test</th>
-                                                                    <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Remarks</th>
-                                                                    <!-- <table style="width: 100%;">
-                                                                            <thead >
-                                                                                <tr >
-                                                                                    <th>1</th>
-                                                                                    <th>2</th>
-                                                                                    <th>3</th>
-                                                                                </tr>
-                                                                            </thead> 
-                                                                            </table> -->
-
-
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="DetailsTestFGT">
-
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-
-
-
-
-
-                                                    <div class="col-md-2"></div>
-                                                    <!-- <div class="col-md-4">
-                                                                <table class="table table-bordered" style="border:2px solid black"> 
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th style="border:2px solid black">Lab Reading</th>
-                                                                            <th colspan="2" style="border:2px solid black">Humidity</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr >
-                                                                            <td rowspan="2"></td>
-                                                                            <td style="border:2px solid black">Max</td>
-                                                                            <td style="border:2px solid black">Min</td>
-                                                                        </tr>
-                                                                        <tr >
-                                                                            
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Max"> </span></td>
-                                                                            <td style="border:2px solid black"><span style="font-size: medium;font-weight:bold" id="Min"> </span></td>
-                                                                            
-                                                                        </tr>
-                                                                    </tbody>         
-                                                                </table>
-                                                            </div> -->
-                                                    <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Note:</span> <span style="font-size: medium;font-weight:bold" id="noteFGT"> </span></label></div>
-                                                    <!-- <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Causes of Rejection:</span> <span style="font-size: medium;font-weight:bold" id="rejection"> </span></label></div> -->
-
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
-                                                                <span>Sohail Ghouri </span>
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
-                                                                <span id="testPerformedFGT"> </span>
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <!-- <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFGT"> </span> -->
-                                                            <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span> Fatima Rasheed</span>
-
-                                                            </th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-
-
-                                                            <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                <!-- <span id="testApprovedFGT"> </span> -->
-                                                                <span> Zain Abbas</span>
-                                                            </th>
-                                                        </tr>
-                                                    </table>
-                                                    <table class="table">
-                                                        <tr>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th>
-                                                                <h5 style="font-weight:bold;color:black">FGT CSM Image</h5>
-                                                                <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fgtImage" height="250px" width="300px" alt="FGTCSMPhoto" />
-                                                            </th>
-                                                        </tr>
-                                                    </table>
-                                                    <!-- <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"><u>Test Performed By</u> </span><br>
-                                                        Habib Ur Rehman
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Test Approved By</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div>
-                                                            <div class="col-md-4 mt-2">
-                                                            <span style="font-size: medium;font-weight:bold"> <u>Laboratory Incharge</u> </span><br>
-                                                            Sohail Ghouri
-                                                            </div> -->
-                                                </div>
-                                                <h2 class="mt-3" style="text-align:center;font-weight:bold">End Of Report</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="printDiv('printCSM')" data-dismiss="modal">Print Report</button>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End Model FGT HTML -->
-
-
-                        <!-- Model FGT HTML Standard -->
-
-                        <div class="modal fade bd-example-modal-lg" id="exampleModalFGTStandard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: rgb(177,157,206);color:white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Report</b></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" id="printCardFGTStandard">
-                                            <div class="card-body">
-
-                                                <div class="row">
-                                                    <!-- <div class="col-md-6">
-                                                                <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Results</h3>
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th><img src="<?php echo base_url() ?>assets/img/logo.jpg" alt="report_logo" width="150px" height="100px" /></th>
-
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th style="font-size: Medium;font-weight:bold;padding:50px">Quality Assurance Lab of Forward Sports (Pvt) Ltd<br>CSM Test Report of Football</th>
-                                                                        <td style="font-size: small;padding:0%">
-                                                                            <table class="table table-bordered" style="font-size: small;padding:0%">
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Document</th>
-                                                                                    <td style="font-size: small;padding:1%">QSD-12/RTR/TRF</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Revision</th>
-                                                                                    <td style="font-size: small;padding:1%">0</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Copy</th>
-                                                                                    <td style="font-size: small;padding:1%">03</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Holder</th>
-                                                                                    <td style="font-size: small;padding:1%">Lab Manager</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Status</th>
-                                                                                    <td style="font-size: small;padding:1%">Controlled</td>
-                                                                                </tr>
-                                                                                <tr style="font-size: small;padding:0%">
-                                                                                    <th style="font-size: small;padding:1%">Date</th>
-                                                                                    <td style="font-size: small;padding:1%">1/Jul/21</td>
-                                                                                </tr>
-                                                                            </table>
-                                                                        </td>
-                                                                    </tr>
-                                                                </table>
-                                                               <table class="table">
-                                                                    <tr>
-                                                                        <th> <label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Test No:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testNoFGTStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Date:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="dateTestFGTStandard"> </span></label></th>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Model Name:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="modelNameFGTStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> CSS Code:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="CSSCodeFGTStandard"> </span></label></th>
-                                                                    </tr>
-
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Pressure:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="pressureFGTStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Temp/Humidity:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="TempHumFGTStandard"> </span></label></th>
-
-                                                                    </tr>
-
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Article:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="articleFGTStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Category:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="categoryFGTStandard"> </span></label></th>
-
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Size:</span>&nbsp;&nbsp;&nbsp; <span style="font-size: medium" id="sizeFGTStandard"> </span></label></th>
-                                                                        <th><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Tested For:</span>&nbsp;&nbsp;&nbsp;<span style="font-size: medium" id="testedForFGTStandard"> </span></label></th>
-
-                                                                    </tr>
-
-                                                                </table>
-                                                                  <div class="col-md-2"></div>
-                                                                <div class="col-md-10 mt-3">
-                                                                    <table class="table table-bordered" style="border:2px solid black">
-                                                                        <thead>
-                                                                            <tr style="border:2px solid black">
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Weight</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Circumference Min</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Circumference Max</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Deviation</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Rebound Test</th>
-                                                                                <th rowspan="2" style="text-align: center;font-size:large;border:2px solid black">Remarks</th>
-                                                                   
-
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody id="DetailsTestFGTStandard">
-
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-
-                                                                <div class="col-md-2"></div>
-                                                             
-                                                                <div class="col-md-12"><label class="form-control" for="TestNo"><span style="font-size: medium;font-weight:bold"> Note:</span> <span style="font-size: medium;font-weight:bold" id="noteFGTStandard"> </span></label></div>
-                                                               <table class="table">
-                                                                    <tr>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Prepared By</u> </span><br>
-                                                                            <span>Sohail Ghouri </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th> <span style="font-size: medium;font-weight:bold"><u>Performed By</u> </span><br>
-                                                                            <span id="testPerformedFGTStandard"> </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th><span style="font-size: medium;font-weight:bold"> <u>Reviewed By</u></span><br><span id="testReviewedFGTStandard"> </span>
-                                                                        </th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-
-
-                                                                        <th> <span style="font-size: medium;font-weight:bold"> <u>Approved By</u> </span><br>
-                                                                            <span id="testApprovedFGTStandard"> </span>
-                                                                        </th>
-                                                                    </tr>
-                                                                </table>
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th></th>
-                                                                        <th>
-                                                                            <h5 style="font-weight:bold;color:black">FGT CSM Image</h5>
-                                                                            <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fgtImageStandard" height="250px" width="300px" alt="FGTCSMPhoto" />
-                                                                        </th>
-                                                                    </tr>
-                                                                </table>
-                                                              
-                                                            </div> -->
-                                                    <div class="col-md-2">
-
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <h3 style="text-align: center;color:black;font-weight:bolder;font-size:x-large">Development Report</h3>
-                                                        <img src="<?php echo base_url(); ?>/assets/img/favicon/apple-touch-icon1.png" id="fgtImageStandardComp" style='margin-top:70%' height="35%" width="100%" alt="StandardReport" />
-
-                                                    </div>
-                                                    <div class="col-md-2">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onclick="printDiv('printCardFGTStandard')" data-dismiss="modal">Print Report</button> -->
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        Forward Sports Pvt. Ltd.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- End Model FGT HTML Standard -->
-
-                        <!-- Model FGT TESTING HTML -->
-                        <?php include('FGT_Models/fgtTestingModel.php') ?>
-                        <!-- End Model FGT TESTING  HTML -->
-
-                        <!-- Model FGT Airless Mini TESTING HTML -->
-                        <?php include('FGT_Models/fgtTestingAirlessMiniModel.php') ?>
-                        <!-- End Model FGT Airless Mini TESTING  HTML -->
-
-
-
                         <!-- START FGT TESTING DATE RANGE -->
                         <div class="col-md-12  table-responsive">
 
                             <div id="panel-1" class="panel">
                                 <div class="panel-hdr">
                                     <h2>
-                                        FGT Rebound at 5°C Test Report</span>
+                                        FGT Test Report</span>
                                     </h2>
                                 </div>
                                 <div class="card">
@@ -4580,17 +4591,6 @@ if (!$this->session->has_userdata('user_id')) {
                                         <div class="row">
                                             <div class="col-md-3"><input class="form-control" type="date" id="date1" /></div>
                                             <div class="col-md-3"><input class="form-control" type="date" id="date2" /></div>
-                                            <div class="col-md-3">
-                                                <select name="factoryCode" id="factoryCode" class="form-control">
-                                                    <option value="">Select Factory Code</option>
-                                                    <option value="B34002">B34002</option>
-                                                    <option value="B34003">B34003</option>
-                                                    <option value="B34004">B34004</option>
-                                                    <option value="B34005">B34005</option>
-                                                    <option value="B34006">B34006</option>
-                                                    <option value="B34007">B34007</option>
-                                                </select>
-                                            </div>
                                             <div class="col-md-3"><button class="btn btn-primary" id="searchFGTtest">Search</button></div>
                                         </div>
                                     </div>
@@ -4659,7 +4659,7 @@ if (!$this->session->has_userdata('user_id')) {
                         <script src="<?php echo base_url(); ?>/assets/js/statistics/flot/flot.bundle.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
                         <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
-                        <script src="<?php echo base_url() ?>assets/js/notifications/toastr/toastr.js"></script>
+
 
                         <script>
                             var sDate;
@@ -4704,18 +4704,13 @@ if (!$this->session->has_userdata('user_id')) {
                             $('#searchFGTtest').on('click', function() {
                                 var date1 = $("#date1").val();
                                 var date2 = $("#date2").val();
-                                var factoryCode = $("#factoryCode").val();
-                                if (!factoryCode) {
-                                    alert("Please select a factory code");
-                                    return;
-                                }
-                                url = '<?php echo base_url('LabController/getFGTTestReboundAt'); ?>';
+
+                                url = '<?php echo base_url('LabController/getFGTTestDataForView'); ?>';
                                 $.post(url, {
                                     'date1': date1,
-                                    'date2': date2,
-                                    'factoryCode': factoryCode
+                                    'date2': date2
                                 }, function(data) {
-                                    if (data != '') {
+                                    if (data) {
                                         let fgtHtml = `<table id="fgtTestTableData" class="table table-bordered table-hover table-responsive table-striped w-100">
                                                 <thead class="bg-primary-200">
                                                     <tr style="color:white;">
@@ -4744,7 +4739,6 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <!-- <th>Approved Status </th> -->
                                                         <th>Approved By </th>
                                                         <th>Generated By </th>
-                                                        <th>Requester Name</th>
                                                         <th>Action </th>
                                                     </tr>
                                                 </thead>
@@ -4776,11 +4770,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <!-- <td><span class="badge badge-primary p-1">Approved Status </span></td> -->
                                                 <td><span class="badge badge-warning p-1">Zain Abbas </span></td>
                                                 <td><span class="badge badge-danger p-1">${element.LoginName} </span></td>
-                                                <td><span class="badge badge-danger p-1">${element.RequesterName} </span></td>
 
                                                 <td class="d-flex">
                                                 <button type="button" class="btn btn-warning btn-xs waves-effect waves-themed" onclick="getFGTTestHeadDetails(${element.TID},'${element.CssNo}')" id=""><i class="fal fa-print" aria-hidden="true"></i></button> &nbsp;
-                                                <!--<button type="button" class="btn btn-danger btn-xs waves-effect waves-themed" onclick="deleteFGTTestHeadDetails(${element.TID},'${element.CssNo}')" id=""><i class="fal fa-trash" aria-hidden="true"></i></button>-->
+
+                                                <?php if($Uploading): ?><button type="button" class="btn btn-danger btn-xs waves-effect waves-themed" onclick="deleteFGTTestHeadDetails(${element.TID},'${element.CssNo}')" id=""><i class="fal fa-trash" aria-hidden="true"></i></button> <?php endif; ?>
                                                 </td>
                                             </tr>`
 
@@ -4857,205 +4851,103 @@ if (!$this->session->has_userdata('user_id')) {
                                                 }
                                             ]
                                         });
-                                    } else {
-                                        toastr["info"]("No Record found with provided credentials!.", "Info!")
-
-                                        toastr.options = {
-                                            "closeButton": true,
-                                            "debug": false,
-                                            "newestOnTop": true,
-                                            "progressBar": true,
-                                            "positionClass": "toast-top-center",
-                                            "preventDuplicates": false,
-                                            "onclick": null,
-                                            "showDuration": 300,
-                                            "hideDuration": 100,
-                                            "timeOut": 5000,
-                                            "extendedTimeOut": 1000
-                                        }
-                                        $("#tableData").html(`<table id="fgtTestTableData" class="table table-bordered table-hover table-responsive table-striped w-100">
-                                                <thead class="bg-primary-200">
-                                                    <tr style="color:white;">
-                                                        <th>Lab No</th>
-                                                        <th>CSS No </th>
-                                                        <th>Receiving Date</th>
-                                                        <th>Testing Date </th>
-                                                        <th>Issue Date </th>
-                                                        <th>Envirmental Cond</th>
-                                                        <th>TestAccToCat </th>
-                                                        <th>CoverMat</th>
-                                                        <th>Backing</th>
-                                                        <th>Bladder </th>
-                                                        <th>Ball Type </th>
-                                                        <th>FIFA Stamp </th>
-                                                        <th>Production Month</th>
-                                                        <th>Test Type </th>
-                                                        <th>Main Mat Color </th>
-                                                        <th>Printing Colors </th>
-                                                        <th>Article No </th>
-                                                        <th>Working No</th>
-                                                        <th>Result </th>
-                                                        <!-- <th>Generated By </th> -->
-                                                        <!-- <th>Review Status </th> -->
-                                                        <th>Review By </th>
-                                                        <!-- <th>Approved Status </th> -->
-                                                        <th>Approved By </th>
-                                                        <th>Generated By </th>
-                                                        <th>Action </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>`);
                                     }
 
                                 });
                             });
 
                             function getFGTTestHeadDetails(TID, CssNo) {
+
+
+
                                 url1 = '<?php echo base_url('LabController/getFGTTestHead'); ?>'
                                 url2 = '<?php echo base_url('LabController/getFGTTestDetails'); ?>'
                                 $.post(url1, {
-                                        TID: TID
-                                    },
-                                    function(data, status) {
-                                        if (data) {
-                                            if (data[0].FC == 'B34006') {
-                                                $('#labNoFGTAirlessMini').html(data[0]['LabNo']);
-                                                $('#cssNoFGTAirlessMini').html(data[0]['CssNo']);
-                                                $('#receiveDateFGTAirlessMini').html(data[0]['Receiving_Date']);
-                                                $('#testingDataFGTSAirlessMini').html(data[0]['Testing_DateS']);
-                                                $('#testingDataFGTEAirlessMini').html(data[0]['Testing_DateE']);
-                                                $('#issueDateFGTAirlessMini').html(data[0]['Issue_Date']);
-                                                $('#environmentalCondFGTAirlessMini').html(data[0]['EnvironmentalC']);
-                                                $('#testAccToCatFGTAirlessMini').html(data[0]['TestAccToCat']);
-                                                $('#coverMatFGTAirlessMini').html(data[0]['CoverMat']);
-                                                $('#backingFGTAirlessMini').html(data[0]['Backing']);
-                                                $('#bladderFGTAirlessMini').html(data[0]['Bladder']);
-                                                $('#ballTypeFGTAirlessMini').html(data[0]['BallType']);
-                                                $('#fifaStumpFGTAirlessMini').html(data[0]['Fifa_stump']);
-                                                $('#prodMonthFGTAirlessMini').html(data[0]['ProductionMon']);
-                                                $('#testTypeFGTAirlessMini').html(data[0]['TestType']);
-                                                $('#mainMatColorFGTAirlessMini').html(data[0]['MainMatColor']);
-                                                $('#printingColorFGTAirlessMini').html(data[0]['PrintingColor']);
-                                                $('#modelNameFGTAirlessMini').html(data[0]['ModelName']);
-                                                $('#acticleNoFGTAirlessMini').html(data[0]['Article']);
-                                                $('#workingNoFGTAirlessMini').html(data[0]['Working']);
-                                                $('#resultFGTAirlessMini').html(data[0]['Result']);
-                                                $('#testedbyFGtAirlessMini').html(data[0]['TestedBy']);
-                                                if (data[0]['freshImage']) {
-                                                    $("#freshImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].freshImage);
-                                                } else {
-                                                    $("#freshImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                                }
+                                    TID: TID
+                                }, function(data, status) {
+                                    if (data) {
 
-                                                if (data[0]['afterShooterImage']) {
-                                                    $("#afterShooterImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].afterShooterImage);
-                                                } else {
-                                                    $("#afterShooterImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                                }
+                                        $('#labNoFGT').html(data[0]['LabNo']);
+                                        $('#cssNoFGT').html(data[0]['CssNo']);
+                                        $('#receiveDateFGT').html(data[0]['Receiving_Date']);
+                                        $('#testingDataFGTS').html(data[0]['Testing_DateS']);
+                                        $('#testingDataFGTE').html(data[0]['Testing_DateE']);
+                                        $('#issueDateFGT').html(data[0]['Issue_Date']);
+                                        $('#environmentalCondFGT').html(data[0]['EnvironmentalC']);
+                                        $('#testAccToCatFGT').html(data[0]['TestAccToCat']);
+                                        $('#coverMatFGT').html(data[0]['CoverMat']);
+                                        $('#backingFGT').html(data[0]['Backing']);
+                                        $('#bladderFGT').html(data[0]['Bladder']);
+                                        $('#ballTypeFGT').html(data[0]['BallType']);
+                                        $('#fifaStumpFGT').html(data[0]['Fifa_stump']);
+                                        $('#prodMonthFGT').html(data[0]['ProductionMon']);
+                                        $('#testTypeFGT').html(data[0]['TestType']);
+                                        $('#mainMatColorFGT').html(data[0]['MainMatColor']);
+                                        $('#printingColorFGT').html(data[0]['PrintingColor']);
+                                        $('#acticleNoFGT').html(data[0]['Article']);
+                                        $('#workingNoFGT').html(data[0]['Working']);
+                                        $('#resultFGT').html(data[0]['Result']);
+                                        $('#testedbyFGt').html(data[0]['TestedBy']);
 
-                                                if (data[0]['hydrolysisImage']) {
-                                                    $("#hydrolysisImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].hydrolysisImage);
-                                                } else {
-                                                    $("#hydrolysisImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                                }
+                                        if (data[0]['LabNo'].includes('MS')) {
+                                            $("#testRequest").html("By Mr.Zeeshan Ikram - MS2@Forward.pk")
+                                        }else if(data[0]['LabNo'].includes('LFB') || data[0]['LabNo'].includes('lfb')){
+                                            $("#testRequest").html("By Ahmed Sb - Qc@forward.pk")
+                                        } else {
+                                            $("#testRequest").html("By Oman Sb - oman@forward.pk")
+                                        }
+                                        if (data[0]['freshImage']) {
+                                            $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].freshImage);
+                                        } else {
+                                            $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                        }
 
-                                                if (data[0]['drumImage']) {
-                                                    $("#drumImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].drumImage);
-                                                } else {
-                                                    $("#drumImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                                }
-                                                $.post(url2, {
-                                                    TID: TID
-                                                }, function(data, status) {
-                                                    // console.log("details data",data);
-                                                    let html;
-                                                    if (data) {
-                                                        data.forEach((element, index) => {
+                                        if (data[0]['afterShooterImage']) {
+                                            $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].afterShooterImage);
+                                        } else {
+                                            $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                        }
 
-                                                            html += `<tr>
-                                                                                    <td style="padding:left: 2px">${element.Test}</td>
-                                                                                    <th style="text-align:center">${element.Method }</th>
-                                                                                    <th style="text-align:center">${element.Condition}</th>
-                                                                                    <th style="text-align:center">${element.Unit}</th>
-                                                                                    <th style="text-align:center">${element.AirlessMiniSoccerball}</th>
-                                                                                    <th style="text-align:center">${element.Ball1}</th>
-                                                                                    <th style="text-align:center">${element.Ball2}</th>
-                                                                                    <th style="text-align:center">${element.Ball3}</th>
-                                                                                    <th style="text-align:center">${element.Ball4}</th>
-                                                                                    <th style="text-align:center">${element.Ball5}</th>
-                                                                                </tr>`
+                                        if (data[0]['hydrolysisImage']) {
+                                            $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].hydrolysisImage);
+                                        } else {
+                                            $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                        }
 
-                                                        })
-                                                        $('#fgtTestDetailsAirlessMini').html(html);
-                                                    }
-                                                });
-                                                $('#exampleModalFGTAirlessMiniTesting').modal('toggle');
-                                            } else { //else if this is other test than fgt airless mini then show that modal
-                                                console.log("else");
-                                                $('#labNoFGT').html(data[0]['LabNo']);
-                                                $('#cssNoFGT').html(data[0]['CssNo']);
-                                                $('#receiveDateFGT').html(data[0]['Receiving_Date']);
-                                                $('#testingDataFGTS').html(data[0]['Testing_DateS']);
-                                                $('#testingDataFGTE').html(data[0]['Testing_DateE']);
-                                                $('#issueDateFGT').html(data[0]['Issue_Date']);
-                                                $('#environmentalCondFGT').html(data[0]['EnvironmentalC']);
-                                                $('#testAccToCatFGT').html(data[0]['TestAccToCat']);
-                                                $('#coverMatFGT').html(data[0]['CoverMat']);
-                                                $('#backingFGT').html(data[0]['Backing']);
-                                                $('#bladderFGT').html(data[0]['Bladder']);
-                                                $('#ballTypeFGT').html(data[0]['BallType']);
-                                                $('#fifaStumpFGT').html(data[0]['Fifa_stump']);
-                                                $('#prodMonthFGT').html(data[0]['ProductionMon']);
-                                                $('#testTypeFGT').html(data[0]['TestType']);
-                                                $('#mainMatColorFGT').html(data[0]['MainMatColor']);
-                                                $('#printingColorFGT').html(data[0]['PrintingColor']);
-                                                $('#acticleNoFGT').html(data[0]['Article']);
-                                                $('#workingNoFGT').html(data[0]['Working']);
-                                                $('#resultFGT').html(data[0]['Result']);
-                                                $('#testedbyFGt').html(data[0]['TestedBy']);
-                                                if (data[0]['LabNo'].includes('MS')) {
-                                                    $("#testRequest").html("By Mr.Zeeshan Ikram - MS2@Forward.pk")
-                                                } else {
-                                                    $("#testRequest").html("By Oman Sb - oman@forward.pk")
-                                                }
+                                        if (data[0]['drumImage']) {
+                                            $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].drumImage);
+                                        } else {
+                                            $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                        }
 
-                                                if (data[0]['freshImage']) {
-                                                    $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].freshImage);
-                                                } else {
-                                                    $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                                }
-
-                                                if (data[0]['afterShooterImage']) {
-                                                    $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].afterShooterImage);
-                                                } else {
-                                                    $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                                }
-
-                                                if (data[0]['hydrolysisImage']) {
-                                                    $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].hydrolysisImage);
-                                                } else {
-                                                    $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                                }
-
-                                                if (data[0]['drumImage']) {
-                                                    $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].drumImage);
-                                                } else {
-                                                    $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                                }
-                                                $.post(url2, {
-                                                    TID: TID
-                                                }, function(data, status) {
-                                                    console.log("details", data);
-                                                    let html;
-                                                    if (data) {
-                                                        data.forEach((element, index) => {
-                                                            if (index == 12) {
-                                                                let mergedRow = '';
-                                                                mergedRow += element.Method + "," + element.Condition;
-                                                                html += `<tr>
+                                        $.post(url2, {
+                                            TID: TID
+                                        }, function(data, status) {
+                                            // console.log("details data",data);
+                                            let html;
+                                            if (data) {
+                                                data.forEach((element, index) => {
+                                                    if (index == 12) {
+                                                        let mergedRow = '';
+                                                        mergedRow += element.Method + "," + element.Condition;
+                                                        html += `<tr>
+                                                        <td style="padding:left: 2px">${element.Test}</td>
+                                                        <th style="text-align:center">` + mergedRow + `</th>
+                                                        <th style="text-align:center"></th>
+                                                        <th style="text-align:center">${element.Unit}</th>
+                                                        <th style="text-align:center">${element.Cat1}</th>
+                                                        <th style="text-align:center">${element.Cat2}</th>
+                                                        <th style="text-align:center">${element.Cat3}</th>
+                                                        <th style="text-align:center">${element.Min}</th>
+                                                        <th style="text-align:center">${element.Max}</th>
+                                                        <th style="text-align:center">${element.Remarks}</th>
+                                                    </tr>`
+                                                        // console.log("merged data", mergedRow);
+                                                    } else {
+                                                        html += `<tr>
                                                             <td style="padding:left: 2px">${element.Test}</td>
-                                                            <th style="text-align:center">` + mergedRow + `</th>
-                                                            <th style="text-align:center"></th>
+                                                            <th style="text-align:center">${element.Method }</th>
+                                                            <th style="text-align:center">${element.Condition}</th>
                                                             <th style="text-align:center">${element.Unit}</th>
                                                             <th style="text-align:center">${element.Cat1}</th>
                                                             <th style="text-align:center">${element.Cat2}</th>
@@ -5064,29 +4956,19 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <th style="text-align:center">${element.Max}</th>
                                                             <th style="text-align:center">${element.Remarks}</th>
                                                         </tr>`
-                                                            } else {
-                                                                html += `<tr>
-                                                                <td style="padding:left: 2px">${element.Test}</td>
-                                                                <th style="text-align:center">${element.Method }</th>
-                                                                <th style="text-align:center">${element.Condition}</th>
-                                                                <th style="text-align:center">${element.Unit}</th>
-                                                                <th style="text-align:center">${element.Cat1}</th>
-                                                                <th style="text-align:center">${element.Cat2}</th>
-                                                                <th style="text-align:center">${element.Cat3}</th>
-                                                                <th style="text-align:center">${element.Min}</th>
-                                                                <th style="text-align:center">${element.Max}</th>
-                                                                <th style="text-align:center">${element.Remarks}</th>
-                                                            </tr>`
-                                                            }
-                                                        })
-                                                        $('#fgtTestDetails').html(html);
                                                     }
-                                                });
-                                                $('#exampleModalFGTTesting').modal('toggle');
+                                                })
+                                                $('#fgtTestDetails').html(html);
                                             }
+                                        });
+                                        $('#exampleModalFGTTesting').modal('toggle');
 
-                                        }
-                                    })
+
+
+                                    }
+
+
+                                })
                             }
 
                             function deleteFGTTestHeadDetails(TID, CssNo) {
@@ -10573,7 +10455,7 @@ if (!$this->session->has_userdata('user_id')) {
             });
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js" integrity="sha512-gtII6Z4fZyONX9GBrF28JMpodY4vIOI0lBjAtN/mcK7Pz19Mu1HHIRvXH6bmdChteGpEccxZxI0qxXl9anY60w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://unpkg.com/read-excel-file@5.x/bundle/read-excel-file.min.js"></script>
+        <script src="<?php echo base_url() ?>assets/js/notifications/toastr/toastr.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
@@ -10591,22 +10473,32 @@ if (!$this->session->has_userdata('user_id')) {
             $("#submitData").click(function(e) {
                 e.preventDefault();
                 if (!fileSelectStore) {
-                    Swal.fire({
-                        icon: 'error',
-                        text: 'Please Select FGT excel file  to upload',
-                    })
+                    toastr["error"]("Please Select FGT CSM excel file  to upload", "Error!")
+
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": true,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": 300,
+                        "hideDuration": 100,
+                        "timeOut": 5000,
+                        "extendedTimeOut": 1000
+                    }
+                    // Swal.fire({
+                    //     position: 'top',
+                    //     text: 'Please Select FGT excel file  to upload',
+
+                    // })
                     return;
                 }
                 // $("#submitData").css("display", "none");
                 // $("#sendHeaderValues").css("display", "block");
                 // let CssCodeValue = $("#cssCode").val();
                 // let testType = $("#testType").val();
-
-                // readXlsxFile(fileSelectStore).then(function(rows) {
-                //     console.log("file all data ", rows);
-
-                // })
-
 
                 this.filetoupload = fileSelectStore;
                 var reader = new FileReader();
@@ -10636,24 +10528,25 @@ if (!$this->session->has_userdata('user_id')) {
                     let testNo;
                     let cssNo;
                     filelist.forEach(element => {
-                        if (element.LABNO != "" && element.CSSNO != "" && element.TestingDate != "") {
+                        if (element.LABNO != "" && element.CSSNO != "") {
                             $("#submitData").css("display", "none");
                             $("#sendHeaderValues").css("display", "block");
-                            let arrayHead = [element.LABNO, element.CSSNO, element.ReceivingDate, element.TestingDate, element.IssueDate, element.EnvironmentalCond, element.TestAccToCat, element.COVERMAT, element.BACKING, element.BLADDER, element.BALLTYPE, element.FIFAStamp, element.Productionmonth, element.TESTTYPE, element.MAINMATCOLOR, element.PRINTINGCOLORS, element.Article, element.Working, element.RESULT, element.TESTEDBY];
-                            let arrayBody = [element.TEST, element.METHOD, element.CONDITION, element.UNIT, element.CAT1, element.CAT2, element.CAT3, element.MIN, element.MAX, element.REMARKS, ']'];
+                            let arrayHead = [element.LABNO, element.CSSNO, element.ReceivingDate, element.TestingDateS, element.TestingDateE, element.IssueDate, element.EnvironmentalCond, element.TestAccToCat, element.COVERMAT, element.BACKING, element.BLADDER,element.Pressure, element.BALLTYPE, element.FIFAStamp, element.Productionmonth, element.TESTTYPE, element.MAINMATCOLOR, element.ModelName, element.Article, element.Working, element.RESULT, element.TESTEDBY];
+
+                            let arrayBody = [element.Weight, element.Average, element.Min, element.Max, element.Diff, element.Deviation, element.Rebound, element.Remarks, ']'];
 
                             HeaderArray.push(arrayHead);
                             ChildArray.push(arrayBody);
                         } else {
-                            alert("Lab No and CSS No is required!");
+                            alert("Lab No and CSS No is required in Excel File!");
                             $("#submitData").css("display", "block");
                             $("#sendHeaderValues").css("display", "none");
-                            // let arrayBody = [testNumber, PONumber, element.Requirement, element.Test, element.Results, element.Value, ']'];
+                            return;
+                            // let arrayBody = [element.Weight, element.Average, element.Min, element.Max, element.Diff, element.Deviation, element.Rebound, element.Remarks, ']'];
                             // ChildArray.push(arrayBody)
                         }
                     });
-                    console.log("header data", HeaderArray);
-                    console.log("child data", ChildArray);
+                    
                     $("#headerData").val(HeaderArray);
                     $("#childData").val(ChildArray);
                 };
@@ -11304,7 +11197,7 @@ if (!$this->session->has_userdata('user_id')) {
                 hydrolysisImage = $('#hydrolysisImage')[0].files[0];
                 drumImage = $('#drumImage')[0].files[0];
                 console.log(freshImage);
-                url = "<?php echo base_url(''); ?>LabController/uploadFgtFile/";
+                url = "<?php echo base_url(''); ?>LabController/uploadFgtCSM/";
                 var fd = new FormData();
                 // var H = JSON.stringify(HeaderArray);
                 // var C = JSON.stringify(ChildArray);
@@ -11329,6 +11222,7 @@ if (!$this->session->has_userdata('user_id')) {
                             $("#alertShown").hide();
                         },
                         success: function(data, status) {
+                            console.log(data)
                             if (data == true) {
                                 alert("File Upload Successfully");
                                 setInterval(function() {
@@ -11341,10 +11235,38 @@ if (!$this->session->has_userdata('user_id')) {
                                 }, 1000);
                             }
 
+                        },
+                        error: function() {
+                            toastr["error"]("Failed to Upload File. Check your Excel file carefully and then Try Again")
+                            // alert("Failed to Upload File. Check your Excel file carefully and then Try Again");
+                            toastr.options = {
+                                "closeButton": true,
+                                "debug": false,
+                                "newestOnTop": true,
+                                "progressBar": true,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "timeOut": 0,
+                            }
                         }
                     });
                 } else {
-                    alert("Please select any one images.");
+                    toastr["error"]("Please select any one images.")
+                    // alert("Failed to Upload File. Check your Excel file carefully and then Try Again");
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": true,
+                        "progressBar": true,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "timeOut": 0,
+                    }
+
                 }
 
                 // let file_data =  

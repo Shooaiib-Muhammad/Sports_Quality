@@ -4519,7 +4519,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <td><span class="badge badge-primary p-1">${element.LoginName}</span></td>
 
                                                 <td class="d-flex">
-                                                <!--<button type="button" class="btn btn-warning btn-xs waves-effect waves-themed" onclick="getFGTTestHeadDetails(${element.TID},'${element.CssNo}')" id=""><i class="fal fa-print" aria-hidden="true"></i></button> &nbsp;-->
+                                                <button type="button" class="btn btn-warning btn-xs waves-effect waves-themed" onclick="getFGTTestHeadDetails(${element.TID})" id=""><i class="fal fa-print" aria-hidden="true"></i></button> &nbsp;
 
                                                 
                                                 </td>
@@ -4604,7 +4604,10 @@ if (!$this->session->has_userdata('user_id')) {
                             });
 
                             function getFGTTestHeadDetails(TID, CssNo) {
-
+                                if(TID == null){
+                                    alert("Lab did not upload data(excel file) of this test type and with matched Css No. Contact Lab for your query!");
+                                    return;
+                                }
 
 
                                 url1 = '<?php echo base_url('LabController/getFGTTestHead'); ?>'

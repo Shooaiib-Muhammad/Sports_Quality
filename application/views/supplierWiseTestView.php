@@ -29,6 +29,8 @@
 									<?php echo $this->session->flashdata('info'); ?>
 								</div>
 							</div>
+
+							
 						<?php } ?>
 						<?php if ($this->session->flashdata('danger')) { ?>
 							<div class="alert alert-danger alert-dismissible show fade" id="msgbox">

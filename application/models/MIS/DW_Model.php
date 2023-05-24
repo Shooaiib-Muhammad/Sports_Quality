@@ -463,4 +463,11 @@ WHERE        (DateName BETWEEN CONVERT(DATETIME, '$StartDate 00:00:00', 102) AND
 FROM            dbo.view_TM_Cutting_Printing_MPNo_wise_PO_details ");
           return  $result = $query->result_array();
      }
+     public function bladderDateRange($startDate, $endDate)
+     {
+          $query = $this->db->query("SELECT        CompanyName, BladderTpye, Size, TotalChecked, Pass, Fail, JointFault, NozzleFault, BodyFault, WeightFault, SizeFault, DateName
+          FROM            dbo.View_QC_Bladders_Qty_Sum
+          WHERE        (DateName BETWEEN CONVERT(DATETIME, '$startDate 00:00:00', 102) AND CONVERT(DATETIME, '$endDate 00:00:00', 102))");
+          return  $query->result_array();
+     }
 }

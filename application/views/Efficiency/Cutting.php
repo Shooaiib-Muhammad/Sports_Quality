@@ -1,4 +1,6 @@
-<?php $this->load->view('includes/new_header'); ?>
+<?php 
+print_r($realtime); 
+$this->load->view('includes/new_header'); ?>
 
 <?php
 // Value of Die Testing

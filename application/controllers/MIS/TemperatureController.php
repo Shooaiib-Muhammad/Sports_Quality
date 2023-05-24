@@ -25,6 +25,16 @@ class TemperatureController extends CI_Controller
     ->set_output(json_encode($data));
 	
 	}
+    public function Humidity(){
+		$data = $this->PM->search($_POST["Sdate"],$_POST["EDate"]);
+    
+    
+    return $this->output
+    ->set_content_type('application/json')
+    ->set_status_header(200)
+    ->set_output(json_encode($data));
+	
+	}
 
     
 }

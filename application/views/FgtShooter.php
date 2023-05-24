@@ -4595,7 +4595,13 @@ if (!$this->session->has_userdata('user_id')) {
                                 </div>
                                 <div class="panel-container show">
                                     <div class="panel-content">
+                                        <div class="row">
 
+                                            <div class="col-md-12 d-flex justify-content-center flex-wrap">
+                                                <div id="container" style="width: 100%"></div>
+                                            </div>
+
+                                        </div>
                                         <div class="demo-v-spacing" id="tableData">
                                             <table id="defualtTable" class="table table-bordered table-hover table-responsive table-striped w-100">
                                                 <thead class="bg-primary-200">
@@ -4768,89 +4774,88 @@ if (!$this->session->has_userdata('user_id')) {
                                         let fgtHtml = ``;
 
                                         var articleCounts = {};
+                                        // var rDate = {};
                                         $.each(data, function(index, item) {
                                             var article = item.Article;
-                                            if (article) { // Skip undefined or null values
+                                            // var receivingDate = item.Receiving_Date;
+                                            if (article) {
                                                 if (article in articleCounts) {
                                                     articleCounts[article]++;
                                                 } else {
                                                     articleCounts[article] = 1;
                                                 }
                                             }
+                                            // rDate.push(receivingDate);
                                         });
+
                                         var resultArray = [];
-                                        var highData = [];
                                         $.each(articleCounts, function(article, count) {
                                             resultArray.push({
                                                 article: article,
                                                 count: count
                                             });
-                                            points = {
-                                                'y': count,
-                                                'name': article
-                                            }
-                                            highData.push(points)
                                         });
-                                        console.log(highData);
-                                        // seriesDataTop = generateDataTop(data)
 
-                                        // Highcharts.chart('container', {
-                                        //     chart: {
-                                        //         type: 'column'
-                                        //     },
-                                        //     title: {
-                                        //         align: 'center',
-                                        //         text: 'From Date to Date'
-                                        //     },
-                                        //     accessibility: {
-                                        //         announceNewData: {
-                                        //             enabled: true
-                                        //         }
-                                        //     },
-                                        //     xAxis: {
-                                        //         type: 'category',
+                                        var highData = resultArray.map(function(item) {
+                                            return {
+                                                name: item.article,
+                                                y: parseInt(item.count),
+                                                drilldown: ''
+                                            };
+                                        })
+                                        // console.log(highData);
 
+                                        Highcharts.chart('container', {
+                                            chart: {
+                                                type: 'column'
+                                            },
+                                            title: {
+                                                text: 'Article Quantity'
+                                            },
+                                            xAxis: {
+                                                type: 'category',
+                                                title: {
+                                                    text: `From ${date1} To ${date2}`
+                                                }
+                                            },
+                                            yAxis: {
+                                                title: {
+                                                    text: 'Article Quantity'
+                                                }
+                                            },
+                                            legend: {
+                                                enabled: false
+                                            },
+                                            tooltip: {
+                                                headerFormat: '<span style="font-size:11px">{point.key}</span><br>',
+                                                pointFormat: '<b>{point.y}</b> times',
+                                                shared: true
+                                            },
+                                            series: [{
+                                                name: 'Article Quantity',
+                                                colorByPoints: true,
+                                                data: highData
+                                            }]
+                                        });
 
-                                        //     },
-                                        //     yAxis: {
-                                        //         title: {
-                                        //             text: 'Article Quantity'
-                                        //         }
-
-                                        //     },
-                                        //     legend: {
-                                        //         enabled: true
-                                        //     },
-                                        //     plotOptions: {
-                                        //         series: {
-                                        //             borderWidth: 0,
-                                        //             dataLabels: {
-                                        //                 allowOverlap: true,
-                                        //                 enabled: true,
-                                        //                 format: '{point.y:.1f}'
-                                        //             }
-                                        //         }
-                                        //     },
-
-                                        //     tooltip: {
-                                        //         headerFormat: '<span style="font-size:11px">{point.key}</span><br>',
-                                        //         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                                        //             ' <td style="padding:0">{point.y:.1f}</td></tr>',
-                                        //         footerFormat: '</table>',
-                                        //         shared: true,
-                                        //         useHTML: true
-                                        //     },
-
-                                        //     series: [{
-                                        //         name: "Article Quantity",
-                                        //         colorByPoints: true,
-                                        //         data: highData
-                                        //     }]
-                                        // });
-
-
+                                        fgtHtml += `<div class="row mb-2">
+                                                    <div class="col-md-4"></div>
+                                                    <div class="col-md-4">
+                                                    <div class="p-2 rounded overflow-hidden position-relative mb-g text-white bg-warning">
+                                                            <div class="">
+                                                                <h3 class="display-3 d-block l-h-n m-0 fw-500">
+                                                                    <small class="m-0 l-h-n">Total Test Records</small>
+                                                                    <span class="d-inline">`+ data.length +`
+                                                                    </span>
+                                                                </h3>
+                                                            </div>
+                                                            <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4"></div>
+                                        </div>`
                                         fgtHtml += `<div class="row">
-                                            <div class="col-md-6 d-flex justify-content-center flex-wrap">`;
+                                            <div class="col-md-12 d-flex justify-content-center flex-wrap w-100">`;
                                         resultArray.forEach(element => {
                                             fgtHtml += `
                                                     <div class="col-md-2" id="direct">
@@ -4869,10 +4874,7 @@ if (!$this->session->has_userdata('user_id')) {
                                         });
 
                                         fgtHtml += `</div>
-                                                <div class="col-md-6 d-flex justify-content-center flex-wrap">
-                                                    <div id="container"></div>
-                                                </div>
-                                            </div>`;
+                                        </div>`;
 
                                         fgtHtml += `<table id="fgtTestTableData" class="table table-bordered table-hover table-responsive table-striped w-100">
                                                 <thead class="bg-primary-200">
@@ -4902,6 +4904,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <!-- <th>Approved Status </th> -->
                                                         <th>Approved By </th>
                                                         <th>Generated By </th>
+                                                        <th>Requester Name</th>
                                                         <th>Action </th>
                                                     </tr>
                                                 </thead>
@@ -4933,6 +4936,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <!-- <td><span class="badge badge-primary p-1">Approved Status </span></td> -->
                                                 <td><span class="badge badge-warning p-1">Zain Abbas </span></td>
                                                 <td><span class="badge badge-danger p-1">${element.LoginName} </span></td>
+                                                <td><span class="badge badge-danger p-1">${element.RequesterName} </span></td>
 
                                                 <td class="d-flex">
                                                 <button type="button" class="btn btn-warning btn-xs waves-effect waves-themed" onclick="getFGTTestHeadDetails(${element.TID},'${element.CssNo}')" id=""><i class="fal fa-print" aria-hidden="true"></i></button> &nbsp;

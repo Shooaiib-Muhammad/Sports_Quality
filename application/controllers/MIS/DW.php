@@ -174,5 +174,16 @@ class DW extends CI_Controller
                 $Data['RecordSum'] = $this->DW_Model->getLFBdataSum($Sdate,$Edate);
                 $this->load->view('MIS/Quality/lfb_all', $Data);
         }
+        public function bladder()
+        {
+                $this->load->view("bladder");
+        }
+        public function bladderDateRange(){
+                $data = $this->DW_Model->bladderDateRange($_POST['date1'], $_POST['date2']);      
+                return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(200)
+                ->set_output(json_encode($data));
+        }
         
 }

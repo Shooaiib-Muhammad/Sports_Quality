@@ -4512,7 +4512,7 @@ if (!$this->session->has_userdata('user_id')) {
                                             html += `
                                                 <tr>
                                             <td>${element.ItemType}</td>
-                                            <td>${element.TestNO}</td>
+                                            <td>${element.TestNo}</td>
                                             <td>${element.CSSNO}</td>
                                             <td>${element.Date}</td>
                                             <td>${element.Size}</td>
@@ -4748,7 +4748,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <th>CSS No </th>
                                                         <th> Date </th>
                                                         <th>Item Name </th>
-                                                        <th>PO # </th>
+                                                      
                                                            <th>Receiving Date  </th>
                                                         <th>Supplier</th>
                                                           <!-- <th>Supplier Refrence</th> -->
@@ -4763,8 +4763,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                   
                                                                    <th>Actions </th>
                                                                    <th>Development Report</th>
-                                                                      <th>Undo </th>
-                                                            
+                                                                    
                                                                   
                                                     </tr>
                                                 </thead>
@@ -4776,11 +4775,11 @@ if (!$this->session->has_userdata('user_id')) {
                                             html += `
                                                     <tr>
                                                 <td>${element.ItemType}</td>
-                                                <td>${element.TestNO}</td>
+                                                <td>${element.TestNo}</td>
                                                 <td>${element.CSSNO}</td>
                                                 <td>${element.Date}</td>
                                                 <td>${element.Size}</td>
-                                                <td>${element.PO}</td>
+                                             
                                                 <td>${element.Receiving_Date}</td>
                                                 <td>${element.Supplier_Name}</td>
                                             
@@ -4899,13 +4898,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                 
                                                             </div>
                                                 </td>`}
-                                            <td>
-                                                        <div class="col-md-2">
-                                                        
-                                                    <button type="button" id="customundo.${element.TID}" value="${element.TID}" class="btn btn-danger btn-xs customundobtn">
-                                                        <i class="fal fa-trash" aria-hidden="true"></i></button> 
-                                                
-                                                            </div>
+                                           </div>
                                                 </td>
                                             </tr>`
                                         });

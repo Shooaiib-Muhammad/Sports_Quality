@@ -19,9 +19,12 @@ class LabController extends CI_Controller
         $this->load->model('LabModel', 'l');
     }
 
+
+
     public function index()
     {
         $this->load->view('LabDashboard');
+        $data['Labtest'] = $this->l->labtest();
     }
 
     public function ShowDetails()
@@ -35,7 +38,7 @@ class LabController extends CI_Controller
 
     public function EditRaw_MatHead()
     {
-    
+
         $IdValue1 = $_POST['IdValue1'];
         $cssNo1 = $_POST['cssNo1'];
         $qReceived1 = $_POST['qReceived1'];
@@ -47,7 +50,7 @@ class LabController extends CI_Controller
 
 
 
-        $data = $this->l->EditRaw_MatHead($IdValue1,$cssNo1,$qReceived1,$qRetained1,$dueDate1,$compDate1,$sSignature1,$Remarks1);
+        $data = $this->l->EditRaw_MatHead($IdValue1, $cssNo1, $qReceived1, $qRetained1, $dueDate1, $compDate1, $sSignature1, $Remarks1);
 
         return $this->output
             ->set_content_type('application/json')
@@ -74,7 +77,7 @@ class LabController extends CI_Controller
             ->set_output(json_encode($data));
     }
 
-       
+
     public function TestRequestRawMatById()
     {
         $idGet = $_POST['Id'];
@@ -91,6 +94,18 @@ class LabController extends CI_Controller
         $TID = $_POST['Id'];
 
         $data = $this->l->EditTestRequestRawMatLabAcknowledge($TID);
+
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+    public function EditTestRequestRawMatLabAcknowledgeBulk()
+    {
+
+
+
+        $data = $this->l->EditTestRequestRawMatLabAcknowledgeBulk($_POST['selectedRows1']);
 
         return $this->output
             ->set_content_type('application/json')
@@ -143,8 +158,8 @@ class LabController extends CI_Controller
 
 
 
-   
-        
+
+
 
 
         $data['getRequesterRequests'] = $this->l->getTestByRequester();
@@ -153,7 +168,7 @@ class LabController extends CI_Controller
 
 
 
-    
+        $data['Labtest'] = $this->l->labtest();
 
         $this->load->view('TestRequest', $data);
     }
@@ -162,10 +177,10 @@ class LabController extends CI_Controller
 
     public function getSuppliers()
     {
-       
 
-         $data = $this->l->getSuppliers();
-        
+
+        $data = $this->l->getSuppliers();
+
         return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)
@@ -178,17 +193,17 @@ class LabController extends CI_Controller
 
         $RNO = $_POST['RNO'];
 
-       
 
-         $data = $this->l->getTestName($RNO);
-        
+
+        $data = $this->l->getTestName($RNO);
+
         return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
 
-    
+
 
 
     public function getItemName()
@@ -196,10 +211,10 @@ class LabController extends CI_Controller
 
         $RNO = $_POST['RNO'];
 
-       
 
-         $data = $this->l->getItemName($RNO);
-        
+
+        $data = $this->l->getItemName($RNO);
+
         return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)
@@ -210,12 +225,12 @@ class LabController extends CI_Controller
 
     public function getLabRawMatHead()
     {
-       
+
 
         $data['Raw_MatHead'] = $this->l->Raw_MatHead();
 
 
-        
+
         return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)
@@ -230,44 +245,42 @@ class LabController extends CI_Controller
 
         $TtypeP = $_POST['TtypeP'];
         $RNO = $_POST['RNO'];
-        
-    
 
 
-        $data = $this->l->EditAddRaw_MatHead($TtypeP,$RNO);
+
+
+        $data = $this->l->EditAddRaw_MatHead($TtypeP, $RNO);
 
         return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)
             ->set_output(json_encode($data));
-
     }
 
 
-    
+
 
     public function EditAddItemName()
     {
 
         $ItemNameP = $_POST['ItemNameP'];
         $RNO = $_POST['RNO'];
-    
 
-        $data = $this->l->EditItemName($ItemNameP,$RNO);
+
+        $data = $this->l->EditItemName($ItemNameP, $RNO);
 
         return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)
             ->set_output(json_encode($data));
-
     }
 
-    
+
 
 
     public function getRawMatReqTByPending()
     {
-        
+
 
         $data = $this->l->getRawMatReqTByPending();
 
@@ -278,11 +291,12 @@ class LabController extends CI_Controller
     }
 
 
-    public function getDataAfterRequest(){
+    public function getDataAfterRequest()
+    {
 
         $TID = $_POST['TID'];
 
-        
+
 
         $data = $this->l->getDataAfterRequest($TID);
 
@@ -290,7 +304,6 @@ class LabController extends CI_Controller
             ->set_content_type('application/json')
             ->set_status_header(200)
             ->set_output(json_encode($data));
-
     }
 
     public function getRawMatReqByCss()
@@ -320,10 +333,10 @@ class LabController extends CI_Controller
     }
 
 
-   
+
     public function AddRaw_MatHead()
     {
-    
+
         $DateP = $_POST['Date'];
 
         $Type = $_POST['Type'];
@@ -345,6 +358,9 @@ class LabController extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
+
+
+
 
 
 
@@ -909,7 +925,7 @@ class LabController extends CI_Controller
     }
 
 
-    
+
 
     public function getCssRaw()
     {
@@ -923,10 +939,10 @@ class LabController extends CI_Controller
             ->set_output(json_encode($data));
     }
 
-    
+
     public function getRawMatReqTests()
     {
-        
+
 
         $data = $this->l->getRawMatReqT();
 
@@ -1420,7 +1436,7 @@ class LabController extends CI_Controller
             array_push($childArray, $arraySplit);
         }
         array_pop($childArray);
-        
+
 
         $LabNo = $header[0];
         $RecevingDate = $header[1];
@@ -1436,7 +1452,7 @@ class LabController extends CI_Controller
         $Result = $header[11];
         $performedBy = $header[12];
         $ItemType = $header[13];
-       
+
         $this->l->AddHeaderFabric(
             $LabNo,
             $RecevingDate,
@@ -1464,7 +1480,7 @@ class LabController extends CI_Controller
 
     public function addHeadDataMaterial()
     {
-        
+
 
         ////////////////////////////////////// Ajax Call ///////////////////////////////
         $picture = '';
@@ -2086,7 +2102,7 @@ class LabController extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
-    
+
     public function bladerView()
     {
         $this->load->view('bladerView');
@@ -2121,7 +2137,7 @@ class LabController extends CI_Controller
             ->set_output(json_encode($data));
     }
 
-    
+
     public function CSMMaterialView()
     {
         $this->load->view('CsmMaterialView');
@@ -2138,7 +2154,7 @@ class LabController extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
-    
+
     public function fabricView()
     {
         $this->load->view('fabricView');
@@ -2156,7 +2172,7 @@ class LabController extends CI_Controller
             ->set_output(json_encode($data));
     }
 
-    
+
     public function FgtView()
     {
         $this->load->view('fgtView');
@@ -2173,7 +2189,7 @@ class LabController extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
-    
+
     public function foamView()
     {
         $this->load->view('foamView');
@@ -2190,7 +2206,7 @@ class LabController extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
-    
+
     public function materialView()
     {
         $this->load->view('materialView');
@@ -2275,7 +2291,7 @@ class LabController extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
-    
+
     public function threadView()
     {
         $this->load->view('threadView');
@@ -2326,7 +2342,7 @@ class LabController extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
-    
+
     public function FGTDrum()
     {
         $this->load->view('FgtDrumTest');
@@ -2452,7 +2468,7 @@ class LabController extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
-    
+
     public function FgtAfterHydrolysisCSMRebound()
     {
         $this->load->view('FgtAfterHydrolysisCSMRebound');
@@ -2749,7 +2765,8 @@ class LabController extends CI_Controller
         $data['TestTypes'] = $this->l->getTestTypeforFGT();
         $this->load->view('fgtRequestView', $data);
     }
-    public function getFgtRequestFormData(){
+    public function getFgtRequestFormData()
+    {
         $data = $this->l->getFgtRequestFormData($_POST['articleNo']);
         return $this->output
             ->set_content_type('application/json')
@@ -2849,60 +2866,68 @@ class LabController extends CI_Controller
             ->set_output(json_encode($data));
     }
 
-    public function getFGTTestDataForView(){
-        $result = $this->l->getFGTTestDataForView($_POST['date1'], $_POST['date2']);      
-            return $this->output
+    public function getFGTTestDataForView()
+    {
+        $result = $this->l->getFGTTestDataForView($_POST['date1'], $_POST['date2']);
+        return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)
             ->set_output(json_encode($result));
     }
-    public function getFGTTestDataForViewAirlessMini(){
-        $result = $this->l->getFGTTestDataForViewAirlessMini($_POST['date1'], $_POST['date2']);      
-            return $this->output
-            ->set_content_type('application/json')
-            ->set_status_header(200)
-            ->set_output(json_encode($result));
-    }
-
-    public function getFGTTestHead(){
-        $result = $this->l->getFGTTestHead($_POST['TID']);      
-            return $this->output
-            ->set_content_type('application/json')
-            ->set_status_header(200)
-            ->set_output(json_encode($result));
-    }
-    public function getFGTTestDetails(){
-        $result = $this->l->getFGTTestDetails($_POST['TID']);      
-            return $this->output
-            ->set_content_type('application/json')
-            ->set_status_header(200)
-            ->set_output(json_encode($result));
-    }
-    public function getFGTTestHeadAirlessMini(){
-        $result = $this->l->getFGTTestHeadAirlessMini($_POST['TID']);      
-            return $this->output
-            ->set_content_type('application/json')
-            ->set_status_header(200)
-            ->set_output(json_encode($result));
-    }
-    public function getFGTTestDetailsAirlessMini(){
-        $result = $this->l->getFGTTestDetailsAirlessMini($_POST['TID']);      
-            return $this->output
+    public function getFGTTestDataForViewAirlessMini()
+    {
+        $result = $this->l->getFGTTestDataForViewAirlessMini($_POST['date1'], $_POST['date2']);
+        return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)
             ->set_output(json_encode($result));
     }
 
-    public function getFGTTestReqHead(){
-        $result = $this->l->getFGTTestReqHead($_POST['CssNo']);      
-            return $this->output
+    public function getFGTTestHead()
+    {
+        $result = $this->l->getFGTTestHead($_POST['TID']);
+        return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)
             ->set_output(json_encode($result));
     }
-    public function getFGTTestReqDetails(){
-        $result = $this->l->getFGTTestReqDetails($_POST['TID']);      
-            return $this->output
+    public function getFGTTestDetails()
+    {
+        $result = $this->l->getFGTTestDetails($_POST['TID']);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($result));
+    }
+    public function getFGTTestHeadAirlessMini()
+    {
+        $result = $this->l->getFGTTestHeadAirlessMini($_POST['TID']);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($result));
+    }
+    public function getFGTTestDetailsAirlessMini()
+    {
+        $result = $this->l->getFGTTestDetailsAirlessMini($_POST['TID']);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($result));
+    }
+
+    public function getFGTTestReqHead()
+    {
+        $result = $this->l->getFGTTestReqHead($_POST['CssNo']);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($result));
+    }
+    public function getFGTTestReqDetails()
+    {
+        $result = $this->l->getFGTTestReqDetails($_POST['TID']);
+        return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)
             ->set_output(json_encode($result));
@@ -2920,122 +2945,122 @@ class LabController extends CI_Controller
         $picture3 = '';
         $picture4 = '';
         if (!empty($_FILES['freshImage']['name'])) {
-			$config['upload_path'] = 'assets\img\Fgt';
-			$config['allowed_types'] = 'jpg|jpeg|png';
-			$config['file_name'] = basename($_FILES["freshImage"]['name']);
+            $config['upload_path'] = 'assets\img\Fgt';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['file_name'] = basename($_FILES["freshImage"]['name']);
 
-			//Load upload library and initialize configuration
-			$this->load->library('upload', $config);
-			$this->upload->initialize($config);
-			if ($this->upload->do_upload('freshImage')) {
-				$uploadData = $this->upload->data();
-				$picture1 = $uploadData['file_name'];
-				$configi['image_library'] = 'gd2';
-				$configi['source_image'] = $uploadData['full_path'];
-				$configi['create_thumb'] = FALSE;
-				$configi['maintain_ratio'] = FALSE;
-				$configi['quality'] = 60;
-				$configi['width'] = 800;
-				$configi['height'] = 600;
-				$configi['new_image'] = 'assets/img/Fgt/' . $picture1;
-				$this->load->library('image_lib');
-                $this->image_lib->initialize($configi);    
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('freshImage')) {
+                $uploadData = $this->upload->data();
+                $picture1 = $uploadData['file_name'];
+                $configi['image_library'] = 'gd2';
+                $configi['source_image'] = $uploadData['full_path'];
+                $configi['create_thumb'] = FALSE;
+                $configi['maintain_ratio'] = FALSE;
+                $configi['quality'] = 60;
+                $configi['width'] = 800;
+                $configi['height'] = 600;
+                $configi['new_image'] = 'assets/img/Fgt/' . $picture1;
+                $this->load->library('image_lib');
+                $this->image_lib->initialize($configi);
                 $this->image_lib->resize();
-			} else {
-				$picture1 = '';
-			}
-		} else {
+            } else {
+                $picture1 = '';
+            }
+        } else {
             $picture1 = '';
-		}
+        }
         if (!empty($_FILES['afterShooterImage']['name'])) {
-			$config['upload_path'] = 'assets\img\Fgt';
-			$config['allowed_types'] = 'jpg|jpeg|png';
-			$config['file_name'] = basename($_FILES["afterShooterImage"]['name']);
+            $config['upload_path'] = 'assets\img\Fgt';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['file_name'] = basename($_FILES["afterShooterImage"]['name']);
 
-			//Load upload library and initialize configuration
-			$this->load->library('upload', $config);
-			$this->upload->initialize($config);
-			if ($this->upload->do_upload('afterShooterImage')) {
-				$uploadData = $this->upload->data();
-				$picture2 = $uploadData['file_name'];
-				$configi['image_library'] = 'gd2';
-				$configi['source_image'] = $uploadData['full_path'];
-				$configi['create_thumb'] = FALSE;
-				$configi['maintain_ratio'] = FALSE;
-				$configi['quality'] = 60;
-				$configi['width'] = 800;
-				$configi['height'] = 600;
-				$configi['new_image'] = 'assets/img/Fgt/' . $picture2;
-				$this->load->library('image_lib');
-                $this->image_lib->initialize($configi);    
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('afterShooterImage')) {
+                $uploadData = $this->upload->data();
+                $picture2 = $uploadData['file_name'];
+                $configi['image_library'] = 'gd2';
+                $configi['source_image'] = $uploadData['full_path'];
+                $configi['create_thumb'] = FALSE;
+                $configi['maintain_ratio'] = FALSE;
+                $configi['quality'] = 60;
+                $configi['width'] = 800;
+                $configi['height'] = 600;
+                $configi['new_image'] = 'assets/img/Fgt/' . $picture2;
+                $this->load->library('image_lib');
+                $this->image_lib->initialize($configi);
                 $this->image_lib->resize();
-			} else {
-				$picture2 = '';
-			}
-		} else {
+            } else {
+                $picture2 = '';
+            }
+        } else {
             $picture2 = '';
-		}
+        }
         if (!empty($_FILES['hydrolysisImage']['name'])) {
-			$config['upload_path'] = 'assets\img\Fgt';
-			$config['allowed_types'] = 'jpg|jpeg|png';
-			$config['file_name'] = basename($_FILES["hydrolysisImage"]['name']);
+            $config['upload_path'] = 'assets\img\Fgt';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['file_name'] = basename($_FILES["hydrolysisImage"]['name']);
 
-			//Load upload library and initialize configuration
-			$this->load->library('upload', $config);
-			$this->upload->initialize($config);
-			if ($this->upload->do_upload('hydrolysisImage')) {
-				$uploadData = $this->upload->data();
-				$picture3 = $uploadData['file_name'];
-				$configi['image_library'] = 'gd2';
-				$configi['source_image'] = $uploadData['full_path'];
-				$configi['create_thumb'] = FALSE;
-				$configi['maintain_ratio'] = FALSE;
-				$configi['quality'] = 60;
-				$configi['width'] = 800;
-				$configi['height'] = 600;
-				$configi['new_image'] = 'assets/img/Fgt/' . $picture3;
-				$this->load->library('image_lib');
-                $this->image_lib->initialize($configi);    
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('hydrolysisImage')) {
+                $uploadData = $this->upload->data();
+                $picture3 = $uploadData['file_name'];
+                $configi['image_library'] = 'gd2';
+                $configi['source_image'] = $uploadData['full_path'];
+                $configi['create_thumb'] = FALSE;
+                $configi['maintain_ratio'] = FALSE;
+                $configi['quality'] = 60;
+                $configi['width'] = 800;
+                $configi['height'] = 600;
+                $configi['new_image'] = 'assets/img/Fgt/' . $picture3;
+                $this->load->library('image_lib');
+                $this->image_lib->initialize($configi);
                 $this->image_lib->resize();
-			} else {
-				$picture3 = '';
-			}
-		} else {
+            } else {
+                $picture3 = '';
+            }
+        } else {
             $picture3 = '';
-		}
+        }
         if (!empty($_FILES['drumImage']['name'])) {
-			$config['upload_path'] = 'assets\img\Fgt';
-			$config['allowed_types'] = 'jpg|jpeg|png';
-			$config['file_name'] = basename($_FILES["drumImage"]['name']);
+            $config['upload_path'] = 'assets\img\Fgt';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['file_name'] = basename($_FILES["drumImage"]['name']);
 
-			//Load upload library and initialize configuration
-			$this->load->library('upload', $config);
-			$this->upload->initialize($config);
-			if ($this->upload->do_upload('drumImage')) {
-				$uploadData = $this->upload->data();
-				$picture4 = $uploadData['file_name'];
-				$configi['image_library'] = 'gd2';
-				$configi['source_image'] = $uploadData['full_path'];
-				$configi['create_thumb'] = FALSE;
-				$configi['maintain_ratio'] = FALSE;
-				$configi['quality'] = 60;
-				$configi['width'] = 800;
-				$configi['height'] = 600;
-				$configi['new_image'] = 'assets/img/Fgt/' . $picture4;
-				$this->load->library('image_lib');
-                $this->image_lib->initialize($configi);    
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('drumImage')) {
+                $uploadData = $this->upload->data();
+                $picture4 = $uploadData['file_name'];
+                $configi['image_library'] = 'gd2';
+                $configi['source_image'] = $uploadData['full_path'];
+                $configi['create_thumb'] = FALSE;
+                $configi['maintain_ratio'] = FALSE;
+                $configi['quality'] = 60;
+                $configi['width'] = 800;
+                $configi['height'] = 600;
+                $configi['new_image'] = 'assets/img/Fgt/' . $picture4;
+                $this->load->library('image_lib');
+                $this->image_lib->initialize($configi);
                 $this->image_lib->resize();
-			} else {
-				$picture4 = '';
-			}
-		} else {
+            } else {
+                $picture4 = '';
+            }
+        } else {
             $picture4 = '';
-		}
-        
-       
+        }
+
+
         $headerValue = $_POST['HeaderArray'];
         $header = explode(",", $headerValue);
-        
+
         $childValue = $_POST['ChildArray'];
         $child = explode("]", $childValue);
         $childArray = [];
@@ -3077,34 +3102,36 @@ class LabController extends CI_Controller
         ];
 
 
-        $data = $this->l->uploadFgtFileData($fgtH, $childArray);      
-            return $this->output
+        $data = $this->l->uploadFgtFileData($fgtH, $childArray);
+        return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)
             ->set_output(json_encode($data));
-        
     }
 
-    public function deleteFGTTestHeadDetails(){
-        $data = $this->l->deleteFGTTestHeadDetails($_POST['TID']);      
-            return $this->output
+    public function deleteFGTTestHeadDetails()
+    {
+        $data = $this->l->deleteFGTTestHeadDetails($_POST['TID']);
+        return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
-    public function labReportWareHouse(){
+    public function labReportWareHouse()
+    {
         $this->load->view('labReportWareHouse');
     }
-    public function labReportFGT(){
+    public function labReportFGT()
+    {
         $this->load->view('labReportFGT');
     }
 
 
-    
-    public function FgtTestingAirlessMini(){
+
+    public function FgtTestingAirlessMini()
+    {
 
         $this->load->view('FgtTestingAirlessMini');
-
     }
 
     public function uploadFgtAirlessMini()
@@ -3114,122 +3141,122 @@ class LabController extends CI_Controller
         $picture3 = '';
         $picture4 = '';
         if (!empty($_FILES['freshImage']['name'])) {
-			$config['upload_path'] = 'assets\img\Fgt';
-			$config['allowed_types'] = 'jpg|jpeg|png';
-			$config['file_name'] = basename($_FILES["freshImage"]['name']);
+            $config['upload_path'] = 'assets\img\Fgt';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['file_name'] = basename($_FILES["freshImage"]['name']);
 
-			//Load upload library and initialize configuration
-			$this->load->library('upload', $config);
-			$this->upload->initialize($config);
-			if ($this->upload->do_upload('freshImage')) {
-				$uploadData = $this->upload->data();
-				$picture1 = $uploadData['file_name'];
-				$configi['image_library'] = 'gd2';
-				$configi['source_image'] = $uploadData['full_path'];
-				$configi['create_thumb'] = FALSE;
-				$configi['maintain_ratio'] = FALSE;
-				$configi['quality'] = 60;
-				$configi['width'] = 800;
-				$configi['height'] = 600;
-				$configi['new_image'] = 'assets/img/Fgt/' . $picture1;
-				$this->load->library('image_lib');
-                $this->image_lib->initialize($configi);    
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('freshImage')) {
+                $uploadData = $this->upload->data();
+                $picture1 = $uploadData['file_name'];
+                $configi['image_library'] = 'gd2';
+                $configi['source_image'] = $uploadData['full_path'];
+                $configi['create_thumb'] = FALSE;
+                $configi['maintain_ratio'] = FALSE;
+                $configi['quality'] = 60;
+                $configi['width'] = 800;
+                $configi['height'] = 600;
+                $configi['new_image'] = 'assets/img/Fgt/' . $picture1;
+                $this->load->library('image_lib');
+                $this->image_lib->initialize($configi);
                 $this->image_lib->resize();
-			} else {
-				$picture1 = '';
-			}
-		} else {
+            } else {
+                $picture1 = '';
+            }
+        } else {
             $picture1 = '';
-		}
+        }
         if (!empty($_FILES['afterShooterImage']['name'])) {
-			$config['upload_path'] = 'assets\img\Fgt';
-			$config['allowed_types'] = 'jpg|jpeg|png';
-			$config['file_name'] = basename($_FILES["afterShooterImage"]['name']);
+            $config['upload_path'] = 'assets\img\Fgt';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['file_name'] = basename($_FILES["afterShooterImage"]['name']);
 
-			//Load upload library and initialize configuration
-			$this->load->library('upload', $config);
-			$this->upload->initialize($config);
-			if ($this->upload->do_upload('afterShooterImage')) {
-				$uploadData = $this->upload->data();
-				$picture2 = $uploadData['file_name'];
-				$configi['image_library'] = 'gd2';
-				$configi['source_image'] = $uploadData['full_path'];
-				$configi['create_thumb'] = FALSE;
-				$configi['maintain_ratio'] = FALSE;
-				$configi['quality'] = 60;
-				$configi['width'] = 800;
-				$configi['height'] = 600;
-				$configi['new_image'] = 'assets/img/Fgt/' . $picture2;
-				$this->load->library('image_lib');
-                $this->image_lib->initialize($configi);    
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('afterShooterImage')) {
+                $uploadData = $this->upload->data();
+                $picture2 = $uploadData['file_name'];
+                $configi['image_library'] = 'gd2';
+                $configi['source_image'] = $uploadData['full_path'];
+                $configi['create_thumb'] = FALSE;
+                $configi['maintain_ratio'] = FALSE;
+                $configi['quality'] = 60;
+                $configi['width'] = 800;
+                $configi['height'] = 600;
+                $configi['new_image'] = 'assets/img/Fgt/' . $picture2;
+                $this->load->library('image_lib');
+                $this->image_lib->initialize($configi);
                 $this->image_lib->resize();
-			} else {
-				$picture2 = '';
-			}
-		} else {
+            } else {
+                $picture2 = '';
+            }
+        } else {
             $picture2 = '';
-		}
+        }
         if (!empty($_FILES['hydrolysisImage']['name'])) {
-			$config['upload_path'] = 'assets\img\Fgt';
-			$config['allowed_types'] = 'jpg|jpeg|png';
-			$config['file_name'] = basename($_FILES["hydrolysisImage"]['name']);
+            $config['upload_path'] = 'assets\img\Fgt';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['file_name'] = basename($_FILES["hydrolysisImage"]['name']);
 
-			//Load upload library and initialize configuration
-			$this->load->library('upload', $config);
-			$this->upload->initialize($config);
-			if ($this->upload->do_upload('hydrolysisImage')) {
-				$uploadData = $this->upload->data();
-				$picture3 = $uploadData['file_name'];
-				$configi['image_library'] = 'gd2';
-				$configi['source_image'] = $uploadData['full_path'];
-				$configi['create_thumb'] = FALSE;
-				$configi['maintain_ratio'] = FALSE;
-				$configi['quality'] = 60;
-				$configi['width'] = 800;
-				$configi['height'] = 600;
-				$configi['new_image'] = 'assets/img/Fgt/' . $picture3;
-				$this->load->library('image_lib');
-                $this->image_lib->initialize($configi);    
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('hydrolysisImage')) {
+                $uploadData = $this->upload->data();
+                $picture3 = $uploadData['file_name'];
+                $configi['image_library'] = 'gd2';
+                $configi['source_image'] = $uploadData['full_path'];
+                $configi['create_thumb'] = FALSE;
+                $configi['maintain_ratio'] = FALSE;
+                $configi['quality'] = 60;
+                $configi['width'] = 800;
+                $configi['height'] = 600;
+                $configi['new_image'] = 'assets/img/Fgt/' . $picture3;
+                $this->load->library('image_lib');
+                $this->image_lib->initialize($configi);
                 $this->image_lib->resize();
-			} else {
-				$picture3 = '';
-			}
-		} else {
+            } else {
+                $picture3 = '';
+            }
+        } else {
             $picture3 = '';
-		}
+        }
         if (!empty($_FILES['drumImage']['name'])) {
-			$config['upload_path'] = 'assets\img\Fgt';
-			$config['allowed_types'] = 'jpg|jpeg|png';
-			$config['file_name'] = basename($_FILES["drumImage"]['name']);
+            $config['upload_path'] = 'assets\img\Fgt';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['file_name'] = basename($_FILES["drumImage"]['name']);
 
-			//Load upload library and initialize configuration
-			$this->load->library('upload', $config);
-			$this->upload->initialize($config);
-			if ($this->upload->do_upload('drumImage')) {
-				$uploadData = $this->upload->data();
-				$picture4 = $uploadData['file_name'];
-				$configi['image_library'] = 'gd2';
-				$configi['source_image'] = $uploadData['full_path'];
-				$configi['create_thumb'] = FALSE;
-				$configi['maintain_ratio'] = FALSE;
-				$configi['quality'] = 60;
-				$configi['width'] = 800;
-				$configi['height'] = 600;
-				$configi['new_image'] = 'assets/img/Fgt/' . $picture4;
-				$this->load->library('image_lib');
-                $this->image_lib->initialize($configi);    
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('drumImage')) {
+                $uploadData = $this->upload->data();
+                $picture4 = $uploadData['file_name'];
+                $configi['image_library'] = 'gd2';
+                $configi['source_image'] = $uploadData['full_path'];
+                $configi['create_thumb'] = FALSE;
+                $configi['maintain_ratio'] = FALSE;
+                $configi['quality'] = 60;
+                $configi['width'] = 800;
+                $configi['height'] = 600;
+                $configi['new_image'] = 'assets/img/Fgt/' . $picture4;
+                $this->load->library('image_lib');
+                $this->image_lib->initialize($configi);
                 $this->image_lib->resize();
-			} else {
-				$picture4 = '';
-			}
-		} else {
+            } else {
+                $picture4 = '';
+            }
+        } else {
             $picture4 = '';
-		}
-        
-       
+        }
+
+
         $headerValue = $_POST['HeaderArray'];
         $header = explode(",", $headerValue);
-        
+
         $childValue = $_POST['ChildArray'];
         $child = explode("]", $childValue);
         $childArray = [];
@@ -3270,30 +3297,31 @@ class LabController extends CI_Controller
             'hydrolysisImage' => $picture3,
             'drumImage' => $picture4,
             'UserID' => $this->session->userdata('user_id'),
-            
+
             'FC' => 'B34006'
         ];
 
 
-        $data = $this->l->uploadFgtAirlessMini($fgtH, $childArray);      
-            return $this->output
-            ->set_content_type('application/json')
-            ->set_status_header(200)
-            ->set_output(json_encode($data));
-        
-    }   
-    
-
-    public function getOldCssNo(){
-        
-        $data = $this->l->getOldCssNo();      
-            return $this->output
+        $data = $this->l->uploadFgtAirlessMini($fgtH, $childArray);
+        return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
 
-    public function dashboardMini(){
+
+    public function getOldCssNo()
+    {
+
+        $data = $this->l->getOldCssNo();
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+
+    public function dashboardMini()
+    {
         return $this->load->view('dashboardMini');
     }
 
@@ -3308,5 +3336,172 @@ class LabController extends CI_Controller
             ->set_output(json_encode($data));
     }
 
-}
+    public function FgtTestingAdhesion()
+    {
+        $this->load->view("FgtAdhesionTestUpload");
+    }
+    public function uploadFgtAdhesion()
+    {
+        $picture1 = '';
+        $picture2 = '';
+        $picture3 = '';
+        $picture4 = '';
+        if (!empty($_FILES['freshImage']['name'])) {
+            $config['upload_path'] = 'assets\img\Fgt';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['file_name'] = basename($_FILES["freshImage"]['name']);
 
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('freshImage')) {
+                $uploadData = $this->upload->data();
+                $picture1 = $uploadData['file_name'];
+                $configi['image_library'] = 'gd2';
+                $configi['source_image'] = $uploadData['full_path'];
+                $configi['create_thumb'] = FALSE;
+                $configi['maintain_ratio'] = FALSE;
+                $configi['quality'] = 60;
+                $configi['width'] = 800;
+                $configi['height'] = 600;
+                $configi['new_image'] = 'assets/img/Fgt/' . $picture1;
+                $this->load->library('image_lib');
+                $this->image_lib->initialize($configi);
+                $this->image_lib->resize();
+            } else {
+                $picture1 = '';
+            }
+        } else {
+            $picture1 = '';
+        }
+        if (!empty($_FILES['afterShooterImage']['name'])) {
+            $config['upload_path'] = 'assets\img\Fgt';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['file_name'] = basename($_FILES["afterShooterImage"]['name']);
+
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('afterShooterImage')) {
+                $uploadData = $this->upload->data();
+                $picture2 = $uploadData['file_name'];
+                $configi['image_library'] = 'gd2';
+                $configi['source_image'] = $uploadData['full_path'];
+                $configi['create_thumb'] = FALSE;
+                $configi['maintain_ratio'] = FALSE;
+                $configi['quality'] = 60;
+                $configi['width'] = 800;
+                $configi['height'] = 600;
+                $configi['new_image'] = 'assets/img/Fgt/' . $picture2;
+                $this->load->library('image_lib');
+                $this->image_lib->initialize($configi);
+                $this->image_lib->resize();
+            } else {
+                $picture2 = '';
+            }
+        } else {
+            $picture2 = '';
+        }
+        if (!empty($_FILES['hydrolysisImage']['name'])) {
+            $config['upload_path'] = 'assets\img\Fgt';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['file_name'] = basename($_FILES["hydrolysisImage"]['name']);
+
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('hydrolysisImage')) {
+                $uploadData = $this->upload->data();
+                $picture3 = $uploadData['file_name'];
+                $configi['image_library'] = 'gd2';
+                $configi['source_image'] = $uploadData['full_path'];
+                $configi['create_thumb'] = FALSE;
+                $configi['maintain_ratio'] = FALSE;
+                $configi['quality'] = 60;
+                $configi['width'] = 800;
+                $configi['height'] = 600;
+                $configi['new_image'] = 'assets/img/Fgt/' . $picture3;
+                $this->load->library('image_lib');
+                $this->image_lib->initialize($configi);
+                $this->image_lib->resize();
+            } else {
+                $picture3 = '';
+            }
+        } else {
+            $picture3 = '';
+        }
+        if (!empty($_FILES['drumImage']['name'])) {
+            $config['upload_path'] = 'assets\img\Fgt';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['file_name'] = basename($_FILES["drumImage"]['name']);
+
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('drumImage')) {
+                $uploadData = $this->upload->data();
+                $picture4 = $uploadData['file_name'];
+                $configi['image_library'] = 'gd2';
+                $configi['source_image'] = $uploadData['full_path'];
+                $configi['create_thumb'] = FALSE;
+                $configi['maintain_ratio'] = FALSE;
+                $configi['quality'] = 60;
+                $configi['width'] = 800;
+                $configi['height'] = 600;
+                $configi['new_image'] = 'assets/img/Fgt/' . $picture4;
+                $this->load->library('image_lib');
+                $this->image_lib->initialize($configi);
+                $this->image_lib->resize();
+            } else {
+                $picture4 = '';
+            }
+        } else {
+            $picture4 = '';
+        }
+
+
+        $headerValue = $_POST['HeaderArray'];
+        $header = explode(",", $headerValue);
+
+        $childValue = $_POST['ChildArray'];
+        $child = explode("]", $childValue);
+        $childArray = [];
+        foreach ($child as $key => $value) {
+            $arraySplit = explode(',', $value);
+            array_push($childArray, $arraySplit);
+        }
+        $dateString = $header[1];
+        $formattedDate = date('Y-m-d', strtotime(str_replace('/', '-', $dateString)));
+        
+        array_pop($childArray);
+        $fgtH = [
+            'TestNo' => $header[0],
+            'Testing_DateS' => $formattedDate,
+            'Receiving_Date' => $header[2],
+            'CssNo' => $header[3],
+            'PONo' => $header[4],
+            'Article' => $header[5],
+            'ArticleName' => $header[6],
+            'Result' => $header[7],
+            'TestedBy' => $header[8],
+
+            'freshImage' => $picture1,
+            'afterShooterImage' => $picture2,
+            'hydrolysisImage' => $picture3,
+            'drumImage' => $picture4,
+            'UserID' => $this->session->userdata('user_id'),
+            'Type' => 'Adhesion'
+        ];
+
+
+        $data = $this->l->uploadFgtAdhesion($fgtH, $childArray);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+    public function FgtTestingCSM()
+    {
+        $this->load->view("FgtCSMTestUpload");
+    }
+}

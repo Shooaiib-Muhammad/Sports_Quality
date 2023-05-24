@@ -7,7 +7,7 @@ class Pivot_Model extends CI_Model
     {
 
         $query = $this->db
-            ->query("SELECT       date, PO, Article, ArtSize, Qty, Pass, fail, RFT
+            ->query("SELECT      *
             FROM            dbo.View_pivot_Datewise2
             WHERE        (date BETWEEN CONVERT(DATETIME, '$sdate 00:00:00', 102) AND CONVERT(DATETIME, '$edate 00:00:00', 102))
 ");
@@ -58,11 +58,12 @@ HAVING        (dbo.view_Pivot_Hours.date = CONVERT(DATETIME, '$Date 00:00:00', 1
         $Date = date('Y/m/d');
         $query = $this->db
             ->query("SELECT        dbo.tbl_Pivot.po_line_id AS po, dbo.tbl_Pivot.sku_id AS article, dbo.tbl_Pivot.ArtSize, dbo.defects.label, COUNT(dbo.tbl_Pivot.PassQty) AS defects, dbo.tbl_Pivot.defects_id, DATEADD(dd, 0, DATEDIFF(dd, 0, 
-            dbo.tbl_Pivot.inspection_completed_date)) AS Date, dbo.tbl_Pivot.SystemIP
+            dbo.tbl_Pivot.inspection_completed_date)) AS Date, dbo.tbl_Pivot.SystemIP, dbo.tbl_Pivot.Name, dbo.tbl_Pivot.CheckerName
 FROM            dbo.tbl_Pivot INNER JOIN
             dbo.defects ON dbo.tbl_Pivot.defects_id = dbo.defects.defects_id
 WHERE        (dbo.tbl_Pivot.defects_id <> 0)
-GROUP BY dbo.tbl_Pivot.po_line_id, dbo.tbl_Pivot.ArtSize, dbo.tbl_Pivot.defects_id, dbo.tbl_Pivot.sku_id, DATEADD(dd, 0, DATEDIFF(dd, 0, dbo.tbl_Pivot.inspection_completed_date)), dbo.tbl_Pivot.SystemIP, dbo.defects.label
+GROUP BY dbo.tbl_Pivot.po_line_id, dbo.tbl_Pivot.ArtSize, dbo.tbl_Pivot.defects_id, dbo.tbl_Pivot.sku_id, DATEADD(dd, 0, DATEDIFF(dd, 0, dbo.tbl_Pivot.inspection_completed_date)), dbo.tbl_Pivot.SystemIP, dbo.defects.label, 
+            dbo.tbl_Pivot.Name, dbo.tbl_Pivot.CheckerName
 HAVING        (DATEADD(dd, 0, DATEDIFF(dd, 0, dbo.tbl_Pivot.inspection_completed_date)) = CONVERT(DATETIME, '$Date 00:00:00', 102)) AND (dbo.tbl_Pivot.SystemIP = '$systemIp')");
         return $query->result_array();
     }

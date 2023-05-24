@@ -141,6 +141,20 @@
                                     Airless Mini</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>LabController/FgtTestingAdhesion" title="Introduction" data-filter-tags="application intel introduction">
+                                <span class="nav-link-text" data-i18n="nav.application_intel_introduction">FGT Adhesion</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            ''
+                                        ); ?>LabController/FgtTestingCSM" title="Introduction" data-filter-tags="application intel introduction">
+                                <span class="nav-link-text" data-i18n="nav.application_intel_introduction">FGT CSM</span>
+                            </a>
+                        </li>
 
                         <li>
                             <a href="<?php echo base_url(
@@ -332,7 +346,7 @@
 
                 </ul>
             </li>
-            <!-- <li>
+            <li>
                     <a href="#" title="Theme Settings" data-filter-tags="theme settings">
                         <i class="fal fa-vial"></i>
                         <span class="nav-link-text" data-i18n="nav.theme_settings">Edit Test Types</span>
@@ -350,7 +364,7 @@
 
 
                     </ul>
-                </li> -->
+                </li>
             <!-- <li>
                     <a href="#" title="Theme Settings" data-filter-tags="theme settings">
                         <i class="fal fa-vial"></i>
@@ -499,6 +513,14 @@
                                         Store</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="<?php echo base_url(
+                                                'MIS/DW/bladder'
+                                            ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                    <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Bladder</span>
+                                </a>
+                            </li>
+                            
                             <!-- <li>
                                     <a href="<?php echo base_url(
                                                     'MIS/DW/LFB'
@@ -1785,47 +1807,7 @@
                                 </ul>
                             </li>  -->
                 <?php }
-
-                if ($Dev == '1') { ?>
-                    <li>
-                        <a href="#" title="Theme Settings" data-filter-tags="theme settings">
-
-                            <span class="nav-link-text" data-i18n="nav.theme_settings">Development</span>
-                        </a>
-                        <ul>
-                            <!-- <li>
-                                        <a href="<?php echo base_url(
-                                                        ''
-                                                    ); ?>DevelopmentController" title="How it works" data-filter-tags="theme settings how it works">
-                                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
-                                        </a>
-                                    </li> -->
-                            <li>
-                                <a href="<?php echo base_url(
-                                                ''
-                                            ); ?>DevelopmentController/master_form" title="How it works" data-filter-tags="theme settings how it works">
-                                    <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Developnment
-                                        Activities</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url(
-                                                ''
-                                            ); ?>DevelopmentController/Process" title="How it works" data-filter-tags="theme settings how it works">
-                                    <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Process</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url(
-                                                ''
-                                            ); ?>DPA" title="How it works" data-filter-tags="theme settings how it works">
-                                    <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">DPA</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                <?php }
-                ?>
+?>
 
                 <?php if ($testRequest == '1') { ?>
                     <li>
@@ -1846,6 +1828,12 @@
                                                 ''
                                             ); ?>LabController/TestRequest" title="How it works" data-filter-tags="theme settings how it works">
                                     <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Request Form</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url('LabController/FGTRequest'); ?>" title="Theme Settings" data-filter-tags="theme settings">
+
+                                    <span class="nav-link-text" data-i18n="nav.theme_settings">FGT Request</span>
                                 </a>
                             </li>
 
@@ -1959,6 +1947,21 @@
                     <span class="nav-link-text" data-i18n="nav.theme_settings">Development</span>
                 </a>
                 <ul>
+                <li>
+                        <a href="<?php echo base_url(
+                                        'MIS/Developement'
+                                    ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
+                        </a>
+                    </li>
+                <li>
+                        <a href="<?php echo base_url(
+                                        ''
+                                    ); ?>DevelopmentController/master_form" title="How it works" data-filter-tags="theme settings how it works">
+                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Developnment
+                                Activities</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="<?php echo base_url(
                                         ''
@@ -2266,14 +2269,14 @@
                         <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Quality</span>
                     </a>
                     <ul>
-                        <!-- <li>
+                        <li>
                             <a href="<?php echo base_url(
                                             'MIS/Quality/Reports'
                                         ); ?>" title="How it works" data-filter-tags="theme settings how it works">
                                 <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Reports</span>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="<?php echo base_url(
                                             ''
                                         ); ?>LabController/master_form" title="Introduction" data-filter-tags="application intel introduction">
@@ -2328,6 +2331,14 @@
                                 <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">LFB Ball</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="<?php echo base_url(
+                                            'MIS/DW/bladder'
+                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Bladder</span>
+                            </a>
+                        </li>
+                        
 
                     </ul>
 

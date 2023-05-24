@@ -4622,7 +4622,7 @@ let dataTable;
                                                                     <td>${element.TestType}</td>
                                                                     <td>${element.FactoryCode}</td>
                                                                     <td>${element.itemName}</td>
-                                                                    <td>${element.testName}</td>
+                                                                    <td>${element.comptest}</td>
                                                                     <td>${element.Quantity}</td>
                                                                     <td><span class="badge badge-danger p-1">${element.LoginName}</span></td>
                                                                     <td><span class="badge badge-primary p-1">${element.receSign}</span></td>

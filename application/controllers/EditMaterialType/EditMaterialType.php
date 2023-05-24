@@ -47,6 +47,21 @@ class EditMaterialType extends CI_Controller
  }
 
 
+ 
+ public function EditMaterialTypeCSS()
+ {
+     $cssCodetUpdate = $_POST['cssCodetUpdate'];
+     $materialName = $_POST['materialName'];
+     
+     // $data['detailsData'] = $this->l->getDetails($_GET['id']);
+     $data = $this->m->EditMaterialTypeCSS($cssCodetUpdate,$materialName);
+
+     return $this->output
+         ->set_content_type('application/json')
+         ->set_status_header(200)
+         ->set_output(json_encode($data));
+ }
+
 
 }
 

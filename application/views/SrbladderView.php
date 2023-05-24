@@ -4359,7 +4359,7 @@ if (!$this->session->has_userdata('user_id')) {
                                             <table id="table" class="table table-bordered table-hover table-responsive table-striped w-100">
                                                 <thead class="bg-primary-200">
                                                     <tr style="color:white;">
-                                                        <th>Item Type</th>
+                                                        <th>asas Type</th>
                                                         <th>Test No </th>
                                                         <th>CSS No </th>
                                                         <th> Date </th>

@@ -308,7 +308,22 @@ HAVING        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$start_
 
 
 
-
+    // BHF Cutting B34006
+    public function BHFCutting006($start_date, $end_date)
+    {
+        return $this->db->query("SELECT        dbo.View_Amb_BHF_Cutting.*
+        FROM            dbo.View_Amb_BHF_Cutting
+        WHERE        (DateName BETWEEN CONVERT(DATETIME, '2023-05-01 00:00:00', 102) AND CONVERT(DATETIME, '2023-05-12 00:00:00', 102))
+        ")->result_array();
+    }
+    // AHF Cutting B34006
+    public function AHFCutting006($start_date, $end_date)
+    {
+        return $this->db->query("SELECT        dbo.View_AMB_Af_HF_Cutt.*
+        FROM            dbo.View_AMB_Af_HF_Cutt
+        WHERE        (DateName BETWEEN CONVERT(DATETIME, '2023-05-01 00:00:00', 102) AND CONVERT(DATETIME, '2023-05-12 00:00:00', 102))        
+        ")->result_array();
+    }
     // Forming B34006
     public function rpt_amb_detail006($start_date, $end_date, $processID)
     {

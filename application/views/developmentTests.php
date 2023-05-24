@@ -8301,7 +8301,10 @@ ${reviewStatus == '1' ?
                             });
 
                             $("#customData").on("click", ".customprintButton", function() {
-
+                                if(this.id == 'btnPrint.null'){
+                                    alert("Lab did not upload data(excel file) of this test type and with matched Css No. Contact Lab for your query!");
+                                    return;
+                                }
                                 let id = this.id;
 
                                 let split_value = id.split(".");

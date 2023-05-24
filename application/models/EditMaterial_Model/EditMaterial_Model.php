@@ -35,6 +35,26 @@ class EditMaterial_Model extends CI_Model
     }
 
 
+    public function EditMaterialTypeCSS($cssCodetUpdate,$materialName)
+    {
+        
+        $query = $this->db->query("UPDATE dbo.tbl_lab_test_request 
+        SET MaterialType = '$materialName'
+        WHERE CSSNo='$cssCodetUpdate'
+        ");
+
+        if($query){
+            return true;
+        }
+        else{
+            return false;
+        }
+   
+    }
+
+
+    
+
 
 }
 
