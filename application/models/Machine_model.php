@@ -28,13 +28,16 @@ class Machine_model extends CI_Model
                 'Uploading' => $result->Uploading,
                 'ReviewStatus' => $result->ReviewStatus,
                 'ApprovalStatus' => $result->ApprovalStatus,
-                'testRequest' => $result->testRequest,
+                'testReceive' => $result->testReceive,
                 'FIT' => $result->FIT,
                 'DPA_Status' => $result->DPA_Status,
                 'Efficency' => $result->Efficency,
                 'MIS_Status' => $result->MIS_Status,
-                'LabReportsStatus' => $result->LabReportsStatus,
-                'LabTestReqStatus' => $result->LabTestReqStatus,
+
+                'LabRawTestStatus' => $result->LabRawTestStatus,
+                'LabFGTTestStatus' => $result->LabFGTTestStatus,
+                'LabRawReportsStatus' => $result->LabRawReportsStatus,
+                'LabFGTReportsStatus' => $result->LabFGTReportsStatus,
 
             ];
 

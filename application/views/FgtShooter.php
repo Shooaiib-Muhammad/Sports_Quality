@@ -4556,12 +4556,11 @@ if (!$this->session->has_userdata('user_id')) {
                         <!-- End Model FGT HTML Standard -->
 
                         <!-- Model FGT TESTING HTML -->
-                        <?php include('FGT_Models/fgtTestingModel.php') ?>
-                        <!-- End Model FGT TESTING  HTML -->
-
-                        <!-- Model FGT Airless Mini TESTING HTML -->
-                        <?php include('FGT_Models/fgtTestingAirlessMiniModel.php') ?>
-                        <!-- End Model FGT Airless Mini TESTING  HTML -->
+                    <?php include('FGT_Models/fgtTestingModel.php') ?>
+                    <?php include('FGT_Models/fgtTestingAirlessMiniModel.php') ?>
+                    <?php include('FGT_Models/fgtTestingAdhesionModel.php') ?>
+                    <?php include('FGT_Models/fgtTestingCSMModel.php') ?>
+                    <!-- End Model FGT TESTING  HTML -->
 
                         <!-- START FGT TESTING DATE RANGE -->
                         <div class="col-md-12  table-responsive">
@@ -4799,8 +4798,7 @@ if (!$this->session->has_userdata('user_id')) {
                                         var highData = resultArray.map(function(item) {
                                             return {
                                                 name: item.article,
-                                                y: parseInt(item.count),
-                                                drilldown: ''
+                                                y: parseInt(item.count)
                                             };
                                         })
                                         // console.log(highData);
@@ -4833,7 +4831,7 @@ if (!$this->session->has_userdata('user_id')) {
                                             },
                                             series: [{
                                                 name: 'Article Quantity',
-                                                colorByPoints: true,
+                                                colorByPoint: true,
                                                 data: highData
                                             }]
                                         });

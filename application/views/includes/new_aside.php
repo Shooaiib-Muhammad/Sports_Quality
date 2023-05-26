@@ -35,13 +35,19 @@
         $Dev = $this->session->userdata('Dev');
         $store = $this->session->userdata('store');
         $admin = $this->session->userdata('admin');
-        $testRequest = $this->session->userdata('testRequest');
+        $testReceive = $this->session->userdata('testReceive');
+        echo "here";
+        print_r($testReceive);
         $FIT = $this->session->userdata('FIT');
         $DPA =  $this->session->userdata('DPA_Status');
         $Efficency =  $this->session->userdata('Efficency');
         $MIS_Status =  $this->session->userdata('MIS_Status');
-        $LabReportsStatus =  $this->session->userdata('LabReportsStatus');
-        $LabTestReqStatus =  $this->session->userdata('LabTestReqStatus');
+
+        $LabRawTestStatus =  $this->session->userdata('LabRawTestStatus');
+        $LabFGTTestStatus =  $this->session->userdata('LabFGTTestStatus');
+
+        $LabRawReportsStatus =  $this->session->userdata('LabRawReportsStatus');
+        $LabFGTReportsStatus =  $this->session->userdata('LabFGTReportsStatus');
 
         $user_id = $this->session->userdata('user_id');
         // Echo $DPA;
@@ -347,24 +353,24 @@
                 </ul>
             </li>
             <li>
-                    <a href="#" title="Theme Settings" data-filter-tags="theme settings">
-                        <i class="fal fa-vial"></i>
-                        <span class="nav-link-text" data-i18n="nav.theme_settings">Edit Test Types</span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="<?php echo base_url(
-                                            'EditMaterialType/EditMaterialType'
-                                        ); ?>" title="How it works" data-filter-tags="theme settings how it works">
-                                <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Edit Test
-                                    Type</span>
-                            </a>
-                        </li>
+                <a href="#" title="Theme Settings" data-filter-tags="theme settings">
+                    <i class="fal fa-vial"></i>
+                    <span class="nav-link-text" data-i18n="nav.theme_settings">Edit Test Types</span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="<?php echo base_url(
+                                        'EditMaterialType/EditMaterialType'
+                                    ); ?>" title="How it works" data-filter-tags="theme settings how it works">
+                            <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Edit Test
+                                Type</span>
+                        </a>
+                    </li>
 
 
 
-                    </ul>
-                </li>
+                </ul>
+            </li>
             <!-- <li>
                     <a href="#" title="Theme Settings" data-filter-tags="theme settings">
                         <i class="fal fa-vial"></i>
@@ -419,14 +425,14 @@
                                         Stitch Ball</span>
                                 </a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="<?php echo base_url(
                                                 'MIS/HS'
                                             ); ?>" title="How it works" data-filter-tags="theme settings how it works">
                                     <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Hand Stitch
                                         Ball</span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li>
                                 <a href="<?php echo base_url(
                                                 'MIS/DW'
@@ -520,7 +526,7 @@
                                     <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Bladder</span>
                                 </a>
                             </li>
-                            
+
                             <!-- <li>
                                     <a href="<?php echo base_url(
                                                     'MIS/DW/LFB'
@@ -1462,6 +1468,20 @@
                                         Airless Mini</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="<?php echo base_url(
+                                                ''
+                                            ); ?>LabController/FgtTestingAdhesion" title="Introduction" data-filter-tags="application intel introduction">
+                                    <span class="nav-link-text" data-i18n="nav.application_intel_introduction">FGT Adhesion</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url(
+                                                ''
+                                            ); ?>LabController/FgtTestingCSM" title="Introduction" data-filter-tags="application intel introduction">
+                                    <span class="nav-link-text" data-i18n="nav.application_intel_introduction">FGT CSM</span>
+                                </a>
+                            </li>
 
                             <li>
                                 <a href="<?php echo base_url(
@@ -1508,7 +1528,7 @@
                                             </span>
                                         </a>
                                     </li>
-    
+
                                     <li>
                                         <a href="<?php echo base_url(
                                                         ''
@@ -1525,9 +1545,9 @@
                                             </span>
                                         </a>
                                     </li>
-    
-    
-    
+
+
+
                                     <li>
                                         <a href="<?php echo base_url(
                                                         ''
@@ -1557,8 +1577,8 @@
                                             <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works"> Ball Type </span>
                                         </a>
                                     </li> -->
-    
-    
+
+
                                 </ul>
                             </li>
                     </li>
@@ -1807,13 +1827,13 @@
                                 </ul>
                             </li>  -->
                 <?php }
-?>
+                ?>
 
-                <?php if ($testRequest == '1') { ?>
+                <?php if ($testReceive == '1') { ?>
                     <li>
                         <a href="#" title="Theme Settings" data-filter-tags="theme settings">
 
-                            <span class="nav-link-text" data-i18n="nav.theme_settings">Test Request</span>
+                            <span class="nav-link-text" data-i18n="nav.theme_settings">Test Receive</span>
                         </a>
                         <ul>
                             <li>
@@ -1823,7 +1843,7 @@
                                     <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Receive Form</span>
                                 </a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="<?php echo base_url(
                                                 ''
                                             ); ?>LabController/TestRequest" title="How it works" data-filter-tags="theme settings how it works">
@@ -1835,11 +1855,31 @@
 
                                     <span class="nav-link-text" data-i18n="nav.theme_settings">FGT Request</span>
                                 </a>
-                            </li>
+                            </li> -->
 
                         </ul>
                     </li>
 
+                    <li>
+
+                        <a href="#" title="Theme Settings" data-filter-tags="theme settings">
+
+                            <span class="nav-link-text" data-i18n="nav.theme_settings">Bladder</span>
+                        </a>
+
+                        <ul>
+                            <li>
+                                <a href="<?php echo base_url(
+                                                ''
+                                            ); ?>MIS/DW/bladder" title="How it works" data-filter-tags="theme settings how it works">
+                                    <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Bladder Winding</span>
+                                </a>
+                            </li>
+
+
+                        </ul>
+
+                    </li>
 
 
                     <!-- <li>
@@ -1947,14 +1987,14 @@
                     <span class="nav-link-text" data-i18n="nav.theme_settings">Development</span>
                 </a>
                 <ul>
-                <li>
+                    <li>
                         <a href="<?php echo base_url(
                                         'MIS/Developement'
                                     ); ?>" title="How it works" data-filter-tags="theme settings how it works">
                             <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Dashboard</span>
                         </a>
                     </li>
-                <li>
+                    <li>
                         <a href="<?php echo base_url(
                                         ''
                                     ); ?>DevelopmentController/master_form" title="How it works" data-filter-tags="theme settings how it works">
@@ -2240,14 +2280,14 @@
                                     Ball</span>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="<?php echo base_url(
                                             'MIS/HS'
                                         ); ?>" title="How it works" data-filter-tags="theme settings how it works">
                                 <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Hand Stitch
                                     Ball</span>
                             </a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="<?php echo base_url(
                                             'MIS/DW'
@@ -2338,7 +2378,7 @@
                                 <span class="nav-link-text" data-i18n="nav.theme_settings_how_it_works">Bladder</span>
                             </a>
                         </li>
-                        
+
 
                     </ul>
 
@@ -2592,7 +2632,8 @@
 
 
     <?php } ?>
-    <?php if ($LabReportsStatus) { ?>
+    <!-- Start Raw reports  -->
+    <?php if ($LabRawReportsStatus) { ?>
         <li>
             <a href="#" title="Theme Settings" data-filter-tags="theme settings">
                 <i class='fal fa-compass'></i>
@@ -2605,6 +2646,19 @@
                         <span class="nav-link-text" data-i18n="nav.theme_settings">WareHouse</span>
                     </a>
                 </li>
+            </ul>
+        </li>
+    <?php } ?>
+    <!--End  Start Raw reports  -->
+
+    <!-- Start FGT reports  -->
+    <?php if ($LabFGTReportsStatus) { ?>
+        <li>
+            <a href="#" title="Theme Settings" data-filter-tags="theme settings">
+                <i class='fal fa-compass'></i>
+                <span class="nav-link-text" data-i18n="nav.theme_settings">Lab Reports</span>
+            </a>
+            <ul>
                 <li>
                     <a href="<?php echo base_url('LabController/labReportFGT'); ?>" title="Theme Settings" data-filter-tags="theme settings">
 
@@ -2614,8 +2668,10 @@
             </ul>
         </li>
     <?php } ?>
+    <!--End Start FGT reports  -->
 
-    <?php if ($LabTestReqStatus) { ?>
+    <!--Start Start Raw test request  -->
+    <?php if ($LabRawTestStatus) { ?>
         <li>
             <a href="#" title="Theme Settings" data-filter-tags="theme settings">
                 <i class='fal fa-compass'></i>
@@ -2629,6 +2685,42 @@
                             Form)</span>
                     </a>
                 </li>
+            </ul>
+        </li>
+    <?php } ?>
+
+
+    <?php if($user_id === 475){?>
+
+    <li>
+            <a href="#" title="Theme Settings" data-filter-tags="theme settings">
+                <i class='fal fa-compass'></i>
+                <span class="nav-link-text" data-i18n="nav.theme_settings">Bladder</span>
+            </a>
+            <ul>
+                <li>
+                    <a href="<?php echo base_url('MIS/DW/bladder'); ?>" title="Theme Settings" data-filter-tags="theme settings">
+
+                        <span class="nav-link-text" data-i18n="nav.theme_settings">Bladder Winding</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+<?php } ?>
+
+
+    <!--Stat Start Raw test request  -->
+
+    <!--Start Start Raw test request  -->
+    <?php if ($LabFGTTestStatus) { ?>
+        <li>
+            <a href="#" title="Theme Settings" data-filter-tags="theme settings">
+                <i class='fal fa-compass'></i>
+                <span class="nav-link-text" data-i18n="nav.theme_settings">Lab Test Request</span>
+            </a>
+            <ul>
+                
                 <li>
                     <a href="<?php echo base_url('LabController/FGTRequest'); ?>" title="Theme Settings" data-filter-tags="theme settings">
 
@@ -2638,6 +2730,8 @@
             </ul>
         </li>
     <?php } ?>
+    <!--End Start Raw test request  -->
+
 
     </ul>
 

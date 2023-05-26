@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="card" id="printCardFGTTesting">
+                <div class="card" id="printCardFGTTestingAirlessMini">
                     <div class="card-body">
                         <div class="row">
                             <div class="table" style="display: flex; justify-content:space-between">
@@ -189,6 +189,9 @@
                                 <table border="1">
                                     <thead>
                                         <tr style="font-weight:bold; text-align:center;">
+
+                                        </tr>
+                                        <tr style="font-weight:bold; text-align:center;">
                                             <td>TEST</td>
                                             <td>METHOD</td>
                                             <td>CONDITION</td>
@@ -304,7 +307,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="printDiv('printCardFGTTesting')" data-dismiss="modal">Print Report</button>
+                <button type="button" class="btn btn-primary" onclick="printDiv('printCardFGTTestingAirlessMini')" data-dismiss="modal">Print Report</button>
             </div>
             <div class="card-footer text-muted">
                 Forward Sports Pvt. Ltd.

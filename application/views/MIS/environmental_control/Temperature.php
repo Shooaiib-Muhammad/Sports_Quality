@@ -245,6 +245,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                         console.log("load table data", data);
 
                                                     }
+                                                    
                                                 })
 
 

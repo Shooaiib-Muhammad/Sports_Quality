@@ -59,7 +59,14 @@ class Lfb extends CI_Controller
 		$data['data'] = $this->Lfb_Model->get_Lfb_Carcas($start_date, $end_date);
 		$data['start_date1'] = $start_date;
 		$data['end_date1'] = $end_date;
-		return $this->load->view('MIS/tm_analysis/DailyCarcas', $data, false);
+		return $this->load->view('MIS/DailyCarcas', $data, false);
+	}
+	public function get_Lfb_Forming($start_date, $end_date)
+	{
+		$data['data'] = $this->Lfb_Model->get_Lfb_Forming($start_date, $end_date);
+		$data['start_date1'] = $start_date;
+		$data['end_date1'] = $end_date;
+		return $this->load->view('MIS/DailyForming', $data, false);
 	}
    
 	public function searchQuery($Art,$Sdate,$EDate,$size1,$size2)

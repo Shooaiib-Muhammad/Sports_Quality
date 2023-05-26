@@ -135,7 +135,7 @@
                                                             <label for="factory" class="">Factory Code</label>
                                                             <select name="factory" id="factory" class="form-control" onchange="getLfb()">
                                                                 <option value="">Select Factory Code</option>
-                                                                <option value="B34001">Hand Stitched Ball</option>
+                                                                <!-- <option value="B34001">Hand Stitched Ball</option> -->
                                                                 <option value="B34002">Competition Ball</option>
                                                                 <option value="B34003">Finale Ball</option>
                                                                 <option value="B34004">Urban Ball</option>
@@ -471,6 +471,10 @@
                                                             case '5':
                                                                 carcas();
                                                                 break;
+                                                            case '6':
+                                                                // alert("i am here baby");
+                                                                forming();
+                                                                break;
                                                         }
                                                         break;
                                                     case 'B34002':
@@ -582,6 +586,17 @@
                                                 end_date = $('#end_date').val();
 
                                                 url = "<?php echo base_url('Lfb/get_Lfb_Carcas/') ?>" + start_date + "/" + end_date
+                                                //alert(url);
+                                                $.get(url, function(data) {
+                                                    fillReport(data, true)
+                                                })
+                                            }
+                                            function forming() {
+                                                //alert("I am forming")
+                                                start_date = $('#start_date').val();
+                                                end_date = $('#end_date').val();
+
+                                                url = "<?php echo base_url('Lfb/get_Lfb_Forming/') ?>" + start_date + "/" + end_date
                                                 //alert(url);
                                                 $.get(url, function(data) {
                                                     fillReport(data, true)

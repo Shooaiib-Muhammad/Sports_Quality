@@ -1,151 +1,190 @@
 <h2 class="bg-primary-200 text-light p-2 text-center"><?php echo $title; ?> Forming QC <?php echo "( $start_date to $end_date )"; ?>
 </h2>
+<!-- <?php print_r($data); ?> -->
 <table class="table table-bordered table-hover table-responsive table-striped w-100" id="forming-table">
     <thead>
         <tr class="bg-primary-200 text-light">
-            <th>Dates</th>
-            <th>Checked</th>
-            <th>Pass</th>
-            <th>Fail </th>
-            <td>RFT</td>
-            <th>B Grade </th>
-            <td>%</td>
-            <th>Panel DMG</th>
-            <td>%</td>
-            <th>Bubble</th>
-            <td>%</td>
-            <th>Alignment</th>
-            <td>%</td>
-            <th>Corner</th>
-            <td>%</td>
-            <th>Touching</th>
-            <td>%</td>
-            <th>Wrong Art Work</th>
-            <td>%</td>
-            <th>Nozzle Move</th>
-            <td>%</td>
-            <th>Over lapping</th>
-            <td>%</td>
-            <th>Cavity</th>
-            <td>%</td>
-            <th>leak Puncture </th>
-            <td>%</td>
-            <th>Mold Mark</th>
-            <td>%</td>
-            <th>Wrinkle</th>
-            <td>%</td>
-            <th>Dirty</th>
-            <td>%</td>
-            <th>Pressure Mark</th>
-            <td>%</td>
-            <th>Printing</th>
-            <td>%</td>
-            <th>Open Seam</th>
-            <td>%</td>
+            <th>Date</th>
+            <th style="text-align: center;">Total Checked</th>
+            <th style="width:20%; text-align: center;">Total Pass</th>
+            <th style="width:20%; text-align: center;">Total Fail</th>
+            <th style="width:15%; text-align: center;">MaterialDefect</th>
+
+            <th>SeamDefect</th>
+            <th>SeamOverlaping</th>
+            <th>Wrinkles</th>
+
+            <th>ExcessGlue</th>
+            <th>PressureMarks</th>
+            <th>AirBubble</th>
+            <th>TouchingPeelingOff</th>
+            <th>PrintMisalignment</th>
+            <th>WrongeArtwork</th>
+            <th>MoldMark</th>
+            <th>ColourShade</th>
+            <th>ValveNozzleMove</th>
+            <th>DShape</th>
+            <th>Oversize</th>
+            <th>UnderSize</th>
+            <th>OverWeight</th>
+            <th>UnderWeight</th>
+            <th>MissGlue</th>
+
 
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($data as $d) {; ?>
+        <?php
+        $TotalChecked1 = 0;
+        $TotalPass1 = 0;
+        $Fail1 = 0;
+        $MaterialDefect1 = 0;
+        $SeamDefect1 = 0;
+        $SeamOverlaping1 = 0;
+        $Wrinkles1 = 0;
+
+        $ExcessGlue1 = 0;
+        $PressureMarks1 = 0;
+        $AirBubble1 = 0;
+
+        $TouchingPeelingOff1 = 0;
+        $PrintMisalignment1 = 0;
+        $WrongeArtwork1 = 0;
+        $MoldMark1 = 0;
+        $ColourShade1 = 0;
+        $ValveNozzleMove1 = 0;
+        $DShape1 = 0;
+        $Oversize1 = 0;
+        $UnderSize1 = 0;
+        $OverWeight1 = 0;
+        $UnderWeight1 = 0;
+        $MissGlue1 = 0;
+
+        foreach ($data as $d) {
+            // Sum the value
+            $TotalChecked1 += $d['TotalChecked'];
+            $TotalPass1 += $d['TotalPass'];
+            $Fail1 += $d['Fail'];
+            $MaterialDefect1 += $d['MaterialDefect'];
+            $SeamDefect1 += $d['SeamDefect'];
+            $SeamOverlaping1 += $d['SeamOverlaping'];
+            $Wrinkles1 += $d['Wrinkles'];
+
+            $ExcessGlue1 += $d['ExcessGlue'];
+            $PressureMarks1 += $d['PressureMarks'];
+            $AirBubble1 += $d['AirBubble'];
+
+            $TouchingPeelingOff1 += $d['TouchingPeelingOff'];
+            $PrintMisalignment1 += $d['PrintMisalignment'];
+            $WrongeArtwork1 += $d['WrongeArtwork'];
+            $MoldMark1 += $d['MoldMark'];
+            $ColourShade1 += $d['ColourShade'];
+            $ValveNozzleMove1 += $d['ValveNozzleMove'];
+            $DShape1 += $d['DShape'];
+            $Oversize1 += $d['Oversize'];
+            $UnderSize1 += $d['UnderSize'];
+            $OverWeight1 += $d['OverWeight'];
+            $UnderWeight1 += $d['UnderWeight'];
+            $MissGlue1 += $d['MissGlue'];
+            //End Sum the value
+
+
+            $Datee = substr($d['DateName'], 0, 11);
+            $TotalChecked = $d['TotalChecked'];
+            $TotalPass = $d['TotalPass'];
+            $Fail = $d['Fail'];
+            $MaterialDefect = $d['MaterialDefect'];
+            $SeamDefect = $d['SeamDefect'];
+            $SeamOverlaping = $d['SeamOverlaping'];
+            $Wrinkles = $d['Wrinkles'];
+
+            $ExcessGlue = $d['ExcessGlue'];
+            $PressureMarks = $d['PressureMarks'];
+            $AirBubble = $d['AirBubble'];
+
+            $TouchingPeelingOff = $d['TouchingPeelingOff'];
+            $PrintMisalignment = $d['PrintMisalignment'];
+            $WrongeArtwork = $d['WrongeArtwork'];
+            $MoldMark = $d['MoldMark'];
+            $ColourShade = $d['ColourShade'];
+            $ValveNozzleMove = $d['ValveNozzleMove'];
+            $DShape = $d['DShape'];
+            $Oversize = $d['Oversize'];
+            $UnderSize = $d['UnderSize'];
+            $OverWeight = $d['OverWeight'];
+            $UnderWeight = $d['UnderWeight'];
+            $MissGlue = $d['MissGlue'];
+
+
+        ?>
             <tr class="text-center">
-                <td><?php format($d->DailyDate); ?></td>
-                <td><?php r($d->CheckedQty); ?></td>
-                <td><?php r($d->Pass); ?></td>
-                <td><?php r($d->Fail); ?></td>
-                <td><?php percent($d->Pass, $d->CheckedQty); ?></td>
-                <td><?php r($d->BGrade); ?></td>
-                <td><?php percent($d->BGrade, $d->CheckedQty); ?></td>
-                <td><?php r($d->PanelDMG); ?></td>
-                <td><?php percent($d->PanelDMG, $d->CheckedQty); ?></td>
-                <td><?php r($d->Bubble); ?></td>
-                <td><?php percent($d->Bubble, $d->CheckedQty); ?></td>
-                <td><?php r($d->Alignment); ?></td>
-                <td><?php percent($d->Alignment, $d->CheckedQty); ?></td>
-                <td><?php r($d->Corner); ?></td>
-                <td><?php percent($d->Corner, $d->CheckedQty); ?></td>
-                <td><?php r($d->Touching); ?></td>
-                <td><?php percent($d->Touching, $d->CheckedQty); ?></td>
-                <td><?php r($d->WrongArtWork); ?></td>
-                <td><?php percent($d->WrongArtWork, $d->CheckedQty); ?></td>
-                <td><?php r($d->NozzleMove); ?></td>
-                <td><?php percent($d->NozzleMove, $d->CheckedQty); ?></td>
-                <td><?php r($d->Overlapping); ?></td>
-                <td><?php percent($d->Overlapping, $d->CheckedQty); ?></td>
-                <td><?php r($d->Cavity); ?></td>
-                <td><?php percent($d->Cavity, $d->CheckedQty); ?></td>
-                <td><?php r($d->LeakPuncture); ?></td>
-                <td><?php percent($d->LeakPuncture, $d->CheckedQty); ?></td>
-                <td><?php r($d->Moldmark); ?></td>
-                <td><?php percent($d->Moldmark, $d->CheckedQty); ?></td>
-                <td><?php r($d->Wrinkle); ?></td>
-                <<thead>
+                <td><?php echo $Datee; ?></td>
 
-                    </thead>><?php percent($d->Wrinkle, $d->CheckedQty); ?></td>
-                    <td><?php r($d->Dirty); ?></td>
-                    <td><?php percent($d->Dirty, $d->CheckedQty); ?></td>
-                    <td><?php r($d->Indent); ?></td>
-                    <td><?php percent($d->Indent, $d->CheckedQty); ?></td>
-                    <td><?php r($d->Printing); ?></td>
-                    <td><?php percent($d->Printing, $d->CheckedQty); ?></td>
-                    <td><?php r($d->OpenSeam); ?></td>
-                    <td><?php percent($d->OpenSeam, $d->CheckedQty); ?></td>
+                <td><?php echo intval($TotalChecked); ?></td>
+                <td><?php echo intval($TotalPass); ?></td>
+                <td><?php echo intval($Fail); ?></td>
+                <td><?php echo $MaterialDefect; ?></td>
+                <td><?php echo $SeamDefect; ?></td>
+                <td><?php echo $SeamOverlaping; ?></td>
+                <td><?php echo $Wrinkles; ?></td>
+
+                <td><?php echo $ExcessGlue; ?></td>
+                <td><?php echo $PressureMarks; ?></td>
+                <td><?php echo $AirBubble; ?></td>
+
+                <td><?php echo $TouchingPeelingOff; ?></td>
+                <td><?php echo $PrintMisalignment; ?></td>
+                <td><?php echo $WrongeArtwork; ?></td>
+                <td><?php echo $MoldMark; ?></td>
+                <td><?php echo $ColourShade; ?></td>
+                <td><?php echo $ValveNozzleMove; ?></td>
+                <td><?php echo $DShape; ?></td>
+                <td><?php echo $Oversize; ?></td>
+                <td><?php echo $UnderSize; ?></td>
+                <td><?php echo $OverWeight; ?></td>
+                <td><?php echo $UnderWeight; ?></td>
+                <td><?php echo $MissGlue; ?></td>
 
 
-            </tr>
-        <?php }; ?>
-
-
-        <?php foreach ($datasum as $d) {; ?>
-            <tr>
-                <td>Totals</td>
-                <td><?php r($d->CheckedQty); ?></td>
-                <td><?php r($d->Pass); ?></td>
-                <td><?php r($d->Fail); ?></td>
-                <td><?php percent($d->Pass, $d->CheckedQty); ?></td>
-                <td><?php r($d->BGrade); ?></td>
-                <td><?php percent($d->BGrade, $d->CheckedQty); ?></td>
-                <td><?php r($d->PanelDMG); ?></td>
-                <td><?php percent($d->PanelDMG, $d->CheckedQty); ?></td>
-                <td><?php r($d->Bubble); ?></td>
-                <td><?php percent($d->Bubble, $d->CheckedQty); ?></td>
-                <td><?php r($d->Alignment); ?></td>
-                <td><?php percent($d->Alignment, $d->CheckedQty); ?></td>
-                <td><?php r($d->Corner); ?></td>
-                <td><?php percent($d->Corner, $d->CheckedQty); ?></td>
-                <td><?php r($d->Touching); ?></td>
-                <td><?php percent($d->Touching, $d->CheckedQty); ?></td>
-                <td><?php r($d->WrongArtWork); ?></td>
-                <td><?php percent($d->WrongArtWork, $d->CheckedQty); ?></td>
-                <td><?php r($d->NozzleMove); ?></td>
-                <td><?php percent($d->NozzleMove, $d->CheckedQty); ?></td>
-                <td><?php r($d->Overlapping); ?></td>
-                <td><?php percent($d->Overlapping, $d->CheckedQty); ?></td>
-                <td><?php r($d->Cavity); ?></td>
-                <td><?php percent($d->Cavity, $d->CheckedQty); ?></td>
-                <td><?php r($d->LeakPuncture); ?></td>
-                <td><?php percent($d->LeakPuncture, $d->CheckedQty); ?></td>
-                <td><?php r($d->Moldmark); ?></td>
-                <td><?php percent($d->Moldmark, $d->CheckedQty); ?></td>
-                <td><?php r($d->Wrinkle); ?></td>
-                <td><?php percent($d->Wrinkle, $d->CheckedQty); ?></td>
-                <td><?php r($d->Dirty); ?></td>
-                <td><?php percent($d->Dirty, $d->CheckedQty); ?></td>
-                <td><?php r($d->Indent); ?></td>
-                <td><?php percent($d->Indent, $d->CheckedQty); ?></td>
-                <td><?php r($d->Printing); ?></td>
-                <td><?php percent($d->Printing, $d->CheckedQty); ?></td>
-                <td><?php r($d->OpenSeam); ?></td>
-                <td><?php percent($d->OpenSeam, $d->CheckedQty); ?></td>
             </tr>
         <?php }; ?>
 
     </tbody>
+    <tfoot>
+    <tr class="bg-primary-200 text-light">
+        <td>Total: </td>
+        <td><?php echo $TotalChecked1;?> </td>
+        <td><?php echo $TotalPass1;?> </td>
+        <td><?php echo $Fail1;?> </td>
+        <td><?php echo $MaterialDefect1;?> </td>
+        <td><?php echo $SeamDefect1;?> </td>
+        <td><?php echo $SeamOverlaping1;?> </td>
+        <td><?php echo $Wrinkles1;?> </td>
+
+        <td><?php echo $ExcessGlue1;?> </td>
+        <td><?php echo $PressureMarks1;?> </td>
+        <td><?php echo $AirBubble1;?> </td>
+
+        <td><?php echo $TouchingPeelingOff1;?> </td>
+        <td><?php echo $PrintMisalignment1;?> </td>
+        <td><?php echo $WrongeArtwork1;?> </td>
+        <td><?php echo $MoldMark1;?> </td>
+        <td><?php echo $ColourShade1;?> </td>
+        <td><?php echo $ValveNozzleMove1;?> </td>
+        <td><?php echo $DShape1;?> </td>
+        <td><?php echo $Oversize1;?> </td>
+        <td><?php echo $UnderSize1;?> </td>
+        <td><?php echo $OverWeight1;?> </td>
+        <td><?php echo $UnderWeight1;?> </td>
+        <td><?php echo $MissGlue1;?> </td>
+            </tr>
+    </tfoot>
 </table>
 
 <div id="container"></div>
 
 
-<h2 class="bg-primary-200 text-light p-2 text-center"><?php echo $title; ?> Final QCc <?php echo "( $start_date to $end_date )"; ?></h2>
+<h2 class="bg-primary-200 text-light p-2 text-center"><?php echo $title; ?> Final QC <?php echo "( $start_date to $end_date )"; ?></h2>
 <table class="table table-bordered table-hover table-responsive table-striped w-100" id="packing-table">
     <thead>
         <tr class="bg-primary-200 text-light">
@@ -350,7 +389,7 @@
         foreach ($POSum as $d) {;
             $balance = ($d->OrderQty) - ($d->Pass);
             $RFT = ($d->Inspected / $d->Pass) * 100;
-            ?>
+        ?>
             <tr>
                 <td><?php format($d->EntryDate); ?></td>
                 <td><?php echo $d->POCode; ?></td>

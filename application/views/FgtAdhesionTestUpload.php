@@ -4368,7 +4368,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     ?>
                                                                         <input type="file" class="custom-file-input" id="fgtFile" onchange="fileSelect(this.files);" name="fgtFile" accept=".xlsx, .xls, .csv" required>
                                                                         <label class="custom-file-label" for="customFile">Choose file</label>
-                                                                        <div class="row mt-2 mb-2">
+                                                                        <!-- <div class="row mt-2 mb-2">
                                                                             <div class="col-md-3">
                                                                                 <label for="freshImage">Fresh Image</label>
                                                                                 <input type="file" name="freshImage" id="freshImage" class="form-control" onchange="document.getElementById('image1').src = window.URL.createObjectURL(this.files[0])">
@@ -4385,9 +4385,9 @@ if (!$this->session->has_userdata('user_id')) {
                                                                                 <label for="drumImage">Drum Image</label>
                                                                                 <input type="file" name="drumImage" id="drumImage" class="form-control" onchange="document.getElementById('image4').src = window.URL.createObjectURL(this.files[0])">
                                                                             </div>
-                                                                        </div>
+                                                                        </div> -->
 
-                                                                        <div class="row justify-content-evenly ">
+                                                                        <!-- <div class="row justify-content-evenly ">
                                                                             <div class="col-md-3">
                                                                                 <img src="<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png" alt="" id="image1" width="160px" height="100px" class="rounded">
                                                                             </div>
@@ -4400,7 +4400,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                                             <div class="col-md-3 mb-2 ">
                                                                                 <img src="<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png" alt="" id="image4" width="160px" height="100px" class="rounded">
                                                                             </div>
-                                                                        </div>
+                                                                        </div> -->
 
 
 
@@ -4602,25 +4602,15 @@ if (!$this->session->has_userdata('user_id')) {
                                             <table id="defualtTable" class="table table-bordered table-hover table-responsive table-striped w-100">
                                                 <thead class="bg-primary-200">
                                                     <tr style="color:white;">
-                                                        <th>Lab No</th>
+                                                        <th>Test No </th>
                                                         <th>CSS No </th>
                                                         <th>Receiving Date</th>
                                                         <th>Testing Date </th>
-                                                        <th>Issue Date </th>
-                                                        <th>Envirmental Cond</th>
-                                                        <th>TestAccToCat </th>
-                                                        <th>CoverMat</th>
-                                                        <th>Backing</th>
-                                                        <th>Bladder </th>
-                                                        <th>Ball Type </th>
-                                                        <th>FIFA Stamp </th>
-                                                        <th>Production Month</th>
-                                                        <th>Test Type </th>
-                                                        <th>Main Mat Color </th>
-                                                        <th>Printing Colors </th>
+                                                        <th>PO </th>
                                                         <th>Article No </th>
-                                                        <th>Working No</th>
+                                                        <th>Article Name</th>
                                                         <th>Result </th>
+                                                        
                                                         <!-- <th>Generated By </th> -->
                                                         <!-- <th>Review Status </th> -->
                                                         <th>Review By </th>
@@ -4705,7 +4695,7 @@ if (!$this->session->has_userdata('user_id')) {
                                 var date1 = $("#date1").val();
                                 var date2 = $("#date2").val();
 
-                                url = '<?php echo base_url('LabController/getFGTTestDataForView'); ?>';
+                                url = '<?php echo base_url('LabController/getFGTTestDataForViewAdhesion'); ?>';
                                 $.post(url, {
                                     'date1': date1,
                                     'date2': date2
@@ -4714,25 +4704,15 @@ if (!$this->session->has_userdata('user_id')) {
                                         let fgtHtml = `<table id="fgtTestTableData" class="table table-bordered table-hover table-responsive table-striped w-100">
                                                 <thead class="bg-primary-200">
                                                     <tr style="color:white;">
-                                                        <th>Lab No</th>
+                                                        <th>Test No </th>
                                                         <th>CSS No </th>
                                                         <th>Receiving Date</th>
                                                         <th>Testing Date </th>
-                                                        <th>Issue Date </th>
-                                                        <th>Envirmental Cond</th>
-                                                        <th>TestAccToCat </th>
-                                                        <th>CoverMat</th>
-                                                        <th>Backing</th>
-                                                        <th>Bladder </th>
-                                                        <th>Ball Type </th>
-                                                        <th>FIFA Stamp </th>
-                                                        <th>Production Month</th>
-                                                        <th>Test Type </th>
-                                                        <th>Main Mat Color </th>
-                                                        <th>Printing Colors </th>
+                                                        <th>PO </th>
                                                         <th>Article No </th>
-                                                        <th>Working No</th>
+                                                        <th>Article Name</th>
                                                         <th>Result </th>
+
                                                         <!-- <th>Generated By </th> -->
                                                         <!-- <th>Review Status </th> -->
                                                         <th>Review By </th>
@@ -4745,24 +4725,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <tbody>`;
                                         data.forEach(element => {
                                             fgtHtml += `<tr>
-                                                <td>${element.LabNo}</td>
+                                                <td>${element.TestNo}</td>
                                                 <td>${element.CssNo}</td>
                                                 <td>${element.Receiving_Date}</td>
                                                 <td>${element.Testing_DateS}</td>
-                                                <td>${element.Issue_Date}</td>
-                                                <td>${element.EnvironmentalC}</td>
-                                                <td>${element.TestAccToCat}</td>
-                                                <td>${element.CoverMat}</td>
-                                                <td>${element.Backing}</td>
-                                                <td>${element.Bladder}</td>
-                                                <td>${element.BallType}</td>
-                                                <td>${element.Fifa_stump}</td>
-                                                <td>${element.ProductionMon}</td>
-                                                <td>${element.TestType}</td>
-                                                <td>${element.MainMatColor}</td>
-                                                <td>${element.PrintingColor}</td>
+                                                <td>${element.PONo}</td>
                                                 <td>${element.Article}</td>
-                                                <td>${element.Working}</td>
+                                                <td>${element.ArticleName}</td>
                                                 <td>${element.Result}</td>
                                                 <!-- <td><span class="badge badge-primary p-1">Generated By</span> </td> -->
                                                 <!-- <td><span class="badge badge-primary p-1">Review Status </span></td> -->
@@ -4867,58 +4836,46 @@ if (!$this->session->has_userdata('user_id')) {
                                 }, function(data, status) {
                                     if (data) {
 
-                                        $('#labNoFGT').html(data[0]['LabNo']);
-                                        $('#cssNoFGT').html(data[0]['CssNo']);
-                                        $('#receiveDateFGT').html(data[0]['Receiving_Date']);
-                                        $('#testingDataFGTS').html(data[0]['Testing_DateS']);
-                                        $('#testingDataFGTE').html(data[0]['Testing_DateE']);
-                                        $('#issueDateFGT').html(data[0]['Issue_Date']);
-                                        $('#environmentalCondFGT').html(data[0]['EnvironmentalC']);
-                                        $('#testAccToCatFGT').html(data[0]['TestAccToCat']);
-                                        $('#coverMatFGT').html(data[0]['CoverMat']);
-                                        $('#backingFGT').html(data[0]['Backing']);
-                                        $('#bladderFGT').html(data[0]['Bladder']);
-                                        $('#ballTypeFGT').html(data[0]['BallType']);
-                                        $('#fifaStumpFGT').html(data[0]['Fifa_stump']);
-                                        $('#prodMonthFGT').html(data[0]['ProductionMon']);
-                                        $('#testTypeFGT').html(data[0]['TestType']);
-                                        $('#mainMatColorFGT').html(data[0]['MainMatColor']);
-                                        $('#printingColorFGT').html(data[0]['PrintingColor']);
-                                        $('#acticleNoFGT').html(data[0]['Article']);
-                                        $('#workingNoFGT').html(data[0]['Working']);
-                                        $('#resultFGT').html(data[0]['Result']);
-                                        $('#testedbyFGt').html(data[0]['TestedBy']);
+                                        $('#testNoFGTAdhesion').html(data[0]['TestNo']);
+                                        $('#dateFGTAdhesion').html(data[0]['Testing_DateS']);
+                                        $('#RecDateFGTAdhesion').html(data[0]['Receiving_Date']);
+                                        $('#cssNoFGTAdhesion').html(data[0]['CssNo']);
+                                        $('#articleNoFGTAdhesion').html(data[0]['Article']);
+                                        $('#articleNameFGTAdhesion').html(data[0]['ArticleName']);
+                                        $('#POFGTAdhesion').html(data[0]['PONo']);
+                                        $('#resultFGTAdhesion').html(data[0]['Result']);
+                                        $('#testedByFGTAdhesion').html(data[0]['TestedBy']);
 
-                                        if (data[0]['LabNo'].includes('MS')) {
-                                            $("#testRequest").html("By Mr.Zeeshan Ikram - MS2@Forward.pk")
-                                        }else if(data[0]['LabNo'].includes('LFB') || data[0]['LabNo'].includes('lfb')){
-                                            $("#testRequest").html("By Ahmed Sb - Qc@forward.pk")
-                                        } else {
-                                            $("#testRequest").html("By Oman Sb - oman@forward.pk")
-                                        }
-                                        if (data[0]['freshImage']) {
-                                            $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].freshImage);
-                                        } else {
-                                            $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                        }
+                                        // if (data[0]['LabNo'].includes('MS')) {
+                                        //     $("#testRequest").html("By Mr.Zeeshan Ikram - MS2@Forward.pk")
+                                        // }else if(data[0]['LabNo'].includes('LFB') || data[0]['LabNo'].includes('lfb')){
+                                        //     $("#testRequest").html("By Ahmed Sb - Qc@forward.pk")
+                                        // } else {
+                                        //     $("#testRequest").html("By Oman Sb - oman@forward.pk")
+                                        // }
+                                        // if (data[0]['freshImage']) {
+                                        //     $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].freshImage);
+                                        // } else {
+                                        //     $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                        // }
 
-                                        if (data[0]['afterShooterImage']) {
-                                            $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].afterShooterImage);
-                                        } else {
-                                            $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                        }
+                                        // if (data[0]['afterShooterImage']) {
+                                        //     $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].afterShooterImage);
+                                        // } else {
+                                        //     $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                        // }
 
-                                        if (data[0]['hydrolysisImage']) {
-                                            $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].hydrolysisImage);
-                                        } else {
-                                            $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                        }
+                                        // if (data[0]['hydrolysisImage']) {
+                                        //     $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].hydrolysisImage);
+                                        // } else {
+                                        //     $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                        // }
 
-                                        if (data[0]['drumImage']) {
-                                            $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].drumImage);
-                                        } else {
-                                            $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                                        }
+                                        // if (data[0]['drumImage']) {
+                                        //     $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].drumImage);
+                                        // } else {
+                                        //     $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                        // }
 
                                         $.post(url2, {
                                             TID: TID
@@ -4927,41 +4884,21 @@ if (!$this->session->has_userdata('user_id')) {
                                             let html;
                                             if (data) {
                                                 data.forEach((element, index) => {
-                                                    if (index == 12) {
-                                                        let mergedRow = '';
-                                                        mergedRow += element.Method + "," + element.Condition;
                                                         html += `<tr>
-                                                        <td style="padding:left: 2px">${element.Test}</td>
-                                                        <th style="text-align:center">` + mergedRow + `</th>
-                                                        <th style="text-align:center"></th>
-                                                        <th style="text-align:center">${element.Unit}</th>
-                                                        <th style="text-align:center">${element.Cat1}</th>
-                                                        <th style="text-align:center">${element.Cat2}</th>
-                                                        <th style="text-align:center">${element.Cat3}</th>
-                                                        <th style="text-align:center">${element.Min}</th>
-                                                        <th style="text-align:center">${element.Max}</th>
-                                                        <th style="text-align:center">${element.Remarks}</th>
-                                                    </tr>`
-                                                        // console.log("merged data", mergedRow);
-                                                    } else {
-                                                        html += `<tr>
-                                                            <td style="padding:left: 2px">${element.Test}</td>
-                                                            <th style="text-align:center">${element.Method }</th>
-                                                            <th style="text-align:center">${element.Condition}</th>
-                                                            <th style="text-align:center">${element.Unit}</th>
-                                                            <th style="text-align:center">${element.Cat1}</th>
-                                                            <th style="text-align:center">${element.Cat2}</th>
-                                                            <th style="text-align:center">${element.Cat3}</th>
-                                                            <th style="text-align:center">${element.Min}</th>
-                                                            <th style="text-align:center">${element.Max}</th>
-                                                            <th style="text-align:center">${element.Remarks}</th>
+                                                            <td style="padding:left: 2px">${element.AdhesionDate}</td>
+                                                            <th style="text-align:center">${element.BatchReference}</th>
+                                                            <th style="text-align:center">${element.ArticleNo}</th>
+                                                            <th style="text-align:center">${element.Standard}</th>
+                                                            <th style="text-align:center">${element.MaxForce}</th>
+                                                            <th style="text-align:center">${element.AvgForce}</th>
+                                                            <th style="text-align:center">${element.Comments}</th>
                                                         </tr>`
-                                                    }
+                                                    
                                                 })
-                                                $('#fgtTestDetails').html(html);
+                                                $('#fgtTestDetailsAdhesion').html(html);
                                             }
                                         });
-                                        $('#exampleModalFGTTesting').modal('toggle');
+                                        $('#fgtTestingAdhesionModel').modal('toggle');
 
 
 

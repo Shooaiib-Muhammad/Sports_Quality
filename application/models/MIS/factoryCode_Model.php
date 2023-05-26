@@ -37,20 +37,10 @@ HAVING        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$start_
     // Forming B34002
     public function get_tm_ball_forming_sum002($start_date, $end_date, $fc)
     {
-        return $this->db->select("SUM(Pass) AS Pass, SUM(Fail) AS Fail, SUM(CheckedQty) AS CheckedQty, SUM(PanelDMG) AS PanelDMG, 
-         SUM(Bubble) AS Bubble, SUM(Alignment) AS Alignment, SUM(Corner) 
-         AS Corner, SUM(Touching) AS Touching, SUM(WrongArtWork) AS WrongArtWork, SUM(NozzleMove) AS NozzleMove, 
-         SUM(Overlapping) AS Overlapping, SUM(OverLaping) AS OverLaping, SUM(Cavity) AS Cavity, 
-         SUM(UnBondedPanels) AS UnBondedPanels, SUM(TMRollNo) AS TMRollNo, SUM(BGrade) AS BGrade, 
-         SUM(LeakPuncture) AS LeakPuncture, SUM(Wrinkle) AS Wrinkle, SUM(Moldmark) AS Moldmark, SUM(Dirty) AS Dirty, 
-         SUM(Indent) AS Indent,SUM(Printing) AS Printing,SUM(OpenSeam) AS OpenSeam")
-            ->from(' View__TM_Rpt_Ball_forming')
-            ->where('DailyDate >=', $start_date)
-            ->where('DailyDate <=', $end_date)
-            ->where('FactoryCode', $fc)
-            //     ->get_compiled_select();
-            ->get()
-            ->result_array();
+        return $this->db->query("SELECT        factoryCode, DateName, TotalChecked, TotalPass, MaterialDefect, SeamDefect, Fail, SeamOverlaping, Wrinkles, ExcessGlue, PressureMarks, AirBubble, TouchingPeelingOff, PrintMisalignment, WrongeArtwork, MoldMark, 
+        ColourShade, ValveNozzleMove, DShape, Oversize, UnderSize, OverWeight, UnderWeight, MissGlue
+FROM            dbo.view_TM_Forming_Proces
+WHERE        (DateName BETWEEN CONVERT(DATETIME, '$start_date 00:00:00', 102) AND CONVERT(DATETIME, '$end_date 00:00:00', 102)) AND (factoryCode = '$fc')")->result_array();
     }
     // End Line QC B34002
     public function get_tm_final_qc_sum002($start_date, $end_date, $fc)
@@ -110,20 +100,10 @@ HAVING        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$start_
     // Forming B34003
     public function get_tm_ball_forming_sum003($start_date, $end_date, $fc)
     {
-        return $this->db->select("SUM(Pass) AS Pass, SUM(Fail) AS Fail, SUM(CheckedQty) AS CheckedQty, SUM(PanelDMG) AS PanelDMG, 
-         SUM(Bubble) AS Bubble, SUM(Alignment) AS Alignment, SUM(Corner) 
-         AS Corner, SUM(Touching) AS Touching, SUM(WrongArtWork) AS WrongArtWork, SUM(NozzleMove) AS NozzleMove, 
-         SUM(Overlapping) AS Overlapping, SUM(OverLaping) AS OverLaping, SUM(Cavity) AS Cavity, 
-         SUM(UnBondedPanels) AS UnBondedPanels, SUM(TMRollNo) AS TMRollNo, SUM(BGrade) AS BGrade, 
-         SUM(LeakPuncture) AS LeakPuncture, SUM(Wrinkle) AS Wrinkle, SUM(Moldmark) AS Moldmark, SUM(Dirty) AS Dirty, 
-         SUM(Indent) AS Indent,SUM(Printing) AS Printing,SUM(OpenSeam) AS OpenSeam")
-            ->from(' View__TM_Rpt_Ball_forming')
-            ->where('DailyDate >=', $start_date)
-            ->where('DailyDate <=', $end_date)
-            ->where('FactoryCode', $fc)
-            //     ->get_compiled_select();
-            ->get()
-            ->result_array();
+        return $this->db->query("SELECT        factoryCode, DateName, TotalChecked, TotalPass, MaterialDefect, SeamDefect, Fail, SeamOverlaping, Wrinkles, ExcessGlue, PressureMarks, AirBubble, TouchingPeelingOff, PrintMisalignment, WrongeArtwork, MoldMark, 
+        ColourShade, ValveNozzleMove, DShape, Oversize, UnderSize, OverWeight, UnderWeight, MissGlue
+FROM            dbo.view_TM_Forming_Proces
+WHERE        (DateName BETWEEN CONVERT(DATETIME, '$start_date 00:00:00', 102) AND CONVERT(DATETIME, '$end_date 00:00:00', 102)) AND (factoryCode = '$fc')")->result_array();
     }
     // End Line QC B34003
     public function get_tm_final_qc_sum003($start_date, $end_date, $fc)
@@ -185,20 +165,10 @@ HAVING        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$start_
     // Forming B34004
     public function get_tm_ball_forming_sum004($start_date, $end_date, $fc)
     {
-        return $this->db->select("SUM(Pass) AS Pass, SUM(Fail) AS Fail, SUM(CheckedQty) AS CheckedQty, SUM(PanelDMG) AS PanelDMG, 
-         SUM(Bubble) AS Bubble, SUM(Alignment) AS Alignment, SUM(Corner) 
-         AS Corner, SUM(Touching) AS Touching, SUM(WrongArtWork) AS WrongArtWork, SUM(NozzleMove) AS NozzleMove, 
-         SUM(Overlapping) AS Overlapping, SUM(OverLaping) AS OverLaping, SUM(Cavity) AS Cavity, 
-         SUM(UnBondedPanels) AS UnBondedPanels, SUM(TMRollNo) AS TMRollNo, SUM(BGrade) AS BGrade, 
-         SUM(LeakPuncture) AS LeakPuncture, SUM(Wrinkle) AS Wrinkle, SUM(Moldmark) AS Moldmark, SUM(Dirty) AS Dirty, 
-         SUM(Indent) AS Indent,SUM(Printing) AS Printing,SUM(OpenSeam) AS OpenSeam")
-            ->from(' View__TM_Rpt_Ball_forming')
-            ->where('DailyDate >=', $start_date)
-            ->where('DailyDate <=', $end_date)
-            ->where('FactoryCode', $fc)
-            //     ->get_compiled_select();
-            ->get()
-            ->result_array();
+        return $this->db->query("SELECT        factoryCode, DateName, TotalChecked, TotalPass, MaterialDefect, SeamDefect, Fail, SeamOverlaping, Wrinkles, ExcessGlue, PressureMarks, AirBubble, TouchingPeelingOff, PrintMisalignment, WrongeArtwork, MoldMark, 
+        ColourShade, ValveNozzleMove, DShape, Oversize, UnderSize, OverWeight, UnderWeight, MissGlue
+FROM            dbo.view_TM_Forming_Proces
+WHERE        (DateName BETWEEN CONVERT(DATETIME, '$start_date 00:00:00', 102) AND CONVERT(DATETIME, '$end_date 00:00:00', 102)) AND (factoryCode = '$fc')")->result_array();
     }
     // End Line QC B34004
     public function get_tm_final_qc_sum004($start_date, $end_date, $fc)
@@ -222,7 +192,15 @@ HAVING        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$start_
 
 
 
-
+    // Printing B34005
+    public function printing005($start_date, $end_date)
+    {
+        
+        $query =  $this->db->query("SELECT        DateName, TSheetsChecked, PassQuantity, FailQuantity, ColorShade, SettingOut, Covering, Material, Smearing, Scratches, Lacquer, Dust, TapeTest, DamageQuantity, PrintingDryhours
+        FROM            dbo.View_MS_Printing
+        WHERE        (DateName BETWEEN CONVERT(DATETIME, '$start_date 00:00:00', 102) AND CONVERT(DATETIME, '$end_date 00:00:00', 102))");
+        return $query->result_array();
+    }
     // Bladder Windding B34005
     public function bladderWinding($start_date, $end_date)
     {
@@ -253,6 +231,20 @@ FROM            dbo.Tbl_PC_Bladder_Westage INNER JOIN
         dbo.tbl_Inv_Tran_Date ON dbo.Tbl_PC_Bladder_Westage.DayID = dbo.tbl_Inv_Tran_Date.DayNo
 WHERE        (dbo.Tbl_PC_Bladder_Westage.BladderType = 'UnWinded')
 GROUP BY dbo.tbl_Inv_Tran_Date.DateName
+HAVING        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$start_date 00:00:00', 102) AND CONVERT(DATETIME, '$end_date 00:00:00', 102))");
+        return $query->result_array();
+    }
+    // Pivot B34005
+    public function sheetInspection005($start_date, $end_date)
+    {
+        
+        $query =  $this->db->query("SELECT        SUM(dbo.tbl_MS_SheetChecking.TotalCheck) AS TotalCheck, SUM(dbo.tbl_MS_SheetChecking.TotalPass) AS TotalPass, SUM(dbo.tbl_MS_SheetChecking.TotalDefected) AS TotalDefected, 
+        SUM(dbo.tbl_MS_SheetChecking.ThickJoint) AS ThickJoint, SUM(dbo.tbl_MS_SheetChecking.ThinJoint) AS ThinJoint, SUM(dbo.tbl_MS_SheetChecking.Wrinkle) AS Wrinkle, SUM(dbo.tbl_MS_SheetChecking.MaterialShade) 
+        AS MaterialShade, SUM(dbo.tbl_MS_SheetChecking.InkSpot) AS InkSpot, SUM(dbo.tbl_MS_SheetChecking.MaterialDamage) AS MaterialDamage, SUM(dbo.tbl_MS_SheetChecking.Impression) AS Impression, 
+        dbo.tbl_MS_SheetChecking.DayNo, dbo.tbl_Inv_Tran_Date.DateName
+FROM            dbo.tbl_MS_SheetChecking INNER JOIN
+        dbo.tbl_Inv_Tran_Date ON dbo.tbl_MS_SheetChecking.DayNo = dbo.tbl_Inv_Tran_Date.DayNo
+GROUP BY dbo.tbl_MS_SheetChecking.DayNo, dbo.tbl_Inv_Tran_Date.DateName
 HAVING        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$start_date 00:00:00', 102) AND CONVERT(DATETIME, '$end_date 00:00:00', 102))");
         return $query->result_array();
     }
@@ -307,13 +299,19 @@ HAVING        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$start_
 
 
 
-
+    // Core B34006
+    public function core006($start_date, $end_date)
+    {
+        return $this->db->query("SELECT        DateName, TotalChecked, PassQuantity, FailQuantity, FailPercent, UnderWeight, OverWeight, HardPoint, HoleLoose, DShape, DeepCut
+        FROM            dbo.View_Amb_Core_QCInspection
+        WHERE        (DateName BETWEEN CONVERT(DATETIME, '$start_date 00:00:00', 102) AND CONVERT(DATETIME, '$end_date 00:00:00', 102))")->result_array();
+    }
     // BHF Cutting B34006
     public function BHFCutting006($start_date, $end_date)
     {
         return $this->db->query("SELECT        dbo.View_Amb_BHF_Cutting.*
         FROM            dbo.View_Amb_BHF_Cutting
-        WHERE        (DateName BETWEEN CONVERT(DATETIME, '2023-05-01 00:00:00', 102) AND CONVERT(DATETIME, '2023-05-12 00:00:00', 102))
+        WHERE        (DateName BETWEEN CONVERT(DATETIME, '$start_date 00:00:00', 102) AND CONVERT(DATETIME, '$end_date 00:00:00', 102))
         ")->result_array();
     }
     // AHF Cutting B34006
@@ -321,7 +319,7 @@ HAVING        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$start_
     {
         return $this->db->query("SELECT        dbo.View_AMB_Af_HF_Cutt.*
         FROM            dbo.View_AMB_Af_HF_Cutt
-        WHERE        (DateName BETWEEN CONVERT(DATETIME, '2023-05-01 00:00:00', 102) AND CONVERT(DATETIME, '2023-05-12 00:00:00', 102))        
+        WHERE        (DateName BETWEEN CONVERT(DATETIME, '$start_date 00:00:00', 102) AND CONVERT(DATETIME, '$end_date 00:00:00', 102))        
         ")->result_array();
     }
     // Forming B34006
@@ -410,8 +408,26 @@ HAVING        (dbo.tbl_Inv_Tran_Date.DateName BETWEEN CONVERT(DATETIME, '$start_
 
 
 
-
-
+    // Printing B34007
+    public  function printing007($start_date, $end_date)
+    {
+        
+        $query = $this->db->query("SELECT        DateName, SheetsChecked, TotalPass, TotalFail, MWrinkles, TapeFoamJoint, FilmFoamDifference, HolesinFoam, Indent, Smearing, MisPrint, InkSpread, PrintingSpots, LacquerMissing, SettingOutPanels, DiscolorPanels, 
+        MaterialSpot, Dust, Touching, Damage, DateName AS Expr1
+FROM            dbo.View_LFB_PrintMat
+WHERE        (DateName BETWEEN CONVERT(DATETIME, '$start_date 00:00:00', 102) AND CONVERT(DATETIME, '$end_date 00:00:00', 102))");
+        return $query->result_array();
+    }
+    // AHF Cutting B34007
+    public  function AHFCutting007($start_date, $end_date)
+    {
+        
+        $query = $this->db->query("SELECT        DateName, SheetsChecked, PassSheets, FailSheets, Smearing, MisPrint, InkSpread, PrintingSpots, LacquerMissing, SettingOutPanels, DiscolorPanels, ImproperEmbossing, MisAllignment, StraightCut, DamagePanels, 
+        BurningPanels, SparkingPanels
+FROM            dbo.View_Lfb_AHF_Cutt
+WHERE        (DateName BETWEEN CONVERT(DATETIME, '$start_date 00:00:00', 102) AND CONVERT(DATETIME, '$end_date 00:00:00', 102))");
+        return $query->result_array();
+    }
     // Carcass B34007
     public  function carcass007($start_date, $end_date)
     {

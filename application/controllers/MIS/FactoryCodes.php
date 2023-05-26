@@ -32,7 +32,8 @@ class FactoryCodes extends CI_Controller
 
         $data['printingData004'] = $this->FCM->printing004($start_date, $end_date); //printing B34004
         $data['panelShappingData004'] = $this->FCM->panelShapping004($start_date, $end_date); //Panel Shapping B34004
-        $data['datasum004'] = $this->FCM->get_tm_ball_forming_sum004($start_date, $end_date, $fc4); // forming B34004
+        $data['
+        '] = $this->FCM->get_tm_ball_forming_sum004($start_date, $end_date, $fc4); // forming B34004
         $data['data2sum004'] = $this->FCM->get_tm_final_qc_sum004($start_date, $end_date, $fc4); // End Line QC B34004
 
 
@@ -40,18 +41,23 @@ class FactoryCodes extends CI_Controller
 
 
         // B34005
+        $data['printing005'] = $this->FCM->printing005($start_date, $end_date); //printing B34005
         $data['bladderWinding'] = $this->FCM->bladderWinding($start_date, $end_date); //bladderWinding B34005
         $data['bladderUnWinding'] = $this->FCM->bladderUnWinding($start_date, $end_date); //bladderUnWinding B34005
+        $data['sheetInspection005'] = $this->FCM->sheetInspection005($start_date, $end_date); //sheetInspection B34005
         $data['pivot005'] = $this->FCM->pivot005($start_date, $end_date); //pivot005 B34005
         $data['dataEndLineQC'] = $this->FCM->get_ms_summary2($line, $start_date, $end_date); //end line QC B34005
 
         // B34006
+        $data['core006'] = $this->FCM->core006($start_date, $end_date); //Core B34006
         $data['BHFCutting006'] = $this->FCM->BHFCutting006($start_date, $end_date); //BHFCutting006 B34006
         $data['AHFCutting006'] = $this->FCM->AHFCutting006($start_date, $end_date); //AHFCutting006 B34006
         $data['forming006'] = $this->FCM->rpt_amb_detail006($start_date, $end_date, 1); //Forming B34006
         $data['data2'] = $this->FCM->rpt_amb_detail_Packing006($start_date, $end_date); //end Line QC b34006
 
         // B34007
+        $data['printing007'] = $this->FCM->printing007($start_date, $end_date); //Printing B34007
+        $data['AHFCutting007'] = $this->FCM->AHFCutting007($start_date, $end_date); //BHFCutting B34007
         $data['carcass007'] = $this->FCM->carcass007($start_date, $end_date); //Carcass B34007
         $data['datasum007'] = $this->FCM->get_tm_final_qc_sum007($start_date, $end_date, $fc7); // Forming B34007
         $data['endLineQC007'] = $this->FCM->get_Lfb_final_qc($start_date, $end_date); //End Line QC B34007
@@ -97,16 +103,23 @@ class FactoryCodes extends CI_Controller
 
 
         // B34005
+        $data['printing005'] = $this->FCM->printing005($start_date, $end_date); //printing B34005
         $data['bladderWinding'] = $this->FCM->bladderWinding($start_date, $end_date); //bladderWinding B34005
         $data['bladderUnWinding'] = $this->FCM->bladderUnWinding($start_date, $end_date); //bladderUnWinding B34005
+        $data['sheetInspection005'] = $this->FCM->sheetInspection005($start_date, $end_date); //sheetInspection B34005
         $data['pivot005'] = $this->FCM->pivot005($start_date, $end_date); //pivot005 B34005
         $data['dataEndLineQC'] = $this->FCM->get_ms_summary2($line, $start_date, $end_date); //end line QC B34005
 
         // B34006
+        $data['core006'] = $this->FCM->core006($start_date, $end_date); //Core B34006
+        $data['BHFCutting006'] = $this->FCM->BHFCutting006($start_date, $end_date); //BHFCutting006 B34006
+        $data['AHFCutting006'] = $this->FCM->AHFCutting006($start_date, $end_date); //AHFCutting006 B34006
         $data['forming006'] = $this->FCM->rpt_amb_detail006($start_date, $end_date, 1); //Forming B34006
         $data['data2'] = $this->FCM->rpt_amb_detail_Packing006($start_date, $end_date); //end Line QC b34006
 
         // B34007
+        $data['printing007'] = $this->FCM->printing007($start_date, $end_date); //Printing B34007
+        $data['AHFCutting007'] = $this->FCM->AHFCutting007($start_date, $end_date); //BHFCutting B34007
         $data['carcass007'] = $this->FCM->carcass007($start_date, $end_date); //Carcass B34007
         $data['datasum007'] = $this->FCM->get_tm_final_qc_sum007($start_date, $end_date, $fc7); // Forming B34007
         $data['endLineQC007'] = $this->FCM->get_Lfb_final_qc($start_date, $end_date); //End Line QC B34007

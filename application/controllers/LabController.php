@@ -188,6 +188,19 @@ class LabController extends CI_Controller
     }
 
 
+    public function  MaterialTestReqDelByid()
+    {
+        $TID = $_POST['TID'];
+
+        $this->l->MaterialTestReqDelByid($TID);
+
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+
+
     public function getTestName()
     {
 
@@ -967,6 +980,15 @@ class LabController extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
+    public function getDetails1()
+    {
+        $TID = $_POST['TID'];
+        $data = $this->l->getDetails1($TID);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
 
     public function Get_Comparison_Data()
     {
@@ -992,6 +1014,15 @@ class LabController extends CI_Controller
     {
         $TID = $_POST['TID'];
         $data = $this->l->getHead($TID);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+    public function getHead1()
+    {
+        $cssno = $_POST['cssno'];
+        $data = $this->l->getHead1($cssno);
         return $this->output
             ->set_content_type('application/json')
             ->set_status_header(200)
@@ -3327,13 +3358,21 @@ class LabController extends CI_Controller
 
     public function allFGTRequests()
     {
-        $data['allFGTRequests'] = $this->l->allFGTRequests();
-        $data['allRawMaterialRequests'] = $this->l->allRawMaterialRequests();
-        $data['allNewRawMaterialRequests'] = $this->l->allNewRawMaterialRequests();
-        return $this->output
-            ->set_content_type('application/json')
-            ->set_status_header(200)
-            ->set_output(json_encode($data));
+        if ($_POST['search'] === "false") {
+            $data['allFGTRequests'] = $this->l->allFGTRequests();
+            $data['allNewRawMaterialRequests'] = $this->l->allNewRawMaterialRequests();
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(200)
+                ->set_output(json_encode($data));
+        } else if ($_POST['search'] === "true") {
+            $data['allFGTRequests'] = $this->l->allFGTRequestsMonth($_POST['getMonth']);
+            $data['allNewRawMaterialRequests'] = $this->l->allNewRawMaterialRequestsMonth($_POST['getMonth']);
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(200)
+                ->set_output(json_encode($data));
+        }
     }
 
     public function FgtTestingAdhesion()
@@ -3472,7 +3511,7 @@ class LabController extends CI_Controller
         }
         $dateString = $header[1];
         $formattedDate = date('Y-m-d', strtotime(str_replace('/', '-', $dateString)));
-        
+
         array_pop($childArray);
         $fgtH = [
             'TestNo' => $header[0],
@@ -3490,7 +3529,9 @@ class LabController extends CI_Controller
             'hydrolysisImage' => $picture3,
             'drumImage' => $picture4,
             'UserID' => $this->session->userdata('user_id'),
-            'Type' => 'Adhesion'
+
+            'Type' => 'Adhesion test',
+            'TestType' => 'Adhesion test'
         ];
 
 
@@ -3500,8 +3541,199 @@ class LabController extends CI_Controller
             ->set_status_header(200)
             ->set_output(json_encode($data));
     }
+    public function getFGTTestDataForViewAdhesion()
+    {
+        $result = $this->l->getFGTTestDataForViewAdhesion($_POST['date1'], $_POST['date2']);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($result));
+    }
     public function FgtTestingCSM()
     {
         $this->load->view("FgtCSMTestUpload");
+    }
+    public function uploadFgtCSM()
+    {
+        $picture1 = '';
+        $picture2 = '';
+        $picture3 = '';
+        $picture4 = '';
+        if (!empty($_FILES['freshImage']['name'])) {
+            $config['upload_path'] = 'assets\img\Fgt';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['file_name'] = basename($_FILES["freshImage"]['name']);
+
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('freshImage')) {
+                $uploadData = $this->upload->data();
+                $picture1 = $uploadData['file_name'];
+                $configi['image_library'] = 'gd2';
+                $configi['source_image'] = $uploadData['full_path'];
+                $configi['create_thumb'] = FALSE;
+                $configi['maintain_ratio'] = FALSE;
+                $configi['quality'] = 60;
+                $configi['width'] = 800;
+                $configi['height'] = 600;
+                $configi['new_image'] = 'assets/img/Fgt/' . $picture1;
+                $this->load->library('image_lib');
+                $this->image_lib->initialize($configi);
+                $this->image_lib->resize();
+            } else {
+                $picture1 = '';
+            }
+        } else {
+            $picture1 = '';
+        }
+        if (!empty($_FILES['afterShooterImage']['name'])) {
+            $config['upload_path'] = 'assets\img\Fgt';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['file_name'] = basename($_FILES["afterShooterImage"]['name']);
+
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('afterShooterImage')) {
+                $uploadData = $this->upload->data();
+                $picture2 = $uploadData['file_name'];
+                $configi['image_library'] = 'gd2';
+                $configi['source_image'] = $uploadData['full_path'];
+                $configi['create_thumb'] = FALSE;
+                $configi['maintain_ratio'] = FALSE;
+                $configi['quality'] = 60;
+                $configi['width'] = 800;
+                $configi['height'] = 600;
+                $configi['new_image'] = 'assets/img/Fgt/' . $picture2;
+                $this->load->library('image_lib');
+                $this->image_lib->initialize($configi);
+                $this->image_lib->resize();
+            } else {
+                $picture2 = '';
+            }
+        } else {
+            $picture2 = '';
+        }
+        if (!empty($_FILES['hydrolysisImage']['name'])) {
+            $config['upload_path'] = 'assets\img\Fgt';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['file_name'] = basename($_FILES["hydrolysisImage"]['name']);
+
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('hydrolysisImage')) {
+                $uploadData = $this->upload->data();
+                $picture3 = $uploadData['file_name'];
+                $configi['image_library'] = 'gd2';
+                $configi['source_image'] = $uploadData['full_path'];
+                $configi['create_thumb'] = FALSE;
+                $configi['maintain_ratio'] = FALSE;
+                $configi['quality'] = 60;
+                $configi['width'] = 800;
+                $configi['height'] = 600;
+                $configi['new_image'] = 'assets/img/Fgt/' . $picture3;
+                $this->load->library('image_lib');
+                $this->image_lib->initialize($configi);
+                $this->image_lib->resize();
+            } else {
+                $picture3 = '';
+            }
+        } else {
+            $picture3 = '';
+        }
+        if (!empty($_FILES['drumImage']['name'])) {
+            $config['upload_path'] = 'assets\img\Fgt';
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['file_name'] = basename($_FILES["drumImage"]['name']);
+
+            //Load upload library and initialize configuration
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('drumImage')) {
+                $uploadData = $this->upload->data();
+                $picture4 = $uploadData['file_name'];
+                $configi['image_library'] = 'gd2';
+                $configi['source_image'] = $uploadData['full_path'];
+                $configi['create_thumb'] = FALSE;
+                $configi['maintain_ratio'] = FALSE;
+                $configi['quality'] = 60;
+                $configi['width'] = 800;
+                $configi['height'] = 600;
+                $configi['new_image'] = 'assets/img/Fgt/' . $picture4;
+                $this->load->library('image_lib');
+                $this->image_lib->initialize($configi);
+                $this->image_lib->resize();
+            } else {
+                $picture4 = '';
+            }
+        } else {
+            $picture4 = '';
+        }
+
+
+        $headerValue = $_POST['HeaderArray'];
+        $header = explode(",", $headerValue);
+
+        $childValue = $_POST['ChildArray'];
+        $child = explode("]", $childValue);
+        $childArray = [];
+        foreach ($child as $key => $value) {
+            $arraySplit = explode(',', $value);
+            array_push($childArray, $arraySplit);
+        }
+        array_pop($childArray);
+
+        $fgtH = [
+            'LabNo' => $header[0],
+            'CssNo' => $header[1],
+            'Receiving_Date' => $header[2],
+            'Testing_DateS' => $header[3],
+            'Testing_DateE' => $header[4],
+            'Issue_Date' => $header[5],
+            'EnvironmentalC' => $header[6],
+            'TestAccToCat' => $header[7],
+
+            'CoverMat' => $header[8],
+            'Backing' => $header[9],
+            'Bladder' => $header[10],
+            'Pressure' => $header[11],
+            'BallType' => $header[12],
+            'Fifa_stump' => $header[13],
+            'ProductionMon' => $header[14],
+
+            'TestType' => $header[15],
+            'MainMatColor' => $header[16],
+            'ModelName' => $header[17],
+            'Article' => $header[18],
+            'Working' => $header[19],
+            'Result' => $header[20],
+            'TestedBy' => $header[21],
+
+            'freshImage' => $picture1,
+            'afterShooterImage' => $picture2,
+            'hydrolysisImage' => $picture3,
+            'drumImage' => $picture4,
+            'UserID' => $this->session->userdata('user_id'),
+
+            'Type' => 'CSM Rebound',
+            'TestType' => 'CSM Rebound'
+        ];
+
+
+        $data = $this->l->uploadFgtCSM($fgtH, $childArray);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($data));
+    }
+    public function getFGTTestDataForViewCSMRebound()
+    {
+        $result = $this->l->getFGTTestDataForViewCSMRebound($_POST['date1'], $_POST['date2']);
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode($result));
     }
 }

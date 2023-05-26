@@ -18,7 +18,7 @@ if (!$this->session->has_userdata('user_id')) {
         <!-- BEGIN Page Header -->
         <?php $this->load->view('includes/top_header.php'); ?>
         <main id="js-page-content" role="main" class="page-content">
-          <?php
+        <?php
 
           // printing 002
           $printingSeries002 = array();
@@ -84,18 +84,34 @@ if (!$this->session->has_userdata('user_id')) {
             array_push($panelShappingDrillDown002, $drilldownSerie);
           }
           // forming 002
-          $forming002 = array();
+          $formingSeries002 = array();
+          $formingDrillDown002 = array();
           foreach ($datasum002 as $key => $value) {
+            $points1 = [
+              'name' => substr($value['DateName'], 0, 11),
+              'y' => $value['Fail'],
+              'drilldown' => substr($value['DateName'], 0, 11),
+            ];
+            array_push($formingSeries002, $points1);
+
+
+            $drilldownPoints = array();
             foreach ($value as $k => $v) {
-              if ($k == 'Pass' || $k == 'Fail') {
+              if ($k  == 'DateName' || $k == 'factoryCode' || $k == 'TotalChecked' || $k == 'TotalPass' || $k == 'Fail') {
                 continue;
               }
-              $points1 = [
+              $drilldownPoint = [
                 'name' => $k,
                 'y' => $v
               ];
-              array_push($forming002, $points1);
+              array_push($drilldownPoints, $drilldownPoint);
             }
+            $drilldownSerie = [
+              'name' => substr($value['DateName'], 0, 11),
+              'id' => substr($value['DateName'], 0, 11),
+              'data' => $drilldownPoints
+            ];
+            array_push($formingDrillDown002, $drilldownSerie);
           }
 
           // End Line QC B34002
@@ -179,18 +195,34 @@ if (!$this->session->has_userdata('user_id')) {
             array_push($panelShappingDrillDown003, $drilldownSerie);
           }
           // forming 003
-          $forming003 = array();
+          $formingSeries003 = array();
+          $formingDrillDown003 = array();
           foreach ($datasum003 as $key => $value) {
+            $points1 = [
+              'name' => substr($value['DateName'], 0, 11),
+              'y' => $value['Fail'],
+              'drilldown' => substr($value['DateName'], 0, 11),
+            ];
+            array_push($formingSeries003, $points1);
+
+
+            $drilldownPoints = array();
             foreach ($value as $k => $v) {
-              if ($k == 'Pass' || $k == 'Fail') {
+              if ($k  == 'DateName' || $k == 'factoryCode' || $k == 'TotalChecked' || $k == 'TotalPass' || $k == 'Fail') {
                 continue;
               }
-              $points1 = [
+              $drilldownPoint = [
                 'name' => $k,
                 'y' => $v
               ];
-              array_push($forming003, $points1);
+              array_push($drilldownPoints, $drilldownPoint);
             }
+            $drilldownSerie = [
+              'name' => substr($value['DateName'], 0, 11),
+              'id' => substr($value['DateName'], 0, 11),
+              'data' => $drilldownPoints
+            ];
+            array_push($formingDrillDown003, $drilldownSerie);
           }
           // End Line QC B34003
           $endLineQC003 = array();
@@ -273,19 +305,35 @@ if (!$this->session->has_userdata('user_id')) {
             ];
             array_push($panelShappingDrillDown004, $drilldownSerie);
           }
-          // forming 003
-          $forming004 = array();
+          // forming 004
+          $formingSeries004 = array();
+          $formingDrillDown004 = array();
           foreach ($datasum004 as $key => $value) {
+            $points1 = [
+              'name' => substr($value['DateName'], 0, 11),
+              'y' => $value['Fail'],
+              'drilldown' => substr($value['DateName'], 0, 11),
+            ];
+            array_push($formingSeries004, $points1);
+
+
+            $drilldownPoints = array();
             foreach ($value as $k => $v) {
-              if ($k == 'Checked' || $k == 'Pass' || $k == 'FailQty') {
+              if ($k  == 'DateName' || $k == 'factoryCode' || $k == 'TotalChecked' || $k == 'TotalPass' || $k == 'Fail') {
                 continue;
               }
-              $points1 = [
+              $drilldownPoint = [
                 'name' => $k,
                 'y' => $v
               ];
-              array_push($forming004, $points1);
+              array_push($drilldownPoints, $drilldownPoint);
             }
+            $drilldownSerie = [
+              'name' => substr($value['DateName'], 0, 11),
+              'id' => substr($value['DateName'], 0, 11),
+              'data' => $drilldownPoints
+            ];
+            array_push($formingDrillDown004, $drilldownSerie);
           }
           // End Line QC B34004
           $endLineQC004 = array();
@@ -306,7 +354,35 @@ if (!$this->session->has_userdata('user_id')) {
 
 
 
+          //Printing B34005
+          $printingDateName005 = array();
+          $drilldownDataPrinting005 = array();
+          foreach ($printing005 as $value) {
+            $points1 = [
+              'name' => substr($value['DateName'], 0, 11),
+              'y' => $value['FailQuantity'],
+              'drilldown' => substr($value['DateName'], 0, 11),
+            ];
+            array_push($printingDateName005, $points1);
 
+            $drilldownPoints = array();
+            foreach ($value as $k => $v) {
+              if ($k == 'DateName' || $k == 'TSheetsChecked' || $k == 'PassQuantity' || $k == 'FailQuantity') {
+                continue;
+              }
+              $drilldownPoint = [
+                'name' => $k,
+                'y' => $v
+              ];
+              array_push($drilldownPoints, $drilldownPoint);
+            }
+            $drilldownSerie = [
+              'name' => substr($value['DateName'], 0, 11),
+              'id' => substr($value['DateName'], 0, 11),
+              'data' => $drilldownPoints
+            ];
+            array_push($drilldownDataPrinting005, $drilldownSerie);
+          }
           //Bladder Winding B34005
           $bladderWindingDateName005 = array();
           $drilldownDataBW005 = array();
@@ -366,6 +442,36 @@ if (!$this->session->has_userdata('user_id')) {
             ];
             array_push($drilldownDataBUW005, $drilldownSerie);
           }
+          //Sheet Inspection B34005
+          $sheetInspectionDateName005 = array();
+          $drilldownDataSI005 = array();
+          foreach ($sheetInspection005 as $value) {
+            $points1 = [
+              'name' => substr($value['DateName'], 0, 11),
+              'y' => $value['TotalDefected'],
+              'drilldown' => substr($value['DateName'], 0, 11),
+            ];
+            array_push($sheetInspectionDateName005, $points1);
+
+            $drilldownPoints = array();
+            foreach ($value as $k => $v) {
+              if ($k == 'DateName' || $k == 'TotalCheck' || $k == 'TotalPass' || $k == 'TotalDefected') {
+                continue;
+              }
+              $drilldownPoint = [
+                'name' => $k,
+                'y' => $v
+              ];
+              array_push($drilldownPoints, $drilldownPoint);
+            }
+            $drilldownSerie = [
+              'name' => substr($value['DateName'], 0, 11),
+              'id' => substr($value['DateName'], 0, 11),
+              'data' => $drilldownPoints
+            ];
+            array_push($drilldownDataSI005, $drilldownSerie);
+          }
+
           // RWPD(Pivot) B34005
           $pivotDateName005 = array();
           $drillDownDataPivot005 = array();
@@ -438,21 +544,92 @@ if (!$this->session->has_userdata('user_id')) {
 
 
 
+          // Core B34006
+          $coreName006 = array();
+          $drilldownDataCore006 = array();
+          foreach ($core006 as $value) {
+            $points1 = [
+              'name' => substr($value['DateName'], 0, 11),
+              'y' => $value['FailQuantity'],
+              'drilldown' => substr($value['DateName'], 0, 11),
+            ];
+            array_push($coreName006, $points1);
 
-          // BHFCUtting B34006
-          print_r($BHFCutting006);
-          $BHFCuttingData006 = array();
-          foreach ($BHFCutting006 as $key => $value) {
+            $drilldownPoints = array();
             foreach ($value as $k => $v) {
-              if ($k == 'TotalChecked' || $k == 'PassQuantity' || $k == 'FailQuantity') {
+              if ($k == 'DateName' || $k == 'TotalChecked' || $k == 'PassQuantity' || $k == 'FailQuantity') {
                 continue;
               }
-              $points = [
+              $drilldownPoint = [
                 'name' => $k,
-                'y' => $v,
+                'y' => $v
               ];
-              array_push($BHFCuttingData006, $points);
+              array_push($drilldownPoints, $drilldownPoint);
             }
+            $drilldownSerie = [
+              'name' => substr($value['DateName'], 0, 11),
+              'id' => substr($value['DateName'], 0, 11),
+              'data' => $drilldownPoints
+            ];
+            array_push($drilldownDataCore006, $drilldownSerie);
+          }
+          // BHFCUtting B34006
+          $BHFCuttingName006 = array();
+          $drilldownDataBHFCutting006 = array();
+          foreach ($BHFCutting006 as $value) {
+            $points1 = [
+              'name' => substr($value['DateName'], 0, 11),
+              'y' => $value['FailQuantity'],
+              'drilldown' => substr($value['DateName'], 0, 11),
+            ];
+            array_push($BHFCuttingName006, $points1);
+
+            $drilldownPoints = array();
+            foreach ($value as $k => $v) {
+              if ($k == 'DateName' || $k == 'TotalChecked' || $k == 'PassQuantity' || $k == 'FailQuantity') {
+                continue;
+              }
+              $drilldownPoint = [
+                'name' => $k,
+                'y' => $v
+              ];
+              array_push($drilldownPoints, $drilldownPoint);
+            }
+            $drilldownSerie = [
+              'name' => substr($value['DateName'], 0, 11),
+              'id' => substr($value['DateName'], 0, 11),
+              'data' => $drilldownPoints
+            ];
+            array_push($drilldownDataBHFCutting006, $drilldownSerie);
+          }
+          // AHFCUtting B34006
+          $AHFCuttingName006 = array();
+          $drilldownDataAHFCutting006 = array();
+          foreach ($AHFCutting006 as $value) {
+            $points1 = [
+              'name' => substr($value['DateName'], 0, 11),
+              'y' => $value['FailQuantity'],
+              'drilldown' => substr($value['DateName'], 0, 11),
+            ];
+            array_push($AHFCuttingName006, $points1);
+
+            $drilldownPoints = array();
+            foreach ($value as $k => $v) {
+              if ($k == 'DateName' || $k == 'TotalChecked' || $k == 'PassQuantity' || $k == 'FailQuantity') {
+                continue;
+              }
+              $drilldownPoint = [
+                'name' => $k,
+                'y' => $v
+              ];
+              array_push($drilldownPoints, $drilldownPoint);
+            }
+            $drilldownSerie = [
+              'name' => substr($value['DateName'], 0, 11),
+              'id' => substr($value['DateName'], 0, 11),
+              'data' => $drilldownPoints
+            ];
+            array_push($drilldownDataAHFCutting006, $drilldownSerie);
           }
           // Forming B34006
           $formingDateName006 = array();
@@ -519,7 +696,38 @@ if (!$this->session->has_userdata('user_id')) {
 
 
 
+          // Printing B34007
+          $printingDateName007 = array();
+          $drillDownDataPrinting007 = array();
+          foreach ($printing007 as $value) {
+            $points1 = [
+              'name' => substr($value['DateName'], 0, 11),
+              'y' => intval($value['TotalFail']),
+              'drilldown' => substr($value['DateName'], 0, 11)
+            ];
+            array_push($printingDateName007, $points1);
 
+            $drilldownPoints = array();
+            foreach ($value as $k => $v) {
+              // print_r($k);echo "<br>";
+              // print_r($v);
+              if ($k == 'DateName' || $k == 'SheetsChecked' || $k == 'TotalPass' || $k == 'TotalFail') {
+                continue;
+              }
+              $drilldownPoint = [
+                'name' => $k,
+                'y' => $v
+              ];
+              array_push($drilldownPoints, $drilldownPoint);
+            }
+
+            $drilldownSerie = [
+              'name' => substr($value['DateName'], 0, 11),
+              'id' => substr($value['DateName'], 0, 11),
+              'data' => $drilldownPoints
+            ];
+            array_push($drillDownDataPrinting007, $drilldownSerie);
+          }
           // Carcass B34007
           $carcassDateName007 = array();
           $drillDownDataCarcass007 = array();
@@ -551,6 +759,38 @@ if (!$this->session->has_userdata('user_id')) {
               'data' => $drilldownPoints
             ];
             array_push($drillDownDataCarcass007, $drilldownSerie);
+          }
+          // AHFCutting B34007
+          $AHFCuttingDateName007 = array();
+          $drillDownAHFCutting007 = array();
+          foreach ($AHFCutting007 as $value) {
+            $points1 = [
+              'name' => substr($value['DateName'], 0, 11),
+              'y' => intval($value['FailSheets']),
+              'drilldown' => substr($value['DateName'], 0, 11)
+            ];
+            array_push($AHFCuttingDateName007, $points1);
+
+            $drilldownPoints = array();
+            foreach ($value as $k => $v) {
+              // print_r($k);echo "<br>";
+              // print_r($v);
+              if ($k == 'DateName' || $k == 'SheetsChecked' || $k == 'PassSheets' || $k == 'FailSheets') {
+                continue;
+              }
+              $drilldownPoint = [
+                'name' => $k,
+                'y' => $v
+              ];
+              array_push($drilldownPoints, $drilldownPoint);
+            }
+
+            $drilldownSerie = [
+              'name' => substr($value['DateName'], 0, 11),
+              'id' => substr($value['DateName'], 0, 11),
+              'data' => $drilldownPoints
+            ];
+            array_push($drillDownAHFCutting007, $drilldownSerie);
           }
           // forming 007
           $formingDateName007 = array();
@@ -856,6 +1096,9 @@ if (!$this->session->has_userdata('user_id')) {
                             <a class="nav-link" data-toggle="tab" href="#tabBladderUnwinding005" role="tab">Bladder Unwinding </a>
                           </li>
                           <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabSheetInspection005" role="tab">Sheet Inspection </a>
+                          </li>
+                          <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#tabPivot005" role="tab">RWPD(Pivot) </a>
                           </li>
 
@@ -877,6 +1120,10 @@ if (!$this->session->has_userdata('user_id')) {
 
                           <div class="tab-pane fade" id="tabBladderUnwinding005" role="tabpanel">
                             <div id="bladderUnwinding005"></div>
+                          </div>
+
+                          <div class="tab-pane fade" id="tabSheetInspection005" role="tabpanel">
+                            <div id="sheetInspection005"></div>
                           </div>
 
                           <div class="tab-pane fade" id="tabPivot005" role="tabpanel">
@@ -979,11 +1226,17 @@ if (!$this->session->has_userdata('user_id')) {
                         <ul class="nav nav-pills" role="tablist">
 
                           <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#tabCarcass007" role="tab">Carcass </a>
+                            <a class="nav-link active" data-toggle="tab" href="#tabPrinting007" role="tab">Printing </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabCarcass007" role="tab">Carcass </a>
                           </li>
 
+                          <!-- <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabBHFCutting007" role="tab">BHF Cutting </a>
+                          </li> -->
                           <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tabCutting007" role="tab">BHF & AHF Cutting </a>
+                            <a class="nav-link" data-toggle="tab" href="#tabAHFCutting007" role="tab">AHF Cutting </a>
                           </li>
 
                           <li class="nav-item">
@@ -996,12 +1249,19 @@ if (!$this->session->has_userdata('user_id')) {
 
                         </ul>
                         <div class="tab-content py-3">
-                          <div class="tab-pane fade show active" id="tabCarcass007" role="tabpanel">
+                        <div class="tab-pane fade show active" id="tabPrinting007" role="tabpanel">
+                            <div id="printing007"> </div>
+                          </div>
+                          <div class="tab-pane fade" id="tabCarcass007" role="tabpanel">
                             <div id="carcass007"> </div>
                           </div>
 
-                          <div class="tab-pane fade" id="tabCutting007" role="tabpanel">
-                            <div id="cutting007"> </div>
+                          <!-- <div class="tab-pane fade" id="tabBHFCutting007" role="tabpanel">
+                            <div id="BHFCutting007"> </div>
+                          </div> -->
+
+                          <div class="tab-pane fade" id="tabAHFCutting007" role="tabpanel">
+                            <div id="AHFCutting007"> </div>
                           </div>
 
                           <div class="tab-pane fade" id="tabForming007" role="tabpanel">
@@ -1835,7 +2095,11 @@ if (!$this->session->has_userdata('user_id')) {
       },
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -1870,7 +2134,7 @@ if (!$this->session->has_userdata('user_id')) {
       },
       series: [{
         name: 'Printing',
-        colorByPoints: true,
+        colorByPoint: true,
         data: <?php echo json_encode($printingSeries002, JSON_NUMERIC_CHECK); ?>
 
       }],
@@ -1885,7 +2149,11 @@ if (!$this->session->has_userdata('user_id')) {
       },
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -1920,7 +2188,7 @@ if (!$this->session->has_userdata('user_id')) {
       },
       series: [{
         name: 'Panel Shapping',
-        colorByPoints: true,
+        colorByPoint: true,
         data: <?php echo json_encode($panelShappingSeries002, JSON_NUMERIC_CHECK); ?>
 
       }],
@@ -1934,7 +2202,11 @@ if (!$this->session->has_userdata('user_id')) {
       },
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -1969,15 +2241,22 @@ if (!$this->session->has_userdata('user_id')) {
       },
       series: [{
         name: 'Forming',
-        colorByPoints: true,
-        data: <?php echo json_encode($forming002, JSON_NUMERIC_CHECK); ?>
+        colorByPoint: true,
+        data: <?php echo json_encode($formingSeries002, JSON_NUMERIC_CHECK); ?>
 
-      }]
+      }],
+      drilldown: {
+        series: <?php echo json_encode($formingDrillDown002, JSON_NUMERIC_CHECK); ?>
+      }
     });
     Highcharts.chart('endLineQC002', {
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -2025,7 +2304,11 @@ if (!$this->session->has_userdata('user_id')) {
       },
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -2060,7 +2343,7 @@ if (!$this->session->has_userdata('user_id')) {
       },
       series: [{
         name: 'Printing',
-        colorByPoints: true,
+        colorByPoint: true,
         data: <?php echo json_encode($printingSeries003, JSON_NUMERIC_CHECK); ?>
 
       }],
@@ -2074,7 +2357,11 @@ if (!$this->session->has_userdata('user_id')) {
       },
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -2109,7 +2396,7 @@ if (!$this->session->has_userdata('user_id')) {
       },
       series: [{
         name: 'Panel Shapping',
-        colorByPoints: true,
+        colorByPoint: true,
         data: <?php echo json_encode($panelShappingSeries003, JSON_NUMERIC_CHECK); ?>
 
       }],
@@ -2123,7 +2410,11 @@ if (!$this->session->has_userdata('user_id')) {
       },
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -2158,15 +2449,22 @@ if (!$this->session->has_userdata('user_id')) {
       },
       series: [{
         name: 'Forming',
-        colorByPoints: true,
-        data: <?php echo json_encode($forming003, JSON_NUMERIC_CHECK); ?>
+        colorByPoint: true,
+        data: <?php echo json_encode($formingSeries003, JSON_NUMERIC_CHECK); ?>
 
-      }]
+      }],
+      drilldown: {
+        series: <?php echo json_encode($formingDrillDown003, JSON_NUMERIC_CHECK); ?>
+      }
     });
     Highcharts.chart('endLineQC003', {
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -2217,7 +2515,11 @@ if (!$this->session->has_userdata('user_id')) {
       },
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -2252,7 +2554,7 @@ if (!$this->session->has_userdata('user_id')) {
       },
       series: [{
         name: 'Printing',
-        colorByPoints: true,
+        colorByPoint: true,
         data: <?php echo json_encode($printingSeries004, JSON_NUMERIC_CHECK); ?>
 
       }],
@@ -2266,7 +2568,11 @@ if (!$this->session->has_userdata('user_id')) {
       },
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -2301,7 +2607,7 @@ if (!$this->session->has_userdata('user_id')) {
       },
       series: [{
         name: 'Panel Shapping',
-        colorByPoints: true,
+        colorByPoint: true,
         data: <?php echo json_encode($panelShappingSeries004, JSON_NUMERIC_CHECK); ?>
 
       }],
@@ -2315,7 +2621,11 @@ if (!$this->session->has_userdata('user_id')) {
       },
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -2350,16 +2660,23 @@ if (!$this->session->has_userdata('user_id')) {
       },
       series: [{
         name: 'Forming',
-        colorByPoints: true,
-        data: <?php echo json_encode($forming004, JSON_NUMERIC_CHECK); ?>
+        colorByPoint: true,
+        data: <?php echo json_encode($formingSeries004, JSON_NUMERIC_CHECK); ?>
 
-      }]
+      }],
+      drilldown: {
+        series: <?php echo json_encode($formingDrillDown004, JSON_NUMERIC_CHECK); ?>
+      }
     });
 
     Highcharts.chart('endLineQC004', {
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -2401,13 +2718,70 @@ if (!$this->session->has_userdata('user_id')) {
 
 
     // START GRAPH B34005
+    Highcharts.chart('printing005', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
+                echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
+              } ?>,
+        align: 'center'
+      },
+      subtitle: {
+        text: ''
+      },
+      xAxis: {
+        type: 'category'
+
+      },
+      yAxis: {
+        title: {
+          text: 'Printing'
+        }
+      },
+      tooltip: {
+
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+      legend: {
+        enabled: true
+      },
+      series: [{
+        name: 'Printing',
+        colorByPoint: true,
+        data: <?php echo json_encode($printingDateName005, JSON_NUMERIC_CHECK); ?>
+
+      }],
+      drilldown: {
+        series: <?php echo json_encode($drilldownDataPrinting005, JSON_NUMERIC_CHECK); ?>
+      }
+    });
     Highcharts.chart('bladderWinding005', {
       chart: {
         type: 'column'
       },
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -2442,7 +2816,7 @@ if (!$this->session->has_userdata('user_id')) {
       },
       series: [{
         name: 'Bladder Winding',
-        colorByPoints: true,
+        colorByPoint: true,
         data: <?php echo json_encode($bladderWindingDateName005, JSON_NUMERIC_CHECK); ?>
 
       }],
@@ -2456,7 +2830,11 @@ if (!$this->session->has_userdata('user_id')) {
       },
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -2491,12 +2869,65 @@ if (!$this->session->has_userdata('user_id')) {
       },
       series: [{
         name: 'Bladder UnWinding',
-        colorByPoints: true,
+        colorByPoint: true,
         data: <?php echo json_encode($bladderUnWindingDateName005, JSON_NUMERIC_CHECK); ?>
 
       }],
       drilldown: {
         series: <?php echo json_encode($drilldownDataBUW005, JSON_NUMERIC_CHECK); ?>
+      }
+    });
+    Highcharts.chart('sheetInspection005', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
+                echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
+              } ?>,
+        align: 'center'
+      },
+      subtitle: {
+        text: ''
+      },
+      xAxis: {
+        type: 'category'
+
+      },
+      yAxis: {
+        title: {
+          text: 'Sheet Inspection'
+        }
+      },
+      tooltip: {
+
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+      legend: {
+        enabled: true
+      },
+      series: [{
+        name: 'Sheet Inspection',
+        colorByPoint: true,
+        data: <?php echo json_encode($sheetInspectionDateName005, JSON_NUMERIC_CHECK); ?>
+
+      }],
+      drilldown: {
+        series: <?php echo json_encode($drilldownDataSI005, JSON_NUMERIC_CHECK); ?>
       }
     });
     Highcharts.chart('pivot005', {
@@ -2505,7 +2936,11 @@ if (!$this->session->has_userdata('user_id')) {
       },
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -2540,7 +2975,7 @@ if (!$this->session->has_userdata('user_id')) {
       },
       series: [{
         name: 'Pivot',
-        colorByPoints: true,
+        colorByPoint: true,
         data: <?php echo json_encode($pivotDateName005, JSON_NUMERIC_CHECK); ?>
 
       }]
@@ -2551,7 +2986,11 @@ if (!$this->session->has_userdata('user_id')) {
       },
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -2586,7 +3025,7 @@ if (!$this->session->has_userdata('user_id')) {
       },
       series: [{
         name: 'End Line QC',
-        colorByPoints: true,
+        colorByPoint: true,
         data: <?php echo json_encode($endLineDateName005, JSON_NUMERIC_CHECK); ?>
 
       }],
@@ -2594,30 +3033,40 @@ if (!$this->session->has_userdata('user_id')) {
         series: <?php echo json_encode($drilldownDataEL005, JSON_NUMERIC_CHECK); ?>
       }
     });
-    
+
 
     // END GRAPH B34005
 
 
     // START GRAPH B34006
-    Highcharts.chart('BHFCutting006', {
+    Highcharts.chart('core006', {
+      chart: {
+        type: 'column'
+      },
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
+      subtitle: {
+        text: ''
+      },
       xAxis: {
-        type: 'category',
-        categories: ''
+        type: 'category'
+
       },
       yAxis: {
         title: {
-          text: 'BHF Cutting'
+          text: 'Core'
         }
       },
       tooltip: {
-        valueSuffix: '',
+
         headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
         pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
       },
@@ -2634,12 +3083,120 @@ if (!$this->session->has_userdata('user_id')) {
         enabled: true
       },
       series: [{
-        type: 'column',
+        name: 'Core',
+        colorByPoint: true,
+        data: <?php echo json_encode($coreName006, JSON_NUMERIC_CHECK); ?>
+
+      }],
+      drilldown: {
+        series: <?php echo json_encode($drilldownDataCore006, JSON_NUMERIC_CHECK); ?>
+      }
+    });
+    Highcharts.chart('BHFCutting006', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
+                echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
+              } ?>,
+        align: 'center'
+      },
+      subtitle: {
+        text: ''
+      },
+      xAxis: {
+        type: 'category'
+
+      },
+      yAxis: {
+        title: {
+          text: 'BHF Cutting'
+        }
+      },
+      tooltip: {
+
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+      legend: {
+        enabled: true
+      },
+      series: [{
         name: 'BHF Cutting',
         colorByPoint: true,
-        data: <?php echo json_encode($BHFCuttingData006, JSON_NUMERIC_CHECK); ?>
+        data: <?php echo json_encode($BHFCuttingName006, JSON_NUMERIC_CHECK); ?>
 
-      }]
+      }],
+      drilldown: {
+        series: <?php echo json_encode($drilldownDataBHFCutting006, JSON_NUMERIC_CHECK); ?>
+      }
+    });
+    Highcharts.chart('AHFCutting006', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
+                echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
+              } ?>,
+        align: 'center'
+      },
+      subtitle: {
+        text: ''
+      },
+      xAxis: {
+        type: 'category'
+
+      },
+      yAxis: {
+        title: {
+          text: 'AHF Cutting'
+        }
+      },
+      tooltip: {
+
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+      legend: {
+        enabled: true
+      },
+      series: [{
+        name: 'AHF Cutting',
+        colorByPoint: true,
+        data: <?php echo json_encode($AHFCuttingName006, JSON_NUMERIC_CHECK); ?>
+
+      }],
+      drilldown: {
+        series: <?php echo json_encode($drilldownDataAHFCutting006, JSON_NUMERIC_CHECK); ?>
+      }
     });
     Highcharts.chart('forming006', {
       chart: {
@@ -2647,7 +3204,11 @@ if (!$this->session->has_userdata('user_id')) {
       },
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -2682,7 +3243,7 @@ if (!$this->session->has_userdata('user_id')) {
       },
       series: [{
         name: 'Forming',
-        colorByPoints: true,
+        colorByPoint: true,
         data: <?php echo json_encode($formingDateName006, JSON_NUMERIC_CHECK); ?>
 
       }],
@@ -2697,7 +3258,11 @@ if (!$this->session->has_userdata('user_id')) {
       },
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -2732,7 +3297,7 @@ if (!$this->session->has_userdata('user_id')) {
       },
       series: [{
         name: 'End Line QC',
-        colorByPoints: true,
+        colorByPoint: true,
         data: <?php echo json_encode($endLineDateName006, JSON_NUMERIC_CHECK); ?>
 
       }],
@@ -2744,13 +3309,70 @@ if (!$this->session->has_userdata('user_id')) {
     // END GRAPH B34006
 
     // START GRAPH B34007
+    Highcharts.chart('printing007', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
+                echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
+              } ?>,
+        align: 'center'
+      },
+      subtitle: {
+        text: ''
+      },
+      xAxis: {
+        type: 'category'
+
+      },
+      yAxis: {
+        title: {
+          text: 'Printing'
+        }
+      },
+      tooltip: {
+
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+      legend: {
+        enabled: true
+      },
+      series: [{
+        name: 'Printing',
+        colorByPoint: true,
+        data: <?php echo json_encode($printingDateName007, JSON_NUMERIC_CHECK); ?>
+
+      }],
+      drilldown: {
+        series: <?php echo json_encode($drillDownDataPrinting007, JSON_NUMERIC_CHECK); ?>
+      }
+    });
     Highcharts.chart('carcass007', {
       chart: {
         type: 'column'
       },
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -2785,12 +3407,65 @@ if (!$this->session->has_userdata('user_id')) {
       },
       series: [{
         name: 'Carcass',
-        colorByPoints: true,
+        colorByPoint: true,
         data: <?php echo json_encode($carcassDateName007, JSON_NUMERIC_CHECK); ?>
 
       }],
       drilldown: {
         series: <?php echo json_encode($drillDownDataCarcass007, JSON_NUMERIC_CHECK); ?>
+      }
+    });
+    Highcharts.chart('AHFCutting007', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
+                echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
+              } ?>,
+        align: 'center'
+      },
+      subtitle: {
+        text: ''
+      },
+      xAxis: {
+        type: 'category'
+
+      },
+      yAxis: {
+        title: {
+          text: 'AHF Cutting'
+        }
+      },
+      tooltip: {
+
+        headerFormat: '<span style="font-size:11px">{point.y:.2f}</span><br>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>:<br/>'
+      },
+      plotOptions: {
+        series: {
+          borderWidth: 0,
+          dataLabels: {
+            enabled: true,
+            format: '{point.y:.1f}'
+          }
+        }
+      },
+      legend: {
+        enabled: true
+      },
+      series: [{
+        name: 'AHF Cutting',
+        colorByPoint: true,
+        data: <?php echo json_encode($AHFCuttingDateName007, JSON_NUMERIC_CHECK); ?>
+
+      }],
+      drilldown: {
+        series: <?php echo json_encode($drillDownAHFCutting007, JSON_NUMERIC_CHECK); ?>
       }
     });
     Highcharts.chart('forming007', {
@@ -2799,7 +3474,11 @@ if (!$this->session->has_userdata('user_id')) {
       },
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -2834,7 +3513,7 @@ if (!$this->session->has_userdata('user_id')) {
       },
       series: [{
         name: 'Forming',
-        colorByPoints: true,
+        colorByPoint: true,
         data: <?php echo json_encode($formingDateName007, JSON_NUMERIC_CHECK); ?>
 
       }],
@@ -2848,7 +3527,11 @@ if (!$this->session->has_userdata('user_id')) {
       },
       title: {
         text: <?php if (isset($start_date) && isset($end_date)) {
+              if($start_date == $end_date){
+                echo json_encode("Today");
+              }else{
                 echo json_encode("From " . $start_date . "  To  " . $end_date, JSON_NUMERIC_CHECK);
+              }
               } ?>,
         align: 'center'
       },
@@ -2883,7 +3566,7 @@ if (!$this->session->has_userdata('user_id')) {
       },
       series: [{
         name: 'End Line QC',
-        colorByPoints: true,
+        colorByPoint: true,
         data: <?php echo json_encode($endLineQCDateName007, JSON_NUMERIC_CHECK); ?>
 
       }],

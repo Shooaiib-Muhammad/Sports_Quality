@@ -463,24 +463,24 @@ if (!$this->session->has_userdata('user_id')) {
                                             <h2>Date Filteration</h2>
                                         </div>
                                         <div class="row m-2">
-                                            <div class="col-md-3"><input class="form-control" type="date" id="date1" />
+                                            <div class="col-md-2"><input class="form-control" type="date" id="date1" />
                                             </div>
-                                            <div class="col-md-3"><input class="form-control" type="date" id="date2" />
+                                            <div class="col-md-2"><input class="form-control" type="date" id="date2" />
                                             </div>
-                                            <div class="col-md-3 d-none selectPo">
+                                            <div class="col-md-2 d-none search_col">
+                                                <select class="form-control" onchange="searchType()" name="search_type" id="search_type">
+                                                    
+                                                    <option value="selected">Choose option</option>
+                                                    <option value="POWise">PO Wise</option>
+                                                    <option value="ArticleWise">Article Wise</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2 d-none selectValue" style="width:100%">
 
                                             </div>
                                             <div class="col-md-3"><button class="btn btn-primary"
-                                                    id="searchFGTtest">Search</button></div>
+                                                    onclick="searchFGTtest()">Search</button></div>
                                         </div>
-                                        <!-- <div class="row m-2 d-none PO">
-                                            <div class="col-sm-2"><input class="form-control" type="text" name="PO" id="PO"></div>
-                                            <div class="col-sm-2"><button class="btn btn-primary"
-                                                    id="searchPO">Find</button></div>
-                                        </div>
-                                        <div class="row m-2 d-none PODataToShow">
-                                            
-                                        </div> -->
                                         <div class="panel-container show m-2">
                                             <div id="tableData">
                                                 <table id="defualtTable"
@@ -513,6 +513,11 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </tr>
                                                     </tfoot>
                                                 </table>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-md-12" id="tableData1">
+
+                                                </div>
                                             </div>
                                             <div id="loadingShow" style="display: none;">
 
@@ -6809,7 +6814,8 @@ if (!$this->session->has_userdata('user_id')) {
                         <footer class="page-footer" role="contentinfo">
                             <div class="d-flex align-items-center flex-1 text-muted">
                                 <span class="hidden-md-down fw-700">2021 © Forward Sports by&nbsp;IT Dept Forward
-                                    Sports</span>
+                                    Sports</span> 
+
                             </div>
                             <div>
 
@@ -6854,6 +6860,7 @@ if (!$this->session->has_userdata('user_id')) {
                             $("#date1").val(date);
                             $("#date2").val(date);
                             backgroundChanging();
+                           
                         });
                         
                         $(".failedBallsSystemIPWise").on('click', function(){
@@ -6866,11 +6873,6 @@ if (!$this->session->has_userdata('user_id')) {
                             }, function(data, status) {
                                 if (data) {
                                     // console.log(data);
-                                    if(data[0].SystemIP == "192.168.15.147"){
-                                        $("#exampleModalLabel1").html("Failed balls of System IP = " + data[0].SystemIP + "<br> Station = Station 1")
-                                    }else if(data[0].SystemIP == "192.168.15.148"){
-                                        $("#exampleModalLabel1").html("Failed balls of System IP = " + data[0].SystemIP + "<br> Station = Station 2")
-                                    }
                                     let html = `<table id="failedBallsTable" class="table table-bordered table-hover table-striped">
                                                 <thead class="bg-primary-200">
                                                     <tr style="color:white;">
@@ -7132,9 +7134,13 @@ if (!$this->session->has_userdata('user_id')) {
 
                             return [total, pass, fail];
                         }
-                        let poArray = [];
-                        $('#searchFGTtest').on('click', function() {
-                                
+                        let data2 = [];
+                        // Arrays to store unique values
+                        let uniquePO = [];
+                                        let uniqueArticle = [];
+                        function searchFGTtest() {
+                            
+                            $(".selectValue").addClass("d-none");
                                 var date1 = $("#date1").val();
                                 var date2 = $("#date2").val();
 
@@ -7143,8 +7149,8 @@ if (!$this->session->has_userdata('user_id')) {
                                     'date1': date1,
                                     'date2': date2
                                 }, function(data) {
-                                    if (data) {
-                                        $(".PO").removeClass("d-none");
+                                    if (data != '') {
+                                        data2 = data;
                                         let fgtHtml =`<table id="fgtTestTableData"
                                                     class="table table-bordered table-hover table-responsive-sm table-responsive-md table-responsive-lg table-striped">
                                                     <thead class="bg-primary-600">
@@ -7159,6 +7165,8 @@ if (!$this->session->has_userdata('user_id')) {
                                                             <th>QC Name</th>
                                                             <th>CardNo</th>
                                                             <th>Composite Checker</th>
+                                                            <th>Metal Detector</th>
+                                                            <th>Station</th>
                                                             <th>RFT</th>
                                                             
                                                         </tr>
@@ -7170,7 +7178,6 @@ if (!$this->session->has_userdata('user_id')) {
                                             let totalFail = 0;
                                             let RFT =0;
                                         data.forEach(element => {
-                                            poArray.push(element.PO);
                                             totalQty += parseInt(element.Qty);
                                             totalPass += parseInt(element.Pass);
                                             totalFail += parseInt(element.fail);
@@ -7183,10 +7190,12 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <td>${element.ArtSize}</td>
                                                 <td>${element.Qty}</td>
                                                 <td>${element.Pass}</td>
-                                                <td>${element.fail}</td>
+                                                <td><span>${element.fail}</span></td>
                                                 <td>${element.Name}</td>
                                                 <td>${element.CardNo}</td>
                                                 <td>${element.CheckerName}</td>
+                                                <td>${element.MetalDetecterStatus == 0 ? 'False': element.MetalDetecterStatus == 1 ? 'True': 'NULL' }</td>
+                                                <td>${element.SystemName}</td>
                                                 <td>`+ parseInt(element.RFT) + `%</td>
                                                 
                                                 </td>
@@ -7279,53 +7288,475 @@ if (!$this->session->has_userdata('user_id')) {
                                                 }
                                             ]
                                         });
+
+                                        
+
+                                        // Iterate over the JSON data
+                                        $.each(data, function(index, obj) {
+                                            // Check if the "PO" value is unique
+                                            if ($.inArray(obj.PO, uniquePO) === -1) {
+                                                uniquePO.push(obj.PO);
+                                            }
+
+                                            // Check if the "Article" value is unique
+                                            if ($.inArray(obj.Article, uniqueArticle) === -1) {
+                                                uniqueArticle.push(obj.Article);
+                                            }
+                                        });
+                                        // console.log("uniquePO", uniquePO);
+                                        // console.log("uniqueArticle", uniqueArticle);
+
+                                        $(".search_col").removeClass("d-none");
                                     }
 
                                 });
-                                console.log("All PO",poArray);
-                                let selectOptData = `<label>Choose PO</label>
-                                    <select class="form-control">`;
-                                poArray.forEach(function(item){
-                                    selecOptData += `<option value="${item}">${item}</option>`
+
+
+                        };
+                        function searchType(){
+                            let opt = $("#search_type").val()
+                            // alert(opt);
+                            if(opt == "POWise"){
+                                let selectOptData = `<select class="form-control" id="PONumber" onchange="POWiseSearch()">
+                                `;
+                                uniquePO.forEach(function(item){
+                                    selectOptData += `<option value="${item}">${item}</option>`
                                 })
-                                selectOptData += `</select>`
-                                
-                        });
+                                selectOptData += `</select>`;
+                                // console.log(selectOptData);
+                                $(".selectValue").removeClass("d-none");
+                                $(".selectValue").html(selectOptData);
+                                $("#PONumber").select2();
+                            }else if(opt == "ArticleWise"){
+                                let selectOptData = `<select class="form-control" id="ArticleNumber" onchange="ArticleWiseSearch()">`;
+                                uniqueArticle.forEach(function(item){
+                                    selectOptData += `<option value="${item}">${item}</option>`
+                                })
+                                selectOptData += `</select>`;
+                                // console.log(selectOptData);
+                                $(".selectValue").removeClass("d-none");
+                                $(".selectValue").html(selectOptData);
+                                $("#ArticleNumber").select2();
+                            }
+                        }
 
-                        // let poData = [];
-                        // $("#searchPO").on('click', function(){
-                        //     let PO = $("#PO").val();
-                        //     let Qty = 0;
-                        //     let Pass = 0;
-                        //     let fail = 0;
-                        //     let RFT = 0;
-                        //     poArray.forEach(element => {
-                                
-                        //         if(element.PO == PO){
-                        //             Qty += parseInt(element.Qty)
-                        //             Pass += parseInt(element.Pass)
-                        //             fail += parseInt(element.fail)
-                        //         }
-                                
-                        //     })
-                        //     poData.push(Qty);
-                        //     poData.push(Pass);
-                        //     poData.push(fail); 
-                        //     console.log(POData);
-                        //     if(poData){
-                        //         let datatoShow = `<div>
-                        //             <p> <b>Total Qty: </b>${poData[0]}</p>
-                        //             <p> <b>Total Pass: </b>${poData[1]}</p>
-                        //             <p> <b>Total Fail: </b>${poData[2]}</p>
-                        //             <p> <b>RFT: </b>${poData[1]/poData[0]*100}%</p>
-                        //         </div>`
 
-                        //         $(".PODataToShow").removeClass("d-none");
-                        //         $(".PODataToShow").html(datatoShow);
-                        //     }
-                        // })
+                        let newPOArray = [];
+                        let newArticleArray = [];
+
+                        function POWiseSearch(){
+                            let PONumber = $("#PONumber").val();
+                            newPOArray.length = 0;
+                            data2.filter(item => {
+                                if(item.PO == PONumber){
+                                    newPOArray.push(item);
+                                }
+                            });
+                            console.log("new PO array: ",  newPOArray);
+
+                            let fgtHtml =`<table id="fgtTestTableData1"
+                                    class="table table-bordered table-hover table-responsive-sm table-responsive-md table-responsive-lg table-striped">
+                                    <thead class="bg-primary-600">
+                                        <tr style="color:white;">
+                                            <th>Date</th>
+                                            <th>PO Code</th>
+                                            <th>Article</th>
+                                            <th>Article Size</th>
+                                            <th>Quantity</th>
+                                            <th>Pass</th>
+                                            <th>Fail</th>
+                                            <th>QC Name</th>
+                                            <th>CardNo</th>
+                                            <th>Composite Checker</th>
+                                            <th>Station</th>
+                                            <th>RFT</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>`
+
+                                            let totalQty = 0;
+                                            let totalPass = 0;
+                                            let totalFail = 0;
+                                            let RFT =0;
+                                        newPOArray.forEach(element => {
+                                            totalQty += parseInt(element.Qty);
+                                            totalPass += parseInt(element.Pass);
+                                            totalFail += parseInt(element.fail);
+                                            RFT=(totalPass/totalQty)*100;
+                                            RFT=Math.round(RFT);
+                                            fgtHtml += `<tr>
+                                                <td>${element.date.split("00:00:00")[0]}</td>
+                                                <td>${element.PO}</td>
+                                                <td>${element.Article}</td>
+                                                <td>${element.ArtSize}</td>
+                                                <td>${element.Qty}</td>
+                                                <td>${element.Pass}</td>
+                                                <td><span>${element.fail}</span></td>
+                                                <td>${element.Name}</td>
+                                                <td>${element.CardNo}</td>
+                                                <td>${element.CheckerName}</td>
+                                                <td>${element.SystemName}</td>
+                                                <td>`+ parseInt(element.RFT) + `%</td>
+                                                
+                                                </td>
+                                            </tr>`
+                                            
+
+                                        });
+                                        fgtHtml += `</tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>Date</th>
+                                                            <th>PO Code</th>
+                                                            <th>Article</th>
+                                                            <th>Article Size</th>
+                                                            <th class="bg-primary-600">Total Quantity = `+ totalQty +`</th>
+                                                            <th class="bg-primary-600">Toal Pass = `+ totalPass +`</th>
+                                                            <th style="cursor: pointer; text-align: center; border-radius: 8px;" class="bg-warning" onclick=getDefects(${PONumber})>Total Fail = `+ totalFail +`</th>
+                                                            
+                                                            <th class="bg-primary-600">Total RFT = `+ RFT +`% </th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>`;
+                                        
+                                        $("#tableData1").html('');
+                                        $("#tableData").html(fgtHtml);
+                                        $('#fgtTestTableData1').dataTable({
+                                            responsive: false,
+                                            lengthChange: false,
+                                            dom:
+                                                /*	--- Layout Structure 
+                                                    --- Options
+                                                    l	-	length changing input control
+                                                    f	-	filtering input
+                                                    t	-	The table!
+                                                    i	-	Table information summary
+                                                    p	-	pagination control
+                                                    r	-	processing display element
+                                                    B	-	buttons
+                                                    R	-	ColReorder
+                                                    S	-	Select
+            
+                                                    --- Markup
+                                                    < and >				- div element
+                                                    <"class" and >		- div with a class
+                                                    <"#id" and >		- div with an ID
+                                                    <"#id.class" and >	- div with an ID and a class
+            
+                                                    --- Further reading
+                                                    https://datatables.net/reference/option/dom
+                                                    --------------------------------------
+                                                */
+                                                "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                                                "<'row'<'col-sm-12'tr>>" +
+                                                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                                            buttons: [
+                                                /*{
+                                                    extend:    'colvis',
+                                                    text:      'Column Visibility',
+                                                    titleAttr: 'Col visibility',
+                                                    className: 'mr-sm-3'
+                                                },*/
+                                                {
+                                                    extend: 'pdfHtml5',
+                                                    text: 'PDF',
+                                                    titleAttr: 'Generate PDF',
+                                                    className: 'btn-outline-danger btn-sm mr-1'
+                                                },
+                                                {
+                                                    extend: 'excelHtml5',
+                                                    text: 'Excel',
+                                                    titleAttr: 'Generate Excel',
+                                                    className: 'btn-outline-success btn-sm mr-1'
+                                                },
+                                                {
+                                                    extend: 'csvHtml5',
+                                                    text: 'CSV',
+                                                    titleAttr: 'Generate CSV',
+                                                    className: 'btn-outline-primary btn-sm mr-1'
+                                                },
+                                                {
+                                                    extend: 'copyHtml5',
+                                                    text: 'Copy',
+                                                    titleAttr: 'Copy to clipboard',
+                                                    className: 'btn-outline-primary btn-sm mr-1'
+                                                },
+                                                {
+                                                    extend: 'print',
+                                                    text: 'Print',
+                                                    titleAttr: 'Print Table',
+                                                    className: 'btn-outline-primary btn-sm'
+                                                }
+                                            ]
+                                        });
+                        }
+                        function ArticleWiseSearch(){  
+                            let ArticleNumber = $("#ArticleNumber").val();
+                            newArticleArray.length = 0;
+                            data2.filter(item => {
+                                if(item.Article == ArticleNumber){
+                                    newArticleArray.push(item);
+                                }
+                            });
+                            console.log("new article array: ",  newArticleArray);
+                            let fgtHtml =`<table id="fgtTestTableData11"
+                                    class="table table-bordered table-hover table-responsive-sm table-responsive-md table-responsive-lg table-striped">
+                                    <thead class="bg-primary-600">
+                                        <tr style="color:white;">
+                                            <th>Date</th>
+                                            <th>PO Code</th>
+                                            <th>Article</th>
+                                            <th>Article Size</th>
+                                            <th>Quantity</th>
+                                            <th>Pass</th>
+                                            <th>Fail</th>
+                                            <th>QC Name</th>
+                                            <th>CardNo</th>
+                                            <th>Composite Checker</th>
+                                            <th>Station</th>
+                                            <th>RFT</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>`
+
+                                            let totalQty = 0;
+                                            let totalPass = 0;
+                                            let totalFail = 0;
+                                            let RFT =0;
+                                        newArticleArray.forEach(element => {
+                                            totalQty += parseInt(element.Qty);
+                                            totalPass += parseInt(element.Pass);
+                                            totalFail += parseInt(element.fail);
+                                            RFT=(totalPass/totalQty)*100;
+                                            RFT=Math.round(RFT);
+                                            fgtHtml += `<tr>
+                                                <td>${element.date.split("00:00:00")[0]}</td>
+                                                <td>${element.PO}</td>
+                                                <td>${element.Article}</td>
+                                                <td>${element.ArtSize}</td>
+                                                <td>${element.Qty}</td>
+                                                <td>${element.Pass}</td>
+                                                <td  style="cursor: pointer; text-align: center; border-radius: 8px;" class="bg-warning" onclick=getDefects('${element.SystemIP}','${element.PO}','${element.Article}')><span>${element.fail}</span></td>
+                                                <td>${element.Name}</td>
+                                                <td>${element.CardNo}</td>
+                                                <td>${element.CheckerName}</td>
+                                                <td>${element.SystemName}</td>
+                                                <td>`+ parseInt(element.RFT) + `%</td>
+                                                
+                                                </td>
+                                            </tr>`
+                                            
+
+                                        });
+                                        fgtHtml += `</tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>Date</th>
+                                                            <th>PO Code</th>
+                                                            <th>Article</th>
+                                                            <th>Article Size</th>
+                                                            <th class="bg-primary-600">Total Quantity = `+ totalQty +`</th>
+                                                            <th class="bg-primary-600">Toal Pass = `+ totalPass +`</th>
+                                                            <th style="cursor: pointer; text-align: center; border-radius: 8px;" class="bg-warning" onclick=getDefects(${ArticleNumber})>Total Fail = `+ totalFail +`</th>
+                                                            
+                                                            <th class="bg-primary-600">Total RFT = `+ RFT +`% </th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>`;
+
+                                        $("#tableData1").html('');
+                                        $("#tableData").html(fgtHtml);
+                                        $('#fgtTestTableData11').dataTable({
+                                            responsive: false,
+                                            lengthChange: false,
+                                            dom:
+                                                /*	--- Layout Structure 
+                                                    --- Options
+                                                    l	-	length changing input control
+                                                    f	-	filtering input
+                                                    t	-	The table!
+                                                    i	-	Table information summary
+                                                    p	-	pagination control
+                                                    r	-	processing display element
+                                                    B	-	buttons
+                                                    R	-	ColReorder
+                                                    S	-	Select
+            
+                                                    --- Markup
+                                                    < and >				- div element
+                                                    <"class" and >		- div with a class
+                                                    <"#id" and >		- div with an ID
+                                                    <"#id.class" and >	- div with an ID and a class
+            
+                                                    --- Further reading
+                                                    https://datatables.net/reference/option/dom
+                                                    --------------------------------------
+                                                */
+                                                "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                                                "<'row'<'col-sm-12'tr>>" +
+                                                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                                            buttons: [
+                                                /*{
+                                                    extend:    'colvis',
+                                                    text:      'Column Visibility',
+                                                    titleAttr: 'Col visibility',
+                                                    className: 'mr-sm-3'
+                                                },*/
+                                                {
+                                                    extend: 'pdfHtml5',
+                                                    text: 'PDF',
+                                                    titleAttr: 'Generate PDF',
+                                                    className: 'btn-outline-danger btn-sm mr-1'
+                                                },
+                                                {
+                                                    extend: 'excelHtml5',
+                                                    text: 'Excel',
+                                                    titleAttr: 'Generate Excel',
+                                                    className: 'btn-outline-success btn-sm mr-1'
+                                                },
+                                                {
+                                                    extend: 'csvHtml5',
+                                                    text: 'CSV',
+                                                    titleAttr: 'Generate CSV',
+                                                    className: 'btn-outline-primary btn-sm mr-1'
+                                                },
+                                                {
+                                                    extend: 'copyHtml5',
+                                                    text: 'Copy',
+                                                    titleAttr: 'Copy to clipboard',
+                                                    className: 'btn-outline-primary btn-sm mr-1'
+                                                },
+                                                {
+                                                    extend: 'print',
+                                                    text: 'Print',
+                                                    titleAttr: 'Print Table',
+                                                    className: 'btn-outline-primary btn-sm'
+                                                }
+                                            ]
+                                        });
+                        }
+
                         
+                        
+                        function getDefects(number){
+                            // alert(systemip)
+                            console.log(number);return;
+                            console.log(po);
+                            console.log(article);
 
+                            let url = "<?php echo base_url('MIS/Pivot/getPivotSystemIpWiseFailedBall'); ?>"
+                            $.post(url, {
+                                'systemip': systemip
+                            }, function(data, status) {
+                                if (data) {
+                                    // console.log(data);
+                                    let html = `<h2 class=m-2" style="text-align:center;">Defects against ${data[0]['article']}</h2><table id="failedBallsTable1" class="table table-bordered table-hover table-striped">
+                                                <thead class="bg-primary-200">
+                                                    <tr style="color:white;">
+                                                        <th>PO</th>
+                                                        <th>Date</th>
+                                                        <th>Article</th>
+                                                        <th>ArtSize</th>
+                                                        <th>Problem/Label</th>
+                                                        <th>Name</th>
+                                                        <th>Checker Name</th>
+                                                        <th>Defect</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>`;
+                                                data.forEach(element => {
+                                                html += `<tr>
+                                                        <td>${element.po}</td>
+                                                        <td>${element.Date.split("00:00:00")[0]}</td>
+                                                        <td>${element.article}</td>
+                                                        <td>${element.ArtSize}</td>
+                                                        <td>${element.label}</td>
+                                                        <td>${element.Name}</td>
+                                                        <td>${element.CheckerName}</td>
+                                                        <td>${element.defects}</td>
+                                                        
+                                                    </tr>`
+                                                });
+                                        html += `</body>
+                                        </table>`;
+
+                                        $("#tableData1").html(html);
+                                        $('#failedBallsTable1').dataTable({
+                                            responsive: false,
+                                            lengthChange: false,
+                                            pageLength: 5,
+                                            dom:
+                                                /*	--- Layout Structure 
+                                                    --- Options
+                                                    l	-	length changing input control
+                                                    f	-	filtering input
+                                                    t	-	The table!
+                                                    i	-	Table information summary
+                                                    p	-	pagination control
+                                                    r	-	processing display element
+                                                    B	-	buttons
+                                                    R	-	ColReorder
+                                                    S	-	Select
+            
+                                                    --- Markup
+                                                    < and >				- div element
+                                                    <"class" and >		- div with a class
+                                                    <"#id" and >		- div with an ID
+                                                    <"#id.class" and >	- div with an ID and a class
+            
+                                                    --- Further reading
+                                                    https://datatables.net/reference/option/dom
+                                                    --------------------------------------
+                                                */
+                                                "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                                                "<'row'<'col-sm-12'tr>>" +
+                                                "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                                            buttons: [
+                                                /*{
+                                                    extend:    'colvis',
+                                                    text:      'Column Visibility',
+                                                    titleAttr: 'Col visibility',
+                                                    className: 'mr-sm-3'
+                                                },*/
+                                                {
+                                                    extend: 'pdfHtml5',
+                                                    text: 'PDF',
+                                                    titleAttr: 'Generate PDF',
+                                                    className: 'btn-outline-danger btn-sm mr-1'
+                                                },
+                                                {
+                                                    extend: 'excelHtml5',
+                                                    text: 'Excel',
+                                                    titleAttr: 'Generate Excel',
+                                                    className: 'btn-outline-success btn-sm mr-1'
+                                                },
+                                                {
+                                                    extend: 'csvHtml5',
+                                                    text: 'CSV',
+                                                    titleAttr: 'Generate CSV',
+                                                    className: 'btn-outline-primary btn-sm mr-1'
+                                                },
+                                                {
+                                                    extend: 'copyHtml5',
+                                                    text: 'Copy',
+                                                    titleAttr: 'Copy to clipboard',
+                                                    className: 'btn-outline-primary btn-sm mr-1'
+                                                },
+                                                {
+                                                    extend: 'print',
+                                                    text: 'Print',
+                                                    titleAttr: 'Print Table',
+                                                    className: 'btn-outline-primary btn-sm'
+                                                }
+                                            ]
+                                        });
+                                }else{
+                                    alert("No Failed Ball yet!")
+                                }
+                            });
+                        }
 
                         function loadData(stDate, enDate) {
 

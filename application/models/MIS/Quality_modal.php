@@ -1219,15 +1219,10 @@ WHERE        (DateName BETWEEN CONVERT(DATETIME, '$Date1 00:00:00', 102) AND CON
     }
     public function get_tm_ball_forming($start_date, $end_date, $fc)
     {
-        return $this->db->select("DailyDate, Pass, Fail, FactoryCode, CheckedQty, PanelDMG, Bubble, Alignment, Corner, Touching, WrongArtWork, NozzleMove, Overlapping, OverLaping, Cavity, UnBondedPanels, TMRollNo, BGrade, 
-         LeakPuncture, Wrinkle, Moldmark, Dirty, Indent, Printing, OpenSeam")
-            ->from(' View__TM_Rpt_Ball_forming')
-            ->where('DailyDate >=', $start_date)
-            ->where('DailyDate <=', $end_date)
-            ->where('FactoryCode', $fc)
-            //     ->get_compiled_select();
-            ->get()
-            ->result();
+        return $this->db->query("SELECT        factoryCode, DateName, TotalChecked, TotalPass, MaterialDefect, SeamDefect, Fail, SeamOverlaping, Wrinkles, ExcessGlue, PressureMarks, AirBubble, TouchingPeelingOff, PrintMisalignment, WrongeArtwork, MoldMark, 
+        ColourShade, ValveNozzleMove, DShape, Oversize, UnderSize, OverWeight, UnderWeight, MissGlue
+FROM            dbo.view_TM_Forming_Proces
+WHERE        (DateName BETWEEN CONVERT(DATETIME, '$start_date 00:00:00', 102) AND CONVERT(DATETIME, '$end_date 00:00:00', 102)) AND (factoryCode = '$fc')")->result_array();
     }
 
     public function get_tm_ball_forming_sum($start_date, $end_date, $fc)

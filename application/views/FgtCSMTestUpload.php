@@ -4582,7 +4582,7 @@ if (!$this->session->has_userdata('user_id')) {
                             <div id="panel-1" class="panel">
                                 <div class="panel-hdr">
                                     <h2>
-                                        FGT Test Report</span>
+                                        FGT CSM Report</span>
                                     </h2>
                                 </div>
                                 <div class="card">
@@ -4617,7 +4617,7 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <th>Production Month</th>
                                                         <th>Test Type </th>
                                                         <th>Main Mat Color </th>
-                                                        <th>Printing Colors </th>
+                                                        <th>Model Name </th>
                                                         <th>Article No </th>
                                                         <th>Working No</th>
                                                         <th>Result </th>
@@ -4705,7 +4705,7 @@ if (!$this->session->has_userdata('user_id')) {
                                 var date1 = $("#date1").val();
                                 var date2 = $("#date2").val();
 
-                                url = '<?php echo base_url('LabController/getFGTTestDataForView'); ?>';
+                                url = '<?php echo base_url('LabController/getFGTTestDataForViewCSMRebound'); ?>';
                                 $.post(url, {
                                     'date1': date1,
                                     'date2': date2
@@ -4724,12 +4724,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                         <th>CoverMat</th>
                                                         <th>Backing</th>
                                                         <th>Bladder </th>
+                                                        <th>Pressure </th>
                                                         <th>Ball Type </th>
                                                         <th>FIFA Stamp </th>
                                                         <th>Production Month</th>
                                                         <th>Test Type </th>
                                                         <th>Main Mat Color </th>
-                                                        <th>Printing Colors </th>
+                                                        <th>Model Name </th>
                                                         <th>Article No </th>
                                                         <th>Working No</th>
                                                         <th>Result </th>
@@ -4755,12 +4756,13 @@ if (!$this->session->has_userdata('user_id')) {
                                                 <td>${element.CoverMat}</td>
                                                 <td>${element.Backing}</td>
                                                 <td>${element.Bladder}</td>
+                                                <td>${element.Pressure}</td>
                                                 <td>${element.BallType}</td>
                                                 <td>${element.Fifa_stump}</td>
                                                 <td>${element.ProductionMon}</td>
                                                 <td>${element.TestType}</td>
                                                 <td>${element.MainMatColor}</td>
-                                                <td>${element.PrintingColor}</td>
+                                                <td>${element.ModelName}</td>
                                                 <td>${element.Article}</td>
                                                 <td>${element.Working}</td>
                                                 <td>${element.Result}</td>
@@ -4867,57 +4869,59 @@ if (!$this->session->has_userdata('user_id')) {
                                 }, function(data, status) {
                                     if (data) {
 
-                                        $('#labNoFGT').html(data[0]['LabNo']);
-                                        $('#cssNoFGT').html(data[0]['CssNo']);
-                                        $('#receiveDateFGT').html(data[0]['Receiving_Date']);
-                                        $('#testingDataFGTS').html(data[0]['Testing_DateS']);
-                                        $('#testingDataFGTE').html(data[0]['Testing_DateE']);
-                                        $('#issueDateFGT').html(data[0]['Issue_Date']);
-                                        $('#environmentalCondFGT').html(data[0]['EnvironmentalC']);
-                                        $('#testAccToCatFGT').html(data[0]['TestAccToCat']);
-                                        $('#coverMatFGT').html(data[0]['CoverMat']);
-                                        $('#backingFGT').html(data[0]['Backing']);
-                                        $('#bladderFGT').html(data[0]['Bladder']);
-                                        $('#ballTypeFGT').html(data[0]['BallType']);
-                                        $('#fifaStumpFGT').html(data[0]['Fifa_stump']);
-                                        $('#prodMonthFGT').html(data[0]['ProductionMon']);
-                                        $('#testTypeFGT').html(data[0]['TestType']);
-                                        $('#mainMatColorFGT').html(data[0]['MainMatColor']);
-                                        $('#printingColorFGT').html(data[0]['PrintingColor']);
-                                        $('#acticleNoFGT').html(data[0]['Article']);
-                                        $('#workingNoFGT').html(data[0]['Working']);
-                                        $('#resultFGT').html(data[0]['Result']);
-                                        $('#testedbyFGt').html(data[0]['TestedBy']);
+                                        $('#labNoFGTCSM').html(data[0]['LabNo']);
+                                        $('#cssNoFGTCSM').html(data[0]['CssNo']);
+                                        $('#receiveDateFGTCSM').html(data[0]['Receiving_Date']);
+                                        $('#testingDataFGTSCSM').html(data[0]['Testing_DateS']);
+                                        $('#testingDataFGTECSM').html(data[0]['Testing_DateE']);
+                                        $('#issueDateFGTCSM').html(data[0]['Issue_Date']);
+                                        $('#environmentalCondFGTCSM').html(data[0]['EnvironmentalC']);
+                                        $('#testAccToCatFGTCSM').html(data[0]['TestAccToCat']);
+                                        $('#coverMatFGTCSM').html(data[0]['CoverMat']);
+                                        $('#backingFGTCSM').html(data[0]['Backing']);
+                                        $('#bladderFGTCSM').html(data[0]['Bladder']);
+                                        $('#pressureFGTCSM').html(data[0]['Pressure']);
+                                        $('#ballTypeFGTCSM').html(data[0]['BallType']);
+                                        $('#fifaStumpFGTCSM').html(data[0]['Fifa_stump']);
+                                        $('#prodMonthFGTCSM').html(data[0]['ProductionMon']);
+                                        $('#testTypeFGTCSM').html(data[0]['TestType']);
+                                        $('#mainMatColorFGTCSM').html(data[0]['MainMatColor']);
+                                        $('#modelNameFGTCSM').html(data[0]['ModelName']);
+                                        $('#printingColorFGTCSM').html(data[0]['PrintingColor']);
+                                        $('#acticleNoFGTCSM').html(data[0]['Article']);
+                                        $('#workingNoFGTCSM').html(data[0]['Working']);
+                                        $('#resultFGTCSM').html(data[0]['Result']);
+                                        $('#testedbyFGTCSM').html(data[0]['TestedBy']);
 
-                                        if (data[0]['LabNo'].includes('MS')) {
-                                            $("#testRequest").html("By Mr.Zeeshan Ikram - MS2@Forward.pk")
-                                        }else if(data[0]['LabNo'].includes('LFB') || data[0]['LabNo'].includes('lfb')){
-                                            $("#testRequest").html("By Ahmed Sb - Qc@forward.pk")
-                                        } else {
-                                            $("#testRequest").html("By Oman Sb - oman@forward.pk")
-                                        }
+                                        // if (data[0]['LabNo'].includes('MS')) {
+                                        //     $("#testRequestCSM").html("By Mr.Zeeshan Ikram - MS2@Forward.pk")
+                                        // }else if(data[0]['LabNo'].includes('LFB') || data[0]['LabNo'].includes('lfb')){
+                                        //     $("#testRequestCSM").html("By Ahmed Sb - Qc@forward.pk")
+                                        // } else {
+                                        //     $("#testRequestCSM").html("By Oman Sb - oman@forward.pk")
+                                        // }
                                         if (data[0]['freshImage']) {
-                                            $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].freshImage);
+                                            $("#freshImageFGTCSM").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].freshImage);
                                         } else {
-                                            $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                            $("#freshImageFGTCSM").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
                                         }
 
                                         if (data[0]['afterShooterImage']) {
-                                            $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].afterShooterImage);
+                                            $("#afterShooterImageFGTCSM").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].afterShooterImage);
                                         } else {
-                                            $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                            $("#afterShooterImageFGTCSM").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
                                         }
 
                                         if (data[0]['hydrolysisImage']) {
-                                            $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].hydrolysisImage);
+                                            $("#hydrolysisImageFGTCSM").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].hydrolysisImage);
                                         } else {
-                                            $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                            $("#hydrolysisImageFGTCSM").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
                                         }
 
                                         if (data[0]['drumImage']) {
-                                            $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].drumImage);
+                                            $("#drumImageFGTCSM").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].drumImage);
                                         } else {
-                                            $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                                            $("#drumImageFGTCSM").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
                                         }
 
                                         $.post(url2, {
@@ -4925,43 +4929,24 @@ if (!$this->session->has_userdata('user_id')) {
                                         }, function(data, status) {
                                             // console.log("details data",data);
                                             let html;
-                                            if (data) {
+                                            if (data != '') {
                                                 data.forEach((element, index) => {
-                                                    if (index == 12) {
-                                                        let mergedRow = '';
-                                                        mergedRow += element.Method + "," + element.Condition;
                                                         html += `<tr>
-                                                        <td style="padding:left: 2px">${element.Test}</td>
-                                                        <th style="text-align:center">` + mergedRow + `</th>
-                                                        <th style="text-align:center"></th>
-                                                        <th style="text-align:center">${element.Unit}</th>
-                                                        <th style="text-align:center">${element.Cat1}</th>
-                                                        <th style="text-align:center">${element.Cat2}</th>
-                                                        <th style="text-align:center">${element.Cat3}</th>
-                                                        <th style="text-align:center">${element.Min}</th>
-                                                        <th style="text-align:center">${element.Max}</th>
-                                                        <th style="text-align:center">${element.Remarks}</th>
-                                                    </tr>`
-                                                        // console.log("merged data", mergedRow);
-                                                    } else {
-                                                        html += `<tr>
-                                                            <td style="padding:left: 2px">${element.Test}</td>
-                                                            <th style="text-align:center">${element.Method }</th>
-                                                            <th style="text-align:center">${element.Condition}</th>
-                                                            <th style="text-align:center">${element.Unit}</th>
-                                                            <th style="text-align:center">${element.Cat1}</th>
-                                                            <th style="text-align:center">${element.Cat2}</th>
-                                                            <th style="text-align:center">${element.Cat3}</th>
+                                                            <td style="text-align:center">${element.Weight}</td>
+                                                            <th style="text-align:center">${element.Average}</th>
                                                             <th style="text-align:center">${element.Min}</th>
                                                             <th style="text-align:center">${element.Max}</th>
+                                                            <th style="text-align:center">${element.Diff}</th>
+                                                            <th style="text-align:center">${element.Deviation}</th>
+                                                            <th style="text-align:center">${element.Rebound}</th>
                                                             <th style="text-align:center">${element.Remarks}</th>
                                                         </tr>`
-                                                    }
+                                                    
                                                 })
-                                                $('#fgtTestDetails').html(html);
+                                                $('#fgtTestDetailsCSM').html(html);
                                             }
                                         });
-                                        $('#exampleModalFGTTesting').modal('toggle');
+                                        $('#exampleModalFGTTestingCSMRebound').modal('toggle');
 
 
 
@@ -11208,7 +11193,7 @@ if (!$this->session->has_userdata('user_id')) {
                 fd.append('afterShooterImage', aftershooterImage);
                 fd.append('hydrolysisImage', hydrolysisImage);
                 fd.append('drumImage', drumImage);
-                if (freshImage || aftershooterImage || hydrolysisImage || drumImage) {
+                // if (freshImage || aftershooterImage || hydrolysisImage || drumImage) {
                     $.ajax({
                         url: url,
                         type: 'post',
@@ -11252,22 +11237,22 @@ if (!$this->session->has_userdata('user_id')) {
                             }
                         }
                     });
-                } else {
-                    toastr["error"]("Please select any one images.")
-                    // alert("Failed to Upload File. Check your Excel file carefully and then Try Again");
-                    toastr.options = {
-                        "closeButton": true,
-                        "debug": false,
-                        "newestOnTop": true,
-                        "progressBar": true,
-                        "positionClass": "toast-top-right",
-                        "preventDuplicates": false,
-                        "onclick": null,
-                        "showDuration": "300",
-                        "timeOut": 0,
-                    }
+                // } else {
+                //     toastr["error"]("Please select any one images.")
+                //     // alert("Failed to Upload File. Check your Excel file carefully and then Try Again");
+                //     toastr.options = {
+                //         "closeButton": true,
+                //         "debug": false,
+                //         "newestOnTop": true,
+                //         "progressBar": true,
+                //         "positionClass": "toast-top-right",
+                //         "preventDuplicates": false,
+                //         "onclick": null,
+                //         "showDuration": "300",
+                //         "timeOut": 0,
+                //     }
 
-                }
+                // }
 
                 // let file_data =  
                 // var fd = new FormData();

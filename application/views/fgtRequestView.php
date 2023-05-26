@@ -205,6 +205,9 @@ if (!$this->session->has_userdata('user_id')) {
 
                     <!-- Model FGT TESTING HTML -->
                     <?php include('FGT_Models/fgtTestingModel.php') ?>
+                    <?php include('FGT_Models/fgtTestingAirlessMiniModel.php') ?>
+                    <?php include('FGT_Models/fgtTestingAdhesionModel.php') ?>
+                    <?php include('FGT_Models/fgtTestingCSMModel.php') ?>
                     <!-- End Model FGT TESTING  HTML -->
 
                     <br><br>
@@ -242,9 +245,10 @@ if (!$this->session->has_userdata('user_id')) {
                                             <button class="btn btn-primary float-right" id="addFGTModal">Add FGT Request</button>
 
                                             <ul class="nav nav-pills" role="tablist">
-                                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Pending</a></li>
+                                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1">Generated Requests</a></li>
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2">Aknowledged By Lab </a></li>
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3">Historical Requests </a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-4">FGT Requests Status</a></li>
                                             </ul>
 
                                             <div class="tab-content py-3">
@@ -292,16 +296,16 @@ if (!$this->session->has_userdata('user_id')) {
                                                                     <div class="col-md-3"><input class="form-control" type="date" id="date2" />
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                <select name="factoryCode" id="factoryCode" class="form-control">
-                                                    <option value="">Select Factory Code</option>
-                                                    <option value="B34002">B34002</option>
-                                                    <option value="B34003">B34003</option>
-                                                    <option value="B34004">B34004</option>
-                                                    <option value="B34005">B34005</option>
-                                                    <option value="B34006">B34006</option>
-                                                    <option value="B34007">B34007</option>
-                                                </select>
-                                            </div>
+                                                                        <select name="factoryCode" id="factoryCode" class="form-control">
+                                                                            <option value="">Select Factory Code</option>
+                                                                            <option value="B34002">B34002</option>
+                                                                            <option value="B34003">B34003</option>
+                                                                            <option value="B34004">B34004</option>
+                                                                            <option value="B34005">B34005</option>
+                                                                            <option value="B34006">B34006</option>
+                                                                            <option value="B34007">B34007</option>
+                                                                        </select>
+                                                                    </div>
                                                                     <div class="col-md-3"><button class="btn btn-primary" id="searchFGTtest">Search</button></div>
                                                                 </div>
                                                                 <div class="panel-container show m-2">
@@ -315,6 +319,28 @@ if (!$this->session->has_userdata('user_id')) {
                                                         </div>
                                                     </div>
 
+                                                </div>
+                                                <div class="tab-pane fade mt-2" id="tab_direction-4" role="tabpanel">
+                                                    <div class="row mx-4">
+                                                        <div class="col-md-2 mt-3">
+                                                            <label for="month">Select Month:</label>
+                                                            <input type="month" class="form-control" id="getmonth">
+                                                        </div>
+                                                        <div class="col-md-4 mt-3">
+
+                                                            <input type="button" value="Search" class="form-contorl mt-4" id="searchBtn">
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row" id="counterShow">
+
+                                                    </div>
+                                                    <div class="row p-2 mt-4">
+                                                        <div class="col-md-12" id="reportData">
+
+                                                        </div>
+
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -1489,7 +1515,7 @@ if (!$this->session->has_userdata('user_id')) {
     <script src="<?php echo base_url(); ?>/assets/js/statistics/easypiechart/easypiechart.bundle.js"></script>
     <script src="<?php echo base_url(); ?>/assets/js/datagrid/datatables/datatables.bundle.js"></script>
     <script src="<?php echo base_url() ?>assets/js/notifications/toastr/toastr.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $('#schedule').dataTable({
             responsive: true,
@@ -1980,6 +2006,10 @@ if (!$this->session->has_userdata('user_id')) {
             $("#articleNo").select2({
                 dropdownParent: $('#addFGTRequest')
             });
+
+            let currentDate = new Date().toJSON().substr(0, 7);
+            console.log(currentDate);
+            $('#getmonth').val(currentDate);
         };
 
 
@@ -2000,7 +2030,7 @@ if (!$this->session->has_userdata('user_id')) {
 
                     $('#size').val(data[0].ArtSize);
                     $('#backing').val(data[0].backing);
-                    
+
                     $('#ballType').val(data[0].BallType);
                     $('#mainMatCol').val(data[0].MainMaterialColour);
                     $('#coverMat').val(data[0].COvMatMaterial);
@@ -2524,6 +2554,739 @@ if (!$this->session->has_userdata('user_id')) {
             }
         }
 
+        // Dashboard Mini data user wise request handling
+        var TotalReq = [];
+        var pendingOrNoCssNoFGT = [];
+        var sendToLabOrAppliedCssNoFGT = [];
+        var acknowledgedByLabFGT = [];
+
+        var TotalReq3 = [];
+        var pendingOrNoCssNoFGT3 = [];
+        var sendToLabOrAppliedCssNoFGT3 = [];
+        var acknowledgedByLabFGT3 = [];
+
+        var user_id = <?php echo $user_id; ?>;
+        console.log("user id is ", user_id);
+
+        $(document).ready(function() {
+            let date = new Date().toJSON().substr(0, 10);
+            $("#start_date").val(date);
+            $("#end_date").val(date);
+
+            let currentDate = new Date().toJSON().substr(0, 7);
+            console.log(currentDate);
+            $('#getmonth').val(currentDate);
+
+
+            url = "<?php echo base_url('LabController/allFGTRequests'); ?>"
+            $.post(url, {
+                "search": false
+            }, function(data) {
+
+                // FGT Requests
+                // TotalReq = data.allFGTRequests;
+                data.allFGTRequests.filter(item => {
+                    if (item.userid == user_id) {
+                        TotalReq.push(item);
+                    }
+                    if (item.RequestStatus == null && item.userid == user_id) {
+                        pendingOrNoCssNoFGT.push(item)
+                    }
+                    if (item.RequestStatus == "Send to Lab" && item.userid == user_id) {
+                        sendToLabOrAppliedCssNoFGT.push(item)
+                    }
+                    if ((item.RequestStatus == "Acknowledge By Lab" && item.userid == user_id)) {
+                        acknowledgedByLabFGT.push(item)
+                    }
+                })
+                let html = `<div class="col-md-4">
+                                        </div>
+                                        <div class="col-md-4 detailsClick " id="allFGTRequests">
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 bg-primary rounded overflow-hidden position-relative text-white mb-g">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                            ${TotalReq.length}
+                                                            <small class="m-0 l-h-n "> <strong>Total FGT Requests </strong> </small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                        </div>
+
+                                        <div class="col-md-4 detailsClick " id="pendingOrNoCssNoFGT">
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 bg-warning rounded overflow-hidden position-relative text-white mb-g">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                            ${pendingOrNoCssNoFGT.length}
+                                                            <small class="m-0 l-h-n "> <strong>(No CSS No.) Requests </strong> </small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        
+
+                                        <div class="col-md-4 detailsClick" id="sendToLabOrAppliedCssNoFGT" >
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 bg-danger rounded overflow-hidden position-relative text-white mb-g" >
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                                                        ${sendToLabOrAppliedCssNoFGT.length}
+                                                            <small class="m-0 l-h-n"> <strong>(Applied CSS No./Send To Lab/Lab Pending) Requests</strong></small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-md-4 detailsClick" id="acknowledgedByLabFGT">
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3  rounded overflow-hidden position-relative text-white mb-g"
+                                                style="background-color:green">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                        ${acknowledgedByLabFGT.length}
+                                                            <small class="m-0 l-h-n"> <strong>(Aknowledged By Lab) Requests</strong></small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>`
+                $("#counterShow").html("");
+                $("#counterShow").html(html);
+
+
+                // // New Raw Material Requests
+                // // TotalReq3 = data.allNewRawMaterialRequests;
+                // data.allNewRawMaterialRequests.filter(item => {
+                //     if (item.userid == user_id) {
+                //         TotalReq3.push(item);
+                //     }
+                //     if (item.status == 'Pending' && item.userid == user_id) {
+                //         pendingOrNoCssNoFGT3.push(item)
+                //     }
+                //     if (item.status == "Send to Lab" && item.userid == user_id) {
+                //         sendToLabOrAppliedCssNoFGT3.push(item)
+                //     }
+                //     if (item.LabAcknowledge == "Acknowledged" && item.userid == user_id) {
+                //         acknowledgedByLabFGT3.push(item)
+                //     }
+                // })
+                // let html3 = `        <div class="col-md-4">
+                //                         </div>
+                //                         <div class="col-md-4 detailsClick3 " id="allNewRawMaterialRequests">
+                //                             <a href="javascript:void(0)">
+                //                                 <div class="p-3 bg-primary rounded overflow-hidden position-relative text-white mb-g">
+                //                                     <div class="">
+                //                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                //                                             ${TotalReq3.length}
+                //                                             <small class="m-0 l-h-n "> <strong>Total Raw Material Requests </strong> </small>
+                //                                         </h3>
+                //                                     </div>
+                //                                     <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                //                                 </div>
+                //                             </a>
+                //                         </div>
+                                        
+                //                         <div class="col-md-4">
+                //                         </div>
+
+                //                         <div class="col-md-4 detailsClick3 " id="pendingOrNoCssNoFGT3">
+                //                             <a href="javascript:void(0)">
+                //                                 <div class="p-3 bg-warning rounded overflow-hidden position-relative text-white mb-g">
+                //                                     <div class="">
+                //                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                //                                             ${pendingOrNoCssNoFGT3.length}
+                //                                             <small class="m-0 l-h-n "> <strong>(No CSS No.) Requests </strong> </small>
+                //                                         </h3>
+                //                                     </div>
+                //                                     <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                //                                 </div>
+                //                             </a>
+                //                         </div>
+                                        
+
+                //                         <div class="col-md-4 detailsClick3" id="sendToLabOrAppliedCssNoFGT3" >
+                //                             <a href="javascript:void(0)">
+                //                                 <div class="p-3 bg-danger rounded overflow-hidden position-relative text-white mb-g">
+                //                                     <div class="">
+                //                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                //                                         ${sendToLabOrAppliedCssNoFGT3.length}
+                //                                             <small class="m-0 l-h-n"> <strong>(Applied CSS No./Send To Lab/Lab Pending) Requests</strong></small>
+                //                                         </h3>
+                //                                     </div>
+                //                                     <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                //                                 </div>
+                //                             </a>
+                //                         </div>
+
+                //                         <div class="col-md-4 detailsClick3" id="acknowledgedByLabFGT3">
+                //                             <a href="javascript:void(0)">
+                //                                 <div class="p-3 rounded overflow-hidden position-relative text-white mb-g"
+                //                                 style="background-color:green">
+                //                                     <div class="">
+                //                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                //                                         ${acknowledgedByLabFGT3.length}
+                //                                             <small class="m-0 l-h-n"> <strong>(Aknowledged By Lab) Requests</strong></small>
+                //                                         </h3>
+                //                                     </div>
+                //                                     <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                //                                 </div>
+                //                             </a>
+                //                         </div>`
+                // $("#counterShow3").html("");
+                // $("#counterShow3").html(html3);
+
+            })
+
+
+        });
+
+        $("#counterShow").on('click', '.detailsClick', function(e) {
+            let id = $(this).attr('id');
+            // console.log(id)
+            let data;
+            let Title;
+            if (id == "allFGTRequests") {
+                data = TotalReq
+                title = "Total FGT Requests"
+            } else if (id == "pendingOrNoCssNoFGT") {
+                data = pendingOrNoCssNoFGT
+                title = "Pending/No CSS No. FGT Requests"
+            } else if (id == "sendToLabOrAppliedCssNoFGT") {
+                data = sendToLabOrAppliedCssNoFGT
+                title = "Applied CSS NO/Send To Lab/Lab Pending Requests"
+            } else if (id == "acknowledgedByLabFGT") {
+                data = acknowledgedByLabFGT
+                title = "Aknowledged By Lab Requests"
+            }
+
+            $("#reportData").html('')
+            // console.log(data);return;
+
+
+
+
+            let appendtable = '';
+            appendtable += `<h1 style="text-align:center;font-weight:bolder;border:1px solid black;padding:20px">${title}</h3>
+                                <table class="table table-bordered table-hover table-responsive table-striped w-100" id="OtReport">
+                                <thead class="bg-primary-200 text-light p-2">
+                                <tr>
+                                    <th class="h5">Request Date</th>
+                                    <th class="h5">Lab Aknowledged Date</th>
+                                    <th class="h5">CSS NO</th>
+                                    <th class="h5">Factory Code</th>
+                                    <th class="h5">Working No</th>
+                                    <th class="h5">Article No</th>
+                                    <th class="h5">Modal Name</th>
+                                    <th class="h5">Size</th>
+                                    <th class="h5">Ball Type</th>                  
+                                    <th class="h5">Main Material Color</th>
+                                    <th class="h5">Convert Mat</th>
+                                    <th class="h5">Backing</th>
+                                    <th class="h5">Bladder Details</th>
+                                    <th class="h5">Production Month</th>
+                                    <th class="h5">Printing Color</th>
+                                    <th class="h5">Panel Shape</th>
+                                    <th class="h5">Test Type</th>
+                                    <th class="h5">Deliever Qty</th>
+                                    <th class="h5">Any Info</th>
+                                    <th class="h5">Lab Status</th>
+                                    <th class="h5">CSS Status</th>
+                                    <th class="h5">Request Status</th>
+                                    <th class="h5">Generated By</th>`
+            if (id == 'acknowledgedByLabFGT') {
+
+                appendtable += `<th class="h5">Action</th>`
+            }
+
+            appendtable += `</tr>
+                                </thead>
+                                <tbody>`
+            data.forEach((element) => {
+                appendtable += `<tr>
+                            <td><span class="badge badge-info p-1">${element.Date != null ? element.Date.split("00:00:00")[0]: ''}</span></td>
+                            <td><span class="badge badge-info p-1">${element.labAcceptDate != null ? element.labAcceptDate.split("00:00:00")[0]: ''}</span></td>
+                            <td><span class="badge badge-warning p-1">${element.CssNO}</span></td>
+                            <td>${element.factoryCode}</td>
+                            <td>${element.WorkingNo}</td>
+                            <td>${element.Articleno}</td>
+                            <td>${element.ModelName}</td>
+                            <td>${element.Size}</td>
+                            <td>${element.BallType}</td>               
+                            <td>${element.mainmaterialColor}</td>
+                            <td><span>${element.Covermat}</span></td>
+                            <td><span>${element.backing}</span></td>
+                            <td><span> ${element.Bladderdetail} </span></td>
+                            <td><span> ${element.ProductionMonth} </span></td>
+                            <td><span> ${element.Printingcolor} </span></td>
+                            <td><span> ${element.panelShape} </span></td>
+                            <td><span> ${element.testype} </span></td>
+                            <td><span> ${element.deliverqty} </span></td>
+                            <td><span> ${element.additionalinfo} </span></td>
+                            <td><span class="badge badge-secondary p-1">${element.LabStatus == null ? `Pending` : `Aknowledged`} </span></td>
+                            <td><span class="badge badge-secondary p-1">${element.CsStatus == 1 ? `Applied Css` : `null`} </span></td>
+
+                            <td><span class="badge badge-warning p-1">${element.RequestStatus}</span></td>
+                            <td><span class="badge badge-danger p-1">${element.LoginName}</span></td>`
+
+                if (id == 'acknowledgedByLabFGT') {
+                    appendtable += `<td>
+                                    <button type="button" style="display: inline-block;" class="btn btn-warning btn-xs updatebtn2" id="" onclick="printFgt('${element.TID}', '${element.CssNO}')"><i class="fal fa-print" aria-hidden="true" ></i></button> &nbsp;
+                                    
+                                    </td>`
+                }
+
+                appendtable += `</tr>`;
+            })
+
+            appendtable += `</tbody>
+
+                                </table>`
+
+            $("#reportData").html(appendtable)
+            $('#OtReport').dataTable({
+                responsive: false,
+                lengthChange: false,
+                dom:
+                    /*	--- Layout Structure 
+                        --- Options
+                        l	-	length changing input control
+                        f	-	filtering input
+                        t	-	The table!
+                        i	-	Table information summary
+                        p	-	pagination control
+                        r	-	processing display element
+                        B	-	buttons
+                        R	-	ColReorder
+                        S	-	Select
+
+                        --- Markup
+                        < and >				- div element
+                        <"class" and >		- div with a class
+                        <"#id" and >		- div with an ID
+                        <"#id.class" and >	- div with an ID and a class
+
+                        --- Further reading
+                        https://datatables.net/reference/option/dom
+                        --------------------------------------
+                     */
+                    "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                buttons: [
+                    /*{
+                        extend:    'colvis',
+                        text:      'Column Visibility',
+                        titleAttr: 'Col visibility',
+                        className: 'mr-sm-3'
+                    },*/
+                    {
+                        extend: 'pdfHtml5',
+                        text: 'PDF',
+                        titleAttr: 'Generate PDF',
+                        className: 'btn-outline-danger btn-sm mr-1'
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Excel',
+                        titleAttr: 'Generate Excel',
+                        className: 'btn-outline-success btn-sm mr-1'
+                    },
+                    {
+                        extend: 'csvHtml5',
+                        text: 'CSV',
+                        titleAttr: 'Generate CSV',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'copyHtml5',
+                        text: 'Copy',
+                        titleAttr: 'Copy to clipboard',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Print',
+                        titleAttr: 'Print Table',
+                        className: 'btn-outline-primary btn-sm'
+                    }
+                ]
+            });
+        })
+
+
+        // $("#counterShow3").on('click', '.detailsClick3', function(e) {
+        //     let id = $(this).attr('id');
+        //     // console.log(id)
+        //     let data;
+        //     let Title;
+        //     if (id == "allNewRawMaterialRequests") {
+        //         data = TotalReq3
+        //         title = "Total New Raw Material Requests"
+        //     } else if (id == "pendingOrNoCssNoFGT3") {
+        //         data = pendingOrNoCssNoFGT3
+        //         title = "Pending/No CSS No. Raw Material Requests"
+        //     } else if (id == "sendToLabOrAppliedCssNoFGT3") {
+        //         data = sendToLabOrAppliedCssNoFGT3
+        //         title = "Applied CSS NO/Send To Lab/Lab Pending Requests"
+        //     } else if (id == "acknowledgedByLabFGT3") {
+        //         data = acknowledgedByLabFGT3
+        //         title = "Aknowledged By Lab Requests"
+        //     }
+
+        //     $("#reportData3").html('')
+        //     console.log(data);
+
+
+
+
+        //     let appendtable = '';
+        //     appendtable += `<h1 style="text-align:center;font-weight:bolder;border:1px solid black;padding:20px">${title}</h3>
+        //                         <table class="table table-bordered table-hover table-responsive table-striped w-100" id="OtReport3">
+        //                         <thead class="bg-primary-200 text-light p-2">
+        //                         <tr>
+        //                             <th class="h5">CSS No</th>
+        //                             <th class="h5">Request Generated Date</th>
+        //                             <th class="h5">Completion Date</th>
+        //                             <th class="h5">Due Date</th>
+        //                             <th class="h5">Factory Code</th>
+        //                             <th class="h5">Item Name</th>
+        //                             <th class="h5">Lab Status</th>
+        //                             <th class="h5">Material Type</th>
+        //                             <th class="h5">PO No</th>
+        //                             <th class="h5">Quantity Issued</th>
+        //                             <th class="h5">Quantity Recieved</th>
+        //                             <th class="h5">Quantity Retained</th>
+        //                             <th class="h5">Remarks</th>
+        //                             <th class="h5">Status</th>
+        //                             <th class="h5">Supplier Name</th>
+        //                             <th class="h5">Test Type</th>
+        //                             <th class="h5">Material Type</th>
+        //                             <th class="h5">Test Name</th>
+        //                             <th class="h5">Lab Acknowledge</th>
+        //                             <th class="h5">Generated By</th>
+        //                             <th class="h5">Receiver Signature</th>
+        //                             <th class="h5">Sender Signature</th>
+        //                             <th class="h5">Undo Request</th>`
+        //     if (id == 'acknowledgedByLabFGT3') {
+        //         appendtable += `<th class="h5">Action</th>`
+
+        //     }
+        //     appendtable += `</tr>
+        //                         </thead>
+        //                         <tbody>`
+        //     data.forEach((element) => {
+        //         appendtable += `<tr>
+        //                     <td><span class="badge badge-info p-1">${element.CSSNo != null ? element.CSSNo : ''}</span></td>
+        //                     <td><span class="badge badge-warning p-1">${element.Date != null ? element.Date.split("00:00:00")[0] : ''}</span></td>
+        //                     <td><span class="badge badge-warning p-1">${element.comDate != null ? element.comDate.split("00:00:00")[0] : ''}</span></td>
+        //                     <td><span class="badge badge-warning p-1">${element.dueDate != null ? element.dueDate.split("00:00:00")[0] : ''}</span></td>
+        //                     <td>${element.FactoryCode}</td>
+        //                     <td>${element.itemName}</td>
+        //                     <td><span class="badge badge-warning p-1">${element.LabStatus == 1 ? `Send To Lab` : ''}</span></td>
+        //                     <td>${element.Type}</td>
+        //                     <td>${element.Po}</td>
+        //                     <td>${element.Quantity}</td>
+        //                     <td>${element.qtyRece}</td>               
+        //                     <td>${element.qtyRetain}</td>
+        //                     <td><span>${element.remarks}</span></td>
+        //                     <td><span class="badge badge-danger p-1"> ${element.status == "Pending" ? `Pending` : element.status == "Send to Lab" ? `Send to Lab` : `Locked`} </span></td>
+        //                     <td><span> ${element.SupplierNam} </span></td>
+        //                     <td><span> ${element.TestType} </span></td>
+        //                     <td><span> ${element.Type} </span></td>
+        //                     <td><span> ${element.comptest} </span></td>
+        //                     <td><span class="badge badge-info p-1"> ${element.LabAcknowledge == "Acknowledged" ? `Acknowledged`: ``} </span></td>
+        //                     <td><span> ${element.LoginName} </span></td>
+        //                     <td><span> ${element.receSign} </span></td>
+        //                     <td><span> ${element.senderSign} </span></td>
+
+        //                     <td>
+        //                     <button type="button" class="btn btn-danger btn-xs deleteBtn waves-effect waves-themed" id="undoBtn.${element.Requestid}"
+        //                     ><i class="fal fa-delete" aria-hidden="true"></i>Delete</button>
+        //                     </td>`
+        //         if (id == 'acknowledgedByLabFGT3') {
+
+        //             appendtable += `<td>
+        //                         <button type="button" class="btn btn-warning btn-xs customprintButton" id="btnPrint.${element.Requestid}"><i class="fal fa-print" aria-hidden="true"></i></button>
+        //                         </td>`
+        //         }
+        //         appendtable += `</tr>`
+        //     })
+
+        //     appendtable += `</tbody>
+
+        //                         </table>`
+
+        //     $("#reportData3").html(appendtable)
+        //     $('#OtReport3').dataTable({
+        //         responsive: false,
+        //         lengthChange: false,
+        //         dom:
+        //             /*	--- Layout Structure 
+        //                 --- Options
+        //                 l	-	length changing input control
+        //                 f	-	filtering input
+        //                 t	-	The table!
+        //                 i	-	Table information summary
+        //                 p	-	pagination control
+        //                 r	-	processing display element
+        //                 B	-	buttons
+        //                 R	-	ColReorder
+        //                 S	-	Select
+
+        //                 --- Markup
+        //                 < and >				- div element
+        //                 <"class" and >		- div with a class
+        //                 <"#id" and >		- div with an ID
+        //                 <"#id.class" and >	- div with an ID and a class
+
+        //                 --- Further reading
+        //                 https://datatables.net/reference/option/dom
+        //                 --------------------------------------
+        //              */
+        //             "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+        //             "<'row'<'col-sm-12'tr>>" +
+        //             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+        //         buttons: [
+        //             /*{
+        //                 extend:    'colvis',
+        //                 text:      'Column Visibility',
+        //                 titleAttr: 'Col visibility',
+        //                 className: 'mr-sm-3'
+        //             },*/
+        //             {
+        //                 extend: 'pdfHtml5',
+        //                 text: 'PDF',
+        //                 titleAttr: 'Generate PDF',
+        //                 className: 'btn-outline-danger btn-sm mr-1'
+        //             },
+        //             {
+        //                 extend: 'excelHtml5',
+        //                 text: 'Excel',
+        //                 titleAttr: 'Generate Excel',
+        //                 className: 'btn-outline-success btn-sm mr-1'
+        //             },
+        //             {
+        //                 extend: 'csvHtml5',
+        //                 text: 'CSV',
+        //                 titleAttr: 'Generate CSV',
+        //                 className: 'btn-outline-primary btn-sm mr-1'
+        //             },
+        //             {
+        //                 extend: 'copyHtml5',
+        //                 text: 'Copy',
+        //                 titleAttr: 'Copy to clipboard',
+        //                 className: 'btn-outline-primary btn-sm mr-1'
+        //             },
+        //             {
+        //                 extend: 'print',
+        //                 text: 'Print',
+        //                 titleAttr: 'Print Table',
+        //                 className: 'btn-outline-primary btn-sm'
+        //             }
+        //         ]
+        //     });
+        // })
+
+        // Search By Month
+        $('#searchBtn').click(function() {
+            $("#reportData").html('');
+            $("#reportData3").html('');
+            getmonth = $('#getmonth').val();
+            console.log(getmonth);
+
+            TotalReq.length = 0;
+            pendingOrNoCssNoFGT.length = 0;
+            sendToLabOrAppliedCssNoFGT.length = 0;
+            acknowledgedByLabFGT.length = 0;
+
+            TotalReq3.length = 0;
+            pendingOrNoCssNoFGT3.length = 0;
+            sendToLabOrAppliedCssNoFGT3.length = 0;
+            acknowledgedByLabFGT3.length = 0;
+
+
+            url = "<?php echo base_url('LabController/allFGTRequests'); ?>"
+            $.post(url, {
+                "getMonth": getmonth,
+                "search": true
+            }, function(data) {
+
+                // FGT Requests
+                data.allFGTRequests.filter(item => {
+                    if (item.RequestStatus == null && item.userid == user_id) {
+                        TotalReq.push(item);
+                        pendingOrNoCssNoFGT.push(item)
+                    }
+                    if (item.RequestStatus == "Send to Lab" && item.userid == user_id) {
+                        TotalReq.push(item);
+                        sendToLabOrAppliedCssNoFGT.push(item)
+                    }
+                    if ((item.RequestStatus == "Acknowledge By Lab" && item.userid == user_id)) {
+                        TotalReq.push(item);
+                        acknowledgedByLabFGT.push(item)
+                    }
+                })
+                let html = `<div class="col-md-4">
+                                        </div>
+                                        <div class="col-md-4 detailsClick" id="allFGTRequests">
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 bg-primary rounded overflow-hidden position-relative text-white mb-g">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                            ${TotalReq.length}
+                                                            <small class="m-0 l-h-n "> <strong>Total FGT Requests </strong> </small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4">
+                                        </div>
+
+                                        <div class="col-md-4 detailsClick" id="pendingOrNoCssNoFGT">
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 bg-warning rounded overflow-hidden position-relative text-white mb-g">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                            ${pendingOrNoCssNoFGT.length}
+                                                            <small class="m-0 l-h-n "> <strong>(No CSS No.) Requests </strong> </small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        
+
+                                        <div class="col-md-4 detailsClick" id="sendToLabOrAppliedCssNoFGT" >
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3 bg-danger rounded overflow-hidden position-relative text-white mb-g" >
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                                                        ${sendToLabOrAppliedCssNoFGT.length}
+                                                            <small class="m-0 l-h-n"> <strong>(Applied CSS No./Send To Lab/Lab Pending) Requests</strong></small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-md-4 detailsClick" id="acknowledgedByLabFGT">
+                                            <a href="javascript:void(0)">
+                                                <div class="p-3  rounded overflow-hidden position-relative text-white mb-g"
+                                                style="background-color:green">
+                                                    <div class="">
+                                                        <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                                                        ${acknowledgedByLabFGT.length}
+                                                            <small class="m-0 l-h-n"> <strong>(Aknowledged By Lab) Requests</strong></small>
+                                                        </h3>
+                                                    </div>
+                                                    <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                                                </div>
+                                            </a>
+                                        </div>`
+                $("#counterShow").html("");
+                $("#counterShow").html(html);
+
+
+                // // New Raw Material Requests
+                // data.allNewRawMaterialRequests.filter(item => {
+                //     if (item.status == 'Pending' && item.userid == user_id) {
+                //         TotalReq3.push(item);
+                //         pendingOrNoCssNoFGT3.push(item)
+                //     }
+                //     if (item.status == "Send to Lab" && item.userid == user_id) {
+                //         TotalReq3.push(item);
+                //         sendToLabOrAppliedCssNoFGT3.push(item)
+                //     }
+                //     if (item.LabAcknowledge == "Acknowledged" && item.userid == user_id) {
+                //         TotalReq3.push(item);
+                //         acknowledgedByLabFGT3.push(item)
+                //     }
+                // })
+                // let html3 = `        <div class="col-md-4">
+                //                         </div>
+                //                         <div class="col-md-4 detailsClick3" id="allNewRawMaterialRequests">
+                //                             <a href="javascript:void(0)">
+                //                                 <div class="p-3 bg-primary rounded overflow-hidden position-relative text-white mb-g">
+                //                                     <div class="">
+                //                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                //                                             ${TotalReq3.length}
+                //                                             <small class="m-0 l-h-n "> <strong>Total Raw Material Requests </strong> </small>
+                //                                         </h3>
+                //                                     </div>
+                //                                     <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                //                                 </div>
+                //                             </a>
+                //                         </div>
+                                        
+                //                         <div class="col-md-4">
+                //                         </div>
+
+                //                         <div class="col-md-4 detailsClick3" id="pendingOrNoCssNoFGT3">
+                //                             <a href="javascript:void(0)">
+                //                                 <div class="p-3 bg-warning rounded overflow-hidden position-relative text-white mb-g">
+                //                                     <div class="">
+                //                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                //                                             ${pendingOrNoCssNoFGT3.length}
+                //                                             <small class="m-0 l-h-n "> <strong>(No CSS No.) Requests </strong> </small>
+                //                                         </h3>
+                //                                     </div>
+                //                                     <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                //                                 </div>
+                //                             </a>
+                //                         </div>
+                                        
+
+                //                         <div class="col-md-4 detailsClick3" id="sendToLabOrAppliedCssNoFGT3" >
+                //                             <a href="javascript:void(0)">
+                //                                 <div class="p-3 bg-danger rounded overflow-hidden position-relative text-white mb-g">
+                //                                     <div class="">
+                //                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
+
+                //                                         ${sendToLabOrAppliedCssNoFGT3.length}
+                //                                             <small class="m-0 l-h-n"> <strong>(Applied CSS No./Send To Lab/Lab Pending) Requests</strong></small>
+                //                                         </h3>
+                //                                     </div>
+                //                                     <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                //                                 </div>
+                //                             </a>
+                //                         </div>
+
+                //                         <div class="col-md-4 detailsClick3" id="acknowledgedByLabFGT3">
+                //                             <a href="javascript:void(0)">
+                //                                 <div class="p-3 rounded overflow-hidden position-relative text-white mb-g"
+                //                                 style="background-color:green">
+                //                                     <div class="">
+                //                                         <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                //                                         ${acknowledgedByLabFGT3.length}
+                //                                             <small class="m-0 l-h-n"> <strong>(Aknowledged By Lab) Requests</strong></small>
+                //                                         </h3>
+                //                                     </div>
+                //                                     <i class="fal fa-futbol position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+                //                                 </div>
+                //                             </a>
+                //                         </div>`
+                // $("#counterShow3").html("");
+                // $("#counterShow3").html(html3);
+            })
+        })
+
         function printFgt(TID, CssNo) {
             url1 = '<?php echo base_url('LabController/getFGTTestReqHead'); ?>'
             url2 = '<?php echo base_url('LabController/getFGTTestReqDetails'); ?>'
@@ -2534,86 +3297,254 @@ if (!$this->session->has_userdata('user_id')) {
                 function(data, status) {
                     if (data != '') {
                         returnedTID = data[0]['TID'];
-                        $('#labNoFGT').html(data[0]['LabNo']);
-                        $('#cssNoFGT').html(data[0]['CssNo']);
-                        $('#receiveDateFGT').html(data[0]['Receiving_Date']);
-                        $('#testingDataFGTS').html(data[0]['Testing_DateS']);
-                        $('#testingDataFGTE').html(data[0]['Testing_DateE']);
-                        $('#issueDateFGT').html(data[0]['Issue_Date']);
-                        $('#environmentalCondFGT').html(data[0]['EnvironmentalC']);
-                        $('#testAccToCatFGT').html(data[0]['TestAccToCat']);
-                        $('#coverMatFGT').html(data[0]['CoverMat']);
-                        $('#backingFGT').html(data[0]['Backing']);
-                        $('#bladderFGT').html(data[0]['Bladder']);
-                        $('#ballTypeFGT').html(data[0]['BallType']);
-                        $('#fifaStumpFGT').html(data[0]['Fifa_stump']);
-                        $('#prodMonthFGT').html(data[0]['ProductionMon']);
-                        $('#testTypeFGT').html(data[0]['TestType']);
-                        $('#mainMatColorFGT').html(data[0]['MainMatColor']);
-                        $('#printingColorFGT').html(data[0]['PrintingColor']);
-                        $('#acticleNoFGT').html(data[0]['Article']);
-                        $('#workingNoFGT').html(data[0]['Working']);
-                        $('#resultFGT').html(data[0]['Result']);
-                        $('#testedbyFGt').html(data[0]['TestedBy']);
+                        if (data[0]['FC'] == 'B34006') { //Airless Mini Formate
+                            $('#labNoFGTAirlessMini').html(data[0]['LabNo']);
+                            $('#cssNoFGTAirlessMini').html(data[0]['CssNo']);
+                            $('#receiveDateFGTAirlessMini').html(data[0]['Receiving_Date']);
+                            $('#testingDataFGTSAirlessMini').html(data[0]['Testing_DateS']);
+                            $('#testingDataFGTEAirlessMini').html(data[0]['Testing_DateE']);
+                            $('#issueDateFGTAirlessMini').html(data[0]['Issue_Date']);
+                            $('#environmentalCondFGTAirlessMini').html(data[0]['EnvironmentalC']);
+                            $('#testAccToCatFGTAirlessMini').html(data[0]['TestAccToCat']);
+                            $('#coverMatFGTAirlessMini').html(data[0]['CoverMat']);
+                            $('#backingFGTAirlessMini').html(data[0]['Backing']);
+                            $('#bladderFGTAirlessMini').html(data[0]['Bladder']);
+                            $('#ballTypeFGTAirlessMini').html(data[0]['BallType']);
+                            $('#fifaStumpFGTAirlessMini').html(data[0]['Fifa_stump']);
+                            $('#prodMonthFGTAirlessMini').html(data[0]['ProductionMon']);
+                            $('#testTypeFGTAirlessMini').html(data[0]['TestType']);
+                            $('#mainMatColorFGTAirlessMini').html(data[0]['MainMatColor']);
+                            $('#printingColorFGTAirlessMini').html(data[0]['PrintingColor']);
+                            $('#modelNameFGTAirlessMini').html(data[0]['ModelName']);
+                            $('#acticleNoFGTAirlessMini').html(data[0]['Article']);
+                            $('#workingNoFGTAirlessMini').html(data[0]['Working']);
+                            $('#resultFGTAirlessMini').html(data[0]['Result']);
+                            $('#testedbyFGtAirlessMini').html(data[0]['TestedBy']);
+                            if (data[0]['freshImage']) {
+                                $("#freshImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].freshImage);
+                            } else {
+                                $("#freshImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                            }
 
-                        if (data[0]['LabNo'].includes('MS')) {
-                            $("#testRequest").html("By Mr.Zeeshan Ikram - MS2@Forward.pk")
-                        } else {
-                            $("#testRequest").html("By Oman Sb - oman@forward.pk")
-                        }
+                            if (data[0]['afterShooterImage']) {
+                                $("#afterShooterImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].afterShooterImage);
+                            } else {
+                                $("#afterShooterImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                            }
 
-                        if (data[0]['freshImage']) {
-                            $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].freshImage);
-                        } else {
-                            $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                        }
+                            if (data[0]['hydrolysisImage']) {
+                                $("#hydrolysisImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].hydrolysisImage);
+                            } else {
+                                $("#hydrolysisImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                            }
 
-                        if (data[0]['afterShooterImage']) {
-                            $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].afterShooterImage);
-                        } else {
-                            $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                        }
-
-                        if (data[0]['hydrolysisImage']) {
-                            $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].hydrolysisImage);
-                        } else {
-                            $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                        }
-
-                        if (data[0]['drumImage']) {
-                            $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].drumImage);
-                        } else {
-                            $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
-                        }
-
-                        $.post(url2, {
-                            TID: returnedTID
-                        }, function(data, status) {
-                            // console.log("details data",data);
-                            let html;
-                            if (data) {
-                                data.forEach((element, index) => {
-                                    if (index == 12) {
-                                        let mergedRow = '';
-                                        mergedRow += element.Method + "," + element.Condition;
+                            if (data[0]['drumImage']) {
+                                $("#drumImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].drumImage);
+                            } else {
+                                $("#drumImageFGTAirlessMini").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                            }
+                            $.post(url2, {
+                                TID: returnedTID
+                            }, function(data, status) {
+                                // console.log("details data",data);
+                                let html;
+                                if (data) {
+                                    data.forEach((element, index) => {
                                         html += `<tr>
-                                        <td style="padding:left: 2px">${element.Test}</td>
-                                        <th style="text-align:center">` + mergedRow + `</th>
-                                        <th style="text-align:center"></th>
-                                        <th style="text-align:center">${element.Unit}</th>
-                                        <th style="text-align:center">${element.Cat1}</th>
-                                        <th style="text-align:center">${element.Cat2}</th>
-                                        <th style="text-align:center">${element.Cat3}</th>
-                                        <th style="text-align:center">${element.Min}</th>
-                                        <th style="text-align:center">${element.Max}</th>
-                                        <th style="text-align:center">${element.Remarks}</th>
-                                    </tr>`
-                                        // console.log("merged data", mergedRow);
-                                    } else {
+                                                <td style="padding:left: 2px">${element.Test}</td>
+                                                <th style="text-align:center">${element.Method }</th>
+                                                <th style="text-align:center">${element.Condition}</th>
+                                                <th style="text-align:center">${element.Unit}</th>
+                                                <th style="text-align:center">${element.AirlessMiniSoccerball}</th>
+                                                <th style="text-align:center">${element.Ball1}</th>
+                                                <th style="text-align:center">${element.Ball2}</th>
+                                                <th style="text-align:center">${element.Ball3}</th>
+                                                <th style="text-align:center">${element.Ball4}</th>
+                                                <th style="text-align:center">${element.Ball5}</th>
+                                        </tr>`
+
+                                    })
+                                    $('#fgtTestDetailsAirlessMini').html(html);
+                                }
+                            });
+                            $('#exampleModalFGTAirlessMiniTesting').modal('toggle');
+                        } else if (data[0]['Type'] == 'Adhesion test') { //For FGT Adhesion test
+                            $('#testNoFGTAdhesion').html(data[0]['TestNo']);
+                            $('#dateFGTAdhesion').html(data[0]['Testing_DateS']);
+                            $('#RecDateFGTAdhesion').html(data[0]['Receiving_Date']);
+                            $('#cssNoFGTAdhesion').html(data[0]['CssNo']);
+                            $('#articleNoFGTAdhesion').html(data[0]['Article']);
+                            $('#articleNameFGTAdhesion').html(data[0]['ArticleName']);
+                            $('#POFGTAdhesion').html(data[0]['PONo']);
+                            $('#resultFGTAdhesion').html(data[0]['Result']);
+                            $('#testedByFGTAdhesion').html(data[0]['TestedBy']);
+                            $.post(url2, {
+                                TID: returnedTID
+                            }, function(data, status) {
+                                // console.log("details data",data);
+                                let html;
+                                if (data) {
+                                    data.forEach((element, index) => {
                                         html += `<tr>
+                                                <td style="padding:left: 2px">${element.AdhesionDate}</td>
+                                                <th style="text-align:center">${element.BatchReference}</th>
+                                                <th style="text-align:center">${element.ArticleNo}</th>
+                                                <th style="text-align:center">${element.Standard}</th>
+                                                <th style="text-align:center">${element.MaxForce}</th>
+                                                <th style="text-align:center">${element.AvgForce}</th>
+                                                <th style="text-align:center">${element.Comments}</th>
+                                        </tr>`
+
+                                    })
+                                    $('#fgtTestDetailsAdhesion').html(html);
+                                }
+                            });
+                            $('#fgtTestingAdhesionModel').modal('toggle');
+                        } else if (data[0]['Type'] == 'CSM Rebound') { // For FGT CSM Rebound
+                            $('#labNoFGTCSM').html(data[0]['LabNo']);
+                            $('#cssNoFGTCSM').html(data[0]['CssNo']);
+                            $('#receiveDateFGTCSM').html(data[0]['Receiving_Date']);
+                            $('#testingDataFGTSCSM').html(data[0]['Testing_DateS']);
+                            $('#testingDataFGTECSM').html(data[0]['Testing_DateE']);
+                            $('#issueDateFGTCSM').html(data[0]['Issue_Date']);
+                            $('#environmentalCondFGTCSM').html(data[0]['EnvironmentalC']);
+                            $('#testAccToCatFGTCSM').html(data[0]['TestAccToCat']);
+                            $('#coverMatFGTCSM').html(data[0]['CoverMat']);
+                            $('#backingFGTCSM').html(data[0]['Backing']);
+                            $('#bladderFGTCSM').html(data[0]['Bladder']);
+                            $('#pressureFGTCSM').html(data[0]['Pressure']);
+                            $('#ballTypeFGTCSM').html(data[0]['BallType']);
+                            $('#fifaStumpFGTCSM').html(data[0]['Fifa_stump']);
+                            $('#prodMonthFGTCSM').html(data[0]['ProductionMon']);
+                            $('#testTypeFGTCSM').html(data[0]['TestType']);
+                            $('#mainMatColorFGTCSM').html(data[0]['MainMatColor']);
+                            $('#modelNameFGTCSM').html(data[0]['ModelName']);
+                            $('#printingColorFGTCSM').html(data[0]['PrintingColor']);
+                            $('#acticleNoFGTCSM').html(data[0]['Article']);
+                            $('#workingNoFGTCSM').html(data[0]['Working']);
+                            $('#resultFGTCSM').html(data[0]['Result']);
+                            $('#testedbyFGTCSM').html(data[0]['TestedBy']);
+                            // if (data[0]['LabNo'].includes('MS')) {
+                            //     $("#testRequestCSM").html("By Mr.Zeeshan Ikram - MS2@Forward.pk")
+                            // }else if(data[0]['LabNo'].includes('LFB') || data[0]['LabNo'].includes('lfb')){
+                            //     $("#testRequestCSM").html("By Ahmed Sb - Qc@forward.pk")
+                            // } else {
+                            //     $("#testRequestCSM").html("By Oman Sb - oman@forward.pk")
+                            // }
+                            if (data[0]['freshImage']) {
+                                $("#freshImageFGTCSM").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].freshImage);
+                            } else {
+                                $("#freshImageFGTCSM").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                            }
+
+                            if (data[0]['afterShooterImage']) {
+                                $("#afterShooterImageFGTCSM").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].afterShooterImage);
+                            } else {
+                                $("#afterShooterImageFGTCSM").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                            }
+
+                            if (data[0]['hydrolysisImage']) {
+                                $("#hydrolysisImageFGTCSM").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].hydrolysisImage);
+                            } else {
+                                $("#hydrolysisImageFGTCSM").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                            }
+
+                            if (data[0]['drumImage']) {
+                                $("#drumImageFGTCSM").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].drumImage);
+                            } else {
+                                $("#drumImageFGTCSM").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                            }
+                            $.post(url2, {
+                                TID: returnedTID
+                            }, function(data, status) {
+                                // console.log("details data",data);
+                                let html;
+                                if (data != '') {
+                                    data.forEach((element, index) => {
+                                        html += `<tr>
+                                                            <td style="text-align:center">${element.Weight}</td>
+                                                            <th style="text-align:center">${element.Average}</th>
+                                                            <th style="text-align:center">${element.Min}</th>
+                                                            <th style="text-align:center">${element.Max}</th>
+                                                            <th style="text-align:center">${element.Diff}</th>
+                                                            <th style="text-align:center">${element.Deviation}</th>
+                                                            <th style="text-align:center">${element.Rebound}</th>
+                                                            <th style="text-align:center">${element.Remarks}</th>
+                                                        </tr>`
+
+                                    })
+                                    $('#fgtTestDetailsCSM').html(html);
+                                }
+                            });
+                            $('#exampleModalFGTTestingCSMRebound').modal('toggle');
+
+                        } else {
+                            $('#labNoFGT').html(data[0]['LabNo']);
+                            $('#cssNoFGT').html(data[0]['CssNo']);
+                            $('#receiveDateFGT').html(data[0]['Receiving_Date']);
+                            $('#testingDataFGTS').html(data[0]['Testing_DateS']);
+                            $('#testingDataFGTE').html(data[0]['Testing_DateE']);
+                            $('#issueDateFGT').html(data[0]['Issue_Date']);
+                            $('#environmentalCondFGT').html(data[0]['EnvironmentalC']);
+                            $('#testAccToCatFGT').html(data[0]['TestAccToCat']);
+                            $('#coverMatFGT').html(data[0]['CoverMat']);
+                            $('#backingFGT').html(data[0]['Backing']);
+                            $('#bladderFGT').html(data[0]['Bladder']);
+                            $('#ballTypeFGT').html(data[0]['BallType']);
+                            $('#fifaStumpFGT').html(data[0]['Fifa_stump']);
+                            $('#prodMonthFGT').html(data[0]['ProductionMon']);
+                            $('#testTypeFGT').html(data[0]['TestType']);
+                            $('#mainMatColorFGT').html(data[0]['MainMatColor']);
+                            $('#printingColorFGT').html(data[0]['PrintingColor']);
+                            $('#acticleNoFGT').html(data[0]['Article']);
+                            $('#workingNoFGT').html(data[0]['Working']);
+                            $('#resultFGT').html(data[0]['Result']);
+                            $('#testedbyFGt').html(data[0]['TestedBy']);
+
+                            if (data[0]['LabNo'].includes('MS')) {
+                                $("#testRequest").html("By Mr.Zeeshan Ikram - MS2@Forward.pk")
+                            } else {
+                                $("#testRequest").html("By Oman Sb - oman@forward.pk")
+                            }
+
+                            if (data[0]['freshImage']) {
+                                $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].freshImage);
+                            } else {
+                                $("#freshImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                            }
+
+                            if (data[0]['afterShooterImage']) {
+                                $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].afterShooterImage);
+                            } else {
+                                $("#afterShooterImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                            }
+
+                            if (data[0]['hydrolysisImage']) {
+                                $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].hydrolysisImage);
+                            } else {
+                                $("#hydrolysisImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                            }
+
+                            if (data[0]['drumImage']) {
+                                $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/Fgt/' + data[0].drumImage);
+                            } else {
+                                $("#drumImageFGT").attr('src', '<?php echo base_url(); ?>assets/img/favicon/apple-touch-icon1.png');
+                            }
+
+                            $.post(url2, {
+                                TID: returnedTID
+                            }, function(data, status) {
+                                // console.log("details data",data);
+                                let html;
+                                if (data) {
+                                    data.forEach((element, index) => {
+                                        if (index == 12) {
+                                            let mergedRow = '';
+                                            mergedRow += element.Method + "," + element.Condition;
+                                            html += `<tr>
                                             <td style="padding:left: 2px">${element.Test}</td>
-                                            <th style="text-align:center">${element.Method }</th>
-                                            <th style="text-align:center">${element.Condition}</th>
+                                            <th style="text-align:center">` + mergedRow + `</th>
+                                            <th style="text-align:center"></th>
                                             <th style="text-align:center">${element.Unit}</th>
                                             <th style="text-align:center">${element.Cat1}</th>
                                             <th style="text-align:center">${element.Cat2}</th>
@@ -2622,12 +3553,27 @@ if (!$this->session->has_userdata('user_id')) {
                                             <th style="text-align:center">${element.Max}</th>
                                             <th style="text-align:center">${element.Remarks}</th>
                                         </tr>`
-                                    }
-                                })
-                                $('#fgtTestDetails').html(html);
-                            }
-                        });
-                        $('#exampleModalFGTTesting').modal('toggle');
+                                            // console.log("merged data", mergedRow);
+                                        } else {
+                                            html += `<tr>
+                                                <td style="padding:left: 2px">${element.Test}</td>
+                                                <th style="text-align:center">${element.Method }</th>
+                                                <th style="text-align:center">${element.Condition}</th>
+                                                <th style="text-align:center">${element.Unit}</th>
+                                                <th style="text-align:center">${element.Cat1}</th>
+                                                <th style="text-align:center">${element.Cat2}</th>
+                                                <th style="text-align:center">${element.Cat3}</th>
+                                                <th style="text-align:center">${element.Min}</th>
+                                                <th style="text-align:center">${element.Max}</th>
+                                                <th style="text-align:center">${element.Remarks}</th>
+                                            </tr>`
+                                        }
+                                    })
+                                    $('#fgtTestDetails').html(html);
+                                }
+                            });
+                            $('#exampleModalFGTTesting').modal('toggle');
+                        }
                     } else {
                         alert('Lab did not upload data(excel file) of this test type and with matched Css No. Contact Lab for your query!');
                     }
@@ -2659,9 +3605,9 @@ if (!$this->session->has_userdata('user_id')) {
 
             $.post(url, {
                 date1: date1,
-            date2: date2,
-            factoryCode: factoryCode
-        },function(data) {
+                date2: date2,
+                factoryCode: factoryCode
+            }, function(data) {
                 let html = `<table class="table table-bordered table-hover table-responsive table-striped table-sm w-100" style="width:100%" id="fgtReqDateRange">
                     <thead class="bg-primary-200 text-light p-2">
                     <tr>
@@ -2811,8 +3757,8 @@ if (!$this->session->has_userdata('user_id')) {
                         ]
                     });
 
-                }else{
-                   
+                } else {
+
                     toastr["info"]("No data found!")
                     toastr.options = {
                         "closeButton": true,
@@ -2825,13 +3771,13 @@ if (!$this->session->has_userdata('user_id')) {
                         "showDuration": "300",
                         "timeOut": 0,
                     }
-                
+
                     $("#tableData").html(html);
                 }
 
             });
-           
-           
+
+
         });
     </script>
 
